@@ -12104,7 +12104,7 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
                 >
                   &lt;p style="font-size:2em; font-weight:700;
                 </span>
-                 color:#cc0000"&gt;About Accessibility Insights for Web&lt;/p&gt;
+                 color:#e81123"&gt;About Accessibility Insights for Web&lt;/p&gt;
               </div>
             </div>
           </div>
@@ -12165,7 +12165,7 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
                 >
                   &lt;h1 
                 </span>
-                style="color:#cc0000"&gt;About Accessibility Insights for Web
+                style="color:#e81123"&gt;About Accessibility Insights for Web
                 <span
                   class="highlight"
                 >

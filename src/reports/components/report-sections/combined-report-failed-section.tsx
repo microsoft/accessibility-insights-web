@@ -4,6 +4,7 @@
 import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -16,17 +17,20 @@ export type CombinedReportFailedSectionProps = {
     deps: CombinedReportFailedSectionDeps;
     cardsViewData: CardsViewModel;
     scanMetadata: ScanMetadata;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionProps>(
     'CombinedReportFailedSection',
     props => {
-        const { deps, cardsViewData, scanMetadata } = props;
+        const { deps, cardsViewData, scanMetadata, cardSelectionMessageCreator } = props;
 
         const ruleCount = cardsViewData.cards.fail.length;
 
+        const sectionId = 'combined-report-failed-section';
+
         const CollapsibleContent = deps.collapsibleControl({
-            id: 'combined-report-failed-section',
+            id: sectionId,
             header: (
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}
@@ -45,8 +49,12 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
                     headingLevel={4}
+                    cardSelectionMessageCreator={cardSelectionMessageCreator}
                 />
             ),
+            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+            },
             headingLevel: 3,
             deps: null,
         });

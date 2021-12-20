@@ -9,6 +9,7 @@ import {
     TargetAppData,
     ToolData,
 } from 'common/types/store-data/unified-data-interface';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
@@ -41,6 +42,7 @@ describe('ReportExportDialogFactory', () => {
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let cardsViewData: CardsViewModel;
+    let tabStopRequirementData: TabStopRequirementState;
     let targetAppInfo: TargetAppData;
     let scanMetadata: ScanMetadata;
     let deps: DetailsViewCommandBarDeps;
@@ -73,6 +75,7 @@ describe('ReportExportDialogFactory', () => {
         afterDialogDismissedMock = Mock.ofInstance(() => null);
         shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
+        tabStopRequirementData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => currentDate,
@@ -89,7 +92,9 @@ describe('ReportExportDialogFactory', () => {
             featureFlagStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
-            cardsViewData,
+            automatedChecksCardsViewData: cardsViewData,
+            needsReviewCardsViewData: cardsViewData,
+            tabStopRequirementData,
             scanMetadata,
             switcherNavConfiguration,
             isOpen,
@@ -100,15 +105,34 @@ describe('ReportExportDialogFactory', () => {
         shouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: props.visualizationConfigurationFactory,
             selectedTest: props.selectedTest,
-            unifiedScanResultStoreData: props.unifiedScanResultStoreData,
             visualizationStoreData: props.visualizationStoreData,
+            featureFlagStoreData: props.featureFlagStoreData,
         } as ShouldShowReportExportButtonProps;
     });
+
+    function setFastPassReportGenerator(): void {
+        reportGeneratorMock
+            .setup(reportGenerator =>
+                reportGenerator.generateFastPassHtmlReport(
+                    {
+                        description: theDescription,
+                        scanMetadata,
+                        results: {
+                            automatedChecks: cardsViewData,
+                            tabStops: tabStopRequirementData,
+                        },
+                    },
+                    featureFlagStoreData,
+                ),
+            )
+            .returns(() => theGeneratorOutput)
+            .verifiable(Times.once());
+    }
 
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
-                reportGenerator.generateAssessmentHTMLReport(
+                reportGenerator.generateAssessmentHtmlReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
@@ -225,6 +249,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('htmlGenerator calls reportGenerator', () => {
+            setFastPassReportGenerator();
             setupShouldShowReportExportButton(true);
             const dialog = getReportExportDialogForFastPass(props);
 

@@ -11,6 +11,19 @@ exports[`RulesWithInstances renders 1`] = `
     containerClassName="collapsibleRuleDetailsGroup"
     content={
       <RuleContent
+        cardSelectionMessageCreator={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "collapseAllRules": [Function],
+            "dispatcher": undefined,
+            "expandAllRules": [Function],
+            "source": undefined,
+            "telemetryFactory": undefined,
+            "toggleCardSelection": [Function],
+            "toggleRuleExpandCollapse": [Function],
+            "toggleVisualHelper": [Function],
+          }
+        }
         deps={
           Object {
             "collapsibleControl": [Function],
@@ -134,6 +147,7 @@ exports[`RulesWithInstances renders 1`] = `
     }
     headingLevel={5}
     id="some-rule"
+    onExpandToggle={[Function]}
   />
 </div>
 `;

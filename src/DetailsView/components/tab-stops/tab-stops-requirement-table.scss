@@ -1,0 +1,29 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/common.scss';
+
+.requirement-column {
+    font-size: 14px;
+    color: $primary-text;
+    white-space: normal;
+}
+
+.pass-fail-column-cell {
+    display: flex;
+    align-items: center;
+}
+
+.requirement-name {
+    font-weight: 600;
+}
+
+.requirement-table {
+    > div[role='grid'] {
+        padding-bottom: 20px;
+    }
+
+    * {
+        background-color: $neutral-2;
+    }
+}

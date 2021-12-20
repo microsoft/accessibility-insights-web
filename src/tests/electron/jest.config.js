@@ -22,8 +22,8 @@ module.exports = {
         [
             'jest-junit',
             {
-                outputDirectory: '.',
-                outputName: '<rootDir>/test-results/electron/junit-electron.xml',
+                outputDirectory: '<rootDir>/test-results/electron/',
+                outputName: 'junit-electron.xml',
             },
         ],
     ],

@@ -6,9 +6,12 @@ import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabActions } from 'background/actions/tab-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 
@@ -31,10 +34,13 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.devToolActions).toBeInstanceOf(DevToolActions);
     expect(hub.scopingActions).toBeInstanceOf(ScopingActions);
     expect(hub.tabActions).toBeInstanceOf(TabActions);
+    expect(hub.tabStopRequirementActions).toBeInstanceOf(TabStopRequirementActions);
     expect(hub.visualizationActions).toBeInstanceOf(VisualizationActions);
     expect(hub.visualizationScanResultActions).toBeInstanceOf(VisualizationScanResultActions);
     expect(hub.inspectActions).toBeInstanceOf(InspectActions);
     expect(hub.contentActions).toBeInstanceOf(ContentActions);
     expect(hub.injectionActions).toBeInstanceOf(InjectionActions);
     expect(hub.sidePanelActions).toBeInstanceOf(SidePanelActions);
+    expect(hub.needsReviewScanResultActions).toBeInstanceOf(NeedsReviewScanResultActions);
+    expect(hub.needsReviewCardSelectionActions).toBeInstanceOf(NeedsReviewCardSelectionActions);
 }

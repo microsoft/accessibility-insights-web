@@ -238,7 +238,7 @@ describe('HeadingFormatterTests', () => {
     function verifyFailureBoxStyle(config: DrawerConfiguration): void {
         const failureBoxConfig = config.failureBoxConfig;
         const expected = {
-            background: '#CC0000',
+            background: '#E81123',
             fontColor: '#FFFFFF',
             text: '!',
             boxWidth: '20px',

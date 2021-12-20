@@ -8,6 +8,7 @@ exports[`InstanceDetailsGroup renders 1`] = `
 >
   <li>
     <InstanceDetails
+      cardSelectionMessageCreator={Object {}}
       deps={Object {}}
       getPropertyConfigById={[Function]}
       index={0}

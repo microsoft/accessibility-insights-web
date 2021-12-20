@@ -5,6 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -15,7 +16,6 @@ import { VisualizationInstanceProcessor } from 'injected/visualization-instance-
 import * as React from 'react';
 
 const issuesTestKey = AdHocTestkeys.Issues;
-const needsReviewTestKey = AdHocTestkeys.NeedsReview;
 
 const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: null,
@@ -32,13 +32,11 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocFailure',
     getStoreData: data => data.adhoc[issuesTestKey],
-    enableTest: (data, _) => {
-        data.adhoc[issuesTestKey].enabled = true;
-        data.adhoc[needsReviewTestKey].enabled = false;
-    },
+    enableTest: data => (data.adhoc[issuesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: data => data.results != null,
+    shouldShowExportReport: featureflagStoreData =>
+        featureflagStoreData[FeatureFlags.newTabStopsDetailsView],
     displayableData: {
         title: 'Automated checks',
         subtitle: (

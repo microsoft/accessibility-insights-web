@@ -184,19 +184,6 @@ describe('DiagnosticViewToggleTest', () => {
                 visualizationConfigurationFactory.getConfiguration(visualizationType).chromeCommand;
             expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
         });
-
-        it('handles no chromeCommand defined', () => {
-            const visualizationType = VisualizationType.NeedsReview;
-            const propsBuilder = new DiagnosticViewTogglePropsBuilder(
-                visualizationType,
-                testTelemetrySource,
-            ).setupShortcutCommands([]);
-
-            const props: DiagnosticViewToggleProps = propsBuilder.build();
-
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
     });
 
     describe('life cycle events', () => {

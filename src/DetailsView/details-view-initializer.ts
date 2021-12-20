@@ -22,19 +22,28 @@ import { Globalization } from 'common/globalization';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
+import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
+import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
+import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -49,6 +58,7 @@ import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from 'reports/components/requirement-outcome-type';
+import { FastPassReportHtmlGenerator } from 'reports/fast-pass-report-html-generator';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
@@ -175,6 +185,21 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
+                StoreNames[StoreNames.CardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
+                StoreNames[StoreNames.NeedsReviewScanResultStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
+                StoreNames[StoreNames.NeedsReviewCardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
                 browserAdapter,
@@ -205,11 +230,11 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
-            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
-                StoreNames[StoreNames.CardSelectionStore],
-                browserAdapter,
-                tab.id,
-            );
+
+            const tabStopsViewActions = new TabStopsViewActions();
+            const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
+            const tabStopsViewStore = new TabStopsViewStore(tabStopsViewActions);
+            tabStopsViewStore.initialize();
 
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
@@ -218,12 +243,15 @@ if (tabId != null) {
                 tabStore,
                 visualizationScanResultStore,
                 unifiedScanResultStore,
+                cardSelectionStore,
+                needsReviewScanResultStore,
+                needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
-                cardSelectionStore,
+                tabStopsViewStore,
             ]);
 
             const logger = createDefaultLogger();
@@ -233,10 +261,17 @@ if (tabId != null) {
                 logger,
             );
 
+            const tabStopRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                );
+
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
             );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -319,8 +354,11 @@ if (tabId != null) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
+            const tabStopsFailedCounter = new TabStopsFailedCounter();
 
-            const reportHtmlGenerator = new ReportHtmlGenerator(
+            // This is for a soon-to-be-legacy FastPass report format.
+            // It should be removed with #1897885.
+            const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
@@ -329,6 +367,17 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
+            );
+
+            const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
+                reactStaticRenderer,
+                getDefaultAddListenerForCollapsibleSection,
+                DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
+                fixInstructionProcessor,
+                recommendColor,
+                getPropertyConfiguration,
+                tabStopsFailedCounter,
             );
 
             // Represents the language in which pages are to be displayed
@@ -385,18 +434,27 @@ if (tabId != null) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-                actionMessageDispatcher,
-                telemetryFactory,
-                TelemetryEventSource.DetailsView,
-            );
+            const automatedChecksCardSelectionMessageCreator =
+                new AutomatedChecksCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
+            const needsReviewCardSelectionMessageCreator =
+                new NeedsReviewCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                reportNameGenerator,
-                reportHtmlGenerator,
+                automatedChecksReportHtmlGenerator,
+                fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,
             );
@@ -449,6 +507,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
@@ -486,6 +545,7 @@ if (tabId != null) {
                 toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                reportNameGenerator,
                 reportGenerator,
                 reportExportServiceProvider: ReportExportServiceProviderImpl,
                 getCardViewData: getCardViewData,
@@ -493,7 +553,8 @@ if (tabId != null) {
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
-                cardSelectionMessageCreator,
+                automatedChecksCardSelectionMessageCreator,
+                needsReviewCardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(
@@ -515,6 +576,9 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+                tabStopRequirements: requirements,
+                tabStopsFailedCounter,
+                tabStopsTestViewController,
             };
 
             const renderer = new DetailsViewRenderer(

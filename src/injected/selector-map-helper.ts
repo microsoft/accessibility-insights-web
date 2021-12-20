@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
@@ -20,6 +22,8 @@ export type VisualizationRelatedStoreData = Pick<
     | 'unifiedScanResultStoreData'
     | 'visualizationScanResultStoreData'
     | 'cardSelectionStoreData'
+    | 'needsReviewCardSelectionStoreData'
+    | 'needsReviewScanResultStoreData'
 >;
 
 export class SelectorMapHelper {
@@ -39,6 +43,8 @@ export class SelectorMapHelper {
             unifiedScanResultStoreData,
             assessmentStoreData,
             cardSelectionStoreData,
+            needsReviewScanResultStoreData,
+            needsReviewCardSelectionStoreData,
         } = visualizationRelatedStoreData;
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -47,6 +53,8 @@ export class SelectorMapHelper {
                 visualizationScanResultStoreData,
                 unifiedScanResultStoreData,
                 cardSelectionStoreData,
+                needsReviewScanResultStoreData,
+                needsReviewCardSelectionStoreData,
             );
         }
 
@@ -80,10 +88,17 @@ export class SelectorMapHelper {
         visualizationScanResultData: VisualizationScanResultData,
         unifiedScanData: UnifiedScanResultStoreData,
         cardSelectionStoreData: CardSelectionStoreData,
+        needsReviewScanData: NeedsReviewScanResultStoreData,
+        needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData,
     ): SelectorToVisualizationMap {
         let selectorMap = {};
         switch (visualizationType) {
             case VisualizationType.NeedsReview:
+                selectorMap = this.getElementBasedViewModel(
+                    needsReviewScanData,
+                    needsReviewCardSelectionStoreData,
+                );
+                break;
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
                     unifiedScanData,

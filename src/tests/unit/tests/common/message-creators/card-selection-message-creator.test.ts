@@ -7,7 +7,7 @@ import {
 } from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -15,7 +15,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
     let dispatcherMock: IMock<ActionMessageDispatcher>;
-    let testSubject: CardSelectionMessageCreator;
+    let testSubject: AutomatedChecksCardSelectionMessageCreator;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let sourceStub: TelemetryEventSource;
     let eventStub: React.SyntheticEvent;
@@ -27,7 +27,7 @@ describe('Card Selection Message Creator', () => {
         sourceStub = -1;
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {} as BaseTelemetryData;
-        testSubject = new CardSelectionMessageCreator(
+        testSubject = new AutomatedChecksCardSelectionMessageCreator(
             dispatcherMock.object,
             telemetryDataFactoryMock.object,
             sourceStub,

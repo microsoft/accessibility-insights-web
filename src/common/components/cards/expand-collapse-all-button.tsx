@@ -6,27 +6,23 @@ import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './expand-collapse-all-button.scss';
 
-export type ExpandCollapseAllButtonDeps = {
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
-};
-
 export type ExpandCollapseAllButtonProps = {
-    deps: ExpandCollapseAllButtonDeps;
     allCardsCollapsed: boolean;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
     'ExpandCollapseAllButton',
     props => {
-        const { deps, allCardsCollapsed } = props;
+        const { allCardsCollapsed, cardSelectionMessageCreator } = props;
 
-        let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
+        let expandCollapseAllButtonHandler = cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
         let iconName = 'ChevronDown';
         let ariaLabel: string | undefined = undefined;
 
         if (allCardsCollapsed) {
-            expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
+            expandCollapseAllButtonHandler = cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
             iconName = 'ChevronRight';
             ariaLabel = 'Expand all rules to show failed instances.';

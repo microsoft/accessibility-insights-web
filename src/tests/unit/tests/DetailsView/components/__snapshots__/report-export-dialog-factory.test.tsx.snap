@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected properties are set 1`] = `
-<ExportDialogWithLocalState
+<ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
     Object {
@@ -44,8 +44,8 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
       },
     }
   }
@@ -79,7 +79,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
 `;
 
 exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
-<ExportDialogWithLocalState
+<ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
     Object {
@@ -122,8 +122,8 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
       },
     }
   }

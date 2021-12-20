@@ -88,16 +88,6 @@ describe('UnifiedScanResultStore Test', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onScanStarted', () => {
-        const initialState = getDefaultState();
-        const finalState = getDefaultState();
-
-        createStoreForUnifiedScanResultActions('startScan').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
-    });
-
     function getDefaultState(): UnifiedScanResultStoreData {
         return createStoreWithNullParams(UnifiedScanResultStore).getDefaultState();
     }

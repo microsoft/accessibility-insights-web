@@ -11,7 +11,10 @@ import { SectionProps } from './report-section-factory';
 
 export type CombinedReportRulesOnlySectionDeps = CollapsibleResultSectionDeps;
 
-export type CombinedReportRulesOnlySectionProps = Pick<SectionProps, 'deps' | 'cardsViewData'>;
+export type CombinedReportRulesOnlySectionProps = Pick<
+    SectionProps,
+    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'
+>;
 
 const makeCombinedReportRulesOnlySection = (options: {
     outcomeType: InstanceOutcomeType;
@@ -19,12 +22,13 @@ const makeCombinedReportRulesOnlySection = (options: {
 }) =>
     NamedFC<CombinedReportRulesOnlySectionProps>(
         'CombinedReportRulesOnlySection',
-        ({ deps, cardsViewData }) => {
+        ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
             const { outcomeType, title } = options;
             const cardRuleResults = cardsViewData.cards[outcomeType];
+            const sectionId = `${outcomeType}-checks-section`;
 
             const CollapsibleContent = deps.collapsibleControl({
-                id: `${outcomeType}-checks-section`,
+                id: sectionId,
                 header: (
                     <CombinedReportResultSectionTitle
                         outcomeCount={cardRuleResults.length}
@@ -40,6 +44,9 @@ const makeCombinedReportRulesOnlySection = (options: {
                         outcomeType={outcomeType}
                     />
                 ),
+                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                    cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+                },
                 headingLevel: 3,
                 deps: null,
             });

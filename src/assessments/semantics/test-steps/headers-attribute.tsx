@@ -3,7 +3,6 @@
 import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from 'assessments/common/assisted-test-record-your-results';
 import { onRenderSnippetColumn } from 'assessments/common/element-column-renderers';
-import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/semantics/headers-attribute';
@@ -36,8 +35,8 @@ const headersAttributeHowToTest: JSX.Element = (
             </li>
 
             <li>
-                If a table has <Markup.CodeTerm>headers</Markup.CodeTerm> attributes, verify that
-                they are coded correctly:
+                If a table has <Markup.CodeTerm>headers</Markup.CodeTerm> attributes, inspect the
+                page's HTML to verify that the header and data cells are coded correctly:
                 <ol>
                     <li>
                         Each header cell (<Markup.Tag tagName="th" /> element) must have an{' '}
@@ -52,8 +51,10 @@ const headersAttributeHowToTest: JSX.Element = (
                         reference all cells that function as headers for that data cell.
                     </li>
                 </ol>
-                Note: If a <Markup.CodeTerm>headers</Markup.CodeTerm> attribute references an
-                element that is missing or invalid, it will fail an automated check.
+                <Markup.Emphasis>
+                    Note: If a <Markup.CodeTerm>headers</Markup.CodeTerm> attribute references an
+                    element that is missing or invalid, it will fail an automated check.
+                </Markup.Emphasis>
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -80,7 +81,6 @@ export const HeadersAttribute: Requirement = {
         ),
     getDrawer: provider => provider.createTableHeaderAttributeDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    reportInstanceFields: [ReportInstanceField.fromSnippet('element', 'Element')],
     columnsConfig: [
         {
             key: 'element',

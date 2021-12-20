@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -18,6 +21,7 @@ import { UnifiedScanResultActions } from './unified-scan-result-actions';
 export class ActionHub {
     public visualizationActions: VisualizationActions;
     public visualizationScanResultActions: VisualizationScanResultActions;
+    public tabStopRequirementActions: TabStopRequirementActions;
     public tabActions: TabActions;
     public devToolActions: DevToolActions;
     public assessmentActions: AssessmentActions;
@@ -30,10 +34,13 @@ export class ActionHub {
     public cardSelectionActions: CardSelectionActions;
     public injectionActions: InjectionActions;
     public sidePanelActions: SidePanelActions;
+    public needsReviewScanResultActions: NeedsReviewScanResultActions;
+    public needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
         this.visualizationScanResultActions = new VisualizationScanResultActions();
+        this.tabStopRequirementActions = new TabStopRequirementActions();
         this.tabActions = new TabActions();
         this.devToolActions = new DevToolActions();
         this.assessmentActions = new AssessmentActions();
@@ -46,5 +53,7 @@ export class ActionHub {
         this.cardSelectionActions = new CardSelectionActions();
         this.injectionActions = new InjectionActions();
         this.sidePanelActions = new SidePanelActions();
+        this.needsReviewScanResultActions = new NeedsReviewScanResultActions();
+        this.needsReviewCardSelectionActions = new NeedsReviewCardSelectionActions();
     }
 }

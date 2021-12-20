@@ -1,11 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>(
+export interface ReportCollapsibleContainerProps {
+    id: string;
+    header: JSX.Element;
+    content: JSX.Element;
+    headingLevel: number;
+    contentClassName?: string;
+    containerClassName?: string;
+    buttonAriaLabel?: string;
+}
+
+const ReportCollapsibleContainer = NamedFC<ReportCollapsibleContainerProps>(
     'ReportCollapsibleContainer',
     props => {
         const { id, header, headingLevel, content, containerClassName, buttonAriaLabel } = props;
@@ -35,5 +44,5 @@ const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>(
 );
 
 export const ReportCollapsibleContainerControl = (
-    collapsibleControlProps: CollapsibleComponentCardsProps,
+    collapsibleControlProps: ReportCollapsibleContainerProps,
 ) => <ReportCollapsibleContainer {...collapsibleControlProps} />;

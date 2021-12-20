@@ -42,7 +42,7 @@ export class IssuesFormatter implements Formatter {
     }
 
     public static style: HeadingStyleConfiguration = {
-        borderColor: '#CC0000',
+        borderColor: '#E81123',
         fontColor: '#FFFFFF',
     };
 

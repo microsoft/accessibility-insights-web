@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FileURLProvider } from 'common/file-url-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { ReportExportComponent } from 'DetailsView/components/report-export-component';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import {
@@ -19,7 +21,8 @@ import { isMatch } from 'lodash';
 import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -27,12 +30,14 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('ReflowCommandBar', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let cardsViewDataStub: CardsViewModel;
-    let reportGeneratorMock: IMock<ReportGenerator>;
+    let reportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
+    let reportNameGeneratorMock: IMock<ReportNameGenerator>;
     let scanMetadataStub: ScanMetadata;
     let scanDateStub: Date;
     let narrowModeStatusStub: NarrowModeStatus;
     let props: ReflowCommandBarProps;
     let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
+    let fileUrlProviderMock: IMock<FileURLProvider>;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -54,14 +59,18 @@ describe('ReflowCommandBar', () => {
             isVirtualKeyboardCollapsed: false,
         };
         scanDateStub = new Date(0);
-        reportGeneratorMock = Mock.ofType(ReportGenerator);
+        reportHtmlGeneratorMock = Mock.ofType(ReportHtmlGenerator);
+        reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
         reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
+        fileUrlProviderMock = Mock.ofType(FileURLProvider);
         setReportExportServiceProviderForFastPass();
         props = {
             deps: {
                 scanActionCreator: null,
-                reportGenerator: reportGeneratorMock.object,
+                reportHtmlGenerator: reportHtmlGeneratorMock.object,
+                reportNameGenerator: reportNameGeneratorMock.object,
                 reportExportServiceProvider: reportExportServiceProviderMock.object,
+                fileURLProvider: fileUrlProviderMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {} as ScanStoreData,
             cardsViewData: cardsViewDataStub,
@@ -103,7 +112,7 @@ describe('ReflowCommandBar', () => {
 
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
             reportExportServiceProviderMock.verifyAll();
         });
 
@@ -111,14 +120,14 @@ describe('ReflowCommandBar', () => {
             props.scanMetadata = null;
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
 
         it('does not create report export when allowsExportReport is false', () => {
             props.currentContentPageInfo.allowsExportReport = false;
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
     });
 
@@ -173,7 +182,7 @@ describe('ReflowCommandBar', () => {
             const rendered = shallow(<ReflowCommandBar {...props} />);
             const commandBar = rendered.find(CommandBarButtonsMenu);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
             expect(commandBar.prop('renderExportReportButton')()).toMatchSnapshot('export report');
         });
 
@@ -182,7 +191,7 @@ describe('ReflowCommandBar', () => {
 
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
 
         test('dropdown menu is dismissed and button focused when dialog is dismissed', () => {
@@ -191,9 +200,9 @@ describe('ReflowCommandBar', () => {
             const buttonMock = Mock.ofType<IButton>();
             const commandBar = rendered.find(CommandBarButtonsMenu);
             const buttonRefCallback = commandBar.prop('buttonRef') as any;
-            const onDialogDismissCallback = commandBar.prop('renderExportReportButton')().props[
-                'onDialogDismiss'
-            ];
+
+            const exportDialog = rendered.find(ReportExportComponent);
+            const onDialogDismissCallback = exportDialog.props()['afterDialogDismissed'];
 
             buttonMock.setup(bm => bm.dismissMenu()).verifiable();
             buttonMock.setup(bm => bm.focus()).verifiable();

@@ -36,17 +36,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
             },
-            "cardSelectionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "collapseAllRules": [Function],
-              "dispatcher": undefined,
-              "expandAllRules": [Function],
-              "source": undefined,
-              "telemetryFactory": undefined,
-              "toggleCardSelection": [Function],
-              "toggleRuleExpandCollapse": [Function],
-              "toggleVisualHelper": [Function],
-            },
             "getPropertyConfigById": [Function],
           }
         }
@@ -107,17 +96,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
             },
-            "cardSelectionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "collapseAllRules": [Function],
-              "dispatcher": undefined,
-              "expandAllRules": [Function],
-              "source": undefined,
-              "telemetryFactory": undefined,
-              "toggleCardSelection": [Function],
-              "toggleRuleExpandCollapse": [Function],
-              "toggleVisualHelper": [Function],
-            },
             "getPropertyConfigById": [Function],
           }
         }
@@ -166,17 +144,6 @@ exports[`InstanceDetails renders 1`] = `
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
                   },
-                  "cardSelectionMessageCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "collapseAllRules": [Function],
-                    "dispatcher": undefined,
-                    "expandAllRules": [Function],
-                    "source": undefined,
-                    "telemetryFactory": undefined,
-                    "toggleCardSelection": [Function],
-                    "toggleRuleExpandCollapse": [Function],
-                    "toggleVisualHelper": [Function],
-                  },
                   "getPropertyConfigById": [Function],
                 }
               }
@@ -193,17 +160,6 @@ exports[`InstanceDetails renders 1`] = `
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
                   },
-                  "cardSelectionMessageCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "collapseAllRules": [Function],
-                    "dispatcher": undefined,
-                    "expandAllRules": [Function],
-                    "source": undefined,
-                    "telemetryFactory": undefined,
-                    "toggleCardSelection": [Function],
-                    "toggleRuleExpandCollapse": [Function],
-                    "toggleVisualHelper": [Function],
-                  },
                   "getPropertyConfigById": [Function],
                 }
               }
@@ -219,17 +175,6 @@ exports[`InstanceDetails renders 1`] = `
                     "supportsCopyFailureDetails": true,
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
-                  },
-                  "cardSelectionMessageCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "collapseAllRules": [Function],
-                    "dispatcher": undefined,
-                    "expandAllRules": [Function],
-                    "source": undefined,
-                    "telemetryFactory": undefined,
-                    "toggleCardSelection": [Function],
-                    "toggleRuleExpandCollapse": [Function],
-                    "toggleVisualHelper": [Function],
                   },
                   "getPropertyConfigById": [Function],
                 }
@@ -264,17 +209,6 @@ exports[`InstanceDetails renders 1`] = `
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
-            },
-            "cardSelectionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "collapseAllRules": [Function],
-              "dispatcher": undefined,
-              "expandAllRules": [Function],
-              "source": undefined,
-              "telemetryFactory": undefined,
-              "toggleCardSelection": [Function],
-              "toggleRuleExpandCollapse": [Function],
-              "toggleVisualHelper": [Function],
             },
             "getPropertyConfigById": [Function],
           }
@@ -346,17 +280,6 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
-            },
-            "cardSelectionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "collapseAllRules": [Function],
-              "dispatcher": undefined,
-              "expandAllRules": [Function],
-              "source": undefined,
-              "telemetryFactory": undefined,
-              "toggleCardSelection": [Function],
-              "toggleRuleExpandCollapse": [Function],
-              "toggleVisualHelper": [Function],
             },
             "getPropertyConfigById": [Function],
           }

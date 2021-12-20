@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { leftNavHamburgerButtonAutomationId } from 'common/components/left-nav-hamburger-button';
 import { testViewLeftNavLinkAutomationId } from 'DetailsView/components/left-nav/test-view-left-nav-link';
-import { exportReportCommandBarButtonId } from 'DetailsView/components/report-export-component';
+import { reportExportButtonAutomationId } from 'DetailsView/components/report-export-button';
 import { fluentLeftNavAutomationId } from 'electron/views/left-nav/fluent-left-nav';
 import { leftNavAutomationId } from 'electron/views/left-nav/left-nav';
 import {
@@ -17,7 +17,7 @@ export const ResultsViewSelectors = {
     leftNav: getAutomationIdSelector(leftNavAutomationId),
     fluentLeftNav: getAutomationIdSelector(fluentLeftNavAutomationId),
     leftNavHamburgerButton: getAutomationIdSelector(leftNavHamburgerButtonAutomationId),
-    exportReportButton: getAutomationIdSelector(exportReportCommandBarButtonId),
+    exportReportButton: getAutomationIdSelector(reportExportButtonAutomationId),
 
     nthTestInLeftNav: (position: number) =>
         `${getAutomationIdSelector(

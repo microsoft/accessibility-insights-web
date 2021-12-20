@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { TitleSection } from 'reports/components/report-sections/title-section';
+import { FastPassResultsTitleSection } from 'reports/components/report-sections/fast-pass-results-title-section';
 
-describe('TitleSection', () => {
+describe('FastPassResultsTitleSection', () => {
     it('renders', () => {
-        const wrapped = shallow(<TitleSection />);
+        const wrapped = shallow(<FastPassResultsTitleSection title="Test title" />);
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

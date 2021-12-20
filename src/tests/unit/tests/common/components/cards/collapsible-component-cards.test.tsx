@@ -4,7 +4,6 @@ import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
@@ -15,8 +14,9 @@ import { SetFocusVisibility } from 'types/set-focus-visibility';
 describe('CollapsibleComponentCardsTest', () => {
     const eventStubFactory = new EventStubFactory();
 
-    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
+    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
+    let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
         header: <div>Some header</div>,
@@ -32,19 +32,20 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
+        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
+        clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             setFocusVisibility: setFocusVisibilityMock.object,
         };
+        partialProps.onExpandToggle = onExpandToggleMock.object;
     });
 
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
-                cardSelectionMessageCreatorMock
-                    .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), It.isAny()))
+                onExpandToggleMock
+                    .setup(mock => mock(clickEventMock.object))
                     .verifiable(Times.never());
 
                 const props: CollapsibleComponentCardsProps = {
@@ -55,16 +56,13 @@ describe('CollapsibleComponentCardsTest', () => {
                 const control = CardsCollapsibleControl(props);
                 const result = shallow(control);
                 expect(result.getElement()).toMatchSnapshot();
-                cardSelectionMessageCreatorMock.verifyAll();
+                onExpandToggleMock.verifyAll();
             });
         });
     });
 
     test('toggle from expanded to collapsed', () => {
-        const eventStub = eventStubFactory.createKeypressEvent() as any;
-        cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub))
-            .verifiable(Times.once());
+        onExpandToggleMock.setup(mock => mock(clickEventMock.object)).verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             ...partialProps,
@@ -76,10 +74,10 @@ describe('CollapsibleComponentCardsTest', () => {
         expect(result.getElement()).toMatchSnapshot('expanded');
 
         const button = result.find('CustomizedActionButton');
-        button.simulate('click', eventStub);
+        button.simulate('click', clickEventMock.object);
         expect(result.getElement()).toMatchSnapshot('collapsed');
 
-        cardSelectionMessageCreatorMock.verifyAll();
+        onExpandToggleMock.verifyAll();
     });
 
     describe('set focus visibility when expanding/collapsing', () => {

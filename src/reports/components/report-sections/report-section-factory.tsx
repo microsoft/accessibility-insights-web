@@ -4,6 +4,7 @@ import { CommonInstancesSectionDeps } from 'common/components/cards/common-insta
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -25,6 +26,7 @@ export type SectionProps = {
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldAlertFailuresCount?: boolean;
     scanMetadata: ScanMetadata;

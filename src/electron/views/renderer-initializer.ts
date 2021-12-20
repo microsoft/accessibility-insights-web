@@ -40,7 +40,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -119,7 +119,6 @@ import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
-import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -398,11 +397,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         detailsViewActionCreator.registerCallback();
 
-        const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-            dispatcher,
-            telemetryDataFactory,
-            TelemetryEventSource.ElectronResultsView,
-        );
+        const automatedChecksCardSelectionMessageCreator =
+            new AutomatedChecksCardSelectionMessageCreator(
+                dispatcher,
+                telemetryDataFactory,
+                TelemetryEventSource.ElectronResultsView,
+            );
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
@@ -501,7 +501,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
-            cardSelectionMessageCreator,
+            cardSelectionMessageCreator: automatedChecksCardSelectionMessageCreator,
 
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: issueFilingActionMessageCreator,
@@ -532,12 +532,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getPropertyConfiguration,
         );
 
-        const reportGenerator = new ReportGenerator(
-            new UnifiedReportNameGenerator(),
-            reportHtmlGenerator,
-            null,
-            null,
-        );
+        const reportNameGenerator = new UnifiedReportNameGenerator();
 
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
@@ -564,7 +559,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             loadTheme,
             documentManipulator,
             isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
-            reportGenerator: reportGenerator,
+            reportHtmlGenerator,
+            reportNameGenerator,
             fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,

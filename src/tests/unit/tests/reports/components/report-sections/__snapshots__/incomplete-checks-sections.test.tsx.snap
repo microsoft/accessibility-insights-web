@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncompleteChecksSection renders 1`] = `
+<CollapsibleResultSection
+  badgeCount={0}
+  cardRuleResults={Array []}
+  containerClassName="result-section"
+  containerId="incomplete-checks-section"
+  deps={Object {}}
+  outcomeType="incomplete"
+  title="Incomplete checks"
+/>
+`;

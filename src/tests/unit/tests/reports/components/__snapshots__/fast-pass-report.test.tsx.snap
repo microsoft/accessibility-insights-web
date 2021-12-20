@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+"<Fragment>
+  <WebReportHead />
+  <BodySection>
+    <AutomatedChecksHeaderSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+    <ContentSection>
+      <FastPassTitleSection />
+      <DetailsSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+      <FastPassReportSummary />
+      <p>
+        Placeholder for combined summary section
+      </p>
+      <ResultsContainer deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}}>
+        <FastPassResultsTitleSection title=\\"Automated checks\\" />
+        <FailedInstancesSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} cardsViewData={{...}} />
+        <p>
+          Placeholder for incomplete checks
+        </p>
+        <PassedChecksSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} cardsViewData={{...}} />
+        <FastPassResultsTitleSection title=\\"Tab stops\\" />
+        <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'PassedChecksSection' }} tabStops={{...}} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+        <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'IncompleteChecksSection' }} tabStops={{...}} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+        <TabStopsFailedInstanceSection deps={{...}} tabStopRequirementState={{...}} />
+      </ResultsContainer>
+    </ContentSection>
+    <ReportFooter>
+      <FooterText deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+    </ReportFooter>
+  </BodySection>
+</Fragment>"
+`;

@@ -16,9 +16,16 @@ export const Messages = {
             RescanVisualization: `${messagePrefix}/visualization/rescanVisualization`,
         },
         TabStops: {
+            ScanCompleted: `${messagePrefix}/visualization/tab-stops/scanCompleted`,
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
             RecordingCompleted: `${messagePrefix}/visualization/tab-stops/completed`,
             TerminateScan: `${messagePrefix}/visualization/tab-stops/terminated`,
+            UpdateTabStopsRequirementStatus: `${messagePrefix}/visualization/tab-stops/requirement-updated`,
+            ResetTabStopsRequirementStatus: `${messagePrefix}/visualization/tab-stops/requirement-reset`,
+            AddTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-added`,
+            UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
+            RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
+            RequirementExpansionToggled: `${messagePrefix}/visualization/tab-stops/toggleTabStopRequirementExpand`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
@@ -158,6 +165,9 @@ export const Messages = {
         ScanCompleted: `${messagePrefix}/unifiedScan/scanCompleted`,
     },
 
+    NeedsReviewScan: {
+        ScanCompleted: `${messagePrefix}/needsReviewScan/scanCompleted`,
+    },
     CardSelection: {
         CardSelectionToggled: `${messagePrefix}/cardSelection/cardSelectionToggled`,
         RuleExpansionToggled: `${messagePrefix}/cardSelection/ruleExpansionToggled`,
@@ -165,6 +175,14 @@ export const Messages = {
         ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
         NavigateToNewCardsView: `${messagePrefix}/cardSelection/navigateToNewCardsView`,
+    },
+    NeedsReviewCardSelection: {
+        CardSelectionToggled: `${messagePrefix}/needsReviewCardSelection/cardSelectionToggled`,
+        RuleExpansionToggled: `${messagePrefix}/needsReviewCardSelection/ruleExpansionToggled`,
+        CollapseAllRules: `${messagePrefix}/needsReviewCardSelection/collapseAllRules`,
+        ExpandAllRules: `${messagePrefix}/needsReviewCardSelection/expandAllRules`,
+        ToggleVisualHelper: `${messagePrefix}/needsReviewCardSelection/toggleVisualHelper`,
+        NavigateToNewCardsView: `${messagePrefix}/needsReviewCardSelection/navigateToNewCardsView`,
     },
 
     PermissionsState: {

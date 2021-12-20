@@ -40,7 +40,7 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
                 onClick={selectNextRequirement}
             >
                 <span>
-                    <Icon iconName="ChevronRight" />
+                    <Icon iconName="ChevronRight" ariaLabel={'next'} />
                 </span>
             </DefaultButton>
         );

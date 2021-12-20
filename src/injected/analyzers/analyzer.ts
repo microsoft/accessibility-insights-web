@@ -6,6 +6,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TelemetryProcessor } from 'common/types/telemetry-processor';
 import { VisualizationType } from 'common/types/visualization-type';
+import { TabbableElementInfo } from 'injected/tabbable-element-getter';
 import { ScanResults } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { HtmlElementAxeResults, ScannerUtils } from '../scanner-utils';
@@ -19,6 +20,10 @@ export interface ScanCompletedPayload<TSelectorValue> extends ScanBasePayload {
     selectorMap: DictionaryStringTo<TSelectorValue>;
     scanResult: ScanResults;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
+}
+
+export interface TabStopsScanCompletedPayload extends BaseActionPayload {
+    calculatedTabStops: TabbableElementInfo[];
 }
 
 export interface ScanUpdatePayload extends ScanBasePayload {

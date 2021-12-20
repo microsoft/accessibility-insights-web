@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-review-card-selection-action-creator';
+import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
+import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
@@ -84,6 +87,12 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
+        const tabStopRequirementActionCreator = new TabStopRequirementActionCreator(
+            interpreter,
+            actionsHub.tabStopRequirementActions,
+            this.telemetryEventHandler,
+        );
+
         const tabActionCreator = new TabActionCreator(
             interpreter,
             actionsHub.tabActions,
@@ -119,6 +128,12 @@ export class TabContextFactory {
             this.telemetryEventHandler,
             this.notificationCreator,
         );
+        const needsReviewScanResultActionCreator = new NeedsReviewScanResultActionCreator(
+            interpreter,
+            actionsHub.needsReviewScanResultActions,
+            this.telemetryEventHandler,
+            this.notificationCreator,
+        );
         const contentActionCreator = new ContentActionCreator(
             interpreter,
             actionsHub.contentActions,
@@ -128,6 +143,11 @@ export class TabContextFactory {
         const cardSelectionActionCreator = new CardSelectionActionCreator(
             interpreter,
             actionsHub.cardSelectionActions,
+            this.telemetryEventHandler,
+        );
+        const needsReviewCardSelectionActionCreator = new NeedsReviewCardSelectionActionCreator(
+            interpreter,
+            actionsHub.needsReviewCardSelectionActions,
             this.telemetryEventHandler,
         );
         const injectionActionCreator = new InjectionActionCreator(
@@ -152,9 +172,12 @@ export class TabContextFactory {
         inspectActionsCreator.registerCallbacks();
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
+        tabStopRequirementActionCreator.registerCallbacks();
         popupActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
+        needsReviewCardSelectionActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
+        needsReviewScanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
         injectionActionCreator.registerCallbacks();
 

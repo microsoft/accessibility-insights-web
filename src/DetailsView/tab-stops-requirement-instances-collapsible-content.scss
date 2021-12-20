@@ -1,0 +1,27 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../common/styles/colors.scss';
+@import '../common/styles/common.scss';
+
+.edit-button {
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: $neutral-100 !important;
+    @media screen and (forced-colors: active) {
+        color: inherit !important;
+    }
+}
+
+.remove-button {
+    margin-left: 12px;
+    font-size: 16px;
+    line-height: 24px;
+    color: $negative-outcome;
+    @media screen and (forced-colors: active) {
+        color: inherit;
+    }
+}
+
+.failed-instances-details * {
+    background-color: $neutral-2;
+}

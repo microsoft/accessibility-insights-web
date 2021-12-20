@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
-import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -46,7 +46,7 @@ export class ActionCreator {
     };
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
-    private unifiedScanResultActions: UnifiedScanResultActions;
+    private needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
     private sidePanelActions: SidePanelActions;
 
     constructor(
@@ -63,7 +63,7 @@ export class ActionCreator {
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
         this.cardSelectionActions = actionHub.cardSelectionActions;
-        this.unifiedScanResultActions = actionHub.scanResultActions;
+        this.needsReviewCardSelectionActions = actionHub.needsReviewCardSelectionActions;
         this.sidePanelActions = actionHub.sidePanelActions;
     }
 
@@ -270,6 +270,7 @@ export class ActionCreator {
     private onScrollRequested = (): void => {
         this.visualizationActions.scrollRequested.invoke(null);
         this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
+        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(null);
     };
 
     private onDetailsViewOpen = async (
@@ -331,7 +332,6 @@ export class ActionCreator {
     private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
         const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
-        this.unifiedScanResultActions.startScan.invoke(null);
 
         if (payload.enabled) {
             this.visualizationActions.enableVisualization.invoke(payload);
@@ -342,8 +342,8 @@ export class ActionCreator {
 
     private onRescanVisualization = (payload: RescanVisualizationPayload) => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
+        this.visualizationActions.rescanVisualization.invoke(payload.test);
         this.visualizationActions.enableVisualization.invoke(payload);
-        this.unifiedScanResultActions.startScan.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
