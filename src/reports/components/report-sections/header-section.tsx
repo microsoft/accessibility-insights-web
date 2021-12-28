@@ -7,6 +7,7 @@ import { HeaderBar } from 'reports/components/header-bar';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import * as styles from './header-section.scss';
 
+export const reportHeaderSectionDataAutomationId: string = 'report-header-section';
 export interface HeaderSectionProps {
     targetAppInfo: TargetAppData;
     headerText: string;
@@ -16,7 +17,7 @@ export const HeaderSection = NamedFC<HeaderSectionProps>(
     'HeaderSection',
     ({ targetAppInfo, headerText }) => {
         return (
-            <header>
+            <header data-automation-id={reportHeaderSectionDataAutomationId}>
                 <HeaderBar headerText={headerText} />
                 <div className={styles.reportHeaderCommandBar}>
                     <div className={styles.targetPage}>

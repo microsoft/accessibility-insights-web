@@ -8,6 +8,8 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import * as React from 'react';
 import * as styles from './inline-start-over-button.scss';
 
+export const inlineStartOverButtonDataAutomationId = 'inline-start-over-button';
+
 export type InlineStartOverButtonProps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     selectedTest: VisualizationType;
@@ -24,6 +26,7 @@ export const InlineStartOverButton = NamedFC<InlineStartOverButtonProps>(
                 text="Start over"
                 iconProps={{ iconName: 'Refresh' }}
                 className={styles.inlineStartOverButton}
+                data-automation-id={inlineStartOverButtonDataAutomationId}
             />
         );
     },

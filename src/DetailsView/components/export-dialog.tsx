@@ -15,7 +15,7 @@ import { NamedFC } from '../../common/react/named-fc';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import * as styles from './export-dialog.scss';
 
-export const SingleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
+export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
@@ -82,7 +82,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 }}
                 download={props.htmlFileName}
                 href={htmlFileUrl}
-                data-automation-id={SingleExportToHtmlButtonDataAutomationId}
+                data-automation-id={singleExportToHtmlButtonDataAutomationId}
             >
                 Export
             </PrimaryButton>

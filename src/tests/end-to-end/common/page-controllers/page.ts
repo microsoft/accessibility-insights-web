@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
-
 import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
@@ -141,6 +141,10 @@ export class Page {
     public async waitForAndClickSelector(selector: string): Promise<void> {
         await this.waitForSelector(selector);
         await this.clickSelector(selector);
+    }
+
+    public deleteFile(filePath: string): void {
+        fs.unlinkSync(filePath);
     }
 
     public async getSelectorElement(
