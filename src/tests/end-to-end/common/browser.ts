@@ -109,6 +109,14 @@ export class Browser {
         return page;
     }
 
+    public async newDownloadPage(downloadFilePath: string): Promise<Page> {
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
+        const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
+        this.pages.push(page);
+        await page.goto(downloadFilePath);
+        return page;
+    }
+
     public async newAssessment(
         targetPageUrlOptions?: TargetPageUrlOptions,
     ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {

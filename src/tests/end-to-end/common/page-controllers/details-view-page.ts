@@ -123,11 +123,17 @@ export class DetailsViewPage extends Page {
         await this.clickSelector(overviewSelectors.exportDropdown);
     }
 
-    public async downloadExportReport(selector: string): Promise<Download> {
+    public async downloadExportReport(
+        selector: string,
+        saveAsFileName?: string,
+    ): Promise<Download> {
         const [download] = await Promise.all([
             this.underlyingPage.waitForEvent('download'),
             this.clickSelector(selector),
         ]);
+        if (saveAsFileName !== undefined) {
+            download.saveAs(saveAsFileName);
+        }
         return download;
     }
 
