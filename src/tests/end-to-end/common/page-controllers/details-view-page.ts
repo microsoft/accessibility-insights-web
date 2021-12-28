@@ -132,7 +132,7 @@ export class DetailsViewPage extends Page {
             this.clickSelector(selector),
         ]);
         if (saveAsFileName !== undefined) {
-            download.saveAs(saveAsFileName);
+            await download.saveAs(saveAsFileName);
         }
         return download;
     }
