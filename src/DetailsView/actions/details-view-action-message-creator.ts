@@ -289,6 +289,17 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
+    public enableFastPassVisualHelperWithoutScan(test: VisualizationType): void {
+        const payload: ToggleActionPayload = {
+            test,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
+            payload,
+        });
+    }
+
     public disableVisualHelpersForTest(test: VisualizationType): void {
         const payload: ToggleActionPayload = {
             test,
@@ -640,6 +651,35 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
+
+    public rescanVisualizationWithoutTelemetry = (test: VisualizationType) => {
+        const payload: ToggleActionPayload = {
+            test: test,
+        };
+        const message: Message = {
+            messageType: Messages.Visualizations.Common.RescanVisualization,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
+
+    public startOverFastPass = (test: VisualizationType, event: SupportedMouseEvent) => {
+        const payload: ToggleActionPayload = {
+            test: test,
+            telemetry: this.telemetryFactory.withTriggeredByAndSource(
+                event,
+                TelemetryEvents.TelemetryEventSource.DetailsView,
+            ),
+        };
+
+        const message: Message = {
+            messageType: Messages.Visualizations.DetailsView.StartOverFastPass,
             payload,
         };
 

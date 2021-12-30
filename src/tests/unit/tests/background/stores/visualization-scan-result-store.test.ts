@@ -110,7 +110,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('rescanVisualization')
+        createStoreTesterForVisualizationActions('resetDataForVisualization')
             .withActionParam(visualizationTypeStub)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -138,7 +138,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('rescanVisualization')
+        createStoreTesterForVisualizationActions('resetDataForVisualization')
             .withActionParam(visualizationTypeStub)
             .testListenerToNeverBeCalled(initialState, initialState);
     });

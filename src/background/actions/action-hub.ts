@@ -30,7 +30,7 @@ export class ActionHub {
     public contentActions: ContentActions;
     public detailsViewActions: DetailsViewActions;
     public pathSnippetActions: PathSnippetActions;
-    public scanResultActions: UnifiedScanResultActions;
+    public unifiedScanResultActions: UnifiedScanResultActions;
     public cardSelectionActions: CardSelectionActions;
     public injectionActions: InjectionActions;
     public sidePanelActions: SidePanelActions;
@@ -49,7 +49,7 @@ export class ActionHub {
         this.contentActions = new ContentActions();
         this.detailsViewActions = new DetailsViewActions();
         this.pathSnippetActions = new PathSnippetActions();
-        this.scanResultActions = new UnifiedScanResultActions();
+        this.unifiedScanResultActions = new UnifiedScanResultActions();
         this.cardSelectionActions = new CardSelectionActions();
         this.injectionActions = new InjectionActions();
         this.sidePanelActions = new SidePanelActions();

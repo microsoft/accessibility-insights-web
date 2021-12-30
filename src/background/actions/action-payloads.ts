@@ -114,6 +114,8 @@ export interface ToggleActionPayload extends BaseActionPayload {
 
 export type RescanVisualizationPayload = ToggleActionPayload;
 
+export type StartOverFastPassPayload = RescanVisualizationPayload;
+
 export interface VisualizationTogglePayload extends ToggleActionPayload {
     enabled: boolean;
     telemetry: ToggleTelemetryData;

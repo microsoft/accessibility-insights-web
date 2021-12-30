@@ -29,6 +29,7 @@ export class NeedsReviewScanResultActionCreator {
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+        console.log('NeedsReviewScanResultActionCreator.onScanCompleted');
         this.needsReviewScanResultActions.scanCompleted.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(SCAN_INCOMPLETE_WARNINGS, payload);
         this.notificationCreator.createNotification(payload.notificationText);

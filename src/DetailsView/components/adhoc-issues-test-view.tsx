@@ -61,6 +61,8 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
         !scanData.enabled,
     );
 
+    props.deps.detailsViewActionMessageCreator.startOverFastPass(selectedTest, null);
+
     return (
         <TargetPageChangedView
             displayableData={props.configuration.displayableData}
