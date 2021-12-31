@@ -640,6 +640,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     }
 
+    public targetPageChangedResetData = (): void => {
+        const message: Message = {
+            messageType: Messages.Visualizations.DetailsView.TargetPageChanged,
+        };
+
+        this.dispatcher.dispatchMessage(message);
+    };
+
     public rescanVisualization = (test: VisualizationType, event: SupportedMouseEvent) => {
         const payload: ToggleActionPayload = {
             test: test,
@@ -663,23 +671,6 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
-            payload,
-        };
-
-        this.dispatcher.dispatchMessage(message);
-    };
-
-    public startOverFastPass = (test: VisualizationType, event: SupportedMouseEvent) => {
-        const payload: ToggleActionPayload = {
-            test: test,
-            telemetry: this.telemetryFactory.withTriggeredByAndSource(
-                event,
-                TelemetryEvents.TelemetryEventSource.DetailsView,
-            ),
-        };
-
-        const message: Message = {
-            messageType: Messages.Visualizations.DetailsView.StartOverFastPass,
             payload,
         };
 

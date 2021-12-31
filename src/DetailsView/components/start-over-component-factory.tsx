@@ -80,7 +80,7 @@ export function getStartOverPropsForFastPass(props: StartOverFactoryProps): Star
 
     return {
         iconProps: { iconName: 'Refresh', className: styles.startOverMenuItemIcon },
-        onClick: event => detailsViewActionMessageCreator.startOverFastPass(selectedTest, event),
+        onClick: event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event),
         disabled: props.visualizationStoreData.scanning !== null,
         'data-automation-id': startOverAutomationId,
         text: 'Start over',

@@ -28,7 +28,6 @@ import {
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
     RescanVisualizationPayload,
-    StartOverFastPassPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
@@ -92,8 +91,8 @@ export class ActionCreator {
             this.onRescanVisualization,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.DetailsView.StartOverFastPass,
-            this.onStartOverFastPass,
+            visualizationMessages.DetailsView.TargetPageChanged,
+            this.onTargetPageChangedResetData,
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateFocusedInstance,
@@ -357,31 +356,9 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
-    private onStartOverFastPass = (payload: StartOverFastPassPayload): void => {
-        console.log('onStartOverFastPass', payload.test);
-
-        if (payload.test === VisualizationType.Issues) {
-            this.resetNeedsReviewScanResultStoreData();
-        }
-        if (payload.test === VisualizationType.NeedsReview) {
-            this.resetUnifiedScanResultStoreData();
-        }
-        this.resetVisualizationStoreDataForUnfocusedVisualizations(payload.test);
-
-        //rescan current visualization
-        this.onRescanVisualization(payload);
-    };
-
-    private resetVisualizationStoreDataForUnfocusedVisualizations = (
-        payload: VisualizationType,
-    ) => {
-        [VisualizationType.NeedsReview, VisualizationType.Issues].forEach(visualizationType => {
-            // reset data for relevant visualizations that are not currently focused
-            if (payload !== visualizationType) {
-                this.visualizationActions.disableVisualization.invoke(visualizationType);
-                this.visualizationActions.resetDataForVisualization.invoke(visualizationType);
-            }
-        });
+    private onTargetPageChangedResetData = (): void => {
+        this.resetUnifiedScanResultStoreData();
+        this.resetNeedsReviewScanResultStoreData();
     };
 
     private resetNeedsReviewScanResultStoreData = (): void => {

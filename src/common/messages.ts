@@ -40,7 +40,7 @@ export const Messages = {
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
-            StartOverFastPass: `${messagePrefix}/details-view/startOverFastPass`,
+            TargetPageChanged: `${messagePrefix}/details-view/targetPageChanged`,
         },
     },
 

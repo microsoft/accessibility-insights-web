@@ -17,7 +17,7 @@ export const InlineStartOverButton = NamedFC<InlineStartOverButtonProps>(
     'InlineStartOverButton',
     props => {
         const rescan = event =>
-            props.detailsViewActionMessageCreator.startOverFastPass(props.selectedTest, event);
+            props.detailsViewActionMessageCreator.rescanVisualization(props.selectedTest, event);
         return (
             <InsightsCommandButton
                 onClick={rescan}

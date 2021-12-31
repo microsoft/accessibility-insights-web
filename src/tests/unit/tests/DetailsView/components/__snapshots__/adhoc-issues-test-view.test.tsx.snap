@@ -8,7 +8,37 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
     <ScanIncompleteWarning
       deps={
         Object {
-          "detailsViewActionMessageCreator": Object {},
+          "detailsViewActionMessageCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "addPathForValidation": [Function],
+            "cancelStartOver": [Function],
+            "cancelStartOverAllAssessments": [Function],
+            "changeAssessmentVisualizationState": [Function],
+            "changeManualRequirementStatus": [Function],
+            "changeManualTestStatus": [Function],
+            "clearPathSnippetData": [Function],
+            "closePreviewFeaturesPanel": [Function],
+            "closeScopingPanel": [Function],
+            "closeSettingsPanel": [Function],
+            "continuePreviousAssessment": [Function],
+            "copyIssueDetailsClicked": [Function],
+            "dispatcher": undefined,
+            "editFailureInstance": [Function],
+            "leftNavPanelExpanded": [Function],
+            "loadAssessment": [Function],
+            "removeFailureInstance": [Function],
+            "rescanVisualization": [Function],
+            "rescanVisualizationWithoutTelemetry": [Function],
+            "saveAssessment": [Function],
+            "setAllUrlsPermissionState": [Function],
+            "setFeatureFlag": [Function],
+            "startOverAllAssessments": [Function],
+            "switchToTargetTab": [Function],
+            "targetPageChangedResetData": [Function],
+            "telemetryFactory": undefined,
+            "undoManualRequirementStatusChange": [Function],
+            "undoManualTestStatusChange": [Function],
+          },
         }
       }
       test={-1}
@@ -33,7 +63,37 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
       }
       deps={
         Object {
-          "detailsViewActionMessageCreator": Object {},
+          "detailsViewActionMessageCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "addPathForValidation": [Function],
+            "cancelStartOver": [Function],
+            "cancelStartOverAllAssessments": [Function],
+            "changeAssessmentVisualizationState": [Function],
+            "changeManualRequirementStatus": [Function],
+            "changeManualTestStatus": [Function],
+            "clearPathSnippetData": [Function],
+            "closePreviewFeaturesPanel": [Function],
+            "closeScopingPanel": [Function],
+            "closeSettingsPanel": [Function],
+            "continuePreviousAssessment": [Function],
+            "copyIssueDetailsClicked": [Function],
+            "dispatcher": undefined,
+            "editFailureInstance": [Function],
+            "leftNavPanelExpanded": [Function],
+            "loadAssessment": [Function],
+            "removeFailureInstance": [Function],
+            "rescanVisualization": [Function],
+            "rescanVisualizationWithoutTelemetry": [Function],
+            "saveAssessment": [Function],
+            "setAllUrlsPermissionState": [Function],
+            "setFeatureFlag": [Function],
+            "startOverAllAssessments": [Function],
+            "switchToTargetTab": [Function],
+            "targetPageChangedResetData": [Function],
+            "telemetryFactory": undefined,
+            "undoManualRequirementStatusChange": [Function],
+            "undoManualTestStatusChange": [Function],
+          },
         }
       }
       instancesSection={[Function]}
@@ -65,7 +125,39 @@ exports[`AdhocIssuesTestView should return target page changed view as tab is ch
   className="issuesTestView"
 >
   <TargetPageChangedView
-    detailsViewActionMessageCreator={Object {}}
+    detailsViewActionMessageCreator={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "rescanVisualizationWithoutTelemetry": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "targetPageChangedResetData": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      }
+    }
     displayableData={
       Object {
         "title": "test title",

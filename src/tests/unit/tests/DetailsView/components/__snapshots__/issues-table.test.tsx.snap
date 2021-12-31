@@ -11,51 +11,116 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
   <div
     className="issuesTableContent"
   >
-    <React.Fragment>
-      <div
-        className="detailsDisabledMessage"
-        role="alert"
-      >
-        <span>
-          Use the 
-          <InlineStartOverButton
-            detailsViewActionMessageCreator={
-              proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "addPathForValidation": [Function],
-                "cancelStartOver": [Function],
-                "cancelStartOverAllAssessments": [Function],
-                "changeAssessmentVisualizationState": [Function],
-                "changeManualRequirementStatus": [Function],
-                "changeManualTestStatus": [Function],
-                "clearPathSnippetData": [Function],
-                "closePreviewFeaturesPanel": [Function],
-                "closeScopingPanel": [Function],
-                "closeSettingsPanel": [Function],
-                "continuePreviousAssessment": [Function],
-                "copyIssueDetailsClicked": [Function],
-                "dispatcher": undefined,
-                "editFailureInstance": [Function],
-                "leftNavPanelExpanded": [Function],
-                "loadAssessment": [Function],
-                "removeFailureInstance": [Function],
-                "rescanVisualization": [Function],
-                "saveAssessment": [Function],
-                "setAllUrlsPermissionState": [Function],
-                "setFeatureFlag": [Function],
-                "startOverAllAssessments": [Function],
-                "switchToTargetTab": [Function],
-                "telemetryFactory": undefined,
-                "undoManualRequirementStatusChange": [Function],
-                "undoManualTestStatusChange": [Function],
-              }
-            }
-            selectedTest={-1}
-          />
-           button to scan the target page.
-        </span>
-      </div>
-    </React.Fragment>
+    <SomeInstancesSection
+      cardSelectionMessageCreator={Object {}}
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
+      deps={
+        Object {
+          "detailsViewActionMessageCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "addPathForValidation": [Function],
+            "cancelStartOver": [Function],
+            "cancelStartOverAllAssessments": [Function],
+            "changeAssessmentVisualizationState": [Function],
+            "changeManualRequirementStatus": [Function],
+            "changeManualTestStatus": [Function],
+            "clearPathSnippetData": [Function],
+            "closePreviewFeaturesPanel": [Function],
+            "closeScopingPanel": [Function],
+            "closeSettingsPanel": [Function],
+            "continuePreviousAssessment": [Function],
+            "copyIssueDetailsClicked": [Function],
+            "dispatcher": undefined,
+            "editFailureInstance": [Function],
+            "leftNavPanelExpanded": [Function],
+            "loadAssessment": [Function],
+            "removeFailureInstance": [Function],
+            "rescanVisualization": [Function],
+            "rescanVisualizationWithoutTelemetry": [Function],
+            "saveAssessment": [Function],
+            "setAllUrlsPermissionState": [Function],
+            "setFeatureFlag": [Function],
+            "startOverAllAssessments": [Function],
+            "switchToTargetTab": [Function],
+            "targetPageChangedResetData": [Function],
+            "telemetryFactory": undefined,
+            "undoManualRequirementStatusChange": [Function],
+            "undoManualTestStatusChange": [Function],
+          },
+          "getDateFromTimestamp": [Function],
+          "reportGenerator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "assessmentJsonExportGenerator": undefined,
+            "assessmentReportHtmlGenerator": undefined,
+            "automatedChecksReportHtmlGenerator": undefined,
+            "fastPassReportHtmlGenerator": undefined,
+          },
+        }
+      }
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+        }
+      }
+      shouldAlertFailuresCount={true}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "gitHub",
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -168,11 +233,13 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "loadAssessment": [Function],
             "removeFailureInstance": [Function],
             "rescanVisualization": [Function],
+            "rescanVisualizationWithoutTelemetry": [Function],
             "saveAssessment": [Function],
             "setAllUrlsPermissionState": [Function],
             "setFeatureFlag": [Function],
             "startOverAllAssessments": [Function],
             "switchToTargetTab": [Function],
+            "targetPageChangedResetData": [Function],
             "telemetryFactory": undefined,
             "undoManualRequirementStatusChange": [Function],
             "undoManualTestStatusChange": [Function],
