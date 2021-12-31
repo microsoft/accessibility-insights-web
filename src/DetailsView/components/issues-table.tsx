@@ -80,12 +80,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         }
         const { cards } = this.props.cardsViewData;
         let cardCount = 0;
-        // sum count of all cards
         Object.keys(cards).forEach(key => {
             cardCount += cards[key].length;
         });
-        console.log(this.props.cardsViewData);
-        console.log(cardCount);
         return cardCount;
     }
 

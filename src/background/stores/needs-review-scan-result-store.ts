@@ -45,7 +45,6 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
     };
 
     private onResetStoreData = (): void => {
-        console.log('Resetting needs review scan result store');
         this.state = this.getDefaultState();
         this.emitChanged();
     };

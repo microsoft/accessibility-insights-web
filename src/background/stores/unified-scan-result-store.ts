@@ -45,7 +45,6 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     };
 
     private onResetStoreData = (): void => {
-        console.log('Resetting unified scan result store');
         this.state = this.getDefaultState();
         this.emitChanged();
     };
