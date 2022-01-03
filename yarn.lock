@@ -1975,10 +1975,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.171":
-  version "0.0.171"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.171.tgz#6ee9aca52fabbe645372088fcc86b33cff33fcba"
-  integrity sha512-CnCwFKI3COygib3DNJrCjePeoU2OCDGGbUcmftXtQ3loMABsLgwpG8z+LxV4kjQJFzmJDqOyhCSsbY9yyEfapQ==
+"@types/chrome@0.0.174":
+  version "0.0.174"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.174.tgz#ee1679f3a4fc57bb2c3b76957845a68afb7d478c"
+  integrity sha512-x5kjvNdwDtOnT+vbnksj69pDl0u9P/WH9LbQWJawLqGgkBRO3AN/xzTxTPgLpp3IqCbuwfp7bRCHqkkaZguzWw==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
