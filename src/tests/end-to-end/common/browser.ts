@@ -110,7 +110,7 @@ export class Browser {
         return page;
     }
 
-    public async newDownloadPage(downloadFilePath: string): Promise<HtmlReportPage> {
+    public async newHtmlReportPage(downloadFilePath: string): Promise<HtmlReportPage> {
         const underlyingPage = await this.underlyingBrowserContext.newPage();
         const page = new HtmlReportPage(underlyingPage, { onPageCrash: this.onPageCrash });
         this.pages.push(page);

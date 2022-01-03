@@ -46,7 +46,7 @@ describe('Details View -> FastPass -> Report', () => {
             detailsViewSelectors.singleExportToHtmlButton,
             reportSaveAsFilePath,
         );
-        reportPage = await browser.newDownloadPage(reportDownloadUrl);
+        reportPage = await browser.newHtmlReportPage(reportDownloadUrl);
     });
 
     afterAll(async () => {
