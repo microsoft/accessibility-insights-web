@@ -69,11 +69,6 @@ export class Page {
                 );
             }
         });
-        underlyingPage.on('console', async message => {
-            const values = [];
-            for (const arg of message.args()) values.push(await arg.jsonValue());
-            console.log(...values);
-        });
     }
 
     public async goto(url: string): Promise<void> {

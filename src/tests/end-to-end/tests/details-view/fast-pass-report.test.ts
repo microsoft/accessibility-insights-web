@@ -37,7 +37,6 @@ describe('Details View -> FastPass -> Report', () => {
         backgroundPage = await browser.backgroundPage();
         await backgroundPage.enableFeatureFlag(FeatureFlags.newTabStopsDetailsView);
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.waitForAndClickSelector(detailsViewSelectors.inlineStartOverButton);
         await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection);
         await openTabStopsPage(detailsViewPage);
         await addTabStopsFailure(detailsViewPage);
