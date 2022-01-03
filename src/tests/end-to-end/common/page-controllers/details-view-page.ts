@@ -137,10 +137,6 @@ export class DetailsViewPage extends Page {
         return download;
     }
 
-    public async getDownloadFileName(download: Download) {
-        return download.suggestedFilename();
-    }
-
     public async deleteDownloadedFile(download: Download) {
         await download.delete();
     }

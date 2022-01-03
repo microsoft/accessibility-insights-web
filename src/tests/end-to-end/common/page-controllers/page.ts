@@ -138,11 +138,6 @@ export class Page {
         });
     }
 
-    public async waitForAndClickSelector(selector: string): Promise<void> {
-        await this.waitForSelector(selector);
-        await this.clickSelector(selector);
-    }
-
     public deleteFile(filePath: string): void {
         fs.unlinkSync(filePath);
     }

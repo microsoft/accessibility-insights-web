@@ -122,7 +122,7 @@ describe('Details View -> Overview Page', () => {
     it('should download .html when Export as HTML is clicked', async () => {
         await overviewPage.openExportDropdown();
         const download = await overviewPage.downloadExportReport(overviewSelectors.exportAsHTML);
-        const fileName = await overviewPage.getDownloadFileName(download);
+        const fileName = download.suggestedFilename();
         await overviewPage.deleteDownloadedFile(download);
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.html$/)));
     });
@@ -130,7 +130,7 @@ describe('Details View -> Overview Page', () => {
     it('should download .json when Export as JSON is clicked', async () => {
         await overviewPage.openExportDropdown();
         const download = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
-        const fileName = await overviewPage.getDownloadFileName(download);
+        const fileName = download.suggestedFilename();
         await overviewPage.deleteDownloadedFile(download);
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.json$/)));
     });
