@@ -122,9 +122,9 @@ export class TabContextFactory {
             interpreter,
             actionsHub.pathSnippetActions,
         );
-        const scanResultActionCreator = new UnifiedScanResultActionCreator(
+        const unifiedScanResultActionCreator = new UnifiedScanResultActionCreator(
             interpreter,
-            actionsHub.scanResultActions,
+            actionsHub.unifiedScanResultActions,
             this.telemetryEventHandler,
             this.notificationCreator,
         );
@@ -175,9 +175,9 @@ export class TabContextFactory {
         tabStopRequirementActionCreator.registerCallbacks();
         popupActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
-        needsReviewCardSelectionActionCreator.registerCallbacks();
-        scanResultActionCreator.registerCallbacks();
         needsReviewScanResultActionCreator.registerCallbacks();
+        needsReviewCardSelectionActionCreator.registerCallbacks();
+        unifiedScanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
         injectionActionCreator.registerCallbacks();
 

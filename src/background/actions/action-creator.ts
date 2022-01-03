@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -48,6 +50,8 @@ export class ActionCreator {
     private cardSelectionActions: CardSelectionActions;
     private needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
     private sidePanelActions: SidePanelActions;
+    private needsReviewScanResultActions: NeedsReviewScanResultActions;
+    private unifiedScanResultActions: UnifiedScanResultActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -65,6 +69,8 @@ export class ActionCreator {
         this.cardSelectionActions = actionHub.cardSelectionActions;
         this.needsReviewCardSelectionActions = actionHub.needsReviewCardSelectionActions;
         this.sidePanelActions = actionHub.sidePanelActions;
+        this.needsReviewScanResultActions = actionHub.needsReviewScanResultActions;
+        this.unifiedScanResultActions = actionHub.unifiedScanResultActions;
     }
 
     public registerCallbacks(): void {
@@ -84,7 +90,10 @@ export class ActionCreator {
             visualizationMessages.Common.RescanVisualization,
             this.onRescanVisualization,
         );
-
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.DetailsView.TargetPageChanged,
+            this.onTargetPageChangedResetData,
+        );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateFocusedInstance,
             this.onUpdateFocusedInstance,
@@ -342,9 +351,22 @@ export class ActionCreator {
 
     private onRescanVisualization = (payload: RescanVisualizationPayload) => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
-        this.visualizationActions.rescanVisualization.invoke(payload.test);
+        this.visualizationActions.resetDataForVisualization.invoke(payload.test);
         this.visualizationActions.enableVisualization.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
+    };
+
+    private onTargetPageChangedResetData = (): void => {
+        this.resetUnifiedScanResultStoreData();
+        this.resetNeedsReviewScanResultStoreData();
+    };
+
+    private resetNeedsReviewScanResultStoreData = (): void => {
+        this.needsReviewScanResultActions.resetStoreData.invoke(null);
+    };
+
+    private resetUnifiedScanResultStoreData = (): void => {
+        this.unifiedScanResultActions.resetStoreData.invoke(null);
     };
 
     private getVisualizationToggleCurrentState = (): void => {

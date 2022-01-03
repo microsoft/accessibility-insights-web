@@ -45,6 +45,7 @@ describe('AdhocIssuesTestView', () => {
 
     const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
     const selectedTest: VisualizationType = -1;
+    const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
     let props = {
         configuration: configuration,
@@ -54,7 +55,7 @@ describe('AdhocIssuesTestView', () => {
         scanIncompleteWarnings: [],
         instancesSection: NamedFC<CommonInstancesSectionProps>('test', _ => null),
         deps: {
-            detailsViewActionMessageCreator: {} as DetailsViewActionMessageCreator,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         },
     } as AdhocIssuesTestViewProps;
 
@@ -76,6 +77,7 @@ describe('AdhocIssuesTestView', () => {
         props = { ...props, switcherNavConfiguration: switcherNavConfigurationStub };
         getStoreDataMock.reset();
         clickHandlerFactoryMock.reset();
+        detailsViewActionMessageCreatorMock.reset();
     });
 
     it('should return target page changed view as tab is changed', () => {
@@ -91,6 +93,10 @@ describe('AdhocIssuesTestView', () => {
         clickHandlerFactoryMock
             .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
             .returns(() => clickHandlerStub)
+            .verifiable();
+
+        detailsViewActionMessageCreatorMock
+            .setup(dvamc => dvamc.targetPageChangedResetData())
             .verifiable();
 
         const actual = shallow(<AdhocIssuesTestView {...props} />);
