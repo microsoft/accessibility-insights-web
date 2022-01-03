@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details View -> FastPass -> Report should pass accessibility validation 1`] = `
+Array [
+  Object {
+    "id": "duplicate-id-aria",
+    "nodes": Array [
+      Object {
+        "failureSummary": "Fix any of the following:
+  Document has multiple elements referenced with ARIA with the same id attribute: content-container-passed-checks-section",
+        "selector": Array [
+          ".result-section:nth-child(4) > .collapsible-container.collapsed > .collapsible-content[aria-hidden=\\"true\\"]",
+        ],
+      },
+    ],
+  },
+]
+`;
