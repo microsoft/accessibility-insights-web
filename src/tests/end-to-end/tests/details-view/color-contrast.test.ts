@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import {
     detailsViewSelectors,
     fastPassAutomatedChecksSelectors,
@@ -48,14 +49,12 @@ describe('Color Contrast Violations', () => {
         expect(ruleDetails).toHaveLength(1);
 
         await detailsViewPage.clickSelector(fastPassAutomatedChecksSelectors.expandButton);
-        const instanceCard = await detailsViewPage.getSelectorElements(
-            fastPassAutomatedChecksSelectors.instanceCard,
+
+        const recCard = await formatPageElementForSnapshot(
+            detailsViewPage,
+            fastPassAutomatedChecksSelectors.recommendationsCard,
         );
-        expect(instanceCard).toHaveLength(1);
-        const instanceCardContent = await instanceCard[0].innerText();
-        expect(instanceCardContent).toContain('Element has insufficient color contrast');
-        expect(instanceCardContent).toContain(
-            'Use background color: #405c76 and the original foreground color: #000000 to meet a contrast ratio of 3.01:1.',
-        );
+
+        expect(recCard).toMatchSnapshot();
     });
 });

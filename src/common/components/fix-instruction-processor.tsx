@@ -9,6 +9,8 @@ type ColorMatch = {
     colorHexValue: string;
 };
 
+export const recommendationsAutomationId = 'recommendations';
+
 export class FixInstructionProcessor {
     private readonly colorValueMatcher = `(#[0-9a-f]{6})`;
     private readonly foregroundColorText = 'foreground color: ';
@@ -197,7 +199,7 @@ export class FixInstructionProcessor {
         return (
             <>
                 {results}
-                <ul key="recommendations-list">
+                <ul key="recommendations-list" data-automation-id={recommendationsAutomationId}>
                     {recommendations.map((rec, idx) => (
                         <li key={`recommendation-${idx}`}>{rec}</li>
                     ))}

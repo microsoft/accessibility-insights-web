@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { collapsibleButtonAutomationId } from 'common/components/cards/collapsible-component-cards';
-import { instanceCardAutomationId } from 'common/components/cards/instance-details';
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { recommendationsAutomationId } from 'common/components/fix-instruction-processor';
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
@@ -86,7 +86,7 @@ export const fastPassAutomatedChecksSelectors = {
     failureCount: getAutomationIdSelector(failureCountAutomationId),
     iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
     expandButton: getAutomationIdSelector(collapsibleButtonAutomationId),
-    instanceCard: getAutomationIdSelector(instanceCardAutomationId),
+    recommendationsCard: getAutomationIdSelector(recommendationsAutomationId),
 };
 
 export const tabStopsSelectors = {
