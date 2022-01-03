@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderSection renders 1`] = `
-<header>
+<header
+  data-automation-id="report-header-section"
+>
   <HeaderBar
     headerText="some header text"
   />
