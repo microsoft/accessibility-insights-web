@@ -3,6 +3,7 @@
 import { collapsibleButtonAutomationId } from 'common/components/cards/collapsible-component-cards';
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { recommendationsAutomationId } from 'common/components/fix-instruction-processor';
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
@@ -84,6 +85,8 @@ export const fastPassAutomatedChecksSelectors = {
     cardsRuleId: getAutomationIdSelector(cardsRuleIdAutomationId),
     failureCount: getAutomationIdSelector(failureCountAutomationId),
     iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
+    expandButton: getAutomationIdSelector(collapsibleButtonAutomationId),
+    recommendationsCard: getAutomationIdSelector(recommendationsAutomationId),
 };
 
 export const tabStopsSelectors = {
