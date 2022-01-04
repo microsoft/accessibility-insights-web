@@ -4881,10 +4881,10 @@ electron-builder@22.14.5:
     update-notifier "^5.1.0"
     yargs "^17.0.1"
 
-electron-log@^4.4.1:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.4.1.tgz#28ebeb474eccba2ebf194a96c40d6328e5353e4d"
-  integrity sha512-nK/DwxPLtwWbggPCm27eMQhYHc3gzoZ+cokBK99diO4WsZJKrv5l44EUW8mRfWpmC8ZubnMyp6GTUIJyTc9AJA==
+electron-log@^4.4.4:
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.4.4.tgz#df893ae9ae8c21781a585eea50ce7836ac3e0fe7"
+  integrity sha512-jcNtrVmKXG+CHchLo/jnjjQ9K4/ORguWD23H2nqApTwisQ4Qo3IRQtLiorubajX0Uxg76Xm/Yt+eNfQMoHVr5w==
 
 electron-osx-sign@^0.5.0:
   version "0.5.0"
@@ -12036,10 +12036,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-4.1.1.tgz#eab12f25511a329f8e4837842c3b484ffd66b449"
-  integrity sha512-eVRej2pMRRbrMQ7oyLNR+GcMCD4Tmc+MMzq+6qo8pTXiz2GQR1dTaYTs9vDeoCE7iJv9JZ7U36fATbIVECJ+fQ==
+typed-scss-modules@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-4.1.2.tgz#41de1ec509de49ad28e516c4786ec92532acfda9"
+  integrity sha512-D2FZRC+KaKTEqqzeNRdMZnhjQcAOo9xNbGtuDKh2Q7BKJ9fuU2FKhs7z8lrIyt9nh5E3O6YWCXLufqcL8Zqg8w==
   dependencies:
     camelcase "^5.0.0"
     chalk "^3.0.0"
