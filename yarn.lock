@@ -4246,10 +4246,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.20.0:
-  version "3.20.0"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.20.0.tgz#b4c453ca2b95bfaad823a08c93424a4d8580072e"
-  integrity sha512-SmMlwHhOnvhY7Uo67DC2Aq4gqkOXiyj7Zw97j0CfnhpIZYFXaRydQp7ozGp9XWrATSPjeRSEloiCGRWvCop5WQ==
+core-js-bundle@^3.20.2:
+  version "3.20.2"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.20.2.tgz#7d7381239329c5905b72277c923737665d59b963"
+  integrity sha512-cziDW6TghkYfMfMQE4sin0Zic+ZKDHnIcUwRA3YSP8z3YC8dTdyzvMD83fgg2ADDPvleasPB7R7HSj/RUCV6Yw==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
@@ -5260,10 +5260,10 @@ eslint-plugin-import@^2.25.4:
     resolve "^1.20.0"
     tsconfig-paths "^3.12.0"
 
-eslint-plugin-react@^7.27.1:
-  version "7.27.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.27.1.tgz#469202442506616f77a854d91babaae1ec174b45"
-  integrity sha512-meyunDjMMYeWr/4EBLTV1op3iSG3mjT/pz5gti38UzfM4OPpNc2m0t2xvKCOMU5D6FSdd34BIMFOvQbW+i8GAA==
+eslint-plugin-react@^7.28.0:
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.28.0.tgz#8f3ff450677571a659ce76efc6d80b6a525adbdf"
+  integrity sha512-IOlFIRHzWfEQQKcAD4iyYDndHwTQiCMcJVJjxempf203jnNLUnW34AXLrV33+nEXoifJE2ZEGmcjKPL8957eSw==
   dependencies:
     array-includes "^3.1.4"
     array.prototype.flatmap "^1.2.5"
