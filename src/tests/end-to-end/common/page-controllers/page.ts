@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
-
 import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
@@ -136,6 +136,10 @@ export class Page {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             });
         });
+    }
+
+    public deleteFile(filePath: string): void {
+        fs.unlinkSync(filePath);
     }
 
     public async getSelectorElement(

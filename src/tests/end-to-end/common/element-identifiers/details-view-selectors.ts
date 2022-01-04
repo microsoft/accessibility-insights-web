@@ -7,9 +7,11 @@ import { recommendationsAutomationId } from 'common/components/fix-instruction-p
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { singleExportToHtmlButtonDataAutomationId } from 'DetailsView/components/export-dialog';
 import { reportExportDropdownAutomationId } from 'DetailsView/components/export-dropdown';
 import { reportExportDropdownMenuAutomationId } from 'DetailsView/components/export-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
+import { inlineStartOverButtonDataAutomationId } from 'DetailsView/components/inline-start-over-button';
 import { invalidLoadAssessmentDialogOkButtonAutomationId } from 'DetailsView/components/invalid-load-assessment-dialog';
 import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
 import { loadAssessmentDialogLoadButtonAutomationId } from 'DetailsView/components/load-assessment-dialog';
@@ -31,6 +33,7 @@ import { reportExportAsJsonAutomationId } from 'report-export/services/json-repo
 import { testSummaryStatusAutomationId } from 'reports/components/assessment-summary-details';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { outcomeSummaryBarAutomationId } from 'reports/components/outcome-summary-bar';
+import { reportHeaderSectionDataAutomationId } from 'reports/components/report-sections/header-section';
 import {
     cardsRuleIdAutomationId,
     ruleDetailAutomationId,
@@ -43,22 +46,20 @@ export const detailsViewSelectors = {
     testNavLink: (testName: string): string => `div [name="${testName}"]`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
     gettingStartedNavLink: 'div [name="Getting started"]',
-
     visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
-
     requirementWithStatus: (
         requirementName: string,
         requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
     ): string =>
         `div[name="${requirementName}"][title^="${requirementIndex}: ${requirementName} (${status})"]`,
-
     mainContent: '[role=main]',
     instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
-
     settingsButton: 'button[name="Settings"]',
-
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
+    exportReportButton: getAutomationIdSelector(reportExportButtonAutomationId),
+    singleExportToHtmlButton: getAutomationIdSelector(singleExportToHtmlButtonDataAutomationId),
+    inlineStartOverButton: getAutomationIdSelector(inlineStartOverButtonDataAutomationId),
 };
 
 export const navMenuSelectors = {
@@ -134,4 +135,8 @@ export const settingsPanelSelectors = {
     telemetryStateToggle: 'button#enable-telemetry',
     enabledToggle: (toggleSelector: string) => `${toggleSelector}[aria-checked="true"]`,
     disabledToggle: (toggleSelector: string) => `${toggleSelector}[aria-checked="false"]`,
+};
+
+export const fastPassReportSelectors = {
+    reportHeaderSection: getAutomationIdSelector(reportHeaderSectionDataAutomationId),
 };

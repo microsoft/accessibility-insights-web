@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
+import { HtmlReportPage } from 'tests/end-to-end/common/page-controllers/html-report-page';
 import { NestedIframeTargetPage } from 'tests/end-to-end/common/page-controllers/nested-iframe-target-page';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
@@ -106,6 +107,14 @@ export class Browser {
         const url = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
         this.pages.push(page);
         await page.goto(url);
+        return page;
+    }
+
+    public async newHtmlReportPage(downloadFilePath: string): Promise<HtmlReportPage> {
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
+        const page = new HtmlReportPage(underlyingPage, { onPageCrash: this.onPageCrash });
+        this.pages.push(page);
+        await page.goto(downloadFilePath);
         return page;
     }
 

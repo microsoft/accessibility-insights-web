@@ -3,6 +3,7 @@
 exports[` renders 1`] = `
 <InsightsCommandButton
   className="inlineStartOverButton"
+  data-automation-id="inline-start-over-button"
   iconProps={
     Object {
       "iconName": "Refresh",
