@@ -38,7 +38,9 @@ describe('Details View -> FastPass -> Report', () => {
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
-        await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection);
+        await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection, {
+            timeout: 10000,
+        });
         await openTabStopsPage(detailsViewPage);
         await addFailedTabStopsInstance(detailsViewPage, 'this is a test failure instance');
         await detailsViewPage.clickSelector(detailsViewSelectors.exportReportButton);
