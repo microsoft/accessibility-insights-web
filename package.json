@@ -160,7 +160,7 @@
         "serve-static": "^1.13.2",
         "simple-git": "^2.48.0",
         "source-map-loader": "^3.0.1",
-        "terser-webpack-plugin": "^5.2.5",
+        "terser-webpack-plugin": "^5.3.0",
         "ts-loader": "^9.2.6",
         "typed-scss-modules": "^4.1.1",
         "typemoq": "^2.1.0",
