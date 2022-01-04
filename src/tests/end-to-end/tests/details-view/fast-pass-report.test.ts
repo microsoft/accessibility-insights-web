@@ -9,10 +9,6 @@ import {
 } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { HtmlReportPage } from 'tests/end-to-end/common/page-controllers/html-report-page';
-import {
-    addFailedTabStopsInstance,
-    openTabStopsPage,
-} from 'tests/end-to-end/tests/details-view/tabstops.test';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
@@ -41,8 +37,11 @@ describe('Details View -> FastPass -> Report', () => {
         await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection, {
             timeout: 10000,
         });
-        await openTabStopsPage(detailsViewPage);
-        await addFailedTabStopsInstance(detailsViewPage, 'this is a test failure instance');
+        await detailsViewPage.openTabStopsPage(detailsViewPage);
+        await detailsViewPage.addFailedTabStopsInstance(
+            detailsViewPage,
+            'this is a test failure instance',
+        );
         await detailsViewPage.clickSelector(detailsViewSelectors.exportReportButton);
         await detailsViewPage.waitForSelector(detailsViewSelectors.singleExportToHtmlButton);
         reportDownload = await detailsViewPage.downloadExportReport(
