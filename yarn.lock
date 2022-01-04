@@ -12027,10 +12027,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-4.1.1.tgz#eab12f25511a329f8e4837842c3b484ffd66b449"
-  integrity sha512-eVRej2pMRRbrMQ7oyLNR+GcMCD4Tmc+MMzq+6qo8pTXiz2GQR1dTaYTs9vDeoCE7iJv9JZ7U36fATbIVECJ+fQ==
+typed-scss-modules@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-4.1.2.tgz#41de1ec509de49ad28e516c4786ec92532acfda9"
+  integrity sha512-D2FZRC+KaKTEqqzeNRdMZnhjQcAOo9xNbGtuDKh2Q7BKJ9fuU2FKhs7z8lrIyt9nh5E3O6YWCXLufqcL8Zqg8w==
   dependencies:
     camelcase "^5.0.0"
     chalk "^3.0.0"
