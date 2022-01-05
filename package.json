@@ -141,7 +141,7 @@
         "grunt-exec": "^3.0.0",
         "grunt-sass": "^3.1.0",
         "identity-obj-proxy": "^3.0.0",
-        "jest": "^27.4.5",
+        "jest": "^27.4.7",
         "jest-junit": "^13.0.0",
         "js-yaml": "^4.1.0",
         "lerna": "^4.0.0",
