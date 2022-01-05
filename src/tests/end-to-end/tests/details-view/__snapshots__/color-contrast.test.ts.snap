@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Color Contrast Violations should provide color recommendations on contrast violation 1`] = `
+<DocumentFragment>
+  <ul
+    data-automation-id="recommendations"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+      >
+        <span>
+             Use background color: 
+        </span>
+        <span
+          aria-hidden="true"
+          class="fix-instruction-color-box--{{CSS_MODULE_HASH}}"
+          style="background-color: rgb(64, 92, 118);"
+        />
+        <span>
+          #405c76 and the original foreground color: 
+        </span>
+        <span
+          aria-hidden="true"
+          class="fix-instruction-color-box--{{CSS_MODULE_HASH}}"
+          style="background-color: rgb(0, 0, 0);"
+        />
+        <span>
+          #000000 to meet a contrast ratio of 3.01:1.
+        </span>
+      </span>
+      <span
+        class="screen-reader-only--{{CSS_MODULE_HASH}}"
+      >
+           Use background color: #405c76 and the original foreground color: #000000 to meet a contrast ratio of 3.01:1.
+      </span>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

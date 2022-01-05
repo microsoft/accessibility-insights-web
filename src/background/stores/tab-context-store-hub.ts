@@ -72,12 +72,14 @@ export class TabContextStoreHub implements StoreHub {
         this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
         this.pathSnippetStore.initialize();
 
-        this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
+        this.unifiedScanResultStore = new UnifiedScanResultStore(
+            actionHub.unifiedScanResultActions,
+        );
         this.unifiedScanResultStore.initialize();
 
         this.cardSelectionStore = new CardSelectionStore(
             actionHub.cardSelectionActions,
-            actionHub.scanResultActions,
+            actionHub.unifiedScanResultActions,
         );
         this.cardSelectionStore.initialize();
 

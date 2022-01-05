@@ -725,7 +725,7 @@ describe('ActionCreatorTest', () => {
         };
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
-        const rescanVisualization = 'rescanVisualization';
+        const resetDataForVisualization = 'resetDataForVisualization';
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [
@@ -733,10 +733,10 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(disableActionName)
-            .setupActionOnVisualizationActions(rescanVisualization)
+            .setupActionOnVisualizationActions(resetDataForVisualization)
             .setupActionOnVisualizationActions(enableActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
-            .setupVisualizationActionWithInvokeParameter(rescanVisualization, payload.test)
+            .setupVisualizationActionWithInvokeParameter(resetDataForVisualization, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
@@ -960,7 +960,7 @@ class ActionCreatorValidator {
         detailsViewActions: this.detailsViewActionsContainerMock.object,
         cardSelectionActions: this.cardSelectionActionsContainerMock.object,
         needsReviewCardSelectionActions: this.needsReviewCardSelectionActionsContainerMock.object,
-        scanResultActions: this.unifiedScanResultsActionsContainerMock.object,
+        unifiedScanResultActions: this.unifiedScanResultsActionsContainerMock.object,
     } as ActionHub;
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(

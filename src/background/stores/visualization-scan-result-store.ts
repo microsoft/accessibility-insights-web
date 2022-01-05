@@ -77,7 +77,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     }
 
     protected addActionListeners(): void {
-        this.visualizationActions.rescanVisualization.addListener(this.onRescanVisualization);
+        this.visualizationActions.resetDataForVisualization.addListener(
+            this.onResetDataForVisualization,
+        );
         this.visualizationScanResultActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.visualizationScanResultActions.addTabbedElement.addListener(this.onAddTabbedElement);
@@ -106,11 +108,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
-    private onRescanVisualization = (type: VisualizationType) => {
-        this.resetDataForVisualization(type);
-    };
-
-    private resetDataForVisualization = (type: VisualizationType) => {
+    private onResetDataForVisualization = (type: VisualizationType) => {
         const config = this.visualizationConfigurationFactory.getConfiguration(type);
         const testKey = config.key;
         if (this.state[testKey] == null) {
