@@ -26,6 +26,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.debugTools]: false,
             [FeatureFlags.exportReportOptions]: false,
             [FeatureFlags.newTabStopsDetailsView]: false,
+            [FeatureFlags.tabStopsAutomation]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
