@@ -14,9 +14,9 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
     public render(): JSX.Element {
         const stats: Partial<OutcomeStats> = {
             //hardcoded sample stats, real numbers in future PR
-            pass: this.props.results.automatedChecks.cards.pass.length,
-            incomplete: this.props.results.automatedChecks.cards.unknown.length,
             fail: this.props.results.automatedChecks.cards.fail.length,
+            incomplete: this.props.results.automatedChecks.cards.unknown.length,
+            pass: this.props.results.automatedChecks.cards.pass.length,
         };
 
         return (
