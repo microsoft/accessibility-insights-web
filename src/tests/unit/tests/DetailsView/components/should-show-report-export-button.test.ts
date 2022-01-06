@@ -61,7 +61,7 @@ describe('ShouldShowReportExportButton', () => {
             .returns(() => scanData);
         visualizationConfigurationMock.setup(m => m.getTestStatus(scanData)).returns(() => enabled);
         visualizationConfigurationMock
-            .setup(m => m.shouldShowExportReport(featureFlagStoreData))
+            .setup(m => m.shouldShowExportReport(scanData, featureFlagStoreData))
             .returns(() => shouldShow);
     }
 
