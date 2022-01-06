@@ -3,13 +3,11 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import {
-    CommandBarProps,
-    DetailsViewCommandBarProps,
-} from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
@@ -23,7 +21,7 @@ describe('ShouldShowReportExportButton', () => {
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
     const featureFlagStoreData = {} as FeatureFlagStoreData;
-    const scanData = {} as ScanData;
+    const tabStoreData = {} as TabStoreData;
     const selectedTest = -1 as VisualizationType;
 
     beforeEach(() => {
@@ -42,7 +40,7 @@ describe('ShouldShowReportExportButton', () => {
             featureFlagStoreData: featureFlagStoreData,
             selectedTest: selectedTest,
             deps: null,
-            tabStoreData: null,
+            tabStoreData: tabStoreData,
             assessmentStoreData: null,
             assessmentsProvider: null,
             rightPanelConfiguration: null,
@@ -55,20 +53,15 @@ describe('ShouldShowReportExportButton', () => {
         } as DetailsViewCommandBarProps;
     }
 
-    function setupVisualizationConfigurationMock(shouldShow: boolean, enabled?: boolean): void {
+    function setupVisualizationConfigurationMock(shouldShow: boolean): void {
         visualizationConfigurationMock
-            .setup(m => m.getStoreData(visualizationStoreData.tests))
-            .returns(() => scanData);
-        visualizationConfigurationMock.setup(m => m.getTestStatus(scanData)).returns(() => enabled);
-        visualizationConfigurationMock
-            .setup(m => m.shouldShowExportReport(scanData, featureFlagStoreData))
+            .setup(m => m.shouldShowExportReport(tabStoreData, featureFlagStoreData))
             .returns(() => shouldShow);
     }
 
     describe('shouldShowReportExportButtonForAssessment', () => {
-        test('returns true', () => {
-            const props = {} as CommandBarProps;
-            const shouldShowButton = shouldShowReportExportButtonForAssessment(props);
+        test('shouldShowReportExportButtonForAssessment returns true', () => {
+            const shouldShowButton = shouldShowReportExportButtonForAssessment();
             expect(shouldShowButton).toBe(true);
         });
     });

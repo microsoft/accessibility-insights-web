@@ -34,7 +34,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     enableTest: data => (data.adhoc[issuesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: scanData => scanData.enabled,
+    shouldShowExportReport: tabStoreData => !tabStoreData.isChanged,
     displayableData: {
         title: 'Automated checks',
         subtitle: (

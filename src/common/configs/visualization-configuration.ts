@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ContentPageComponent } from 'views/content/content-page';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
@@ -28,7 +29,7 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
     shouldShowExportReport: (
-        scanData?: ScanData,
+        tabStoreData?: TabStoreData,
         featureFlagStoreData?: FeatureFlagStoreData,
     ) => boolean;
 }

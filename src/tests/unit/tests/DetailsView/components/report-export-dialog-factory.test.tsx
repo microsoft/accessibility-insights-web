@@ -105,8 +105,8 @@ describe('ReportExportDialogFactory', () => {
         shouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: props.visualizationConfigurationFactory,
             selectedTest: props.selectedTest,
-            visualizationStoreData: props.visualizationStoreData,
             featureFlagStoreData: props.featureFlagStoreData,
+            tabStoreData: props.tabStoreData,
         } as ShouldShowReportExportButtonProps;
     });
 
