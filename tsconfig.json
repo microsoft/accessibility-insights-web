@@ -3,7 +3,7 @@
     "compilerOptions": {
         "target": "es2020",
         "module": "es2020",
-        "lib": ["es2020", "dom", "scripthost"],
+        "lib": ["es2020", "dom", "scripthost", "webworker"],
         "outDir": "./dist/",
         "rootDir": "./",
         "baseUrl": "./src",

@@ -27,6 +27,7 @@ const commonEntryFiles = {
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
+    serviceWorker: [path.resolve(__dirname, 'src/background/service-worker-init.ts')],
     debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
@@ -164,7 +165,7 @@ const devConfig = {
     },
     name: 'dev',
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'inline-cheap-source-map',
     output: {
         path: path.join(__dirname, 'extension/devBundle'),
         filename: '[name].bundle.js',
