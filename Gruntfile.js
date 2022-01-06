@@ -53,7 +53,7 @@ module.exports = function (grunt) {
         concurrent: {
             'webpack-all': [
                 'exec:webpack-dev',
-                'exed:webpack;dev-mv3',
+                'exec:webpack-dev-mv3',
                 'exec:webpack-unified',
                 'exec:webpack-prod',
             ],
