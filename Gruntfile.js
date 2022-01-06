@@ -871,6 +871,7 @@ module.exports = function (grunt) {
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
+        'drop:dev-mv3',
         'drop:unified-dev',
         'extension-release-drops',
     ]);
