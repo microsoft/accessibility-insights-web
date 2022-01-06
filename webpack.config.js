@@ -175,6 +175,25 @@ const devConfig = {
     },
 };
 
+const devMv3Config = {
+    ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
+    },
+    name: 'dev-mv3',
+    mode: 'development',
+    devtool: 'inline-cheap-source-map',
+    output: {
+        path: path.join(__dirname, 'extension/devBundle'),
+        filename: '[name].bundle.js',
+    },
+    optimization: {
+        splitChunks: false,
+    },
+};
+
 const prodConfig = {
     ...commonConfig,
     name: 'prod',
@@ -246,4 +265,11 @@ const packageUIConfig = {
 };
 
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig, packageUIConfig];
+module.exports = [
+    devConfig,
+    devMv3Config,
+    prodConfig,
+    unifiedConfig,
+    packageReportConfig,
+    packageUIConfig,
+];

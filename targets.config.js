@@ -39,8 +39,22 @@ module.exports = {
             options: {
                 ...commonExtensionOptions,
                 ...icons.dev,
+                manifestVersion: 2,
                 fullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
+            },
+        },
+        bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
+    },
+    'dev-mv3': {
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.dev,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web - Dev (Manifest 3)',
+                telemetryBuildName: 'DevMV3',
             },
         },
         bundleFolder: 'devBundle',

@@ -51,7 +51,12 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'webpack-all': ['exec:webpack-dev', 'exec:webpack-unified', 'exec:webpack-prod'],
+            'webpack-all': [
+                'exec:webpack-dev',
+                'exed:webpack;dev-mv3',
+                'exec:webpack-unified',
+                'exec:webpack-prod',
+            ],
         },
         copy: {
             code: {
@@ -169,6 +174,7 @@ module.exports = function (grunt) {
         },
         exec: {
             'webpack-dev': `"${webpackPath}" --config-name dev`,
+            'webpack-dev-mv3': `"${webpackPath}" --config-name dev-mv3`,
             'webpack-prod': `"${webpackPath}" --config-name prod`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-report': `"${webpackPath}" --config-name package-report`,
@@ -204,20 +210,25 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
+            },
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
+            'webpack-dev-mv3-output': {
+                files: ['extension/devBundle/**/*.*'],
+                tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
@@ -442,6 +453,7 @@ module.exports = function (grunt) {
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
+            manifest_version: config.options.manifestVersion,
             icons: {
                 16: config.options.icon16,
                 48: config.options.icon48,
@@ -721,6 +733,13 @@ module.exports = function (grunt) {
         'exec:webpack-dev',
         'build-assets',
         'drop:dev',
+    ]);
+    grunt.registerTask('build-dev-mv3', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev-mv3',
+        'build-assets',
+        'drop:dev-mv3',
     ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
