@@ -25,6 +25,7 @@ const commonExtensionOptions = {
         'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
     bundled: true,
     productCategory: 'extension',
+    manifestVersion: 2, // Will get overwritten for MV3 configs
 };
 
 const commonUnifiedOptions = {
@@ -39,7 +40,6 @@ module.exports = {
             options: {
                 ...commonExtensionOptions,
                 ...icons.dev,
-                manifestVersion: 2,
                 fullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
             },

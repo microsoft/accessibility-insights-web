@@ -3,15 +3,10 @@
     "author": "Microsoft Corporation",
     "description": "Accessibility Insights for Web helps developers quickly find and fix accessibility issues.",
     "version": "1.0.4",
-    "manifest_version": 3,
-    "host_permissions": [],
     "icons": {
         "16": "icons/brand/blue/brand-blue-16px.png",
         "48": "icons/brand/blue/brand-blue-48px.png",
         "128": "icons/brand/blue/brand-blue-128px.png"
-    },
-    "background": {
-        "service_worker": "bundle/serviceWorker.bundle.js"
     },
     "devtools_page": "Devtools/devtools.html",
     "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"]

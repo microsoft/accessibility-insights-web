@@ -459,13 +459,100 @@ module.exports = function (grunt) {
                 48: config.options.icon48,
                 128: config.options.icon128,
             },
-            action: {
-                default_icon: {
-                    20: config.options.icon16,
-                    40: config.options.icon48,
-                },
-            },
         });
+
+        if (config.options.manifestVersion === 3) {
+            merge(manifestJSON, {
+                action: {
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                background: {
+                    service_worker: 'bundle/serviceWorker.bundle.js',
+                },
+                host_permissions: [],
+            });
+        } else {
+            // Note: We're intentionally keeping the V3 manifest file small for now. As items
+            // are identified as being common to V2 and V3, please move them from this method
+            // into manifest.json
+            merge(manifestJSON, {
+                browser_action: {
+                    default_popup: 'popup/popup.html',
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                background: {
+                    page: 'background/background.html',
+                    persistent: true,
+                },
+                web_accessible_resources: [
+                    'insights.html',
+                    'assessments/*',
+                    'injected/*',
+                    'background/*',
+                    'common/*',
+                    'DetailsView/*',
+                    'bundle/*',
+                    'NOTICE.html',
+                ],
+                content_security_policy:
+                    "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
+                optional_permissions: ['*://*/*'],
+                commands: {
+                    _execute_browser_action: {
+                        suggested_key: {
+                            windows: 'Alt+Shift+K',
+                            mac: 'Alt+Shift+K',
+                            chromeos: 'Alt+Shift+K',
+                            linux: 'Alt+Shift+K',
+                        },
+                        description: 'Activate the extension',
+                    },
+                    '01_toggle-issues': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+1',
+                            mac: 'Alt+Shift+1',
+                            chromeos: 'Alt+Shift+1',
+                            linux: 'Alt+Shift+1',
+                        },
+                        description: 'Toggle Automated checks',
+                    },
+                    '02_toggle-landmarks': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+2',
+                            mac: 'Alt+Shift+2',
+                            chromeos: 'Alt+Shift+2',
+                            linux: 'Alt+Shift+2',
+                        },
+                        description: 'Toggle Landmarks',
+                    },
+                    '03_toggle-headings': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+3',
+                            mac: 'Alt+Shift+3',
+                            chromeos: 'Alt+Shift+3',
+                            linux: 'Alt+Shift+3',
+                        },
+                        description: 'Toggle Headings',
+                    },
+                    '04_toggle-tabStops': {
+                        description: 'Toggle Tab stops',
+                    },
+                    '05_toggle-color': {
+                        description: 'Toggle Color',
+                    },
+                    '06_toggle-needsReview': {
+                        description: 'Toggle Needs review',
+                    },
+                },
+            });
+        }
+
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
