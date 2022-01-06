@@ -227,7 +227,7 @@ module.exports = function (grunt) {
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-dev-mv3-output': {
-                files: ['extension/devBundle/**/*.*'],
+                files: ['extension/devMv3Bundle/**/*.*'],
                 tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
