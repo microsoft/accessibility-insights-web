@@ -165,7 +165,7 @@ const devConfig = {
     },
     name: 'dev',
     mode: 'development',
-    devtool: 'eval-source-map',
+    devtool: 'inline-cheap-source-map',
     output: {
         path: path.join(__dirname, 'extension/devBundle'),
         filename: '[name].bundle.js',
