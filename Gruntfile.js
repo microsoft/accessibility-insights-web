@@ -450,6 +450,8 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('manifest', function () {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
+
+        // Build-specific settings that exist in both MV2 and MV3
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
@@ -462,6 +464,7 @@ module.exports = function (grunt) {
         });
 
         if (config.options.manifestVersion === 3) {
+            // Settings that are specific to MV3
             merge(manifestJSON, {
                 action: {
                     default_icon: {
@@ -475,9 +478,9 @@ module.exports = function (grunt) {
                 host_permissions: [],
             });
         } else {
-            // Note: We're intentionally keeping the V3 manifest file small for now. As items
-            // are identified as being common to V2 and V3, please move them from this method
-            // into manifest.json
+            // Settings that are specific to MV2. Note that many of these settings--especially the
+            // commands--will eventually be restored to manifest.json. They are here only because
+            // we want to vet each settings as we convert from MV2 to MV3.
             merge(manifestJSON, {
                 browser_action: {
                     default_popup: 'popup/popup.html',
