@@ -26,6 +26,7 @@
         "build": "grunt",
         "build:all": "grunt build-all",
         "build:dev": "grunt build-dev",
+        "build:dev:mv3": "grunt build-dev-mv3",
         "build:mock-adb": "grunt exec:pkg-mock-adb",
         "build:unified": "grunt build-unified",
         "build:unified:all": "grunt build-unified-all",
