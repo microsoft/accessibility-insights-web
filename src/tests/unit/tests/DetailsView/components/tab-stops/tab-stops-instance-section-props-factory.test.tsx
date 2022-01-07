@@ -3,7 +3,7 @@
 
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import {
-    FastpassTabStopsInstanceSectionPropsFactory,
+    FastPassTabStopsInstanceSectionPropsFactory,
     ReportTabStopsInstanceSectionPropsFactory,
     TabStopsInstanceSectionPropsFactoryDeps,
     TabStopsInstanceSectionPropsFactoryProps,
@@ -73,7 +73,7 @@ describe('TabStopsInstanceSectionPropsFactory', () => {
                 .setup(m => m.toggleTabStopRequirementExpand(requirementId, eventStub))
                 .verifiable(Times.once());
 
-            const instanceSectionProps = FastpassTabStopsInstanceSectionPropsFactory(props);
+            const instanceSectionProps = FastPassTabStopsInstanceSectionPropsFactory(props);
             const collapsibleComponentProps =
                 instanceSectionProps.getCollapsibleComponentPropsWithInstance(
                     props.results[0],
@@ -102,7 +102,7 @@ describe('TabStopsInstanceSectionPropsFactory', () => {
                 .setup(m => m.editExistingFailureInstance(expectedPayload))
                 .verifiable(Times.once());
 
-            const instanceSectionProps = FastpassTabStopsInstanceSectionPropsFactory(props);
+            const instanceSectionProps = FastPassTabStopsInstanceSectionPropsFactory(props);
             const result = instanceSectionProps.getCollapsibleComponentPropsWithInstance(
                 props.results[0],
                 0,

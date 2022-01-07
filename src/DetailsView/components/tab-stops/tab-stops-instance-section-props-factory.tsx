@@ -26,7 +26,7 @@ export type TabStopsInstanceSectionPropsFactory = (
     props: TabStopsInstanceSectionPropsFactoryProps,
 ) => TabStopsRequirementsWithInstancesProps;
 
-export const FastpassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory =
+export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory =
     props => {
         const { deps, headingLevel } = props;
         const onInstanceRemoveButtonClicked = (
