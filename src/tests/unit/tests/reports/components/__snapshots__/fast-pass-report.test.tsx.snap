@@ -19,7 +19,7 @@ exports[` renders 1`] = `
         <FastPassResultsTitleSection title=\\"Tab stops\\" />
         <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'PassedChecksSection' }} tabStops={{...}} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
         <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'IncompleteChecksSection' }} tabStops={{...}} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
-        <TabStopsFailedInstanceSection deps={{...}} tabStopRequirementState={{...}} />
+        <TabStopsFailedInstanceSection deps={{...}} tabStopRequirementState={{...}} alwaysRenderSection={true} />
       </ResultsContainer>
     </ContentSection>
     <ReportFooter>

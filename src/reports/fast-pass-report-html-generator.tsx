@@ -10,6 +10,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { ReportTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import {
@@ -57,6 +58,7 @@ export class FastPassReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 tabStopsFailedCounter: this.tabStopsFailedCounter,
+                tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
             } as FastPassReportDeps,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
