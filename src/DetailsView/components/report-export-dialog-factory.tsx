@@ -103,6 +103,7 @@ export function getReportExportDialogForFastPass(
     const generateReportFromDescription = description =>
         reportGenerator.generateFastPassHtmlReport(
             { ...reportModelExceptDescription, description },
+            props.scanMetadata,
             props.featureFlagStoreData,
         );
 

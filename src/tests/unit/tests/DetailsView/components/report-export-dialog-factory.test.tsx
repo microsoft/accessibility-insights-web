@@ -122,6 +122,7 @@ describe('ReportExportDialogFactory', () => {
                             tabStops: tabStopRequirementData,
                         },
                     },
+                    scanMetadata,
                     featureFlagStoreData,
                 ),
             )

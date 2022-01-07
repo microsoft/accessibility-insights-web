@@ -31,13 +31,13 @@ describe('ReportGenerator', () => {
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
-    const targetAppInfo = {
+    const targetPage = {
         name: title,
         url: url,
     };
     const scanMetadataStub: ScanMetadata = {
         toolData: toolDataStub,
-        targetAppInfo: targetAppInfo,
+        targetAppInfo: targetPage,
     } as ScanMetadata;
     const featureFlagStoreDataStub: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
     const fastPassReportModelStub: FastPassReportModel = {
@@ -46,7 +46,7 @@ describe('ReportGenerator', () => {
             automatedChecks: cardsViewDataStub,
             tabStops: tabStopRequirementStateStub,
         },
-        scanMetadata: scanMetadataStub,
+        targetPage: targetPage,
     };
 
     let fastPassReportHtmlGeneratorMock: IMock<FastPassReportHtmlGenerator>;
@@ -92,6 +92,7 @@ describe('ReportGenerator', () => {
 
             const actual = testSubject.generateFastPassHtmlReport(
                 fastPassReportModelStub,
+                scanMetadataStub,
                 featureFlagStoreData,
             );
 
@@ -107,6 +108,7 @@ describe('ReportGenerator', () => {
 
             const actual = testSubject.generateFastPassHtmlReport(
                 fastPassReportModelStub,
+                scanMetadataStub,
                 featureFlagStoreData,
             );
 
@@ -125,7 +127,7 @@ describe('ReportGenerator', () => {
                     assessmentStoreData,
                     assessmentsProvider,
                     featureFlagStoreDataStub,
-                    targetAppInfo,
+                    targetPage,
                     assessmentDescription,
                 ),
             )
@@ -136,7 +138,7 @@ describe('ReportGenerator', () => {
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreDataStub,
-            targetAppInfo,
+            targetPage,
             assessmentDescription,
         );
 
