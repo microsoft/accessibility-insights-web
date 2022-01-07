@@ -8,9 +8,9 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
   <OutcomeSummaryBar
     allOutcomeTypes={
       Array [
-        "pass",
-        "incomplete",
         "fail",
+        "incomplete",
+        "pass",
       ]
     }
     outcomeStats={

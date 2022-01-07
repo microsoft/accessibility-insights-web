@@ -18,7 +18,7 @@ describe('FastPassReportSummary', () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                tabStops: null, // Should be filled in as part of #1897876
+                tabStops: null,
             },
         };
         const rendered = shallow(<FastPassReportSummary {...props} />);
