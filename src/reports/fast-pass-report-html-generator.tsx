@@ -8,7 +8,11 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    TargetAppData,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
@@ -23,7 +27,7 @@ import { ReactStaticRenderer } from './react-static-renderer';
 
 export type FastPassReportModel = {
     description: string;
-    scanMetadata: ScanMetadata;
+    targetPage: TargetAppData;
     results: {
         automatedChecks: CardsViewModel;
         tabStops: TabStopRequirementState;
@@ -40,10 +44,20 @@ export class FastPassReportHtmlGenerator {
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
         private readonly tabStopsFailedCounter: TabStopsFailedCounter,
+        private readonly toolData: ToolData,
+        private readonly getCurrentDate: () => Date,
     ) {}
 
     public generateHtml(model: FastPassReportModel): string {
-        const { description, scanMetadata, results } = model;
+        const { description, targetPage: targetPage, results } = model;
+
+        const scanMetadata: ScanMetadata = {
+            targetAppInfo: targetPage,
+            timespan: {
+                scanComplete: this.getCurrentDate(),
+            },
+            toolData: this.toolData,
+        };
 
         const props: FastPassReportProps = {
             description,
