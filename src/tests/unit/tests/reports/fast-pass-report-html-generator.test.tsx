@@ -99,7 +99,7 @@ describe(FastPassReportHtmlGenerator, () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             results: model.results,
-            expectedScanMetadata,
+            scanMetadata: expectedScanMetadata,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...expectedProps} />;
