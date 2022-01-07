@@ -640,14 +640,6 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     }
 
-    public targetPageChangedResetData = (): void => {
-        const message: Message = {
-            messageType: Messages.Visualizations.DetailsView.TargetPageChanged,
-        };
-
-        this.dispatcher.dispatchMessage(message);
-    };
-
     public rescanVisualization = (test: VisualizationType, event: SupportedMouseEvent) => {
         const payload: ToggleActionPayload = {
             test: test,

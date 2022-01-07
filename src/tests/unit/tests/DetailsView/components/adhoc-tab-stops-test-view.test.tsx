@@ -106,14 +106,8 @@ describe('AdhocTabStopsTestView', () => {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             } as AdhocTabStopsTestViewDeps;
 
-            detailsViewActionMessageCreatorMock
-                .setup(m => m.targetPageChangedResetData())
-                .verifiable();
-
             const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
-
-            detailsViewActionMessageCreatorMock.verifyAll();
         });
 
         it.each(scenarios)('handles %s', (_, guidance) => {

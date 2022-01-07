@@ -204,7 +204,6 @@ exports[`AdhocTabStopsTestView render should return target page changed view as 
       "setFeatureFlag": [Function],
       "startOverAllAssessments": [Function],
       "switchToTargetTab": [Function],
-      "targetPageChangedResetData": [Function],
       "telemetryFactory": undefined,
       "undoManualRequirementStatusChange": [Function],
       "undoManualTestStatusChange": [Function],

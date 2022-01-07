@@ -103,7 +103,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         );
 
         if (props.tabStoreData.isChanged) {
-            props.deps.detailsViewActionMessageCreator.targetPageChangedResetData();
             return (
                 <TargetPageChangedView
                     displayableData={displayableData}
