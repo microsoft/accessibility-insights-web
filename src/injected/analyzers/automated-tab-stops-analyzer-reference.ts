@@ -1,44 +1,49 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Logger } from 'common/logging/logger';
-import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { TabStopEvent } from 'common/types/tab-stop-event';
-import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
-import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
-import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabbableElementGetter, TabbableElementInfo } from 'injected/tabbable-element-getter';
 import { debounce, DebouncedFunc } from 'lodash';
-
-import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
+import { TabStopsListener } from '../tab-stops-listener';
+import {
+    Analyzer,
+    FocusAnalyzerConfiguration,
+    ScanBasePayload,
+    ScanUpdatePayload,
+    TabStopsScanCompletedPayload,
+} from './analyzer';
 
 export interface ProgressResult<T> {
     result: T;
 }
 
-export class TabStopsAnalyzer extends BaseAnalyzer {
+export class AutomatedTabStopsAnalyzer implements Analyzer {
     private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
-    protected config: FocusAnalyzerConfiguration;
 
     constructor(
-        config: FocusAnalyzerConfiguration,
-        private readonly tabStopsListener: AutomatedTabStopsListener,
-        sendMessageDelegate: (message) => void,
-        scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
-        logger: Logger,
+        private config: FocusAnalyzerConfiguration,
+        private tabStopsListener: TabStopsListener,
+        private sendMessage: (message) => void,
+        private readonly tabbableElementGetter: TabbableElementGetter,
         private readonly debounceImpl: typeof debounce = debounce,
-    ) {
-        super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
+    ) {}
+
+    public analyze(): void {
+        this.initiateTabRecording();
+        const calculatedTabStops = this.tabbableElementGetter.get();
+        this.sendCalculatedResults(calculatedTabStops);
     }
 
-    protected getResults = async (): Promise<AxeAnalyzerResult> => {
+    private initiateTabRecording = (): void => {
         this.debouncedProcessTabEvents?.cancel();
         this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
         });
-        this.tabStopsListener.startInAllFrames();
-        return this.emptyResults;
+        this.tabStopsListener.startListenToTabStops();
     };
 
     private processTabEvents = (): void => {
@@ -59,9 +64,20 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.sendMessage(message);
     };
 
+    private sendCalculatedResults(calculatedTabStops: TabbableElementInfo[]): void {
+        const payload: TabStopsScanCompletedPayload = {
+            calculatedTabStops: calculatedTabStops,
+        };
+        const message: Message = {
+            messageType: Messages.Visualizations.TabStops.ScanCompleted,
+            payload,
+        };
+        this.sendMessage(message);
+    }
+
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
-        this.tabStopsListener.stopInAllFrames();
+        this.tabStopsListener.stopListenToTabStops();
 
         const payload: ScanBasePayload = {
             key: this.config.key,
