@@ -6,6 +6,10 @@ import {
     TabStopsFailedInstanceSectionDeps,
     TabStopsFailedInstanceSectionProps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
+import {
+    TabStopsInstanceSectionPropsFactory,
+    TabStopsInstanceSectionPropsFactoryProps,
+} from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -13,15 +17,30 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsFailedInstanceSection', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
-
+    let tabStopsInstanceSectionPropsFactoryMock: IMock<TabStopsInstanceSectionPropsFactory>;
     let props: TabStopsFailedInstanceSectionProps;
     let deps: TabStopsFailedInstanceSectionDeps;
 
     beforeEach(() => {
         tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsInstanceSectionPropsFactoryMock =
+            Mock.ofType<TabStopsInstanceSectionPropsFactory>();
+
+        tabStopsInstanceSectionPropsFactoryMock
+            .setup(mock => mock(It.isAny()))
+            .returns((props: TabStopsInstanceSectionPropsFactoryProps) => {
+                return {
+                    results: props.results,
+                    headingLevel: props.headingLevel,
+                    getCollapsibleComponentPropsWithInstance: () => null,
+                    deps: {} as TabStopsFailedInstanceSectionDeps,
+                };
+            })
+            .verifiable(Times.once());
 
         deps = {
             tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+            tabStopsInstanceSectionPropsFactory: tabStopsInstanceSectionPropsFactoryMock.object,
         } as TabStopsFailedInstanceSectionDeps;
 
         props = {
@@ -38,6 +57,7 @@ describe('TabStopsFailedInstanceSection', () => {
                     isExpanded: false,
                 },
             },
+            alwaysRenderSection: false,
         };
     });
 
@@ -48,8 +68,10 @@ describe('TabStopsFailedInstanceSection', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+
         expect(wrapper.getElement()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
+        tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
 
     it('does not render when no results are failing', () => {
@@ -58,6 +80,10 @@ describe('TabStopsFailedInstanceSection', () => {
             requirementsStub[requirementId].status = 'pass';
             requirementsStub[requirementId].instances = [];
         }
+        tabStopsInstanceSectionPropsFactoryMock.reset();
+        tabStopsInstanceSectionPropsFactoryMock
+            .setup(mock => mock(It.isAny()))
+            .verifiable(Times.never());
 
         tabStopsFailedCounterMock
             .setup(tsf => tsf.getTotalFailed(It.isAny()))
@@ -65,7 +91,28 @@ describe('TabStopsFailedInstanceSection', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+
         expect(wrapper.getElement()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
+        tabStopsInstanceSectionPropsFactoryMock.verifyAll();
+    });
+
+    it('does renders when no results are failing and set to alwaysRenderSection', () => {
+        const requirementsStub = props.tabStopRequirementState;
+        for (const requirementId of Object.keys(requirementsStub)) {
+            requirementsStub[requirementId].status = 'pass';
+            requirementsStub[requirementId].instances = [];
+        }
+        props.alwaysRenderSection = true;
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getTotalFailed(It.isAny()))
+            .returns(() => 0)
+            .verifiable(Times.once());
+
+        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+        tabStopsFailedCounterMock.verifyAll();
+        tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
 });
