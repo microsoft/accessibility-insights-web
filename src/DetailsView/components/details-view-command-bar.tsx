@@ -208,8 +208,8 @@ export class DetailsViewCommandBar extends React.Component<
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
             selectedTest: this.props.selectedTest,
-            visualizationStoreData: this.props.visualizationStoreData,
             featureFlagStoreData: this.props.featureFlagStoreData,
+            tabStoreData: this.props.tabStoreData,
         };
 
         const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
