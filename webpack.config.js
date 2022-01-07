@@ -184,7 +184,7 @@ const devMv3Config = {
     },
     name: 'dev-mv3',
     mode: 'development',
-    devtool: 'inline-cheap-source-map',
+    devtool: 'inline-source-map',
     output: {
         path: path.join(__dirname, 'extension/devMv3Bundle'),
         filename: '[name].bundle.js',

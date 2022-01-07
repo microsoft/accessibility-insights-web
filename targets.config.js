@@ -57,8 +57,8 @@ module.exports = {
                 telemetryBuildName: 'DevMV3',
             },
         },
-        bundleFolder: 'devBundle',
-        mustExistFile: 'background.bundle.js',
+        bundleFolder: 'devMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     playground: {
         release: true,
