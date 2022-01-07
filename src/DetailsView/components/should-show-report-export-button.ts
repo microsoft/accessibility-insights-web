@@ -23,5 +23,8 @@ export function shouldShowReportExportButtonForFastpass(
     props: ShouldShowReportExportButtonProps,
 ): boolean {
     const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-    return config.shouldShowExportReport(props.tabStoreData, props.featureFlagStoreData);
+    const isTargetPageChangedViewVisible = props.tabStoreData.isChanged;
+    return (
+        config.shouldShowExportReport(props.featureFlagStoreData) && !isTargetPageChangedViewVisible
+    );
 }
