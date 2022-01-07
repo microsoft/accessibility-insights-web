@@ -12,6 +12,7 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AdhocTabStopsTestView,
     AdhocTabStopsTestViewDeps,
@@ -35,6 +36,7 @@ describe('AdhocTabStopsTestView', () => {
     let selectedTest: VisualizationType;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(
@@ -83,6 +85,8 @@ describe('AdhocTabStopsTestView', () => {
             .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
             .returns(() => clickHandlerStub)
             .verifiable();
+
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     });
 
     describe('render', () => {
@@ -98,8 +102,18 @@ describe('AdhocTabStopsTestView', () => {
                 isChanged: true,
             };
 
+            props.deps = {
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            } as AdhocTabStopsTestViewDeps;
+
+            detailsViewActionMessageCreatorMock
+                .setup(m => m.targetPageChangedResetData())
+                .verifiable();
+
             const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
+
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
 
         it.each(scenarios)('handles %s', (_, guidance) => {
