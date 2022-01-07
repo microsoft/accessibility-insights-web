@@ -33,7 +33,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     protected getResults = async (): Promise<AxeAnalyzerResult> => {
         this.debouncedProcessTabEvents?.cancel();
         this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
-        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
+        this.tabStopsListener.initialize((tabEvent: TabStopEvent) => {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
         });

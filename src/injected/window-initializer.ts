@@ -8,13 +8,14 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { AllFrameRunner } from 'injected/all-frame-runner';
 import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
-import { FrameHelper } from 'injected/frame-helper';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -114,17 +115,16 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
-        const frameHelper = new FrameHelper<TabStopEvent>(
+        const singleFrameListener = new SingleFrameTabStopListener(getUniqueSelector, document);
+        const allFrameRunner = new AllFrameRunner<TabStopEvent>(
             this.frameMessenger,
             htmlElementUtils,
             this.windowUtils,
+            singleFrameListener,
         );
-        this.tabStopsListener = new AutomatedTabStopsListener(
-            this.windowUtils,
-            getUniqueSelector,
-            document,
-            frameHelper,
-        );
+        this.tabStopsListener = new AutomatedTabStopsListener(allFrameRunner);
+        allFrameRunner.initialize();
+
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
@@ -151,7 +151,6 @@ export class WindowInitializer {
         );
         this.windowMessagePoster.initialize();
         this.respondableCommandMessageCommunicator.initialize();
-        this.tabStopsListener.initialize();
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();
