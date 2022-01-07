@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, Mock } from 'typemoq';
@@ -21,9 +20,10 @@ import {
 } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
+import { TabStopsListener } from '../../../../../injected/tab-stops-listener';
 
 describe('AnalyzerProviderTests', () => {
-    let tabStopsListener: IMock<AutomatedTabStopsListener>;
+    let tabStopsListener: IMock<TabStopsListener>;
     let scopingStoreMock: IMock<ScopingStore>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let sendMessageMock: IMock<(message) => void>;
@@ -45,7 +45,7 @@ describe('AnalyzerProviderTests', () => {
 
         sendMessageMock = Mock.ofInstance(message => {});
         dateGetterMock = Mock.ofInstance(() => null);
-        tabStopsListener = Mock.ofType(AutomatedTabStopsListener);
+        tabStopsListener = Mock.ofType(TabStopsListener);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         scannerMock = Mock.ofType(ScannerUtils);

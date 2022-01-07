@@ -9,13 +9,13 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
-import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
+import { TabStopsListener } from 'injected/tab-stops-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -53,7 +53,7 @@ export class WindowInitializer {
     protected windowUtils: WindowUtils;
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
-    protected tabStopsListener: AutomatedTabStopsListener;
+    protected tabStopsListener: TabStopsListener;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
@@ -122,7 +122,7 @@ export class WindowInitializer {
             this.windowUtils,
             singleFrameListener,
         );
-        this.tabStopsListener = new AutomatedTabStopsListener(allFrameRunner);
+        this.tabStopsListener = new TabStopsListener(allFrameRunner);
         allFrameRunner.initialize();
 
         const drawerProvider = new DrawerProvider(

@@ -4,8 +4,8 @@ import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
-import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopsListener } from 'injected/tab-stops-listener';
 import { debounce, DebouncedFunc } from 'lodash';
 
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
@@ -21,7 +21,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     constructor(
         config: FocusAnalyzerConfiguration,
-        private readonly tabStopsListener: AutomatedTabStopsListener,
+        private readonly tabStopsListener: TabStopsListener,
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,

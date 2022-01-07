@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { AutomatedTabStopsListener } from 'injected/automated-tab-stops-listener';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopsListener } from 'injected/tab-stops-listener';
 
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
@@ -21,7 +21,7 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
     constructor(
-        private readonly tabStopsListener: AutomatedTabStopsListener,
+        private readonly tabStopsListener: TabStopsListener,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
