@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopsListener } from 'injected/tab-stops-listener';
 
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScannerUtils } from '../scanner-utils';
+import { TabStopsListener } from '../tab-stops-listener';
 import {
     Analyzer,
     AnalyzerConfiguration,
