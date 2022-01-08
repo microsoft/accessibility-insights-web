@@ -19,7 +19,7 @@ export type PassedChecksSectionProps = Pick<
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
     ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
-        const cardRuleResults = cardsViewData.cards.pass;
+        const cardRuleResults = cardsViewData?.cards?.pass ?? [];
 
         return (
             <CollapsibleResultSection
