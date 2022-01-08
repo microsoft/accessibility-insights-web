@@ -27,4 +27,19 @@ describe('IncompleteChecksSection', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders when card data is missing', () => {
+        const props: IncompleteChecksSectionProps = {
+            deps: {} as SectionDeps,
+            cardsViewData: {
+                cards: {
+                    /* missing */
+                },
+            } as CardsViewModel,
+        };
+
+        const wrapper = shallow(<IncompleteChecksSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
