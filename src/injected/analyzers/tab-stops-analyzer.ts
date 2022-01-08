@@ -33,11 +33,11 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     protected getResults = async (): Promise<AxeAnalyzerResult> => {
         this.debouncedProcessTabEvents?.cancel();
         this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
-        this.tabStopsListener.initialize((tabEvent: TabStopEvent) => {
+        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
         });
-        this.tabStopsListener.startInAllFrames();
+        this.tabStopsListener.startListenToTabStops();
         return this.emptyResults;
     };
 
@@ -61,7 +61,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
-        this.tabStopsListener.stopInAllFrames();
+        this.tabStopsListener.stopListenToTabStops();
 
         const payload: ScanBasePayload = {
             key: this.config.key,

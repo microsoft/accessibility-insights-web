@@ -6,15 +6,15 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 export class TabStopsListener {
     constructor(private readonly allFrameRunner: AllFrameRunner<TabStopEvent>) {}
 
-    public initialize(callback: (tabbedItems: TabStopEvent) => void): void {
+    public setTabEventListenerOnMainWindow(callback: (tabbedItems: TabStopEvent) => void): void {
         this.allFrameRunner.topWindowCallback = callback;
     }
 
-    public startInAllFrames() {
+    public startListenToTabStops() {
         this.allFrameRunner.start();
     }
 
-    public stopInAllFrames() {
+    public stopListenToTabStops() {
         this.allFrameRunner.stop();
     }
 }
