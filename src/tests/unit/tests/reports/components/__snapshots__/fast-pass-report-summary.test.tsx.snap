@@ -5,6 +5,21 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
   <h2>
     Summary
   </h2>
-  <FastPassOutcomeSummaryBar />
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "incomplete",
+        "pass",
+      ]
+    }
+    outcomeStats={
+      Object {
+        "fail": 1,
+        "incomplete": 0,
+        "pass": 0,
+      }
+    }
+  />
 </React.Fragment>
 `;
