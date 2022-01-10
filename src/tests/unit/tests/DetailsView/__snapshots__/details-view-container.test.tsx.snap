@@ -30,7 +30,6 @@ exports[`DetailsViewContainer render content render once; should call details vi
         "setFeatureFlag": [Function],
         "startOverAllAssessments": [Function],
         "switchToTargetTab": [Function],
-        "targetPageChangedResetData": [Function],
         "telemetryFactory": undefined,
         "undoManualRequirementStatusChange": [Function],
         "undoManualTestStatusChange": [Function],
