@@ -116,12 +116,13 @@ describe('ReportExportDialogFactory', () => {
                 reportGenerator.generateFastPassHtmlReport(
                     {
                         description: theDescription,
-                        scanMetadata,
+                        targetPage: scanMetadata.targetAppInfo,
                         results: {
                             automatedChecks: cardsViewData,
                             tabStops: tabStopRequirementData,
                         },
                     },
+                    scanMetadata,
                     featureFlagStoreData,
                 ),
             )

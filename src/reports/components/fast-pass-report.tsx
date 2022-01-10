@@ -57,7 +57,11 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         userConfigurationStoreData={null}
                         cardsViewData={props.results.automatedChecks}
                     />
-                    <p>Placeholder for incomplete checks</p>
+                    <IncompleteChecksSection
+                        key={2}
+                        {...props}
+                        cardsViewData={props.results.automatedChecks}
+                    />
                     <PassedChecksSection
                         key={3}
                         {...props}
@@ -65,11 +69,14 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                     />
 
                     <FastPassResultsTitleSection key={4} title="Tab stops" />
-                    <TabStopsChecksSectionWrapper
+                    <TabStopsFailedInstanceSection
                         key={5}
-                        checksSection={PassedChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
+                        deps={{
+                            tabStopRequirementActionMessageCreator: undefined,
+                            tabStopsTestViewController: undefined,
+                            ...props.deps,
+                        }}
+                        tabStopRequirementState={props.results.tabStops}
                     />
                     <TabStopsChecksSectionWrapper
                         key={6}
@@ -77,14 +84,11 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         tabStops={props.results.tabStops}
                         {...props}
                     />
-                    <TabStopsFailedInstanceSection
+                    <TabStopsChecksSectionWrapper
                         key={7}
-                        deps={{
-                            tabStopRequirementActionMessageCreator: undefined,
-                            tabStopsTestViewController: undefined,
-                            ...props.deps,
-                        }}
-                        tabStopRequirementState={props.results.tabStops}
+                        checksSection={PassedChecksSection}
+                        tabStops={props.results.tabStops}
+                        {...props}
                     />
                 </ResultsContainer>
             </ContentContainer>

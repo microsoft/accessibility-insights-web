@@ -54,22 +54,14 @@ describe(FastPassReportHtmlGenerator, () => {
 
         const getScriptMock = Mock.ofInstance(() => '');
 
-        const targetAppInfo = {
+        const targetPage = {
             name: pageTitle,
             url: pageUrl,
         };
 
-        const scanMetadata = {
-            toolData: toolData,
-            targetAppInfo: targetAppInfo,
-            timespan: {
-                scanComplete: scanDate,
-            },
-        } as ScanMetadata;
-
         const model: FastPassReportModel = {
             description,
-            scanMetadata,
+            targetPage,
             results: {
                 automatedChecks: {
                     cards: exampleUnifiedStatusResults,
@@ -80,7 +72,15 @@ describe(FastPassReportHtmlGenerator, () => {
             },
         };
 
-        const props: FastPassReportProps = {
+        const expectedScanMetadata: ScanMetadata = {
+            targetAppInfo: targetPage,
+            timespan: {
+                scanComplete: scanDate,
+            },
+            toolData,
+        };
+
+        const expectedProps: FastPassReportProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
                 recommendColor: recommendColorMock.object,
@@ -99,10 +99,10 @@ describe(FastPassReportHtmlGenerator, () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             results: model.results,
-            scanMetadata,
+            scanMetadata: expectedScanMetadata,
         };
 
-        const reportElement: JSX.Element = <FastPassReport {...props} />;
+        const reportElement: JSX.Element = <FastPassReport {...expectedProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
         rendererMock
@@ -119,6 +119,8 @@ describe(FastPassReportHtmlGenerator, () => {
             recommendColorMock.object,
             getPropertyConfigurationStub,
             tabStopsFailedCounterMock.object,
+            toolData,
+            () => scanDate,
         );
 
         const actual = testObject.generateHtml(model);
