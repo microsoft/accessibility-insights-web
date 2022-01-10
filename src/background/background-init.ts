@@ -50,9 +50,14 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 declare let window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
+    //register browser listeners
+    //register storage listeners
+    //register telemetry listeners
+    //register target page listeners
+    //register messaging listeners
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(); //DOM
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -60,7 +65,7 @@ async function initialize(): Promise<void> {
         deprecatedStorageDataKeys,
     );
 
-    const windowUtils = new WindowUtils();
+    const windowUtils = new WindowUtils(); //DOM
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
@@ -71,8 +76,8 @@ async function initialize(): Promise<void> {
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
     const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
-    const userDataPromise = browserAdapter.getUserData(storageDataKeys);
-    const persistedData = await persistedDataPromise;
+    const userDataPromise = browserAdapter.getUserData(storageDataKeys); // localStorage
+    const persistedData = await persistedDataPromise; //indexedDB
     const userData = await userDataPromise;
 
     const assessmentsProvider = Assessments;
