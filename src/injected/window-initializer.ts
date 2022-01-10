@@ -115,7 +115,11 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
-        const singleFrameListener = new SingleFrameTabStopListener(getUniqueSelector, document);
+        const singleFrameListener = new SingleFrameTabStopListener(
+            'manual-tab-stop-listener',
+            getUniqueSelector,
+            document,
+        );
         const allFrameRunner = new AllFrameRunner<TabStopEvent>(
             this.frameMessenger,
             htmlElementUtils,

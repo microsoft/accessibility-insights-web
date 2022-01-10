@@ -6,9 +6,10 @@ import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
 
 export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopEvent> {
-    private reportResults: (payload: TabStopEvent) => Promise<null>;
+    private reportResults: (payload: TabStopEvent) => Promise<void>;
 
     constructor(
+        public readonly name: string,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
         private readonly dom: Document,
     ) {}
@@ -17,11 +18,11 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         this.dom.addEventListener('focusin', this.onFocusIn);
     };
 
-    public teardown = () => {
+    public stop = () => {
         this.dom.removeEventListener('focusin', this.onFocusIn);
     };
 
-    public setResultCallback = (reportResultCallback: (payload: TabStopEvent) => Promise<null>) => {
+    public setResultCallback = (reportResultCallback: (payload: TabStopEvent) => Promise<void>) => {
         this.reportResults = reportResultCallback;
     };
 
@@ -34,7 +35,7 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         return tabStopEvent;
     };
 
-    private onFocusIn = async (event: Event): Promise<null> => {
+    private onFocusIn = async (event: Event): Promise<void> => {
         const target: HTMLElement = event.target as HTMLElement;
 
         const timestamp: Date = DateProvider.getCurrentDate();
@@ -46,6 +47,5 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         };
 
         await this.reportResults(tabStopEvent);
-        return null;
     };
 }
