@@ -59,7 +59,11 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         userConfigurationStoreData={null}
                         cardsViewData={props.results.automatedChecks}
                     />
-                    <p>Placeholder for incomplete checks</p>
+                    <IncompleteChecksSection
+                        key={2}
+                        {...props}
+                        cardsViewData={props.results.automatedChecks}
+                    />
                     <PassedChecksSection
                         key={3}
                         {...props}
@@ -67,20 +71,8 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                     />
 
                     <FastPassResultsTitleSection key={4} title="Tab stops" />
-                    <TabStopsChecksSectionWrapper
-                        key={5}
-                        checksSection={PassedChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                    />
-                    <TabStopsChecksSectionWrapper
-                        key={6}
-                        checksSection={IncompleteChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                    />
                     <TabStopsFailedInstanceSection
-                        key={7}
+                        key={5}
                         deps={{
                             tabStopRequirementActionMessageCreator: undefined,
                             tabStopsTestViewController: undefined,
@@ -88,6 +80,18 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         }}
                         tabStopRequirementState={props.results.tabStops}
                         alwaysRenderSection={true}
+                    />
+                    <TabStopsChecksSectionWrapper
+                        key={6}
+                        checksSection={IncompleteChecksSection}
+                        tabStops={props.results.tabStops}
+                        {...props}
+                    />
+                    <TabStopsChecksSectionWrapper
+                        key={7}
+                        checksSection={PassedChecksSection}
+                        tabStops={props.results.tabStops}
+                        {...props}
                     />
                 </ResultsContainer>
             </ContentContainer>

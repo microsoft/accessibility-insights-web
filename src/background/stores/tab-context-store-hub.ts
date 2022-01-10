@@ -74,6 +74,7 @@ export class TabContextStoreHub implements StoreHub {
 
         this.unifiedScanResultStore = new UnifiedScanResultStore(
             actionHub.unifiedScanResultActions,
+            actionHub.tabActions,
         );
         this.unifiedScanResultStore.initialize();
 
@@ -85,6 +86,7 @@ export class TabContextStoreHub implements StoreHub {
 
         this.needsReviewScanResultStore = new NeedsReviewScanResultStore(
             actionHub.needsReviewScanResultActions,
+            actionHub.tabActions,
         );
         this.needsReviewScanResultStore.initialize();
 

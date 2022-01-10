@@ -19,7 +19,8 @@ export type IncompleteChecksSectionProps = Pick<
 export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
     'IncompleteChecksSection',
     ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
-        const cardRuleResults = cardsViewData.cards.pass;
+        const cardRuleResults = cardsViewData?.cards?.unknown ?? [];
+
         return (
             <CollapsibleResultSection
                 deps={deps}

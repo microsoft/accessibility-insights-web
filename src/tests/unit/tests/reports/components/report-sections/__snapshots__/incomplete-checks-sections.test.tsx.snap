@@ -2,6 +2,24 @@
 
 exports[`IncompleteChecksSection renders 1`] = `
 <CollapsibleResultSection
+  badgeCount={3}
+  cardRuleResults={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  containerClassName="result-section"
+  containerId="incomplete-checks-section"
+  deps={Object {}}
+  outcomeType="incomplete"
+  title="Incomplete checks"
+/>
+`;
+
+exports[`IncompleteChecksSection renders when card data is missing 1`] = `
+<CollapsibleResultSection
   badgeCount={0}
   cardRuleResults={Array []}
   containerClassName="result-section"

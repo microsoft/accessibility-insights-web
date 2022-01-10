@@ -379,6 +379,8 @@ if (tabId != null) {
                 recommendColor,
                 getPropertyConfiguration,
                 tabStopsFailedCounter,
+                toolData,
+                DateProvider.getCurrentDate,
             );
 
             // Represents the language in which pages are to be displayed

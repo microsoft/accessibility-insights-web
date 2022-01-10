@@ -91,8 +91,11 @@ export class StoreMocks {
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
-    public unifiedScanResultStoreData = new UnifiedScanResultStore(null).getDefaultState();
-    public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(null, null).getDefaultState();
+    public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
+        null,
+        null,
+    ).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,

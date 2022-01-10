@@ -8,6 +8,7 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
@@ -163,6 +164,7 @@ const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
+const tabActions = new TabActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
@@ -242,7 +244,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const windowStateStore = new WindowStateStore(windowStateActions);
         windowStateStore.initialize();
 
-        const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
+        const unifiedScanResultStore = new UnifiedScanResultStore(
+            unifiedScanResultActions,
+            tabActions,
+        );
         unifiedScanResultStore.initialize();
 
         const scanStore = new ScanStore(scanActions);

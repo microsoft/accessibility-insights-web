@@ -28,4 +28,19 @@ describe('PassedChecksSection', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders when card data is missing', () => {
+        const props: PassedChecksSectionProps = {
+            deps: {} as SectionDeps,
+            cardsViewData: {
+                cards: {
+                    /* missing */
+                },
+            } as CardsViewModel,
+        };
+
+        const wrapper = shallow(<PassedChecksSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
