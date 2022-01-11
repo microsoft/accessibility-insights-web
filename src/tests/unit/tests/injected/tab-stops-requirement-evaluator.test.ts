@@ -12,8 +12,8 @@ describe('TabStopsRequirementEvaluator', () => {
     let generateSelectorMock: IMock<typeof getUniqueSelector>;
     let testSubject: DefaultTabStopsRequirementEvaluator;
 
-    const tabStopElement1: HTMLElement = { tagName: 'element1' } as HTMLElement;
-    const tabStopElement2: HTMLElement = { tagName: 'element2' } as HTMLElement;
+    const tabStopElement1: HTMLElement = { tagName: 'element1', outerHTML: 'html1' } as HTMLElement;
+    const tabStopElement2: HTMLElement = { tagName: 'element2', outerHTML: 'html2' } as HTMLElement;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
@@ -35,7 +35,9 @@ describe('TabStopsRequirementEvaluator', () => {
             testSubject.getKeyboardNavigationResults(tabbableTabStops, incorrectTabStops),
         ).toEqual([
             {
-                description: testSubject.keyboardNavigationDescription('element1'),
+                description: 'Element element1 was expected, but not reached in tab order',
+                selector: ['element1'],
+                html: 'html1',
             },
         ]);
 
@@ -49,27 +51,52 @@ describe('TabStopsRequirementEvaluator', () => {
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => true);
-        expect(testSubject.getFocusOrderResult(tabStopElement2, tabStopElement1)).toEqual([
+        expect(testSubject.getFocusOrderResult(tabStopElement2, tabStopElement1)).toEqual({
+            description: 'Element element1 precedes element2 but was visited first in tab order',
+            selector: ['element1'],
+            html: 'html1',
+        });
+
+        htmlElementUtilsMock
+            .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
+            .returns(() => false);
+        expect(testSubject.getFocusOrderResult(tabStopElement1, tabStopElement2)).toEqual(null);
+    });
+
+    test('addTabbableFocusOrderResults', () => {
+        expect(testSubject.getTabbableFocusOrderResults([tabStopElement1])).toEqual([]);
+
+        htmlElementUtilsMock
+            .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
+            .returns(() => true);
+        expect(
+            testSubject.getTabbableFocusOrderResults([tabStopElement2, tabStopElement1]),
+        ).toEqual([
             {
-                description: testSubject.focusOrderDescription('element1', 'element2'),
+                description:
+                    'Element element1 precedes element2 but was visited first in tab order',
+                selector: ['element1'],
+                html: 'html1',
             },
         ]);
 
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => false);
-        expect(testSubject.getFocusOrderResult(tabStopElement1, tabStopElement2)).toEqual([]);
+        expect(
+            testSubject.getTabbableFocusOrderResults([tabStopElement1, tabStopElement2]),
+        ).toEqual([]);
     });
 
     test('onKeydownForFocusTraps', async () => {
         expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement2)).toEqual(
-            [],
+            null,
         );
 
-        expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement1)).toEqual([
-            {
-                description: testSubject.focusTrapsDescription('element1'),
-            },
-        ]);
+        expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement1)).toEqual({
+            description: 'Focus is still on element element1 500ms after pressing tab',
+            selector: ['element1'],
+            html: 'html1',
+        });
     });
 });

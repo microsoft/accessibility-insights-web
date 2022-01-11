@@ -8,6 +8,8 @@ import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export type TabStopRequirementResult = {
     description: string;
+    selector: string[];
+    html: string;
 };
 
 export type TabStopRequirementResults = Partial<
@@ -22,20 +24,21 @@ export interface TabStopsRequirementEvaluator {
     getFocusOrderResult(
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
-    ): TabStopRequirementResult[];
+    ): TabStopRequirementResult;
+    getTabbableFocusOrderResults(tabbableTabStops: HTMLElement[]): TabStopRequirementResult[];
     getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
-    ): TabStopRequirementResult[];
+    ): TabStopRequirementResult;
 }
 
 export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementEvaluator {
-    public readonly keyboardNavigationDescription: (string) => string = selector =>
+    private readonly keyboardNavigationDescription: (string) => string = selector =>
         `Element ${selector} was expected, but not reached in tab order`;
-    public readonly focusOrderDescription: (currSelector: string, lastSelector: string) => string =
+    private readonly focusOrderDescription: (currSelector: string, lastSelector: string) => string =
         (currSelector, lastSelector) =>
             `Element ${currSelector} precedes ${lastSelector} but was visited first in tab order`;
-    public readonly focusTrapsDescription: (string) => string = selector =>
+    private readonly focusTrapsDescription: (string) => string = selector =>
         `Focus is still on element ${selector} 500ms after pressing tab`;
 
     constructor(
@@ -53,6 +56,8 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
                 const selector = this.generateSelector(expectedTabStop);
                 requirementResults.push({
                     description: this.keyboardNavigationDescription(selector),
+                    selector: [selector],
+                    html: expectedTabStop.outerHTML,
                 });
             }
         });
@@ -62,31 +67,49 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getFocusOrderResult(
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
-    ): TabStopRequirementResult[] {
+    ): TabStopRequirementResult {
         if (this.htmlElementUtils.precedesInDOM(currentTabStop, lastTabStop)) {
             const lastSelector = this.generateSelector(lastTabStop);
             const currSelector = this.generateSelector(currentTabStop);
-            return [
-                {
-                    description: this.focusOrderDescription(currSelector, lastSelector),
-                },
-            ];
+            return {
+                description: this.focusOrderDescription(currSelector, lastSelector),
+                selector: [currSelector],
+                html: currentTabStop.outerHTML,
+            };
         }
-        return [];
+        return null;
+    }
+
+    public getTabbableFocusOrderResults(
+        tabbableTabStops: HTMLElement[],
+    ): TabStopRequirementResult[] {
+        const requirementResults: TabStopRequirementResult[] = [];
+        tabbableTabStops.forEach((expectedTabStop, index) => {
+            if (index > 0) {
+                const comparisonResult = this.getFocusOrderResult(
+                    tabbableTabStops[index - 1],
+                    expectedTabStop,
+                );
+                if (comparisonResult) {
+                    requirementResults.push(comparisonResult);
+                }
+            }
+        });
+        return requirementResults;
     }
 
     public getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
-    ): TabStopRequirementResult[] {
+    ): TabStopRequirementResult {
         if (oldActiveElement === newActiveElement) {
             const selector = this.generateSelector(oldActiveElement as HTMLElement);
-            return [
-                {
-                    description: this.focusTrapsDescription(selector),
-                },
-            ];
+            return {
+                description: this.focusTrapsDescription(selector),
+                selector: [selector],
+                html: oldActiveElement.outerHTML,
+            };
         }
-        return [];
+        return null;
     }
 }
