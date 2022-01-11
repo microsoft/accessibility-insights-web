@@ -2,6 +2,28 @@
 
 exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `null`;
 
+exports[`TabStopsFailedInstanceSection does renders when no results are failing and set to alwaysRenderSection 1`] = `
+<div
+  className="tabStopsFailureInstanceSection"
+  data-automation-id="tab-stops-failure-instance-section"
+>
+  <h2>
+    <ResultSectionTitle
+      badgeCount={0}
+      outcomeType="fail"
+      title="Failed instances"
+      titleSize="title"
+    />
+  </h2>
+  <TabStopsRequirementsWithInstances
+    deps={Object {}}
+    getCollapsibleComponentPropsWithInstance={[Function]}
+    headingLevel={3}
+    results={Array []}
+  />
+</div>
+`;
+
 exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
 <div
   className="tabStopsFailureInstanceSection"
@@ -16,15 +38,8 @@ exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
     />
   </h2>
   <TabStopsRequirementsWithInstances
-    deps={
-      Object {
-        "tabStopsFailedCounter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getFailedByRequirementId": [Function],
-          "getTotalFailed": [Function],
-        },
-      }
-    }
+    deps={Object {}}
+    getCollapsibleComponentPropsWithInstance={[Function]}
     headingLevel={3}
     results={
       Array [

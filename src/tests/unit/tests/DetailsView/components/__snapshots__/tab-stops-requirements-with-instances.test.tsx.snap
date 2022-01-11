@@ -1,188 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TabStopsRequirementsWithInstances renders component instance count === 0 1`] = `
+<div>
+  <CollapsibleControlStub
+    headingLevel={3}
+    id="keyboard-navigation0keyboard-navigation 0 Failed test requirement description 1"
+  />
+  <CollapsibleControlStub
+    headingLevel={3}
+    id="keyboard-traps1keyboard-traps 0 Failed test requirement description 2"
+  />
+</div>
+`;
+
 exports[`TabStopsRequirementsWithInstances renders empty div when instance count === 0 1`] = `<div />`;
 
 exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] = `
 <div>
   <CollapsibleControlStub
-    buttonAriaLabel="keyboard-navigation 2 Failed test requirement description 1"
-    containerAutomationId="tab-stops-results-group"
-    containerClassName="collapsibleRequirementDetailsGroup"
-    content={
-      <TabStopsRequirementInstancesCollapsibleContent
-        instances={
-          Array [
-            Object {
-              "description": "test desc 1",
-              "id": "test-id-1",
-            },
-          ]
-        }
-        onEditButtonClicked={[Function]}
-        onRemoveButtonClicked={[Function]}
-        requirementId="keyboard-navigation"
-      />
-    }
-    deps={
-      Object {
-        "collapsibleControl": [Function],
-        "tabStopRequirementActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "telemetryFactory": undefined,
-          "toggleTabStopRequirementExpand": [Function],
-        },
-        "tabStopsFailedCounter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getFailedByRequirementId": [Function],
-          "getTotalFailed": [Function],
-        },
-        "tabStopsTestViewController": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
-          "createNewFailureInstancePanel": [Function],
-          "dismissPanel": [Function],
-          "editExistingFailureInstance": [Function],
-          "updateDescription": [Function],
-        },
-      }
-    }
-    header={
-      <TabStopsMinimalRequirementHeader
-        deps={
-          Object {
-            "collapsibleControl": [Function],
-            "tabStopRequirementActionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "dispatcher": undefined,
-              "telemetryFactory": undefined,
-              "toggleTabStopRequirementExpand": [Function],
-            },
-            "tabStopsFailedCounter": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "getFailedByRequirementId": [Function],
-              "getTotalFailed": [Function],
-            },
-            "tabStopsTestViewController": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "actions": undefined,
-              "createNewFailureInstancePanel": [Function],
-              "dismissPanel": [Function],
-              "editExistingFailureInstance": [Function],
-              "updateDescription": [Function],
-            },
-          }
-        }
-        requirement={
-          Object {
-            "description": "test requirement description 1",
-            "id": "keyboard-navigation",
-            "instances": Array [
-              Object {
-                "description": "test desc 1",
-                "id": "test-id-1",
-              },
-            ],
-            "isExpanded": false,
-            "name": "test requirement name 1",
-          }
-        }
-      />
-    }
     headingLevel={3}
-    id="keyboard-navigation"
-    isExpanded={false}
-    onExpandToggle={[Function]}
+    id="keyboard-navigation0keyboard-navigation 2 Failed test requirement description 1"
   />
   <CollapsibleControlStub
-    buttonAriaLabel="keyboard-traps 2 Failed test requirement description 2"
-    containerAutomationId="tab-stops-results-group"
-    containerClassName="collapsibleRequirementDetailsGroup"
-    content={
-      <TabStopsRequirementInstancesCollapsibleContent
-        instances={
-          Array [
-            Object {
-              "description": "test desc 2",
-              "id": "test-id-2",
-            },
-          ]
-        }
-        onEditButtonClicked={[Function]}
-        onRemoveButtonClicked={[Function]}
-        requirementId="keyboard-traps"
-      />
-    }
-    deps={
-      Object {
-        "collapsibleControl": [Function],
-        "tabStopRequirementActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "telemetryFactory": undefined,
-          "toggleTabStopRequirementExpand": [Function],
-        },
-        "tabStopsFailedCounter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getFailedByRequirementId": [Function],
-          "getTotalFailed": [Function],
-        },
-        "tabStopsTestViewController": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
-          "createNewFailureInstancePanel": [Function],
-          "dismissPanel": [Function],
-          "editExistingFailureInstance": [Function],
-          "updateDescription": [Function],
-        },
-      }
-    }
-    header={
-      <TabStopsMinimalRequirementHeader
-        deps={
-          Object {
-            "collapsibleControl": [Function],
-            "tabStopRequirementActionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "dispatcher": undefined,
-              "telemetryFactory": undefined,
-              "toggleTabStopRequirementExpand": [Function],
-            },
-            "tabStopsFailedCounter": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "getFailedByRequirementId": [Function],
-              "getTotalFailed": [Function],
-            },
-            "tabStopsTestViewController": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "actions": undefined,
-              "createNewFailureInstancePanel": [Function],
-              "dismissPanel": [Function],
-              "editExistingFailureInstance": [Function],
-              "updateDescription": [Function],
-            },
-          }
-        }
-        requirement={
-          Object {
-            "description": "test requirement description 2",
-            "id": "keyboard-traps",
-            "instances": Array [
-              Object {
-                "description": "test desc 2",
-                "id": "test-id-2",
-              },
-            ],
-            "isExpanded": false,
-            "name": "test requirement name 2",
-          }
-        }
-      />
-    }
     headingLevel={3}
-    id="keyboard-traps"
-    isExpanded={false}
-    onExpandToggle={[Function]}
+    id="keyboard-traps1keyboard-traps 2 Failed test requirement description 2"
   />
 </div>
 `;

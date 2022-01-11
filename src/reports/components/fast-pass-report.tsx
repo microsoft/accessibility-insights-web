@@ -5,6 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
+import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import { FastPassReportSummary } from 'reports/components/fast-pass-report-summary';
@@ -29,6 +30,7 @@ export type FastPassReportResultData = {
 };
 export type FastPassReportDeps = {
     tabStopsFailedCounter: TabStopsFailedCounter;
+    tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
 } & SectionDeps;
 export type FastPassReportProps = Omit<
     SectionProps,
@@ -77,6 +79,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                             ...props.deps,
                         }}
                         tabStopRequirementState={props.results.tabStops}
+                        alwaysRenderSection={true}
                     />
                     <TabStopsChecksSectionWrapper
                         key={6}

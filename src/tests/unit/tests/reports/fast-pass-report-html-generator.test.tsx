@@ -8,6 +8,7 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ReportTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import {
@@ -91,6 +92,7 @@ describe(FastPassReportHtmlGenerator, () => {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+                tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
             } as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
