@@ -15,7 +15,7 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
     }
     outcomeStats={
       Object {
-        "fail": NaN,
+        "fail": 3,
         "incomplete": 0,
         "pass": 1,
       }
