@@ -21,57 +21,33 @@ export const allOutcomeTypes: RequirementOutcomeType[] = ['fail', 'incomplete', 
 
 export class FastPassReportSummary extends React.Component<FastPassReportSummaryProps> {
     public render(): JSX.Element {
-        const tabResults = [];
+        const failedTabResults = [];
+        const incompleteTabResults = [];
+        const passedTabResults = [];
 
         for (const [requirementId, data] of Object.entries(this.props.results.tabStops)) {
-            if (data.status !== 'fail') {
-                continue;
-            }
-
-            tabResults.push({
+            const resultsObject = {
                 id: requirementId,
                 name: requirements[requirementId].name,
                 description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
-            });
+            };
+            if (data.status === 'fail') {
+                failedTabResults.push(resultsObject);
+            }
+            if (data.status === 'pass') {
+                passedTabResults.push(resultsObject);
+            }
+            if (data.status === 'unknown') {
+                incompleteTabResults.push(resultsObject);
+            }
         }
 
         const totalFailedTabInstancesCount: number =
-            this.props.deps.tabStopsFailedCounter.getTotalFailed(tabResults);
-
-        const passedTabResults = [];
-        for (const [requirementId, data] of Object.entries(this.props.results.tabStops)) {
-            if (data.status !== 'pass') {
-                continue;
-            }
-
-            passedTabResults.push({
-                id: requirementId,
-                name: requirements[requirementId].name,
-                description: requirements[requirementId].description,
-                instances: data.instances,
-                isExpanded: data.isExpanded,
-            });
-        }
-
-        const totalPassedTabCount: number = passedTabResults.length;
-
-        const incompleteTabResults = [];
-        for (const [requirementId, data] of Object.entries(this.props.results.tabStops)) {
-            if (data.status !== 'unknown') {
-                continue;
-            }
-
-            incompleteTabResults.push({
-                id: requirementId,
-                name: requirements[requirementId].name,
-                description: requirements[requirementId].description,
-                instances: data.instances,
-                isExpanded: data.isExpanded,
-            });
-        }
+            this.props.deps.tabStopsFailedCounter.getTotalFailed(failedTabResults);
         const totalIncompleteTabCount: number = incompleteTabResults.length;
+        const totalPassedTabCount: number = passedTabResults.length;
 
         const failedAutomatedChecks = this.props.results.automatedChecks.cards.fail.length;
         const passedAutomatedChecks = this.props.results.automatedChecks.cards.pass.length;
