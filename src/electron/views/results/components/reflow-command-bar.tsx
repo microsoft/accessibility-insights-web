@@ -85,7 +85,7 @@ export class ReflowCommandBar extends React.Component<
                 <ReportExportComponent
                     deps={deps}
                     isOpen={this.state.reportExportDialogIsOpen}
-                    reportExportFormat={'AutomatedChecks'}
+                    reportExportFormat={'FastPass'}
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
                     htmlGenerator={description =>

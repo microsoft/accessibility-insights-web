@@ -136,7 +136,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   isOpen={true}
   jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
-  reportExportFormat="AutomatedChecks"
+  reportExportFormat="FastPass"
   reportExportServices={
     Array [
       Object {

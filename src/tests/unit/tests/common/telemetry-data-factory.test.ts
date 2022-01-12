@@ -626,7 +626,7 @@ describe('TelemetryDataFactoryTest', () => {
     test('forExportedResults by mouseclick', () => {
         const serviceKey = 'html';
         const event = mouseClickEvent;
-        const exportResultsType = 'AutomatedChecks';
+        const exportResultsType = 'FastPass';
 
         const result = testObject.forExportedResults(
             exportResultsType,

@@ -82,7 +82,7 @@ export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'FastPass';
 
 export enum TelemetryEventSource {
     LaunchPad,
