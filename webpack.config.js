@@ -27,6 +27,7 @@ const commonEntryFiles = {
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
+    serviceWorker: [path.resolve(__dirname, 'src/background/service-worker-init.ts')],
     debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
@@ -174,6 +175,25 @@ const devConfig = {
     },
 };
 
+const devMv3Config = {
+    ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
+    },
+    name: 'dev-mv3',
+    mode: 'development',
+    devtool: 'inline-source-map',
+    output: {
+        path: path.join(__dirname, 'extension/devMv3Bundle'),
+        filename: '[name].bundle.js',
+    },
+    optimization: {
+        splitChunks: false,
+    },
+};
+
 const prodConfig = {
     ...commonConfig,
     name: 'prod',
@@ -245,4 +265,11 @@ const packageUIConfig = {
 };
 
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig, packageUIConfig];
+module.exports = [
+    devConfig,
+    devMv3Config,
+    prodConfig,
+    unifiedConfig,
+    packageReportConfig,
+    packageUIConfig,
+];

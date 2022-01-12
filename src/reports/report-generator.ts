@@ -4,7 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import {
     FastPassReportHtmlGenerator,
@@ -23,6 +23,7 @@ export class ReportGenerator {
 
     public generateFastPassHtmlReport(
         model: FastPassReportModel,
+        scanMetadata: ScanMetadata,
         featureFlagStoreData: FeatureFlagStoreData,
     ): string {
         if (featureFlagStoreData[FeatureFlags.newTabStopsDetailsView]) {
@@ -31,7 +32,7 @@ export class ReportGenerator {
             return this.automatedChecksReportHtmlGenerator.generateHtml(
                 model.description,
                 model.results.automatedChecks,
-                model.scanMetadata,
+                scanMetadata,
             );
         }
     }

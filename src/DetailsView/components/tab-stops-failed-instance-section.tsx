@@ -4,22 +4,25 @@
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import * as styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import {
     TabStopsRequirementsWithInstances,
     TabStopsRequirementsWithInstancesDeps,
 } from 'DetailsView/tab-stops-requirements-with-instances';
 import * as React from 'react';
-import * as styles from './tab-stops-failed-instance-section.scss';
 
 export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps & {
     tabStopsFailedCounter: TabStopsFailedCounter;
+    tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
 };
 
 export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
     tabStopRequirementState: TabStopRequirementState;
+    alwaysRenderSection: boolean;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -46,9 +49,16 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
         const totalFailedInstancesCount: number =
             props.deps.tabStopsFailedCounter.getTotalFailed(results);
 
-        if (totalFailedInstancesCount === 0) {
+        if (!props.alwaysRenderSection && totalFailedInstancesCount === 0) {
             return null;
         }
+
+        const instanceSectionProps = props.deps.tabStopsInstanceSectionPropsFactory({
+            headingLevel: 3,
+            results,
+            tabStopRequirementState: props.tabStopRequirementState,
+            deps: props.deps,
+        });
 
         return (
             <div
@@ -63,11 +73,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
                         titleSize="title"
                     />
                 </h2>
-                <TabStopsRequirementsWithInstances
-                    results={results}
-                    headingLevel={3}
-                    deps={props.deps}
-                />
+                <TabStopsRequirementsWithInstances {...instanceSectionProps} />
             </div>
         );
     },

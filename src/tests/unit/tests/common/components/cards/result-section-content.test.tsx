@@ -45,7 +45,7 @@ describe('ResultSectionContent', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders, no rules', () => {
+    it('does not render, no rules', () => {
         const props: ResultSectionContentProps = {
             deps: depsStub,
             results: emptyRules,

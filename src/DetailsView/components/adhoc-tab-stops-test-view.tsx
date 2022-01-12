@@ -144,6 +144,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         tabStopRequirementState={
                             props.visualizationScanResultData.tabStops.requirements
                         }
+                        alwaysRenderSection={false}
                     />
                     <TabStopsFailedInstancePanel
                         deps={props.deps}

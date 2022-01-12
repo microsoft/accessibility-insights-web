@@ -38,6 +38,7 @@ import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessm
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
@@ -378,6 +379,8 @@ if (tabId != null) {
                 recommendColor,
                 getPropertyConfiguration,
                 tabStopsFailedCounter,
+                toolData,
+                DateProvider.getCurrentDate,
             );
 
             // Represents the language in which pages are to be displayed
@@ -579,6 +582,7 @@ if (tabId != null) {
                 tabStopRequirements: requirements,
                 tabStopsFailedCounter,
                 tabStopsTestViewController,
+                tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -38,7 +38,6 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
           "switchToTargetTab": [Function],
-          "targetPageChangedResetData": [Function],
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],

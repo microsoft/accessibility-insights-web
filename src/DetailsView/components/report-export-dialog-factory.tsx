@@ -11,6 +11,7 @@ import {
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
@@ -77,8 +78,8 @@ export function getReportExportDialogForFastPass(
     const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
         visualizationConfigurationFactory: props.visualizationConfigurationFactory,
         selectedTest: props.selectedTest,
-        visualizationStoreData: props.visualizationStoreData,
         featureFlagStoreData: props.featureFlagStoreData,
+        tabStoreData: props.tabStoreData,
     };
 
     if (
@@ -90,17 +91,19 @@ export function getReportExportDialogForFastPass(
     }
 
     const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
+
     const reportGenerator = deps.reportGenerator;
+    const reportModelExceptDescription: Omit<FastPassReportModel, 'description'> = {
+        results: {
+            automatedChecks: props.automatedChecksCardsViewData,
+            tabStops: props.tabStopRequirementData,
+        },
+        targetPage: props.scanMetadata.targetAppInfo,
+    };
     const generateReportFromDescription = description =>
         reportGenerator.generateFastPassHtmlReport(
-            {
-                results: {
-                    automatedChecks: props.automatedChecksCardsViewData,
-                    tabStops: props.tabStopRequirementData,
-                },
-                description,
-                scanMetadata: props.scanMetadata,
-            },
+            { ...reportModelExceptDescription, description },
+            props.scanMetadata,
             props.featureFlagStoreData,
         );
 

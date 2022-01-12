@@ -7,6 +7,13 @@ Array [
     "nodes": Array [
       Object {
         "failureSummary": "Fix any of the following:
+  Document has multiple elements referenced with ARIA with the same id attribute: content-container-incomplete-checks-section",
+        "selector": Array [
+          ".result-section:nth-child(3) > .collapsible-container.collapsed > .collapsible-content[aria-hidden=\\"true\\"]",
+        ],
+      },
+      Object {
+        "failureSummary": "Fix any of the following:
   Document has multiple elements referenced with ARIA with the same id attribute: content-container-passed-checks-section",
         "selector": Array [
           ".result-section:nth-child(4) > .collapsible-container.collapsed > .collapsible-content[aria-hidden=\\"true\\"]",

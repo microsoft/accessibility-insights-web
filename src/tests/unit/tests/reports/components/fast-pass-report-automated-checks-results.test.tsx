@@ -1,20 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { FastPassReportDeps } from 'reports/components/fast-pass-report';
 import {
-    FastPassReport,
-    FastPassReportDeps,
-    FastPassReportProps,
-} from 'reports/components/fast-pass-report';
+    FastPassReportAutomatedChecksResults,
+    FastPassReportAutomatedChecksResultsProps,
+} from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { Mock } from 'typemoq';
-
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
-describe(FastPassReport, () => {
-    it('renders', () => {
+describe('FastPassReportSummary', () => {
+    let props: FastPassReportAutomatedChecksResultsProps;
+    beforeEach(() => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
         const scanDate = new Date(Date.UTC(0, 1, 2, 3));
@@ -34,8 +35,7 @@ describe(FastPassReport, () => {
             },
         };
         const targetAppInfo = { name: 'app' };
-
-        const props: FastPassReportProps = {
+        props = {
             deps: {} as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
@@ -61,18 +61,7 @@ describe(FastPassReport, () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                tabStops: {
-                    'keyboard-traps': {
-                        status: 'pass',
-                        instances: [{ id: 'test-id-2', description: 'test desc 2' }],
-                        isExpanded: false,
-                    },
-                    'tab-order': {
-                        status: 'fail',
-                        instances: [{ id: 'test-id-4', description: 'test desc 4' }],
-                        isExpanded: false,
-                    },
-                },
+                tabStops: null, // Should be filled in as part of #1897876
             },
             userConfigurationStoreData: null,
             targetAppInfo,
@@ -85,9 +74,16 @@ describe(FastPassReport, () => {
                 },
             },
         };
+    });
 
-        const wrapper = shallow(<FastPassReport {...props} />);
+    it('renders with pass/fail/incomplete elements if automated checks exist', () => {
+        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(rendered.debug()).toMatchSnapshot();
+    });
 
-        expect(wrapper.debug()).toMatchSnapshot();
+    it('renders automated checks not run message if automated checks are null', () => {
+        props.results.automatedChecks = null;
+        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(rendered.debug()).toMatchSnapshot();
     });
 });
