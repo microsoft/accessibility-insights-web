@@ -12,6 +12,7 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         public readonly name: string,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
         private readonly dom: Document,
+        private readonly getCurrentDate: typeof DateProvider.getCurrentDate = DateProvider.getCurrentDate,
     ) {}
 
     public start = () => {
@@ -31,14 +32,17 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         messageSourceFrame: HTMLIFrameElement,
     ): TabStopEvent => {
         const frameSelector = this.getUniqueSelector(messageSourceFrame);
-        tabStopEvent.target.splice(0, 0, frameSelector);
-        return tabStopEvent;
+        return {
+            timestamp: tabStopEvent.timestamp,
+            html: tabStopEvent.html,
+            target: [frameSelector, ...tabStopEvent.target],
+        };
     };
 
     private onFocusIn = async (event: Event): Promise<void> => {
         const target: HTMLElement = event.target as HTMLElement;
 
-        const timestamp: Date = DateProvider.getCurrentDate();
+        const timestamp: Date = this.getCurrentDate();
 
         const tabStopEvent: TabStopEvent = {
             timestamp: timestamp.getTime(),
