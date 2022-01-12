@@ -9,10 +9,7 @@ import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import {
-    NoFailedInstancesCongrats,
-    NoFailedInstancesCongratsDeps,
-} from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import { NoFailedInstancesCongratsDeps } from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
@@ -50,7 +47,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             headingLevel,
         } = props;
         if (results.length === 0) {
-            return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
+            return null;
         }
         return (
             <>
