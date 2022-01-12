@@ -15,9 +15,9 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
     }
     outcomeStats={
       Object {
-        "fail": 1,
+        "fail": 3,
         "incomplete": 0,
-        "pass": 0,
+        "pass": 1,
       }
     }
   />
