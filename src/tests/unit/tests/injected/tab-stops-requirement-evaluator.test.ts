@@ -25,7 +25,7 @@ describe('TabStopsRequirementEvaluator', () => {
         );
     });
 
-    test('addKeyboardNavigationResults', () => {
+    test('addKeyboardNavigationResults returns violations', () => {
         const tabbableTabStops = [
             tabStopElement1 as FocusableElement,
             tabStopElement2 as FocusableElement,
@@ -40,14 +40,20 @@ describe('TabStopsRequirementEvaluator', () => {
                 html: 'html1',
             },
         ]);
+    });
 
+    test('addKeyboardNavigationResults returns empty set with no violations', () => {
+        const tabbableTabStops = [
+            tabStopElement1 as FocusableElement,
+            tabStopElement2 as FocusableElement,
+        ];
         const correctTabStops = new Set<HTMLElement>([tabStopElement1, tabStopElement2]);
         expect(testSubject.getKeyboardNavigationResults(tabbableTabStops, correctTabStops)).toEqual(
             [],
         );
     });
 
-    test('addFocusOrderResults', () => {
+    test('addFocusOrderResults returns violations', () => {
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => true);
@@ -56,16 +62,20 @@ describe('TabStopsRequirementEvaluator', () => {
             selector: ['element1'],
             html: 'html1',
         });
+    });
 
+    test('addFocusOrderResults returns null with no violations', () => {
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => false);
         expect(testSubject.getFocusOrderResult(tabStopElement1, tabStopElement2)).toEqual(null);
     });
 
-    test('addTabbableFocusOrderResults', () => {
+    test('addTabbableFocusOrderResults returns empty with single tab element', () => {
         expect(testSubject.getTabbableFocusOrderResults([tabStopElement1])).toEqual([]);
+    });
 
+    test('addTabbableFocusOrderResults returns violations', () => {
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => true);
@@ -79,7 +89,9 @@ describe('TabStopsRequirementEvaluator', () => {
                 html: 'html1',
             },
         ]);
+    });
 
+    test('addTabbableFocusOrderResults returns empty set with no violations', () => {
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => false);
@@ -88,11 +100,13 @@ describe('TabStopsRequirementEvaluator', () => {
         ).toEqual([]);
     });
 
-    test('onKeydownForFocusTraps', async () => {
+    test('onKeydownForFocusTraps returns null with no violations', async () => {
         expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement2)).toEqual(
             null,
         );
+    });
 
+    test('onKeydownForFocusTraps returns violations', async () => {
         expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement1)).toEqual({
             description: 'Focus is still on element element1 500ms after pressing tab',
             selector: ['element1'],

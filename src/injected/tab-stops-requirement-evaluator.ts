@@ -25,7 +25,7 @@ export interface TabStopsRequirementEvaluator {
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
     ): TabStopRequirementResult;
-    getTabbableFocusOrderResults(tabbableTabStops: HTMLElement[]): TabStopRequirementResult[];
+    getTabbableFocusOrderResults(tabbableTabStops: FocusableElement[]): TabStopRequirementResult[];
     getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
@@ -81,13 +81,14 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     }
 
     public getTabbableFocusOrderResults(
-        tabbableTabStops: HTMLElement[],
+        tabbableTabStops: FocusableElement[],
     ): TabStopRequirementResult[] {
         const requirementResults: TabStopRequirementResult[] = [];
-        tabbableTabStops.forEach((expectedTabStop, index) => {
+        const tabStops = tabbableTabStops as HTMLElement[];
+        tabStops.forEach((expectedTabStop, index) => {
             if (index > 0) {
                 const comparisonResult = this.getFocusOrderResult(
-                    tabbableTabStops[index - 1],
+                    tabStops[index - 1],
                     expectedTabStop,
                 );
                 if (comparisonResult) {
