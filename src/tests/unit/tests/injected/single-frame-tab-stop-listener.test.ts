@@ -16,17 +16,12 @@ describe('SingleFrameTabStopListener', () => {
 
     test('start', () => {
         const domMock = Mock.ofType<Document>(null, MockBehavior.Strict);
-        const getUniqueSelectorMock = Mock.ofInstance(getUniqueSelector, MockBehavior.Strict);
-        const getCurrentDateMock = Mock.ofInstance(
-            DateProvider.getCurrentDate,
-            MockBehavior.Strict,
-        );
 
         const singleFrameTabStopListener = new SingleFrameTabStopListener(
             'single-frame-tab-stop-listener',
-            getUniqueSelectorMock.object,
+            null,
             domMock.object,
-            getCurrentDateMock.object,
+            null,
         );
 
         captureOnFocusHandler(domMock, singleFrameTabStopListener);
@@ -35,17 +30,12 @@ describe('SingleFrameTabStopListener', () => {
 
     test('stop', () => {
         const domMock = Mock.ofType<Document>(null, MockBehavior.Strict);
-        const getUniqueSelectorMock = Mock.ofInstance(getUniqueSelector, MockBehavior.Strict);
-        const getCurrentDateMock = Mock.ofInstance(
-            DateProvider.getCurrentDate,
-            MockBehavior.Strict,
-        );
 
         const singleFrameTabStopListener = new SingleFrameTabStopListener(
             'single-frame-tab-stop-listener',
-            getUniqueSelectorMock.object,
+            null,
             domMock.object,
-            getCurrentDateMock.object,
+            null,
         );
 
         domMock.setup(m => m.removeEventListener('focusin', It.isAny())).verifiable(Times.once());
@@ -55,18 +45,13 @@ describe('SingleFrameTabStopListener', () => {
     });
 
     test('transformChildResultForParent', () => {
-        const domMock = Mock.ofType<Document>(null, MockBehavior.Strict);
         const getUniqueSelectorMock = Mock.ofInstance(getUniqueSelector, MockBehavior.Strict);
-        const getCurrentDateMock = Mock.ofInstance(
-            DateProvider.getCurrentDate,
-            MockBehavior.Strict,
-        );
 
         const singleFrameTabStopListener = new SingleFrameTabStopListener(
             'single-frame-tab-stop-listener',
             getUniqueSelectorMock.object,
-            domMock.object,
-            getCurrentDateMock.object,
+            null,
+            null,
         );
 
         const expectedTransformedEvent: TabStopEvent = {
@@ -87,6 +72,8 @@ describe('SingleFrameTabStopListener', () => {
         );
 
         expect(transformedEvent).toStrictEqual(expectedTransformedEvent);
+
+        getUniqueSelectorMock.verifyAll();
     });
 
     test('focusin handler reports event to passed-in callback', async () => {
