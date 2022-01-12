@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
 import { shallow } from 'enzyme';
-import { Nav } from 'office-ui-fabric-react';
+import { Nav } from '@fluentui/react';
 import * as React from 'react';
 import {
     BaseLeftNav,

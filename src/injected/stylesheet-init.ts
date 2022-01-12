@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Stylesheet } from '@uifabric/merge-styles';
+import { Stylesheet } from '@fluentui/merge-styles';
 
 const stylesheet = Stylesheet.getInstance();
 

@@ -5,7 +5,7 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { mapValues } from 'lodash';
-import { INav } from 'office-ui-fabric-react';
+import { INav } from '@fluentui/react';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';

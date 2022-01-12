@@ -3,7 +3,7 @@
 
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
-import { getId, ILinkProps } from 'office-ui-fabric-react';
+import { getId, ILinkProps } from '@fluentui/react';
 import * as React from 'react';
 
 export const NewTabLinkWithConfirmationDialog = NamedFC<ILinkProps>(

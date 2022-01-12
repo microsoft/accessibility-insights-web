@@ -8,7 +8,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { IToggle, Link, Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { IToggle, Link, Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';

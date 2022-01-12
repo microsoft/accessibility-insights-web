@@ -8,7 +8,7 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import * as styles from 'electron/views/left-nav/left-nav.scss';
-import { Icon } from 'office-ui-fabric-react';
+import { Icon } from '@fluentui/react';
 import * as React from 'react';
 
 export type LeftNavDeps = {

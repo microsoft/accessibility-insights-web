@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { registerIcons } from '@uifabric/styling/lib/index';
+import { registerIcons } from '@fluentui/style-utilities/lib/index';
 
 export function initializeFabricIcons(): void {
     registerIcons({

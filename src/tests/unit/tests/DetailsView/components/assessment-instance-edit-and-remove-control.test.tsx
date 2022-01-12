@@ -9,7 +9,7 @@ import {
 } from 'DetailsView/components/assessment-instance-edit-and-remove-control';
 import * as styles from 'DetailsView/components/assessment-instance-edit-and-remove-control.scss';
 import { FailureInstancePanelControl } from 'DetailsView/components/failure-instance-panel-control';
-import { Icon, Link } from 'office-ui-fabric-react';
+import { Icon, Link } from '@fluentui/react';
 import * as React from 'react';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { Mock, Times } from 'typemoq';

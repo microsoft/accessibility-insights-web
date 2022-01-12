@@ -7,7 +7,7 @@ import {
     DialogFooter,
     DialogType,
     PrimaryButton,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
 

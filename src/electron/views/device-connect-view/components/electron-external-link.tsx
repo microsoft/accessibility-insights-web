@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { Shell } from 'electron';
-import { Link } from 'office-ui-fabric-react';
+import { Link } from '@fluentui/react';
 import * as React from 'react';
 
 export interface ElectronExternalLinkProps {

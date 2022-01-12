@@ -8,7 +8,7 @@ import {
     FailedInstancePanelProps,
 } from 'DetailsView/components/tab-stops/failed-instance-panel';
 import { shallow } from 'enzyme';
-import { TextField } from 'office-ui-fabric-react';
+import { TextField } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

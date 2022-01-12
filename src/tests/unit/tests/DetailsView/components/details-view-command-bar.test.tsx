@@ -36,7 +36,7 @@ import {
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { isNil } from 'lodash';
-import { ActionButton, IButton } from 'office-ui-fabric-react';
+import { ActionButton, IButton } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

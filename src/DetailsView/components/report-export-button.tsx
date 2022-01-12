@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { NamedFC } from 'common/react/named-fc';
-import { IButton, IRefObject } from 'office-ui-fabric-react';
+import { IButton, IRefObject } from '@fluentui/react';
 import * as React from 'react';
 
 export interface ReportExportButtonProps {

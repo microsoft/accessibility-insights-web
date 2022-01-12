@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
-import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
+import { Dialog, PrimaryButton, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import { ReportExportService } from 'report-export/types/report-export-service';

@@ -11,7 +11,7 @@ import {
     IColumn,
     Icon,
     Link,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import * as styles from './tab-stops-requirement-instances-collapsible-content.scss';

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPoint } from '@uifabric/utilities';
+import { IPoint } from '@fluentui/utilities';
 import { IMock, Mock } from 'typemoq';
 import { TabbableElementsHelper } from '../../../../../common/tabbable-elements-helper';
 import { WindowUtils } from '../../../../../common/window-utils';

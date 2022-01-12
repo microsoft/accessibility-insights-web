@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 import { isEmpty } from 'lodash';
-import { IDropdownOption } from 'office-ui-fabric-react';
+import { IDropdownOption } from '@fluentui/react';
 
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';

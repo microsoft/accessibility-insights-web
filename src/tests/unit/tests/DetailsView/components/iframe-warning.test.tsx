@@ -14,7 +14,7 @@ import {
 } from 'DetailsView/components/iframe-warning';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { shallow } from 'enzyme';
-import { Link } from 'office-ui-fabric-react';
+import { Link } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 

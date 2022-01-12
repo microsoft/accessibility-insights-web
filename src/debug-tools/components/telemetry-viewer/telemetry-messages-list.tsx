@@ -4,7 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import { isEmpty } from 'lodash';
 import { DateTime } from 'luxon';
-import { DetailsList, IColumn } from 'office-ui-fabric-react';
+import { DetailsList, IColumn } from '@fluentui/react';
 import * as React from 'react';
 
 export type DateFormatter = (timestamp: number) => string;

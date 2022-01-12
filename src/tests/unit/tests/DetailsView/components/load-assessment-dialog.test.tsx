@@ -11,7 +11,7 @@ import {
     LoadAssessmentDialogProps,
 } from 'DetailsView/components/load-assessment-dialog';
 import { shallow } from 'enzyme';
-import Dialog from 'office-ui-fabric-react';
+import Dialog from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

@@ -12,7 +12,7 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { ThemeDeps } from '../common/components/theme';
 import {

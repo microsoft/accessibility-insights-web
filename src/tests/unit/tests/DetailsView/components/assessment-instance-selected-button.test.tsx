@@ -6,7 +6,7 @@ import {
     AssessmentInstanceSelectedButtonProps,
 } from 'DetailsView/components/assessment-instance-selected-button';
 import { shallow } from 'enzyme';
-import { IconButton } from 'office-ui-fabric-react';
+import { IconButton } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';

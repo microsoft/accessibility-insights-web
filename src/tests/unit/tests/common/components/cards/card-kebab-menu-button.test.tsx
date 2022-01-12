@@ -24,7 +24,7 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
+import { ActionButton, IContextualMenuItem } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

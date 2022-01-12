@@ -15,7 +15,7 @@ import {
     ITextFieldStyles,
     Link,
     TextField,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';

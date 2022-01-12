@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
-import { ActionButton } from 'office-ui-fabric-react';
+import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 import { MaximizeRestoreButton } from './maximize-restore-button';
 import * as styles from './title-bar.scss';

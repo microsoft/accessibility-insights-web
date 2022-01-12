@@ -46,7 +46,7 @@ import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permissio
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
+import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';

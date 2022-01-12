@@ -4,7 +4,7 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { textContent } from 'content/strings/text-content';
-import { loadTheme } from 'office-ui-fabric-react';
+import { loadTheme } from '@fluentui/react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';

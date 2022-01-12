@@ -3,7 +3,7 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
-import { css, Icon } from 'office-ui-fabric-react';
+import { css, Icon } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './device-description.scss';
 

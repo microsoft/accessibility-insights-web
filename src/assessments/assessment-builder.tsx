@@ -24,7 +24,7 @@ import {
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
-import { IColumn } from 'office-ui-fabric-react';
+import { IColumn } from '@fluentui/react';
 import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';

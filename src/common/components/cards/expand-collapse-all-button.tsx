@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { ActionButton } from 'office-ui-fabric-react';
+import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './expand-collapse-all-button.scss';
 

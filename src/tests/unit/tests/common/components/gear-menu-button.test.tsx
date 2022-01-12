@@ -4,7 +4,7 @@ import { GearMenuButton, GearMenuButtonProps } from 'common/components/gear-menu
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
-import { IButtonProps, IconButton } from 'office-ui-fabric-react';
+import { IButtonProps, IconButton } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';

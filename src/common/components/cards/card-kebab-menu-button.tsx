@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
-import { ActionButton } from 'office-ui-fabric-react';
-import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react';
+import { ActionButton } from '@fluentui/react';
+import { DirectionalHint, IContextualMenuItem } from '@fluentui/react';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';

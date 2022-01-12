@@ -18,7 +18,7 @@ import {
 } from 'electron/views/results/components/reflow-command-bar';
 import { mount, shallow } from 'enzyme';
 import { isMatch } from 'lodash';
-import { IButton } from 'office-ui-fabric-react';
+import { IButton } from '@fluentui/react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';

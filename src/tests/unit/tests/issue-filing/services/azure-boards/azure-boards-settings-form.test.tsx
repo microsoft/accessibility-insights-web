@@ -7,7 +7,7 @@ import { getAzureBoardsIssueFilingService } from 'issue-filing/services/azure-bo
 import { AzureBoardsIssueFilingSettings } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from 'issue-filing/services/azure-boards/azure-boards-settings-form';
 import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
-import { Dropdown, TextField } from 'office-ui-fabric-react';
+import { Dropdown, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';

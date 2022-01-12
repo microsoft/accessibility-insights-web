@@ -9,7 +9,7 @@ import {
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { IconButton, IContextualMenuItem } from 'office-ui-fabric-react';
+import { IconButton, IContextualMenuItem } from '@fluentui/react';
 import * as React from 'react';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { Header } from './header';

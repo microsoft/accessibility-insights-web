@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { loadTheme } from 'office-ui-fabric-react';
+import { loadTheme } from '@fluentui/react';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';

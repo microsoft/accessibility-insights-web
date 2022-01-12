@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPartialTheme } from '@uifabric/styling';
+import { IPartialTheme } from '@fluentui/style-utilities';
 
 export const HighContrastThemePalette: IPartialTheme = {
     // basic palette from https://developer.microsoft.com/en-us/fabric#/styles/themegenerator with white text and #161616 background

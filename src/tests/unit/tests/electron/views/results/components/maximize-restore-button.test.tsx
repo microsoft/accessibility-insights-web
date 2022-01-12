@@ -5,7 +5,7 @@ import {
     MaximizeRestoreButtonProps,
 } from 'electron/views/results/components/maximize-restore-button';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
+import { Button } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';

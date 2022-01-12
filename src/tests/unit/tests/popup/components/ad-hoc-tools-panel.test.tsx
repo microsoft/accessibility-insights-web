@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
 import { shallow } from 'enzyme';
-import { Link } from 'office-ui-fabric-react';
+import { Link } from '@fluentui/react';
 import { AdHocToolsPanel, AdHocToolsPanelProps } from 'popup/components/ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from 'popup/components/diagnostic-view-toggle-factory';
 import * as React from 'react';

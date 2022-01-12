@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
-import { LayerHost } from 'office-ui-fabric-react';
+import { getRTL } from '@fluentui/utilities';
+import { LayerHost } from '@fluentui/react';
 import * as React from 'react';
 
 import { BaseStore } from '../common/base-store';

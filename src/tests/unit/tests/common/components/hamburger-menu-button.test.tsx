@@ -9,7 +9,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
-import { IButtonProps, IconButton } from 'office-ui-fabric-react';
+import { IButtonProps, IconButton } from '@fluentui/react';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';

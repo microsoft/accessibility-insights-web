@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-tools-nav-action-creator';
 import { DebugToolsNavStoreData, ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
-import { Nav } from 'office-ui-fabric-react';
+import { Nav } from '@fluentui/react';
 import * as React from 'react';
 
 export type DebugToolsNavState = {

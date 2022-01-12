@@ -8,7 +8,7 @@ import { requirementsList } from 'DetailsView/components/tab-stops/requirements'
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { DetailsList, IColumn } from 'office-ui-fabric-react';
+import { DetailsList, IColumn } from '@fluentui/react';
 import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {

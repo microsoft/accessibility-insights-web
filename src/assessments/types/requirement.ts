@@ -16,7 +16,7 @@ import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
-import { IColumn } from 'office-ui-fabric-react';
+import { IColumn } from '@fluentui/react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPageComponent } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';

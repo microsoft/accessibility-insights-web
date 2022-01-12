@@ -15,8 +15,8 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { isEmpty, size } from 'lodash';
-import { Dialog, DialogType } from 'office-ui-fabric-react';
-import { css } from 'office-ui-fabric-react';
+import { Dialog, DialogType } from '@fluentui/react';
+import { css } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 

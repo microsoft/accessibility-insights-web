@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IRenderFunction } from '@uifabric/utilities';
+import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
@@ -12,8 +12,8 @@ import {
     IColumn,
     IDetailsRowProps,
     IObjectWithKey,
-} from 'office-ui-fabric-react';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+} from '@fluentui/react';
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';

@@ -17,7 +17,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { css, IButton } from 'office-ui-fabric-react';
+import { css, IButton } from '@fluentui/react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';

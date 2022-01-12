@@ -5,7 +5,7 @@ import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { DefaultButton, Icon } from 'office-ui-fabric-react';
+import { DefaultButton, Icon } from '@fluentui/react';
 import * as React from 'react';
 export type NextRequirementButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

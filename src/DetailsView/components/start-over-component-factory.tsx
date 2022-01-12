@@ -12,7 +12,7 @@ import {
     StartOverDropdown,
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
-import { IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
+import { IButton, IContextualMenuItem, IRefObject } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './start-over-menu-item.scss';
 

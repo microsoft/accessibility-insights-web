@@ -6,7 +6,7 @@ import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
-import { Link } from 'office-ui-fabric-react';
+import { Link } from '@fluentui/react';
 import * as React from 'react';
 
 export type IframeWarningProps = {

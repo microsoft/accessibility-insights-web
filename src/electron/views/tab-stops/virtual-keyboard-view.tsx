@@ -8,7 +8,7 @@ import {
     VirtualKeyboardButtons,
     VirtualKeyboardButtonsDeps,
 } from 'electron/views/tab-stops/virtual-keyboard-buttons';
-import { css } from 'office-ui-fabric-react';
+import { css } from '@fluentui/react';
 import * as React from 'react';
 
 export type VirtualKeyboardViewDeps = VirtualKeyboardButtonsDeps;

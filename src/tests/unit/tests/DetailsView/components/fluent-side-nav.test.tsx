@@ -6,7 +6,7 @@ import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { shallow } from 'enzyme';
-import { INav } from 'office-ui-fabric-react';
+import { INav } from '@fluentui/react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 

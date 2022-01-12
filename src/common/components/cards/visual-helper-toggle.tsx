@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { css, Toggle } from 'office-ui-fabric-react';
+import { css, Toggle } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './visual-helper-toggle.scss';
 

@@ -3,7 +3,7 @@
 
 import { ActionAndCancelButtonsComponent } from 'DetailsView/components/action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-panel';
-import { TextField } from 'office-ui-fabric-react';
+import { TextField } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from '../failure-instance-panel.scss';
 

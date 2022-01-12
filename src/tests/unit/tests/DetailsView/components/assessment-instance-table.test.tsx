@@ -8,7 +8,7 @@ import {
 } from 'assessments/assessment-default-message-generator';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { mount, shallow } from 'enzyme';
-import { DetailsList, IColumn } from 'office-ui-fabric-react';
+import { DetailsList, IColumn } from '@fluentui/react';
 import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';

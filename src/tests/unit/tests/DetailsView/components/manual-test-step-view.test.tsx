@@ -12,7 +12,7 @@ import {
 } from 'DetailsView/components/manual-test-step-view';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react';
+import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import * as React from 'react';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { Mock } from 'typemoq';

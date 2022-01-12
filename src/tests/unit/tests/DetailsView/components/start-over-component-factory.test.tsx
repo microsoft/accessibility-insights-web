@@ -17,7 +17,7 @@ import {
     StartOverMenuItem,
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IContextualMenuItem } from '@fluentui/react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 

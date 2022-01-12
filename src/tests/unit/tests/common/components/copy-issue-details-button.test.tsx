@@ -7,7 +7,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
 import * as Enzyme from 'enzyme';
-import { DefaultButton } from 'office-ui-fabric-react';
+import { DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {

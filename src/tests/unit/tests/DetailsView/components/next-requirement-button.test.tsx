@@ -9,7 +9,7 @@ import {
     NextRequirementButtonProps,
 } from 'DetailsView/components/next-requirement-button';
 import { shallow } from 'enzyme';
-import { DefaultButton } from 'office-ui-fabric-react';
+import { DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 describe('NextRequirementButton', () => {

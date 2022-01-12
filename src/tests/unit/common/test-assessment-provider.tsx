@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { IColumn } from 'office-ui-fabric-react';
+import { IColumn } from '@fluentui/react';
 import * as React from 'react';
 import { ContentPage } from 'views/content/content-page';
 import { AssessmentVisualizationConfiguration } from '../../../common/configs/assessment-visualization-configuration';

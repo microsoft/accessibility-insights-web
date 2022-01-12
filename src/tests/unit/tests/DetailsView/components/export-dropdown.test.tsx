@@ -5,7 +5,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import { FileURLProvider } from 'common/file-url-provider';
 import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/export-dropdown';
 import { shallow } from 'enzyme';
-import { ContextualMenu, PrimaryButton } from 'office-ui-fabric-react';
+import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import {

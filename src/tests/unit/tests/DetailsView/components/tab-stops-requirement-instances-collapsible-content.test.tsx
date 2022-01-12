@@ -7,7 +7,7 @@ import {
 } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import { mount, shallow } from 'enzyme';
-import { DetailsList, Link } from 'office-ui-fabric-react';
+import { DetailsList, Link } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';

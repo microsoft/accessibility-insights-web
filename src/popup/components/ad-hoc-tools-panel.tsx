@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { flatMap } from 'lodash';
-import { css, Icon, Link } from 'office-ui-fabric-react';
+import { css, Icon, Link } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './ad-hoc-tools-panel.scss';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';

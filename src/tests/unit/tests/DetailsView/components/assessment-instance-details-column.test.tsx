@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as styles from 'DetailsView/components/assessment-instance-details-column.scss';
 import * as Enzyme from 'enzyme';
-import { TooltipHost } from 'office-ui-fabric-react';
+import { TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 
 import {

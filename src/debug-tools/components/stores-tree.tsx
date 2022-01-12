@@ -17,7 +17,7 @@ import {
     SelectionMode,
     SelectionZone,
     Spinner,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 
 export const columns: IColumn[] = [

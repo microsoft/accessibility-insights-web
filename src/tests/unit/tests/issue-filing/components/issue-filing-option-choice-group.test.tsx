@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
+import { ChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

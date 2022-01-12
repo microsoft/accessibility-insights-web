@@ -15,7 +15,7 @@ import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store
 import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { css } from '@fluentui/utilities';
 import { NamedFC } from 'common/react/named-fc';
-import { ActionButton } from 'office-ui-fabric-react';
+import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
 import * as styles from './collapsible-component-cards.scss';

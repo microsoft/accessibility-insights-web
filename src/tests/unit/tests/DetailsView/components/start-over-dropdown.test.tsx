@@ -3,7 +3,7 @@
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { shallow } from 'enzyme';
-import { ContextualMenu, IButton, IRefObject } from 'office-ui-fabric-react';
+import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

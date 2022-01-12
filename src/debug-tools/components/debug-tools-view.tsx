@@ -20,7 +20,7 @@ import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
-import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './debug-tools-view.scss';
 

@@ -4,7 +4,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
-import { Toggle } from 'office-ui-fabric-react';
+import { Toggle } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './tab-stops-testing-content.scss';
 

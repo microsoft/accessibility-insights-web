@@ -8,7 +8,7 @@ import { ManualTestStepResult } from 'common/types/store-data/assessment-result-
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react';
+import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';

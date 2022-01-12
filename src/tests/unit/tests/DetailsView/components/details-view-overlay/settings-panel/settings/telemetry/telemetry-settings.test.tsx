@@ -10,7 +10,7 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/telemetry/telemetry-settings';
 import { GenericToggle } from 'DetailsView/components/generic-toggle';
 import { shallow } from 'enzyme';
-import { Toggle } from 'office-ui-fabric-react';
+import { Toggle } from '@fluentui/react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { shallow } from 'enzyme';
-import { IIconProps } from 'office-ui-fabric-react';
+import { IIconProps } from '@fluentui/react';
 import * as React from 'react';
 
 describe('InsightsCommandButton', () => {

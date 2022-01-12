@@ -10,7 +10,7 @@ import {
     ScopingPanelProps,
 } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-panel';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
-import { DefaultButton } from 'office-ui-fabric-react';
+import { DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 

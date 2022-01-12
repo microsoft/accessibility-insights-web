@@ -9,7 +9,7 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { mount, shallow } from 'enzyme';
-import { Link } from 'office-ui-fabric-react';
+import { Link } from '@fluentui/react';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import {
     DiagnosticViewToggle,

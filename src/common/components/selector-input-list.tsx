@@ -10,7 +10,7 @@ import {
     ITextField,
     List,
     TextField,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 

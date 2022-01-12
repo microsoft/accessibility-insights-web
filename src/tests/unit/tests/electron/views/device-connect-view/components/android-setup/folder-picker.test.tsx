@@ -7,7 +7,7 @@ import {
     FolderPickerProps,
 } from 'electron/views/device-connect-view/components/android-setup/folder-picker';
 import { shallow } from 'enzyme';
-import { PrimaryButton, TextField } from 'office-ui-fabric-react';
+import { PrimaryButton, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';

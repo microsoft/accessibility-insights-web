@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
-import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
+import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import * as styles from './new-tab-link-with-tooltip.scss';

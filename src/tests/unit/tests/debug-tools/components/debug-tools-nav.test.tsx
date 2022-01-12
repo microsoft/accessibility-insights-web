@@ -4,7 +4,7 @@ import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-to
 import { DebugToolsNav, DebugToolsNavProps } from 'debug-tools/components/debug-tools-nav';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 import { shallow } from 'enzyme';
-import { INavLink, Nav } from 'office-ui-fabric-react';
+import { INavLink, Nav } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

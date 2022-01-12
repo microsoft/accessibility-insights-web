@@ -13,7 +13,7 @@ import {
 import { FailureInstancePanelDetailsProps } from 'DetailsView/components/failure-instance-panel-details';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { shallow } from 'enzyme';
-import { ActionButton, TextField } from 'office-ui-fabric-react';
+import { ActionButton, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

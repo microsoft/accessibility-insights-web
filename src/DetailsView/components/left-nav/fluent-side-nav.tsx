@@ -13,7 +13,7 @@ import {
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { INav, PanelType } from 'office-ui-fabric-react';
+import { INav, PanelType } from '@fluentui/react';
 import * as React from 'react';
 
 export type FluentSideNavDeps = DetailsViewLeftNavDeps & InteractiveHeaderDeps;

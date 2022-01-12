@@ -10,7 +10,7 @@ import {
     TabStopsChoiceGroupsProps,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroup, Link } from 'office-ui-fabric-react';
+import { ChoiceGroup, IChoiceGroup, Link } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

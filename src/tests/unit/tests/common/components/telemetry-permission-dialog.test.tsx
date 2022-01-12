@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Enzyme from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
-import { Checkbox } from 'office-ui-fabric-react';
+import { PrimaryButton } from '@fluentui/react';
+import { Checkbox } from '@fluentui/react';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';

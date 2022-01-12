@@ -7,7 +7,7 @@ import {
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
 import { forOwn, isEmpty } from 'lodash';
-import { MessageBar, MessageBarType } from 'office-ui-fabric-react';
+import { MessageBar, MessageBarType } from '@fluentui/react';
 import * as React from 'react';
 
 export type ScanIncompleteWarningDeps = ScanIncompleteWarningMessageBarDeps;

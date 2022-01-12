@@ -13,7 +13,7 @@ import {
 } from 'DetailsView/components/load-assessment-button';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { mount, shallow } from 'enzyme';
-import { ActionButton } from 'office-ui-fabric-react';
+import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 
 import { IMock, It, Mock } from 'typemoq';

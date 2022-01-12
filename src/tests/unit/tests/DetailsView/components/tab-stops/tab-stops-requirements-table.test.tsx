@@ -12,7 +12,7 @@ import {
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { shallow } from 'enzyme';
-import { DetailsList } from 'office-ui-fabric-react';
+import { DetailsList } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';

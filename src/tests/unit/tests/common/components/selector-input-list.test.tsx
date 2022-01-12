@@ -9,7 +9,7 @@ import {
     ITextField,
     List,
     TextField,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {

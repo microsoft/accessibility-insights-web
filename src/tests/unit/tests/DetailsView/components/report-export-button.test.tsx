@@ -6,7 +6,7 @@ import {
     ReportExportButtonProps,
 } from 'DetailsView/components/report-export-button';
 import { shallow } from 'enzyme';
-import { IButton } from 'office-ui-fabric-react';
+import { IButton } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

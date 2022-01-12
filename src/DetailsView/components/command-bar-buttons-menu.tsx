@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
-import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
+import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 

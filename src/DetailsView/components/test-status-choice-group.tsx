@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isEqual } from 'lodash';
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
-import { Icon } from 'office-ui-fabric-react';
-import { Link } from 'office-ui-fabric-react';
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Link } from '@fluentui/react';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';

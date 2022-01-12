@@ -11,7 +11,7 @@ import {
     StoresTreeState,
 } from 'debug-tools/components/stores-tree';
 import { shallow } from 'enzyme';
-import { GroupedList } from 'office-ui-fabric-react';
+import { GroupedList } from '@fluentui/react';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 

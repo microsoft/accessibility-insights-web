@@ -11,7 +11,7 @@ import {
 } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
 import { shallow } from 'enzyme';
-import Dialog, { TooltipHost } from 'office-ui-fabric-react';
+import Dialog, { TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

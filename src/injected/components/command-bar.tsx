@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseButton, Button, DefaultButton } from 'office-ui-fabric-react';
+import { BaseButton, Button, DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 
 import {
