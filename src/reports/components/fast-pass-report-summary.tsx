@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
@@ -49,12 +50,20 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         const totalIncompleteTabCount: number = incompleteTabResults.length;
         const totalPassedTabCount: number = passedTabResults.length;
 
-        const failedAutomatedChecks = this.props.results.automatedChecks.cards.fail.length;
+        const failedAutomatedChecks = this.props.results.automatedChecks.cards.fail;
+        const getTotalAutomatedChecksFailed = (results: CardRuleResult[]): number => {
+            return results.reduce((total, rule) => {
+                return total + rule.nodes.length;
+            }, 0);
+        };
+
+        const totalfailedAutomatedChecks: number =
+            getTotalAutomatedChecksFailed(failedAutomatedChecks);
         const passedAutomatedChecks = this.props.results.automatedChecks.cards.pass.length;
         const incompleteAutomatedChecks = this.props.results.automatedChecks.cards.unknown.length;
 
         const stats: Partial<OutcomeStats> = {
-            fail: failedAutomatedChecks + totalFailedTabInstancesCount,
+            fail: totalfailedAutomatedChecks + totalFailedTabInstancesCount,
             incomplete: incompleteAutomatedChecks + totalIncompleteTabCount, //incomplete automated checks to be added in 1906107
             pass: passedAutomatedChecks + totalPassedTabCount,
         };
