@@ -15,7 +15,6 @@ import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicato
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
-import { TabStopsListener } from 'injected/tab-stops-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -53,7 +52,7 @@ export class WindowInitializer {
     protected windowUtils: WindowUtils;
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
-    protected tabStopsListener: TabStopsListener;
+    protected manualTabStopListener: AllFrameRunner<TabStopEvent>;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
@@ -120,14 +119,13 @@ export class WindowInitializer {
             getUniqueSelector,
             document,
         );
-        const allFrameRunner = new AllFrameRunner<TabStopEvent>(
+        this.manualTabStopListener = new AllFrameRunner<TabStopEvent>(
             this.frameMessenger,
             htmlElementUtils,
             this.windowUtils,
             singleFrameListener,
         );
-        this.tabStopsListener = new TabStopsListener(allFrameRunner);
-        allFrameRunner.initialize();
+        this.manualTabStopListener.initialize();
 
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,

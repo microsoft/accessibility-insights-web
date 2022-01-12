@@ -317,7 +317,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const analyzerProvider = new AnalyzerProvider(
-            this.tabStopsListener,
+            this.manualTabStopListener,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),
