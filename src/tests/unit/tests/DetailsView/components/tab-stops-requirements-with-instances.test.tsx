@@ -29,7 +29,7 @@ describe('TabStopsRequirementsWithInstances', () => {
         buttonAriaLabel: string,
     ) => CollapsibleComponentCardsProps;
     beforeEach(() => {
-        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
         tabStopsRequirementActionMessageCreatorMock = Mock.ofType(
             TabStopRequirementActionMessageCreator,
         );
@@ -75,7 +75,7 @@ describe('TabStopsRequirementsWithInstances', () => {
 
     it('renders when instance count > 0', () => {
         tabStopsFailedCounterMock
-            .setup(m => m.getFailedByRequirementId(It.isAny(), It.isAny()))
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 2);
         const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -83,7 +83,10 @@ describe('TabStopsRequirementsWithInstances', () => {
 
     it('renders empty div when instance count === 0', () => {
         tabStopsFailedCounterMock
-            .setup(m => m.getFailedByRequirementId(It.isAny(), It.isAny()))
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
+            .returns(() => 0);
+        tabStopsFailedCounterMock
+            .setup(m => m.getFailedInstancesByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 0);
         const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -91,7 +94,10 @@ describe('TabStopsRequirementsWithInstances', () => {
 
     it('renders component instance count === 0', () => {
         tabStopsFailedCounterMock
-            .setup(m => m.getFailedByRequirementId(It.isAny(), It.isAny()))
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
+            .returns(() => 0);
+        tabStopsFailedCounterMock
+            .setup(m => m.getFailedInstancesByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 0);
         props.getCollapsibleComponentPropsWithoutInstance = (result, idx, button) => {
             return {

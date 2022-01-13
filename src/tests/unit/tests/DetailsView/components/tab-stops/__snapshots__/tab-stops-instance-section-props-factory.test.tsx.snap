@@ -326,7 +326,9 @@ Object {
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
-  "content": <span>
+  "content": <span
+    className="noInstances"
+  >
     This requirement has failed but no comment has been added
   </span>,
   "deps": Object {

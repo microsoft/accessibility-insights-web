@@ -17,7 +17,7 @@ describe('FastPassReportSummary', () => {
     let deps: FastPassReportSummaryDeps;
 
     it('renders per the snapshot', () => {
-        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
         deps = { tabStopsFailedCounter: tabStopsFailedCounterMock.object };
 
         props = {

@@ -22,7 +22,7 @@ describe('TabStopsFailedInstanceSection', () => {
     let deps: TabStopsFailedInstanceSectionDeps;
 
     beforeEach(() => {
-        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
         tabStopsInstanceSectionPropsFactoryMock =
             Mock.ofType<TabStopsInstanceSectionPropsFactory>();
 

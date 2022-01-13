@@ -26,7 +26,7 @@ describe('TabStopsMinimalRequirementHeader', () => {
     let deps: TabStopsMinimalRequirementHeaderDeps;
 
     beforeEach(() => {
-        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
 
         deps = {
             tabStopsFailedCounter: tabStopsFailedCounterMock.object,
@@ -40,7 +40,7 @@ describe('TabStopsMinimalRequirementHeader', () => {
         };
 
         tabStopsFailedCounterMock
-            .setup(tsf => tsf.getFailedByRequirementId(It.isAny(), It.isAnyString()))
+            .setup(tsf => tsf.getTotalFailedByRequirementId(It.isAny(), It.isAnyString()))
             .returns(() => 2)
             .verifiable(Times.once());
 

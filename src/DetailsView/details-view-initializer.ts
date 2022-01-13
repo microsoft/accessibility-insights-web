@@ -44,7 +44,10 @@ import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
-import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
+import {
+    TabStopsFailedCounterIncludingNoInstance,
+    TabStopsFailedCounterInstancesOnly,
+} from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -355,7 +358,6 @@ if (tabId != null) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
-            const tabStopsFailedCounter = new TabStopsFailedCounter();
 
             // This is for a soon-to-be-legacy FastPass report format.
             // It should be removed with #1897885.
@@ -378,7 +380,7 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
-                tabStopsFailedCounter,
+                new TabStopsFailedCounterIncludingNoInstance(),
                 toolData,
                 DateProvider.getCurrentDate,
             );
@@ -580,7 +582,7 @@ if (tabId != null) {
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
                 tabStopRequirements: requirements,
-                tabStopsFailedCounter,
+                tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
             };
