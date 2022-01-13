@@ -111,7 +111,7 @@ export function getReportExportDialogForFastPass(
         deps: deps,
         pageTitle: props.scanMetadata.targetAppInfo.name,
         scanDate: props.scanMetadata.timespan.scanComplete,
-        reportExportFormat: 'AutomatedChecks',
+        reportExportFormat: 'FastPass',
         htmlGenerator: generateReportFromDescription,
         jsonGenerator: () => null,
         updatePersistedDescription: () => null,
