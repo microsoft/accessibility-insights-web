@@ -64,4 +64,23 @@ describe('TabbableElementGetter', () => {
 
         expect(testSubject.get()).toEqual(expectedTabbleElementInfo);
     });
+
+    test('getRawElements', () => {
+        docMock.setup(m => m.documentElement).returns(() => documentElementStub);
+
+        const focusableElementsStub: FocusableElement[] = [
+            {
+                outerHTML: 'some outer html',
+            },
+            {
+                outerHTML: 'some other outer html',
+            },
+        ] as FocusableElement[];
+
+        getTabbableElementsMock
+            .setup(m => m(documentElementStub))
+            .returns(() => focusableElementsStub);
+
+        expect(testSubject.getRawElements()).toEqual(focusableElementsStub);
+    });
 });
