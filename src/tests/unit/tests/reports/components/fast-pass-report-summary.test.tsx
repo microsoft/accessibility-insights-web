@@ -51,4 +51,36 @@ describe('FastPassReportSummary', () => {
         const rendered = shallow(<FastPassReportSummary {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
+
+    it('renders when automated checks are null', () => {
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
+        deps = { tabStopsFailedCounter: tabStopsFailedCounterMock.object };
+
+        props = {
+            results: {
+                automatedChecks: null,
+                tabStops: {
+                    'keyboard-traps': {
+                        status: 'pass',
+                        instances: [{ id: 'test-id-2', description: 'test desc 2' }],
+                        isExpanded: false,
+                    },
+                    'tab-order': {
+                        status: 'fail',
+                        instances: [{ id: 'test-id-4', description: 'test desc 4' }],
+                        isExpanded: false,
+                    },
+                },
+            },
+            deps: deps,
+        };
+
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getTotalFailed(It.isAny()))
+            .returns(() => 2)
+            .verifiable(Times.once());
+
+        const rendered = shallow(<FastPassReportSummary {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });
