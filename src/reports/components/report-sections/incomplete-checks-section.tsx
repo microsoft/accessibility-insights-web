@@ -14,11 +14,13 @@ export type IncompleteChecksSectionDeps = CollapsibleResultSectionDeps;
 export type IncompleteChecksSectionProps = Pick<
     SectionProps,
     'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'
->;
+> & {
+    testKey?: string;
+};
 
 export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
     'IncompleteChecksSection',
-    ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
+    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey }) => {
         const cardRuleResults = cardsViewData?.cards?.unknown ?? [];
 
         return (
@@ -31,6 +33,7 @@ export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
                 badgeCount={cardRuleResults.length}
                 containerId="incomplete-checks-section"
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
+                testKey={testKey}
             />
         );
     },

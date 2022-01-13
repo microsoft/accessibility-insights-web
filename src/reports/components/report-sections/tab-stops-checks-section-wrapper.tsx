@@ -18,6 +18,7 @@ export type TabStopsChecksSectionWrapperProps = Pick<
         Pick<SectionProps, 'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'>
     >;
     tabStops: TabStopRequirementState;
+    testKey?: string;
 };
 
 export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecksSectionWrapperProps> {

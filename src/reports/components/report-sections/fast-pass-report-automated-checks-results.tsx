@@ -31,11 +31,13 @@ export const FastPassReportAutomatedChecksResults =
                         key={2}
                         {...props}
                         cardsViewData={props.results.automatedChecks}
+                        testKey={'automated-checks'}
                     />
                     <PassedChecksSection
                         key={3}
                         {...props}
                         cardsViewData={props.results.automatedChecks}
+                        testKey={'automated-checks'}
                     />
                 </>
             );

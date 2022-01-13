@@ -70,12 +70,14 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         checksSection={IncompleteChecksSection}
                         tabStops={props.results.tabStops}
                         {...props}
+                        testKey="tab-stops"
                     />
                     <TabStopsChecksSectionWrapper
                         key={7}
                         checksSection={PassedChecksSection}
                         tabStops={props.results.tabStops}
                         {...props}
+                        testKey="tab-stops"
                     />
                 </ResultsContainer>
             </ContentContainer>
