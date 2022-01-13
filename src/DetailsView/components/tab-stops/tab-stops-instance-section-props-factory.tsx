@@ -109,7 +109,11 @@ export const ReportTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionP
                         requirement={result}
                     />
                 ),
-                content: <span>This requirement has failed but no comment has been added</span>,
+                content: (
+                    <span className={styles.noInstances}>
+                        This requirement has failed but no comment has been added
+                    </span>
+                ),
                 containerAutomationId: resultsGroupAutomationId,
                 containerClassName: styles.collapsibleRequirementDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
