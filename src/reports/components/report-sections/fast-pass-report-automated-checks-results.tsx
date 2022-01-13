@@ -19,6 +19,8 @@ export const FastPassReportAutomatedChecksResults =
                 return <p>Automated checks were not run.</p>;
             }
 
+            const automatedChecksTestKey = 'automated-checks';
+
             return (
                 <>
                     <FailedInstancesSection
@@ -31,13 +33,13 @@ export const FastPassReportAutomatedChecksResults =
                         key={2}
                         {...props}
                         cardsViewData={props.results.automatedChecks}
-                        testKey={'automated-checks'}
+                        testKey={automatedChecksTestKey}
                     />
                     <PassedChecksSection
                         key={3}
                         {...props}
                         cardsViewData={props.results.automatedChecks}
-                        testKey={'automated-checks'}
+                        testKey={automatedChecksTestKey}
                     />
                 </>
             );

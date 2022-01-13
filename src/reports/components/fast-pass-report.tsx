@@ -40,50 +40,54 @@ export type FastPassReportProps = Omit<
     results: FastPassReportResultData;
 };
 
-export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', props => (
-    <>
-        <WebReportHead />
-        <BodySection>
-            <AutomatedChecksHeaderSection {...props} />
-            <ContentContainer>
-                <FastPassTitleSection />
-                <DetailsSection {...props} />
+export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', props => {
+    const tabStopsTestKey = 'tab-stops';
 
-                <FastPassReportSummary {...props} />
+    return (
+        <>
+            <WebReportHead />
+            <BodySection>
+                <AutomatedChecksHeaderSection {...props} />
+                <ContentContainer>
+                    <FastPassTitleSection />
+                    <DetailsSection {...props} />
 
-                <ResultsContainer {...props}>
-                    <FastPassResultsTitleSection title="Automated checks" />
-                    <FastPassReportAutomatedChecksResults {...props} />
-                    <FastPassResultsTitleSection key={4} title="Tab stops" />
-                    <TabStopsFailedInstanceSection
-                        key={5}
-                        deps={{
-                            tabStopRequirementActionMessageCreator: undefined,
-                            tabStopsTestViewController: undefined,
-                            ...props.deps,
-                        }}
-                        tabStopRequirementState={props.results.tabStops}
-                        alwaysRenderSection={true}
-                    />
-                    <TabStopsChecksSectionWrapper
-                        key={6}
-                        checksSection={IncompleteChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                        testKey="tab-stops"
-                    />
-                    <TabStopsChecksSectionWrapper
-                        key={7}
-                        checksSection={PassedChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                        testKey="tab-stops"
-                    />
-                </ResultsContainer>
-            </ContentContainer>
-            <ReportFooter>
-                <FooterText {...props} />
-            </ReportFooter>
-        </BodySection>
-    </>
-));
+                    <FastPassReportSummary {...props} />
+
+                    <ResultsContainer {...props}>
+                        <FastPassResultsTitleSection title="Automated checks" />
+                        <FastPassReportAutomatedChecksResults {...props} />
+                        <FastPassResultsTitleSection key={4} title="Tab stops" />
+                        <TabStopsFailedInstanceSection
+                            key={5}
+                            deps={{
+                                tabStopRequirementActionMessageCreator: undefined,
+                                tabStopsTestViewController: undefined,
+                                ...props.deps,
+                            }}
+                            tabStopRequirementState={props.results.tabStops}
+                            alwaysRenderSection={true}
+                        />
+                        <TabStopsChecksSectionWrapper
+                            key={6}
+                            checksSection={IncompleteChecksSection}
+                            tabStops={props.results.tabStops}
+                            {...props}
+                            testKey={tabStopsTestKey}
+                        />
+                        <TabStopsChecksSectionWrapper
+                            key={7}
+                            checksSection={PassedChecksSection}
+                            tabStops={props.results.tabStops}
+                            {...props}
+                            testKey={tabStopsTestKey}
+                        />
+                    </ResultsContainer>
+                </ContentContainer>
+                <ReportFooter>
+                    <FooterText {...props} />
+                </ReportFooter>
+            </BodySection>
+        </>
+    );
+});
