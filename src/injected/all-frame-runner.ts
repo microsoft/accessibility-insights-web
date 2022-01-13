@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-/*
-This interface defines a target used by the upcoming class
-AllFrameRunner (see ai-web@5036). Adding the interface early
-to enable parallel work.
-*/
+import { HTMLElementUtils } from 'common/html-element-utils';
+import { WindowUtils } from 'common/window-utils';
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import {
+    CommandMessage,
+    CommandMessageResponse,
+} from 'injected/frameCommunicators/respondable-command-message-communicator';
 
 export interface AllFrameRunnerTarget<T> {
     name: string;
@@ -13,4 +15,125 @@ export interface AllFrameRunnerTarget<T> {
     stop: () => void;
     transformChildResultForParent: (fromChild: T, messageSourceFrame: HTMLIFrameElement) => T;
     setResultCallback: (reportResults: (payload: T) => Promise<void>) => void;
+}
+
+/*
+This class ('runner' below) runs methods in AllFrameRunnerTargets ('target' below) in all child
+frames. Runner manages communication between child frames and the top-level window so that the
+target can produce results without explicit frame-communication code. 
+
+It follows these semantics:
+- runner.initialize() should be called & runner.topWindowCallback should be set 
+before calling runner.start() / runner.stop()
+- runner.start() will run target.start() in the current frame, and then in any child frames
+- runner.stop() will run target.stop() in the current frame, and then in any child frames
+- runner provides target with a reportResults callback. When target.reportResults(payload) is 
+called, runner propogates payload to parent frames. In each parent frame, runner replaces the 
+payload with target.transformChildResultForParent(payload). When the result reaches the top window, 
+runner calls topWindowCallback(payload)
+*/
+export class AllFrameRunner<T> {
+    public topWindowCallback: (result: T) => void;
+
+    constructor(
+        private readonly frameMessenger: FrameMessenger,
+        private readonly htmlElementUtils: HTMLElementUtils,
+        private readonly windowUtils: WindowUtils,
+        private readonly listener: AllFrameRunnerTarget<T>,
+        private readonly startCommand = `insights.startFrameRunner-${listener.name}`,
+        private readonly stopCommand = `insights.stopFrameRunner-${listener.name}`,
+        private readonly onResultFromChildFrameCommand = `insights.resultFromChild-${listener.name}`,
+    ) {}
+
+    public initialize() {
+        this.frameMessenger.addMessageListener(this.startCommand, this.start);
+        this.frameMessenger.addMessageListener(this.stopCommand, this.stop);
+        this.frameMessenger.addMessageListener(
+            this.onResultFromChildFrameCommand,
+            this.onResultFromChildFrame,
+        );
+
+        this.listener.setResultCallback(async payload => {
+            await this.reportResultsThroughFrames(payload);
+        });
+    }
+
+    public start = async (): Promise<CommandMessageResponse | null> => {
+        this.listener.start();
+        return this.sendCommandToFrames(this.startCommand);
+    };
+
+    public stop = async (): Promise<CommandMessageResponse | null> => {
+        this.listener.stop();
+        return this.sendCommandToFrames(this.stopCommand);
+    };
+
+    private reportResultsThroughFrames = async (
+        payload: T,
+    ): Promise<CommandMessageResponse | null> => {
+        if (this.windowUtils.isTopWindow()) {
+            this.topWindowCallback(payload);
+            return {
+                payload,
+            };
+        } else {
+            return await this.sendResultsToParent(payload);
+        }
+    };
+
+    private sendCommandToFrames = async (
+        command: string,
+    ): Promise<CommandMessageResponse | null> => {
+        const iframes = this.getAllFrames();
+        for (let i = 0; i < iframes.length; i++) {
+            await this.frameMessenger.sendMessageToFrame(iframes[i], {
+                command,
+            });
+        }
+        return { payload: null };
+    };
+
+    private onResultFromChildFrame = async (
+        commandMessage: CommandMessage,
+        messageSourceWin: Window,
+    ): Promise<CommandMessageResponse | null> => {
+        const payload = commandMessage.payload;
+        const messageSourceFrame = this.getFrameElementForWindow(messageSourceWin);
+        if (messageSourceFrame != null) {
+            const newResult = this.listener.transformChildResultForParent(
+                payload,
+                messageSourceFrame,
+            );
+
+            return await this.reportResultsThroughFrames(newResult);
+        } else {
+            throw new Error('unable to get frame element for the given window');
+        }
+    };
+
+    private sendResultsToParent = async (payload: T): Promise<CommandMessageResponse> => {
+        const message: CommandMessage = {
+            command: this.onResultFromChildFrameCommand,
+            payload,
+        };
+        return this.frameMessenger.sendMessageToWindow(this.windowUtils.getParentWindow(), message);
+    };
+
+    private getFrameElementForWindow(win: Window): HTMLIFrameElement | null {
+        const frames = this.getAllFrames();
+
+        for (let index = 0; index < frames.length; index++) {
+            if (this.htmlElementUtils.getContentWindow(frames[index]) === win) {
+                return frames[index];
+            }
+        }
+
+        return null;
+    }
+
+    private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
+        return this.htmlElementUtils.getAllElementsByTagName(
+            'iframe',
+        ) as HTMLCollectionOf<HTMLIFrameElement>;
+    }
 }

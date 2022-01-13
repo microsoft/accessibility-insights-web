@@ -4,10 +4,10 @@
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopsListener } from 'injected/tab-stops-listener';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { tick } from 'tests/unit/common/tick';
@@ -18,7 +18,7 @@ describe('TabStopsAnalyzer', () => {
     let configStub: FocusAnalyzerConfiguration;
     let visualizationTypeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
-    let tabStopsListenerMock: IMock<TabStopsListener>;
+    let tabStopsListenerMock: IMock<AllFrameRunner<TabStopEvent>>;
     let simulateTabEvent: (tabEvent: TabStopEvent) => void;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let emptyScanCompleteMessage: Message;
@@ -46,7 +46,12 @@ describe('TabStopsAnalyzer', () => {
         };
         simulateTabEvent = null;
         debounceFaker = new DebounceFaker();
-        tabStopsListenerMock = Mock.ofType(TabStopsListener);
+        tabStopsListenerMock = Mock.ofInstance({
+            topWindowCallback: null,
+            start: () => {},
+            stop: () => {},
+            initialize: () => {},
+        } as AllFrameRunner<TabStopEvent>);
 
         scanIncompleteWarningDetectorMock
             .setup(idm => idm.detectScanIncompleteWarnings())
@@ -140,9 +145,7 @@ describe('TabStopsAnalyzer', () => {
             testSubject.analyze();
             await tick();
 
-            tabStopsListenerMock
-                .setup(tslm => tslm.stopListenToTabStops())
-                .verifiable(Times.once());
+            tabStopsListenerMock.setup(tslm => tslm.stop()).verifiable(Times.once());
             setupSendMessageMock({
                 messageType: configStub.analyzerTerminatedMessageType,
                 payload: { key: configStub.key, testType: configStub.testType },
@@ -165,13 +168,9 @@ describe('TabStopsAnalyzer', () => {
 
     function setupTabStopsListenerForStartTabStops(): void {
         tabStopsListenerMock
-            .setup(tslm => tslm.setTabEventListenerOnMainWindow(It.isAny()))
-            .callback((callback: (tabEvent: TabStopEvent) => void) => {
-                simulateTabEvent = callback;
-            })
-            .verifiable(Times.once());
-
-        tabStopsListenerMock.setup(t => t.startListenToTabStops()).verifiable(Times.once());
+            .setup(t => (t.topWindowCallback = It.isAny()))
+            .callback(cb => (simulateTabEvent = cb));
+        tabStopsListenerMock.setup(t => t.start()).verifiable(Times.once());
     }
 
     function setupSendMessageMock(message, callback?): void {
