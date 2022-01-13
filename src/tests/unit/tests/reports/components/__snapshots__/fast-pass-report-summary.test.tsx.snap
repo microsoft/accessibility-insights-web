@@ -23,3 +23,27 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
   />
 </React.Fragment>
 `;
+
+exports[`FastPassReportSummary renders when automated checks are null 1`] = `
+<React.Fragment>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "incomplete",
+        "pass",
+      ]
+    }
+    outcomeStats={
+      Object {
+        "fail": 2,
+        "incomplete": 0,
+        "pass": 1,
+      }
+    }
+  />
+</React.Fragment>
+`;
