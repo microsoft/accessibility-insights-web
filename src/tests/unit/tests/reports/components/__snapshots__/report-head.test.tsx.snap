@@ -7,7 +7,7 @@ exports[`Head renders 1`] = `
   />
   <title>
     some title preface
-     automated checks result
+     FastPass results
   </title>
   <style
     dangerouslySetInnerHTML={
