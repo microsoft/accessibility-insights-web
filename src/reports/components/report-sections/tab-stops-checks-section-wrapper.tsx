@@ -24,7 +24,11 @@ export type TabStopsChecksSectionWrapperProps = Pick<
 export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecksSectionWrapperProps> {
     public render(): React.ReactNode {
         return (
-            <this.props.checksSection cardsViewData={this.prepareCardsViewData()} {...this.props} />
+            <this.props.checksSection
+                testKey="tab-stops"
+                cardsViewData={this.prepareCardsViewData()}
+                {...this.props}
+            />
         );
     }
 
