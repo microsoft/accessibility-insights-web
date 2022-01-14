@@ -20,7 +20,7 @@ import {
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { tick } from 'tests/unit/common/tick';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     createActionMock,
@@ -170,7 +170,7 @@ describe('TestActionCreatorTest', () => {
 
             testSubject.registerCallbacks();
 
-            await tick();
+            await flushResolvedPromises();
 
             telemetryEventHandlerMock.verify(
                 tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload),
@@ -186,7 +186,7 @@ describe('TestActionCreatorTest', () => {
 
             testSubject.registerCallbacks();
 
-            await tick();
+            await flushResolvedPromises();
 
             telemetryEventHandlerMock.verify(
                 tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload),

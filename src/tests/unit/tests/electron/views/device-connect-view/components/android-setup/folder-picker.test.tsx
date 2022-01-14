@@ -9,7 +9,7 @@ import {
 import { shallow } from 'enzyme';
 import { PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { tick } from 'tests/unit/common/tick';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('FolderPicker', () => {
@@ -78,7 +78,7 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            await tick();
+            await flushResolvedPromises();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m('/path/to/adb'), Times.once());
@@ -95,7 +95,7 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            await tick();
+            await flushResolvedPromises();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());
@@ -114,7 +114,7 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            await tick();
+            await flushResolvedPromises();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());
@@ -129,7 +129,7 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            await tick();
+            await flushResolvedPromises();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());

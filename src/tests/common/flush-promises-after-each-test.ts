@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { tick } from 'tests/unit/common/tick';
+import { flushResolvedPromises } from './flush-resolved-promises';
 
 // This is here to force Jest to flush any pending resolved Promises that a test might
 // have forgotten to handle *before* Jest considers that test to be completed. That way,
@@ -9,4 +9,4 @@ import { tick } from 'tests/unit/common/tick';
 // and the error as a Node UnhandledProjmiseRejectionWarning with no stack or test context.
 //
 // See https://github.com/facebook/jest/issues/10784#issuecomment-988400890
-afterEach(tick);
+afterEach(flushResolvedPromises);

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as util from 'util';
-import { tick } from 'tests/unit/common/tick';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
@@ -72,7 +72,7 @@ export class LogController {
             if (value === true) {
                 return value;
             } else {
-                await tick();
+                await flushResolvedPromises();
                 currentTime = Number(new Date());
             }
         } while (currentTime < endTime);

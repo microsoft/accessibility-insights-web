@@ -19,7 +19,7 @@ import { DeviceCommunicator } from 'electron/platform/android/device-communicato
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
-import { tick } from 'tests/unit/common/tick';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -188,7 +188,7 @@ describe('ScanController', () => {
 
         testSubject.initialize();
 
-        await tick();
+        await flushResolvedPromises();
 
         scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
         deviceConnectedMock.verify(m => m.invoke(null), Times.once());
@@ -226,7 +226,7 @@ describe('ScanController', () => {
 
         testSubject.initialize();
 
-        await tick();
+        await flushResolvedPromises();
 
         scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
