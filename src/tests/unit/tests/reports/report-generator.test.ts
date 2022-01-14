@@ -67,7 +67,7 @@ describe('ReportGenerator', () => {
     });
 
     describe('generateFastPassHtmlReport', () => {
-        it('uses fastPassReportHtmlGenerator with FeatureFlags.newTabStopsDetailsView', () => {
+        it('uses fastPassReportHtmlGenerator', () => {
             fastPassReportHtmlGeneratorMock
                 .setup(m => m.generateHtml(fastPassReportModelStub))
                 .returns(() => 'stub FastPass report');
