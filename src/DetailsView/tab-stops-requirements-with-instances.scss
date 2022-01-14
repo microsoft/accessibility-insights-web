@@ -8,6 +8,7 @@
 
     .no-instances {
         font-style: italic;
+        padding-left: 20px;
     }
 
     &:global(:not(.collapsed)) {

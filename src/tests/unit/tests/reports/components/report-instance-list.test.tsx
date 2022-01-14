@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentReportInstanceList } from 'reports/components/assessment-report-instance-list';
+import { ReportInstanceList } from 'reports/components/report-instance-list';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
-describe('AssessmentReportInstanceListTest', () => {
+describe('ReportInstanceListTest', () => {
     describe('render', () => {
         test('snippet and path', () => {
             const props = {
@@ -13,7 +13,7 @@ describe('AssessmentReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(<ReportInstanceList {...props} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -24,7 +24,7 @@ describe('AssessmentReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(<ReportInstanceList {...props} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -34,7 +34,7 @@ describe('AssessmentReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithObjectValueProp(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(<ReportInstanceList {...props} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -45,7 +45,7 @@ describe('AssessmentReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
             };
 
-            const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
+            const wrapper = shallow(<ReportInstanceList {...props} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
