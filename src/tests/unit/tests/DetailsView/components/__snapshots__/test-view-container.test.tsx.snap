@@ -146,9 +146,74 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
 />
 `;
 
-exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with no testViewOverrides 1`] = `null`;
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with no testViewOverrides 1`] = `
+<AdhocStaticTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": undefined,
+      "testViewType": "AdhocStatic",
+    }
+  }
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
+/>
+`;
 
-exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with testViewOverrides 1`] = `null`;
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with testViewOverrides 1`] = `
+<AdhocStaticTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": Object {
+        "content": "stub content page component \\"content\\"",
+        "guidance": "stub content page component \\"guidance\\"",
+      },
+      "testViewType": "AdhocStatic",
+    }
+  }
+  content="stub content page component \\"content\\""
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
+  guidance="stub content page component \\"guidance\\""
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
+/>
+`;
 
 exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with no testViewOverrides 1`] = `
 <AdhocTabStopsTestView

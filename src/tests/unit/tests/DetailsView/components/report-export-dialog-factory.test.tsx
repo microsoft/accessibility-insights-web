@@ -105,7 +105,6 @@ describe('ReportExportDialogFactory', () => {
         shouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: props.visualizationConfigurationFactory,
             selectedTest: props.selectedTest,
-            featureFlagStoreData: props.featureFlagStoreData,
             tabStoreData: props.tabStoreData,
         } as ShouldShowReportExportButtonProps;
     });
@@ -113,18 +112,14 @@ describe('ReportExportDialogFactory', () => {
     function setFastPassReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
-                reportGenerator.generateFastPassHtmlReport(
-                    {
-                        description: theDescription,
-                        targetPage: scanMetadata.targetAppInfo,
-                        results: {
-                            automatedChecks: cardsViewData,
-                            tabStops: tabStopRequirementData,
-                        },
+                reportGenerator.generateFastPassHtmlReport({
+                    description: theDescription,
+                    targetPage: scanMetadata.targetAppInfo,
+                    results: {
+                        automatedChecks: cardsViewData,
+                        tabStops: tabStopRequirementData,
                     },
-                    scanMetadata,
-                    featureFlagStoreData,
-                ),
+                }),
             )
             .returns(() => theGeneratorOutput)
             .verifiable(Times.once());

@@ -15,9 +15,7 @@ import { ReportSectionFactory } from './report-section-factory';
 import { ResultsContainer } from './results-container';
 import { AllOutcomesSummarySection } from './summary-section';
 
-// This is for a soon-to-be-legacy FastPass report format. It will be replaced by
-// FastPassReportSectionFactory with feature #1872889. It should be removed with story #1897885.
-export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
+export const FastPassReportSectionFactory: ReportSectionFactory = {
     HeadSection: WebReportHead,
     BodySection,
     ContentContainer,

@@ -55,7 +55,6 @@ import { ReportExportServiceProviderImpl } from 'report-export/report-export-ser
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
@@ -69,7 +68,6 @@ import {
 } from 'reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
-import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -359,19 +357,6 @@ if (tabId != null) {
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
 
-            // This is for a soon-to-be-legacy FastPass report format.
-            // It should be removed with #1897885.
-            const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
-                AutomatedChecksReportSectionFactory,
-                reactStaticRenderer,
-                getDefaultAddListenerForCollapsibleSection,
-                DateProvider.getUTCStringFromDate,
-                GetGuidanceTagsFromGuidanceLinks,
-                fixInstructionProcessor,
-                recommendColor,
-                getPropertyConfiguration,
-            );
-
             const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
@@ -458,7 +443,6 @@ if (tabId != null) {
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                automatedChecksReportHtmlGenerator,
                 fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,

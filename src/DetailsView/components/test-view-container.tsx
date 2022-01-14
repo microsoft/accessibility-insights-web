@@ -6,6 +6,7 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import {
     AdhocTabStopsTestView,
     AdhocTabStopsTestViewDeps,
@@ -70,6 +71,8 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
     const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
 
     switch (configuration.testViewType) {
+        case 'AdhocStatic':
+            return <AdhocStaticTestView {...testViewProps} />;
         case 'AdhocFailure':
             return (
                 <AdhocIssuesTestView
@@ -91,11 +94,7 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
                 />
             );
         case 'AdhocTabStops':
-            return (
-                <AdhocTabStopsTestView 
-                    {...testViewProps}
-                />
-            );
+            return <AdhocTabStopsTestView {...testViewProps} />;
         case 'Assessment':
             return <AssessmentTestView {...testViewProps} />;
     }
