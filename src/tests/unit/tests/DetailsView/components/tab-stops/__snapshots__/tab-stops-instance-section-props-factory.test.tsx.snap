@@ -240,7 +240,7 @@ Object {
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
-  "content": <AssessmentReportInstanceList
+  "content": <ReportInstanceList
     instances={
       Array [
         Object {

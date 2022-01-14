@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentReportInstanceListTest render comment 1`] = `
+exports[`ReportInstanceListTest render comment 1`] = `
 <div>
   <table
     className="instance-details"
@@ -25,7 +25,7 @@ exports[`AssessmentReportInstanceListTest render comment 1`] = `
 </div>
 `;
 
-exports[`AssessmentReportInstanceListTest render object prop value instance 1`] = `
+exports[`ReportInstanceListTest render object prop value instance 1`] = `
 <div>
   <table
     className="instance-details"
@@ -60,7 +60,7 @@ exports[`AssessmentReportInstanceListTest render object prop value instance 1`] 
 </div>
 `;
 
-exports[`AssessmentReportInstanceListTest render simple rows first - property bag rows second 1`] = `
+exports[`ReportInstanceListTest render simple rows first - property bag rows second 1`] = `
 <div>
   <table
     className="instance-details"
@@ -199,7 +199,7 @@ exports[`AssessmentReportInstanceListTest render simple rows first - property ba
 </div>
 `;
 
-exports[`AssessmentReportInstanceListTest render snippet and path 1`] = `
+exports[`ReportInstanceListTest render snippet and path 1`] = `
 <div>
   <table
     className="instance-details"
