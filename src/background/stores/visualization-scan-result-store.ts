@@ -100,6 +100,12 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
             this.onToggleTabStopRequirementExpandCollapse,
         );
+
+        // TODO
+        this.tabStopRequirementActions.updateTabbingCompleted.addListener(() => {
+            console.log('Received tabbing completed in background store');
+        });
+
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 

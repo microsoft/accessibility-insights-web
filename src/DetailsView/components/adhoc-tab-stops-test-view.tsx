@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { CollapsibleComponent } from 'common/components/collapsible-component';
+import { FocusComponent } from 'common/components/focus-component';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -9,6 +10,7 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
 import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
@@ -36,6 +38,7 @@ import * as Markup from '../../assessments/markup';
 
 export type AdhocTabStopsTestViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    windowUtils: WindowUtils;
 } & TabStopsRequirementsTableDeps &
     TabStopsFailedInstancePanelDeps &
     TabStopsFailedInstanceSectionDeps &
@@ -150,6 +153,14 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         deps={props.deps}
                         failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
                         requirementState={requirementState}
+                    />
+                    <FocusComponent
+                        windowUtils={props.deps.windowUtils}
+                        configuration={props.configuration}
+                        visualizationStoreData={props.visualizationStoreData}
+                        tabStopRequirementActionMessageCreator={
+                            props.deps.tabStopRequirementActionMessageCreator
+                        }
                     />
                 </div>
             </div>
