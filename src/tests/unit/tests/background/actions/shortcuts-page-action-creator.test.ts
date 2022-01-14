@@ -9,7 +9,7 @@ import { SHORTCUT_CONFIGURE_OPEN } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction } from 'lodash';
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('ShortcutsPageActionCreator', () => {
@@ -55,7 +55,7 @@ describe('ShortcutsPageActionCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await flushResolvedPromises();
+            await flushSettledPromises();
 
             shortcutsPageControllerMock.verify(
                 controller => controller.openShortcutsTab(),
@@ -71,7 +71,7 @@ describe('ShortcutsPageActionCreator', () => {
 
                 testSubject.registerCallbacks();
 
-                await flushResolvedPromises();
+                await flushSettledPromises();
 
                 telemetryHandlerMock.verify(
                     handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload),
@@ -87,7 +87,7 @@ describe('ShortcutsPageActionCreator', () => {
 
                 testSubject.registerCallbacks();
 
-                await flushResolvedPromises();
+                await flushSettledPromises();
 
                 telemetryHandlerMock.verify(
                     handler => handler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload),

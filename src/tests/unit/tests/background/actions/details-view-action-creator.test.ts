@@ -23,7 +23,7 @@ import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import {
     createActionMock,
@@ -90,7 +90,7 @@ describe('DetailsViewActionCreatorTest', () => {
 
                 testObject.registerCallback();
 
-                await flushResolvedPromises();
+                await flushSettledPromises();
 
                 openSidePanelMock.verifyAll();
                 detailsViewControllerMock.verifyAll();
@@ -121,7 +121,7 @@ describe('DetailsViewActionCreatorTest', () => {
 
                 testObject.registerCallback();
 
-                await flushResolvedPromises();
+                await flushSettledPromises();
 
                 detailsViewControllerMock.verifyAll();
                 openSidePanelMock.verifyAll();

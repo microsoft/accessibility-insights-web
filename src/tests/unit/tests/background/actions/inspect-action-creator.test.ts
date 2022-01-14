@@ -11,7 +11,7 @@ import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import {
     createActionMock,
@@ -92,7 +92,7 @@ describe('InspectActionCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await flushResolvedPromises();
+            await flushSettledPromises();
 
             changeInspectModeMock.verifyAll();
         });
@@ -105,7 +105,7 @@ describe('InspectActionCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await flushResolvedPromises();
+            await flushSettledPromises();
 
             changeInspectModeMock.verifyAll();
             loggerMock.verify(

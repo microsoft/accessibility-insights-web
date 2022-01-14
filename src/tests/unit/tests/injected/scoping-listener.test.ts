@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
@@ -109,12 +109,12 @@ describe('ScopingListenerTest', () => {
         setupOnClickSetTimeout(givenPath);
         onClick(mouseEventStub);
         onClickSetTimeoutHandler();
-        await flushResolvedPromises();
+        await flushSettledPromises();
 
         setupOnHoverSetTimeout(givenPath);
         onHover(mouseEventStub);
         onHoverSetTimeoutHandler();
-        await flushResolvedPromises();
+        await flushSettledPromises();
 
         verifyAll();
     });
@@ -134,14 +134,14 @@ describe('ScopingListenerTest', () => {
         onClick(mouseEventStub);
         onClick(mouseEventStub);
         onClickSetTimeoutHandler();
-        await flushResolvedPromises();
+        await flushSettledPromises();
 
         setupOnHoverSetTimeout(givenPath, 2);
         onHover(mouseEventStub);
         onHover(mouseEventStub);
 
         onHoverSetTimeoutHandler();
-        await flushResolvedPromises();
+        await flushSettledPromises();
 
         verifyAll();
     });
