@@ -146,13 +146,17 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
 />
 `;
 
-exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with no testViewOverrides 1`] = `
-<AdhocStaticTestView
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with no testViewOverrides 1`] = `null`;
+
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with testViewOverrides 1`] = `null`;
+
+exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with no testViewOverrides 1`] = `
+<AdhocTabStopsTestView
   configuration={
     Object {
       "key": "configStub",
       "testViewOverrides": undefined,
-      "testViewType": "AdhocStatic",
+      "testViewType": "AdhocTabStops",
     }
   }
   deps={
@@ -178,8 +182,8 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
 />
 `;
 
-exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with testViewOverrides 1`] = `
-<AdhocStaticTestView
+exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with testViewOverrides 1`] = `
+<AdhocTabStopsTestView
   configuration={
     Object {
       "key": "configStub",
@@ -187,7 +191,7 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
         "content": "stub content page component \\"content\\"",
         "guidance": "stub content page component \\"guidance\\"",
       },
-      "testViewType": "AdhocStatic",
+      "testViewType": "AdhocTabStops",
     }
   }
   content="stub content page component \\"content\\""
@@ -212,152 +216,6 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
       },
     }
   }
-/>
-`;
-
-exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with no testViewOverrides 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <AdhocStaticTestView
-      configuration={
-        Object {
-          "key": "configStub",
-          "testViewOverrides": undefined,
-          "testViewType": "AdhocTabStops",
-        }
-      }
-      deps={
-        Object {
-          "automatedChecksCardSelectionMessageCreator": Object {},
-          "needsReviewCardSelectionMessageCreator": Object {},
-        }
-      }
-      selectedTest={-1}
-      someParentProp="parent-prop"
-      visualizationConfigurationFactory={
-        Object {
-          "getConfiguration": [Function],
-        }
-      }
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {
-            "requirements": Object {},
-          },
-        }
-      }
-    />
-  }
-  enableJSXElement={
-    <AdhocTabStopsTestView
-      configuration={
-        Object {
-          "key": "configStub",
-          "testViewOverrides": undefined,
-          "testViewType": "AdhocTabStops",
-        }
-      }
-      deps={
-        Object {
-          "automatedChecksCardSelectionMessageCreator": Object {},
-          "needsReviewCardSelectionMessageCreator": Object {},
-        }
-      }
-      selectedTest={-1}
-      someParentProp="parent-prop"
-      visualizationConfigurationFactory={
-        Object {
-          "getConfiguration": [Function],
-        }
-      }
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {
-            "requirements": Object {},
-          },
-        }
-      }
-    />
-  }
-  featureFlag="newTabStopsDetailsView"
-/>
-`;
-
-exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with testViewOverrides 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <AdhocStaticTestView
-      configuration={
-        Object {
-          "key": "configStub",
-          "testViewOverrides": Object {
-            "content": "stub content page component \\"content\\"",
-            "guidance": "stub content page component \\"guidance\\"",
-          },
-          "testViewType": "AdhocTabStops",
-        }
-      }
-      content="stub content page component \\"content\\""
-      deps={
-        Object {
-          "automatedChecksCardSelectionMessageCreator": Object {},
-          "needsReviewCardSelectionMessageCreator": Object {},
-        }
-      }
-      guidance="stub content page component \\"guidance\\""
-      selectedTest={-1}
-      someParentProp="parent-prop"
-      visualizationConfigurationFactory={
-        Object {
-          "getConfiguration": [Function],
-        }
-      }
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {
-            "requirements": Object {},
-          },
-        }
-      }
-    />
-  }
-  enableJSXElement={
-    <AdhocTabStopsTestView
-      configuration={
-        Object {
-          "key": "configStub",
-          "testViewOverrides": Object {
-            "content": "stub content page component \\"content\\"",
-            "guidance": "stub content page component \\"guidance\\"",
-          },
-          "testViewType": "AdhocTabStops",
-        }
-      }
-      content="stub content page component \\"content\\""
-      deps={
-        Object {
-          "automatedChecksCardSelectionMessageCreator": Object {},
-          "needsReviewCardSelectionMessageCreator": Object {},
-        }
-      }
-      guidance="stub content page component \\"guidance\\""
-      selectedTest={-1}
-      someParentProp="parent-prop"
-      visualizationConfigurationFactory={
-        Object {
-          "getConfiguration": [Function],
-        }
-      }
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {
-            "requirements": Object {},
-          },
-        }
-      }
-    />
-  }
-  featureFlag="newTabStopsDetailsView"
 />
 `;
 

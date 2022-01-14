@@ -78,7 +78,6 @@ export function getReportExportDialogForFastPass(
     const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
         visualizationConfigurationFactory: props.visualizationConfigurationFactory,
         selectedTest: props.selectedTest,
-        featureFlagStoreData: props.featureFlagStoreData,
         tabStoreData: props.tabStoreData,
     };
 
