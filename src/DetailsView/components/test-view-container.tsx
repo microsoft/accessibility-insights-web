@@ -2,12 +2,11 @@
 // Licensed under the MIT License.
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
-import { FlaggedComponent } from 'common/components/flagged-component';
-import { FeatureFlags } from 'common/feature-flags';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import {
     AdhocTabStopsTestView,
     AdhocTabStopsTestViewDeps,
@@ -30,7 +29,6 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { AdhocIssuesTestView } from './adhoc-issues-test-view';
-import { AdhocStaticTestView } from './adhoc-static-test-view';
 import { AssessmentTestView } from './assessment-test-view';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
@@ -96,14 +94,7 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
                 />
             );
         case 'AdhocTabStops':
-            return (
-                <FlaggedComponent
-                    enableJSXElement={<AdhocTabStopsTestView {...testViewProps} />}
-                    disableJSXElement={<AdhocStaticTestView {...testViewProps} />}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    featureFlag={FeatureFlags.newTabStopsDetailsView}
-                />
-            );
+            return <AdhocTabStopsTestView {...testViewProps} />;
         case 'Assessment':
             return <AssessmentTestView {...testViewProps} />;
     }

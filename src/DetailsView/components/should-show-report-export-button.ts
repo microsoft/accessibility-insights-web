@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 export interface ShouldShowReportExportButtonProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
-    featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: TabStoreData;
 }
 
@@ -24,7 +22,5 @@ export function shouldShowReportExportButtonForFastpass(
 ): boolean {
     const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
     const isTargetPageChangedViewVisible = props.tabStoreData.isChanged;
-    return (
-        config.shouldShowExportReport(props.featureFlagStoreData) && !isTargetPageChangedViewVisible
-    );
+    return config.shouldShowExportReport() && !isTargetPageChangedViewVisible;
 }

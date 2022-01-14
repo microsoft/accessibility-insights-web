@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
@@ -12,14 +10,11 @@ describe('Details View -> FastPass -> TabStops', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundPage;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-        backgroundPage = await browser.backgroundPage();
-        await backgroundPage.enableFeatureFlag(FeatureFlags.newTabStopsDetailsView);
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.openTabStopsPage(detailsViewPage);
     });
