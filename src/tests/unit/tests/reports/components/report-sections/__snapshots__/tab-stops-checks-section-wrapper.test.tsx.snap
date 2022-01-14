@@ -118,5 +118,6 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
       },
     }
   }
+  testKey="tab-stops"
 />
 `;
