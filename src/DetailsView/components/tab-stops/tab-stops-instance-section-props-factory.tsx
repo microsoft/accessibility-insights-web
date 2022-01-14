@@ -9,7 +9,7 @@ import { TabStopsRequirementsWithInstancesProps } from 'DetailsView/tab-stops-re
 import * as styles from 'DetailsView/tab-stops-requirements-with-instances.scss';
 import * as React from 'react';
 import { InstanceReportModel } from 'reports/assessment-report-model';
-import { ReportInstanceList } from 'reports/components/report-instance-list';
+import { TabStopsReportInstanceList } from 'reports/components/report-sections/tab-stops-report-instance-list';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export type TabStopsInstanceSectionPropsFactoryDeps = TabStopsFailedInstanceSectionDeps;
@@ -151,7 +151,7 @@ export const ReportTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionP
                     />
                 ),
                 content: (
-                    <ReportInstanceList
+                    <TabStopsReportInstanceList
                         key={`${result.id}-requirement-group`}
                         requirementId={result.id}
                         instances={instances}
