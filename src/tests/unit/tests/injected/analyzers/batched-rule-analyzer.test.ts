@@ -3,6 +3,7 @@
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { isEqual } from 'lodash';
 import { clone, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -142,9 +143,7 @@ describe('BatchedRuleAnalyzer', () => {
             scanResultsTwo,
         );
 
-        const testSubjects = [testSubjectOne, testSubjectTwo];
-
-        testSubjects.forEach((testSubject, index) => {
+        [testSubjectOne, testSubjectTwo].forEach(testSubject => {
             dateMock.reset();
             dateMock
                 .setup(mock => mock.getTime())
@@ -152,29 +151,49 @@ describe('BatchedRuleAnalyzer', () => {
                 .verifiable();
 
             testSubject.analyze();
+        });
 
+        /*
+        BatchedRuleAnalyzer maintains a static list of
+        RuleAnalyzerConfigurations. After scanning, it
+        sends a scanCompleted message for each rule-config.
+
+        Because we instantiate two analyzers, each analyzer
+        has two configs and therefore the scanCallback
+        produces two scanCompleted messages.
+        */
+        const actualMessages = [];
+        const expectedMessages = [
+            firstExpectedMessage,
+            secondExpectedMessage,
+            firstExpectedMessage,
+            secondExpectedMessage,
+        ];
+
+        sendMessageMock
+            .setup(sm => sm(It.isAny()))
+            .callback(msg => {
+                actualMessages.push(msg);
+                if (isEqual(expectedMessages, actualMessages)) {
+                    done();
+                }
+            })
+            .verifiable(Times.exactly(4));
+
+        scanCallbacks.forEach(callback => {
             dateMock.reset();
             dateMock
                 .setup(mock => mock.getTime())
                 .returns(_ => endTime)
                 .verifiable();
 
-            sendMessageMock.reset();
-            sendMessageMock.setup(sm => sm(It.isValue(firstExpectedMessage))).verifiable();
-
-            sendMessageMock
-                .setup(sm => sm(It.isValue(secondExpectedMessage)))
-                .returns(() => {
-                    sendMessageMock.verifyAll();
-                    if (index + 1 === testSubjects.length) {
-                        done();
-                    }
-                })
-                .verifiable();
-
-            scanCallbacks[index](completeRuleResults);
+            callback(completeRuleResults);
         });
     }
+
+    afterEach(() => {
+        sendMessageMock.verifyAll();
+    });
 
     function setupProcessingMocks(
         resultProcessorMock: IMock<
