@@ -506,7 +506,6 @@
         "./src/tests/unit/common/simulated-window.ts",
         "./src/tests/unit/common/store-tester.ts",
         "./src/tests/unit/common/test-document-creator.ts",
-        "./src/tests/unit/common/tick.ts",
         "./src/tests/unit/common/typemoq-helper.ts",
         "./src/tests/unit/common/visualization-toggle-props-builder.ts",
         "./src/tests/unit/common/webextension-polyfill-ts-setup.ts",
