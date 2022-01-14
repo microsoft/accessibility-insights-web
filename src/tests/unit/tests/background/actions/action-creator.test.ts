@@ -49,7 +49,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -219,7 +219,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -256,7 +256,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -309,7 +309,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -345,7 +345,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -523,7 +523,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             builder.verifyAll();
         });
@@ -557,7 +557,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             builder.verifyAll();
         });

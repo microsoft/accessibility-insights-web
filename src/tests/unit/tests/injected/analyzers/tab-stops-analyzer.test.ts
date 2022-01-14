@@ -8,9 +8,9 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
-import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TabStopsAnalyzer', () => {
@@ -85,7 +85,7 @@ describe('TabStopsAnalyzer', () => {
             setupSendMessageMock(emptyScanCompleteMessage);
 
             testSubject.analyze();
-            await tick();
+            await flushSettledPromises();
 
             verifyAll();
         });
@@ -104,7 +104,7 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
-            await tick();
+            await flushSettledPromises();
 
             setupSendMessageMock(expectedScanUpdatedMessage);
             simulateTabEvent(tabEventStub1);
@@ -128,7 +128,7 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
-            await tick();
+            await flushSettledPromises();
 
             setupSendMessageMock(expectedScanUpdatedMessage);
             simulateTabEvent(tabEventStub1);
@@ -143,7 +143,7 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
-            await tick();
+            await flushSettledPromises();
 
             tabStopsListenerMock.setup(tslm => tslm.stop()).verifiable(Times.once());
             setupSendMessageMock({
@@ -152,7 +152,7 @@ describe('TabStopsAnalyzer', () => {
             });
 
             testSubject.teardown();
-            await tick();
+            await flushSettledPromises();
             verifyAll();
 
             simulateTabEvent(tabEventStub1); // no corresponding setupSendMessageMock
