@@ -8,9 +8,9 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TabStopsAnalyzer', () => {

@@ -12,11 +12,11 @@ import { TargetPageController } from 'background/target-page-controller';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
+import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
 } from 'tests/unit/common/simulated-browser-adapter';
-import { flushResolvedPromises } from 'tests/common/flush-resolved-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
