@@ -20,8 +20,15 @@ describe('TabStopRequirementOrchestrator', () => {
     let reportResultsMock: IMock<(payload: TabStopRequirementResult) => Promise<void>>;
 
     let focusableElementsStub: FocusableElement[];
+    let elementStub: HTMLElement;
+    let newElementStub: HTMLElement;
+    let tabStopRequirementResultStub: TabStopRequirementResult;
+
+    let focusInCallback: (event: Event) => void;
+    let keydownCallback: (event: Event) => void;
 
     let testSubject: TabStopRequirementOrchestrator;
+
     beforeEach(() => {
         domMock = Mock.ofType<Document>();
         tabbabbleElementGetterMock = Mock.ofType<TabbableElementGetter>();
@@ -37,12 +44,22 @@ describe('TabStopRequirementOrchestrator', () => {
             tabStopsRequirementEvaluatorMock.object,
             getUniqueSelectorMock.object,
         );
+        setupStartTabStopsOrchestrator();
 
         focusableElementsStub = [
             {
                 innerText: 'some focusable element',
             },
         ] as FocusableElement[];
+        elementStub = {
+            innerText: 'some element',
+        } as HTMLElement;
+        newElementStub = {
+            innerText: 'some new element',
+        } as HTMLElement;
+        tabStopRequirementResultStub = {
+            html: 'some html',
+        } as TabStopRequirementResult;
     });
 
     test('transformChildResultForParent', () => {
@@ -63,100 +80,69 @@ describe('TabStopRequirementOrchestrator', () => {
         );
     });
 
-    test('start: addNewTabStop gets non-null result and reports it', () => {
-        const tabStopRequirementResultStub = {
-            html: 'some html',
-        } as TabStopRequirementResult;
-        testAddNewStopWithResult(tabStopRequirementResultStub, Times.once());
-    });
-
-    test('start: addNewTabStop gets null result and does not report it', () => {
-        testAddNewStopWithResult(null, Times.never());
-    });
-
-    function testAddNewStopWithResult(
-        tabStopRequirementResultStub: TabStopRequirementResult,
-        givenTimes: Times,
-    ) {
-        const elementStub = {
-            innerText: 'some element',
-        } as HTMLElement;
+    test('addNewTabStop new and unique tabstop gets non-null result and reports it', () => {
         const eventStub = {
             target: elementStub as EventTarget,
         } as Event;
-
-        prepareTabbableFocusOrderResults();
-        domMock
-            .setup(m => m.addEventListener('focusin', It.isAny()))
-            .callback((_, callback) => {
-                callback(eventStub);
-            });
-
-        tabStopsRequirementEvaluatorMock
-            .setup(m => m.getFocusOrderResult(elementStub, elementStub))
-            .returns(() => tabStopRequirementResultStub);
-        reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(givenTimes);
-
-        testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
-
-        reportResultsMock.verifyAll();
-    }
-
-    test('start: addNewTabStop tab stop already seen, does nothing', () => {
-        const elementStub = {
-            innerText: 'some element',
-        } as HTMLElement;
-        const eventStub = {
-            target: elementStub as EventTarget,
+        const newEventStub = {
+            target: newElementStub as EventTarget,
         } as Event;
-        const tabStopRequirementResultStub = {
-            html: 'some html',
-        } as TabStopRequirementResult;
-        let focusInCallback: (event: Event) => void;
-
-        prepareTabbableFocusOrderResults();
-        domMock
-            .setup(m => m.addEventListener('focusin', It.isAny()))
-            .callback((_, callback) => {
-                focusInCallback = callback;
-            });
 
         tabStopsRequirementEvaluatorMock
-            .setup(m => m.getFocusOrderResult(elementStub, elementStub))
+            .setup(m => m.getFocusOrderResult(elementStub, newElementStub))
             .returns(() => tabStopRequirementResultStub);
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.once());
 
         testSubject.setResultCallback(reportResultsMock.object);
         testSubject.start();
-
         focusInCallback(eventStub);
+        focusInCallback(newEventStub);
 
         reportResultsMock.verifyAll();
-        reportResultsMock.reset();
+    });
+
+    test('addNewTabStop new and unique tabstop gets null result and does not report it', () => {
+        tabStopRequirementResultStub = null;
+        const eventStub = {
+            target: elementStub as EventTarget,
+        } as Event;
+        const newEventStub = {
+            target: newElementStub as EventTarget,
+        } as Event;
+
+        tabStopsRequirementEvaluatorMock
+            .setup(m => m.getFocusOrderResult(elementStub, newElementStub))
+            .returns(() => tabStopRequirementResultStub);
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
 
+        testSubject.setResultCallback(reportResultsMock.object);
+        testSubject.start();
+        focusInCallback(eventStub);
+        focusInCallback(newEventStub);
+
+        reportResultsMock.verifyAll();
+    });
+
+    test('start: addNewTabStop tab stop already seen, does nothing', () => {
+        const eventStub = {
+            target: elementStub as EventTarget,
+        } as Event;
+
+        tabStopsRequirementEvaluatorMock
+            .setup(m => m.getFocusOrderResult(It.isAny(), It.isAny()))
+            .returns(() => tabStopRequirementResultStub);
+        reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
+
+        testSubject.setResultCallback(reportResultsMock.object);
+        testSubject.start();
+        focusInCallback(eventStub);
         focusInCallback(eventStub);
 
         reportResultsMock.verifyAll();
     });
 
     test('stop removes event listeners and sends keyboard navigation results', () => {
-        let focusInCallback: (event: Event) => void;
-        let keydownCallback: (event: Event) => void;
         const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
-
-        domMock
-            .setup(m => m.addEventListener('focusin', It.isAny()))
-            .callback((_, callback) => {
-                focusInCallback = callback;
-            });
-        domMock
-            .setup(m => m.addEventListener('keydown', It.isAny()))
-            .callback((_, callback) => {
-                keydownCallback = callback;
-            });
-        prepareTabbableFocusOrderResults();
 
         testSubject.setResultCallback(reportResultsMock.object);
         testSubject.start();
@@ -179,9 +165,6 @@ describe('TabStopRequirementOrchestrator', () => {
     });
 
     test('start: onKeydownForFocusTraps tab event with a non-null result is reported', () => {
-        const tabStopRequirementResultStub = {
-            html: 'some html',
-        } as TabStopRequirementResult;
         testOnkeydownForFocusTrapsWithResult(tabStopRequirementResultStub, Times.once());
     });
 
@@ -190,26 +173,14 @@ describe('TabStopRequirementOrchestrator', () => {
     });
 
     function testOnkeydownForFocusTrapsWithResult(
-        tabStopRequirementResultStub: TabStopRequirementResult,
+        givenTabStopRequirementResult: TabStopRequirementResult,
         givenTimes: Times,
     ) {
-        const elementStub = {
-            innerText: 'some element 1 ',
-        } as HTMLElement;
-        const newElementStub = {
-            innerText: 'some element 2',
-        } as HTMLElement;
         const eventStub = {
             key: 'Tab',
         } as KeyboardEvent;
         let windowUtilsCallback: () => void;
 
-        prepareTabbableFocusOrderResults();
-        domMock
-            .setup(m => m.addEventListener('keydown', It.isAny()))
-            .callback((_, callback) => {
-                callback(eventStub);
-            });
         domMock.setup(m => m.activeElement).returns(() => elementStub);
         windowUtilsMock
             .setup(m => m.setTimeout(It.isAny(), 500))
@@ -219,13 +190,14 @@ describe('TabStopRequirementOrchestrator', () => {
 
         testSubject.setResultCallback(reportResultsMock.object);
         testSubject.start();
+        keydownCallback(eventStub);
 
         domMock.reset();
         domMock.setup(m => m.activeElement).returns(() => newElementStub);
         tabStopsRequirementEvaluatorMock
             .setup(m => m.getKeyboardTrapResults(newElementStub, elementStub))
-            .returns(() => tabStopRequirementResultStub);
-        reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(givenTimes);
+            .returns(() => givenTabStopRequirementResult);
+        reportResultsMock.setup(m => m(givenTabStopRequirementResult)).verifiable(givenTimes);
 
         windowUtilsCallback();
 
@@ -236,24 +208,29 @@ describe('TabStopRequirementOrchestrator', () => {
         const eventStub = {
             key: 'Enter',
         } as KeyboardEvent;
-        const tabStopRequirementResultStub = {
-            html: 'some html',
-        } as TabStopRequirementResult;
-
-        prepareTabbableFocusOrderResults();
-        domMock
-            .setup(m => m.addEventListener('keydown', It.isAny()))
-            .callback((_, callback) => {
-                callback(eventStub);
-            });
 
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
 
         testSubject.setResultCallback(reportResultsMock.object);
         testSubject.start();
+        keydownCallback(eventStub);
 
         reportResultsMock.verifyAll();
     });
+
+    function setupStartTabStopsOrchestrator() {
+        prepareTabbableFocusOrderResults();
+        domMock
+            .setup(m => m.addEventListener('keydown', It.isAny()))
+            .callback((_, callback) => {
+                keydownCallback = callback;
+            });
+        domMock
+            .setup(m => m.addEventListener('focusin', It.isAny()))
+            .callback((_, callback) => {
+                focusInCallback = callback;
+            });
+    }
 
     function prepareTabbableFocusOrderResults() {
         const tabbableFocusOrderResults = getTabStopRequirementResultStubs();

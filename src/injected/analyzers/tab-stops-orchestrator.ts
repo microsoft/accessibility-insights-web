@@ -66,17 +66,24 @@ export class TabStopRequirementOrchestrator
 
     private addNewTabStop = (focusEvent: FocusEvent) => {
         const newTabStop = focusEvent.target as HTMLElement;
-        if (this.actualTabStops.size > 0 && this.actualTabStops.has(newTabStop)) {
+
+        if (this.latestVisitedTabStop == null) {
+            this.actualTabStops.add(newTabStop);
+            this.latestVisitedTabStop = newTabStop;
+            return;
+        }
+
+        if (this.actualTabStops.has(newTabStop)) {
+            this.latestVisitedTabStop = newTabStop;
             return;
         }
 
         this.actualTabStops.add(newTabStop);
-        this.latestVisitedTabStop = newTabStop;
-
         const result = this.tabStopsRequirementEvaluator.getFocusOrderResult(
             this.latestVisitedTabStop,
             newTabStop,
         );
+        this.latestVisitedTabStop = newTabStop;
 
         if (result == null) {
             return;
