@@ -10,7 +10,7 @@ import {
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 
 export interface AllFrameRunnerTarget<T> {
-    name: string;
+    commandSuffix: string;
     start: () => void;
     stop: () => void;
     transformChildResultForParent: (fromChild: T, messageSourceFrame: HTMLIFrameElement) => T;
@@ -23,6 +23,7 @@ frames. Runner manages communication between child frames and the top-level wind
 target can produce results without explicit frame-communication code. 
 
 It follows these semantics:
+- target.commandSuffix is used to construct globally unique FrameMessenger commands in runner
 - runner.initialize() should be called & runner.topWindowCallback should be set 
 before calling runner.start() / runner.stop()
 - runner.start() will run target.start() in the current frame, and then in any child frames
@@ -40,14 +41,20 @@ export class AllFrameRunner<T> {
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly listener: AllFrameRunnerTarget<T>,
-        private readonly startCommand = `insights.startFrameRunner-${listener.name}`,
-        private readonly stopCommand = `insights.stopFrameRunner-${listener.name}`,
-        private readonly onResultFromChildFrameCommand = `insights.resultFromChild-${listener.name}`,
+        private readonly startCommand = `insights.startFrameRunner-${listener.commandSuffix}`,
+        private readonly stopCommand = `insights.stopFrameRunner-${listener.commandSuffix}`,
+        private readonly onResultFromChildFrameCommand = `insights.resultFromChild-${listener.commandSuffix}`,
     ) {}
 
     public initialize() {
-        this.frameMessenger.addMessageListener(this.startCommand, this.start);
-        this.frameMessenger.addMessageListener(this.stopCommand, this.stop);
+        this.frameMessenger.addMessageListener(this.startCommand, async () => {
+            await this.start();
+            return null;
+        });
+        this.frameMessenger.addMessageListener(this.stopCommand, async () => {
+            await this.stop();
+            return null;
+        });
         this.frameMessenger.addMessageListener(
             this.onResultFromChildFrameCommand,
             this.onResultFromChildFrame,
@@ -58,14 +65,14 @@ export class AllFrameRunner<T> {
         });
     }
 
-    public start = async (): Promise<CommandMessageResponse | null> => {
+    public start = async () => {
         this.listener.start();
-        return this.sendCommandToFrames(this.startCommand);
+        this.sendCommandToFrames(this.startCommand);
     };
 
-    public stop = async (): Promise<CommandMessageResponse | null> => {
+    public stop = async () => {
         this.listener.stop();
-        return this.sendCommandToFrames(this.stopCommand);
+        this.sendCommandToFrames(this.stopCommand);
     };
 
     private reportResultsThroughFrames = async (
@@ -81,16 +88,13 @@ export class AllFrameRunner<T> {
         }
     };
 
-    private sendCommandToFrames = async (
-        command: string,
-    ): Promise<CommandMessageResponse | null> => {
+    private sendCommandToFrames = async (command: string) => {
         const iframes = this.getAllFrames();
         for (let i = 0; i < iframes.length; i++) {
             await this.frameMessenger.sendMessageToFrame(iframes[i], {
                 command,
             });
         }
-        return { payload: null };
     };
 
     private onResultFromChildFrame = async (

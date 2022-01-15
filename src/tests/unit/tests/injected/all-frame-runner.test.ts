@@ -17,7 +17,7 @@ type UnitTestTargetType = {
 
 describe('AllFrameRunnerTests', () => {
     const unitTestListener: AllFrameRunnerTarget<UnitTestTargetType> = {
-        name: '',
+        commandSuffix: '',
         start: () => {},
         stop: () => {},
         transformChildResultForParent: _ => null,
@@ -100,7 +100,7 @@ describe('AllFrameRunnerTests', () => {
         });
     });
 
-    test('start: calls start in current frame & sends start command to other frames', async () => {
+    test('public start: calls start in current frame & sends start command to other frames', async () => {
         const frameRunner = getFrameRunnerInstance(
             frameMessengerMock,
             htmlElementUtilsMock,
@@ -117,7 +117,7 @@ describe('AllFrameRunnerTests', () => {
         await frameRunner.start();
     });
 
-    test('stop: calls stop in current frame & sends stop command to other frames', async () => {
+    test('public stop: calls stop in current frame & sends stop command to other frames', async () => {
         const frameRunner = getFrameRunnerInstance(
             frameMessengerMock,
             htmlElementUtilsMock,
@@ -126,12 +126,128 @@ describe('AllFrameRunnerTests', () => {
         );
 
         unitTestListenerMock.setup(m => m.stop()).verifiable(Times.once());
-
         setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
             command: (frameRunner as any).stopCommand,
         });
 
         await frameRunner.stop();
+    });
+
+    test('child frames return null when sent start message', async () => {
+        unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
+
+        const { commandId, commandFunc } =
+            captureFrameMessengerCallbacks(unitTestListenerMock).start;
+
+        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
+            command: commandId,
+        });
+
+        expect(await commandFunc(null, null)).toBeNull();
+    });
+
+    test('child frames return null when sent stop message', async () => {
+        unitTestListenerMock.setup(m => m.stop()).verifiable(Times.once());
+
+        const { commandId, commandFunc } =
+            captureFrameMessengerCallbacks(unitTestListenerMock).stop;
+
+        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
+            command: commandId,
+        });
+
+        expect(await commandFunc(null, null)).toBeNull();
+    });
+
+    describe('on child result: OnResultFromChildFrame', () => {
+        const newPayload = { id: 'new-payload' };
+        const fakeFrames = [{ id: 'iframe1' }, { id: 'iframe2' }] as HTMLIFrameElement[];
+        const fakeWindow = {} as Window;
+        const fakeCm: CommandMessage = {
+            command: 'fake-command',
+            payload: {
+                id: 'fake-payload',
+            },
+        };
+
+        const setupValidMessageFromChildFrame = () => {
+            htmlElementUtilsMock
+                .setup(m => m.getAllElementsByTagName('iframe'))
+                .returns(() => fakeFrames as any)
+                .verifiable(Times.atLeastOnce());
+
+            htmlElementUtilsMock
+                .setup(m => m.getContentWindow(fakeFrames[0] as HTMLIFrameElement))
+                .returns(_ => fakeWindow)
+                .verifiable(Times.once());
+
+            unitTestListenerMock
+                .setup(m => m.transformChildResultForParent(fakeCm.payload, fakeFrames[0]))
+                .returns(_ => newPayload)
+                .verifiable(Times.once());
+        };
+
+        test('calls topWindowCallback if in main window', async () => {
+            setupValidMessageFromChildFrame();
+
+            windowUtilsMock.setup(m => m.isTopWindow()).returns(_ => true);
+
+            const topWindowCallbackMock = Mock.ofInstance((_: UnitTestTargetType) => {});
+            const { commandFunc } = captureFrameMessengerCallbacks(
+                unitTestListenerMock,
+                topWindowCallbackMock.object,
+            ).onResultFromChildFrame;
+
+            topWindowCallbackMock.setup(m => m(newPayload)).verifiable(Times.once());
+
+            await commandFunc(fakeCm, fakeWindow);
+
+            topWindowCallbackMock.verifyAll();
+        });
+
+        test('forwards payload to parent window if in child frame', async () => {
+            setupValidMessageFromChildFrame();
+
+            windowUtilsMock.setup(m => m.isTopWindow()).returns(_ => false);
+
+            const parentWindow = {} as Window;
+            windowUtilsMock.setup(m => m.getParentWindow()).returns(() => parentWindow);
+
+            const { commandId, commandFunc } =
+                captureFrameMessengerCallbacks(unitTestListenerMock).onResultFromChildFrame;
+
+            frameMessengerMock
+                .setup(m =>
+                    m.sendMessageToWindow(parentWindow, {
+                        command: commandId,
+                        payload: newPayload,
+                    }),
+                )
+                .verifiable(Times.once());
+
+            await commandFunc(fakeCm, fakeWindow);
+        });
+
+        test('throws error if unable to identify source window of message', async () => {
+            const { commandFunc } =
+                captureFrameMessengerCallbacks(unitTestListenerMock).onResultFromChildFrame;
+
+            htmlElementUtilsMock
+                .setup(m => m.getAllElementsByTagName('iframe'))
+                .returns(() => fakeFrames as any)
+                .verifiable(Times.atLeastOnce());
+
+            fakeFrames.forEach(f => {
+                htmlElementUtilsMock
+                    .setup(m => m.getContentWindow(f as HTMLIFrameElement))
+                    .returns(_ => null)
+                    .verifiable(Times.once());
+            });
+
+            expect(commandFunc(fakeCm, fakeWindow)).rejects.toThrow(
+                'unable to get frame element for the given window',
+            );
+        });
     });
 
     const setupSendCommandToFrames = (
@@ -154,141 +270,59 @@ describe('AllFrameRunnerTests', () => {
         });
     };
 
-    describe('on child result: OnResultFromChildFrame', () => {
-        const fakeFrames = [{ id: 'iframe1' }, { id: 'iframe2' }] as HTMLIFrameElement[];
-        const fakeWindow = {} as Window;
-        const fakeCm: CommandMessage = {
-            command: 'fake-command',
-            payload: {
-                id: 'fake-payload',
+    type CommandFunction = {
+        commandId: string;
+        commandFunc: PromiseWindowCommandMessageListener;
+    };
+
+    type AllFrameRunnerCommands = {
+        start: CommandFunction;
+        stop: CommandFunction;
+        onResultFromChildFrame: CommandFunction;
+    };
+
+    const captureFrameMessengerCallbacks = (
+        unitTestListenerMock: IMock<AllFrameRunnerTarget<UnitTestTargetType>>,
+        topWindowCallback?: (result: UnitTestTargetType) => void,
+    ): AllFrameRunnerCommands => {
+        const frameRunner = getFrameRunnerInstance(
+            frameMessengerMock,
+            htmlElementUtilsMock,
+            windowUtilsMock,
+            unitTestListenerMock,
+        );
+        frameRunner.topWindowCallback = topWindowCallback;
+
+        const commands: Record<string, PromiseWindowCommandMessageListener> = {};
+        frameMessengerMock
+            .setup(m => m.addMessageListener(It.isAnyString(), It.isAny()))
+            .callback((command: string, func: PromiseWindowCommandMessageListener) => {
+                commands[command] = func;
+            })
+            .verifiable(Times.exactly(3));
+
+        unitTestListenerMock.setup(m => m.setResultCallback(It.isAny())).verifiable(Times.once());
+
+        frameRunner.initialize();
+
+        const startCommand = (frameRunner as any).startCommand;
+        const stopCommand = (frameRunner as any).stopCommand;
+        const onResultFromChildFrameCommand = (frameRunner as any).onResultFromChildFrameCommand;
+        return {
+            start: {
+                commandId: startCommand,
+                commandFunc: commands[startCommand],
             },
-        };
-        test('calls topWindowCallback if in main window', async () => {
-            const topWindowCallbackMock = Mock.ofInstance((_: UnitTestTargetType) => {});
-
-            const { commandFunc } = captureOnResultFromChildFrameCallback(
-                unitTestListenerMock,
-                topWindowCallbackMock.object,
-            );
-
-            htmlElementUtilsMock
-                .setup(m => m.getAllElementsByTagName('iframe'))
-                .returns(() => fakeFrames as any)
-                .verifiable(Times.atLeastOnce());
-
-            htmlElementUtilsMock
-                .setup(m => m.getContentWindow(fakeFrames[0] as HTMLIFrameElement))
-                .returns(_ => fakeWindow)
-                .verifiable(Times.once());
-
-            const newPayload = { id: 'new-payload' };
-            unitTestListenerMock
-                .setup(m => m.transformChildResultForParent(fakeCm.payload, fakeFrames[0]))
-                .returns(_ => newPayload)
-                .verifiable(Times.once());
-
-            windowUtilsMock.setup(m => m.isTopWindow()).returns(_ => true);
-            topWindowCallbackMock.setup(m => m(newPayload)).verifiable(Times.once());
-
-            await commandFunc(fakeCm, fakeWindow);
-
-            topWindowCallbackMock.verifyAll();
-        });
-
-        test('forwards payload to parent window if in child frame', async () => {
-            const { commandId, commandFunc } =
-                captureOnResultFromChildFrameCallback(unitTestListenerMock);
-
-            htmlElementUtilsMock
-                .setup(m => m.getAllElementsByTagName('iframe'))
-                .returns(() => fakeFrames as any)
-                .verifiable(Times.atLeastOnce());
-
-            htmlElementUtilsMock
-                .setup(m => m.getContentWindow(fakeFrames[0] as HTMLIFrameElement))
-                .returns(_ => fakeWindow)
-                .verifiable(Times.once());
-
-            const newPayload = { id: 'new-payload' };
-            unitTestListenerMock
-                .setup(m => m.transformChildResultForParent(fakeCm.payload, fakeFrames[0]))
-                .returns(_ => newPayload)
-                .verifiable(Times.once());
-
-            windowUtilsMock.setup(m => m.isTopWindow()).returns(_ => false);
-
-            const parentWindow = {} as Window;
-            windowUtilsMock.setup(m => m.getParentWindow()).returns(() => parentWindow);
-            frameMessengerMock
-                .setup(m =>
-                    m.sendMessageToWindow(parentWindow, {
-                        command: commandId,
-                        payload: newPayload,
-                    }),
-                )
-                .verifiable(Times.once());
-
-            await commandFunc(fakeCm, fakeWindow);
-        });
-
-        test('throws error if unable to identify source window of message', async () => {
-            const { commandFunc } = captureOnResultFromChildFrameCallback(unitTestListenerMock);
-
-            htmlElementUtilsMock
-                .setup(m => m.getAllElementsByTagName('iframe'))
-                .returns(() => fakeFrames as any)
-                .verifiable(Times.atLeastOnce());
-
-            fakeFrames.forEach(f => {
-                htmlElementUtilsMock
-                    .setup(m => m.getContentWindow(f as HTMLIFrameElement))
-                    .returns(_ => null)
-                    .verifiable(Times.once());
-            });
-
-            expect(commandFunc(fakeCm, fakeWindow)).rejects.toThrow(
-                'unable to get frame element for the given window',
-            );
-        });
-
-        type CommandFunction = {
-            commandId: string;
-            commandFunc: PromiseWindowCommandMessageListener;
-        };
-        const captureOnResultFromChildFrameCallback = (
-            unitTestListenerMock: IMock<AllFrameRunnerTarget<UnitTestTargetType>>,
-            topWindowCallback?: (result: UnitTestTargetType) => void,
-        ): CommandFunction => {
-            const frameRunner = getFrameRunnerInstance(
-                frameMessengerMock,
-                htmlElementUtilsMock,
-                windowUtilsMock,
-                unitTestListenerMock,
-            );
-            frameRunner.topWindowCallback = topWindowCallback;
-
-            const commands: Record<string, PromiseWindowCommandMessageListener> = {};
-            frameMessengerMock
-                .setup(m => m.addMessageListener(It.isAnyString(), It.isAny()))
-                .callback((command: string, func: PromiseWindowCommandMessageListener) => {
-                    commands[command] = func;
-                })
-                .verifiable(Times.exactly(3));
-
-            unitTestListenerMock
-                .setup(m => m.setResultCallback(It.isAny()))
-                .verifiable(Times.once());
-
-            frameRunner.initialize();
-
-            const onResultFromChildFrameCommand = (frameRunner as any)
-                .onResultFromChildFrameCommand;
-            return {
+            stop: {
+                commandId: stopCommand,
+                commandFunc: commands[stopCommand],
+            },
+            onResultFromChildFrame: {
                 commandId: onResultFromChildFrameCommand,
                 commandFunc: commands[onResultFromChildFrameCommand],
-            };
+            },
         };
-    });
+    };
 
     const getFrameRunnerInstance = (
         _frameMessengerMock: IMock<FrameMessenger>,
@@ -297,7 +331,7 @@ describe('AllFrameRunnerTests', () => {
         _listenerMock: IMock<AllFrameRunnerTarget<UnitTestTargetType>>,
     ) => {
         _listenerMock
-            .setup(m => m.name)
+            .setup(m => m.commandSuffix)
             .returns(_ => 'unit-test')
             .verifiable(Times.atLeastOnce());
 
