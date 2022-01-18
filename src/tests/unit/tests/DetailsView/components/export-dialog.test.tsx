@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
-import { ReportExportService } from 'report-export/types/report-export-service';
+import {
+    ReportExportService,
+    ReportExportServiceKey,
+} from 'report-export/types/report-export-service';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -17,10 +21,8 @@ import {
 describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
-    const detailsViewActionMessageCreatorMock = Mock.ofType(
-        DetailsViewActionMessageCreator,
-        MockBehavior.Strict,
-    );
+    const exportResultsClickedTelemetryMock =
+        Mock.ofType<(reportExportFormat, selectedServiceKey, event) => void>();
     const fileProviderMock = Mock.ofType<FileURLProvider>();
     const eventStub = 'event stub' as any;
     const generateExportsMock = Mock.ofInstance(() => {});
@@ -52,12 +54,11 @@ describe('ExportDialog', () => {
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
-        detailsViewActionMessageCreatorMock.reset();
+        exportResultsClickedTelemetryMock.reset();
         generateExportsMock.reset();
         fileProviderMock.reset();
 
         const deps = {
-            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             fileURLProvider: fileProviderMock.object,
         };
 
@@ -76,6 +77,7 @@ describe('ExportDialog', () => {
             featureFlagStoreData: {},
             afterDismissed: afterDismissedMock.object,
             reportExportServices: reportExportServicesStub,
+            exportResultsClickedTelemetry: exportResultsClickedTelemetryMock.object,
         };
     });
 
@@ -97,8 +99,8 @@ describe('ExportDialog', () => {
 
         it('with export dropdown', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-            detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
+            exportResultsClickedTelemetryMock
+                .setup(a => a(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             props.isOpen = true;
@@ -116,8 +118,8 @@ describe('ExportDialog', () => {
         it('without export dropdown due to lack of service', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
             onlyIncludeHtmlService();
-            detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
+            exportResultsClickedTelemetryMock
+                .setup(a => a(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             props.isOpen = true;
@@ -162,7 +164,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            detailsViewActionMessageCreatorMock.verifyAll();
+            exportResultsClickedTelemetryMock.verifyAll();
             generateExportsMock.verifyAll();
         });
 
@@ -180,8 +182,8 @@ describe('ExportDialog', () => {
                 .verifiable(Times.exactly(2));
             generateExportsMock.setup(getter => getter()).verifiable(Times.once());
 
-            detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
+            exportResultsClickedTelemetryMock
+                .setup(a => a(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);
@@ -193,7 +195,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            detailsViewActionMessageCreatorMock.verifyAll();
+            exportResultsClickedTelemetryMock.verifyAll();
             generateExportsMock.verifyAll();
         });
 
@@ -216,7 +218,7 @@ describe('ExportDialog', () => {
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
-            detailsViewActionMessageCreatorMock.verifyAll();
+            exportResultsClickedTelemetryMock.verifyAll();
             generateExportsMock.verifyAll();
         });
     });
