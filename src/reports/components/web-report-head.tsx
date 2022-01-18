@@ -7,5 +7,11 @@ import { Head } from 'reports/components/head';
 import * as detailsViewBundledStyles from '../../DetailsView/bundled-details-view-styles';
 
 export const WebReportHead = NamedFC('WebReportHead', () => {
-    return <Head titlePreface={title} bundledStyles={detailsViewBundledStyles} />;
+    return (
+        <Head
+            titlePreface={title}
+            bundledStyles={detailsViewBundledStyles}
+            title="FastPass results"
+        />
+    );
 });

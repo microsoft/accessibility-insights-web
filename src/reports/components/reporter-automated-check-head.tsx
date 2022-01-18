@@ -7,5 +7,11 @@ import { Head } from 'reports/components/head';
 import * as reporterBundledStyles from '../bundled-reporter-styles';
 
 export const ReporterHead = NamedFC('ReporterHead', () => {
-    return <Head titlePreface={brand} bundledStyles={reporterBundledStyles} />;
+    return (
+        <Head
+            titlePreface={brand}
+            bundledStyles={reporterBundledStyles}
+            title="automated checks result"
+        />
+    );
 });
