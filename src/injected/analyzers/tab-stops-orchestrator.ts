@@ -13,7 +13,7 @@ import { FocusableElement } from 'tabbable';
 export class TabStopRequirementOrchestrator
     implements AllFrameRunnerTarget<TabStopRequirementResult>
 {
-    public readonly name: string = 'TabStopRequirementOrchestrator';
+    public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
     private tabbableTabStops: FocusableElement[];
     private actualTabStops: Set<HTMLElement> = new Set();
     private latestVisitedTabStop: HTMLElement = null;

@@ -9,7 +9,7 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
     private reportResults: (payload: TabStopEvent) => Promise<void>;
 
     constructor(
-        public readonly name: string,
+        public readonly commandSuffix: string,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
         private readonly dom: Document,
         private readonly getCurrentDate: typeof DateProvider.getCurrentDate = DateProvider.getCurrentDate,
