@@ -67,12 +67,12 @@ export class AllFrameRunner<T> {
 
     public start = async () => {
         this.listener.start();
-        this.sendCommandToFrames(this.startCommand);
+        await this.sendCommandToFrames(this.startCommand);
     };
 
     public stop = async () => {
         this.listener.stop();
-        this.sendCommandToFrames(this.stopCommand);
+        await this.sendCommandToFrames(this.stopCommand);
     };
 
     private reportResultsThroughFrames = async (
