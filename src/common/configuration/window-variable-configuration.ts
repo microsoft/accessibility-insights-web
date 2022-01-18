@@ -16,10 +16,13 @@ const globalVariableName = 'insights';
 // but without access to the fs module (eg, all extension contexts, electron renderer processes)
 export class WindowVariableConfiguration implements ConfigAccessor, ConfigMutator {
     public set config(value: InsightsConfiguration) {
-        window[globalVariableName] = value;
+        globalThis[globalVariableName] = value;
     }
     public get config(): InsightsConfiguration {
-        return (window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults));
+        return (globalThis[globalVariableName] = defaultsDeep(
+            globalThis[globalVariableName],
+            defaults,
+        ));
     }
 
     public reset(): ConfigMutator {
