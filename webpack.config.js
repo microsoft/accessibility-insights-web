@@ -100,7 +100,7 @@ const commonConfig = {
         extensions: ['.tsx', '.ts', '.js'],
         // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
         // See https://github.com/dequelabs/axe-core/issues/2873
-        fallback: { crypto: false },
+        fallback: { crypto: require.resolve('crypto-browserify'), stream: false },
     },
     plugins: commonPlugins,
     performance: {
