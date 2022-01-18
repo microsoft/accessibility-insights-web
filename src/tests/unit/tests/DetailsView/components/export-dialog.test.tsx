@@ -1,18 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
-import {
-    ReportExportService,
-    ReportExportServiceKey,
-} from 'report-export/types/report-export-service';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { ReportExportService } from 'report-export/types/report-export-service';
+import { It, Mock, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     ExportDialog,
     ExportDialogProps,
