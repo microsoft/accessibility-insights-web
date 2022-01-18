@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { AxeReportParameters, reporterFactory } from 'accessibility-insights-report';
-import { resetIds } from 'office-ui-fabric-react';
+import { resetIds } from '@fluentui/react';
 import * as prettier from 'prettier';
 
 import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';

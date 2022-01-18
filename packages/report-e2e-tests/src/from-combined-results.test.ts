@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { reporterFactory, CombinedReportParameters } from 'accessibility-insights-report';
-import { resetIds } from 'office-ui-fabric-react';
+import { resetIds } from '@fluentui/react';
 import * as prettier from 'prettier';
 
 import { combinedResultsWithBaselineAwareIssues } from './examples/combined-results-with-baseline-aware-issues';
