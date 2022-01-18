@@ -122,6 +122,11 @@ export type ExportResultsTelemetryData = {
     exportResultsService: ReportExportServiceKey;
 } & BaseTelemetryData;
 
+export type ExportFastPassResultsTelemetryData = {
+    wereAutomatedChecksRun: boolean;
+    tabStopRequirementInstanceCount: TabStopRequirementInstanceCount;
+} & ExportResultsTelemetryData;
+
 export type DetailsViewOpenTelemetryData = {
     selectedTest: string;
 } & BaseTelemetryData;
@@ -269,6 +274,7 @@ export type TelemetryData =
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
     | ExportResultsTelemetryData
+    | ExportFastPassResultsTelemetryData
     | DetailsViewOpenTelemetryData
     | DetailsViewOpenedTelemetryData
     | SettingsOpenTelemetryData
