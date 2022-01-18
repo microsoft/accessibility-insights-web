@@ -31,6 +31,7 @@ import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
@@ -109,6 +110,25 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         event: React.MouseEvent<HTMLElement>,
     ): void {
         const telemetryData = this.telemetryFactory.forExportedResults(
+            reportExportFormat,
+            selectedServiceKey,
+            event,
+            TelemetryEvents.TelemetryEventSource.DetailsView,
+        );
+
+        this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
+    }
+
+    public exportResultsClickedFastPass(
+        tabStopRequirementData: TabStopRequirementState,
+        wereAutomatedChecksRun: boolean,
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ): void {
+        const telemetryData = this.telemetryFactory.forExportedResultsWithFastPassData(
+            tabStopRequirementData,
+            wereAutomatedChecksRun,
             reportExportFormat,
             selectedServiceKey,
             event,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
@@ -11,6 +12,7 @@ import {
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 
 export type ReportExportDialogFactoryDeps = {
@@ -68,6 +70,12 @@ export function getReportExportDialogForAssessment(
         dismissExportDialog,
         afterDialogDismissed,
         reportExportServices: deps.reportExportServiceProvider.servicesForAssessment(),
+        exportResultsClickedTelemetry: (reportExportFormat, selectedServiceKey, event) =>
+            deps.detailsViewActionMessageCreator.exportResultsClicked(
+                reportExportFormat,
+                selectedServiceKey,
+                event,
+            ),
     };
     return <ReportExportComponent {...dialogProps} />;
 }
@@ -105,6 +113,20 @@ export function getReportExportDialogForFastPass(
             description,
         });
 
+    const exportResultsClickedTelemetry = (
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ) => {
+        deps.detailsViewActionMessageCreator.exportResultsClickedFastPass(
+            props.tabStopRequirementData,
+            props.automatedChecksCardsViewData !== null,
+            reportExportFormat,
+            selectedServiceKey,
+            event,
+        );
+    };
+
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
         pageTitle: props.scanMetadata.targetAppInfo.name,
@@ -119,6 +141,7 @@ export function getReportExportDialogForFastPass(
         dismissExportDialog,
         afterDialogDismissed,
         reportExportServices: deps.reportExportServiceProvider.servicesForFastPass(),
+        exportResultsClickedTelemetry,
     };
 
     return <ReportExportComponent {...dialogProps} />;

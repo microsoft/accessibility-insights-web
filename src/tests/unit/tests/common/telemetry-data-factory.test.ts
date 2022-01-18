@@ -6,6 +6,7 @@ import {
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    ExportFastPassResultsTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
@@ -24,6 +25,7 @@ import {
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 import { EventStubFactory } from './../../common/event-stub-factory';
@@ -640,6 +642,66 @@ describe('TelemetryDataFactoryTest', () => {
             exportResultsService: serviceKey,
             triggeredBy: 'mouseclick',
             source: testSource,
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forExportedResults', () => {
+        const serviceKey = 'html';
+        const event = mouseClickEvent;
+        const exportResultsType = 'FastPass';
+        const tabStopRequirementData = {
+            'focus-indicator': {
+                status: 'pass',
+                instances: [],
+                isExpanded: false,
+            },
+            'input-focus': {
+                instances: [
+                    { id: 'test-id-1', description: 'test desc 1' },
+                    { id: 'test-id-2', description: 'test desc 2' },
+                ],
+                status: 'fail',
+                isExpanded: false,
+            },
+            'keyboard-navigation': {
+                instances: [],
+                isExpanded: false,
+                status: 'unknown',
+            },
+            'keyboard-traps': {
+                instances: [],
+                isExpanded: false,
+                status: 'fail',
+            },
+            'tab-order': {
+                instances: [],
+                isExpanded: false,
+                status: 'pass',
+            },
+        } as TabStopRequirementState;
+        const wereAutomatedChecksRun = true;
+        const result = testObject.forExportedResultsWithFastPassData(
+            tabStopRequirementData,
+            wereAutomatedChecksRun,
+            exportResultsType,
+            serviceKey,
+            event,
+            testSource,
+        );
+
+        const expected: ExportFastPassResultsTelemetryData = {
+            exportResultsType: exportResultsType,
+            exportResultsService: serviceKey,
+            triggeredBy: 'mouseclick',
+            source: testSource,
+            wereAutomatedChecksRun: true,
+            tabStopRequirementInstanceCount: {
+                pass: { 'focus-indicator': 1, 'tab-order': 1 },
+                unknown: { 'keyboard-navigation': 1 },
+                fail: { 'input-focus': 2, 'keyboard-traps': 0 },
+            },
         };
 
         expect(result).toEqual(expected);

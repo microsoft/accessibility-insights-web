@@ -50,6 +50,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
     }
   }
   dismissExportDialog={[Function]}
+  exportResultsClickedTelemetry={[Function]}
   featureFlagStoreData={Object {}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
@@ -128,6 +129,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
     }
   }
   dismissExportDialog={[Function]}
+  exportResultsClickedTelemetry={[Function]}
   featureFlagStoreData={Object {}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}

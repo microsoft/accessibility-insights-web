@@ -224,6 +224,25 @@ describe('ReportExportDialogFactory', () => {
 
             afterDialogDismissedMock.verify(d => d(), Times.once());
         });
+
+        test('exportResultsClickedTelemetry sends exportResultsClicked message', () => {
+            const reportExportFormat = 'Assessment';
+            const selectedServiceKey = 'html';
+
+            detailsViewActionMessageCreatorMock
+                .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
+                .verifiable(Times.once());
+
+            const dialog = getReportExportDialogForAssessment(props);
+
+            dialog.props.exportResultsClickedTelemetry(
+                reportExportFormat,
+                selectedServiceKey,
+                null,
+            );
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
     });
 
     describe('getReportExportDialogForFastPass', () => {
@@ -285,6 +304,35 @@ describe('ReportExportDialogFactory', () => {
             dialog.props.afterDialogDismissed();
 
             afterDialogDismissedMock.verify(d => d(), Times.once());
+        });
+
+        test('exportResultsClickedTelemetry sends exportResultsClickedFastPass message', () => {
+            setupShouldShowReportExportButton(true);
+
+            const reportExportFormat = 'FastPass';
+            const selectedServiceKey = 'html';
+
+            detailsViewActionMessageCreatorMock
+                .setup(d =>
+                    d.exportResultsClickedFastPass(
+                        props.tabStopRequirementData,
+                        false,
+                        reportExportFormat,
+                        selectedServiceKey,
+                        null,
+                    ),
+                )
+                .verifiable(Times.once());
+
+            const dialog = getReportExportDialogForFastPass(props);
+
+            dialog.props.exportResultsClickedTelemetry(
+                reportExportFormat,
+                selectedServiceKey,
+                null,
+            );
+
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
     });
 });
