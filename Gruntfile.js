@@ -443,7 +443,19 @@ module.exports = function (grunt) {
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
             '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
-        const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
+        const configJS = `
+            ${copyrightHeader}
+            window.insights = ${configJSON};
+            chrome.runtime.onMessage.addListener(message => {
+                let { type, context } = message;
+                if(type === 'setGlobalContext') {
+                    window.featureFlagsController = context.featureFlagsController;
+                    window.userConfigurationController = context.userConfigurationController;
+                }
+                return true;
+            });
+            chrome.runtime.sendMessage({ messageType: 'getGlobalContext' }, response => console.log(response));
+        `;
         grunt.file.write(configJSPath, configJS);
     });
 
@@ -467,6 +479,7 @@ module.exports = function (grunt) {
             // Settings that are specific to MV3
             merge(manifestJSON, {
                 action: {
+                    default_popup: 'popup/popup.html',
                     default_icon: {
                         20: config.options.icon16,
                         40: config.options.icon48,
@@ -475,7 +488,75 @@ module.exports = function (grunt) {
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
+                content_scripts: [
+                    {
+                        matches: ['*://*/*'],
+                        js: ['insights.config.js'],
+                    },
+                ],
                 host_permissions: [],
+                web_accessible_resources: [
+                    {
+                        resources: [
+                            'insights.html',
+                            'assessments/*',
+                            'injected/*',
+                            'background/*',
+                            'common/*',
+                            'DetailsView/*',
+                            'bundle/*',
+                            'NOTICE.html',
+                        ],
+                        matches: ['<all_urls>'],
+                    },
+                ],
+                commands: {
+                    _execute_browser_action: {
+                        suggested_key: {
+                            windows: 'Alt+Shift+K',
+                            mac: 'Alt+Shift+K',
+                            chromeos: 'Alt+Shift+K',
+                            linux: 'Alt+Shift+K',
+                        },
+                        description: 'Activate the extension',
+                    },
+                    '01_toggle-issues': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+1',
+                            mac: 'Alt+Shift+1',
+                            chromeos: 'Alt+Shift+1',
+                            linux: 'Alt+Shift+1',
+                        },
+                        description: 'Toggle Automated checks',
+                    },
+                    '02_toggle-landmarks': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+2',
+                            mac: 'Alt+Shift+2',
+                            chromeos: 'Alt+Shift+2',
+                            linux: 'Alt+Shift+2',
+                        },
+                        description: 'Toggle Landmarks',
+                    },
+                    '03_toggle-headings': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+3',
+                            mac: 'Alt+Shift+3',
+                            chromeos: 'Alt+Shift+3',
+                            linux: 'Alt+Shift+3',
+                        },
+                        description: 'Toggle Headings',
+                    },
+                    '04_toggle-tabStops': {
+                        description: 'Toggle Tab stops',
+                    },
+                    '05_toggle-color': {
+                        description: 'Toggle Color',
+                    },
+                    '06_toggle-needsReview': {
+                        description: 'Toggle Needs review',
+                    },
+                },
             });
         } else {
             // Settings that are specific to MV2. Note that many of these settings--especially the
