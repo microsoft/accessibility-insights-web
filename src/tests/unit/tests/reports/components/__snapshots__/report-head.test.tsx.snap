@@ -7,7 +7,8 @@ exports[`Head renders 1`] = `
   />
   <title>
     some title preface
-     FastPass results
+     
+    some title
   </title>
   <style
     dangerouslySetInnerHTML={
@@ -33,6 +34,7 @@ exports[`ReporterHead renders 1`] = `
       "styleSheet": "<<CSS:../../packages/report/bundle/report.css>>",
     }
   }
+  title="automated checks result"
   titlePreface="Accessibility Insights"
 />
 `;
@@ -44,6 +46,7 @@ exports[`WebReportHead renders 1`] = `
       "styleSheet": "<<CSS:detailsView.css>>",
     }
   }
+  title="FastPass results"
   titlePreface="Accessibility Insights for Web"
 />
 `;
