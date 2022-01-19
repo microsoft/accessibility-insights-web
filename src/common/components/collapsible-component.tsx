@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import * as styles from 'common/components/collapsible-component.scss';
-import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {

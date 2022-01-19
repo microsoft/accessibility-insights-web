@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { kebabCase } from 'lodash';
 import { LinkBase } from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { Link } from '@fluentui/react';
+import { kebabCase } from 'lodash';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';

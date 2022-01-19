@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INav, INavLink, LinkBase, Nav } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'DetailsView/components/base-left-nav.scss';
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
-import { INav, INavLink, LinkBase, Nav } from '@fluentui/react';
 import * as React from 'react';
 
 export type onBaseLeftNavItemClick = (

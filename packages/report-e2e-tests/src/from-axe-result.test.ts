@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { AxeReportParameters, reporterFactory } from 'accessibility-insights-report';
 import { resetIds } from '@fluentui/react';
+import { AxeReportParameters, reporterFactory } from 'accessibility-insights-report';
 import * as prettier from 'prettier';
 
 import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
