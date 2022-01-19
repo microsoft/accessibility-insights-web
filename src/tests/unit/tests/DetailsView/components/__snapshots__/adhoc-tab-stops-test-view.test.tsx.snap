@@ -85,6 +85,22 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         }
       }
     />
+    <FocusComponent
+      configuration={
+        Object {
+          "displayableData": Object {
+            "title": "test title",
+            "toggleLabel": "test toggle label",
+          },
+          "getStoreData": [Function],
+        }
+      }
+      visualizationStoreData={
+        Object {
+          "tests": Object {},
+        }
+      }
+    />
   </div>
 </div>
 `;
@@ -170,6 +186,22 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       failureInstanceState={
         Object {
           "actionType": "CREATE",
+        }
+      }
+    />
+    <FocusComponent
+      configuration={
+        Object {
+          "displayableData": Object {
+            "title": "test title",
+            "toggleLabel": "test toggle label",
+          },
+          "getStoreData": [Function],
+        }
+      }
+      visualizationStoreData={
+        Object {
+          "tests": Object {},
         }
       }
     />

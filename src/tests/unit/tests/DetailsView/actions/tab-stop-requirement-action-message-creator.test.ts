@@ -205,4 +205,24 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.verifyAll();
     });
+
+    test('updateTabbingCompleted', () => {
+        const tabbingCompleted = true;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.TabbingCompleted,
+            payload: {
+                tabbingCompleted,
+            },
+        };
+
+        testSubject.updateTabbingCompleted(tabbingCompleted);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
 });

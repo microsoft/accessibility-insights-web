@@ -65,10 +65,8 @@ export class AnalyzerController {
         this.analyzerStateUpdateHandler.handleUpdate(this.visualizationstore.getState());
     };
 
-    // TODO better place for this?
     private onResultsChangedState = (): void => {
         if (this.visualizationResultsStore.getState().tabStops.tabbingCompleted) {
-            // visualization remains, but no new tabstops are added
             this.teardown(AdHocTestkeys.TabStops);
         }
     };

@@ -108,8 +108,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
-    // Called when toggle is turned off-> clear tabbed elements so we can't get the visualization back
-    // For all intents and purposes right now this resets all data
     private onTabStopsDisabled = (): void => {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
