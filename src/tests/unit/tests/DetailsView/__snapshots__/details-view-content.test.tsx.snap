@@ -333,6 +333,7 @@ exports[` render renders normally 1`] = `
             },
           },
           "tabbedElements": null,
+          "tabbingCompleted": false,
         },
       }
     }
