@@ -39,8 +39,6 @@ export class FocusComponent extends React.Component<FocusComponentProps> {
             this.props.visualizationStoreData.tests,
         );
         if (tabbing.enabled) {
-            console.log('Send message to end tabbing...');
-            // TODO when will we need to set this back to false?
             this.props.tabStopRequirementActionMessageCreator.updateTabbingCompleted(true);
         }
     };

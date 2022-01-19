@@ -112,6 +112,14 @@ export class SelectorMapHelper {
                 selectorMap = visualizationScanResultData.landmarks.fullAxeResultsMap;
                 break;
             case VisualizationType.TabStops:
+                // TODO options if we want to be able to toggle the visualization on and off without
+                // user having to redo tabbing after toggle off:
+                //      - Add separate list ('tabbedResultsMap'?) analogous to tabbedElements that can
+                //          be safely reset when visualization is toggled off.
+                //      - Add boolean ('showingVisualization'?) and update IsVisualizationEnabledCallback
+                //          to return false when type of test is tabstops and showingVisualization is false.
+                //      - Add boolean ('showingVisualization'?) and add logic here to return null when
+                //          false.
                 selectorMap = visualizationScanResultData.tabStops.tabbedElements;
                 break;
             default:

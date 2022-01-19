@@ -109,6 +109,7 @@ describe('AnalyzerControllerTests', () => {
 
         testObject = new AnalyzerController(
             visualizationStoreMock.object,
+            null, // TODO
             featureFlagStoreStoreMock.object,
             scopingStoreMock.object,
             visualizationConfigurationFactoryMock.object,

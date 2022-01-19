@@ -23,6 +23,7 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -54,6 +55,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
                 requirements,
+                tabbingCompleted: false,
             },
         };
 
@@ -100,15 +102,14 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
             this.onToggleTabStopRequirementExpandCollapse,
         );
-
-        // TODO
-        this.tabStopRequirementActions.updateTabbingCompleted.addListener(() => {
-            console.log('Received tabbing completed in background store');
-        });
-
+        this.tabStopRequirementActions.updateTabbingCompleted.addListener(
+            this.onUpdateTabbingCompleted,
+        );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
+    // Called when toggle is turned off-> clear tabbed elements so we can't get the visualization back
+    // For all intents and purposes right now this resets all data
     private onTabStopsDisabled = (): void => {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
@@ -248,4 +249,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
         return selectedRows;
     }
+
+    private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
+        this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
+        this.emitChanged();
+    };
 }

@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -17,6 +19,7 @@ export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private analyzers: DictionaryStringTo<Analyzer>;
     private visualizationstore: BaseStore<VisualizationStoreData>;
+    private visualizationResultsStore: BaseStore<VisualizationScanResultData>;
     private scopingStore: BaseStore<ScopingStoreData>;
     private featureFlagStore: BaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -25,6 +28,7 @@ export class AnalyzerController {
 
     constructor(
         visualizationstore: BaseStore<VisualizationStoreData>,
+        visualizationResultsStore: BaseStore<VisualizationScanResultData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
         scopingStore: BaseStore<ScopingStoreData>,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -34,6 +38,7 @@ export class AnalyzerController {
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
+        this.visualizationResultsStore = visualizationResultsStore;
         this.scopingStore = scopingStore;
         this.featureFlagStore = featureFlagStore;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
@@ -46,6 +51,7 @@ export class AnalyzerController {
     public listenToStore(): void {
         this.initializeAnalyzers();
         this.visualizationstore.addChangedListener(this.onChangedState);
+        this.visualizationResultsStore.addChangedListener(this.onResultsChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
         this.scopingStore.addChangedListener(this.onChangedState);
         this.onChangedState();
@@ -57,6 +63,14 @@ export class AnalyzerController {
         }
 
         this.analyzerStateUpdateHandler.handleUpdate(this.visualizationstore.getState());
+    };
+
+    // TODO better place for this?
+    private onResultsChangedState = (): void => {
+        if (this.visualizationResultsStore.getState().tabStops.tabbingCompleted) {
+            // visualization remains, but no new tabstops are added
+            this.teardown(AdHocTestkeys.TabStops);
+        }
     };
 
     protected teardown = (id: string): void => {
