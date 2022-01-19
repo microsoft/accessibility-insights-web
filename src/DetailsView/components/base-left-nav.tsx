@@ -7,7 +7,7 @@ import { NavLinkButton } from 'DetailsView/components/nav-link-button';
 import * as React from 'react';
 
 export type onBaseLeftNavItemClick = (
-    event: React.MouseEvent<HTMLElement | LinkBase, MouseEvent>,
+    event: React.MouseEvent<HTMLElement | typeof LinkBase, MouseEvent>,
     item: BaseLeftNavLink,
 ) => void;
 export type onBaseLeftNavItemRender = (link: BaseLeftNavLink) => JSX.Element;

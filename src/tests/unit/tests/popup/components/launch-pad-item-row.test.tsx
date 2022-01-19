@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { LinkBase } from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { Link } from '@fluentui/react';
+import { shallow } from 'enzyme';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import {
@@ -86,10 +85,9 @@ describe('LaunchPadItemRow', () => {
 
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
 
-        const component = React.createElement(LaunchPadItemRow, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedComponentWithType(testObject, LinkBase);
-        link.props.onClick(event);
+        const renderedItemRow = shallow(<LaunchPadItemRow {...props} />);
+        const link = renderedItemRow.find(Link);
+        link.prop('onClick')(event);
 
         onClickTitleMock.verifyAll();
     });
