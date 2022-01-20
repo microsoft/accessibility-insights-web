@@ -446,15 +446,6 @@ module.exports = function (grunt) {
         const configJS = `
             ${copyrightHeader}
             window.insights = ${configJSON};
-            chrome.runtime.onMessage.addListener(message => {
-                let { type, context } = message;
-                if(type === 'setGlobalContext') {
-                    window.featureFlagsController = context.featureFlagsController;
-                    window.userConfigurationController = context.userConfigurationController;
-                }
-                return true;
-            });
-            chrome.runtime.sendMessage({ messageType: 'getGlobalContext' }, response => console.log(response));
         `;
         grunt.file.write(configJSPath, configJS);
     });
@@ -488,12 +479,6 @@ module.exports = function (grunt) {
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                content_scripts: [
-                    {
-                        matches: ['*://*/*'],
-                        js: ['insights.config.js'],
-                    },
-                ],
                 host_permissions: [],
                 web_accessible_resources: [
                     {

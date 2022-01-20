@@ -212,29 +212,12 @@ async function initialize(): Promise<void> {
         browserAdapter,
     );
 
-    //TODO put this in an action crator
-    browserAdapter.addListenerOnMessage(async (message, sender) => {
-        console.log(message, sender, sender.tab);
-        if (message.messageType !== 'getGlobalContext') {
-            return;
-        }
-        const tabId = sender.tab?.id;
-        if (tabId && tabId > 0) {
-            const globalContextMessage = {
-                type: 'setGlobalContext',
-                context: {
-                    featureFlagsController: globalContext.featureFlagsController,
-                    userConfigurationController: globalContext.userConfigurationController,
-                },
-            };
-            await browserAdapter.sendMessageToTab(tabId, globalContextMessage);
-            return true;
-        }
-    });
-
     postMessageContentHandler.initialize();
 
     await cleanKeysFromStoragePromise;
+
+    globalThis.insightsFeatureFlags = globalContext.featureFlagsController;
+    globalThis.insightsUserConfiguration = globalContext.userConfigurationController;
 }
 
 initialize()
