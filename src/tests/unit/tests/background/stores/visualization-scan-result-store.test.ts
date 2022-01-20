@@ -440,6 +440,7 @@ describe('VisualizationScanResultStoreTest', () => {
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withTabStopRequirement(requirement)
             .build();
+        expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
 
         createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
