@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const commander = require('commander');
-const gitP = require('simple-git/promise');
+const simpleGit = require('simple-git');
 
 const main = async () => {
     const params = parseCommandLineArguments();
@@ -20,7 +20,7 @@ const main = async () => {
 };
 
 const getGitLogs = async (from, to) => {
-    const git = gitP();
+    const git = simpleGit();
 
     const gitLogs = await git.log({ from, to });
 
