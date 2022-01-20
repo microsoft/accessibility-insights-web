@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
+import {
+    ChoiceGroup,
+    IChoiceGroup,
+    IChoiceGroupOption,
+    IChoiceGroupOptionProps,
+} from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { Link } from '@fluentui/react';
 import { isEqual } from 'lodash';
@@ -72,7 +77,7 @@ export class TestStatusChoiceGroup extends React.Component<
         };
     }
 
-    private onRenderOptionLabel = (option: IChoiceGroupOption): JSX.Element | null => {
+    private onRenderOptionLabel = (option: IChoiceGroupOptionProps): JSX.Element | null => {
         return (
             <span id={option.labelId} className={styles.radioLabel}>
                 {this.props.isLabelVisible ? option.text : ''}
