@@ -85,6 +85,16 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         }
       }
     />
+    <FlaggedComponent
+      enableJSXElement={
+        <FocusComponent
+          deps="stub-deps"
+          tabbingEnabled={true}
+        />
+      }
+      featureFlag="tabStopsAutomation"
+      featureFlagStoreData={Object {}}
+    />
   </div>
 </div>
 `;
@@ -172,6 +182,16 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           "actionType": "CREATE",
         }
       }
+    />
+    <FlaggedComponent
+      enableJSXElement={
+        <FocusComponent
+          deps="stub-deps"
+          tabbingEnabled={true}
+        />
+      }
+      featureFlag="tabStopsAutomation"
+      featureFlagStoreData={Object {}}
     />
   </div>
 </div>

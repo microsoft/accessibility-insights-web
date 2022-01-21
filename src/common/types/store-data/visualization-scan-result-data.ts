@@ -40,6 +40,7 @@ export type TabStopRequirementState = {
 interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
     requirements?: TabStopRequirementState;
+    tabbingCompleted: boolean;
 }
 
 export interface VisualizationScanResultData {

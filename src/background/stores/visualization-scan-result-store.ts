@@ -23,6 +23,7 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -54,6 +55,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
                 requirements,
+                tabbingCompleted: false,
             },
         };
 
@@ -99,6 +101,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         );
         this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
             this.onToggleTabStopRequirementExpandCollapse,
+        );
+        this.tabStopRequirementActions.updateTabbingCompleted.addListener(
+            this.onUpdateTabbingCompleted,
         );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
@@ -243,4 +248,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
         return selectedRows;
     }
+
+    private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
+        this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
+        this.emitChanged();
+    };
 }

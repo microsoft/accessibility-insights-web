@@ -8,6 +8,7 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from './action-payloads';
@@ -23,4 +24,5 @@ export class TabStopRequirementActions {
         new Action<ResetTabStopRequirementStatusPayload>();
     public readonly toggleTabStopRequirementExpand =
         new Action<ToggleTabStopRequirementExpandPayload>();
+    public readonly updateTabbingCompleted = new Action<UpdateTabbingCompletedPayload>();
 }

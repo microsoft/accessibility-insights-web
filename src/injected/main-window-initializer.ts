@@ -343,6 +343,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
+            this.visualizationScanResultStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.visualizationConfigurationFactory,

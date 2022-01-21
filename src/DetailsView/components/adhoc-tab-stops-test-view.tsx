@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { CollapsibleComponent } from 'common/components/collapsible-component';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
@@ -39,7 +42,8 @@ export type AdhocTabStopsTestViewDeps = {
 } & TabStopsRequirementsTableDeps &
     TabStopsFailedInstancePanelDeps &
     TabStopsFailedInstanceSectionDeps &
-    ContentLinkDeps;
+    ContentLinkDeps &
+    FocusComponentDeps;
 
 export interface AdhocTabStopsTestViewProps {
     deps: AdhocTabStopsTestViewDeps;
@@ -150,6 +154,13 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         deps={props.deps}
                         failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
                         requirementState={requirementState}
+                    />
+                    <FlaggedComponent
+                        featureFlag={FeatureFlags.tabStopsAutomation}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        enableJSXElement={
+                            <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+                        }
                     />
                 </div>
             </div>

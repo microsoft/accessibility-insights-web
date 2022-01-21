@@ -5,6 +5,7 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+    UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
@@ -511,6 +512,22 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
 
         createStoreTesterForTabStopRequirementActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onUpdateTabbingCompleted', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabbingCompleted(true)
+            .build();
+
+        const payload: UpdateTabbingCompletedPayload = {
+            tabbingCompleted: true,
+        };
+
+        createStoreTesterForTabStopRequirementActions('updateTabbingCompleted')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });

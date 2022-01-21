@@ -8,6 +8,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -103,6 +104,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -121,6 +123,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -167,6 +170,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -265,6 +269,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -283,6 +288,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -337,6 +343,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -355,6 +362,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

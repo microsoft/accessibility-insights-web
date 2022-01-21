@@ -197,6 +197,7 @@ exports[`DetailsViewBody render render 1`] = `
               },
             },
             "tabbedElements": null,
+            "tabbingCompleted": false,
           },
         }
       }
@@ -523,6 +524,7 @@ exports[`DetailsViewBody render render 1`] = `
                 },
               },
               "tabbedElements": null,
+              "tabbingCompleted": false,
             },
           }
         }
@@ -856,6 +858,7 @@ exports[`DetailsViewBody render render 1`] = `
                     },
                   },
                   "tabbedElements": null,
+                  "tabbingCompleted": false,
                 },
               }
             }
