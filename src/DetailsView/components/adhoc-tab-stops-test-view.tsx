@@ -159,11 +159,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         featureFlag={FeatureFlags.tabStopsAutomation}
                         featureFlagStoreData={props.featureFlagStoreData}
                         enableJSXElement={
-                            <FocusComponent
-                                deps={props.deps}
-                                configuration={props.configuration}
-                                visualizationStoreData={props.visualizationStoreData}
-                            />
+                            <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
                         }
                     />
                 </div>

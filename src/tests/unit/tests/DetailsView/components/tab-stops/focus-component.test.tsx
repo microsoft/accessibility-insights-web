@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 import { FocusComponent, FocusComponentProps } from 'common/components/focus-component';
-import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { WindowUtils } from 'common/window-utils';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { shallow } from 'enzyme';
@@ -13,19 +11,15 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('FocusComponent', () => {
     let props: FocusComponentProps;
     let windowUtilsMock: IMock<WindowUtils>;
-    let configurationMock: IMock<VisualizationConfiguration>;
-    let visualizationStoreData: VisualizationStoreData;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
-        configurationMock = Mock.ofType<VisualizationConfiguration>();
         tabStopRequirementActionMessageCreatorMock = Mock.ofType(
             TabStopRequirementActionMessageCreator,
         );
         props = {
-            visualizationStoreData,
-            configuration: configurationMock.object,
+            tabbingEnabled: true,
             deps: {
                 windowUtils: windowUtilsMock.object,
                 tabStopRequirementActionMessageCreator:
