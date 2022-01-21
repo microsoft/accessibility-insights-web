@@ -12,6 +12,7 @@ describe('FocusComponent', () => {
     let props: FocusComponentProps;
     let windowUtilsMock: IMock<WindowUtils>;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
+    let focusCallback: (event: Event) => void;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType(WindowUtils);
@@ -26,6 +27,11 @@ describe('FocusComponent', () => {
                     tabStopRequirementActionMessageCreatorMock.object,
             },
         };
+        windowUtilsMock
+            .setup(m => m.addEventListener(It.isAny(), 'focus', It.isAny(), It.isAny()))
+            .callback((win, command, callback, useCapture) => {
+                focusCallback = callback;
+            });
     });
 
     test('render', () => {
@@ -53,5 +59,30 @@ describe('FocusComponent', () => {
         testSubject.componentWillUnmount();
 
         windowUtilsMock.verifyAll();
+    });
+
+    test('message is sent when tabbing enabled', () => {
+        tabStopRequirementActionMessageCreatorMock
+            .setup(m => m.updateTabbingCompleted(true))
+            .verifiable(Times.once());
+
+        const testSubject = new FocusComponent(props);
+        testSubject.componentDidMount();
+        focusCallback(null);
+
+        tabStopRequirementActionMessageCreatorMock.verifyAll();
+    });
+
+    test('message is not sent when tabbing disabled', () => {
+        tabStopRequirementActionMessageCreatorMock
+            .setup(m => m.updateTabbingCompleted(true))
+            .verifiable(Times.never());
+
+        props.tabbingEnabled = false;
+        const testSubject = new FocusComponent(props);
+        testSubject.componentDidMount();
+        focusCallback(null);
+
+        tabStopRequirementActionMessageCreatorMock.verifyAll();
     });
 });

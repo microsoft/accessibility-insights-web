@@ -88,21 +88,8 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
     <FlaggedComponent
       enableJSXElement={
         <FocusComponent
-          configuration={
-            Object {
-              "displayableData": Object {
-                "title": "test title",
-                "toggleLabel": "test toggle label",
-              },
-              "getStoreData": [Function],
-            }
-          }
           deps="stub-deps"
-          visualizationStoreData={
-            Object {
-              "tests": Object {},
-            }
-          }
+          tabbingEnabled={true}
         />
       }
       featureFlag="tabStopsAutomation"
@@ -199,21 +186,8 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     <FlaggedComponent
       enableJSXElement={
         <FocusComponent
-          configuration={
-            Object {
-              "displayableData": Object {
-                "title": "test title",
-                "toggleLabel": "test toggle label",
-              },
-              "getStoreData": [Function],
-            }
-          }
           deps="stub-deps"
-          visualizationStoreData={
-            Object {
-              "tests": Object {},
-            }
-          }
+          tabbingEnabled={true}
         />
       }
       featureFlag="tabStopsAutomation"
