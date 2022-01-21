@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { FeatureFlags } from 'common/feature-flags';
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -15,7 +16,6 @@ import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { FeatureFlags } from 'common/feature-flags';
 
 describe('TabStopsAnalyzer', () => {
     let sendMessageMock: IMock<(message) => void>;
