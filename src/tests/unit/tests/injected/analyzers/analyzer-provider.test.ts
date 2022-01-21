@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, Mock } from 'typemoq';
-
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
@@ -38,6 +40,9 @@ describe('AnalyzerProviderTests', () => {
     let sendConvertedResultsMock: IMock<PostResolveCallback>;
     let sendNeedsReviewResultsMock: IMock<PostResolveCallback>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<TabStopRequirementResult>>;
+    let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
+    let featureFlagStoreMock: IMock<FeatureFlagStore>;
 
     beforeEach(() => {
         typeStub = -1;
@@ -54,9 +59,16 @@ describe('AnalyzerProviderTests', () => {
         sendConvertedResultsMock = Mock.ofInstance(() => null);
         sendNeedsReviewResultsMock = Mock.ofInstance(() => null);
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
+        tabStopRequirementRunnerMock = Mock.ofType<AllFrameRunner<TabStopRequirementResult>>();
+        tabStopRequirementActionMessageCreatorMock =
+            Mock.ofType<TabStopRequirementActionMessageCreator>();
+        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
 
         testObject = new AnalyzerProvider(
             tabStopsListener.object,
+            tabStopRequirementRunnerMock.object,
+            tabStopRequirementActionMessageCreatorMock.object,
+            featureFlagStoreMock.object,
             scopingStoreMock.object,
             sendMessageMock.object,
             scannerMock.object,
@@ -144,6 +156,11 @@ describe('AnalyzerProviderTests', () => {
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
         expect(openAnalyzer.tabStopListenerRunner).toEqual(tabStopsListener.object);
+        expect(openAnalyzer.tabStopRequirementRunner).toEqual(tabStopRequirementRunnerMock.object);
+        expect(openAnalyzer.tabStopRequirementActionMessageCreator).toEqual(
+            tabStopRequirementActionMessageCreatorMock.object,
+        );
+        expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
     });

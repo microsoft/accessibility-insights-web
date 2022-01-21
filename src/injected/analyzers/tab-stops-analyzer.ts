@@ -1,11 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { FeatureFlags } from 'common/feature-flags';
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { debounce, DebouncedFunc } from 'lodash';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 
@@ -24,6 +29,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
+        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
+        private readonly tabStopRequirementRunner: AllFrameRunner<TabStopRequirementResult>,
+        private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
@@ -37,7 +45,22 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
             this.debouncedProcessTabEvents();
         };
         this.tabStopListenerRunner.start();
+
+        if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
+            this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
+            this.tabStopRequirementRunner.start();
+        }
+
         return this.emptyResults;
+    };
+
+    private processTabStopRequirementResults = (
+        tabStopRequirementResult: TabStopRequirementResult,
+    ): void => {
+        this.tabStopRequirementActionMessageCreator.addTabStopInstance(
+            tabStopRequirementResult.requirementId,
+            tabStopRequirementResult.description,
+        );
     };
 
     private processTabEvents = (): void => {
@@ -61,6 +84,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
         this.tabStopListenerRunner.stop();
+        this.tabStopRequirementRunner.stop();
 
         const payload: ScanBasePayload = {
             key: this.config.key,

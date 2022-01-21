@@ -14,6 +14,7 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
@@ -207,6 +208,10 @@ export class MainWindowInitializer extends WindowInitializer {
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
+        const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
@@ -318,6 +323,9 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const analyzerProvider = new AnalyzerProvider(
             this.manualTabStopListener,
+            this.tabStopRequirementRunner,
+            tabStopRequirementActionMessageCreator,
+            this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),

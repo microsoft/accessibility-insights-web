@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { FeatureFlags } from 'common/feature-flags';
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -19,10 +23,15 @@ describe('TabStopsAnalyzer', () => {
     let visualizationTypeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
     let tabStopsListenerMock: IMock<AllFrameRunner<TabStopEvent>>;
+    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<TabStopRequirementResult>>;
     let simulateTabEvent: (tabEvent: TabStopEvent) => void;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let emptyScanCompleteMessage: Message;
     let debounceFaker: DebounceFaker<() => void>;
+    let featureFlagStoreMock: IMock<FeatureFlagStore>;
+    let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
+    let requirementResultRunnerCallback: (requirementResult: TabStopRequirementResult) => void;
+
     const tabEventStub1: TabStopEvent = {
         target: ['selector1'],
         html: 'test',
@@ -52,10 +61,19 @@ describe('TabStopsAnalyzer', () => {
             stop: () => {},
             initialize: () => {},
         } as AllFrameRunner<TabStopEvent>);
+        tabStopRequirementRunnerMock = Mock.ofInstance({
+            topWindowCallback: null,
+            start: () => {},
+            stop: () => {},
+            initialize: () => {},
+        } as AllFrameRunner<TabStopRequirementResult>);
 
         scanIncompleteWarningDetectorMock
             .setup(idm => idm.detectScanIncompleteWarnings())
             .returns(() => []);
+        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
+        tabStopRequirementActionMessageCreatorMock =
+            Mock.ofType<TabStopRequirementActionMessageCreator>();
 
         testSubject = new TabStopsAnalyzer(
             configStub,
@@ -63,6 +81,9 @@ describe('TabStopsAnalyzer', () => {
             sendMessageMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
+            featureFlagStoreMock.object,
+            tabStopRequirementRunnerMock.object,
+            tabStopRequirementActionMessageCreatorMock.object,
             debounceFaker.debounce,
         );
         visualizationTypeStub = -1 as VisualizationType;
@@ -81,6 +102,7 @@ describe('TabStopsAnalyzer', () => {
 
     describe('analyze', () => {
         it('emits an empty ScanCompleted message immediately on startup', async () => {
+            setTabStopsAutomationFeatureFlag(false);
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
 
@@ -88,6 +110,31 @@ describe('TabStopsAnalyzer', () => {
             await flushSettledPromises();
 
             verifyAll();
+        });
+
+        it('adds tab stop instances when processing tab stops requirement result', async () => {
+            const requirementResult: TabStopRequirementResult = {
+                requirementId: 'keyboard-navigation',
+                description: 'some description',
+            } as TabStopRequirementResult;
+
+            setTabStopsAutomationFeatureFlag(true);
+            setupTabStopsListenerForStartTabStops();
+            setupTabStopRequirementRunner();
+            setupSendMessageMock(emptyScanCompleteMessage);
+
+            testSubject.analyze();
+            await flushSettledPromises();
+            requirementResultRunnerCallback(requirementResult);
+
+            tabStopRequirementActionMessageCreatorMock.verify(
+                m =>
+                    m.addTabStopInstance(
+                        requirementResult.requirementId,
+                        requirementResult.description,
+                    ),
+                Times.once(),
+            );
         });
 
         it('emits ScanUpdated messages when tab events are detected', async () => {
@@ -101,6 +148,7 @@ describe('TabStopsAnalyzer', () => {
                 },
             };
 
+            setTabStopsAutomationFeatureFlag(false);
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
@@ -125,6 +173,7 @@ describe('TabStopsAnalyzer', () => {
                 },
             };
 
+            setTabStopsAutomationFeatureFlag(false);
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
@@ -140,6 +189,7 @@ describe('TabStopsAnalyzer', () => {
         });
 
         it('emits a ScanTerminated message and stops emitting ScanUpdated messages after teardown() is invoked', async () => {
+            setTabStopsAutomationFeatureFlag(false);
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
@@ -171,6 +221,21 @@ describe('TabStopsAnalyzer', () => {
             .setup(t => (t.topWindowCallback = It.isAny()))
             .callback(cb => (simulateTabEvent = cb));
         tabStopsListenerMock.setup(t => t.start()).verifiable(Times.once());
+    }
+
+    function setupTabStopRequirementRunner(): void {
+        tabStopRequirementRunnerMock
+            .setup(t => (t.topWindowCallback = It.isAny()))
+            .callback(cb => (requirementResultRunnerCallback = cb));
+        tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.once());
+    }
+
+    function setTabStopsAutomationFeatureFlag(enabled: boolean) {
+        featureFlagStoreMock
+            .setup(m => m.getState())
+            .returns(() => ({
+                [FeatureFlags.tabStopsAutomation]: enabled,
+            }));
     }
 
     function setupSendMessageMock(message, callback?): void {
