@@ -85,21 +85,28 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         }
       }
     />
-    <FocusComponent
-      configuration={
-        Object {
-          "displayableData": Object {
-            "title": "test title",
-            "toggleLabel": "test toggle label",
-          },
-          "getStoreData": [Function],
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <FocusComponent
+          configuration={
+            Object {
+              "displayableData": Object {
+                "title": "test title",
+                "toggleLabel": "test toggle label",
+              },
+              "getStoreData": [Function],
+            }
+          }
+          deps="stub-deps"
+          visualizationStoreData={
+            Object {
+              "tests": Object {},
+            }
+          }
+        />
       }
-      visualizationStoreData={
-        Object {
-          "tests": Object {},
-        }
-      }
+      featureFlag="tabStopsAutomation"
+      featureFlagStoreData={Object {}}
     />
   </div>
 </div>
@@ -189,21 +196,28 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         }
       }
     />
-    <FocusComponent
-      configuration={
-        Object {
-          "displayableData": Object {
-            "title": "test title",
-            "toggleLabel": "test toggle label",
-          },
-          "getStoreData": [Function],
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <FocusComponent
+          configuration={
+            Object {
+              "displayableData": Object {
+                "title": "test title",
+                "toggleLabel": "test toggle label",
+              },
+              "getStoreData": [Function],
+            }
+          }
+          deps="stub-deps"
+          visualizationStoreData={
+            Object {
+              "tests": Object {},
+            }
+          }
+        />
       }
-      visualizationStoreData={
-        Object {
-          "tests": Object {},
-        }
-      }
+      featureFlag="tabStopsAutomation"
+      featureFlagStoreData={Object {}}
     />
   </div>
 </div>
