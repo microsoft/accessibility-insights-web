@@ -6,19 +6,23 @@ import { WindowUtils } from 'common/window-utils';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import * as React from 'react';
 
-export interface FocusComponentProps {
+export type FocusComponentDeps = {
     windowUtils: WindowUtils;
+    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
+};
+
+export interface FocusComponentProps {
+    deps: FocusComponentDeps;
     configuration: VisualizationConfiguration;
     visualizationStoreData: VisualizationStoreData;
-    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 }
 
 export class FocusComponent extends React.Component<FocusComponentProps> {
     private static readonly focusEventName = 'focus';
 
     public componentDidMount(): void {
-        this.props.windowUtils.addEventListener(
-            this.props.windowUtils.getWindow(),
+        this.props.deps.windowUtils.addEventListener(
+            this.props.deps.windowUtils.getWindow(),
             FocusComponent.focusEventName,
             this.handleFocusEvent,
             false,
@@ -26,8 +30,8 @@ export class FocusComponent extends React.Component<FocusComponentProps> {
     }
 
     public componentWillUnmount(): void {
-        this.props.windowUtils.removeEventListener(
-            this.props.windowUtils.getWindow(),
+        this.props.deps.windowUtils.removeEventListener(
+            this.props.deps.windowUtils.getWindow(),
             FocusComponent.focusEventName,
             this.handleFocusEvent,
             false,
@@ -39,7 +43,7 @@ export class FocusComponent extends React.Component<FocusComponentProps> {
             this.props.visualizationStoreData.tests,
         );
         if (tabbing.enabled) {
-            this.props.tabStopRequirementActionMessageCreator.updateTabbingCompleted(true);
+            this.props.deps.tabStopRequirementActionMessageCreator.updateTabbingCompleted(true);
         }
     };
 

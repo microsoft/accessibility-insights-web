@@ -24,11 +24,13 @@ describe('FocusComponent', () => {
             TabStopRequirementActionMessageCreator,
         );
         props = {
-            windowUtils: windowUtilsMock.object,
-            configuration: configurationMock.object,
             visualizationStoreData,
-            tabStopRequirementActionMessageCreator:
-                tabStopRequirementActionMessageCreatorMock.object,
+            configuration: configurationMock.object,
+            deps: {
+                windowUtils: windowUtilsMock.object,
+                tabStopRequirementActionMessageCreator:
+                    tabStopRequirementActionMessageCreatorMock.object,
+            },
         };
     });
 
