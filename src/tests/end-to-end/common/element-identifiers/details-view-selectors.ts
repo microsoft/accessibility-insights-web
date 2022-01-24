@@ -28,6 +28,7 @@ import {
     addTabStopsFailureInstanceAutomationId,
     tabStopsPassFailChoiceGroupAutomationId,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
+import { resultsGroupAutomationId } from 'DetailsView/tab-stops-requirements-with-instances';
 import { reportExportAsHtmlAutomationId } from 'report-export/services/html-report-export-service';
 import { reportExportAsJsonAutomationId } from 'report-export/services/json-report-export-service';
 import { testSummaryStatusAutomationId } from 'reports/components/assessment-summary-details';
@@ -106,6 +107,9 @@ export const tabStopsSelectors = {
     instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
     instanceEditButton: '[data-automation-key="instanceActionButtons"] button:nth-child(1)',
     instanceRemoveButton: '[data-automation-key="instanceActionButtons"] button:nth-child(2)',
+    automatedChecksResultSection: getAutomationIdSelector(resultsGroupAutomationId),
+    visualHelperToggleButton: 'button#tab-stops-visual-helper',
+    failedInstancesExpandButton: getAutomationIdSelector('collapsible-component-cards-button'),
 };
 
 export const overviewSelectors = {
