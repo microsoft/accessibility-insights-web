@@ -64,7 +64,6 @@
         "run:binskim": "node ./pipeline/scripts/run-binskim.js",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",
-        "serve:mock-service-for-android": "node ./src/tests/miscellaneous/mock-service-for-android/serve.js",
         "start:unified": "electron drop/electron/unified-dev/product/bundle/main.bundle.js",
         "start:unified:dev": "cross-env DEV_MODE=true yarnpkg start:unified",
         "start:unified:mock-adb": "cross-env ANDROID_HOME=drop/mock-adb yarnpkg start:unified",
@@ -88,8 +87,7 @@
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
         "watch:webpack-dev-browser": "webpack --watch --config-name dev --color --progress",
-        "watch:webpack-unified": "webpack --watch --config-name unified --color --progress",
-        "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
+        "watch:webpack-unified": "webpack --watch --config-name unified --color --progress"
     },
     "devDependencies": {
         "7zip-bin": "^5.1.1",

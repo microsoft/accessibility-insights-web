@@ -10,12 +10,7 @@ function generateAdbLogPath(outputLogsDir) {
     return path.join(outputLogsDir, 'adb.log');
 }
 
-function generateServerLogPath(outputLogsDir) {
-    return path.join(outputLogsDir, 'server.log');
-}
-
 module.exports = {
     generateAdbLogPath,
     generateOutputLogsDir,
-    generateServerLogPath,
 };
