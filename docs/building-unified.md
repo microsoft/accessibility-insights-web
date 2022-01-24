@@ -31,7 +31,7 @@ yarn build:unified:all
 
 ### Running Locally
 
-Most of the functionality of Unified relies on connecting to a device running the Accessibility Insights for Android Service. However, most Unified development and testing does not require an actual Android device/VM; this repository comes with `mock-adb` and `mock-service-for-android` tools that can be used to fake having one for most purposes.
+Most of the functionality of Unified relies on connecting to a device running the Accessibility Insights for Android Service. However, most Unified development and testing does not require an actual Android device/VM; this repository includes a tool called `mock-adb` that can be used to fake having one for most purposes.
 
 #### Using a mock device
 
@@ -44,8 +44,6 @@ If you _do_ need to work with an actual Android device/VM, you'll want to instal
 Note: If you want to use a modified version of Accessibility Insights for Android Service, follow the [Manual installation](https://accessibilityinsights.io/docs/en/android/getstarted/setup/#manual-installation) steps. Then, make a [small modification to the Unified app](https://github.com/microsoft/accessibility-insights-web/pull/4395) to bypass the Android Service version check.  **Do not push this change.**
 
 ```sh
-# You can leave off the with:mock-service-for-android if
-# you only want to test against real devices/emulators
 yarn start:unified:dev
 ```
 
