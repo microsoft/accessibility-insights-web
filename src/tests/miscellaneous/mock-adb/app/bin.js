@@ -5,16 +5,7 @@ const { EOL } = require('os');
 const path = require('path');
 const process = require('process');
 const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
-const {
-    generateAdbLogPath,
-    generateOutputLogsDir,
-    generateServerLogPath,
-} = require('../generate-log-paths.js');
-const {
-    startDetachedPortForwardServer,
-    stopDetachedPortForwardServer,
-    tryHandleAsPortForwardServer,
-} = require('./port-forward-server.js');
+const { generateAdbLogPath, generateOutputLogsDir } = require('../generate-log-paths.js');
 
 function resultFromCommand(config, inputCommand) {
     // First option: exact match
@@ -41,10 +32,6 @@ function resultFromCommand(config, inputCommand) {
 }
 
 async function main() {
-    if (await tryHandleAsPortForwardServer(process.argv)) {
-        return;
-    }
-
     // Note: if you base a path on __dirname, pkg will bundle it into adb.exe
     // Use path.dirname(process.execPath) instead for it to look for the file at runtime
     const runtimeDirname = path.dirname(process.execPath);
@@ -64,7 +51,6 @@ async function main() {
     fs.mkdirSync(outputLogsDir, { recursive: true });
 
     const adbLogsPath = generateAdbLogPath(outputLogsDir);
-    const serverLogsPath = generateServerLogPath(outputLogsDir);
 
     const outputFile = path.join(outputLogsDir, 'mock_adb_output.json');
 
@@ -81,15 +67,6 @@ async function main() {
         await new Promise(resolve => {
             setTimeout(resolve, result.delayMs);
         });
-    }
-    if (result.startTestServer != null) {
-        const { port, path } = result.startTestServer;
-        stopDetachedPortForwardServer(port);
-        result.testServerPid = await startDetachedPortForwardServer(port, path, serverLogsPath);
-    }
-    if (result.stopTestServer != null) {
-        const { port } = result.stopTestServer;
-        result.testServerPid = stopDetachedPortForwardServer(port);
     }
     if (result.stderr != null) {
         console.error(result.stderr);
