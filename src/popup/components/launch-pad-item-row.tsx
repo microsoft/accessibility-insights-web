@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon, Link } from '@fluentui/react';
 import { kebabCase, uniqueId } from 'lodash';
-import { Icon } from '@fluentui/react';
-import { Link } from '@fluentui/react';
 import * as React from 'react';
 
 export interface LaunchPadItemRowProps {
