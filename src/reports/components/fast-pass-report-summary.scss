@@ -5,10 +5,9 @@
 @import'../components/report-sections/common-mixins.scss';
 
 .fast-pass-summary-section {
-    @include boxShadow();
+    @include boxShadow;
 
     background-color: $neutral-0;
     padding: 20px;
     margin-bottom: 22px;
-    border-radius: 4px;
 }
