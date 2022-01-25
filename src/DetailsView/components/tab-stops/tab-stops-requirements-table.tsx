@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { NamedFC } from 'common/react/named-fc';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
@@ -14,6 +16,7 @@ import * as React from 'react';
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
     requirementState: TabStopRequirementState;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export type TabStopsRequirementsTableDeps = {
@@ -71,12 +74,17 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
         ];
 
         return (
-            <DetailsList
-                className={styles.requirementTable}
-                items={requirementsList}
-                columns={columns}
-                checkboxVisibility={2}
-            />
+            <ThemeFamilyCustomizer
+                themeFamily={'fast-pass'}
+                userConfigurationStoreData={props.userConfigurationStoreData}
+            >
+                <DetailsList
+                    className={styles.requirementTable}
+                    items={requirementsList}
+                    columns={columns}
+                    checkboxVisibility={2}
+                />
+            </ThemeFamilyCustomizer>
         );
     },
 );

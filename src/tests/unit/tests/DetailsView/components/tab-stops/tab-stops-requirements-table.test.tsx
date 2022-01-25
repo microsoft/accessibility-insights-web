@@ -41,6 +41,7 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
+            userConfigurationStoreData: 'stub-user-configuration-store-data' as any,
         };
         requirementContentStub = {
             id: 'test id',

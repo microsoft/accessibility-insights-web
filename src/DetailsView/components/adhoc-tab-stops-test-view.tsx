@@ -9,6 +9,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -56,6 +57,7 @@ export interface AdhocTabStopsTestViewProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     guidance?: ContentReference;
     tabStopsViewStoreData: TabStopsViewStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
@@ -142,6 +144,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     <TabStopsRequirementsTable
                         deps={props.deps}
                         requirementState={requirementState}
+                        userConfigurationStoreData={props.userConfigurationStoreData}
                     />
                     <TabStopsFailedInstanceSection
                         deps={props.deps}

@@ -72,6 +72,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
     </h2>
     <TabStopsRequirementsTable
       deps="stub-deps"
+      userConfigurationStoreData="stub-user-configuration-store-data"
     />
     <TabStopsFailedInstanceSection
       alwaysRenderSection={false}
@@ -170,6 +171,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     </h2>
     <TabStopsRequirementsTable
       deps="stub-deps"
+      userConfigurationStoreData="stub-user-configuration-store-data"
     />
     <TabStopsFailedInstanceSection
       alwaysRenderSection={false}
