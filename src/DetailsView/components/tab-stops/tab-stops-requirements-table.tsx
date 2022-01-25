@@ -8,7 +8,7 @@ import { requirementsList } from 'DetailsView/components/tab-stops/requirements'
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { DetailsList, IColumn } from 'office-ui-fabric-react';
+import { CheckboxVisibility, DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {
@@ -37,6 +37,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         {item.description}
                     </span>
                 ),
+                headerClassName: styles.requirementTable,
             },
             {
                 name: 'Pass / Fail',
@@ -67,6 +68,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         />
                     );
                 },
+                headerClassName: styles.requirementTable,
             },
         ];
 
@@ -75,7 +77,15 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                 className={styles.requirementTable}
                 items={requirementsList}
                 columns={columns}
-                checkboxVisibility={2}
+                onRenderRow={(props, defaultRender) => (
+                    <div className={styles.requirementTable}>
+                        {defaultRender({ ...props, className: styles.requirementTable })}
+                    </div>
+                )}
+                onRenderDetailsHeader={(props, defaultRender) => (
+                    <div className={styles.requirementTableHeader}>{defaultRender(props)}</div>
+                )}
+                checkboxVisibility={CheckboxVisibility.hidden}
             />
         );
     },

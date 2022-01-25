@@ -104,6 +104,11 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     constrainMode={ConstrainMode.horizontalConstrained}
                     onRenderDetailsHeader={() => null}
                     className={styles.failedInstancesDetails}
+                    onRenderRow={(props, defaultRender) => (
+                        <div className={styles.failedInstancesDetails}>
+                            {defaultRender({ ...props, className: styles.failedInstancesDetails })}
+                        </div>
+                    )}
                 />
             );
         },

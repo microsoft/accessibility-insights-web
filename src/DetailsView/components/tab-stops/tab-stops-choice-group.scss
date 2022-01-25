@@ -62,7 +62,7 @@
         line-height: 24px;
         color: $neutral-100;
         @include ms-high-contrast-override {
-            color: HighlightText !important;
+            color: inherit;
         }
         .ms-ChoiceField-wrapper.is-inFocus .ms-ChoiceField-field {
             @include ms-high-contrast-override {

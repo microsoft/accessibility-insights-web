@@ -119,50 +119,45 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         }
 
         return (
-            <div className={styles.tabStopsTestViewContainer}>
-                <div className={styles.tabStopsTestView}>
-                    <h1>
-                        {displayableData.title}
-                        {` ${stepsText} `}
-                        <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
-                    </h1>
-                    {description}
-                    <Toggle
-                        onClick={clickHandler}
-                        label="Visual helper"
-                        checked={scanData.enabled}
-                        className={styles.visualHelperToggle}
-                    />
-                    <CollapsibleComponent
-                        header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
-                        content={howToTest}
-                        contentClassName={requirementInstructionStyles.requirementInstructions}
-                    />
-                    <h2 className={styles.requirementTableTitle}>Record your results</h2>
-                    <TabStopsRequirementsTable
-                        deps={props.deps}
-                        requirementState={requirementState}
-                    />
-                    <TabStopsFailedInstanceSection
-                        deps={props.deps}
-                        tabStopRequirementState={
-                            props.visualizationScanResultData.tabStops.requirements
-                        }
-                        alwaysRenderSection={false}
-                    />
-                    <TabStopsFailedInstancePanel
-                        deps={props.deps}
-                        failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
-                        requirementState={requirementState}
-                    />
-                    <FlaggedComponent
-                        featureFlag={FeatureFlags.tabStopsAutomation}
-                        featureFlagStoreData={props.featureFlagStoreData}
-                        enableJSXElement={
-                            <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
-                        }
-                    />
-                </div>
+            <div className={styles.tabStopsTestView}>
+                <h1>
+                    {displayableData.title}
+                    {` ${stepsText} `}
+                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
+                </h1>
+                {description}
+                <Toggle
+                    onClick={clickHandler}
+                    label="Visual helper"
+                    checked={scanData.enabled}
+                    className={styles.visualHelperToggle}
+                />
+                <CollapsibleComponent
+                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    content={howToTest}
+                    contentClassName={requirementInstructionStyles.requirementInstructions}
+                />
+                <h2 className={styles.requirementTableTitle}>Record your results</h2>
+                <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
+                <TabStopsFailedInstanceSection
+                    deps={props.deps}
+                    tabStopRequirementState={
+                        props.visualizationScanResultData.tabStops.requirements
+                    }
+                    alwaysRenderSection={false}
+                />
+                <TabStopsFailedInstancePanel
+                    deps={props.deps}
+                    failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
+                    requirementState={requirementState}
+                />
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.tabStopsAutomation}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    enableJSXElement={
+                        <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+                    }
+                />
             </div>
         );
     },
