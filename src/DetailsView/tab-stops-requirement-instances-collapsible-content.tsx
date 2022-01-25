@@ -103,7 +103,6 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     checkboxVisibility={CheckboxVisibility.hidden}
                     constrainMode={ConstrainMode.horizontalConstrained}
                     onRenderDetailsHeader={() => null}
-                    className={styles.failedInstancesDetails}
                 />
             );
         },
