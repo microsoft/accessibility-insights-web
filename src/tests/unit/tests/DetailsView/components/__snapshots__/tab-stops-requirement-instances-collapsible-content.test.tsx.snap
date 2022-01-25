@@ -39,6 +39,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
     ]
   }
   onRenderDetailsHeader={[Function]}
+  onRenderRow={[Function]}
 />
 `;
 

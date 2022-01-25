@@ -31,6 +31,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
   columns={
     Array [
       Object {
+        "headerClassName": "requirementTable",
         "key": "requirement",
         "minWidth": 250,
         "name": "Requirement",
@@ -38,6 +39,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
       },
       Object {
         "className": "passFailColumnCell",
+        "headerClassName": "requirementTable",
         "key": "result",
         "maxWidth": 100,
         "minWidth": 100,
@@ -110,5 +112,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
       },
     ]
   }
+  onRenderDetailsHeader={[Function]}
+  onRenderRow={[Function]}
 />
 `;
