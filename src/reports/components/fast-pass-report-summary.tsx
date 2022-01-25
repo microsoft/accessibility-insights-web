@@ -72,10 +72,11 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         };
 
         return (
-            <div className="fast-pass-summary-section">
+            <div className="summary-section">
                 <h2>Summary</h2>
                 <OutcomeSummaryBar outcomeStats={stats} allOutcomeTypes={allOutcomeTypes} />
             </div>
         );
     }
 }
+
