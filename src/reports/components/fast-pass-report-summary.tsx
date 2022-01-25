@@ -79,4 +79,3 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         );
     }
 }
-

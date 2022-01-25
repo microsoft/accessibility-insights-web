@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassReportSummary renders per the snapshot 1`] = `
-<React.Fragment>
+<div
+  className="summary-section"
+>
   <h2>
     Summary
   </h2>
@@ -21,11 +23,13 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
       }
     }
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`FastPassReportSummary renders when automated checks are null 1`] = `
-<React.Fragment>
+<div
+  className="summary-section"
+>
   <h2>
     Summary
   </h2>
@@ -45,5 +49,5 @@ exports[`FastPassReportSummary renders when automated checks are null 1`] = `
       }
     }
   />
-</React.Fragment>
+</div>
 `;
