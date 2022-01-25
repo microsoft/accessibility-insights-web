@@ -23,11 +23,10 @@ export type ThemeFamilyCustomizerProps = {
     children: React.ReactNode;
 };
 
-// Usage:
-//
-// <ThemeFamilyCustomizer themeFamily={'fast-pass'}>
-//   <SomeComponentRequiringCustomFabricTheme />
-// </ThemeFamilyCustomizer>
+// This is a store-state-aware version of the Office Fabric <Customizer> component. It's intended
+// as a wrapper for Fabric-based components that need to use a different Office Fabric Theme from
+// our default one, but still want to support being overriden by HighContrastTheme when a user has
+// enabled our High Contrast Mode setting.
 export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
     'ThemeCustomizer',
     props => {
