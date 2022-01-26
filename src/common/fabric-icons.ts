@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { registerIcons } from '@fluentui/react/lib/Styling';
+import { initializeIcons } from '@fluentui/font-icons-mdl2';
+import { registerIcons } from '@fluentui/style-utilities';
 
 export function initializeFabricIcons(): void {
+    initializeIcons();
     registerIcons({
         style: {
             MozOsxFontSmoothing: 'grayscale',

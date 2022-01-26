@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
@@ -154,7 +153,6 @@ const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId'
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
 
-initializeIcons();
 initializeFabricIcons();
 
 if (tabId != null) {
