@@ -213,6 +213,7 @@
         "./src/common/components/telemetry-notice.tsx",
         "./src/common/components/telemetry-permission-dialog.tsx",
         "./src/common/components/theme.tsx",
+        "./src/common/components/theme-family-customizer.tsx",
         "./src/common/components/toast.tsx",
         "./src/common/components/visualization-toggle.tsx",
         "./src/common/components/with-store-subscription.tsx",
