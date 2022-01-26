@@ -10,6 +10,7 @@ import {
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
     UpdateTabbingCompletedPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
@@ -120,6 +121,17 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Visualizations.TabStops.TabbingCompleted,
+            payload,
+        });
+    };
+
+    public updateNeedToCollectTabbingResults = (needToCollectTabbingResults: boolean) => {
+        const payload: UpdateNeedToCollectTabbingResultsPayload = {
+            needToCollectTabbingResults,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
             payload,
         });
     };

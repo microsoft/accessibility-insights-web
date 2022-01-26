@@ -23,6 +23,7 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
     UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
@@ -56,6 +57,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
                 tabbedElements: null,
                 requirements,
                 tabbingCompleted: false,
+                needToCollectTabbingResults: true,
             },
         };
 
@@ -104,6 +106,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         );
         this.tabStopRequirementActions.updateTabbingCompleted.addListener(
             this.onUpdateTabbingCompleted,
+        );
+        this.tabStopRequirementActions.updateNeedToCollectTabbingResults.addListener(
+            this.onUpdateNeedToCollectTabbingResults,
         );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
@@ -251,6 +256,13 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
     private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
         this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
+        this.emitChanged();
+    };
+
+    private onUpdateNeedToCollectTabbingResults = (
+        payload: UpdateNeedToCollectTabbingResultsPayload,
+    ): void => {
+        this.state.tabStops.needToCollectTabbingResults = payload.needToCollectTabbingResults;
         this.emitChanged();
     };
 }
