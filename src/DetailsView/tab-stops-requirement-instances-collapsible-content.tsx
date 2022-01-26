@@ -37,7 +37,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     <AssessmentInstanceDetailsColumn
                         background={'#767676'}
                         textContent={instance.description}
-                        headerText={'Comment:'}
+                        headerText={'Comment'}
                         tooltipId={instance.id}
                     />
                 );

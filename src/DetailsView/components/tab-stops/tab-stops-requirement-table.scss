@@ -7,6 +7,10 @@
     font-size: 14px;
     color: $primary-text;
     white-space: normal;
+
+    @include ms-high-contrast-override {
+        color: inherit;
+    }
 }
 
 .pass-fail-column-cell {
