@@ -23,10 +23,10 @@ export type ThemeFamilyCustomizerProps = {
     children: React.ReactNode;
 };
 
-// This is a store-state-aware version of the Office Fabric <Customizer> component. It's intended
-// as a wrapper for Fabric-based components that need to use a different Office Fabric Theme from
-// our default one, but still want to support being overriden by HighContrastTheme when a user has
-// enabled our High Contrast Mode setting.
+// This is a store-state-aware version of the Fluent UI <ThemeProvider> component. It's intended
+// as a wrapper for Fluent UI-based components that need to use a different Theme from our default
+// one, but still want to support being overriden by HighContrastTheme when a user has enabled our
+// High Contrast Mode setting (or a native system High Contrast setting).
 export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
     'ThemeCustomizer',
     props => {
@@ -35,6 +35,13 @@ export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
 
         const activeTheme = isHighContrastEnabled ? highConstrastTheme : defaultTheme;
 
+        // When we update to Fluent UI 8, replace the below line with:
+        //
+        //     return <ThemeProvider theme={activeTheme}>{props.children}</ThemeProvider>
+        //
+        // ...and remove the `createTheme` calls from the theme constants at the top of
+        // this file (ThemeProvider doesn't need them because it supports using PartialThemes
+        // directly, whereas Customizer only supports full Themes)
         return <Customizer settings={{ theme: activeTheme }}>{props.children}</Customizer>;
     },
 );
