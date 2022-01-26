@@ -135,6 +135,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 >
                     <Toggle
                         onClick={clickHandler}
+                        id="tab-stops-visual-helper"
                         label="Visual helper"
                         checked={scanData.enabled}
                         className={styles.visualHelperToggle}
