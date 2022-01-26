@@ -14,10 +14,11 @@ export class TabStopRequirementOrchestrator
     implements AllFrameRunnerTarget<TabStopRequirementResult>
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
+    private reportResults: (payload: TabStopRequirementResult) => Promise<void>;
+
     private tabbableTabStops: FocusableElement[];
     private actualTabStops: Set<HTMLElement> = new Set();
     private latestVisitedTabStop: HTMLElement = null;
-    private reportResults: (payload: TabStopRequirementResult) => Promise<void>;
 
     constructor(
         private readonly dom: Document,
@@ -27,9 +28,16 @@ export class TabStopRequirementOrchestrator
         private readonly getUniqueSelector: (element: HTMLElement) => string,
     ) {}
 
+    private resetFields = () => {
+        this.tabbableTabStops = [];
+        this.actualTabStops = new Set();
+        this.latestVisitedTabStop = null;
+    };
+
     public start = () => {
         this.dom.addEventListener('keydown', this.onKeydownForFocusTraps);
         this.dom.addEventListener('focusin', this.addNewTabStop);
+
         this.tabbableTabStops = this.tabbableElementGetter.getRawElements();
         const tabbableFocusOrderResults =
             this.tabStopsRequirementEvaluator.getTabbableFocusOrderResults(this.tabbableTabStops);
@@ -41,12 +49,14 @@ export class TabStopRequirementOrchestrator
     public stop = () => {
         this.dom.removeEventListener('keydown', this.onKeydownForFocusTraps);
         this.dom.removeEventListener('focusin', this.addNewTabStop);
+
         const keyboardNavigationResults =
             this.tabStopsRequirementEvaluator.getKeyboardNavigationResults(
                 this.tabbableTabStops,
                 this.actualTabStops,
             );
         keyboardNavigationResults.forEach(this.reportResults);
+        this.resetFields();
     };
 
     public setResultCallback = (
