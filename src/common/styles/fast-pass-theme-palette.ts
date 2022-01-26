@@ -11,13 +11,13 @@ export const FastPassThemePalette: IPartialTheme = {
     palette: {
         ...DefaultThemePalette.palette,
 
-        white: '#f8f8f8', // $neutral-2 from color-definitions.scss
-
-        // In the default theme, these correspond to $neutral-2, $neutral-4, and $neutral-8
-        // To ensure these end up progressively darker than our adjusted $white, we apply
-        // alpha-based versions of the same neutrals over the adjusted $white
+        // In the default theme, the below progression goes $neutral-0, $neutral-2, $neutral-4,
+        // $neutral-8. In Fast Pass content panes, we instead start from $neutral-2 because
+        // $neutral-0 is reserved for Card component backgrounds. To form a consistent color
+        // progression, we apply -alpha versions of the original neutrals on top of $neutral-2.
         //
         // You can use a tool like https://borderleft.com/toolbox/rgba to calculate the values
+        white: '#f8f8f8', // $neutral-2 from color-definitions.scss
         neutralLighterAlt: '#f3f3f3', // $neutral-alpha-2 over $neutral-2
         neutralLighter: '#eeeeee', // $neutral-alpha-4 over $neutral-2
         neutralLight: '#e4e4e4', // $neutral-alpha-8 over $neutral-2
