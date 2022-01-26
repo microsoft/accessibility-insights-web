@@ -35,10 +35,6 @@
         margin-right: 8px;
         font-weight: 600;
     }
-
-    button:not([aria-checked='true']) {
-        background-color: $neutral-0;
-    }
 }
 
 h2.requirement-how-to-test-header {

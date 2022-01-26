@@ -129,12 +129,17 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
                 {description}
-                <Toggle
-                    onClick={clickHandler}
-                    label="Visual helper"
-                    checked={scanData.enabled}
-                    className={styles.visualHelperToggle}
-                />
+                <ThemeFamilyCustomizer
+                    themeFamily={'default'}
+                    userConfigurationStoreData={props.userConfigurationStoreData}
+                >
+                    <Toggle
+                        onClick={clickHandler}
+                        label="Visual helper"
+                        checked={scanData.enabled}
+                        className={styles.visualHelperToggle}
+                    />
+                </ThemeFamilyCustomizer>
                 <CollapsibleComponent
                     header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
                     content={howToTest}
