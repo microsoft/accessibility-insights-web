@@ -16,7 +16,10 @@
             margin-right: 10px;
             margin-left: 4px;
         }
-        .ms-ChoiceField-wrapper.is-inFocus .ms-ChoiceField-field {
+        .ms-ChoiceField-wrapper {
+            width: 20px;
+        }
+        .ms-ChoiceField-wrapper.is-inFocus {
             @include ms-high-contrast-override {
                 outline: 3px HighlightText solid !important;
             }

@@ -22,10 +22,6 @@
     }
 }
 
-.failed-instances-details {
+.failed-instances-details * {
     background-color: $neutral-2;
-
-    @include ms-high-contrast-override {
-        background-color: inherit;
-    }
 }

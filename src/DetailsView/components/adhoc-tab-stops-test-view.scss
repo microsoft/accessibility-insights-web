@@ -3,6 +3,11 @@
 
 @import '../../common/styles/common.scss';
 
+.tab-stops-test-view-container {
+    background-color: $neutral-2;
+    height: 100%;
+}
+
 .tab-stops-test-view {
     padding-top: $fastPassRightPanelMarginTop;
     padding-right: $fastPassRightPanelMarginRight;
@@ -12,7 +17,6 @@
     i {
         font-size: 16px;
     }
-    height: 100%;
 }
 
 .requirement-table-title {

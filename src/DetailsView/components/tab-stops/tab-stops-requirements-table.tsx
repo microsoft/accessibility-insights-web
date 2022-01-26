@@ -37,7 +37,6 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         {item.description}
                     </span>
                 ),
-                headerClassName: styles.requirementTable,
             },
             {
                 name: 'Pass / Fail',
@@ -68,7 +67,6 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         />
                     );
                 },
-                headerClassName: styles.requirementTable,
             },
         ];
 
@@ -77,14 +75,6 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                 className={styles.requirementTable}
                 items={requirementsList}
                 columns={columns}
-                onRenderRow={(props, defaultRender) => (
-                    <div className={styles.requirementTable}>
-                        {defaultRender({ ...props, className: styles.requirementTable })}
-                    </div>
-                )}
-                onRenderDetailsHeader={(props, defaultRender) => (
-                    <div className={styles.requirementTableHeader}>{defaultRender(props)}</div>
-                )}
                 checkboxVisibility={CheckboxVisibility.hidden}
             />
         );

@@ -7,10 +7,6 @@
     font-size: 14px;
     color: $primary-text;
     white-space: normal;
-
-    @include ms-high-contrast-override {
-        color: inherit;
-    }
 }
 
 .pass-fail-column-cell {
@@ -27,15 +23,7 @@
         padding-bottom: 20px;
     }
 
-    background-color: $neutral-2;
-
-    @include ms-high-contrast-override {
-        background-color: inherit;
-    }
-}
-
-.requirement-table-header {
-    > div[role='row'] {
+    * {
         background-color: $neutral-2;
     }
 }
