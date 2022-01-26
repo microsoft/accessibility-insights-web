@@ -350,6 +350,7 @@ export class MainWindowInitializer extends WindowInitializer {
             analyzerProvider,
             analyzerStateUpdateHandler,
             Assessments,
+            tabStopRequirementActionMessageCreator,
         );
 
         this.analyzerController.listenToStore();
