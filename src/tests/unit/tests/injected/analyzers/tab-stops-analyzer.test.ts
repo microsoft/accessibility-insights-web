@@ -112,7 +112,7 @@ describe('TabStopsAnalyzer', () => {
             verifyAll();
         });
 
-        it('adds tab stop instances when processing tab stops requirement result', async () => {
+        it('adds unique tab stop instances when processing tab stops requirement result', async () => {
             const requirementResult: TabStopRequirementResult = {
                 requirementId: 'keyboard-navigation',
                 description: 'some description',
@@ -125,7 +125,14 @@ describe('TabStopsAnalyzer', () => {
 
             testSubject.analyze();
             await flushSettledPromises();
+
+            // send 1 duplicate and 2 unique results
             requirementResultRunnerCallback(requirementResult);
+            requirementResultRunnerCallback(requirementResult);
+            requirementResultRunnerCallback({
+                ...requirementResult,
+                html: 'new html',
+            });
 
             tabStopRequirementActionMessageCreatorMock.verify(
                 m =>
@@ -133,7 +140,7 @@ describe('TabStopsAnalyzer', () => {
                         requirementResult.requirementId,
                         requirementResult.description,
                     ),
-                Times.once(),
+                Times.exactly(2),
             );
         });
 

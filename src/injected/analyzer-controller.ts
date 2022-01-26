@@ -3,6 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -25,6 +26,7 @@ export class AnalyzerController {
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
     private assessmentsProvider: AssessmentsProvider;
+    private tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 
     constructor(
         visualizationstore: BaseStore<VisualizationStoreData>,
@@ -35,6 +37,7 @@ export class AnalyzerController {
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
+        tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
@@ -45,6 +48,7 @@ export class AnalyzerController {
         this.analyzerProvider = analyzerProvider;
         this.assessmentsProvider = assessmentsProvider;
         this.analyzerStateUpdateHandler = analyzerStateUpdateHandler;
+        this.tabStopRequirementActionMessageCreator = tabStopRequirementActionMessageCreator;
         this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
     }
 
@@ -66,7 +70,9 @@ export class AnalyzerController {
     };
 
     private onResultsChangedState = (): void => {
-        if (this.visualizationResultsStore.getState().tabStops.tabbingCompleted) {
+        const state = this.visualizationResultsStore.getState();
+        if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
+            this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
             this.teardown(AdHocTestkeys.TabStops);
         }
     };

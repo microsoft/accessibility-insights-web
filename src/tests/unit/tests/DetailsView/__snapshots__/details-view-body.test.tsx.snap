@@ -169,6 +169,7 @@ exports[`DetailsViewBody render render 1`] = `
             "scanResult": null,
           },
           "tabStops": Object {
+            "needToCollectTabbingResults": true,
             "requirements": Object {
               "focus-indicator": Object {
                 "instances": Array [],
@@ -496,6 +497,7 @@ exports[`DetailsViewBody render render 1`] = `
               "scanResult": null,
             },
             "tabStops": Object {
+              "needToCollectTabbingResults": true,
               "requirements": Object {
                 "focus-indicator": Object {
                   "instances": Array [],
@@ -830,6 +832,7 @@ exports[`DetailsViewBody render render 1`] = `
                   "scanResult": null,
                 },
                 "tabStops": Object {
+                  "needToCollectTabbingResults": true,
                   "requirements": Object {
                     "focus-indicator": Object {
                       "instances": Array [],

@@ -16,6 +16,7 @@
 .pass-fail-column-cell {
     display: flex;
     align-items: center;
+    min-height: 47px;
 }
 
 .requirement-name {
@@ -25,9 +26,5 @@
 .requirement-table {
     > div[role='grid'] {
         padding-bottom: 20px;
-    }
-
-    * {
-        background-color: $neutral-2;
     }
 }

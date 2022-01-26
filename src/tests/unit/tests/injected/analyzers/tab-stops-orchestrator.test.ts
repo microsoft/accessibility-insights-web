@@ -164,6 +164,40 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.verifyAll();
     });
 
+    test('stop does not resend stale events when called twice', () => {
+        const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
+        testSubject.setResultCallback(reportResultsMock.object);
+        testSubject.start();
+
+        domMock
+            .setup(m => m.removeEventListener('focusin', focusInCallback))
+            .verifiable(Times.exactly(2));
+        domMock
+            .setup(m => m.removeEventListener('keydown', keydownCallback))
+            .verifiable(Times.exactly(2));
+        tabStopsRequirementEvaluatorMock
+            .setup(m =>
+                m.getKeyboardNavigationResults(focusableElementsStub, It.isValue(new Set())),
+            )
+            .returns(() => keyboardNavigationResultsStub);
+        keyboardNavigationResultsStub.forEach(result => {
+            reportResultsMock.setup(m => m(result)).verifiable(Times.once());
+        });
+
+        testSubject.stop();
+
+        tabStopsRequirementEvaluatorMock.reset();
+        tabStopsRequirementEvaluatorMock
+            .setup(m => m.getKeyboardNavigationResults([], It.isValue(new Set())))
+            .returns(() => [])
+            .verifiable(Times.once());
+        testSubject.stop();
+        tabStopsRequirementEvaluatorMock.verifyAll();
+
+        domMock.verifyAll();
+        reportResultsMock.verifyAll();
+    });
+
     test('start: onKeydownForFocusTraps tab event with a non-null result is reported', () => {
         testOnkeydownForFocusTrapsWithResult(tabStopRequirementResultStub, Times.once());
     });

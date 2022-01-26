@@ -3,7 +3,6 @@
 exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
 <StyledWithViewportComponent
   checkboxVisibility={2}
-  className="failedInstancesDetails"
   columns={
     Array [
       Object {

@@ -2186,10 +2186,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.176":
-  version "0.0.176"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.176.tgz#617fcbe41ea1d9c5d50c9e7fb8ebfe2d9aef853a"
-  integrity sha512-LOveFOMIUhMJjvRzZv5whGBpncP/gdJ4hcxeAqg94wGi6CyKaCmLgFSofgItf85GuLTl/0BQ6J/Y1e8BqZWfEg==
+"@types/chrome@0.0.177":
+  version "0.0.177"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.177.tgz#b9098a9b0f3714d6604289d176b2a042ddd88ee7"
+  integrity sha512-bZIZyNAJMMqIgbRsBM+nGNDPezaWZMr3p+CKz1JGj4Jn8c7SpvdUqaconpxUG5WEL1WoisBeA3sumo+WXaC9CA==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -2790,22 +2790,22 @@
     "@webassemblyjs/ast" "1.11.1"
     "@xtuc/long" "4.2.2"
 
-"@webpack-cli/configtest@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@webpack-cli/configtest/-/configtest-1.1.0.tgz#8342bef0badfb7dfd3b576f2574ab80c725be043"
-  integrity sha512-ttOkEkoalEHa7RaFYpM0ErK1xc4twg3Am9hfHhL7MVqlHebnkYd2wuI/ZqTDj0cVzZho6PdinY0phFZV3O0Mzg==
+"@webpack-cli/configtest@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@webpack-cli/configtest/-/configtest-1.1.1.tgz#9f53b1b7946a6efc2a749095a4f450e2932e8356"
+  integrity sha512-1FBc1f9G4P/AxMqIgfZgeOTuRnwZMten8E7zap5zgpPInnCrP8D4Q81+4CWIch8i/Nf7nXjP0v6CjjbHOrXhKg==
 
-"@webpack-cli/info@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@webpack-cli/info/-/info-1.4.0.tgz#b9179c3227ab09cbbb149aa733475fcf99430223"
-  integrity sha512-F6b+Man0rwE4n0409FyAJHStYA5OIZERxmnUfLVwv0mc0V1wLad3V7jqRlMkgKBeAq07jUvglacNaa6g9lOpuw==
+"@webpack-cli/info@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@webpack-cli/info/-/info-1.4.1.tgz#2360ea1710cbbb97ff156a3f0f24556e0fc1ebea"
+  integrity sha512-PKVGmazEq3oAo46Q63tpMr4HipI3OPfP7LiNOEJg963RMgT0rqheag28NCML0o3GIzA3DmxP1ZIAv9oTX1CUIA==
   dependencies:
     envinfo "^7.7.3"
 
-"@webpack-cli/serve@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@webpack-cli/serve/-/serve-1.6.0.tgz#2c275aa05c895eccebbfc34cfb223c6e8bd591a2"
-  integrity sha512-ZkVeqEmRpBV2GHvjjUZqEai2PpUbuq8Bqd//vEYsp63J8WyexI8ppCqVS3Zs0QADf6aWuPdU+0XsPI647PVlQA==
+"@webpack-cli/serve@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@webpack-cli/serve/-/serve-1.6.1.tgz#0de2875ac31b46b6c5bb1ae0a7d7f0ba5678dffe"
+  integrity sha512-gNGTiTrjEVQ0OcVnzsRSqTxaBSr+dmTfm+qJsCDluky8uhdLWep7Gcr62QsAKHTMxjCS/8nEITsmFAhfIx+QSw==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -8712,10 +8712,10 @@ mini-create-react-context@^0.4.0:
     "@babel/runtime" "^7.5.5"
     tiny-warning "^1.0.3"
 
-mini-css-extract-plugin@2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.5.2.tgz#b3b9b98320c2c054d92c16f6a94ddfdbbba13755"
-  integrity sha512-Lwgq9qLNyBK6yNLgzssXnq4r2+mB9Mz3cJWlM8kseysHIvTicFhDNimFgY94jjqlwhNzLPsq8wv4X+vOHtMdYA==
+mini-css-extract-plugin@2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.5.3.tgz#c5c79f9b22ce9b4f164e9492267358dbe35376d9"
+  integrity sha512-YseMB8cs8U/KCaAGQoqYmfUuhhGW0a9p9XvWXrxVOkE3/IiISTLw4ALNt7JR5B2eYauFM+PQGSbXMDmVbR7Tfw==
   dependencies:
     schema-utils "^4.0.0"
 
@@ -9899,10 +9899,10 @@ pkg@^5.5.2:
     stream-meter "^1.0.4"
     tslib "2.3.1"
 
-playwright-core@=1.17.2:
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.17.2.tgz#916254fa8fb3eb76c160b5c2e06bc979d6ec2cf8"
-  integrity sha512-TCYIt2UNHvqGxvD79bBjBv9osDLAH1gn7AZD5kRpMNQJG6BAmJt8B4Ek8fzdKmCQOnHf9ASJmcYRszoIZxcdVA==
+playwright-core@=1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.18.0.tgz#b4d2b9068f26357adaa952a13254796fd439f322"
+  integrity sha512-JTRlCVpfAFcC1nth+XIE07w6M5m6C8PaEoClv7wGWF97cyDMcHIij0xIVEKMKli7IG5N0mqjLDFc/akXSbMZ1g==
   dependencies:
     commander "^8.2.0"
     debug "^4.1.1"
@@ -9921,12 +9921,12 @@ playwright-core@=1.17.2:
     yauzl "^2.10.0"
     yazl "^2.5.1"
 
-playwright@^1.17.2:
-  version "1.17.2"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.17.2.tgz#918b9a7e43ac8640fa3e2162ce0cb8b395c55fb7"
-  integrity sha512-u1HZmVoeLCLptNcpuOyp5KfBzsdsLxE9CReK82i/p8j5i7EPqtY3fX77SMHqDGeO7tLBSYk2a6eFDVlQfSSANg==
+playwright@^1.18.0:
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.18.0.tgz#4613e19147ffa5f77ad845227f007b9b94a366f8"
+  integrity sha512-GOWvcWRtL7o6QCj6tvZCxqHKx2sIhXeEmEJAqQdOZgxzQiCkPe1hnTHab1p8R1bDvHK703fDS2oIbs3mcvg6gw==
   dependencies:
-    playwright-core "=1.17.2"
+    playwright-core "=1.18.0"
 
 plist@3.0.4, plist@^3.0.1:
   version "3.0.4"
@@ -11248,10 +11248,10 @@ simple-get@^3.0.3:
     once "^1.3.1"
     simple-concat "^1.0.0"
 
-simple-git@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.0.3.tgz#de3b67c8a130bbe388516cc1612c4a12bbcbb556"
-  integrity sha512-UWfIXKFtsCYpVcVOiyKYicTDa5hYYfvk+QT96ra5KPRyrXt0LTt36OpvptkF2+/HkbTeIu2C6Mc7DyrVePSW8A==
+simple-git@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.1.1.tgz#dcc7c971b952a97824b961669fd036751ced6818"
+  integrity sha512-VamXD/Royf2Xo7s+ASzT9fp2cJatLtz/w8zLwjOLCAq9FC9ks5mEoBUYVwXuDq4GoqDReqV5r/GM+lwx6Jucyw==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
     "@kwsites/promise-deferred" "^1.1.1"
@@ -12686,15 +12686,15 @@ webidl-conversions@^6.1.0:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-6.1.0.tgz#9111b4d7ea80acd40f5270d666621afa78b69514"
   integrity sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==
 
-webpack-cli@^4.9.1:
-  version "4.9.1"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-4.9.1.tgz#b64be825e2d1b130f285c314caa3b1ba9a4632b3"
-  integrity sha512-JYRFVuyFpzDxMDB+v/nanUdQYcZtqFPGzmlW4s+UkPMFhSpfRNmf1z4AwYcHJVdvEFAM7FFCQdNTpsBYhDLusQ==
+webpack-cli@^4.9.2:
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-4.9.2.tgz#77c1adaea020c3f9e2db8aad8ea78d235c83659d"
+  integrity sha512-m3/AACnBBzK/kMTcxWHcZFPrw/eQuY4Df1TxvIWfWM2x7mRqBQCqKEd96oCUa9jkapLBaFfRce33eGDb4Pr7YQ==
   dependencies:
     "@discoveryjs/json-ext" "^0.5.0"
-    "@webpack-cli/configtest" "^1.1.0"
-    "@webpack-cli/info" "^1.4.0"
-    "@webpack-cli/serve" "^1.6.0"
+    "@webpack-cli/configtest" "^1.1.1"
+    "@webpack-cli/info" "^1.4.1"
+    "@webpack-cli/serve" "^1.6.1"
     colorette "^2.0.14"
     commander "^7.0.0"
     execa "^5.0.0"
