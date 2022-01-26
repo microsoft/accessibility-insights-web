@@ -56,7 +56,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
     }
 
     private renderNoLabel = (): JSX.Element | null => {
-        return <></>;
+        return null;
     };
 
     private renderOptions(): JSX.Element | null {

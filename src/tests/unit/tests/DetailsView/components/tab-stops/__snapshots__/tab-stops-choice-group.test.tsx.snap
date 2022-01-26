@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsChoiceGroup render options with no label 1`] = `<React.Fragment />`;
+exports[`TabStopsChoiceGroup render options with no label 1`] = `null`;
 
-exports[`TabStopsChoiceGroup render options with no label 2`] = `<React.Fragment />`;
+exports[`TabStopsChoiceGroup render options with no label 2`] = `null`;
 
 exports[`TabStopsChoiceGroup render with fail status 1`] = `
 <React.Fragment>
