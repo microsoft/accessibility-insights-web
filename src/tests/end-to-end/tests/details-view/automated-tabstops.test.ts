@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
+// import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import {
     detailsViewSelectors,
     tabStopsSelectors,
@@ -33,12 +33,11 @@ describe('Automated TabStops Results', () => {
         await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
         await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
 
-        const failureInstancesCard = await formatPageElementForSnapshot(
-            detailsViewPage,
-            tabStopsSelectors.automatedChecksResultSection,
+        const ruleDetails = await detailsViewPage.getSelectorElements(
+            tabStopsSelectors.failedInstancesContent,
         );
 
-        expect(failureInstancesCard).toMatchSnapshot();
+        expect(ruleDetails).toHaveLength(2);
     });
 
     test('Detect and display unreachable elements failures', async () => {
@@ -52,12 +51,34 @@ describe('Automated TabStops Results', () => {
         await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
         await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
 
-        const failureInstancesCard = await formatPageElementForSnapshot(
-            detailsViewPage,
-            tabStopsSelectors.automatedChecksResultSection,
+        const ruleDetails = await detailsViewPage.getSelectorElements(
+            tabStopsSelectors.failedInstancesContent,
         );
 
-        expect(failureInstancesCard).toMatchSnapshot();
+        expect(ruleDetails).toHaveLength(1);
+    });
+
+    test('Detect and display failures when tabbing is not completed', async () => {
+        await openTabStopsPage('tab-stops/unreachable.html');
+
+        for (let i = 0; i < 2; i++) {
+            await targetPage.keyPress('Tab');
+            await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+        }
+
+        // We should just be able to wait for the results section to come up, but there seems to be
+        // a bug in playwright such that it's not recognizing focus on the details view. For now,
+        // toggle the visual helper to get results.
+        await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
+
+        await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
+        await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+
+        const ruleDetails = await detailsViewPage.getSelectorElements(
+            tabStopsSelectors.failedInstancesContent,
+        );
+
+        expect(ruleDetails).toHaveLength(2);
     });
 
     async function openTabStopsPage(testResourcePath: string) {

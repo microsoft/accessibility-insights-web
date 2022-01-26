@@ -110,6 +110,7 @@ export const tabStopsSelectors = {
     automatedChecksResultSection: getAutomationIdSelector(resultsGroupAutomationId),
     visualHelperToggleButton: 'button#tab-stops-visual-helper',
     failedInstancesExpandButton: getAutomationIdSelector('collapsible-component-cards-button'),
+    failedInstancesContent: getAutomationIdSelector('instance-table-text-content'),
 };
 
 export const overviewSelectors = {
