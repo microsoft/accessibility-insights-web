@@ -33,6 +33,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           <StyledToggleBase
             checked={true}
             className="visualHelperToggle"
+            id="tab-stops-visual-helper"
             label="Visual helper"
             onClick={[Function]}
           />
@@ -143,6 +144,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           <StyledToggleBase
             checked={true}
             className="visualHelperToggle"
+            id="tab-stops-visual-helper"
             label="Visual helper"
             onClick={[Function]}
           />

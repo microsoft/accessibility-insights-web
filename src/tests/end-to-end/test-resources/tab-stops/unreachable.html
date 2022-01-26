@@ -5,16 +5,16 @@ Licensed under the MIT License.
 
 <div>
     <ol>
-        <li><a href="main.html">Homepage</a></li>
-        <li><a href="chapter1.html">Chapter 1</a></li>
-        <li><a href="chapter2.html" id="ex3ch2">Chapter 2</a></li>
-        <li><a href="chapter3.html" id="ex3ch3">Chapter 3</a></li>
+        <li><a href="A.html">Item A</a></li>
+        <li><a href="B.html">Item B</a></li>
+        <li><a href="C.html" id="c">Item C</a></li>
+        <li><a href="D.html" id="d">Item D</a></li>
     </ol>
 
     <script>
-        document.querySelector('#ex3ch3').addEventListener('keyup', e => {
+        document.querySelector('#d').addEventListener('keyup', e => {
             if (e.key == 'Tab') {
-                document.querySelector('#ex3ch2').focus();
+                document.querySelector('#c').focus();
             }
         });
     </script>
