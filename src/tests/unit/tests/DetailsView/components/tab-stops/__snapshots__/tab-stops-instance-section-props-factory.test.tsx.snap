@@ -8,6 +8,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateNeedToCollectTabbingResults": [Function],
       "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
@@ -104,6 +105,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateNeedToCollectTabbingResults": [Function],
       "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
@@ -123,6 +125,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateNeedToCollectTabbingResults": [Function],
           "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
@@ -170,6 +173,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateNeedToCollectTabbingResults": [Function],
       "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
@@ -269,6 +273,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateNeedToCollectTabbingResults": [Function],
       "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
@@ -288,6 +293,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateNeedToCollectTabbingResults": [Function],
           "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
@@ -343,6 +349,7 @@ Object {
       "dispatcher": undefined,
       "telemetryFactory": undefined,
       "toggleTabStopRequirementExpand": [Function],
+      "updateNeedToCollectTabbingResults": [Function],
       "updateTabbingCompleted": [Function],
     },
     "tabStopsTestViewController": proxy {
@@ -362,6 +369,7 @@ Object {
           "dispatcher": undefined,
           "telemetryFactory": undefined,
           "toggleTabStopRequirementExpand": [Function],
+          "updateNeedToCollectTabbingResults": [Function],
           "updateTabbingCompleted": [Function],
         },
         "tabStopsTestViewController": proxy {
