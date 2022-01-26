@@ -141,17 +141,14 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.verifyAll();
     });
 
-    function testStopOnce() {
+    test('stop removes event listeners and sends keyboard navigation results', () => {
         const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
+
         testSubject.setResultCallback(reportResultsMock.object);
         testSubject.start();
 
-        domMock
-            .setup(m => m.removeEventListener('focusin', focusInCallback))
-            .verifiable(Times.once());
-        domMock
-            .setup(m => m.removeEventListener('keydown', keydownCallback))
-            .verifiable(Times.once());
+        domMock.setup(m => m.removeEventListener('focusin', focusInCallback)).verifiable();
+        domMock.setup(m => m.removeEventListener('keydown', keydownCallback)).verifiable();
         tabStopsRequirementEvaluatorMock
             .setup(m =>
                 m.getKeyboardNavigationResults(focusableElementsStub, It.isValue(new Set())),
@@ -162,35 +159,41 @@ describe('TabStopRequirementOrchestrator', () => {
         });
 
         testSubject.stop();
-    }
-
-    test('stop removes event listeners and sends keyboard navigation results', () => {
-        testStopOnce();
 
         domMock.verifyAll();
         reportResultsMock.verifyAll();
     });
 
     test('stop does not resend stale events when called twice', () => {
-        testStopOnce();
-        domMock.reset();
-        tabStopsRequirementEvaluatorMock.reset();
+        const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
+        testSubject.setResultCallback(reportResultsMock.object);
+        testSubject.start();
 
         domMock
             .setup(m => m.removeEventListener('focusin', focusInCallback))
-            .verifiable(Times.once());
+            .verifiable(Times.exactly(2));
         domMock
             .setup(m => m.removeEventListener('keydown', keydownCallback))
-            .verifiable(Times.once());
+            .verifiable(Times.exactly(2));
+        tabStopsRequirementEvaluatorMock
+            .setup(m =>
+                m.getKeyboardNavigationResults(focusableElementsStub, It.isValue(new Set())),
+            )
+            .returns(() => keyboardNavigationResultsStub);
+        keyboardNavigationResultsStub.forEach(result => {
+            reportResultsMock.setup(m => m(result)).verifiable(Times.once());
+        });
 
+        testSubject.stop();
+
+        tabStopsRequirementEvaluatorMock.reset();
         tabStopsRequirementEvaluatorMock
             .setup(m => m.getKeyboardNavigationResults([], It.isValue(new Set())))
             .returns(() => [])
             .verifiable(Times.once());
-
         testSubject.stop();
-
         tabStopsRequirementEvaluatorMock.verifyAll();
+
         domMock.verifyAll();
         reportResultsMock.verifyAll();
     });
