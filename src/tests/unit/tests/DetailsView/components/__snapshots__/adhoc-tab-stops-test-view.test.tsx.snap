@@ -26,12 +26,17 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
             Note: this test requires you to use a keyboard and to visually identify interactive elements.
           </Emphasis>
         </p>
-        <StyledToggleBase
-          checked={true}
-          className="visualHelperToggle"
-          label="Visual helper"
-          onClick={[Function]}
-        />
+        <ThemeCustomizer
+          themeFamily="default"
+          userConfigurationStoreData="stub-user-configuration-store-data"
+        >
+          <StyledToggleBase
+            checked={true}
+            className="visualHelperToggle"
+            label="Visual helper"
+            onClick={[Function]}
+          />
+        </ThemeCustomizer>
         <CollapsibleComponent
           content={
             <ol>
@@ -131,12 +136,17 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
             Note: this test requires you to use a keyboard and to visually identify interactive elements.
           </Emphasis>
         </p>
-        <StyledToggleBase
-          checked={true}
-          className="visualHelperToggle"
-          label="Visual helper"
-          onClick={[Function]}
-        />
+        <ThemeCustomizer
+          themeFamily="default"
+          userConfigurationStoreData="stub-user-configuration-store-data"
+        >
+          <StyledToggleBase
+            checked={true}
+            className="visualHelperToggle"
+            label="Visual helper"
+            onClick={[Function]}
+          />
+        </ThemeCustomizer>
         <CollapsibleComponent
           content={
             <ol>
