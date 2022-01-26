@@ -15,7 +15,7 @@ const themeFamilyDefaultThemes: { [themeFamily in ThemeFamily]: ITheme } = {
     default: createTheme(DefaultThemePalette),
     'fast-pass': createTheme(FastPassThemePalette),
 };
-const highConstrastTheme = createTheme(HighContrastThemePalette);
+const highContrastTheme = createTheme(HighContrastThemePalette);
 
 export type ThemeFamilyCustomizerProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -33,7 +33,7 @@ export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
         const isHighContrastEnabled = props.userConfigurationStoreData?.enableHighContrast === true;
         const defaultTheme = themeFamilyDefaultThemes[props.themeFamily];
 
-        const activeTheme = isHighContrastEnabled ? highConstrastTheme : defaultTheme;
+        const activeTheme = isHighContrastEnabled ? highContrastTheme : defaultTheme;
 
         // When we update to Fluent UI 8, replace the below line with:
         //
