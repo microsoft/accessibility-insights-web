@@ -9,6 +9,7 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
     UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
@@ -56,6 +57,11 @@ export class TabStopRequirementActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.TabbingCompleted,
             this.onTabbingCompleted,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            this.onNeedToCollectTabbingResults,
         );
     }
 
@@ -111,5 +117,11 @@ export class TabStopRequirementActionCreator {
 
     private onTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
         this.tabStopRequirementActions.updateTabbingCompleted.invoke(payload);
+    };
+
+    private onNeedToCollectTabbingResults = (
+        payload: UpdateNeedToCollectTabbingResultsPayload,
+    ): void => {
+        this.tabStopRequirementActions.updateNeedToCollectTabbingResults.invoke(payload);
     };
 }

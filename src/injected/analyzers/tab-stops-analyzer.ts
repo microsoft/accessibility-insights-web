@@ -11,7 +11,7 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
-import { debounce, DebouncedFunc } from 'lodash';
+import { debounce, DebouncedFunc, isEqual } from 'lodash';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 
 export interface ProgressResult<T> {
@@ -22,6 +22,8 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
     protected config: FocusAnalyzerConfiguration;
+
+    private seenTabStopRequirementResults: TabStopRequirementResult[] = [];
 
     constructor(
         config: FocusAnalyzerConfiguration,
@@ -47,6 +49,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.tabStopListenerRunner.start();
 
         if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
+            this.seenTabStopRequirementResults = [];
             this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
             this.tabStopRequirementRunner.start();
         }
@@ -57,10 +60,17 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private processTabStopRequirementResults = (
         tabStopRequirementResult: TabStopRequirementResult,
     ): void => {
-        this.tabStopRequirementActionMessageCreator.addTabStopInstance(
-            tabStopRequirementResult.requirementId,
-            tabStopRequirementResult.description,
+        const duplicateResult = this.seenTabStopRequirementResults.some(r =>
+            isEqual(r, tabStopRequirementResult),
         );
+
+        if (!duplicateResult) {
+            this.tabStopRequirementActionMessageCreator.addTabStopInstance(
+                tabStopRequirementResult.requirementId,
+                tabStopRequirementResult.description,
+            );
+            this.seenTabStopRequirementResults.push(tabStopRequirementResult);
+        }
     };
 
     private processTabEvents = (): void => {

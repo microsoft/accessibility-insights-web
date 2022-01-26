@@ -5,6 +5,7 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
     UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
@@ -528,6 +529,22 @@ describe('VisualizationScanResultStoreTest', () => {
         };
 
         createStoreTesterForTabStopRequirementActions('updateTabbingCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onUpdateNeedToCollectTabbingResults', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withNeedToCollectTabbingResults(true)
+            .build();
+
+        const payload: UpdateNeedToCollectTabbingResultsPayload = {
+            needToCollectTabbingResults: true,
+        };
+
+        createStoreTesterForTabStopRequirementActions('updateNeedToCollectTabbingResults')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
