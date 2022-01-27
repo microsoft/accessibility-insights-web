@@ -782,6 +782,19 @@
         margin-bottom: unset;
       }</style
     ><style>
+      .failed-instances-container--FqWV6 {
+        padding-bottom: 24px !important;
+      }
+      .failed-instances-container--FqWV6
+        .title-container[aria-level="2"]
+        .collapsible-control::before {
+        position: relative;
+        bottom: 2px;
+        margin-right: 14px;
+      }
+      .failed-instances-container--FqWV6 .collapsible-content {
+        margin-left: 24px;
+      }
       .outcome-chip-container--xYquF {
         min-width: 50px;
       }
@@ -1273,6 +1286,19 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      .passed-checks-container--GslU_ {
+        padding-bottom: 24px;
+      }
+      .passed-checks-container--GslU_
+        .title-container[aria-level="2"]
+        .collapsible-control::before {
+        position: relative;
+        bottom: 2px;
+        margin-right: 14px;
+      }
+      .passed-checks-container--GslU_ .collapsible-content {
+        margin-left: 16px;
       }
       .combined-report-result-section-title--XUDDo {
         display: flex;
@@ -1800,7 +1826,7 @@
           ></div
         ><div class="results-container"
           ><div
-            class="result-section--j6fYr"
+            class="failed-instances-container--FqWV6 result-section--j6fYr"
             data-automation-id="result-section"
             ><h2
               ><span class="result-section-title--qv3MK"
@@ -1834,7 +1860,7 @@
                 ></span
               ></h2
             ></div
-          ><div class="result-section"
+          ><div class="passed-checks-container--GslU_"
             ><div class="collapsible-container collapsed"
               ><div class="title-container" role="heading" aria-level="2"
                 ><button

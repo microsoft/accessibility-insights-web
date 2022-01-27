@@ -7,6 +7,7 @@ import {
     CollapsibleResultSection,
     CollapsibleResultSectionDeps,
 } from './collapsible-result-section';
+import * as styles from './incomplete-checks-section.scss';
 import { SectionProps } from './report-section-factory';
 
 export type IncompleteChecksSectionDeps = CollapsibleResultSectionDeps;
@@ -28,7 +29,7 @@ export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
                 deps={deps}
                 title="Incomplete checks"
                 cardRuleResults={cardRuleResults}
-                containerClassName="result-section"
+                containerClassName={styles.incompleteChecksContainer}
                 outcomeType="incomplete"
                 badgeCount={cardRuleResults.length}
                 containerId="incomplete-checks-section"

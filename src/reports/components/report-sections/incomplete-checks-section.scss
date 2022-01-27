@@ -1,0 +1,19 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.incomplete-checks-container {
+    padding-bottom: 24px;
+
+    :global {
+        .title-container[aria-level='2'] {
+            .collapsible-control::before {
+                position: relative;
+                bottom: 2px;
+                margin-right: 14px;
+            }
+        }
+
+        .collapsible-content {
+            margin-left: 16px;
+        }
+    }
+}

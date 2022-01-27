@@ -5,6 +5,7 @@ import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { CommonInstancesSectionProps } from './common-instances-section-props';
+import * as styles from './failed-instances-section.scss';
 import { ResultSection } from './result-section';
 
 export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
@@ -30,7 +31,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 deps={deps}
                 title="Failed instances"
                 results={cardsViewData.cards.fail}
-                containerClassName={null}
+                containerClassName={styles.failedInstancesContainer}
                 outcomeType="fail"
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}

@@ -7,7 +7,7 @@ exports[`FailedInstancesSection renders null results 1`] = `null`;
 exports[`FailedInstancesSection renders with alerting off 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
   headingLevel={3}
   outcomeCounter={[Function]}
@@ -27,7 +27,7 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
 exports[`FailedInstancesSection renders with alerting on 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
   headingLevel={3}
   outcomeCounter={[Function]}
@@ -47,7 +47,7 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
 exports[`FailedInstancesSection renders with failures 1`] = `
 <ResultSection
   badgeCount={2}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
   headingLevel={3}
   outcomeCounter={[Function]}

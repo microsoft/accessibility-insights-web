@@ -7,6 +7,7 @@ import {
     CollapsibleResultSection,
     CollapsibleResultSectionDeps,
 } from './collapsible-result-section';
+import * as styles from './passed-checks-section.scss';
 import { SectionProps } from './report-section-factory';
 
 export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
@@ -28,7 +29,7 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                 deps={deps}
                 title="Passed checks"
                 cardRuleResults={cardRuleResults}
-                containerClassName="result-section"
+                containerClassName={styles.passedChecksContainer}
                 outcomeType="pass"
                 badgeCount={cardRuleResults.length}
                 containerId="passed-checks-section"
