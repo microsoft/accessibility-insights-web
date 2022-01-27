@@ -8,6 +8,7 @@ import * as React from 'react';
 import { FastPassReportProps } from 'reports/components/fast-pass-report';
 import { IncompleteChecksSection } from 'reports/components/report-sections/incomplete-checks-section';
 import { PassedChecksSection } from 'reports/components/report-sections/passed-checks-section';
+import * as styles from './fast-pass-report-automated-checks-results.scss';
 
 export type FastPassReportAutomatedChecksResultsProps = FastPassReportProps;
 
@@ -16,7 +17,11 @@ export const FastPassReportAutomatedChecksResults =
         'FastPassReportAutomatedChecksResults',
         props => {
             if (props.results.automatedChecks === null) {
-                return <p>Automated checks were not run.</p>;
+                return (
+                    <div className={styles.automatedChecksNotRunContainer}>
+                        <p>Automated checks were not run.</p>
+                    </div>
+                );
             }
 
             const automatedChecksTestKey = 'automated-checks';
