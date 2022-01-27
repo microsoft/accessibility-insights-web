@@ -1,23 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ThemeProvider, PartialTheme } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { DefaultThemePalette } from 'common/styles/default-theme-palette';
 import { FastPassThemePalette } from 'common/styles/fast-pass-theme-palette';
 import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { ThemeProvider, PartialTheme } from '@fluentui/react';
 import * as React from 'react';
 
 export type ThemeFamily = 'default' | 'fast-pass';
 
 const themeFamilyDefaultThemes: { [themeFamily in ThemeFamily]: PartialTheme } = {
-    default : { palette: DefaultThemePalette },
-    'fast-pass' : { palette: FastPassThemePalette } 
+    default: DefaultThemePalette,
+    'fast-pass': FastPassThemePalette,
 };
 
-const highContrastTheme: PartialTheme = {
-    palette: HighContrastThemePalette
-};
+const highContrastTheme: PartialTheme = HighContrastThemePalette;
 
 export type ThemeFamilyCustomizerProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
