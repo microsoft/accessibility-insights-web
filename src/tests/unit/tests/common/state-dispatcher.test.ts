@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreHub } from 'background/stores/store-hub';
 import { Logger } from 'common/logging/logger';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
@@ -158,7 +158,7 @@ describe('StateDispatcherTest', () => {
         broadcastMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
 
         privateDispatcher.call(stateDispatcher);
-        await tick();
+        await flushSettledPromises();
 
         loggerMock.verifyAll();
     });

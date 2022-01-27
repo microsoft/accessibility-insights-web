@@ -14,7 +14,7 @@ import {
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     createActionMock,
@@ -75,7 +75,7 @@ describe('ContentActionMessageCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             openContentPanelMock.verifyAll();
             detailsViewControllerMock.verifyAll();
@@ -94,7 +94,7 @@ describe('ContentActionMessageCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             openContentPanelMock.verifyAll();
             detailsViewControllerMock.verifyAll();

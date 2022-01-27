@@ -12,7 +12,6 @@ import {
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import * as styles from './export-dialog.scss';
 
 export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
@@ -32,10 +31,14 @@ export interface ExportDialogProps {
     featureFlagStoreData: FeatureFlagStoreData;
     afterDismissed?: () => void;
     reportExportServices: ReportExportService[];
+    exportResultsClickedTelemetry: (
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ) => void;
 }
 
 export interface ExportDialogDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     fileURLProvider: FileURLProvider;
 }
 
@@ -50,13 +53,8 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
         selectedServiceKey: ReportExportServiceKey,
     ): void => {
-        const { detailsViewActionMessageCreator } = props.deps;
         props.onDescriptionChange(props.description);
-        detailsViewActionMessageCreator.exportResultsClicked(
-            props.reportExportFormat,
-            selectedServiceKey,
-            event,
-        );
+        props.exportResultsClickedTelemetry(props.reportExportFormat, selectedServiceKey, event);
         setServiceKey(selectedServiceKey);
         props.onClose();
     };

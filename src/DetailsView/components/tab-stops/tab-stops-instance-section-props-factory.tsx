@@ -9,7 +9,7 @@ import { TabStopsRequirementsWithInstancesProps } from 'DetailsView/tab-stops-re
 import * as styles from 'DetailsView/tab-stops-requirements-with-instances.scss';
 import * as React from 'react';
 import { InstanceReportModel } from 'reports/assessment-report-model';
-import { AssessmentReportInstanceList } from 'reports/components/assessment-report-instance-list';
+import { TabStopsReportInstanceList } from 'reports/components/report-sections/tab-stops-report-instance-list';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export type TabStopsInstanceSectionPropsFactoryDeps = TabStopsFailedInstanceSectionDeps;
@@ -109,7 +109,11 @@ export const ReportTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionP
                         requirement={result}
                     />
                 ),
-                content: <span>This requirement has failed but no comment has been added</span>,
+                content: (
+                    <span className={styles.noInstances}>
+                        This requirement has failed but no comment has been added
+                    </span>
+                ),
                 containerAutomationId: resultsGroupAutomationId,
                 containerClassName: styles.collapsibleRequirementDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
@@ -147,7 +151,7 @@ export const ReportTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionP
                     />
                 ),
                 content: (
-                    <AssessmentReportInstanceList
+                    <TabStopsReportInstanceList
                         key={`${result.id}-requirement-group`}
                         requirementId={result.id}
                         instances={instances}

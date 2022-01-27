@@ -82,7 +82,7 @@ export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'FastPass';
 
 export enum TelemetryEventSource {
     LaunchPad,
@@ -121,6 +121,11 @@ export type ExportResultsTelemetryData = {
     exportResultsType: string;
     exportResultsService: ReportExportServiceKey;
 } & BaseTelemetryData;
+
+export type ExportFastPassResultsTelemetryData = {
+    wereAutomatedChecksRun: boolean;
+    tabStopRequirementInstanceCount: TabStopRequirementInstanceCount;
+} & ExportResultsTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
     selectedTest: string;
@@ -269,6 +274,7 @@ export type TelemetryData =
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
     | ExportResultsTelemetryData
+    | ExportFastPassResultsTelemetryData
     | DetailsViewOpenTelemetryData
     | DetailsViewOpenedTelemetryData
     | SettingsOpenTelemetryData

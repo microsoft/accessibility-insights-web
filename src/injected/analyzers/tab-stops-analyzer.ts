@@ -3,11 +3,10 @@
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { debounce, DebouncedFunc } from 'lodash';
-
-import { TabStopsListener } from '../tab-stops-listener';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 
 export interface ProgressResult<T> {
@@ -21,7 +20,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     constructor(
         config: FocusAnalyzerConfiguration,
-        private readonly tabStopsListener: TabStopsListener,
+        private readonly tabStopListenerRunner: AllFrameRunner<TabStopEvent>,
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
@@ -33,11 +32,11 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     protected getResults = async (): Promise<AxeAnalyzerResult> => {
         this.debouncedProcessTabEvents?.cancel();
         this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
-        this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
+        this.tabStopListenerRunner.topWindowCallback = (tabEvent: TabStopEvent) => {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
-        });
-        this.tabStopsListener.startListenToTabStops();
+        };
+        this.tabStopListenerRunner.start();
         return this.emptyResults;
     };
 
@@ -61,7 +60,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
-        this.tabStopsListener.stopListenToTabStops();
+        this.tabStopListenerRunner.stop();
 
         const payload: ScanBasePayload = {
             key: this.config.key,

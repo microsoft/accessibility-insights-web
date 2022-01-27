@@ -28,6 +28,6 @@ module.exports = {
     ],
     rootDir: rootDir,
     roots: [currentDir],
-    setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
+    setupFilesAfterEnv: [...baseConfig.setupFilesAfterEnv, `${currentDir}/setup/test-setup.ts`],
     testEnvironment: 'jsdom',
 };

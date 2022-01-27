@@ -7,14 +7,11 @@ import { FocusableElement } from 'tabbable';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export type TabStopRequirementResult = {
+    requirementId: TabStopRequirementId;
     description: string;
     selector: string[];
     html: string;
 };
-
-export type TabStopRequirementResults = Partial<
-    Record<TabStopRequirementId, TabStopRequirementResult[]>
->;
 
 export interface TabStopsRequirementEvaluator {
     getKeyboardNavigationResults(
@@ -58,6 +55,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
                     description: this.keyboardNavigationDescription(selector),
                     selector: [selector],
                     html: expectedTabStop.outerHTML,
+                    requirementId: 'keyboard-navigation',
                 });
             }
         });
@@ -75,6 +73,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
                 description: this.focusOrderDescription(currSelector, lastSelector),
                 selector: [currSelector],
                 html: currentTabStop.outerHTML,
+                requirementId: 'tab-order',
             };
         }
         return null;
@@ -109,6 +108,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
                 description: this.focusTrapsDescription(selector),
                 selector: [selector],
                 html: oldActiveElement.outerHTML,
+                requirementId: 'keyboard-traps',
             };
         }
         return null;

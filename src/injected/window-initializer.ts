@@ -7,11 +7,14 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { AllFrameRunner } from 'injected/all-frame-runner';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -34,7 +37,6 @@ import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-a
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
-import { TabStopsListener } from './tab-stops-listener';
 import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
@@ -50,7 +52,7 @@ export class WindowInitializer {
     protected windowUtils: WindowUtils;
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
-    protected tabStopsListener: TabStopsListener;
+    protected manualTabStopListener: AllFrameRunner<TabStopEvent>;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
@@ -112,13 +114,19 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
-        this.tabStopsListener = new TabStopsListener(
-            this.frameMessenger,
-            this.windowUtils,
-            htmlElementUtils,
+        const singleFrameListener = new SingleFrameTabStopListener(
+            'manual-tab-stop-listener',
             getUniqueSelector,
             document,
         );
+        this.manualTabStopListener = new AllFrameRunner<TabStopEvent>(
+            this.frameMessenger,
+            htmlElementUtils,
+            this.windowUtils,
+            singleFrameListener,
+        );
+        this.manualTabStopListener.initialize();
+
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
@@ -145,7 +153,6 @@ export class WindowInitializer {
         );
         this.windowMessagePoster.initialize();
         this.respondableCommandMessageCommunicator.initialize();
-        this.tabStopsListener.initialize();
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();

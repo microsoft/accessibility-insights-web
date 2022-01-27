@@ -25,7 +25,7 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
       instanceCount={1}
       status={2}
     />
-    <AssessmentReportInstanceList
+    <ReportInstanceList
       instances={
         Array [
           Object {
@@ -67,7 +67,7 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
       instanceCount={1}
       status={2}
     />
-    <AssessmentReportInstanceList
+    <ReportInstanceList
       instances={
         Array [
           Object {

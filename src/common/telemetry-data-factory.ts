@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
@@ -12,6 +13,7 @@ import {
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    ExportFastPassResultsTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
@@ -28,6 +30,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    TabStopRequirementInstanceCount,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
@@ -93,6 +96,37 @@ export class TelemetryDataFactory {
             ...this.withTriggeredByAndSource(event, source),
             exportResultsType: reportExportFormat,
             exportResultsService: selectedServiceKey,
+        };
+    }
+
+    public forExportedResultsWithFastPassData(
+        tabStopRequirementData: TabStopRequirementState,
+        wereAutomatedChecksRun: boolean,
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+        source: TelemetryEventSource,
+    ): ExportFastPassResultsTelemetryData {
+        const tabStopRequirementInstanceCount: TabStopRequirementInstanceCount = {
+            pass: {},
+            fail: {},
+            unknown: {},
+        };
+
+        Object.entries(tabStopRequirementData).forEach(([requirementId, data]) => {
+            if (data.status === 'fail') {
+                tabStopRequirementInstanceCount[data.status][requirementId] = data.instances.length;
+            } else {
+                tabStopRequirementInstanceCount[data.status][requirementId] = 1;
+            }
+        });
+
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            exportResultsType: reportExportFormat,
+            exportResultsService: selectedServiceKey,
+            wereAutomatedChecksRun,
+            tabStopRequirementInstanceCount,
         };
     }
 

@@ -48,18 +48,26 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
             <div>
                 {results.map((requirement, idx) => {
                     const { pastTense } = outcomeTypeSemantics.fail;
-                    const count = deps.tabStopsFailedCounter.getFailedByRequirementId(
+                    const instanceCount =
+                        deps.tabStopsFailedCounter.getFailedInstancesByRequirementId(
+                            results,
+                            requirement.id,
+                        );
+                    const totalCount = deps.tabStopsFailedCounter.getTotalFailedByRequirementId(
                         results,
                         requirement.id,
                     );
 
-                    if (count === 0 && getCollapsibleComponentPropsWithoutInstance === undefined) {
+                    if (
+                        instanceCount === 0 &&
+                        getCollapsibleComponentPropsWithoutInstance === undefined
+                    ) {
                         return null;
                     }
 
                     let collapsibleComponentProps: CollapsibleComponentCardsProps;
-                    const buttonAriaLabel = `${requirement.id} ${count} ${pastTense} ${requirement.description}`;
-                    if (count === 0) {
+                    const buttonAriaLabel = `${requirement.id} ${totalCount} ${pastTense} ${requirement.description}`;
+                    if (instanceCount === 0) {
                         collapsibleComponentProps = getCollapsibleComponentPropsWithoutInstance(
                             requirement,
                             idx,

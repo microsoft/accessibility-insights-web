@@ -48,9 +48,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
             <ContentContainer>
                 <FastPassTitleSection />
                 <DetailsSection {...props} />
-
                 <FastPassReportSummary {...props} />
-
                 <ResultsContainer {...props}>
                     <FastPassResultsTitleSection title="Automated checks" />
                     <FastPassReportAutomatedChecksResults {...props} />

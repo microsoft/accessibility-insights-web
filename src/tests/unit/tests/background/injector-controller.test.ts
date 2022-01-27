@@ -95,6 +95,7 @@ describe('InjectorControllerTest', () => {
         validator.verifyAll();
 
         validator.resetVerify();
+        validator.setupVerifyInjectionCompletedActionCalled(tabId);
         await validator.invokeInjectedPromise();
         validator.verifyAll();
     });

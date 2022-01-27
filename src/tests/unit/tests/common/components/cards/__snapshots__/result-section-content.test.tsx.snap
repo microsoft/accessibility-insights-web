@@ -1,11 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultSectionContent renders, no rules 1`] = `
-<NoFailedInstancesCongrats
-  deps={Object {}}
-  outcomeType="pass"
-/>
-`;
+exports[`ResultSectionContent does not render, no rules 1`] = `null`;
 
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <React.Fragment>

@@ -6,6 +6,7 @@ import { FileURLProvider } from 'common/file-url-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportComponent } from 'DetailsView/components/report-export-component';
@@ -38,6 +39,7 @@ describe('ReflowCommandBar', () => {
     let props: ReflowCommandBarProps;
     let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
     let fileUrlProviderMock: IMock<FileURLProvider>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -59,6 +61,7 @@ describe('ReflowCommandBar', () => {
             isVirtualKeyboardCollapsed: false,
         };
         scanDateStub = new Date(0);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         reportHtmlGeneratorMock = Mock.ofType(ReportHtmlGenerator);
         reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
         reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
@@ -71,6 +74,7 @@ describe('ReflowCommandBar', () => {
                 reportNameGenerator: reportNameGeneratorMock.object,
                 reportExportServiceProvider: reportExportServiceProviderMock.object,
                 fileURLProvider: fileUrlProviderMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {} as ScanStoreData,
             cardsViewData: cardsViewDataStub,
@@ -172,6 +176,24 @@ describe('ReflowCommandBar', () => {
                 handler => handler.openSettingsPanelHandler(It.isAny()),
                 Times.once(),
             );
+        });
+
+        test('exportResultsClickedTelemetry sends exportResultsClicked message', () => {
+            const reportExportFormat = 'Assessment';
+            const selectedServiceKey = 'html';
+            detailsViewActionMessageCreatorMock
+                .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
+                .verifiable(Times.once());
+
+            const rendered = shallow(<ReflowCommandBar {...props} />);
+            const exportDialog = rendered.find(ReportExportComponent);
+            exportDialog.prop('exportResultsClickedTelemetry')(
+                reportExportFormat,
+                selectedServiceKey,
+                null,
+            );
+
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
     });
 

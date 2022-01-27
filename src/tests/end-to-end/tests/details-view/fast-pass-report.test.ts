@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { FeatureFlags } from 'common/feature-flags';
 import { Download } from 'playwright';
 import {
     detailsViewSelectors,
     fastPassReportSelectors,
 } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { HtmlReportPage } from 'tests/end-to-end/common/page-controllers/html-report-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
@@ -19,7 +17,6 @@ describe('Details View -> FastPass -> Report', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundPage;
     let reportPage: HtmlReportPage;
     const reportSaveAsFilePath = 'test-results/e2e/downloads/fast-pass-report.html';
     let reportDownload: Download;
@@ -29,8 +26,6 @@ describe('Details View -> FastPass -> Report', () => {
             suppressFirstTimeDialog: true,
             addExtraPermissionsToManifest: 'all-origins',
         });
-        backgroundPage = await browser.backgroundPage();
-        await backgroundPage.enableFeatureFlag(FeatureFlags.newTabStopsDetailsView);
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
@@ -68,10 +63,7 @@ describe('Details View -> FastPass -> Report', () => {
 
     it('should pass accessibility validation', async () => {
         const results = await scanForAccessibilityIssues(reportPage, '*');
-        // should be expect(results).toHaveLength(0), but because of existing accessibility issue
-        // in the report, it's currently a snapshot. Once fixed we can remove the snapshot and check
-        // the length of the results array instead.
-        expect(results).toMatchSnapshot();
+        expect(results).toHaveLength(0);
     });
 
     it('renders', async () => {

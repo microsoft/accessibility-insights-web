@@ -6,6 +6,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
@@ -29,6 +30,7 @@ export type ReflowCommandBarDeps = {
     reportHtmlGenerator: ReportHtmlGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ReportExportComponentDeps;
 
 export interface ReflowCommandBarProps {
@@ -85,7 +87,7 @@ export class ReflowCommandBar extends React.Component<
                 <ReportExportComponent
                     deps={deps}
                     isOpen={this.state.reportExportDialogIsOpen}
-                    reportExportFormat={'AutomatedChecks'}
+                    reportExportFormat={'FastPass'}
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
                     htmlGenerator={description =>
@@ -107,6 +109,17 @@ export class ReflowCommandBar extends React.Component<
                         this.dropdownMenuButtonRef.focus();
                     }}
                     reportExportServices={deps.reportExportServiceProvider.servicesForFastPass()}
+                    exportResultsClickedTelemetry={(
+                        reportExportFormat,
+                        selectedServiceKey,
+                        event,
+                    ) =>
+                        deps.detailsViewActionMessageCreator.exportResultsClicked(
+                            reportExportFormat,
+                            selectedServiceKey,
+                            event,
+                        )
+                    }
                 />
             );
         }

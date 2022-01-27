@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { HTMLElementUtils } from 'common/html-element-utils';
-import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
+import {
+    DefaultTabStopsRequirementEvaluator,
+    TabStopRequirementResult,
+} from 'injected/tab-stops-requirement-evaluator';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { FocusableElement } from 'tabbable';
 import { IMock, It, Mock } from 'typemoq';
@@ -31,15 +34,15 @@ describe('TabStopsRequirementEvaluator', () => {
             tabStopElement2 as FocusableElement,
         ];
         const incorrectTabStops = new Set<HTMLElement>([tabStopElement2]);
+        const expectedResult: TabStopRequirementResult = {
+            description: 'Element element1 was expected, but not reached in tab order',
+            selector: ['element1'],
+            html: 'html1',
+            requirementId: 'keyboard-navigation',
+        };
         expect(
             testSubject.getKeyboardNavigationResults(tabbableTabStops, incorrectTabStops),
-        ).toEqual([
-            {
-                description: 'Element element1 was expected, but not reached in tab order',
-                selector: ['element1'],
-                html: 'html1',
-            },
-        ]);
+        ).toEqual([expectedResult]);
     });
 
     test('addKeyboardNavigationResults returns empty set with no violations', () => {
@@ -54,14 +57,20 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('addFocusOrderResults returns violations', () => {
-        htmlElementUtilsMock
-            .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
-            .returns(() => true);
-        expect(testSubject.getFocusOrderResult(tabStopElement2, tabStopElement1)).toEqual({
+        const expectedResult: TabStopRequirementResult = {
             description: 'Element element1 precedes element2 but was visited first in tab order',
             selector: ['element1'],
             html: 'html1',
-        });
+            requirementId: 'tab-order',
+        };
+
+        htmlElementUtilsMock
+            .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
+            .returns(() => true);
+
+        expect(testSubject.getFocusOrderResult(tabStopElement2, tabStopElement1)).toEqual(
+            expectedResult,
+        );
     });
 
     test('addFocusOrderResults returns null with no violations', () => {
@@ -76,19 +85,20 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('addTabbableFocusOrderResults returns violations', () => {
+        const expectedResult: TabStopRequirementResult = {
+            description: 'Element element1 precedes element2 but was visited first in tab order',
+            selector: ['element1'],
+            html: 'html1',
+            requirementId: 'tab-order',
+        };
+
         htmlElementUtilsMock
             .setup(m => m.precedesInDOM(It.isAny(), It.isAny()))
             .returns(() => true);
+
         expect(
             testSubject.getTabbableFocusOrderResults([tabStopElement2, tabStopElement1]),
-        ).toEqual([
-            {
-                description:
-                    'Element element1 precedes element2 but was visited first in tab order',
-                selector: ['element1'],
-                html: 'html1',
-            },
-        ]);
+        ).toEqual([expectedResult]);
     });
 
     test('addTabbableFocusOrderResults returns empty set with no violations', () => {
@@ -100,17 +110,20 @@ describe('TabStopsRequirementEvaluator', () => {
         ).toEqual([]);
     });
 
-    test('onKeydownForFocusTraps returns null with no violations', async () => {
-        expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement2)).toEqual(
-            null,
-        );
+    test('onKeydownForFocusTraps returns null with no violations', () => {
+        expect(testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement2)).toEqual(null);
     });
 
-    test('onKeydownForFocusTraps returns violations', async () => {
-        expect(await testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement1)).toEqual({
+    test('onKeydownForFocusTraps returns violations', () => {
+        const expectedResult: TabStopRequirementResult = {
             description: 'Focus is still on element element1 500ms after pressing tab',
             selector: ['element1'],
             html: 'html1',
-        });
+            requirementId: 'keyboard-traps',
+        };
+
+        expect(testSubject.getKeyboardTrapResults(tabStopElement1, tabStopElement1)).toEqual(
+            expectedResult,
+        );
     });
 });

@@ -10,17 +10,13 @@ import { getCheckResolution, getFixResolution } from 'injected/adapters/resoluti
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
-import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
+import { AxeResultsReportSectionFactory } from 'reports/components/report-sections/axe-results-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { CombinedReportSectionFactory } from 'reports/components/report-sections/combined-report-section-factory';
-import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
-import { ReporterHeaderSection } from 'reports/components/report-sections/reporter-header-section';
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
-import { ReporterHead } from 'reports/components/reporter-automated-check-head';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { CombinedResultsReport } from 'reports/package/combined-results-report';
 import { CombinedResultsToCardsModelConverter } from 'reports/package/combined-results-to-cards-model-converter';
-import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -70,17 +66,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         null,
         userAgent,
         `${windowWidth}x${windowHeight}`
-    );
-
-    const sectionFactory: ReportSectionFactory<SectionProps> = {
-        ...AutomatedChecksReportSectionFactory,
-        FooterText: FooterTextForService,
-        HeaderSection: ReporterHeaderSection,
-        HeadSection: ReporterHead,
-    };
+    );    
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
-        sectionFactory,
+        AxeResultsReportSectionFactory,
         reactStaticRenderer,
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
@@ -22,11 +21,12 @@ export const allOutcomeTypes: RequirementOutcomeType[] = ['fail', 'incomplete', 
 
 export class FastPassReportSummary extends React.Component<FastPassReportSummaryProps> {
     public render(): JSX.Element {
+        const { results, deps } = this.props;
         const failedTabResults = [];
         const incompleteTabResults = [];
         const passedTabResults = [];
 
-        for (const [requirementId, data] of Object.entries(this.props.results.tabStops)) {
+        for (const [requirementId, data] of Object.entries(results.tabStops)) {
             const resultsObject = {
                 id: requirementId,
                 name: requirements[requirementId].name,
@@ -46,21 +46,24 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         }
 
         const totalFailedTabInstancesCount: number =
-            this.props.deps.tabStopsFailedCounter.getTotalFailed(failedTabResults);
+            deps.tabStopsFailedCounter.getTotalFailed(failedTabResults);
         const totalIncompleteTabCount: number = incompleteTabResults.length;
         const totalPassedTabCount: number = passedTabResults.length;
 
-        const failedAutomatedChecks = this.props.results.automatedChecks.cards.fail;
-        const getTotalAutomatedChecksFailed = (results: CardRuleResult[]): number => {
-            return results.reduce((total, rule) => {
+        const getTotalAutomatedChecksFailed = (): number => {
+            if (results.automatedChecks === null) {
+                return 0;
+            }
+            return results.automatedChecks.cards.fail.reduce((total, rule) => {
                 return total + rule.nodes.length;
             }, 0);
         };
 
-        const totalfailedAutomatedChecks: number =
-            getTotalAutomatedChecksFailed(failedAutomatedChecks);
-        const passedAutomatedChecks = this.props.results.automatedChecks.cards.pass.length;
-        const incompleteAutomatedChecks = this.props.results.automatedChecks.cards.unknown.length;
+        const totalfailedAutomatedChecks: number = getTotalAutomatedChecksFailed();
+        const passedAutomatedChecks =
+            results.automatedChecks !== null ? results.automatedChecks.cards.pass.length : 0;
+        const incompleteAutomatedChecks =
+            results.automatedChecks !== null ? results.automatedChecks.cards.unknown.length : 0;
 
         const stats: Partial<OutcomeStats> = {
             fail: totalfailedAutomatedChecks + totalFailedTabInstancesCount,

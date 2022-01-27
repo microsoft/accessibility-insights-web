@@ -36,7 +36,7 @@ describe(FastPassReportHtmlGenerator, () => {
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
-        const tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        const tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];

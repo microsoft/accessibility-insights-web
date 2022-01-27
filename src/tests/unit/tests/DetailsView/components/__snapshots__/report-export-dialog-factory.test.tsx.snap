@@ -45,12 +45,12 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "automatedChecksReportHtmlGenerator": undefined,
         "fastPassReportHtmlGenerator": undefined,
       },
     }
   }
   dismissExportDialog={[Function]}
+  exportResultsClickedTelemetry={[Function]}
   featureFlagStoreData={Object {}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
@@ -124,19 +124,19 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "automatedChecksReportHtmlGenerator": undefined,
         "fastPassReportHtmlGenerator": undefined,
       },
     }
   }
   dismissExportDialog={[Function]}
+  exportResultsClickedTelemetry={[Function]}
   featureFlagStoreData={Object {}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
   jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
-  reportExportFormat="AutomatedChecks"
+  reportExportFormat="FastPass"
   reportExportServices={
     Array [
       Object {
