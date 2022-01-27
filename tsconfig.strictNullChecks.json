@@ -357,6 +357,7 @@
         "./src/injected/all-frame-runner.ts",
         "./src/injected/analyzers/filter-results.ts",
         "./src/injected/analyzers/notification-text-creator.ts",
+        "./src/injected/analyzers/tab-stops-done-analyzing-tracker.ts",
         "./src/injected/bounding-rect.ts",
         "./src/injected/client-store-listener.ts",
         "./src/injected/client-utils.ts",

@@ -9,6 +9,7 @@ import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { debounce, DebouncedFunc, isEqual } from 'lodash';
@@ -34,6 +35,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly tabStopRequirementRunner: AllFrameRunner<TabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
+        private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
@@ -50,6 +52,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
         if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
             this.seenTabStopRequirementResults = [];
+            this.tabStopsDoneAnalyzingTracker.reset();
             this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
             this.tabStopRequirementRunner.start();
         }
@@ -74,6 +77,10 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     };
 
     private processTabEvents = (): void => {
+        if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
+            this.tabStopsDoneAnalyzingTracker.addTabStopEvents(this.pendingTabbedElements);
+        }
+
         const results = this.pendingTabbedElements;
         this.pendingTabbedElements = [];
 

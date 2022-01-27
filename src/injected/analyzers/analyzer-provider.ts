@@ -5,6 +5,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { BaseStore } from '../../common/base-store';
@@ -27,6 +28,7 @@ export class AnalyzerProvider {
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
         private readonly tabStopsRequirementRunner: AllFrameRunner<TabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
+        private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
@@ -117,6 +119,7 @@ export class AnalyzerProvider {
             this.featureFlagStore,
             this.tabStopsRequirementRunner,
             this.tabStopRequirementActionMessageCreator,
+            this.tabStopsDoneAnalyzingTracker,
         );
     }
 

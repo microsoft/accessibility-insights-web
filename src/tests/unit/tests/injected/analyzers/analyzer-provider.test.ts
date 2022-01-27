@@ -5,6 +5,7 @@ import { ScopingStore } from 'background/stores/global/scoping-store';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -42,6 +43,7 @@ describe('AnalyzerProviderTests', () => {
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let tabStopRequirementRunnerMock: IMock<AllFrameRunner<TabStopRequirementResult>>;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
+    let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
 
     beforeEach(() => {
@@ -62,12 +64,14 @@ describe('AnalyzerProviderTests', () => {
         tabStopRequirementRunnerMock = Mock.ofType<AllFrameRunner<TabStopRequirementResult>>();
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
+        tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>();
         featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
 
         testObject = new AnalyzerProvider(
             tabStopsListener.object,
             tabStopRequirementRunnerMock.object,
             tabStopRequirementActionMessageCreatorMock.object,
+            tabStopsDoneAnalyzingTrackerMock.object,
             featureFlagStoreMock.object,
             scopingStoreMock.object,
             sendMessageMock.object,
@@ -159,6 +163,9 @@ describe('AnalyzerProviderTests', () => {
         expect(openAnalyzer.tabStopRequirementRunner).toEqual(tabStopRequirementRunnerMock.object);
         expect(openAnalyzer.tabStopRequirementActionMessageCreator).toEqual(
             tabStopRequirementActionMessageCreatorMock.object,
+        );
+        expect(openAnalyzer.tabStopsDoneAnalyzingTracker).toEqual(
+            tabStopsDoneAnalyzingTrackerMock.object,
         );
         expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openAnalyzer.config).toEqual(config);
