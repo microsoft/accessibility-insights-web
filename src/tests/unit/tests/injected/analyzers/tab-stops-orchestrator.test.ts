@@ -252,6 +252,22 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.verifyAll();
     });
 
+    test('start: onKeydownForFocusTraps active element is body so do nothing', () => {
+        const eventStub = {
+            key: 'Tab',
+        } as KeyboardEvent;
+        reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
+        const bodyElement = {} as HTMLElement;
+        domMock.setup(m => m.activeElement).returns(() => bodyElement);
+        domMock.setup(m => m.body).returns(() => bodyElement);
+
+        testSubject.setResultCallback(reportResultsMock.object);
+        testSubject.start();
+        keydownCallback(eventStub);
+
+        reportResultsMock.verifyAll();
+    });
+
     function setupStartTabStopsOrchestrator() {
         prepareTabbableFocusOrderResults();
         domMock

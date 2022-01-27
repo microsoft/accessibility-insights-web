@@ -58,7 +58,8 @@ describe('TabStopsRequirementEvaluator', () => {
 
     test('addFocusOrderResults returns violations', () => {
         const expectedResult: TabStopRequirementResult = {
-            description: 'Element element1 precedes element2 but was visited first in tab order',
+            description:
+                'Element element1 precedes element2 but element2 was visited first in tab order',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',
@@ -86,7 +87,8 @@ describe('TabStopsRequirementEvaluator', () => {
 
     test('addTabbableFocusOrderResults returns violations', () => {
         const expectedResult: TabStopRequirementResult = {
-            description: 'Element element1 precedes element2 but was visited first in tab order',
+            description:
+                'Element element1 precedes element2 but element2 was visited first in tab order',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',

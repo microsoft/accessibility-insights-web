@@ -102,7 +102,7 @@ export class TabStopRequirementOrchestrator
     };
 
     private onKeydownForFocusTraps = (e: KeyboardEvent) => {
-        if (e.key !== 'Tab') {
+        if (e.key !== 'Tab' || this.dom.activeElement === this.dom.body) {
             return;
         }
 

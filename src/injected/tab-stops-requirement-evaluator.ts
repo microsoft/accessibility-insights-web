@@ -34,7 +34,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
         `Element ${selector} was expected, but not reached in tab order`;
     private readonly focusOrderDescription: (currSelector: string, lastSelector: string) => string =
         (currSelector, lastSelector) =>
-            `Element ${currSelector} precedes ${lastSelector} but was visited first in tab order`;
+            `Element ${currSelector} precedes ${lastSelector} but ${lastSelector} was visited first in tab order`;
     private readonly focusTrapsDescription: (string) => string = selector =>
         `Focus is still on element ${selector} 500ms after pressing tab`;
 
