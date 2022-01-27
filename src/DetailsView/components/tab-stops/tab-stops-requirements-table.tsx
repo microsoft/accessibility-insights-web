@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { CheckboxVisibility, DetailsList, IColumn } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -8,7 +9,6 @@ import { requirementsList } from 'DetailsView/components/tab-stops/requirements'
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { DetailsList, IColumn } from '@fluentui/react';
 import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {
@@ -75,7 +75,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                 className={styles.requirementTable}
                 items={requirementsList}
                 columns={columns}
-                checkboxVisibility={2}
+                checkboxVisibility={CheckboxVisibility.hidden}
             />
         );
     },

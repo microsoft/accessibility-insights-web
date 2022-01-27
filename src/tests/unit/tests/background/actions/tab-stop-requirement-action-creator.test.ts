@@ -7,6 +7,8 @@ import {
     UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabbingCompletedPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
 } from 'background/actions/action-payloads';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
@@ -233,6 +235,56 @@ describe('TabStopRequirementActionCreator', () => {
                 ),
             Times.once(),
         );
+    });
+
+    test('registerCallback for on tabbing completed', () => {
+        const actionName = 'updateTabbingCompleted';
+        const payload: UpdateTabbingCompletedPayload = {
+            tabbingCompleted: true,
+        };
+
+        const onTabbingCompletedMock = createActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, onTabbingCompletedMock.object);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.TabStops.TabbingCompleted,
+            payload,
+        );
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        onTabbingCompletedMock.verifyAll();
+    });
+
+    test('registerCallback for on need to collect tabbing results', () => {
+        const actionName = 'updateNeedToCollectTabbingResults';
+        const payload: UpdateNeedToCollectTabbingResultsPayload = {
+            needToCollectTabbingResults: true,
+        };
+
+        const onNeedToCollectTabbingResultsMock = createActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, onNeedToCollectTabbingResultsMock.object);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            payload,
+        );
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        onNeedToCollectTabbingResultsMock.verifyAll();
     });
 
     function createActionsMock<ActionName extends keyof TabStopRequirementActions>(

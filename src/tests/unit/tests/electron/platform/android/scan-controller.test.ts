@@ -19,8 +19,8 @@ import { DeviceCommunicator } from 'electron/platform/android/device-communicato
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
+import { androidScanResultExample } from 'tests/common/android-scan-result-example';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
-import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {
@@ -102,11 +102,11 @@ describe('ScanController', () => {
     });
 
     it('scans and handles successful v2 response', async () => {
-        const scanResults = new AndroidScanResults(scanResultV2Example);
+        const scanResults = new AndroidScanResults(androidScanResultExample);
 
         deviceCommunicatorMock
             .setup(m => m.fetchContent('result'))
-            .returns(() => Promise.resolve(JSON.stringify(scanResultV2Example)))
+            .returns(() => Promise.resolve(JSON.stringify(androidScanResultExample)))
             .verifiable(Times.once());
 
         telemetryEventHandlerMock

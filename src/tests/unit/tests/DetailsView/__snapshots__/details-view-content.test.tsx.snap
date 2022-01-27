@@ -305,6 +305,7 @@ exports[` render renders normally 1`] = `
           "scanResult": null,
         },
         "tabStops": Object {
+          "needToCollectTabbingResults": true,
           "requirements": Object {
             "focus-indicator": Object {
               "instances": Array [],
@@ -333,6 +334,7 @@ exports[` render renders normally 1`] = `
             },
           },
           "tabbedElements": null,
+          "tabbingCompleted": false,
         },
       }
     }

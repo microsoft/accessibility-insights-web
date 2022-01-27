@@ -14,9 +14,11 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -207,6 +209,10 @@ export class MainWindowInitializer extends WindowInitializer {
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
+        const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+        );
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
@@ -316,8 +322,16 @@ export class MainWindowInitializer extends WindowInitializer {
             filterNeedsReviewResults,
         );
 
+        const tabStopsDoneAnalyzingTracker = new TabStopsDoneAnalyzingTracker(
+            tabStopRequirementActionMessageCreator,
+        );
+
         const analyzerProvider = new AnalyzerProvider(
             this.manualTabStopListener,
+            this.tabStopRequirementRunner,
+            tabStopRequirementActionMessageCreator,
+            tabStopsDoneAnalyzingTracker,
+            this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),
@@ -335,12 +349,14 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
+            this.visualizationScanResultStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
             Assessments,
+            tabStopRequirementActionMessageCreator,
         );
 
         this.analyzerController.listenToStore();

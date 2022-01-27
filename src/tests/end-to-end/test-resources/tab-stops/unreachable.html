@@ -1,0 +1,21 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+
+<div>
+    <ol>
+        <li><a href="A.html">Item A</a></li>
+        <li><a href="B.html">Item B</a></li>
+        <li><a href="C.html" id="c">Item C</a></li>
+        <li><a href="D.html" id="d">Item D</a></li>
+    </ol>
+
+    <script>
+        document.querySelector('#d').addEventListener('keyup', e => {
+            if (e.key == 'Tab') {
+                document.querySelector('#c').focus();
+            }
+        });
+    </script>
+</div>

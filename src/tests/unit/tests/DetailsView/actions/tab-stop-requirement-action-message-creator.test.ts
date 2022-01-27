@@ -205,4 +205,44 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.verifyAll();
     });
+
+    test('updateTabbingCompleted', () => {
+        const tabbingCompleted = true;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.TabbingCompleted,
+            payload: {
+                tabbingCompleted,
+            },
+        };
+
+        testSubject.updateTabbingCompleted(tabbingCompleted);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('updateNeedToCollectTabbingResults', () => {
+        const needToCollectTabbingResults = true;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            payload: {
+                needToCollectTabbingResults,
+            },
+        };
+
+        testSubject.updateNeedToCollectTabbingResults(needToCollectTabbingResults);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
 });

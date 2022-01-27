@@ -29,6 +29,18 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
         return this;
     }
 
+    public withTabbingCompleted(completed: boolean): VisualizationScanResultStoreDataBuilder {
+        this.data.tabStops.tabbingCompleted = completed;
+        return this;
+    }
+
+    public withNeedToCollectTabbingResults(
+        needToCollectTabbingResults: boolean,
+    ): VisualizationScanResultStoreDataBuilder {
+        this.data.tabStops.needToCollectTabbingResults = needToCollectTabbingResults;
+        return this;
+    }
+
     public withTabStopRequirement(
         requirement: TabStopRequirementState,
     ): VisualizationScanResultStoreDataBuilder {

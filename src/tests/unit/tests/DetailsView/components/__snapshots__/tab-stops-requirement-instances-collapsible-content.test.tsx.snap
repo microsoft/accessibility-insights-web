@@ -3,7 +3,6 @@
 exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
 <StyledWithViewportComponent
   checkboxVisibility={2}
-  className="failedInstancesDetails"
   columns={
     Array [
       Object {
@@ -45,7 +44,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
 exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance details column 1`] = `
 <AssessmentInstanceDetailsColumn
   background="#767676"
-  headerText="Comment:"
+  headerText="Comment"
   textContent="test requirement description"
   tooltipId="test-instance-id"
 />

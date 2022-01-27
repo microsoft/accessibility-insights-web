@@ -37,7 +37,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     <AssessmentInstanceDetailsColumn
                         background={'#767676'}
                         textContent={instance.description}
-                        headerText={'Comment:'}
+                        headerText={'Comment'}
                         tooltipId={instance.id}
                     />
                 );
@@ -103,7 +103,6 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     checkboxVisibility={CheckboxVisibility.hidden}
                     constrainMode={ConstrainMode.horizontalConstrained}
                     onRenderDetailsHeader={() => null}
-                    className={styles.failedInstancesDetails}
                 />
             );
         },
