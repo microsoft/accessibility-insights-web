@@ -18,7 +18,7 @@ describe('Automated TabStops Results', () => {
     let detailsViewPage: DetailsViewPage;
     let backgroundPage: BackgroundPage;
 
-    afterAll(async () => {
+    afterEach(async () => {
         await browser?.close();
     });
 
