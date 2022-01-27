@@ -6,7 +6,7 @@ import { FastPassThemePalette } from 'common/styles/fast-pass-theme-palette';
 import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
-import { Customizer, ISettings } from 'office-ui-fabric-react';
+import { ThemeProvider, ISettings } from '@fluentui/react';
 import * as React from 'react';
 
 describe('ThemeFamilyCustomizer', () => {
@@ -32,7 +32,7 @@ describe('ThemeFamilyCustomizer', () => {
             );
 
             const settingsPassedByTestSubject = testSubject
-                .find(Customizer)
+                .find(ThemeProvider)
                 .prop('settings') as ISettings;
 
             const expectedPalette = {

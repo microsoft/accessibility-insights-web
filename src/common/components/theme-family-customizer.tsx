@@ -5,17 +5,19 @@ import { DefaultThemePalette } from 'common/styles/default-theme-palette';
 import { FastPassThemePalette } from 'common/styles/fast-pass-theme-palette';
 import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { createTheme, Customizer, ITheme } from 'office-ui-fabric-react';
+import { ThemeProvider, PartialTheme } from '@fluentui/react';
 import * as React from 'react';
 
 export type ThemeFamily = 'default' | 'fast-pass';
 
-// createTheme is somewhat expensive; don't call it in render()
-const themeFamilyDefaultThemes: { [themeFamily in ThemeFamily]: ITheme } = {
-    default: createTheme(DefaultThemePalette),
-    'fast-pass': createTheme(FastPassThemePalette),
+const themeFamilyDefaultThemes: { [themeFamily in ThemeFamily]: PartialTheme } = {
+    default : { palette: DefaultThemePalette },
+    'fast-pass' : { palette: FastPassThemePalette } 
 };
-const highContrastTheme = createTheme(HighContrastThemePalette);
+
+const highContrastTheme: PartialTheme = {
+    palette: HighContrastThemePalette
+};
 
 export type ThemeFamilyCustomizerProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -42,6 +44,6 @@ export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
         // ...and remove the `createTheme` calls from the theme constants at the top of
         // this file (ThemeProvider doesn't need them because it supports using PartialThemes
         // directly, whereas Customizer only supports full Themes)
-        return <Customizer settings={{ theme: activeTheme }}>{props.children}</Customizer>;
+        return <ThemeProvider theme={activeTheme}>{props.children}</ThemeProvider>;
     },
 );

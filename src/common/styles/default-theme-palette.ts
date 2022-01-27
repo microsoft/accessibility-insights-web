@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPartialTheme } from '@fluentui/style-utilities';
-export const DefaultThemePalette: IPartialTheme = {
+import { PartialTheme } from '@fluentui/react';
+export const DefaultThemePalette: PartialTheme = {
     // generated from default theme from https://developer.microsoft.com/en-us/fabric#/styles/themegenerator
     palette: {
         themePrimary: '#0078d4',

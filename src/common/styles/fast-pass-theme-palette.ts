@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPartialTheme } from '@uifabric/styling';
+import { PartialTheme } from '@fluentui/react';
 import { DefaultThemePalette } from './default-theme-palette';
 
 // This is a copy of our DefaultThemePalette slightly adjusted to account for the page background
 // of FastPass-like content views using our "neutral2" instead of our "white" for a background color
 // (because they use Card-like elements that want to keep "white" background colors for themselves).
-export const FastPassThemePalette: IPartialTheme = {
+export const FastPassThemePalette: PartialTheme = {
     ...DefaultThemePalette,
     palette: {
         ...DefaultThemePalette.palette,
