@@ -22,6 +22,23 @@ describe('Automated TabStops Results', () => {
         await browser?.close();
     });
 
+    test('No failures are displayed when there are no tab elements', async () => {
+        await openTabStopsPage('shadow-doms.html');
+
+        for (let i = 0; i < 4; i++) {
+            await targetPage.keyPress('Tab'); // tabbing through the browser items
+        }
+
+        await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
+
+        // No results, so results selectors shouldn't show up
+        await detailsViewPage.waitForTimeout(100);
+        const element = await detailsViewPage.getSelectorElement(
+            tabStopsSelectors.automatedChecksResultSection,
+        );
+        expect(element).toBeNull();
+    });
+
     test('Detect and display out of order failures', async () => {
         await openTabStopsPage('tab-stops/out-of-order.html');
 
