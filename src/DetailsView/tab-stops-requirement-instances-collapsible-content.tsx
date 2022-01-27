@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
+import { tabStopsRequirementsTableActionColumnWidthPx } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import {
     CheckboxVisibility,
@@ -77,8 +78,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     key: 'failureDescription',
                     name: 'Failure description',
                     fieldName: 'description',
-                    minWidth: 200,
-                    maxWidth: 400,
+                    minWidth: 100,
                     isResizable: true,
                     onRender: onRenderCapturedInstanceDetailsColumn,
                     columnActionsMode: ColumnActionsMode.disabled,
@@ -88,8 +88,9 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     name: 'instance actions',
                     isIconOnly: true,
                     fieldName: 'instanceActionButtons',
-                    minWidth: 100,
-                    maxWidth: 100,
+                    // Matching the Requirements table ensures that corresponding icons line up
+                    minWidth: tabStopsRequirementsTableActionColumnWidthPx,
+                    maxWidth: tabStopsRequirementsTableActionColumnWidthPx,
                     isResizable: false,
                     onRender: onRenderCapturedInstanceIconsColumn,
                     columnActionsMode: ColumnActionsMode.disabled,
