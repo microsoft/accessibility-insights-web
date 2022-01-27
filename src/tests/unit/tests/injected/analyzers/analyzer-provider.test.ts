@@ -64,6 +64,7 @@ describe('AnalyzerProviderTests', () => {
         tabStopRequirementRunnerMock = Mock.ofType<AllFrameRunner<TabStopRequirementResult>>();
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
+        tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>();
         featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
 
         testObject = new AnalyzerProvider(
