@@ -19,7 +19,7 @@ describe('Automated TabStops Results', () => {
     let backgroundPage: BackgroundPage;
 
     afterAll(async () => {
-        // intentionally don't close - await browser?.close();
+        await browser?.close();
     });
 
     test('Detect and display out of order failures', async () => {
