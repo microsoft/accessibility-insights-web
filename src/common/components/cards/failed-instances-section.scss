@@ -1,0 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.failed-instances-container {
+    :global {
+        .collapsible-content {
+            margin-left: 24px;
+        }
+    }
+}
