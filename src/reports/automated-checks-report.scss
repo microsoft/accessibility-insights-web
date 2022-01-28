@@ -41,7 +41,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 }
 
 .result-section {
-    padding-bottom: 58px;
+    padding-bottom: 24px;
 
     .title-container {
         .collapsible-control::before {
@@ -49,6 +49,10 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             bottom: 2px;
             margin-right: 14px;
         }
+    }
+
+    .collapsible-content {
+        margin-left: 16px;
     }
 }
 
