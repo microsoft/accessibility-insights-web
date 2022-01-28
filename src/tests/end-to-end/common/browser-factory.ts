@@ -11,7 +11,7 @@ import {
     getManifestPath,
     originalManifestCopyPath,
 } from 'tests/end-to-end/common/extension-paths';
-import { ManifestInstance } from 'tests/end-to-end/common/manifest-overide';
+import { ManifestInstance } from 'tests/end-to-end/common/manifest-instance';
 import { testResourceServerConfigs } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
