@@ -3,41 +3,30 @@
 import * as fs from 'fs';
 import * as util from 'util';
 
-export class ManifestOveride {
+export class ManifestInstance {
     private static readFile = util.promisify(fs.readFile);
     private static writeFile = util.promisify(fs.writeFile);
 
-    public static async fromManifestPath(manifestPath: string): Promise<ManifestOveride> {
-        const instance = new ManifestOveride();
-
-        const buffer = await ManifestOveride.readFile(manifestPath);
-
-        instance.manifestPath = manifestPath;
-        instance.originalManifest = buffer.toString();
-        instance.modifiedManifest = JSON.parse(instance.originalManifest);
-
-        return instance;
+    public static async parse(manifestPath: string): Promise<chrome.runtime.ManifestV2> {
+        const buffer = await ManifestInstance.readFile(manifestPath);
+        const parsedManifest: chrome.runtime.ManifestV2 = JSON.parse(buffer.toString());
+        return parsedManifest;
     }
 
-    private manifestPath: string;
-    private originalManifest: string;
-    private modifiedManifest: chrome.runtime.ManifestV2;
+    public constructor(private readonly content: chrome.runtime.ManifestV2) {}
 
-    public addTemporaryPermission(permissionToAdd: string): ManifestOveride {
-        if (this.modifiedManifest.permissions == null) {
-            this.modifiedManifest.permissions = [];
+    public addTemporaryPermission(permissionToAdd: string): ManifestInstance {
+        if (this.content.permissions == null) {
+            this.content.permissions = [];
         }
-        this.modifiedManifest.permissions.push(permissionToAdd);
+        this.content.permissions.push(permissionToAdd);
 
         return this;
     }
 
-    public async write(): Promise<void> {
-        const content = JSON.stringify(this.modifiedManifest, null, 2);
+    public async writeTo(destinationPath: string): Promise<void> {
+        const serializedContent = JSON.stringify(this.content, null, 2);
 
-        await ManifestOveride.writeFile(this.manifestPath, content);
+        await ManifestInstance.writeFile(destinationPath, serializedContent);
     }
-
-    public restoreOriginalManifest = async (): Promise<void> =>
-        await ManifestOveride.writeFile(this.manifestPath, this.originalManifest);
 }
