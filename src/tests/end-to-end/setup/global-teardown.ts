@@ -2,11 +2,17 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as testResourceServer from '../../miscellaneous/test-resource-server/resource-server';
-import { originalManifestCopyPath } from '../common/extension-paths';
+import {
+    getExtensionPath,
+    getManifestPath,
+    originalManifestCopyPath,
+} from '../common/extension-paths';
 
 // tslint:disable-next-line:no-default-export
 export default function (): void {
     testResourceServer.stopAllServers();
 
-    fs.rmSync(originalManifestCopyPath);
+    if (fs.existsSync(originalManifestCopyPath)) {
+        fs.renameSync(originalManifestCopyPath, getManifestPath(getExtensionPath()));
+    }
 }

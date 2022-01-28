@@ -33,15 +33,18 @@ export interface ExtensionOptions {
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const browserInstanceId = generateUID();
 
+    const originalManifestContent: chrome.runtime.ManifestV2 = await ManifestInstance.parse(
+        originalManifestCopyPath,
+    );
+    const manifestCopy = createManifestWithPermissions(
+        extensionOptions.addExtraPermissionsToManifest,
+        originalManifestContent,
+    );
+
     // only unpacked extension paths are supported
     const extensionPath = getExtensionPath();
-    const extensionManifestPath = getManifestPath(extensionPath);
-
-    const originalManifestContent = await ManifestInstance.parse(originalManifestCopyPath);
-
-    const manifestCopy = new ManifestInstance(originalManifestContent);
-    addPermissions(extensionOptions, manifestCopy);
-    await manifestCopy.writeTo(extensionManifestPath);
+    const manifestPath = getManifestPath(extensionPath);
+    await manifestCopy.writeTo(manifestPath);
 
     const userDataDir = await setupUserDataDir(browserInstanceId);
 
@@ -51,7 +54,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const playwrightContext = await launchNewBrowserContext(userDataDir, extensionPath);
 
     const browser = new Browser(browserInstanceId, playwrightContext, async () => {
-        await new ManifestInstance(originalManifestContent).writeTo(extensionManifestPath);
+        await new ManifestInstance(originalManifestContent).writeTo(manifestPath);
     });
 
     const backgroundPage = await browser.backgroundPage();
@@ -73,13 +76,13 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-const addPermissions = (
-    extensionOptions: ExtensionOptions,
-    manifestInstance: ManifestInstance,
-): void => {
-    const { addExtraPermissionsToManifest } = extensionOptions;
+const createManifestWithPermissions = (
+    permissions: ExtraPermissions,
+    manifestContent: chrome.runtime.ManifestV2,
+): ManifestInstance => {
+    const manifestInstance = new ManifestInstance(manifestContent);
 
-    switch (addExtraPermissionsToManifest) {
+    switch (permissions) {
         case 'fake-activeTab':
             // we need to add localhost origin permission in order to fake activeTab
             // the main reason is Playwright (like Puppeteer) lacks an API to activate the extension
@@ -96,6 +99,8 @@ const addPermissions = (
         default:
         // no-op
     }
+
+    return manifestInstance;
 };
 
 async function setupUserDataDir(browserInstanceId: string): Promise<string> {
