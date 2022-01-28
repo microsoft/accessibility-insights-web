@@ -57,31 +57,33 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
     public render(): JSX.Element {
         const { axeInfo } = this.props.deps;
         return (
-            <div className="ms-Grid main-section">
-                <main>
-                    <div
-                        role="heading"
-                        aria-level={2}
-                        className="launch-pad-title ms-fontWeight-semibold"
-                    >
-                        Launch pad
-                    </div>
-                    <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                    <div className="launch-pad-main-section">
-                        {this.renderLaunchPadItemRows(this.props.rowConfigs)}
-                    </div>
-                </main>
-                <div role="complementary" className="launch-pad-footer">
-                    <div>
-                        {`Version ${this.props.version} | Powered by `}
-                        <ExternalLink
-                            deps={this.props.deps}
-                            title="Navigate to axe-core npm page"
-                            href="https://www.npmjs.com/package/axe-core"
+            <div className="main-section">
+                <div className="popup-grid">
+                    <main>
+                        <div
+                            role="heading"
+                            aria-level={2}
+                            className="launch-pad-title ms-fontWeight-semibold"
                         >
-                            axe-core
-                        </ExternalLink>{' '}
-                        {axeInfo.version}
+                            Launch pad
+                        </div>
+                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                        <div className="launch-pad-main-section">
+                            {this.renderLaunchPadItemRows(this.props.rowConfigs)}
+                        </div>
+                    </main>
+                    <div role="complementary" className="launch-pad-footer">
+                        <div>
+                            {`Version ${this.props.version} | Powered by `}
+                            <ExternalLink
+                                deps={this.props.deps}
+                                title="Navigate to axe-core npm page"
+                                href="https://www.npmjs.com/package/axe-core"
+                            >
+                                axe-core
+                            </ExternalLink>{' '}
+                            {axeInfo.version}
+                        </div>
                     </div>
                 </div>
             </div>

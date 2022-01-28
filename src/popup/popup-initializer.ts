@@ -61,6 +61,7 @@ export class PopupInitializer {
 
     public initialize(): Promise<void> {
         if (!this.isSupportedBrowser()) {
+            // ! TODO: check this
             this.useIncompatibleBrowserRenderer();
             return;
         }

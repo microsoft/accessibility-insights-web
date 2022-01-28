@@ -82,6 +82,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     public render(): JSX.Element {
+        // ! TODO: check on these panels too
         if (!this.props.hasAccess) {
             if (UrlValidator.isFileUrl(this.props.targetTabUrl)) {
                 return this.renderUnsupportedMsgPanelForFileUrl();
@@ -190,9 +191,11 @@ export class PopupView extends React.Component<PopupViewProps> {
         return (
             <div className="ms-Fabric unsupported-url-info-panel">
                 {this.renderDefaultHeader()}
-                <div className="ms-Grid main-section">
-                    <div className="launch-panel-general-container">
-                        <>{this.getUrlNotScannableMessage()}</>
+                <div className="main-section">
+                    <div className="popup-grid">
+                        <div className="launch-panel-general-container">
+                            <>{this.getUrlNotScannableMessage()}</>
+                        </div>
                     </div>
                 </div>
             </div>
