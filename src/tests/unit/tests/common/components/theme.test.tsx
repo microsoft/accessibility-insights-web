@@ -3,8 +3,8 @@
 
 import { ThemeDeps, ThemeInner, ThemeInnerProps } from 'common/components/theme';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { DefaultThemePalette } from 'common/styles/default-theme-palette';
-import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
+import { DefaultTheme } from 'common/styles/default-theme';
+import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -44,7 +44,7 @@ describe('ThemeInner', () => {
     test.each(testStub)(
         'componentDidMount: is high contrast mode enabled: %s',
         (enableHighContrast: boolean) => {
-            const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+            const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
             const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
             shallow(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
 
@@ -55,7 +55,7 @@ describe('ThemeInner', () => {
     test.each(testStub)(
         'componentDidUpdate: is high contrast mode enabled: %s',
         (enableHighContrast: boolean) => {
-            const theme = enableHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+            const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
             const wrapper = shallow(<ThemeInner {...props} />);
 
             loadThemeMock.mockReset();

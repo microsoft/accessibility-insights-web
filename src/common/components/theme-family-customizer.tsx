@@ -2,20 +2,18 @@
 // Licensed under the MIT License.
 import { ThemeProvider, PartialTheme } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import { DefaultThemePalette } from 'common/styles/default-theme-palette';
-import { FastPassThemePalette } from 'common/styles/fast-pass-theme-palette';
-import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
+import { DefaultTheme } from 'common/styles/default-theme';
+import { FastPassTheme } from 'common/styles/fast-pass-theme';
+import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
 
 export type ThemeFamily = 'default' | 'fast-pass';
 
 const themeFamilyDefaultThemes: { [themeFamily in ThemeFamily]: PartialTheme } = {
-    default: DefaultThemePalette,
-    'fast-pass': FastPassThemePalette,
+    default: DefaultTheme,
+    'fast-pass': FastPassTheme,
 };
-
-const highContrastTheme: PartialTheme = HighContrastThemePalette;
 
 export type ThemeFamilyCustomizerProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -23,25 +21,12 @@ export type ThemeFamilyCustomizerProps = {
     children: React.ReactNode;
 };
 
-// This is a store-state-aware version of the Fluent UI <ThemeProvider> component. It's intended
-// as a wrapper for Fluent UI-based components that need to use a different Theme from our default
-// one, but still want to support being overriden by HighContrastTheme when a user has enabled our
-// High Contrast Mode setting (or a native system High Contrast setting).
 export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
     'ThemeCustomizer',
     props => {
         const isHighContrastEnabled = props.userConfigurationStoreData?.enableHighContrast === true;
         const defaultTheme = themeFamilyDefaultThemes[props.themeFamily];
-
-        const activeTheme = isHighContrastEnabled ? highContrastTheme : defaultTheme;
-
-        // When we update to Fluent UI 8, replace the below line with:
-        //
-        //     return <ThemeProvider theme={activeTheme}>{props.children}</ThemeProvider>
-        //
-        // ...and remove the `createTheme` calls from the theme constants at the top of
-        // this file (ThemeProvider doesn't need them because it supports using PartialThemes
-        // directly, whereas Customizer only supports full Themes)
+        const activeTheme = isHighContrastEnabled ? HighContrastTheme : defaultTheme;
         return <ThemeProvider theme={activeTheme}>{props.children}</ThemeProvider>;
     },
 );

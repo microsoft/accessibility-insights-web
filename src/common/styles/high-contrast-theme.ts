@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { PartialTheme } from '@fluentui/react';
 
-export const HighContrastThemePalette: PartialTheme = {
+export const HighContrastTheme: PartialTheme = {
     // basic palette from https://developer.microsoft.com/en-us/fabric#/styles/themegenerator with white text and #161616 background
     palette: {
         themePrimary: '#2b88d8',
