@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import path from 'path';
+import * as path from 'path';
 
 export function getExtensionPath(): string {
     const target = process.env['WEB_E2E_TARGET'] ?? 'dev';
