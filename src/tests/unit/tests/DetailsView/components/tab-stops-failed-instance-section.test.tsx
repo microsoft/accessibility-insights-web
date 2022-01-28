@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
@@ -20,6 +21,7 @@ describe('TabStopsFailedInstanceSection', () => {
     let tabStopsInstanceSectionPropsFactoryMock: IMock<TabStopsInstanceSectionPropsFactory>;
     let props: TabStopsFailedInstanceSectionProps;
     let deps: TabStopsFailedInstanceSectionDeps;
+    const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
 
     beforeEach(() => {
         tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
@@ -41,6 +43,7 @@ describe('TabStopsFailedInstanceSection', () => {
         deps = {
             tabStopsFailedCounter: tabStopsFailedCounterMock.object,
             tabStopsInstanceSectionPropsFactory: tabStopsInstanceSectionPropsFactoryMock.object,
+            getNextHeadingLevel: getNextHeadingLevelStub,
         } as TabStopsFailedInstanceSectionDeps;
 
         props = {

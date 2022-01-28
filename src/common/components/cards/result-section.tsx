@@ -15,7 +15,7 @@ import * as styles from './result-section.scss';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
 
-export type ResultSectionProps = ResultSectionContentProps &
+export type ResultSectionProps = Omit<ResultSectionContentProps, 'headingLevel'> &
     Omit<ResultSectionTitleProps, 'titleSize'> & {
         containerClassName: string;
         deps: ResultSectionDeps;
@@ -25,7 +25,7 @@ export type ResultSectionProps = ResultSectionContentProps &
 export const resultSectionAutomationId = 'result-section';
 
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
-    const { containerClassName, titleHeadingLevel } = props;
+    const { containerClassName, titleHeadingLevel, deps } = props;
     return (
         <div
             className={css(containerClassName, styles.resultSection)}
@@ -34,7 +34,10 @@ export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props 
             <HeadingElementForLevel headingLevel={titleHeadingLevel}>
                 <ResultSectionTitle {...props} titleSize="title" />
             </HeadingElementForLevel>
-            <ResultSectionContent {...props} />
+            <ResultSectionContent
+                headingLevel={deps.getNextHeadingLevel(titleHeadingLevel)}
+                {...props}
+            />
         </div>
     );
 });

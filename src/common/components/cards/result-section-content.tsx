@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
@@ -17,6 +18,7 @@ import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instanc
 export type ResultSectionContentDeps = RulesWithInstancesDeps &
     NoFailedInstancesCongratsDeps & {
         cardsVisualizationModifierButtons: CardsVisualizationModifierButtons;
+        getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel;
     };
 
 export type ResultSectionContentProps = {

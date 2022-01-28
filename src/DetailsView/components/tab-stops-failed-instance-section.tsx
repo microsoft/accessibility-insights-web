@@ -18,6 +18,7 @@ import * as React from 'react';
 export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps & {
     tabStopsFailedCounter: TabStopsFailedCounter;
     tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
+    getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel;
 };
 
 export interface TabStopsFailedInstanceSectionProps {
@@ -56,7 +57,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
         }
 
         const instanceSectionProps = props.deps.tabStopsInstanceSectionPropsFactory({
-            headingLevel: props.titleHeadingLevel + 1,
+            headingLevel: props.deps.getNextHeadingLevel(props.titleHeadingLevel),
             results,
             tabStopRequirementState: props.tabStopRequirementState,
             deps: props.deps,

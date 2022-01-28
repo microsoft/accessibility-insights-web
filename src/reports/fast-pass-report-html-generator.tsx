@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -47,6 +48,7 @@ export class FastPassReportHtmlGenerator {
         private readonly tabStopsFailedCounter: TabStopsFailedCounter,
         private readonly toolData: ToolData,
         private readonly getCurrentDate: () => Date,
+        private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
     ) {}
 
     public generateHtml(model: FastPassReportModel): string {
@@ -73,6 +75,7 @@ export class FastPassReportHtmlGenerator {
                 LinkComponent: NewTabLink,
                 tabStopsFailedCounter: this.tabStopsFailedCounter,
                 tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: this.getNextHeadingLevel,
             } as FastPassReportDeps,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,

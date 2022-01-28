@@ -41,7 +41,6 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
-                headingLevel={titleHeadingLevel + 1}
                 titleHeadingLevel={titleHeadingLevel}
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
             />

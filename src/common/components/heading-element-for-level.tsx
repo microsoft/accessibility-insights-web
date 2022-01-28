@@ -15,3 +15,13 @@ export const HeadingElementForLevel = NamedFC<HeadingElementForLevelProps>(
     'HeadingElementForLevel',
     ({ headingLevel, ...props }) => React.createElement(`h${headingLevel}`, props),
 );
+
+export const GetNextHeadingLevel = (headingLevel: HeadingLevel) => {
+    const nextLevel = headingLevel + 1;
+
+    if (nextLevel > 6) {
+        throw new Error(`${nextLevel} is not a valid heading level`);
+    }
+
+    return nextLevel as HeadingLevel;
+};

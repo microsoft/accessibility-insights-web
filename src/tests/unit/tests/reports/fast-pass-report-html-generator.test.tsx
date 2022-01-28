@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -35,6 +36,7 @@ describe(FastPassReportHtmlGenerator, () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
+        const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
         const tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
 
@@ -93,6 +95,7 @@ describe(FastPassReportHtmlGenerator, () => {
                 LinkComponent: NewTabLink,
                 tabStopsFailedCounter: tabStopsFailedCounterMock.object,
                 tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: getNextHeadingLevelStub,
             } as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
@@ -124,6 +127,7 @@ describe(FastPassReportHtmlGenerator, () => {
             tabStopsFailedCounterMock.object,
             toolData,
             () => scanDate,
+            getNextHeadingLevelStub,
         );
 
         const actual = testObject.generateHtml(model);
