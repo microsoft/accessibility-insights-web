@@ -4,7 +4,8 @@ import * as path from 'path';
 
 export function getExtensionPath(): string {
     const target = process.env['WEB_E2E_TARGET'] ?? 'dev';
-    return `${(global as any).rootDir}/drop/extension/${target}/product`;
+    console.log(global as any);
+    return path.join(__dirname, `../../../../drop/extension/${target}/product`);
 }
 
 export function getManifestPath(extensionPath: string): string {
