@@ -28,6 +28,7 @@ import { allCardInteractionsSupported } from 'common/components/cards/card-inter
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
@@ -522,6 +523,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             setFocusVisibility,
             customCongratsContinueInvestigatingMessage:
                 "Continue investigating your app's accessibility compliance through manual testing.",
+            getNextHeadingLevel: GetNextHeadingLevel,
         };
 
         const documentManipulator = new DocumentManipulator(document);
@@ -535,6 +537,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             fixInstructionProcessor,
             recommendColor,
             getPropertyConfiguration,
+            GetNextHeadingLevel,
         );
 
         const reportNameGenerator = new UnifiedReportNameGenerator();

@@ -87,6 +87,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
+          sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
           deps="stub-deps"
@@ -198,6 +199,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
+          sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
           deps="stub-deps"

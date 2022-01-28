@@ -73,6 +73,7 @@ describe('FastPassReportSummary', () => {
                     scanComplete: scanDate,
                 },
             },
+            sectionHeadingLevel: 3,
         };
     });
 

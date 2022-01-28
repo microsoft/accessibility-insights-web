@@ -17,6 +17,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
         scanMetadata,
         shouldAlertFailuresCount,
         cardSelectionMessageCreator,
+        sectionHeadingLevel,
     }) => {
         if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
@@ -40,7 +41,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
-                headingLevel={3}
+                sectionHeadingLevel={sectionHeadingLevel}
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
             />
         );

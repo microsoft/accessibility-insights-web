@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
@@ -17,12 +18,14 @@ import * as React from 'react';
 export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps & {
     tabStopsFailedCounter: TabStopsFailedCounter;
     tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
+    getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel;
 };
 
 export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
     tabStopRequirementState: TabStopRequirementState;
     alwaysRenderSection: boolean;
+    sectionHeadingLevel: HeadingLevel;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -54,7 +57,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
         }
 
         const instanceSectionProps = props.deps.tabStopsInstanceSectionPropsFactory({
-            headingLevel: 3,
+            headingLevel: props.deps.getNextHeadingLevel(props.sectionHeadingLevel),
             results,
             tabStopRequirementState: props.tabStopRequirementState,
             deps: props.deps,
@@ -65,14 +68,14 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
                 className={styles.tabStopsFailureInstanceSection}
                 data-automation-id={tabStopsFailedInstanceSectionAutomationId}
             >
-                <h2>
+                <HeadingElementForLevel headingLevel={props.sectionHeadingLevel}>
                     <ResultSectionTitle
                         title="Failed instances"
                         badgeCount={totalFailedInstancesCount}
                         outcomeType="fail"
                         titleSize="title"
                     />
-                </h2>
+                </HeadingElementForLevel>
                 <TabStopsRequirementsWithInstances {...instanceSectionProps} />
             </div>
         );
