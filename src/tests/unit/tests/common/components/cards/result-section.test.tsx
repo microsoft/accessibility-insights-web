@@ -19,6 +19,7 @@ describe('ResultSection', () => {
                     containerClassName: 'result-section-class-name',
                     deps: {} as ResultSectionDeps,
                     shouldAlertFailuresCount,
+                    titleHeadingLevel: 2,
                 } as ResultSectionProps;
 
                 const wrapper = shallow(<ResultSection {...props} />);

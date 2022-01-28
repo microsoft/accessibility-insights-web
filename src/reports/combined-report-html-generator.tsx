@@ -62,6 +62,7 @@ export class CombinedReportHtmlGenerator {
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
+            titleHeadingLevel: 2,
         };
 
         const props: ReportBodyProps<CombinedReportSectionProps> = {

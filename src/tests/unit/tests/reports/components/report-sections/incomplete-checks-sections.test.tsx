@@ -21,6 +21,7 @@ describe('IncompleteChecksSection', () => {
                     unknown: [{} as CardRuleResult, {} as CardRuleResult, {} as CardRuleResult],
                 },
             } as CardsViewModel,
+            titleHeadingLevel: 3,
         };
 
         const wrapper = shallow(<IncompleteChecksSection {...props} />);
@@ -36,6 +37,7 @@ describe('IncompleteChecksSection', () => {
                     /* missing */
                 },
             } as CardsViewModel,
+            titleHeadingLevel: 3,
         };
 
         const wrapper = shallow(<IncompleteChecksSection {...props} />);

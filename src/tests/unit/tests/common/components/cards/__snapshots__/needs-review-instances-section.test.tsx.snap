@@ -21,6 +21,7 @@ exports[`NeedsReviewInstancesSection renders with alerting off 1`] = `
     }
   }
   title="Instances to review"
+  titleHeadingLevel={2}
 />
 `;
 
@@ -41,6 +42,7 @@ exports[`NeedsReviewInstancesSection renders with alerting on 1`] = `
     }
   }
   title="Instances to review"
+  titleHeadingLevel={2}
 />
 `;
 
@@ -139,5 +141,6 @@ exports[`NeedsReviewInstancesSection renders with unknowns 1`] = `
     }
   }
   title="Instances to review"
+  titleHeadingLevel={2}
 />
 `;

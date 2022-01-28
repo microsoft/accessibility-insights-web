@@ -44,6 +44,7 @@ describe('TabStopChecksSectionWrapper', () => {
                 },
             },
             checksSection: NamedFC<SectionProps>('test', props => <div {...props} />),
+            titleHeadingLevel: 3,
         };
 
         const wrapper = shallow(<TabStopsChecksSectionWrapper {...props} />);

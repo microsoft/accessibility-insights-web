@@ -25,6 +25,7 @@ describe('NotApplicableChecksSection', () => {
                     unknown: [],
                 },
             } as CardsViewModel,
+            titleHeadingLevel: 3,
         };
 
         const wrapper = shallow(<NotApplicableChecksSection {...props} />);

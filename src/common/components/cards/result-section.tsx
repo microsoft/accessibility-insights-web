@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
@@ -18,21 +19,21 @@ export type ResultSectionProps = ResultSectionContentProps &
     Omit<ResultSectionTitleProps, 'titleSize'> & {
         containerClassName: string;
         deps: ResultSectionDeps;
+        titleHeadingLevel: HeadingLevel;
     };
 
 export const resultSectionAutomationId = 'result-section';
 
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
-    const { containerClassName } = props;
-
+    const { containerClassName, titleHeadingLevel } = props;
     return (
         <div
             className={css(containerClassName, styles.resultSection)}
             data-automation-id={resultSectionAutomationId}
         >
-            <h2>
+            <HeadingElementForLevel headingLevel={titleHeadingLevel}>
                 <ResultSectionTitle {...props} titleSize="title" />
-            </h2>
+            </HeadingElementForLevel>
             <ResultSectionContent {...props} />
         </div>
     );

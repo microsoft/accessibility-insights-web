@@ -13,14 +13,14 @@ export type IncompleteChecksSectionDeps = CollapsibleResultSectionDeps;
 
 export type IncompleteChecksSectionProps = Pick<
     SectionProps,
-    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'
+    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'titleHeadingLevel'
 > & {
     testKey?: string;
 };
 
 export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
     'IncompleteChecksSection',
-    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey }) => {
+    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey, titleHeadingLevel }) => {
         const cardRuleResults = cardsViewData?.cards?.unknown ?? [];
 
         return (
@@ -34,6 +34,7 @@ export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
                 containerId="incomplete-checks-section"
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
                 testKey={testKey}
+                headingLevel={titleHeadingLevel}
             />
         );
     },

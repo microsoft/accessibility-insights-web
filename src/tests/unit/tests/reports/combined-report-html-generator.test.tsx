@@ -126,6 +126,7 @@ describe('CombinedReportHtmlGenerator', () => {
             scanMetadata,
             cardsViewData,
             urlResultCounts,
+            titleHeadingLevel: 2,
         };
 
         const headElement: JSX.Element = <NullComponent />;

@@ -13,12 +13,12 @@ export type NotApplicableChecksSectionDeps = CollapsibleResultSectionDeps;
 
 export type NotApplicableChecksSectionProps = Pick<
     SectionProps,
-    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'
+    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'titleHeadingLevel'
 >;
 
 export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>(
     'NotApplicableChecksSection',
-    ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
+    ({ deps, cardsViewData, cardSelectionMessageCreator, titleHeadingLevel }) => {
         const cardRuleResults = cardsViewData.cards.inapplicable;
 
         return (
@@ -31,6 +31,7 @@ export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProp
                 badgeCount={cardRuleResults.length}
                 containerId="not-applicable-checks-section"
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
+                headingLevel={titleHeadingLevel}
             />
         );
     },

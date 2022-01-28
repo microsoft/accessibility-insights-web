@@ -21,6 +21,7 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
     }
   }
   title="Failed instances"
+  titleHeadingLevel={2}
 />
 `;
 
@@ -41,6 +42,7 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
     }
   }
   title="Failed instances"
+  titleHeadingLevel={2}
 />
 `;
 
@@ -139,5 +141,6 @@ exports[`FailedInstancesSection renders with failures 1`] = `
     }
   }
   title="Failed instances"
+  titleHeadingLevel={2}
 />
 `;

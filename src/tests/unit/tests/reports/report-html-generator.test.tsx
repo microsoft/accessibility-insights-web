@@ -92,6 +92,7 @@ describe('ReportHtmlGenerator', () => {
                 allCardsCollapsed: true,
             },
             scanMetadata,
+            titleHeadingLevel: 2,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;

@@ -62,6 +62,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 cardsViewData={cardsViewData}
                 tabStopsEnabled={props.tabStopsEnabled}
                 cardSelectionMessageCreator={deps.cardSelectionMessageCreator}
+                titleHeadingLevel={2}
             />
         </div>
     );

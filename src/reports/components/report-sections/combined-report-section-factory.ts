@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ResultSectionDeps } from 'common/components/cards/result-section';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 import {
@@ -31,6 +32,7 @@ export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
         deps: CombinedReportSectionDeps;
         cardsViewData: CardsViewModel;
         urlResultCounts: UrlResultCounts;
+        titleHeadingLevel: HeadingLevel;
     };
 
 export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {

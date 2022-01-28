@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
 import {
@@ -15,16 +16,21 @@ export type TabStopsChecksSectionWrapperProps = Pick<
     'deps' | 'cardSelectionMessageCreator'
 > & {
     checksSection: ReactFCWithDisplayName<
-        Pick<SectionProps, 'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'>
+        Pick<
+            SectionProps,
+            'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'titleHeadingLevel'
+        >
     >;
     tabStops: TabStopRequirementState;
     testKey?: string;
+    titleHeadingLevel: HeadingLevel;
 };
 
 export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecksSectionWrapperProps> {
     public render(): React.ReactNode {
         return (
             <this.props.checksSection
+                titleHeadingLevel={this.props.titleHeadingLevel}
                 testKey="tab-stops"
                 cardsViewData={this.prepareCardsViewData()}
                 {...this.props}

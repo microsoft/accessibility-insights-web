@@ -141,6 +141,7 @@ exports[`ReportBody renders 1`] = `
         "name": "app",
       }
     }
+    titleHeadingLevel={3}
     toUtcString={[Function]}
     toolData={
       Object {
@@ -298,6 +299,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      titleHeadingLevel={3}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -453,6 +455,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      titleHeadingLevel={3}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -608,6 +611,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      titleHeadingLevel={3}
       toUtcString={[Function]}
       toolData={
         Object {
@@ -763,6 +767,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        titleHeadingLevel={3}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -918,6 +923,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        titleHeadingLevel={3}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -1073,6 +1079,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           }
         }
+        titleHeadingLevel={3}
         toUtcString={[Function]}
         toolData={
           Object {
@@ -1231,6 +1238,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         }
       }
+      titleHeadingLevel={3}
       toUtcString={[Function]}
       toolData={
         Object {

@@ -58,6 +58,7 @@ describe('TabStopsFailedInstanceSection', () => {
                 },
             },
             alwaysRenderSection: false,
+            titleHeadingLevel: 2,
         };
     });
 

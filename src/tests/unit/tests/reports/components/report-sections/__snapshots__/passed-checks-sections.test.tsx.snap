@@ -13,6 +13,7 @@ exports[`PassedChecksSection renders 1`] = `
   containerClassName="result-section"
   containerId="passed-checks-section"
   deps={Object {}}
+  headingLevel={3}
   outcomeType="pass"
   title="Passed checks"
 />
@@ -25,6 +26,7 @@ exports[`PassedChecksSection renders when card data is missing 1`] = `
   containerClassName="result-section"
   containerId="passed-checks-section"
   deps={Object {}}
+  headingLevel={3}
   outcomeType="pass"
   title="Passed checks"
 />

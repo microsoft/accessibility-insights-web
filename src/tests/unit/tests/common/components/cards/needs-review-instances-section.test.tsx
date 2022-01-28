@@ -46,6 +46,7 @@ describe('NeedsReviewInstancesSection', () => {
                 cardsViewData: results,
                 shouldAlertFailuresCount,
                 scanMetadata,
+                titleHeadingLevel: 2,
             } as CommonInstancesSectionProps;
 
             const wrapper = shallow(<NeedsReviewInstancesSection {...props} />);

@@ -13,6 +13,7 @@ exports[`IncompleteChecksSection renders 1`] = `
   containerClassName="result-section"
   containerId="incomplete-checks-section"
   deps={Object {}}
+  headingLevel={3}
   outcomeType="incomplete"
   title="Incomplete checks"
 />
@@ -25,6 +26,7 @@ exports[`IncompleteChecksSection renders when card data is missing 1`] = `
   containerClassName="result-section"
   containerId="incomplete-checks-section"
   deps={Object {}}
+  headingLevel={3}
   outcomeType="incomplete"
   title="Incomplete checks"
 />
