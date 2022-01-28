@@ -15,8 +15,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
           "getNextHeadingLevel": [Function],
         }
       }
-      shouldAlertFailuresCount={false}
       sectionHeadingLevel={2}
+      shouldAlertFailuresCount={false}
       titleSize="title"
     />
   </HeadingElementForLevel>
@@ -28,8 +28,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
       }
     }
     headingLevel={3}
-    shouldAlertFailuresCount={false}
     sectionHeadingLevel={2}
+    shouldAlertFailuresCount={false}
   />
 </div>
 `;
@@ -49,8 +49,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
           "getNextHeadingLevel": [Function],
         }
       }
-      shouldAlertFailuresCount={true}
       sectionHeadingLevel={2}
+      shouldAlertFailuresCount={true}
       titleSize="title"
     />
   </HeadingElementForLevel>
@@ -62,8 +62,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
       }
     }
     headingLevel={3}
-    shouldAlertFailuresCount={true}
     sectionHeadingLevel={2}
+    shouldAlertFailuresCount={true}
   />
 </div>
 `;

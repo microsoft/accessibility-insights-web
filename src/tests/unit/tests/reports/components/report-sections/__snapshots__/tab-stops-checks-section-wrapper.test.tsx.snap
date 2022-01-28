@@ -89,6 +89,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
   }
   checksSection={[Function]}
   deps={Object {}}
+  sectionHeadingLevel={3}
   tabStops={
     Object {
       "focus-indicator": Object {
@@ -119,6 +120,5 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
     }
   }
   testKey="tab-stops"
-  sectionHeadingLevel={3}
 />
 `;

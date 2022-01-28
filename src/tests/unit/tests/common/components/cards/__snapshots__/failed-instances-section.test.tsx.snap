@@ -12,6 +12,7 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={Array []}
+  sectionHeadingLevel={2}
   shouldAlertFailuresCount={false}
   targetAppInfo={
     Object {
@@ -20,7 +21,6 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
     }
   }
   title="Failed instances"
-  sectionHeadingLevel={2}
 />
 `;
 
@@ -32,6 +32,7 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={Array []}
+  sectionHeadingLevel={2}
   shouldAlertFailuresCount={true}
   targetAppInfo={
     Object {
@@ -40,7 +41,6 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
     }
   }
   title="Failed instances"
-  sectionHeadingLevel={2}
 />
 `;
 
@@ -131,6 +131,7 @@ exports[`FailedInstancesSection renders with failures 1`] = `
       },
     ]
   }
+  sectionHeadingLevel={2}
   targetAppInfo={
     Object {
       "name": "page title",
@@ -138,6 +139,5 @@ exports[`FailedInstancesSection renders with failures 1`] = `
     }
   }
   title="Failed instances"
-  sectionHeadingLevel={2}
 />
 `;

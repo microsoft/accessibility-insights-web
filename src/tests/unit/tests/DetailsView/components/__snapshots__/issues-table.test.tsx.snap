@@ -112,8 +112,8 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           },
         }
       }
-      shouldAlertFailuresCount={true}
       sectionHeadingLevel={2}
+      shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
           "bugService": "gitHub",
@@ -258,8 +258,8 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           },
         }
       }
-      shouldAlertFailuresCount={true}
       sectionHeadingLevel={2}
+      shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
           "bugService": "gitHub",
