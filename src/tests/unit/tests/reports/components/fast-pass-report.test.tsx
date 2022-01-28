@@ -84,7 +84,7 @@ describe(FastPassReport, () => {
                     scanComplete: scanDate,
                 },
             },
-            titleHeadingLevel: 3,
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<FastPassReport {...props} />);

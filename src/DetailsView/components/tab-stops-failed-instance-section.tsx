@@ -25,7 +25,7 @@ export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
     tabStopRequirementState: TabStopRequirementState;
     alwaysRenderSection: boolean;
-    titleHeadingLevel: HeadingLevel;
+    sectionHeadingLevel: HeadingLevel;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -57,7 +57,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
         }
 
         const instanceSectionProps = props.deps.tabStopsInstanceSectionPropsFactory({
-            headingLevel: props.deps.getNextHeadingLevel(props.titleHeadingLevel),
+            headingLevel: props.deps.getNextHeadingLevel(props.sectionHeadingLevel),
             results,
             tabStopRequirementState: props.tabStopRequirementState,
             deps: props.deps,
@@ -68,7 +68,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
                 className={styles.tabStopsFailureInstanceSection}
                 data-automation-id={tabStopsFailedInstanceSectionAutomationId}
             >
-                <HeadingElementForLevel headingLevel={props.titleHeadingLevel}>
+                <HeadingElementForLevel headingLevel={props.sectionHeadingLevel}>
                     <ResultSectionTitle
                         title="Failed instances"
                         badgeCount={totalFailedInstancesCount}

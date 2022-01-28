@@ -32,7 +32,7 @@ export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
         deps: CombinedReportSectionDeps;
         cardsViewData: CardsViewModel;
         urlResultCounts: UrlResultCounts;
-        titleHeadingLevel: HeadingLevel;
+        sectionHeadingLevel: HeadingLevel;
     };
 
 export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {

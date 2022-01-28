@@ -19,23 +19,23 @@ export type ResultSectionProps = Omit<ResultSectionContentProps, 'headingLevel'>
     Omit<ResultSectionTitleProps, 'titleSize'> & {
         containerClassName: string;
         deps: ResultSectionDeps;
-        titleHeadingLevel: HeadingLevel;
+        sectionHeadingLevel: HeadingLevel;
     };
 
 export const resultSectionAutomationId = 'result-section';
 
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
-    const { containerClassName, titleHeadingLevel, deps } = props;
+    const { containerClassName, sectionHeadingLevel, deps } = props;
     return (
         <div
             className={css(containerClassName, styles.resultSection)}
             data-automation-id={resultSectionAutomationId}
         >
-            <HeadingElementForLevel headingLevel={titleHeadingLevel}>
+            <HeadingElementForLevel headingLevel={sectionHeadingLevel}>
                 <ResultSectionTitle {...props} titleSize="title" />
             </HeadingElementForLevel>
             <ResultSectionContent
-                headingLevel={deps.getNextHeadingLevel(titleHeadingLevel)}
+                headingLevel={deps.getNextHeadingLevel(sectionHeadingLevel)}
                 {...props}
             />
         </div>

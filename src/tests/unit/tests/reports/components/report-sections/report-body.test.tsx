@@ -72,7 +72,7 @@ describe('ReportBody', () => {
                     scanComplete: scanDate,
                 },
             },
-            titleHeadingLevel: 3,
+            sectionHeadingLevel: 3,
         };
 
         const props: ReportBodyProps = {

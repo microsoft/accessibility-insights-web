@@ -15,5 +15,5 @@ export type CommonInstancesSectionProps = {
     scanMetadata: ScanMetadata;
     shouldAlertFailuresCount?: boolean;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
-    titleHeadingLevel: HeadingLevel;
+    sectionHeadingLevel: HeadingLevel;
 };

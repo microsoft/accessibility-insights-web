@@ -62,7 +62,7 @@ export class ReportHtmlGenerator {
             fixInstructionProcessor: this.fixInstructionProcessor,
             recommendColor: this.recommendColor,
             scanMetadata,
-            titleHeadingLevel: 2,
+            sectionHeadingLevel: 2,
         } as SectionProps;
 
         const props: ReportBodyProps = {

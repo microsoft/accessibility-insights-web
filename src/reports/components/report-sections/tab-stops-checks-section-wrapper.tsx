@@ -18,19 +18,19 @@ export type TabStopsChecksSectionWrapperProps = Pick<
     checksSection: ReactFCWithDisplayName<
         Pick<
             SectionProps,
-            'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'titleHeadingLevel'
+            'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'sectionHeadingLevel'
         >
     >;
     tabStops: TabStopRequirementState;
     testKey?: string;
-    titleHeadingLevel: HeadingLevel;
+    sectionHeadingLevel: HeadingLevel;
 };
 
 export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecksSectionWrapperProps> {
     public render(): React.ReactNode {
         return (
             <this.props.checksSection
-                titleHeadingLevel={this.props.titleHeadingLevel}
+                sectionHeadingLevel={this.props.sectionHeadingLevel}
                 testKey="tab-stops"
                 cardsViewData={this.prepareCardsViewData()}
                 {...this.props}

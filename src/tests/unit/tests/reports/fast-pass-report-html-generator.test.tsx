@@ -105,7 +105,7 @@ describe(FastPassReportHtmlGenerator, () => {
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             results: model.results,
             scanMetadata: expectedScanMetadata,
-            titleHeadingLevel: 3,
+            sectionHeadingLevel: 3,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...expectedProps} />;

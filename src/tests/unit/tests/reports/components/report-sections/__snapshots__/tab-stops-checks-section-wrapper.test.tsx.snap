@@ -119,6 +119,6 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
     }
   }
   testKey="tab-stops"
-  titleHeadingLevel={3}
+  sectionHeadingLevel={3}
 />
 `;

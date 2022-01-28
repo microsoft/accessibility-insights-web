@@ -23,7 +23,7 @@ describe('ResultSection', () => {
                         getNextHeadingLevel: getNextHeadingLevelStub,
                     } as ResultSectionDeps,
                     shouldAlertFailuresCount,
-                    titleHeadingLevel: 2,
+                    sectionHeadingLevel: 2,
                 } as ResultSectionProps;
 
                 const wrapper = shallow(<ResultSection {...props} />);

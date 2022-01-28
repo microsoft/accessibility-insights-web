@@ -121,7 +121,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 scanMetadata={this.props.scanMetadata}
                 shouldAlertFailuresCount={true}
                 cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
-                titleHeadingLevel={2}
+                sectionHeadingLevel={2}
             />
         );
     }

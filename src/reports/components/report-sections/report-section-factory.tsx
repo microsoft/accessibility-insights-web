@@ -31,7 +31,7 @@ export type SectionProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldAlertFailuresCount?: boolean;
     scanMetadata: ScanMetadata;
-    titleHeadingLevel: HeadingLevel;
+    sectionHeadingLevel: HeadingLevel;
 };
 
 export const ResultSectionTypes = {

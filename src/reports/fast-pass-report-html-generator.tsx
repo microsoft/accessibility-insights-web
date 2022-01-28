@@ -84,7 +84,7 @@ export class FastPassReportHtmlGenerator {
             recommendColor: this.recommendColor,
             scanMetadata,
             results,
-            titleHeadingLevel: 3,
+            sectionHeadingLevel: 3,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...props} />;
