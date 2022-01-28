@@ -533,8 +533,8 @@
         "./src/views/content/guidance-title.tsx",
         "./src/views/content/markup.tsx",
         "./src/views/insights/dependencies.ts",
+        "./src/views/insights/insights-router.tsx",
         "./src/views/insights/renderer.tsx",
-        "./src/views/insights/router.tsx",
         "./src/views/page/page.tsx"
     ],
     "include": [
