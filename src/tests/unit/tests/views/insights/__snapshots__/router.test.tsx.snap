@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`router renders content page 1`] = `
-"<Switch>
-  <Route path=\\"/content/*\\" render={[Function: render]} />
-</Switch>"
-`;
