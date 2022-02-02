@@ -14,6 +14,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -368,6 +369,7 @@ if (tabId != null) {
                 new TabStopsFailedCounterIncludingNoInstance(),
                 toolData,
                 DateProvider.getCurrentDate,
+                GetNextHeadingLevel,
             );
 
             // Represents the language in which pages are to be displayed
@@ -569,6 +571,7 @@ if (tabId != null) {
                 tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: GetNextHeadingLevel,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -32,7 +32,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
     Array [
       Object {
         "key": "requirement",
-        "minWidth": 250,
+        "minWidth": 100,
         "name": "Requirement",
         "onRender": [Function],
       },

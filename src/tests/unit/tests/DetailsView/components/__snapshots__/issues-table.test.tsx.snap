@@ -112,6 +112,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           },
         }
       }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
@@ -257,6 +258,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           },
         }
       }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {

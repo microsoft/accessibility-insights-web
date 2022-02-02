@@ -9,7 +9,7 @@ const targets = require('./targets.config');
 
 module.exports = function (grunt) {
     const pkgPath = path.resolve('./node_modules/.bin/pkg');
-    const tsmPath = path.resolve('./node_modules/.bin/tsm');
+    const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
     const webpackPath = path.resolve('./node_modules/.bin/webpack');
 
     const extensionPath = 'extension';
@@ -179,7 +179,7 @@ module.exports = function (grunt) {
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'generate-scss-typings': `"${tsmPath}" src`,
+            'generate-scss-typings': `"${typedScssModulesPath}" src`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
         },
         sass: {

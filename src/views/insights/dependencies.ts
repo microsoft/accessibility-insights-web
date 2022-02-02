@@ -6,6 +6,7 @@ import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { textContent } from 'content/strings/text-content';
 import { loadTheme } from '@fluentui/react';
 import * as ReactDOM from 'react-dom';
+import { Content } from 'views/content/content';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -62,5 +63,6 @@ export const rendererDependencies: (
         storeActionMessageCreator,
         documentManipulator,
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+        ContentRootComponent: Content,
     };
 };

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -77,6 +78,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         fixInstructionProcessor,
         recommendColor,
         getPropertyConfiguration,
+        GetNextHeadingLevel,
     );
 
     const titleProvider = {

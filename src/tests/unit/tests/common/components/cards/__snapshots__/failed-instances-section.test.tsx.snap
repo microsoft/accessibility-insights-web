@@ -7,12 +7,12 @@ exports[`FailedInstancesSection renders null results 1`] = `null`;
 exports[`FailedInstancesSection renders with alerting off 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
-  headingLevel={3}
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={Array []}
+  sectionHeadingLevel={2}
   shouldAlertFailuresCount={false}
   targetAppInfo={
     Object {
@@ -27,12 +27,12 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
 exports[`FailedInstancesSection renders with alerting on 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
-  headingLevel={3}
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={Array []}
+  sectionHeadingLevel={2}
   shouldAlertFailuresCount={true}
   targetAppInfo={
     Object {
@@ -47,9 +47,8 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
 exports[`FailedInstancesSection renders with failures 1`] = `
 <ResultSection
   badgeCount={2}
-  containerClassName={null}
+  containerClassName="failedInstancesContainer"
   deps={Object {}}
-  headingLevel={3}
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={
@@ -132,6 +131,7 @@ exports[`FailedInstancesSection renders with failures 1`] = `
       },
     ]
   }
+  sectionHeadingLevel={2}
   targetAppInfo={
     Object {
       "name": "page title",

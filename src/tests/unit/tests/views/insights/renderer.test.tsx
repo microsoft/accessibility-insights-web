@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme } from 'common/components/theme';
+import { configMutator } from 'common/configuration';
 import * as React from 'react';
-
+import { InsightsRouter } from 'views/insights/insights-router';
 import { renderer, RendererDeps } from 'views/insights/renderer';
-import { Router } from 'views/insights/router';
-import { Theme } from '../../../../../common/components/theme';
-import { configMutator } from '../../../../../common/configuration';
 
 describe('insights renderer', () => {
     const deps = {
@@ -32,13 +31,13 @@ describe('insights renderer', () => {
         expect(deps.initializeFabricIcons).toHaveBeenCalledTimes(1);
     });
 
-    it('renders Router', () => {
+    it('renders InsightsRouter', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
         expect(deps.render).toHaveBeenCalledWith(
             <>
                 <Theme deps={deps} />
-                <Router deps={deps} />
+                <InsightsRouter deps={deps} />
             </>,
             root,
         );

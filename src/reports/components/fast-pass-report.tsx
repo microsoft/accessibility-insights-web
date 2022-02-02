@@ -54,6 +54,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                     <FastPassReportAutomatedChecksResults {...props} />
                     <FastPassResultsTitleSection key={4} title="Tab stops" />
                     <TabStopsFailedInstanceSection
+                        sectionHeadingLevel={props.sectionHeadingLevel}
                         key={5}
                         deps={{
                             tabStopRequirementActionMessageCreator: undefined,

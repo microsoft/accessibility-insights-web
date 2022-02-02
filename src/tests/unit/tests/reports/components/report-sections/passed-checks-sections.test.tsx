@@ -22,6 +22,7 @@ describe('PassedChecksSection', () => {
                     unknown: [],
                 },
             } as CardsViewModel,
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<PassedChecksSection {...props} />);
@@ -37,6 +38,7 @@ describe('PassedChecksSection', () => {
                     /* missing */
                 },
             } as CardsViewModel,
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<PassedChecksSection {...props} />);

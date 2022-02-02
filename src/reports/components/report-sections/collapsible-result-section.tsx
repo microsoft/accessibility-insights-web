@@ -4,6 +4,7 @@ import {
     ResultSectionTitle,
     ResultSectionTitleProps,
 } from 'common/components/cards/result-section-title';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
@@ -22,6 +23,7 @@ export type CollapsibleResultSectionProps = RulesOnlyProps &
         containerClassName: string;
         cardSelectionMessageCreator: CardSelectionMessageCreator;
         testKey?: string;
+        headingLevel: HeadingLevel;
     };
 
 export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
@@ -33,7 +35,7 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
             id: containerId,
             header: <ResultSectionTitle {...props} titleSize="title" />,
             content: <RulesOnly {...props} />,
-            headingLevel: 2,
+            headingLevel: props.headingLevel,
             deps: null,
             testKey,
             onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {

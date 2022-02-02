@@ -21,6 +21,8 @@ export type TabStopsRequirementsTableDeps = {
     tabStopsTestViewController: TabStopsTestViewController;
 };
 
+export const tabStopsRequirementsTableActionColumnWidthPx = 100;
+
 export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>(
     'TabStopsRequirementsTable',
     props => {
@@ -30,7 +32,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             {
                 name: 'Requirement',
                 key: 'requirement',
-                minWidth: 250,
+                minWidth: 100,
                 onRender: item => (
                     <span className={styles.requirementColumn}>
                         <span className={styles.requirementName}>{item.name}</span>:{' '}
@@ -41,8 +43,8 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             {
                 name: 'Pass / Fail',
                 key: 'result',
-                minWidth: 100,
-                maxWidth: 100,
+                minWidth: tabStopsRequirementsTableActionColumnWidthPx,
+                maxWidth: tabStopsRequirementsTableActionColumnWidthPx,
                 className: styles.passFailColumnCell,
                 onRender: item => {
                     return (

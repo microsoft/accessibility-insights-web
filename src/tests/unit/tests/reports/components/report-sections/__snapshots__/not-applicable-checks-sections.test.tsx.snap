@@ -13,6 +13,7 @@ exports[`NotApplicableChecksSection renders 1`] = `
   containerClassName="result-section"
   containerId="not-applicable-checks-section"
   deps={Object {}}
+  headingLevel={3}
   outcomeType="inapplicable"
   title="Not applicable checks"
 />
