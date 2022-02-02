@@ -41,7 +41,7 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
       id="back-to-launchpad-link"
       onClick={null}
     >
-      <StyledIconBase
+      <Memo(Icon)
         className="backToLaunchPadIcon"
         iconName="back"
       />
@@ -98,7 +98,7 @@ exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches 
       id="back-to-launchpad-link"
       onClick={null}
     >
-      <StyledIconBase
+      <Memo(Icon)
         className="backToLaunchPadIcon"
         iconName="back"
       />

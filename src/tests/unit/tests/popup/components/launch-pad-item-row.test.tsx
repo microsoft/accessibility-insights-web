@@ -49,29 +49,24 @@ describe('LaunchPadItemRow', () => {
         const testId = kebabCase(props.title);
 
         const expected = (
-            <div className="ms-Grid">
-                <div className="ms-Grid-row">
-                    <div
-                        className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
-                        aria-hidden="true"
-                    >
-                        <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
+            <div className="launch-pad-item-grid">
+                <div className="popup-start-dialog-icon-circle" aria-hidden="true">
+                    <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
+                </div>
+                <div>
+                    <div className="launch-pad-item-title">
+                        <Link
+                            role="link"
+                            className="insights-link"
+                            id={testId}
+                            onClick={props.onClickTitle}
+                            aria-describedby={descriptionId}
+                        >
+                            {props.title}
+                        </Link>
                     </div>
-                    <div className="ms-Grid-col ms-sm9">
-                        <div className="launch-pad-item-title">
-                            <Link
-                                role="link"
-                                className="insights-link"
-                                id={testId}
-                                onClick={props.onClickTitle}
-                                aria-describedby={descriptionId}
-                            >
-                                {props.title}
-                            </Link>
-                        </div>
-                        <div className={descriptionClassName} id={descriptionId}>
-                            {props.description}
-                        </div>
+                    <div className={descriptionClassName} id={descriptionId}>
+                        {props.description}
                     </div>
                 </div>
             </div>

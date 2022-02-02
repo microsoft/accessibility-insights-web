@@ -62,6 +62,7 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
 <FocusZone
   direction={2}
   isCircularNavigation={false}
+  shouldRaiseClicks={true}
 >
   <SelectionZone
     isSelectedOnFocus={true}

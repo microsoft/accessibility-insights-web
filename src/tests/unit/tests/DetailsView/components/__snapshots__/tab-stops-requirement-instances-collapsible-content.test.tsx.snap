@@ -56,7 +56,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
     className="editButton"
     onClick={[Function]}
   >
-    <StyledIconBase
+    <Memo(Icon)
       ariaLabel="edit instance"
       iconName="edit"
     />
@@ -65,7 +65,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
     className="removeButton"
     onClick={[Function]}
   >
-    <StyledIconBase
+    <Memo(Icon)
       ariaLabel="delete instance"
       iconName="delete"
     />
