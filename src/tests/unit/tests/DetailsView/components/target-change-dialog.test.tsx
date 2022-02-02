@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dialog, TooltipHost } from '@fluentui/react';
 import { BlockingDialog } from 'common/components/blocking-dialog';
 import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
@@ -11,7 +12,6 @@ import {
 } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
 import { shallow } from 'enzyme';
-import Dialog, { TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

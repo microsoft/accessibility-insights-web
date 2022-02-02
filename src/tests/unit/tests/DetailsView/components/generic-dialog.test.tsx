@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
 import { DefaultButton, PrimaryButton } from '@fluentui/react';
-import Dialog from '@fluentui/react';
+import { Dialog } from '@fluentui/react';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import {
