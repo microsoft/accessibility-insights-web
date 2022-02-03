@@ -31,11 +31,9 @@ describe('ScopingListenerTest', () => {
     let onHoverCurrentTimeoutID: number;
     let onClickSetTimeoutHandler: Function;
     let onClick: (event: MouseEvent) => void;
-    let addEventListenerMock: IMock<
-        (event: string, callback: (event: MouseEvent) => void, capture: boolean) => void
-    >;
+    let addEventListenerMock: IMock<(event: string, callback: (event: MouseEvent) => void) => void>;
     let removeEventListenerMock: IMock<
-        (event: string, callback: (event: MouseEvent) => void, capture: boolean) => void
+        (event: string, callback: (event: MouseEvent) => void) => void
     >;
     let createElementMock: IMock<(tagName: string) => HTMLElement>;
     let dom: Document;
@@ -50,8 +48,8 @@ describe('ScopingListenerTest', () => {
         shadowUtilsMock = Mock.ofType(ShadowUtils);
         elementFinderMock = Mock.ofType(ElementFinderByPosition);
         onInspectClickMock = Mock.ofInstance((eventName, selector) => {});
-        addEventListenerMock = Mock.ofInstance((eventName, callback, useCapture) => {});
-        removeEventListenerMock = Mock.ofInstance((eventName, callback, useCapture) => {});
+        addEventListenerMock = Mock.ofInstance((eventName, callback) => {});
+        removeEventListenerMock = Mock.ofInstance((eventName, callback) => {});
         createElementMock = Mock.ofInstance(tagName => {
             return null;
         });
@@ -156,13 +154,9 @@ describe('ScopingListenerTest', () => {
         );
         shadowContainerMock.setup(scm => scm.removeChild(shadowContainerElementStub)).verifiable();
 
-        removeEventListenerMock
-            .setup(re => re('click', testSubject.getOnClick(), true))
-            .verifiable();
+        removeEventListenerMock.setup(re => re('click', testSubject.getOnClick())).verifiable();
 
-        removeEventListenerMock
-            .setup(re => re('mousemove', testSubject.getOnHover(), true))
-            .verifiable();
+        removeEventListenerMock.setup(re => re('mousemove', testSubject.getOnHover())).verifiable();
 
         testSubject.stop();
         verifyAll();
@@ -170,14 +164,14 @@ describe('ScopingListenerTest', () => {
 
     function setupAddEventListener(): void {
         addEventListenerMock
-            .setup(ae => ae('click', It.isAny(), true))
+            .setup(ae => ae('click', It.isAny()))
             .callback((action, cb) => {
                 onClick = cb;
             })
             .verifiable();
 
         addEventListenerMock
-            .setup(ae => ae('mousemove', It.isAny(), true))
+            .setup(ae => ae('mousemove', It.isAny()))
             .callback((action, cb) => {
                 onHover = cb;
             })
