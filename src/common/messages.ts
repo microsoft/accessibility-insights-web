@@ -28,6 +28,7 @@ export const Messages = {
             RequirementExpansionToggled: `${messagePrefix}/visualization/tab-stops/toggleTabStopRequirementExpand`,
             TabbingCompleted: `${messagePrefix}/visualization/tab-stops/tabbingCompleted`,
             NeedToCollectTabbingResults: `${messagePrefix}/visualization/tab-stops/NeedToCollectTabbingResults`,
+            AutomatedTabbingResultsCompleted: `${messagePrefix}/visualization/tab-stops/AutomatedTabbingResultsCompleted`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
