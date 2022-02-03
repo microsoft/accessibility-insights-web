@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton, DialogFooter, DialogType, TooltipHost } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import * as Markup from 'assessments/markup';
 import { BlockingDialog } from 'common/components/blocking-dialog';
@@ -8,7 +9,6 @@ import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'DetailsView/components/change-assessment-dialog.scss';
 import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
-import { DefaultButton, DialogFooter, DialogType, TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 export interface ChangeAssessmentDialogProps {
     prevTab: Tab;

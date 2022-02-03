@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PrimaryButton } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import {
     DeviceDescription,
     DeviceDescriptionProps,
 } from 'electron/views/device-connect-view/components/android-setup/device-description';
-import { PrimaryButton } from '@fluentui/react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';

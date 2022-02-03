@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Button } from '@fluentui/react';
 import {
     MaximizeRestoreButton,
     MaximizeRestoreButtonProps,
 } from 'electron/views/results/components/maximize-restore-button';
 import { shallow } from 'enzyme';
-import { Button } from '@fluentui/react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';

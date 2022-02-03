@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Nav } from '@fluentui/react';
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
 import { shallow } from 'enzyme';
-import { Nav } from '@fluentui/react';
 import * as React from 'react';
 import {
     BaseLeftNav,

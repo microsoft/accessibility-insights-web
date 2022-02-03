@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Toggle } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
-import { Toggle } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './tab-stops-testing-content.scss';
 

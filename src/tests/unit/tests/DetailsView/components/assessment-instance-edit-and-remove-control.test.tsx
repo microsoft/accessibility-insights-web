@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon, Link } from '@fluentui/react';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -9,7 +10,6 @@ import {
 } from 'DetailsView/components/assessment-instance-edit-and-remove-control';
 import * as styles from 'DetailsView/components/assessment-instance-edit-and-remove-control.scss';
 import { FailureInstancePanelControl } from 'DetailsView/components/failure-instance-panel-control';
-import { Icon, Link } from '@fluentui/react';
 import * as React from 'react';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { Mock, Times } from 'typemoq';

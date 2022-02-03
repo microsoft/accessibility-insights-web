@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Icon } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { BaseLeftNav, BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
@@ -8,7 +9,6 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import * as styles from 'electron/views/left-nav/left-nav.scss';
-import { Icon } from '@fluentui/react';
 import * as React from 'react';
 
 export type LeftNavDeps = {

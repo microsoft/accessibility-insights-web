@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INav, PanelType } from '@fluentui/react';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
@@ -13,7 +14,6 @@ import {
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { INav, PanelType } from '@fluentui/react';
 import * as React from 'react';
 
 export type FluentSideNavDeps = DetailsViewLeftNavDeps & InteractiveHeaderDeps;

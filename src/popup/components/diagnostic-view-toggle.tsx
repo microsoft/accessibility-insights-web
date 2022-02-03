@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IToggle, Link, Spinner, SpinnerSize } from '@fluentui/react';
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -8,7 +9,6 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { IToggle, Link, Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';

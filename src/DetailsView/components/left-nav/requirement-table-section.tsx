@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
@@ -15,7 +16,6 @@ import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store
 import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import { ManualTestStepView } from 'DetailsView/components/manual-test-step-view';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 

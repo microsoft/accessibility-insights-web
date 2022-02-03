@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
 import { Dropdown, IDropdownOption, TextField } from '@fluentui/react';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SettingsFormProps } from '../../types/settings-form-props';
 import {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
@@ -12,7 +13,6 @@ import {
 } from 'DetailsView/components/manual-test-step-view';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import * as React from 'react';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { Mock } from 'typemoq';

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INavLink, Nav } from '@fluentui/react';
 import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-tools-nav-action-creator';
 import { DebugToolsNav, DebugToolsNavProps } from 'debug-tools/components/debug-tools-nav';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 import { shallow } from 'enzyme';
-import { INavLink, Nav } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

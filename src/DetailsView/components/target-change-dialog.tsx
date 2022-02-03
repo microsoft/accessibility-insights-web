@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Link, TooltipHost } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
@@ -12,7 +13,6 @@ import {
 } from 'DetailsView/components/change-assessment-dialog';
 import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { isEmpty } from 'lodash';
-import { Link, TooltipHost } from '@fluentui/react';
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 

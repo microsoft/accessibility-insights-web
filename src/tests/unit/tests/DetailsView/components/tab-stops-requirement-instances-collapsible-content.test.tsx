@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DetailsList, Link } from '@fluentui/react';
 import {
     TabStopsRequirementInstancesCollapsibleContent,
     TabStopsRequirementInstancesCollapsibleContentProps,
 } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import { mount, shallow } from 'enzyme';
-import { DetailsList, Link } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';

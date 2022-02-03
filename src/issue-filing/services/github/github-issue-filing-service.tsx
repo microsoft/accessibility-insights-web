@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TextField } from '@fluentui/react';
 import { IssueDetailsBuilder } from 'issue-filing/common/issue-details-builder';
 import { isEmpty, isString } from 'lodash';
-import { TextField } from '@fluentui/react';
 import * as React from 'react';
 
 import { NamedFC } from '../../../common/react/named-fc';

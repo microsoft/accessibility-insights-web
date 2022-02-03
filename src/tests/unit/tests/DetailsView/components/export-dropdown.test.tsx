@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
 import { FileURLProvider } from 'common/file-url-provider';
 import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/export-dropdown';
 import { shallow } from 'enzyme';
-import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import {

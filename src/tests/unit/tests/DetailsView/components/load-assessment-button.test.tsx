@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -13,7 +14,6 @@ import {
 } from 'DetailsView/components/load-assessment-button';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { mount, shallow } from 'enzyme';
-import { ActionButton } from '@fluentui/react';
 import * as React from 'react';
 
 import { IMock, It, Mock } from 'typemoq';

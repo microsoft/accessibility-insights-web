@@ -1,13 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FlaggedComponent } from 'common/components/flagged-component';
-import { FeatureFlags } from 'common/feature-flags';
-import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
-import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { VisualizationType } from 'common/types/visualization-type';
-import { clone, isEqual } from 'lodash';
 import {
     ActionButton,
     Icon,
@@ -16,6 +8,14 @@ import {
     Link,
     TextField,
 } from '@fluentui/react';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
+import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
+import { FailureInstanceData } from 'common/types/failure-instance-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { clone, isEqual } from 'lodash';
 import * as React from 'react';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';

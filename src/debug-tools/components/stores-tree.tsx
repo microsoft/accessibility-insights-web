@@ -1,12 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
-import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
-import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { forEach } from 'lodash';
 import {
     DetailsRow,
     FocusZone,
@@ -18,6 +11,13 @@ import {
     SelectionZone,
     Spinner,
 } from '@fluentui/react';
+import { NamedFC } from 'common/react/named-fc';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
+import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { forEach } from 'lodash';
 import * as React from 'react';
 
 export const columns: IColumn[] = [

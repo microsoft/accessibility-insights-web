@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton, TextField } from '@fluentui/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
@@ -13,7 +14,6 @@ import {
 import { FailureInstancePanelDetailsProps } from 'DetailsView/components/failure-instance-panel-details';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { shallow } from 'enzyme';
-import { ActionButton, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton, IButtonProps, PrimaryButton } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import {
@@ -7,7 +8,6 @@ import {
     moreInfoLinkAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
-import { DefaultButton, IButtonProps, PrimaryButton } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './android-setup-step-layout.scss';
 

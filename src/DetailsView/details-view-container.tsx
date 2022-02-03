@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import { Header, HeaderProps } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
@@ -12,7 +13,6 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
-import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import { ThemeDeps } from '../common/components/theme';
 import {

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Button, css, Icon } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import * as styles from 'electron/views/tab-stops/virtual-keyboard-buttons.scss';
-import { Button, css, Icon } from '@fluentui/react';
 import * as React from 'react';
 
 export type VirtualKeyboardButtonsDeps = {

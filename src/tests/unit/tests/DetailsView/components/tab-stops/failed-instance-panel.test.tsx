@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TextField } from '@fluentui/react';
 import { ActionAndCancelButtonsComponent } from 'DetailsView/components/action-and-cancel-buttons-component';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
@@ -8,7 +9,6 @@ import {
     FailedInstancePanelProps,
 } from 'DetailsView/components/tab-stops/failed-instance-panel';
 import { shallow } from 'enzyme';
-import { TextField } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton } from '@fluentui/react';
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
@@ -10,7 +11,6 @@ import {
     ScopingPanelProps,
 } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-panel';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
-import { DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css, IButton } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
@@ -18,7 +19,6 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { css, IButton } from '@fluentui/react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';

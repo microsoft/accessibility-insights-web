@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PrimaryButton, TextField } from '@fluentui/react';
 import { Logger } from 'common/logging/logger';
 import { OpenDialogOptions } from 'electron';
 import {
@@ -7,7 +8,6 @@ import {
     FolderPickerProps,
 } from 'electron/views/device-connect-view/components/android-setup/folder-picker';
 import { shallow } from 'enzyme';
-import { PrimaryButton, TextField } from '@fluentui/react';
 import * as React from 'react';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';

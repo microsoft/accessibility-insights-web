@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IColumn } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
@@ -12,7 +13,6 @@ import {
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { IColumn } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';

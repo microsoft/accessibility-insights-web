@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DefaultButton } from '@fluentui/react';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';

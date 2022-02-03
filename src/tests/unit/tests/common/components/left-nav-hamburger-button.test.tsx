@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IconButton } from '@fluentui/react';
 import {
     LeftNavHamburgerButton,
     LeftNavHamburgerButtonProps,
 } from 'common/components/left-nav-hamburger-button';
 import { shallow } from 'enzyme';
-import { IconButton } from '@fluentui/react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 

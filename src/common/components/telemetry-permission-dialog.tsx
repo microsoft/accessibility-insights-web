@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PrimaryButton } from '@fluentui/react';
+import { Checkbox } from '@fluentui/react';
+import { Dialog, DialogFooter, DialogType } from '@fluentui/react';
 import {
     telemetryPopupCheckboxTitle,
     telemetryPopupTitle,
 } from 'content/settings/improve-accessibility-insights';
-import { PrimaryButton } from '@fluentui/react';
-import { Checkbox } from '@fluentui/react';
-import { Dialog, DialogFooter, DialogType } from '@fluentui/react';
 import * as React from 'react';
 import { PrivacyStatementPopupText, PrivacyStatementTextDeps } from './privacy-statement-text';
 import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';

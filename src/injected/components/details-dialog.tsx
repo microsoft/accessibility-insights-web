@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Dialog, DialogType } from '@fluentui/react';
+import { css } from '@fluentui/react';
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import {
@@ -15,8 +17,6 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { isEmpty, size } from 'lodash';
-import { Dialog, DialogType } from '@fluentui/react';
-import { css } from '@fluentui/react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 

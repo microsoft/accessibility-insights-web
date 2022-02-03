@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { Dropdown, IDropdownOption } from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { ResponsiveMode } from '@fluentui/react';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';

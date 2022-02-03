@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Spinner, SpinnerSize } from '@fluentui/react';
 import { Header, HeaderDeps, HeaderProps } from 'common/components/header';
 import {
     withStoreSubscription,
@@ -20,7 +21,6 @@ import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
-import { Spinner, SpinnerSize } from '@fluentui/react';
 import * as React from 'react';
 import * as styles from './debug-tools-view.scss';
 

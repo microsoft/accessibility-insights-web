@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Label } from '@fluentui/react';
 import {
     HighlightHiddenIcon,
     HighlightUnavailableIcon,
@@ -11,7 +12,6 @@ import { CardResult } from 'common/types/store-data/card-view-model';
 import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { Label } from '@fluentui/react';
 import * as React from 'react';
 
 import { CardInteractionSupport } from './card-interaction-support';

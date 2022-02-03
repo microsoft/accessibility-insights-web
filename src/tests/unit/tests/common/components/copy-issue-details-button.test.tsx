@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DefaultButton } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { Toast } from 'common/components/toast';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
 import * as Enzyme from 'enzyme';
-import { DefaultButton } from '@fluentui/react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {

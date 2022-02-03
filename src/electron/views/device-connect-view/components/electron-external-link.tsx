@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Link } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { Shell } from 'electron';
-import { Link } from '@fluentui/react';
 import * as React from 'react';
 
 export interface ElectronExternalLinkProps {
