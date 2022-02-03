@@ -158,6 +158,8 @@ describe('TestStatusChoiceGroup', () => {
         focusMock.setup(f => f()).verifiable(Times.once());
 
         testObject.getComponent().focus = focusMock.object;
+        // Note: if object's state is updated, the component's focus property gets overwritten.
+        // Thus, this test depends on choiceGroup.focus() being called before setState() in onUndoClicked.
 
         testObject.getOnUndo()();
 

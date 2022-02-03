@@ -112,8 +112,8 @@ export class TestStatusChoiceGroup extends React.Component<
     };
 
     protected onUndoClicked = (): void => {
-        this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
         this.choiceGroup.focus();
+        this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     };
 }
