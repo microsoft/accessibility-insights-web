@@ -144,12 +144,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(
-            scanMetadata,
-            cardsViewData,
-            cardSelectionMessageCreatorMock.object,
-            urlResultCounts,
-        );
+        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
 
         expect(html).toMatchSnapshot();
     });

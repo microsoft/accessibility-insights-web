@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-
 
 declare namespace AccessibilityInsightsReport {
     export type Report = {
@@ -120,7 +118,6 @@ declare namespace AccessibilityInsightsReport {
         browserResolution: string,
         scanDetails: ScanSummaryDetails,
         results: CombinedReportResults,
-        cardSelectionMessageCreator: CardSelectionMessageCreator;
     }
 
     export type Reporter = {

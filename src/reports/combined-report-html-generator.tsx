@@ -38,7 +38,6 @@ export class CombinedReportHtmlGenerator {
     public generateHtml(
         scanMetadata: ScanMetadata,
         cardsByRule: CardsViewModel,
-        cardSelectionMessageCreator: CardSelectionMessageCreator,
         urlResultCounts: UrlResultCounts,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
@@ -57,7 +56,7 @@ export class CombinedReportHtmlGenerator {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as SectionDeps,
             cardsViewData: cardsByRule,
-            cardSelectionMessageCreator,
+            cardSelectionMessageCreator: nullCardSelectionMessageCreator,
             urlResultCounts,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
@@ -76,3 +75,11 @@ export class CombinedReportHtmlGenerator {
         return '<!DOCTYPE html><html lang="en">' + headMarkup + bodyMarkup + '</html>';
     }
 }
+
+const nullCardSelectionMessageCreator: CardSelectionMessageCreator = {
+    toggleCardSelection: () => null,
+    toggleRuleExpandCollapse: () => null,
+    collapseAllRules: () => null,
+    expandAllRules: () => null,
+    toggleVisualHelper: () => null,
+};
