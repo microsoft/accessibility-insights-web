@@ -7,7 +7,6 @@ import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
@@ -56,7 +55,6 @@ export class CombinedReportHtmlGenerator {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as SectionDeps,
             cardsViewData: cardsByRule,
-            cardSelectionMessageCreator: nullCardSelectionMessageCreator,
             urlResultCounts,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
@@ -75,11 +73,3 @@ export class CombinedReportHtmlGenerator {
         return '<!DOCTYPE html><html lang="en">' + headMarkup + bodyMarkup + '</html>';
     }
 }
-
-const nullCardSelectionMessageCreator: CardSelectionMessageCreator = {
-    toggleCardSelection: () => null,
-    toggleRuleExpandCollapse: () => null,
-    collapseAllRules: () => null,
-    expandAllRules: () => null,
-    toggleVisualHelper: () => null,
-};
