@@ -6,6 +6,7 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddTabStopInstancePayload,
+    BaseActionPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
@@ -62,6 +63,11 @@ export class TabStopRequirementActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
             this.onNeedToCollectTabbingResults,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.AutomatedTabbingResultsCompleted,
+            this.onAutomatedTabbingResultsCompleted,
         );
     }
 
@@ -123,5 +129,13 @@ export class TabStopRequirementActionCreator {
         payload: UpdateNeedToCollectTabbingResultsPayload,
     ): void => {
         this.tabStopRequirementActions.updateNeedToCollectTabbingResults.invoke(payload);
+    };
+
+    private onAutomatedTabbingResultsCompleted = (payload: BaseActionPayload): void => {
+        this.tabStopRequirementActions.automatedTabbingResultsCompleted.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.TABSTOPS_AUTOMATED_RESULTS,
+            payload,
+        );
     };
 }
