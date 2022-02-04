@@ -49,7 +49,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
   items={
     Array [
       Object {
-        "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+        "description": "All interactive elements can be reached using the Tab and arrow keys.",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",

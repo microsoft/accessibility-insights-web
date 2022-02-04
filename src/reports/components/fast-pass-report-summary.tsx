@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
@@ -15,6 +17,7 @@ export type FastPassReportSummaryDeps = {
 export interface FastPassReportSummaryProps {
     deps: FastPassReportSummaryDeps;
     results: FastPassReportResultData;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const allOutcomeTypes: RequirementOutcomeType[] = ['fail', 'incomplete', 'pass'];
@@ -25,12 +28,15 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         const failedTabResults = [];
         const incompleteTabResults = [];
         const passedTabResults = [];
+        const displayAutmatedInfo =
+            this.props.featureFlagStoreData != null &&
+            this.props.featureFlagStoreData[FeatureFlags.tabStopsAutomation];
 
         for (const [requirementId, data] of Object.entries(results.tabStops)) {
             const resultsObject = {
                 id: requirementId,
-                name: requirements[requirementId].name,
-                description: requirements[requirementId].description,
+                name: requirements(displayAutmatedInfo)[requirementId].name,
+                description: requirements(displayAutmatedInfo)[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             };

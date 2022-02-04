@@ -94,6 +94,27 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         </li>
                     </ol>
                 </li>
+                {props.featureFlagStoreData != null &&
+                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation] ? (
+                    <li>
+                        Record your results for each requirement:
+                        <ol>
+                            <li>
+                                If you find any failures, select <Markup.Term>Fail</Markup.Term>,
+                                then add then as failure instances.
+                            </li>
+                            <li>
+                                Select <Markup.Term>Pass</Markup.Term> if all instances meet the
+                                requirement.
+                            </li>
+                            <li>
+                                <Markup.Emphasis>
+                                    Review any auto-discovered failures to be sure they are valid.
+                                </Markup.Emphasis>
+                            </li>
+                        </ol>
+                    </li>
+                ) : null}
             </ol>
         );
 
@@ -147,7 +168,11 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     contentClassName={requirementInstructionStyles.requirementInstructions}
                 />
                 <h2 className={styles.requirementTableTitle}>Record your results</h2>
-                <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
+                <TabStopsRequirementsTable
+                    deps={props.deps}
+                    requirementState={requirementState}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
                     tabStopRequirementState={
@@ -155,6 +180,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     }
                     alwaysRenderSection={false}
                     sectionHeadingLevel={2}
+                    featureFlagStoreData={props.featureFlagStoreData}
                 />
                 <TabStopsFailedInstancePanel
                     deps={props.deps}
