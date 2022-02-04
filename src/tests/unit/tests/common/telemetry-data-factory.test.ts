@@ -770,7 +770,7 @@ describe('TelemetryDataFactoryTest', () => {
         expect(result).toEqual(expected);
     });
 
-    test('forAutomatedTabStopsResults returns null when no results', () => {
+    test('forAutomatedTabStopsResults returns undefined when no results', () => {
         const result = testObject.forAutomatedTabStopsResults([]);
         expect(result).toBeUndefined();
     });

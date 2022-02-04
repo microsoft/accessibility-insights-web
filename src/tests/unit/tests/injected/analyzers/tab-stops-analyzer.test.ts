@@ -251,7 +251,7 @@ describe('TabStopsAnalyzer', () => {
             await flushSettledPromises();
             verifyAll();
             tabStopRequirementActionMessageCreatorMock.verify(
-                m => m.automatedTabbingResultsCompleted(It.isAny()),
+                m => m.automatedTabbingResultsCompleted([]),
                 Times.exactly(1),
             );
 
