@@ -8,10 +8,6 @@
 
 @import '../common.scss';
 
-html {
-    -webkit-font-smoothing: antialiased;
-}
-
 .ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
     @include set-focus-ring-styles('border');
 }
