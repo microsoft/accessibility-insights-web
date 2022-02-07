@@ -102,6 +102,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.debouncedProcessTabEvents?.cancel();
         this.tabStopListenerRunner.stop();
         this.tabStopRequirementRunner.stop();
+        this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
+            this.seenTabStopRequirementResults,
+        );
 
         const payload: ScanBasePayload = {
             key: this.config.key,

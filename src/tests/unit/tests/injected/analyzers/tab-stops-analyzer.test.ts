@@ -243,6 +243,7 @@ describe('TabStopsAnalyzer', () => {
             await flushSettledPromises();
 
             tabStopsListenerMock.setup(tslm => tslm.stop()).verifiable(Times.once());
+
             setupSendMessageMock({
                 messageType: configStub.analyzerTerminatedMessageType,
                 payload: { key: configStub.key, testType: configStub.testType },
@@ -251,6 +252,10 @@ describe('TabStopsAnalyzer', () => {
             testSubject.teardown();
             await flushSettledPromises();
             verifyAll();
+            tabStopRequirementActionMessageCreatorMock.verify(
+                m => m.automatedTabbingResultsCompleted([]),
+                Times.exactly(1),
+            );
 
             simulateTabEvent(tabEventStub1); // no corresponding setupSendMessageMock
             debounceFaker.flush();
