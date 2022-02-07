@@ -4,7 +4,7 @@ import { initializeIcons } from '@fluentui/font-icons-mdl2';
 import { registerIcons } from '@fluentui/style-utilities';
 
 export function initializeFabricIcons(): void {
-    initializeIcons();
+    initializeIcons(undefined, { disableWarnings: true });
     registerIcons({
         style: {
             MozOsxFontSmoothing: 'grayscale',
