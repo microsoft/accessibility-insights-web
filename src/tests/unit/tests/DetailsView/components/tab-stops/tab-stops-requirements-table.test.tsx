@@ -27,6 +27,7 @@ describe('TabStopsRequirementsTable', () => {
         id: string;
     } & TabStopRequirementContent;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
+    let featureFlagStoreData;
 
     beforeEach(() => {
         tabStopsTestViewControllerMock = Mock.ofType<TabStopsTestViewController>();
@@ -34,6 +35,7 @@ describe('TabStopsRequirementsTable', () => {
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         requirementState = new VisualizationScanResultStoreDataBuilder().build().tabStops
             .requirements;
+        featureFlagStoreData = null;
         props = {
             deps: {
                 tabStopRequirementActionMessageCreator:
@@ -41,7 +43,7 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
-            featureFlagStoreData: null,
+            featureFlagStoreData,
         };
         requirementContentStub = {
             id: 'test id',
@@ -52,6 +54,14 @@ describe('TabStopsRequirementsTable', () => {
     });
 
     test('renders table', () => {
+        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    test('renders table with feature flag enabled', () => {
+        props.featureFlagStoreData = {
+            ['tabStopsAutomation']: true,
+        };
         const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });

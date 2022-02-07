@@ -30,13 +30,14 @@ export interface TabStopsRequirementEvaluator {
 }
 
 export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementEvaluator {
+    private readonly automaticallyDetectedTag = '[Automatically detected, needs review]';
     private readonly keyboardNavigationDescription: (string) => string = selector =>
-        `[Automatically detected, needs review] Unreachable element: ${selector}.`;
+        `${this.automaticallyDetectedTag} Unreachable element: ${selector}.`;
     private readonly focusOrderDescription: (currSelector: string, lastSelector: string) => string =
         (currSelector, lastSelector) =>
-            `[Automatically detected, needs review] Inconsistent tab order between elements. Starts at ${lastSelector}  and goes to ${currSelector}.`;
+            `${this.automaticallyDetectedTag} Inconsistent tab order between elements. Starts at ${lastSelector} and goes to ${currSelector}.`;
     private readonly focusTrapsDescription: (string) => string = selector =>
-        `[Automatically detected, needs review] Focus is still on element ${selector} 500ms after pressing tab`;
+        `${this.automaticallyDetectedTag} Focus is still on element ${selector} 500ms after pressing tab`;
 
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,

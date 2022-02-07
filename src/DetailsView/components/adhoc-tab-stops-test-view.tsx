@@ -101,7 +101,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         <ol>
                             <li>
                                 If you find any failures, select <Markup.Term>Fail</Markup.Term>,
-                                then add then as failure instances.
+                                then add them as failure instances.
                             </li>
                             <li>
                                 Select <Markup.Term>Pass</Markup.Term> if all instances meet the

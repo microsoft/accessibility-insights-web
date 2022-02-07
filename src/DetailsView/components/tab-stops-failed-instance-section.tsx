@@ -42,14 +42,14 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
             if (data.status !== 'fail') {
                 continue;
             }
-            const displayAutmatedInfo =
+            const displayAutomatedInfo =
                 props.featureFlagStoreData != null &&
                 props.featureFlagStoreData[FeatureFlags.tabStopsAutomation];
 
             results.push({
                 id: requirementId,
-                name: requirements(displayAutmatedInfo)[requirementId].name,
-                description: requirements(displayAutmatedInfo)[requirementId].description,
+                name: requirements(displayAutomatedInfo)[requirementId].name,
+                description: requirements(displayAutomatedInfo)[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             });

@@ -28,15 +28,15 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         const failedTabResults = [];
         const incompleteTabResults = [];
         const passedTabResults = [];
-        const displayAutmatedInfo =
+        const displayAutomatedInfo =
             this.props.featureFlagStoreData != null &&
             this.props.featureFlagStoreData[FeatureFlags.tabStopsAutomation];
 
         for (const [requirementId, data] of Object.entries(results.tabStops)) {
             const resultsObject = {
                 id: requirementId,
-                name: requirements(displayAutmatedInfo)[requirementId].name,
-                description: requirements(displayAutmatedInfo)[requirementId].description,
+                name: requirements(displayAutomatedInfo)[requirementId].name,
+                description: requirements(displayAutomatedInfo)[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             };

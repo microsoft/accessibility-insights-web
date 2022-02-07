@@ -59,7 +59,7 @@ describe('TabStopsRequirementEvaluator', () => {
     test('addFocusOrderResults returns violations', () => {
         const expectedResult: TabStopRequirementResult = {
             description:
-                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2  and goes to element1.',
+                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2 and goes to element1.',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',
@@ -88,7 +88,7 @@ describe('TabStopsRequirementEvaluator', () => {
     test('addTabbableFocusOrderResults returns violations', () => {
         const expectedResult: TabStopRequirementResult = {
             description:
-                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2  and goes to element1.',
+                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2 and goes to element1.',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',
