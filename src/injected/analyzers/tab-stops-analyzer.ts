@@ -11,7 +11,7 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { debounce, DebouncedFunc, isEqual } from 'lodash';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 
@@ -24,7 +24,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private pendingTabbedElements: TabStopEvent[] = [];
     protected config: FocusAnalyzerConfiguration;
 
-    private seenTabStopRequirementResults: TabStopRequirementResult[] = [];
+    private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
 
     constructor(
         config: FocusAnalyzerConfiguration,
@@ -33,7 +33,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        private readonly tabStopRequirementRunner: AllFrameRunner<TabStopRequirementResult>,
+        private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly debounceImpl: typeof debounce = debounce,
@@ -61,7 +61,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     };
 
     private processTabStopRequirementResults = (
-        tabStopRequirementResult: TabStopRequirementResult,
+        tabStopRequirementResult: AutomatedTabStopRequirementResult,
     ): void => {
         const duplicateResult = this.seenTabStopRequirementResults.some(r =>
             isEqual(r, tabStopRequirementResult),

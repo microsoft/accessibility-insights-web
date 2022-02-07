@@ -7,7 +7,7 @@ import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, Mock } from 'typemoq';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -41,7 +41,7 @@ describe('AnalyzerProviderTests', () => {
     let sendConvertedResultsMock: IMock<PostResolveCallback>;
     let sendNeedsReviewResultsMock: IMock<PostResolveCallback>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
-    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<TabStopRequirementResult>>;
+    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<AutomatedTabStopRequirementResult>>;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
@@ -61,7 +61,8 @@ describe('AnalyzerProviderTests', () => {
         sendConvertedResultsMock = Mock.ofInstance(() => null);
         sendNeedsReviewResultsMock = Mock.ofInstance(() => null);
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
-        tabStopRequirementRunnerMock = Mock.ofType<AllFrameRunner<TabStopRequirementResult>>();
+        tabStopRequirementRunnerMock =
+            Mock.ofType<AllFrameRunner<AutomatedTabStopRequirementResult>>();
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>();

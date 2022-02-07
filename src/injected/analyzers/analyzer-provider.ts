@@ -7,7 +7,7 @@ import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
@@ -26,7 +26,7 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 export class AnalyzerProvider {
     constructor(
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
-        private readonly tabStopsRequirementRunner: AllFrameRunner<TabStopRequirementResult>,
+        private readonly tabStopsRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
