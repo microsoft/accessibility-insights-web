@@ -15,7 +15,9 @@ export interface TabStopsRequirementEvaluator {
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
     ): AutomatedTabStopRequirementResult | null;
-    getTabbableFocusOrderResults(tabbableTabStops: FocusableElement[]): AutomatedTabStopRequirementResult[];
+    getTabbableFocusOrderResults(
+        tabbableTabStops: FocusableElement[],
+    ): AutomatedTabStopRequirementResult[];
     getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
@@ -58,11 +60,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getFocusOrderResult(
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
-<<<<<<< HEAD
-    ): AutomatedTabStopRequirementResult {
-=======
-    ): TabStopRequirementResult | null {
->>>>>>> eea488041ecde61d6a562c32911224fbe0e02b98
+    ): AutomatedTabStopRequirementResult | null {
         if (this.htmlElementUtils.precedesInDOM(currentTabStop, lastTabStop)) {
             const lastSelector = this.generateSelector(lastTabStop);
             const currSelector = this.generateSelector(currentTabStop);
@@ -98,11 +96,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
-<<<<<<< HEAD
-    ): AutomatedTabStopRequirementResult {
-=======
-    ): TabStopRequirementResult | null {
->>>>>>> eea488041ecde61d6a562c32911224fbe0e02b98
+    ): AutomatedTabStopRequirementResult | null {
         if (oldActiveElement === newActiveElement) {
             const selector = this.generateSelector(oldActiveElement as HTMLElement);
             return {
