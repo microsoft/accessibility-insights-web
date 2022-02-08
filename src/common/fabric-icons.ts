@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
-import { registerIcons } from '@fluentui/style-utilities';
+import { registerIcons, setIconOptions } from '@fluentui/style-utilities';
 
 export function initializeFabricIcons(): void {
-    initializeIcons(undefined, { disableWarnings: true });
+    setIconOptions({
+        disableWarnings: true,
+    });
+    initializeIcons();
     registerIcons({
         style: {
             MozOsxFontSmoothing: 'grayscale',

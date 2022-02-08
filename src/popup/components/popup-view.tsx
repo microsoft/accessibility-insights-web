@@ -82,7 +82,6 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     public render(): JSX.Element {
-        // ! TODO: check on these panels too
         if (!this.props.hasAccess) {
             if (UrlValidator.isFileUrl(this.props.targetTabUrl)) {
                 return this.renderUnsupportedMsgPanelForFileUrl();

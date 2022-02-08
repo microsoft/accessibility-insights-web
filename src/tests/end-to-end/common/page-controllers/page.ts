@@ -32,26 +32,6 @@ export class Page {
             );
         }
 
-        underlyingPage.on('pageerror', error => {
-            if (
-                error.message.startsWith(
-                    "TypeError: Cannot read property 'focusElement' of null",
-                ) &&
-                error.message.includes(
-                    'office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js',
-                )
-            ) {
-                return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
-            }
-
-            if (`${error.message}` === 'Object') {
-                // unknown flakiness, tracked by https://github.com/microsoft/accessibility-insights-web/issues/3529
-                console.warn(`'pageerror' (console.error): ${serializeError(error)}`);
-                return;
-            }
-
-            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
-        });
         underlyingPage.on('requestfailed', request => {
             const failure = request.failure()!;
             const url = request.url();
