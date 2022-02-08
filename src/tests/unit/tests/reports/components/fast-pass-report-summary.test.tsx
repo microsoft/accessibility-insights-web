@@ -40,6 +40,7 @@ describe('FastPassReportSummary', () => {
                     },
                 },
             },
+            featureFlagStoreData: {},
             deps: deps,
         };
 
@@ -72,6 +73,7 @@ describe('FastPassReportSummary', () => {
                     },
                 },
             },
+            featureFlagStoreData: {},
             deps: deps,
         };
 

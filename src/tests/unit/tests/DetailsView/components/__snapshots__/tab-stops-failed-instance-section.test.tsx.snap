@@ -48,7 +48,7 @@ exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
     results={
       Array [
         Object {
-          "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+          "description": "All interactive elements can be reached using the Tab and arrow keys.",
           "id": "keyboard-navigation",
           "instances": Array [
             Object {

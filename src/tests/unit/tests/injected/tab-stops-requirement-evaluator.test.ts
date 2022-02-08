@@ -33,7 +33,7 @@ describe('TabStopsRequirementEvaluator', () => {
         ];
         const incorrectTabStops = new Set<HTMLElement>([tabStopElement2]);
         const expectedResult: AutomatedTabStopRequirementResult = {
-            description: 'Element element1 was expected, but not reached in tab order',
+            description: '[Automatically detected, needs review] Unreachable element: element1.',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'keyboard-navigation',
@@ -57,7 +57,7 @@ describe('TabStopsRequirementEvaluator', () => {
     test('addFocusOrderResults returns violations', () => {
         const expectedResult: AutomatedTabStopRequirementResult = {
             description:
-                'Element element1 precedes element2 but element2 was visited first in tab order',
+                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2 and goes to element1.',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',
@@ -86,7 +86,7 @@ describe('TabStopsRequirementEvaluator', () => {
     test('addTabbableFocusOrderResults returns violations', () => {
         const expectedResult: AutomatedTabStopRequirementResult = {
             description:
-                'Element element1 precedes element2 but element2 was visited first in tab order',
+                '[Automatically detected, needs review] Inconsistent tab order between elements. Starts at element2 and goes to element1.',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'tab-order',
@@ -116,7 +116,8 @@ describe('TabStopsRequirementEvaluator', () => {
 
     test('onKeydownForFocusTraps returns violations', () => {
         const expectedResult: AutomatedTabStopRequirementResult = {
-            description: 'Focus is still on element element1 500ms after pressing tab',
+            description:
+                '[Automatically detected, needs review] Focus is still on element element1 500ms after pressing tab',
             selector: ['element1'],
             html: 'html1',
             requirementId: 'keyboard-traps',

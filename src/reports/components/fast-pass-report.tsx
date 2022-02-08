@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
 import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
@@ -31,6 +32,7 @@ export type FastPassReportResultData = {
 export type FastPassReportDeps = {
     tabStopsFailedCounter: TabStopsFailedCounter;
     tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
+    featureFlagStoreData: FeatureFlagStoreData;
 } & SectionDeps;
 export type FastPassReportProps = Omit<
     SectionProps,
@@ -48,7 +50,10 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
             <ContentContainer>
                 <FastPassTitleSection />
                 <DetailsSection {...props} />
-                <FastPassReportSummary {...props} />
+                <FastPassReportSummary
+                    {...props}
+                    featureFlagStoreData={props.deps.featureFlagStoreData}
+                />
                 <ResultsContainer {...props}>
                     <FastPassResultsTitleSection title="Automated checks" />
                     <FastPassReportAutomatedChecksResults {...props} />
@@ -61,6 +66,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                             tabStopsTestViewController: undefined,
                             ...props.deps,
                         }}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
                         tabStopRequirementState={props.results.tabStops}
                         alwaysRenderSection={true}
                     />
@@ -68,12 +74,14 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         key={6}
                         checksSection={IncompleteChecksSection}
                         tabStops={props.results.tabStops}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
                         {...props}
                     />
                     <TabStopsChecksSectionWrapper
                         key={7}
                         checksSection={PassedChecksSection}
                         tabStops={props.results.tabStops}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
                         {...props}
                     />
                 </ResultsContainer>
