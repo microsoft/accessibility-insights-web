@@ -61,7 +61,18 @@ describe(FastPassReport, () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                tabStops: null, // Should be filled in as part of #1897876
+                tabStops: {
+                    'keyboard-traps': {
+                        status: 'pass',
+                        instances: [{ id: 'test-id-2', description: 'test desc 2' }],
+                        isExpanded: false,
+                    },
+                    'tab-order': {
+                        status: 'fail',
+                        instances: [{ id: 'test-id-4', description: 'test desc 4' }],
+                        isExpanded: false,
+                    },
+                },
             },
             userConfigurationStoreData: null,
             targetAppInfo,
@@ -73,6 +84,7 @@ describe(FastPassReport, () => {
                     scanComplete: scanDate,
                 },
             },
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<FastPassReport {...props} />);

@@ -7,6 +7,6 @@ module.exports = {
     ...baseConfig,
     collectCoverage: false,
     displayName: package.name,
-    setupFilesAfterEnv: [`<rootDir>/src/jest-setup.ts`],
+    setupFilesAfterEnv: [...baseConfig.setupFilesAfterEnv, `<rootDir>/src/jest-setup.ts`],
     watchPathIgnorePatterns: ['*.snap.html'],
 };

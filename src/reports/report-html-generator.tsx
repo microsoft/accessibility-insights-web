@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -30,6 +31,7 @@ export class ReportHtmlGenerator {
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
     ) {}
 
     public generateHtml(
@@ -51,6 +53,7 @@ export class ReportHtmlGenerator {
                 cardInteractionSupport: noCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
+                getNextHeadingLevel: this.getNextHeadingLevel,
             } as SectionDeps,
             cardsViewData: cardsViewData,
             toUtcString: this.utcDateConverter,
@@ -59,6 +62,7 @@ export class ReportHtmlGenerator {
             fixInstructionProcessor: this.fixInstructionProcessor,
             recommendColor: this.recommendColor,
             scanMetadata,
+            sectionHeadingLevel: 2,
         } as SectionProps;
 
         const props: ReportBodyProps = {

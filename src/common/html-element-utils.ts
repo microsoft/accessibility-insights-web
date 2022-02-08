@@ -72,4 +72,8 @@ export class HTMLElementUtils {
             elements[i].remove();
         }
     }
+
+    public precedesInDOM(current: HTMLElement, previous: HTMLElement): boolean {
+        return previous.compareDocumentPosition(current) === Node.DOCUMENT_POSITION_PRECEDING;
+    }
 }

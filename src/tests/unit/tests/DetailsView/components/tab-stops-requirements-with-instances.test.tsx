@@ -14,8 +14,7 @@ import {
 } from 'DetailsView/tab-stops-requirements-with-instances';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
-import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
+import { IMock, It, Mock } from 'typemoq';
 
 describe('TabStopsRequirementsWithInstances', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
@@ -24,14 +23,23 @@ describe('TabStopsRequirementsWithInstances', () => {
     const CollapsibleControlStub = getCollapsibleControlStub();
     let depsStub: TabStopsRequirementsWithInstancesDeps;
     let props: TabStopsRequirementsWithInstancesProps;
-
+    let getCollapsibleComponentPropsWithInstance: (
+        result: TabStopsRequirementResult,
+        idx: number,
+        buttonAriaLabel: string,
+    ) => CollapsibleComponentCardsProps;
     beforeEach(() => {
-        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+        tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
         tabStopsRequirementActionMessageCreatorMock = Mock.ofType(
             TabStopRequirementActionMessageCreator,
         );
         tabStopsTestViewControllerMock = Mock.ofType(TabStopsTestViewController);
-
+        getCollapsibleComponentPropsWithInstance = (result, idx, button) => {
+            return {
+                id: result.id + idx + button,
+                headingLevel: 3,
+            } as CollapsibleComponentCardsProps;
+        };
         depsStub = {
             collapsibleControl: (props: CollapsibleComponentCardsProps) => (
                 <CollapsibleControlStub {...props} />
@@ -45,6 +53,7 @@ describe('TabStopsRequirementsWithInstances', () => {
         props = {
             deps: depsStub,
             headingLevel: 3,
+            getCollapsibleComponentPropsWithInstance,
             results: [
                 {
                     id: 'keyboard-navigation',
@@ -66,7 +75,7 @@ describe('TabStopsRequirementsWithInstances', () => {
 
     it('renders when instance count > 0', () => {
         tabStopsFailedCounterMock
-            .setup(m => m.getFailedByRequirementId(It.isAny(), It.isAny()))
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 2);
         const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -74,45 +83,30 @@ describe('TabStopsRequirementsWithInstances', () => {
 
     it('renders empty div when instance count === 0', () => {
         tabStopsFailedCounterMock
-            .setup(m => m.getFailedByRequirementId(It.isAny(), It.isAny()))
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
+            .returns(() => 0);
+        tabStopsFailedCounterMock
+            .setup(m => m.getFailedInstancesByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 0);
         const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('onRemoveInstanceButtonClicked', () => {
-        tabStopsRequirementActionMessageCreatorMock
-            .setup(m => m.removeTabStopInstance(It.isAny(), It.isAny()))
-            .verifiable(Times.once());
-
-        const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
-
-        wrapper.find(CollapsibleControlStub).first().props().content.props.onRemoveButtonClicked();
-
-        tabStopsRequirementActionMessageCreatorMock.verifyAll();
-    });
-
-    test('onInstanceEditButtonClicked', () => {
-        const instanceId = 'some instance id';
-        const requirementId: TabStopRequirementId = 'keyboard-navigation';
-        const description = 'some description';
-        const expectedPayload = {
-            instanceId,
-            requirementId,
-            description,
+    it('renders component instance count === 0', () => {
+        tabStopsFailedCounterMock
+            .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
+            .returns(() => 0);
+        tabStopsFailedCounterMock
+            .setup(m => m.getFailedInstancesByRequirementId(It.isAny(), It.isAny()))
+            .returns(() => 0);
+        props.getCollapsibleComponentPropsWithoutInstance = (result, idx, button) => {
+            return {
+                id: result.id + idx + button,
+                headingLevel: 3,
+            } as CollapsibleComponentCardsProps;
         };
         const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
-
-        wrapper
-            .find(CollapsibleControlStub)
-            .first()
-            .props()
-            .content.props.onEditButtonClicked(requirementId, instanceId, description);
-
-        tabStopsTestViewControllerMock.verify(
-            m => m.editExistingFailureInstance(It.isValue(expectedPayload)),
-            Times.once(),
-        );
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     function getCollapsibleControlStub(): ReactFCWithDisplayName<CollapsibleComponentCardsProps> {

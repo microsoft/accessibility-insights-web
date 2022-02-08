@@ -22,7 +22,7 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
         const { requirement } = props;
 
         const renderCountBadge = () => {
-            const count = props.deps.tabStopsFailedCounter.getFailedByRequirementId(
+            const count = props.deps.tabStopsFailedCounter.getTotalFailedByRequirementId(
                 [requirement],
                 requirement.id,
             );

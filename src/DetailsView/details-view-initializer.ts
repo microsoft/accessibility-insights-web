@@ -13,6 +13,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -38,12 +39,16 @@ import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessm
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
-import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
+import {
+    TabStopsFailedCounterIncludingNoInstance,
+    TabStopsFailedCounterInstancesOnly,
+} from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -51,7 +56,6 @@ import { ReportExportServiceProviderImpl } from 'report-export/report-export-ser
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
@@ -65,7 +69,6 @@ import {
 } from 'reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
-import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -80,7 +83,7 @@ import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
-import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { FeatureFlags, getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
@@ -354,20 +357,6 @@ if (tabId != null) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
-            const tabStopsFailedCounter = new TabStopsFailedCounter();
-
-            // This is for a soon-to-be-legacy FastPass report format.
-            // It should be removed with #1897885.
-            const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
-                AutomatedChecksReportSectionFactory,
-                reactStaticRenderer,
-                getDefaultAddListenerForCollapsibleSection,
-                DateProvider.getUTCStringFromDate,
-                GetGuidanceTagsFromGuidanceLinks,
-                fixInstructionProcessor,
-                recommendColor,
-                getPropertyConfiguration,
-            );
 
             const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
                 reactStaticRenderer,
@@ -377,7 +366,10 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
-                tabStopsFailedCounter,
+                new TabStopsFailedCounterIncludingNoInstance(),
+                toolData,
+                DateProvider.getCurrentDate,
+                GetNextHeadingLevel,
             );
 
             // Represents the language in which pages are to be displayed
@@ -453,7 +445,6 @@ if (tabId != null) {
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                automatedChecksReportHtmlGenerator,
                 fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,
@@ -576,9 +567,14 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
-                tabStopRequirements: requirements,
-                tabStopsFailedCounter,
+                tabStopRequirements: requirements(
+                    featureFlagStore.getState() != null &&
+                        featureFlagStore.getState()[FeatureFlags.tabStopsAutomation],
+                ),
+                tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
+                tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: GetNextHeadingLevel,
             };
 
             const renderer = new DetailsViewRenderer(

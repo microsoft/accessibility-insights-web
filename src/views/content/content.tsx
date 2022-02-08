@@ -8,7 +8,7 @@ import { ContentView, ContentViewDeps } from './content-view';
 
 export type ContentDeps = { contentProvider: ContentProvider } & ContentPageDeps & ContentViewDeps;
 
-export type ContentProps = { deps: ContentDeps; reference: ContentReference };
+export type ContentProps = { deps: ContentDeps; reference?: ContentReference };
 
 export const Content = NamedFC<ContentProps>('Content', ({ deps, reference }) => {
     const { contentProvider } = deps;

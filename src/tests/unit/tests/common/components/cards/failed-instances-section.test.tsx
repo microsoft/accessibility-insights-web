@@ -46,6 +46,7 @@ describe('FailedInstancesSection', () => {
                 cardsViewData: results,
                 shouldAlertFailuresCount,
                 scanMetadata,
+                sectionHeadingLevel: 2,
             } as CommonInstancesSectionProps;
 
             const wrapper = shallow(<FailedInstancesSection {...props} />);

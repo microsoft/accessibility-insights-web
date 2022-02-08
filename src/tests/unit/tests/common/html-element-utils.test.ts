@@ -243,6 +243,22 @@ describe('HTMLElementUtils', () => {
         expect(containerElement.querySelectorAll('.do-not-delete').length).toBe(1);
     });
 
+    test('precedesInDOM', () => {
+        const containerElement = createElementWithId('container');
+        const element1 = createElementWithClassName('element1') as HTMLElement;
+        const element2 = createElementWithClassName('element2') as HTMLElement;
+        containerElement.appendChild(element1);
+        containerElement.appendChild(element2);
+
+        const utils = new HTMLElementUtils(containerElement as any, null);
+
+        const precedingResult = utils.precedesInDOM(element1, element2);
+        expect(precedingResult).toBe(true);
+
+        const proceedingResult = utils.precedesInDOM(element2, element1);
+        expect(proceedingResult).toBe(false);
+    });
+
     function createElementWithId(id: string): Element {
         const element = document.createElement('p');
         element.id = id;

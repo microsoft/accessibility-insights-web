@@ -135,6 +135,7 @@ exports[`ReportBody renders 1`] = `
         ],
       }
     }
+    sectionHeadingLevel={3}
     shouldAlertFailuresCount={false}
     targetAppInfo={
       Object {
@@ -292,6 +293,7 @@ exports[`ReportBody renders 1`] = `
           ],
         }
       }
+      sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {
@@ -447,6 +449,7 @@ exports[`ReportBody renders 1`] = `
           ],
         }
       }
+      sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {
@@ -602,6 +605,7 @@ exports[`ReportBody renders 1`] = `
           ],
         }
       }
+      sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {
@@ -757,6 +761,7 @@ exports[`ReportBody renders 1`] = `
             ],
           }
         }
+        sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
           Object {
@@ -912,6 +917,7 @@ exports[`ReportBody renders 1`] = `
             ],
           }
         }
+        sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
           Object {
@@ -1067,6 +1073,7 @@ exports[`ReportBody renders 1`] = `
             ],
           }
         }
+        sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
           Object {
@@ -1225,6 +1232,7 @@ exports[`ReportBody renders 1`] = `
           ],
         }
       }
+      sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {

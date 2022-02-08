@@ -6,7 +6,12 @@ import * as util from 'util';
 import { allOriginsPattern } from 'background/browser-permissions-tracker';
 import { generateUID } from 'common/uid-generator';
 import * as Playwright from 'playwright';
-import { ManifestOveride } from 'tests/end-to-end/common/manifest-overide';
+import {
+    getExtensionPath,
+    getManifestPath,
+    originalManifestCopyPath,
+} from 'tests/end-to-end/common/extension-paths';
+import { ManifestInstance } from 'tests/end-to-end/common/manifest-instance';
 import { testResourceServerConfigs } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
@@ -28,13 +33,18 @@ export interface ExtensionOptions {
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const browserInstanceId = generateUID();
 
+    const originalManifestContent: chrome.runtime.ManifestV2 = await ManifestInstance.parse(
+        originalManifestCopyPath,
+    );
+    const manifestCopy = createManifestWithPermissions(
+        extensionOptions.addExtraPermissionsToManifest,
+        originalManifestContent,
+    );
+
     // only unpacked extension paths are supported
     const extensionPath = getExtensionPath();
     const manifestPath = getManifestPath(extensionPath);
-
-    const manifestOveride = await ManifestOveride.fromManifestPath(manifestPath);
-    addPermissions(extensionOptions, manifestOveride);
-    await manifestOveride.write();
+    await manifestCopy.writeTo(manifestPath);
 
     const userDataDir = await setupUserDataDir(browserInstanceId);
 
@@ -43,11 +53,9 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     // simplify the initial migration from Puppeteer to Playwright.
     const playwrightContext = await launchNewBrowserContext(userDataDir, extensionPath);
 
-    const browser = new Browser(
-        browserInstanceId,
-        playwrightContext,
-        manifestOveride.restoreOriginalManifest,
-    );
+    const browser = new Browser(browserInstanceId, playwrightContext, async () => {
+        await new ManifestInstance(originalManifestContent).writeTo(manifestPath);
+    });
 
     const backgroundPage = await browser.backgroundPage();
     if (extensionOptions.suppressFirstTimeDialog) {
@@ -55,15 +63,6 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     }
 
     return browser;
-}
-
-function getExtensionPath(): string {
-    const target = process.env['WEB_E2E_TARGET'] ?? 'dev';
-    return `${(global as any).rootDir}/drop/extension/${target}/product`;
-}
-
-function getManifestPath(extensionPath: string): string {
-    return `${extensionPath}/manifest.json`;
 }
 
 async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
@@ -77,29 +76,31 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-const addPermissions = (
-    extensionOptions: ExtensionOptions,
-    manifestOveride: ManifestOveride,
-): void => {
-    const { addExtraPermissionsToManifest } = extensionOptions;
+const createManifestWithPermissions = (
+    permissions: ExtraPermissions,
+    manifestContent: chrome.runtime.ManifestV2,
+): ManifestInstance => {
+    const manifestInstance = new ManifestInstance(manifestContent);
 
-    switch (addExtraPermissionsToManifest) {
+    switch (permissions) {
         case 'fake-activeTab':
             // we need to add localhost origin permission in order to fake activeTab
             // the main reason is Playwright (like Puppeteer) lacks an API to activate the extension
             // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
             // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
-            manifestOveride.addTemporaryPermission(
+            manifestInstance.addTemporaryPermission(
                 `http://localhost:${testResourceServerConfigs[0].port}/*`,
             );
             break;
 
         case 'all-origins':
-            manifestOveride.addTemporaryPermission(allOriginsPattern);
+            manifestInstance.addTemporaryPermission(allOriginsPattern);
             break;
         default:
         // no-op
     }
+
+    return manifestInstance;
 };
 
 async function setupUserDataDir(browserInstanceId: string): Promise<string> {

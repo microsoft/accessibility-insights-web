@@ -6,6 +6,7 @@ import {
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    ExportFastPassResultsTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
@@ -17,6 +18,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
@@ -24,8 +26,9 @@ import {
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {
@@ -626,7 +629,7 @@ describe('TelemetryDataFactoryTest', () => {
     test('forExportedResults by mouseclick', () => {
         const serviceKey = 'html';
         const event = mouseClickEvent;
-        const exportResultsType = 'AutomatedChecks';
+        const exportResultsType = 'FastPass';
 
         const result = testObject.forExportedResults(
             exportResultsType,
@@ -640,6 +643,66 @@ describe('TelemetryDataFactoryTest', () => {
             exportResultsService: serviceKey,
             triggeredBy: 'mouseclick',
             source: testSource,
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forExportedResults', () => {
+        const serviceKey = 'html';
+        const event = mouseClickEvent;
+        const exportResultsType = 'FastPass';
+        const tabStopRequirementData = {
+            'focus-indicator': {
+                status: 'pass',
+                instances: [],
+                isExpanded: false,
+            },
+            'input-focus': {
+                instances: [
+                    { id: 'test-id-1', description: 'test desc 1' },
+                    { id: 'test-id-2', description: 'test desc 2' },
+                ],
+                status: 'fail',
+                isExpanded: false,
+            },
+            'keyboard-navigation': {
+                instances: [],
+                isExpanded: false,
+                status: 'unknown',
+            },
+            'keyboard-traps': {
+                instances: [],
+                isExpanded: false,
+                status: 'fail',
+            },
+            'tab-order': {
+                instances: [],
+                isExpanded: false,
+                status: 'pass',
+            },
+        } as TabStopRequirementState;
+        const wereAutomatedChecksRun = true;
+        const result = testObject.forExportedResultsWithFastPassData(
+            tabStopRequirementData,
+            wereAutomatedChecksRun,
+            exportResultsType,
+            serviceKey,
+            event,
+            testSource,
+        );
+
+        const expected: ExportFastPassResultsTelemetryData = {
+            exportResultsType: exportResultsType,
+            exportResultsService: serviceKey,
+            triggeredBy: 'mouseclick',
+            source: testSource,
+            wereAutomatedChecksRun: true,
+            tabStopRequirementInstanceCount: {
+                pass: { 'focus-indicator': 1, 'tab-order': 1 },
+                unknown: { 'keyboard-navigation': 1 },
+                fail: { 'input-focus': 2, 'keyboard-traps': 0 },
+            },
         };
 
         expect(result).toEqual(expected);
@@ -686,5 +749,28 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forLeftNavPanelExpanded(mouseClickEvent);
 
         expect(result).toEqual(expected);
+    });
+
+    test('forAutomatedTabStopsResults', () => {
+        const tabbingResults: AutomatedTabStopRequirementResult[] = [
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+            { requirementId: 'keyboard-traps', html: null, selector: null, description: null },
+        ];
+
+        const result = testObject.forAutomatedTabStopsResults(tabbingResults);
+
+        const expected: TabStopsAutomatedResultsTelemetryData = {
+            tabStopAutomatedFailuresInstanceCount: { 'tab-order': 2, 'keyboard-traps': 1 },
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'N/A',
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forAutomatedTabStopsResults returns undefined when no results', () => {
+        const result = testObject.forAutomatedTabStopsResults([]);
+        expect(result).toBeUndefined();
     });
 });

@@ -69,7 +69,7 @@
         line-height: 24px;
         color: $neutral-100;
         @include ms-high-contrast-override {
-            color: HighlightText !important;
+            color: inherit;
         }
     }
 }

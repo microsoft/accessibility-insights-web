@@ -3,7 +3,10 @@
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
-import { ReportExportService } from 'report-export/types/report-export-service';
+import {
+    ReportExportService,
+    ReportExportServiceKey,
+} from 'report-export/types/report-export-service';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
@@ -25,6 +28,11 @@ export interface ReportExportComponentProps {
     dismissExportDialog: () => void;
     afterDialogDismissed: () => void;
     reportExportServices: ReportExportService[];
+    exportResultsClickedTelemetry: (
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ) => void;
 }
 
 interface ReportExportComponentState {
@@ -91,6 +99,7 @@ export class ReportExportComponent extends React.Component<
                 featureFlagStoreData={featureFlagStoreData}
                 afterDismissed={this.props.afterDialogDismissed}
                 reportExportServices={this.props.reportExportServices}
+                exportResultsClickedTelemetry={this.props.exportResultsClickedTelemetry}
             />
         );
     }

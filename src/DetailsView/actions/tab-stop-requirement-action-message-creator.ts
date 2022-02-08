@@ -4,14 +4,18 @@
 // Licensed under the MIT License.
 import {
     AddTabStopInstancePayload,
+    BaseActionPayload,
     RemoveTabStopInstancePayload,
-    UpdateTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
+    UpdateTabbingCompletedPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
 const messages = Messages.Visualizations.TabStops;
@@ -108,6 +112,40 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            payload,
+        });
+    };
+
+    public updateTabbingCompleted = (tabbingCompleted: boolean) => {
+        const payload: UpdateTabbingCompletedPayload = {
+            tabbingCompleted,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.TabStops.TabbingCompleted,
+            payload,
+        });
+    };
+
+    public updateNeedToCollectTabbingResults = (needToCollectTabbingResults: boolean) => {
+        const payload: UpdateNeedToCollectTabbingResultsPayload = {
+            needToCollectTabbingResults,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            payload,
+        });
+    };
+
+    public automatedTabbingResultsCompleted = (results: AutomatedTabStopRequirementResult[]) => {
+        const telemetry = this.telemetryFactory.forAutomatedTabStopsResults(results);
+        const payload: BaseActionPayload = {
+            telemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.TabStops.AutomatedTabbingResultsCompleted,
             payload,
         });
     };

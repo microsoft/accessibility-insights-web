@@ -3,15 +3,22 @@
 
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 
-export class TabStopsFailedCounter {
-    public getFailedByRequirementId = (
+export interface TabStopsFailedCounter {
+    getTotalFailedByRequirementId: (
         results: TabStopsRequirementResult[],
         requirementId: string,
-    ): number => {
-        return results.reduce((total, result) => {
-            return result.id === requirementId ? total + result.instances.length : total;
-        }, 0);
-    };
+    ) => number;
+    getFailedInstancesByRequirementId: (
+        results: TabStopsRequirementResult[],
+        requirementId: string,
+    ) => number;
+    getTotalFailed: (results: TabStopsRequirementResult[]) => number;
+}
+
+export class TabStopsFailedCounterInstancesOnly implements TabStopsFailedCounter {
+    public getTotalFailedByRequirementId = getFailedInstancesByRequirementId;
+
+    public getFailedInstancesByRequirementId = getFailedInstancesByRequirementId;
 
     public getTotalFailed = (results: TabStopsRequirementResult[]): number => {
         return results.reduce((total, result) => {
@@ -19,3 +26,31 @@ export class TabStopsFailedCounter {
         }, 0);
     };
 }
+
+export class TabStopsFailedCounterIncludingNoInstance implements TabStopsFailedCounter {
+    public getTotalFailedByRequirementId = (
+        results: TabStopsRequirementResult[],
+        requirementId: string,
+    ): number => {
+        return results.reduce((total, result) => {
+            return result.id === requirementId ? total + (result.instances.length || 1) : total;
+        }, 0);
+    };
+
+    public getFailedInstancesByRequirementId = getFailedInstancesByRequirementId;
+
+    public getTotalFailed = (results: TabStopsRequirementResult[]): number => {
+        return results.reduce((total, result) => {
+            return total + (result.instances.length || 1);
+        }, 0);
+    };
+}
+
+const getFailedInstancesByRequirementId = (
+    results: TabStopsRequirementResult[],
+    requirementId: string,
+): number => {
+    return results.reduce((total, result) => {
+        return result.id === requirementId ? total + result.instances.length : total;
+    }, 0);
+};

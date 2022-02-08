@@ -26,6 +26,9 @@ export const Messages = {
             UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
             RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
             RequirementExpansionToggled: `${messagePrefix}/visualization/tab-stops/toggleTabStopRequirementExpand`,
+            TabbingCompleted: `${messagePrefix}/visualization/tab-stops/tabbingCompleted`,
+            NeedToCollectTabbingResults: `${messagePrefix}/visualization/tab-stops/NeedToCollectTabbingResults`,
+            AutomatedTabbingResultsCompleted: `${messagePrefix}/visualization/tab-stops/AutomatedTabbingResultsCompleted`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
@@ -40,7 +43,6 @@ export const Messages = {
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
-            TargetPageChanged: `${messagePrefix}/details-view/targetPageChanged`,
         },
     },
 

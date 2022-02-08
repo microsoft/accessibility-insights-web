@@ -2,34 +2,53 @@
 
 exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `null`;
 
+exports[`TabStopsFailedInstanceSection does renders when no results are failing and set to alwaysRenderSection 1`] = `
+<div
+  className="tabStopsFailureInstanceSection"
+  data-automation-id="tab-stops-failure-instance-section"
+>
+  <HeadingElementForLevel
+    headingLevel={2}
+  >
+    <ResultSectionTitle
+      badgeCount={0}
+      outcomeType="fail"
+      title="Failed instances"
+      titleSize="title"
+    />
+  </HeadingElementForLevel>
+  <TabStopsRequirementsWithInstances
+    deps={Object {}}
+    getCollapsibleComponentPropsWithInstance={[Function]}
+    headingLevel={3}
+    results={Array []}
+  />
+</div>
+`;
+
 exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
 <div
   className="tabStopsFailureInstanceSection"
   data-automation-id="tab-stops-failure-instance-section"
 >
-  <h2>
+  <HeadingElementForLevel
+    headingLevel={2}
+  >
     <ResultSectionTitle
       badgeCount={10}
       outcomeType="fail"
       title="Failed instances"
       titleSize="title"
     />
-  </h2>
+  </HeadingElementForLevel>
   <TabStopsRequirementsWithInstances
-    deps={
-      Object {
-        "tabStopsFailedCounter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getFailedByRequirementId": [Function],
-          "getTotalFailed": [Function],
-        },
-      }
-    }
+    deps={Object {}}
+    getCollapsibleComponentPropsWithInstance={[Function]}
     headingLevel={3}
     results={
       Array [
         Object {
-          "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+          "description": "All interactive elements can be reached using the Tab and arrow keys.",
           "id": "keyboard-navigation",
           "instances": Array [
             Object {

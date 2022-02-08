@@ -9,7 +9,7 @@ import {
     FileUrlUnsupportedMessagePanelProps,
 } from 'popup/components/file-url-unsupported-message-panel';
 import * as React from 'react';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { Mock, MockBehavior } from 'typemoq';
 import { Tabs } from 'webextension-polyfill-ts';
 
@@ -51,7 +51,7 @@ describe('FileUrlUnsupportedMessagePanel', () => {
 
         wrapper.find(NewTabLink).simulate('click');
 
-        await tick();
+        await flushSettledPromises();
         browserAdapterMock.verifyAll();
     });
 });

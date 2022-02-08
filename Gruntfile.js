@@ -9,7 +9,7 @@ const targets = require('./targets.config');
 
 module.exports = function (grunt) {
     const pkgPath = path.resolve('./node_modules/.bin/pkg');
-    const tsmPath = path.resolve('./node_modules/.bin/tsm');
+    const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
     const webpackPath = path.resolve('./node_modules/.bin/webpack');
 
     const extensionPath = 'extension';
@@ -51,7 +51,12 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'webpack-all': ['exec:webpack-dev', 'exec:webpack-unified', 'exec:webpack-prod'],
+            'webpack-all': [
+                'exec:webpack-dev',
+                'exec:webpack-dev-mv3',
+                'exec:webpack-unified',
+                'exec:webpack-prod',
+            ],
         },
         copy: {
             code: {
@@ -169,11 +174,12 @@ module.exports = function (grunt) {
         },
         exec: {
             'webpack-dev': `"${webpackPath}" --config-name dev`,
+            'webpack-dev-mv3': `"${webpackPath}" --config-name dev-mv3`,
             'webpack-prod': `"${webpackPath}" --config-name prod`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'generate-scss-typings': `"${tsmPath}" src`,
+            'generate-scss-typings': `"${typedScssModulesPath}" src`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
         },
         sass: {
@@ -204,20 +210,25 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
+            },
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
+            'webpack-dev-mv3-output': {
+                files: ['extension/devMv3Bundle/**/*.*'],
+                tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
@@ -439,21 +450,112 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('manifest', function () {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
+
+        // Build-specific settings that exist in both MV2 and MV3
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
+            manifest_version: config.options.manifestVersion,
             icons: {
                 16: config.options.icon16,
                 48: config.options.icon48,
                 128: config.options.icon128,
             },
-            browser_action: {
-                default_icon: {
-                    20: config.options.icon16,
-                    40: config.options.icon48,
-                },
-            },
         });
+
+        if (config.options.manifestVersion === 3) {
+            // Settings that are specific to MV3
+            merge(manifestJSON, {
+                action: {
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                background: {
+                    service_worker: 'bundle/serviceWorker.bundle.js',
+                },
+                host_permissions: [],
+            });
+        } else {
+            // Settings that are specific to MV2. Note that many of these settings--especially the
+            // commands--will eventually be restored to manifest.json. They are here only because
+            // we want to vet each settings as we convert from MV2 to MV3.
+            merge(manifestJSON, {
+                browser_action: {
+                    default_popup: 'popup/popup.html',
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                background: {
+                    page: 'background/background.html',
+                    persistent: true,
+                },
+                web_accessible_resources: [
+                    'insights.html',
+                    'assessments/*',
+                    'injected/*',
+                    'background/*',
+                    'common/*',
+                    'DetailsView/*',
+                    'bundle/*',
+                    'NOTICE.html',
+                ],
+                content_security_policy:
+                    "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
+                optional_permissions: ['*://*/*'],
+                commands: {
+                    _execute_browser_action: {
+                        suggested_key: {
+                            windows: 'Alt+Shift+K',
+                            mac: 'Alt+Shift+K',
+                            chromeos: 'Alt+Shift+K',
+                            linux: 'Alt+Shift+K',
+                        },
+                        description: 'Activate the extension',
+                    },
+                    '01_toggle-issues': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+1',
+                            mac: 'Alt+Shift+1',
+                            chromeos: 'Alt+Shift+1',
+                            linux: 'Alt+Shift+1',
+                        },
+                        description: 'Toggle Automated checks',
+                    },
+                    '02_toggle-landmarks': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+2',
+                            mac: 'Alt+Shift+2',
+                            chromeos: 'Alt+Shift+2',
+                            linux: 'Alt+Shift+2',
+                        },
+                        description: 'Toggle Landmarks',
+                    },
+                    '03_toggle-headings': {
+                        suggested_key: {
+                            windows: 'Alt+Shift+3',
+                            mac: 'Alt+Shift+3',
+                            chromeos: 'Alt+Shift+3',
+                            linux: 'Alt+Shift+3',
+                        },
+                        description: 'Toggle Headings',
+                    },
+                    '04_toggle-tabStops': {
+                        description: 'Toggle Tab stops',
+                    },
+                    '05_toggle-color': {
+                        description: 'Toggle Color',
+                    },
+                    '06_toggle-needsReview': {
+                        description: 'Toggle Needs review',
+                    },
+                },
+            });
+        }
+
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
@@ -722,6 +824,13 @@ module.exports = function (grunt) {
         'build-assets',
         'drop:dev',
     ]);
+    grunt.registerTask('build-dev-mv3', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev-mv3',
+        'build-assets',
+        'drop:dev-mv3',
+    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
@@ -765,6 +874,7 @@ module.exports = function (grunt) {
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
+        'drop:dev-mv3',
         'drop:unified-dev',
         'extension-release-drops',
     ]);

@@ -11,6 +11,7 @@ export const LANDMARKS_TOGGLE: string = 'LandmarksToggled';
 export const TABSTOPS_TOGGLE: string = 'TabStopsToggled';
 export const TABSTOPS_RECORDING_COMPLETE: string = 'TabStopsRecordingComplete';
 export const ADD_TABSTOPS_REQUIREMENT_INSTANCE: string = 'AddTabStopsRequirementInstance';
+export const TABSTOPS_AUTOMATED_RESULTS: string = 'TabStopsAutomatedResults';
 export const REMOVE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'RemoveTabStopsRequirementInstance';
 export const UPDATE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'UpdateTabStopsRequirementInstance';
 export const UPDATE_TABSTOPS_REQUIREMENT_STATUS: string = 'UpdateTabStopsRequirementStatus';
@@ -82,7 +83,7 @@ export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'FastPass';
 
 export enum TelemetryEventSource {
     LaunchPad,
@@ -121,6 +122,11 @@ export type ExportResultsTelemetryData = {
     exportResultsType: string;
     exportResultsService: ReportExportServiceKey;
 } & BaseTelemetryData;
+
+export type ExportFastPassResultsTelemetryData = {
+    wereAutomatedChecksRun: boolean;
+    tabStopRequirementInstanceCount: TabStopRequirementInstanceCount;
+} & ExportResultsTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
     selectedTest: string;
@@ -208,6 +214,10 @@ export type AndroidScanCompletedTelemetryData = {
     scanDuration: number;
 } & InstanceCount;
 
+export type TabStopsAutomatedResultsTelemetryData = {
+    tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount;
+} & BaseTelemetryData;
+
 export type InstanceCount = {
     PASS: {
         [ruleId: string]: number;
@@ -230,6 +240,10 @@ export type TabStopRequirementInstanceCount = {
     unknown: {
         [requirementId: string]: number;
     };
+};
+
+export type TabStopAutomatedFailuresInstanceCount = {
+    [requirementId: string]: number;
 };
 
 export type AtfaInstanceCount = {
@@ -269,6 +283,7 @@ export type TelemetryData =
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
     | ExportResultsTelemetryData
+    | ExportFastPassResultsTelemetryData
     | DetailsViewOpenTelemetryData
     | DetailsViewOpenedTelemetryData
     | SettingsOpenTelemetryData

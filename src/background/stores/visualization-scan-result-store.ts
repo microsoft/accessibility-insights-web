@@ -23,6 +23,8 @@ import {
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
+    UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -54,6 +56,8 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
                 requirements,
+                tabbingCompleted: false,
+                needToCollectTabbingResults: true,
             },
         };
 
@@ -99,6 +103,12 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         );
         this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
             this.onToggleTabStopRequirementExpandCollapse,
+        );
+        this.tabStopRequirementActions.updateTabbingCompleted.addListener(
+            this.onUpdateTabbingCompleted,
+        );
+        this.tabStopRequirementActions.updateNeedToCollectTabbingResults.addListener(
+            this.onUpdateNeedToCollectTabbingResults,
         );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
@@ -177,6 +187,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
     private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
         const { requirementId, description } = payload;
+        this.state.tabStops.requirements[requirementId].status = 'fail';
         this.state.tabStops.requirements[requirementId].instances.push({
             description,
             id: this.generateUID(),
@@ -242,4 +253,16 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
         return selectedRows;
     }
+
+    private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
+        this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
+        this.emitChanged();
+    };
+
+    private onUpdateNeedToCollectTabbingResults = (
+        payload: UpdateNeedToCollectTabbingResultsPayload,
+    ): void => {
+        this.state.tabStops.needToCollectTabbingResults = payload.needToCollectTabbingResults;
+        this.emitChanged();
+    };
 }

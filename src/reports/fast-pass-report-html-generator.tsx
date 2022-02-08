@@ -2,14 +2,20 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    TargetAppData,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { ReportTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import {
@@ -23,7 +29,7 @@ import { ReactStaticRenderer } from './react-static-renderer';
 
 export type FastPassReportModel = {
     description: string;
-    scanMetadata: ScanMetadata;
+    targetPage: TargetAppData;
     results: {
         automatedChecks: CardsViewModel;
         tabStops: TabStopRequirementState;
@@ -40,10 +46,21 @@ export class FastPassReportHtmlGenerator {
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
         private readonly tabStopsFailedCounter: TabStopsFailedCounter,
+        private readonly toolData: ToolData,
+        private readonly getCurrentDate: () => Date,
+        private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
     ) {}
 
     public generateHtml(model: FastPassReportModel): string {
-        const { description, scanMetadata, results } = model;
+        const { description, targetPage: targetPage, results } = model;
+
+        const scanMetadata: ScanMetadata = {
+            targetAppInfo: targetPage,
+            timespan: {
+                scanComplete: this.getCurrentDate(),
+            },
+            toolData: this.toolData,
+        };
 
         const props: FastPassReportProps = {
             description,
@@ -57,6 +74,8 @@ export class FastPassReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 tabStopsFailedCounter: this.tabStopsFailedCounter,
+                tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: this.getNextHeadingLevel,
             } as FastPassReportDeps,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
@@ -65,6 +84,7 @@ export class FastPassReportHtmlGenerator {
             recommendColor: this.recommendColor,
             scanMetadata,
             results,
+            sectionHeadingLevel: 3,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...props} />;

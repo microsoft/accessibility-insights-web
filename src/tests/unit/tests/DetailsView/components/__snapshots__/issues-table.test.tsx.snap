@@ -92,7 +92,6 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
             "setFeatureFlag": [Function],
             "startOverAllAssessments": [Function],
             "switchToTargetTab": [Function],
-            "targetPageChangedResetData": [Function],
             "telemetryFactory": undefined,
             "undoManualRequirementStatusChange": [Function],
             "undoManualTestStatusChange": [Function],
@@ -102,7 +101,6 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "assessmentJsonExportGenerator": undefined,
             "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
             "fastPassReportHtmlGenerator": undefined,
           },
         }
@@ -114,6 +112,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           },
         }
       }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
@@ -239,7 +238,6 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "setFeatureFlag": [Function],
             "startOverAllAssessments": [Function],
             "switchToTargetTab": [Function],
-            "targetPageChangedResetData": [Function],
             "telemetryFactory": undefined,
             "undoManualRequirementStatusChange": [Function],
             "undoManualTestStatusChange": [Function],
@@ -249,7 +247,6 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "assessmentJsonExportGenerator": undefined,
             "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
             "fastPassReportHtmlGenerator": undefined,
           },
         }
@@ -261,6 +258,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           },
         }
       }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
