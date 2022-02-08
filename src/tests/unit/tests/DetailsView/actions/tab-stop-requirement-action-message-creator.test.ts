@@ -3,14 +3,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import {
+    AutomatedTabStopRequirementResult,
+    TabStopRequirementResult,
+} from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
@@ -73,7 +75,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
     });
 
     test('addTabStopInstance', () => {
-        const requirementInstance: AddTabStopInstancePayload = {
+        const requirementInstance: TabStopRequirementResult = {
             requirementId: 'input-focus',
             description: 'testing',
         };
@@ -96,10 +98,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId))
             .returns(() => telemetry);
 
-        testSubject.addTabStopInstance(
-            requirementInstance.requirementId,
-            requirementInstance.description,
-        );
+        testSubject.addTabStopInstance(requirementInstance);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
