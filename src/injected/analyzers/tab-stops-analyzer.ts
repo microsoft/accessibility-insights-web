@@ -68,10 +68,12 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         );
 
         if (!duplicateResult) {
-            this.tabStopRequirementActionMessageCreator.addTabStopInstance(
-                tabStopRequirementResult.requirementId,
-                tabStopRequirementResult.description,
-            );
+            this.tabStopRequirementActionMessageCreator.addTabStopInstance({
+                description: tabStopRequirementResult.description,
+                requirementId: tabStopRequirementResult.requirementId,
+                selector: tabStopRequirementResult.selector,
+                html: tabStopRequirementResult.html,
+            });
             this.seenTabStopRequirementResults.push(tabStopRequirementResult);
         }
     };

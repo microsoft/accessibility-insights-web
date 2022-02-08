@@ -125,7 +125,13 @@ describe('TabStopsAnalyzer', () => {
             const requirementResult: AutomatedTabStopRequirementResult = {
                 requirementId: 'keyboard-navigation',
                 description: 'some description',
+                selector: ['some', 'selector'],
+                html: 'some html',
             } as AutomatedTabStopRequirementResult;
+            const secondRequirementResult = {
+                ...requirementResult,
+                html: 'new html',
+            };
 
             setTabStopsAutomationFeatureFlag(true);
             setupTabStopsListenerForStartTabStops();
@@ -139,18 +145,15 @@ describe('TabStopsAnalyzer', () => {
             // send 1 duplicate and 2 unique results
             requirementResultRunnerCallback(requirementResult);
             requirementResultRunnerCallback(requirementResult);
-            requirementResultRunnerCallback({
-                ...requirementResult,
-                html: 'new html',
-            });
+            requirementResultRunnerCallback(secondRequirementResult);
 
             tabStopRequirementActionMessageCreatorMock.verify(
-                m =>
-                    m.addTabStopInstance(
-                        requirementResult.requirementId,
-                        requirementResult.description,
-                    ),
-                Times.exactly(2),
+                m => m.addTabStopInstance(It.isValue(requirementResult)),
+                Times.once(),
+            );
+            tabStopRequirementActionMessageCreatorMock.verify(
+                m => m.addTabStopInstance(It.isValue(secondRequirementResult)),
+                Times.once(),
             );
         });
 
