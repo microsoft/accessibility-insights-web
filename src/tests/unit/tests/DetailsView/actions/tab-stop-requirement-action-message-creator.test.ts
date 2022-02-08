@@ -4,13 +4,13 @@
 // Licensed under the MIT License.
 import {
     AddTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
-    UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
@@ -249,7 +249,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
     });
 
     test('automatedTabbingResultsCompleted', () => {
-        const tabbingResults: TabStopRequirementResult[] = [
+        const tabbingResults: AutomatedTabStopRequirementResult[] = [
             { requirementId: 'tab-order', html: null, selector: null, description: null },
             { requirementId: 'tab-order', html: null, selector: null, description: null },
         ];

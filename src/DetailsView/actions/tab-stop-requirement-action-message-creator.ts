@@ -18,6 +18,7 @@ import { Messages } from 'common/messages';
 import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 const messages = Messages.Visualizations.TabStops;
 
 export class TabStopRequirementActionMessageCreator extends DevToolActionMessageCreator {
@@ -138,7 +139,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
         });
     };
 
-    public automatedTabbingResultsCompleted = (results: TabStopRequirementResult[]) => {
+    public automatedTabbingResultsCompleted = (results: AutomatedTabStopRequirementResult[]) => {
         const telemetry = this.telemetryFactory.forAutomatedTabStopsResults(results);
         const payload: BaseActionPayload = {
             telemetry,
