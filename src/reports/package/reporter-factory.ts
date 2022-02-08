@@ -16,7 +16,7 @@ import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/r
 import { CombinedReportSectionFactory } from 'reports/components/report-sections/combined-report-section-factory';
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
-import { CombinedResultsReport } from 'reports/package/combined-results-report';
+import { CombinedResultsReport, CombinedResultsReportDeps } from 'reports/package/combined-results-report';
 import { CombinedResultsToCardsModelConverter } from 'reports/package/combined-results-to-cards-model-converter';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
@@ -161,9 +161,8 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         recommendColor,
         getPropertyConfiguration,
     );
-    const deps = {
+    const deps: CombinedResultsReportDeps = {
         reportHtmlGenerator,
-        cardSelectionMessageCreator: parameters.cardSelectionMessageCreator,
     }
 
     const cardSelectionViewData: CardSelectionViewData = {
