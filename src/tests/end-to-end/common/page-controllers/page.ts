@@ -4,7 +4,6 @@ import * as fs from 'fs';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
-import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
     WaitForSelectorOptions,
