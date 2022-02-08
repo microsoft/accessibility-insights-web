@@ -3,10 +3,8 @@
 
 import { WindowUtils } from 'common/window-utils';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
-import {
-    TabStopRequirementResult,
-    TabStopsRequirementEvaluator,
-} from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { FocusableElement } from 'tabbable';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -17,12 +15,12 @@ describe('TabStopRequirementOrchestrator', () => {
     let windowUtilsMock: IMock<WindowUtils>;
     let tabStopsRequirementEvaluatorMock: IMock<TabStopsRequirementEvaluator>;
     let getUniqueSelectorMock: IMock<(e: HTMLElement) => string>;
-    let reportResultsMock: IMock<(payload: TabStopRequirementResult) => Promise<void>>;
+    let reportResultsMock: IMock<(payload: AutomatedTabStopRequirementResult) => Promise<void>>;
 
     let focusableElementsStub: FocusableElement[];
     let elementStub: HTMLElement;
     let newElementStub: HTMLElement;
-    let tabStopRequirementResultStub: TabStopRequirementResult;
+    let tabStopRequirementResultStub: AutomatedTabStopRequirementResult;
 
     let focusInCallback: (event: Event) => void;
     let keydownCallback: (event: Event) => void;
@@ -35,7 +33,8 @@ describe('TabStopRequirementOrchestrator', () => {
         windowUtilsMock = Mock.ofType<WindowUtils>();
         tabStopsRequirementEvaluatorMock = Mock.ofType<TabStopsRequirementEvaluator>();
         getUniqueSelectorMock = Mock.ofType<(e: HTMLElement) => string>();
-        reportResultsMock = Mock.ofType<(payload: TabStopRequirementResult) => Promise<void>>();
+        reportResultsMock =
+            Mock.ofType<(payload: AutomatedTabStopRequirementResult) => Promise<void>>();
 
         testSubject = new TabStopRequirementOrchestrator(
             domMock.object,
@@ -59,7 +58,7 @@ describe('TabStopRequirementOrchestrator', () => {
         } as HTMLElement;
         tabStopRequirementResultStub = {
             html: 'some html',
-        } as TabStopRequirementResult;
+        } as AutomatedTabStopRequirementResult;
     });
 
     test('transformChildResultForParent', () => {
@@ -68,7 +67,7 @@ describe('TabStopRequirementOrchestrator', () => {
         const anotherSelectorStub = 'some other selector';
         const result = {
             selector: [anotherSelectorStub],
-        } as TabStopRequirementResult;
+        } as AutomatedTabStopRequirementResult;
         const expectedResult = {
             selector: [selectorStub, anotherSelectorStub],
         };
@@ -207,7 +206,7 @@ describe('TabStopRequirementOrchestrator', () => {
     });
 
     function testOnkeydownForFocusTrapsWithResult(
-        givenTabStopRequirementResult: TabStopRequirementResult,
+        givenTabStopRequirementResult: AutomatedTabStopRequirementResult,
         givenTimes: Times,
     ) {
         const eventStub = {
@@ -295,7 +294,7 @@ describe('TabStopRequirementOrchestrator', () => {
         });
     }
 
-    function getTabStopRequirementResultStubs(): TabStopRequirementResult[] {
+    function getTabStopRequirementResultStubs(): AutomatedTabStopRequirementResult[] {
         return [
             {
                 html: 'result 1',
@@ -303,6 +302,6 @@ describe('TabStopRequirementOrchestrator', () => {
             {
                 html: 'result 2',
             },
-        ] as TabStopRequirementResult[];
+        ] as AutomatedTabStopRequirementResult[];
     }
 });

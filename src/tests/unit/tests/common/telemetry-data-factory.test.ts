@@ -28,8 +28,7 @@ import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
-
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {
@@ -753,7 +752,7 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forAutomatedTabStopsResults', () => {
-        const tabbingResults: TabStopRequirementResult[] = [
+        const tabbingResults: AutomatedTabStopRequirementResult[] = [
             { requirementId: 'tab-order', html: null, selector: null, description: null },
             { requirementId: 'tab-order', html: null, selector: null, description: null },
             { requirementId: 'keyboard-traps', html: null, selector: null, description: null },

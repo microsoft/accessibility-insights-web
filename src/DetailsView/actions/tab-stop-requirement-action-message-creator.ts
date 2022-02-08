@@ -4,18 +4,18 @@
 // Licensed under the MIT License.
 import {
     AddTabStopInstancePayload,
+    BaseActionPayload,
     RemoveTabStopInstancePayload,
-    UpdateTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
-    UpdateTabbingCompletedPayload,
     UpdateNeedToCollectTabbingResultsPayload,
-    BaseActionPayload,
+    UpdateTabbingCompletedPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
 const messages = Messages.Visualizations.TabStops;
@@ -138,7 +138,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
         });
     };
 
-    public automatedTabbingResultsCompleted = (results: TabStopRequirementResult[]) => {
+    public automatedTabbingResultsCompleted = (results: AutomatedTabStopRequirementResult[]) => {
         const telemetry = this.telemetryFactory.forAutomatedTabStopsResults(results);
         const payload: BaseActionPayload = {
             telemetry,

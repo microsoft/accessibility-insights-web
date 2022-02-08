@@ -3,18 +3,16 @@
 
 import { WindowUtils } from 'common/window-utils';
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
-import {
-    TabStopRequirementResult,
-    TabStopsRequirementEvaluator,
-} from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { FocusableElement } from 'tabbable';
 
 export class TabStopRequirementOrchestrator
-    implements AllFrameRunnerTarget<TabStopRequirementResult>
+    implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult>
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
-    private reportResults: (payload: TabStopRequirementResult) => Promise<void>;
+    private reportResults: (payload: AutomatedTabStopRequirementResult) => Promise<void>;
 
     private tabbableTabStops: FocusableElement[];
     private actualTabStops: Set<HTMLElement> = new Set();
@@ -60,15 +58,15 @@ export class TabStopRequirementOrchestrator
     };
 
     public setResultCallback = (
-        reportResultCallback: (payload: TabStopRequirementResult) => Promise<void>,
+        reportResultCallback: (payload: AutomatedTabStopRequirementResult) => Promise<void>,
     ) => {
         this.reportResults = reportResultCallback;
     };
 
     public transformChildResultForParent = (
-        result: TabStopRequirementResult,
+        result: AutomatedTabStopRequirementResult,
         messageSourceFrame: HTMLIFrameElement,
-    ): TabStopRequirementResult => {
+    ): AutomatedTabStopRequirementResult => {
         const frameSelector = this.getUniqueSelector(messageSourceFrame);
         result.selector = [frameSelector, ...result.selector];
         return result;

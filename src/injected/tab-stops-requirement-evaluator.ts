@@ -4,39 +4,35 @@
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { FocusableElement } from 'tabbable';
-import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-
-export type TabStopRequirementResult = {
-    requirementId: TabStopRequirementId;
-    description: string;
-    selector: string[];
-    html: string;
-};
+import { AutomatedTabStopRequirementResult } from './tab-stop-requirement-result';
 
 export interface TabStopsRequirementEvaluator {
     getKeyboardNavigationResults(
         tabbableTabStops: FocusableElement[],
         actualTabStops: Set<HTMLElement>,
-    ): TabStopRequirementResult[];
+    ): AutomatedTabStopRequirementResult[];
     getFocusOrderResult(
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
-    ): TabStopRequirementResult | null;
-    getTabbableFocusOrderResults(tabbableTabStops: FocusableElement[]): TabStopRequirementResult[];
+    ): AutomatedTabStopRequirementResult | null;
+    getTabbableFocusOrderResults(
+        tabbableTabStops: FocusableElement[],
+    ): AutomatedTabStopRequirementResult[];
     getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
-    ): TabStopRequirementResult | null;
+    ): AutomatedTabStopRequirementResult | null;
 }
 
 export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementEvaluator {
+    private readonly automaticallyDetectedTag = '[Automatically detected, needs review]';
     private readonly keyboardNavigationDescription: (string) => string = selector =>
-        `Element ${selector} was expected, but not reached in tab order`;
+        `${this.automaticallyDetectedTag} Unreachable element: ${selector}.`;
     private readonly focusOrderDescription: (currSelector: string, lastSelector: string) => string =
         (currSelector, lastSelector) =>
-            `Element ${currSelector} precedes ${lastSelector} but ${lastSelector} was visited first in tab order`;
+            `${this.automaticallyDetectedTag} Inconsistent tab order between elements. Starts at ${lastSelector} and goes to ${currSelector}.`;
     private readonly focusTrapsDescription: (string) => string = selector =>
-        `Focus is still on element ${selector} 500ms after pressing tab`;
+        `${this.automaticallyDetectedTag} Focus is still on element ${selector} 500ms after pressing tab`;
 
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
@@ -46,8 +42,8 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getKeyboardNavigationResults(
         tabbableTabStops: FocusableElement[],
         actualTabStops: Set<HTMLElement>,
-    ): TabStopRequirementResult[] {
-        const requirementResults: TabStopRequirementResult[] = [];
+    ): AutomatedTabStopRequirementResult[] {
+        const requirementResults: AutomatedTabStopRequirementResult[] = [];
         (tabbableTabStops as HTMLElement[]).forEach(expectedTabStop => {
             if (!actualTabStops.has(expectedTabStop)) {
                 const selector = this.generateSelector(expectedTabStop);
@@ -65,7 +61,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getFocusOrderResult(
         lastTabStop: HTMLElement,
         currentTabStop: HTMLElement,
-    ): TabStopRequirementResult | null {
+    ): AutomatedTabStopRequirementResult | null {
         if (this.htmlElementUtils.precedesInDOM(currentTabStop, lastTabStop)) {
             const lastSelector = this.generateSelector(lastTabStop);
             const currSelector = this.generateSelector(currentTabStop);
@@ -81,8 +77,8 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
 
     public getTabbableFocusOrderResults(
         tabbableTabStops: FocusableElement[],
-    ): TabStopRequirementResult[] {
-        const requirementResults: TabStopRequirementResult[] = [];
+    ): AutomatedTabStopRequirementResult[] {
+        const requirementResults: AutomatedTabStopRequirementResult[] = [];
         const tabStops = tabbableTabStops as HTMLElement[];
         tabStops.forEach((expectedTabStop, index) => {
             if (index > 0) {
@@ -101,7 +97,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     public getKeyboardTrapResults(
         oldActiveElement: Element,
         newActiveElement: Element,
-    ): TabStopRequirementResult | null {
+    ): AutomatedTabStopRequirementResult | null {
         if (oldActiveElement === newActiveElement) {
             const selector = this.generateSelector(oldActiveElement as HTMLElement);
             return {

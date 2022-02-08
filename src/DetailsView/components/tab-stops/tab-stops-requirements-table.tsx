@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 
 import { CheckboxVisibility, DetailsList, IColumn } from '@fluentui/react';
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
@@ -14,6 +16,7 @@ import * as React from 'react';
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
     requirementState: TabStopRequirementState;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export type TabStopsRequirementsTableDeps = {
@@ -72,10 +75,14 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             },
         ];
 
+        const requirements = requirementsList(
+            props.featureFlagStoreData &&
+                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation],
+        );
         return (
             <DetailsList
                 className={styles.requirementTable}
-                items={requirementsList}
+                items={requirements}
                 columns={columns}
                 checkboxVisibility={CheckboxVisibility.hidden}
             />

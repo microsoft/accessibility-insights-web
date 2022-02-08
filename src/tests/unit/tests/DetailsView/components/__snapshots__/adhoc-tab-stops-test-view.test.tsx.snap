@@ -83,10 +83,12 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         </h2>
         <TabStopsRequirementsTable
           deps="stub-deps"
+          featureFlagStoreData={Object {}}
         />
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
+          featureFlagStoreData={Object {}}
           sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
@@ -195,10 +197,12 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         </h2>
         <TabStopsRequirementsTable
           deps="stub-deps"
+          featureFlagStoreData={Object {}}
         />
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
+          featureFlagStoreData={Object {}}
           sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
