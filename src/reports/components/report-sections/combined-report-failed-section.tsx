@@ -17,13 +17,12 @@ export type CombinedReportFailedSectionProps = {
     deps: CombinedReportFailedSectionDeps;
     cardsViewData: CardsViewModel;
     scanMetadata: ScanMetadata;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionProps>(
     'CombinedReportFailedSection',
     props => {
-        const { deps, cardsViewData, scanMetadata, cardSelectionMessageCreator } = props;
+        const { deps, cardsViewData, scanMetadata } = props;
 
         const ruleCount = cardsViewData.cards.fail.length;
 
@@ -49,12 +48,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
                     headingLevel={4}
-                    cardSelectionMessageCreator={cardSelectionMessageCreator}
+                    cardSelectionMessageCreator={nullCardSelectionMessageCreator}
                 />
             ),
-            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
-            },
+            onExpandToggle: null,
             headingLevel: 3,
             deps: null,
         });
@@ -62,3 +59,11 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
         return <div className="result-section">{CollapsibleContent}</div>;
     },
 );
+
+const nullCardSelectionMessageCreator: CardSelectionMessageCreator = {
+    toggleCardSelection: () => null,
+    toggleRuleExpandCollapse: () => null,
+    collapseAllRules: () => null,
+    expandAllRules: () => null,
+    toggleVisualHelper: () => null,
+};

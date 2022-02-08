@@ -105,7 +105,7 @@ describe('CombinedResultsReport', () => {
             .returns(() => cardsViewDataStub);
 
         reportHtmlGeneratorMock
-            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, cardSelectionMessageCreatorMock.object, urlResultsCount))
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount))
             .returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();

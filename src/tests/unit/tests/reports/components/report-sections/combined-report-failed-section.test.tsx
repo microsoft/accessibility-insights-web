@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -11,14 +10,9 @@ import {
     CombinedReportFailedSectionDeps,
 } from 'reports/components/report-sections/combined-report-failed-section';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('CombinedReportFailedSection', () => {
-    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
-    beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType<CardSelectionMessageCreator>();
-    });
-
     it('renders', () => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element
@@ -36,7 +30,6 @@ describe('CombinedReportFailedSection', () => {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             scanMetadata: scanMetaDataStub,
         } as CombinedReportFailedSectionProps;
 

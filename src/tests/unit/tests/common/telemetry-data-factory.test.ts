@@ -18,6 +18,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
@@ -27,7 +28,7 @@ import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {
@@ -748,5 +749,28 @@ describe('TelemetryDataFactoryTest', () => {
         const result = testObject.forLeftNavPanelExpanded(mouseClickEvent);
 
         expect(result).toEqual(expected);
+    });
+
+    test('forAutomatedTabStopsResults', () => {
+        const tabbingResults: AutomatedTabStopRequirementResult[] = [
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+            { requirementId: 'keyboard-traps', html: null, selector: null, description: null },
+        ];
+
+        const result = testObject.forAutomatedTabStopsResults(tabbingResults);
+
+        const expected: TabStopsAutomatedResultsTelemetryData = {
+            tabStopAutomatedFailuresInstanceCount: { 'tab-order': 2, 'keyboard-traps': 1 },
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'N/A',
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forAutomatedTabStopsResults returns undefined when no results', () => {
+        const result = testObject.forAutomatedTabStopsResults([]);
+        expect(result).toBeUndefined();
     });
 });

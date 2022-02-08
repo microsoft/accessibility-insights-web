@@ -5,6 +5,7 @@
 import { Action } from 'common/flux/action';
 import {
     AddTabStopInstancePayload,
+    BaseActionPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
@@ -28,4 +29,5 @@ export class TabStopRequirementActions {
     public readonly updateTabbingCompleted = new Action<UpdateTabbingCompletedPayload>();
     public readonly updateNeedToCollectTabbingResults =
         new Action<UpdateNeedToCollectTabbingResultsPayload>();
+    public readonly automatedTabbingResultsCompleted = new Action<BaseActionPayload>();
 }

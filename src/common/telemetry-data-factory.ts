@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-
 import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
@@ -30,7 +30,9 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    TabStopAutomatedFailuresInstanceCount,
     TabStopRequirementInstanceCount,
+    TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
@@ -471,6 +473,26 @@ export class TelemetryDataFactory {
         return {
             ...this.withTriggeredByAndSource(event, source),
             permissionState,
+        };
+    }
+
+    public forAutomatedTabStopsResults(
+        results: AutomatedTabStopRequirementResult[],
+    ): TabStopsAutomatedResultsTelemetryData | undefined {
+        if (!results || results.length === 0) {
+            return undefined;
+        }
+
+        const tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount = {};
+        results.forEach(({ requirementId }) => {
+            const count = tabStopAutomatedFailuresInstanceCount[requirementId] ?? 0;
+            tabStopAutomatedFailuresInstanceCount[requirementId] = count + 1;
+        });
+
+        return {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+            tabStopAutomatedFailuresInstanceCount,
         };
     }
 }
