@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 
 import { HTMLElementUtils } from 'common/html-element-utils';
-import {
-    DefaultTabStopsRequirementEvaluator,
-    TabStopRequirementResult,
-} from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { FocusableElement } from 'tabbable';
 import { IMock, It, Mock } from 'typemoq';
@@ -34,7 +32,7 @@ describe('TabStopsRequirementEvaluator', () => {
             tabStopElement2 as FocusableElement,
         ];
         const incorrectTabStops = new Set<HTMLElement>([tabStopElement2]);
-        const expectedResult: TabStopRequirementResult = {
+        const expectedResult: AutomatedTabStopRequirementResult = {
             description: 'Element element1 was expected, but not reached in tab order',
             selector: ['element1'],
             html: 'html1',
@@ -57,7 +55,7 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('addFocusOrderResults returns violations', () => {
-        const expectedResult: TabStopRequirementResult = {
+        const expectedResult: AutomatedTabStopRequirementResult = {
             description:
                 'Element element1 precedes element2 but element2 was visited first in tab order',
             selector: ['element1'],
@@ -86,7 +84,7 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('addTabbableFocusOrderResults returns violations', () => {
-        const expectedResult: TabStopRequirementResult = {
+        const expectedResult: AutomatedTabStopRequirementResult = {
             description:
                 'Element element1 precedes element2 but element2 was visited first in tab order',
             selector: ['element1'],
@@ -117,7 +115,7 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('onKeydownForFocusTraps returns violations', () => {
-        const expectedResult: TabStopRequirementResult = {
+        const expectedResult: AutomatedTabStopRequirementResult = {
             description: 'Focus is still on element element1 500ms after pressing tab',
             selector: ['element1'],
             html: 'html1',

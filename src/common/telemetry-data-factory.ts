@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopRequirementResult } from 'injected/tab-stops-requirement-evaluator';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-
 import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
@@ -478,7 +477,7 @@ export class TelemetryDataFactory {
     }
 
     public forAutomatedTabStopsResults(
-        results: TabStopRequirementResult[],
+        results: AutomatedTabStopRequirementResult[],
     ): TabStopsAutomatedResultsTelemetryData | undefined {
         if (!results || results.length === 0) {
             return undefined;
