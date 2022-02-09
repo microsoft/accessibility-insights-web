@@ -61,6 +61,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
             {
                 key: DetailsViewPivotType.fastPass,
                 text: 'FastPass',
+                title: 'FastPass',
                 data: {
                     icon: 'Rocket',
                 },
@@ -68,6 +69,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
             {
                 key: DetailsViewPivotType.assessment,
                 text: 'Assessment',
+                title: 'Assessment',
                 data: {
                     icon: 'testBeakerSolid',
                 },
