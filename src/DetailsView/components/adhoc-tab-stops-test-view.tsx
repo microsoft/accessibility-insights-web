@@ -17,6 +17,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
+import { AutoDetectedFailuresDialog } from 'DetailsView/components/auto-detected-failures-dialog';
 import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
 import {
     TabStopsFailedInstanceSection,
@@ -192,6 +193,15 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     featureFlagStoreData={props.featureFlagStoreData}
                     enableJSXElement={
                         <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+                    }
+                />
+                <FlaggedComponent
+                    featureFlag={FeatureFlags.tabStopsAutomation}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    enableJSXElement={
+                        <AutoDetectedFailuresDialog
+                            visualizationScanResultData={props.visualizationScanResultData}
+                        />
                     }
                 />
             </>

@@ -109,6 +109,19 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           featureFlag="tabStopsAutomation"
           featureFlagStoreData={Object {}}
         />
+        <FlaggedComponent
+          enableJSXElement={
+            <AutoDetectedFailuresDialog
+              visualizationScanResultData={
+                Object {
+                  "tabStops": Object {},
+                }
+              }
+            />
+          }
+          featureFlag="tabStopsAutomation"
+          featureFlagStoreData={Object {}}
+        />
       </React.Fragment>
     </ThemeCustomizer>
   </div>
@@ -218,6 +231,19 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
             <FocusComponent
               deps="stub-deps"
               tabbingEnabled={true}
+            />
+          }
+          featureFlag="tabStopsAutomation"
+          featureFlagStoreData={Object {}}
+        />
+        <FlaggedComponent
+          enableJSXElement={
+            <AutoDetectedFailuresDialog
+              visualizationScanResultData={
+                Object {
+                  "tabStops": Object {},
+                }
+              }
             />
           }
           featureFlag="tabStopsAutomation"

@@ -26,18 +26,22 @@ export enum TabStopRequirementStatuses {
 
 export type TabStopRequirementStatus = keyof typeof TabStopRequirementStatuses;
 
+export type TabStopRequirementInstance = {
+    description: string;
+    id: string;
+    selector?: string[];
+    html?: string;
+};
+
 export type TabStopRequirementState = {
     [requirementId: string]: {
         status: TabStopRequirementStatus;
-        instances: {
-            description: string;
-            id: string;
-        }[];
+        instances: TabStopRequirementInstance[];
         isExpanded: boolean;
     };
 };
 
-interface TabStopsScanResultData {
+export interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
     requirements?: TabStopRequirementState;
     tabbingCompleted: boolean;

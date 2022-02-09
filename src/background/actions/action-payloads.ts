@@ -155,7 +155,10 @@ export interface UpdateNeedToCollectTabbingResultsPayload extends BaseActionPayl
 export interface AddTabStopInstancePayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
     description: string;
+    selector?: string[];
+    html?: string;
 }
+
 export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
     id: string;
 }
