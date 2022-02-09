@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
 import { BlockingDialog } from 'common/components/blocking-dialog';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/common-dialog-styles.scss';
-import { DialogFooter, DialogType, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type AutoDetectedFailuresDialogState = {

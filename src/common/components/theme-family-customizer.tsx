@@ -21,6 +21,10 @@ export type ThemeFamilyCustomizerProps = {
     children: React.ReactNode;
 };
 
+// This is a store-state-aware version of the Fluent UI <ThemeProvider> component. It's intended
+// as a wrapper for Fluent UI-based components that need to use a different Theme from our default
+// one, but still want to support being overriden by HighContrastTheme when a user has enabled our
+// High Contrast Mode setting (or a native system High Contrast setting).
 export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
     'ThemeCustomizer',
     props => {

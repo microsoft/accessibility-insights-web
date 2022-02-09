@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
+import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
     WaitForSelectorOptions,
@@ -30,6 +31,15 @@ export class Page {
                 `Playwright.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
             );
         }
+
+        underlyingPage.on('pageerror', error => {
+            if (`${error.message}` === 'Object') {
+                // unknown flakiness, tracked by https://github.com/microsoft/accessibility-insights-web/issues/3529
+                console.warn(`'pageerror' (console.error): ${serializeError(error)}`);
+                return;
+            }
+            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
+        });
 
         underlyingPage.on('requestfailed', request => {
             const failure = request.failure()!;
