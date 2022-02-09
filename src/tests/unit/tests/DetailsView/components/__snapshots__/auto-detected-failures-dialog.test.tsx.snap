@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `null`;
+
+exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
+<BlockingDialog
+  dialogContentProps={
+    Object {
+      "title": "Possible failures auto-detected",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insightsDialogMainOverride",
+    }
+  }
+>
+  <div
+    className="dialogBody"
+  >
+    <ul>
+      <li>
+        Review each finding to be sure it's valid
+      </li>
+      <li>
+        Add any more failures you discovered manually
+      </li>
+    </ul>
+  </div>
+  <StyledDialogFooterBase>
+    <CustomizedPrimaryButton
+      onClick={[Function]}
+      text="Got it"
+    />
+  </StyledDialogFooterBase>
+</BlockingDialog>
+`;
+
+exports[`AutoDetectedFailuresDialog renders when dialog is not enabled 1`] = `null`;
