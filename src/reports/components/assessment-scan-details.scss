@@ -11,7 +11,7 @@
 
     h3 {
         font-size: 17px;
-        font-family: $semiBoldFontFamily;
+        @include text-style-semibold;
     }
 
     td {

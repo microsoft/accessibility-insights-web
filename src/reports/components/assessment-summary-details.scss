@@ -37,11 +37,10 @@
             }
 
             .test-summary-display-name {
-                font-family: $semiBoldFontFamily;
+                @include text-style-semibold;
                 font-size: 14px;
                 line-height: 20px;
                 white-space: nowrap;
-                font-weight: 600;
             }
         }
     }

@@ -17,9 +17,8 @@
 
     .title-text {
         margin-left: 8px;
-        font-family: $semiBoldFontFamily;
+        @include text-style-semibold;
         font-size: 20px;
-        font-weight: 600;
         line-height: 28px;
     }
 }

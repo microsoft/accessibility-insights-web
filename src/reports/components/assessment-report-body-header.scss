@@ -9,7 +9,7 @@
     h1 {
         font-size: 28px;
         margin: 0px 0px 24px 0px;
-        font-family: $semiBoldFontFamily;
+        @include text-style-semibold;
         line-height: 40px;
         letter-spacing: -1;
     }

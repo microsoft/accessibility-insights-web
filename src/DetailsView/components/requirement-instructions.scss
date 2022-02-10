@@ -3,9 +3,8 @@
 @import '../../common/styles/common.scss';
 
 .requirement-instructions-header {
-    font-family: $semiBoldFontFamily;
+    @include text-style-semibold;
     font-style: normal;
-    font-weight: $fontWeightSemiBold;
     font-size: $fontSizeML;
     line-height: 20px;
 }
