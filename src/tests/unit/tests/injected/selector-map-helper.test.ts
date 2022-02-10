@@ -4,9 +4,9 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, Mock } from 'typemoq';
-
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentStoreData,
@@ -21,11 +21,16 @@ import {
 } from '../../../../injected/selector-map-helper';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
 describe('SelectorMapHelperTest', () => {
     let assessmentsProvider: AssessmentsProvider;
     let testSubject: SelectorMapHelper;
     let getElementBasedViewModelMock: IMock<GetElementBasedViewModelCallback>;
+    let getVisualizationInstancesForTabStopsMock: IMock<
+        typeof GetVisualizationInstancesForTabStops
+    >;
 
     const adHocVisualizationTypes = [
         VisualizationType.Headings,
@@ -40,14 +45,17 @@ describe('SelectorMapHelperTest', () => {
     beforeEach(() => {
         assessmentsProvider = CreateTestAssessmentProvider();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
+        getVisualizationInstancesForTabStopsMock =
+            Mock.ofType<typeof GetVisualizationInstancesForTabStops>();
         testSubject = new SelectorMapHelper(
             assessmentsProvider,
             getElementBasedViewModelMock.object,
+            getVisualizationInstancesForTabStopsMock.object,
         );
     });
 
     test('constructor', () => {
-        expect(new SelectorMapHelper(null, null)).toBeDefined();
+        expect(new SelectorMapHelper(null, null, null)).toBeDefined();
     });
 
     adHocVisualizationTypes.forEach(visualizationType => {
@@ -102,12 +110,27 @@ describe('SelectorMapHelperTest', () => {
     test('getState: tabStops', () => {
         const visualizationType = VisualizationType.TabStops;
         const state = new VisualizationScanResultStoreDataBuilder().build();
-
         state.tabStops.tabbedElements = [];
+        const expectedInstances = [
+            {
+                target: ['some', 'target'],
+            },
+        ] as AssessmentVisualizationInstance[];
+        const featureFlagStoreData = {
+            ['some-feature-flag']: true,
+        } as FeatureFlagStoreData;
         const storeData: VisualizationRelatedStoreData = {
             visualizationScanResultStoreData: state,
+            featureFlagStoreData: featureFlagStoreData,
         } as VisualizationRelatedStoreData;
-        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual([]);
+
+        getVisualizationInstancesForTabStopsMock
+            .setup(m => m(state.tabStops, featureFlagStoreData))
+            .returns(() => expectedInstances);
+
+        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+            expectedInstances,
+        );
     });
 
     test('getState for assessment, selector map is not null', () => {

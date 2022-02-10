@@ -29,6 +29,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -246,6 +247,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const selectorMapHelper = new SelectorMapHelper(
             Assessments,
             elementBasedViewModelCreator.getElementBasedViewModel,
+            GetVisualizationInstancesForTabStops,
         );
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
