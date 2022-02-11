@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { MultiplexingTelemetryClient } from 'background/telemetry/multiplexing-telemetry-client';
 import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
@@ -15,7 +16,6 @@ import { TelemetryClient } from './telemetry-client';
 
 export const getTelemetryClient = (
     applicationTelemetryDataFactory: ApplicationTelemetryDataFactory,
-    appInsights: Microsoft.ApplicationInsights.IAppInsights,
     baseClients: TelemetryClient[],
 ): TelemetryClient => {
     const clients = [...baseClients];
@@ -23,7 +23,16 @@ export const getTelemetryClient = (
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
     if (appInsightsInstrumentationKey != null) {
-        clients.push(new AppInsightsTelemetryClient(appInsights, applicationTelemetryDataFactory));
+        const applicationInsights = new ApplicationInsights({
+            config: {
+                instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
+                disableTelemetry: true,
+                disableAjaxTracking: true,
+            },
+        });
+        clients.push(
+            new AppInsightsTelemetryClient(applicationTelemetryDataFactory, applicationInsights),
+        );
     }
 
     return new MultiplexingTelemetryClient(clients);

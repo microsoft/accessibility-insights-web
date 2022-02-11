@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DevToolsListener } from 'background/dev-tools-listener';
@@ -95,7 +94,7 @@ async function initialize(): Promise<void> {
     );
     debugToolsTelemetryClient.initialize();
 
-    const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+    const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
         consoleTelemetryClient,
         debugToolsTelemetryClient,
     ]);
