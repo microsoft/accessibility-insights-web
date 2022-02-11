@@ -42,14 +42,14 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         this.updateTelemetryState();
     }
 
-    private updateTelemetryState(): void {
-        this.applicationInsights.config.disableTelemetry = !this.enabled;
-    }
-
     public trackEvent(name: string, properties?: { [name: string]: string }): void {
         if (this.enabled) {
             this.applicationInsights.trackEvent({ name }, properties);
         }
+    }
+
+    private updateTelemetryState(): void {
+        this.applicationInsights.config.disableTelemetry = !this.enabled;
     }
 
     private initialize(): void {
