@@ -35,7 +35,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 21px;
-    @include text-style-semibold;
+    font-weight: $fontWeightSemiBold;
     line-height: 32px;
 }
 
@@ -49,7 +49,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 17px;
-    @include text-style-semibold;
+    font-weight: $fontWeightSemiBold;
 }
 
 .step-details {
@@ -114,7 +114,7 @@ header {
 
 .instance-key {
     font-size: 12px;
-    @include text-style-semibold;
+    font-weight: $fontWeightSemiBold;
     vertical-align: top;
     text-align: left;
     width: 140px;

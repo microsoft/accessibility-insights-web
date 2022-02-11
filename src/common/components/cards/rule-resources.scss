@@ -24,7 +24,7 @@
     word-break: break-word;
 
     .more-resources-title {
-        @include text-style-semibold;
+        font-weight: $fontWeightSemiBold;
     }
 
     .rule-details-id {

@@ -18,7 +18,7 @@
     }
 
     .heading {
-        @include text-style-semibold;
+        font-weight: $fontWeightSemiBold;
         font-size: 15px;
         line-height: 20px;
         margin-right: 6px;

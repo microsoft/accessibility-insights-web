@@ -37,7 +37,7 @@
             }
 
             .test-summary-display-name {
-                @include text-style-semibold;
+                font-weight: $fontWeightSemiBold;
                 font-size: 14px;
                 line-height: 20px;
                 white-space: nowrap;

@@ -3,7 +3,7 @@
 @import '../../common/styles/common.scss';
 
 .requirement-instructions-header {
-    @include text-style-semibold;
+    font-weight: $fontWeightSemiBold;
     font-style: normal;
     font-size: $fontSizeML;
     line-height: 20px;

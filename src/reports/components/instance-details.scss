@@ -103,7 +103,7 @@
 
         font-size: 14px;
         line-height: 20px;
-        @include text-style-semibold;
+        font-weight: $fontWeightSemiBold;
         color: $primary-text;
         text-align: left;
     }

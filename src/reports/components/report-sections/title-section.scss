@@ -5,7 +5,7 @@
 .title-section {
     margin-top: 56px;
     h1 {
-        @include text-style-semibold;
+        font-weight: $fontWeightSemiBold;
         margin: 0px 0px 24px 0px;
         font-size: 21px;
         line-height: 32px;
