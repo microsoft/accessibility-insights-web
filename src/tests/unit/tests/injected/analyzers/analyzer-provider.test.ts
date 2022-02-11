@@ -160,17 +160,24 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createFocusTrackingAnalyzer(config);
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
-        expect(openAnalyzer.tabStopListenerRunner).toEqual(tabStopsListener.object);
+        expect(openAnalyzer.tabStopRequirementRunner).toBeNull();
+        validateFocusTrackingAnalyzer(openAnalyzer, config);
+    });
+
+    test('createTabStopsAnalyzer', () => {
+        const config: FocusAnalyzerConfiguration = {
+            testType: typeStub,
+            analyzerMessageType: analyzerMessageTypeStub,
+            key: keyStub,
+            analyzerProgressMessageType: 'analyzer progress message',
+            analyzerTerminatedMessageType: 'analyzer terminated message',
+        };
+
+        const analyzer = testObject.createTabStopsAnalyzer(config);
+        const openAnalyzer = analyzer as any;
+        expect(analyzer).toBeInstanceOf(BaseAnalyzer);
         expect(openAnalyzer.tabStopRequirementRunner).toEqual(tabStopRequirementRunnerMock.object);
-        expect(openAnalyzer.tabStopRequirementActionMessageCreator).toEqual(
-            tabStopRequirementActionMessageCreatorMock.object,
-        );
-        expect(openAnalyzer.tabStopsDoneAnalyzingTracker).toEqual(
-            tabStopsDoneAnalyzingTrackerMock.object,
-        );
-        expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
-        expect(openAnalyzer.config).toEqual(config);
-        expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
+        validateFocusTrackingAnalyzer(openAnalyzer, config);
     });
 
     test('createBaseAnalyzer', () => {
@@ -192,6 +199,19 @@ describe('AnalyzerProviderTests', () => {
         expect(openAnalyzer.scopingStore).toEqual(scopingStoreMock.object);
         expect(openAnalyzer.dateGetter).toEqual(dateGetterMock.object);
         expect(openAnalyzer.telemetryFactory).toEqual(telemetryFactoryMock.object);
+        expect(openAnalyzer.config).toEqual(config);
+        expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
+    }
+
+    function validateFocusTrackingAnalyzer(openAnalyzer, config): void {
+        expect(openAnalyzer.tabStopListenerRunner).toEqual(tabStopsListener.object);
+        expect(openAnalyzer.tabStopRequirementActionMessageCreator).toEqual(
+            tabStopRequirementActionMessageCreatorMock.object,
+        );
+        expect(openAnalyzer.tabStopsDoneAnalyzingTracker).toEqual(
+            tabStopsDoneAnalyzingTrackerMock.object,
+        );
+        expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
     }
