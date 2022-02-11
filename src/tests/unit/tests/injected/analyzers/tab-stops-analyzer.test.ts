@@ -264,6 +264,38 @@ describe('TabStopsAnalyzer', () => {
             debounceFaker.flush();
             verifyAll();
         });
+
+        it('runs analyze and teardown with null requirement runner', async () => {
+            testSubject = new TabStopsAnalyzer(
+                configStub,
+                tabStopsListenerMock.object,
+                sendMessageMock.object,
+                scanIncompleteWarningDetectorMock.object,
+                failTestOnErrorLogger,
+                featureFlagStoreMock.object,
+                null,
+                tabStopRequirementActionMessageCreatorMock.object,
+                tabStopsDoneAnalyzingTrackerMock.object,
+                debounceFaker.debounce,
+            );
+
+            setTabStopsAutomationFeatureFlag(true);
+            setupTabStopsListenerForStartTabStops();
+            setupSendMessageMock(emptyScanCompleteMessage);
+
+            testSubject.analyze();
+            await flushSettledPromises();
+
+            verifyAll();
+
+            setupSendMessageMock({
+                messageType: configStub.analyzerTerminatedMessageType,
+                payload: { key: configStub.key, testType: configStub.testType },
+            });
+            testSubject.teardown();
+
+            verifyAll();
+        });
     });
 
     function verifyAll(): void {

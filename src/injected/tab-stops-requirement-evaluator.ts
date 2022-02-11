@@ -44,7 +44,7 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
         actualTabStops: Set<HTMLElement>,
     ): AutomatedTabStopRequirementResult[] {
         const requirementResults: AutomatedTabStopRequirementResult[] = [];
-        (tabbableTabStops as HTMLElement[]).forEach(expectedTabStop => {
+        ((tabbableTabStops as HTMLElement[]) ?? []).forEach(expectedTabStop => {
             if (!actualTabStops.has(expectedTabStop)) {
                 const selector = this.generateSelector(expectedTabStop);
                 requirementResults.push({

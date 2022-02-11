@@ -117,6 +117,20 @@ export class AnalyzerProvider {
             this.scanIncompleteWarningDetector,
             this.logger,
             this.featureFlagStore,
+            null,
+            this.tabStopRequirementActionMessageCreator,
+            this.tabStopsDoneAnalyzingTracker,
+        );
+    }
+
+    public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+            this.logger,
+            this.featureFlagStore,
             this.tabStopsRequirementRunner,
             this.tabStopRequirementActionMessageCreator,
             this.tabStopsDoneAnalyzingTracker,
