@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppInsights } from 'applicationinsights-js';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { ContentActions } from 'background/actions/content-actions';
@@ -316,7 +315,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             telemetryLogger,
         );
 
-        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
             consoleTelemetryClient,
         ]);
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
