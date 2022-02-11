@@ -61,8 +61,6 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
         !scanData.enabled,
     );
 
-    props.deps.detailsViewActionMessageCreator.targetPageChangedResetData();
-
     return (
         <TargetPageChangedView
             displayableData={props.configuration.displayableData}

@@ -4,8 +4,6 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -93,7 +91,6 @@ export interface DetailsViewCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
-    featureFlagStoreData: FeatureFlagStoreData;
     tabStopRequirementData: TabStopRequirementState;
 }
 export class DetailsViewCommandBar extends React.Component<
@@ -208,7 +205,6 @@ export class DetailsViewCommandBar extends React.Component<
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
             selectedTest: this.props.selectedTest,
-            featureFlagStoreData: this.props.featureFlagStoreData,
             tabStoreData: this.props.tabStoreData,
         };
 

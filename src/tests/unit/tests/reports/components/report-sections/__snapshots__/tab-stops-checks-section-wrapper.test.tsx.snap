@@ -25,7 +25,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
         "inapplicable": Array [],
         "pass": Array [
           Object {
-            "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+            "description": "All interactive elements can be reached using the Tab and arrow keys.",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
@@ -89,6 +89,8 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
   }
   checksSection={[Function]}
   deps={Object {}}
+  featureFlagStoreData={Object {}}
+  sectionHeadingLevel={3}
   tabStops={
     Object {
       "focus-indicator": Object {
@@ -118,5 +120,6 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
       },
     }
   }
+  testKey="tab-stops"
 />
 `;

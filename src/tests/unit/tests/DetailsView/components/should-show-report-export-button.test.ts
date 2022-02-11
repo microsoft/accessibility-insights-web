@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -21,7 +20,6 @@ describe('ShouldShowReportExportButton', () => {
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
-    const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     const selectedTest = -1 as VisualizationType;
 
@@ -39,7 +37,6 @@ describe('ShouldShowReportExportButton', () => {
             visualizationStoreData: visualizationStoreData,
             unifiedScanResultStoreData: unifiedScanResultStoreData,
             visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
-            featureFlagStoreData: featureFlagStoreData,
             selectedTest: selectedTest,
             deps: null,
             tabStoreData: tabStoreData,
@@ -57,7 +54,7 @@ describe('ShouldShowReportExportButton', () => {
 
     function setupVisualizationConfigurationMock(shouldShow: boolean): void {
         visualizationConfigurationMock
-            .setup(m => m.shouldShowExportReport(featureFlagStoreData))
+            .setup(m => m.shouldShowExportReport())
             .returns(() => shouldShow);
     }
 

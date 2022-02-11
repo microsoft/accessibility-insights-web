@@ -5,17 +5,30 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
   className="result-section-class-name resultSection"
   data-automation-id="result-section"
 >
-  <h2>
+  <HeadingElementForLevel
+    headingLevel={2}
+  >
     <ResultSectionTitle
       containerClassName="result-section-class-name"
-      deps={Object {}}
+      deps={
+        Object {
+          "getNextHeadingLevel": [Function],
+        }
+      }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={false}
       titleSize="title"
     />
-  </h2>
+  </HeadingElementForLevel>
   <ResultSectionContent
     containerClassName="result-section-class-name"
-    deps={Object {}}
+    deps={
+      Object {
+        "getNextHeadingLevel": [Function],
+      }
+    }
+    headingLevel={3}
+    sectionHeadingLevel={2}
     shouldAlertFailuresCount={false}
   />
 </div>
@@ -26,17 +39,30 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
   className="result-section-class-name resultSection"
   data-automation-id="result-section"
 >
-  <h2>
+  <HeadingElementForLevel
+    headingLevel={2}
+  >
     <ResultSectionTitle
       containerClassName="result-section-class-name"
-      deps={Object {}}
+      deps={
+        Object {
+          "getNextHeadingLevel": [Function],
+        }
+      }
+      sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       titleSize="title"
     />
-  </h2>
+  </HeadingElementForLevel>
   <ResultSectionContent
     containerClassName="result-section-class-name"
-    deps={Object {}}
+    deps={
+      Object {
+        "getNextHeadingLevel": [Function],
+      }
+    }
+    headingLevel={3}
+    sectionHeadingLevel={2}
     shouldAlertFailuresCount={true}
   />
 </div>
@@ -47,16 +73,29 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
   className="result-section-class-name resultSection"
   data-automation-id="result-section"
 >
-  <h2>
+  <HeadingElementForLevel
+    headingLevel={2}
+  >
     <ResultSectionTitle
       containerClassName="result-section-class-name"
-      deps={Object {}}
+      deps={
+        Object {
+          "getNextHeadingLevel": [Function],
+        }
+      }
+      sectionHeadingLevel={2}
       titleSize="title"
     />
-  </h2>
+  </HeadingElementForLevel>
   <ResultSectionContent
     containerClassName="result-section-class-name"
-    deps={Object {}}
+    deps={
+      Object {
+        "getNextHeadingLevel": [Function],
+      }
+    }
+    headingLevel={3}
+    sectionHeadingLevel={2}
   />
 </div>
 `;

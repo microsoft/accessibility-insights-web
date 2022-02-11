@@ -365,14 +365,33 @@ describe('SVGShapeFactory', () => {
             x: 100,
             y: 100,
         };
+        const tabOrder = 10;
 
         const textConfig: TextConfiguration = {
             textAnchor: 'textAnchor',
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, 10);
-        verifyTabIndexLabelParams(label, textConfig, center, 10);
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
+        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
+        expect(label.innerHTML).toEqual(tabOrder.toString());
+    });
+
+    test('create label with null tab order', () => {
+        const center: Point = {
+            x: 100,
+            y: 100,
+        };
+        const tabOrder = null;
+
+        const textConfig: TextConfiguration = {
+            textAnchor: 'textAnchor',
+            fontColor: 'fontColor',
+        };
+
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
+        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
+        expect(label.innerHTML).toEqual('');
     });
 
     function verifyTabIndexLabelParams(
@@ -387,7 +406,6 @@ describe('SVGShapeFactory', () => {
         expect(label.getAttributeNS(null, 'y')).toEqual((center.y + 5).toString());
         expect(label.getAttributeNS(null, 'fill')).toEqual(configuration.fontColor);
         expect(label.getAttributeNS(null, 'text-anchor')).toEqual(configuration.textAnchor);
-        expect(label.innerHTML).toEqual(tabOrder.toString());
     }
 
     function verifyCircleParams(

@@ -13,7 +13,7 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import { FailureInstanceState } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times, It } from 'typemoq';
 import { TabStopRequirementId, TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 
 describe('TabStopsFailedInstancePanel', () => {
@@ -71,7 +71,13 @@ describe('TabStopsFailedInstancePanel', () => {
         tabStopsTestViewControllerMock.verify(m => m.dismissPanel(), Times.once());
         tabStopsTestViewControllerMock.verify(m => m.updateDescription(description), Times.once());
         tabStopRequirementActionMessageCreatorMock.verify(
-            m => m.addTabStopInstance(failureState.selectedRequirementId, failureState.description),
+            m =>
+                m.addTabStopInstance(
+                    It.isValue({
+                        requirementId: failureState.selectedRequirementId,
+                        description: failureState.description,
+                    }),
+                ),
             Times.once(),
         );
     });

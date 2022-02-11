@@ -46,10 +46,10 @@ export const TabStopsFailedInstancePanel = NamedFC<TabStopsFailedInstancePanelPr
             instanceDescription: failureInstanceState.description,
             confirmButtonText: 'Add failed instance',
             onConfirm: () => {
-                tabStopRequirementActionMessageCreator.addTabStopInstance(
-                    failureInstanceState.selectedRequirementId,
-                    failureInstanceState.description,
-                );
+                tabStopRequirementActionMessageCreator.addTabStopInstance({
+                    description: failureInstanceState.description,
+                    requirementId: failureInstanceState.selectedRequirementId,
+                });
             },
             onChange: (_, description) => {
                 deps.tabStopsTestViewController.updateDescription(description);

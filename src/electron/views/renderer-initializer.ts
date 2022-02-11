@@ -8,6 +8,7 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
@@ -27,6 +28,7 @@ import { allCardInteractionsSupported } from 'common/components/cards/card-inter
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
@@ -163,6 +165,7 @@ const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
+const tabActions = new TabActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
@@ -242,7 +245,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const windowStateStore = new WindowStateStore(windowStateActions);
         windowStateStore.initialize();
 
-        const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
+        const unifiedScanResultStore = new UnifiedScanResultStore(
+            unifiedScanResultActions,
+            tabActions,
+        );
         unifiedScanResultStore.initialize();
 
         const scanStore = new ScanStore(scanActions);
@@ -517,6 +523,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             setFocusVisibility,
             customCongratsContinueInvestigatingMessage:
                 "Continue investigating your app's accessibility compliance through manual testing.",
+            getNextHeadingLevel: GetNextHeadingLevel,
         };
 
         const documentManipulator = new DocumentManipulator(document);
@@ -530,6 +537,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             fixInstructionProcessor,
             recommendColor,
             getPropertyConfiguration,
+            GetNextHeadingLevel,
         );
 
         const reportNameGenerator = new UnifiedReportNameGenerator();

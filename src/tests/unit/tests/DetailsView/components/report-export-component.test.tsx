@@ -60,6 +60,7 @@ describe('ReportExportComponent', () => {
             dismissExportDialog: dismissDialogMock.object,
             afterDialogDismissed: afterDialogDismissedMock.object,
             reportExportServices: reportExportServicesStub,
+            exportResultsClickedTelemetry: () => null,
         };
     });
 

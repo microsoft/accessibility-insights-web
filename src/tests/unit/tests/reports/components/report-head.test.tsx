@@ -26,7 +26,11 @@ describe('Head', () => {
             styleSheet: 'some style sheet',
         };
         const wrapper = shallow(
-            <Head titlePreface="some title preface" bundledStyles={styleSheetStub} />,
+            <Head
+                titlePreface="some title preface"
+                bundledStyles={styleSheetStub}
+                title="some title"
+            />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();
     });

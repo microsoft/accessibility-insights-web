@@ -21,6 +21,23 @@ describe('IncompleteChecksSection', () => {
                     unknown: [{} as CardRuleResult, {} as CardRuleResult, {} as CardRuleResult],
                 },
             } as CardsViewModel,
+            sectionHeadingLevel: 3,
+        };
+
+        const wrapper = shallow(<IncompleteChecksSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders when card data is missing', () => {
+        const props: IncompleteChecksSectionProps = {
+            deps: {} as SectionDeps,
+            cardsViewData: {
+                cards: {
+                    /* missing */
+                },
+            } as CardsViewModel,
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<IncompleteChecksSection {...props} />);

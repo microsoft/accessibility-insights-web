@@ -5,11 +5,11 @@ import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
 import { InstanceReportModel, RequirementReportModel } from '../assessment-report-model';
-import { AssessmentReportInstanceList } from './assessment-report-instance-list';
 import {
     AssessmentReportStepHeader,
     AssessmentReportStepHeaderDeps,
 } from './assessment-report-step-header';
+import { ReportInstanceList } from './report-instance-list';
 
 export type AssessmentReportStepListDeps = AssessmentReportStepHeaderDeps;
 
@@ -52,7 +52,7 @@ export const AssessmentReportStepList = NamedFC<AssessmentReportStepListProps>(
                 return;
             }
 
-            return <AssessmentReportInstanceList instances={instances} />;
+            return <ReportInstanceList instances={instances} />;
         }
     },
 );

@@ -12,11 +12,11 @@ import { TargetPageController } from 'background/target-page-controller';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { isFunction, values } from 'lodash';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
 } from 'tests/unit/common/simulated-browser-adapter';
-import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
@@ -294,7 +294,7 @@ describe('TargetPageController', () => {
                     });
                     mockBrowserAdapter.notifyWindowsFocusChanged(irrelevantWindowId);
 
-                    await tick();
+                    await flushSettledPromises();
 
                     const expectedMessage = {
                         messageType: Messages.Tab.VisibilityChange,
@@ -349,7 +349,7 @@ describe('TargetPageController', () => {
 
             it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', async () => {
                 mockBrowserAdapter.activateTab(EXISTING_INACTIVE_TAB);
-                await tick();
+                await flushSettledPromises();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,
@@ -364,7 +364,7 @@ describe('TargetPageController', () => {
 
             it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', async () => {
                 mockBrowserAdapter.activateTab(NEW_TAB);
-                await tick();
+                await flushSettledPromises();
 
                 const expectedMessage = {
                     messageType: Messages.Tab.VisibilityChange,

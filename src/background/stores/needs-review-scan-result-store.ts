@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanResultStoreData> {
-    constructor(private readonly needsReviewScanResultActions: NeedsReviewScanResultActions) {
+    constructor(
+        private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
+        private readonly tabActions: TabActions,
+    ) {
         super(StoreNames.NeedsReviewScanResultStore);
     }
 
@@ -29,7 +33,7 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
     protected addActionListeners(): void {
         this.needsReviewScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.needsReviewScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.needsReviewScanResultActions.resetStoreData.addListener(this.onResetStoreData);
+        this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {

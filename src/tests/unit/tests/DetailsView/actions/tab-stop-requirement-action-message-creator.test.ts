@@ -3,16 +3,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    AddTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
-    UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import {
+    AutomatedTabStopRequirementResult,
+    TabStopRequirementResult,
+} from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
+    TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
@@ -71,7 +75,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
     });
 
     test('addTabStopInstance', () => {
-        const requirementInstance: AddTabStopInstancePayload = {
+        const requirementInstance: TabStopRequirementResult = {
             requirementId: 'input-focus',
             description: 'testing',
         };
@@ -94,10 +98,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId))
             .returns(() => telemetry);
 
-        testSubject.addTabStopInstance(
-            requirementInstance.requirementId,
-            requirementInstance.description,
-        );
+        testSubject.addTabStopInstance(requirementInstance);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -197,6 +198,76 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
         };
 
         testSubject.toggleTabStopRequirementExpand(requirementInstance.requirementId, eventStub);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('updateTabbingCompleted', () => {
+        const tabbingCompleted = true;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.TabbingCompleted,
+            payload: {
+                tabbingCompleted,
+            },
+        };
+
+        testSubject.updateTabbingCompleted(tabbingCompleted);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('updateNeedToCollectTabbingResults', () => {
+        const needToCollectTabbingResults = true;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            payload: {
+                needToCollectTabbingResults,
+            },
+        };
+
+        testSubject.updateNeedToCollectTabbingResults(needToCollectTabbingResults);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('automatedTabbingResultsCompleted', () => {
+        const tabbingResults: AutomatedTabStopRequirementResult[] = [
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+            { requirementId: 'tab-order', html: null, selector: null, description: null },
+        ];
+        const telemetry: TabStopsAutomatedResultsTelemetryData = {
+            tabStopAutomatedFailuresInstanceCount: { 'tab-order': 2 },
+            source: null,
+            triggeredBy: null,
+        };
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.AutomatedTabbingResultsCompleted,
+            payload: {
+                telemetry: telemetry,
+            },
+        };
+        telemetryFactoryMock
+            .setup(tf => tf.forAutomatedTabStopsResults(tabbingResults))
+            .returns(() => telemetry);
+
+        testSubject.automatedTabbingResultsCompleted(tabbingResults);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

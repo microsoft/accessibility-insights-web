@@ -105,7 +105,6 @@ describe('ReportExportDialogFactory', () => {
         shouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: props.visualizationConfigurationFactory,
             selectedTest: props.selectedTest,
-            featureFlagStoreData: props.featureFlagStoreData,
             tabStoreData: props.tabStoreData,
         } as ShouldShowReportExportButtonProps;
     });
@@ -113,17 +112,14 @@ describe('ReportExportDialogFactory', () => {
     function setFastPassReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
-                reportGenerator.generateFastPassHtmlReport(
-                    {
-                        description: theDescription,
-                        scanMetadata,
-                        results: {
-                            automatedChecks: cardsViewData,
-                            tabStops: tabStopRequirementData,
-                        },
+                reportGenerator.generateFastPassHtmlReport({
+                    description: theDescription,
+                    targetPage: scanMetadata.targetAppInfo,
+                    results: {
+                        automatedChecks: cardsViewData,
+                        tabStops: tabStopRequirementData,
                     },
-                    featureFlagStoreData,
-                ),
+                }),
             )
             .returns(() => theGeneratorOutput)
             .verifiable(Times.once());
@@ -228,6 +224,25 @@ describe('ReportExportDialogFactory', () => {
 
             afterDialogDismissedMock.verify(d => d(), Times.once());
         });
+
+        test('exportResultsClickedTelemetry sends exportResultsClicked message', () => {
+            const reportExportFormat = 'Assessment';
+            const selectedServiceKey = 'html';
+
+            detailsViewActionMessageCreatorMock
+                .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
+                .verifiable(Times.once());
+
+            const dialog = getReportExportDialogForAssessment(props);
+
+            dialog.props.exportResultsClickedTelemetry(
+                reportExportFormat,
+                selectedServiceKey,
+                null,
+            );
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
     });
 
     describe('getReportExportDialogForFastPass', () => {
@@ -289,6 +304,35 @@ describe('ReportExportDialogFactory', () => {
             dialog.props.afterDialogDismissed();
 
             afterDialogDismissedMock.verify(d => d(), Times.once());
+        });
+
+        test('exportResultsClickedTelemetry sends exportResultsClickedFastPass message', () => {
+            setupShouldShowReportExportButton(true);
+
+            const reportExportFormat = 'FastPass';
+            const selectedServiceKey = 'html';
+
+            detailsViewActionMessageCreatorMock
+                .setup(d =>
+                    d.exportResultsClickedFastPass(
+                        props.tabStopRequirementData,
+                        false,
+                        reportExportFormat,
+                        selectedServiceKey,
+                        null,
+                    ),
+                )
+                .verifiable(Times.once());
+
+            const dialog = getReportExportDialogForFastPass(props);
+
+            dialog.props.exportResultsClickedTelemetry(
+                reportExportFormat,
+                selectedServiceKey,
+                null,
+            );
+
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
     });
 });

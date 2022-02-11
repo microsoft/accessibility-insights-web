@@ -40,6 +40,7 @@ module.exports = {
             },
         ],
     ],
+    setupFilesAfterEnv: [`${__dirname}/src/tests/common/flush-promises-after-each-test.ts`],
     testEnvironment: 'node',
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],

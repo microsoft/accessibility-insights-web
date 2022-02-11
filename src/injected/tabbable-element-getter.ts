@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { getUniqueSelector } from 'scanner/axe-utils';
-import { tabbable } from 'tabbable';
+import { FocusableElement, tabbable } from 'tabbable';
 
 export interface TabbableElementInfo {
     html: string;
@@ -23,5 +23,9 @@ export class TabbableElementGetter {
             selector: this.generateSelector(elem as HTMLElement),
             order: index,
         }));
+    };
+
+    public getRawElements: () => FocusableElement[] = () => {
+        return this.getTabbableElements(this.doc.documentElement);
     };
 }

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -17,35 +20,42 @@ export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private analyzers: DictionaryStringTo<Analyzer>;
     private visualizationstore: BaseStore<VisualizationStoreData>;
+    private visualizationResultsStore: BaseStore<VisualizationScanResultData>;
     private scopingStore: BaseStore<ScopingStoreData>;
     private featureFlagStore: BaseStore<FeatureFlagStoreData>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
     private assessmentsProvider: AssessmentsProvider;
+    private tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 
     constructor(
         visualizationstore: BaseStore<VisualizationStoreData>,
+        visualizationResultsStore: BaseStore<VisualizationScanResultData>,
         featureFlagStore: BaseStore<FeatureFlagStoreData>,
         scopingStore: BaseStore<ScopingStoreData>,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
+        tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
+        this.visualizationResultsStore = visualizationResultsStore;
         this.scopingStore = scopingStore;
         this.featureFlagStore = featureFlagStore;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
         this.analyzerProvider = analyzerProvider;
         this.assessmentsProvider = assessmentsProvider;
         this.analyzerStateUpdateHandler = analyzerStateUpdateHandler;
+        this.tabStopRequirementActionMessageCreator = tabStopRequirementActionMessageCreator;
         this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
     }
 
     public listenToStore(): void {
         this.initializeAnalyzers();
         this.visualizationstore.addChangedListener(this.onChangedState);
+        this.visualizationResultsStore.addChangedListener(this.onResultsChangedState);
         this.featureFlagStore.addChangedListener(this.onChangedState);
         this.scopingStore.addChangedListener(this.onChangedState);
         this.onChangedState();
@@ -57,6 +67,14 @@ export class AnalyzerController {
         }
 
         this.analyzerStateUpdateHandler.handleUpdate(this.visualizationstore.getState());
+    };
+
+    private onResultsChangedState = (): void => {
+        const state = this.visualizationResultsStore.getState();
+        if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
+            this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+            this.teardown(AdHocTestkeys.TabStops);
+        }
     };
 
     protected teardown = (id: string): void => {

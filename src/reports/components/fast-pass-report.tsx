@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
+import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import { FastPassReportSummary } from 'reports/components/fast-pass-report-summary';
@@ -12,6 +13,7 @@ import { AutomatedChecksHeaderSection } from 'reports/components/report-sections
 import { BodySection } from 'reports/components/report-sections/body-section';
 import { ContentContainer } from 'reports/components/report-sections/content-container';
 import { DetailsSection } from 'reports/components/report-sections/details-section';
+import { FastPassReportAutomatedChecksResults } from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { FastPassResultsTitleSection } from 'reports/components/report-sections/fast-pass-results-title-section';
 import { FastPassTitleSection } from 'reports/components/report-sections/fast-pass-title-section';
 import { FooterText } from 'reports/components/report-sections/footer-text';
@@ -29,6 +31,8 @@ export type FastPassReportResultData = {
 };
 export type FastPassReportDeps = {
     tabStopsFailedCounter: TabStopsFailedCounter;
+    tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
+    featureFlagStoreData: FeatureFlagStoreData;
 } & SectionDeps;
 export type FastPassReportProps = Omit<
     SectionProps,
@@ -46,45 +50,39 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
             <ContentContainer>
                 <FastPassTitleSection />
                 <DetailsSection {...props} />
-
-                <FastPassReportSummary {...props} />
-
+                <FastPassReportSummary
+                    {...props}
+                    featureFlagStoreData={props.deps.featureFlagStoreData}
+                />
                 <ResultsContainer {...props}>
                     <FastPassResultsTitleSection title="Automated checks" />
-                    <FailedInstancesSection
-                        key={1}
-                        {...props}
-                        userConfigurationStoreData={null}
-                        cardsViewData={props.results.automatedChecks}
-                    />
-                    <p>Placeholder for incomplete checks</p>
-                    <PassedChecksSection
-                        key={3}
-                        {...props}
-                        cardsViewData={props.results.automatedChecks}
-                    />
-
+                    <FastPassReportAutomatedChecksResults {...props} />
                     <FastPassResultsTitleSection key={4} title="Tab stops" />
-                    <TabStopsChecksSectionWrapper
-                        key={5}
-                        checksSection={PassedChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                    />
-                    <TabStopsChecksSectionWrapper
-                        key={6}
-                        checksSection={IncompleteChecksSection}
-                        tabStops={props.results.tabStops}
-                        {...props}
-                    />
                     <TabStopsFailedInstanceSection
-                        key={7}
+                        sectionHeadingLevel={props.sectionHeadingLevel}
+                        key={5}
                         deps={{
                             tabStopRequirementActionMessageCreator: undefined,
                             tabStopsTestViewController: undefined,
                             ...props.deps,
                         }}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
                         tabStopRequirementState={props.results.tabStops}
+                        alwaysRenderSection={true}
+                    />
+                    <TabStopsChecksSectionWrapper
+                        key={6}
+                        checksSection={IncompleteChecksSection}
+                        tabStops={props.results.tabStops}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
+                        {...props}
+                    />
+                    <TabStopsChecksSectionWrapper
+                        key={7}
+                        checksSection={PassedChecksSection}
+                        tabStops={props.results.tabStops}
+                        featureFlagStoreData={props.deps.featureFlagStoreData}
+                        {...props}
                     />
                 </ResultsContainer>
             </ContentContainer>

@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
-.instance-visibility-button {
+.instance-visibility-button,
+.instance-visibility-button:active,
+.instance-visibility-button:focus {
     color: $primary-text;
     padding-bottom: 6px;
-    @media screen and (forced-colors: active) {
-        color: highlighttext !important;
-    }
-}
-
-.instance-visibility-button:focus {
-    @media screen and (forced-colors: active) {
-        outline: 1px highlighttext solid;
+    background-color: inherit;
+    @include ms-high-contrast-override {
+        color: inherit;
+        outline: 1px inherit solid;
     }
 }
 
