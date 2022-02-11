@@ -23,6 +23,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 
 describe('SelectorMapHelperTest', () => {
     let assessmentsProvider: AssessmentsProvider;
@@ -107,17 +108,30 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    test('getState: tabStops', () => {
+    test('getState: tabStops without tab stop automation enabled', () => {
         const visualizationType = VisualizationType.TabStops;
         const state = new VisualizationScanResultStoreDataBuilder().build();
         state.tabStops.tabbedElements = [];
-        const expectedInstances = [
-            {
-                target: ['some', 'target'],
-            },
-        ] as AssessmentVisualizationInstance[];
         const featureFlagStoreData = {
-            ['some-feature-flag']: true,
+            [FeatureFlags.tabStopsAutomation]: false,
+        } as FeatureFlagStoreData;
+        const storeData: VisualizationRelatedStoreData = {
+            visualizationScanResultStoreData: state,
+            featureFlagStoreData: featureFlagStoreData,
+        } as VisualizationRelatedStoreData;
+
+        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual([]);
+    });
+
+    test('getState: tabStops with tab stop automation enabled', () => {
+        const visualizationType = VisualizationType.TabStops;
+        const state = new VisualizationScanResultStoreDataBuilder().build();
+        state.tabStops.tabbedElements = [];
+        const expectedResults = {
+            'some;target': null,
+        } as SelectorToVisualizationMap;
+        const featureFlagStoreData = {
+            [FeatureFlags.tabStopsAutomation]: true,
         } as FeatureFlagStoreData;
         const storeData: VisualizationRelatedStoreData = {
             visualizationScanResultStoreData: state,
@@ -125,11 +139,11 @@ describe('SelectorMapHelperTest', () => {
         } as VisualizationRelatedStoreData;
 
         getVisualizationInstancesForTabStopsMock
-            .setup(m => m(state.tabStops, featureFlagStoreData))
-            .returns(() => expectedInstances);
+            .setup(m => m(state.tabStops))
+            .returns(() => expectedResults);
 
         expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
-            expectedInstances,
+            expectedResults,
         );
     });
 

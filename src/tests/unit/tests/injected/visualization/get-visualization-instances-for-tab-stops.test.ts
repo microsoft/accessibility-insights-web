@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { FeatureFlags } from 'common/feature-flags';
 import {
     SingleTabStopRequirementState,
     TabbedElementData,
@@ -41,20 +40,13 @@ describe('GetVisualizationInstancesForTabStops', () => {
         } as SelectorToVisualizationMap;
     });
 
-    test('GetVisualizationInstancesForTabStops: without requirement instances with feature flag off', () => {
-        const tabStopScanResultData: TabStopsScanResultData = {
-            tabbedElements: tabbedElements,
-        } as TabStopsScanResultData;
-
-        expect(GetVisualizationInstancesForTabStops(tabStopScanResultData, {})).toEqual(
-            expectedResults,
-        );
-    });
-
-    test('GetVisualizationInstancesForTabStops: with requirement instances with feature flag on', () => {
+    test('GetVisualizationInstancesForTabStops', () => {
         const firstRequirementResults = [
             {
                 selector: ['some', 'requirement result selector'],
+            },
+            {
+                description: 'instance without a selector',
             },
         ] as TabStopRequirementInstance[];
 
@@ -90,11 +82,9 @@ describe('GetVisualizationInstancesForTabStops', () => {
             {},
         );
 
-        expect(
-            GetVisualizationInstancesForTabStops(tabStopScanResultData, {
-                [FeatureFlags.tabStopsAutomation]: true,
-            }),
-        ).toEqual(expectedResults);
+        expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(
+            expectedResults,
+        );
     });
 
     function buildVisualizationInstance(

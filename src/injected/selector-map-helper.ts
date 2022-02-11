@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -118,10 +119,12 @@ export class SelectorMapHelper {
                 selectorMap = visualizationScanResultData.landmarks.fullAxeResultsMap;
                 break;
             case VisualizationType.TabStops:
-                selectorMap = this.getVisualizationInstancesForTabStops(
-                    visualizationScanResultData.tabStops,
-                    featureFlagStoreData,
-                );
+                selectorMap = visualizationScanResultData.tabStops.tabbedElements;
+                if (featureFlagStoreData[FeatureFlags.tabStopsAutomation] === true) {
+                    selectorMap = this.getVisualizationInstancesForTabStops(
+                        visualizationScanResultData.tabStops,
+                    );
+                }
                 break;
             default:
                 selectorMap = visualizationScanResultData.color.fullAxeResultsMap;
