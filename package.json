@@ -172,6 +172,8 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
+        "@microsoft/applicationinsights-common": "^2.7.3",
+        "@microsoft/applicationinsights-web": "^2.7.3",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.8.2",
         "android-device-list": "^1.2.7",
