@@ -431,43 +431,48 @@ describe('VisualizationScanResultStoreTest', () => {
             html: 'some html',
         };
 
-        test('adds instance when needToCollectTabbingResults is true', () => {
-            const initialState = new VisualizationScanResultStoreDataBuilder().build();
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
-            const requirement: TabStopRequirementState = {
-                'keyboard-navigation': {
-                    status: 'unknown',
-                    instances: [
-                        {
-                            description: 'test1',
-                            id: 'abc',
-                            selector: ['some-selector'],
-                            html: 'some html',
-                        },
-                    ],
-                    isExpanded: false,
-                },
-            };
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [
+                    {
+                        description: 'test1',
+                        id: 'abc',
+                        selector: ['some-selector'],
+                        html: 'some html',
+                    },
+                ],
+                isExpanded: false,
+            },
+        };
 
-            const expectedState = new VisualizationScanResultStoreDataBuilder()
-                .withTabStopRequirement(requirement)
-                .build();
-            expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+        expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
 
+        test('adds tab stop failure instance', () => {
             createStoreTesterForTabStopRequirementActions('addTabStopInstance')
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
 
         test('does not add instance when needToCollectTabbingResults is false', () => {
-            const initialState = new VisualizationScanResultStoreDataBuilder().build();
             initialState.tabStops.needToCollectTabbingResults = false;
 
-            const expectedState = new VisualizationScanResultStoreDataBuilder().build();
             expectedState.tabStops.needToCollectTabbingResults = false;
 
+            const unsavedInstancePayload: AddTabStopInstancePayload = {
+                requirementId: 'keyboard-navigation',
+                description: 'test2',
+                selector: ['selector should not be saved'],
+                html: 'html should not be saved',
+            };
+
             createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-                .withActionParam(payload)
+                .withActionParam(unsavedInstancePayload)
                 .testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
