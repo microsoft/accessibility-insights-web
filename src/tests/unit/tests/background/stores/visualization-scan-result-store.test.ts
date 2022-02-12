@@ -424,14 +424,14 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     describe('onAddTabStopInstance', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
         const payload: AddTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             description: 'test1',
             selector: ['some-selector'],
             html: 'some html',
         };
-
-        const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
