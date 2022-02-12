@@ -423,30 +423,44 @@ describe('VisualizationScanResultStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onAddTabStopInstance', () => {
-        const initialState = new VisualizationScanResultStoreDataBuilder().build();
-
+    describe('onAddTabStopInstance', () => {
         const payload: AddTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             description: 'test1',
         };
 
-        const requirement: TabStopRequirementState = {
-            'keyboard-navigation': {
-                status: 'unknown',
-                instances: [{ description: 'test1', id: 'abc' }],
-                isExpanded: false,
-            },
-        };
+        test('adds instance when needToCollectTabbingResults is true', () => {
+            const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
-        const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirement(requirement)
-            .build();
-        expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
+            const requirement: TabStopRequirementState = {
+                'keyboard-navigation': {
+                    status: 'unknown',
+                    instances: [{ description: 'test1', id: 'abc' }],
+                    isExpanded: false,
+                },
+            };
 
-        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+            const expectedState = new VisualizationScanResultStoreDataBuilder()
+                .withTabStopRequirement(requirement)
+                .build();
+            expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
+
+            createStoreTesterForTabStopRequirementActions('addTabStopInstance')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        test('does not add instance when needToCollectTabbingResults is false', () => {
+            const initialState = new VisualizationScanResultStoreDataBuilder().build();
+            initialState.tabStops.needToCollectTabbingResults = false;
+
+            const expectedState = new VisualizationScanResultStoreDataBuilder().build();
+            expectedState.tabStops.needToCollectTabbingResults = false;
+
+            createStoreTesterForTabStopRequirementActions('addTabStopInstance')
+                .withActionParam(payload)
+                .testListenerToNeverBeCalled(initialState, expectedState);
+        });
     });
 
     test('onUpdateTabStopInstance', () => {
