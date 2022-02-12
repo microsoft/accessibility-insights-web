@@ -43,6 +43,10 @@ describe('TabStopsRequirementEvaluator', () => {
         ).toEqual([expectedResult]);
     });
 
+    test('addKeyboardNavigationResults returns empty set with no tabbed elements', () => {
+        expect(testSubject.getKeyboardNavigationResults(null, null)).toEqual([]);
+    });
+
     test('addKeyboardNavigationResults returns empty set with no violations', () => {
         const tabbableTabStops = [
             tabStopElement1 as FocusableElement,

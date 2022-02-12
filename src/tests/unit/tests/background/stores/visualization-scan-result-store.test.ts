@@ -427,6 +427,8 @@ describe('VisualizationScanResultStoreTest', () => {
         const payload: AddTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             description: 'test1',
+            selector: ['some-selector'],
+            html: 'some html',
         };
 
         test('adds instance when needToCollectTabbingResults is true', () => {
@@ -435,7 +437,14 @@ describe('VisualizationScanResultStoreTest', () => {
             const requirement: TabStopRequirementState = {
                 'keyboard-navigation': {
                     status: 'unknown',
-                    instances: [{ description: 'test1', id: 'abc' }],
+                    instances: [
+                        {
+                            description: 'test1',
+                            id: 'abc',
+                            selector: ['some-selector'],
+                            html: 'some html',
+                        },
+                    ],
                     isExpanded: false,
                 },
             };

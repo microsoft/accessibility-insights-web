@@ -50,7 +50,10 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         };
         this.tabStopListenerRunner.start();
 
-        if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
+        if (
+            this.tabStopRequirementRunner &&
+            this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true
+        ) {
             this.seenTabStopRequirementResults = [];
             this.tabStopsDoneAnalyzingTracker.reset();
             this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
@@ -103,7 +106,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
         this.tabStopListenerRunner.stop();
-        this.tabStopRequirementRunner.stop();
+        if (this.tabStopRequirementRunner) {
+            this.tabStopRequirementRunner.stop();
+        }
         this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
             this.seenTabStopRequirementResults,
         );

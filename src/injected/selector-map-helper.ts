@@ -1,15 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { includes } from 'lodash';
-
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
@@ -24,12 +26,14 @@ export type VisualizationRelatedStoreData = Pick<
     | 'cardSelectionStoreData'
     | 'needsReviewCardSelectionStoreData'
     | 'needsReviewScanResultStoreData'
+    | 'featureFlagStoreData'
 >;
 
 export class SelectorMapHelper {
     constructor(
         private assessmentsProvider: AssessmentsProvider,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
+        private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
     ) {}
 
     public getSelectorMap(
@@ -45,6 +49,7 @@ export class SelectorMapHelper {
             cardSelectionStoreData,
             needsReviewScanResultStoreData,
             needsReviewCardSelectionStoreData,
+            featureFlagStoreData,
         } = visualizationRelatedStoreData;
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -55,6 +60,7 @@ export class SelectorMapHelper {
                 cardSelectionStoreData,
                 needsReviewScanResultStoreData,
                 needsReviewCardSelectionStoreData,
+                featureFlagStoreData,
             );
         }
 
@@ -90,6 +96,7 @@ export class SelectorMapHelper {
         cardSelectionStoreData: CardSelectionStoreData,
         needsReviewScanData: NeedsReviewScanResultStoreData,
         needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): SelectorToVisualizationMap {
         let selectorMap = {};
         switch (visualizationType) {
@@ -113,6 +120,11 @@ export class SelectorMapHelper {
                 break;
             case VisualizationType.TabStops:
                 selectorMap = visualizationScanResultData.tabStops.tabbedElements;
+                if (featureFlagStoreData[FeatureFlags.tabStopsAutomation] === true) {
+                    selectorMap = this.getVisualizationInstancesForTabStops(
+                        visualizationScanResultData.tabStops,
+                    );
+                }
                 break;
             default:
                 selectorMap = visualizationScanResultData.color.fullAxeResultsMap;

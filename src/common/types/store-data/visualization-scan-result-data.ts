@@ -33,12 +33,14 @@ export type TabStopRequirementInstance = {
     html?: string;
 };
 
+export type SingleTabStopRequirementState = {
+    status: TabStopRequirementStatus;
+    instances: TabStopRequirementInstance[];
+    isExpanded: boolean;
+};
+
 export type TabStopRequirementState = {
-    [requirementId: string]: {
-        status: TabStopRequirementStatus;
-        instances: TabStopRequirementInstance[];
-        isExpanded: boolean;
-    };
+    [requirementId: string]: SingleTabStopRequirementState;
 };
 
 export interface TabStopsScanResultData {
