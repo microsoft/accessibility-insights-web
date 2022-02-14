@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
-import { TabbedElementData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
@@ -66,12 +66,14 @@ describe('SVGDrawer', () => {
                 selector: '#id1',
             },
         ];
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
 
@@ -107,16 +109,14 @@ describe('SVGDrawer', () => {
                 selector: '#id1',
             },
         ];
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                propertyBag: {
-                    tabOrder: 1,
-                    timestamp: 0,
-                },
-                tabOrder: null,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
 
@@ -176,18 +176,22 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -249,26 +253,22 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: null,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
-                propertyBag: {
-                    tabOrder: 1,
-                    timestamp: null,
-                },
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: null,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
-                propertyBag: {
-                    tabOrder: 2,
-                    timestamp: null,
-                },
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -361,30 +361,38 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
             {
-                tabOrder: 3,
-                timestamp: 62,
-                html: 'test',
                 target: ['#id3'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
             {
-                tabOrder: 4,
-                timestamp: 63,
-                html: 'test',
                 target: ['#id4'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 4 },
             },
         ];
 
@@ -445,12 +453,14 @@ describe('SVGDrawer', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
         const element = fakeDocument.querySelector<HTMLElement>('#id1');
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
         const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
@@ -507,12 +517,14 @@ describe('SVGDrawer', () => {
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const element = fakeDocument.querySelector<HTMLElement>('#id1');
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
 
@@ -564,18 +576,22 @@ describe('SVGDrawer', () => {
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
                 target: ['#id1'],
-                html: 'test',
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
                 target: ['#id2'],
-                html: 'test',
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -629,18 +645,22 @@ describe('SVGDrawer', () => {
 
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -694,18 +714,22 @@ describe('SVGDrawer', () => {
 
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -761,18 +785,22 @@ describe('SVGDrawer', () => {
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 3,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
         ];
 
@@ -825,18 +853,22 @@ describe('SVGDrawer', () => {
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
