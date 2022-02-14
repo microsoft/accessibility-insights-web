@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -96,7 +97,7 @@ describe('SVGDrawer', () => {
         drawerUtilsMock.verifyAll();
     });
 
-    test('initialize with element having property bag instead of taborder', () => {
+    test('initialize with TabbedElementData element', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         const element = fakeDocument.querySelector('#id1');
@@ -109,14 +110,12 @@ describe('SVGDrawer', () => {
                 selector: '#id1',
             },
         ];
-        const tabbedElements: TabStopVisualizationInstance[] = [
+        const tabbedElements: TabbedElementData[] = [
             {
+                tabOrder: 1,
+                timestamp: 60,
+                html: 'test',
                 target: ['#id1'],
-                requirementResults: null,
-                isFailure: false,
-                isVisualizationEnabled: false,
-                ruleResults: null,
-                propertyBag: { tabOrder: 1 },
             },
         ];
 

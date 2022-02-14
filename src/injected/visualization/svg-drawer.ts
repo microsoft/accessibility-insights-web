@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { chain, each, size } from 'lodash';
 import { WindowUtils } from '../../common/window-utils';
@@ -42,22 +43,27 @@ export class SVGDrawer extends BaseDrawer {
         this.centerPositionCalculator = centerPositionCalculator;
     }
 
-    public initialize(drawerInfo: DrawerInitData<TabStopVisualizationInstance>): void {
+    public initialize(
+        drawerInfo: DrawerInitData<TabStopVisualizationInstance | TabbedElementData>,
+    ): void {
         const tabbedElements = drawerInfo.data.map(element => {
             return {
                 ...element,
-                tabOrder: element.propertyBag?.tabOrder,
+                tabOrder: this.getTabOrder(element),
             };
         });
         this.updateTabbedElements(tabbedElements);
     }
 
-    private updateTabbedElements(newTabbedElements: TabStopVisualizationInstance[]): void {
+    private updateTabbedElements(
+        newTabbedElements: (TabStopVisualizationInstance | TabbedElementData)[],
+    ): void {
         let diffFound = false;
         const dom: Document = this.drawerUtils.getDocumentElement();
 
         for (let pos = 0; pos < newTabbedElements.length; pos++) {
-            const newStateElement: TabStopVisualizationInstance = newTabbedElements[pos];
+            const newStateElement: TabStopVisualizationInstance | TabbedElementData =
+                newTabbedElements[pos];
             const oldStateElement: TabbedItem = this.tabbedElements[pos];
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
@@ -75,7 +81,7 @@ export class SVGDrawer extends BaseDrawer {
 
     private shouldRedraw(
         oldStateElement: TabbedItem,
-        newStateElement: TabStopVisualizationInstance,
+        newStateElement: TabStopVisualizationInstance | TabbedElementData,
         pos: number,
     ): boolean {
         const elementsInSvgCount: number = this.tabbedElements.length;
@@ -85,14 +91,14 @@ export class SVGDrawer extends BaseDrawer {
             oldStateElement == null ||
             newStateElement.target[newStateElement.target.length - 1] !==
                 oldStateElement.selector ||
-            newStateElement.propertyBag?.tabOrder !== oldStateElement.tabOrder ||
+            this.getTabOrder(newStateElement) !== oldStateElement.tabOrder ||
             isLastElementInSvg
         );
     }
 
     private getNewTabbedElement(
         oldStateElement: TabbedItem,
-        newStateElement: TabStopVisualizationInstance,
+        newStateElement: TabStopVisualizationInstance | TabbedElementData,
         dom: Document,
     ): TabbedItem {
         const selector: string = newStateElement.target[newStateElement.target.length - 1];
@@ -100,7 +106,7 @@ export class SVGDrawer extends BaseDrawer {
         return {
             element: dom.querySelector(selector),
             selector: selector,
-            tabOrder: newStateElement.propertyBag?.tabOrder,
+            tabOrder: this.getTabOrder(newStateElement),
             shouldRedraw: true,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
         };
@@ -307,5 +313,9 @@ export class SVGDrawer extends BaseDrawer {
                 this.SVGContainer.appendChild(element);
             }
         });
+    }
+
+    private getTabOrder(element: TabStopVisualizationInstance | TabbedElementData): number {
+        return (element as TabbedElementData).tabOrder ?? element.propertyBag?.tabOrder;
     }
 }
