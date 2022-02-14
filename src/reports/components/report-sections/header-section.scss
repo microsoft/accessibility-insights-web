@@ -18,16 +18,10 @@
         @include ellipsedText();
 
         margin: 0px 0px 0px 16px;
-        display: inherit;
-
         color: $primary-text;
         font-family: $fontFamily;
         font-size: 14px;
-        line-height: 20px;
+        line-height: 24px;
         font-weight: normal;
-
-        a {
-            @include ellipsedText();
-        }
     }
 }
