@@ -46,7 +46,7 @@ export class SVGDrawer extends BaseDrawer {
         const tabbedElements = drawerInfo.data.map(element => {
             return {
                 ...element,
-                tabOrder: element.propertyBag.tabOrder,
+                tabOrder: element.propertyBag?.tabOrder,
             };
         });
         this.updateTabbedElements(tabbedElements);
@@ -85,7 +85,7 @@ export class SVGDrawer extends BaseDrawer {
             oldStateElement == null ||
             newStateElement.target[newStateElement.target.length - 1] !==
                 oldStateElement.selector ||
-            newStateElement.propertyBag.tabOrder !== oldStateElement.tabOrder ||
+            newStateElement.propertyBag?.tabOrder !== oldStateElement.tabOrder ||
             isLastElementInSvg
         );
     }
@@ -100,7 +100,7 @@ export class SVGDrawer extends BaseDrawer {
         return {
             element: dom.querySelector(selector),
             selector: selector,
-            tabOrder: newStateElement.propertyBag.tabOrder,
+            tabOrder: newStateElement.propertyBag?.tabOrder,
             shouldRedraw: true,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
         };
