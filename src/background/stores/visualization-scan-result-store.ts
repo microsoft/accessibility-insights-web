@@ -187,14 +187,16 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
     private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
         const { requirementId, description, selector, html } = payload;
-        this.state.tabStops.requirements[requirementId].status = 'fail';
-        this.state.tabStops.requirements[requirementId].instances.push({
-            description,
-            id: this.generateUID(),
-            selector,
-            html,
-        });
-        this.emitChanged();
+        if (this.state.tabStops.needToCollectTabbingResults) {
+            this.state.tabStops.requirements[requirementId].status = 'fail';
+            this.state.tabStops.requirements[requirementId].instances.push({
+                description,
+                id: this.generateUID(),
+                selector,
+                html,
+            });
+            this.emitChanged();
+        }
     };
 
     private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
