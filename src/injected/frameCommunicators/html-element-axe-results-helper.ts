@@ -22,12 +22,14 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
     propertyBag?: any;
 }
 
-export interface TabStopVisualizationInstance extends AssessmentVisualizationInstance {
-    requirementResults: {
-        [requirementId in TabStopRequirementId]: {
-            description: string;
-        };
+export type TabStopVisualizationRequirementResults = Partial<{
+    [requirementId in TabStopRequirementId]: {
+        instanceId: string;
     };
+}>;
+
+export interface TabStopVisualizationInstance extends AssessmentVisualizationInstance {
+    requirementResults: TabStopVisualizationRequirementResults;
 }
 
 export class HtmlElementAxeResultsHelper {
