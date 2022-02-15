@@ -3,6 +3,7 @@
 import { DrawerUtils } from './drawer-utils';
 import {
     CircleConfiguration,
+    FailureBoxConfig,
     LineConfiguration,
     StrokeConfiguration,
     TextConfiguration,
@@ -97,9 +98,40 @@ export class SVGShapeFactory {
 
         if (tabOrder != null) {
             text.innerHTML = tabOrder.toString();
+        } else {
+            text.innerHTML = 'X';
         }
 
         return text;
+    }
+
+    public createFailureLabel(center: Point, failureBoxConfig: FailureBoxConfig): Element {
+        const myDocument = this.drawerUtils.getDocumentElement();
+
+        const box = myDocument.createElementNS(SVGNamespaceUrl, 'rect');
+        box.classList.add('insights-highlight-text');
+        box.classList.add('failure-label');
+        box.setAttributeNS(null, 'x', (center.x + 10).toString());
+        box.setAttributeNS(null, 'y', (center.y - 20).toString());
+        box.setAttributeNS(null, 'width', failureBoxConfig.boxWidth);
+        box.setAttributeNS(null, 'height', failureBoxConfig.boxWidth);
+        box.setAttributeNS(null, 'fill', failureBoxConfig.background);
+
+        const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
+        text.classList.add('insights-highlight-text');
+        text.classList.add('failure-label');
+        text.setAttributeNS(null, 'x', (center.x + 13).toString());
+        text.setAttributeNS(null, 'y', (center.y - 12).toString());
+        text.setAttributeNS(null, 'fill', failureBoxConfig.fontColor);
+        text.setAttributeNS(null, 'font-size', failureBoxConfig.fontSize);
+        text.setAttributeNS(null, 'font-weight', failureBoxConfig.fontWeight);
+        text.innerHTML = failureBoxConfig.text;
+
+        const group = myDocument.createElementNS(SVGNamespaceUrl, 'g');
+        group.appendChild(box);
+        group.appendChild(text);
+
+        return group;
     }
 
     private applyCircleConfiguration(element: Element, configuration: CircleConfiguration): void {

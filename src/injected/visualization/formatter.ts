@@ -64,9 +64,12 @@ export type LineConfiguration = StrokeConfiguration;
 export interface SVGDrawerConfiguration {
     circle: CircleConfiguration;
     focusedCircle: CircleConfiguration;
+    erroredCircle: CircleConfiguration;
+    missingCircle: CircleConfiguration;
     tabIndexLabel: TextConfiguration;
     line: LineConfiguration;
     focusedLine: LineConfiguration;
+    failureBoxConfig: FailureBoxConfig;
 }
 
 export interface SingleTargetDrawerConfiguration {
