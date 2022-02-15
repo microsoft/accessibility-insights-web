@@ -1846,7 +1846,7 @@
     "@microsoft/applicationinsights-shims" "2.0.1"
     "@microsoft/dynamicproto-js" "^1.1.4"
 
-"@microsoft/applicationinsights-common@2.7.3", "@microsoft/applicationinsights-common@^2.7.3":
+"@microsoft/applicationinsights-common@2.7.3":
   version "2.7.3"
   resolved "https://registry.yarnpkg.com/@microsoft/applicationinsights-common/-/applicationinsights-common-2.7.3.tgz#af18443d3006b92280715e1b01d5c103ea3ba8ca"
   integrity sha512-gbEbxCnpEJlFQeVG9DLpHYOgY2AYxczUSccaDicVMu/f8ci2NHxZylvBEfjPM3cVc+Ra2V/Bj4mqLH5fqSRW9A==
@@ -2232,11 +2232,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
   integrity sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==
-
-"@types/applicationinsights-js@^1.0.7":
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/@types/applicationinsights-js/-/applicationinsights-js-1.0.9.tgz#791581118068517ecd0bc29fd4590239a577a489"
-  integrity sha512-tf2BBQFIRgaoxkii5Ys4Q2nvhPQ2PFt9FfgDc+xL7+XPi3s4ScqzRuAn8FRBCglnyzVvwEznOtdfqGREzUOkCw==
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.14":
   version "7.1.14"
@@ -3198,11 +3193,6 @@ appium-adb@^9.0.0:
     source-map-support "^0.x"
     teen_process "^1.11.0"
     utf7 "^1.0.2"
-
-applicationinsights-js@^1.0.21:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/applicationinsights-js/-/applicationinsights-js-1.0.21.tgz#30461c672644c3d34615a0417dd45d97c48eed9f"
-  integrity sha512-AUkkm8OWfCgbBuMe7kSAwUFpc1e2y+WisieQx/VgCS+BT/0AubmnGZ1yQ+zkENVriM9qArKNjLqTQp38x995wg==
 
 aproba@^1.0.3:
   version "1.2.0"

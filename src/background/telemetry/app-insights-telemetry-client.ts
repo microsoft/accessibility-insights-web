@@ -1,20 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ApplicationInsights, ITelemetryItem } from '@microsoft/applicationinsights-web';
+import { Initialization } from '@microsoft/applicationinsights-web/types/Initialization';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
-
+export type ITelemetryContext = Initialization['context'];
+export type ITelemetryTrace = ITelemetryContext['telemetryTrace'];
 export interface TelemetryData {
     baseData: TelemetryBaseData;
-}
-
-export interface ExtendedEnvelope extends Microsoft.ApplicationInsights.IEnvelope {
-    data: TelemetryData;
-}
-
-export interface ExtendedTelemetryItem extends ITelemetryItem {
-    data: TelemetryData;
 }
 
 export class AppInsightsTelemetryClient implements TelemetryClient {
@@ -61,8 +55,8 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
         this.applicationInsights.loadAppInsights();
         this.applicationInsights.context.telemetryTrace.name = '';
-        this.applicationInsights.addTelemetryInitializer((telemetryItem: ExtendedTelemetryItem) => {
-            const baseData = telemetryItem.data.baseData;
+        this.applicationInsights.addTelemetryInitializer((telemetryItem: ITelemetryItem) => {
+            const baseData = telemetryItem.baseData;
             baseData.properties = {
                 ...baseData.properties,
                 ...this.coreTelemetryDataFactory.getData(),

@@ -1,10 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IConfig, ITelemetryContext, ITelemetryTrace } from '@microsoft/applicationinsights-common';
-import { ApplicationInsights, IConfiguration } from '@microsoft/applicationinsights-web';
+import {
+    ApplicationInsights,
+    IConfig,
+    IConfiguration,
+    ITelemetryItem,
+} from '@microsoft/applicationinsights-web';
 import {
     AppInsightsTelemetryClient,
-    ExtendedTelemetryItem,
+    ITelemetryContext,
+    ITelemetryTrace,
 } from 'background/telemetry/app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { configMutator } from 'common/configuration';
@@ -17,7 +22,7 @@ describe('AppInsights telemetry client tests', () => {
     let telemetryTraceStub: ITelemetryTrace;
     let testSubject: AppInsightsTelemetryClient;
     const aiKey: string = 'ai key';
-    let addTelemetryInitializerCallback: (telemetryItem: ExtendedTelemetryItem) => boolean;
+    let addTelemetryInitializerCallback: (telemetryItem: ITelemetryItem) => boolean;
     let aiConfig: IConfiguration & IConfig;
     const coreTelemetryData = {
         coreProp1: 'some value',
@@ -53,12 +58,12 @@ describe('AppInsights telemetry client tests', () => {
 
             appInsightsStrictMock.verifyAll();
 
-            const extendedTelemetryItemStub = getTelemetryItemStub();
+            const telemetryItemStub = getTelemetryItemStub();
 
-            const returnVal = addTelemetryInitializerCallback(extendedTelemetryItemStub as any);
+            const returnVal = addTelemetryInitializerCallback(telemetryItemStub as any);
 
             expect(returnVal).toBe(true);
-            verifyBaseDataProperties(extendedTelemetryItemStub);
+            verifyBaseDataProperties(telemetryItemStub);
             expect(telemetryTraceStub.name).toEqual('');
         });
 
@@ -176,12 +181,10 @@ describe('AppInsights telemetry client tests', () => {
         });
     });
 
-    function verifyBaseDataProperties(extendedTelemetryItem: ExtendedTelemetryItem): void {
-        expect(extendedTelemetryItem.data.baseData.properties).toMatchObject(coreTelemetryData);
+    function verifyBaseDataProperties(telemetryItem: ITelemetryItem): void {
+        expect(telemetryItem.baseData.properties).toMatchObject(coreTelemetryData);
 
-        expect(extendedTelemetryItem.data.baseData).toMatchObject(
-            getTelemetryItemStub().data.baseData,
-        );
+        expect(telemetryItem.baseData).toMatchObject(getTelemetryItemStub().baseData);
     }
 
     function setupAddTelemetryInitializerCall(): void {
@@ -199,16 +202,14 @@ describe('AppInsights telemetry client tests', () => {
             .verifiable(Times.once());
     }
 
-    function getTelemetryItemStub(): ExtendedTelemetryItem {
+    function getTelemetryItemStub(): ITelemetryItem {
         return {
-            data: {
-                baseData: {
-                    properties: {
-                        someProp1: '',
-                    } as any,
-                },
+            baseData: {
+                properties: {
+                    someProp1: '',
+                } as any,
             },
-        } as ExtendedTelemetryItem;
+        } as any as ITelemetryItem;
     }
 
     function setupAppInsightsContext(): void {
