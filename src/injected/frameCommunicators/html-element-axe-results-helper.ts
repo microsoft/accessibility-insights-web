@@ -24,7 +24,7 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
 
 export type TabStopVisualizationRequirementResults = Partial<{
     [requirementId in TabStopRequirementId]: {
-        description: string;
+        instanceId: string;
     };
 }>;
 

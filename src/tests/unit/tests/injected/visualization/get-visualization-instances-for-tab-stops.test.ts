@@ -59,6 +59,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             {
                 selector: ['some', 'requirement result selector'],
                 description: 'instance description 1',
+                id: 'some instance id',
             },
             {
                 description: 'instance without a selector',
@@ -90,14 +91,14 @@ describe('GetVisualizationInstancesForTabStops', () => {
             firstRequirementResults[0].selector,
             true,
             {},
-            { ['keyboard-navigation']: { description: firstRequirementResults[0].description } },
+            { ['keyboard-navigation']: { instanceId: firstRequirementResults[0].id } },
         );
 
         expectedResults['another;requirement result selector'] = buildVisualizationInstance(
             secondRequirementResults[0].selector,
             true,
             {},
-            { ['keyboard-traps']: { description: secondRequirementResults[0].description } },
+            { ['keyboard-traps']: { instanceId: secondRequirementResults[0].id } },
         );
 
         expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(
@@ -111,6 +112,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             {
                 selector: duplicateSelector,
                 description: 'instance description 1',
+                id: 'some instance id',
             },
         ] as TabStopRequirementInstance[];
 
@@ -118,6 +120,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             {
                 selector: duplicateSelector,
                 description: 'another instance description',
+                id: 'another instance id',
             },
         ] as TabStopRequirementInstance[];
 
@@ -141,8 +144,8 @@ describe('GetVisualizationInstancesForTabStops', () => {
             true,
             {},
             {
-                'keyboard-navigation': { description: firstRequirementResults[0].description },
-                'keyboard-traps': { description: secondRequirementResults[0].description },
+                'keyboard-navigation': { instanceId: firstRequirementResults[0].id },
+                'keyboard-traps': { instanceId: secondRequirementResults[0].id },
             },
         );
 

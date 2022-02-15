@@ -42,7 +42,7 @@ export const GetVisualizationInstancesForTabStops = (
             if (selectorToVisualizationInstanceMap[selector] != null) {
                 selectorToVisualizationInstanceMap[selector].isFailure = true;
                 selectorToVisualizationInstanceMap[selector].requirementResults[requirementId] = {
-                    description: instance.description,
+                    instanceId: instance.id,
                 };
                 return;
             }
@@ -55,7 +55,7 @@ export const GetVisualizationInstancesForTabStops = (
                 propertyBag: {},
                 requirementResults: {
                     [requirementId]: {
-                        description: instance.description,
+                        instanceId: instance.id,
                     },
                 },
             };
