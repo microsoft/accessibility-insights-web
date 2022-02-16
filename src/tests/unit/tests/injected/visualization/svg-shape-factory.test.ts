@@ -3,6 +3,7 @@
 import { DrawerUtils } from 'injected/visualization/drawer-utils';
 import {
     CircleConfiguration,
+    FailureBoxConfig,
     LineConfiguration,
     TextConfiguration,
 } from 'injected/visualization/formatter';
@@ -391,7 +392,26 @@ describe('SVGShapeFactory', () => {
 
         const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual('');
+        expect(label.innerHTML).toEqual('X');
+    });
+
+    test('create failure label', () => {
+        const center: Point = {
+            x: 100,
+            y: 100,
+        };
+
+        const failureBoxConfig: FailureBoxConfig = {
+            background: '#E81123',
+            fontColor: '#FFFFFF',
+            text: '!',
+            boxWidth: '10px',
+            fontSize: '10',
+            fontWeight: '1',
+        };
+
+        const label = testObject.createFailureLabel(center, failureBoxConfig);
+        verifyFailureLabelParams(label, failureBoxConfig, center);
     });
 
     function verifyTabIndexLabelParams(
@@ -422,6 +442,33 @@ describe('SVGShapeFactory', () => {
         expect(circle.getAttributeNS(null, 'class')).toEqual('insights-svg-focus-indicator');
         expect(circle.getAttributeNS(null, 'cx')).toEqual(center.x.toString());
         expect(circle.getAttributeNS(null, 'cy')).toEqual(center.y.toString());
+    }
+
+    function verifyFailureLabelParams(
+        box: Element,
+        configuration: FailureBoxConfig,
+        center: Point,
+    ): void {
+        expect(box.tagName).toEqual('g');
+
+        const rect = box.getElementsByTagName('rect')[0];
+
+        expect(rect.classList.value).toBe('insights-highlight-text failure-label');
+        expect(rect.getAttributeNS(null, 'x')).toBe((center.x + 10).toString());
+        expect(rect.getAttributeNS(null, 'y')).toBe((center.y - 20).toString());
+        expect(rect.getAttributeNS(null, 'width')).toBe(configuration.boxWidth);
+        expect(rect.getAttributeNS(null, 'height')).toBe(configuration.boxWidth);
+        expect(rect.getAttributeNS(null, 'fill')).toBe(configuration.background);
+
+        const text = box.getElementsByTagName('text')[0];
+
+        expect(text.classList.value).toBe('insights-highlight-text failure-label');
+        expect(text.getAttributeNS(null, 'x')).toBe((center.x + 13).toString());
+        expect(text.getAttributeNS(null, 'y')).toBe((center.x - 12).toString());
+        expect(text.getAttributeNS(null, 'fill')).toBe(configuration.fontColor);
+        expect(text.getAttributeNS(null, 'font-size')).toBe(configuration.fontSize);
+        expect(text.getAttributeNS(null, 'font-weight')).toBe(configuration.fontWeight);
+        expect(text.innerHTML).toBe(configuration.text);
     }
 
     function verifyLineParams(

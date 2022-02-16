@@ -27,6 +27,21 @@ describe('TabStopsFormatterTests', () => {
                 ellipseRy: '16',
                 ellipseRx: '16',
             },
+            erroredCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+            },
+            missingCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+                strokeDasharray: '2 2',
+            },
             tabIndexLabel: {
                 fontColor: '#000000',
                 textAnchor: 'middle',
@@ -41,6 +56,13 @@ describe('TabStopsFormatterTests', () => {
                 stroke: '#C71585',
                 strokeWidth: '3',
                 strokeDasharray: '7 2',
+            },
+            failureBoxConfig: {
+                background: '#E81123',
+                fontColor: '#FFFFFF',
+                text: '!',
+                boxWidth: '10px',
+                fontSize: '10',
             },
         };
     }
@@ -69,6 +91,8 @@ describe('TabStopsFormatterTests', () => {
         const expectedConfig = createTestDrawerConfig();
         expectedConfig.circle.ellipseRx = '39.1';
         expectedConfig.focusedCircle.ellipseRx = '39.1';
+        expectedConfig.erroredCircle.ellipseRx = '39.1';
+        expectedConfig.missingCircle.ellipseRx = '39.1';
         expect(config).toEqual(expectedConfig);
         element.remove();
     });
