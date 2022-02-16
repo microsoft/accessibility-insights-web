@@ -98,8 +98,6 @@ export class SVGShapeFactory {
 
         if (tabOrder != null) {
             text.innerHTML = tabOrder.toString();
-        } else {
-            text.innerHTML = 'X';
         }
 
         return text;
@@ -116,6 +114,7 @@ export class SVGShapeFactory {
         box.setAttributeNS(null, 'width', failureBoxConfig.boxWidth);
         box.setAttributeNS(null, 'height', failureBoxConfig.boxWidth);
         box.setAttributeNS(null, 'fill', failureBoxConfig.background);
+        box.setAttributeNS(null, 'rx', failureBoxConfig.cornerRadius);
 
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
         text.classList.add('insights-highlight-text');

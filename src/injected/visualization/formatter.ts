@@ -28,6 +28,7 @@ export interface TextBoxConfig extends BoxConfig {
 
 export interface FailureBoxConfig extends BoxConfig {
     hasDialogView?: boolean;
+    cornerRadius?: string;
 }
 
 export interface BoxConfig {

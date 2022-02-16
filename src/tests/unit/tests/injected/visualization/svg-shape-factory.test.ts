@@ -392,7 +392,7 @@ describe('SVGShapeFactory', () => {
 
         const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual('X');
+        expect(label.innerHTML).toEqual('');
     });
 
     test('create failure label', () => {
@@ -408,6 +408,7 @@ describe('SVGShapeFactory', () => {
             boxWidth: '10px',
             fontSize: '10',
             fontWeight: '1',
+            cornerRadius: '3px',
         };
 
         const label = testObject.createFailureLabel(center, failureBoxConfig);
@@ -459,6 +460,7 @@ describe('SVGShapeFactory', () => {
         expect(rect.getAttributeNS(null, 'width')).toBe(configuration.boxWidth);
         expect(rect.getAttributeNS(null, 'height')).toBe(configuration.boxWidth);
         expect(rect.getAttributeNS(null, 'fill')).toBe(configuration.background);
+        expect(rect.getAttributeNS(null, 'rx')).toBe(configuration.cornerRadius);
 
         const text = box.getElementsByTagName('text')[0];
 

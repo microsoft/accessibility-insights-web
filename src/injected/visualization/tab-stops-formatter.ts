@@ -79,6 +79,7 @@ export class TabStopsFormatter implements Formatter {
                 text: '!',
                 boxWidth: '10px',
                 fontSize: '10',
+                cornerRadius: '3px',
             },
         };
 
