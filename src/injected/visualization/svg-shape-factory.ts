@@ -119,7 +119,7 @@ export class SVGShapeFactory {
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
         text.classList.add('insights-highlight-text');
         text.classList.add('failure-label');
-        text.setAttributeNS(null, 'x', (center.x + 13).toString());
+        text.setAttributeNS(null, 'x', (center.x + 13.5).toString());
         text.setAttributeNS(null, 'y', (center.y - 12).toString());
         text.setAttributeNS(null, 'fill', failureBoxConfig.fontColor);
         text.setAttributeNS(null, 'font-size', failureBoxConfig.fontSize);

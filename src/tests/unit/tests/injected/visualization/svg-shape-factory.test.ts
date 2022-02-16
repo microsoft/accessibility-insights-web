@@ -465,7 +465,7 @@ describe('SVGShapeFactory', () => {
         const text = box.getElementsByTagName('text')[0];
 
         expect(text.classList.value).toBe('insights-highlight-text failure-label');
-        expect(text.getAttributeNS(null, 'x')).toBe((center.x + 13).toString());
+        expect(text.getAttributeNS(null, 'x')).toBe((center.x + 13.5).toString());
         expect(text.getAttributeNS(null, 'y')).toBe((center.x - 12).toString());
         expect(text.getAttributeNS(null, 'fill')).toBe(configuration.fontColor);
         expect(text.getAttributeNS(null, 'font-size')).toBe(configuration.fontSize);
