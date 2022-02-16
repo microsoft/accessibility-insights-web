@@ -934,6 +934,21 @@ describe('SVGDrawer', () => {
                 ellipseRy: '16',
                 ellipseRx: '16',
             },
+            erroredCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+            },
+            missingCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+                strokeDasharray: '2 2',
+            },
             tabIndexLabel: {
                 fontColor: '#000000',
                 textAnchor: 'middle',
@@ -948,6 +963,13 @@ describe('SVGDrawer', () => {
                 stroke: '#C71585',
                 strokeWidth: '3',
                 strokeDasharray: '7 3',
+            },
+            failureBoxConfig: {
+                background: '#E81123',
+                fontColor: '#FFFFFF',
+                text: '!',
+                boxWidth: '10px',
+                fontSize: '10',
             },
         };
 
