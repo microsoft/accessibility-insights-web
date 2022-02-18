@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { create, React } from '../../common';
 
 export const createHowToTest = (headingLevel: number) => {
@@ -10,9 +11,7 @@ export const createHowToTest = (headingLevel: number) => {
                     Note: this test requires you to use a keyboard and to visually identify interactive elements.
                 </Markup.Emphasis>
             </p>
-            <div role="heading" aria-level={headingLevel}>
-                How to test
-            </div>
+            <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>How to test</HeadingElementForLevel>
             <ol>
                 <li>Refresh the target page to put it in its default state.</li>
                 <li>Turn on the Show tab stops toggle. An empty circle will highlight the element with focus.</li>

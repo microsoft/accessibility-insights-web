@@ -56,13 +56,7 @@ describe('LaunchPad', () => {
         const expected = (
             <div className="ms-Grid main-section">
                 <main>
-                    <div
-                        role="heading"
-                        aria-level={2}
-                        className="launch-pad-title ms-fontWeight-semibold"
-                    >
-                        Launch pad
-                    </div>
+                    <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
                     <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
                     <div className="launch-pad-main-section">
                         <div key="row-item-1">
