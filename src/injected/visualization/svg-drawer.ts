@@ -46,24 +46,25 @@ export class SVGDrawer extends BaseDrawer {
     public initialize(
         drawerInfo: DrawerInitData<TabStopVisualizationInstance | TabbedElementData>,
     ): void {
-        const tabbedElements = drawerInfo.data.map(element => {
-            return {
-                ...element,
-                tabOrder: this.getTabOrder(element),
-            };
-        });
-        this.updateTabbedElements(tabbedElements);
+        const visualizationInstances: TabStopVisualizationInstance[] = drawerInfo.data.map(
+            (element: TabStopVisualizationInstance) => {
+                return {
+                    propertyBag: {
+                        tabOrder: this.getTabOrder(element),
+                    },
+                    ...element,
+                };
+            },
+        );
+        this.updateTabbedElements(visualizationInstances);
     }
 
-    private updateTabbedElements(
-        newTabbedElements: (TabStopVisualizationInstance | TabbedElementData)[],
-    ): void {
+    private updateTabbedElements(visualizationInstances: TabStopVisualizationInstance[]): void {
         let diffFound = false;
         const dom: Document = this.drawerUtils.getDocumentElement();
 
-        for (let pos = 0; pos < newTabbedElements.length; pos++) {
-            const newStateElement: TabStopVisualizationInstance | TabbedElementData =
-                newTabbedElements[pos];
+        for (let pos = 0; pos < visualizationInstances.length; pos++) {
+            const newStateElement: TabStopVisualizationInstance = visualizationInstances[pos];
             const oldStateElement: TabbedItem = this.tabbedElements[pos];
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
@@ -81,7 +82,7 @@ export class SVGDrawer extends BaseDrawer {
 
     private shouldRedraw(
         oldStateElement: TabbedItem,
-        newStateElement: TabStopVisualizationInstance | TabbedElementData,
+        newStateElement: TabStopVisualizationInstance,
         pos: number,
     ): boolean {
         const elementsInSvgCount: number = this.tabbedElements.length;
@@ -91,14 +92,14 @@ export class SVGDrawer extends BaseDrawer {
             oldStateElement == null ||
             newStateElement.target[newStateElement.target.length - 1] !==
                 oldStateElement.selector ||
-            this.getTabOrder(newStateElement) !== oldStateElement.tabOrder ||
+            newStateElement.propertyBag.tabOrder !== oldStateElement.tabOrder ||
             isLastElementInSvg
         );
     }
 
     private getNewTabbedElement(
         oldStateElement: TabbedItem,
-        newStateElement: TabStopVisualizationInstance | TabbedElementData,
+        newStateElement: TabStopVisualizationInstance,
         dom: Document,
     ): TabbedItem {
         const selector: string = newStateElement.target[newStateElement.target.length - 1];
@@ -106,7 +107,7 @@ export class SVGDrawer extends BaseDrawer {
         return {
             element: dom.querySelector(selector),
             selector: selector,
-            tabOrder: this.getTabOrder(newStateElement),
+            tabOrder: newStateElement.propertyBag.tabOrder,
             shouldRedraw: true,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
         };
@@ -124,7 +125,7 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     protected addHighlightsToContainer = async (): Promise<void> => {
-        const svgElements = await this.getHighlightElements();
+        const svgElements = this.getHighlightElements();
         this.addElementsToSVGContainer(svgElements);
     };
 
