@@ -286,7 +286,7 @@ export class SVGDrawer extends BaseDrawer {
         const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
         const newLabel = this.svgShapeFactory.createTabIndexLabel(
             centerPosition,
-            drawerConfig.tabIndexLabel,
+            drawerConfig.erroredTabIndexLabel,
             item.tabOrder,
             missingItem ? 'X' : null,
         );

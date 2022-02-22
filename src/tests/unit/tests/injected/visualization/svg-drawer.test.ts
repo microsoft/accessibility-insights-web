@@ -954,6 +954,11 @@ describe('SVGDrawer', () => {
                 textAnchor: 'middle',
                 showTabIndexedLabel: showTabIndexedLabel,
             },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
+            },
             line: {
                 stroke: '#777777',
                 strokeWidth: '2',
