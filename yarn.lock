@@ -457,14 +457,14 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/runtime@7.16.3", "@babel/runtime@^7.0.0", "@babel/runtime@^7.7.2":
+"@babel/runtime@7.16.3":
   version "7.16.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.7.6":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.7.tgz#03ff99f64106588c9c403c6ecb8c3bafbbdff1fa"
   integrity sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ==
@@ -3099,10 +3099,10 @@ app-builder-lib@22.14.13, app-builder-lib@^22.14.13:
     semver "^7.3.5"
     temp-file "^3.4.0"
 
-appium-adb@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.0.0.tgz#900ee397b41b689fb48daa6e2cf38208e8d293e3"
-  integrity sha512-bLaBT4lQRoIbMEVTWnetJIm+SSU72vzaPq8Q5ZoNUSjf9BJUYIw2gCoyWC8jtnF45ypwqtDZBVCFho+sbIJQTw==
+appium-adb@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.1.0.tgz#e2d3a379e881c1f6d611cad623367d2cac28119a"
+  integrity sha512-cNKJ/fF2Gv61SBlpWexX/Hxwi6cIw3lHZJ81hdhj8TnFjBKyBWQZJzko+RpROdJDdhTUChYFZG4oF/xDX6m2JQ==
   dependencies:
     "@appium/support" "^2.55.3"
     "@babel/runtime" "^7.0.0"
@@ -3112,7 +3112,7 @@ appium-adb@^9.0.0:
     bluebird "^3.4.7"
     ini "^2.0.0"
     lodash "^4.0.0"
-    lru-cache "^6.0.0"
+    lru-cache "^7.3.0"
     semver "^7.0.0"
     source-map-support "^0.x"
     teen_process "^1.11.0"
@@ -8557,6 +8557,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lru-cache@^7.3.0:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.3.1.tgz#7702e80694ec2bf19865567a469f2b081fcf53f5"
+  integrity sha512-nX1x4qUrKqwbIAhv4s9et4FIUVzNOpeY07bsjGUy8gwJrXH/wScImSQqXErmo/b2jZY2r0mohbLA9zVj7u1cNw==
 
 luxon@^2.3.0:
   version "2.3.0"
