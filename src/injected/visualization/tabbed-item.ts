@@ -8,4 +8,11 @@ export interface TabbedItem {
     focusIndicator?: FocusIndicator;
     tabOrder: number;
     shouldRedraw?: boolean;
+    itemType?: TabbedItemType;
+}
+
+export enum TabbedItemType {
+    RegularItem,
+    MissingItem,
+    ErroredItem,
 }

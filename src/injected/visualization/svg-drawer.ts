@@ -16,7 +16,7 @@ import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-import { TabbedItem } from './tabbed-item';
+import { TabbedItem, TabbedItemType } from './tabbed-item';
 
 export class SVGDrawer extends BaseDrawer {
     protected tabbedElements: TabbedItem[];
@@ -192,6 +192,48 @@ export class SVGDrawer extends BaseDrawer {
             null,
         ) as SVGDrawerConfiguration;
 
+        let focusIndicator;
+        switch (item.itemType) {
+            case undefined:
+            case TabbedItemType.RegularItem:
+                focusIndicator = this.createTabbedCircle(
+                    isLastItem,
+                    item,
+                    curElementIndex,
+                    centerPosition,
+                    drawerConfig,
+                );
+                break;
+            case TabbedItemType.ErroredItem:
+                focusIndicator = this.createErrorCircle(
+                    item,
+                    curElementIndex,
+                    centerPosition,
+                    drawerConfig,
+                    false,
+                );
+                break;
+            case TabbedItemType.MissingItem:
+                focusIndicator = this.createErrorCircle(
+                    item,
+                    curElementIndex,
+                    centerPosition,
+                    drawerConfig,
+                    true,
+                );
+                break;
+        }
+
+        return focusIndicator;
+    }
+
+    private createTabbedCircle(
+        isLastItem: boolean,
+        item: TabbedItem,
+        curElementIndex: number,
+        centerPosition: Point,
+        drawerConfig: SVGDrawerConfiguration,
+    ): FocusIndicator {
         const {
             tabIndexLabel: { showTabIndexedLabel },
             line: { showSolidFocusLine },
@@ -221,6 +263,55 @@ export class SVGDrawer extends BaseDrawer {
             circle: newCircle,
             tabIndexLabel: newLabel,
             line: newLine,
+        };
+
+        return focusIndicator;
+    }
+
+    private createErrorCircle(
+        item: TabbedItem,
+        curElementIndex: number,
+        centerPosition: Point,
+        drawerConfig: SVGDrawerConfiguration,
+        missingItem: boolean,
+    ): FocusIndicator {
+        const {
+            line: { showSolidFocusLine },
+        } = drawerConfig;
+
+        const circleConfiguration = missingItem
+            ? drawerConfig.missingCircle
+            : drawerConfig.erroredCircle;
+
+        const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
+        const newLabel = this.svgShapeFactory.createTabIndexLabel(
+            centerPosition,
+            drawerConfig.tabIndexLabel,
+            item.tabOrder,
+            missingItem ? 'X' : null,
+        );
+
+        let newLine: Element;
+        if (!missingItem) {
+            this.createLinesInTabOrderVisualization(
+                curElementIndex,
+                false,
+                drawerConfig,
+                centerPosition,
+                showSolidFocusLine,
+            );
+        }
+
+        const failureLabel = this.svgShapeFactory.createFailureLabel(
+            centerPosition,
+            drawerConfig.failureBoxConfig,
+        );
+
+        const focusIndicator: FocusIndicator = {
+            circle: newCircle,
+            tabIndexLabel: newLabel,
+            line: newLine,
+            failureLabel,
         };
 
         return focusIndicator;
