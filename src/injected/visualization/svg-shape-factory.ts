@@ -96,7 +96,7 @@ export class SVGShapeFactory {
 
         text.setAttributeNS(null, 'fill', textConfig.fontColor);
         text.setAttributeNS(null, 'text-anchor', textConfig.textAnchor);
-        
+
         if (innerText) {
             text.innerHTML = innerText;
         } else if (tabOrder != null) {
