@@ -294,7 +294,7 @@ export class SVGDrawer extends BaseDrawer {
 
         let newLine: Element;
         if (!missingItem) {
-            this.createLinesInTabOrderVisualization(
+            newLine = this.createLinesInTabOrderVisualization(
                 curElementIndex,
                 false,
                 drawerConfig,
