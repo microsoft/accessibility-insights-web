@@ -7,6 +7,7 @@ import {
     SelectorToTabStopVisualizationMap,
     SelectorToVisualizationMap,
 } from 'injected/selector-to-visualization-map';
+import { TabbedItemType } from 'injected/visualization/tabbed-item';
 import { forOwn } from 'lodash';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
@@ -63,6 +64,24 @@ export const GetVisualizationInstancesForTabStops = (
             selectorToVisualizationInstanceMap[selector] = newInstance;
         });
     });
+
+    forOwn(
+        selectorToVisualizationInstanceMap,
+        (visualizationInstance: TabStopVisualizationInstance) => {
+            const isMissing =
+                visualizationInstance.requirementResults &&
+                visualizationInstance.requirementResults['keyboard-navigation'] !== undefined;
+            const isErrored =
+                visualizationInstance.requirementResults &&
+                (visualizationInstance.requirementResults['tab-order'] !== undefined ||
+                    visualizationInstance.requirementResults['keyboard-traps'] !== undefined);
+            visualizationInstance.itemType = isMissing
+                ? TabbedItemType.MissingItem
+                : isErrored
+                ? TabbedItemType.ErroredItem
+                : TabbedItemType.RegularItem;
+        },
+    );
 
     return selectorToVisualizationInstanceMap;
 };

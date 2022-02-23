@@ -14,6 +14,7 @@ import {
 } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
+import { TabbedItemType } from 'injected/visualization/tabbed-item';
 
 describe('GetVisualizationInstancesForTabStops', () => {
     let tabbedElements: TabbedElementData[];
@@ -41,6 +42,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                     timestamp: tabbedElements[0].timestamp,
                 },
                 {},
+                TabbedItemType.RegularItem,
             ),
             'another;target': buildVisualizationInstance(
                 tabbedElements[1].target,
@@ -50,6 +52,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                     timestamp: tabbedElements[1].timestamp,
                 },
                 {},
+                TabbedItemType.RegularItem,
             ),
         } as SelectorToVisualizationMap;
     });
@@ -92,6 +95,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             true,
             {},
             { ['keyboard-navigation']: { instanceId: firstRequirementResults[0].id } },
+            TabbedItemType.MissingItem,
         );
 
         expectedResults['another;requirement result selector'] = buildVisualizationInstance(
@@ -99,6 +103,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             true,
             {},
             { ['keyboard-traps']: { instanceId: secondRequirementResults[0].id } },
+            TabbedItemType.ErroredItem,
         );
 
         expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(
@@ -147,6 +152,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                 'keyboard-navigation': { instanceId: firstRequirementResults[0].id },
                 'keyboard-traps': { instanceId: secondRequirementResults[0].id },
             },
+            TabbedItemType.MissingItem,
         );
 
         expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(
@@ -159,6 +165,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
         isFailure: boolean,
         propertyBag: { tabOrder?: number; timestamp?: number },
         requirementResults: TabStopVisualizationRequirementResults,
+        itemType: TabbedItemType,
     ): TabStopVisualizationInstance {
         return {
             isFailure,
@@ -167,6 +174,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             ruleResults: null,
             propertyBag,
             requirementResults,
+            itemType,
         };
     }
 });
