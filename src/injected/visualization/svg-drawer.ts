@@ -109,6 +109,7 @@ export class SVGDrawer extends BaseDrawer {
             tabOrder: this.getTabOrder(newStateElement),
             shouldRedraw: true,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
+            itemType: (newStateElement as TabStopVisualizationInstance)?.itemType,
         };
     }
 

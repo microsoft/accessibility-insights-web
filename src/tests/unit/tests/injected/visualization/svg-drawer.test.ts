@@ -16,7 +16,7 @@ import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
-import { TabbedItem } from '../../../../../injected/visualization/tabbed-item';
+import { TabbedItem, TabbedItemType } from '../../../../../injected/visualization/tabbed-item';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 import { DrawerUtilsMockBuilder } from './drawer-utils-mock-builder';
 
@@ -559,11 +559,13 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBe(true);
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
         expect(circles.length).toBe(1);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(0);
     });
@@ -626,12 +628,14 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBe(true);
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(2);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(1);
         expect(labels.length).toBe(0);
     });
@@ -695,12 +699,14 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBe(true);
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(2);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(1);
         expect(labels.length).toBe(1);
     });
@@ -767,14 +773,96 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBe(true);
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(2);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(1);
+    });
+
+    test('draw error and missing circles', async () => {
+        fakeDocument.body.innerHTML = `
+            <div id='id1'></div>
+            <div id='id2'></div>
+        `;
+
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
+        const tabbedElements: TabStopVisualizationInstance[] = [
+            {
+                target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
+                itemType: TabbedItemType.ErroredItem,
+            },
+            {
+                target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
+                itemType: TabbedItemType.RegularItem,
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                itemType: TabbedItemType.MissingItem,
+            },
+        ];
+
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
+        setupWindowUtilsMockDefault(styleStub);
+        setupFilterFactoryDefault(fakeDocument);
+        setupCenterPositionCalculatorDefault();
+        setupSVGshapeFactoryDefault(fakeDocument);
+        formatterMock
+            .setup(f => f.getDrawerConfiguration(It.isAny(), null))
+            .returns(() => drawerConfig)
+            .verifiable();
+
+        const testSubject = new SVGDrawer(
+            fakeDocument,
+            containerClass,
+            windowUtilsMock.object,
+            shadowUtilsMock.object,
+            drawerUtilsMock.object,
+            formatterMock.object,
+            centerPositionCalculatorMock.object,
+            filterFactoryMock.object,
+            svgShapeFactoryMock.object,
+        );
+
+        testSubject.initialize(createDrawerInfo(tabbedElements));
+        expect(testSubject.isOverlayEnabled).toBe(false);
+
+        await testSubject.drawLayout();
+
+        expect(testSubject.isOverlayEnabled).toBe(true);
+
+        const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
+        const lines = findFocusIndicatorLines();
+        const labels = findFocusIndicatorLabels();
+
+        drawerUtilsMock.verifyAll();
+
+        expect(circles.length).toBe(3);
+        expect(failureLabels.length).toBe(2);
+        expect(lines.length).toBe(1);
+        expect(labels.length).toBe(3);
     });
 
     test('break graph', async () => {
@@ -835,12 +923,14 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBe(true);
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(2);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(1);
     });
@@ -905,12 +995,14 @@ describe('SVGDrawer', () => {
         expect(testSubject.isOverlayEnabled).toBeFalsy();
 
         const circles = findFocusIndicatorCircles();
+        const failureLabels = findFailureLabels();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(0);
+        expect(failureLabels.length).toBe(0);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(0);
     });
@@ -991,6 +1083,11 @@ describe('SVGDrawer', () => {
         return circles;
     }
 
+    function findFailureLabels(): NodeListOf<Element> {
+        const circles = shadowContainer.querySelectorAll('.insights-svg-failure-label');
+        return circles;
+    }
+
     function findFocusIndicatorLabels(): NodeListOf<Element> {
         const labels = shadowContainer.querySelectorAll('.insights-svg-focus-indicator-text');
         return labels;
@@ -1047,6 +1144,14 @@ describe('SVGDrawer', () => {
             });
 
         svgShapeFactoryMock
+            .setup(s => s.createFailureLabel(It.isAny(), It.isAny()))
+            .returns(() => {
+                const label = doc.createElementNS(SVGNamespaceUrl, 'text');
+                label.setAttributeNS(null, 'class', 'insights-svg-failure-label');
+                return label;
+            });
+
+        svgShapeFactoryMock
             .setup(s => s.createLine(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .returns(() => {
                 const line = doc.createElementNS(SVGNamespaceUrl, 'line');
@@ -1055,7 +1160,7 @@ describe('SVGDrawer', () => {
             });
 
         svgShapeFactoryMock
-            .setup(s => s.createTabIndexLabel(It.isAny(), It.isAny(), It.isAny()))
+            .setup(s => s.createTabIndexLabel(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .returns((center, config, tabOrder) => {
                 const text = doc.createElementNS(SVGNamespaceUrl, 'text');
                 text.setAttributeNS(null, 'class', 'insights-svg-focus-indicator-text');

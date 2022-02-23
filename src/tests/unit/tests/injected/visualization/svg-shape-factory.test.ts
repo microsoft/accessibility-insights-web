@@ -378,6 +378,24 @@ describe('SVGShapeFactory', () => {
         expect(label.innerHTML).toEqual(tabOrder.toString());
     });
 
+    test('create label with inner text specified', () => {
+        const center: Point = {
+            x: 100,
+            y: 100,
+        };
+        const tabOrder = 10;
+        const text = 'X';
+
+        const textConfig: TextConfiguration = {
+            textAnchor: 'textAnchor',
+            fontColor: 'fontColor',
+        };
+
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, text);
+        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
+        expect(label.innerHTML).toEqual(text);
+    });
+
     test('create label with null tab order', () => {
         const center: Point = {
             x: 100,
