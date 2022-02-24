@@ -45,6 +45,10 @@ export const GetVisualizationInstancesForTabStops = (
                 selectorToVisualizationInstanceMap[selector].requirementResults[requirementId] = {
                     instanceId: instance.id,
                 };
+                selectorToVisualizationInstanceMap[selector].itemType =
+                    requirementId === 'keyboard-navigation'
+                        ? TabbedItemType.MissingItem
+                        : TabbedItemType.ErroredItem;
                 return;
             }
 
@@ -59,29 +63,15 @@ export const GetVisualizationInstancesForTabStops = (
                         instanceId: instance.id,
                     },
                 },
+                itemType:
+                    requirementId === 'keyboard-navigation'
+                        ? TabbedItemType.MissingItem
+                        : TabbedItemType.ErroredItem,
             };
 
             selectorToVisualizationInstanceMap[selector] = newInstance;
         });
     });
-
-    forOwn(
-        selectorToVisualizationInstanceMap,
-        (visualizationInstance: TabStopVisualizationInstance) => {
-            const isMissing =
-                visualizationInstance.requirementResults &&
-                visualizationInstance.requirementResults['keyboard-navigation'] !== undefined;
-            const isErrored =
-                visualizationInstance.requirementResults &&
-                (visualizationInstance.requirementResults['tab-order'] !== undefined ||
-                    visualizationInstance.requirementResults['keyboard-traps'] !== undefined);
-            visualizationInstance.itemType = isMissing
-                ? TabbedItemType.MissingItem
-                : isErrored
-                ? TabbedItemType.ErroredItem
-                : TabbedItemType.RegularItem;
-        },
-    );
 
     return selectorToVisualizationInstanceMap;
 };

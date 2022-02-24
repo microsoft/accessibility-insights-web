@@ -42,7 +42,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                     timestamp: tabbedElements[0].timestamp,
                 },
                 {},
-                TabbedItemType.RegularItem,
+                undefined,
             ),
             'another;target': buildVisualizationInstance(
                 tabbedElements[1].target,
@@ -52,7 +52,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                     timestamp: tabbedElements[1].timestamp,
                 },
                 {},
-                TabbedItemType.RegularItem,
+                undefined,
             ),
         } as SelectorToVisualizationMap;
     });
@@ -152,7 +152,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                 'keyboard-navigation': { instanceId: firstRequirementResults[0].id },
                 'keyboard-traps': { instanceId: secondRequirementResults[0].id },
             },
-            TabbedItemType.MissingItem,
+            TabbedItemType.ErroredItem,
         );
 
         expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(

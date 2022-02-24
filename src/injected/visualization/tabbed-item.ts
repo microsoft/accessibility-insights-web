@@ -12,7 +12,6 @@ export interface TabbedItem {
 }
 
 export enum TabbedItemType {
-    RegularItem,
-    MissingItem,
-    ErroredItem,
+    MissingItem = 'MissingItem',
+    ErroredItem = 'ErroredItem',
 }
