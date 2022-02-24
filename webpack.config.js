@@ -5,6 +5,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 const commonPlugins = [
@@ -14,6 +15,10 @@ const commonPlugins = [
         // Similar to the same options in webpackOptions.output
         filename: '[name].css',
         chunkFilename: '[id].css',
+    }),
+    // This environment is required by util, the Node.js core module
+    new webpack.DefinePlugin({
+        'process.env.NODE_DEBUG': JSON.stringify('development'),
     }),
 ];
 
@@ -100,7 +105,12 @@ const commonConfig = {
         extensions: ['.tsx', '.ts', '.js'],
         // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
         // See https://github.com/dequelabs/axe-core/issues/2873
-        fallback: { crypto: false, util: require.resolve('util/') },
+        fallback: {
+            crypto: false,
+            // Webpack 5 requires polyfills for Node.js core modules
+            // See https://webpack.js.org/blog/2020-10-10-webpack-5-release/#automatic-nodejs-polyfills-removed
+            util: require.resolve('util/'),
+        },
     },
     plugins: commonPlugins,
     performance: {
