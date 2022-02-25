@@ -157,7 +157,7 @@
         "sass-loader": "^12.6.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
-        "simple-git": "^3.2.4",
+        "simple-git": "^3.2.6",
         "source-map-loader": "^3.0.1",
         "terser-webpack-plugin": "^5.3.1",
         "ts-loader": "^9.2.6",
