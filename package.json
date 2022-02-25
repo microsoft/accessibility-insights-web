@@ -193,7 +193,6 @@
         "react-router-dom": "^6.2.1",
         "tabbable": "^5.2.1",
         "ua-parser-js": "^1.0.2",
-        "util": "^0.12.4",
         "uuid": "^8.3.2",
         "webextension-polyfill-ts": "^0.26.0"
     },
