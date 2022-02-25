@@ -16,21 +16,23 @@ export const GetVisualizationInstancesForTabStops = (
 ): SelectorToVisualizationMap => {
     const selectorToVisualizationInstanceMap: SelectorToTabStopVisualizationMap = {};
 
-    tabStopScanResultData.tabbedElements.forEach(element => {
-        const instance: TabStopVisualizationInstance = {
-            isFailure: false,
-            isVisualizationEnabled: true,
-            ruleResults: null,
-            target: element.target,
-            propertyBag: {
-                tabOrder: element.tabOrder,
-                timestamp: element.timestamp,
-            },
-            requirementResults: {},
-        };
+    if (tabStopScanResultData.tabbedElements) {
+        tabStopScanResultData.tabbedElements.forEach(element => {
+            const instance: TabStopVisualizationInstance = {
+                isFailure: false,
+                isVisualizationEnabled: true,
+                ruleResults: null,
+                target: element.target,
+                propertyBag: {
+                    tabOrder: element.tabOrder,
+                    timestamp: element.timestamp,
+                },
+                requirementResults: {},
+            };
 
-        selectorToVisualizationInstanceMap[element.target.join(';')] = instance;
-    });
+            selectorToVisualizationInstanceMap[element.target.join(';')] = instance;
+        });
+    }
 
     forOwn(tabStopScanResultData.requirements, (obj, requirementId: TabStopRequirementId) => {
         obj.instances.forEach(instance => {
