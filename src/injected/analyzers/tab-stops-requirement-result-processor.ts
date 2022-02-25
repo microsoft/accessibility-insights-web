@@ -7,34 +7,42 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
-import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { isEqual } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
+    private isStopped: boolean = false;
 
     constructor(
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
-        private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
-    ) {}
+    ) {
+        this.visualizationResultsStore.addChangedListener(this.onStateChange);
+    }
 
     public start = (): void => {
+        if (!this.isStopped) {
+            return;
+        }
+
+        this.seenTabStopRequirementResults = [];
+
         if (
             this.tabStopRequirementRunner &&
             this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true
         ) {
             this.seenTabStopRequirementResults = [];
-            this.tabStopsDoneAnalyzingTracker.reset();
             this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
             this.tabStopRequirementRunner.start();
         }
+
+        this.isStopped = false;
     };
 
-    public onStateChange = (): void => {
+    private onStateChange = (): void => {
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
             this.stop();
@@ -42,6 +50,10 @@ export class TabStopsRequirementResultProcessor {
     };
 
     public stop = (): void => {
+        if (this.isStopped) {
+            return;
+        }
+
         if (this.tabStopRequirementRunner) {
             this.tabStopRequirementRunner.stop();
         }
@@ -54,6 +66,8 @@ export class TabStopsRequirementResultProcessor {
 
             this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
         }
+
+        this.isStopped = true;
     };
 
     private processTabStopRequirementResults = (
