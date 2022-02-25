@@ -183,7 +183,7 @@
         "electron-updater": "^4.6.5",
         "idb-keyval": "^6.1.0",
         "lodash": "^4.17.21",
-        "luxon": "^2.3.0",
+        "luxon": "^2.3.1",
         "office-ui-fabric-react": "7.98.1",
         "react": "^16.14.0",
         "react-copy-to-clipboard": "^5.0.4",
