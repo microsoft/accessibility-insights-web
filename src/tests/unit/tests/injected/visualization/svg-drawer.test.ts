@@ -65,7 +65,7 @@ describe('SVGDrawer', () => {
             {
                 element: fakeDocument.querySelector('#id1'),
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
                 itemType: undefined,
@@ -74,7 +74,7 @@ describe('SVGDrawer', () => {
             {
                 element: fakeDocument.querySelector('#id2'),
                 tabOrder: undefined,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
                 itemType: TabbedItemType.MissingItem,
@@ -83,7 +83,7 @@ describe('SVGDrawer', () => {
             {
                 element: fakeDocument.querySelector('#id3'),
                 tabOrder: 2,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id3',
                 itemType: undefined,
@@ -145,7 +145,7 @@ describe('SVGDrawer', () => {
             {
                 element: element,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
                 itemType: undefined,
@@ -194,7 +194,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
             },
@@ -204,7 +204,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
                 itemType: undefined,
@@ -213,7 +213,7 @@ describe('SVGDrawer', () => {
             {
                 element: element2,
                 tabOrder: 2,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
                 itemType: undefined,
@@ -274,7 +274,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
             },
@@ -284,7 +284,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
                 itemType: undefined,
@@ -293,7 +293,7 @@ describe('SVGDrawer', () => {
             {
                 element: element2,
                 tabOrder: 2,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
                 itemType: undefined,
@@ -358,7 +358,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
                 itemType: undefined,
@@ -367,7 +367,7 @@ describe('SVGDrawer', () => {
             {
                 element: element3,
                 tabOrder: 2,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id3',
                 itemType: undefined,
@@ -376,7 +376,7 @@ describe('SVGDrawer', () => {
             {
                 element: element4,
                 tabOrder: 3,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id4',
                 itemType: undefined,
@@ -388,7 +388,7 @@ describe('SVGDrawer', () => {
             {
                 element: element1,
                 tabOrder: 1,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: false,
                 selector: '#id1',
                 itemType: undefined,
@@ -397,7 +397,7 @@ describe('SVGDrawer', () => {
             {
                 element: element2,
                 tabOrder: 2,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
                 itemType: undefined,
@@ -406,7 +406,7 @@ describe('SVGDrawer', () => {
             {
                 element: element3,
                 tabOrder: 3,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id3',
                 itemType: undefined,
@@ -415,7 +415,7 @@ describe('SVGDrawer', () => {
             {
                 element: element4,
                 tabOrder: 4,
-                highlightElement: null,
+                focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id4',
                 itemType: undefined,

@@ -113,7 +113,7 @@ export class SVGDrawer extends BaseDrawer {
             selector: selector,
             tabOrder: newStateElement.propertyBag.tabOrder,
             shouldRedraw: true,
-            highlightElement: oldStateElement ? oldStateElement.highlightElement : null,
+            focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
             isFailure: newStateElement.isFailure,
             itemType: newStateElement.itemType,
         };
@@ -334,8 +334,8 @@ export class SVGDrawer extends BaseDrawer {
         each(this.tabOrderedItems, (current: TabbedItem, index: number) => {
             const isLastItem = index === this.tabOrderedItems.length - 1;
             if (current.shouldRedraw) {
-                this.removeFocusIndicator(current.highlightElement);
-                current.highlightElement = this.createFocusIndicator(
+                this.removeFocusIndicator(current.focusIndicator);
+                current.focusIndicator = this.createFocusIndicator(
                     this.tabOrderedItems,
                     index,
                     isLastItem,
@@ -347,18 +347,18 @@ export class SVGDrawer extends BaseDrawer {
             if (current.shouldRedraw) {
                 const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
 
-                if (current.highlightElement != null && errorFocusIndicator != null) {
-                    this.removeFocusIndicator(current.highlightElement);
-                    current.highlightElement.circle = errorFocusIndicator.circle;
+                if (current.focusIndicator != null && errorFocusIndicator != null) {
+                    this.removeFocusIndicator(current.focusIndicator);
+                    current.focusIndicator.circle = errorFocusIndicator.circle;
                 } else {
-                    current.highlightElement = errorFocusIndicator;
+                    current.focusIndicator = errorFocusIndicator;
                 }
             }
         });
 
         const result = chain(this.allVisualizedItems)
             .filter((element: TabbedItem) => element.shouldRedraw)
-            .map(tabbed => chain(tabbed.highlightElement).values().compact().value())
+            .map(tabbed => chain(tabbed.focusIndicator).values().compact().value())
             .flatten()
             .value();
 
