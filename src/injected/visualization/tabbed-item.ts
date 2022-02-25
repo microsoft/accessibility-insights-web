@@ -9,4 +9,10 @@ export interface TabbedItem {
     tabOrder: number;
     shouldRedraw?: boolean;
     isFailure?: boolean;
+    itemType?: TabbedItemType;
+}
+
+export enum TabbedItemType {
+    MissingItem = 'MissingItem',
+    ErroredItem = 'ErroredItem',
 }
