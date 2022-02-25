@@ -72,8 +72,8 @@ export class AnalyzerController {
     private onResultsChangedState = (): void => {
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
-            this.teardown(AdHocTestkeys.TabStops);
             this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+            this.teardown(AdHocTestkeys.TabStops);
         }
     };
 

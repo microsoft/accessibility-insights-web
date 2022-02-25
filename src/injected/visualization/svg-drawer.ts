@@ -59,6 +59,8 @@ export class SVGDrawer extends BaseDrawer {
             },
         );
         this.updateTabbedElements(visualizationInstances);
+        this.tabOrderedItems = this.allVisualizedItems.filter(item => item.tabOrder != null);
+        this.failureItems = this.allVisualizedItems.filter(item => item.isFailure);
     }
 
     private updateTabbedElements(visualizationInstances: TabStopVisualizationInstance[]): void {
@@ -271,6 +273,7 @@ export class SVGDrawer extends BaseDrawer {
             parseFloat(circleConfiguration.ellipseRx),
         );
     }
+
     private createFocusIndicatorForFailure(item: TabbedItem): FocusIndicator {
         const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
             item.element,
@@ -328,9 +331,6 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private getHighlightElements(): HTMLElement[] {
-        this.tabOrderedItems = this.allVisualizedItems.filter(item => item.tabOrder != null);
-        this.failureItems = this.allVisualizedItems.filter(item => item.isFailure);
-
         each(this.tabOrderedItems, (current: TabbedItem, index: number) => {
             const isLastItem = index === this.tabOrderedItems.length - 1;
             if (current.shouldRedraw) {
@@ -347,7 +347,7 @@ export class SVGDrawer extends BaseDrawer {
             if (current.shouldRedraw) {
                 const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
 
-                if (current.highlightElement != null) {
+                if (current.highlightElement != null && errorFocusIndicator != null) {
                     this.removeFocusIndicator(current.highlightElement);
                     current.highlightElement.circle = errorFocusIndicator.circle;
                 } else {
