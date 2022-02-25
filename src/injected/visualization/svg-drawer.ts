@@ -16,7 +16,7 @@ import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-import { TabbedItem } from './tabbed-item';
+import { TabbedItem, TabbedItemType } from './tabbed-item';
 
 export class SVGDrawer extends BaseDrawer {
     private allVisualizedItems: TabbedItem[];
@@ -113,6 +113,7 @@ export class SVGDrawer extends BaseDrawer {
             shouldRedraw: true,
             highlightElement: oldStateElement ? oldStateElement.highlightElement : null,
             isFailure: newStateElement.isFailure,
+            itemType: newStateElement.itemType,
         };
     }
 
@@ -270,6 +271,39 @@ export class SVGDrawer extends BaseDrawer {
             parseFloat(circleConfiguration.ellipseRx),
         );
     }
+    private createFocusIndicatorForFailure(item: TabbedItem): FocusIndicator {
+        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
+            item.element,
+        );
+
+        if (centerPosition == null) {
+            return;
+        }
+
+        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(
+            item.element,
+            null,
+        ) as SVGDrawerConfiguration;
+
+        const circleConfiguration =
+            item.itemType === TabbedItemType.ErroredItem
+                ? drawerConfig.erroredCircle
+                : drawerConfig.missingCircle;
+
+        const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
+        const newLabel = this.svgShapeFactory.createTabIndexLabel(
+            centerPosition,
+            drawerConfig.tabIndexLabel,
+            item.tabOrder,
+        );
+
+        const focusIndicator: FocusIndicator = {
+            circle: newCircle,
+            tabIndexLabel: newLabel,
+        };
+
+        return focusIndicator;
+    }
 
     private shouldBreakGraph(items: TabbedItem[], curElementIndex: number): boolean {
         return (
@@ -309,14 +343,16 @@ export class SVGDrawer extends BaseDrawer {
             }
         });
 
-        each(this.failureItems, (current: TabbedItem, index: number) => {
+        each(this.failureItems, current => {
             if (current.shouldRedraw) {
-                this.removeFocusIndicator(current.highlightElement);
-                current.highlightElement = this.createFocusIndicator(
-                    this.failureItems,
-                    index,
-                    false,
-                );
+                const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
+
+                if (current.highlightElement != null) {
+                    this.removeFocusIndicator(current.highlightElement);
+                    current.highlightElement.circle = errorFocusIndicator.circle;
+                } else {
+                    current.highlightElement = errorFocusIndicator;
+                }
             }
         });
 
