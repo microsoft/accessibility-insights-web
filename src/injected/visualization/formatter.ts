@@ -68,6 +68,7 @@ export interface SVGDrawerConfiguration {
     erroredCircle: CircleConfiguration;
     missingCircle: CircleConfiguration;
     tabIndexLabel: TextConfiguration;
+    erroredTabIndexLabel: TextConfiguration;
     line: LineConfiguration;
     focusedLine: LineConfiguration;
     failureBoxConfig: FailureBoxConfig;

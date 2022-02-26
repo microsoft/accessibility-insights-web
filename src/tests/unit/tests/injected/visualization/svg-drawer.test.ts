@@ -855,12 +855,14 @@ describe('SVGDrawer', () => {
         const circles = findFocusIndicatorCircles();
         const lines = findFocusIndicatorLines();
         const labels = findFocusIndicatorLabels();
+        const failureLabels = findFailureLabels();
 
         drawerUtilsMock.verifyAll();
 
         expect(circles.length).toBe(3);
         expect(lines.length).toBe(1);
         expect(labels.length).toBe(2);
+        expect(failureLabels.length).toBe(1);
     });
 
     test('break graph', async () => {
@@ -1040,6 +1042,11 @@ describe('SVGDrawer', () => {
                 textAnchor: 'middle',
                 showTabIndexedLabel: showTabIndexedLabel,
             },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
+            },
             line: {
                 stroke: '#777777',
                 strokeWidth: '2',
@@ -1075,6 +1082,11 @@ describe('SVGDrawer', () => {
     function findFocusIndicatorLabels(): NodeListOf<Element> {
         const labels = shadowContainer.querySelectorAll('.insights-svg-focus-indicator-text');
         return labels;
+    }
+
+    function findFailureLabels(): NodeListOf<Element> {
+        const circles = shadowContainer.querySelectorAll('.insights-svg-failure-label');
+        return circles;
     }
 
     function setupCenterPositionCalculatorDefault(): void {
@@ -1142,6 +1154,14 @@ describe('SVGDrawer', () => {
                 text.setAttributeNS(null, 'class', 'insights-svg-focus-indicator-text');
                 text.innerHTML = `<span>${tabOrder}</span>`;
                 return text;
+            });
+
+        svgShapeFactoryMock
+            .setup(s => s.createFailureLabel(It.isAny(), It.isAny()))
+            .returns(() => {
+                const label = doc.createElementNS(SVGNamespaceUrl, 'text');
+                label.setAttributeNS(null, 'class', 'insights-svg-failure-label');
+                return label;
             });
     }
 });

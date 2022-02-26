@@ -294,15 +294,20 @@ export class SVGDrawer extends BaseDrawer {
                 : drawerConfig.missingCircle;
 
         const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
-        const newLabel = this.svgShapeFactory.createTabIndexLabel(
+        const tabIndexLabel = this.svgShapeFactory.createTabIndexLabel(
             centerPosition,
-            drawerConfig.tabIndexLabel,
+            drawerConfig.erroredTabIndexLabel,
             item.tabOrder,
+        );
+        const failureLabel = this.svgShapeFactory.createFailureLabel(
+            centerPosition,
+            drawerConfig.failureBoxConfig,
         );
 
         const focusIndicator: FocusIndicator = {
             circle: newCircle,
-            tabIndexLabel: newLabel,
+            tabIndexLabel: tabIndexLabel,
+            failureLabel: failureLabel,
         };
 
         return focusIndicator;
