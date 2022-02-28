@@ -16,6 +16,10 @@ export const GetVisualizationInstancesForTabStops = (
 ): SelectorToVisualizationMap => {
     const selectorToVisualizationInstanceMap: SelectorToTabStopVisualizationMap = {};
 
+    if (!tabStopScanResultData.tabbedElements) {
+        return selectorToVisualizationInstanceMap;
+    }
+
     tabStopScanResultData.tabbedElements.forEach(element => {
         const instance: TabStopVisualizationInstance = {
             isFailure: false,

@@ -111,6 +111,17 @@ describe('GetVisualizationInstancesForTabStops', () => {
         );
     });
 
+    test('GetVisualizationInstancesForTabStops: null tabbedElements', () => {
+        const tabStopRequirementState = {} as TabStopRequirementState;
+
+        const tabStopScanResultData: TabStopsScanResultData = {
+            tabbedElements: null,
+            requirements: tabStopRequirementState,
+        } as TabStopsScanResultData;
+
+        expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual({});
+    });
+
     test('GetVisualizationInstancesForTabStops: multiple requirement instances for one element', () => {
         const duplicateSelector = ['some', 'requirement result selector'];
         const firstRequirementResults = [
