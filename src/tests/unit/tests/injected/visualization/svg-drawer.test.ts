@@ -1085,8 +1085,8 @@ describe('SVGDrawer', () => {
     }
 
     function findFailureLabels(): NodeListOf<Element> {
-        const circles = shadowContainer.querySelectorAll('.insights-svg-failure-label');
-        return circles;
+        const labels = shadowContainer.querySelectorAll('.insights-svg-failure-label');
+        return labels;
     }
 
     function setupCenterPositionCalculatorDefault(): void {
