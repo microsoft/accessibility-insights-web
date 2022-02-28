@@ -5,7 +5,10 @@ import {
     detailsViewSelectors,
     tabStopsSelectors,
 } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { TabStopShadowDomSelectors } from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
+import {
+    TabStopShadowDomSelectors,
+    TargetPageInjectedComponentSelectors,
+} from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
 import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
@@ -37,6 +40,8 @@ describe('Automated TabStops Results', () => {
             tabStopsSelectors.automatedChecksResultSection,
         );
         expect(element).toBeNull();
+
+        await verifyTargetPageVisualization(false);
     });
 
     test('Detect and display out of order failures', async () => {
@@ -55,6 +60,9 @@ describe('Automated TabStops Results', () => {
         );
 
         expect(ruleDetails).toHaveLength(2);
+
+        await verifyTargetPageVisualization(true);
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
     });
 
     test('Detect and display unreachable elements failures', async () => {
@@ -73,6 +81,9 @@ describe('Automated TabStops Results', () => {
         );
 
         expect(ruleDetails).toHaveLength(1);
+
+        await verifyTargetPageVisualization(true);
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
     });
 
     test('Detect and display failures when tabbing is not completed', async () => {
@@ -96,6 +107,8 @@ describe('Automated TabStops Results', () => {
         );
 
         expect(ruleDetails).toHaveLength(2);
+
+        await verifyTargetPageVisualization(false);
     });
 
     async function openTabStopsPage(testResourcePath: string) {
@@ -116,5 +129,18 @@ describe('Automated TabStops Results', () => {
         await detailsViewPage.openTabStopsPage(detailsViewPage);
         await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, true);
         await targetPage.waitForShadowRoot();
+    }
+
+    async function verifyTargetPageVisualization(visShown: boolean) {
+        await targetPage.waitForShadowRoot();
+        const visualization = await targetPage.getSelectorElement(
+            TargetPageInjectedComponentSelectors.tabStopVisulizationStart,
+        );
+
+        if (visShown) {
+            expect(visualization).not.toBeNull();
+        } else {
+            expect(visualization).toBeNull();
+        }
     }
 });
