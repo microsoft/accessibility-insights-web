@@ -8,6 +8,7 @@ export interface TabbedItem {
     focusIndicator?: FocusIndicator;
     tabOrder: number;
     shouldRedraw?: boolean;
+    isFailure?: boolean;
     itemType?: TabbedItemType;
 }
 

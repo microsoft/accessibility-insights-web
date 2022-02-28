@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
-import { chain, each, size } from 'lodash';
+import { chain, each } from 'lodash';
 import { WindowUtils } from '../../common/window-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
@@ -16,10 +16,12 @@ import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-import { TabbedItem } from './tabbed-item';
+import { TabbedItem, TabbedItemType } from './tabbed-item';
 
 export class SVGDrawer extends BaseDrawer {
-    protected tabbedElements: TabbedItem[];
+    private allVisualizedItems: TabbedItem[];
+    private tabOrderedItems: TabbedItem[];
+    private failureItems: TabbedItem[];
     private SVGContainer: HTMLElement;
     private filterFactory: SVGSolidShadowFilterFactory;
     private svgShapeFactory: SVGShapeFactory;
@@ -37,7 +39,7 @@ export class SVGDrawer extends BaseDrawer {
         svgShapeFactory: SVGShapeFactory,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
-        this.tabbedElements = [];
+        this.allVisualizedItems = [];
         this.filterFactory = filterFactory;
         this.svgShapeFactory = svgShapeFactory;
         this.centerPositionCalculator = centerPositionCalculator;
@@ -57,6 +59,8 @@ export class SVGDrawer extends BaseDrawer {
             },
         );
         this.updateTabbedElements(visualizationInstances);
+        this.tabOrderedItems = this.allVisualizedItems.filter(item => item.tabOrder != null);
+        this.failureItems = this.allVisualizedItems.filter(item => item.isFailure);
     }
 
     private updateTabbedElements(visualizationInstances: TabStopVisualizationInstance[]): void {
@@ -65,17 +69,17 @@ export class SVGDrawer extends BaseDrawer {
 
         for (let pos = 0; pos < visualizationInstances.length; pos++) {
             const newStateElement: TabStopVisualizationInstance = visualizationInstances[pos];
-            const oldStateElement: TabbedItem = this.tabbedElements[pos];
+            const oldStateElement: TabbedItem = this.allVisualizedItems[pos];
 
             if (diffFound || this.shouldRedraw(oldStateElement, newStateElement, pos)) {
                 diffFound = true;
-                this.tabbedElements[pos] = this.getNewTabbedElement(
+                this.allVisualizedItems[pos] = this.createUpdatedTabbedItem(
                     oldStateElement,
                     newStateElement,
                     dom,
                 );
             } else {
-                this.tabbedElements[pos].shouldRedraw = false;
+                this.allVisualizedItems[pos].shouldRedraw = false;
             }
         }
     }
@@ -85,7 +89,7 @@ export class SVGDrawer extends BaseDrawer {
         newStateElement: TabStopVisualizationInstance,
         pos: number,
     ): boolean {
-        const elementsInSvgCount: number = this.tabbedElements.length;
+        const elementsInSvgCount: number = this.allVisualizedItems.length;
         const isLastElementInSvg: boolean = pos === elementsInSvgCount - 1;
 
         return (
@@ -97,7 +101,7 @@ export class SVGDrawer extends BaseDrawer {
         );
     }
 
-    private getNewTabbedElement(
+    private createUpdatedTabbedItem(
         oldStateElement: TabbedItem,
         newStateElement: TabStopVisualizationInstance,
         dom: Document,
@@ -110,18 +114,20 @@ export class SVGDrawer extends BaseDrawer {
             tabOrder: newStateElement.propertyBag.tabOrder,
             shouldRedraw: true,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
+            isFailure: newStateElement.isFailure,
+            itemType: newStateElement.itemType,
         };
     }
 
     public eraseLayout(): void {
         super.eraseLayout();
-        this.tabbedElements = [];
+        this.allVisualizedItems = [];
     }
 
     protected removeContainerElement(): void {
         super.removeContainerElement();
 
-        this.tabbedElements.forEach((element: TabbedItem) => (element.shouldRedraw = true));
+        this.allVisualizedItems.forEach((element: TabbedItem) => (element.shouldRedraw = true));
     }
 
     protected addHighlightsToContainer = async (): Promise<void> => {
@@ -176,10 +182,11 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private createFocusIndicator(
-        item: TabbedItem,
+        items: TabbedItem[],
         curElementIndex: number,
         isLastItem: boolean,
     ): FocusIndicator {
+        const item = items[curElementIndex];
         const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
             item.element,
         );
@@ -211,6 +218,7 @@ export class SVGDrawer extends BaseDrawer {
                   );
 
         const newLine: Element = this.createLinesInTabOrderVisualization(
+            items,
             curElementIndex,
             isLastItem,
             drawerConfig,
@@ -228,6 +236,7 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private createLinesInTabOrderVisualization(
+        items: TabbedItem[],
         curElementIndex: number,
         isLastItem: boolean,
         drawerConfig: SVGDrawerConfiguration,
@@ -236,7 +245,7 @@ export class SVGDrawer extends BaseDrawer {
     ): Element {
         const circleConfiguration = isLastItem ? drawerConfig.focusedCircle : drawerConfig.circle;
 
-        if (this.shouldBreakGraph(curElementIndex)) {
+        if (this.shouldBreakGraph(items, curElementIndex)) {
             return null;
         }
         if (!showSolidFocusLine && !isLastItem) {
@@ -244,7 +253,7 @@ export class SVGDrawer extends BaseDrawer {
         }
 
         const prevElementPos = this.centerPositionCalculator.getElementCenterPosition(
-            this.tabbedElements[curElementIndex - 1].element,
+            items[curElementIndex - 1].element,
         );
 
         if (prevElementPos == null) {
@@ -265,11 +274,49 @@ export class SVGDrawer extends BaseDrawer {
         );
     }
 
-    private shouldBreakGraph(curElementIndex: number): boolean {
+    private createFocusIndicatorForFailure(item: TabbedItem): FocusIndicator {
+        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
+            item.element,
+        );
+
+        if (centerPosition == null) {
+            return;
+        }
+
+        const drawerConfig: SVGDrawerConfiguration = this.formatter.getDrawerConfiguration(
+            item.element,
+            null,
+        ) as SVGDrawerConfiguration;
+
+        const circleConfiguration =
+            item.itemType === TabbedItemType.ErroredItem
+                ? drawerConfig.erroredCircle
+                : drawerConfig.missingCircle;
+
+        const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
+        const tabIndexLabel = this.svgShapeFactory.createTabIndexLabel(
+            centerPosition,
+            drawerConfig.erroredTabIndexLabel,
+            item.tabOrder,
+        );
+        const failureLabel = this.svgShapeFactory.createFailureLabel(
+            centerPosition,
+            drawerConfig.failureBoxConfig,
+        );
+
+        const focusIndicator: FocusIndicator = {
+            circle: newCircle,
+            tabIndexLabel: tabIndexLabel,
+            failureLabel: failureLabel,
+        };
+
+        return focusIndicator;
+    }
+
+    private shouldBreakGraph(items: TabbedItem[], curElementIndex: number): boolean {
         return (
             curElementIndex === 0 ||
-            this.tabbedElements[curElementIndex - 1].tabOrder !==
-                this.tabbedElements[curElementIndex].tabOrder - 1
+            items[curElementIndex - 1].tabOrder !== items[curElementIndex].tabOrder - 1
         );
     }
 
@@ -289,17 +336,32 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private getHighlightElements(): HTMLElement[] {
-        const totalElements = size(this.tabbedElements);
-
-        each(this.tabbedElements, (current: TabbedItem, index: number) => {
-            const isLastItem = index === totalElements - 1;
+        each(this.tabOrderedItems, (current: TabbedItem, index: number) => {
+            const isLastItem = index === this.tabOrderedItems.length - 1;
             if (current.shouldRedraw) {
                 this.removeFocusIndicator(current.focusIndicator);
-                current.focusIndicator = this.createFocusIndicator(current, index, isLastItem);
+                current.focusIndicator = this.createFocusIndicator(
+                    this.tabOrderedItems,
+                    index,
+                    isLastItem,
+                );
             }
         });
 
-        const result = chain(this.tabbedElements)
+        each(this.failureItems, current => {
+            if (current.shouldRedraw) {
+                const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
+
+                if (current.focusIndicator != null && errorFocusIndicator != null) {
+                    this.removeFocusIndicator(current.focusIndicator);
+                    current.focusIndicator.circle = errorFocusIndicator.circle;
+                } else {
+                    current.focusIndicator = errorFocusIndicator;
+                }
+            }
+        });
+
+        const result = chain(this.allVisualizedItems)
             .filter((element: TabbedItem) => element.shouldRedraw)
             .map(tabbed => chain(tabbed.focusIndicator).values().compact().value())
             .flatten()
