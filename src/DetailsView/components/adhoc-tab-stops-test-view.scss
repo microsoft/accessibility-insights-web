@@ -37,6 +37,8 @@
     }
 }
 
-h2.requirement-how-to-test-header {
+.requirement-how-to-test-header {
     @include text-style-title-s;
+    padding-left: 0.5vw;
+    display: block;
 }

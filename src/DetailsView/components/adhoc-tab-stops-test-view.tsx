@@ -164,7 +164,15 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     />
                 </ThemeFamilyCustomizer>
                 <CollapsibleComponent
-                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    header={
+                        <span
+                            className={styles.requirementHowToTestHeader}
+                            role="heading"
+                            aria-level={2}
+                        >
+                            How to test
+                        </span>
+                    }
                     content={howToTest}
                     contentClassName={requirementInstructionStyles.requirementInstructions}
                 />
