@@ -7,7 +7,6 @@ import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -42,7 +41,6 @@ describe('AnalyzerControllerTests', () => {
     let configStub: VisualizationConfiguration;
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let visualizationStoreState: VisualizationStoreData;
     let visualizationScanResultsStoreState: VisualizationScanResultData;
     let featureFlagStoreState: FeatureFlagStoreData;
@@ -78,8 +76,6 @@ describe('AnalyzerControllerTests', () => {
         visualizationScanResultsStoreMock = Mock.ofType<VisualizationScanResultStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
-        tabStopRequirementActionMessageCreatorMock =
-            Mock.ofType<TabStopRequirementActionMessageCreator>();
 
         visualizationStoreMock.setup(sm => sm.getState()).returns(() => visualizationStoreState);
 
@@ -122,14 +118,12 @@ describe('AnalyzerControllerTests', () => {
 
         testObject = new AnalyzerController(
             visualizationStoreMock.object,
-            visualizationScanResultsStoreMock.object,
             featureFlagStoreStoreMock.object,
             scopingStoreMock.object,
             visualizationConfigurationFactoryMock.object,
             analyzerProviderStrictMock.object,
             analyzerStateUpdateHandlerStrictMock.object,
             assessmentsMock.object,
-            tabStopRequirementActionMessageCreatorMock.object,
         );
     });
 
@@ -163,48 +157,6 @@ describe('AnalyzerControllerTests', () => {
         analyzerStateUpdateHandlerStrictMock.verifyAll();
         getAnalyzerMock.verifyAll();
         getIdentifierMock.verifyAll();
-    });
-
-    test('onResultsChangedState sends message when tabbing is completed', () => {
-        tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.updateNeedToCollectTabbingResults(false))
-            .verifiable(Times.once());
-
-        visualizationScanResultsStoreState = {
-            tabStops: { tabbingCompleted: true, needToCollectTabbingResults: true },
-        } as VisualizationScanResultData;
-
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
-        setupVisualizationConfigurationFactory(VisualizationType.TabStops, configStub);
-        setupTeardownCall();
-        getIdentifierMock.reset();
-        setupGetIdentifierMock('tabStops', Times.atLeastOnce());
-
-        const visualizationResultsListener = setupTabbingStoreData();
-        visualizationResultsListener();
-
-        tabStopRequirementActionMessageCreatorMock.verifyAll();
-        getIdentifierMock.verifyAll();
-        assessmentsMock.verifyAll();
-        analyzerMock.verifyAll();
-    });
-
-    test('onResultsChangedState does not send message when tabbing is not completed', () => {
-        tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.updateNeedToCollectTabbingResults(It.isAny()))
-            .verifiable(Times.never());
-
-        visualizationScanResultsStoreState = {
-            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
-        } as VisualizationScanResultData;
-
-        const visualizationResultsListener = setupTabbingStoreData();
-        visualizationResultsListener();
-
-        tabStopRequirementActionMessageCreatorMock.verifyAll();
     });
 
     test('do not scan on if any store state is null', () => {
@@ -258,18 +210,6 @@ describe('AnalyzerControllerTests', () => {
         getIdentifierMock.verifyAll();
         analyzerMock.verifyAll();
     });
-
-    function setupTabbingStoreData(): () => void {
-        let visualizationResultsListener;
-        visualizationScanResultsStoreMock
-            .setup(m => m.addChangedListener(It.isAny()))
-            .returns(listener => {
-                visualizationResultsListener = listener;
-            });
-
-        testObject.listenToStore();
-        return visualizationResultsListener;
-    }
 
     function setupAnalyzeCall(): void {
         analyzerMock.setup(am => am.analyze()).verifiable();
