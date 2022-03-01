@@ -38,11 +38,11 @@ export class TabStopsRequirementResultProcessor {
         this.isStopped = false;
     };
 
-    public listenToStore = (): void => {
+    public listenToStore(): void {
         this.visualizationResultsStore.addChangedListener(this.onStateChange);
         this.featureFlagStore.addChangedListener(this.onStateChange);
         this.onStateChange();
-    };
+    }
 
     private onStateChange = (): void => {
         const state = this.visualizationResultsStore.getState();

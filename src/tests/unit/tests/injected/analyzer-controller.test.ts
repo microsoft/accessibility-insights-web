@@ -30,7 +30,6 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let visualizationScanResultsStoreMock: IMock<VisualizationScanResultStore>;
     let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
@@ -73,15 +72,10 @@ describe('AnalyzerControllerTests', () => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
-        visualizationScanResultsStoreMock = Mock.ofType<VisualizationScanResultStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
 
         visualizationStoreMock.setup(sm => sm.getState()).returns(() => visualizationStoreState);
-
-        visualizationScanResultsStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => visualizationScanResultsStoreState);
 
         featureFlagStoreStoreMock.setup(sm => sm.getState()).returns(() => featureFlagStoreState);
 
@@ -129,7 +123,6 @@ describe('AnalyzerControllerTests', () => {
 
     afterEach(() => {
         visualizationStoreMock.verifyAll();
-        visualizationScanResultsStoreMock.verifyAll();
         featureFlagStoreStoreMock.verifyAll();
         scopingStoreMock.verifyAll();
         analyzerProviderStrictMock.verifyAll();

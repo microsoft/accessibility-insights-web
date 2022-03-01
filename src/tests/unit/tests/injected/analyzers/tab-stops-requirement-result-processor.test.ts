@@ -85,6 +85,23 @@ describe('TabStopsRequirementResultProcessor', () => {
         verifyAll();
     });
 
+    it('listenToStore adds expected listeners', () => {
+        const visualizationScanResultsStoreState = {
+            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
+        } as VisualizationScanResultData;
+
+        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+        visualizationScanResultsStoreMock
+            .setup(m => m.addChangedListener(It.is(isFunction)))
+            .verifiable(Times.once());
+        featureFlagStoreMock
+            .setup(m => m.addChangedListener(It.is(isFunction)))
+            .verifiable(Times.once());
+
+        testSubject.listenToStore();
+        verifyAll();
+    });
+
     describe('start', () => {
         it('starts requirement runner when feature flag is on', () => {
             setTabStopsAutomationFeatureFlag(true);
@@ -269,6 +286,7 @@ describe('TabStopsRequirementResultProcessor', () => {
         visualizationScanResultsStoreMock.verifyAll();
         tabStopRequirementRunnerMock.verifyAll();
         tabStopRequirementActionMessageCreatorMock.verifyAll();
+        featureFlagStoreMock.verifyAll();
     }
 
     function setupVisualizationScanResultStoreMock(
