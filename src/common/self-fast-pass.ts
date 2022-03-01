@@ -93,6 +93,7 @@ class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
             null,
             null,
             null,
+            null,
         );
     }
 

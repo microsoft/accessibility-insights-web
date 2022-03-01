@@ -42,6 +42,49 @@ describe('TabStopsRequirementResultProcessor', () => {
         );
     });
 
+    it('initializes with expected state', () => {
+        const openTestSubject = testSubject as any;
+
+        expect(openTestSubject.seenTabStopRequirementResults).toEqual([]);
+        expect(openTestSubject.isStopped).toEqual(true);
+        expect(openTestSubject.featureFlagStore).toEqual(featureFlagStoreMock.object);
+        expect(openTestSubject.tabStopRequirementRunner).toEqual(
+            tabStopRequirementRunnerMock.object,
+        );
+        expect(openTestSubject.tabStopRequirementActionMessageCreator).toEqual(
+            tabStopRequirementActionMessageCreatorMock.object,
+        );
+        expect(openTestSubject.visualizationResultsStore).toEqual(
+            visualizationScanResultsStoreMock.object,
+        );
+    });
+
+    it('runs with null requirement runner', () => {
+        testSubject = new TabStopsRequirementResultProcessor(
+            featureFlagStoreMock.object,
+            null,
+            tabStopRequirementActionMessageCreatorMock.object,
+            visualizationScanResultsStoreMock.object,
+        );
+
+        setTabStopsAutomationFeatureFlag(true);
+        const visualizationScanResultsStoreState = {
+            tabStops: {
+                tabbingCompleted: true,
+                needToCollectTabbingResults: true,
+            },
+        } as VisualizationScanResultData;
+
+        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+
+        tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.never());
+        tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
+        testSubject.start();
+        testSubject.stop();
+
+        verifyAll();
+    });
+
     describe('start', () => {
         it('starts requirement runner when feature flag is on', () => {
             setTabStopsAutomationFeatureFlag(true);
@@ -210,7 +253,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
             tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
             tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
+                .setup(t => t.automatedTabbingResultsCompleted([]))
                 .verifiable(Times.once());
             tabStopRequirementActionMessageCreatorMock
                 .setup(t => t.updateNeedToCollectTabbingResults(false))

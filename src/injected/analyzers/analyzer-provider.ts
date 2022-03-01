@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { BaseStore } from '../../common/base-store';
@@ -31,6 +33,7 @@ export class AnalyzerProvider {
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
+        private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
         private readonly telemetryDataFactory: TelemetryDataFactory,
@@ -117,9 +120,13 @@ export class AnalyzerProvider {
             this.scanIncompleteWarningDetector,
             this.logger,
             this.featureFlagStore,
-            null,
-            this.tabStopRequirementActionMessageCreator,
             this.tabStopsDoneAnalyzingTracker,
+            new TabStopsRequirementResultProcessor(
+                this.featureFlagStore,
+                null,
+                this.tabStopRequirementActionMessageCreator,
+                this.visualizationResultsStore,
+            ),
         );
     }
 
@@ -131,9 +138,13 @@ export class AnalyzerProvider {
             this.scanIncompleteWarningDetector,
             this.logger,
             this.featureFlagStore,
-            this.tabStopsRequirementRunner,
-            this.tabStopRequirementActionMessageCreator,
             this.tabStopsDoneAnalyzingTracker,
+            new TabStopsRequirementResultProcessor(
+                this.featureFlagStore,
+                this.tabStopsRequirementRunner,
+                this.tabStopRequirementActionMessageCreator,
+                this.visualizationResultsStore,
+            ),
         );
     }
 
