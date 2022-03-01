@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
@@ -17,10 +15,8 @@ describe('TabStopsRequirementResultProcessor', () => {
     let requirementResultRunnerCallback: (
         requirementResult: AutomatedTabStopRequirementResult,
     ) => void;
-    let featureFlagStoreMock: IMock<FeatureFlagStore>;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let visualizationScanResultsStoreMock: IMock<VisualizationScanResultStore>;
-    let needsRequirementRunner;
     let testSubject: TabStopsRequirementResultProcessor;
 
     beforeEach(() => {
@@ -30,14 +26,11 @@ describe('TabStopsRequirementResultProcessor', () => {
             stop: () => {},
             initialize: () => {},
         } as AllFrameRunner<AutomatedTabStopRequirementResult>);
-        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         visualizationScanResultsStoreMock = Mock.ofType<VisualizationScanResultStore>();
-        needsRequirementRunner = true;
 
         testSubject = new TabStopsRequirementResultProcessor(
-            featureFlagStoreMock.object,
             tabStopRequirementRunnerMock.object,
             tabStopRequirementActionMessageCreatorMock.object,
             visualizationScanResultsStoreMock.object,
@@ -49,8 +42,6 @@ describe('TabStopsRequirementResultProcessor', () => {
 
         expect(openTestSubject.seenTabStopRequirementResults).toEqual([]);
         expect(openTestSubject.isStopped).toEqual(true);
-        expect(openTestSubject.needsRequirementRunner).toBeUndefined();
-        expect(openTestSubject.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openTestSubject.tabStopRequirementRunner).toEqual(
             tabStopRequirementRunnerMock.object,
         );
@@ -60,30 +51,6 @@ describe('TabStopsRequirementResultProcessor', () => {
         expect(openTestSubject.visualizationResultsStore).toEqual(
             visualizationScanResultsStoreMock.object,
         );
-
-        needsRequirementRunner = false;
-        testSubject.start(needsRequirementRunner);
-        expect(openTestSubject.needsRequirementRunner).toEqual(needsRequirementRunner);
-    });
-
-    it('runs with needsRequirementRunner = false', () => {
-        needsRequirementRunner = false;
-        setTabStopsAutomationFeatureFlag(true);
-        const visualizationScanResultsStoreState = {
-            tabStops: {
-                tabbingCompleted: true,
-                needToCollectTabbingResults: true,
-            },
-        } as VisualizationScanResultData;
-
-        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-
-        tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.never());
-        tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
-        testSubject.start(needsRequirementRunner);
-        testSubject.stop();
-
-        verifyAll();
     });
 
     it('listenToStore adds expected listeners', () => {
@@ -95,24 +62,12 @@ describe('TabStopsRequirementResultProcessor', () => {
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
-        featureFlagStoreMock
-            .setup(m => m.addChangedListener(It.is(isFunction)))
-            .verifiable(Times.once());
 
         testSubject.listenToStore();
         verifyAll();
     });
 
     describe('start', () => {
-        it('starts requirement runner when feature flag is on', () => {
-            setTabStopsAutomationFeatureFlag(true);
-            setupTabStopRequirementRunner();
-
-            testSubject.start(needsRequirementRunner);
-
-            verifyAll();
-        });
-
         it('adds unique tab stop instances when processing tab stops requirement result', async () => {
             const requirementResult: AutomatedTabStopRequirementResult = {
                 requirementId: 'keyboard-navigation',
@@ -125,7 +80,6 @@ describe('TabStopsRequirementResultProcessor', () => {
                 html: 'new html',
             };
 
-            setTabStopsAutomationFeatureFlag(true);
             setupTabStopRequirementRunner();
             tabStopRequirementActionMessageCreatorMock
                 .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
@@ -134,7 +88,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
                 .verifiable(Times.once());
 
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
 
             // send 1 duplicate and 2 unique results
             requirementResultRunnerCallback(requirementResult);
@@ -147,8 +101,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
     describe('onStateChange', () => {
         beforeEach(() => {
-            setTabStopsAutomationFeatureFlag(true);
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
         });
 
         it('sends message when tabbing is completed', () => {
@@ -185,10 +138,6 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     describe('stop', () => {
-        beforeEach(() => {
-            setTabStopsAutomationFeatureFlag(true);
-        });
-
         it('runs only when not already in a stopped state', () => {
             const visualizationScanResultsStoreState = {
                 tabStops: {
@@ -206,7 +155,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
             testSubject.stop();
             testSubject.stop();
 
@@ -231,7 +180,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
                 .verifiable(Times.never());
 
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
             testSubject.stop();
             verifyAll();
         });
@@ -254,7 +203,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
                 .verifiable(Times.never());
 
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
             testSubject.stop();
             verifyAll();
         });
@@ -277,7 +226,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
-            testSubject.start(needsRequirementRunner);
+            testSubject.start();
             testSubject.stop();
             verifyAll();
         });
@@ -287,7 +236,6 @@ describe('TabStopsRequirementResultProcessor', () => {
         visualizationScanResultsStoreMock.verifyAll();
         tabStopRequirementRunnerMock.verifyAll();
         tabStopRequirementActionMessageCreatorMock.verifyAll();
-        featureFlagStoreMock.verifyAll();
     }
 
     function setupVisualizationScanResultStoreMock(
@@ -317,13 +265,5 @@ describe('TabStopsRequirementResultProcessor', () => {
             .callback(cb => (requirementResultRunnerCallback = cb))
             .verifiable(Times.once());
         tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.once());
-    }
-
-    function setTabStopsAutomationFeatureFlag(enabled: boolean) {
-        featureFlagStoreMock
-            .setup(m => m.getState())
-            .returns(() => ({
-                [FeatureFlags.tabStopsAutomation]: enabled,
-            }));
     }
 });

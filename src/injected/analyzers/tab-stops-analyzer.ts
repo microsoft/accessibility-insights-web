@@ -32,7 +32,6 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
-        private readonly needsRequirementRunner: boolean,
         private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
@@ -49,7 +48,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
 
         if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
             this.tabStopsDoneAnalyzingTracker.reset();
-            this.tabStopsRequirementResultProcessor.start(this.needsRequirementRunner);
+            if (this.tabStopsRequirementResultProcessor) {
+                this.tabStopsRequirementResultProcessor.start();
+            }
         }
 
         return this.emptyResults;

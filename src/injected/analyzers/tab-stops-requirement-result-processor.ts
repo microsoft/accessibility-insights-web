@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 import { BaseStore } from 'common/base-store';
-import { FeatureFlags } from 'common/feature-flags';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
@@ -13,45 +11,32 @@ import { isEqual } from 'lodash';
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
     private isStopped: boolean = true;
-    private needsRequirementRunner: boolean;
 
     constructor(
-        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
     ) {}
 
-    public start = (needsRequirementRunner: boolean): void => {
+    public start = (): void => {
         if (!this.isStopped) {
             return;
         }
 
-        this.needsRequirementRunner = needsRequirementRunner;
-
-        if (
-            this.needsRequirementRunner &&
-            this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true
-        ) {
-            this.seenTabStopRequirementResults = [];
-            this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
-            this.tabStopRequirementRunner.start();
-        }
+        this.seenTabStopRequirementResults = [];
+        this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
+        this.tabStopRequirementRunner.start();
 
         this.isStopped = false;
     };
 
     public listenToStore(): void {
         this.visualizationResultsStore.addChangedListener(this.onStateChange);
-        this.featureFlagStore.addChangedListener(this.onStateChange);
         this.onStateChange();
     }
 
     private onStateChange = (): void => {
-        const state = this.visualizationResultsStore.getState();
-        if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
-            this.stop();
-        }
+        this.stop();
     };
 
     public stop = (): void => {
@@ -59,9 +44,7 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
-        if (this.needsRequirementRunner) {
-            this.tabStopRequirementRunner.stop();
-        }
+        this.tabStopRequirementRunner.stop();
 
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {

@@ -330,7 +330,6 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const tabStopsRequirementResultProcessor = new TabStopsRequirementResultProcessor(
-            this.featureFlagStoreProxy,
             this.tabStopRequirementRunner,
             tabStopRequirementActionMessageCreator,
             this.visualizationScanResultStoreProxy,

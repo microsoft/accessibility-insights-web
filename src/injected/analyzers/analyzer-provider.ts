@@ -108,7 +108,6 @@ export class AnalyzerProvider {
     }
 
     public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        const needsRequirementRunner = false;
         return new TabStopsAnalyzer(
             config,
             this.tabStopsListener,
@@ -117,13 +116,11 @@ export class AnalyzerProvider {
             this.logger,
             this.featureFlagStore,
             this.tabStopsDoneAnalyzingTracker,
-            this.tabStopsRequirementResultProcessor,
-            needsRequirementRunner,
+            null,
         );
     }
 
     public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        const needsRequirementRunner = true;
         return new TabStopsAnalyzer(
             config,
             this.tabStopsListener,
@@ -133,7 +130,6 @@ export class AnalyzerProvider {
             this.featureFlagStore,
             this.tabStopsDoneAnalyzingTracker,
             this.tabStopsRequirementResultProcessor,
-            needsRequirementRunner,
         );
     }
 
