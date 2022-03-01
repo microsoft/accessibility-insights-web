@@ -333,6 +333,9 @@ export class SVGDrawer extends BaseDrawer {
         if (focusIndicator.tabIndexLabel) {
             focusIndicator.tabIndexLabel.remove();
         }
+        if (focusIndicator.failureLabel) {
+            focusIndicator.failureLabel.remove();
+        }
     }
 
     private getHighlightElements(): HTMLElement[] {
@@ -350,14 +353,8 @@ export class SVGDrawer extends BaseDrawer {
 
         each(this.failureItems, current => {
             if (current.shouldRedraw) {
-                const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
-
-                if (current.focusIndicator != null && errorFocusIndicator != null) {
-                    this.removeFocusIndicator(current.focusIndicator);
-                    current.focusIndicator.circle = errorFocusIndicator.circle;
-                } else {
-                    current.focusIndicator = errorFocusIndicator;
-                }
+                this.removeFocusIndicator(current.focusIndicator);
+                current.focusIndicator = this.createFocusIndicatorForFailure(current);
             }
         });
 

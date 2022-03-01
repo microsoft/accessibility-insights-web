@@ -13,5 +13,7 @@ export const TabStopShadowDomSelectors = {
     lines: 'line',
     opaqueEllipse: 'ellipse:not([fill="transparent"])',
     transparentEllipse: 'ellipse[fill="transparent"]',
+    dottedEllipse: 'ellipse[stroke-dasharray="2 2"]',
     text: 'text',
+    failureLabel: 'rect',
 };
