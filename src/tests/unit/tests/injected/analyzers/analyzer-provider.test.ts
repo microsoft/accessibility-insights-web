@@ -42,7 +42,6 @@ describe('AnalyzerProviderTests', () => {
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
-    let tabStopsRequirementResultProcessorForFocusTrackingMock: IMock<TabStopsRequirementResultProcessor>;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
 
     beforeEach(() => {
@@ -62,15 +61,12 @@ describe('AnalyzerProviderTests', () => {
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>();
         tabStopsRequirementResultProcessorMock = Mock.ofType<TabStopsRequirementResultProcessor>();
-        tabStopsRequirementResultProcessorForFocusTrackingMock =
-            Mock.ofType<TabStopsRequirementResultProcessor>();
         featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
 
         testObject = new AnalyzerProvider(
             tabStopsListener.object,
             tabStopsDoneAnalyzingTrackerMock.object,
             tabStopsRequirementResultProcessorMock.object,
-            tabStopsRequirementResultProcessorForFocusTrackingMock.object,
             featureFlagStoreMock.object,
             scopingStoreMock.object,
             sendMessageMock.object,
@@ -158,9 +154,6 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createFocusTrackingAnalyzer(config);
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
-        expect(openAnalyzer.tabStopsRequirementResultProcessor).toEqual(
-            tabStopsRequirementResultProcessorForFocusTrackingMock.object,
-        );
         validateFocusTrackingAnalyzer(openAnalyzer, config);
     });
 
@@ -176,9 +169,6 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createTabStopsAnalyzer(config);
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
-        expect(openAnalyzer.tabStopsRequirementResultProcessor).toEqual(
-            tabStopsRequirementResultProcessorMock.object,
-        );
         validateFocusTrackingAnalyzer(openAnalyzer, config);
     });
 
@@ -209,6 +199,9 @@ describe('AnalyzerProviderTests', () => {
         expect(openAnalyzer.tabStopListenerRunner).toEqual(tabStopsListener.object);
         expect(openAnalyzer.tabStopsDoneAnalyzingTracker).toEqual(
             tabStopsDoneAnalyzingTrackerMock.object,
+        );
+        expect(openAnalyzer.tabStopsRequirementResultProcessor).toEqual(
+            tabStopsRequirementResultProcessorMock.object,
         );
         expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openAnalyzer.config).toEqual(config);

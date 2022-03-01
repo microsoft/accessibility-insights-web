@@ -27,7 +27,6 @@ export class AnalyzerProvider {
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
-        private readonly tabStopsRequirementResultProcessorForFocusTracking: TabStopsRequirementResultProcessor,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
@@ -109,19 +108,7 @@ export class AnalyzerProvider {
     }
 
     public createFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new TabStopsAnalyzer(
-            config,
-            this.tabStopsListener,
-            this.sendMessageDelegate,
-            this.scanIncompleteWarningDetector,
-            this.logger,
-            this.featureFlagStore,
-            this.tabStopsDoneAnalyzingTracker,
-            this.tabStopsRequirementResultProcessorForFocusTracking,
-        );
-    }
-
-    public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        const needsRequirementRunner = false;
         return new TabStopsAnalyzer(
             config,
             this.tabStopsListener,
@@ -131,6 +118,22 @@ export class AnalyzerProvider {
             this.featureFlagStore,
             this.tabStopsDoneAnalyzingTracker,
             this.tabStopsRequirementResultProcessor,
+            needsRequirementRunner,
+        );
+    }
+
+    public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        const needsRequirementRunner = true;
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+            this.logger,
+            this.featureFlagStore,
+            this.tabStopsDoneAnalyzingTracker,
+            this.tabStopsRequirementResultProcessor,
+            needsRequirementRunner,
         );
     }
 

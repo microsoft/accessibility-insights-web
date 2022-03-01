@@ -13,6 +13,7 @@ import { isEqual } from 'lodash';
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
     private isStopped: boolean = true;
+    private needsRequirementRunner: boolean;
 
     constructor(
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
@@ -21,13 +22,15 @@ export class TabStopsRequirementResultProcessor {
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
     ) {}
 
-    public start = (): void => {
+    public start = (needsRequirementRunner: boolean): void => {
         if (!this.isStopped) {
             return;
         }
 
+        this.needsRequirementRunner = needsRequirementRunner;
+
         if (
-            this.tabStopRequirementRunner &&
+            this.needsRequirementRunner &&
             this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true
         ) {
             this.seenTabStopRequirementResults = [];
@@ -56,7 +59,7 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
-        if (this.tabStopRequirementRunner) {
+        if (this.needsRequirementRunner) {
             this.tabStopRequirementRunner.stop();
         }
 

@@ -20,6 +20,7 @@ describe('TabStopsRequirementResultProcessor', () => {
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let visualizationScanResultsStoreMock: IMock<VisualizationScanResultStore>;
+    let needsRequirementRunner;
     let testSubject: TabStopsRequirementResultProcessor;
 
     beforeEach(() => {
@@ -33,6 +34,7 @@ describe('TabStopsRequirementResultProcessor', () => {
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         visualizationScanResultsStoreMock = Mock.ofType<VisualizationScanResultStore>();
+        needsRequirementRunner = true;
 
         testSubject = new TabStopsRequirementResultProcessor(
             featureFlagStoreMock.object,
@@ -47,6 +49,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
         expect(openTestSubject.seenTabStopRequirementResults).toEqual([]);
         expect(openTestSubject.isStopped).toEqual(true);
+        expect(openTestSubject.needsRequirementRunner).toBeUndefined();
         expect(openTestSubject.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openTestSubject.tabStopRequirementRunner).toEqual(
             tabStopRequirementRunnerMock.object,
@@ -57,16 +60,14 @@ describe('TabStopsRequirementResultProcessor', () => {
         expect(openTestSubject.visualizationResultsStore).toEqual(
             visualizationScanResultsStoreMock.object,
         );
+
+        needsRequirementRunner = false;
+        testSubject.start(needsRequirementRunner);
+        expect(openTestSubject.needsRequirementRunner).toEqual(needsRequirementRunner);
     });
 
-    it('runs with null requirement runner', () => {
-        testSubject = new TabStopsRequirementResultProcessor(
-            featureFlagStoreMock.object,
-            null,
-            tabStopRequirementActionMessageCreatorMock.object,
-            visualizationScanResultsStoreMock.object,
-        );
-
+    it('runs with needsRequirementRunner = false', () => {
+        needsRequirementRunner = false;
         setTabStopsAutomationFeatureFlag(true);
         const visualizationScanResultsStoreState = {
             tabStops: {
@@ -79,7 +80,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
         tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.never());
         tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
-        testSubject.start();
+        testSubject.start(needsRequirementRunner);
         testSubject.stop();
 
         verifyAll();
@@ -107,7 +108,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             setTabStopsAutomationFeatureFlag(true);
             setupTabStopRequirementRunner();
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
 
             verifyAll();
         });
@@ -133,7 +134,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
                 .verifiable(Times.once());
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
 
             // send 1 duplicate and 2 unique results
             requirementResultRunnerCallback(requirementResult);
@@ -147,7 +148,7 @@ describe('TabStopsRequirementResultProcessor', () => {
     describe('onStateChange', () => {
         beforeEach(() => {
             setTabStopsAutomationFeatureFlag(true);
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
         });
 
         it('sends message when tabbing is completed', () => {
@@ -205,7 +206,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
             testSubject.stop();
             testSubject.stop();
 
@@ -230,7 +231,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
                 .verifiable(Times.never());
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
             testSubject.stop();
             verifyAll();
         });
@@ -253,7 +254,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
                 .verifiable(Times.never());
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
             testSubject.stop();
             verifyAll();
         });
@@ -276,7 +277,7 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(t => t.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
-            testSubject.start();
+            testSubject.start(needsRequirementRunner);
             testSubject.stop();
             verifyAll();
         });

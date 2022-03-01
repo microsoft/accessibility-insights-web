@@ -80,6 +80,7 @@ describe('TabStopsAnalyzer', () => {
             featureFlagStoreMock.object,
             tabStopsDoneAnalyzingTrackerMock.object,
             tabStopsRequirementResultProcessorMock.object,
+            true,
             debounceFaker.debounce,
         );
         visualizationTypeStub = -1 as VisualizationType;
