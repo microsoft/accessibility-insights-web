@@ -12,7 +12,7 @@ import { isEqual } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
-    private isStopped: boolean = false;
+    private isStopped: boolean = true;
 
     constructor(
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
@@ -27,8 +27,6 @@ export class TabStopsRequirementResultProcessor {
         if (!this.isStopped) {
             return;
         }
-
-        this.seenTabStopRequirementResults = [];
 
         if (
             this.tabStopRequirementRunner &&
