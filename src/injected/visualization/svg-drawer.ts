@@ -353,8 +353,16 @@ export class SVGDrawer extends BaseDrawer {
 
         each(this.failureItems, current => {
             if (current.shouldRedraw) {
-                this.removeFocusIndicator(current.focusIndicator);
-                current.focusIndicator = this.createFocusIndicatorForFailure(current);
+                const errorFocusIndicator = this.createFocusIndicatorForFailure(current);
+
+                if (current.focusIndicator != null && errorFocusIndicator != null) {
+                    this.removeFocusIndicator(current.focusIndicator);
+                    current.focusIndicator.circle = errorFocusIndicator.circle;
+                    current.focusIndicator.failureLabel = errorFocusIndicator.failureLabel;
+                    current.focusIndicator.tabIndexLabel = errorFocusIndicator.tabIndexLabel;
+                } else {
+                    current.focusIndicator = errorFocusIndicator;
+                }
             }
         });
 
