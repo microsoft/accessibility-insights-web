@@ -19,9 +19,7 @@ export class TabStopsRequirementResultProcessor {
         private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
-    ) {
-        this.visualizationResultsStore.addChangedListener(this.onStateChange);
-    }
+    ) {}
 
     public start = (): void => {
         if (!this.isStopped) {
@@ -39,6 +37,12 @@ export class TabStopsRequirementResultProcessor {
 
         this.isStopped = false;
     };
+
+    public listenToStore(): void {
+        this.visualizationResultsStore.addChangedListener(this.onStateChange);
+        this.featureFlagStore.addChangedListener(this.onStateChange);
+        this.onStateChange();
+    }
 
     private onStateChange = (): void => {
         const state = this.visualizationResultsStore.getState();

@@ -42,43 +42,82 @@ describe('TabStopsRequirementResultProcessor', () => {
         );
     });
 
-    it('adds unique tab stop instances when processing tab stops requirement result', async () => {
-        const requirementResult: AutomatedTabStopRequirementResult = {
-            requirementId: 'keyboard-navigation',
-            description: 'some description',
-            selector: ['some', 'selector'],
-            html: 'some html',
-        } as AutomatedTabStopRequirementResult;
-        const secondRequirementResult = {
-            ...requirementResult,
-            html: 'new html',
-        };
-
-        setTabStopsAutomationFeatureFlag(true);
-        setupTabStopRequirementRunner();
-        tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
-            .verifiable(Times.once());
-        tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
-            .verifiable(Times.once());
-
-        testSubject.start();
-
-        // send 1 duplicate and 2 unique results
-        requirementResultRunnerCallback(requirementResult);
-        requirementResultRunnerCallback(requirementResult);
-        requirementResultRunnerCallback(secondRequirementResult);
-
-        verifyAll();
-    });
-
     describe('start', () => {
         it('starts requirement runner when feature flag is on', () => {
             setTabStopsAutomationFeatureFlag(true);
             setupTabStopRequirementRunner();
 
             testSubject.start();
+
+            verifyAll();
+        });
+
+        it('adds unique tab stop instances when processing tab stops requirement result', async () => {
+            const requirementResult: AutomatedTabStopRequirementResult = {
+                requirementId: 'keyboard-navigation',
+                description: 'some description',
+                selector: ['some', 'selector'],
+                html: 'some html',
+            } as AutomatedTabStopRequirementResult;
+            const secondRequirementResult = {
+                ...requirementResult,
+                html: 'new html',
+            };
+
+            setTabStopsAutomationFeatureFlag(true);
+            setupTabStopRequirementRunner();
+            tabStopRequirementActionMessageCreatorMock
+                .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
+                .verifiable(Times.once());
+            tabStopRequirementActionMessageCreatorMock
+                .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
+                .verifiable(Times.once());
+
+            testSubject.start();
+
+            // send 1 duplicate and 2 unique results
+            requirementResultRunnerCallback(requirementResult);
+            requirementResultRunnerCallback(requirementResult);
+            requirementResultRunnerCallback(secondRequirementResult);
+
+            verifyAll();
+        });
+    });
+
+    describe('onStateChange', () => {
+        beforeEach(() => {
+            setTabStopsAutomationFeatureFlag(true);
+            testSubject.start();
+        });
+
+        it('sends message when tabbing is completed', () => {
+            const visualizationScanResultsStoreState = {
+                tabStops: { tabbingCompleted: true, needToCollectTabbingResults: true },
+            } as VisualizationScanResultData;
+
+            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+            tabStopRequirementActionMessageCreatorMock
+                .setup(m => m.updateNeedToCollectTabbingResults(false))
+                .verifiable(Times.once());
+
+            const visualizationResultsListener = setupTabbingStoreData();
+            visualizationResultsListener();
+
+            verifyAll();
+        });
+
+        it('does not send message when tabbing is not completed', () => {
+            tabStopRequirementActionMessageCreatorMock
+                .setup(m => m.updateNeedToCollectTabbingResults(It.isAny()))
+                .verifiable(Times.never());
+
+            const visualizationScanResultsStoreState = {
+                tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
+            } as VisualizationScanResultData;
+
+            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+            const visualizationResultsListener = setupTabbingStoreData();
+            visualizationResultsListener();
 
             verifyAll();
         });
@@ -100,10 +139,10 @@ describe('TabStopsRequirementResultProcessor', () => {
             setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
             tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
             tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
+                .setup(t => t.automatedTabbingResultsCompleted([]))
                 .verifiable(Times.once());
             tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
+                .setup(t => t.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
             testSubject.start();
@@ -159,11 +198,26 @@ describe('TabStopsRequirementResultProcessor', () => {
             verifyAll();
         });
 
-        it('stops the requirement runner and sends tabbing results completed message', () => {
-            setupTabStopRequirementRunner();
-            requirementResultRunnerCallback({} as AutomatedTabStopRequirementResult);
+        it('stops the requirement runner and sends tabbing results completed message when tabbing is completed', () => {
+            const visualizationScanResultsStoreState = {
+                tabStops: {
+                    tabbingCompleted: true,
+                    needToCollectTabbingResults: true,
+                },
+            } as VisualizationScanResultData;
+
+            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+
+            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
+            tabStopRequirementActionMessageCreatorMock
+                .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
+                .verifiable(Times.once());
+            tabStopRequirementActionMessageCreatorMock
+                .setup(t => t.updateNeedToCollectTabbingResults(false))
+                .verifiable(Times.once());
 
             testSubject.start();
+            testSubject.stop();
             verifyAll();
         });
     });
@@ -180,7 +234,19 @@ describe('TabStopsRequirementResultProcessor', () => {
         visualizationScanResultsStoreMock
             .setup(sm => sm.getState())
             .returns(() => visualizationScanResultsStoreState)
-            .verifiable(Times.once());
+            .verifiable(Times.atLeastOnce());
+    }
+
+    function setupTabbingStoreData(): () => void {
+        let visualizationResultsListener;
+        visualizationScanResultsStoreMock
+            .setup(m => m.addChangedListener(It.isAny()))
+            .returns(listener => {
+                visualizationResultsListener = listener;
+            });
+
+        testSubject.listenToStore();
+        return visualizationResultsListener;
     }
 
     function setupTabStopRequirementRunner(): void {
