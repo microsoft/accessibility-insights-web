@@ -7,6 +7,7 @@ import {
     SelectorToTabStopVisualizationMap,
     SelectorToVisualizationMap,
 } from 'injected/selector-to-visualization-map';
+import { TabbedItemType } from 'injected/visualization/tabbed-item';
 import { forOwn } from 'lodash';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
@@ -14,6 +15,10 @@ export const GetVisualizationInstancesForTabStops = (
     tabStopScanResultData: TabStopsScanResultData,
 ): SelectorToVisualizationMap => {
     const selectorToVisualizationInstanceMap: SelectorToTabStopVisualizationMap = {};
+
+    if (!tabStopScanResultData.tabbedElements) {
+        return selectorToVisualizationInstanceMap;
+    }
 
     tabStopScanResultData.tabbedElements.forEach(element => {
         const instance: TabStopVisualizationInstance = {
@@ -37,6 +42,11 @@ export const GetVisualizationInstancesForTabStops = (
                 return;
             }
 
+            const itemType =
+                requirementId === 'keyboard-navigation'
+                    ? TabbedItemType.MissingItem
+                    : TabbedItemType.ErroredItem;
+
             const selector = instance.selector.join(';');
 
             if (selectorToVisualizationInstanceMap[selector] != null) {
@@ -44,6 +54,8 @@ export const GetVisualizationInstancesForTabStops = (
                 selectorToVisualizationInstanceMap[selector].requirementResults[requirementId] = {
                     instanceId: instance.id,
                 };
+                selectorToVisualizationInstanceMap[selector].itemType = itemType;
+
                 return;
             }
 
@@ -58,6 +70,7 @@ export const GetVisualizationInstancesForTabStops = (
                         instanceId: instance.id,
                     },
                 },
+                itemType,
             };
 
             selectorToVisualizationInstanceMap[selector] = newInstance;
