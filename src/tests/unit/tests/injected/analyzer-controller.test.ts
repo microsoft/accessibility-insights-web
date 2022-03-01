@@ -4,9 +4,7 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -41,7 +39,6 @@ describe('AnalyzerControllerTests', () => {
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationStoreState: VisualizationStoreData;
-    let visualizationScanResultsStoreState: VisualizationScanResultData;
     let featureFlagStoreState: FeatureFlagStoreData;
     let scopingStoreState: ScopingStoreData;
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
@@ -98,7 +95,6 @@ describe('AnalyzerControllerTests', () => {
 
         featureFlagStoreState = {};
         visualizationStoreState = null;
-        visualizationScanResultsStoreState = null;
         scopingStoreState = null;
 
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {

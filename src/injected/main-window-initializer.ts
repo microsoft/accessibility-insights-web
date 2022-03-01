@@ -336,8 +336,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationScanResultStoreProxy,
         );
 
-        tabStopsRequirementResultProcessor.listenToStore();
-
         const tabStopsRequirementResultProcessorForFocusTracking =
             new TabStopsRequirementResultProcessor(
                 this.featureFlagStoreProxy,
@@ -345,8 +343,6 @@ export class MainWindowInitializer extends WindowInitializer {
                 tabStopRequirementActionMessageCreator,
                 this.visualizationScanResultStoreProxy,
             );
-
-        tabStopsRequirementResultProcessorForFocusTracking.listenToStore();
 
         const analyzerProvider = new AnalyzerProvider(
             this.manualTabStopListener,
@@ -380,6 +376,8 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         this.analyzerController.listenToStore();
+        tabStopsRequirementResultProcessor.listenToStore();
+        tabStopsRequirementResultProcessorForFocusTracking.listenToStore();
 
         const htmlElementUtils = new HTMLElementUtils();
         const shadowUtils = new ShadowUtils(htmlElementUtils);
