@@ -36,6 +36,8 @@ export class TabStopsRequirementResultProcessor {
     }
 
     private onStateChange = (): void => {
+        // Checking state here rather than in stop(), to ensure results are recorded when stop() is
+        // called during teardown, when tabbing may not have been completed (i.e. user disables toggle)
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
             this.stop();
