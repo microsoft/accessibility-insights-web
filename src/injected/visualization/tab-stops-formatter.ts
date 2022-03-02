@@ -63,6 +63,11 @@ export class TabStopsFormatter implements Formatter {
                 textAnchor: 'middle',
                 showTabIndexedLabel: true,
             },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
+            },
             line: {
                 stroke: '#777777',
                 strokeWidth: '2',
