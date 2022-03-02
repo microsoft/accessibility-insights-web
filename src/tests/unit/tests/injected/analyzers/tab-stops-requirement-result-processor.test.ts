@@ -54,6 +54,12 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     it('listenToStore adds expected listeners', () => {
+        const visualizationScanResultsStoreState = {
+            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
+        } as VisualizationScanResultData;
+
+        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
+
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
@@ -62,36 +68,34 @@ describe('TabStopsRequirementResultProcessor', () => {
         verifyAll();
     });
 
-    describe('start', () => {
-        it('adds unique tab stop instances when processing tab stops requirement result', async () => {
-            const requirementResult: AutomatedTabStopRequirementResult = {
-                requirementId: 'keyboard-navigation',
-                description: 'some description',
-                selector: ['some', 'selector'],
-                html: 'some html',
-            } as AutomatedTabStopRequirementResult;
-            const secondRequirementResult = {
-                ...requirementResult,
-                html: 'new html',
-            };
+    it('start adds unique tab stop instances when processing tab stops requirement result', async () => {
+        const requirementResult: AutomatedTabStopRequirementResult = {
+            requirementId: 'keyboard-navigation',
+            description: 'some description',
+            selector: ['some', 'selector'],
+            html: 'some html',
+        } as AutomatedTabStopRequirementResult;
+        const secondRequirementResult = {
+            ...requirementResult,
+            html: 'new html',
+        };
 
-            setupTabStopRequirementRunner();
-            tabStopRequirementActionMessageCreatorMock
-                .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
-                .verifiable(Times.once());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
-                .verifiable(Times.once());
+        setupTabStopRequirementRunner();
+        tabStopRequirementActionMessageCreatorMock
+            .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
+            .verifiable(Times.once());
+        tabStopRequirementActionMessageCreatorMock
+            .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
+            .verifiable(Times.once());
 
-            testSubject.start();
+        testSubject.start();
 
-            // send 1 duplicate and 2 unique results
-            requirementResultRunnerCallback(requirementResult);
-            requirementResultRunnerCallback(requirementResult);
-            requirementResultRunnerCallback(secondRequirementResult);
+        // send 1 duplicate and 2 unique results
+        requirementResultRunnerCallback(requirementResult);
+        requirementResultRunnerCallback(requirementResult);
+        requirementResultRunnerCallback(secondRequirementResult);
 
-            verifyAll();
-        });
+        verifyAll();
     });
 
     describe('onStateChange', () => {
@@ -132,99 +136,20 @@ describe('TabStopsRequirementResultProcessor', () => {
         });
     });
 
-    describe('stop', () => {
-        it('runs only when not already in a stopped state', () => {
-            const visualizationScanResultsStoreState = {
-                tabStops: {
-                    tabbingCompleted: true,
-                    needToCollectTabbingResults: true,
-                },
-            } as VisualizationScanResultData;
+    it('stop runs only when not already in a stopped state', () => {
+        tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
+        tabStopRequirementActionMessageCreatorMock
+            .setup(t => t.automatedTabbingResultsCompleted([]))
+            .verifiable(Times.once());
+        tabStopRequirementActionMessageCreatorMock
+            .setup(t => t.updateNeedToCollectTabbingResults(false))
+            .verifiable(Times.once());
 
-            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted([]))
-                .verifiable(Times.once());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.updateNeedToCollectTabbingResults(false))
-                .verifiable(Times.once());
+        testSubject.start();
+        testSubject.stop();
+        testSubject.stop();
 
-            testSubject.start();
-            testSubject.stop();
-            testSubject.stop();
-
-            verifyAll();
-        });
-
-        it('does not process results or send tabbing results message if tabbing is not completed', () => {
-            const visualizationScanResultsStoreState = {
-                tabStops: {
-                    tabbingCompleted: false,
-                    needToCollectTabbingResults: true,
-                },
-            } as VisualizationScanResultData;
-
-            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
-                .verifiable(Times.never());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
-                .verifiable(Times.never());
-
-            testSubject.start();
-            testSubject.stop();
-            verifyAll();
-        });
-
-        it('does not process results or send tabbing results message if needToCollectTabbingResults is false', () => {
-            const visualizationScanResultsStoreState = {
-                tabStops: {
-                    tabbingCompleted: true,
-                    needToCollectTabbingResults: false,
-                },
-            } as VisualizationScanResultData;
-
-            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
-                .verifiable(Times.never());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.updateNeedToCollectTabbingResults(It.isAny()))
-                .verifiable(Times.never());
-
-            testSubject.start();
-            testSubject.stop();
-            verifyAll();
-        });
-
-        it('stops the requirement runner and sends tabbing results completed message when tabbing is completed', () => {
-            const visualizationScanResultsStoreState = {
-                tabStops: {
-                    tabbingCompleted: true,
-                    needToCollectTabbingResults: true,
-                },
-            } as VisualizationScanResultData;
-
-            setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.automatedTabbingResultsCompleted([]))
-                .verifiable(Times.once());
-            tabStopRequirementActionMessageCreatorMock
-                .setup(t => t.updateNeedToCollectTabbingResults(false))
-                .verifiable(Times.once());
-
-            testSubject.start();
-            testSubject.stop();
-            verifyAll();
-        });
+        verifyAll();
     });
 
     function verifyAll(): void {

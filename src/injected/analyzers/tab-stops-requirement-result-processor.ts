@@ -36,7 +36,10 @@ export class TabStopsRequirementResultProcessor {
     }
 
     private onStateChange = (): void => {
-        this.stop();
+        const state = this.visualizationResultsStore.getState();
+        if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
+            this.stop();
+        }
     };
 
     public stop = (): void => {
@@ -44,15 +47,12 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
-        const state = this.visualizationResultsStore.getState();
-        if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
-            this.tabStopRequirementRunner.stop();
-            this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
-                this.seenTabStopRequirementResults,
-            );
-            this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
-            this.isStopped = true;
-        }
+        this.tabStopRequirementRunner.stop();
+        this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
+            this.seenTabStopRequirementResults,
+        );
+        this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+        this.isStopped = true;
     };
 
     private processTabStopRequirementResults = (
