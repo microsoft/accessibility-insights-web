@@ -54,11 +54,6 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     it('listenToStore adds expected listeners', () => {
-        const visualizationScanResultsStoreState = {
-            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
-        } as VisualizationScanResultData;
-
-        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
@@ -162,7 +157,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             verifyAll();
         });
 
-        it('does not send tabbing results message if tabbing is not completed', () => {
+        it('does not process results or send tabbing results message if tabbing is not completed', () => {
             const visualizationScanResultsStoreState = {
                 tabStops: {
                     tabbingCompleted: false,
@@ -172,7 +167,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
             setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
 
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
+            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
             tabStopRequirementActionMessageCreatorMock
                 .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
                 .verifiable(Times.never());
@@ -185,7 +180,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             verifyAll();
         });
 
-        it('does not send tabbing results message if needToCollectTabbingResults is false', () => {
+        it('does not process results or send tabbing results message if needToCollectTabbingResults is false', () => {
             const visualizationScanResultsStoreState = {
                 tabStops: {
                     tabbingCompleted: true,
@@ -195,7 +190,7 @@ describe('TabStopsRequirementResultProcessor', () => {
 
             setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
 
-            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
+            tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.never());
             tabStopRequirementActionMessageCreatorMock
                 .setup(t => t.automatedTabbingResultsCompleted(It.isAny()))
                 .verifiable(Times.never());

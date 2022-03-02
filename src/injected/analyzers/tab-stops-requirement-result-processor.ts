@@ -44,18 +44,15 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
-        this.tabStopRequirementRunner.stop();
-
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
+            this.tabStopRequirementRunner.stop();
             this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
                 this.seenTabStopRequirementResults,
             );
-
             this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+            this.isStopped = true;
         }
-
-        this.isStopped = true;
     };
 
     private processTabStopRequirementResults = (
