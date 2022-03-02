@@ -5,7 +5,10 @@ import {
     detailsViewSelectors,
     tabStopsSelectors,
 } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { TabStopShadowDomSelectors } from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
+import {
+    TabStopShadowDomSelectors,
+    TargetPageInjectedComponentSelectors,
+} from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
 import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
@@ -65,9 +68,11 @@ describe('Automated TabStops Results', () => {
     test('Detect and display unreachable elements failures', async () => {
         await openTabStopsPage('tab-stops/unreachable.html');
 
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 5; i++) {
             await targetPage.keyPress('Tab');
             await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+            // Wait longer since this is a keyboard trap
+            await targetPage.waitForTimeout(500);
         }
 
         await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
@@ -125,6 +130,10 @@ describe('Automated TabStops Results', () => {
         await detailsViewPage.openTabStopsPage(detailsViewPage);
         await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, true);
         await targetPage.waitForShadowRoot();
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
     }
 
     async function verifyTargetPageVisualization(
