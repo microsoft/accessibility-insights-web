@@ -23,17 +23,14 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
+        this.visualizationResultsStore.addChangedListener(this.onStateChange);
+
         this.seenTabStopRequirementResults = [];
         this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
         this.tabStopRequirementRunner.start();
 
         this.isStopped = false;
     };
-
-    public listenToStore(): void {
-        this.visualizationResultsStore.addChangedListener(this.onStateChange);
-        this.onStateChange();
-    }
 
     private onStateChange = (): void => {
         // Checking state here rather than in stop(), to ensure results are recorded when stop() is
@@ -54,6 +51,9 @@ export class TabStopsRequirementResultProcessor {
             this.seenTabStopRequirementResults,
         );
         this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+
+        this.visualizationResultsStore.removeChangedListener(this.onStateChange);
+
         this.isStopped = true;
     };
 

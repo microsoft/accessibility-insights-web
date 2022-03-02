@@ -53,18 +53,13 @@ describe('TabStopsRequirementResultProcessor', () => {
         );
     });
 
-    it('listenToStore adds expected listeners', () => {
-        const visualizationScanResultsStoreState = {
-            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
-        } as VisualizationScanResultData;
-
-        setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-
+    it('start adds expected listener', () => {
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
 
-        testSubject.listenToStore();
+        testSubject.start();
+
         verifyAll();
     });
 
@@ -99,10 +94,6 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     describe('onStateChange', () => {
-        beforeEach(() => {
-            testSubject.start();
-        });
-
         it('sends message when tabbing is completed', () => {
             const visualizationScanResultsStoreState = {
                 tabStops: { tabbingCompleted: true, needToCollectTabbingResults: true },
@@ -113,23 +104,39 @@ describe('TabStopsRequirementResultProcessor', () => {
                 .setup(m => m.updateNeedToCollectTabbingResults(false))
                 .verifiable(Times.once());
 
-            const visualizationResultsListener = setupTabbingStoreData();
+            let visualizationResultsListener;
+            visualizationScanResultsStoreMock
+                .setup(m => m.addChangedListener(It.is(isFunction)))
+                .callback(listener => {
+                    visualizationResultsListener = listener;
+                })
+                .verifiable(Times.once());
+
+            testSubject.start();
             visualizationResultsListener();
 
             verifyAll();
         });
 
         it('does not send message when tabbing is not completed', () => {
-            tabStopRequirementActionMessageCreatorMock
-                .setup(m => m.updateNeedToCollectTabbingResults(It.isAny()))
-                .verifiable(Times.never());
-
             const visualizationScanResultsStoreState = {
                 tabStops: { tabbingCompleted: false, needToCollectTabbingResults: false },
             } as VisualizationScanResultData;
 
             setupVisualizationScanResultStoreMock(visualizationScanResultsStoreState);
-            const visualizationResultsListener = setupTabbingStoreData();
+            tabStopRequirementActionMessageCreatorMock
+                .setup(m => m.updateNeedToCollectTabbingResults(It.isAny()))
+                .verifiable(Times.never());
+
+            let visualizationResultsListener;
+            visualizationScanResultsStoreMock
+                .setup(m => m.addChangedListener(It.is(isFunction)))
+                .returns(listener => {
+                    visualizationResultsListener = listener;
+                })
+                .verifiable(Times.once());
+
+            testSubject.start();
             visualizationResultsListener();
 
             verifyAll();
@@ -143,6 +150,9 @@ describe('TabStopsRequirementResultProcessor', () => {
             .verifiable(Times.once());
         tabStopRequirementActionMessageCreatorMock
             .setup(t => t.updateNeedToCollectTabbingResults(false))
+            .verifiable(Times.once());
+        visualizationScanResultsStoreMock
+            .setup(m => m.removeChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
 
         testSubject.start();
@@ -165,18 +175,6 @@ describe('TabStopsRequirementResultProcessor', () => {
             .setup(sm => sm.getState())
             .returns(() => visualizationScanResultsStoreState)
             .verifiable(Times.atLeastOnce());
-    }
-
-    function setupTabbingStoreData(): () => void {
-        let visualizationResultsListener;
-        visualizationScanResultsStoreMock
-            .setup(m => m.addChangedListener(It.isAny()))
-            .returns(listener => {
-                visualizationResultsListener = listener;
-            });
-
-        testSubject.listenToStore();
-        return visualizationResultsListener;
     }
 
     function setupTabStopRequirementRunner(): void {

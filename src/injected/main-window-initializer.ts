@@ -366,7 +366,6 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         this.analyzerController.listenToStore();
-        tabStopsRequirementResultProcessor.listenToStore();
 
         const htmlElementUtils = new HTMLElementUtils();
         const shadowUtils = new ShadowUtils(htmlElementUtils);
