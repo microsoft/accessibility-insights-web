@@ -5,24 +5,17 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
   className="gettingStartedView"
 >
   <div>
-    <h1
-      className="gettingStartedHeader"
-    >
-      <span
-        className="gettingStartedHeaderTitle"
-      >
-        some title
-      </span>
-      <ContentLink
-        deps={Object {}}
-        iconName="info"
-        reference={
-          Object {
-            "pageTitle": "some page title",
-          }
+    <HeaderWithContent Link
+      deps={Object {}}
+      guidance={
+        Object {
+          "pageTitle": "some page title",
         }
-      />
-    </h1>
+      }
+      headerClass="gettingStartedHeader"
+      headingTitle="some title"
+      headingTitleClassName="gettingStartedHeaderTitle"
+    />
     <h2
       className="gettingStartedTitle"
     >
