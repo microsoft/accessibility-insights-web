@@ -4,7 +4,7 @@ exports[`HeadingWithContentLink render null when reference is not defined 1`] = 
 "<div className=\\"headerWithContentLink undefined\\">
   <h1>
     <span className={[undefined]}>
-      heading undefined
+      heading
     </span>
   </h1>
   <ContentLink deps={{...}} reference={{...}} iconName=\\"info\\" />
@@ -15,7 +15,7 @@ exports[`HeadingWithContentLink renders with both text and icon 1`] = `
 "<div className=\\"headerWithContentLink undefined\\">
   <h1>
     <span className={[undefined]}>
-      heading undefined
+      heading
     </span>
   </h1>
   <ContentLink deps={{...}} reference=\\"for/testing\\" iconName=\\"info\\" />

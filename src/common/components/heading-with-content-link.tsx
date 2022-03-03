@@ -18,12 +18,13 @@ export interface HeaderWithContentLinkProps {
 export const HeadingWithContentLink = NamedFC<HeaderWithContentLinkProps>(
     'HeadingWithContentLink',
     props => {
+        const finalHeading = props.secondaryText
+            ? `${props.headingTitle} ${props.secondaryText}`
+            : props.headingTitle;
         return (
             <div className={`${styles.headerWithContentLink} ${props.headerClass}`}>
                 <h1>
-                    <span
-                        className={props.headingTitleClassName}
-                    >{`${props.headingTitle} ${props.secondaryText}`}</span>
+                    <span className={props.headingTitleClassName}>{finalHeading}</span>
                 </h1>
                 <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
             </div>
