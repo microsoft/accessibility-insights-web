@@ -5,7 +5,7 @@ import { Toggle } from '@fluentui/react';
 import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
-import { HeaderWithContentLink } from 'common/components/header-with-content-link';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { FeatureFlags } from 'common/feature-flags';
@@ -146,7 +146,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
 
         const tabStopsTestViewContents = (
             <>
-                <HeaderWithContentLink
+                <HeadingWithContentLink
                     deps={props.deps}
                     headingTitleClassName={styles.tabStopsTestViewHeader}
                     headingTitle={displayableData.title}

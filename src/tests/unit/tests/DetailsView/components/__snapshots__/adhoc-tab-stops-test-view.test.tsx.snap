@@ -12,7 +12,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
       userConfigurationStoreData="stub-user-configuration-store-data"
     >
       <React.Fragment>
-        <HeaderWithContent Link
+        <HeadingWithContentLink
           deps="stub-deps"
           guidance="stub-guidance"
           headingTitle="test title"
@@ -140,7 +140,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       userConfigurationStoreData="stub-user-configuration-store-data"
     >
       <React.Fragment>
-        <HeaderWithContent Link
+        <HeadingWithContentLink
           deps="stub-deps"
           headingTitle="test title"
           headingTitleClassName="tabStopsTestViewHeader"

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HeaderWithContentLink } from 'common/components/header-with-content-link';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import * as React from 'react';
 import { ContentInclude, ContentIncludeDeps } from 'views/content/content-include';
@@ -27,7 +27,7 @@ export const StaticContentDetailsView = NamedFC<StaticContentDetailsViewProps>(
     props => {
         return (
             <div className={styles.staticContentInDetailsView}>
-                <HeaderWithContentLink
+                <HeadingWithContentLink
                     deps={props.deps}
                     headingTitle={props.title}
                     secondaryText={` ${props.stepsText} `}

@@ -5,7 +5,7 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
   className="gettingStartedView"
 >
   <div>
-    <HeaderWithContent Link
+    <HeadingWithContentLink
       deps={Object {}}
       guidance={
         Object {
