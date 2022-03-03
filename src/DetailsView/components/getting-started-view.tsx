@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessment } from 'assessments/types/iassessment';
+import { HeaderWithContentLink } from 'common/components/header-with-content-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'DetailsView/components/getting-started-view.scss';
 import {
@@ -8,7 +9,7 @@ import {
     NextRequirementButtonDeps,
 } from 'DetailsView/components/next-requirement-button';
 import * as React from 'react';
-import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentLinkDeps } from 'views/content/content-link';
 
 export type GettingStartedViewDeps = ContentLinkDeps & NextRequirementButtonDeps;
 export interface GettingStartedViewProps {
@@ -26,10 +27,13 @@ export const GettingStartedView = NamedFC<GettingStartedViewProps>(
         return (
             <div className={styles.gettingStartedView}>
                 <div>
-                    <h1 className={styles.gettingStartedHeader}>
-                        <span className={styles.gettingStartedHeaderTitle}>{title}</span>
-                        <ContentLink deps={deps} reference={guidance} iconName="info" />
-                    </h1>
+                    <HeaderWithContentLink
+                        deps={deps}
+                        headerClass={styles.gettingStartedHeader}
+                        headingTitleClassName={styles.gettingStartedHeaderTitle}
+                        headingTitle={title}
+                        guidance={guidance}
+                    />
                     <h2 className={styles.gettingStartedTitle}>Getting started</h2>
                     {gettingStarted}
                 </div>
