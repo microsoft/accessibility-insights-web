@@ -12,15 +12,13 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
       userConfigurationStoreData="stub-user-configuration-store-data"
     >
       <React.Fragment>
-        <h1>
-          test title
-           Step 0 of 3 
-          <ContentLink
-            deps="stub-deps"
-            iconName="info"
-            reference="stub-guidance"
-          />
-        </h1>
+        <HeaderWithContent Link
+          deps="stub-deps"
+          guidance="stub-guidance"
+          headingTitle="test title"
+          headingTitleClassName="tabStopsTestViewHeader"
+          secondaryText=" Step 0 of 3 "
+        />
         <p>
           <Emphasis>
             Note: this test requires you to use a keyboard and to visually identify interactive elements.
@@ -69,11 +67,13 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           }
           contentClassName="requirementInstructions"
           header={
-            <h2
+            <span
+              aria-level={2}
               className="requirementHowToTestHeader"
+              role="heading"
             >
               How to test
-            </h2>
+            </span>
           }
         />
         <h2
@@ -140,14 +140,12 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       userConfigurationStoreData="stub-user-configuration-store-data"
     >
       <React.Fragment>
-        <h1>
-          test title
-           Step 0 of 3 
-          <ContentLink
-            deps="stub-deps"
-            iconName="info"
-          />
-        </h1>
+        <HeaderWithContent Link
+          deps="stub-deps"
+          headingTitle="test title"
+          headingTitleClassName="tabStopsTestViewHeader"
+          secondaryText=" Step 0 of 3 "
+        />
         <p>
           <Emphasis>
             Note: this test requires you to use a keyboard and to visually identify interactive elements.
@@ -196,11 +194,13 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           }
           contentClassName="requirementInstructions"
           header={
-            <h2
+            <span
+              aria-level={2}
               className="requirementHowToTestHeader"
+              role="heading"
             >
               How to test
-            </h2>
+            </span>
           }
         />
         <h2
