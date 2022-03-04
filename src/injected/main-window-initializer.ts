@@ -19,6 +19,7 @@ import { getCheckResolution, getFixResolution } from 'injected/adapters/resoluti
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -328,11 +329,16 @@ export class MainWindowInitializer extends WindowInitializer {
             tabStopRequirementActionMessageCreator,
         );
 
-        const analyzerProvider = new AnalyzerProvider(
-            this.manualTabStopListener,
+        const tabStopsRequirementResultProcessor = new TabStopsRequirementResultProcessor(
             this.tabStopRequirementRunner,
             tabStopRequirementActionMessageCreator,
+            this.visualizationScanResultStoreProxy,
+        );
+
+        const analyzerProvider = new AnalyzerProvider(
+            this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
+            tabStopsRequirementResultProcessor,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
@@ -351,14 +357,12 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
-            this.visualizationScanResultStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
             Assessments,
-            tabStopRequirementActionMessageCreator,
         );
 
         this.analyzerController.listenToStore();

@@ -19,12 +19,12 @@
         }
 
         :global(.rule-details-id) {
-            font-family: $semiBoldFontFamily;
+            font-weight: $fontWeightSemiBold;
             color: $primary-text;
             word-break: break-all;
 
             a {
-                font-family: $semiBoldFontFamily;
+                font-weight: $fontWeightSemiBold;
                 color: $primary-text !important;
             }
         }

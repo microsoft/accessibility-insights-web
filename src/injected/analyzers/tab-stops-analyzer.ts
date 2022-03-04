@@ -6,13 +6,12 @@ import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
-import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
-import { debounce, DebouncedFunc, isEqual } from 'lodash';
+import { debounce, DebouncedFunc } from 'lodash';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 
 export interface ProgressResult<T> {
@@ -24,8 +23,6 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private pendingTabbedElements: TabStopEvent[] = [];
     protected config: FocusAnalyzerConfiguration;
 
-    private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
-
     constructor(
         config: FocusAnalyzerConfiguration,
         private readonly tabStopListenerRunner: AllFrameRunner<TabStopEvent>,
@@ -33,9 +30,8 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
-        private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
+        private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
         private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
@@ -51,31 +47,13 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.tabStopListenerRunner.start();
 
         if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
-            this.seenTabStopRequirementResults = [];
             this.tabStopsDoneAnalyzingTracker.reset();
-            this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
-            this.tabStopRequirementRunner.start();
+            if (this.tabStopsRequirementResultProcessor) {
+                this.tabStopsRequirementResultProcessor.start();
+            }
         }
 
         return this.emptyResults;
-    };
-
-    private processTabStopRequirementResults = (
-        tabStopRequirementResult: AutomatedTabStopRequirementResult,
-    ): void => {
-        const duplicateResult = this.seenTabStopRequirementResults.some(r =>
-            isEqual(r, tabStopRequirementResult),
-        );
-
-        if (!duplicateResult) {
-            this.tabStopRequirementActionMessageCreator.addTabStopInstance({
-                description: tabStopRequirementResult.description,
-                requirementId: tabStopRequirementResult.requirementId,
-                selector: tabStopRequirementResult.selector,
-                html: tabStopRequirementResult.html,
-            });
-            this.seenTabStopRequirementResults.push(tabStopRequirementResult);
-        }
     };
 
     private processTabEvents = (): void => {
@@ -103,10 +81,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     public teardown(): void {
         this.debouncedProcessTabEvents?.cancel();
         this.tabStopListenerRunner.stop();
-        this.tabStopRequirementRunner.stop();
-        this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
-            this.seenTabStopRequirementResults,
-        );
+        this.tabStopsRequirementResultProcessor.stop();
 
         const payload: ScanBasePayload = {
             key: this.config.key,

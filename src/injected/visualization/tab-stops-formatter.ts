@@ -43,8 +43,28 @@ export class TabStopsFormatter implements Formatter {
                 ellipseRy: '16',
                 ellipseRx: ellipseRx.toString(),
             },
+            erroredCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: ellipseRx.toString(),
+            },
+            missingCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: ellipseRx.toString(),
+                strokeDasharray: '2 2',
+            },
             tabIndexLabel: {
                 fontColor: '#000000',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
+            },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
                 textAnchor: 'middle',
                 showTabIndexedLabel: true,
             },
@@ -57,6 +77,14 @@ export class TabStopsFormatter implements Formatter {
                 stroke: '#C71585',
                 strokeWidth: '3',
                 strokeDasharray: '7 2',
+            },
+            failureBoxConfig: {
+                background: '#E81123',
+                fontColor: '#FFFFFF',
+                text: '!',
+                boxWidth: '10px',
+                fontSize: '10',
+                cornerRadius: '3px',
             },
         };
 

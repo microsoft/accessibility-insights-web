@@ -46,8 +46,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 5,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
-    getAnalyzer: provider =>
-        provider.createFocusTrackingAnalyzer(tabStopVisualizationConfiguration),
+    getAnalyzer: provider => provider.createTabStopsAnalyzer(tabStopVisualizationConfiguration),
     getIdentifier: () => tabStopsTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getDrawer: provider => provider.createSVGDrawer(),

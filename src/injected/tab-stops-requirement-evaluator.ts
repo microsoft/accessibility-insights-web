@@ -43,6 +43,10 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
         tabbableTabStops: FocusableElement[],
         actualTabStops: Set<HTMLElement>,
     ): AutomatedTabStopRequirementResult[] {
+        if (!tabbableTabStops) {
+            return [];
+        }
+
         const requirementResults: AutomatedTabStopRequirementResult[] = [];
         (tabbableTabStops as HTMLElement[]).forEach(expectedTabStop => {
             if (!actualTabStops.has(expectedTabStop)) {
