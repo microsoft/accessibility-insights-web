@@ -23,9 +23,6 @@ export class SVGDrawer extends BaseDrawer {
     private tabOrderedItems: TabbedItem[];
     private failureItems: TabbedItem[];
     private SVGContainer: HTMLElement;
-    private filterFactory: SVGSolidShadowFilterFactory;
-    private svgShapeFactory: SVGShapeFactory;
-    private centerPositionCalculator: CenterPositionCalculator;
 
     constructor(
         dom: Document,
@@ -34,17 +31,14 @@ export class SVGDrawer extends BaseDrawer {
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
         formatter: TabStopsFormatter,
-        centerPositionCalculator: CenterPositionCalculator,
-        filterFactory: SVGSolidShadowFilterFactory,
-        svgShapeFactory: SVGShapeFactory,
+        private centerPositionCalculator: CenterPositionCalculator,
+        private filterFactory: SVGSolidShadowFilterFactory,
+        private svgShapeFactory: SVGShapeFactory,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.allVisualizedItems = [];
         this.tabOrderedItems = [];
         this.failureItems = [];
-        this.filterFactory = filterFactory;
-        this.svgShapeFactory = svgShapeFactory;
-        this.centerPositionCalculator = centerPositionCalculator;
     }
 
     public initialize(
@@ -85,9 +79,10 @@ export class SVGDrawer extends BaseDrawer {
     }
 
     private shouldRedraw(oldStateElement: TabbedItem, newStateElement: TabbedItem): boolean {
-        const isLastElementInSvg: boolean =
+        const isLastTabbedElement: boolean =
+            oldStateElement != null &&
             oldStateElement === this.tabOrderedItems[this.tabOrderedItems.length - 1];
-        return !isMatch(oldStateElement, newStateElement) || isLastElementInSvg;
+        return !isMatch(oldStateElement, newStateElement) || isLastTabbedElement;
     }
 
     private createUpdatedTabbedItem(
