@@ -366,41 +366,6 @@ describe('SVGShapeFactory', () => {
             x: 100,
             y: 100,
         };
-        const tabOrder = 10;
-
-        const textConfig: TextConfiguration = {
-            textAnchor: 'textAnchor',
-            fontColor: 'fontColor',
-        };
-
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
-        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual(tabOrder.toString());
-    });
-
-    test('create label with null tab order', () => {
-        const center: Point = {
-            x: 100,
-            y: 100,
-        };
-        const tabOrder = null;
-
-        const textConfig: TextConfiguration = {
-            textAnchor: 'textAnchor',
-            fontColor: 'fontColor',
-        };
-
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
-        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual('');
-    });
-
-    test('create label with innerText', () => {
-        const center: Point = {
-            x: 100,
-            y: 100,
-        };
-        const tabOrder = null;
         const innerText = 'X';
 
         const textConfig: TextConfiguration = {
@@ -408,8 +373,8 @@ describe('SVGShapeFactory', () => {
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, innerText);
-        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
+        const label = testObject.createTabIndexLabel(center, textConfig, innerText);
+        verifyTabIndexLabelParams(label, textConfig, center);
         expect(label.innerHTML).toEqual(innerText);
     });
 
@@ -437,7 +402,6 @@ describe('SVGShapeFactory', () => {
         label: Element,
         configuration: TextConfiguration,
         center: Point,
-        tabOrder: number,
     ): void {
         expect(label.tagName).toEqual('text');
         expect(label.getAttributeNS(null, 'class')).toEqual('insights-svg-focus-indicator-text');

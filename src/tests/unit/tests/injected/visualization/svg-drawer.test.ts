@@ -861,7 +861,7 @@ describe('SVGDrawer', () => {
 
         expect(circles.length).toBe(3);
         expect(lines.length).toBe(1);
-        expect(labels.length).toBe(1);
+        expect(labels.length).toBe(2);
         expect(failureLabels.length).toBe(1);
     });
 
