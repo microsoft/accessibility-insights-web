@@ -33,7 +33,8 @@ export class AutoDetectedFailuresDialog extends React.Component<
     public componentDidUpdate(prevProps, prevState): void {
         const tabbingJustFinished =
             this.props.visualizationScanResultData.tabStops.tabbingCompleted &&
-            !prevProps.visualizationScanResultData.tabStops.tabbingCompleted;
+            !this.props.visualizationScanResultData.tabStops.needToCollectTabbingResults &&
+            prevProps.visualizationScanResultData.tabStops.needToCollectTabbingResults;
         const autoDetectedFailuresExist =
             this.props.visualizationScanResultData.tabStops.requirements &&
             Object.entries(this.props.visualizationScanResultData.tabStops.requirements).some(

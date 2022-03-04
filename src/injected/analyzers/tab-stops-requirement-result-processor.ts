@@ -19,7 +19,9 @@ export class TabStopsRequirementResultProcessor {
     ) {}
 
     public start = (): void => {
-        if (!this.isStopped) {
+        const state = this.visualizationResultsStore.getState();
+
+        if (!this.isStopped || !state.tabStops.needToCollectTabbingResults) {
             return;
         }
 
