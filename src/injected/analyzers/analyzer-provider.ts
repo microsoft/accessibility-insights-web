@@ -3,11 +3,10 @@
 import { Logger } from 'common/logging/logger';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
-import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
@@ -26,9 +25,8 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 export class AnalyzerProvider {
     constructor(
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
-        private readonly tabStopsRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
-        private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
+        private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
         private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
@@ -117,9 +115,21 @@ export class AnalyzerProvider {
             this.scanIncompleteWarningDetector,
             this.logger,
             this.featureFlagStore,
-            this.tabStopsRequirementRunner,
-            this.tabStopRequirementActionMessageCreator,
             this.tabStopsDoneAnalyzingTracker,
+            null,
+        );
+    }
+
+    public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+            this.logger,
+            this.featureFlagStore,
+            this.tabStopsDoneAnalyzingTracker,
+            this.tabStopsRequirementResultProcessor,
         );
     }
 

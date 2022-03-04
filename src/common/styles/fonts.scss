@@ -35,7 +35,6 @@ $fonts: (
     'Segoe UI Emoji',
     'Segoe UI Symbol'
 );
-$semiBoldFonts: join(('Segoe UI Semibold'), $fonts);
 
 $common-font-family: make-font-family($fonts) !default;
 
@@ -62,10 +61,8 @@ $fontSizeXXL: 40px !default;
 $fontSizeXXXL: 56px !default;
 $fontSizeXXXXL: 72px !default;
 $codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
-$semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
 
 @mixin text-style-title-m {
-    font-family: $semiBoldFontFamily;
     font-weight: $fontWeightSemiBold;
     font-size: $fontSizeLML;
     line-height: 32px;
@@ -80,7 +77,6 @@ $semiBoldFontFamily: make-font-family($semiBoldFonts) !default;
 }
 
 @mixin text-style-title-s {
-    font-family: $semiBoldFontFamily;
     font-weight: $fontWeightSemiBold;
     font-size: 17px;
     line-height: 24px;

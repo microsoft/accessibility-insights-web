@@ -28,6 +28,7 @@ export interface TextBoxConfig extends BoxConfig {
 
 export interface FailureBoxConfig extends BoxConfig {
     hasDialogView?: boolean;
+    cornerRadius?: string;
 }
 
 export interface BoxConfig {
@@ -64,9 +65,13 @@ export type LineConfiguration = StrokeConfiguration;
 export interface SVGDrawerConfiguration {
     circle: CircleConfiguration;
     focusedCircle: CircleConfiguration;
+    erroredCircle: CircleConfiguration;
+    missingCircle: CircleConfiguration;
     tabIndexLabel: TextConfiguration;
+    erroredTabIndexLabel: TextConfiguration;
     line: LineConfiguration;
     focusedLine: LineConfiguration;
+    failureBoxConfig: FailureBoxConfig;
 }
 
 export interface SingleTargetDrawerConfiguration {

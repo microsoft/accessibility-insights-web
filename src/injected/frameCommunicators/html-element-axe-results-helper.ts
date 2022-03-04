@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabbedItemType } from 'injected/visualization/tabbed-item';
 import { forOwn } from 'lodash';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -19,6 +21,17 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
     isFailure: boolean;
     isVisualizationEnabled: boolean;
     propertyBag?: any;
+}
+
+export type TabStopVisualizationRequirementResults = Partial<{
+    [requirementId in TabStopRequirementId]: {
+        instanceId: string;
+    };
+}>;
+
+export interface TabStopVisualizationInstance extends AssessmentVisualizationInstance {
+    requirementResults: TabStopVisualizationRequirementResults;
+    itemType?: TabbedItemType;
 }
 
 export class HtmlElementAxeResultsHelper {
