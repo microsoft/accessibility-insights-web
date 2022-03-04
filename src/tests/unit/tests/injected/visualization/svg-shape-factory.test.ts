@@ -373,7 +373,7 @@ describe('SVGShapeFactory', () => {
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, null);
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
         expect(label.innerHTML).toEqual(tabOrder.toString());
     });
@@ -390,7 +390,7 @@ describe('SVGShapeFactory', () => {
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, null);
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
         expect(label.innerHTML).toEqual('');
     });
