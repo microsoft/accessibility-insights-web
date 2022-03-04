@@ -7,80 +7,75 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
   <div
     className="tabStopsTestView"
   >
-    <ThemeCustomizer
-      themeFamily="fast-pass"
-      userConfigurationStoreData="stub-user-configuration-store-data"
-    >
-      <React.Fragment>
-        <HeadingWithContentLink
-          deps="stub-deps"
-          guidance="stub-guidance"
-          headingTitle="test title"
-          headingTitleClassName="tabStopsTestViewHeader"
-          secondaryText=" Step 0 of 3 "
-        />
-        <p>
-          <Emphasis>
-            Note: this test requires you to use a keyboard and to visually identify interactive elements.
-          </Emphasis>
-        </p>
-        <ThemeCustomizer
-          themeFamily="default"
-          userConfigurationStoreData="stub-user-configuration-store-data"
-        >
-          <StyledToggleBase
-            checked={true}
-            className="visualHelperToggle"
-            id="tab-stops-visual-helper"
-            label="Visual helper"
-            onClick={[Function]}
-          />
-        </ThemeCustomizer>
-        <CollapsibleComponent
-          content={
-            <ol>
-              <li>
-                Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-              </li>
-              <li>
-                Use your keyboard to move input focus through all the interactive elements in the page:
-                <ol>
-                  <li>
-                    Use 
-                    <Term>
-                      Tab
-                    </Term>
-                     and
-                     
-                    <Term>
-                      Shift+Tab
-                    </Term>
-                     to navigate between standalone controls.
-                     
-                  </li>
-                  <li>
-                    Use the arrow keys to navigate between the focusable elements within a composite control.
-                  </li>
-                </ol>
-              </li>
-            </ol>
-          }
-          contentClassName="requirementInstructions"
-          header={
-            <span
-              aria-level={2}
-              className="requirementHowToTestHeader"
-              role="heading"
-            >
-              How to test
-            </span>
-          }
-        />
-        <h2
-          className="requirementTableTitle"
-        >
-          Record your results
-        </h2>
+    <React.Fragment>
+      <HeadingWithContentLink
+        deps="stub-deps"
+        guidance="stub-guidance"
+        headingTitle="test title"
+        headingTitleClassName="tabStopsTestViewHeader"
+        secondaryText=" Step 0 of 3 "
+      />
+      <p>
+        <Emphasis>
+          Note: this test requires you to use a keyboard and to visually identify interactive elements.
+        </Emphasis>
+      </p>
+      <StyledToggleBase
+        checked={true}
+        className="visualHelperToggle"
+        id="tab-stops-visual-helper"
+        label="Visual helper"
+        onClick={[Function]}
+      />
+      <CollapsibleComponent
+        content={
+          <ol>
+            <li>
+              Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+            </li>
+            <li>
+              Use your keyboard to move input focus through all the interactive elements in the page:
+              <ol>
+                <li>
+                  Use 
+                  <Term>
+                    Tab
+                  </Term>
+                   and
+                   
+                  <Term>
+                    Shift+Tab
+                  </Term>
+                   to navigate between standalone controls.
+                   
+                </li>
+                <li>
+                  Use the arrow keys to navigate between the focusable elements within a composite control.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        }
+        contentClassName="requirementInstructions"
+        header={
+          <span
+            aria-level={2}
+            className="requirementHowToTestHeader"
+            role="heading"
+          >
+            How to test
+          </span>
+        }
+      />
+      <h2
+        className="requirementTableTitle"
+      >
+        Record your results
+      </h2>
+      <ThemeCustomizer
+        themeFamily="fast-pass"
+        userConfigurationStoreData="stub-user-configuration-store-data"
+      >
         <TabStopsRequirementsTable
           deps="stub-deps"
           featureFlagStoreData={Object {}}
@@ -122,8 +117,8 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           featureFlag="tabStopsAutomation"
           featureFlagStoreData={Object {}}
         />
-      </React.Fragment>
-    </ThemeCustomizer>
+      </ThemeCustomizer>
+    </React.Fragment>
   </div>
 </div>
 `;
@@ -135,79 +130,74 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
   <div
     className="tabStopsTestView"
   >
-    <ThemeCustomizer
-      themeFamily="fast-pass"
-      userConfigurationStoreData="stub-user-configuration-store-data"
-    >
-      <React.Fragment>
-        <HeadingWithContentLink
-          deps="stub-deps"
-          headingTitle="test title"
-          headingTitleClassName="tabStopsTestViewHeader"
-          secondaryText=" Step 0 of 3 "
-        />
-        <p>
-          <Emphasis>
-            Note: this test requires you to use a keyboard and to visually identify interactive elements.
-          </Emphasis>
-        </p>
-        <ThemeCustomizer
-          themeFamily="default"
-          userConfigurationStoreData="stub-user-configuration-store-data"
-        >
-          <StyledToggleBase
-            checked={true}
-            className="visualHelperToggle"
-            id="tab-stops-visual-helper"
-            label="Visual helper"
-            onClick={[Function]}
-          />
-        </ThemeCustomizer>
-        <CollapsibleComponent
-          content={
-            <ol>
-              <li>
-                Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-              </li>
-              <li>
-                Use your keyboard to move input focus through all the interactive elements in the page:
-                <ol>
-                  <li>
-                    Use 
-                    <Term>
-                      Tab
-                    </Term>
-                     and
-                     
-                    <Term>
-                      Shift+Tab
-                    </Term>
-                     to navigate between standalone controls.
-                     
-                  </li>
-                  <li>
-                    Use the arrow keys to navigate between the focusable elements within a composite control.
-                  </li>
-                </ol>
-              </li>
-            </ol>
-          }
-          contentClassName="requirementInstructions"
-          header={
-            <span
-              aria-level={2}
-              className="requirementHowToTestHeader"
-              role="heading"
-            >
-              How to test
-            </span>
-          }
-        />
-        <h2
-          className="requirementTableTitle"
-        >
-          Record your results
-        </h2>
+    <React.Fragment>
+      <HeadingWithContentLink
+        deps="stub-deps"
+        headingTitle="test title"
+        headingTitleClassName="tabStopsTestViewHeader"
+        secondaryText=" Step 0 of 3 "
+      />
+      <p>
+        <Emphasis>
+          Note: this test requires you to use a keyboard and to visually identify interactive elements.
+        </Emphasis>
+      </p>
+      <StyledToggleBase
+        checked={true}
+        className="visualHelperToggle"
+        id="tab-stops-visual-helper"
+        label="Visual helper"
+        onClick={[Function]}
+      />
+      <CollapsibleComponent
+        content={
+          <ol>
+            <li>
+              Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+            </li>
+            <li>
+              Use your keyboard to move input focus through all the interactive elements in the page:
+              <ol>
+                <li>
+                  Use 
+                  <Term>
+                    Tab
+                  </Term>
+                   and
+                   
+                  <Term>
+                    Shift+Tab
+                  </Term>
+                   to navigate between standalone controls.
+                   
+                </li>
+                <li>
+                  Use the arrow keys to navigate between the focusable elements within a composite control.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        }
+        contentClassName="requirementInstructions"
+        header={
+          <span
+            aria-level={2}
+            className="requirementHowToTestHeader"
+            role="heading"
+          >
+            How to test
+          </span>
+        }
+      />
+      <h2
+        className="requirementTableTitle"
+      >
+        Record your results
+      </h2>
+      <ThemeCustomizer
+        themeFamily="fast-pass"
+        userConfigurationStoreData="stub-user-configuration-store-data"
+      >
         <TabStopsRequirementsTable
           deps="stub-deps"
           featureFlagStoreData={Object {}}
@@ -249,8 +239,8 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           featureFlag="tabStopsAutomation"
           featureFlagStoreData={Object {}}
         />
-      </React.Fragment>
-    </ThemeCustomizer>
+      </ThemeCustomizer>
+    </React.Fragment>
   </div>
 </div>
 `;

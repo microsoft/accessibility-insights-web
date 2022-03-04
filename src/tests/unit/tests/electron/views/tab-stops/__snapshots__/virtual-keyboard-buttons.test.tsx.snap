@@ -4,7 +4,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
 <div
   className="virtualKeyboardButtons"
 >
-  <Button
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Tab-button"
     onClick={[Function]}
@@ -15,8 +15,8 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
     >
       Tab
     </span>
-  </Button>
-  <Button
+  </CustomizedDefaultButton>
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Up-button"
     onClick={[Function]}
@@ -26,12 +26,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
       className="innerButtonContainer"
     >
       <Memo(Icon)
-        iconName="upArrow"
+        iconName="Up"
       />
       Up
     </span>
-  </Button>
-  <Button
+  </CustomizedDefaultButton>
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Left-button"
     onClick={[Function]}
@@ -42,12 +42,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
     >
       <Memo(Icon)
         className="left"
-        iconName="upArrow"
+        iconName="Up"
       />
       Left
     </span>
-  </Button>
-  <Button
+  </CustomizedDefaultButton>
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Down-button"
     onClick={[Function]}
@@ -58,12 +58,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
     >
       <Memo(Icon)
         className="down"
-        iconName="upArrow"
+        iconName="Up"
       />
       Down
     </span>
-  </Button>
-  <Button
+  </CustomizedDefaultButton>
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Right-button"
     onClick={[Function]}
@@ -74,12 +74,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
     >
       <Memo(Icon)
         className="right"
-        iconName="upArrow"
+        iconName="Up"
       />
       Right
     </span>
-  </Button>
-  <Button
+  </CustomizedDefaultButton>
+  <CustomizedDefaultButton
     className="button"
     data-automation-id="virtual-keyboard-Enter-button"
     onClick={[Function]}
@@ -90,7 +90,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
     >
       Enter
     </span>
-  </Button>
+  </CustomizedDefaultButton>
 </div>
 `;
 
@@ -98,7 +98,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
 <div
   className="virtualKeyboardButtons"
 >
-  <Button
+  <CustomizedDefaultButton
     className="rectangleButton button"
     data-automation-id="virtual-keyboard-Tab-button"
     onClick={[Function]}
@@ -109,11 +109,11 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
     >
       Tab
     </span>
-  </Button>
+  </CustomizedDefaultButton>
   <div
     className="arrowButtonsContainer"
   >
-    <Button
+    <CustomizedDefaultButton
       className="button"
       data-automation-id="virtual-keyboard-Up-button"
       onClick={[Function]}
@@ -123,15 +123,15 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
         className="innerButtonContainer"
       >
         <Memo(Icon)
-          iconName="upArrow"
+          iconName="Up"
         />
         Up
       </span>
-    </Button>
+    </CustomizedDefaultButton>
     <div
       className="bottomRowButtons"
     >
-      <Button
+      <CustomizedDefaultButton
         className="button"
         data-automation-id="virtual-keyboard-Left-button"
         onClick={[Function]}
@@ -142,12 +142,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
         >
           <Memo(Icon)
             className="left"
-            iconName="upArrow"
+            iconName="Up"
           />
           Left
         </span>
-      </Button>
-      <Button
+      </CustomizedDefaultButton>
+      <CustomizedDefaultButton
         className="button"
         data-automation-id="virtual-keyboard-Down-button"
         onClick={[Function]}
@@ -158,12 +158,12 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
         >
           <Memo(Icon)
             className="down"
-            iconName="upArrow"
+            iconName="Up"
           />
           Down
         </span>
-      </Button>
-      <Button
+      </CustomizedDefaultButton>
+      <CustomizedDefaultButton
         className="button"
         data-automation-id="virtual-keyboard-Right-button"
         onClick={[Function]}
@@ -174,14 +174,14 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
         >
           <Memo(Icon)
             className="right"
-            iconName="upArrow"
+            iconName="Up"
           />
           Right
         </span>
-      </Button>
+      </CustomizedDefaultButton>
     </div>
   </div>
-  <Button
+  <CustomizedDefaultButton
     className="rectangleButton button"
     data-automation-id="virtual-keyboard-Enter-button"
     onClick={[Function]}
@@ -192,6 +192,6 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
     >
       Enter
     </span>
-  </Button>
+  </CustomizedDefaultButton>
 </div>
 `;

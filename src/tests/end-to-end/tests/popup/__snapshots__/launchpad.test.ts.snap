@@ -237,7 +237,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
             >
               <a
                 aria-label="Navigate to axe-core npm page"
-                class="ms-Link insights-link root-000"
+                class="ms-Link insights-link insights-link--{{CSS_MODULE_HASH}} root-000"
                 href="https://www.npmjs.com/package/axe-core"
                 target="_blank"
               >
