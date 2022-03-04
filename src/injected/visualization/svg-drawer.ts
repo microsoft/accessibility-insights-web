@@ -298,6 +298,7 @@ export class SVGDrawer extends BaseDrawer {
             centerPosition,
             drawerConfig.erroredTabIndexLabel,
             item.tabOrder,
+            item.itemType,
         );
         const failureLabel = this.svgShapeFactory.createFailureLabel(
             centerPosition,
