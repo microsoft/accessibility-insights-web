@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TabbedItemType } from 'injected/visualization/tabbed-item';
 import { DrawerUtils } from './drawer-utils';
 import {
     CircleConfiguration,
@@ -85,7 +84,7 @@ export class SVGShapeFactory {
         center: Point,
         textConfig: TextConfiguration,
         tabOrder: number,
-        itemType?: TabbedItemType,
+        innerText?: string,
     ): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
@@ -100,8 +99,8 @@ export class SVGShapeFactory {
 
         if (tabOrder != null) {
             text.innerHTML = tabOrder.toString();
-        } else if (itemType && itemType === TabbedItemType.MissingItem) {
-            text.innerHTML = 'X';
+        } else if (innerText != null) {
+            text.innerHTML = innerText;
         }
 
         return text;

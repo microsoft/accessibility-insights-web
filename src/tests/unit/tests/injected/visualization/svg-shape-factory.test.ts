@@ -373,7 +373,7 @@ describe('SVGShapeFactory', () => {
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, null);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
         expect(label.innerHTML).toEqual(tabOrder.toString());
     });
@@ -390,9 +390,27 @@ describe('SVGShapeFactory', () => {
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, null);
         verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
         expect(label.innerHTML).toEqual('');
+    });
+
+    test('create label with innerText', () => {
+        const center: Point = {
+            x: 100,
+            y: 100,
+        };
+        const tabOrder = null;
+        const innerText = 'X';
+
+        const textConfig: TextConfiguration = {
+            textAnchor: 'textAnchor',
+            fontColor: 'fontColor',
+        };
+
+        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder, innerText);
+        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
+        expect(label.innerHTML).toEqual(innerText);
     });
 
     test('create failure label', () => {
