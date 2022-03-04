@@ -160,6 +160,11 @@
         color: var(--link) !important;
         text-decoration: none;
       }
+      @media screen and (forced-colors: active) {
+        .insights-link {
+          forced-color-adjust: unset;
+        }
+      }
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
@@ -1027,6 +1032,11 @@
       .kebab-menu--eviKu button:hover {
         background-color: var(--menu-item-background-hover);
       }
+      @media screen and (forced-colors: active) {
+        .kebab-menu--eviKu button:hover {
+          background-color: inherit;
+        }
+      }
       .kebab-menu--eviKu button:active {
         background-color: var(--menu-item-background-active);
         color: var(--light-black);
@@ -1061,6 +1071,16 @@
       button.kebab-menu-button--dy7Ui:active svg > circle,
       button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
         stroke: var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        button.kebab-menu-button--dy7Ui:active,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
+          color: inherit;
+        }
+        button.kebab-menu-button--dy7Ui:active svg > circle,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
+          stroke: inherit;
+        }
       }
       button.kebab-menu-button--dy7Ui > span {
         justify-content: center;
