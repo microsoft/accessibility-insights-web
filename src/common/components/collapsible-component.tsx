@@ -54,7 +54,7 @@ export class CollapsibleComponent extends React.Component<
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
-                    <span className={styles.collapsibleTitle}>{this.props.header}</span>
+                    {this.props.header}
                 </ActionButton>
                 {content}
             </div>

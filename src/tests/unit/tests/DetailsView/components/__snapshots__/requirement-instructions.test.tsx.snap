@@ -9,11 +9,13 @@ exports[`RequirementInstructions renders with content from props 1`] = `
   }
   contentClassName="requirementInstructions"
   header={
-    <h2
+    <span
+      aria-level={2}
       className="requirementInstructionsHeader"
+      role="heading"
     >
       How to test
-    </h2>
+    </span>
   }
 />
 `;

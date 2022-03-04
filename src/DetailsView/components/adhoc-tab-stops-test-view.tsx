@@ -5,6 +5,7 @@ import { Toggle } from '@fluentui/react';
 import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { FeatureFlags } from 'common/feature-flags';
@@ -36,7 +37,7 @@ import { TargetPageChangedView } from 'DetailsView/components/target-page-change
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
-import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import * as Markup from '../../assessments/markup';
 
@@ -145,11 +146,13 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
 
         const tabStopsTestViewContents = (
             <>
-                <h1>
-                    {displayableData.title}
-                    {` ${stepsText} `}
-                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
-                </h1>
+                <HeadingWithContentLink
+                    deps={props.deps}
+                    headingTitleClassName={styles.tabStopsTestViewHeader}
+                    headingTitle={displayableData.title}
+                    secondaryText={` ${stepsText} `}
+                    guidance={props.guidance}
+                />
                 {description}
                 <ThemeFamilyCustomizer
                     themeFamily={'default'}
@@ -164,7 +167,15 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     />
                 </ThemeFamilyCustomizer>
                 <CollapsibleComponent
-                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    header={
+                        <span
+                            className={styles.requirementHowToTestHeader}
+                            role="heading"
+                            aria-level={2}
+                        >
+                            How to test
+                        </span>
+                    }
                     content={howToTest}
                     contentClassName={requirementInstructionStyles.requirementInstructions}
                 />
