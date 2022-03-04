@@ -47,7 +47,7 @@ describe('Automated TabStops Results', () => {
     test('Detect and display out of order failures', async () => {
         await openTabStopsPage('tab-stops/out-of-order.html');
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 2; i++) {
             await targetPage.keyPress('Tab');
             await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
         }
@@ -61,8 +61,7 @@ describe('Automated TabStops Results', () => {
 
         expect(ruleDetails).toHaveLength(2);
 
-        // TODO: this should be (1, 1, 2, 0) but there is an outstanding bug with the focus vs regular circles
-        await verifyTargetPageVisualization(0, 2, 2, 0);
+        await verifyTargetPageVisualization(1, 1, 2, 0);
     });
 
     test('Detect and display unreachable elements failures', async () => {
