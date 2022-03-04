@@ -26,7 +26,7 @@ jobs:
             displayName: 'Use .NET Core 2.1.0 for ESRP mac mitigation'
             inputs:
                 packageType: sdk
-                version: 2.1.0
+                version: 2.1.x
                 installationPath: $(Agent.ToolsDirectory)/dotnet
 
           - template: sign-release-package.yaml
