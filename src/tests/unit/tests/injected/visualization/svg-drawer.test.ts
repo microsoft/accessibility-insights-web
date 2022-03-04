@@ -816,6 +816,15 @@ describe('SVGDrawer', () => {
                 propertyBag: { tabOrder: 3 },
                 itemType: TabbedItemType.ErroredItem,
             },
+            {
+                target: ['#id5'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: {},
+                itemType: TabbedItemType.ErroredItem,
+            },
         ];
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
@@ -859,10 +868,10 @@ describe('SVGDrawer', () => {
 
         drawerUtilsMock.verifyAll();
 
-        expect(circles.length).toBe(3);
+        expect(circles.length).toBe(4);
         expect(lines.length).toBe(1);
-        expect(labels.length).toBe(2);
-        expect(failureLabels.length).toBe(1);
+        expect(labels.length).toBe(3);
+        expect(failureLabels.length).toBe(2);
     });
 
     test('break graph', async () => {
