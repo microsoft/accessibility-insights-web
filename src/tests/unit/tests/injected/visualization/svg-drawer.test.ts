@@ -809,6 +809,7 @@ describe('SVGDrawer', () => {
             <div id='id2'></div>
             <div id='id3'></div>
             <div id='id4'></div>
+            <div id='id5'></div>
         `;
 
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
