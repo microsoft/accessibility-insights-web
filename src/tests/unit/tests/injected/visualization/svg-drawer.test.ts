@@ -906,8 +906,8 @@ describe('SVGDrawer', () => {
 
         expect(circles.length).toBe(4);
         expect(lines.length).toBe(1);
-        expect(labels.length).toBe(3);
-        expect(failureLabels.length).toBe(2);
+        expect(labels.length).toBe(4);
+        expect(failureLabels.length).toBe(3);
     });
 
     test('break graph', async () => {
