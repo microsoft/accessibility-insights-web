@@ -12,6 +12,7 @@ export class TabStopRequirementOrchestrator
     implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult>
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
+    public static readonly keyboardTrapTimeout: number = 500;
     private reportResults: (payload: AutomatedTabStopRequirementResult) => Promise<void>;
 
     private tabbableTabStops: FocusableElement[];
@@ -114,6 +115,6 @@ export class TabStopRequirementOrchestrator
                 return;
             }
             this.reportResults(result);
-        }, 500);
+        }, TabStopRequirementOrchestrator.keyboardTrapTimeout);
     };
 }
