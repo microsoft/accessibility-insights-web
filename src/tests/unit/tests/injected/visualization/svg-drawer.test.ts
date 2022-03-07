@@ -523,8 +523,11 @@ describe('SVGDrawer', () => {
             tabIndexLabel: {
                 remove: removeMock.object,
             } as any,
+            failureLabel: {
+                remove: removeMock.object,
+            } as any,
         };
-        removeMock.setup(r => r()).verifiable(Times.exactly(3));
+        removeMock.setup(r => r()).verifiable(Times.exactly(4));
 
         const testSubject = new SVGDrawer(
             null,

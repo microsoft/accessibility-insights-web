@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 // import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
+import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
 import {
     detailsViewSelectors,
     tabStopsSelectors,
@@ -31,9 +32,7 @@ describe('Automated TabStops Results', () => {
         async () => {
             await openTabStopsPage('shadow-doms.html');
 
-            for (let i = 0; i < 4; i++) {
-                await targetPage.keyPress('Tab'); // tabbing through the browser items
-            }
+            await tabThroughPage(4);
 
             await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
 
@@ -54,10 +53,7 @@ describe('Automated TabStops Results', () => {
         async () => {
             await openTabStopsPage('tab-stops/out-of-order.html');
 
-            for (let i = 0; i < 2; i++) {
-                await targetPage.keyPress('Tab');
-                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-            }
+            await tabThroughPage(2);
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
@@ -78,12 +74,7 @@ describe('Automated TabStops Results', () => {
         async () => {
             await openTabStopsPage('tab-stops/unreachable.html');
 
-            for (let i = 0; i < 5; i++) {
-                await targetPage.keyPress('Tab');
-                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-                // Wait longer since this is a keyboard trap
-                await targetPage.waitForTimeout(500);
-            }
+            await tabThroughPage(5, true);
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
@@ -104,10 +95,7 @@ describe('Automated TabStops Results', () => {
         async () => {
             await openTabStopsPage('tab-stops/unreachable.html');
 
-            for (let i = 0; i < 2; i++) {
-                await targetPage.keyPress('Tab');
-                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-            }
+            await tabThroughPage(2);
 
             // We should just be able to wait for the results section to come up, but there seems to be
             // a bug in playwright such that it's not recognizing focus on the details view. For now,
@@ -150,6 +138,17 @@ describe('Automated TabStops Results', () => {
             TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
             { state: 'attached' },
         );
+    }
+
+    async function tabThroughPage(tabCount: number, waitForKeyboardTrapTimeout: boolean = false) {
+        for (let i = 0; i < tabCount; i++) {
+            await targetPage.keyPress('Tab');
+            await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+
+            if (waitForKeyboardTrapTimeout) {
+                await targetPage.waitForTimeout(TabStopRequirementOrchestrator.keyboardTrapTimeout);
+            }
+        }
     }
 
     async function verifyTargetPageVisualization(
