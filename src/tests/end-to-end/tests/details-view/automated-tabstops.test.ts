@@ -26,24 +26,28 @@ describe('Automated TabStops Results', () => {
         await browser?.close();
     });
 
-    test('No failures are displayed when there are no tab elements', async () => {
-        await openTabStopsPage('shadow-doms.html');
+    test(
+        'No failures are displayed when there are no tab elements',
+        async () => {
+            await openTabStopsPage('shadow-doms.html');
 
-        for (let i = 0; i < 4; i++) {
-            await targetPage.keyPress('Tab'); // tabbing through the browser items
-        }
+            for (let i = 0; i < 4; i++) {
+                await targetPage.keyPress('Tab'); // tabbing through the browser items
+            }
 
-        await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
+            await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
 
-        // No results, so results selectors shouldn't show up
-        await detailsViewPage.waitForTimeout(100);
-        const element = await detailsViewPage.getSelectorElement(
-            tabStopsSelectors.automatedChecksResultSection,
-        );
-        expect(element).toBeNull();
+            // No results, so results selectors shouldn't show up
+            await detailsViewPage.waitForTimeout(100);
+            const element = await detailsViewPage.getSelectorElement(
+                tabStopsSelectors.automatedChecksResultSection,
+            );
+            expect(element).toBeNull();
 
-        await verifyTargetPageVisualization(0, 0, 0, 0);
-    });
+            await verifyTargetPageVisualization(0, 0, 0, 0);
+        },
+        longRunningTabStopsTestTimeout,
+    );
 
     test(
         'Detect and display out of order failures',
@@ -95,30 +99,34 @@ describe('Automated TabStops Results', () => {
         longRunningTabStopsTestTimeout,
     );
 
-    test('Detect and display failures when tabbing is not completed', async () => {
-        await openTabStopsPage('tab-stops/unreachable.html');
+    test(
+        'Detect and display failures when tabbing is not completed',
+        async () => {
+            await openTabStopsPage('tab-stops/unreachable.html');
 
-        for (let i = 0; i < 2; i++) {
-            await targetPage.keyPress('Tab');
-            await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-        }
+            for (let i = 0; i < 2; i++) {
+                await targetPage.keyPress('Tab');
+                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+            }
 
-        // We should just be able to wait for the results section to come up, but there seems to be
-        // a bug in playwright such that it's not recognizing focus on the details view. For now,
-        // toggle the visual helper to get results.
-        await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
+            // We should just be able to wait for the results section to come up, but there seems to be
+            // a bug in playwright such that it's not recognizing focus on the details view. For now,
+            // toggle the visual helper to get results.
+            await detailsViewPage.setToggleState(tabStopsSelectors.visualHelperToggleButton, false);
 
-        await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
-        await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
+            await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
 
-        const ruleDetails = await detailsViewPage.getSelectorElements(
-            tabStopsSelectors.failedInstancesContent,
-        );
+            const ruleDetails = await detailsViewPage.getSelectorElements(
+                tabStopsSelectors.failedInstancesContent,
+            );
 
-        expect(ruleDetails).toHaveLength(2);
+            expect(ruleDetails).toHaveLength(2);
 
-        await verifyTargetPageVisualization(0, 0, 0, 0);
-    });
+            await verifyTargetPageVisualization(0, 0, 0, 0);
+        },
+        longRunningTabStopsTestTimeout,
+    );
 
     async function openTabStopsPage(testResourcePath: string) {
         browser = await launchBrowser({
