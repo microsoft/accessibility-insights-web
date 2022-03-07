@@ -316,6 +316,9 @@ export class SVGDrawer extends BaseDrawer {
         if (focusIndicator.tabIndexLabel) {
             focusIndicator.tabIndexLabel.remove();
         }
+        if (focusIndicator.failureLabel) {
+            focusIndicator.failureLabel.remove();
+        }
     }
 
     private getHighlightElements(): HTMLElement[] {
@@ -338,6 +341,8 @@ export class SVGDrawer extends BaseDrawer {
                 if (current.focusIndicator != null && errorFocusIndicator != null) {
                     this.removeFocusIndicator(current.focusIndicator);
                     current.focusIndicator.circle = errorFocusIndicator.circle;
+                    current.focusIndicator.failureLabel = errorFocusIndicator.failureLabel;
+                    current.focusIndicator.tabIndexLabel = errorFocusIndicator.tabIndexLabel;
                 } else {
                     current.focusIndicator = errorFocusIndicator;
                 }
