@@ -423,18 +423,27 @@ describe('VisualizationScanResultStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onAddTabStopInstance', () => {
+    describe('onAddTabStopInstance', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const payload: AddTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             description: 'test1',
+            selector: ['some-selector'],
+            html: 'some html',
         };
 
         const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
                 status: 'unknown',
-                instances: [{ description: 'test1', id: 'abc' }],
+                instances: [
+                    {
+                        description: 'test1',
+                        id: 'abc',
+                        selector: ['some-selector'],
+                        html: 'some html',
+                    },
+                ],
                 isExpanded: false,
             },
         };
@@ -444,9 +453,11 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
         expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
 
-        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        test('adds tab stop failure instance', () => {
+            createStoreTesterForTabStopRequirementActions('addTabStopInstance')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        });
     });
 
     test('onUpdateTabStopInstance', () => {

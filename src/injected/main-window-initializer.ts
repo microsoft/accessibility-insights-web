@@ -19,6 +19,7 @@ import { getCheckResolution, getFixResolution } from 'injected/adapters/resoluti
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -29,6 +30,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -246,6 +248,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const selectorMapHelper = new SelectorMapHelper(
             Assessments,
             elementBasedViewModelCreator.getElementBasedViewModel,
+            GetVisualizationInstancesForTabStops,
         );
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
@@ -326,11 +329,16 @@ export class MainWindowInitializer extends WindowInitializer {
             tabStopRequirementActionMessageCreator,
         );
 
-        const analyzerProvider = new AnalyzerProvider(
-            this.manualTabStopListener,
+        const tabStopsRequirementResultProcessor = new TabStopsRequirementResultProcessor(
             this.tabStopRequirementRunner,
             tabStopRequirementActionMessageCreator,
+            this.visualizationScanResultStoreProxy,
+        );
+
+        const analyzerProvider = new AnalyzerProvider(
+            this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
+            tabStopsRequirementResultProcessor,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
@@ -349,14 +357,12 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,
-            this.visualizationScanResultStoreProxy,
             this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
             Assessments,
-            tabStopRequirementActionMessageCreator,
         );
 
         this.analyzerController.listenToStore();

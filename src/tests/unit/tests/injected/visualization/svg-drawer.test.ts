@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
-import { TabbedElementData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { CenterPositionCalculator } from '../../../../../injected/visualization/center-position-calculator';
@@ -15,7 +16,7 @@ import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
-import { TabbedItem } from '../../../../../injected/visualization/tabbed-item';
+import { TabbedItem, TabbedItemType } from '../../../../../injected/visualization/tabbed-item';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 import { DrawerUtilsMockBuilder } from './drawer-utils-mock-builder';
 
@@ -54,24 +55,66 @@ describe('SVGDrawer', () => {
     }
 
     test('initialize', () => {
-        fakeDocument.body.innerHTML = "<div id='id1'></div>";
+        fakeDocument.body.innerHTML = `
+            <div id='id1'></div>
+            <div id='id2'></div>
+            <div id='id3'></div>
+        `;
 
-        const element = fakeDocument.querySelector('#id1');
-        const expectedTabbedElements: TabbedItem[] = [
+        const expectedAllVisualizedItems: TabbedItem[] = [
             {
-                element: element,
+                element: fakeDocument.querySelector('#id1'),
                 tabOrder: 1,
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
+                itemType: undefined,
+                isFailure: false,
+            },
+            {
+                element: fakeDocument.querySelector('#id2'),
+                tabOrder: undefined,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id2',
+                itemType: TabbedItemType.MissingItem,
+                isFailure: true,
+            },
+            {
+                element: fakeDocument.querySelector('#id3'),
+                tabOrder: 2,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id3',
+                itemType: undefined,
+                isFailure: true,
             },
         ];
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
+            },
+            {
+                target: ['#id2'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: {},
+                itemType: TabbedItemType.MissingItem,
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -90,30 +133,28 @@ describe('SVGDrawer', () => {
         );
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
-    test('initialize with element having property bag instead of taborder', () => {
+    test('initialize with TabbedElementData element', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         const element = fakeDocument.querySelector('#id1');
-        const expectedTabbedElements: TabbedItem[] = [
+        const expectedAllVisualizedItems: TabbedItem[] = [
             {
                 element: element,
                 tabOrder: 1,
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
+                itemType: undefined,
+                isFailure: undefined,
             },
         ];
         const tabbedElements: TabbedElementData[] = [
             {
-                propertyBag: {
-                    tabOrder: 1,
-                    timestamp: 0,
-                },
-                tabOrder: null,
+                tabOrder: 1,
                 timestamp: 60,
                 html: 'test',
                 target: ['#id1'],
@@ -135,7 +176,7 @@ describe('SVGDrawer', () => {
         );
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
@@ -156,16 +197,20 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
+                isFailure: false,
+                itemType: undefined,
             },
         ];
 
-        const expectedTabbedElements: TabbedItem[] = [
+        const expectedAllVisualizedItems: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
                 focusIndicator: null,
-                shouldRedraw: true,
+                shouldRedraw: false,
                 selector: '#id1',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element2,
@@ -173,21 +218,27 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
+                itemType: undefined,
+                isFailure: false,
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const newInstances: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -205,40 +256,34 @@ describe('SVGDrawer', () => {
             null,
         );
 
-        (testSubject as any).tabbedElements = existingTabbedElements;
-
-        testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        (testSubject as any).allVisualizedItems = existingTabbedElements;
+        testSubject.initialize(createDrawerInfo(newInstances));
+        expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
-    test('initialize: validate existing elements should not redraw with taborder from propertybag', () => {
+    test('initialize: redraw element 2 which was the last tab ordered item but not the last visualized item', () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
             <div id='id3'></div>
+            <div id='id4'></div>
         `;
 
         const element1 = fakeDocument.querySelector('#id1');
         const element2 = fakeDocument.querySelector('#id2');
+        const element3 = fakeDocument.querySelector('#id3');
+        const element4 = fakeDocument.querySelector('#id4');
 
-        const existingTabbedElements: TabbedItem[] = [
+        const expectedAllVisualizedItems: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
                 focusIndicator: null,
-                shouldRedraw: true,
+                shouldRedraw: false,
                 selector: '#id1',
-            },
-        ];
-
-        const expectedTabbedElements: TabbedItem[] = [
-            {
-                element: element1,
-                tabOrder: 1,
-                focusIndicator: null,
-                shouldRedraw: true,
-                selector: '#id1',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element2,
@@ -246,29 +291,65 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
+                itemType: undefined,
+                isFailure: false,
+            },
+            {
+                element: element3,
+                tabOrder: undefined,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id3',
+                itemType: undefined,
+                isFailure: true,
+            },
+            {
+                element: element4,
+                tabOrder: 3,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id4',
+                itemType: undefined,
+                isFailure: false,
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const initialInstances: TabStopVisualizationInstance[] = [
             {
-                tabOrder: null,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
-                propertyBag: {
-                    tabOrder: 1,
-                    timestamp: null,
-                },
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: null,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
-                propertyBag: {
-                    tabOrder: 2,
-                    timestamp: null,
-                },
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: {},
+            },
+        ];
+
+        const newInstances = [
+            ...initialInstances,
+            {
+                target: ['#id4'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
         ];
 
@@ -286,10 +367,9 @@ describe('SVGDrawer', () => {
             null,
         );
 
-        (testSubject as any).tabbedElements = existingTabbedElements;
-
-        testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        testSubject.initialize(createDrawerInfo(initialInstances));
+        testSubject.initialize(createDrawerInfo(newInstances));
+        expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
@@ -313,6 +393,8 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element3,
@@ -320,6 +402,8 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id3',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element4,
@@ -327,16 +411,20 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id4',
+                itemType: undefined,
+                isFailure: false,
             },
         ];
 
-        const expectedTabbedElements: TabbedItem[] = [
+        const expectedAllVisualizedItems: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
                 focusIndicator: null,
                 shouldRedraw: false,
                 selector: '#id1',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element2,
@@ -344,6 +432,8 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id2',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element3,
@@ -351,6 +441,8 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id3',
+                itemType: undefined,
+                isFailure: false,
             },
             {
                 element: element4,
@@ -358,33 +450,43 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id4',
+                itemType: undefined,
+                isFailure: false,
             },
         ];
 
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 61,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
             {
-                tabOrder: 3,
-                timestamp: 62,
-                html: 'test',
                 target: ['#id3'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
             {
-                tabOrder: 4,
-                timestamp: 63,
-                html: 'test',
                 target: ['#id4'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 4 },
             },
         ];
 
@@ -402,10 +504,10 @@ describe('SVGDrawer', () => {
             null,
         );
 
-        (testSubject as any).tabbedElements = existingTabbedElements;
+        (testSubject as any).allVisualizedItems = existingTabbedElements;
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect((testSubject as any).tabbedElements).toEqual(expectedTabbedElements);
+        expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
@@ -445,12 +547,14 @@ describe('SVGDrawer', () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
         const element = fakeDocument.querySelector<HTMLElement>('#id1');
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
         const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
@@ -507,12 +611,14 @@ describe('SVGDrawer', () => {
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const element = fakeDocument.querySelector<HTMLElement>('#id1');
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
         ];
 
@@ -557,25 +663,29 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    test('draw circles with line in between without details', async () => {
+    test('draw circles with line in between without solid focus line and tab index label', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
                 target: ['#id1'],
-                html: 'test',
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
                 target: ['#id2'],
-                html: 'test',
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -621,7 +731,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    test('draw circles with line in between with details', async () => {
+    test('draw circles with line in between with solid line and tab index label', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -629,83 +739,22 @@ describe('SVGDrawer', () => {
 
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
-            },
-        ];
-
-        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
-            .setupGetDocSize(100)
-            .build();
-        setupWindowUtilsMockDefault(styleStub);
-        setupFilterFactoryDefault(fakeDocument);
-        setupCenterPositionCalculatorDefault();
-        setupSVGshapeFactoryDefault(fakeDocument);
-        formatterMock
-            .setup(f => f.getDrawerConfiguration(It.isAny(), null))
-            .returns(() => drawerConfig)
-            .verifiable();
-
-        const testSubject = new SVGDrawer(
-            fakeDocument,
-            containerClass,
-            windowUtilsMock.object,
-            shadowUtilsMock.object,
-            drawerUtilsMock.object,
-            formatterMock.object,
-            centerPositionCalculatorMock.object,
-            filterFactoryMock.object,
-            svgShapeFactoryMock.object,
-        );
-
-        testSubject.initialize(createDrawerInfo(tabbedElements));
-        expect(testSubject.isOverlayEnabled).toBe(false);
-
-        await testSubject.drawLayout();
-
-        expect(testSubject.isOverlayEnabled).toBe(true);
-
-        const circles = findFocusIndicatorCircles();
-        const lines = findFocusIndicatorLines();
-        const labels = findFocusIndicatorLabels();
-
-        drawerUtilsMock.verifyAll();
-
-        expect(circles.length).toBe(2);
-        expect(lines.length).toBe(1);
-        expect(labels.length).toBe(1);
-    });
-
-    test('draw circles with line in between with details', async () => {
-        fakeDocument.body.innerHTML = `
-            <div id='id1'></div>
-            <div id='id2'></div>
-        `;
-
-        // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
-        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
-            {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
-                target: ['#id1'],
-            },
-            {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
-                target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -754,6 +803,100 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(1);
     });
 
+    test('draw circles with failures', async () => {
+        fakeDocument.body.innerHTML = `
+            <div id='id1'></div>
+            <div id='id2'></div>
+            <div id='id3'></div>
+            <div id='id4'></div>
+        `;
+
+        // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
+        const tabbedElements: TabStopVisualizationInstance[] = [
+            {
+                target: ['#id1'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
+            },
+            {
+                target: ['#id2'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                itemType: TabbedItemType.MissingItem,
+                propertyBag: {},
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
+            },
+            {
+                target: ['#id4'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
+                itemType: TabbedItemType.ErroredItem,
+            },
+        ];
+
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
+        setupWindowUtilsMockDefault(styleStub);
+        setupFilterFactoryDefault(fakeDocument);
+        setupCenterPositionCalculatorDefault();
+        setupSVGshapeFactoryDefault(fakeDocument);
+        formatterMock
+            .setup(f => f.getDrawerConfiguration(It.isAny(), null))
+            .returns(() => drawerConfig)
+            .verifiable();
+        centerPositionCalculatorMock
+            .setup(c => c.getElementCenterPosition(fakeDocument.getElementById('id1')))
+            .returns(element => null)
+            .verifiable();
+        const testSubject = new SVGDrawer(
+            fakeDocument,
+            containerClass,
+            windowUtilsMock.object,
+            shadowUtilsMock.object,
+            drawerUtilsMock.object,
+            formatterMock.object,
+            centerPositionCalculatorMock.object,
+            filterFactoryMock.object,
+            svgShapeFactoryMock.object,
+        );
+
+        testSubject.initialize(createDrawerInfo(tabbedElements));
+        expect(testSubject.isOverlayEnabled).toBe(false);
+
+        await testSubject.drawLayout();
+
+        expect(testSubject.isOverlayEnabled).toBe(true);
+
+        const circles = findFocusIndicatorCircles();
+        const lines = findFocusIndicatorLines();
+        const labels = findFocusIndicatorLabels();
+        const failureLabels = findFailureLabels();
+
+        drawerUtilsMock.verifyAll();
+
+        expect(circles.length).toBe(3);
+        expect(lines.length).toBe(1);
+        expect(labels.length).toBe(2);
+        expect(failureLabels.length).toBe(1);
+    });
+
     test('break graph', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
@@ -761,18 +904,22 @@ describe('SVGDrawer', () => {
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 3,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
         ];
 
@@ -825,18 +972,22 @@ describe('SVGDrawer', () => {
         `;
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const tabbedElements: TabbedElementData[] = [
+        const tabbedElements: TabStopVisualizationInstance[] = [
             {
-                tabOrder: 1,
-                timestamp: 60,
-                html: 'test',
                 target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 1 },
             },
             {
-                tabOrder: 2,
-                timestamp: 70,
-                html: 'test',
                 target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 2 },
             },
         ];
 
@@ -903,10 +1054,30 @@ describe('SVGDrawer', () => {
                 ellipseRy: '16',
                 ellipseRx: '16',
             },
+            erroredCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+            },
+            missingCircle: {
+                stroke: '#E81123',
+                strokeWidth: '2',
+                fill: '#ffffff',
+                ellipseRy: '16',
+                ellipseRx: '16',
+                strokeDasharray: '2 2',
+            },
             tabIndexLabel: {
                 fontColor: '#000000',
                 textAnchor: 'middle',
                 showTabIndexedLabel: showTabIndexedLabel,
+            },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
             },
             line: {
                 stroke: '#777777',
@@ -917,6 +1088,13 @@ describe('SVGDrawer', () => {
                 stroke: '#C71585',
                 strokeWidth: '3',
                 strokeDasharray: '7 3',
+            },
+            failureBoxConfig: {
+                background: '#E81123',
+                fontColor: '#FFFFFF',
+                text: '!',
+                boxWidth: '10px',
+                fontSize: '10',
             },
         };
 
@@ -935,6 +1113,11 @@ describe('SVGDrawer', () => {
 
     function findFocusIndicatorLabels(): NodeListOf<Element> {
         const labels = shadowContainer.querySelectorAll('.insights-svg-focus-indicator-text');
+        return labels;
+    }
+
+    function findFailureLabels(): NodeListOf<Element> {
+        const labels = shadowContainer.querySelectorAll('.insights-svg-failure-label');
         return labels;
     }
 
@@ -1003,6 +1186,14 @@ describe('SVGDrawer', () => {
                 text.setAttributeNS(null, 'class', 'insights-svg-focus-indicator-text');
                 text.innerHTML = `<span>${tabOrder}</span>`;
                 return text;
+            });
+
+        svgShapeFactoryMock
+            .setup(s => s.createFailureLabel(It.isAny(), It.isAny()))
+            .returns(() => {
+                const label = doc.createElementNS(SVGNamespaceUrl, 'text');
+                label.setAttributeNS(null, 'class', 'insights-svg-failure-label');
+                return label;
             });
     }
 });

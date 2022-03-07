@@ -18,7 +18,9 @@ describe('AutoDetectedFailuresDialog', () => {
     let visualizationScanResultData: VisualizationScanResultData;
     const prevState = { autoDetectedFailuresDialogEnabled: false };
     const prevProps = {
-        visualizationScanResultData: { tabStops: { tabbingCompleted: false } },
+        visualizationScanResultData: {
+            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: true },
+        },
     };
 
     beforeEach(() => {
@@ -33,7 +35,7 @@ describe('AutoDetectedFailuresDialog', () => {
             },
         };
         visualizationScanResultData = {
-            tabStops: { tabbingCompleted: true, requirements },
+            tabStops: { tabbingCompleted: true, needToCollectTabbingResults: false, requirements },
         } as VisualizationScanResultData;
         props = {
             visualizationScanResultData,
