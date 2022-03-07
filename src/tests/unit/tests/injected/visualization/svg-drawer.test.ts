@@ -664,6 +664,87 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(1);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(0);
+
+        assertElementIndexHasFocusCircle(circles, 0);
+    });
+
+    test('verify focus indicator drawn on the last tabbed element', async () => {
+        fakeDocument.body.innerHTML = `
+            <div id='id1'></div>
+            <div id='id2'></div>
+            <div id='id3'></div>
+        `;
+
+        const tabbedElements: TabStopVisualizationInstance[] = [
+            {
+                target: ['#id1'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 4 },
+            },
+            {
+                target: ['#id2'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 5 },
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
+            },
+        ];
+
+        const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
+
+        const drawerUtilsMock = new DrawerUtilsMockBuilder(fakeDocument, styleStub)
+            .setupGetDocSize(100)
+            .build();
+        setupWindowUtilsMockDefault(styleStub);
+        setupFilterFactoryDefault(fakeDocument);
+        setupCenterPositionCalculatorDefault();
+        setupSVGshapeFactoryDefault(fakeDocument);
+        formatterMock
+            .setup(f => f.getDrawerConfiguration(It.isAny(), null))
+            .returns(() => drawerConfig)
+            .verifiable(Times.exactly(3));
+
+        const testSubject = new SVGDrawer(
+            fakeDocument,
+            containerClass,
+            windowUtilsMock.object,
+            shadowUtilsMock.object,
+            drawerUtilsMock.object,
+            formatterMock.object,
+            centerPositionCalculatorMock.object,
+            filterFactoryMock.object,
+            svgShapeFactoryMock.object,
+        );
+        testSubject.initialize(createDrawerInfo(tabbedElements));
+        expect(testSubject.isOverlayEnabled).toBe(false);
+
+        await testSubject.drawLayout();
+
+        expect(testSubject.isOverlayEnabled).toBe(true);
+
+        const circles = findFocusIndicatorCircles();
+        const lines = findFocusIndicatorLines();
+        const labels = findFocusIndicatorLabels();
+
+        drawerUtilsMock.verifyAll();
+        expect(circles.length).toBe(3);
+        expect(lines.length).toBe(1);
+        expect(labels.length).toBe(2);
+
+        // Element with index 1 has the greatest tab order, meaning it was the last tabbed
+        assertElementIndexHasFocusCircle(circles, 1);
     });
 
     test('draw circles with line in between without solid focus line and tab index label', async () => {
@@ -1168,9 +1249,11 @@ describe('SVGDrawer', () => {
         const doc = dom.ownerDocument || (dom as Document);
         svgShapeFactoryMock
             .setup(s => s.createCircle(It.isAny(), It.isAny()))
-            .returns(() => {
+            .returns((center, config) => {
                 const circle = doc.createElementNS(SVGNamespaceUrl, 'ellipse');
+                const stroke = config?.stroke;
                 circle.setAttributeNS(null, 'class', 'insights-svg-focus-indicator');
+                circle.setAttributeNS(null, 'stroke', stroke);
                 return circle;
             });
 
@@ -1198,5 +1281,20 @@ describe('SVGDrawer', () => {
                 label.setAttributeNS(null, 'class', 'insights-svg-failure-label');
                 return label;
             });
+    }
+
+    function assertElementIndexHasFocusCircle(
+        circles: NodeListOf<Element>,
+        focusIndex: number,
+    ): void {
+        const focusStroke = '#C71585';
+        for (let index = 0; index < circles.length; index++) {
+            const circleStroke = circles[index].getAttribute('stroke');
+            if (index === focusIndex) {
+                expect(circleStroke).toBe(focusStroke);
+            } else {
+                expect(circleStroke).not.toBe(focusStroke);
+            }
+        }
     }
 });

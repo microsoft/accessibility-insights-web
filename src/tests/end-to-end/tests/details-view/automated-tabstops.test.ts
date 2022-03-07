@@ -85,7 +85,7 @@ describe('Automated TabStops Results', () => {
 
             expect(ruleDetails).toHaveLength(1);
 
-            await verifyTargetPageVisualization(2, 1, 1, 0);
+            await verifyTargetPageVisualization(3, 0, 1, 0);
         },
         longRunningTabStopsTestTimeout,
     );

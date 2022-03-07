@@ -80,8 +80,7 @@ export class SVGDrawer extends BaseDrawer {
 
     private shouldRedraw(oldStateElement: TabbedItem, newStateElement: TabbedItem): boolean {
         const isLastTabbedElement: boolean =
-            oldStateElement != null &&
-            oldStateElement === this.tabOrderedItems[this.tabOrderedItems.length - 1];
+            oldStateElement != null && this.isLastTabbedItem(this.tabOrderedItems, oldStateElement);
         return !isMatch(oldStateElement, newStateElement) || isLastTabbedElement;
     }
 
@@ -323,7 +322,7 @@ export class SVGDrawer extends BaseDrawer {
 
     private getHighlightElements(): HTMLElement[] {
         each(this.tabOrderedItems, (current: TabbedItem, index: number) => {
-            const isLastItem = index === this.tabOrderedItems.length - 1;
+            const isLastItem = this.isLastTabbedItem(this.tabOrderedItems, current);
             if (current.shouldRedraw) {
                 this.removeFocusIndicator(current.focusIndicator);
                 current.focusIndicator = this.createFocusIndicator(
@@ -368,5 +367,10 @@ export class SVGDrawer extends BaseDrawer {
 
     private getTabOrder(element: TabStopVisualizationInstance | TabbedElementData): number {
         return (element as TabbedElementData).tabOrder ?? element.propertyBag?.tabOrder;
+    }
+
+    private isLastTabbedItem(tabOrderedItems: TabbedItem[], current: TabbedItem): boolean {
+        const maxTabOrder = tabOrderedItems.reduce((max, curr) => Math.max(max, curr.tabOrder), 0);
+        return current.tabOrder === maxTabOrder;
     }
 }
