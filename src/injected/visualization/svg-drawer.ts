@@ -10,7 +10,7 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { FocusIndicator } from './focus-indicator';
-import { SVGDrawerConfiguration } from './formatter';
+import { CircleConfiguration, SVGDrawerConfiguration } from './formatter';
 import { Point } from './point';
 import { SVGNamespaceUrl } from './svg-constants';
 import { SVGShapeFactory } from './svg-shape-factory';
@@ -197,7 +197,7 @@ export class SVGDrawer extends BaseDrawer {
                 : this.svgShapeFactory.createTabIndexLabel(
                       centerPosition,
                       drawerConfig.tabIndexLabel,
-                      item.tabOrder,
+                      item.tabOrder.toString(),
                   );
 
         const newLine: Element = this.createLinesInTabOrderVisualization(
@@ -271,16 +271,21 @@ export class SVGDrawer extends BaseDrawer {
             null,
         ) as SVGDrawerConfiguration;
 
-        const circleConfiguration =
-            item.itemType === TabbedItemType.ErroredItem
-                ? drawerConfig.erroredCircle
-                : drawerConfig.missingCircle;
+        let circleConfiguration: CircleConfiguration;
+        let labelInnerText: string;
+        if (item.itemType === TabbedItemType.ErroredItem) {
+            circleConfiguration = drawerConfig.erroredCircle;
+            labelInnerText = item.tabOrder ? item.tabOrder.toString() : '';
+        } else {
+            circleConfiguration = drawerConfig.missingCircle;
+            labelInnerText = 'X';
+        }
 
         const newCircle = this.svgShapeFactory.createCircle(centerPosition, circleConfiguration);
         const tabIndexLabel = this.svgShapeFactory.createTabIndexLabel(
             centerPosition,
             drawerConfig.erroredTabIndexLabel,
-            item.tabOrder,
+            labelInnerText,
         );
         const failureLabel = this.svgShapeFactory.createFailureLabel(
             centerPosition,

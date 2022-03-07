@@ -83,7 +83,7 @@ export class SVGShapeFactory {
     public createTabIndexLabel(
         center: Point,
         textConfig: TextConfiguration,
-        tabOrder: number,
+        innerText: string,
     ): Element {
         const myDocument = this.drawerUtils.getDocumentElement();
         const text = myDocument.createElementNS(SVGNamespaceUrl, 'text');
@@ -96,9 +96,7 @@ export class SVGShapeFactory {
         text.setAttributeNS(null, 'fill', textConfig.fontColor);
         text.setAttributeNS(null, 'text-anchor', textConfig.textAnchor);
 
-        if (tabOrder != null) {
-            text.innerHTML = tabOrder.toString();
-        }
+        text.innerHTML = innerText;
 
         return text;
     }
