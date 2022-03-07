@@ -158,6 +158,7 @@ describe('SVGDrawer', () => {
                 timestamp: 60,
                 html: 'test',
                 target: ['#id1'],
+                instanceId: 'some instance id',
             },
         ];
 
