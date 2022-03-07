@@ -20,6 +20,7 @@ describe('Automated TabStops Results', () => {
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
     let backgroundPage: BackgroundPage;
+    const longRunningTabStopsTestTimeout = 40000;
 
     afterEach(async () => {
         await browser?.close();
@@ -44,47 +45,55 @@ describe('Automated TabStops Results', () => {
         await verifyTargetPageVisualization(0, 0, 0, 0);
     });
 
-    test('Detect and display out of order failures', async () => {
-        await openTabStopsPage('tab-stops/out-of-order.html');
+    test(
+        'Detect and display out of order failures',
+        async () => {
+            await openTabStopsPage('tab-stops/out-of-order.html');
 
-        for (let i = 0; i < 2; i++) {
-            await targetPage.keyPress('Tab');
-            await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-        }
+            for (let i = 0; i < 2; i++) {
+                await targetPage.keyPress('Tab');
+                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+            }
 
-        await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
-        await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
+            await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
 
-        const ruleDetails = await detailsViewPage.getSelectorElements(
-            tabStopsSelectors.failedInstancesContent,
-        );
+            const ruleDetails = await detailsViewPage.getSelectorElements(
+                tabStopsSelectors.failedInstancesContent,
+            );
 
-        expect(ruleDetails).toHaveLength(2);
+            expect(ruleDetails).toHaveLength(2);
 
-        await verifyTargetPageVisualization(1, 1, 2, 0);
-    });
+            await verifyTargetPageVisualization(1, 1, 2, 0);
+        },
+        longRunningTabStopsTestTimeout,
+    );
 
-    test('Detect and display unreachable elements failures', async () => {
-        await openTabStopsPage('tab-stops/unreachable.html');
+    test(
+        'Detect and display unreachable elements failures',
+        async () => {
+            await openTabStopsPage('tab-stops/unreachable.html');
 
-        for (let i = 0; i < 5; i++) {
-            await targetPage.keyPress('Tab');
-            await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
-            // Wait longer since this is a keyboard trap
-            await targetPage.waitForTimeout(500);
-        }
+            for (let i = 0; i < 5; i++) {
+                await targetPage.keyPress('Tab');
+                await targetPage.waitForSelectorInShadowRoot(TabStopShadowDomSelectors.svg);
+                // Wait longer since this is a keyboard trap
+                await targetPage.waitForTimeout(500);
+            }
 
-        await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
-        await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
+            await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
 
-        const ruleDetails = await detailsViewPage.getSelectorElements(
-            tabStopsSelectors.failedInstancesContent,
-        );
+            const ruleDetails = await detailsViewPage.getSelectorElements(
+                tabStopsSelectors.failedInstancesContent,
+            );
 
-        expect(ruleDetails).toHaveLength(1);
+            expect(ruleDetails).toHaveLength(1);
 
-        await verifyTargetPageVisualization(2, 1, 1, 0);
-    });
+            await verifyTargetPageVisualization(2, 1, 1, 0);
+        },
+        longRunningTabStopsTestTimeout,
+    );
 
     test('Detect and display failures when tabbing is not completed', async () => {
         await openTabStopsPage('tab-stops/unreachable.html');
