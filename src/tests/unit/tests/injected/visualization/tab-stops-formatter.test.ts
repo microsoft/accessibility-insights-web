@@ -30,7 +30,7 @@ describe('TabStopsFormatterTests', () => {
             erroredCircle: {
                 stroke: '#E81123',
                 strokeWidth: '2',
-                fill: 'transparent',
+                fill: '#ffffff',
                 ellipseRy: '16',
                 ellipseRx: '16',
             },
