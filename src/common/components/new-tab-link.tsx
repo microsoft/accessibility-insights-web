@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
-import { ILinkProps, Link } from 'office-ui-fabric-react';
+import { ILinkProps, Link } from '@fluentui/react';
+import { css } from '@fluentui/utilities';
 import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';

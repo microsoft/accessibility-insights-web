@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -78,11 +78,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -159,11 +159,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -240,11 +240,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -321,11 +321,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -402,11 +402,11 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -483,11 +483,11 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -565,11 +565,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -646,11 +646,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -727,5 +727,5 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;

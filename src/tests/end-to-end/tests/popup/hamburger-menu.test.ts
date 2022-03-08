@@ -28,7 +28,9 @@ describe('Popup -> Hamburger menu', () => {
         const button = await popupPage.getSelectorElement(
             popupPageElementIdentifiers.hamburgerMenuButton,
         );
-        const menuCalloutId = await button.evaluate(element => element.getAttribute('aria-owns'));
+        const menuCalloutId = await button.evaluate(element =>
+            element.getAttribute('aria-controls'),
+        );
 
         const hamburgerMenu = await formatPageElementForSnapshot(popupPage, `#${menuCalloutId}`);
         expect(hamburgerMenu).toMatchSnapshot();
@@ -44,7 +46,7 @@ describe('Popup -> Hamburger menu', () => {
                 popupPageElementIdentifiers.hamburgerMenuButton,
             );
             const menuCalloutId = await button.evaluate(element =>
-                element.getAttribute('aria-owns'),
+                element.getAttribute('aria-controls'),
             );
 
             const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);

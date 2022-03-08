@@ -14,7 +14,15 @@ export const RequirementInstructions = NamedFC<RequirementInstructionsProps>(
     props => {
         return (
             <CollapsibleComponent
-                header={<h2 className={styles.requirementInstructionsHeader}>How to test</h2>}
+                header={
+                    <span
+                        className={styles.requirementInstructionsHeader}
+                        role="heading"
+                        aria-level={2}
+                    >
+                        How to test
+                    </span>
+                }
                 content={props.howToTest}
                 contentClassName={styles.requirementInstructions}
             />

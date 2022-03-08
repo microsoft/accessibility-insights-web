@@ -24,7 +24,7 @@ exports[`ExportDialog renders with CodePen export form 1`] = `
 `;
 
 exports[`ExportDialog renders with export dropdown 1`] = `
-"<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
+"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value=\\"description\\" ariaLabel=\\"Provide result description\\" />
   <StyledDialogFooterBase>
     <ExportDropdown htmlFileName=\\"THE REPORT FILE NAME\\" jsonFileName=\\"JSON file name\\" fileURLProvider={[Function: function () {
@@ -39,11 +39,11 @@ exports[`ExportDialog renders with export dropdown 1`] = `
                         return methodInvocation.returnValue;
                     }] { provideURL: [Function (anonymous)], [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} featureFlagStoreData={{...}} htmlExportData=\\"fake html\\" jsonExportData=\\"fake json\\" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>"
+</Dialog>"
 `;
 
 exports[`ExportDialog renders with open false 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "subText": "Optional: please describe the result (it will be saved in the report).",
@@ -80,11 +80,11 @@ exports[`ExportDialog renders with open false 1`] = `
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`ExportDialog renders with open true 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "subText": "Optional: please describe the result (it will be saved in the report).",
@@ -121,16 +121,16 @@ exports[`ExportDialog renders with open true 1`] = `
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
-"<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
+"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value=\\"description\\" ariaLabel=\\"Provide result description\\" />
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton onClick={[Function: onClick]} download=\\"THE REPORT FILE NAME\\" href=\\"fake-url\\" data-automation-id=\\"single-export-to-html-button\\">
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>"
+</Dialog>"
 `;

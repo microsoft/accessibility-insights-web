@@ -64,7 +64,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     className="editButton"
     onClick={[Function]}
   >
-    <StyledIconBase
+    <Memo(Icon)
       ariaLabel="edit instance"
       iconName="edit"
     />

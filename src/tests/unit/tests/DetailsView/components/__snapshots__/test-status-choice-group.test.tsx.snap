@@ -5,7 +5,7 @@ exports[`TestStatusChoiceGroup render 1`] = `
   <div
     className="radioButtonGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="PASS"
       componentRef={[Function]}
       onChange={[Function]}
@@ -37,7 +37,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
   <div
     className="radioButtonGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="PASS"
       componentRef={[Function]}
       onChange={[Function]}
@@ -69,7 +69,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status i
   <div
     className="radioButtonGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="UNKNOWN"
       componentRef={[Function]}
       onChange={[Function]}

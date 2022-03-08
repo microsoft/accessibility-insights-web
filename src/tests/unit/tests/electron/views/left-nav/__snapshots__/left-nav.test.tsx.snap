@@ -8,7 +8,7 @@ exports[`LeftNav render 1`] = `
   <div
     className="headerContainer"
   >
-    <StyledIconBase
+    <Memo(Icon)
       className="rocketIcon"
       iconName="Rocket"
     />

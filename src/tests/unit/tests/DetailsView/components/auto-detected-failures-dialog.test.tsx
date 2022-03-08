@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { PrimaryButton } from '@fluentui/react';
 import {
     TabStopRequirementState,
     VisualizationScanResultData,
@@ -10,7 +11,6 @@ import {
     AutoDetectedFailuresDialogProps,
 } from 'DetailsView/components/auto-detected-failures-dialog';
 import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 describe('AutoDetectedFailuresDialog', () => {

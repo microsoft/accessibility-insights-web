@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Link } from '@fluentui/react';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import {
@@ -20,7 +21,7 @@ export class AndroidSetupStepPropsBuilder extends BaseDataBuilder<CommonAndroidS
                 currentStepId: stepId,
             },
             deps: {
-                LinkComponent: props => <a {...props} />,
+                LinkComponent: props => <Link {...props} />,
             } as AndroidSetupPageDeps,
         };
     }

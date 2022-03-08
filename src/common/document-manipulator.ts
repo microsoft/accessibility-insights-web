@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from 'office-ui-fabric-react';
+import { css } from '@fluentui/react';
 
 export class DocumentManipulator {
     constructor(private document: Document) {}

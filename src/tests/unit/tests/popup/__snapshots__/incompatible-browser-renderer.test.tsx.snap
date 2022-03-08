@@ -9,24 +9,28 @@ exports[`IncompatibleBrowserRenderer renders 1`] = `
       title="Accessibility Insights for Web"
     />
     <div
-      className="ms-Grid main-section"
+      className="main-section"
     >
       <div
-        className="launch-panel-general-container"
+        className="popup-grid"
       >
-        Thanks for your interest in Accessibility Insights!
         <div
-          className="incompatible-browser-message"
+          className="launch-panel-general-container"
         >
-          We don’t currently support your browser.
-          <br />
-          Please check
-          <NewTabLink
-            href="https://accessibilityinsights.io/"
+          Thanks for your interest in Accessibility Insights!
+          <div
+            className="incompatible-browser-message"
           >
-            accessibilityinsights.io
-          </NewTabLink>
-          for download options.
+            We don’t currently support your browser.
+            <br />
+            Please check
+            <NewTabLink
+              href="https://accessibilityinsights.io/"
+            >
+              accessibilityinsights.io
+            </NewTabLink>
+            for download options.
+          </div>
         </div>
       </div>
     </div>

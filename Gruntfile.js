@@ -130,12 +130,6 @@ module.exports = function (grunt) {
                         expand: true,
                     },
                     {
-                        cwd: './node_modules/office-ui-fabric-react/dist/css',
-                        src: 'fabric.min.css',
-                        dest: path.join(extensionPath, 'common/styles/'),
-                        expand: true,
-                    },
-                    {
                         cwd: './dist/src/debug-tools',
                         src: '*.css',
                         dest: path.join(extensionPath, 'debug-tools'),

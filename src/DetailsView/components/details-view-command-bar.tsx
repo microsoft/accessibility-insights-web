@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IButton } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -42,7 +43,6 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
-import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
