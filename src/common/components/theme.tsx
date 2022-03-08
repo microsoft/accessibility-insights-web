@@ -3,8 +3,8 @@
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 
-import { DefaultThemePalette } from '../styles/default-theme-palette';
-import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
+import { DefaultTheme } from '../styles/default-theme';
+import { HighContrastTheme } from '../styles/high-contrast-theme';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
@@ -46,7 +46,7 @@ export class ThemeInner extends React.Component<ThemeInnerProps> {
     }
 
     private loadAppropriateTheme(isHighContrast: boolean): void {
-        const appropriateTheme = isHighContrast ? HighContrastThemePalette : DefaultThemePalette;
+        const appropriateTheme = isHighContrast ? HighContrastTheme : DefaultTheme;
         this.props.deps.loadTheme(appropriateTheme);
     }
 

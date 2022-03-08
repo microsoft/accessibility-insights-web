@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../common/styles/common.scss';
+
 a,
 button {
     &.nav-link-button {
@@ -9,5 +11,6 @@ button {
         &:active:hover {
             text-decoration: none;
         }
+        @include fluent-forced-color-adjust-override;
     }
 }

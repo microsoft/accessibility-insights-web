@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon, Link } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { Icon, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './assessment-instance-edit-and-remove-control.scss';
 import { FailureInstancePanelControl } from './failure-instance-panel-control';

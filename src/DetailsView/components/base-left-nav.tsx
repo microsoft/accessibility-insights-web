@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INav, INavLink, LinkBase, Nav } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'DetailsView/components/base-left-nav.scss';
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
-import { INav, INavLink, LinkBase, Nav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type onBaseLeftNavItemClick = (
-    event: React.MouseEvent<HTMLElement | LinkBase, MouseEvent>,
+    event: React.MouseEvent<HTMLElement | typeof LinkBase, MouseEvent>,
     item: BaseLeftNavLink,
 ) => void;
 export type onBaseLeftNavItemRender = (link: BaseLeftNavLink) => JSX.Element;

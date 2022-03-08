@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
@@ -8,7 +9,6 @@ import { ManualTestStepResult } from 'common/types/store-data/assessment-result-
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';

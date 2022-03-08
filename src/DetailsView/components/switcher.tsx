@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dropdown, IDropdownOption } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { ResponsiveMode } from '@fluentui/react';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react';
-import { Icon } from 'office-ui-fabric-react';
-import { ResponsiveMode } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -61,6 +61,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
             {
                 key: DetailsViewPivotType.fastPass,
                 text: 'FastPass',
+                title: 'FastPass',
                 data: {
                     icon: 'Rocket',
                 },
@@ -68,6 +69,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
             {
                 key: DetailsViewPivotType.assessment,
                 text: 'Assessment',
+                title: 'Assessment',
                 data: {
                     icon: 'testBeakerSolid',
                 },

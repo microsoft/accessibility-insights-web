@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton } from '@fluentui/react';
 import {
     IssueFilingButton,
     IssueFilingButtonDeps,
@@ -14,7 +15,6 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

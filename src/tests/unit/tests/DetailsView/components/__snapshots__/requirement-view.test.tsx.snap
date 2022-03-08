@@ -85,24 +85,28 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       />
     </div>
   </div>
-  <NextRequirementButton
-    className="nextRequirementButton"
-    currentTest={0}
-    deps={
-      Object {
-        "assessmentViewUpdateHandler": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
-        "assessmentsProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+  <div
+    className="nextRequirementButtonContainer"
+  >
+    <NextRequirementButton
+      className="nextRequirementButton"
+      currentTest={0}
+      deps={
+        Object {
+          "assessmentViewUpdateHandler": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          },
+          "assessmentsProvider": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          },
+        }
       }
-    }
-    nextRequirement={
-      Object {
-        "key": "other-requirement-key",
+      nextRequirement={
+        Object {
+          "key": "other-requirement-key",
+        }
       }
-    }
-  />
+    />
+  </div>
 </div>
 `;

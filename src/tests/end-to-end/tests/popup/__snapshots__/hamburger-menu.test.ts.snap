@@ -5,6 +5,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
   <div
     class="ms-ContextualMenu-container container-000"
     id="id__000-menu"
+    role="menu"
     tabindex="0"
   >
     <div
@@ -13,7 +14,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"
-        role="menu"
+        role="presentation"
       >
         <li
           class="ms-ContextualMenu-item item-000"

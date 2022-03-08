@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton, IButton } from '@fluentui/react';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import {
     AssessmentStoreData,
@@ -36,7 +37,6 @@ import {
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { isNil } from 'lodash';
-import { ActionButton, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
