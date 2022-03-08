@@ -46,7 +46,7 @@ export class TabStopsFormatter implements Formatter {
             erroredCircle: {
                 stroke: '#E81123',
                 strokeWidth: '2',
-                fill: '#ffffff',
+                fill: 'transparent',
                 ellipseRy: '16',
                 ellipseRx: ellipseRx.toString(),
             },
