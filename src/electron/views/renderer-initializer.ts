@@ -23,6 +23,7 @@ import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { UsageLogger } from 'background/usage-logger';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
@@ -545,6 +546,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
+
+        const usageLogger = new UsageLogger(storageAdapter, DateProvider.getCurrentDate, logger);
+        usageLogger.record();
 
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
