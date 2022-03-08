@@ -163,12 +163,12 @@ describe('Automated TabStops Results', () => {
         const opaqueEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.opaqueEllipse,
         );
-        expect(opaqueEllipses.length).toBe(regularCount + missingCount + errorCount);
+        expect(opaqueEllipses.length).toBe(regularCount + missingCount);
 
         const transparentEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.transparentEllipse,
         );
-        expect(transparentEllipses.length).toBe(focusCount);
+        expect(transparentEllipses.length).toBe(focusCount + errorCount);
 
         const dottedEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.dottedEllipse,
