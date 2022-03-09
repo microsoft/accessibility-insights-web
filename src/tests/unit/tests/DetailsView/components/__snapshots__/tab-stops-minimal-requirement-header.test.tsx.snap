@@ -20,7 +20,9 @@ exports[`TabStopsMinimalRequirementHeader renders 1`] = `
     <span
       className="requirementDetailsId"
     >
-      test requirement name
+      <strong>
+        test requirement name
+      </strong>
     </span>
     : 
     <span
