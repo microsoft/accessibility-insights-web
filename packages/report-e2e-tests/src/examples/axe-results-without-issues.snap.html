@@ -160,6 +160,11 @@
         color: var(--link) !important;
         text-decoration: none;
       }
+      @media screen and (forced-colors: active) {
+        .insights-link {
+          forced-color-adjust: unset;
+        }
+      }
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
@@ -650,10 +655,8 @@
       }
       .report-header-command-bar .target-page {
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         margin: 0px 0px 0px 16px;
-        display: inherit;
+        display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
@@ -661,6 +664,7 @@
         font-size: 14px;
         line-height: 20px;
         font-weight: normal;
+        min-width: 0;
       }
       .report-header-command-bar .target-page a {
         white-space: nowrap;
@@ -1018,6 +1022,11 @@
       .kebab-menu--eviKu button:hover {
         background-color: var(--menu-item-background-hover);
       }
+      @media screen and (forced-colors: active) {
+        .kebab-menu--eviKu button:hover {
+          background-color: inherit;
+        }
+      }
       .kebab-menu--eviKu button:active {
         background-color: var(--menu-item-background-active);
         color: var(--light-black);
@@ -1052,6 +1061,16 @@
       button.kebab-menu-button--dy7Ui:active svg > circle,
       button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
         stroke: var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        button.kebab-menu-button--dy7Ui:active,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
+          color: inherit;
+        }
+        button.kebab-menu-button--dy7Ui:active svg > circle,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
+          stroke: inherit;
+        }
       }
       button.kebab-menu-button--dy7Ui > span {
         justify-content: center;
@@ -1240,10 +1259,8 @@
       }
       .report-header-command-bar--wDg1t .target-page--giudb {
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         margin: 0px 0px 0px 16px;
-        display: inherit;
+        display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
@@ -1251,6 +1268,7 @@
         font-size: 14px;
         line-height: 20px;
         font-weight: normal;
+        min-width: 0;
       }
       .report-header-command-bar--wDg1t .target-page--giudb a {
         white-space: nowrap;
@@ -1594,7 +1612,7 @@
           >Target page: <a
             target="_blank"
             href="https://markreay.github.io/AU/after.html"
-            class="ms-Link insights-link root-49"
+            class="ms-Link insights-link root-109"
             title="Page Title for Axe Results Without Issues"
             id="new-tab-link-with-confirmation-dialog__0"
             >Page Title for Axe Results Without Issues</a
@@ -1639,7 +1657,7 @@
                 ><a
                   target="_blank"
                   href="https://markreay.github.io/AU/after.html"
-                  class="ms-Link insights-link root-49"
+                  class="ms-Link insights-link root-109"
                   title="Page Title for Axe Results Without Issues"
                   id="new-tab-link-with-confirmation-dialog__1"
                   >https://markreay.github.io/AU/after.html</a
@@ -1865,7 +1883,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-allowed-attr"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-allowed-attr"
                           aria-describedby="passed-rule-aria-allowed-attr-description"
                           >aria-allowed-attr</a
@@ -1880,7 +1898,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -1891,7 +1909,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/aria-allowed-role?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-allowed-role"
                           aria-describedby="passed-rule-aria-allowed-role-description"
                           >aria-allowed-role</a
@@ -1905,7 +1923,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -1916,7 +1934,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-hidden-body"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-hidden-body"
                           aria-describedby="passed-rule-aria-hidden-body-description"
                           >aria-hidden-body</a
@@ -1931,7 +1949,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -1942,7 +1960,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-required-attr"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-required-attr"
                           aria-describedby="passed-rule-aria-required-attr-description"
                           >aria-required-attr</a
@@ -1957,7 +1975,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -1968,7 +1986,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-required-children"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-required-children"
                           aria-describedby="passed-rule-aria-required-children-description"
                           >aria-required-children</a
@@ -1983,7 +2001,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -1994,7 +2012,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-required-parent"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-required-parent"
                           aria-describedby="passed-rule-aria-required-parent-description"
                           >aria-required-parent</a
@@ -2009,7 +2027,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -2020,7 +2038,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-roles"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-roles"
                           aria-describedby="passed-rule-aria-roles-description"
                           >aria-roles</a
@@ -2035,7 +2053,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2046,7 +2064,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-valid-attr-value"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-valid-attr-value"
                           aria-describedby="passed-rule-aria-valid-attr-value-description"
                           >aria-valid-attr-value</a
@@ -2060,7 +2078,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2071,7 +2089,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-valid-attr"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-valid-attr"
                           aria-describedby="passed-rule-aria-valid-attr-description"
                           >aria-valid-attr</a
@@ -2086,7 +2104,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2097,7 +2115,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/avoid-inline-spacing"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule avoid-inline-spacing"
                           aria-describedby="passed-rule-avoid-inline-spacing-description"
                           >avoid-inline-spacing</a
@@ -2112,7 +2130,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.4.12</a
                         ></span
                       >)<span class="guidance-tags"
@@ -2125,7 +2143,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/button-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule button-name"
                           aria-describedby="passed-rule-button-name-description"
                           >button-name</a
@@ -2139,7 +2157,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2150,7 +2168,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/bypass"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule bypass"
                           aria-describedby="passed-rule-bypass-description"
                           >bypass</a
@@ -2166,7 +2184,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.4.1</a
                         ></span
                       >)</div
@@ -2177,7 +2195,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/color-contrast"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule color-contrast"
                           aria-describedby="passed-rule-color-contrast-description"
                           >color-contrast</a
@@ -2192,7 +2210,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.4.3</a
                         ></span
                       >)</div
@@ -2203,7 +2221,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/document-title"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule document-title"
                           aria-describedby="passed-rule-document-title-description"
                           >document-title</a
@@ -2218,7 +2236,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.4.2</a
                         ></span
                       >)</div
@@ -2229,7 +2247,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/duplicate-id-active"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule duplicate-id-active"
                           aria-describedby="passed-rule-duplicate-id-active-description"
                           >duplicate-id-active</a
@@ -2244,7 +2262,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/parsing.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.1</a
                         ></span
                       >)</div
@@ -2255,7 +2273,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/duplicate-id-aria"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule duplicate-id-aria"
                           aria-describedby="passed-rule-duplicate-id-aria-description"
                           >duplicate-id-aria</a
@@ -2270,7 +2288,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/parsing.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.1</a
                         ></span
                       >)</div
@@ -2281,7 +2299,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/duplicate-id"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule duplicate-id"
                           aria-describedby="passed-rule-duplicate-id-description"
                           >duplicate-id</a
@@ -2295,7 +2313,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/parsing.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.1</a
                         ></span
                       >)</div
@@ -2306,7 +2324,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/empty-heading?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule empty-heading"
                           aria-describedby="passed-rule-empty-heading-description"
                           >empty-heading</a
@@ -2319,7 +2337,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2330,7 +2348,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/form-field-multiple-labels?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule form-field-multiple-labels"
                           aria-describedby="passed-rule-form-field-multiple-labels-description"
                           >form-field-multiple-labels</a
@@ -2345,7 +2363,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.3.2</a
                         ></span
                       >)</div
@@ -2356,7 +2374,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/heading-order?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule heading-order"
                           aria-describedby="passed-rule-heading-order-description"
                           >heading-order</a
@@ -2370,7 +2388,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2381,7 +2399,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/html-has-lang"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule html-has-lang"
                           aria-describedby="passed-rule-html-has-lang-description"
                           >html-has-lang</a
@@ -2395,7 +2413,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.1.1</a
                         ></span
                       >)</div
@@ -2406,7 +2424,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/html-lang-valid"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule html-lang-valid"
                           aria-describedby="passed-rule-html-lang-valid-description"
                           >html-lang-valid</a
@@ -2421,7 +2439,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.1.1</a
                         ></span
                       >)</div
@@ -2432,7 +2450,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/image-alt"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule image-alt"
                           aria-describedby="passed-rule-image-alt-description"
                           >image-alt</a
@@ -2447,7 +2465,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.1.1</a
                         ></span
                       >)</div
@@ -2458,7 +2476,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/image-redundant-alt?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule image-redundant-alt"
                           aria-describedby="passed-rule-image-redundant-alt-description"
                           >image-redundant-alt</a
@@ -2471,7 +2489,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2482,7 +2500,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/input-button-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule input-button-name"
                           aria-describedby="passed-rule-input-button-name-description"
                           >input-button-name</a
@@ -2496,7 +2514,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2507,7 +2525,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/label-title-only?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule label-title-only"
                           aria-describedby="passed-rule-label-title-only-description"
                           >label-title-only</a
@@ -2521,7 +2539,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2532,7 +2550,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/label"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule label"
                           aria-describedby="passed-rule-label-description"
                           >label</a
@@ -2546,13 +2564,13 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ><span>, </span
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.3.2</a
                         ></span
                       >)</div
@@ -2563,7 +2581,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-banner-is-top-level?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-banner-is-top-level"
                           aria-describedby="passed-rule-landmark-banner-is-top-level-description"
                           >landmark-banner-is-top-level</a
@@ -2576,7 +2594,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2587,7 +2605,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-contentinfo-is-top-level?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-contentinfo-is-top-level"
                           aria-describedby="passed-rule-landmark-contentinfo-is-top-level-description"
                           >landmark-contentinfo-is-top-level</a
@@ -2600,7 +2618,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2611,7 +2629,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-main-is-top-level?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-main-is-top-level"
                           aria-describedby="passed-rule-landmark-main-is-top-level-description"
                           >landmark-main-is-top-level</a
@@ -2624,7 +2642,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2635,7 +2653,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-no-duplicate-banner?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-no-duplicate-banner"
                           aria-describedby="passed-rule-landmark-no-duplicate-banner-description"
                           >landmark-no-duplicate-banner</a
@@ -2649,7 +2667,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2660,7 +2678,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-no-duplicate-contentinfo?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-no-duplicate-contentinfo"
                           aria-describedby="passed-rule-landmark-no-duplicate-contentinfo-description"
                           >landmark-no-duplicate-contentinfo</a
@@ -2674,7 +2692,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2685,7 +2703,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-one-main?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-one-main"
                           aria-describedby="passed-rule-landmark-one-main-description"
                           >landmark-one-main</a
@@ -2700,7 +2718,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2711,7 +2729,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-unique?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-unique"
                           aria-describedby="passed-rule-landmark-unique-description"
                           >landmark-unique</a
@@ -2725,7 +2743,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2736,7 +2754,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/link-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule link-name"
                           aria-describedby="passed-rule-link-name-description"
                           >link-name</a
@@ -2750,13 +2768,13 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.4.4</a
                         ><span>, </span
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -2767,7 +2785,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/list"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule list"
                           aria-describedby="passed-rule-list-description"
                           >list</a
@@ -2781,7 +2799,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -2792,7 +2810,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/listitem"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule listitem"
                           aria-describedby="passed-rule-listitem-description"
                           >listitem</a
@@ -2806,7 +2824,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -2817,7 +2835,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/page-has-heading-one?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule page-has-heading-one"
                           aria-describedby="passed-rule-page-has-heading-one-description"
                           >page-has-heading-one</a
@@ -2831,7 +2849,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2842,7 +2860,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/region?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule region"
                           aria-describedby="passed-rule-region-description"
                           >region</a
@@ -2856,7 +2874,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2867,7 +2885,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/scope-attr-valid?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule scope-attr-valid"
                           aria-describedby="passed-rule-scope-attr-valid-description"
                           >scope-attr-valid</a
@@ -2881,7 +2899,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2892,7 +2910,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/table-duplicate-name?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule table-duplicate-name"
                           aria-describedby="passed-rule-table-duplicate-name-description"
                           >table-duplicate-name</a
@@ -2906,7 +2924,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -2917,7 +2935,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/td-headers-attr"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule td-headers-attr"
                           aria-describedby="passed-rule-td-headers-attr-description"
                           >td-headers-attr</a
@@ -2932,7 +2950,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -2943,7 +2961,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/th-has-data-cells?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule th-has-data-cells"
                           aria-describedby="passed-rule-th-has-data-cells-description"
                           >th-has-data-cells</a
@@ -2958,7 +2976,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -2969,7 +2987,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/valid-lang"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule valid-lang"
                           aria-describedby="passed-rule-valid-lang-description"
                           >valid-lang</a
@@ -2983,7 +3001,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.1.2</a
                         ></span
                       >)</div
@@ -3058,7 +3076,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/accesskeys?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule accesskeys"
                           aria-describedby="not-applicable-rule-accesskeys-description"
                           >accesskeys</a
@@ -3071,7 +3089,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3082,7 +3100,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule area-alt"
                           aria-describedby="not-applicable-rule-area-alt-description"
                           >area-alt</a
@@ -3097,7 +3115,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.1.1</a
                         ></span
                       >)</div
@@ -3108,7 +3126,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-hidden-focus"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-hidden-focus"
                           aria-describedby="not-applicable-rule-aria-hidden-focus-description"
                           >aria-hidden-focus</a
@@ -3123,13 +3141,13 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ><span>, </span
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -3140,7 +3158,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-input-field-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-input-field-name"
                           aria-describedby="not-applicable-rule-aria-input-field-name-description"
                           >aria-input-field-name</a
@@ -3155,7 +3173,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -3166,7 +3184,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-toggle-field-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-toggle-field-name"
                           aria-describedby="not-applicable-rule-aria-toggle-field-name-description"
                           >aria-toggle-field-name</a
@@ -3181,7 +3199,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -3192,7 +3210,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/autocomplete-valid"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule autocomplete-valid"
                           aria-describedby="not-applicable-rule-autocomplete-valid-description"
                           >autocomplete-valid</a
@@ -3207,7 +3225,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.5</a
                         ></span
                       >)<span class="guidance-tags"
@@ -3220,7 +3238,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/blink"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule blink"
                           aria-describedby="not-applicable-rule-blink-description"
                           >blink</a
@@ -3234,7 +3252,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.2.2</a
                         ></span
                       >)</div
@@ -3245,7 +3263,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/definition-list"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule definition-list"
                           aria-describedby="not-applicable-rule-definition-list-description"
                           >definition-list</a
@@ -3260,7 +3278,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -3271,7 +3289,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/dlitem"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule dlitem"
                           aria-describedby="not-applicable-rule-dlitem-description"
                           >dlitem</a
@@ -3286,7 +3304,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.3.1</a
                         ></span
                       >)</div
@@ -3297,7 +3315,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/frame-tested?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule frame-tested"
                           aria-describedby="not-applicable-rule-frame-tested-description"
                           >frame-tested</a
@@ -3311,7 +3329,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3322,7 +3340,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/frame-title-unique?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule frame-title-unique"
                           aria-describedby="not-applicable-rule-frame-title-unique-description"
                           >frame-title-unique</a
@@ -3336,7 +3354,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3347,7 +3365,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/frame-title"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule frame-title"
                           aria-describedby="not-applicable-rule-frame-title-description"
                           >frame-title</a
@@ -3362,13 +3380,13 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.4.1</a
                         ><span>, </span
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 4.1.2</a
                         ></span
                       >)</div
@@ -3379,7 +3397,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/html-xml-lang-mismatch"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule html-xml-lang-mismatch"
                           aria-describedby="not-applicable-rule-html-xml-lang-mismatch-description"
                           >html-xml-lang-mismatch</a
@@ -3395,7 +3413,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 3.1.1</a
                         ></span
                       >)</div
@@ -3406,7 +3424,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/input-image-alt"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule input-image-alt"
                           aria-describedby="not-applicable-rule-input-image-alt-description"
                           >input-image-alt</a
@@ -3421,7 +3439,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.1.1</a
                         ></span
                       >)</div
@@ -3432,7 +3450,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/landmark-complementary-is-top-level?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule landmark-complementary-is-top-level"
                           aria-describedby="not-applicable-rule-landmark-complementary-is-top-level-description"
                           >landmark-complementary-is-top-level</a
@@ -3446,7 +3464,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3457,7 +3475,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/marquee"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule marquee"
                           aria-describedby="not-applicable-rule-marquee-description"
                           >marquee</a
@@ -3471,7 +3489,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.2.2</a
                         ></span
                       >)</div
@@ -3482,7 +3500,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/meta-refresh"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule meta-refresh"
                           aria-describedby="not-applicable-rule-meta-refresh-description"
                           >meta-refresh</a
@@ -3497,7 +3515,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.2.1</a
                         ></span
                       >)</div
@@ -3508,7 +3526,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/meta-viewport-large?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule meta-viewport-large"
                           aria-describedby="not-applicable-rule-meta-viewport-large-description"
                           >meta-viewport-large</a
@@ -3522,7 +3540,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3533,7 +3551,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/meta-viewport"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule meta-viewport"
                           aria-describedby="not-applicable-rule-meta-viewport-description"
                           >meta-viewport</a
@@ -3548,7 +3566,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.4.4</a
                         ></span
                       >)</div
@@ -3559,7 +3577,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/object-alt"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule object-alt"
                           aria-describedby="not-applicable-rule-object-alt-description"
                           >object-alt</a
@@ -3574,7 +3592,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.1.1</a
                         ></span
                       >)</div
@@ -3585,7 +3603,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/role-img-alt"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule role-img-alt"
                           aria-describedby="not-applicable-rule-role-img-alt-description"
                           >role-img-alt</a
@@ -3600,7 +3618,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.1.1</a
                         ></span
                       >)</div
@@ -3611,7 +3629,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/scrollable-region-focusable"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule scrollable-region-focusable"
                           aria-describedby="not-applicable-rule-scrollable-region-focusable-description"
                           >scrollable-region-focusable</a
@@ -3626,7 +3644,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.1.1</a
                         ></span
                       >)</div
@@ -3637,7 +3655,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/server-side-image-map"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule server-side-image-map"
                           aria-describedby="not-applicable-rule-server-side-image-map-description"
                           >server-side-image-map</a
@@ -3651,7 +3669,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 2.1.1</a
                         ></span
                       >)</div
@@ -3662,7 +3680,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/skip-link?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule skip-link"
                           aria-describedby="not-applicable-rule-skip-link-description"
                           >skip-link</a
@@ -3675,7 +3693,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3686,7 +3704,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/tabindex?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule tabindex"
                           aria-describedby="not-applicable-rule-tabindex-description"
                           >tabindex</a
@@ -3700,7 +3718,7 @@
                       >(<span class="guidance-links"
                         ><button
                           type="button"
-                          class="ms-Link insights-link root-50"
+                          class="ms-Link insights-link root-110"
                           >BEST PRACTICE</button
                         ></span
                       >)</div
@@ -3711,7 +3729,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/video-caption?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule video-caption"
                           aria-describedby="not-applicable-rule-video-caption-description"
                           >video-caption</a
@@ -3725,7 +3743,7 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >WCAG 1.2.2</a
                         ></span
                       >)</div
@@ -3789,7 +3807,7 @@
         <a
           target="_blank"
           href="http://aka.ms/AccessibilityInsights"
-          class="ms-Link insights-link tool-name-link root-49"
+          class="ms-Link insights-link tool-name-link root-109"
           title="Get more information and download Accessibility Insights for Web"
           >http://aka.ms/AccessibilityInsights</a
         >.</div

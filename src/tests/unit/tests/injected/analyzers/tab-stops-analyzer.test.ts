@@ -6,13 +6,12 @@ import { FeatureFlags } from 'common/feature-flags';
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -24,17 +23,13 @@ describe('TabStopsAnalyzer', () => {
     let visualizationTypeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
     let tabStopsListenerMock: IMock<AllFrameRunner<TabStopEvent>>;
-    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<AutomatedTabStopRequirementResult>>;
     let simulateTabEvent: (tabEvent: TabStopEvent) => void;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let emptyScanCompleteMessage: Message;
     let debounceFaker: DebounceFaker<() => void>;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
-    let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
-    let requirementResultRunnerCallback: (
-        requirementResult: AutomatedTabStopRequirementResult,
-    ) => void;
+    let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
 
     const tabEventStub1: TabStopEvent = {
         target: ['selector1'],
@@ -65,23 +60,16 @@ describe('TabStopsAnalyzer', () => {
             stop: () => {},
             initialize: () => {},
         } as AllFrameRunner<TabStopEvent>);
-        tabStopRequirementRunnerMock = Mock.ofInstance({
-            topWindowCallback: null,
-            start: () => {},
-            stop: () => {},
-            initialize: () => {},
-        } as AllFrameRunner<AutomatedTabStopRequirementResult>);
         tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>(
             null,
             MockBehavior.Strict,
         );
+        tabStopsRequirementResultProcessorMock = Mock.ofType<TabStopsRequirementResultProcessor>();
 
         scanIncompleteWarningDetectorMock
             .setup(idm => idm.detectScanIncompleteWarnings())
             .returns(() => []);
         featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
-        tabStopRequirementActionMessageCreatorMock =
-            Mock.ofType<TabStopRequirementActionMessageCreator>();
 
         testSubject = new TabStopsAnalyzer(
             configStub,
@@ -90,9 +78,8 @@ describe('TabStopsAnalyzer', () => {
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
             featureFlagStoreMock.object,
-            tabStopRequirementRunnerMock.object,
-            tabStopRequirementActionMessageCreatorMock.object,
             tabStopsDoneAnalyzingTrackerMock.object,
+            tabStopsRequirementResultProcessorMock.object,
             debounceFaker.debounce,
         );
         visualizationTypeStub = -1 as VisualizationType;
@@ -121,42 +108,6 @@ describe('TabStopsAnalyzer', () => {
             verifyAll();
         });
 
-        it('adds unique tab stop instances when processing tab stops requirement result', async () => {
-            const requirementResult: AutomatedTabStopRequirementResult = {
-                requirementId: 'keyboard-navigation',
-                description: 'some description',
-                selector: ['some', 'selector'],
-                html: 'some html',
-            } as AutomatedTabStopRequirementResult;
-            const secondRequirementResult = {
-                ...requirementResult,
-                html: 'new html',
-            };
-
-            setTabStopsAutomationFeatureFlag(true);
-            setupTabStopsListenerForStartTabStops();
-            tabStopsDoneAnalyzingTrackerMock.setup(m => m.reset()).verifiable(Times.once());
-            setupTabStopRequirementRunner();
-            setupSendMessageMock(emptyScanCompleteMessage);
-
-            testSubject.analyze();
-            await flushSettledPromises();
-
-            // send 1 duplicate and 2 unique results
-            requirementResultRunnerCallback(requirementResult);
-            requirementResultRunnerCallback(requirementResult);
-            requirementResultRunnerCallback(secondRequirementResult);
-
-            tabStopRequirementActionMessageCreatorMock.verify(
-                m => m.addTabStopInstance(It.isValue(requirementResult)),
-                Times.once(),
-            );
-            tabStopRequirementActionMessageCreatorMock.verify(
-                m => m.addTabStopInstance(It.isValue(secondRequirementResult)),
-                Times.once(),
-            );
-        });
-
         it('emits ScanUpdated messages when tab events are detected', async () => {
             const expectedScanUpdatedMessage: Message = {
                 messageType: configStub.analyzerProgressMessageType,
@@ -182,34 +133,93 @@ describe('TabStopsAnalyzer', () => {
             verifyAll();
         });
 
-        it('passes tab events to done-analyzing-tracker when automation feature flag is enabled', async () => {
-            const expectedScanUpdatedMessage: Message = {
-                messageType: configStub.analyzerProgressMessageType,
-                payload: {
-                    key: configStub.key,
-                    testType: configStub.testType,
-                    tabbedElements: [tabEventStub1],
-                    results: [tabEventStub1],
-                },
-            };
+        describe('when automation feature flag is enabled', () => {
+            let expectedScanUpdatedMessage: Message;
 
-            setTabStopsAutomationFeatureFlag(true);
-            setupTabStopsListenerForStartTabStops();
-            tabStopsDoneAnalyzingTrackerMock.setup(m => m.reset()).verifiable(Times.once());
-            setupSendMessageMock(emptyScanCompleteMessage);
-            testSubject.analyze();
-            await flushSettledPromises();
+            beforeEach(() => {
+                expectedScanUpdatedMessage = {
+                    messageType: configStub.analyzerProgressMessageType,
+                    payload: {
+                        key: configStub.key,
+                        testType: configStub.testType,
+                        tabbedElements: [tabEventStub1],
+                        results: [tabEventStub1],
+                    },
+                };
 
-            tabStopsDoneAnalyzingTrackerMock
-                .setup(m => m.addTabStopEvents([tabEventStub1]))
-                .verifiable(Times.once());
+                setTabStopsAutomationFeatureFlag(true);
+                setupTabStopsListenerForStartTabStops();
+                tabStopsDoneAnalyzingTrackerMock.setup(m => m.reset()).verifiable(Times.once());
+                setupSendMessageMock(emptyScanCompleteMessage);
+            });
 
-            setupSendMessageMock(expectedScanUpdatedMessage);
-            simulateTabEvent(tabEventStub1);
+            it('passes tab events to done-analyzing-tracker', async () => {
+                testSubject.analyze();
+                await flushSettledPromises();
 
-            debounceFaker.flush();
+                tabStopsDoneAnalyzingTrackerMock
+                    .setup(m => m.addTabStopEvents([tabEventStub1]))
+                    .verifiable(Times.once());
 
-            verifyAll();
+                setupSendMessageMock(expectedScanUpdatedMessage);
+                simulateTabEvent(tabEventStub1);
+
+                debounceFaker.flush();
+
+                verifyAll();
+            });
+
+            it('starts tabStopsRequirementResultProcessor', async () => {
+                tabStopsRequirementResultProcessorMock
+                    .setup(m => m.start())
+                    .verifiable(Times.once());
+
+                testSubject.analyze();
+                await flushSettledPromises();
+
+                tabStopsDoneAnalyzingTrackerMock
+                    .setup(m => m.addTabStopEvents([tabEventStub1]))
+                    .verifiable(Times.once());
+
+                setupSendMessageMock(expectedScanUpdatedMessage);
+                simulateTabEvent(tabEventStub1);
+
+                debounceFaker.flush();
+
+                verifyAll();
+            });
+
+            it('does not start tabStopsRequirementResultProcessor when it is null', async () => {
+                testSubject = new TabStopsAnalyzer(
+                    configStub,
+                    tabStopsListenerMock.object,
+                    sendMessageMock.object,
+                    scanIncompleteWarningDetectorMock.object,
+                    failTestOnErrorLogger,
+                    featureFlagStoreMock.object,
+                    tabStopsDoneAnalyzingTrackerMock.object,
+                    null,
+                    debounceFaker.debounce,
+                );
+
+                tabStopsRequirementResultProcessorMock
+                    .setup(m => m.start())
+                    .verifiable(Times.never());
+
+                testSubject.analyze();
+                await flushSettledPromises();
+
+                tabStopsDoneAnalyzingTrackerMock
+                    .setup(m => m.addTabStopEvents([tabEventStub1]))
+                    .verifiable(Times.once());
+
+                setupSendMessageMock(expectedScanUpdatedMessage);
+                simulateTabEvent(tabEventStub1);
+
+                debounceFaker.flush();
+
+                verifyAll();
+            });
         });
 
         it('batches ScanUpdated messages for tab events detected in quick succession', async () => {
@@ -255,45 +265,9 @@ describe('TabStopsAnalyzer', () => {
             testSubject.teardown();
             await flushSettledPromises();
             verifyAll();
-            tabStopRequirementActionMessageCreatorMock.verify(
-                m => m.automatedTabbingResultsCompleted([]),
-                Times.exactly(1),
-            );
 
             simulateTabEvent(tabEventStub1); // no corresponding setupSendMessageMock
             debounceFaker.flush();
-            verifyAll();
-        });
-
-        it('runs analyze and teardown with null requirement runner', async () => {
-            testSubject = new TabStopsAnalyzer(
-                configStub,
-                tabStopsListenerMock.object,
-                sendMessageMock.object,
-                scanIncompleteWarningDetectorMock.object,
-                failTestOnErrorLogger,
-                featureFlagStoreMock.object,
-                null,
-                tabStopRequirementActionMessageCreatorMock.object,
-                tabStopsDoneAnalyzingTrackerMock.object,
-                debounceFaker.debounce,
-            );
-
-            setTabStopsAutomationFeatureFlag(true);
-            setupTabStopsListenerForStartTabStops();
-            setupSendMessageMock(emptyScanCompleteMessage);
-
-            testSubject.analyze();
-            await flushSettledPromises();
-
-            verifyAll();
-
-            setupSendMessageMock({
-                messageType: configStub.analyzerTerminatedMessageType,
-                payload: { key: configStub.key, testType: configStub.testType },
-            });
-            testSubject.teardown();
-
             verifyAll();
         });
     });
@@ -309,13 +283,6 @@ describe('TabStopsAnalyzer', () => {
             .setup(t => (t.topWindowCallback = It.isAny()))
             .callback(cb => (simulateTabEvent = cb));
         tabStopsListenerMock.setup(t => t.start()).verifiable(Times.once());
-    }
-
-    function setupTabStopRequirementRunner(): void {
-        tabStopRequirementRunnerMock
-            .setup(t => (t.topWindowCallback = It.isAny()))
-            .callback(cb => (requirementResultRunnerCallback = cb));
-        tabStopRequirementRunnerMock.setup(t => t.start()).verifiable(Times.once());
     }
 
     function setTabStopsAutomationFeatureFlag(enabled: boolean) {

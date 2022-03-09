@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { PrimaryButton } from '@fluentui/react';
 import {
     TabStopRequirementState,
     VisualizationScanResultData,
@@ -10,7 +11,6 @@ import {
     AutoDetectedFailuresDialogProps,
 } from 'DetailsView/components/auto-detected-failures-dialog';
 import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 describe('AutoDetectedFailuresDialog', () => {
@@ -18,7 +18,9 @@ describe('AutoDetectedFailuresDialog', () => {
     let visualizationScanResultData: VisualizationScanResultData;
     const prevState = { autoDetectedFailuresDialogEnabled: false };
     const prevProps = {
-        visualizationScanResultData: { tabStops: { tabbingCompleted: false } },
+        visualizationScanResultData: {
+            tabStops: { tabbingCompleted: false, needToCollectTabbingResults: true },
+        },
     };
 
     beforeEach(() => {
@@ -33,7 +35,7 @@ describe('AutoDetectedFailuresDialog', () => {
             },
         };
         visualizationScanResultData = {
-            tabStops: { tabbingCompleted: true, requirements },
+            tabStops: { tabbingCompleted: true, needToCollectTabbingResults: false, requirements },
         } as VisualizationScanResultData;
         props = {
             visualizationScanResultData,

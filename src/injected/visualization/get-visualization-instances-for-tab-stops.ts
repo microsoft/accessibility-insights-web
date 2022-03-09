@@ -4,7 +4,7 @@
 import { TabStopsScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import {
-    SelectorToTabStopVisualizationMap,
+    InstanceIdToTabStopVisualizationMap,
     SelectorToVisualizationMap,
 } from 'injected/selector-to-visualization-map';
 import { TabbedItemType } from 'injected/visualization/tabbed-item';
@@ -14,7 +14,11 @@ import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 export const GetVisualizationInstancesForTabStops = (
     tabStopScanResultData: TabStopsScanResultData,
 ): SelectorToVisualizationMap => {
-    const selectorToVisualizationInstanceMap: SelectorToTabStopVisualizationMap = {};
+    const instanceIdToVisualizationInstanceMap: InstanceIdToTabStopVisualizationMap = {};
+
+    if (!tabStopScanResultData.tabbedElements) {
+        return instanceIdToVisualizationInstanceMap;
+    }
 
     tabStopScanResultData.tabbedElements.forEach(element => {
         const instance: TabStopVisualizationInstance = {
@@ -29,7 +33,7 @@ export const GetVisualizationInstancesForTabStops = (
             requirementResults: {},
         };
 
-        selectorToVisualizationInstanceMap[element.target.join(';')] = instance;
+        instanceIdToVisualizationInstanceMap[element.instanceId] = instance;
     });
 
     forOwn(tabStopScanResultData.requirements, (obj, requirementId: TabStopRequirementId) => {
@@ -42,18 +46,6 @@ export const GetVisualizationInstancesForTabStops = (
                 requirementId === 'keyboard-navigation'
                     ? TabbedItemType.MissingItem
                     : TabbedItemType.ErroredItem;
-
-            const selector = instance.selector.join(';');
-
-            if (selectorToVisualizationInstanceMap[selector] != null) {
-                selectorToVisualizationInstanceMap[selector].isFailure = true;
-                selectorToVisualizationInstanceMap[selector].requirementResults[requirementId] = {
-                    instanceId: instance.id,
-                };
-                selectorToVisualizationInstanceMap[selector].itemType = itemType;
-
-                return;
-            }
 
             const newInstance: TabStopVisualizationInstance = {
                 isFailure: true,
@@ -69,9 +61,9 @@ export const GetVisualizationInstancesForTabStops = (
                 itemType,
             };
 
-            selectorToVisualizationInstanceMap[selector] = newInstance;
+            instanceIdToVisualizationInstanceMap[instance.id] = newInstance;
         });
     });
 
-    return selectorToVisualizationInstanceMap;
+    return instanceIdToVisualizationInstanceMap;
 };

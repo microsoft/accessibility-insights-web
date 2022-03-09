@@ -26,15 +26,17 @@ describe('GetVisualizationInstancesForTabStops', () => {
                 target: ['some', 'target'],
                 tabOrder: 1,
                 timestamp: 123,
+                instanceId: 'some instance id',
             },
             {
                 target: ['another', 'target'],
                 tabOrder: 2,
                 timestamp: 124,
+                instanceId: 'some other instance id',
             },
         ] as TabbedElementData[];
         expectedResults = {
-            'some;target': buildVisualizationInstance(
+            [tabbedElements[0].instanceId]: buildVisualizationInstance(
                 tabbedElements[0].target,
                 false,
                 {
@@ -44,7 +46,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                 {},
                 undefined,
             ),
-            'another;target': buildVisualizationInstance(
+            [tabbedElements[1].instanceId]: buildVisualizationInstance(
                 tabbedElements[1].target,
                 false,
                 {
@@ -90,15 +92,14 @@ describe('GetVisualizationInstancesForTabStops', () => {
             requirements: tabStopRequirementState,
         } as TabStopsScanResultData;
 
-        expectedResults['some;requirement result selector'] = buildVisualizationInstance(
+        expectedResults[firstRequirementResults[0].id] = buildVisualizationInstance(
             firstRequirementResults[0].selector,
             true,
             {},
             { ['keyboard-navigation']: { instanceId: firstRequirementResults[0].id } },
             TabbedItemType.MissingItem,
         );
-
-        expectedResults['another;requirement result selector'] = buildVisualizationInstance(
+        expectedResults[secondRequirementResults[0].id] = buildVisualizationInstance(
             secondRequirementResults[0].selector,
             true,
             {},
@@ -111,53 +112,15 @@ describe('GetVisualizationInstancesForTabStops', () => {
         );
     });
 
-    test('GetVisualizationInstancesForTabStops: multiple requirement instances for one element', () => {
-        const duplicateSelector = ['some', 'requirement result selector'];
-        const firstRequirementResults = [
-            {
-                selector: duplicateSelector,
-                description: 'instance description 1',
-                id: 'some instance id',
-            },
-        ] as TabStopRequirementInstance[];
-
-        const secondRequirementResults = [
-            {
-                selector: duplicateSelector,
-                description: 'another instance description',
-                id: 'another instance id',
-            },
-        ] as TabStopRequirementInstance[];
-
-        const tabStopRequirementState = {
-            'keyboard-navigation': {
-                instances: firstRequirementResults,
-            } as SingleTabStopRequirementState,
-            'keyboard-traps': {
-                instances: secondRequirementResults,
-            } as SingleTabStopRequirementState,
-        } as TabStopRequirementState;
+    test('GetVisualizationInstancesForTabStops: null tabbedElements', () => {
+        const tabStopRequirementState = {} as TabStopRequirementState;
 
         const tabStopScanResultData: TabStopsScanResultData = {
-            tabbedElements: [],
+            tabbedElements: null,
             requirements: tabStopRequirementState,
         } as TabStopsScanResultData;
 
-        expectedResults = {};
-        expectedResults['some;requirement result selector'] = buildVisualizationInstance(
-            firstRequirementResults[0].selector,
-            true,
-            {},
-            {
-                'keyboard-navigation': { instanceId: firstRequirementResults[0].id },
-                'keyboard-traps': { instanceId: secondRequirementResults[0].id },
-            },
-            TabbedItemType.ErroredItem,
-        );
-
-        expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual(
-            expectedResults,
-        );
+        expect(GetVisualizationInstancesForTabStops(tabStopScanResultData)).toEqual({});
     });
 
     function buildVisualizationInstance(

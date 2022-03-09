@@ -130,6 +130,13 @@ html {
     margin: 10px 0px 20px 0px;
 }
 
+#popup-container .popup-grid {
+    display: grid;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
 #popup-container .insights-spinner {
     margin: 4px;
 }
@@ -234,6 +241,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
     .launch-pad-title {
         font-size: 14px;
+        font-weight: 600;
         margin-bottom: -4px;
     }
 
@@ -318,6 +326,11 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             color: $secondary-text;
             font-style: normal;
         }
+    }
+
+    .launch-pad-item-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
 
     ::placeholder {

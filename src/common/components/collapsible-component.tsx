@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { ActionButton } from '@fluentui/react';
+import { css } from '@fluentui/utilities';
 import * as styles from 'common/components/collapsible-component.scss';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {
@@ -54,7 +54,7 @@ export class CollapsibleComponent extends React.Component<
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
-                    <span className={styles.collapsibleTitle}>{this.props.header}</span>
+                    {this.props.header}
                 </ActionButton>
                 {content}
             </div>

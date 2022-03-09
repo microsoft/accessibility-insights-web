@@ -15,16 +15,37 @@
     font-size: 16px !important;
     line-height: 24px !important;
     color: $neutral-100 !important;
+
+    &:hover,
+    &:focus {
+        color: LinkText !important;
+    }
+
     @media screen and (forced-colors: active) {
+        @include fluent-forced-color-adjust-override;
         color: inherit !important;
+        &:hover,
+        &:focus {
+            color: initial !important;
+        }
     }
 }
 
 .remove-button {
     font-size: 16px;
     line-height: 24px;
-    color: $negative-outcome;
+    color: $negative-outcome !important;
+    &:hover,
+    &:focus {
+        color: LinkText !important;
+    }
+
     @media screen and (forced-colors: active) {
-        color: inherit;
+        @include fluent-forced-color-adjust-override;
+        color: inherit !important;
+        &:hover,
+        &:focus {
+            color: initial !important;
+        }
     }
 }

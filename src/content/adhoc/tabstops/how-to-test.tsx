@@ -3,6 +3,7 @@
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { create, React } from '../../common';
 
+
 export const createHowToTest = (headingLevel: number) => {
     return create(({ Markup }) => (
         <>
@@ -11,7 +12,7 @@ export const createHowToTest = (headingLevel: number) => {
                     Note: this test requires you to use a keyboard and to visually identify interactive elements.
                 </Markup.Emphasis>
             </p>
-            <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>How to test</HeadingElementForLevel>
+            <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>TESTHow to test</HeadingElementForLevel>        
             <ol>
                 <li>Refresh the target page to put it in its default state.</li>
                 <li>Turn on the Show tab stops toggle. An empty circle will highlight the element with focus.</li>

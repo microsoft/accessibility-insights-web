@@ -24,7 +24,7 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
     onClick={[Function]}
     text="Start over"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     directionalHint={7}
     items={
       Array [
@@ -64,7 +64,7 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
     onClick={[Function]}
     text="Start over"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     directionalHint={7}
     items={
       Array [
@@ -99,7 +99,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
     onClick={[Function]}
     text="Start over"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     directionalHint={8}
     items={
       Array [

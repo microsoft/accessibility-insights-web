@@ -14,13 +14,9 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
   <div
     className="content-class-name collapsibleContent"
@@ -46,13 +42,9 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
   <div
     className="collapsibleContent"
@@ -78,13 +70,9 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
   <div
     className="collapsibleContent"
@@ -110,13 +98,9 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
   <div
     className="collapsibleContent"
@@ -142,13 +126,9 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
 </div>
 `;
@@ -167,13 +147,9 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`
     }
     onClick={[Function]}
   >
-    <span
-      className="collapsibleTitle"
-    >
-      <div>
-        Some header
-      </div>
-    </span>
+    <div>
+      Some header
+    </div>
   </CustomizedActionButton>
   <div
     className="collapsibleContent"

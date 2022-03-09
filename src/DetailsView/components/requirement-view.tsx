@@ -143,12 +143,14 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                         />
                     </div>
                 </div>
-                <NextRequirementButton
-                    deps={this.props.deps}
-                    nextRequirement={nextRequirement}
-                    currentTest={this.props.assessmentNavState.selectedTestType}
-                    className={styles.nextRequirementButton}
-                />
+                <div className={styles.nextRequirementButtonContainer}>
+                    <NextRequirementButton
+                        deps={this.props.deps}
+                        nextRequirement={nextRequirement}
+                        currentTest={this.props.assessmentNavState.selectedTestType}
+                        className={styles.nextRequirementButton}
+                    />
+                </div>
             </div>
         );
     }

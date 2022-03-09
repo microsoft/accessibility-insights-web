@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IToggle, IToggleProps, Toggle } from 'office-ui-fabric-react';
+import { IToggle, IToggleProps, Toggle } from '@fluentui/react';
 import * as React from 'react';
 
 export interface VisualizationToggleProps {

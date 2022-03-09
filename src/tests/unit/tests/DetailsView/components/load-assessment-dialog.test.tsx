@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Dialog } from '@fluentui/react';
 import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
@@ -11,7 +12,6 @@ import {
     LoadAssessmentDialogProps,
 } from 'DetailsView/components/load-assessment-dialog';
 import { shallow } from 'enzyme';
-import Dialog from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IconButton } from '@fluentui/react';
 import classNames from 'classnames';
 import { VisualizationType } from 'common/types/visualization-type';
-import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './assessment-instance-selected-button.scss';
 

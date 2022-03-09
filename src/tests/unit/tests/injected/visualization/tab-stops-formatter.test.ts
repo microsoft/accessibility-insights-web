@@ -30,7 +30,7 @@ describe('TabStopsFormatterTests', () => {
             erroredCircle: {
                 stroke: '#E81123',
                 strokeWidth: '2',
-                fill: '#ffffff',
+                fill: 'transparent',
                 ellipseRy: '16',
                 ellipseRx: '16',
             },
@@ -46,6 +46,11 @@ describe('TabStopsFormatterTests', () => {
                 fontColor: '#000000',
                 textAnchor: 'middle',
                 showTabIndexedLabel: showTabIndexedLabel,
+            },
+            erroredTabIndexLabel: {
+                fontColor: '#E81123',
+                textAnchor: 'middle',
+                showTabIndexedLabel: true,
             },
             line: {
                 stroke: '#777777',
