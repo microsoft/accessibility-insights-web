@@ -15,7 +15,7 @@ import { MockException } from 'typemoq';
 // See https://github.com/florinn/typemoq/blob/master/src/Consts.ts
 const typemoqProxyIdValue = 'BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8';
 
-function readingPropertyThrowsMockException(val: unknown): boolean {
+function readingPropertyThrowsMockException(val: Function): boolean {
     try {
         val['___any_property'];
     } catch (e: any) {
