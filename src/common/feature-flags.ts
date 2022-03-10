@@ -104,7 +104,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Tab Stops Automation',
             displayableDescription: 'Enables the new tab stops automation',
             isPreviewFeature: true,
-            forceDefault: false,
+            forceDefault: true,
         },
     ];
 }
