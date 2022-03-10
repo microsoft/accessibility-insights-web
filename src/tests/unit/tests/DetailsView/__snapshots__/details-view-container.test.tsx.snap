@@ -4,40 +4,8 @@ exports[`DetailsViewContainer render content render once; should call details vi
 <DetailsViewContentWithLocalState
   deps={
     Object {
-      "detailsViewActionMessageCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "addPathForValidation": [Function],
-        "cancelStartOver": [Function],
-        "cancelStartOverAllAssessments": [Function],
-        "changeAssessmentVisualizationState": [Function],
-        "changeManualRequirementStatus": [Function],
-        "changeManualTestStatus": [Function],
-        "clearPathSnippetData": [Function],
-        "closePreviewFeaturesPanel": [Function],
-        "closeScopingPanel": [Function],
-        "closeSettingsPanel": [Function],
-        "continuePreviousAssessment": [Function],
-        "copyIssueDetailsClicked": [Function],
-        "dispatcher": undefined,
-        "editFailureInstance": [Function],
-        "leftNavPanelExpanded": [Function],
-        "loadAssessment": [Function],
-        "removeFailureInstance": [Function],
-        "rescanVisualization": [Function],
-        "rescanVisualizationWithoutTelemetry": [Function],
-        "saveAssessment": [Function],
-        "setAllUrlsPermissionState": [Function],
-        "setFeatureFlag": [Function],
-        "startOverAllAssessments": [Function],
-        "switchToTargetTab": [Function],
-        "telemetryFactory": undefined,
-        "undoManualRequirementStatusChange": [Function],
-        "undoManualTestStatusChange": [Function],
-      },
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
-      },
+      "detailsViewActionMessageCreator": [typemoq mock object],
+      "storesHub": [typemoq mock object],
     }
   }
   storeState={
@@ -61,19 +29,13 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
     childrenProps={
       Object {
         "deps": Object {
-          "storesHub": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "stores": undefined,
-          },
+          "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     isNarrowModeEnabled={false}
@@ -89,19 +51,13 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
     childrenProps={
       Object {
         "deps": Object {
-          "storesHub": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "stores": undefined,
-          },
+          "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     isNarrowModeEnabled={true}
@@ -117,19 +73,13 @@ exports[`DetailsViewContainer render content shows NoContentAvailable when targe
     childrenProps={
       Object {
         "deps": Object {
-          "storesHub": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "stores": undefined,
-          },
+          "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     isNarrowModeEnabled={true}

@@ -9,10 +9,7 @@ exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
   }
   deps={
     Object {
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
-      },
+      "storesHub": [typemoq mock object],
     }
   }
   scanStoreData={
@@ -48,10 +45,7 @@ exports[`RootContainer renders with routeId = resultsView 1`] = `
         "rules": Object {},
       },
       "deps": Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       },
       "scanStoreData": Object {
         "status": 2,
@@ -70,10 +64,7 @@ exports[`RootContainer renders with routeId = resultsView 1`] = `
   }
   deps={
     Object {
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
-      },
+      "storesHub": [typemoq mock object],
     }
   }
   isNarrowModeEnabled={true}

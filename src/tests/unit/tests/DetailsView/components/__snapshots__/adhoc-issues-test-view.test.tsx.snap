@@ -12,13 +12,7 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
       warnings={Array []}
     />
     <DetailsListIssuesView
-      clickHandlerFactory={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actionCreator": undefined,
-          "telemetryFactory": undefined,
-        }
-      }
+      clickHandlerFactory={[typemoq mock object]}
       configuration={
         Object {
           "displayableData": Object {
