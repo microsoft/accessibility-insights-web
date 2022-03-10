@@ -13,8 +13,11 @@ import {
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import {
     AutomatedTabStopRequirementResult,
     TabStopRequirementResult,
@@ -25,9 +28,17 @@ import { TabStopRequirementStatus } from '../../common/types/store-data/visualiz
 const messages = Messages.Visualizations.TabStops;
 
 export class TabStopRequirementActionMessageCreator extends DevToolActionMessageCreator {
+    constructor(
+        protected readonly telemetryFactory: TelemetryDataFactory,
+        protected readonly dispatcher: ActionMessageDispatcher,
+        private readonly source: TelemetryEventSource,
+    ) {
+        super(telemetryFactory, dispatcher);
+    }
     public addTabStopInstance(tabStopRequirementResult: TabStopRequirementResult): void {
         const telemetry = this.telemetryFactory.forTabStopRequirement(
             tabStopRequirementResult.requirementId,
+            this.source,
         );
 
         const payload: AddTabStopInstancePayload = {
@@ -46,7 +57,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
         id: string,
         description: string,
     ): void {
-        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId, this.source);
 
         const payload: UpdateTabStopInstancePayload = {
             requirementId,
@@ -62,7 +73,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
     }
 
     public removeTabStopInstance(requirementId: TabStopRequirementId, id: string): void {
-        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId, this.source);
         const payload: RemoveTabStopInstancePayload = {
             requirementId,
             id,
@@ -79,7 +90,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
         requirementId: TabStopRequirementId,
         status: TabStopRequirementStatus,
     ): void {
-        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId, this.source);
 
         const payload: UpdateTabStopRequirementStatusPayload = {
             requirementId,
@@ -94,7 +105,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
     }
 
     public resetStatusForRequirement(requirementId: TabStopRequirementId): void {
-        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId, this.source);
 
         const payload: ResetTabStopRequirementStatusPayload = {
             requirementId,
@@ -144,7 +155,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
     };
 
     public automatedTabbingResultsCompleted = (results: AutomatedTabStopRequirementResult[]) => {
-        const telemetry = this.telemetryFactory.forAutomatedTabStopsResults(results);
+        const telemetry = this.telemetryFactory.forAutomatedTabStopsResults(results, this.source);
         const payload: BaseActionPayload = {
             telemetry,
         };
