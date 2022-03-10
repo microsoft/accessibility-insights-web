@@ -100,10 +100,10 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.tabStopsAutomation,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Tab Stops Automation',
             displayableDescription: 'Enables the new tab stops automation',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];
