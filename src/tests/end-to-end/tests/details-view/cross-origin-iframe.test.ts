@@ -119,10 +119,12 @@ describe('scanning', () => {
             const ruleNameElement = await ruleDetail.$(
                 fastPassAutomatedChecksSelectors.cardsRuleId,
             );
-            const ruleName = await fastPassAutomatedChecks.evaluate(
+            let ruleName = await fastPassAutomatedChecks.evaluate(
                 element => element.innerHTML,
                 ruleNameElement,
             );
+            ruleName = ruleName.replace('<strong>', '');
+            ruleName = ruleName.replace('</strong>', '');
 
             const expectedCount = expectedCounts[ruleName];
 
