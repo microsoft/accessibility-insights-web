@@ -9,6 +9,9 @@
     display: flex;
     align-items: baseline;
     text-align: left;
+    strong {
+        font-weight: $fontWeightSemiBold;
+    }
 
     :global(.outcome-chip) {
         vertical-align: middle;
