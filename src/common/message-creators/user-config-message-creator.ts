@@ -86,4 +86,11 @@ export class UserConfigMessageCreator {
             payload,
         });
     }
+
+    public setAutoDetectedFailuresDialogState(showDialog: boolean): void {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetAutoDetectedFailuresDialogState,
+            payload: showDialog,
+        });
+    }
 }

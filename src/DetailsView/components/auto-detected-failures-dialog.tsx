@@ -1,17 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
+import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export type AutoDetectedFailuresDialogState = {
     dialogEnabled: boolean;
+    isDisableBoxChecked: boolean;
 };
 
 export interface AutoDetectedFailuresDialogProps {
     visualizationScanResultData: VisualizationScanResultData;
+    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigMessageCreator: UserConfigMessageCreator;
 }
 
 export class AutoDetectedFailuresDialog extends React.Component<
@@ -22,12 +27,21 @@ export class AutoDetectedFailuresDialog extends React.Component<
         super(props);
         this.state = {
             dialogEnabled: false,
+            isDisableBoxChecked: false,
         };
     }
 
     private showAutoDetectedFailuresDialog = () => this.setState({ dialogEnabled: true });
 
     private dismissAutoDetectedFailuresDialog = () => this.setState({ dialogEnabled: false });
+
+    private disableAutoDetectedFailuresDialog = (ev?, checked?: boolean) => {
+        if (checked === undefined) {
+            return;
+        }
+        this.props.userConfigMessageCreator.setAutoDetectedFailuresDialogState(!checked);
+        this.setState({ isDisableBoxChecked: checked });
+    };
 
     public componentDidUpdate(prevProps, prevState): void {
         const tabbingJustFinished =
@@ -39,7 +53,14 @@ export class AutoDetectedFailuresDialog extends React.Component<
             Object.entries(this.props.visualizationScanResultData.tabStops.requirements).some(
                 ([_, data]) => data.instances.length > 0 && data.status === 'fail',
             );
-        if (tabbingJustFinished && autoDetectedFailuresExist && !prevState.dialogEnabled) {
+        const dialogEnabled = this.props.userConfigurationStoreData.showAutoDetectedFailuresDialog;
+        if (
+            tabbingJustFinished &&
+            autoDetectedFailuresExist &&
+            !prevState.dialogEnabled &&
+            dialogEnabled
+        ) {
+            this.setState({ isDisableBoxChecked: false });
             this.showAutoDetectedFailuresDialog();
         }
     }
@@ -68,6 +89,11 @@ export class AutoDetectedFailuresDialog extends React.Component<
                     </ul>
                 </div>
                 <DialogFooter>
+                    <Checkbox
+                        label={"Don't show again"}
+                        onChange={this.disableAutoDetectedFailuresDialog}
+                        checked={this.state.isDisableBoxChecked}
+                    />
                     <PrimaryButton
                         onClick={this.dismissAutoDetectedFailuresDialog}
                         text={'Got it'}

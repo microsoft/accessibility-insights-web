@@ -173,4 +173,19 @@ describe('UserConfigMessageCreator', () => {
             Times.once(),
         );
     });
+
+    it('dispatches message for setAutoDetectedFailuresDialogState', () => {
+        const payload = false;
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SetAutoDetectedFailuresDialogState,
+            payload,
+        };
+
+        testSubject.setAutoDetectedFailuresDialogState(payload);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
+    });
 });

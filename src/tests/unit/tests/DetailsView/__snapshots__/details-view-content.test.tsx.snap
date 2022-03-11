@@ -275,6 +275,7 @@ exports[` render renders normally 1`] = `
         "lastSelectedHighContrast": false,
         "lastWindowBounds": null,
         "lastWindowState": null,
+        "showAutoDetectedFailuresDialog": true,
       }
     }
     visualizationScanResultData={
@@ -566,6 +567,7 @@ exports[` render renders normally 1`] = `
         "lastSelectedHighContrast": false,
         "lastWindowBounds": null,
         "lastWindowState": null,
+        "showAutoDetectedFailuresDialog": true,
       }
     }
   />

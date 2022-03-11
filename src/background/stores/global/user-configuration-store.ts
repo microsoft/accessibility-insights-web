@@ -28,6 +28,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         adbLocation: null,
         lastWindowBounds: null,
         lastWindowState: null,
+        showAutoDetectedFailuresDialog: true,
     };
 
     constructor(
@@ -69,6 +70,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
         this.userConfigActions.saveWindowBounds.addListener(this.onSaveLastWindowBounds);
+        this.userConfigActions.setAutoDetectedFailuresDialogState.addListener(
+            this.onSetAutoDetectedFailuresDialogState,
+        );
     }
 
     private onSetAdbLocation = (location: string): void => {
@@ -130,6 +134,12 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         if (payload.windowState === 'normal') {
             this.state.lastWindowBounds = payload.windowBounds;
         }
+
+        this.saveAndEmitChanged();
+    };
+
+    private onSetAutoDetectedFailuresDialogState = (payload: boolean): void => {
+        this.state.showAutoDetectedFailuresDialog = payload;
 
         this.saveAndEmitChanged();
     };

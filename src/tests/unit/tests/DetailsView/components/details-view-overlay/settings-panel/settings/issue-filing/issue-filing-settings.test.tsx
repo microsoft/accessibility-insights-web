@@ -34,6 +34,7 @@ describe('IssueFilingSettings', () => {
             adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
         };
         testIssueFilingServiceStub = {
             key: testKey,

@@ -40,4 +40,7 @@ export class UserConfigurationActionCreator {
 
     public saveWindowBounds = (payload: SaveWindowBoundsPayload) =>
         this.userConfigActions.saveWindowBounds.invoke(payload);
+
+    public setAutoDetectedFailuresDialogState = (payload: boolean) =>
+        this.userConfigActions.setAutoDetectedFailuresDialogState.invoke(payload);
 }

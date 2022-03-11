@@ -65,6 +65,7 @@ export const Messages = {
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
         SetAdbLocationConfig: `${messagePrefix}/userConfig/setAdbLocationConfig`,
         SaveWindowBounds: `${messagePrefix}/userConfig/saveWindowBounds`,
+        SetAutoDetectedFailuresDialogState: `${messagePrefix}/userConfig/setAutoDetectedFailuresDialogState`,
     },
 
     Popup: {

@@ -150,6 +150,21 @@ describe('UserConfigurationActionCreator', () => {
         saveWindowBoundsActionMock.verifyAll();
     });
 
+    it('should SetAutoDetectedFailuresDialogState Message', () => {
+        const expectedDialogState = false;
+
+        const dialogStateConfigMock = createActionMock(expectedDialogState);
+        const actionsMock = createActionsMock(
+            'setAutoDetectedFailuresDialogState',
+            dialogStateConfigMock.object,
+        );
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+
+        testSubject.setAutoDetectedFailuresDialogState(expectedDialogState);
+
+        dialogStateConfigMock.verifyAll();
+    });
+
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(
         actionName: ActionName,
         action: UserConfigurationActions[ActionName],
