@@ -5,45 +5,8 @@ exports[` render renders normally 1`] = `
   <InteractiveHeader
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
-        "dropdownClickHandler": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dropdownActionMessageCreator": undefined,
-          "openDebugTools": [Function],
-          "openPreviewFeaturesPanelHandler": [Function],
-          "openScopingPanelHandler": [Function],
-          "openSettingsPanelHandler": [Function],
-          "source": undefined,
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
+        "dropdownClickHandler": [typemoq mock object],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
@@ -51,10 +14,7 @@ exports[` render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storeActionMessageCreator": undefined,
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     featureFlagStoreData={
@@ -89,45 +49,8 @@ exports[` render renders normally 1`] = `
     automatedChecksCardsViewData={Object {}}
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
-        "dropdownClickHandler": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dropdownActionMessageCreator": undefined,
-          "openDebugTools": [Function],
-          "openPreviewFeaturesPanelHandler": [Function],
-          "openScopingPanelHandler": [Function],
-          "openSettingsPanelHandler": [Function],
-          "source": undefined,
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
+        "dropdownClickHandler": [typemoq mock object],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
@@ -135,10 +58,7 @@ exports[` render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storeActionMessageCreator": undefined,
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     detailsViewStoreData={
@@ -154,17 +74,7 @@ exports[` render renders normally 1`] = `
         "detailsViewRightContentPanel": "TestView",
       }
     }
-    dropdownClickHandler={
-      proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "dropdownActionMessageCreator": undefined,
-        "openDebugTools": [Function],
-        "openPreviewFeaturesPanelHandler": [Function],
-        "openScopingPanelHandler": [Function],
-        "openSettingsPanelHandler": [Function],
-        "source": undefined,
-      }
-    }
+    dropdownClickHandler={[typemoq mock object]}
     featureFlagStoreData={
       Object {
         "logTelemetryToConsole": false,
@@ -473,45 +383,8 @@ exports[` render renders normally 1`] = `
   <DetailsViewOverlay
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
-        "dropdownClickHandler": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dropdownActionMessageCreator": undefined,
-          "openDebugTools": [Function],
-          "openPreviewFeaturesPanelHandler": [Function],
-          "openScopingPanelHandler": [Function],
-          "openSettingsPanelHandler": [Function],
-          "source": undefined,
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
+        "dropdownClickHandler": [typemoq mock object],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
@@ -519,10 +392,7 @@ exports[` render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storeActionMessageCreator": undefined,
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     detailsViewStoreData={

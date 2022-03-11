@@ -4,39 +4,8 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
 <ChangeAssessmentDialog
   deps={
     Object {
-      "detailsViewActionMessageCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "addPathForValidation": [Function],
-        "cancelStartOver": [Function],
-        "cancelStartOverAllAssessments": [Function],
-        "changeAssessmentVisualizationState": [Function],
-        "changeManualRequirementStatus": [Function],
-        "changeManualTestStatus": [Function],
-        "clearPathSnippetData": [Function],
-        "closePreviewFeaturesPanel": [Function],
-        "closeScopingPanel": [Function],
-        "closeSettingsPanel": [Function],
-        "continuePreviousAssessment": [Function],
-        "copyIssueDetailsClicked": [Function],
-        "dispatcher": undefined,
-        "editFailureInstance": [Function],
-        "leftNavPanelExpanded": [Function],
-        "loadAssessment": [Function],
-        "removeFailureInstance": [Function],
-        "rescanVisualization": [Function],
-        "rescanVisualizationWithoutTelemetry": [Function],
-        "saveAssessment": [Function],
-        "setAllUrlsPermissionState": [Function],
-        "setFeatureFlag": [Function],
-        "startOverAllAssessments": [Function],
-        "switchToTargetTab": [Function],
-        "telemetryFactory": undefined,
-        "undoManualRequirementStatusChange": [Function],
-        "undoManualTestStatusChange": [Function],
-      },
-      "urlParser": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      },
+      "detailsViewActionMessageCreator": [typemoq mock object],
+      "urlParser": [typemoq mock object],
     }
   }
   dialogContentTitle="Assessment in progress"
@@ -70,39 +39,8 @@ exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <ChangeAssessmentDialog
   deps={
     Object {
-      "detailsViewActionMessageCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "addPathForValidation": [Function],
-        "cancelStartOver": [Function],
-        "cancelStartOverAllAssessments": [Function],
-        "changeAssessmentVisualizationState": [Function],
-        "changeManualRequirementStatus": [Function],
-        "changeManualTestStatus": [Function],
-        "clearPathSnippetData": [Function],
-        "closePreviewFeaturesPanel": [Function],
-        "closeScopingPanel": [Function],
-        "closeSettingsPanel": [Function],
-        "continuePreviousAssessment": [Function],
-        "copyIssueDetailsClicked": [Function],
-        "dispatcher": undefined,
-        "editFailureInstance": [Function],
-        "leftNavPanelExpanded": [Function],
-        "loadAssessment": [Function],
-        "removeFailureInstance": [Function],
-        "rescanVisualization": [Function],
-        "rescanVisualizationWithoutTelemetry": [Function],
-        "saveAssessment": [Function],
-        "setAllUrlsPermissionState": [Function],
-        "setFeatureFlag": [Function],
-        "startOverAllAssessments": [Function],
-        "switchToTargetTab": [Function],
-        "telemetryFactory": undefined,
-        "undoManualRequirementStatusChange": [Function],
-        "undoManualTestStatusChange": [Function],
-      },
-      "urlParser": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      },
+      "detailsViewActionMessageCreator": [typemoq mock object],
+      "urlParser": [typemoq mock object],
     }
   }
   dialogContentTitle="Assessment in progress"

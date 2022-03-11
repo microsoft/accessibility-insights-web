@@ -20,9 +20,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-        "unifiedResultToIssueFilingDataConverter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
     issueDetailsData={Object {}}
@@ -52,9 +50,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
           "supportsHighlighting": true,
           "supportsIssueFiling": false,
         },
-        "unifiedResultToIssueFilingDataConverter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
     issueDetailsData={Object {}}
@@ -99,9 +95,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-        "unifiedResultToIssueFilingDataConverter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
     issueDetailsData={Object {}}
@@ -131,9 +125,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-        "unifiedResultToIssueFilingDataConverter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
     issueDetailsData={Object {}}
@@ -163,9 +155,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-        "unifiedResultToIssueFilingDataConverter": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        },
+        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
     issueDetailsData={Object {}}

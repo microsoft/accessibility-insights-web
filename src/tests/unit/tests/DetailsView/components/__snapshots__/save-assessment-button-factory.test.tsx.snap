@@ -30,20 +30,9 @@ exports[`SaveAssessmentButtonFactory getSaveButtonForAssessment renders save ass
   }
   deps={
     Object {
-      "assessmentDataFormatter": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "addVersionNumber": [Function],
-        "formatAssessmentData": [Function],
-      },
-      "fileNameBuilder": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      },
-      "fileURLProvider": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "provideBlob": undefined,
-        "provideURL": [Function],
-        "windowUtils": undefined,
-      },
+      "assessmentDataFormatter": [typemoq mock object],
+      "fileNameBuilder": [typemoq mock object],
+      "fileURLProvider": [typemoq mock object],
       "getCurrentDate": [Function],
     }
   }
