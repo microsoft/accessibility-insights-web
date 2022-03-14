@@ -92,7 +92,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.13.1",
-        "@swc/core": "^1.2.111",
+        "@swc/core": "^1.2.155",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.179",
         "@types/enzyme": "^3.10.11",
