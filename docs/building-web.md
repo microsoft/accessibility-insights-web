@@ -126,6 +126,9 @@ yarn test:report:e2e
 yarn test:report:e2e -- -- -- -u
 #Linux and Mac:
 yarn test:report:e2e -- -- -u
+
+# On occasion you may need to clear the Jest cache before running tests
+yarn jest --clearCache
 ```
 
 Generally, if a Pull Request doesn't touch any E2E tests, you don't have to run them yourself; the automated Pull Request build will do it for you.
