@@ -66,43 +66,9 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
       }
       deps={
         Object {
-          "detailsViewActionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "addPathForValidation": [Function],
-            "cancelStartOver": [Function],
-            "cancelStartOverAllAssessments": [Function],
-            "changeAssessmentVisualizationState": [Function],
-            "changeManualRequirementStatus": [Function],
-            "changeManualTestStatus": [Function],
-            "clearPathSnippetData": [Function],
-            "closePreviewFeaturesPanel": [Function],
-            "closeScopingPanel": [Function],
-            "closeSettingsPanel": [Function],
-            "continuePreviousAssessment": [Function],
-            "copyIssueDetailsClicked": [Function],
-            "dispatcher": undefined,
-            "editFailureInstance": [Function],
-            "leftNavPanelExpanded": [Function],
-            "loadAssessment": [Function],
-            "removeFailureInstance": [Function],
-            "rescanVisualization": [Function],
-            "rescanVisualizationWithoutTelemetry": [Function],
-            "saveAssessment": [Function],
-            "setAllUrlsPermissionState": [Function],
-            "setFeatureFlag": [Function],
-            "startOverAllAssessments": [Function],
-            "switchToTargetTab": [Function],
-            "telemetryFactory": undefined,
-            "undoManualRequirementStatusChange": [Function],
-            "undoManualTestStatusChange": [Function],
-          },
+          "detailsViewActionMessageCreator": [typemoq mock object],
           "getDateFromTimestamp": [Function],
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-          },
+          "reportGenerator": [typemoq mock object],
         }
       }
       scanMetadata={
@@ -212,43 +178,9 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
       }
       deps={
         Object {
-          "detailsViewActionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "addPathForValidation": [Function],
-            "cancelStartOver": [Function],
-            "cancelStartOverAllAssessments": [Function],
-            "changeAssessmentVisualizationState": [Function],
-            "changeManualRequirementStatus": [Function],
-            "changeManualTestStatus": [Function],
-            "clearPathSnippetData": [Function],
-            "closePreviewFeaturesPanel": [Function],
-            "closeScopingPanel": [Function],
-            "closeSettingsPanel": [Function],
-            "continuePreviousAssessment": [Function],
-            "copyIssueDetailsClicked": [Function],
-            "dispatcher": undefined,
-            "editFailureInstance": [Function],
-            "leftNavPanelExpanded": [Function],
-            "loadAssessment": [Function],
-            "removeFailureInstance": [Function],
-            "rescanVisualization": [Function],
-            "rescanVisualizationWithoutTelemetry": [Function],
-            "saveAssessment": [Function],
-            "setAllUrlsPermissionState": [Function],
-            "setFeatureFlag": [Function],
-            "startOverAllAssessments": [Function],
-            "switchToTargetTab": [Function],
-            "telemetryFactory": undefined,
-            "undoManualRequirementStatusChange": [Function],
-            "undoManualTestStatusChange": [Function],
-          },
+          "detailsViewActionMessageCreator": [typemoq mock object],
           "getDateFromTimestamp": [Function],
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-          },
+          "reportGenerator": [typemoq mock object],
         }
       }
       scanMetadata={

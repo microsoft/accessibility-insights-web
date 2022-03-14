@@ -268,6 +268,7 @@ if (tabId != null) {
                 new TabStopRequirementActionMessageCreator(
                     telemetryFactory,
                     actionMessageDispatcher,
+                    TelemetryEventSource.DetailsView,
                 );
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
