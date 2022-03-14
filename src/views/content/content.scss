@@ -12,6 +12,17 @@
         flex-grow: 1;
         max-width: 150px;
     }
+
+    .title-container h1,
+    .title-container h2,
+    .title-container h3,
+    .title-container h4,
+    .title-container h5,
+    .title-container h6 {        
+        font-weight: unset;
+        margin-block: 0;
+        margin-inline: 0;
+    }
 }
 
 .content-header {
