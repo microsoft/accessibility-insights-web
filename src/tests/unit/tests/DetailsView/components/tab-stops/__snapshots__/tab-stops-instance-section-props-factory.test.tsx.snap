@@ -3,23 +3,8 @@
 exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expected 1`] = `
 Object {
   "deps": Object {
-    "tabStopRequirementActionMessageCreator": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "automatedTabbingResultsCompleted": [Function],
-      "dispatcher": undefined,
-      "telemetryFactory": undefined,
-      "toggleTabStopRequirementExpand": [Function],
-      "updateNeedToCollectTabbingResults": [Function],
-      "updateTabbingCompleted": [Function],
-    },
-    "tabStopsTestViewController": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actions": undefined,
-      "createNewFailureInstancePanel": [Function],
-      "dismissPanel": [Function],
-      "editExistingFailureInstance": [Function],
-      "updateDescription": [Function],
-    },
+    "tabStopRequirementActionMessageCreator": [typemoq mock object],
+    "tabStopsTestViewController": [typemoq mock object],
   },
   "getCollapsibleComponentPropsWithInstance": [Function],
   "headingLevel": 3,
@@ -101,44 +86,14 @@ Object {
     requirementId="keyboard-navigation"
   />,
   "deps": Object {
-    "tabStopRequirementActionMessageCreator": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "automatedTabbingResultsCompleted": [Function],
-      "dispatcher": undefined,
-      "telemetryFactory": undefined,
-      "toggleTabStopRequirementExpand": [Function],
-      "updateNeedToCollectTabbingResults": [Function],
-      "updateTabbingCompleted": [Function],
-    },
-    "tabStopsTestViewController": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actions": undefined,
-      "createNewFailureInstancePanel": [Function],
-      "dismissPanel": [Function],
-      "editExistingFailureInstance": [Function],
-      "updateDescription": [Function],
-    },
+    "tabStopRequirementActionMessageCreator": [typemoq mock object],
+    "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
       Object {
-        "tabStopRequirementActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "automatedTabbingResultsCompleted": [Function],
-          "dispatcher": undefined,
-          "telemetryFactory": undefined,
-          "toggleTabStopRequirementExpand": [Function],
-          "updateNeedToCollectTabbingResults": [Function],
-          "updateTabbingCompleted": [Function],
-        },
-        "tabStopsTestViewController": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
-          "createNewFailureInstancePanel": [Function],
-          "dismissPanel": [Function],
-          "editExistingFailureInstance": [Function],
-          "updateDescription": [Function],
-        },
+        "tabStopRequirementActionMessageCreator": [typemoq mock object],
+        "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={
@@ -171,23 +126,8 @@ Object {
 exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expected 1`] = `
 Object {
   "deps": Object {
-    "tabStopRequirementActionMessageCreator": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "automatedTabbingResultsCompleted": [Function],
-      "dispatcher": undefined,
-      "telemetryFactory": undefined,
-      "toggleTabStopRequirementExpand": [Function],
-      "updateNeedToCollectTabbingResults": [Function],
-      "updateTabbingCompleted": [Function],
-    },
-    "tabStopsTestViewController": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actions": undefined,
-      "createNewFailureInstancePanel": [Function],
-      "dismissPanel": [Function],
-      "editExistingFailureInstance": [Function],
-      "updateDescription": [Function],
-    },
+    "tabStopRequirementActionMessageCreator": [typemoq mock object],
+    "tabStopsTestViewController": [typemoq mock object],
   },
   "getCollapsibleComponentPropsWithInstance": [Function],
   "getCollapsibleComponentPropsWithoutInstance": [Function],
@@ -272,44 +212,14 @@ Object {
     requirementId="keyboard-navigation"
   />,
   "deps": Object {
-    "tabStopRequirementActionMessageCreator": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "automatedTabbingResultsCompleted": [Function],
-      "dispatcher": undefined,
-      "telemetryFactory": undefined,
-      "toggleTabStopRequirementExpand": [Function],
-      "updateNeedToCollectTabbingResults": [Function],
-      "updateTabbingCompleted": [Function],
-    },
-    "tabStopsTestViewController": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actions": undefined,
-      "createNewFailureInstancePanel": [Function],
-      "dismissPanel": [Function],
-      "editExistingFailureInstance": [Function],
-      "updateDescription": [Function],
-    },
+    "tabStopRequirementActionMessageCreator": [typemoq mock object],
+    "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
       Object {
-        "tabStopRequirementActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "automatedTabbingResultsCompleted": [Function],
-          "dispatcher": undefined,
-          "telemetryFactory": undefined,
-          "toggleTabStopRequirementExpand": [Function],
-          "updateNeedToCollectTabbingResults": [Function],
-          "updateTabbingCompleted": [Function],
-        },
-        "tabStopsTestViewController": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
-          "createNewFailureInstancePanel": [Function],
-          "dismissPanel": [Function],
-          "editExistingFailureInstance": [Function],
-          "updateDescription": [Function],
-        },
+        "tabStopRequirementActionMessageCreator": [typemoq mock object],
+        "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={
@@ -350,44 +260,14 @@ Object {
     This requirement has failed but no comment has been added
   </span>,
   "deps": Object {
-    "tabStopRequirementActionMessageCreator": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "automatedTabbingResultsCompleted": [Function],
-      "dispatcher": undefined,
-      "telemetryFactory": undefined,
-      "toggleTabStopRequirementExpand": [Function],
-      "updateNeedToCollectTabbingResults": [Function],
-      "updateTabbingCompleted": [Function],
-    },
-    "tabStopsTestViewController": proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "actions": undefined,
-      "createNewFailureInstancePanel": [Function],
-      "dismissPanel": [Function],
-      "editExistingFailureInstance": [Function],
-      "updateDescription": [Function],
-    },
+    "tabStopRequirementActionMessageCreator": [typemoq mock object],
+    "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
       Object {
-        "tabStopRequirementActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "automatedTabbingResultsCompleted": [Function],
-          "dispatcher": undefined,
-          "telemetryFactory": undefined,
-          "toggleTabStopRequirementExpand": [Function],
-          "updateNeedToCollectTabbingResults": [Function],
-          "updateTabbingCompleted": [Function],
-        },
-        "tabStopsTestViewController": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
-          "createNewFailureInstancePanel": [Function],
-          "dismissPanel": [Function],
-          "editExistingFailureInstance": [Function],
-          "updateDescription": [Function],
-        },
+        "tabStopRequirementActionMessageCreator": [typemoq mock object],
+        "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={

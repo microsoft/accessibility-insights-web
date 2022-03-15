@@ -27,6 +27,10 @@
                 font-weight: $fontWeightSemiBold;
                 color: $primary-text !important;
             }
+
+            strong {
+                font-weight: $fontWeightSemiBold;
+            }
         }
 
         :global(.rule-detail-description) {

@@ -29,6 +29,7 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {
@@ -37,6 +38,7 @@ describe('TelemetryDataFactoryTest', () => {
     const testSource: TelemetryEventSource = 1 as TelemetryEventSource;
     const mouseClickEvent = eventStubFactory.createMouseClickEvent() as any;
     const keypressEvent = eventStubFactory.createKeypressEvent() as any;
+    const sourceStub: TelemetryEventSource = -1;
 
     test('forAddSelector', () => {
         const event = mouseClickEvent;
@@ -758,11 +760,11 @@ describe('TelemetryDataFactoryTest', () => {
             { requirementId: 'keyboard-traps', html: null, selector: null, description: null },
         ];
 
-        const result = testObject.forAutomatedTabStopsResults(tabbingResults);
+        const result = testObject.forAutomatedTabStopsResults(tabbingResults, sourceStub);
 
         const expected: TabStopsAutomatedResultsTelemetryData = {
             tabStopAutomatedFailuresInstanceCount: { 'tab-order': 2, 'keyboard-traps': 1 },
-            source: TelemetryEventSource.DetailsView,
+            source: sourceStub,
             triggeredBy: 'N/A',
         };
 
@@ -770,7 +772,18 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forAutomatedTabStopsResults returns undefined when no results', () => {
-        const result = testObject.forAutomatedTabStopsResults([]);
+        const result = testObject.forAutomatedTabStopsResults([], sourceStub);
         expect(result).toBeUndefined();
+    });
+
+    test('forTabStopRequirement', () => {
+        const requirementId: TabStopRequirementId = 'tab-order';
+        const result = testObject.forTabStopRequirement(requirementId, sourceStub);
+        const expected = {
+            source: sourceStub,
+            requirementId: requirementId,
+            triggeredBy: TriggeredByNotApplicable,
+        };
+        expect(result).toEqual(expected);
     });
 });

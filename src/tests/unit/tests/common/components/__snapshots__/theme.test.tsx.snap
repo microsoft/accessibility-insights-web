@@ -9,10 +9,7 @@ exports[`ThemeInner is high contrast mode enabled: false 1`] = `
   }
   deps={
     Object {
-      "documentManipulator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "document": undefined,
-      },
+      "documentManipulator": [typemoq mock object],
       "loadTheme": [MockFunction],
       "storeActionMessageCreator": null,
       "storesHub": null,
@@ -31,10 +28,7 @@ exports[`ThemeInner is high contrast mode enabled: true 1`] = `
   }
   deps={
     Object {
-      "documentManipulator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "document": undefined,
-      },
+      "documentManipulator": [typemoq mock object],
       "loadTheme": [MockFunction],
       "storeActionMessageCreator": null,
       "storesHub": null,
