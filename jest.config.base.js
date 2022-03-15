@@ -46,6 +46,6 @@ module.exports = {
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],
     transform: {
-        '^.+\\.(ts|tsx|js|jsx)$': [`${__dirname}/src/tests/common/swc-transformer`],
+        '^.+\\.(ts|tsx|js|jsx)$': ['@swc/jest'],
     },
 };
