@@ -786,4 +786,18 @@ describe('TelemetryDataFactoryTest', () => {
         };
         expect(result).toEqual(expected);
     });
+
+    test('forSetAutoDetectedFailuresDialogState', () => {
+        const enabled = true;
+        const result = testObject.forSetAutoDetectedFailuresDialogState(enabled);
+        const expected = {
+            enabled,
+        };
+        expect(result).toEqual(expected);
+    });
+
+    test('forSetAutoDetectedFailuresDialogState when undefined', () => {
+        const result = testObject.forSetAutoDetectedFailuresDialogState(undefined);
+        expect(result).toBeUndefined();
+    });
 });

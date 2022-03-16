@@ -21,6 +21,7 @@ exports[`IssueFilingSettings renders 1`] = `
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }

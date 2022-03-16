@@ -6,6 +6,7 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -138,8 +139,10 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.saveAndEmitChanged();
     };
 
-    private onSetAutoDetectedFailuresDialogState = (payload: boolean): void => {
-        this.state.showAutoDetectedFailuresDialog = payload;
+    private onSetAutoDetectedFailuresDialogState = (
+        payload: AutoDetectedFailuresDialogStatePayload,
+    ): void => {
+        this.state.showAutoDetectedFailuresDialog = payload.enabled;
 
         this.saveAndEmitChanged();
     };

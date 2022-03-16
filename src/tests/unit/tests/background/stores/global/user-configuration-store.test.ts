@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -497,6 +498,9 @@ describe('UserConfigurationStoreTest', () => {
     test('setAutoDetectedFailuresDialogState', () => {
         const storeTester = createStoreToTestAction('setAutoDetectedFailuresDialogState');
         const showAutoDetectedFailuresDialog = false;
+        const payload: AutoDetectedFailuresDialogStatePayload = {
+            enabled: showAutoDetectedFailuresDialog,
+        };
         const expectedState: UserConfigurationStoreData = {
             ...initialStoreData,
             showAutoDetectedFailuresDialog,
@@ -510,7 +514,7 @@ describe('UserConfigurationStoreTest', () => {
             .verifiable(Times.once());
 
         storeTester
-            .withActionParam(showAutoDetectedFailuresDialog)
+            .withActionParam(payload)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });

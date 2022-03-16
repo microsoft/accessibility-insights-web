@@ -51,6 +51,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -132,6 +133,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -213,6 +215,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -294,6 +297,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -375,6 +379,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -456,6 +461,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -537,6 +543,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -619,6 +626,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
@@ -700,6 +708,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
           "saveWindowBounds": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
+          "telemetryFactory": undefined,
         },
       }
     }
