@@ -24,10 +24,7 @@ exports[`IssueFilingSettingsContainerTest render 1`] = `
   <settingsForm
     deps={
       Object {
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingServiceProvider": [typemoq mock object],
         "userConfigMessageCreator": Object {},
       }
     }

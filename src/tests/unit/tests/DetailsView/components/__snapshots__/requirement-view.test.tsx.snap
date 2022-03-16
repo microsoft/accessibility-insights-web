@@ -8,12 +8,8 @@ exports[`RequirementViewTest renders with content from props 1`] = `
     <RequirementViewTitle
       deps={
         Object {
-          "assessmentViewUpdateHandler": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          },
-          "assessmentsProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          },
+          "assessmentViewUpdateHandler": [typemoq mock object],
+          "assessmentsProvider": [typemoq mock object],
         }
       }
       name="test-requirement-name"
@@ -46,11 +42,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
             "selectedTestType": 0,
           }
         }
-        assessmentsProvider={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          }
-        }
+        assessmentsProvider={[typemoq mock object]}
         featureFlagStoreData={
           Object {
             "some feature flag": true,
@@ -93,12 +85,8 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       currentTest={0}
       deps={
         Object {
-          "assessmentViewUpdateHandler": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          },
-          "assessmentsProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          },
+          "assessmentViewUpdateHandler": [typemoq mock object],
+          "assessmentsProvider": [typemoq mock object],
         }
       }
       nextRequirement={

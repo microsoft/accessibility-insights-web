@@ -23,16 +23,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -105,16 +97,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -187,16 +171,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -269,16 +245,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -351,16 +319,8 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -433,16 +393,8 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -515,16 +467,8 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -598,16 +542,8 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -680,16 +616,8 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
