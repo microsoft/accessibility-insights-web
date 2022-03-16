@@ -14,10 +14,14 @@ export type AutoDetectedFailuresDialogState = {
 };
 
 export interface AutoDetectedFailuresDialogProps {
+    deps: AutoDetectedFailuresDialogDeps;
     visualizationScanResultData: VisualizationScanResultData;
     userConfigurationStoreData: UserConfigurationStoreData;
-    userConfigMessageCreator: UserConfigMessageCreator;
 }
+
+export type AutoDetectedFailuresDialogDeps = {
+    userConfigMessageCreator: UserConfigMessageCreator;
+};
 
 export class AutoDetectedFailuresDialog extends React.Component<
     AutoDetectedFailuresDialogProps,
@@ -39,7 +43,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
         if (checked === undefined) {
             return;
         }
-        this.props.userConfigMessageCreator.setAutoDetectedFailuresDialogState(!checked);
+        this.props.deps.userConfigMessageCreator.setAutoDetectedFailuresDialogState(!checked);
         this.setState({ isDisableBoxChecked: checked });
     };
 
@@ -53,12 +57,13 @@ export class AutoDetectedFailuresDialog extends React.Component<
             Object.entries(this.props.visualizationScanResultData.tabStops.requirements).some(
                 ([_, data]) => data.instances.length > 0 && data.status === 'fail',
             );
-        const dialogEnabled = this.props.userConfigurationStoreData.showAutoDetectedFailuresDialog;
+        const showAgainSetting =
+            this.props.userConfigurationStoreData.showAutoDetectedFailuresDialog;
         if (
             tabbingJustFinished &&
             autoDetectedFailuresExist &&
             !prevState.dialogEnabled &&
-            dialogEnabled
+            showAgainSetting
         ) {
             this.setState({ isDisableBoxChecked: false });
             this.showAutoDetectedFailuresDialog();

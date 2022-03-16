@@ -212,9 +212,9 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         featureFlagStoreData={props.featureFlagStoreData}
                         enableJSXElement={
                             <AutoDetectedFailuresDialog
+                                deps={props.deps}
                                 visualizationScanResultData={props.visualizationScanResultData}
                                 userConfigurationStoreData={props.userConfigurationStoreData}
-                                userConfigMessageCreator={props.deps.userConfigMessageCreator}
                             />
                         }
                     />

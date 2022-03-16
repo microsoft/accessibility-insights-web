@@ -51,7 +51,9 @@ describe('AutoDetectedFailuresDialog', () => {
         props = {
             visualizationScanResultData,
             userConfigurationStoreData,
-            userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            deps: {
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
         } as AutoDetectedFailuresDialogProps;
     });
 
@@ -90,6 +92,16 @@ describe('AutoDetectedFailuresDialog', () => {
                 .verifiable(Times.once());
 
             wrapper.find(Checkbox).simulate('change', undefined, true);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('nothing happens when checkbox change is undefined', () => {
+            userConfigMessageCreatorMock
+                .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
+                .verifiable(Times.once());
+
+            wrapper.find(Checkbox).simulate('change', undefined, undefined);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
