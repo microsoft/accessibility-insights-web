@@ -2,8 +2,10 @@
 
 exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `null`;
 
+exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismiss is called 1`] = `null`;
+
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
-<BlockingDialog
+<Dialog
   dialogContentProps={
     Object {
       "title": "Possible failures auto-detected",
@@ -16,6 +18,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
       "containerClassName": "insightsDialogMainOverride",
     }
   }
+  onDismiss={[Function]}
 >
   <div
     className="dialogBody"
@@ -35,7 +38,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
       text="Got it"
     />
   </StyledDialogFooterBase>
-</BlockingDialog>
+</Dialog>
 `;
 
 exports[`AutoDetectedFailuresDialog renders when dialog is not enabled 1`] = `null`;

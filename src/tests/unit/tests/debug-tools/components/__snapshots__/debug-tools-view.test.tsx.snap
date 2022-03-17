@@ -16,19 +16,13 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
     childrenProps={
       Object {
         "deps": Object {
-          "storesHub": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "stores": undefined,
-          },
+          "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     isNarrowModeEnabled={true}
@@ -37,10 +31,7 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
     className="nav"
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     state={
@@ -54,10 +45,7 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
   <CurrentView
     deps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
+        "storesHub": [typemoq mock object],
       }
     }
     storeState={

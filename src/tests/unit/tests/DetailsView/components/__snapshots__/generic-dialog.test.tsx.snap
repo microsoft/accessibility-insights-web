@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GenericDialogTest should render 1`] = `
-"<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onCancelButtonClick]} dialogContentProps={{...}} modalProps={{...}}>
+"<Dialog hidden={false} onDismiss={[Function: onCancelButtonClick]} dialogContentProps={{...}} modalProps={{...}}>
   <div className=\\"dialogBody\\">
     test message
   </div>
@@ -9,5 +9,5 @@ exports[`GenericDialogTest should render 1`] = `
     <CustomizedPrimaryButton onClick={[Function: onPrimaryButtonClick]} text=\\"test primary text\\" />
     <CustomizedDefaultButton onClick={[Function: onCancelButtonClick]} text=\\"Cancel\\" autoFocus={true} />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>"
+</Dialog>"
 `;

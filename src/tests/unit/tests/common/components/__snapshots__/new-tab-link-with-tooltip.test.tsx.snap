@@ -18,6 +18,7 @@ exports[` handles children 1`] = `
   }
 >
   <NewTabLink
+    className="insightsLink"
     href="test"
   >
     link text
@@ -42,6 +43,7 @@ exports[` renders with null tooltip content 1`] = `
   }
 >
   <NewTabLink
+    className="insightsLink"
     href="test"
   />
 </StyledTooltipHostBase>
@@ -65,6 +67,7 @@ exports[` renders with tooltip content 1`] = `
   }
 >
   <NewTabLink
+    className="insightsLink"
     href="test"
   />
 </StyledTooltipHostBase>

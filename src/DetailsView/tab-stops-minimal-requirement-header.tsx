@@ -35,7 +35,9 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
         };
 
         const renderRuleName = () => (
-            <span className={styles.requirementDetailsId}>{requirement.name}</span>
+            <span className={styles.requirementDetailsId}>
+                <strong>{requirement.name}</strong>
+            </span>
         );
 
         const renderDescription = () => (

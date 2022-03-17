@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../styles/colors.scss';
+@import '../../styles/common.scss';
 
 div.kebab-menu-callout {
     box-shadow: 0px 6.4px 14.4px $box-shadow-132, 0px 1.2px 3.6px $box-shadow-108;
@@ -23,6 +24,9 @@ div.kebab-menu-callout {
         }
         &:hover {
             background-color: $menu-item-background-hover;
+            @media screen and (forced-colors: active) {
+                background-color: inherit;
+            }
         }
         &:active {
             background-color: $menu-item-background-active;
@@ -60,6 +64,12 @@ button.kebab-menu-button {
         color: $always-black;
         svg > circle {
             stroke: $always-black;
+        }
+        @media screen and (forced-colors: active) {
+            color: inherit;
+            svg > circle {
+                stroke: inherit;
+            }
         }
     }
 

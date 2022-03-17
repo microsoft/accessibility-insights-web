@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton } from '@fluentui/react';
 import { isEmpty } from 'lodash';
-import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import * as styles from './action-and-cancel-buttons-component.scss';

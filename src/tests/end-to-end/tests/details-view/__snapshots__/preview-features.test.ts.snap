@@ -13,54 +13,12 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
       class="ms-Panel-main main-000"
     >
       <div
+        aria-hidden="true"
+        data-is-focus-trap-zone-bumper="true"
         data-is-visible="true"
         style="pointer-events: none; position: fixed;"
         tabindex="0"
       />
-      <div
-        class="ms-Panel-commands commands-000"
-        data-is-visible="true"
-      >
-        <div
-          class="ms-Panel-navigation navigation-000"
-        >
-          <div
-            class="ms-Panel-header header-000"
-          >
-            <div
-              aria-level="2"
-              class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
-              id="Panel000-headerText"
-              role="heading"
-            >
-              Preview features
-            </div>
-          </div>
-          <button
-            aria-label="Close preview features panel"
-            class="ms-Button ms-Button--icon ms-Panel-closeButton ms-PanelAction-close closeButton-000"
-            data-is-focusable="true"
-            data-is-visible="true"
-            title="Close preview features panel"
-            type="button"
-          >
-            <span
-              class="ms-Button-flexContainer flexContainer-000"
-              data-automationid="splitbuttonprimary"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
-                data-icon-name="Cancel"
-                role="presentation"
-                style="font-family: FabricMDL2Icons;"
-              >
-                
-              </i>
-            </span>
-          </button>
-        </div>
-      </div>
       <div
         class="ms-Panel-contentInner contentInner-000"
       >
@@ -68,6 +26,49 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
           class="ms-Panel-scrollableContent scrollableContent-000"
           data-is-scrollable="true"
         >
+          <div
+            class="ms-Panel-commands commands-000"
+            data-is-visible="true"
+          >
+            <div
+              class="ms-Panel-navigation navigation-000"
+            >
+              <div
+                class="ms-Panel-header header-000"
+              >
+                <div
+                  aria-level="1"
+                  class="ms-Panel-headerText header-text--{{CSS_MODULE_HASH}} headerText-000"
+                  id="Panel000-headerText"
+                  role="heading"
+                >
+                  Preview features
+                </div>
+              </div>
+              <button
+                aria-label="Close preview features panel"
+                class="ms-Button ms-Panel-closeButton ms-PanelAction-close ms-Button--icon root-000"
+                data-is-focusable="true"
+                data-is-visible="true"
+                title="Close preview features panel"
+                type="button"
+              >
+                <span
+                  class="ms-Button-flexContainer flexContainer-000"
+                  data-automationid="splitbuttonprimary"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+                    data-icon-name="Cancel"
+                    style="font-family: FabricMDL2Icons;"
+                  >
+                    
+                  </i>
+                </span>
+              </button>
+            </div>
+          </div>
           <div
             class="ms-Panel-content content-000"
           >
@@ -104,6 +105,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                           aria-label="More export options"
                           class="ms-Toggle-background pill-000"
                           data-is-focusable="true"
+                          data-ktp-target="true"
                           id="exportReportOptions"
                           role="switch"
                           type="button"
@@ -128,12 +130,61 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                     Enables exporting reports to external services
                   </div>
                 </div>
+                <div
+                  class="generic-toggle-component--{{CSS_MODULE_HASH}}"
+                >
+                  <div
+                    class="toggle-container--{{CSS_MODULE_HASH}}"
+                  >
+                    <div
+                      class="toggle-name--{{CSS_MODULE_HASH}}"
+                    >
+                      Tab Stops Automation
+                    </div>
+                    <div
+                      class="ms-Toggle is-checked is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
+                    >
+                      <div
+                        class="ms-Toggle-innerContainer container-000"
+                      >
+                        <button
+                          aria-checked="true"
+                          aria-label="Tab Stops Automation"
+                          class="ms-Toggle-background pill-000"
+                          data-is-focusable="true"
+                          data-ktp-target="true"
+                          id="tabStopsAutomation"
+                          role="switch"
+                          type="button"
+                        >
+                          <span
+                            class="ms-Toggle-thumb thumb-000"
+                          />
+                        </button>
+                        <label
+                          class="ms-Label ms-Toggle-stateText text-000"
+                          for="tabStopsAutomation"
+                          id="tabStopsAutomation-stateText"
+                        >
+                          On
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="toggle-description--{{CSS_MODULE_HASH}}"
+                  >
+                    Enables the new tab stops automation
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div
+        aria-hidden="true"
+        data-is-focus-trap-zone-bumper="true"
         data-is-visible="true"
         style="pointer-events: none; position: fixed;"
         tabindex="0"

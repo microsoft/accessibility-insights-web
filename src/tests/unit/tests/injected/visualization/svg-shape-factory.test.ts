@@ -366,33 +366,16 @@ describe('SVGShapeFactory', () => {
             x: 100,
             y: 100,
         };
-        const tabOrder = 10;
+        const innerText = 'X';
 
         const textConfig: TextConfiguration = {
             textAnchor: 'textAnchor',
             fontColor: 'fontColor',
         };
 
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
-        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual(tabOrder.toString());
-    });
-
-    test('create label with null tab order', () => {
-        const center: Point = {
-            x: 100,
-            y: 100,
-        };
-        const tabOrder = null;
-
-        const textConfig: TextConfiguration = {
-            textAnchor: 'textAnchor',
-            fontColor: 'fontColor',
-        };
-
-        const label = testObject.createTabIndexLabel(center, textConfig, tabOrder);
-        verifyTabIndexLabelParams(label, textConfig, center, tabOrder);
-        expect(label.innerHTML).toEqual('');
+        const label = testObject.createTabIndexLabel(center, textConfig, innerText);
+        verifyTabIndexLabelParams(label, textConfig, center);
+        expect(label.innerHTML).toEqual(innerText);
     });
 
     test('create failure label', () => {
@@ -419,7 +402,6 @@ describe('SVGShapeFactory', () => {
         label: Element,
         configuration: TextConfiguration,
         center: Point,
-        tabOrder: number,
     ): void {
         expect(label.tagName).toEqual('text');
         expect(label.getAttributeNS(null, 'class')).toEqual('insights-svg-focus-indicator-text');

@@ -22,7 +22,9 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
       className="rule-details-id"
       data-automation-id="cards-rule-id"
     >
-      rule id
+      <strong>
+        rule id
+      </strong>
     </span>
     : 
     <span
@@ -47,7 +49,9 @@ exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
       className="rule-details-id"
       data-automation-id="cards-rule-id"
     >
-      rule id
+      <strong>
+        rule id
+      </strong>
     </span>
     : 
     <span
@@ -72,7 +76,9 @@ exports[`MinimalRuleHeader renders, outcomeType = incomplete 1`] = `
       className="rule-details-id"
       data-automation-id="cards-rule-id"
     >
-      rule id
+      <strong>
+        rule id
+      </strong>
     </span>
     : 
     <span
@@ -97,7 +103,9 @@ exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
       className="rule-details-id"
       data-automation-id="cards-rule-id"
     >
-      rule id
+      <strong>
+        rule id
+      </strong>
     </span>
     : 
     <span
@@ -131,7 +139,9 @@ exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
       className="rule-details-id"
       data-automation-id="cards-rule-id"
     >
-      rule id
+      <strong>
+        rule id
+      </strong>
     </span>
     : 
     <span

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import { NamedFC } from 'common/react/named-fc';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { MaximizeRestoreButton } from './maximize-restore-button';
 import * as styles from './title-bar.scss';

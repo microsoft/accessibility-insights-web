@@ -21,6 +21,7 @@ import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { UsageLogger } from 'background/usage-logger';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
@@ -115,7 +116,6 @@ import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-
 import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -544,6 +544,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
+
+        const usageLogger = new UsageLogger(storageAdapter, DateProvider.getCurrentDate, logger);
+        usageLogger.record();
 
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,

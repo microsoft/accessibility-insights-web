@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INav } from '@fluentui/react';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { shallow } from 'enzyme';
-import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 

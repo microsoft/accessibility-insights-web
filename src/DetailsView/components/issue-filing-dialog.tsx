@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dialog, DialogFooter, DialogType } from '@fluentui/react';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as issueFilingDialogStyles from 'DetailsView/components/issue-filing-dialog.scss';
 import { cloneDeep, isEqual } from 'lodash';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';

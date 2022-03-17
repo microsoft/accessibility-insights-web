@@ -43,7 +43,7 @@ button::after {
     // marking important to override office fabric style
     color: $link !important;
     text-decoration: none;
-
+    @include fluent-forced-color-adjust-override;
     &:hover {
         color: $link-hover !important;
         text-decoration: underline;

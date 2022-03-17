@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Button } from '@fluentui/react';
 import { ThemeInnerState } from 'common/components/theme';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
@@ -11,7 +12,6 @@ import { MaximizeRestoreButtonProps } from 'electron/views/results/components/ma
 import { TitleBar, TitleBarProps } from 'electron/views/results/components/title-bar';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';

@@ -28,13 +28,16 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: TabStopRequirementActionMessageCreator;
+    let sourceStub: TelemetryEventSource;
 
     beforeEach(() => {
+        sourceStub = -1;
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         testSubject = new TabStopRequirementActionMessageCreator(
             telemetryFactoryMock.object,
             dispatcherMock.object,
+            sourceStub,
         );
     });
 
@@ -58,7 +61,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forTabStopRequirement(requirementStatus.requirementId))
+            .setup(tf => tf.forTabStopRequirement(requirementStatus.requirementId, sourceStub))
             .returns(() => telemetry);
 
         testSubject.updateTabStopRequirementStatus(
@@ -95,7 +98,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId))
+            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId, sourceStub))
             .returns(() => telemetry);
 
         testSubject.addTabStopInstance(requirementInstance);
@@ -129,7 +132,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId))
+            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId, sourceStub))
             .returns(() => telemetry);
 
         testSubject.updateTabStopInstance(
@@ -167,7 +170,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
         };
 
         telemetryFactoryMock
-            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId))
+            .setup(tf => tf.forTabStopRequirement(requirementInstance.requirementId, sourceStub))
             .returns(() => telemetry);
 
         testSubject.removeTabStopInstance(
@@ -264,7 +267,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             },
         };
         telemetryFactoryMock
-            .setup(tf => tf.forAutomatedTabStopsResults(tabbingResults))
+            .setup(tf => tf.forAutomatedTabStopsResults(tabbingResults, sourceStub))
             .returns(() => telemetry);
 
         testSubject.automatedTabbingResultsCompleted(tabbingResults);

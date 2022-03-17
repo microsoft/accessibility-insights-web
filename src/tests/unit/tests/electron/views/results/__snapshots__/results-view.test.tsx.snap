@@ -53,18 +53,8 @@ exports[`ResultsView right content panel info changes when left nav selected key
       "getCardsViewData": [Function],
       "getDateFromTimestamp": [Function],
       "isResultHighlightUnavailable": [Function],
-      "leftNavActionCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "cardSelectionActions": undefined,
-        "itemSelected": [Function],
-        "leftNavActions": undefined,
-        "setLeftNavVisible": [Function],
-      },
-      "scanActionCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "deviceConnectionActions": undefined,
-        "scanActions": undefined,
-      },
+      "leftNavActionCreator": [typemoq mock object],
+      "scanActionCreator": [typemoq mock object],
       "screenshotViewModelProvider": [Function],
       "toolData": Object {
         "applicationProperties": Object {
@@ -136,18 +126,8 @@ exports[`ResultsView right content panel info renders with default/initial value
       "getCardsViewData": [Function],
       "getDateFromTimestamp": [Function],
       "isResultHighlightUnavailable": [Function],
-      "leftNavActionCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "cardSelectionActions": undefined,
-        "itemSelected": [Function],
-        "leftNavActions": undefined,
-        "setLeftNavVisible": [Function],
-      },
-      "scanActionCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "deviceConnectionActions": undefined,
-        "scanActions": undefined,
-      },
+      "leftNavActionCreator": [typemoq mock object],
+      "scanActionCreator": [typemoq mock object],
       "screenshotViewModelProvider": [Function],
       "toolData": Object {
         "applicationProperties": Object {
@@ -200,18 +180,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -254,18 +224,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
           "getCardsViewData": [Function],
           "getDateFromTimestamp": [Function],
           "isResultHighlightUnavailable": [Function],
-          "leftNavActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "cardSelectionActions": undefined,
-            "itemSelected": [Function],
-            "leftNavActions": undefined,
-            "setLeftNavVisible": [Function],
-          },
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceConnectionActions": undefined,
-            "scanActions": undefined,
-          },
+          "leftNavActionCreator": [typemoq mock object],
+          "scanActionCreator": [typemoq mock object],
           "screenshotViewModelProvider": [Function],
           "toolData": Object {
             "applicationProperties": Object {
@@ -333,18 +293,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             "getCardsViewData": [Function],
             "getDateFromTimestamp": [Function],
             "isResultHighlightUnavailable": [Function],
-            "leftNavActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "cardSelectionActions": undefined,
-              "itemSelected": [Function],
-              "leftNavActions": undefined,
-              "setLeftNavVisible": [Function],
-            },
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceConnectionActions": undefined,
-              "scanActions": undefined,
-            },
+            "leftNavActionCreator": [typemoq mock object],
+            "scanActionCreator": [typemoq mock object],
             "screenshotViewModelProvider": [Function],
             "toolData": Object {
               "applicationProperties": Object {
@@ -436,18 +386,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                   "getCardsViewData": [Function],
                   "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
-                  "leftNavActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "cardSelectionActions": undefined,
-                    "itemSelected": [Function],
-                    "leftNavActions": undefined,
-                    "setLeftNavVisible": [Function],
-                  },
-                  "scanActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceConnectionActions": undefined,
-                    "scanActions": undefined,
-                  },
+                  "leftNavActionCreator": [typemoq mock object],
+                  "scanActionCreator": [typemoq mock object],
                   "screenshotViewModelProvider": [Function],
                   "toolData": Object {
                     "applicationProperties": Object {
@@ -511,18 +451,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               "getCardsViewData": [Function],
               "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
-              "leftNavActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "cardSelectionActions": undefined,
-                "itemSelected": [Function],
-                "leftNavActions": undefined,
-                "setLeftNavVisible": [Function],
-              },
-              "scanActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "deviceConnectionActions": undefined,
-                "scanActions": undefined,
-              },
+              "leftNavActionCreator": [typemoq mock object],
+              "scanActionCreator": [typemoq mock object],
               "screenshotViewModelProvider": [Function],
               "toolData": Object {
                 "applicationProperties": Object {
@@ -572,18 +502,8 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -637,18 +557,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -691,18 +601,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
           "getCardsViewData": [Function],
           "getDateFromTimestamp": [Function],
           "isResultHighlightUnavailable": [Function],
-          "leftNavActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "cardSelectionActions": undefined,
-            "itemSelected": [Function],
-            "leftNavActions": undefined,
-            "setLeftNavVisible": [Function],
-          },
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceConnectionActions": undefined,
-            "scanActions": undefined,
-          },
+          "leftNavActionCreator": [typemoq mock object],
+          "scanActionCreator": [typemoq mock object],
           "screenshotViewModelProvider": [Function],
           "toolData": Object {
             "applicationProperties": Object {
@@ -770,18 +670,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             "getCardsViewData": [Function],
             "getDateFromTimestamp": [Function],
             "isResultHighlightUnavailable": [Function],
-            "leftNavActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "cardSelectionActions": undefined,
-              "itemSelected": [Function],
-              "leftNavActions": undefined,
-              "setLeftNavVisible": [Function],
-            },
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceConnectionActions": undefined,
-              "scanActions": undefined,
-            },
+            "leftNavActionCreator": [typemoq mock object],
+            "scanActionCreator": [typemoq mock object],
             "screenshotViewModelProvider": [Function],
             "toolData": Object {
               "applicationProperties": Object {
@@ -858,18 +748,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                   "getCardsViewData": [Function],
                   "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
-                  "leftNavActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "cardSelectionActions": undefined,
-                    "itemSelected": [Function],
-                    "leftNavActions": undefined,
-                    "setLeftNavVisible": [Function],
-                  },
-                  "scanActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceConnectionActions": undefined,
-                    "scanActions": undefined,
-                  },
+                  "leftNavActionCreator": [typemoq mock object],
+                  "scanActionCreator": [typemoq mock object],
                   "screenshotViewModelProvider": [Function],
                   "toolData": Object {
                     "applicationProperties": Object {
@@ -918,18 +798,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               "getCardsViewData": [Function],
               "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
-              "leftNavActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "cardSelectionActions": undefined,
-                "itemSelected": [Function],
-                "leftNavActions": undefined,
-                "setLeftNavVisible": [Function],
-              },
-              "scanActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "deviceConnectionActions": undefined,
-                "scanActions": undefined,
-              },
+              "leftNavActionCreator": [typemoq mock object],
+              "scanActionCreator": [typemoq mock object],
               "screenshotViewModelProvider": [Function],
               "toolData": Object {
                 "applicationProperties": Object {
@@ -982,18 +852,8 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -1047,18 +907,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -1101,18 +951,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
           "getCardsViewData": [Function],
           "getDateFromTimestamp": [Function],
           "isResultHighlightUnavailable": [Function],
-          "leftNavActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "cardSelectionActions": undefined,
-            "itemSelected": [Function],
-            "leftNavActions": undefined,
-            "setLeftNavVisible": [Function],
-          },
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceConnectionActions": undefined,
-            "scanActions": undefined,
-          },
+          "leftNavActionCreator": [typemoq mock object],
+          "scanActionCreator": [typemoq mock object],
           "screenshotViewModelProvider": [Function],
           "toolData": Object {
             "applicationProperties": Object {
@@ -1180,18 +1020,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             "getCardsViewData": [Function],
             "getDateFromTimestamp": [Function],
             "isResultHighlightUnavailable": [Function],
-            "leftNavActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "cardSelectionActions": undefined,
-              "itemSelected": [Function],
-              "leftNavActions": undefined,
-              "setLeftNavVisible": [Function],
-            },
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceConnectionActions": undefined,
-              "scanActions": undefined,
-            },
+            "leftNavActionCreator": [typemoq mock object],
+            "scanActionCreator": [typemoq mock object],
             "screenshotViewModelProvider": [Function],
             "toolData": Object {
               "applicationProperties": Object {
@@ -1268,18 +1098,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                   "getCardsViewData": [Function],
                   "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
-                  "leftNavActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "cardSelectionActions": undefined,
-                    "itemSelected": [Function],
-                    "leftNavActions": undefined,
-                    "setLeftNavVisible": [Function],
-                  },
-                  "scanActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceConnectionActions": undefined,
-                    "scanActions": undefined,
-                  },
+                  "leftNavActionCreator": [typemoq mock object],
+                  "scanActionCreator": [typemoq mock object],
                   "screenshotViewModelProvider": [Function],
                   "toolData": Object {
                     "applicationProperties": Object {
@@ -1328,18 +1148,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               "getCardsViewData": [Function],
               "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
-              "leftNavActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "cardSelectionActions": undefined,
-                "itemSelected": [Function],
-                "leftNavActions": undefined,
-                "setLeftNavVisible": [Function],
-              },
-              "scanActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "deviceConnectionActions": undefined,
-                "scanActions": undefined,
-              },
+              "leftNavActionCreator": [typemoq mock object],
+              "scanActionCreator": [typemoq mock object],
               "screenshotViewModelProvider": [Function],
               "toolData": Object {
                 "applicationProperties": Object {
@@ -1389,18 +1199,8 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -1454,18 +1254,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {
@@ -1508,18 +1298,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
           "getCardsViewData": [Function],
           "getDateFromTimestamp": [Function],
           "isResultHighlightUnavailable": [Function],
-          "leftNavActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "cardSelectionActions": undefined,
-            "itemSelected": [Function],
-            "leftNavActions": undefined,
-            "setLeftNavVisible": [Function],
-          },
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceConnectionActions": undefined,
-            "scanActions": undefined,
-          },
+          "leftNavActionCreator": [typemoq mock object],
+          "scanActionCreator": [typemoq mock object],
           "screenshotViewModelProvider": [Function],
           "toolData": Object {
             "applicationProperties": Object {
@@ -1587,18 +1367,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             "getCardsViewData": [Function],
             "getDateFromTimestamp": [Function],
             "isResultHighlightUnavailable": [Function],
-            "leftNavActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "cardSelectionActions": undefined,
-              "itemSelected": [Function],
-              "leftNavActions": undefined,
-              "setLeftNavVisible": [Function],
-            },
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceConnectionActions": undefined,
-              "scanActions": undefined,
-            },
+            "leftNavActionCreator": [typemoq mock object],
+            "scanActionCreator": [typemoq mock object],
             "screenshotViewModelProvider": [Function],
             "toolData": Object {
               "applicationProperties": Object {
@@ -1675,18 +1445,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                   "getCardsViewData": [Function],
                   "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
-                  "leftNavActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "cardSelectionActions": undefined,
-                    "itemSelected": [Function],
-                    "leftNavActions": undefined,
-                    "setLeftNavVisible": [Function],
-                  },
-                  "scanActionCreator": proxy {
-                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceConnectionActions": undefined,
-                    "scanActions": undefined,
-                  },
+                  "leftNavActionCreator": [typemoq mock object],
+                  "scanActionCreator": [typemoq mock object],
                   "screenshotViewModelProvider": [Function],
                   "toolData": Object {
                     "applicationProperties": Object {
@@ -1734,18 +1494,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               "getCardsViewData": [Function],
               "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
-              "leftNavActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "cardSelectionActions": undefined,
-                "itemSelected": [Function],
-                "leftNavActions": undefined,
-                "setLeftNavVisible": [Function],
-              },
-              "scanActionCreator": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "deviceConnectionActions": undefined,
-                "scanActions": undefined,
-              },
+              "leftNavActionCreator": [typemoq mock object],
+              "scanActionCreator": [typemoq mock object],
               "screenshotViewModelProvider": [Function],
               "toolData": Object {
                 "applicationProperties": Object {
@@ -1795,18 +1545,8 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         "getCardsViewData": [Function],
         "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
-        "leftNavActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "cardSelectionActions": undefined,
-          "itemSelected": [Function],
-          "leftNavActions": undefined,
-          "setLeftNavVisible": [Function],
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceConnectionActions": undefined,
-          "scanActions": undefined,
-        },
+        "leftNavActionCreator": [typemoq mock object],
+        "scanActionCreator": [typemoq mock object],
         "screenshotViewModelProvider": [Function],
         "toolData": Object {
           "applicationProperties": Object {

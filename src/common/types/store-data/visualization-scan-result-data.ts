@@ -16,6 +16,7 @@ interface IssuesScanResultData {
 export interface TabbedElementData extends TabStopEvent {
     tabOrder: number;
     propertyBag?: TabOrderPropertyBag;
+    instanceId: string;
 }
 
 export enum TabStopRequirementStatuses {

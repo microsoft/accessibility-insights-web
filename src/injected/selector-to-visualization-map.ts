@@ -11,6 +11,6 @@ export type SelectorToVisualizationMap = {
     [selectorChain: string]: AssessmentVisualizationInstance;
 };
 
-export type SelectorToTabStopVisualizationMap = {
-    [selectorChain: string]: TabStopVisualizationInstance;
+export type InstanceIdToTabStopVisualizationMap = {
+    [instanceId: string]: TabStopVisualizationInstance;
 };

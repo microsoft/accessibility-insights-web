@@ -158,6 +158,7 @@ describe('SVGDrawer', () => {
                 timestamp: 60,
                 html: 'test',
                 target: ['#id1'],
+                instanceId: 'some instance id',
             },
         ];
 
@@ -197,6 +198,8 @@ describe('SVGDrawer', () => {
                 focusIndicator: null,
                 shouldRedraw: true,
                 selector: '#id1',
+                isFailure: false,
+                itemType: undefined,
             },
         ];
 
@@ -205,7 +208,7 @@ describe('SVGDrawer', () => {
                 element: element1,
                 tabOrder: 1,
                 focusIndicator: null,
-                shouldRedraw: true,
+                shouldRedraw: false,
                 selector: '#id1',
                 itemType: undefined,
                 isFailure: false,
@@ -221,7 +224,7 @@ describe('SVGDrawer', () => {
             },
         ];
 
-        const tabbedElements: TabStopVisualizationInstance[] = [
+        const newInstances: TabStopVisualizationInstance[] = [
             {
                 target: ['#id1'],
                 requirementResults: null,
@@ -255,37 +258,30 @@ describe('SVGDrawer', () => {
         );
 
         (testSubject as any).allVisualizedItems = existingTabbedElements;
-        testSubject.initialize(createDrawerInfo(tabbedElements));
+        testSubject.initialize(createDrawerInfo(newInstances));
         expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
 
-    test('initialize: validate existing elements should not redraw with taborder from propertybag', () => {
+    test('initialize: redraw element 2 which was the last tab ordered item but not the last visualized item', () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
             <div id='id3'></div>
+            <div id='id4'></div>
         `;
 
         const element1 = fakeDocument.querySelector('#id1');
         const element2 = fakeDocument.querySelector('#id2');
-
-        const existingTabbedElements: TabbedItem[] = [
-            {
-                element: element1,
-                tabOrder: 1,
-                focusIndicator: null,
-                shouldRedraw: true,
-                selector: '#id1',
-            },
-        ];
+        const element3 = fakeDocument.querySelector('#id3');
+        const element4 = fakeDocument.querySelector('#id4');
 
         const expectedAllVisualizedItems: TabbedItem[] = [
             {
                 element: element1,
                 tabOrder: 1,
                 focusIndicator: null,
-                shouldRedraw: true,
+                shouldRedraw: false,
                 selector: '#id1',
                 itemType: undefined,
                 isFailure: false,
@@ -299,9 +295,27 @@ describe('SVGDrawer', () => {
                 itemType: undefined,
                 isFailure: false,
             },
+            {
+                element: element3,
+                tabOrder: undefined,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id3',
+                itemType: undefined,
+                isFailure: true,
+            },
+            {
+                element: element4,
+                tabOrder: 3,
+                focusIndicator: null,
+                shouldRedraw: true,
+                selector: '#id4',
+                itemType: undefined,
+                isFailure: false,
+            },
         ];
 
-        const tabbedElements: TabStopVisualizationInstance[] = [
+        const initialInstances: TabStopVisualizationInstance[] = [
             {
                 target: ['#id1'],
                 requirementResults: null,
@@ -317,6 +331,26 @@ describe('SVGDrawer', () => {
                 isVisualizationEnabled: false,
                 ruleResults: null,
                 propertyBag: { tabOrder: 2 },
+            },
+            {
+                target: ['#id3'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: {},
+            },
+        ];
+
+        const newInstances = [
+            ...initialInstances,
+            {
+                target: ['#id4'],
+                requirementResults: null,
+                isFailure: false,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: { tabOrder: 3 },
             },
         ];
 
@@ -334,9 +368,8 @@ describe('SVGDrawer', () => {
             null,
         );
 
-        (testSubject as any).allVisualizedItems = existingTabbedElements;
-
-        testSubject.initialize(createDrawerInfo(tabbedElements));
+        testSubject.initialize(createDrawerInfo(initialInstances));
+        testSubject.initialize(createDrawerInfo(newInstances));
         expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
@@ -491,8 +524,11 @@ describe('SVGDrawer', () => {
             tabIndexLabel: {
                 remove: removeMock.object,
             } as any,
+            failureLabel: {
+                remove: removeMock.object,
+            } as any,
         };
-        removeMock.setup(r => r()).verifiable(Times.exactly(3));
+        removeMock.setup(r => r()).verifiable(Times.exactly(4));
 
         const testSubject = new SVGDrawer(
             null,
@@ -777,6 +813,7 @@ describe('SVGDrawer', () => {
             <div id='id2'></div>
             <div id='id3'></div>
             <div id='id4'></div>
+            <div id='id5'></div>
         `;
 
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
@@ -814,6 +851,15 @@ describe('SVGDrawer', () => {
                 isVisualizationEnabled: false,
                 ruleResults: null,
                 propertyBag: { tabOrder: 3 },
+                itemType: TabbedItemType.ErroredItem,
+            },
+            {
+                target: ['#id5'],
+                requirementResults: null,
+                isFailure: true,
+                isVisualizationEnabled: false,
+                ruleResults: null,
+                propertyBag: {},
                 itemType: TabbedItemType.ErroredItem,
             },
         ];
@@ -859,10 +905,10 @@ describe('SVGDrawer', () => {
 
         drawerUtilsMock.verifyAll();
 
-        expect(circles.length).toBe(3);
+        expect(circles.length).toBe(4);
         expect(lines.length).toBe(1);
-        expect(labels.length).toBe(2);
-        expect(failureLabels.length).toBe(1);
+        expect(labels.length).toBe(4);
+        expect(failureLabels.length).toBe(3);
     });
 
     test('break graph', async () => {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { css } from '@fluentui/utilities';
 import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
