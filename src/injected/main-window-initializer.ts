@@ -214,6 +214,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
             telemetryDataFactory,
             actionMessageDispatcher,
+            TelemetryEventSource.TargetPage,
         );
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);

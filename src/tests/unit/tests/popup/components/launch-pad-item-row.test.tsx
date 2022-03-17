@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon } from '@fluentui/react';
+import { Link } from '@fluentui/react';
+import { shallow } from 'enzyme';
 import { kebabCase } from 'lodash';
-import { LinkBase } from 'office-ui-fabric-react';
-import { Icon } from 'office-ui-fabric-react';
-import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
 import {
@@ -50,29 +49,24 @@ describe('LaunchPadItemRow', () => {
         const testId = kebabCase(props.title);
 
         const expected = (
-            <div className="ms-Grid">
-                <div className="ms-Grid-row">
-                    <div
-                        className="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
-                        aria-hidden="true"
-                    >
-                        <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
+            <div className="launch-pad-item-grid">
+                <div className="popup-start-dialog-icon-circle" aria-hidden="true">
+                    <Icon iconName={props.iconName} className="popup-start-dialog-icon" />
+                </div>
+                <div>
+                    <div className="launch-pad-item-title">
+                        <Link
+                            role="link"
+                            className="insights-link"
+                            id={testId}
+                            onClick={props.onClickTitle}
+                            aria-describedby={descriptionId}
+                        >
+                            {props.title}
+                        </Link>
                     </div>
-                    <div className="ms-Grid-col ms-sm9">
-                        <div className="launch-pad-item-title">
-                            <Link
-                                role="link"
-                                className="insights-link"
-                                id={testId}
-                                onClick={props.onClickTitle}
-                                aria-describedby={descriptionId}
-                            >
-                                {props.title}
-                            </Link>
-                        </div>
-                        <div className={descriptionClassName} id={descriptionId}>
-                            {props.description}
-                        </div>
+                    <div className={descriptionClassName} id={descriptionId}>
+                        {props.description}
                     </div>
                 </div>
             </div>
@@ -86,10 +80,9 @@ describe('LaunchPadItemRow', () => {
 
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
 
-        const component = React.createElement(LaunchPadItemRow, props);
-        const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedComponentWithType(testObject, LinkBase);
-        link.props.onClick(event);
+        const renderedItemRow = shallow(<LaunchPadItemRow {...props} />);
+        const link = renderedItemRow.find(Link);
+        link.prop('onClick')(event);
 
         onClickTitleMock.verifyAll();
     });

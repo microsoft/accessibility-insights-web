@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Dialog, PrimaryButton } from '@fluentui/react';
 import {
     TabStopRequirementState,
     VisualizationScanResultData,
@@ -9,8 +10,7 @@ import {
     AutoDetectedFailuresDialog,
     AutoDetectedFailuresDialogProps,
 } from 'DetailsView/components/auto-detected-failures-dialog';
-import { shallow } from 'enzyme';
-import { PrimaryButton } from 'office-ui-fabric-react';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 describe('AutoDetectedFailuresDialog', () => {
@@ -49,7 +49,8 @@ describe('AutoDetectedFailuresDialog', () => {
     });
 
     describe('on dialog enabled', () => {
-        let wrapper;
+        let wrapper: ShallowWrapper;
+
         beforeEach(() => {
             wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
             wrapper.instance().componentDidUpdate(prevProps, prevState);
@@ -62,6 +63,11 @@ describe('AutoDetectedFailuresDialog', () => {
         it('is dismissed when "got it" button is clicked', () => {
             wrapper.find(PrimaryButton).simulate('click');
 
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('is dismissed when onDismiss is called', () => {
+            wrapper.find(Dialog).prop('onDismiss')();
             expect(wrapper.getElement()).toMatchSnapshot();
         });
     });

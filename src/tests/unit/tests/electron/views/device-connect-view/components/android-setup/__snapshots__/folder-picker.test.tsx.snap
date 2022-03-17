@@ -6,7 +6,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
 >
   <p
     className="instructions"
-    id="folder-picker-instructions__1"
+    id="folder-picker-instructions__0"
   >
     some instructions
   </p>
@@ -14,7 +14,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
     className="pickerControl"
   >
     <StyledTextFieldBase
-      aria-describedby="folder-picker-instructions__1"
+      aria-describedby="folder-picker-instructions__0"
       ariaLabel="Enter a path"
       className="textField"
       iconProps={

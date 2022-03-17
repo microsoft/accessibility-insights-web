@@ -10,7 +10,6 @@ import {
     TabStopRequirementStatuses,
     VisualizationScanResultData,
 } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
@@ -134,29 +133,31 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             this.state.tabStops.tabbedElements = [];
         }
 
-        let tabbedElementsWithoutTabOrder: TabStopEvent[] = map(
-            this.state.tabStops.tabbedElements,
-            element => {
-                return {
-                    timestamp: element.timestamp,
-                    target: element.target,
-                    html: element.html,
-                };
-            },
-        );
+        let tabbedElementsWithoutTabOrder = map(this.state.tabStops.tabbedElements, element => {
+            return {
+                timestamp: element.timestamp,
+                target: element.target,
+                html: element.html,
+                instanceId: element.instanceId,
+            };
+        });
 
         tabbedElementsWithoutTabOrder = tabbedElementsWithoutTabOrder.concat(
-            payload.tabbedElements,
+            payload.tabbedElements.map(elem => {
+                return {
+                    ...elem,
+                    instanceId: this.generateUID(),
+                };
+            }),
         );
+
         tabbedElementsWithoutTabOrder.sort((left, right) => left.timestamp - right.timestamp);
 
         this.state.tabStops.tabbedElements = map(
             tabbedElementsWithoutTabOrder,
             (element, index) => {
                 return {
-                    timestamp: element.timestamp,
-                    target: element.target,
-                    html: element.html,
+                    ...element,
                     tabOrder: index + 1,
                 };
             },

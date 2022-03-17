@@ -78,36 +78,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -159,36 +130,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -250,36 +192,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -377,36 +290,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -458,36 +342,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -549,36 +404,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -670,36 +496,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -751,36 +548,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -842,36 +610,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -963,36 +702,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={true}
@@ -1044,36 +754,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -1135,36 +816,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -1269,36 +921,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -1350,36 +973,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -1441,36 +1035,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -1562,36 +1127,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -1643,36 +1179,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={true}
@@ -1734,36 +1241,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -1855,36 +1333,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -1936,36 +1385,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -2027,36 +1447,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -2207,36 +1598,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -2288,36 +1650,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -2379,36 +1712,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
@@ -2505,36 +1809,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -2586,36 +1861,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
@@ -2677,36 +1923,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     }
     deps={
       Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "loadAssessment": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "rescanVisualizationWithoutTelemetry": [Function],
-          "saveAssessment": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
+        "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"

@@ -17,13 +17,7 @@ exports[`TelemetryViewer renders when there is at least one telemetry message 1`
   <TelemetryMessagesList
     deps={
       Object {
-        "telemetryListener": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "browserAdapter": undefined,
-          "getDate": undefined,
-          "listeners": Array [],
-          "onTelemetryMessage": [Function],
-        },
+        "telemetryListener": [typemoq mock object],
       }
     }
     items={

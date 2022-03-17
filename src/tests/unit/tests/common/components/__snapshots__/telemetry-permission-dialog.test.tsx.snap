@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -53,5 +53,5 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
       text="OK"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;

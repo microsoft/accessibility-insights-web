@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IButton } from '@fluentui/react';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FileURLProvider } from 'common/file-url-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -19,7 +20,6 @@ import {
 } from 'electron/views/results/components/reflow-command-bar';
 import { mount, shallow } from 'enzyme';
 import { isMatch } from 'lodash';
-import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';

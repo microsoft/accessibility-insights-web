@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Toggle } from '@fluentui/react';
 import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { FeatureFlags } from 'common/feature-flags';
@@ -34,9 +36,8 @@ import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stop
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
-import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import * as Markup from '../../assessments/markup';
 
@@ -145,78 +146,81 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
 
         const tabStopsTestViewContents = (
             <>
-                <h1>
-                    {displayableData.title}
-                    {` ${stepsText} `}
-                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
-                </h1>
+                <HeadingWithContentLink
+                    deps={props.deps}
+                    headingTitleClassName={styles.tabStopsTestViewHeader}
+                    headingTitle={displayableData.title}
+                    secondaryText={` ${stepsText} `}
+                    guidance={props.guidance}
+                />
                 {description}
-                <ThemeFamilyCustomizer
-                    themeFamily={'default'}
-                    userConfigurationStoreData={props.userConfigurationStoreData}
-                >
-                    <Toggle
-                        onClick={clickHandler}
-                        id="tab-stops-visual-helper"
-                        label="Visual helper"
-                        checked={scanData.enabled}
-                        className={styles.visualHelperToggle}
-                    />
-                </ThemeFamilyCustomizer>
+                <Toggle
+                    onClick={clickHandler}
+                    id="tab-stops-visual-helper"
+                    label="Visual helper"
+                    checked={scanData.enabled}
+                    className={styles.visualHelperToggle}
+                />
                 <CollapsibleComponent
-                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    header={
+                        <span
+                            className={styles.requirementHowToTestHeader}
+                            role="heading"
+                            aria-level={2}
+                        >
+                            How to test
+                        </span>
+                    }
                     content={howToTest}
                     contentClassName={requirementInstructionStyles.requirementInstructions}
                 />
                 <h2 className={styles.requirementTableTitle}>Record your results</h2>
-                <TabStopsRequirementsTable
-                    deps={props.deps}
-                    requirementState={requirementState}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                />
-                <TabStopsFailedInstanceSection
-                    deps={props.deps}
-                    tabStopRequirementState={
-                        props.visualizationScanResultData.tabStops.requirements
-                    }
-                    alwaysRenderSection={false}
-                    sectionHeadingLevel={2}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                />
-                <TabStopsFailedInstancePanel
-                    deps={props.deps}
-                    failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
-                    requirementState={requirementState}
-                />
-                <FlaggedComponent
-                    featureFlag={FeatureFlags.tabStopsAutomation}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    enableJSXElement={
-                        <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
-                    }
-                />
-                <FlaggedComponent
-                    featureFlag={FeatureFlags.tabStopsAutomation}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    enableJSXElement={
-                        <AutoDetectedFailuresDialog
-                            visualizationScanResultData={props.visualizationScanResultData}
-                        />
-                    }
-                />
+                <ThemeFamilyCustomizer
+                    themeFamily={'fast-pass'}
+                    userConfigurationStoreData={props.userConfigurationStoreData}
+                >
+                    <TabStopsRequirementsTable
+                        deps={props.deps}
+                        requirementState={requirementState}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                    />
+                    <TabStopsFailedInstanceSection
+                        deps={props.deps}
+                        tabStopRequirementState={
+                            props.visualizationScanResultData.tabStops.requirements
+                        }
+                        alwaysRenderSection={false}
+                        sectionHeadingLevel={2}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                    />
+                    <TabStopsFailedInstancePanel
+                        deps={props.deps}
+                        failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
+                        requirementState={requirementState}
+                    />
+                    <FlaggedComponent
+                        featureFlag={FeatureFlags.tabStopsAutomation}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        enableJSXElement={
+                            <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+                        }
+                    />
+                    <FlaggedComponent
+                        featureFlag={FeatureFlags.tabStopsAutomation}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        enableJSXElement={
+                            <AutoDetectedFailuresDialog
+                                visualizationScanResultData={props.visualizationScanResultData}
+                            />
+                        }
+                    />
+                </ThemeFamilyCustomizer>
             </>
         );
 
         return (
             <div className={styles.tabStopsTestViewContainer}>
-                <div className={styles.tabStopsTestView}>
-                    <ThemeFamilyCustomizer
-                        themeFamily={'fast-pass'}
-                        userConfigurationStoreData={props.userConfigurationStoreData}
-                    >
-                        {tabStopsTestViewContents}
-                    </ThemeFamilyCustomizer>
-                </div>
+                <div className={styles.tabStopsTestView}>{tabStopsTestViewContents}</div>
             </div>
         );
     },

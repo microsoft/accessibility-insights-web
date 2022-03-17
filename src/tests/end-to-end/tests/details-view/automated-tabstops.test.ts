@@ -73,8 +73,8 @@ describe('Automated TabStops Results', () => {
         'Detect and display unreachable elements failures',
         async () => {
             await openTabStopsPage('tab-stops/unreachable.html');
-
-            await tabThroughPage(5, true);
+            const tabEventCount = 5;
+            await tabThroughPage(tabEventCount, true);
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
@@ -85,7 +85,9 @@ describe('Automated TabStops Results', () => {
 
             expect(ruleDetails).toHaveLength(1);
 
-            await verifyTargetPageVisualization(2, 1, 1, 0);
+            // The keyboard trap is triggered by an element re-receiving focus progromattically.
+            // This should add another "normal" tab event.
+            await verifyTargetPageVisualization(tabEventCount + 1, 1, 1, 0);
         },
         longRunningTabStopsTestTimeout,
     );
@@ -161,12 +163,12 @@ describe('Automated TabStops Results', () => {
         const opaqueEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.opaqueEllipse,
         );
-        expect(opaqueEllipses.length).toBe(regularCount + errorCount + missingCount);
+        expect(opaqueEllipses.length).toBe(regularCount + missingCount);
 
         const transparentEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.transparentEllipse,
         );
-        expect(transparentEllipses.length).toBe(focusCount);
+        expect(transparentEllipses.length).toBe(focusCount + errorCount);
 
         const dottedEllipses = await targetPage.getSelectorElements(
             TabStopShadowDomSelectors.dottedEllipse,

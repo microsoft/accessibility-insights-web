@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IContextualMenuItem } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -17,7 +18,6 @@ import {
     StartOverMenuItem,
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
-import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 

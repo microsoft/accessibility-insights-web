@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
@@ -158,6 +158,8 @@ describe('TestStatusChoiceGroup', () => {
         focusMock.setup(f => f()).verifiable(Times.once());
 
         testObject.getComponent().focus = focusMock.object;
+        // Note: if object's state is updated, the component's focus property gets overwritten.
+        // Thus, this test depends on choiceGroup.focus() being called before setState() in onUndoClicked.
 
         testObject.getOnUndo()();
 

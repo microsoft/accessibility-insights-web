@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ColumnActionsMode, IColumn } from '@fluentui/react';
 import { forEach } from 'lodash';
-import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 

@@ -48,7 +48,6 @@
         .ms-Nav-compositeLink {
             a,
             button {
-                border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
                 border-top: 0px;
                 border-bottom: 0px;
             }
@@ -59,8 +58,6 @@
                 a,
                 button {
                     background-color: $communication-tint-40;
-                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
-                        $communication-primary;
                     .ms-Button-label,
                     .overview-percent {
                         color: $highlighted-text;
@@ -71,7 +68,8 @@
                 }
                 a::after,
                 button::after {
-                    border-left: 0px;
+                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
+                        $communication-primary;
                 }
                 .ms-Button-label {
                     color: $always-black;

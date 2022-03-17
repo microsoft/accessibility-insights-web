@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IContextualMenuItem } from '@fluentui/react';
 import * as React from 'react';
 
 import { LaunchPanelHeader } from '../components/launch-panel-header';

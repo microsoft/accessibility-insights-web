@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MessageBar, MessageBarType } from '@fluentui/react';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -7,7 +8,6 @@ import {
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
 import { forOwn, isEmpty } from 'lodash';
-import { MessageBar, MessageBarType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type ScanIncompleteWarningDeps = ScanIncompleteWarningMessageBarDeps;

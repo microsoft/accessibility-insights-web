@@ -11,6 +11,11 @@
     height: 100%;
     justify-content: space-between;
 
+    .next-requirement-button-container {
+        display: flex;
+        flex-direction: column;
+    }
+
     .next-requirement-button {
         align-self: flex-end;
         margin-bottom: 1vh;

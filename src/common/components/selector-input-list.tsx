@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as styles from 'common/components/selector-input-list.scss';
-import * as _ from 'lodash/index';
 import {
     DefaultButton,
     FocusZone,
@@ -10,7 +8,9 @@ import {
     ITextField,
     List,
     TextField,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
+import * as styles from 'common/components/selector-input-list.scss';
+import * as _ from 'lodash/index';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 

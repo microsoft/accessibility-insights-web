@@ -110,7 +110,6 @@ describe('TabStopsInstanceSectionPropsFactory', () => {
             );
             result.content.props.onEditButtonClicked(requirementId, instanceId, description);
             result.content.props.onRemoveButtonClicked(requirementId, instanceId);
-
             tabStopsRequirementActionMessageCreatorMock.verifyAll();
             tabStopsTestViewControllerMock.verifyAll();
         });

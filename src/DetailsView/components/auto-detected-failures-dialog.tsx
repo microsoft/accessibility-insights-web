@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BlockingDialog } from 'common/components/blocking-dialog';
+import { Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/common-dialog-styles.scss';
-import { DialogFooter, DialogType, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type AutoDetectedFailuresDialogState = {
@@ -51,7 +50,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
         }
 
         return (
-            <BlockingDialog
+            <Dialog
                 hidden={false}
                 dialogContentProps={{
                     type: DialogType.normal,
@@ -60,6 +59,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
                 modalProps={{
                     containerClassName: styles.insightsDialogMainOverride,
                 }}
+                onDismiss={this.dismissAutoDetectedFailuresDialog}
             >
                 <div className={styles.dialogBody}>
                     <ul>
@@ -73,7 +73,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
                         text={'Got it'}
                     />
                 </DialogFooter>
-            </BlockingDialog>
+            </Dialog>
         );
     }
 }

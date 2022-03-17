@@ -160,6 +160,11 @@
         color: var(--link) !important;
         text-decoration: none;
       }
+      @media screen and (forced-colors: active) {
+        .insights-link {
+          forced-color-adjust: unset;
+        }
+      }
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
@@ -1017,6 +1022,11 @@
       .kebab-menu--eviKu button:hover {
         background-color: var(--menu-item-background-hover);
       }
+      @media screen and (forced-colors: active) {
+        .kebab-menu--eviKu button:hover {
+          background-color: inherit;
+        }
+      }
       .kebab-menu--eviKu button:active {
         background-color: var(--menu-item-background-active);
         color: var(--light-black);
@@ -1051,6 +1061,16 @@
       button.kebab-menu-button--dy7Ui:active svg > circle,
       button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
         stroke: var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        button.kebab-menu-button--dy7Ui:active,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
+          color: inherit;
+        }
+        button.kebab-menu-button--dy7Ui:active svg > circle,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
+          stroke: inherit;
+        }
       }
       button.kebab-menu-button--dy7Ui > span {
         justify-content: center;
@@ -1138,6 +1158,9 @@
       .rule-details-group--U69fz .rule-detail .rule-details-id a {
         font-weight: 600;
         color: var(--primary-text) !important;
+      }
+      .rule-details-group--U69fz .rule-detail .rule-details-id strong {
+        font-weight: 600;
       }
       .rule-details-group--U69fz .rule-detail .rule-detail-description {
         color: var(--secondary-text) !important;
@@ -1612,7 +1635,7 @@
                 ><a
                   target="_blank"
                   href="https://example.com/mock-base-url"
-                  class="ms-Link insights-link root-49"
+                  class="ms-Link insights-link root-109"
                   title="Mock base with failures and unscannables"
                   id="new-tab-link-with-confirmation-dialog__0"
                   >https://example.com/mock-base-url</a
@@ -1833,7 +1856,7 @@
                         ><a
                           target="_blank"
                           href="https://example.com/mock-base-url/has-1-failure"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >https://example.com/mock-base-url/has-1-failure</a
                         ></td
                       ><td
@@ -1842,7 +1865,7 @@
                         ><a
                           target="_blank"
                           href="./has-1-failure1.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="Report for https://example.com/mock-base-url/has-1-failure"
                           >Report</a
                         ></td
@@ -1858,7 +1881,7 @@
                         ><a
                           target="_blank"
                           href="https://example.com/mock-base-url/has-5-failures"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >https://example.com/mock-base-url/has-5-failures</a
                         ></td
                       ><td
@@ -1867,7 +1890,7 @@
                         ><a
                           target="_blank"
                           href="./has-5-failures.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="Report for https://example.com/mock-base-url/has-5-failures"
                           >Report</a
                         ></td
@@ -1958,7 +1981,7 @@
                         ><a
                           target="_blank"
                           href="https://example.com/mock-base-url/unscannable"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >https://example.com/mock-base-url/unscannable</a
                         ></td
                       ><td
@@ -1967,7 +1990,7 @@
                         ><a
                           target="_blank"
                           href="./error-log.txt"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >Mock unscannable error description</a
                         ></td
                       ></tr
@@ -2053,7 +2076,7 @@
                         ><a
                           target="_blank"
                           href="https://example.com/mock-base-url/passes"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           >https://example.com/mock-base-url/passes</a
                         ></td
                       ><td
@@ -2062,7 +2085,7 @@
                         ><a
                           target="_blank"
                           href="./passes.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="Report for https://example.com/mock-base-url/passes"
                           >Report</a
                         ></td
@@ -2125,7 +2148,7 @@
         <a
           target="_blank"
           href="http://aka.ms/AccessibilityInsights"
-          class="ms-Link insights-link tool-name-link root-49"
+          class="ms-Link insights-link tool-name-link root-109"
           title="Get more information and download Accessibility Insights for Web"
           >http://aka.ms/AccessibilityInsights</a
         >.</div

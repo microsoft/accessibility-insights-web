@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
 import { FileURLProvider } from 'common/file-url-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import {
     ReportExportService,

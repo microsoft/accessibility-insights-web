@@ -5,7 +5,7 @@ exports[`NextRequirementButton renders 1`] = `
   onClick={[Function]}
 >
   <span>
-    <StyledIconBase
+    <Memo(Icon)
       ariaLabel="next"
       iconName="ChevronRight"
     />
