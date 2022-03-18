@@ -41,26 +41,20 @@ describe('FocusIndicatorCreator', () => {
 
     describe('createFocusIndicator', () => {
         test('center position is null', () => {
-            const tabbedItems = [{}] as TabbedItem[];
-            const index = 0;
-
             centerPositionCalculatorMock
                 .setup(m => m.getElementCenterPosition(It.isAny()))
                 .returns(() => null);
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, null),
+                testSubject.createFocusIndicator({} as TabbedItem, null, true, null),
             ).toBeUndefined();
         });
 
         test('for one tab item without any previous item', () => {
             const elementStub = {} as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                },
-            ] as TabbedItem[];
-            const index = 0;
+            const item = {
+                element: elementStub,
+            } as TabbedItem;
             const pointStub = { x: 123 } as Point;
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedCircle = {
@@ -79,24 +73,21 @@ describe('FocusIndicatorCreator', () => {
             setupExpectedCircle(expectedCircle, pointStub, drawerConfig.focusedCircle);
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, formatterMock.object),
+                testSubject.createFocusIndicator(item, null, true, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
 
         test('for the last tabbed item that has a connecting previous item', () => {
             const elementStub = { innerHTML: 'first element' } as Element;
             const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 1,
-                },
-            ] as TabbedItem[];
-            const index = 1;
+            const prevItem = {
+                element: elementStub,
+                tabOrder: 0,
+            } as TabbedItem;
+            const item = {
+                element: elementTwoStub,
+                tabOrder: 1,
+            };
             const pointStub = { x: 123 } as Point;
             const elementTwoPointStub = { x: 456 } as Point;
             const drawerConfig = getDrawerConfigStub(true, true);
@@ -135,24 +126,21 @@ describe('FocusIndicatorCreator', () => {
             );
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, formatterMock.object),
+                testSubject.createFocusIndicator(item, prevItem, true, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
 
         test('for a tab item with a large jump between tab order from the previous item', () => {
             const elementStub = { innerHTML: 'first element' } as Element;
             const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 100000,
-                },
-            ] as TabbedItem[];
-            const index = 1;
+            const prevItem = {
+                element: elementStub,
+                tabOrder: 0,
+            } as TabbedItem;
+            const item = {
+                element: elementTwoStub,
+                tabOrder: 10000,
+            };
             const elementTwoPointStub = { x: 456 } as Point;
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedCircle = {
@@ -175,64 +163,21 @@ describe('FocusIndicatorCreator', () => {
             setupExpectedCircle(expectedCircle, elementTwoPointStub, drawerConfig.focusedCircle);
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, formatterMock.object),
-            ).toEqual(expectedFocusIndicator);
-        });
-
-        test('for the first tabbed item in an array of many tabbed items', () => {
-            const elementStub = { innerHTML: 'first element' } as Element;
-            const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 1,
-                },
-            ] as TabbedItem[];
-            const index = 0;
-            const pointStub = { x: 123 } as Point;
-            const drawerConfig = getDrawerConfigStub(true, true);
-            const expectedCircle = {
-                innerHTML: 'expected circle',
-            } as Element;
-            const expectedFocusIndicator = {
-                circle: expectedCircle,
-                line: null,
-                tabIndexLabel: null,
-            } as FocusIndicator;
-            const filterIdStub = 'some filter id';
-
-            centerPositionCalculatorMock
-                .setup(m => m.getElementCenterPosition(elementStub))
-                .returns(() => pointStub);
-
-            filterFactoryMock.setup(m => m.filterId).returns(() => filterIdStub);
-
-            setupDrawerConfig(elementStub, drawerConfig);
-            setupExpectedCircle(expectedCircle, pointStub, drawerConfig.focusedCircle);
-
-            expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, formatterMock.object),
+                testSubject.createFocusIndicator(item, prevItem, true, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
 
         test('for a tab item where the previous tab item center position is null', () => {
             const elementStub = { innerHTML: 'first element' } as Element;
             const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 1,
-                },
-            ] as TabbedItem[];
-            const index = 1;
+            const prevItem = {
+                element: elementStub,
+                tabOrder: 0,
+            } as TabbedItem;
+            const item = {
+                element: elementTwoStub,
+                tabOrder: 1,
+            };
             const elementTwoPointStub = { x: 456 } as Point;
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedCircle = {
@@ -259,27 +204,21 @@ describe('FocusIndicatorCreator', () => {
             setupExpectedCircle(expectedCircle, elementTwoPointStub, drawerConfig.focusedCircle);
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, true, formatterMock.object),
+                testSubject.createFocusIndicator(item, prevItem, true, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
 
         test('for a non-last tab item where the config specifies showSolidFocusLine to be false', () => {
             const elementStub = { innerHTML: 'first element' } as Element;
             const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 1,
-                },
-                {
-                    tabOrder: 2,
-                },
-            ] as TabbedItem[];
-            const index = 1;
+            const prevItem = {
+                element: elementStub,
+                tabOrder: 0,
+            } as TabbedItem;
+            const item = {
+                element: elementTwoStub,
+                tabOrder: 1,
+            };
             const pointStub = { x: 123 } as Point;
             const elementTwoPointStub = { x: 456 } as Point;
             const drawerConfig = getDrawerConfigStub(false, true);
@@ -312,31 +251,25 @@ describe('FocusIndicatorCreator', () => {
                 expectedLabel,
                 elementTwoPointStub,
                 drawerConfig.tabIndexLabel,
-                tabbedItems[index].tabOrder.toString(),
+                item.tabOrder.toString(),
             );
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, false, formatterMock.object),
+                testSubject.createFocusIndicator(item, prevItem, false, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
 
         test('for a non-last tab item where the config specifies showTabIndexedLabel to be false', () => {
             const elementStub = { innerHTML: 'first element' } as Element;
             const elementTwoStub = { innerHTML: 'second element' } as Element;
-            const tabbedItems = [
-                {
-                    element: elementStub,
-                    tabOrder: 0,
-                },
-                {
-                    element: elementTwoStub,
-                    tabOrder: 1,
-                },
-                {
-                    tabOrder: 2,
-                },
-            ] as TabbedItem[];
-            const index = 1;
+            const prevItem = {
+                element: elementStub,
+                tabOrder: 0,
+            } as TabbedItem;
+            const item = {
+                element: elementTwoStub,
+                tabOrder: 1,
+            };
             const pointStub = { x: 123 } as Point;
             const elementTwoPointStub = { x: 456 } as Point;
             const drawerConfig = getDrawerConfigStub(true, false);
@@ -375,7 +308,7 @@ describe('FocusIndicatorCreator', () => {
             );
 
             expect(
-                testSubject.createFocusIndicator(tabbedItems, index, false, formatterMock.object),
+                testSubject.createFocusIndicator(item, prevItem, false, formatterMock.object),
             ).toEqual(expectedFocusIndicator);
         });
     });
