@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -20,4 +21,6 @@ export class UserConfigurationActions {
         new Action<SetIssueFilingServicePropertyPayload>();
     public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
     public readonly saveWindowBounds = new Action<SaveWindowBoundsPayload>();
+    public readonly setAutoDetectedFailuresDialogState =
+        new Action<AutoDetectedFailuresDialogStatePayload>();
 }

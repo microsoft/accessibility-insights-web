@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import {
+    BaseActionPayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -10,15 +12,25 @@ import {
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
-import { IMock, Mock } from 'typemoq';
-
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { IMock, Mock, Times } from 'typemoq';
+import * as TelemetryEvents from '../../../../../common/extension-telemetry-events';
 import { createActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
+    let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+
+    beforeEach(() => {
+        telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+    });
+
     it('handles GetCurrentState message', () => {
         const getCurrentStateMock = createActionMock<void>(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.getUserConfigurationState();
 
@@ -30,7 +42,10 @@ describe('UserConfigurationActionCreator', () => {
 
         const setTelemetryStateMock = createActionMock(setTelemetryState);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setTelemetryState(setTelemetryState);
 
@@ -46,7 +61,10 @@ describe('UserConfigurationActionCreator', () => {
             'setHighContrastMode',
             setHighContrastConfigMock.object,
         );
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setHighContrastMode(payload);
 
@@ -62,7 +80,10 @@ describe('UserConfigurationActionCreator', () => {
             'setNativeHighContrastMode',
             setNativeHighContrastConfigMock.object,
         );
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setNativeHighContrastMode(payload);
 
@@ -75,7 +96,10 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setBugServiceMock = createActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setIssueFilingService(payload);
 
@@ -93,7 +117,10 @@ describe('UserConfigurationActionCreator', () => {
             'setIssueFilingServiceProperty',
             setIssueFilingServicePropertyMock.object,
         );
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setIssueFilingServiceProperty(payload);
 
@@ -110,7 +137,10 @@ describe('UserConfigurationActionCreator', () => {
             'saveIssueFilingSettings',
             setIssueFilingSettings.object,
         );
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.saveIssueFilingSettings(payload);
 
@@ -125,7 +155,10 @@ describe('UserConfigurationActionCreator', () => {
             'UserConfigurationActionCreator',
         );
         const actionsMock = createActionsMock('setAdbLocation', setAdbLocationConfigMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.setAdbLocation(expectedAdbLocation);
 
@@ -143,11 +176,41 @@ describe('UserConfigurationActionCreator', () => {
             'saveWindowBounds',
             saveWindowBoundsActionMock.object,
         );
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
 
         testSubject.saveWindowBounds(payload);
 
         saveWindowBoundsActionMock.verifyAll();
+    });
+
+    it('should SetAutoDetectedFailuresDialogState Message', () => {
+        const expectedDialogState = { enabled: false };
+        const expectedPayload = expectedDialogState as BaseActionPayload;
+
+        const dialogStateConfigMock = createActionMock(expectedDialogState);
+        const actionsMock = createActionsMock(
+            'setAutoDetectedFailuresDialogState',
+            dialogStateConfigMock.object,
+        );
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.setAutoDetectedFailuresDialogState(expectedDialogState);
+
+        dialogStateConfigMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(
+                    TelemetryEvents.SET_AUTO_DETECTED_FAILURES_DIALOG_STATE,
+                    expectedPayload,
+                ),
+            Times.once(),
+        );
     });
 
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(

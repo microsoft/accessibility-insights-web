@@ -102,7 +102,10 @@ export class PopupInitializer {
             windowUtils,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+            telemetryFactory,
+        );
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             telemetryFactory,

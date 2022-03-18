@@ -162,6 +162,7 @@ describe(DetailsViewContent, () => {
                 adbLocation: null,
                 lastWindowState: null,
                 lastWindowBounds: null,
+                showAutoDetectedFailuresDialog: true,
             };
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetAdbLocationPayload,
@@ -10,7 +11,9 @@ import {
     SetNativeHighContrastModePayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
+import { AutoDetectedFailuresDialogStateTelemetryData } from 'common/extension-telemetry-events';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { Mock, Times } from 'typemoq';
 
 import { Message } from '../../../../../common/message';
@@ -20,11 +23,16 @@ import { IssueFilingServiceProperties } from '../../../../../common/types/store-
 
 describe('UserConfigMessageCreator', () => {
     const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+    const telemetryFactoryMock = Mock.ofType<TelemetryDataFactory>();
     let testSubject: UserConfigMessageCreator;
 
     beforeEach(() => {
         dispatcherMock.reset();
-        testSubject = new UserConfigMessageCreator(dispatcherMock.object);
+        telemetryFactoryMock.reset();
+        testSubject = new UserConfigMessageCreator(
+            dispatcherMock.object,
+            telemetryFactoryMock.object,
+        );
     });
 
     it('dispatches message for setTelemetryState', () => {
@@ -172,5 +180,33 @@ describe('UserConfigMessageCreator', () => {
             dispatcher => dispatcher.dispatchMessage(expectedMessage),
             Times.once(),
         );
+    });
+
+    it('dispatches message for setAutoDetectedFailuresDialogState', () => {
+        const enabled = false;
+        const telemetry: AutoDetectedFailuresDialogStateTelemetryData = {
+            enabled,
+        };
+        const payload: AutoDetectedFailuresDialogStatePayload = {
+            enabled,
+            telemetry,
+        };
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SetAutoDetectedFailuresDialogState,
+            payload,
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forSetAutoDetectedFailuresDialogState(enabled))
+            .returns(() => telemetry)
+            .verifiable(Times.once());
+
+        testSubject.setAutoDetectedFailuresDialogState(enabled);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
+        telemetryFactoryMock.verifyAll();
     });
 });
