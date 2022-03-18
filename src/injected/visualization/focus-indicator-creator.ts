@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Point } from 'electron';
 import { CenterPositionCalculator } from 'injected/visualization/center-position-calculator';
 import { FocusIndicator } from 'injected/visualization/focus-indicator';
 import {
@@ -9,6 +8,7 @@ import {
     Formatter,
     SVGDrawerConfiguration,
 } from 'injected/visualization/formatter';
+import { Point } from 'injected/visualization/point';
 import { SVGShapeFactory } from 'injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from 'injected/visualization/svg-solid-shadow-filter-factory';
 import { TabbedItem, TabbedItemType } from 'injected/visualization/tabbed-item';
@@ -20,16 +20,14 @@ export class FocusIndicatorCreator {
         private filterFactory: SVGSolidShadowFilterFactory,
     ) {}
 
-    public createFocusIndicator(
+    public createFocusIndicator = (
         items: TabbedItem[],
         curElementIndex: number,
         isLastItem: boolean,
         formatter: Formatter,
-    ): FocusIndicator {
+    ): FocusIndicator => {
         const item = items[curElementIndex];
-        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
-            item.element,
-        );
+        const centerPosition = this.centerPositionCalculator.getElementCenterPosition(item.element);
 
         if (centerPosition == null) {
             return;
@@ -73,7 +71,7 @@ export class FocusIndicatorCreator {
         };
 
         return focusIndicator;
-    }
+    };
 
     private createLinesInTabOrderVisualization(
         items: TabbedItem[],
@@ -114,7 +112,10 @@ export class FocusIndicatorCreator {
         );
     }
 
-    public createFocusIndicatorForFailure(item: TabbedItem, formatter: Formatter): FocusIndicator {
+    public createFocusIndicatorForFailure = (
+        item: TabbedItem,
+        formatter: Formatter,
+    ): FocusIndicator => {
         const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
             item.element,
         );
@@ -156,7 +157,7 @@ export class FocusIndicatorCreator {
         };
 
         return focusIndicator;
-    }
+    };
 
     private shouldBreakGraph(items: TabbedItem[], curElementIndex: number): boolean {
         return (
