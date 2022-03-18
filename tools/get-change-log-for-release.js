@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const commander = require('commander');
 const simpleGit = require('simple-git');
+const fileDirectory = require('./file-directory.js');
 
 const main = async () => {
     const params = parseCommandLineArguments();
@@ -12,7 +13,7 @@ const main = async () => {
 
     const gitLogs = await getGitLogs(params.from, params.to);
 
-    const outputContent = generateOutputContent(gitLogs, params.to);
+    const outputContent = await generateOutputContent(gitLogs, params.to);
 
     ensureOutputFileExist(params.output);
 
@@ -69,9 +70,26 @@ const makeCommitLink = commit => {
     return `=HYPERLINK("https://github.com/microsoft/accessibility-insights-web/commit/${commit}", "${commit}")`;
 };
 
-const generateOutputContent = (gitLogs, version) => {
-    const csvLogs = gitLogs.all
-        .map(log => {
+const getProduct = async (commit, directory) => {
+    const git = simpleGit();
+    const filesInCommit = await git.raw(`diff-tree`, `--no-commit-id`, `--name-only`, `-r`, commit);
+    const filesInCommitArr = filesInCommit.split('\n').map(String);
+    return assignProductToFile(filesInCommitArr, directory);
+};
+
+const assignProductToFile = (files, directory) => {
+    let products = [];
+    for (const file of files) {
+        if (directory[file]) products = [...products, ...directory[file]];
+    }
+    return [...new Set(products)];
+};
+
+const generateOutputContent = async (gitLogs, version) => {
+    const directory = await fileDirectory();
+
+    const objLogs = await Promise.all(
+        gitLogs.all.map(async log => {
             return {
                 dev: csvEscape(log.author_name),
                 commit: csvEscape(makeCommitLink(log.hash.substr(0, 7))),
@@ -80,15 +98,17 @@ const generateOutputContent = (gitLogs, version) => {
                 group: csvEscape(getCommitType(log.message)),
                 version,
                 date: log.date,
+                product: await getProduct(log.hash, directory),
             };
-        })
-        .map(log => {
-            // the order here is important, it needs to match the headers order down below
-            return `,,"${log.dev}","${log.commit}","${log.pr}","${log.change}","${log.group}","${log.version}","${log.date}"`;
-        });
+        }),
+    );
+    const csvLogs = objLogs.map(log => {
+        // the order here is important, it needs to match the headers order down below
+        return `,,"${log.dev}","${log.commit}","${log.pr}","${log.change}","${log.group}","${log.version}","${log.date}","${log.product}"`;
+    });
 
     // prettier-ignore
-    const headers = ['tester', 'verified', 'dev', 'commit', 'pr', 'change', 'group', 'version', 'date'];
+    const headers = ['tester', 'verified', 'dev', 'commit', 'pr', 'change', 'group', 'version', 'date', 'product'];
 
     const headersContent = headers.join(',');
     return `${headersContent}\n`.concat(csvLogs.join('\n'));
