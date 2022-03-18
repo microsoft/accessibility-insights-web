@@ -49,6 +49,20 @@ export class FocusIndicatorCreator {
             );
         }
 
+        return this.createIndicatorWithNormalConfigurations(
+            item,
+            prevItem,
+            centerPosition,
+            drawerConfig,
+        );
+    };
+
+    private createIndicatorWithNormalConfigurations = (
+        item: TabbedItem,
+        prevItem: TabbedItem,
+        centerPosition: Point,
+        drawerConfig: SVGDrawerConfiguration,
+    ): FocusIndicator => {
         const newCircle = this.svgShapeFactory.createCircle(centerPosition, drawerConfig.circle);
         const newLabel = this.svgShapeFactory.createTabIndexLabel(
             centerPosition,
