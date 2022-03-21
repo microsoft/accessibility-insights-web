@@ -80,7 +80,7 @@ const getProduct = async (commit, directory) => {
 const assignProductToFile = (files, directory) => {
     let products = [];
     for (const file of files) {
-        if (directory[file]) products = [...products, ...directory[file]];
+        if (directory[file]) products = products.concat(directory[file]);
     }
     return [...new Set(products)];
 };

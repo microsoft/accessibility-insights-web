@@ -25,7 +25,7 @@ function fileDirectory() {
                 const files = formatFiles(modules);
                 for (const file of files) {
                     if (!directory[file]) directory[file] = [];
-                    directory[file] = [...directory[file], formatProductName(name)];
+                    directory[file] = directory[file].concat(formatProductName(name));
                 }
             }
             resolve(directory);
@@ -42,13 +42,12 @@ function formatProductName(name) {
 function formatFiles(modules) {
     return [
         ...new Set(
-            modules
-                // clean file paths to match git log format
-                .reduce((arr, { name }) => {
-                    const match = name.match(/\.\/(src.*?\.(sc?ss|tsx?|jsx?))/);
-                    if (match && match[1]) arr.push(match[1]);
-                    return arr;
-                }, []),
+            modules.reduce((arr, { name }) => {
+                // return local files and clean them to match git log format
+                const match = name.match(/\.\/(src.*?\.(?:sc?ss|tsx?|jsx?))/);
+                if (match) arr.push(match[1]);
+                return arr;
+            }, []),
         ),
     ];
 }
