@@ -115,6 +115,7 @@ describe('CardKebabMenuButtonTest', () => {
             adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
         };
 
         issueFilingServiceProviderMock

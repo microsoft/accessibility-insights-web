@@ -9,6 +9,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    AutoDetectedFailuresDialogStateTelemetryData,
     BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -497,6 +498,18 @@ export class TelemetryDataFactory {
             triggeredBy: TriggeredByNotApplicable,
             source,
             tabStopAutomatedFailuresInstanceCount,
+        };
+    }
+
+    public forSetAutoDetectedFailuresDialogState(
+        enabled: boolean,
+    ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
         };
     }
 }
