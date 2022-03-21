@@ -35,6 +35,7 @@ describe('GetPersistedDataTest', () => {
             adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
         };
         installationData = {
             id: 'test-id',

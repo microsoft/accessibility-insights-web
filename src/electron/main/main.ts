@@ -3,6 +3,7 @@
 import * as path from 'path';
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { app, BrowserWindow, dialog, ipcMain, nativeTheme } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
@@ -22,7 +23,11 @@ const os = platformInfo.getOs();
 const config = new FileSystemConfiguration();
 
 const ipcMessageDispatcher = new IpcMessageDispatcher();
-const userConfigMessageCreator = new UserConfigMessageCreator(ipcMessageDispatcher);
+const telemetryFactory = new TelemetryDataFactory();
+const userConfigMessageCreator = new UserConfigMessageCreator(
+    ipcMessageDispatcher,
+    telemetryFactory,
+);
 const nativeHighContrastModeListener = new NativeHighContrastModeListener(
     nativeTheme,
     userConfigMessageCreator,

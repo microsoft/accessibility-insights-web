@@ -1,8 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialog when dialog is disabled 1`] = `null`;
+
+exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
+<Dialog
+  dialogContentProps={
+    Object {
+      "title": "Possible failures auto-detected",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insightsDialogMainOverride",
+    }
+  }
+  onDismiss={[Function]}
+>
+  <div
+    className="dialogBody"
+  >
+    <ul>
+      <li>
+        Review each finding to be sure it's valid
+      </li>
+      <li>
+        Add any more failures you discovered manually
+      </li>
+    </ul>
+  </div>
+  <StyledDialogFooterBase>
+    <StyledCheckboxBase
+      checked={true}
+      label="Don't show again"
+      onChange={[Function]}
+    />
+    <CustomizedPrimaryButton
+      onClick={[Function]}
+      text="Got it"
+    />
+  </StyledDialogFooterBase>
+</Dialog>
+`;
+
 exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `null`;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismiss is called 1`] = `null`;
+
+exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
+<Dialog
+  dialogContentProps={
+    Object {
+      "title": "Possible failures auto-detected",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "insightsDialogMainOverride",
+    }
+  }
+  onDismiss={[Function]}
+>
+  <div
+    className="dialogBody"
+  >
+    <ul>
+      <li>
+        Review each finding to be sure it's valid
+      </li>
+      <li>
+        Add any more failures you discovered manually
+      </li>
+    </ul>
+  </div>
+  <StyledDialogFooterBase>
+    <StyledCheckboxBase
+      checked={false}
+      label="Don't show again"
+      onChange={[Function]}
+    />
+    <CustomizedPrimaryButton
+      onClick={[Function]}
+      text="Got it"
+    />
+  </StyledDialogFooterBase>
+</Dialog>
+`;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
 <Dialog
@@ -33,6 +119,11 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
     </ul>
   </div>
   <StyledDialogFooterBase>
+    <StyledCheckboxBase
+      checked={false}
+      label="Don't show again"
+      onChange={[Function]}
+    />
     <CustomizedPrimaryButton
       onClick={[Function]}
       text="Got it"

@@ -2461,15 +2461,15 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
-"@types/lodash@^4.14.179":
-  version "4.14.179"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.179.tgz#490ec3288088c91295780237d2497a3aa9dfb5c5"
-  integrity sha512-uwc1x90yCKqGcIOAT6DwOSuxnrAbpkdPsUOZtwrXb4D/6wZs+6qG7QnIawDuZWg0sWpxl+ltIKCaLoMlna678w==
+"@types/lodash@^4.14.180":
+  version "4.14.180"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.180.tgz#4ab7c9ddfc92ec4a887886483bc14c79fb380670"
+  integrity sha512-XOKXa1KIxtNXgASAnwj7cnttJxS4fksBRywK/9LzRV5YxrF80BXZIGeQSuoESQ/VkUj30Ae0+YcuHc15wJCB2g==
 
-"@types/luxon@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.3.0.tgz#0f4d912c385e47890374cb694da9bc93bacbe2b0"
-  integrity sha512-mWXdRlg+5dWvxU+uaijB2RY5NrJtMEXR6j+D6W66hPuezSVXrQqQvWa/JNHntgEYgjzeoVRrQVmMWAbKjUJiFQ==
+"@types/luxon@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.3.1.tgz#e34763178b46232e4c5f079f1706e18692415519"
+  integrity sha512-nAPUltOT28fal2eDZz8yyzNhBjHw1NEymFBP7Q9iCShqpflWPybxHbD7pw/46jQmT+HXOy1QN5hNTms8MOTlOQ==
 
 "@types/mime@^1":
   version "1.3.2"
@@ -4243,10 +4243,10 @@ commander@^7.0.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-7.2.0.tgz#a36cb57d0b501ce108e4d20559a150a391d97ab7"
   integrity sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==
 
-commander@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.0.0.tgz#86d58f24ee98126568936bd1d3574e0308a99a40"
-  integrity sha512-JJfP2saEKbQqvW+FI93OYUB4ByV5cizMpFMiiJI8xDbBvQvSkIk0VvQdn1CZ8mqAO8Loq2h0gYTYtDFUZUeERw==
+commander@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.1.0.tgz#a6b263b2327f2e188c6402c42623327909f2dbec"
+  integrity sha512-i0/MaqBtdbnJ4XQs4Pmyb+oFQl+q0lsAmokVUH92SlSw4fkeAcG3bVon+Qt7hmtF+u3Het6o4VgrcY3qAoEB6w==
 
 compare-func@^2.0.0:
   version "2.0.0"
@@ -11318,10 +11318,10 @@ simple-get@^3.0.3:
     once "^1.3.1"
     simple-concat "^1.0.0"
 
-simple-git@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.3.0.tgz#91692d576f851be691124781b79872b246d2f92c"
-  integrity sha512-K9qcbbZwPHhk7MLi0k0ekvSFXJIrRoXgHhqMXAFM75qS68vdHTcuzmul1ilKI02F/4lXshVgBoDll2t++JK0PQ==
+simple-git@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.4.0.tgz#dea49dfafbc16a67b26221917fca1caaeb976e4a"
+  integrity sha512-sBRdudUc1yvi0xQQPuHXc1L9gTWkRn4hP2bbc7q4BTxR502d3JJAGsDOhrmsBY+wAZAw5JLl82tx55fSWYE65w==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
     "@kwsites/promise-deferred" "^1.1.1"

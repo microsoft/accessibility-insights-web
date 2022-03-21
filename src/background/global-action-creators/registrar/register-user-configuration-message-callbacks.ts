@@ -46,4 +46,8 @@ export const registerUserConfigurationMessageCallback = (
         Messages.UserConfig.SaveWindowBounds,
         userConfigurationActionCreator.saveWindowBounds,
     );
+    interpreter.registerTypeToPayloadCallback(
+        Messages.UserConfig.SetAutoDetectedFailuresDialogState,
+        userConfigurationActionCreator.setAutoDetectedFailuresDialogState,
+    );
 };

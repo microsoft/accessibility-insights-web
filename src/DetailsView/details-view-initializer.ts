@@ -307,7 +307,10 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
-            const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+            const userConfigMessageCreator = new UserConfigMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+            );
             const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
                 storesHub.stores,
             );

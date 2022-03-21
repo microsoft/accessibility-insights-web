@@ -6,6 +6,7 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -28,6 +29,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         adbLocation: null,
         lastWindowBounds: null,
         lastWindowState: null,
+        showAutoDetectedFailuresDialog: true,
     };
 
     constructor(
@@ -69,6 +71,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
         this.userConfigActions.saveWindowBounds.addListener(this.onSaveLastWindowBounds);
+        this.userConfigActions.setAutoDetectedFailuresDialogState.addListener(
+            this.onSetAutoDetectedFailuresDialogState,
+        );
     }
 
     private onSetAdbLocation = (location: string): void => {
@@ -130,6 +135,14 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         if (payload.windowState === 'normal') {
             this.state.lastWindowBounds = payload.windowBounds;
         }
+
+        this.saveAndEmitChanged();
+    };
+
+    private onSetAutoDetectedFailuresDialogState = (
+        payload: AutoDetectedFailuresDialogStatePayload,
+    ): void => {
+        this.state.showAutoDetectedFailuresDialog = payload.enabled;
 
         this.saveAndEmitChanged();
     };
