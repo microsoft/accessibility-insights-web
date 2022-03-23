@@ -34,6 +34,7 @@ describe('AdhocTabStopsTestView', () => {
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: VisualizationStoreData;
     let selectedTest: VisualizationType;
+
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let userConfigurationStoreDataStub: UserConfigurationStoreData;
     let visualizationScanResultData: VisualizationScanResultData;

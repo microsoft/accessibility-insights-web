@@ -107,6 +107,8 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         <FlaggedComponent
           enableJSXElement={
             <AutoDetectedFailuresDialog
+              deps="stub-deps"
+              userConfigurationStoreData="stub-user-configuration-store-data"
               visualizationScanResultData={
                 Object {
                   "tabStops": Object {},
@@ -229,6 +231,8 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         <FlaggedComponent
           enableJSXElement={
             <AutoDetectedFailuresDialog
+              deps="stub-deps"
+              userConfigurationStoreData="stub-user-configuration-store-data"
               visualizationScanResultData={
                 Object {
                   "tabStops": Object {},

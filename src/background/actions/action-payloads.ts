@@ -250,3 +250,7 @@ export interface SaveWindowBoundsPayload extends BaseActionPayload {
     windowState: WindowState;
     windowBounds: Rectangle;
 }
+
+export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
+}

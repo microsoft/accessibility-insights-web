@@ -217,7 +217,10 @@ export class MainWindowInitializer extends WindowInitializer {
             TelemetryEventSource.TargetPage,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+            telemetryDataFactory,
+        );
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 

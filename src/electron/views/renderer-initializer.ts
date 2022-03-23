@@ -211,9 +211,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         userConfigurationStore.initialize();
 
+        const telemetryDataFactory = new TelemetryDataFactory();
+
         const interpreter = new Interpreter();
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+        );
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
@@ -303,11 +308,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(
-            userConfigActions,
-        );
-
-        const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger(logger);
         telemetryLogger.initialize(featureFlagsController);
 
@@ -320,6 +320,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             consoleTelemetryClient,
         ]);
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            userConfigActions,
+            telemetryEventHandler,
+        );
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
 

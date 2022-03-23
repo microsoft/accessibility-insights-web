@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetAdbLocationPayload,
@@ -11,10 +12,14 @@ import {
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { Messages } from '../messages';
 
 export class UserConfigMessageCreator {
-    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
+    constructor(
+        private readonly dispatcher: ActionMessageDispatcher,
+        private readonly telemetryFactory: TelemetryDataFactory,
+    ) {}
     public setTelemetryState(enableTelemetry: boolean): void {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
@@ -83,6 +88,18 @@ export class UserConfigMessageCreator {
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetAdbLocationConfig,
+            payload,
+        });
+    }
+
+    public setAutoDetectedFailuresDialogState(showDialog: boolean): void {
+        const telemetry = this.telemetryFactory.forSetAutoDetectedFailuresDialogState(showDialog);
+        const payload: AutoDetectedFailuresDialogStatePayload = {
+            enabled: showDialog,
+            telemetry,
+        };
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetAutoDetectedFailuresDialogState,
             payload,
         });
     }
