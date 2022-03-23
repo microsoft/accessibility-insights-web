@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IColumn } from '@fluentui/react';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -16,7 +17,6 @@ import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
-import { IColumn } from 'office-ui-fabric-react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPageComponent } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';

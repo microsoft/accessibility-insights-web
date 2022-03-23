@@ -23,11 +23,11 @@ module.exports = {
         'default',
         [
             'jest-junit',
-            { outputDirectory: '.', outputName: '<rootDir>/test-results/e2e/junit-e2e.xml' },
+            { outputDirectory: '<rootDir>/test-results/e2e/', outputName: 'junit-e2e.xml' },
         ],
     ],
     rootDir: rootDir,
     roots: [currentDir],
-    setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
+    setupFilesAfterEnv: [...baseConfig.setupFilesAfterEnv, `${currentDir}/setup/test-setup.ts`],
     testEnvironment: 'jsdom',
 };

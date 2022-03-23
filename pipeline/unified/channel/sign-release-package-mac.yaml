@@ -23,6 +23,13 @@ jobs:
                 artifact: ${{ parameters.unsignedArtifactName }}
                 path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
+          - task: UseDotNet@2
+            displayName: 'Use .NET Core 2.1.0 for ESRP mac mitigation'
+            inputs:
+                packageType: sdk
+                version: 2.1.x
+                installationPath: $(Agent.ToolsDirectory)/dotnet
+
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'CodeSigning'
             inputs:

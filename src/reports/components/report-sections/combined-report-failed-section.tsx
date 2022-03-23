@@ -4,6 +4,7 @@
 import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -25,8 +26,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
 
         const ruleCount = cardsViewData.cards.fail.length;
 
+        const sectionId = 'combined-report-failed-section';
+
         const CollapsibleContent = deps.collapsibleControl({
-            id: 'combined-report-failed-section',
+            id: sectionId,
             header: (
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}
@@ -45,8 +48,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
                     headingLevel={4}
+                    cardSelectionMessageCreator={nullCardSelectionMessageCreator}
                 />
             ),
+            onExpandToggle: null,
             headingLevel: 3,
             deps: null,
         });
@@ -54,3 +59,11 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
         return <div className="result-section">{CollapsibleContent}</div>;
     },
 );
+
+const nullCardSelectionMessageCreator: CardSelectionMessageCreator = {
+    toggleCardSelection: () => null,
+    toggleRuleExpandCollapse: () => null,
+    collapseAllRules: () => null,
+    expandAllRules: () => null,
+    toggleVisualHelper: () => null,
+};

@@ -1,40 +1,72 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { StoreNames } from 'common/stores/store-names';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import {
+    TabStopRequirementStatuses,
+    VisualizationScanResultData,
+} from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
-import { AddTabbedElementPayload } from '../actions/action-payloads';
+import { TabStopRequirementIds } from 'types/tab-stop-requirement-info';
+import {
+    AddTabbedElementPayload,
+    AddTabStopInstancePayload,
+    RemoveTabStopInstancePayload,
+    ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
+    UpdateNeedToCollectTabbingResultsPayload,
+    UpdateTabbingCompletedPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
+} from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
-
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
-    private visualizationScanResultsActions: VisualizationScanResultActions;
-    private tabActions: TabActions;
-
     constructor(
-        visualizationScanResultActions: VisualizationScanResultActions,
-        tabActions: TabActions,
+        private visualizationScanResultActions: VisualizationScanResultActions,
+        private tabActions: TabActions,
+        private tabStopRequirementActions: TabStopRequirementActions,
+        private visualizationActions: VisualizationActions,
+        private generateUID: () => string,
+        private visualizationConfigurationFactory: VisualizationConfigurationFactory,
     ) {
         super(StoreNames.VisualizationScanResultStore);
-
-        this.visualizationScanResultsActions = visualizationScanResultActions;
-        this.tabActions = tabActions;
     }
 
     public getDefaultState(): VisualizationScanResultData {
+        const requirements = {};
+        for (const id of TabStopRequirementIds) {
+            requirements[id] = {
+                status: 'unknown',
+                instances: [],
+                isExpanded: false,
+            };
+        }
         const state: Partial<VisualizationScanResultData> = {
-            tabStops: {
+            [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
+                requirements,
+                tabbingCompleted: false,
+                needToCollectTabbingResults: true,
             },
         };
 
-        const keys = ['issues', 'landmarks', 'headings', 'color', 'needsReview'];
+        const keys: AdHocTestkeys[] = [
+            AdHocTestkeys.Issues,
+            AdHocTestkeys.Landmarks,
+            AdHocTestkeys.Headings,
+            AdHocTestkeys.Color,
+            AdHocTestkeys.NeedsReview,
+        ];
 
         keys.forEach(key => {
             state[key] = {
@@ -48,12 +80,35 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     }
 
     protected addActionListeners(): void {
-        this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
-        this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
-        this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
-        this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
-
+        this.visualizationActions.resetDataForVisualization.addListener(
+            this.onResetDataForVisualization,
+        );
+        this.visualizationScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.visualizationScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.visualizationScanResultActions.addTabbedElement.addListener(this.onAddTabbedElement);
+        this.visualizationScanResultActions.disableTabStop.addListener(this.onTabStopsDisabled);
+        this.tabStopRequirementActions.updateTabStopsRequirementStatus.addListener(
+            this.onUpdateTabStopRequirementStatus,
+        );
+        this.tabStopRequirementActions.resetTabStopRequirementStatus.addListener(
+            this.onResetTabStopRequirementStatus,
+        );
+        this.tabStopRequirementActions.addTabStopInstance.addListener(this.onAddTabStopInstance);
+        this.tabStopRequirementActions.updateTabStopInstance.addListener(
+            this.onUpdateTabStopInstance,
+        );
+        this.tabStopRequirementActions.removeTabStopInstance.addListener(
+            this.onRemoveTabStopInstance,
+        );
+        this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
+            this.onToggleTabStopRequirementExpandCollapse,
+        );
+        this.tabStopRequirementActions.updateTabbingCompleted.addListener(
+            this.onUpdateTabbingCompleted,
+        );
+        this.tabStopRequirementActions.updateNeedToCollectTabbingResults.addListener(
+            this.onUpdateNeedToCollectTabbingResults,
+        );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
@@ -62,39 +117,110 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
+    private onResetDataForVisualization = (type: VisualizationType) => {
+        const config = this.visualizationConfigurationFactory.getConfiguration(type);
+        const testKey = config.key;
+        if (this.state[testKey] == null) {
+            return;
+        }
+
+        this.state[testKey] = this.getDefaultState()[testKey];
+        this.emitChanged();
+    };
+
     private onAddTabbedElement = (payload: AddTabbedElementPayload): void => {
         if (!this.state.tabStops.tabbedElements) {
             this.state.tabStops.tabbedElements = [];
         }
 
-        let tabbedElementsWithoutTabOrder: TabStopEvent[] = map(
-            this.state.tabStops.tabbedElements,
-            element => {
-                return {
-                    timestamp: element.timestamp,
-                    target: element.target,
-                    html: element.html,
-                };
-            },
-        );
+        let tabbedElementsWithoutTabOrder = map(this.state.tabStops.tabbedElements, element => {
+            return {
+                timestamp: element.timestamp,
+                target: element.target,
+                html: element.html,
+                instanceId: element.instanceId,
+            };
+        });
 
         tabbedElementsWithoutTabOrder = tabbedElementsWithoutTabOrder.concat(
-            payload.tabbedElements,
+            payload.tabbedElements.map(elem => {
+                return {
+                    ...elem,
+                    instanceId: this.generateUID(),
+                };
+            }),
         );
+
         tabbedElementsWithoutTabOrder.sort((left, right) => left.timestamp - right.timestamp);
 
         this.state.tabStops.tabbedElements = map(
             tabbedElementsWithoutTabOrder,
             (element, index) => {
                 return {
-                    timestamp: element.timestamp,
-                    target: element.target,
-                    html: element.html,
+                    ...element,
                     tabOrder: index + 1,
                 };
             },
         );
 
+        this.emitChanged();
+    };
+
+    private onUpdateTabStopRequirementStatus = (
+        payload: UpdateTabStopRequirementStatusPayload,
+    ): void => {
+        const { requirementId, status } = payload;
+        this.state.tabStops.requirements[requirementId].status = status;
+        if (status === 'pass') {
+            this.state.tabStops.requirements[requirementId].instances = [];
+        }
+        this.emitChanged();
+    };
+
+    private onResetTabStopRequirementStatus = (
+        payload: ResetTabStopRequirementStatusPayload,
+    ): void => {
+        const { requirementId } = payload;
+        this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
+        this.state.tabStops.requirements[requirementId].instances = [];
+        this.emitChanged();
+    };
+
+    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
+        const { requirementId, description, selector, html } = payload;
+        this.state.tabStops.requirements[requirementId].status = 'fail';
+        this.state.tabStops.requirements[requirementId].instances.push({
+            description,
+            id: this.generateUID(),
+            selector,
+            html,
+        });
+        this.emitChanged();
+    };
+
+    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
+        const { requirementId, id, description } = payload;
+        this.state.tabStops.requirements[requirementId].instances.find(
+            instance => instance.id === id,
+        ).description = description;
+        this.emitChanged();
+    };
+
+    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
+        const { requirementId, id } = payload;
+        const newInstances = this.state.tabStops.requirements[requirementId].instances.filter(
+            instance => instance.id !== id,
+        );
+        this.state.tabStops.requirements[requirementId].instances = newInstances;
+        this.emitChanged();
+    };
+
+    private onToggleTabStopRequirementExpandCollapse = (
+        payload: ToggleTabStopRequirementExpandPayload,
+    ): void => {
+        const { requirementId } = payload;
+        const requirement = this.state.tabStops.requirements[requirementId];
+        requirement.isExpanded = !requirement.isExpanded;
         this.emitChanged();
     };
 
@@ -107,11 +233,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.state[payload.key].fullAxeResultsMap = selectorMap;
         this.state[payload.key].scanResult = result;
 
-        this.emitChanged();
-    };
-
-    private onIssuesDisabled = (): void => {
-        this.state.issues.scanResult = null;
         this.emitChanged();
     };
 
@@ -135,4 +256,16 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
         return selectedRows;
     }
+
+    private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
+        this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
+        this.emitChanged();
+    };
+
+    private onUpdateNeedToCollectTabbingResults = (
+        payload: UpdateNeedToCollectTabbingResultsPayload,
+    ): void => {
+        this.state.tabStops.needToCollectTabbingResults = payload.needToCollectTabbingResults;
+        this.emitChanged();
+    };
 }

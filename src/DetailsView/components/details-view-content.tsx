@@ -75,12 +75,25 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const cardsViewData = props.deps.getCardViewData(
+        const automatedChecksCardsViewData = props.deps.getCardViewData(
             props.storeState.unifiedScanResultStoreData.rules,
             props.storeState.unifiedScanResultStoreData.results,
             props.deps.getCardSelectionViewData(
                 props.storeState.cardSelectionStoreData,
                 props.storeState.unifiedScanResultStoreData,
+                props.deps.isResultHighlightUnavailable,
+            ),
+        );
+
+        const tabStopRequirementData =
+            props.storeState.visualizationScanResultStoreData.tabStops.requirements;
+
+        const needsReviewCardsViewData = props.deps.getCardViewData(
+            props.storeState.needsReviewScanResultStoreData.rules,
+            props.storeState.needsReviewScanResultStoreData.results,
+            props.deps.getCardSelectionViewData(
+                props.storeState.needsReviewCardSelectionStoreData,
+                props.storeState.needsReviewScanResultStoreData,
                 props.deps.isResultHighlightUnavailable,
             ),
         );
@@ -106,6 +119,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
+                tabStopsViewStoreData={storeState.tabStopsViewStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
                 pathSnippetStoreData={storeState.pathSnippetStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
@@ -122,8 +136,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
-                cardsViewData={cardsViewData}
-                cardSelectionStoreData={storeState.cardSelectionStoreData}
+                automatedChecksCardsViewData={automatedChecksCardsViewData}
+                needsReviewCardsViewData={needsReviewCardsViewData}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
@@ -131,7 +145,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
-                unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
+                tabStopRequirementData={tabStopRequirementData}
             />
         );
     };

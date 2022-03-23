@@ -55,20 +55,24 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
     title="test title"
   />
   <div
-    className="ms-Grid main-section"
+    className="main-section"
   >
     <div
-      className="launch-panel-general-container"
+      className="popup-grid"
     >
-      <React.Fragment>
-        <span>
-          Accessibility Insights for Web can't run on this URL.
-        </span>
-        <br />
-        <span>
-          You'll need to go to a different page.
-        </span>
-      </React.Fragment>
+      <div
+        className="launch-panel-general-container"
+      >
+        <React.Fragment>
+          <span>
+            Accessibility Insights for Web can't run on this URL.
+          </span>
+          <br />
+          <span>
+            You'll need to go to a different page.
+          </span>
+        </React.Fragment>
+      </div>
     </div>
   </div>
 </div>
@@ -81,10 +85,7 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
       "browserAdapter": Object {
         "getManifest": [Function],
       },
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
-      },
+      "storesHub": [typemoq mock object],
     }
   }
   header={

@@ -8,6 +8,7 @@ Array [
     },
     "key": 0,
     "text": "FastPass",
+    "title": "FastPass",
   },
   Object {
     "data": Object {
@@ -15,13 +16,14 @@ Array [
     },
     "key": 2,
     "text": "Assessment",
+    "title": "Assessment",
   },
 ]
 `;
 
 exports[`Switcher renders Switcher itself matches snapshot 1`] = `
 "<div className=\\"leftNavSwitcher\\" role=\\"region\\" aria-label=\\"activity\\">
-  <StyledWithResponsiveMode className=\\"leftNavSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
+  <Dropdown className=\\"leftNavSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
 </div>"
 `;
 
@@ -29,7 +31,7 @@ exports[`Switcher renders option renderer override matches snapshot  1`] = `
 <span
   className="switcherDropdownOption"
 >
-  <StyledIconBase
+  <Memo(Icon)
     iconName="Rocket"
   />
   <span>

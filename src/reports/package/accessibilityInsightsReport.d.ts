@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-
 declare namespace AccessibilityInsightsReport {
     export type Report = {
         asHTML(): string;
@@ -75,8 +74,15 @@ declare namespace AccessibilityInsightsReport {
         failureSummary?: string,
     }
 
+    export type BaselineStatus = 'unknown' | 'existing' | 'new';
+
+    export type UrlInfo = {
+        url: string,
+        baselineStatus?: BaselineStatus
+    }
+
     export type FailureData = {
-        urls: string[],
+        urls?: string[] | UrlInfo[];
         elementSelector: string,
         snippet: string,
         fix: HowToFixData,

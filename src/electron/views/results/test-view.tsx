@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ResultSectionContentDeps } from 'common/components/cards/result-section-content';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -11,7 +12,9 @@ import { ContentPageInfo } from 'electron/types/content-page-info';
 import { HeaderSection } from 'electron/views/results/components/header-section';
 import * as React from 'react';
 
-export type TestViewDeps = ResultSectionContentDeps;
+export type TestViewDeps = ResultSectionContentDeps & {
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
+};
 export type TestViewProps = {
     deps: TestViewDeps;
     scanStatus: ScanStatus;
@@ -58,6 +61,8 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
                 tabStopsEnabled={props.tabStopsEnabled}
+                cardSelectionMessageCreator={deps.cardSelectionMessageCreator}
+                sectionHeadingLevel={2}
             />
         </div>
     );

@@ -9,9 +9,9 @@ const countByCards: OutcomeCounter = cards => cards.length;
 
 const countByIdentifierUrls: OutcomeCounter = cards =>
     cards.reduce((total, card) => {
-        if (!card.identifiers.urls) return total;
+        if (!card.identifiers.urls?.urlInfos) return total;
 
-        return total + card.identifiers.urls.urls.length;
+        return total + card.identifiers.urls.urlInfos.length;
     }, 0);
 
 export const OutcomeCounter = {

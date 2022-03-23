@@ -40,7 +40,9 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
     </span>
   </React.Fragment>
-  <ul>
+  <ul
+    data-automation-id="recommendations"
+  >
     <li>
       <React.Fragment>
         <span
@@ -101,7 +103,9 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
     </span>
   </React.Fragment>
-  <ul>
+  <ul
+    data-automation-id="recommendations"
+  >
     <li>
       <React.Fragment>
         <span
@@ -199,7 +203,9 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
       Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
     </span>
   </React.Fragment>
-  <ul>
+  <ul
+    data-automation-id="recommendations"
+  >
     <li>
       <React.Fragment>
         <span
@@ -324,7 +330,9 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
       Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
     </span>
   </React.Fragment>
-  <ul>
+  <ul
+    data-automation-id="recommendations"
+  >
     <li>
       <React.Fragment>
         <span
@@ -409,7 +417,9 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
     </span>
   </React.Fragment>
-  <ul>
+  <ul
+    data-automation-id="recommendations"
+  >
     <li>
       <React.Fragment>
         <span

@@ -5,13 +5,13 @@ import {
     CommonInstancesSectionProps,
 } from 'common/components/cards/common-instances-section-props';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { InlineStartOverButton } from 'DetailsView/components/inline-start-over-button';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -35,6 +35,7 @@ export interface IssuesTableProps {
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
     visualizationStoreData: VisualizationStoreData;
 }
 
@@ -73,6 +74,18 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return <div className={styles.issuesTableSubtitle}>{this.props.subtitle}</div>;
     }
 
+    private getCardCount(): number {
+        if (this.props.cardsViewData === null) {
+            return 0;
+        }
+        const { cards } = this.props.cardsViewData;
+        let cardCount = 0;
+        Object.keys(cards).forEach(key => {
+            cardCount += cards[key].length;
+        });
+        return cardCount;
+    }
+
     private renderContent(): JSX.Element {
         if (this.props.issuesEnabled == null) {
             return this.renderSpinner('Loading...');
@@ -82,8 +95,16 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderComponent(): JSX.Element {
-        if (!this.props.issuesEnabled) {
-            return this.renderDisabledMessage();
+        const cardCount = this.getCardCount();
+        if (!this.props.issuesEnabled && cardCount > 0) {
+            this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
+                this.props.visualizationStoreData.selectedFastPassDetailsView,
+            );
+        }
+        if (!this.props.issuesEnabled && cardCount === 0) {
+            this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
+                this.props.visualizationStoreData.selectedFastPassDetailsView,
+            );
         }
 
         if (this.props.scanning) {
@@ -99,32 +120,13 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 scanMetadata={this.props.scanMetadata}
                 shouldAlertFailuresCount={true}
+                cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
+                sectionHeadingLevel={2}
             />
         );
     }
 
     private renderSpinner(label: string): JSX.Element {
         return <ScanningSpinner isSpinning={true} label={label} />;
-    }
-
-    private renderDisabledMessage(): JSX.Element {
-        const selectedTest = this.props.visualizationStoreData.selectedFastPassDetailsView;
-        const startOverButton = (
-            <InlineStartOverButton
-                selectedTest={selectedTest}
-                detailsViewActionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
-            />
-        );
-        const disabledMessage = (
-            <span>Use the {startOverButton} button to scan the target page.</span>
-        );
-
-        return (
-            <>
-                <div className={styles.detailsDisabledMessage} role="alert">
-                    {disabledMessage}
-                </div>
-            </>
-        );
     }
 }

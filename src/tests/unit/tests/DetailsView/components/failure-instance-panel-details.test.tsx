@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { DefaultButton, TextField } from '../../../../../../node_modules/office-ui-fabric-react';
+import { DefaultButton, TextField } from '../../../../../../node_modules/@fluentui/react';
 import { FailureInstancePanelDetails } from '../../../../../DetailsView/components/failure-instance-panel-details';
 
 describe('FailureInstancePanelDetailsTest', () => {

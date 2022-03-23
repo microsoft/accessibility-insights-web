@@ -1,176 +1,159 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { ReportExportService } from 'report-export/types/report-export-service';
-import { ReportGenerator } from 'reports/report-generator';
-import { IMock, It, Mock, Times } from 'typemoq';
-
-import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
     ReportExportComponentProps,
-} from '../../../../../DetailsView/components/report-export-component';
+} from 'DetailsView/components/report-export-component';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { ReportExportService } from 'report-export/types/report-export-service';
+import { ReportNameGenerator } from 'reports/report-name-generator';
+import { IMock, It, Mock, Times } from 'typemoq';
+import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 
-describe('ReportExportComponentTest', () => {
+describe('ReportExportComponent', () => {
     let deps: ReportExportComponentDeps;
     let props: ReportExportComponentProps;
-    let reportGeneratorMock: IMock<ReportGenerator>;
+    let reportNameGeneratorMock: IMock<ReportNameGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let jsonGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
+    let dismissDialogMock: IMock<() => void>;
+    let afterDialogDismissedMock: IMock<() => void>;
+
+    const exportDescription = 'export description';
+    const scanDate = new Date(2019, 5, 28);
+    const pageTitle = 'test title';
+    const fileExtension = '.html';
+    const reportExportFormat = 'Assessment';
+    const exportName = 'export name';
     const reportExportServicesStub: ReportExportService[] = [
         { key: 'html', generateMenuItem: null },
     ];
 
     beforeEach(() => {
-        reportGeneratorMock = Mock.ofType(ReportGenerator);
+        reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
         deps = {
-            reportGenerator: reportGeneratorMock.object,
+            reportNameGenerator: reportNameGeneratorMock.object,
         } as ReportExportComponentDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
         jsonGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
-        getDescriptionMock = Mock.ofInstance(() => '');
+        getDescriptionMock = Mock.ofInstance(() => null);
+        dismissDialogMock = Mock.ofInstance(() => null);
+        afterDialogDismissedMock = Mock.ofInstance(() => null);
         props = {
             deps,
-            reportExportFormat: 'Assessment',
-            pageTitle: 'test title',
-            scanDate: new Date(2019, 5, 28),
-            jsonGenerator: jsonGeneratorMock.object,
+            reportExportFormat,
+            pageTitle,
+            scanDate,
             htmlGenerator: htmlGeneratorMock.object,
+            jsonGenerator: jsonGeneratorMock.object,
             updatePersistedDescription: updateDescriptionMock.object,
             getExportDescription: getDescriptionMock.object,
             featureFlagStoreData: {
                 'test-feature-flag': true,
             },
-            onDialogDismiss: () => null,
+            isOpen: true,
+            dismissExportDialog: dismissDialogMock.object,
+            afterDialogDismissed: afterDialogDismissedMock.object,
             reportExportServices: reportExportServicesStub,
+            exportResultsClickedTelemetry: () => null,
         };
     });
 
-    test('render', () => {
+    test('render with dialog closed', () => {
+        props.isOpen = false;
         const wrapper = shallow(<ReportExportComponent {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-        expect(wrapper.find(ExportDialog).prop('afterDismissed')).toEqual(props.onDialogDismiss);
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    describe('user interactions', () => {
-        test('click export button', () => {
-            const persistedDescription = 'persisted description';
+    test('render with dialog open', () => {
+        const wrapper = shallow(<ReportExportComponent {...props} />);
+        expect(wrapper.debug()).toMatchSnapshot();
+    });
 
-            reportGeneratorMock
-                .setup(rgm =>
-                    rgm.generateName(
-                        props.reportExportFormat,
-                        props.scanDate,
-                        props.pageTitle,
-                        '.html',
-                    ),
-                )
-                .verifiable(Times.once());
-            getDescriptionMock
-                .setup(gdm => gdm())
-                .returns(() => persistedDescription)
-                .verifiable(Times.once());
-            updateDescriptionMock
-                .setup(udm => udm(It.isValue(persistedDescription)))
-                .verifiable(Times.once());
-            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
+    test('dismiss dialog', () => {
+        dismissDialogMock.setup(d => d()).verifiable(Times.once());
 
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            const exportButton = wrapper.find(InsightsCommandButton);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
+        const exportDialog = wrapper.find(ExportDialog);
+        exportDialog.props().onClose();
 
-            exportButton.simulate('click');
-            const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange(persistedDescription);
+        dismissDialogMock.verifyAll();
+    });
 
-            expect(wrapper.getElement()).toMatchSnapshot('dialog should show');
+    test('afterDialogDismissed', () => {
+        afterDialogDismissedMock.setup(d => d()).verifiable(Times.once());
 
-            dialog.props().onClose();
+        const wrapper = shallow(<ReportExportComponent {...props} />);
+        const exportDialog = wrapper.find(ExportDialog);
+        exportDialog.props().afterDismissed();
 
-            updateDescriptionMock.verifyAll();
-            getDescriptionMock.verifyAll();
-            reportGeneratorMock.verifyAll();
-            htmlGeneratorMock.verifyAll();
-        });
+        afterDialogDismissedMock.verifyAll();
+    });
 
-        test('dismiss dialog', () => {
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            reportGeneratorMock
-                .setup(rgm =>
-                    rgm.generateName(
-                        props.reportExportFormat,
-                        props.scanDate,
-                        props.pageTitle,
-                        '.html',
-                    ),
-                )
-                .verifiable(Times.once());
-            getDescriptionMock
-                .setup(gdm => gdm())
-                .returns(() => '')
-                .verifiable(Times.once());
+    test('on dialog opened', () => {
+        const prevProps = {
+            ...props,
+            isOpen: false,
+        };
+        reportNameGeneratorMock
+            .setup(r => r.generateName(reportExportFormat, scanDate, pageTitle, fileExtension))
+            .returns(() => exportName);
+        getDescriptionMock.setup(g => g()).returns(() => exportDescription);
 
-            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
+        const wrapper = shallow(<ReportExportComponent {...prevProps} />);
+        wrapper.setProps(props);
+        wrapper.update();
 
-            const exportButton = wrapper.find(InsightsCommandButton);
-            exportButton.simulate('click');
-            const dialog = wrapper.find(ExportDialog);
-            dialog.props().onClose();
+        expect(wrapper.debug()).toMatchSnapshot();
+    });
 
-            expect(wrapper.getElement()).toMatchSnapshot('dialog should be dismissed');
-            getDescriptionMock.verifyAll();
-            reportGeneratorMock.verifyAll();
-            htmlGeneratorMock.verifyAll();
-        });
+    // We expect fabric's TextView.value and our htmlGenerator to take responsibility for
+    // escaping special characters, so we test that the export component passes specials down to
+    // the underlying dialog and the htmlGenerator as-is without escaping
+    const testContentWithSpecials = 'test content with special characters: <> $ " ` \'';
 
-        // We expect fabric's TextView.value and our htmlGenerator to take responsibility for
-        // escaping special characters, so we test that the export component passes specials down to
-        // the underlying dialog and the htmlGenerator as-is without escaping
-        const testContentWithSpecials = 'test content with special characters: <> $ " ` \'';
+    test('edit text field', () => {
+        updateDescriptionMock
+            .setup(udm => udm(It.isValue(testContentWithSpecials)))
+            .returns(() => null)
+            .verifiable(Times.once());
 
-        test('edit text field', () => {
-            updateDescriptionMock
-                .setup(udm => udm(It.isValue(testContentWithSpecials)))
-                .returns(() => null)
-                .verifiable(Times.once());
+        const wrapper = shallow(<ReportExportComponent {...props} />);
 
-            const wrapper = shallow(<ReportExportComponent {...props} />);
+        const dialog = wrapper.find(ExportDialog);
+        dialog.props().onDescriptionChange(testContentWithSpecials);
 
-            const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange(testContentWithSpecials);
+        expect(wrapper.debug()).toMatchSnapshot(testContentWithSpecials);
 
-            expect(wrapper.getElement()).toMatchSnapshot(testContentWithSpecials);
+        updateDescriptionMock.verifyAll();
+    });
 
-            updateDescriptionMock.verifyAll();
-        });
+    test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', () => {
+        const wrapper = shallow(<ReportExportComponent {...props} />);
+        wrapper.setState({ exportDescription: testContentWithSpecials });
 
-        test('clicking export on the dialog should trigger generateExports with the current exportDescription', () => {
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            wrapper.setState({ exportDescription: testContentWithSpecials });
+        htmlGeneratorMock
+            .setup(hgm => hgm(testContentWithSpecials))
+            .returns(() => 'test html')
+            .verifiable(Times.once());
 
-            htmlGeneratorMock
-                .setup(hgm => hgm(testContentWithSpecials))
-                .returns(() => 'test html')
-                .verifiable(Times.once());
+        jsonGeneratorMock
+            .setup(jgm => jgm(testContentWithSpecials))
+            .returns(() => 'test json')
+            .verifiable(Times.once());
 
-            jsonGeneratorMock
-                .setup(jgm => jgm(testContentWithSpecials))
-                .returns(() => 'test json')
-                .verifiable(Times.once());
+        const dialog = wrapper.find(ExportDialog);
 
-            const dialog = wrapper.find(ExportDialog);
+        dialog.props().generateExports();
 
-            dialog.props().generateExports();
+        expect(wrapper.debug()).toMatchSnapshot();
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-
-            htmlGeneratorMock.verifyAll();
-            jsonGeneratorMock.verifyAll();
-        });
+        htmlGeneratorMock.verifyAll();
+        jsonGeneratorMock.verifyAll();
     });
 });

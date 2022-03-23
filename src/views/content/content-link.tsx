@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon } from '@fluentui/react';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
-import { Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';

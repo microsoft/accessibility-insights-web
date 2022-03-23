@@ -17,8 +17,10 @@ import { CardSelectionActions } from 'background/actions/card-selection-actions'
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
@@ -47,7 +49,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -58,7 +60,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for tab stops visualization toggle (to enable)', () => {
         const actionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.TabStops;
         const tabId = 1;
         const enabled = true;
@@ -79,9 +80,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupSwitchToTab(tabId)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.TABSTOPS_TOGGLE, payload, tabId);
@@ -94,7 +93,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for tab stops visualization toggle (to disabled)', () => {
         const actionName = 'disableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.TabStops;
         const tabId = 1;
         const enabled = false;
@@ -115,9 +113,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, test)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.TABSTOPS_TOGGLE, payload, tabId);
 
@@ -129,7 +125,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for visualization toggle (to enable)', () => {
         const actionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.Headings;
         const tabId = 1;
         const enabled = true;
@@ -150,9 +145,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.HEADINGS_TOGGLE, payload, tabId);
 
@@ -164,7 +157,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for visualization toggle (to disable)', () => {
         const actionName = 'disableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.Headings;
         const tabId = 1;
         const enabled = false;
@@ -185,9 +177,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, test)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.HEADINGS_TOGGLE, payload, tabId);
 
@@ -229,7 +219,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -266,7 +256,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -289,7 +279,6 @@ describe('ActionCreatorTest', () => {
 
         const updateViewActionName = 'updateSelectedPivotChild';
         const enablingIssuesActionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
@@ -303,8 +292,6 @@ describe('ActionCreatorTest', () => {
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupActionOnVisualizationActions(enablingIssuesActionName)
             .setupVisualizationActionWithInvokeParameter(
                 enablingIssuesActionName,
@@ -322,7 +309,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -358,7 +345,7 @@ describe('ActionCreatorTest', () => {
 
         actionCreator.registerCallbacks();
 
-        await tick();
+        await flushSettledPromises();
 
         validator.verifyAll();
     });
@@ -390,6 +377,8 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationActionWithInvokeParameter(visualizationActionName, null)
             .setupActionOnCardSelectionActions(cardSelectionActionName)
             .setupCardSelectionActionWithInvokeParameter(cardSelectionActionName, null)
+            .setupActionOnNeedsReviewCardSelectionActions(cardSelectionActionName)
+            .setupNeedsReviewCardSelectionActionWithInvokeParameter(cardSelectionActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.ScrollRequested, [null, tabId]);
 
         const actionCreator = builder.buildActionCreator();
@@ -534,7 +523,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             builder.verifyAll();
         });
@@ -568,7 +557,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await tick();
+            await flushSettledPromises();
 
             builder.verifyAll();
         });
@@ -736,7 +725,7 @@ describe('ActionCreatorTest', () => {
         };
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
+        const resetDataForVisualization = 'resetDataForVisualization';
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [
@@ -744,11 +733,11 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(disableActionName)
+            .setupActionOnVisualizationActions(resetDataForVisualization)
             .setupActionOnVisualizationActions(enableActionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+            .setupVisualizationActionWithInvokeParameter(resetDataForVisualization, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 
@@ -922,19 +911,24 @@ class ActionCreatorValidator {
     private visualizationActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private needsReviewCardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private unifiedScanResultActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-
+    private tabStopRequirementActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private visualizationScanResultActionsContainerMock = Mock.ofType(
         VisualizationScanResultActions,
     );
     private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
+    private tabStopRequirementActionsContainerMock = Mock.ofType(TabStopRequirementActions);
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
     private sidePanelActionsContainerMock = Mock.ofType(SidePanelActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
     private cardSelectionActionsContainerMock = Mock.ofType(CardSelectionActions);
+    private needsReviewCardSelectionActionsContainerMock = Mock.ofType(
+        NeedsReviewCardSelectionActions,
+    );
     private unifiedScanResultsActionsContainerMock = Mock.ofType(UnifiedScanResultActions);
     private sidePanelActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
@@ -957,6 +951,7 @@ class ActionCreatorValidator {
     private actionHubMock: ActionHub = {
         visualizationActions: this.visualizationActionsContainerMock.object,
         visualizationScanResultActions: this.visualizationScanResultActionsContainerMock.object,
+        tabStopRequirementActions: this.tabStopRequirementActionsContainerMock.object,
         devToolActions: this.devToolActionsContainerMock.object,
         sidePanelActions: this.sidePanelActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
@@ -964,7 +959,8 @@ class ActionCreatorValidator {
         inspectActions: this.inspectActionsContainerMock.object,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
         cardSelectionActions: this.cardSelectionActionsContainerMock.object,
-        scanResultActions: this.unifiedScanResultsActionsContainerMock.object,
+        needsReviewCardSelectionActions: this.needsReviewCardSelectionActionsContainerMock.object,
+        unifiedScanResultActions: this.unifiedScanResultsActionsContainerMock.object,
     } as ActionHub;
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(
@@ -1031,6 +1027,18 @@ class ActionCreatorValidator {
         return this;
     }
 
+    public setupNeedsReviewCardSelectionActionWithInvokeParameter(
+        actionName: keyof NeedsReviewCardSelectionActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.needsReviewCardSelectionActionsMocks,
+        );
+        return this;
+    }
+
     public setupLogError(message: string): ActionCreatorValidator {
         this.loggerMock.setup(logger => logger.error(message)).verifiable(Times.once());
 
@@ -1057,6 +1065,18 @@ class ActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.visualizationScanResultActionMocks,
+        );
+        return this;
+    }
+
+    public setupTabStopRequirementActionWithInvokeParameter(
+        actionName: keyof TabStopRequirementActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.tabStopRequirementActionMocks,
         );
         return this;
     }
@@ -1164,6 +1184,18 @@ class ActionCreatorValidator {
         return this;
     }
 
+    public setupActionOnNeedsReviewCardSelectionActions(
+        actionName: keyof NeedsReviewCardSelectionActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.needsReviewCardSelectionActionsMocks,
+            this.needsReviewCardSelectionActionsContainerMock,
+        );
+
+        return this;
+    }
+
     public setupActionOnVisualizationActions(
         actionName: keyof VisualizationActions,
     ): ActionCreatorValidator {
@@ -1189,6 +1221,17 @@ class ActionCreatorValidator {
             actionName,
             this.visualizationScanResultActionMocks,
             this.visualizationScanResultActionsContainerMock,
+        );
+        return this;
+    }
+
+    public setupActionOnTabStopRequirementActions(
+        actionName: keyof TabStopRequirementActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.tabStopRequirementActionMocks,
+            this.tabStopRequirementActionsContainerMock,
         );
         return this;
     }
@@ -1257,7 +1300,7 @@ class ActionCreatorValidator {
         this.verifyAllActionMocks();
 
         this.visualizationScanResultActionsContainerMock.verifyAll();
-
+        this.tabStopRequirementActionsContainerMock.verifyAll();
         this.notificationCreatorStrictMock.verifyAll();
         this.interpreterMock.verifyAll();
         this.detailsViewControllerStrictMock.verifyAll();
@@ -1269,12 +1312,14 @@ class ActionCreatorValidator {
     private verifyAllActionMocks(): void {
         this.verifyAllActions(this.visualizationActionMocks);
         this.verifyAllActions(this.visualizationScanResultActionMocks);
+        this.verifyAllActions(this.tabStopRequirementActionMocks);
         this.verifyAllActions(this.devToolsActionMocks);
         this.verifyAllActions(this.inspectActionsMock);
         this.verifyAllActions(this.detailsViewActionsMocks);
         this.verifyAllActions(this.sidePanelActionMocks);
         this.verifyAllActions(this.scopingActionMocks);
         this.verifyAllActions(this.cardSelectionActionsMocks);
+        this.verifyAllActions(this.needsReviewCardSelectionActionsMocks);
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {

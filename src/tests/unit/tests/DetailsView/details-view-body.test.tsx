@@ -8,9 +8,9 @@ import {
 } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -102,6 +102,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
+                tabStopsViewStoreData: { failureInstanceState: {} } as TabStopsViewStoreData,
                 featureFlagStoreData: {} as FeatureFlagStoreData,
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryStub,
@@ -112,7 +113,7 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                cardsViewData: {
+                automatedChecksCardsViewData: {
                     cards: exampleUnifiedStatusResults,
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,

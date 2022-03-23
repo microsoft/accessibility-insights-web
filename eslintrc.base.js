@@ -41,6 +41,7 @@ module.exports = {
                 },
             },
         ],
+        'no-throw-literal': 'error',
 
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
         '@typescript-eslint/no-explicit-any': 'off',

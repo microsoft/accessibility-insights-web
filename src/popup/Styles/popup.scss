@@ -68,7 +68,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
 
     .telemetry-checkbox-section {
         font-size: 12px;
-        color: $secondary-text;
+        color: $primary-text;
         padding-top: 10px;
     }
 
@@ -128,6 +128,13 @@ html {
 #popup-container .ad-hoc-tools-panel {
     width: 540px;
     margin: 10px 0px 20px 0px;
+}
+
+#popup-container .popup-grid {
+    display: grid;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 14px;
 }
 
 #popup-container .insights-spinner {
@@ -234,6 +241,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
     .launch-pad-title {
         font-size: 14px;
+        font-weight: 600;
         margin-bottom: -4px;
     }
 
@@ -318,6 +326,11 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             color: $secondary-text;
             font-style: normal;
         }
+    }
+
+    .launch-pad-item-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
 
     ::placeholder {

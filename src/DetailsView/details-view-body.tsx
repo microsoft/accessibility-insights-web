@@ -4,13 +4,11 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import {
-    ScanMetadata,
-    UnifiedScanResultStoreData,
-} from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import * as styles from 'DetailsView/details-view-body.scss';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -21,7 +19,10 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import {
+    TabStopRequirementState,
+    VisualizationScanResultData,
+} from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
@@ -44,6 +45,7 @@ export type DetailsViewBodyDeps = DetailsViewContentDeps &
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;
     tabStoreData: TabStoreData;
+    tabStopsViewStoreData: TabStopsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -60,13 +62,14 @@ export interface DetailsViewBodyProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    cardsViewData: CardsViewModel;
+    automatedChecksCardsViewData: CardsViewModel;
+    needsReviewCardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
-    unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    tabStopRequirementData: TabStopRequirementState;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

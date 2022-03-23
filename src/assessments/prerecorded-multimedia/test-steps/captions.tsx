@@ -19,13 +19,13 @@ const captionsHowToTest: JSX.Element = (
             <li>
                 Examine the target page to identify any pre-recorded multimedia content
                 (synchronized video and audio).
+                <ol>
+                    <li>
+                        Ignore any multimedia content that is provided as an audio or video
+                        alternative to text and is clearly labeled as such.
+                    </li>
+                </ol>
             </li>
-            <ol>
-                <li>
-                    Ignore any multimedia content that is provided as an audio or video alternative
-                    to text and is clearly labeled as such.
-                </li>
-            </ol>
             <li>Enable captions, then play the multimedia content.</li>
             <li>Verify that the multimedia content has captions.</li>
             <li>

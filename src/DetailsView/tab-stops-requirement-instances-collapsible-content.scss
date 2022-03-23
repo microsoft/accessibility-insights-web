@@ -1,0 +1,51 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../common/styles/colors.scss';
+@import '../common/styles/common.scss';
+
+.edit-button {
+    // The margins/paddings are chosen to match Fluent UI's default spacings for ChoiceGroups,
+    // because we want these icons to line up with the Pass/Fail ChoiceGroup in the Requirement
+    // table earlier on the same page.
+    margin-left: 4px;
+    margin-right: 10px;
+    padding-left: 3px;
+    padding-right: 3px;
+
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: $neutral-100 !important;
+
+    &:hover,
+    &:focus {
+        color: LinkText !important;
+    }
+
+    @media screen and (forced-colors: active) {
+        @include fluent-forced-color-adjust-override;
+        color: inherit !important;
+        &:hover,
+        &:focus {
+            color: initial !important;
+        }
+    }
+}
+
+.remove-button {
+    font-size: 16px;
+    line-height: 24px;
+    color: $negative-outcome !important;
+    &:hover,
+    &:focus {
+        color: LinkText !important;
+    }
+
+    @media screen and (forced-colors: active) {
+        @include fluent-forced-color-adjust-override;
+        color: inherit !important;
+        &:hover,
+        &:focus {
+            color: initial !important;
+        }
+    }
+}

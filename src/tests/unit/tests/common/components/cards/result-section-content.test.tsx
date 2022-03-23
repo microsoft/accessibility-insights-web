@@ -9,10 +9,12 @@ import {
     ResultSectionContentDeps,
     ResultSectionContentProps,
 } from 'common/components/cards/result-section-content';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
@@ -20,6 +22,11 @@ describe('ResultSectionContent', () => {
     const emptyRules: CardRuleResult[] = [];
     const someRules: CardRuleResult[] = [exampleUnifiedRuleResult];
     const depsStub = {} as ResultSectionContentDeps;
+    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
+
+    beforeEach(() => {
+        cardSelectionMessageCreatorMock = Mock.ofType<CardSelectionMessageCreator>();
+    });
 
     it('renders, with some rules', () => {
         const cardsVisualizationModifierButtonsStub: Readonly<CardsVisualizationModifierButtons> =
@@ -38,7 +45,7 @@ describe('ResultSectionContent', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders, no rules', () => {
+    it('does not render, no rules', () => {
         const props: ResultSectionContentProps = {
             deps: depsStub,
             results: emptyRules,
@@ -50,6 +57,7 @@ describe('ResultSectionContent', () => {
             allCardsCollapsed: true,
             outcomeCounter: null,
             headingLevel: 5,
+            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

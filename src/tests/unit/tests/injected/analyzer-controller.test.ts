@@ -38,7 +38,6 @@ describe('AnalyzerControllerTests', () => {
     let configStub: VisualizationConfiguration;
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-
     let visualizationStoreState: VisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
     let scopingStoreState: ScopingStoreData;

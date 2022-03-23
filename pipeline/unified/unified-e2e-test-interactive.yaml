@@ -4,6 +4,7 @@ steps:
     - script: yarn build:unified
       displayName: build:unified
       timeoutInMinutes: 5
+      condition: and(succeeded(), ne(variables.platform, 'linux'))
 
     # e2e tests require different job for linux
     - script: yarn test:unified --ci
@@ -11,11 +12,7 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
-    - script: DOCKER_BUILDKIT=1 docker build -t app --target unified .
-      displayName: setup docker
-      condition: and(succeeded(), eq(variables.platform, 'linux'))
-
-    - script: docker run --network=host -i app sh -c "yarn test:unified --ci"
-      displayName: run unified tests on docker
-      condition: and(succeeded(), eq(variables.platform, 'linux'))
-      timeoutInMinutes: 22
+    - template: ../run-tests-in-docker-linux.yaml
+      parameters:
+          target: unified
+          run-timeout-minutes: 22

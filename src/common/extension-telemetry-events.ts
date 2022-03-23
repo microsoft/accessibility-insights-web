@@ -10,6 +10,12 @@ export const AUTOMATED_CHECKS_TOGGLE: string = 'IssuesToggled';
 export const LANDMARKS_TOGGLE: string = 'LandmarksToggled';
 export const TABSTOPS_TOGGLE: string = 'TabStopsToggled';
 export const TABSTOPS_RECORDING_COMPLETE: string = 'TabStopsRecordingComplete';
+export const ADD_TABSTOPS_REQUIREMENT_INSTANCE: string = 'AddTabStopsRequirementInstance';
+export const TABSTOPS_AUTOMATED_RESULTS: string = 'TabStopsAutomatedResults';
+export const REMOVE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'RemoveTabStopsRequirementInstance';
+export const UPDATE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'UpdateTabStopsRequirementInstance';
+export const UPDATE_TABSTOPS_REQUIREMENT_STATUS: string = 'UpdateTabStopsRequirementStatus';
+export const RESET_TABSTOPS_REQUIREMENT_STATUS: string = 'ResetTabStopsRequirmentStatus';
 export const COLOR_TOGGLE: string = 'ColorToggled';
 export const HEADINGS_TOGGLE: string = 'HeadingsToggled';
 export const SHORTCUT_MODIFIED: string = 'ShortcutModified';
@@ -35,6 +41,7 @@ export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';
 export const PASS_UNMARKED_INSTANCES: string = 'passUnmarkedInstances';
 export const CONTINUE_PREVIOUS_ASSESSMENT: string = 'ContinuePreviousAssessment';
 export const LOAD_ASSESSMENT: string = 'loadAssessment';
+export const SAVE_ASSESSMENT: string = 'saveAssessment';
 export const ENABLE_VISUAL_HELPER: string = 'enableVisualHelper';
 export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
 export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
@@ -72,11 +79,12 @@ export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
 export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
+export const SET_AUTO_DETECTED_FAILURES_DIALOG_STATE: string = 'setAutoDetectedFailuresDialogState';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
+export type ReportExportFormat = 'Assessment' | 'FastPass';
 
 export enum TelemetryEventSource {
     LaunchPad,
@@ -115,6 +123,11 @@ export type ExportResultsTelemetryData = {
     exportResultsType: string;
     exportResultsService: ReportExportServiceKey;
 } & BaseTelemetryData;
+
+export type ExportFastPassResultsTelemetryData = {
+    wereAutomatedChecksRun: boolean;
+    tabStopRequirementInstanceCount: TabStopRequirementInstanceCount;
+} & ExportResultsTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
     selectedTest: string;
@@ -202,6 +215,10 @@ export type AndroidScanCompletedTelemetryData = {
     scanDuration: number;
 } & InstanceCount;
 
+export type TabStopsAutomatedResultsTelemetryData = {
+    tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount;
+} & BaseTelemetryData;
+
 export type InstanceCount = {
     PASS: {
         [ruleId: string]: number;
@@ -212,6 +229,22 @@ export type InstanceCount = {
     INCOMPLETE: {
         [ruleId: string]: number;
     };
+};
+
+export type TabStopRequirementInstanceCount = {
+    pass: {
+        [requirementId: string]: number;
+    };
+    fail: {
+        [requirementId: string]: number;
+    };
+    unknown: {
+        [requirementId: string]: number;
+    };
+};
+
+export type TabStopAutomatedFailuresInstanceCount = {
+    [requirementId: string]: number;
 };
 
 export type AtfaInstanceCount = {
@@ -246,11 +279,16 @@ export type DeviceFocusKeyEventTelemetryData = {
     keyEventCode: number;
 };
 
+export type AutoDetectedFailuresDialogStateTelemetryData = {
+    enabled: boolean;
+};
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
     | FeatureFlagToggleTelemetryData
     | ExportResultsTelemetryData
+    | ExportFastPassResultsTelemetryData
     | DetailsViewOpenTelemetryData
     | DetailsViewOpenedTelemetryData
     | SettingsOpenTelemetryData
@@ -271,4 +309,6 @@ export type TelemetryData =
     | AndroidScanFailedTelemetryData
     | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
-    | SetAllUrlsPermissionTelemetryData;
+    | SetAllUrlsPermissionTelemetryData
+    | TabStopsAutomatedResultsTelemetryData
+    | AutoDetectedFailuresDialogStateTelemetryData;

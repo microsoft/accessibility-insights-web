@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from '@fluentui/react';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { textContent } from 'content/strings/text-content';
-import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { Content } from 'views/content/content';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -62,5 +63,6 @@ export const rendererDependencies: (
         storeActionMessageCreator,
         documentManipulator,
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+        ContentRootComponent: Content,
     };
 };

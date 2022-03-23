@@ -9,3 +9,11 @@
         }
     }
 }
+
+// Fluent sets forced-color-adjust: none on several components,
+// preventing high contrast color application
+@mixin fluent-forced-color-adjust-override {
+    @media screen and (forced-colors: active) {
+        forced-color-adjust: unset;
+    }
+}

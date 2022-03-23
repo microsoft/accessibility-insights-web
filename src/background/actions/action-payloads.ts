@@ -22,11 +22,13 @@ import {
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
+import { TabStopRequirementStatus } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -129,6 +131,38 @@ export interface AddTabbedElementPayload extends BaseActionPayload {
     tabbedElements: TabStopEvent[];
 }
 
+export interface ResetTabStopRequirementStatusPayload extends BaseActionPayload {
+    requirementId: TabStopRequirementId;
+}
+export interface UpdateTabStopRequirementStatusPayload
+    extends ResetTabStopRequirementStatusPayload {
+    status: TabStopRequirementStatus;
+}
+export interface RemoveTabStopInstancePayload extends BaseActionPayload {
+    id: string;
+    requirementId: TabStopRequirementId;
+}
+
+export interface ToggleTabStopRequirementExpandPayload extends BaseActionPayload {
+    requirementId: TabStopRequirementId;
+}
+export interface UpdateTabbingCompletedPayload extends BaseActionPayload {
+    tabbingCompleted: boolean;
+}
+export interface UpdateNeedToCollectTabbingResultsPayload extends BaseActionPayload {
+    needToCollectTabbingResults: boolean;
+}
+export interface AddTabStopInstancePayload extends BaseActionPayload {
+    requirementId: TabStopRequirementId;
+    description: string;
+    selector?: string[];
+    html?: string;
+}
+
+export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
+    id: string;
+}
+
 export interface SetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
 }
@@ -215,4 +249,8 @@ export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
 export interface SaveWindowBoundsPayload extends BaseActionPayload {
     windowState: WindowState;
     windowBounds: Rectangle;
+}
+
+export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
 }

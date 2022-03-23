@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dropdown, IDropdownOption, TextField } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import { Dropdown, IDropdownOption, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { SettingsFormProps } from '../../types/settings-form-props';
 import {
@@ -52,6 +52,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
             };
             props.onPropertyUpdateCallback(payload);
         };
+        const descriptionId = 'azure-boards-description';
 
         return (
             <>
@@ -59,9 +60,12 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                     className="issue-setting"
                     label="Enter your Azure Boards project URL"
                     value={props.settings ? props.settings.projectURL : ''}
-                    placeholder="https://dev.azure.com/org/project"
                     onChange={onProjectURLChange}
+                    aria-describedby={descriptionId}
                 />
+                <span id={descriptionId} className="textfield-description">
+                    example: https://dev.azure.com/org/project
+                </span>
                 <Dropdown
                     options={options}
                     placeholder="Select an option"

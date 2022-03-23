@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { CardSelectionMessageCreator } from "common/message-creators/card-selection-message-creator";
 import { CardsViewModel } from "common/types/store-data/card-view-model";
 import { ToolData } from "common/types/store-data/unified-data-interface";
 import { CombinedReportHtmlGenerator } from "reports/combined-report-html-generator";
@@ -12,6 +13,8 @@ import { IMock, Mock } from "typemoq";
 describe('CombinedResultsReport', () => {
     let reportHtmlGeneratorMock: IMock<CombinedReportHtmlGenerator>;
     let resultsToCardsConverterMock: IMock<CombinedResultsToCardsModelConverter>;
+    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
+    
 
     let combinedResultsReport: CombinedResultsReport;
 
@@ -55,15 +58,7 @@ describe('CombinedResultsReport', () => {
         urlResults: urlResultsCount,
     } as CombinedReportResults;
 
-    const parameters: CombinedReportParameters = {
-        serviceName: 'service name',
-        axeVersion: 'axe version',
-        userAgent: 'browser spec',
-        browserResolution: '1920x1080',
-        scanDetails: scanDetails,
-        results,
-    };
-
+    let parameters: CombinedReportParameters;
     const cardsViewDataStub: CardsViewModel = {
         visualHelperEnabled: false,
         allCardsCollapsed: true,
@@ -80,9 +75,21 @@ describe('CombinedResultsReport', () => {
     beforeEach(() => {
         reportHtmlGeneratorMock = Mock.ofType(CombinedReportHtmlGenerator);
         resultsToCardsConverterMock = Mock.ofType<CombinedResultsToCardsModelConverter>();
+        cardSelectionMessageCreatorMock = Mock.ofType<CardSelectionMessageCreator>();
+        parameters = {
+            serviceName: 'service name',
+            axeVersion: 'axe version',
+            userAgent: 'browser spec',
+            browserResolution: '1920x1080',
+            scanDetails: scanDetails,
+            results,
+            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object
+        };
+    
 
         const deps = {
             reportHtmlGenerator: reportHtmlGeneratorMock.object,
+            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
         };
         combinedResultsReport = new CombinedResultsReport(
             deps,

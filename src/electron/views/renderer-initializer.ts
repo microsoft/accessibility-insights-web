@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import { AppInsights } from 'applicationinsights-js';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
@@ -8,6 +9,7 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
@@ -21,12 +23,14 @@ import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { UsageLogger } from 'background/usage-logger';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
@@ -40,7 +44,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -114,12 +118,10 @@ import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-
 import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
-import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -164,6 +166,7 @@ const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
+const tabActions = new TabActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
@@ -209,9 +212,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         userConfigurationStore.initialize();
 
+        const telemetryDataFactory = new TelemetryDataFactory();
+
         const interpreter = new Interpreter();
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+        );
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
@@ -243,7 +251,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const windowStateStore = new WindowStateStore(windowStateActions);
         windowStateStore.initialize();
 
-        const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
+        const unifiedScanResultStore = new UnifiedScanResultStore(
+            unifiedScanResultActions,
+            tabActions,
+        );
         unifiedScanResultStore.initialize();
 
         const scanStore = new ScanStore(scanActions);
@@ -298,11 +309,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(
-            userConfigActions,
-        );
-
-        const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger(logger);
         telemetryLogger.initialize(featureFlagsController);
 
@@ -315,6 +321,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             consoleTelemetryClient,
         ]);
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            userConfigActions,
+            telemetryEventHandler,
+        );
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
 
@@ -398,11 +409,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         detailsViewActionCreator.registerCallback();
 
-        const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-            dispatcher,
-            telemetryDataFactory,
-            TelemetryEventSource.ElectronResultsView,
-        );
+        const automatedChecksCardSelectionMessageCreator =
+            new AutomatedChecksCardSelectionMessageCreator(
+                dispatcher,
+                telemetryDataFactory,
+                TelemetryEventSource.ElectronResultsView,
+            );
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
@@ -501,7 +513,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
-            cardSelectionMessageCreator,
+            cardSelectionMessageCreator: automatedChecksCardSelectionMessageCreator,
 
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: issueFilingActionMessageCreator,
@@ -517,6 +529,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             setFocusVisibility,
             customCongratsContinueInvestigatingMessage:
                 "Continue investigating your app's accessibility compliance through manual testing.",
+            getNextHeadingLevel: GetNextHeadingLevel,
         };
 
         const documentManipulator = new DocumentManipulator(document);
@@ -530,18 +543,17 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             fixInstructionProcessor,
             recommendColor,
             getPropertyConfiguration,
+            GetNextHeadingLevel,
         );
 
-        const reportGenerator = new ReportGenerator(
-            new UnifiedReportNameGenerator(),
-            reportHtmlGenerator,
-            null,
-            null,
-        );
+        const reportNameGenerator = new UnifiedReportNameGenerator();
 
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
+
+        const usageLogger = new UsageLogger(storageAdapter, DateProvider.getCurrentDate, logger);
+        usageLogger.record();
 
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
@@ -564,7 +576,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             loadTheme,
             documentManipulator,
             isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
-            reportGenerator: reportGenerator,
+            reportHtmlGenerator,
+            reportNameGenerator,
             fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,

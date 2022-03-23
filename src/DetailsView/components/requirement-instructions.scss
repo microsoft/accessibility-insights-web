@@ -3,11 +3,12 @@
 @import '../../common/styles/common.scss';
 
 .requirement-instructions-header {
-    font-family: $semiBoldFontFamily;
     font-style: normal;
     font-weight: $fontWeightSemiBold;
     font-size: $fontSizeML;
     line-height: 20px;
+    padding-left: 0.5vw;
+    display: block;
 }
 
 .requirement-instructions {

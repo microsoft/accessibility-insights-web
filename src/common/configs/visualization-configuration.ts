@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ContentPageComponent } from 'views/content/content-page';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
@@ -21,11 +20,11 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
         instanceMap?: DictionaryStringTo<any>,
     ) => void;
     displayableData: DisplayableVisualizationTypeData;
-    chromeCommand?: string;
+    chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;
     analyzerProgressMessageType?: string;
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
-    shouldShowExportReport: (unifiedScanResultStoreData: UnifiedScanResultStoreData) => boolean;
+    shouldShowExportReport: () => boolean;
 }

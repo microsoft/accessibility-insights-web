@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false} 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -337,7 +337,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
               "_newState": null,
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
-              "_rendered": <StyledWithResponsiveMode
+              "_rendered": <Dialog
                 dialogContentProps={
                   Object {
                     "showCloseButton": false,
@@ -523,7 +523,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     failuresCount={1}
                   />
                 </div>
-              </StyledWithResponsiveMode>,
+              </Dialog>,
               "_rendering": false,
               "_updater": [Circular],
               "_workInProgressHook": null,
@@ -547,7 +547,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       failuresCount={1}
     />
   </div>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
@@ -564,7 +564,7 @@ Object {
 `;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -900,7 +900,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
               "_newState": null,
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
-              "_rendered": <StyledWithResponsiveMode
+              "_rendered": <Dialog
                 dialogContentProps={
                   Object {
                     "showCloseButton": false,
@@ -1086,7 +1086,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     failuresCount={1}
                   />
                 </div>
-              </StyledWithResponsiveMode>,
+              </Dialog>,
               "_rendering": false,
               "_updater": [Circular],
               "_workInProgressHook": null,
@@ -1110,7 +1110,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
       failuresCount={1}
     />
   </div>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
@@ -1127,7 +1127,7 @@ Object {
 `;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -1463,7 +1463,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
               "_newState": null,
               "_numberOfReRenders": 0,
               "_renderPhaseUpdates": null,
-              "_rendered": <StyledWithResponsiveMode
+              "_rendered": <Dialog
                 dialogContentProps={
                   Object {
                     "showCloseButton": false,
@@ -1649,7 +1649,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     failuresCount={1}
                   />
                 </div>
-              </StyledWithResponsiveMode>,
+              </Dialog>,
               "_rendering": false,
               "_updater": [Circular],
               "_workInProgressHook": null,
@@ -1673,7 +1673,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
       failuresCount={1}
     />
   </div>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `<CancelIcon />`;

@@ -25,7 +25,7 @@ const tabStopVisualizationConfiguration: FocusAnalyzerConfiguration = {
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     key: tabStopsTestKey,
     testMode: TestMode.Adhoc,
-    testViewType: 'AdhocStatic',
+    testViewType: 'AdhocTabStops',
     testViewOverrides: {
         content: createHowToTest(2),
         guidance: extraGuidance,
@@ -34,7 +34,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: () => false,
+    shouldShowExportReport: () => true,
     displayableData: {
         title: 'Tab stops',
         enableMessage: 'Start pressing Tab to start visualizing tab stops.',
@@ -46,8 +46,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 5,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
-    getAnalyzer: provider =>
-        provider.createFocusTrackingAnalyzer(tabStopVisualizationConfiguration),
+    getAnalyzer: provider => provider.createTabStopsAnalyzer(tabStopVisualizationConfiguration),
     getIdentifier: () => tabStopsTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getDrawer: provider => provider.createSVGDrawer(),

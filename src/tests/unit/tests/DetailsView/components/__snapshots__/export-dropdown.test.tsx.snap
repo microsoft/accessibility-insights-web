@@ -13,7 +13,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
     onClick={[Function]}
     text="Export"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     id="report-export-dropdown-menu"
     items={
       Array [
@@ -56,7 +56,7 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
     onClick={[Function]}
     text="Export"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     id="report-export-dropdown-menu"
     items={
       Array [
@@ -93,7 +93,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
     onClick={[Function]}
     text="Export"
   />
-  <StyledWithResponsiveMode
+  <ContextualMenu
     id="report-export-dropdown-menu"
     items={
       Array [

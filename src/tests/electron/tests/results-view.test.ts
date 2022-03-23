@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as fs from 'fs';
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'common/narrow-mode-thresholds';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
+import { androidScanResultExample } from 'tests/common/android-scan-result-example';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
@@ -11,7 +11,6 @@ import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
-import { testResourceServerConfig } from '../setup/test-resource-server-config';
 
 describe('ResultsView', () => {
     let app: AppController;
@@ -70,15 +69,8 @@ describe('ResultsView', () => {
     it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
         await openResultsView();
 
-        const resultExamplePath = path.join(
-            testResourceServerConfig.absolutePath,
-            'AccessibilityInsights/result_v2.json',
-        );
-        const axeRuleResultExample = JSON.parse(
-            fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
-        );
         const expectedScreenshotImage =
-            'data:image/png;base64,' + axeRuleResultExample.AxeResults.axeContext.screenshot;
+            'data:image/png;base64,' + androidScanResultExample.AxeResults.axeContext.screenshot;
 
         await resultsView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
         const actualScreenshotImage = await resultsView.client.getAttribute(

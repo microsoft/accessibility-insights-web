@@ -12,13 +12,17 @@ import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { InspectStore } from 'background/stores/inspect-store';
+import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
+import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
 import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { It, Mock, MockBehavior } from 'typemoq';
-
 import { PermissionsStateStore } from '../../../../background/stores/global/permissions-state-store';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
@@ -58,6 +62,11 @@ export class StoreMocks {
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
     public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
     public permissionsStateStoreMock = Mock.ofType(PermissionsStateStore, MockBehavior.Strict);
+    public tabStopsViewStoreMock = Mock.ofType(TabStopsViewStore, MockBehavior.Strict);
+    public needsReviewScanResultStoreMock = Mock.ofType(
+        NeedsReviewScanResultStore,
+        MockBehavior.Strict,
+    );
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData =
@@ -82,15 +91,23 @@ export class StoreMocks {
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
-    public unifiedScanResultStoreData = new UnifiedScanResultStore(null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(null, null).getDefaultState();
+    public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
+        null,
+        null,
+    ).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
     public permissionsStateStoreData = new PermissionsStateStore(null).getDefaultState();
-
+    public tabStopsViewStoreData = new TabStopsViewStore(null).getDefaultState();
     public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
+    public needsReviewCardSelectionStoreData = new NeedsReviewCardSelectionStore(
+        null,
+        null,
+    ).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
@@ -120,6 +137,11 @@ export class StoreMocks {
 
     public setUnifiedScanResultStoreData(data: UnifiedScanResultStoreData): StoreMocks {
         this.unifiedScanResultStoreData = data;
+        return this;
+    }
+
+    public setNeedsReviewScanResultStoreData(data: NeedsReviewScanResultStoreData): StoreMocks {
+        this.needsReviewScanResultStoreData = data;
         return this;
     }
 
@@ -163,6 +185,13 @@ export class StoreMocks {
         return this;
     }
 
+    public setNeedsReviewCardSelectionStoreData(
+        data: NeedsReviewCardSelectionStoreData,
+    ): StoreMocks {
+        this.needsReviewCardSelectionStoreData = data;
+        return this;
+    }
+
     public setPermissionsStateStoreData(data: PermissionsStateStoreData): StoreMocks {
         this.permissionsStateStoreData = data;
         return this;
@@ -174,6 +203,7 @@ export class StoreMocks {
         this.tabStoreMock.verifyAll();
         this.visualizationScanResultStoreMock.verifyAll();
         this.unifiedScanResultStoreMock.verifyAll();
+        this.needsReviewScanResultStoreMock.verifyAll();
         this.visualizationStoreMock.verifyAll();
         this.scopingStoreMock.verifyAll();
         this.inspectStoreMock.verifyAll();

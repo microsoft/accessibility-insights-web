@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
@@ -33,6 +34,7 @@ export type RulesWithInstancesProps = {
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -48,6 +50,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         targetAppInfo,
         outcomeCounter,
         headingLevel,
+        cardSelectionMessageCreator,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -73,6 +76,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         fixInstructionProcessor={fixInstructionProcessor}
                         userConfigurationStoreData={userConfigurationStoreData}
                         targetAppInfo={targetAppInfo}
+                        cardSelectionMessageCreator={cardSelectionMessageCreator}
                     />
                 ),
                 containerAutomationId: ruleGroupAutomationId,
@@ -80,6 +84,9 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
+                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                    cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
+                },
                 isExpanded: rule.isExpanded,
             };
         };

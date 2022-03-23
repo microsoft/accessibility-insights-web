@@ -5,6 +5,7 @@ import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { CommonInstancesSectionProps } from './common-instances-section-props';
+import * as styles from './failed-instances-section.scss';
 import { ResultSection } from './result-section';
 
 export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
@@ -15,6 +16,8 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
         userConfigurationStoreData,
         scanMetadata,
         shouldAlertFailuresCount,
+        cardSelectionMessageCreator,
+        sectionHeadingLevel,
     }) => {
         if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
@@ -29,7 +32,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 deps={deps}
                 title="Failed instances"
                 results={cardsViewData.cards.fail}
-                containerClassName={null}
+                containerClassName={styles.failedInstancesContainer}
                 outcomeType="fail"
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}
@@ -38,7 +41,8 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
-                headingLevel={3}
+                sectionHeadingLevel={sectionHeadingLevel}
+                cardSelectionMessageCreator={cardSelectionMessageCreator}
             />
         );
     },

@@ -5,10 +5,12 @@ import {
     ResultSectionDeps,
     ResultSectionProps,
 } from 'common/components/cards/result-section';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ResultSection', () => {
+    const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
     describe('renders', () => {
         const shouldAlertValues = [false, true, undefined];
 
@@ -17,8 +19,11 @@ describe('ResultSection', () => {
             shouldAlertFailuresCount => {
                 const props: ResultSectionProps = {
                     containerClassName: 'result-section-class-name',
-                    deps: {} as ResultSectionDeps,
+                    deps: {
+                        getNextHeadingLevel: getNextHeadingLevelStub,
+                    } as ResultSectionDeps,
                     shouldAlertFailuresCount,
+                    sectionHeadingLevel: 2,
                 } as ResultSectionProps;
 
                 const wrapper = shallow(<ResultSection {...props} />);

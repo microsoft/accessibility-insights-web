@@ -4,7 +4,7 @@ import { PlatformData } from 'common/types/store-data/unified-data-interface';
 import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
-import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { androidScanResultExample } from 'tests/common/android-scan-result-example';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('convertScanResultsToPlatformData with device name', () => {
@@ -24,7 +24,7 @@ describe('convertScanResultsToPlatformData with device name', () => {
     it('produces the pinned output for the pinned example input (v2)', () => {
         expect(
             convertScanResultsToPlatformData(
-                new AndroidScanResults(scanResultV2Example),
+                new AndroidScanResults(androidScanResultExample),
                 friendlyNameProviderMock.object,
             ),
         ).toMatchSnapshot();

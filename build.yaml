@@ -1,14 +1,15 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-trigger: # trigger only affects CI builds
+
+# Note that this Azure DevOps pipeline is largely redundant with /.github/workflows/ci.yml, which
+# is what we use instead for validation builds of pull requests. This CI build only runs against
+# pushes to main, not PRs; it exists in tandem with the GitHub Actions CI build because it
+# integrates better with our ADO-based release process.
+
+trigger:
     branches:
         include:
             - main
-
-pr: # pr does not trigger CI builds
-    branches:
-        include:
-            - '*' # must quote since "*" is a YAML reserved character; we want a string
 
 variables:
     windowsImage: 'windows-2019'
@@ -133,7 +134,9 @@ jobs:
           vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/e2e-test-from-docker.yaml
+          - template: pipeline/run-tests-in-docker-linux.yaml
+            parameters:
+                target: web
           - template: pipeline/e2e-test-publish-results.yaml
 
     - job: 'e2e_unified_mac'
@@ -150,7 +153,9 @@ jobs:
           vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/unified/unified-e2e-test-linux.yaml
+          - template: pipeline/run-tests-in-docker-linux.yaml
+            parameters:
+                target: unified
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
     - job: 'e2e_unified_windows'

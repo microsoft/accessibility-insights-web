@@ -33,26 +33,36 @@ export class UnifiedResultSender {
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(
+        const payload = this.preparePayload(
             axeResults.originalResult,
             this.convertScanResultsToUnifiedResults.automatedChecksConversion,
             this.notificationTextCreator.automatedChecksText,
         );
+
+        this.sendMessage({
+            messageType: Messages.UnifiedScan.ScanCompleted,
+            payload,
+        });
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(
+        const payload = this.preparePayload(
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToUnifiedResults.needsReviewConversion,
             this.notificationTextCreator.needsReviewText,
         );
+
+        this.sendMessage({
+            messageType: Messages.NeedsReviewScan.ScanCompleted,
+            payload,
+        });
     };
 
-    private sendResults = (
+    private preparePayload = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
         notificationMessage: TextGenerator,
-    ) => {
+    ): UnifiedScanCompletedPayload => {
         const scanIncompleteWarnings =
             this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -80,9 +90,6 @@ export class UnifiedResultSender {
             notificationText: notificationMessage(unifiedResults),
         };
 
-        this.sendMessage({
-            messageType: Messages.UnifiedScan.ScanCompleted,
-            payload,
-        });
+        return payload;
     };
 }

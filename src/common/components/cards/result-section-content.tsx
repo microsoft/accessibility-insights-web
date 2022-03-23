@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import {
-    NoFailedInstancesCongrats,
-    NoFailedInstancesCongratsDeps,
-} from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import { NoFailedInstancesCongratsDeps } from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
@@ -19,6 +18,7 @@ import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instanc
 export type ResultSectionContentDeps = RulesWithInstancesDeps &
     NoFailedInstancesCongratsDeps & {
         cardsVisualizationModifierButtons: CardsVisualizationModifierButtons;
+        getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel;
     };
 
 export type ResultSectionContentProps = {
@@ -32,6 +32,7 @@ export type ResultSectionContentProps = {
     allCardsCollapsed: boolean;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -48,9 +49,8 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             headingLevel,
         } = props;
         if (results.length === 0) {
-            return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
+            return null;
         }
-
         return (
             <>
                 <deps.cardsVisualizationModifierButtons {...props} />
@@ -63,6 +63,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     targetAppInfo={targetAppInfo}
                     outcomeCounter={outcomeCounter}
                     headingLevel={headingLevel}
+                    cardSelectionMessageCreator={props.cardSelectionMessageCreator}
                 />
             </>
         );

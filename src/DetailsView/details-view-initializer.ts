@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
@@ -13,6 +14,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -22,40 +24,51 @@ import { Globalization } from 'common/globalization';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
+import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
+import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
+import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import {
+    TabStopsFailedCounterIncludingNoInstance,
+    TabStopsFailedCounterInstancesOnly,
+} from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from 'reports/components/requirement-outcome-type';
+import { FastPassReportHtmlGenerator } from 'reports/fast-pass-report-html-generator';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from 'reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
-import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -70,7 +83,7 @@ import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
-import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { FeatureFlags, getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
@@ -175,6 +188,21 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
+                StoreNames[StoreNames.CardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
+                StoreNames[StoreNames.NeedsReviewScanResultStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
+                StoreNames[StoreNames.NeedsReviewCardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
                 browserAdapter,
@@ -205,11 +233,11 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
-            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
-                StoreNames[StoreNames.CardSelectionStore],
-                browserAdapter,
-                tab.id,
-            );
+
+            const tabStopsViewActions = new TabStopsViewActions();
+            const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
+            const tabStopsViewStore = new TabStopsViewStore(tabStopsViewActions);
+            tabStopsViewStore.initialize();
 
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
@@ -218,12 +246,15 @@ if (tabId != null) {
                 tabStore,
                 visualizationScanResultStore,
                 unifiedScanResultStore,
+                cardSelectionStore,
+                needsReviewScanResultStore,
+                needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
-                cardSelectionStore,
+                tabStopsViewStore,
             ]);
 
             const logger = createDefaultLogger();
@@ -233,10 +264,18 @@ if (tabId != null) {
                 logger,
             );
 
+            const tabStopRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                    TelemetryEventSource.DetailsView,
+                );
+
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
             );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -268,7 +307,10 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
-            const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+            const userConfigMessageCreator = new UserConfigMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+            );
             const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
                 storesHub.stores,
             );
@@ -320,8 +362,7 @@ if (tabId != null) {
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
 
-            const reportHtmlGenerator = new ReportHtmlGenerator(
-                AutomatedChecksReportSectionFactory,
+            const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
@@ -329,6 +370,10 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
+                new TabStopsFailedCounterIncludingNoInstance(),
+                toolData,
+                DateProvider.getCurrentDate,
+                GetNextHeadingLevel,
             );
 
             // Represents the language in which pages are to be displayed
@@ -385,18 +430,26 @@ if (tabId != null) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-                actionMessageDispatcher,
-                telemetryFactory,
-                TelemetryEventSource.DetailsView,
-            );
+            const automatedChecksCardSelectionMessageCreator =
+                new AutomatedChecksCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
+            const needsReviewCardSelectionMessageCreator =
+                new NeedsReviewCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                reportNameGenerator,
-                reportHtmlGenerator,
+                fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,
             );
@@ -449,6 +502,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
@@ -486,6 +540,7 @@ if (tabId != null) {
                 toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                reportNameGenerator,
                 reportGenerator,
                 reportExportServiceProvider: ReportExportServiceProviderImpl,
                 getCardViewData: getCardViewData,
@@ -493,7 +548,8 @@ if (tabId != null) {
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
-                cardSelectionMessageCreator,
+                automatedChecksCardSelectionMessageCreator,
+                needsReviewCardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(
@@ -515,6 +571,14 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+                tabStopRequirements: requirements(
+                    featureFlagStore.getState() != null &&
+                        featureFlagStore.getState()[FeatureFlags.tabStopsAutomation],
+                ),
+                tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
+                tabStopsTestViewController,
+                tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: GetNextHeadingLevel,
             };
 
             const renderer = new DetailsViewRenderer(

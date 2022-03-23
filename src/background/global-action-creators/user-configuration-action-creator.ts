@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -13,7 +17,10 @@ import { UserConfigurationActions } from '../actions/user-configuration-actions'
 export class UserConfigurationActionCreator {
     private readonly currentScope: string = 'UserConfigurationActionCreator';
 
-    constructor(private readonly userConfigActions: UserConfigurationActions) {}
+    constructor(
+        private readonly userConfigActions: UserConfigurationActions,
+        private readonly telemetryEventHandler: TelemetryEventHandler,
+    ) {}
 
     public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke();
 
@@ -40,4 +47,14 @@ export class UserConfigurationActionCreator {
 
     public saveWindowBounds = (payload: SaveWindowBoundsPayload) =>
         this.userConfigActions.saveWindowBounds.invoke(payload);
+
+    public setAutoDetectedFailuresDialogState = (
+        payload: AutoDetectedFailuresDialogStatePayload,
+    ) => {
+        this.userConfigActions.setAutoDetectedFailuresDialogState.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.SET_AUTO_DETECTED_FAILURES_DIALOG_STATE,
+            payload,
+        );
+    };
 }

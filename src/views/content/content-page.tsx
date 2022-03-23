@@ -55,14 +55,14 @@ export interface ContentProvider {
     getPage(path: string): ContentPageComponent;
     allPaths(): string[];
     pathTo(component: ContentPageComponent): string | null;
-    contentFromReference(content: ContentReference): ContentPageComponent;
-    pathFromReference(content: ContentReference): string | null;
+    contentFromReference(content?: ContentReference): ContentPageComponent;
+    pathFromReference(content?: ContentReference): string | null;
 }
 type ContentTree = { [K in string]: ContentTree | ContentPageComponent };
 export function ContentProvider(root: ContentTree): ContentProvider {
     const create = ContentCreator();
 
-    const notFoundPage = (path: string) => create(() => <h1>Cannot find {path}</h1>);
+    const notFoundPage = (path?: string) => create(() => <h1>Cannot find {path}</h1>);
 
     function isContentPageComponent(
         leaf: any | ContentPageComponent,
@@ -108,8 +108,8 @@ export function ContentProvider(root: ContentTree): ContentProvider {
         }
     }
 
-    function getPage(path: string): ContentPageComponent {
-        return findPage(root, path.split('/')) || notFoundPage(path);
+    function getPage(path?: string): ContentPageComponent {
+        return (path && findPage(root, path.split('/'))) || notFoundPage(path);
     }
 
     const allPaths = () => rootEntries.map(entry => entry.path);
@@ -119,10 +119,10 @@ export function ContentProvider(root: ContentTree): ContentProvider {
         return entry ? entry.path : null;
     };
 
-    const contentFromReference = (reference: ContentReference) =>
+    const contentFromReference = (reference?: ContentReference) =>
         isContentPageComponent(reference) ? reference : getPage(reference);
-    const pathFromReference = (reference: ContentReference) =>
-        isContentPageComponent(reference) ? pathTo(reference) : reference;
+    const pathFromReference = (reference?: ContentReference) =>
+        isContentPageComponent(reference) ? pathTo(reference) : reference ?? null;
 
     return { getPage, allPaths, pathTo, contentFromReference, pathFromReference };
 }

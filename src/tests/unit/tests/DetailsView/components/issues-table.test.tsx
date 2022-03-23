@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { DateProvider } from 'common/date-provider';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -140,6 +141,7 @@ class TestPropsBuilder {
             visualizationStoreData: {
                 selectedFastPassDetailsView: this.testType,
             } as VisualizationStoreData,
+            cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
         };
     }
 }

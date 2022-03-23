@@ -37,7 +37,7 @@
 }
 .assessment-instance-textContent {
     overflow: hidden;
-    white-space: nowrap;
+    white-space: normal;
     text-overflow: ellipsis;
     color: $secondary-text;
     @media screen and (forced-colors: active) {

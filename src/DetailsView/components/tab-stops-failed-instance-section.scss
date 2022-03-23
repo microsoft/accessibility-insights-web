@@ -1,0 +1,18 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.tab-stops-failure-instance-section {
+    padding-bottom: 24px;
+
+    .title-container {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+        }
+    }
+
+    > h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+}

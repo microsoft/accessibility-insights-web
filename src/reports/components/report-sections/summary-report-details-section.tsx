@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css } from '@fluentui/react';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
-import { css } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
@@ -22,7 +22,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
             className?: string,
         ) =>
             icon ? (
-                <li className={className}>
+                <li key={label} className={className}>
                     <span className={styles.icon} aria-hidden="true">
                         {icon}
                     </span>
@@ -30,7 +30,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                     <span className={styles.text}>{content}</span>
                 </li>
             ) : (
-                <li className={className}>
+                <li key={label} className={className}>
                     <span className={css(styles.noIcon, styles.label)}>{`${label} `}</span>
                     <span className={styles.text}>{content}</span>
                 </li>

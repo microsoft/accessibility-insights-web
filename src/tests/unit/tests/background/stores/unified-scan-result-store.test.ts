@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabActions } from 'background/actions/tab-actions';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
@@ -36,7 +37,7 @@ describe('UnifiedScanResultStore Test', () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(
+        createStoreTesterForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(
             initialState,
             finalState,
         );
@@ -83,18 +84,44 @@ describe('UnifiedScanResultStore Test', () => {
             platformInfo: payload.platformInfo,
         };
 
-        createStoreForUnifiedScanResultActions('scanCompleted')
+        createStoreTesterForUnifiedScanResultActions('scanCompleted')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onScanStarted', () => {
-        const initialState = getDefaultState();
-        const finalState = getDefaultState();
+    test('onExistingTabUpdated', () => {
+        const initialState = {
+            results: [
+                {
+                    uid: 'test-uid',
+                },
+            ],
+            rules: [
+                {
+                    id: 'test-rule-id',
+                },
+            ],
+            toolInfo: {
+                scanEngineProperties: {
+                    name: 'test-scan-engine-name',
+                },
+            },
+            timestamp: 'timestamp',
+            scanIncompleteWarnings: ['some-incomplete-warning-id' as ScanIncompleteWarningId],
+            screenshotData: {
+                base64PngData: 'testScreenshotText',
+            },
+            targetAppInfo: { name: 'app name' },
+            platformInfo: {
+                deviceName: 'test-device-name',
+            },
+        } as UnifiedScanResultStoreData;
 
-        createStoreForUnifiedScanResultActions('startScan').testListenerToBeCalledOnce(
+        const expectedState = getDefaultState();
+
+        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
             initialState,
-            finalState,
+            expectedState,
         );
     });
 
@@ -102,11 +129,21 @@ describe('UnifiedScanResultStore Test', () => {
         return createStoreWithNullParams(UnifiedScanResultStore).getDefaultState();
     }
 
-    function createStoreForUnifiedScanResultActions(
+    function createStoreTesterForUnifiedScanResultActions(
         actionName: keyof UnifiedScanResultActions,
     ): StoreTester<UnifiedScanResultStoreData, UnifiedScanResultActions> {
-        const factory = (actions: UnifiedScanResultActions) => new UnifiedScanResultStore(actions);
+        const factory = (unifiedScanResultActions: UnifiedScanResultActions) =>
+            new UnifiedScanResultStore(unifiedScanResultActions, new TabActions());
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
+    }
+
+    function createStoreTesterForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<UnifiedScanResultStoreData, TabActions> {
+        const factory = (tabActions: TabActions) =>
+            new UnifiedScanResultStore(new UnifiedScanResultActions(), tabActions);
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });

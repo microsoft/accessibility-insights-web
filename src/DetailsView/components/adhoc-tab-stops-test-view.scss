@@ -1,0 +1,47 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+
+.tab-stops-test-view-container {
+    background-color: $neutral-2;
+    height: 100%;
+}
+
+.tab-stops-test-view {
+    padding-top: $fastPassRightPanelMarginTop;
+    padding-right: $fastPassRightPanelMarginRight;
+    padding-left: $fastPassRightPanelMarginLeft;
+    margin-bottom: auto;
+    background-color: $neutral-2;
+    i {
+        font-size: 16px;
+    }
+    .tab-stops-test-view-header {
+        margin-right: 8px;
+    }
+}
+
+.requirement-table-title {
+    @include text-style-title-s;
+    margin-bottom: unset;
+}
+
+.visual-helper-toggle {
+    display: flex;
+    align-items: center;
+    word-wrap: break-word;
+    margin: unset;
+
+    label {
+        @include text-style-body-m;
+        margin-right: 8px;
+        font-weight: 600;
+    }
+}
+
+.requirement-how-to-test-header {
+    @include text-style-title-s;
+    padding-left: 0.5vw;
+    display: block;
+}

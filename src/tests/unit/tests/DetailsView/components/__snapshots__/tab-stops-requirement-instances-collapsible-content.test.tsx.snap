@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
+<StyledWithViewportComponent
+  checkboxVisibility={2}
+  columns={
+    Array [
+      Object {
+        "columnActionsMode": 0,
+        "fieldName": "description",
+        "isResizable": true,
+        "key": "failureDescription",
+        "minWidth": 100,
+        "name": "Failure description",
+        "onRender": [Function],
+      },
+      Object {
+        "columnActionsMode": 0,
+        "fieldName": "instanceActionButtons",
+        "isIconOnly": true,
+        "isResizable": false,
+        "key": "instanceActionButtons",
+        "maxWidth": 100,
+        "minWidth": 100,
+        "name": "instance actions",
+        "onRender": [Function],
+      },
+    ]
+  }
+  constrainMode={1}
+  items={
+    Array [
+      Object {
+        "description": "test-description",
+        "id": "test-instance-id",
+      },
+    ]
+  }
+  onRenderDetailsHeader={[Function]}
+/>
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance details column 1`] = `
+<AssessmentInstanceDetailsColumn
+  background="#767676"
+  headerText="Comment"
+  textContent="test requirement description"
+  tooltipId="test-instance-id"
+/>
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column 1`] = `
+<React.Fragment>
+  <StyledLinkBase
+    className="editButton"
+    onClick={[Function]}
+  >
+    <Memo(Icon)
+      ariaLabel="edit instance"
+      iconName="edit"
+    />
+  </StyledLinkBase>
+  <StyledLinkBase
+    className="removeButton"
+    onClick={[Function]}
+  >
+    <Memo(Icon)
+      ariaLabel="delete instance"
+      iconName="delete"
+    />
+  </StyledLinkBase>
+</React.Fragment>
+`;

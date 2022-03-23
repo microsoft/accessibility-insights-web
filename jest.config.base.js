@@ -40,6 +40,8 @@ module.exports = {
             },
         ],
     ],
+    setupFilesAfterEnv: [`${__dirname}/src/tests/common/flush-promises-after-each-test.ts`],
+    snapshotSerializers: [`${__dirname}/src/tests/common/typemoq-snapshot-serializer.ts`],
     testEnvironment: 'node',
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],

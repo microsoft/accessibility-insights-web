@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { ScannerUtils } from '../scanner-utils';
-import { TabStopsListener } from '../tab-stops-listener';
 import {
     Analyzer,
     AnalyzerConfiguration,
@@ -21,7 +24,10 @@ import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
     constructor(
-        private readonly tabStopsListener: TabStopsListener,
+        private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
+        private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
+        private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
+        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
@@ -108,6 +114,22 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
             this.logger,
+            this.featureFlagStore,
+            this.tabStopsDoneAnalyzingTracker,
+            null,
+        );
+    }
+
+    public createTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        return new TabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            this.sendMessageDelegate,
+            this.scanIncompleteWarningDetector,
+            this.logger,
+            this.featureFlagStore,
+            this.tabStopsDoneAnalyzingTracker,
+            this.tabStopsRequirementResultProcessor,
         );
     }
 

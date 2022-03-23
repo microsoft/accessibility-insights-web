@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
 .failure-instance-panel {
     .observed-failure-textfield {
@@ -52,7 +53,17 @@
     font-size: 16px !important;
     line-height: 24px !important;
     color: $neutral-100 !important;
+    &:hover,
+    &:focus {
+        color: LinkText !important;
+    }
+
     @media screen and (forced-colors: active) {
+        @include fluent-forced-color-adjust-override;
         color: inherit !important;
+        &:hover,
+        &:focus {
+            color: initial !important;
+        }
     }
 }

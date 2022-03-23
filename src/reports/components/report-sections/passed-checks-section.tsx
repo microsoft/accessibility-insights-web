@@ -11,12 +11,17 @@ import { SectionProps } from './report-section-factory';
 
 export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export type PassedChecksSectionProps = Pick<SectionProps, 'deps' | 'cardsViewData'>;
+export type PassedChecksSectionProps = Pick<
+    SectionProps,
+    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'sectionHeadingLevel'
+> & {
+    testKey?: string;
+};
 
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
-    ({ deps, cardsViewData }) => {
-        const cardRuleResults = cardsViewData.cards.pass;
+    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey, sectionHeadingLevel }) => {
+        const cardRuleResults = cardsViewData?.cards?.pass ?? [];
 
         return (
             <CollapsibleResultSection
@@ -27,6 +32,9 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                 outcomeType="pass"
                 badgeCount={cardRuleResults.length}
                 containerId="passed-checks-section"
+                cardSelectionMessageCreator={cardSelectionMessageCreator}
+                testKey={testKey}
+                headingLevel={sectionHeadingLevel}
             />
         );
     },

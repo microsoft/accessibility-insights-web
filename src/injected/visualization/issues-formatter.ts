@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
+import { getRTL } from '@fluentui/utilities';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import * as ReactDOM from 'react-dom';
@@ -42,7 +42,7 @@ export class IssuesFormatter implements Formatter {
     }
 
     public static style: HeadingStyleConfiguration = {
-        borderColor: '#CC0000',
+        borderColor: '#E81123',
         fontColor: '#FFFFFF',
     };
 

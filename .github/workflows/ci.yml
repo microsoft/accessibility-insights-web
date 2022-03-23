@@ -10,7 +10,8 @@ on:
     - cron: '0 19 * * 0'
 
 env:
-  NODE_VERSION: 14.17.0
+  # Keep this in sync with /pipeline/install-node-prerequisites.yaml
+  NODE_VERSION: 14.19.0
 
 jobs:
   build:
@@ -161,7 +162,7 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.10.0-focal
+    container: mcr.microsoft.com/playwright:v1.20.0-focal
     strategy:
       fail-fast: false
       matrix:

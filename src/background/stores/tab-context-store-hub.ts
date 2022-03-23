@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionStore } from 'background/stores/card-selection-store';
-
+import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
+import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { StoreType } from '../../common/types/store-type';
+import { generateUID } from '../../common/uid-generator';
 import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';
 import { DevToolStore } from './dev-tools-store';
@@ -26,6 +28,8 @@ export class TabContextStoreHub implements StoreHub {
     public pathSnippetStore: PathSnippetStore;
     public unifiedScanResultStore: UnifiedScanResultStore;
     public cardSelectionStore: CardSelectionStore;
+    public needsReviewCardSelectionStore: NeedsReviewCardSelectionStore;
+    public needsReviewScanResultStore: NeedsReviewScanResultStore;
 
     constructor(
         actionHub: ActionHub,
@@ -42,6 +46,10 @@ export class TabContextStoreHub implements StoreHub {
         this.visualizationScanResultStore = new VisualizationScanResultStore(
             actionHub.visualizationScanResultActions,
             actionHub.tabActions,
+            actionHub.tabStopRequirementActions,
+            actionHub.visualizationActions,
+            generateUID,
+            visualizationConfigurationFactory,
         );
         this.visualizationScanResultStore.initialize();
 
@@ -64,14 +72,29 @@ export class TabContextStoreHub implements StoreHub {
         this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
         this.pathSnippetStore.initialize();
 
-        this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
+        this.unifiedScanResultStore = new UnifiedScanResultStore(
+            actionHub.unifiedScanResultActions,
+            actionHub.tabActions,
+        );
         this.unifiedScanResultStore.initialize();
 
         this.cardSelectionStore = new CardSelectionStore(
             actionHub.cardSelectionActions,
-            actionHub.scanResultActions,
+            actionHub.unifiedScanResultActions,
         );
         this.cardSelectionStore.initialize();
+
+        this.needsReviewScanResultStore = new NeedsReviewScanResultStore(
+            actionHub.needsReviewScanResultActions,
+            actionHub.tabActions,
+        );
+        this.needsReviewScanResultStore.initialize();
+
+        this.needsReviewCardSelectionStore = new NeedsReviewCardSelectionStore(
+            actionHub.needsReviewCardSelectionActions,
+            actionHub.needsReviewScanResultActions,
+        );
+        this.needsReviewCardSelectionStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -85,6 +108,8 @@ export class TabContextStoreHub implements StoreHub {
             this.pathSnippetStore,
             this.unifiedScanResultStore,
             this.cardSelectionStore,
+            this.needsReviewScanResultStore,
+            this.needsReviewCardSelectionStore,
         ].filter(store => store != null);
     }
 

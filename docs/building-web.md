@@ -13,7 +13,7 @@ This document describes how to build and test Accessibility Insights for Web (th
 
 You will need the following tools installed:
 
--   [Node](https://nodejs.org) >= 14.15.0 (check by running `node --version`) - This is the version being enforced on our builds
+-   [Node](https://nodejs.org) >= 14.19.0 (check by running `node --version`) - This is the version being enforced on our builds
 -   [Yarn](https://yarnpkg.com/getting-started/install) >= 1.22.10 (check by running `yarn --version`)
     -    Note: There is a [known name collision](https://github.com/yarnpkg/yarn/issues/673) between Yarn package manager and Hadoop YARN. If you have Hadoop YARN installed, replace `yarn` with `yarnpkg` in the commands below.
 -   **macOS only** [Xcode](https://wilsonmar.github.io/xcode/#XcodeInstall). This is needed when installing some dev dependencies (like spectron). After installing Xcode, run the following commands from a command terminal:
@@ -117,6 +117,18 @@ yarn test:e2e -u
 
 # Run from the context of the docker container our Linux CI builds use (requires Docker to be installed)
 yarn test:e2e:docker
+
+# Run tests for the report package
+yarn test:report:e2e
+
+# -u updates snapshots for the report package
+# Windows: 
+yarn test:report:e2e -- -- -- -u
+#Linux and Mac:
+yarn test:report:e2e -- -- -u
+
+# On occasion you may need to clear the Jest cache before running tests
+yarn jest --clearCache
 ```
 
 Generally, if a Pull Request doesn't touch any E2E tests, you don't have to run them yourself; the automated Pull Request build will do it for you.

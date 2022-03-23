@@ -6,7 +6,7 @@ exports[`OverviewLeftNavLink renders 1`] = `
   className="leftNavLinkContainer"
 >
   <span>
-    <StyledIconBase
+    <Memo(Icon)
       className="linkIcon left-nav-icon"
       iconName="home"
     />

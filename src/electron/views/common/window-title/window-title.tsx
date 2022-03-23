@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { css } from '@fluentui/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import { androidAppTitle, brand } from 'content/strings/application';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';

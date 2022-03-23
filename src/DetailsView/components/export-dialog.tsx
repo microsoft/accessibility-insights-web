@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ExportDropdown } from 'DetailsView/components/export-dropdown';
-import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import {
     ReportExportService,
@@ -12,8 +12,9 @@ import {
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import * as styles from './export-dialog.scss';
+
+export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
@@ -30,10 +31,14 @@ export interface ExportDialogProps {
     featureFlagStoreData: FeatureFlagStoreData;
     afterDismissed?: () => void;
     reportExportServices: ReportExportService[];
+    exportResultsClickedTelemetry: (
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ) => void;
 }
 
 export interface ExportDialogDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     fileURLProvider: FileURLProvider;
 }
 
@@ -48,13 +53,8 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
         selectedServiceKey: ReportExportServiceKey,
     ): void => {
-        const { detailsViewActionMessageCreator } = props.deps;
         props.onDescriptionChange(props.description);
-        detailsViewActionMessageCreator.exportResultsClicked(
-            props.reportExportFormat,
-            selectedServiceKey,
-            event,
-        );
+        props.exportResultsClickedTelemetry(props.reportExportFormat, selectedServiceKey, event);
         setServiceKey(selectedServiceKey);
         props.onClose();
     };
@@ -80,6 +80,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 }}
                 download={props.htmlFileName}
                 href={htmlFileUrl}
+                data-automation-id={singleExportToHtmlButtonDataAutomationId}
             >
                 Export
             </PrimaryButton>

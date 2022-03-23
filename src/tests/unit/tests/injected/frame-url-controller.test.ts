@@ -4,7 +4,7 @@ import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-ac
 import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { FrameUrlController } from 'injected/frame-url-controller';
 import { FrameUrlFinder } from 'injected/frame-url-finder';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { StoreMock } from 'tests/unit/mock-helpers/store-mock';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -39,7 +39,7 @@ describe(FrameUrlController, () => {
 
         testSubject.listenToStore();
         devToolStoreMock.invokeChangeListener();
-        await tick();
+        await flushSettledPromises();
 
         mockActionMessageCreator.verify(m => m.setInspectFrameUrl(stubFrameUrl), Times.once());
     });
@@ -59,7 +59,7 @@ describe(FrameUrlController, () => {
 
             testSubject.listenToStore();
             devToolStoreMock.invokeChangeListener();
-            await tick();
+            await flushSettledPromises();
 
             mockFrameUrlFinder.verify(f => f.getTargetFrameUrl(It.isAny()), Times.never());
             mockActionMessageCreator.verify(m => m.setInspectFrameUrl(It.isAny()), Times.never());
