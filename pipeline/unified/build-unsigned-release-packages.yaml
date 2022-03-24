@@ -41,9 +41,6 @@ steps:
           outputformat: html
       timeoutInMinutes: 5
 
-    - template: ./unified-e2e-test-interactive.yaml
-    - template: ./unified-e2e-publish-results.yaml
-
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:unified:all
 
@@ -58,6 +55,12 @@ steps:
           codesign -s $(mac-notarization-developerid-certificate-identity) --timestamp --deep --force --options runtime --entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist $(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed/mac/*.app
           codesign -s $(mac-notarization-developerid-certificate-identity) --timestamp --deep --force --options runtime --entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
       displayName: Prepare for hardening
+      condition: and(succeeded(), eq(variables.platform, 'mac'))
+
+    - script: |
+          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
+      displayName: verify codesign
+      continueOnError: true
       condition: and(succeeded(), eq(variables.platform, 'mac'))
 
     - script: yarn pack:unified:all
