@@ -18,7 +18,17 @@ const files = fs.readdirSync(parentDir);
 const existingDmg = files.find(f => path.extname(f) === '.dmg');
 const appName = path.basename(existingDmg, path.extname(existingDmg));
 const cmd = `${sevenBin.path7za}`;
-const args = ['a', '-bd', '-mx=7', '-mtc=off', '-mm=Deflate', `${appName}.zip`, '-r', 'mac'];
+const args = [
+    'a',
+    '-bd',
+    '-mx=7',
+    '-mtc=off',
+    '-mm=Deflate',
+    '-mcu',
+    `${appName}.zip`,
+    '-r',
+    'mac',
+];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
