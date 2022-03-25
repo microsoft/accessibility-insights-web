@@ -76,13 +76,3 @@ steps:
       parameters:
           buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary'
           artifactName: unified-$(platform)-canary-unsigned
-
-    - template: publish-build-output.yaml
-      parameters:
-          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider'
-          artifactName: unified-$(platform)-insider-unsigned
-
-    - template: publish-build-output.yaml
-      parameters:
-          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production'
-          artifactName: unified-$(platform)-production-unsigned
