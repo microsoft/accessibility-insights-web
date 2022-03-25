@@ -56,7 +56,7 @@ steps:
       condition: and(succeeded(), eq(variables.platform, 'mac'))
 
     - script: |
-          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
+          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/*.app
       displayName: verify codesign
       continueOnError: true
       condition: and(succeeded(), eq(variables.platform, 'mac'))
@@ -67,8 +67,6 @@ steps:
 
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: print out canary file hashes
-
-    - template: ./binskim-analysis.yaml
 
     - template: publish-build-output.yaml
       parameters:
