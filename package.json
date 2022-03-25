@@ -151,7 +151,7 @@
         "pkg": "^5.5.2",
         "playwright": "^1.20.0",
         "preprocess": "^3.2.0",
-        "prettier": "^2.6.0",
+        "prettier": "^2.6.1",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.49.9",
         "sass-loader": "^12.6.0",
