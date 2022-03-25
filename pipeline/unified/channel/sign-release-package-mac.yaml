@@ -35,7 +35,7 @@ jobs:
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
-                Pattern: '*.dmg'
+                Pattern: '*.dmg, *.zip'
                 signConfigType: inlineSignParams
                 inlineOperation: |
                     [
@@ -58,7 +58,7 @@ jobs:
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
-                Pattern: '*.dmg'
+                Pattern: '*.dmg, *.zip'
                 signConfigType: inlineSignParams
                 inlineOperation: |
                     [
