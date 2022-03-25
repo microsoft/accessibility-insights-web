@@ -41,8 +41,8 @@ steps:
           outputformat: html
       timeoutInMinutes: 5
 
-    - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
-      displayName: yarn build:unified:all
+    - script: yarn build:unified:canary --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
+      displayName: yarn build:unified:canary
 
     - script: |
           security create-keychain -p password $(System.DefaultWorkingDirectory)/agent.keychain
@@ -63,8 +63,8 @@ steps:
       continueOnError: true
       condition: and(succeeded(), eq(variables.platform, 'mac'))
 
-    - script: yarn pack:unified:all
-      displayName: yarn pack:unified:all
+    - script: yarn pack:unified:canary
+      displayName: yarn pack:unified:canary
       condition: and(succeeded(), ne(variables.platform, 'windows'))
 
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
