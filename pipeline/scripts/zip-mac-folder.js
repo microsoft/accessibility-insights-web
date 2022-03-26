@@ -30,11 +30,11 @@ const appName = path.basename(existingDmg, path.extname(existingDmg));
 //     'mac',
 // ];
 const cmd = `/usr/bin/ditto`;
-const args = ['-c', '-k', '--sequesterRsrc', '--keepParent', 'mac', `${appName}.zip`];
+const args = ['-c', '-k', '--keepParent', 'mac', `${appName}.zip`];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
-console.log(`path to 7z: ${sevenBin.path7za}`);
+// console.log(`path to 7z: ${sevenBin.path7za}`);
 
 child_process.execFileSync(cmd, args, {
     cwd: parentDir,
