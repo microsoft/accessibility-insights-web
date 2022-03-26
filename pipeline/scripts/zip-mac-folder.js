@@ -19,19 +19,19 @@ const existingDmg = files.find(f => path.extname(f) === '.dmg');
 const appName = path.basename(existingDmg, path.extname(existingDmg));
 // const cmd = `${sevenBin.path7za}`;
 // const args = ['a', `${appName}.zip`, '-r', 'mac'];
-const cmd = `/usr/bin/ditto`;
-const args = ['-c', '-k', '--sequesterRsrc', '--keepParent', `mac/*.app`, `${appName}.zip`];
-// const cmd = `${sevenBin.path7za}`;
-// const args = [
-//     'a',
-//     '-bd',
-//     '-mx=7',
-//     '-mtc=off',
-//     '-mm=Deflate',
-//     '-mcu',
-//     `${appName}.zip`,
-//     `mac/${appName}.app`,
-// ];
+// const cmd = `/usr/bin/ditto`;
+// const args = ['-c', '-k', '--sequesterRsrc', '--keepParent', `mac/*.app`, `${appName}.zip`];
+const cmd = `${sevenBin.path7za}`;
+const args = [
+    'a',
+    '-bd',
+    '-mx=7',
+    '-mtc=off',
+    '-mm=Deflate',
+    '-mcu',
+    `${appName}.zip`,
+    `./mac/${appName}.app`,
+];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
