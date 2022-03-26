@@ -17,12 +17,22 @@ const parentDir = process.argv[2];
 const files = fs.readdirSync(parentDir);
 const existingDmg = files.find(f => path.extname(f) === '.dmg');
 const appName = path.basename(existingDmg, path.extname(existingDmg));
-const cmd = `${sevenBin.path7za}`;
-const args = ['a', '-bd', '-mx=7', '-mtc=off', '-mm=Deflate', '-mcu', `${appName}.zip`, 'mac'];
+// const cmd = `${sevenBin.path7za}`;
+// const args = ['a', `${appName}.zip`, '-r', 'mac'];
+const cmd = `/usr/bin/ditto`;
+const args = [
+    '-c',
+    '-k',
+    '--sequesterRsrc',
+    '--keepParent',
+    '--zlibCompressionLevel 9',
+    `mac/${appName}.app`,
+    `${appName}.zip`,
+];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
-console.log(`path to 7z: ${sevenBin.path7za}`);
+// console.log(`path to 7z: ${sevenBin.path7za}`);
 
 child_process.execFileSync(cmd, args, {
     cwd: parentDir,
