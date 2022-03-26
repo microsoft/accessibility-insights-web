@@ -26,7 +26,7 @@ const args = [
     '--sequesterRsrc',
     '--keepParent',
     '--zlibCompressionLevel 9',
-    `mac/${appName}.app`,
+    `mac/*.app`,
     `${appName}.zip`,
 ];
 
