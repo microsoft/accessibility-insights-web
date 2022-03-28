@@ -94,7 +94,6 @@
         "@electron/get": "^1.14.1",
         "@swc/core": "^1.2.160",
         "@swc/jest": "^0.2.20",
-        "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.180",
         "@types/enzyme": "^3.10.11",
         "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -170,12 +169,12 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "@fluentui/react": "^8.49.6",
-        "accessibility-insights-for-android-service-bin": "2.0.0",
+        "@microsoft/applicationinsights-web": "^2.7.3",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
+        "@fluentui/react": "^8.49.6",
+        "accessibility-insights-for-android-service-bin": "2.0.0",
         "appium-adb": "^9.2.0",
-        "applicationinsights-js": "^1.0.21",
         "axe-core": "4.3.2",
         "axios": "^0.26.1",
         "classnames": "^2.3.1",
