@@ -18,7 +18,7 @@ export class TabbableElementGetter {
     ) {}
 
     public get: () => TabbableElementInfo[] = () => {
-        return this.getTabbableElements(this.doc.documentElement).map((elem, index) => ({
+        return this.getRawElements().map((elem, index) => ({
             html: elem.outerHTML,
             selector: this.generateSelector(elem as HTMLElement),
             order: index,
@@ -26,6 +26,23 @@ export class TabbableElementGetter {
     };
 
     public getRawElements: () => FocusableElement[] = () => {
-        return this.getTabbableElements(this.doc.documentElement);
+        const tabbableElements = this.getTabbableElements(this.doc.documentElement);
+        const filteredElements = this.filterHiddenElements(tabbableElements);
+        return filteredElements;
+    };
+
+    private filterHiddenElements: (elements: FocusableElement[]) => FocusableElement[] = (
+        elements: FocusableElement[],
+    ) => {
+        const hiddenSelectors = ['div[aria-hidden="true"]', 'div[aria-modal="true"]'];
+        hiddenSelectors.forEach(selector => {
+            const hiddenElements = this.doc.querySelectorAll<FocusableElement>(
+                `${selector}, ${selector} *`,
+            );
+            if (hiddenElements) {
+                elements = elements.filter(e => !Array.from(hiddenElements).includes(e));
+            }
+        });
+        return elements;
     };
 }
