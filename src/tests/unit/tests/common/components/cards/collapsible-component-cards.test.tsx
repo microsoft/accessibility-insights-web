@@ -10,6 +10,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
+import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 
 describe('CollapsibleComponentCardsTest', () => {
     const eventStubFactory = new EventStubFactory();
@@ -19,9 +20,8 @@ describe('CollapsibleComponentCardsTest', () => {
     let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
-        header: <div>Some header</div>,
+        header: <HeadingElementForLevel headingLevel={5}>Some header</HeadingElementForLevel>,
         content: <div>Some content</div>,
-        headingLevel: 5,
         isExpanded: true,
     };
 
