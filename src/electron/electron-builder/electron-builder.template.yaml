@@ -41,7 +41,6 @@ appImage:
 mac:
     artifactName: ${productName}.${ext}
     icon: TARGET_SPECIFIC
-    target: dmg # we also need zip (electron-userland/electron-builder#2199) & add it in grunt
     identity: null
 
 win:
