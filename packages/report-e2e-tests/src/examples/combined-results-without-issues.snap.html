@@ -1640,10 +1640,14 @@
                   id="new-tab-link-with-confirmation-dialog__0"
                   >https://example.com/mock-base-url</a
                 ><script>
-                  (function (linkId, doc, confirmCallback) {
-                    const targetPageLink = doc.getElementById(linkId);
+                  (function addConfirmOnClickHandler(
+                    linkId,
+                    doc,
+                    confirmCallback
+                  ) {
+                    var targetPageLink = doc.getElementById(linkId);
                     targetPageLink.addEventListener("click", function (event) {
-                      const result = confirmCallback(
+                      var result = confirmCallback(
                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                           "Cancel to stay on the current page."
@@ -1844,12 +1848,16 @@
                           id="new-tab-link-with-confirmation-dialog__1"
                           >WCAG 1.1.1</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -1892,12 +1900,16 @@
                           id="new-tab-link-with-confirmation-dialog__2"
                           >WCAG 1.3.1</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -1920,12 +1932,16 @@
                           id="new-tab-link-with-confirmation-dialog__3"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -1992,12 +2008,16 @@
                           id="new-tab-link-with-confirmation-dialog__4"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2040,12 +2060,16 @@
                           id="new-tab-link-with-confirmation-dialog__5"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2088,12 +2112,16 @@
                           id="new-tab-link-with-confirmation-dialog__6"
                           >WCAG 1.3.5</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2119,35 +2147,32 @@
             ></div
           ></div
         ><script>
-          (function (doc) {
-            const collapsibles = doc.getElementsByClassName(
-              "collapsible-container"
-            );
-            for (let index = 0; index < collapsibles.length; index++) {
-              const container = collapsibles.item(index);
-              const button =
+          (function addEventListenerForCollapsibleSection(doc) {
+            var _loop = function (index) {
+              var container = collapsibles.item(index);
+              var button =
                 container === null || container === void 0
                   ? void 0
                   : container.querySelector(".collapsible-control");
               if (button == null) {
-                continue;
+                return "continue";
               }
               button.addEventListener("click", function () {
                 var _a;
-                const content =
+                var content =
                   (_a = button.parentElement) === null || _a === void 0
                     ? void 0
                     : _a.nextElementSibling;
                 if (content == null) {
                   throw Error(
-                    `Expected button element's parent to have a next sibling`
+                    "Expected button element's parent to have a next sibling"
                   );
                 }
-                const wasExpandedBefore =
+                var wasExpandedBefore =
                   button.getAttribute("aria-expanded") === "false"
                     ? false
                     : true;
-                const isExpandedAfter = !wasExpandedBefore;
+                var isExpandedAfter = !wasExpandedBefore;
                 button.setAttribute("aria-expanded", isExpandedAfter + "");
                 content.setAttribute("aria-hidden", !isExpandedAfter + "");
                 if (isExpandedAfter) {
@@ -2156,6 +2181,13 @@
                   container.classList.add("collapsed");
                 }
               });
+            };
+            var collapsibles = doc.getElementsByClassName(
+              "collapsible-container"
+            );
+            for (var index = 0; index < collapsibles.length; index++) {
+              var _ret = _loop(index);
+              if (_ret === "continue") continue;
             }
           })(document);
         </script></div

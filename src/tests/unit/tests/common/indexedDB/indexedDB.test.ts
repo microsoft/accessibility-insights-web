@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IndexedDBUtil } from 'common/indexedDB/indexedDB';
-import * as fakeIndexedDB from 'fake-indexeddb';
+import fakeIndexedDB from 'fake-indexeddb';
 import { createStore } from 'idb-keyval';
 
 describe('IndexedDBUtil test cases', () => {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as express from 'express';
-import * as serveStatic from 'serve-static';
+import express from 'express';
+import serveStatic from 'serve-static';
 import { ResourceServerConfig } from 'tests/miscellaneous/test-resource-server/resource-server-config';
 
 const serverMap = {};
