@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { ActionButton } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
 import * as styles from './collapsible-component-cards.scss';
-import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 
 export const collapsibleButtonAutomationId = 'collapsible-component-cards-button';
 

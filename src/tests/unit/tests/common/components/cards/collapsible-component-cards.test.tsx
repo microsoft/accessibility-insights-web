@@ -4,13 +4,13 @@ import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
+import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
-import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 
 describe('CollapsibleComponentCardsTest', () => {
     const eventStubFactory = new EventStubFactory();
