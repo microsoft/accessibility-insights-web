@@ -104,6 +104,7 @@ describe('KeyboardShortcutHandler', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
             });
 

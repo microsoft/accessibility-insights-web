@@ -100,6 +100,7 @@ export class GlobalContextFactory {
         );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             globalActionsHub.userConfigurationActions,
+            telemetryEventHandler,
         );
         const featureFlagsActionCreator = new FeatureFlagsActionCreator(
             interpreter,

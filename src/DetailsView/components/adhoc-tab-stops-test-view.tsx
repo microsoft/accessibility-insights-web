@@ -9,6 +9,7 @@ import { HeadingWithContentLink } from 'common/components/heading-with-content-l
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { FeatureFlags } from 'common/feature-flags';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
@@ -43,6 +44,7 @@ import * as Markup from '../../assessments/markup';
 
 export type AdhocTabStopsTestViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    userConfigMessageCreator: UserConfigMessageCreator;
 } & TabStopsRequirementsTableDeps &
     TabStopsFailedInstancePanelDeps &
     TabStopsFailedInstanceSectionDeps &
@@ -210,7 +212,9 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         featureFlagStoreData={props.featureFlagStoreData}
                         enableJSXElement={
                             <AutoDetectedFailuresDialog
+                                deps={props.deps}
                                 visualizationScanResultData={props.visualizationScanResultData}
+                                userConfigurationStoreData={props.userConfigurationStoreData}
                             />
                         }
                     />

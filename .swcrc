@@ -6,8 +6,7 @@
         }
     },
     "module": {
-        "type": "commonjs",
-        "noInterop": true
+        "type": "commonjs"
     },
     "env": {},
     "sourceMaps": "inline"
