@@ -172,7 +172,7 @@
         "@microsoft/applicationinsights-web": "^2.7.4",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
-        "@fluentui/react": "^8.49.6",
+        "@fluentui/react": "^8.63.1",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "appium-adb": "^9.2.0",
         "axe-core": "4.3.2",
