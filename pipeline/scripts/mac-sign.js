@@ -21,3 +21,4 @@ const appLocations = [
 ];
 
 appLocations.forEach(console.log);
+execSync(`echo $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/`);
