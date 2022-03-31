@@ -49,6 +49,7 @@
         "lint:check": "eslint **/*.{js,ts,tsx}",
         "lint:check:all": "yarn lint:check && npx lerna run --npm-client yarn lint:check",
         "lint:fix": "eslint **/*.{js,ts,tsx} --quiet --fix",
+        "unified-mac-sign": "node ./pipeline/scripts/mac-sign.js",
         "mock-adb": "node ./src/tests/miscellaneous/mock-adb/setup-mock-adb-command.js",
         "null:autoadd": "node ./tools/strict-null-checks/auto-add.js",
         "null:check": "tsc -p ./tsconfig.strictNullChecks.json",
