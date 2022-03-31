@@ -9,6 +9,8 @@
 */
 
 const child_process = require('child_process');
+const fs = require('fs');
+const path = require('path');
 const sevenBin = require('7zip-bin');
 
 const parentDir = process.argv[2];
