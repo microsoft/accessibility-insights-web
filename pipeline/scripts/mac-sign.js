@@ -6,16 +6,16 @@ const path = require('path');
 const globby = require('globby');
 
 const identityPath = process.argv[2];
-const givenEntitlementsPath = process.argv[3].replace(/(\s+)/g, '\\$1');
+const givenEntitlementsPath = process.argv[3];
 
 function sign(pathToSign, withEntitlements) {
     console.log(`signing ${pathToSign}`);
-    const entitlementsPath = withEntitlements ? `--entitlements ${givenEntitlementsPath}` : '';
+    const entitlements = withEntitlements ? `--entitlements "${givenEntitlementsPath}"` : '';
     console.log(
-        `codesign -s ***** --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
+        `codesign -s ***** --timestamp --force --options runtime ${entitlements} ${pathToSign}`,
     );
     execSync(
-        `codesign -s ${identityPath} --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
+        `codesign -s ${identityPath} --timestamp --force --options runtime ${entitlements} "${pathToSign}"`,
         { stdio: 'inherit' },
     );
 }
@@ -46,8 +46,9 @@ appLocations.forEach(dir => {
 
     const subApps = globby.sync(`*.app`, { cwd: frameworksPath, onlyFiles: false });
 
-    subApps.forEach(subApp => {
-        const appPath = path.join(frameworksPath, subApp);
+    subApps.forEach(subAppPath => {
+        const appPath = path.join(frameworksPath, subAppPath);
         sign(appPath, true);
+        console.log('done!');
     });
 });
