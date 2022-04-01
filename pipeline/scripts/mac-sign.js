@@ -20,5 +20,8 @@ const appLocations = [
     path.resolve(__dirname, './drop/electron/unified-production/packed/mac/'),
 ];
 
-appLocations.forEach(console.log);
-execSync(`echo $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/`);
+appLocations.forEach(dir => {
+    const files = fs.readdirSync(dir);
+    const app = files.find(f => path.extname(f) === '.app');
+    console.log(app);
+});
