@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { config } from '../../common/configuration';
+import { ApplicationInsights, ITelemetryItem } from '@microsoft/applicationinsights-web';
+import { Initialization } from '@microsoft/applicationinsights-web/types/Initialization';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
-
+export type ITelemetryContext = Initialization['context'];
+export type ITelemetryTrace = ITelemetryContext['telemetryTrace'];
 export interface TelemetryData {
     baseData: TelemetryBaseData;
-}
-
-export interface ExtendedEnvelope extends Microsoft.ApplicationInsights.IEnvelope {
-    data: TelemetryData;
 }
 
 export class AppInsightsTelemetryClient implements TelemetryClient {
@@ -18,8 +16,8 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     private enabled: boolean;
 
     constructor(
-        private readonly appInsights: Microsoft.ApplicationInsights.IAppInsights,
         private readonly coreTelemetryDataFactory: ApplicationTelemetryDataFactory,
+        private readonly applicationInsights: ApplicationInsights,
     ) {}
 
     public enableTelemetry(): void {
@@ -32,16 +30,20 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
     }
 
     public disableTelemetry(): void {
-        if (this.enabled) {
-            this.enabled = false;
-            this.updateTelemetryState();
-        }
+        if (!this.enabled) return;
+
+        this.enabled = false;
+        this.updateTelemetryState();
     }
 
     public trackEvent(name: string, properties?: { [name: string]: string }): void {
         if (this.enabled) {
-            this.appInsights.trackEvent(name, properties);
+            this.applicationInsights.trackEvent({ name }, properties);
         }
+    }
+
+    private updateTelemetryState(): void {
+        this.applicationInsights.config.disableTelemetry = !this.enabled;
     }
 
     private initialize(): void {
@@ -51,39 +53,19 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
         this.initialized = true;
 
-        this.appInsights.downloadAndSetup!({
-            instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
-            disableAjaxTracking: true,
-            // start with telemetry disabled, to avoid sending past queued telemetry data
-            disableTelemetry: true,
-        });
-
-        this.appInsights.queue.push(() => {
-            this.initializeInternal();
-        });
-    }
-
-    private updateTelemetryState(): void {
-        const disableTelemetry = () => {
-            this.appInsights.config.disableTelemetry = !this.enabled;
-        };
-
-        if (this.appInsights.queue) {
-            this.appInsights.queue.push(disableTelemetry);
-        } else {
-            disableTelemetry();
-        }
-    }
-
-    private initializeInternal(): void {
-        this.appInsights.context.operation.name = '';
-        this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelope) => {
-            const baseData = envelope.data.baseData;
-            baseData.properties = {
-                ...baseData.properties,
-                ...this.coreTelemetryDataFactory.getData(),
+        this.applicationInsights.loadAppInsights();
+        this.applicationInsights.context.telemetryTrace.name = '';
+        this.applicationInsights.addTelemetryInitializer((telemetryItem: ITelemetryItem) => {
+            const originalBaseData = telemetryItem?.baseData ?? {};
+            telemetryItem.baseData = {
+                ...originalBaseData,
+                properties: {
+                    ...originalBaseData.properties,
+                    ...this.coreTelemetryDataFactory.getData(),
+                },
             };
-
+            // returning either true or void signals a successful initialization
+            // so we are being explicit
             return true;
         });
     }
