@@ -9,10 +9,9 @@ const identityPath = process.argv[2];
 const givenEntitlementsPath = process.argv[3];
 
 function sign(pathToSign, withEntitlements) {
-    console.log(`signing ${pathToSign}`);
     const entitlements = withEntitlements ? `--entitlements "${givenEntitlementsPath}"` : '';
     console.log(
-        `codesign -s ***** --timestamp --force --options runtime ${entitlements} ${pathToSign}`,
+        `executing: codesign -s ***** --timestamp --force --options runtime ${entitlements} ${pathToSign}`,
     );
     execSync(
         `codesign -s ${identityPath} --timestamp --force --options runtime ${entitlements} "${pathToSign}"`,
@@ -35,8 +34,14 @@ appLocations.forEach(dir => {
     frameworks.forEach(fw => {
         const subFWPath = path.join(frameworksPath, fw, 'Versions/A');
         const dyLibs = globby.sync(`Libraries/*.dylib`, { cwd: subFWPath });
+        const helpers = globby.sync('Helpers/*', { cwd: subFWPath });
 
         dyLibs.forEach(lib => {
+            const libPath = path.join(subFWPath, lib);
+            sign(libPath, false);
+        });
+
+        helpers.forEach(lib => {
             const libPath = path.join(subFWPath, lib);
             sign(libPath, false);
         });
