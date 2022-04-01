@@ -51,6 +51,7 @@ steps:
           echo "$(mac-notarization-developerid-certificate-base64p12)" | base64 -D > $(System.DefaultWorkingDirectory)/cert.p12
           security import $(System.DefaultWorkingDirectory)/cert.p12 -k $(System.DefaultWorkingDirectory)/agent.keychain -P "$(mac-notarization-developerid-certificate-password)" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $(System.DefaultWorkingDirectory)/agent.keychain
+          echo $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/
           yarn unified-mac-sign
       displayName: Prepare for hardening
       condition: and(succeeded(), eq(variables.platform, 'mac'))
