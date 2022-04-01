@@ -54,8 +54,5 @@ appLocations.forEach(dir => {
         sign(appPath, true);
     });
 
-    const htmlFiles = globby.sync('Contents/*.html', { cwd: frameworksPath });
-    htmlFiles.forEach(html => signAsset(html, path.join(dir, app, 'Contents')));
-
     sign(path.join(dir, app), true);
 });

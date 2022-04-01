@@ -621,6 +621,9 @@ module.exports = function (grunt) {
                     to: 'LICENSES.chromium.html',
                 },
             );
+
+            config.extraResources = config.extraResources.concat(config.extraFiles);
+            config.extraFiles = [];
         }
 
         const configFileContent = yaml.dump(config);
