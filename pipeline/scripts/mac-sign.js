@@ -54,6 +54,7 @@ appLocations.forEach(dir => {
     subApps.forEach(subAppPath => {
         const appPath = path.join(frameworksPath, subAppPath);
         sign(appPath, true);
-        console.log('done!');
     });
+
+    sign(app, true);
 });
