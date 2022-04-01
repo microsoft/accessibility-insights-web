@@ -3,14 +3,16 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const globby = require('globby');
 
-function sign(path) {
+function sign(path, withEntitlements) {
     console.log(`signing ${path}`);
     const identity = '$(mac-notarization-developerid-certificate-identity)';
-    const entitlementsPath =
-        '$(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist';
+    const entitlementsPath = withEntitlements
+        ? '--entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist'
+        : '';
     execSync(
-        `codesign -s ${identity} --timestamp --force --options runtime --entitlements ${entitlementsPath} ${path}`,
+        `codesign -s ${identity} --timestamp --force --options runtime ${entitlementsPath} ${path}`,
     );
 }
 
@@ -23,5 +25,10 @@ const appLocations = [
 appLocations.forEach(dir => {
     const files = fs.readdirSync(dir);
     const app = files.find(f => path.extname(f) === '.app');
-    console.log(app);
+    const frameworksPath = path.join(app, 'Contents/Frameworks');
+    const frameworks = globby.globbySync(`${frameworksPath}/*.framework`);
+
+    frameworks.forEach(fw => {
+        console.log(`fw is ${fw}`);
+    });
 });
