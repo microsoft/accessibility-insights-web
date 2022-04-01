@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 module.exports = {
     extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
     rules: {
