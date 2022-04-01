@@ -23,11 +23,11 @@ export class TabbableElementGetter {
     ) => {
         const hiddenSelectors = ['div[aria-hidden="true"]', 'div[aria-modal="true"]'];
         hiddenSelectors.forEach(selector => {
-            const hiddenElements = this.doc.querySelectorAll<FocusableElement>(
-                `${selector}, ${selector} *`,
-            );
+            const hiddenElements = this.doc.querySelectorAll(selector);
             if (hiddenElements) {
-                elements = elements.filter(e => !Array.from(hiddenElements).includes(e));
+                elements = elements.filter(
+                    e => !Array.from(hiddenElements).some(hidden => hidden.contains(e)),
+                );
             }
         });
         return elements;
