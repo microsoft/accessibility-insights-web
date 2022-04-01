@@ -6,7 +6,7 @@ const path = require('path');
 const globby = require('globby');
 
 const identityPath = process.argv[2];
-const givenEntitlementsPath = process.argv[3];
+const givenEntitlementsPath = process.argv[3].replace(/(\s+)/g, '\\$1');
 
 function sign(pathToSign, withEntitlements) {
     console.log(`signing ${pathToSign}`);
@@ -46,9 +46,8 @@ appLocations.forEach(dir => {
 
     const subApps = globby.sync(`*.app`, { cwd: frameworksPath, onlyFiles: false });
 
-    subApps.forEach(app => {
-        const appPath = path.join(frameworksPath, app);
+    subApps.forEach(subApp => {
+        const appPath = path.join(frameworksPath, subApp);
         sign(appPath, true);
-        console.log('done!');
     });
 });
