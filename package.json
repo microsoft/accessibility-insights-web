@@ -47,7 +47,7 @@
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "eslint **/*.{js,ts,tsx}",
-        "lint:check:all": "yarn lint:check && npx lerna run --npm-client yarn lint:check",
+        "lint:check:all": "yarn lint:check && yarn lint:css && npx lerna run --npm-client yarn lint:check",
         "lint:fix": "eslint **/*.{js,ts,tsx} --quiet --fix",
         "lint:css": "stylelint **/*.scss",
         "mock-adb": "node ./src/tests/miscellaneous/mock-adb/setup-mock-adb-command.js",
