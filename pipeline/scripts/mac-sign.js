@@ -10,7 +10,7 @@ const givenEntitlementsPath = process.argv[3];
 
 function sign(pathToSign, withEntitlements) {
     console.log(`signing ${pathToSign}`);
-    const entitlementsPath = withEntitlements ? givenEntitlementsPath : '';
+    const entitlementsPath = withEntitlements ? `--entitlements ${givenEntitlementsPath}` : '';
     console.log(
         `codesign -s ***** --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
     );
