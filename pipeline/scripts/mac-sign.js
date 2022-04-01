@@ -56,5 +56,5 @@ appLocations.forEach(dir => {
         sign(appPath, true);
     });
 
-    sign(app, true);
+    sign(path.join(dir, app), true);
 });
