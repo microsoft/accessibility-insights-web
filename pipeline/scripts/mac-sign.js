@@ -19,6 +19,11 @@ function sign(pathToSign, withEntitlements) {
     );
 }
 
+function signAsset(asset, pathToAsset) {
+    const fullAssetPath = path.join(pathToAsset, asset);
+    sign(fullAssetPath, false);
+}
+
 const appLocations = [
     path.resolve('./drop/electron/unified-canary/packed/mac/'),
     // path.resolve('./drop/electron/unified-insider/packed/mac/'),
@@ -36,15 +41,8 @@ appLocations.forEach(dir => {
         const dyLibs = globby.sync(`Libraries/*.dylib`, { cwd: subFWPath });
         const helpers = globby.sync('Helpers/*', { cwd: subFWPath });
 
-        dyLibs.forEach(lib => {
-            const libPath = path.join(subFWPath, lib);
-            sign(libPath, false);
-        });
-
-        helpers.forEach(lib => {
-            const libPath = path.join(subFWPath, lib);
-            sign(libPath, false);
-        });
+        dyLibs.forEach(lib => signAsset(lib, subFWPath));
+        helpers.forEach(helper => signAsset(helper, subFWPath));
 
         sign(subFWPath, false);
     });
@@ -55,6 +53,9 @@ appLocations.forEach(dir => {
         const appPath = path.join(frameworksPath, subAppPath);
         sign(appPath, true);
     });
+
+    const htmlFiles = globby.sync('Contents/*.html', { cwd: frameworksPath });
+    htmlFiles.forEach(html => signAsset(html, path.join(dir, app, 'Contents')));
 
     sign(path.join(dir, app), true);
 });
