@@ -735,15 +735,12 @@ module.exports = function (grunt) {
         grunt.util.spawn(
             {
                 cmd: 'node',
-                args: ['pipeline/scripts/zip-mac-folder.js', packedPath, '-v'],
+                args: ['pipeline/scripts/zip-mac-folder.js', packedPath],
             },
             (error, result, code) => {
                 if (error) {
                     grunt.fail.fatal(
-                        `zipping mac folder exited with error code ${code}:\n\n${
-                            result.stdout
-                        }\n\nError is: ${JSON.stringify(error)}`,
-                        code,
+                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
                     );
                 }
 

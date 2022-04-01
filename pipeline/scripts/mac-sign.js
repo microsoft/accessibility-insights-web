@@ -26,8 +26,8 @@ function signAsset(asset, pathToAsset) {
 
 const appLocations = [
     path.resolve('./drop/electron/unified-canary/packed/mac/'),
-    // path.resolve('./drop/electron/unified-insider/packed/mac/'),
-    // path.resolve('./drop/electron/unified-production/packed/mac/'),
+    path.resolve('./drop/electron/unified-insider/packed/mac/'),
+    path.resolve('./drop/electron/unified-production/packed/mac/'),
 ];
 
 appLocations.forEach(dir => {
