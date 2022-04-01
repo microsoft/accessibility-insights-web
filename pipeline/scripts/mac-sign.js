@@ -13,6 +13,7 @@ function sign(path, withEntitlements) {
         : '';
     execSync(
         `codesign -s ${identity} --timestamp --force --options runtime ${entitlementsPath} ${path}`,
+        { stdio: 'inherit' },
     );
 }
 
@@ -26,9 +27,24 @@ appLocations.forEach(dir => {
     const files = fs.readdirSync(dir);
     const app = files.find(f => path.extname(f) === '.app');
     const frameworksPath = path.join(app, 'Contents/Frameworks');
-    const frameworks = globby.globbySync(`${frameworksPath}/*.framework`);
+    const frameworks = globby.globbySync(`*.framework`, { cwd: frameworksPath, onlyFiles: false });
 
     frameworks.forEach(fw => {
-        console.log(`fw is ${fw}`);
+        const subFWPath = path.join(frameworksPath, fw, 'Versions/A');
+        const dyLibs = globby.globbySync(`Libraries/*.dylib`, { cwd: subFWPath });
+
+        dyLibs.forEach(lib => {
+            const libPath = path.join(subFWPath, lib);
+            sign(libPath, false);
+        });
+
+        sign(subFWPath, false);
+    });
+
+    const subApps = globby.globbySync(`*.app`, { cwd: frameworksPath, onlyFiles: false });
+
+    subApps.forEach(app => {
+        const appPath = path.join(frameworksPath, app);
+        sign(appPath, true);
     });
 });
