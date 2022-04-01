@@ -11,12 +11,11 @@
     > h2 {
         font-family: $fontFamily;
         font-size: 21px;
-        margin: 0px;
         line-height: 32px;
         font-weight: 600;
         letter-spacing: -0.02em;
         color: $primary-text;
-        margin: 0px;
+        margin: 0;
     }
 
     .test-details-text {
@@ -25,6 +24,6 @@
         line-height: 24px;
         color: $primary-text;
         font-family: $fontFamily;
-        margin: 16px 0px 21px 0px;
+        margin: 16px 0 21px 0;
     }
 }

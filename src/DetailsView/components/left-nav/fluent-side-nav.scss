@@ -10,8 +10,10 @@
     :global(.ms-Panel-main) {
         width: $detailsViewLeftNavWidth;
     }
+
     :global(.ms-Panel-content) {
-        padding: 0px;
+        padding: 0;
+
         :global(.main-nav) {
             max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
             height: calc(100vh - (#{$detailsViewHeaderBarHeight}));

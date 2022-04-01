@@ -7,14 +7,17 @@
     font-size: 16px;
     line-height: 24px;
     color: $negative-outcome;
+
     &:hover,
     &:focus {
-        color: LinkText !important;
+        color: linktext !important;
     }
 
     @media screen and (forced-colors: active) {
         @include fluent-forced-color-adjust-override;
+
         color: inherit !important;
+
         &:hover,
         &:focus {
             color: initial !important;

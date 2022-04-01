@@ -11,19 +11,20 @@
     margin-right: 10px;
     padding-left: 3px;
     padding-right: 3px;
-
     font-size: 16px !important;
     line-height: 24px !important;
     color: $neutral-100 !important;
 
     &:hover,
     &:focus {
-        color: LinkText !important;
+        color: linktext !important;
     }
 
     @media screen and (forced-colors: active) {
         @include fluent-forced-color-adjust-override;
+
         color: inherit !important;
+
         &:hover,
         &:focus {
             color: initial !important;
@@ -35,14 +36,17 @@
     font-size: 16px;
     line-height: 24px;
     color: $negative-outcome !important;
+
     &:hover,
     &:focus {
-        color: LinkText !important;
+        color: linktext !important;
     }
 
     @media screen and (forced-colors: active) {
         @include fluent-forced-color-adjust-override;
+
         color: inherit !important;
+
         &:hover,
         &:focus {
             color: initial !important;

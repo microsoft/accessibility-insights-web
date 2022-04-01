@@ -18,22 +18,17 @@ $focus-ring-color: $neutral-100;
 }
 
 $normalTitleFontWeight: 300 !default;
-
 $pivotItemLeftBorderWidth: 3px !default;
 $pivotItemBorderStyle: solid !default;
-
 $detailsViewHeaderBarHeight: 40px !default;
 $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 $detailsViewCommandBarBorderHeight: 1px !default;
-
 $detailsViewLeftNavWidth: 250px !default;
 $detailsViewLeftNavBorderWidth: 1px;
-
 $detailsViewTotalHeaderHeight: (
     #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
 );
-
 $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;

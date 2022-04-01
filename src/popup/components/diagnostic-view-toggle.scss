@@ -4,10 +4,8 @@
 
 .diagnostic-view-toggle {
     display: grid;
-
     grid-template-columns: auto auto;
     grid-template-rows: 25px 25px;
-
     align-items: center;
 
     .title {
@@ -29,7 +27,6 @@
         grid-row: 2;
         grid-column: 2;
         justify-self: end;
-
         font-weight: 400;
         font-size: 11px;
         color: $secondary-text;

@@ -3,7 +3,7 @@
 @import '../../common/styles/common.scss';
 
 .getting-started-view {
-    margin: 0px 18px;
+    margin: 0 18px;
     padding-left: 6px;
     padding-top: 1vh;
     padding-bottom: 1vh;
@@ -15,7 +15,9 @@
 
 .getting-started-header {
     @include text-style-title-m;
+
     padding-top: 8px;
+
     i {
         font-size: 16px;
     }

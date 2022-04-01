@@ -10,7 +10,6 @@
     justify-content: flex-start;
     align-items: center;
     align-content: stretch;
-
     background-color: $ada-brand-color;
     min-height: $detailsViewHeaderBarHeight;
     width: 100%;
@@ -29,12 +28,11 @@
         // to the minimum 500px allowed by Chrome and not have the title get cut off.
         margin-right: 32px;
         margin-left: 8px;
-
         color: $header-bar-title-color;
         font-size: $fontSizeML;
         font-family: $fontFamily;
 
-        @include ellipsedText();
+        @include ellipsedText;
     }
 
     .spacer {
