@@ -133,11 +133,7 @@ export class WindowInitializer {
         );
         this.manualTabStopListener.initialize();
 
-        const tabbableElementGetter = new TabbableElementGetter(
-            document,
-            getUniqueSelector,
-            tabbable,
-        );
+        const tabbableElementGetter = new TabbableElementGetter(document, tabbable);
         const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtils,
             getUniqueSelector,

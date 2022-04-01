@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { getUniqueSelector } from 'scanner/axe-utils';
 import { FocusableElement, tabbable } from 'tabbable';
 
 export interface TabbableElementInfo {
@@ -11,19 +10,7 @@ export interface TabbableElementInfo {
 }
 
 export class TabbableElementGetter {
-    constructor(
-        private doc: Document,
-        private generateSelector: typeof getUniqueSelector,
-        private getTabbableElements: typeof tabbable,
-    ) {}
-
-    public get: () => TabbableElementInfo[] = () => {
-        return this.getRawElements().map((elem, index) => ({
-            html: elem.outerHTML,
-            selector: this.generateSelector(elem as HTMLElement),
-            order: index,
-        }));
-    };
+    constructor(private doc: Document, private getTabbableElements: typeof tabbable) {}
 
     public getRawElements: () => FocusableElement[] = () => {
         const tabbableElements = this.getTabbableElements(this.doc.documentElement);
