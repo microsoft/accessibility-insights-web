@@ -5,17 +5,17 @@ const fs = require('fs');
 const path = require('path');
 const globby = require('globby');
 
+const identityPath = process.argv[2];
+const givenEntitlementsPath = process.argv[3];
+
 function sign(pathToSign, withEntitlements) {
     console.log(`signing ${pathToSign}`);
-    const identity = '$(mac-notarization-developerid-certificate-identity)';
-    const entitlementsPath = withEntitlements
-        ? '--entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist'
-        : '';
+    const entitlementsPath = withEntitlements ? givenEntitlementsPath : '';
     console.log(
         `codesign -s ***** --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
     );
     execSync(
-        `codesign -s ${identity} --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
+        `codesign -s ${identityPath} --timestamp --force --options runtime ${entitlementsPath} ${pathToSign}`,
         { stdio: 'inherit' },
     );
 }
