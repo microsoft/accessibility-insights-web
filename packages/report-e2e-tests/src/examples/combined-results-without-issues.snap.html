@@ -2185,10 +2185,8 @@
             var collapsibles = doc.getElementsByClassName(
               "collapsible-container"
             );
-            for (var index = 0; index < collapsibles.length; index++) {
-              var _ret = _loop(index);
-              if (_ret === "continue") continue;
-            }
+            for (var index = 0; index < collapsibles.length; index++)
+              _loop(index);
           })(document);
         </script></div
       ></main
