@@ -55,14 +55,14 @@ steps:
           security import $(System.DefaultWorkingDirectory)/cert.p12 -k $(System.DefaultWorkingDirectory)/agent.keychain -P "$(mac-notarization-developerid-certificate-password)" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $(System.DefaultWorkingDirectory)/agent.keychain
           yarn unified-mac-sign $(mac-notarization-developerid-certificate-identity) $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist
-      displayName: Signing app bundle
+      displayName: codesign .app bundles
       condition: and(succeeded(), eq(variables.platform, 'mac'))
 
     - script: |
           codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/*.app
           codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed/mac/*.app
           codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
-      displayName: verify codesign
+      displayName: verify codesign for .app bundles
       condition: and(succeeded(), eq(variables.platform, 'mac'))
 
     - script: yarn pack:unified:all

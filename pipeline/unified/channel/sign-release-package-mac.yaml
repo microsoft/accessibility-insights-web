@@ -30,8 +30,10 @@ jobs:
                 version: 2.1.x
                 installationPath: $(Agent.ToolsDirectory)/dotnet
 
+          # Mac apps require Hardened Runtime to be notarized.
+          # https://developer.apple.com/documentation/security/hardened_runtime
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'CodeSigning'
+            displayName: 'Enable Hardened Runtime'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
