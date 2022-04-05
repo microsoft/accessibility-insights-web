@@ -182,7 +182,7 @@
         "electron": "14.0.0",
         "electron-log": "^4.4.6",
         "electron-updater": "^4.6.5",
-        "globby": "^11.1.0",
+        "globby": "^13.1.1",
         "idb-keyval": "^6.1.0",
         "lodash": "^4.17.21",
         "luxon": "^2.3.1",
