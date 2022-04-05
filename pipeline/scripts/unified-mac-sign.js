@@ -29,7 +29,7 @@ const entitlementsPath = process.argv[3];
 const identityPath = process.argv[2];
 
 function sign(pathToSign, withEntitlements) {
-    const entitlements = withEntitlements ? ['--entitlements', `"${entitlementsPath}"`] : [];
+    const entitlements = withEntitlements ? ['--entitlements', entitlementsPath] : [];
 
     const cmd = 'codesign';
     const args = [
