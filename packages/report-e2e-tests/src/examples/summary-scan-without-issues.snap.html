@@ -702,6 +702,11 @@
       .results-container {
         margin-top: 56px;
       }
+      .results-container .title-container :is(h1, h2, h3, h4, h5, h6) {
+        font-weight: unset;
+        margin-block: 0;
+        margin-inline: 0;
+      }
       @media screen and (max-width: 640px) {
         .outcome-past-tense {
           display: none;
@@ -1787,7 +1792,7 @@
           ><div class="results-heading--D3Qtr"><h2>Results by URL</h2></div
           ><div class="url-result-section--PmEoY"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -1831,7 +1836,7 @@
                       ></span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-failed-urls-section"
                 class="collapsible-content"
@@ -1851,7 +1856,7 @@
                   ><tbody></tbody></table></div></div></div
           ><div class="url-result-section--PmEoY"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -1902,7 +1907,7 @@
                       ></span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-not-scanned-urls-section"
                 class="collapsible-content"
@@ -1921,7 +1926,7 @@
                   ><tbody></tbody></table></div></div></div
           ><div class="url-result-section--PmEoY"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -1967,7 +1972,7 @@
                       ></span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-passed-urls-section"
                 class="collapsible-content"
