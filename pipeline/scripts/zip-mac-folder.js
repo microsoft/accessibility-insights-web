@@ -11,18 +11,16 @@
 const child_process = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const sevenBin = require('7zip-bin');
 
 const parentDir = process.argv[2];
 const files = fs.readdirSync(parentDir);
 const existingDmg = files.find(f => path.extname(f) === '.dmg');
 const appName = path.basename(existingDmg, path.extname(existingDmg));
-const cmd = `${sevenBin.path7za}`;
-const args = ['a', `${appName}.zip`, '-r', 'mac'];
+const cmd = `/usr/bin/ditto`;
+const args = ['-c', '-k', '--keepParent', 'mac', `${appName}.zip`];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
-console.log(`path to 7z: ${sevenBin.path7za}`);
 
 child_process.execFileSync(cmd, args, {
     cwd: parentDir,
