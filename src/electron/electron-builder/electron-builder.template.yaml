@@ -38,14 +38,10 @@ linux:
 appImage:
     license: src/electron/resources/mit_license.txt
 
-# Per: electron-userland/electron-builder#2199:
-# We do not specify target for electron-builder on Mac to produce both dmg and zip files.
-# However, we only use the dmg file produced by electron-builder since the zip is corrupt and create
-# our own zip for auto-update. This is because producing the zip file is necessary for auto-update
-# on Mac regardless of whether you use the zip file produced.
 mac:
     artifactName: ${productName}.${ext}
     icon: TARGET_SPECIFIC
+    target: dmg # we also need zip (electron-userland/electron-builder#2199) & add it in grunt
     identity: null
 
 win:
