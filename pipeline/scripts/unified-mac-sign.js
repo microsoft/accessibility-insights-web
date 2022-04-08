@@ -4,7 +4,6 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const globby = require('globby');
 
 /*
     Pre-requisites for this signing script: can only be run on Mac and our developer cert must be
@@ -53,6 +52,21 @@ function signAsset(asset, pathToAsset) {
     const fullAssetPath = path.join(pathToAsset, asset);
     sign(fullAssetPath, false);
 }
+
+function getItemsInDir(pathToDir, extName = null) {
+    if (fs.existsSync(pathToDir) === false) {
+        return [];
+    }
+
+    const items = fs.readdirSync(pathToDir);
+
+    if (extName === null) {
+        return items;
+    }
+
+    return items.filter(f => path.extname(f) === extName);
+}
+
 /*
     https://developer.apple.com/forums/thread/701514#701514021 covers the basics of what to sign,
     how to sign it, and structuring the code. The BotFramework-Composter team also provided with an
@@ -60,23 +74,23 @@ function signAsset(asset, pathToAsset) {
     Finally, the codesign verify task in the build will also point to files if anything goes awry.
 */
 appLocations.forEach(dir => {
-    const files = fs.readdirSync(dir);
-    const app = files.find(f => path.extname(f) === '.app');
+    const app = getItemsInDir(dir, '.app')[0];
     const frameworksPath = path.join(dir, app, 'Contents/Frameworks');
-    const frameworks = globby.sync(`*.framework`, { cwd: frameworksPath, onlyFiles: false });
+    const frameworks = getItemsInDir(frameworksPath, '.framework');
+    const subApps = getItemsInDir(frameworksPath, '.app');
 
     frameworks.forEach(fw => {
         const subFWPath = path.join(frameworksPath, fw, 'Versions/A');
-        const dyLibs = globby.sync(`Libraries/*.dylib`, { cwd: subFWPath });
-        const helpers = globby.sync('Helpers/*', { cwd: subFWPath });
+        const librariesPath = path.join(subFWPath, 'Libraries');
+        const helpersPath = path.join(subFWPath, 'Helpers');
+        const dyLibs = getItemsInDir(librariesPath, '.dylib');
+        const helpers = getItemsInDir(helpersPath);
 
-        dyLibs.forEach(lib => signAsset(lib, subFWPath));
-        helpers.forEach(helper => signAsset(helper, subFWPath));
+        dyLibs.forEach(lib => signAsset(lib, librariesPath));
+        helpers.forEach(helper => signAsset(helper, helpersPath));
 
         sign(subFWPath, false);
     });
-
-    const subApps = globby.sync(`*.app`, { cwd: frameworksPath, onlyFiles: false });
 
     subApps.forEach(subAppPath => {
         const appPath = path.join(frameworksPath, subAppPath);
