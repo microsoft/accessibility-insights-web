@@ -4,8 +4,8 @@ steps:
     - task: NodeTool@0
       inputs:
           # Keep this in sync with /.github/workflows/ci.yml
-          versionSpec: '14.19.0'
-      displayName: use node 14.19.0
+          versionSpec: '16.14.2'
+      displayName: use node 16.14.2
       timeoutInMinutes: 2
 
     - script: npm install yarn@1.22.10 -g
