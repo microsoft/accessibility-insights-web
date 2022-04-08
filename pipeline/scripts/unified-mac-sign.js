@@ -54,6 +54,10 @@ function signAsset(asset, pathToAsset) {
 }
 
 function getItemsInDir(pathToDir, extName = null) {
+    if (fs.existsSync(pathToDir) === false) {
+        return [];
+    }
+
     const items = fs.readdirSync(pathToDir);
 
     if (extName === null) {
