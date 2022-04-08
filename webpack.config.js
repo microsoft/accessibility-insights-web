@@ -44,7 +44,6 @@ const tsRule = {
             options: {
                 transpileOnly: true,
                 experimentalWatchApi: true,
-
             },
         },
     ],
