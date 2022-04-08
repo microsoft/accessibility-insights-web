@@ -82,8 +82,8 @@ appLocations.forEach(dir => {
         const dyLibs = getItemsInDir(librariesPath, '.dylib');
         const helpers = getItemsInDir(helpersPath);
 
-        dyLibs.forEach(lib => signAsset(lib, subFWPath));
-        helpers.forEach(helper => signAsset(helper, subFWPath));
+        dyLibs.forEach(lib => signAsset(lib, librariesPath));
+        helpers.forEach(helper => signAsset(helper, helpersPath));
 
         sign(subFWPath, false);
     });
