@@ -57,7 +57,7 @@ jobs:
       timeout-minutes: 5
     
   unit-tests:
-    name: unit-tests (${{ strategy.job-index + 1 }}/${{ strategy.job-total }})
+    name: unit-tests-${{ strategy.job-index }}
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
@@ -165,7 +165,7 @@ jobs:
       timeout-minutes: 10
 
   e2e-web-tests:
-    name: e2e-web-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    name: e2e-web-tests-${{ strategy.job-index }}
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.20.2-focal
     strategy:
@@ -223,7 +223,7 @@ jobs:
       timeout-minutes: 3
   
   e2e-unified-tests:
-    name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    name: e2e-unified-tests-${{ strategy.job-index }}
     runs-on: ubuntu-20.04
     env:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
