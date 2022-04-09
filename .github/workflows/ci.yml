@@ -57,8 +57,16 @@ jobs:
       timeout-minutes: 5
     
   unit-tests:
+    name: unit-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    strategy:
+      fail-fast: false
+      matrix:
+        test-filename-prefix-pattern:
+          - "[a-k]"
+          - "[^a-k]"
+
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -86,21 +94,18 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn test --ci
+    - run: yarn test --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: unit-tests-results
+        name: unit-tests-${{ strategy.job-index }}-results
         path: |
           test-results/unit/junit.xml
           test-results/unit/coverage/cobertura-coverage.xml
       timeout-minutes: 5
-
-    - run: yarn publish-code-coverage
-      timeout-minutes: 3
 
   lints:
     runs-on: ubuntu-20.04
