@@ -66,6 +66,21 @@ async function initialize(): Promise<void> {
     const indexedDBDataKeysToFetch = [
         IndexedDBDataKeys.assessmentStore,
         IndexedDBDataKeys.userConfiguration,
+        IndexedDBDataKeys.cardSelectionStore,
+        IndexedDBDataKeys.detailsViewStore,
+        IndexedDBDataKeys.devToolStore,
+        IndexedDBDataKeys.commandStore,
+        IndexedDBDataKeys.launchPanelStore,
+        IndexedDBDataKeys.permissionsStateStore,
+        IndexedDBDataKeys.inspectStore,
+        IndexedDBDataKeys.scopingStore,
+        IndexedDBDataKeys.tabStore,
+        IndexedDBDataKeys.pathSnippetStore,
+        IndexedDBDataKeys.needsReviewScanResultsStore,
+        IndexedDBDataKeys.needsReviewCardSelectionStore,
+        IndexedDBDataKeys.visualizationStore,
+        IndexedDBDataKeys.visualizationScanResultStore,
+        IndexedDBDataKeys.unifiedScanResultStore,
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage

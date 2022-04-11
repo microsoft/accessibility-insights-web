@@ -44,9 +44,8 @@ export interface PersistedData {
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
 }
 
-const keyToPersistedDataMapping = {
+const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
-    [IndexedDBDataKeys.userConfiguration]: 'userConfigurationData',
     [IndexedDBDataKeys.installation]: 'installationData',
     [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
 };
@@ -63,7 +62,8 @@ export function getPersistedData(
 
     const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
         return indexedDBInstance.getItem(key).then(data => {
-            persistedData[keyToPersistedDataMapping[key]] = data;
+            const persistedDataKey = keyToPersistedDataMappingOverrides[key] ?? `${key}Data`;
+            persistedData[persistedDataKey] = data;
         });
     });
 

@@ -32,7 +32,9 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
     protected emitChanged(): void {
         const storeData = this.getState();
 
-        this.persistData(storeData).catch(this.logger.error);
+        if (this.idbInstance && this.logger) {
+            this.persistData(storeData).catch(this.logger.error);
+        }
 
         super.emitChanged();
     }
