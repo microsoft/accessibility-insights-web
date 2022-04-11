@@ -53,10 +53,10 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         private readonly assessmentDataConverter: AssessmentDataConverter,
         private readonly assessmentDataRemover: AssessmentDataRemover,
         private readonly assessmentsProvider: AssessmentsProvider,
-        idbInstance: IndexedDBAPI,
-        persistedData: AssessmentStoreData,
+        protected readonly idbInstance: IndexedDBAPI,
+        protected readonly persistedData: AssessmentStoreData,
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
-        logger: Logger,
+        protected readonly logger: Logger,
     ) {
         super(
             StoreNames.AssessmentStore,
