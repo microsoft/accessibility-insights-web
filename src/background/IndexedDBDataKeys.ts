@@ -9,7 +9,6 @@ export class IndexedDBDataKeys {
     public static readonly detailsViewStore: string = 'detailsViewStore';
     public static readonly devToolStore: string = 'devToolStore';
     public static readonly commandStore: string = 'commandStore';
-    public static readonly launchPanelStore: string = 'launchPanelStore';
     public static readonly permissionsStateStore: string = 'permissionsStateStore';
     public static readonly inspectStore: string = 'inspectStore';
     public static readonly scopingStore: string = 'scopingStore';

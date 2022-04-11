@@ -6,7 +6,6 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { InspectStoreData } from 'common/types/store-data/inspect-store-data';
-import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
@@ -31,7 +30,6 @@ export interface PersistedData {
     detailsViewStoreData: DetailsViewStoreData;
     devToolStoreData: DevToolStoreData;
     commandStoreData: CommandStoreData;
-    launchPanelStoreData: LaunchPanelStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     inspectStoreData: InspectStoreData;
     scopingStoreData: ScopingStoreData;

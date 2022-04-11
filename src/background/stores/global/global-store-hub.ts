@@ -63,9 +63,6 @@ export class GlobalStoreHub implements StoreHub {
             globalActionHub.launchPanelStateActions,
             storageAdapter,
             userData,
-            persistedData.launchPanelStoreData,
-            indexedDbInstance,
-            logger,
         );
         this.scopingStore = new ScopingStore(
             globalActionHub.scopingActions,

@@ -45,19 +45,36 @@ describe('PersistentStoreTest', () => {
         idbInstanceMock.verifyAll();
     });
 
+    test('emitChanged with null parameters', async () => {
+        const testObject = new TestStore(false);
+        testObject.initialize();
+        idbInstanceMock
+            .setup(db => db.setItem(indexedDBDataKey, persistedState))
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
+
+        testObject.callEmitChanged();
+
+        idbInstanceMock.verifyAll();
+    });
+
     interface TestData {
         value: string;
     }
 
     class TestStore extends PersistentStore<TestData> {
-        constructor() {
-            super(
-                storeName,
-                persistedState,
-                idbInstanceMock.object,
-                indexedDBDataKey,
-                loggerMock.object,
-            );
+        constructor(passNonNullParams = true) {
+            if (passNonNullParams) {
+                super(
+                    storeName,
+                    persistedState,
+                    idbInstanceMock.object,
+                    indexedDBDataKey,
+                    loggerMock.object,
+                );
+            } else {
+                super(null, null, null, null, null);
+            }
         }
 
         protected addActionListeners(): void {

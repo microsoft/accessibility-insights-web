@@ -70,7 +70,6 @@ async function initialize(): Promise<void> {
         IndexedDBDataKeys.detailsViewStore,
         IndexedDBDataKeys.devToolStore,
         IndexedDBDataKeys.commandStore,
-        IndexedDBDataKeys.launchPanelStore,
         IndexedDBDataKeys.permissionsStateStore,
         IndexedDBDataKeys.inspectStore,
         IndexedDBDataKeys.scopingStore,

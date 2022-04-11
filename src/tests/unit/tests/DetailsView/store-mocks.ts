@@ -81,18 +81,27 @@ export class StoreMocks {
         isPageHidden: false,
         isOriginChanged: false,
     };
-    public commandStoreData = new CommandStore(null, null).getDefaultState();
+    public commandStoreData = new CommandStore(null, null, null, null, null).getDefaultState();
     public userConfigurationStoreData = new UserConfigurationStore(
         null,
         null,
         null,
         null,
     ).getDefaultState();
-    public scopingStoreData = new ScopingStore(null).getDefaultState();
-    public inspectStoreData = new InspectStore(null, null).getDefaultState();
-    public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
-    public unifiedScanResultStoreData = new UnifiedScanResultStore(null, null).getDefaultState();
+    public scopingStoreData = new ScopingStore(null, null, null, null).getDefaultState();
+    public inspectStoreData = new InspectStore(null, null, null, null, null).getDefaultState();
+    public pathSnippetStoreData = new PathSnippetStore(null, null, null, null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
+        null,
+        null,
+        null,
         null,
         null,
     ).getDefaultState();
@@ -101,10 +110,24 @@ export class StoreMocks {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
-    public permissionsStateStoreData = new PermissionsStateStore(null).getDefaultState();
+    public permissionsStateStoreData = new PermissionsStateStore(
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public tabStopsViewStoreData = new TabStopsViewStore(null).getDefaultState();
-    public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
+    public cardSelectionStoreData = new CardSelectionStore(
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public needsReviewCardSelectionStoreData = new NeedsReviewCardSelectionStore(
+        null,
+        null,
+        null,
         null,
         null,
     ).getDefaultState();

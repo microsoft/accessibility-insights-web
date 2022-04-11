@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
+import { PersistedData } from 'background/get-persisted-data';
 import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
@@ -17,6 +18,7 @@ import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { WindowUtils } from 'common/window-utils';
@@ -42,6 +44,8 @@ describe('TabContextFactoryTest', () => {
     let mockUsageLogger: IMock<UsageLogger>;
     let mockNotificationCreator: IMock<NotificationCreator>;
     let mockWindowUtils: IMock<WindowUtils>;
+    let mockDBInstance: IMock<IndexedDBAPI>;
+    let persistedDataStub: PersistedData;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
@@ -50,6 +54,8 @@ describe('TabContextFactoryTest', () => {
         mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
         mockNotificationCreator = Mock.ofType<NotificationCreator>();
         mockWindowUtils = Mock.ofType<WindowUtils>();
+        mockDBInstance = Mock.ofType<IndexedDBAPI>();
+        persistedDataStub = {} as PersistedData;
     });
 
     it('createInterpreter', () => {
@@ -106,6 +112,8 @@ describe('TabContextFactoryTest', () => {
             mockLogger.object,
             mockUsageLogger.object,
             mockWindowUtils.object,
+            persistedDataStub,
+            mockDBInstance.object,
         );
 
         const tabContext = testObject.createTabContext(

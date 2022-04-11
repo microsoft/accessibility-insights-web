@@ -237,14 +237,16 @@ describe('TabStoreTest', () => {
     function createStoreTesterForTabActions(
         actionName: keyof TabActions,
     ): StoreTester<TabStoreData, TabActions> {
-        const factory = (actions: TabActions) => new TabStore(actions, new VisualizationActions());
+        const factory = (actions: TabActions) =>
+            new TabStore(actions, new VisualizationActions(), null, null, null);
         return new StoreTester(TabActions, actionName, factory);
     }
 
     function createStoreTesterForVisualizationActions(
         actionName: keyof VisualizationActions,
     ): StoreTester<TabStoreData, VisualizationActions> {
-        const factory = (actions: VisualizationActions) => new TabStore(new TabActions(), actions);
+        const factory = (actions: VisualizationActions) =>
+            new TabStore(new TabActions(), actions, null, null, null);
         return new StoreTester(VisualizationActions, actionName, factory);
     }
 });
