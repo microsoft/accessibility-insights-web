@@ -610,8 +610,13 @@ module.exports = function (grunt) {
 
         // Manually copying the license files is a workaround for electron-builder #1495.
         // On win/linux builds these are automatically included, but in Mac they are omitted.
+        // Mac notarization also requires specific structuring of code; these files should be put in
+        // the Contents/Resources folder which electron-builder will do for 'extraResources'.
+        // https://developer.apple.com/forums/thread/128166, section "Structure Your Code Correctly"
         if (process.platform === 'darwin') {
-            config.extraFiles.push(
+            config.extraResources = config.extraResources.concat(config.extraFiles);
+            config.extraFiles = [];
+            config.extraResources.push(
                 {
                     from: 'node_modules/electron/dist/LICENSE',
                     to: 'LICENSE.electron.txt',

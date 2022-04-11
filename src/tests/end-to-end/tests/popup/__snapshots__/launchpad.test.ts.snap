@@ -84,13 +84,11 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
         class="popup-grid"
       >
         <main>
-          <div
-            aria-level="2"
+          <h2
             class="launch-pad-title ms-fontWeight-semibold"
-            role="heading"
           >
             Launch pad
-          </div>
+          </h2>
           <hr
             class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
           />
