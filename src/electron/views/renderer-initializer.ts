@@ -253,6 +253,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const unifiedScanResultStore = new UnifiedScanResultStore(
             unifiedScanResultActions,
             tabActions,
+            persistedData.unifiedScanResultStoreData,
+            indexedDBInstance,
+            logger,
         );
         unifiedScanResultStore.initialize();
 
@@ -265,6 +268,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
+            persistedData.cardSelectionStoreData,
+            indexedDBInstance,
+            logger,
         );
         cardSelectionStore.initialize();
 
@@ -272,6 +278,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             contentActions,
             detailsViewActions,
             sidePanelActions,
+            persistedData.detailsViewStoreData,
+            indexedDBInstance,
+            logger,
         );
         detailsViewStore.initialize();
 

@@ -191,6 +191,8 @@ async function initialize(): Promise<void> {
         logger,
         usageLogger,
         windowUtils,
+        persistedData,
+        indexedDBInstance,
     );
 
     const targetPageController = new TargetPageController(
