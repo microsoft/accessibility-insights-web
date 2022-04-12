@@ -20,13 +20,17 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         return await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
     }
 
-    public getDefaultState(): TState {
-        return this.generateDefaultState(this.persistedState);
-    }
-
     // Allow specific stores to override default state behavior
     protected generateDefaultState(persistedData: TState): TState {
         return persistedData;
+    }
+
+    public override initialize(initialState?: TState): void {
+        const generatedPersistedState = this.generateDefaultState(this.persistedState);
+
+        this.state = initialState || (generatedPersistedState ?? this.getDefaultState());
+
+        this.addActionListeners();
     }
 
     protected emitChanged(): void {
