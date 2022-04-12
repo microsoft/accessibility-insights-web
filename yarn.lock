@@ -693,25 +693,6 @@
     "@fluentui/set-version" "^8.2.0"
     tslib "^2.1.0"
 
-"@fluentui/react@^8.63.1":
-  version "8.63.1"
-  resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-8.63.1.tgz#4322c8e9df2410484f256408c5087b1e858e335c"
-  integrity sha512-tRYdIzXfjGkqEWUHY7BhBqDgNSnIzoIdRzwE4Y/XshsjsW4aUHM9lEtU8LnMvUYUjMLTOAMXmB8jJoGHg2URuA==
-  dependencies:
-    "@fluentui/date-time-utilities" "^8.5.0"
-    "@fluentui/font-icons-mdl2" "^8.2.5"
-    "@fluentui/foundation-legacy" "^8.2.5"
-    "@fluentui/merge-styles" "^8.5.0"
-    "@fluentui/react-focus" "^8.5.6"
-    "@fluentui/react-hooks" "^8.5.3"
-    "@fluentui/react-window-provider" "^2.2.0"
-    "@fluentui/set-version" "^8.2.0"
-    "@fluentui/style-utilities" "^8.6.5"
-    "@fluentui/theme" "^2.6.4"
-    "@fluentui/utilities" "^8.8.1"
-    "@microsoft/load-themed-styles" "^1.10.26"
-    tslib "^2.1.0"
-
 "@fluentui/react@^8.64.2":
   version "8.64.2"
   resolved "https://registry.yarnpkg.com/@fluentui/react/-/react-8.64.2.tgz#d539137c4a59f419d483a908fcee4c03c8686f7d"
