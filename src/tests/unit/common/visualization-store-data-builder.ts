@@ -19,6 +19,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             null,
             null,
             new WebVisualizationConfigurationFactory(),
+            null,
+            null,
+            null,
         ).getDefaultState();
     }
 

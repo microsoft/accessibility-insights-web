@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InjectionActions } from 'background/actions/injection-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { EnumHelper } from 'common/enum-helper';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Tab } from 'common/itab';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import {
@@ -23,9 +27,8 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
+export class VisualizationStore extends PersistentStore<VisualizationStoreData> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
     private injectionActions: InjectionActions;
@@ -36,8 +39,17 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         tabActions: TabActions,
         injectionActions: InjectionActions,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
+        persistedState: VisualizationStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.VisualizationStore);
+        super(
+            StoreNames.VisualizationStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.visualizationStore,
+            logger,
+        );
 
         this.visualizationActions = visualizationActions;
         this.tabActions = tabActions;

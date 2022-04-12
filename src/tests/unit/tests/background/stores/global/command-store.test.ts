@@ -31,7 +31,7 @@ describe('CommandStoreTest', () => {
     });
 
     test('on getCommands: no command modification', () => {
-        const prototype = new CommandStore(null, null);
+        const prototype = new CommandStore(null, null, null, null, null);
         const initialState: CommandStoreData = prototype.getDefaultState();
         const expectedState: CommandStoreData = prototype.getDefaultState();
 
@@ -90,7 +90,13 @@ describe('CommandStoreTest', () => {
     });
 
     test("handling weird case: amount of commands change on runtime (this should not happen but we're handling it anyway)", () => {
-        const initialState: CommandStoreData = new CommandStore(null, null).getDefaultState();
+        const initialState: CommandStoreData = new CommandStore(
+            null,
+            null,
+            null,
+            null,
+            null,
+        ).getDefaultState();
 
         const command: chrome.commands.Command = {
             description: 'Toggle Headings',
@@ -123,7 +129,7 @@ describe('CommandStoreTest', () => {
         actionName: keyof CommandActions,
     ): StoreTester<CommandStoreData, CommandActions> {
         const factory = (actions: CommandActions) =>
-            new CommandStore(actions, telemetryEventHandlerMock.object);
+            new CommandStore(actions, telemetryEventHandlerMock.object, null, null, null);
 
         return new StoreTester(CommandActions, actionName, factory);
     }

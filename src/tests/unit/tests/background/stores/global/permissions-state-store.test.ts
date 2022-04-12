@@ -21,7 +21,12 @@ describe('PermissionsStateStoreTest', () => {
     });
 
     test('getDefaultState returns expected default store state', () => {
-        const testSubject = new PermissionsStateStore(new PermissionsStateActions());
+        const testSubject = new PermissionsStateStore(
+            new PermissionsStateActions(),
+            null,
+            null,
+            null,
+        );
         testSubject.initialize();
 
         expect(testSubject.getDefaultState()).toMatchSnapshot();
@@ -71,12 +76,13 @@ describe('PermissionsStateStoreTest', () => {
     function createStoreTesterForPermissionsStateActions(
         actionName: keyof PermissionsStateActions,
     ): StoreTester<PermissionsStateStoreData, PermissionsStateActions> {
-        const factory = (actions: PermissionsStateActions) => new PermissionsStateStore(actions);
+        const factory = (actions: PermissionsStateActions) =>
+            new PermissionsStateStore(actions, null, null, null);
 
         return new StoreTester(PermissionsStateActions, actionName, factory);
     }
 
     function createPermissionsState(): PermissionsStateStoreData {
-        return new PermissionsStateStore(null).getDefaultState();
+        return new PermissionsStateStore(null, null, null, null).getDefaultState();
     }
 });

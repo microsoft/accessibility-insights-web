@@ -85,7 +85,13 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         actionName: keyof NeedsReviewScanResultActions,
     ): StoreTester<NeedsReviewCardSelectionStoreData, NeedsReviewScanResultActions> {
         const factory = (actions: NeedsReviewScanResultActions) =>
-            new NeedsReviewCardSelectionStore(new NeedsReviewCardSelectionActions(), actions);
+            new NeedsReviewCardSelectionStore(
+                new NeedsReviewCardSelectionActions(),
+                actions,
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);
     }
@@ -379,7 +385,13 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         actionName: keyof NeedsReviewCardSelectionActions,
     ): StoreTester<NeedsReviewCardSelectionStoreData, NeedsReviewCardSelectionActions> {
         const factory = (actions: NeedsReviewCardSelectionActions) =>
-            new NeedsReviewCardSelectionStore(actions, new NeedsReviewScanResultActions());
+            new NeedsReviewCardSelectionStore(
+                actions,
+                new NeedsReviewScanResultActions(),
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);
     }
