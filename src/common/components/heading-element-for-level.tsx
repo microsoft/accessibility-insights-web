@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import * as styles from './heading-element-for-level.scss';
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export type HeadingElementForLevelProps = React.DetailedHTMLProps<
@@ -13,7 +15,13 @@ export type HeadingElementForLevelProps = React.DetailedHTMLProps<
 
 export const HeadingElementForLevel = NamedFC<HeadingElementForLevelProps>(
     'HeadingElementForLevel',
-    ({ headingLevel, ...props }) => React.createElement(`h${headingLevel}`, props),
+    ({ headingLevel, ...props }) => {
+        const newProps = {
+            ...props,
+            className: css(styles.headingElementForLevel, props.className),
+        };
+        return React.createElement(`h${headingLevel}`, newProps);
+    },
 );
 
 export const GetNextHeadingLevel = (headingLevel: HeadingLevel) => {

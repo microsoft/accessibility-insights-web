@@ -7,7 +7,7 @@ import { whyItMatters } from './why-it-matters';
 export const guidance = create(({ Markup }) => (
     <>
         <GuidanceTitle name={'Tab stops'} />
-        <Markup.Include content={createHowToTest(1)} />
+        <Markup.Include content={createHowToTest(2)} />
         <Markup.Include content={whyItMatters} />
     </>
 ));

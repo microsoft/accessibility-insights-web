@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@fluentui/utilities';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
@@ -26,7 +27,10 @@ const ReportCollapsibleContainer = NamedFC<ReportCollapsibleContainerProps>(
 
         return (
             <div className={outerDivClassName}>
-                <div className="title-container" role="heading" aria-level={headingLevel}>
+                <HeadingElementForLevel
+                    headingLevel={headingLevel as HeadingLevel}
+                    className="title-container"
+                >
                     <button
                         className="collapsible-control"
                         aria-expanded="false"
@@ -35,7 +39,7 @@ const ReportCollapsibleContainer = NamedFC<ReportCollapsibleContainerProps>(
                     >
                         {header}
                     </button>
-                </div>
+                </HeadingElementForLevel>
                 <div id={contentId} className="collapsible-content" aria-hidden="true">
                     {content}
                 </div>
