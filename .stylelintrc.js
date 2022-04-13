@@ -6,7 +6,7 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }],
         'scss/at-import-partial-extension': 'always',
 
-        // Recommended fixes to be enabled
+        // TO BE ENABLED: Recommended fixes
         'scss/at-extend-no-missing-placeholder': null,
         'no-duplicate-selectors': null,
         'no-invalid-position-at-import-rule': null,
@@ -16,14 +16,14 @@ module.exports = {
         'no-descending-specificity': null,
         'declaration-block-no-redundant-longhand-properties': null,
 
-        // Limit shorthand for margin and padding
+        // TO BE CONFIGURED: Limit shorthand for margin and padding
         // Example: 'declaration-property-max-values': { padding: 1 },
         'shorthand-property-no-redundant-values': null, // After the limit shorthand for padding and margin is complete, remove this rules and make recommended changes.
 
-        // Enforce variable values
+        // TO BE CONFIGURED: Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},
 
-        // Variable, selector, mixin case
+        // TO BE CONFIGURED: Variable, selector, mixin case
         'selector-class-pattern': null,
         'scss/at-mixin-pattern': null,
         'scss/dollar-variable-pattern': null,
