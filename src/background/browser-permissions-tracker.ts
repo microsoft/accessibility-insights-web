@@ -6,7 +6,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { Permissions } from 'webextension-polyfill-ts';
+import { Permissions } from 'webextension-polyfill';
 
 export const allOriginsPattern = '*://*/*';
 export const allUrlAndFilePermissions: Permissions.Permissions = { origins: [allOriginsPattern] };
