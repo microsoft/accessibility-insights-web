@@ -6,7 +6,7 @@ module.exports = {
         'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }],
         'scss/at-import-partial-extension': 'always',
 
-        // Recommended fixes
+        // Recommended fixes to be enabled
         'scss/at-extend-no-missing-placeholder': null,
         'no-duplicate-selectors': null,
         'no-invalid-position-at-import-rule': null,
@@ -18,7 +18,7 @@ module.exports = {
 
         // Limit shorthand for margin and padding
         // Example: 'declaration-property-max-values': { padding: 1 },
-        'shorthand-property-no-redundant-values': null, // Remove and fix this rule after the limit shorthand for padding and margin is complete
+        'shorthand-property-no-redundant-values': null, // After the limit shorthand for padding and margin is complete, remove this rules and make recommended changes.
 
         // Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},
@@ -28,7 +28,7 @@ module.exports = {
         'scss/at-mixin-pattern': null,
         'scss/dollar-variable-pattern': null,
 
-        // Parking lot
+        // Requires investigation
         'property-no-vendor-prefix': null,
         'value-no-vendor-prefix': null,
     },
