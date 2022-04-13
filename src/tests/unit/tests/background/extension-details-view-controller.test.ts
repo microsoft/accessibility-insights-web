@@ -3,7 +3,7 @@
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
