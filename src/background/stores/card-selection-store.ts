@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
@@ -13,14 +17,22 @@ import {
 } from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
+export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> {
     constructor(
         private readonly cardSelectionActions: CardSelectionActions,
         private readonly unifiedScanResultActions: UnifiedScanResultActions,
+        persistedState: CardSelectionStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.CardSelectionStore);
+        super(
+            StoreNames.CardSelectionStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.cardSelectionStore,
+            logger,
+        );
     }
 
     protected addActionListeners(): void {

@@ -2,17 +2,29 @@
 // Licensed under the MIT License.
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { TabActions } from 'background/actions/tab-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanResultStoreData> {
+export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanResultStoreData> {
     constructor(
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
         private readonly tabActions: TabActions,
+        persistedState: NeedsReviewScanResultStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.NeedsReviewScanResultStore);
+        super(
+            StoreNames.NeedsReviewScanResultStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.needsReviewScanResultsStore,
+            logger,
+        );
     }
 
     public getDefaultState(): NeedsReviewScanResultStoreData {

@@ -1,13 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from '../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { PathSnippetActions } from '../actions/path-snippet-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
-    constructor(private readonly pathSnippetActions: PathSnippetActions) {
-        super(StoreNames.PathSnippetStore);
+export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
+    constructor(
+        private readonly pathSnippetActions: PathSnippetActions,
+        persistedState: PathSnippetStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+    ) {
+        super(
+            StoreNames.PathSnippetStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.pathSnippetStore,
+            logger,
+        );
     }
 
     public getDefaultState(): PathSnippetStoreData {

@@ -11,7 +11,7 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null);
+        const testObject = new DetailsViewStore(null, null, null, null, null, null);
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
@@ -128,7 +128,14 @@ describe('DetailsViewStoreTest', () => {
         actionName: keyof ContentActions,
     ): StoreTester<DetailsViewStoreData, ContentActions> {
         const factory = (actions: ContentActions) =>
-            new DetailsViewStore(actions, new DetailsViewActions(), new SidePanelActions());
+            new DetailsViewStore(
+                actions,
+                new DetailsViewActions(),
+                new SidePanelActions(),
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(ContentActions, actionName, factory);
     }
@@ -137,7 +144,14 @@ describe('DetailsViewStoreTest', () => {
         actionName: keyof DetailsViewActions,
     ): StoreTester<DetailsViewStoreData, DetailsViewActions> {
         const factory = (actions: DetailsViewActions) =>
-            new DetailsViewStore(new ContentActions(), actions, new SidePanelActions());
+            new DetailsViewStore(
+                new ContentActions(),
+                actions,
+                new SidePanelActions(),
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(DetailsViewActions, actionName, factory);
     }
@@ -146,7 +160,14 @@ describe('DetailsViewStoreTest', () => {
         actionName: keyof SidePanelActions,
     ): StoreTester<DetailsViewStoreData, SidePanelActions> {
         const factory = (actions: SidePanelActions) =>
-            new DetailsViewStore(new ContentActions(), new DetailsViewActions(), actions);
+            new DetailsViewStore(
+                new ContentActions(),
+                new DetailsViewActions(),
+                actions,
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(SidePanelActions, actionName, factory);
     }

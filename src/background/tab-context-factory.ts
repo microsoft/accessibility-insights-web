@@ -3,8 +3,10 @@
 import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-review-card-selection-action-creator';
 import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
+import { PersistedData } from 'background/get-persisted-data';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
@@ -44,6 +46,8 @@ export class TabContextFactory {
         private readonly logger: Logger,
         private readonly usageLogger: UsageLogger,
         private readonly windowUtils: WindowUtils,
+        private readonly persistedData: PersistedData,
+        private readonly indexedDBInstance: IndexedDBAPI,
     ) {}
 
     public createTabContext(
@@ -53,7 +57,13 @@ export class TabContextFactory {
     ): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
-        const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
+        const storeHub = new TabContextStoreHub(
+            actionsHub,
+            this.visualizationConfigurationFactory,
+            this.persistedData,
+            this.indexedDBInstance,
+            this.logger,
+        );
         const notificationCreator = new NotificationCreator(
             browserAdapter,
             this.visualizationConfigurationFactory,

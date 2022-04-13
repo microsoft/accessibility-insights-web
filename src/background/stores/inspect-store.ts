@@ -1,18 +1,33 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from '../../common/stores/store-names';
 import { InspectStoreData } from '../../common/types/store-data/inspect-store-data';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 import { InspectMode } from '../inspect-modes';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class InspectStore extends BaseStoreImpl<InspectStoreData> {
+export class InspectStore extends PersistentStore<InspectStoreData> {
     private inspectActions: InspectActions;
     private tabActions: TabActions;
 
-    constructor(inspectActions: InspectActions, tabActions: TabActions) {
-        super(StoreNames.InspectStore);
+    constructor(
+        inspectActions: InspectActions,
+        tabActions: TabActions,
+        persistedState: InspectStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+    ) {
+        super(
+            StoreNames.InspectStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.inspectStore,
+            logger,
+        );
 
         this.inspectActions = inspectActions;
         this.tabActions = tabActions;
