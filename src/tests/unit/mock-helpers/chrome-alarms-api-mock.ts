@@ -12,7 +12,7 @@ export class ChromeAlarmsAPMIMock {
     private alarmListener: (name: Alarms.Alarm) => void;
 
     public setupAddListener(callback: (name: Alarms.Alarm) => void, times = 1) {
-        let mockOnAlarm: IMock<Events.Event<(name: Alarms.Alarm) => void>> =
+        const mockOnAlarm: IMock<Events.Event<(name: Alarms.Alarm) => void>> =
             Mock.ofType<Events.Event<(name: Alarms.Alarm) => void>>();
         Mock.ofType<(callback: (name: Alarms.Alarm) => void) => void>();
         mockOnAlarm
@@ -41,15 +41,11 @@ export class ChromeAlarmsAPMIMock {
         return this;
     }
 
-    public setupCreate(
-        alarmName: string,
-        alarmInfo: Alarms.CreateAlarmInfoType,
-        times: number = 1,
-    ) {
+    public setupCreate(alarmName: string, scheduledTime: number, times: number = 1) {
         this.underlyingMock
-            .setup(a => a.create(alarmName, alarmInfo))
+            .setup(a => a.create(alarmName, { when: scheduledTime }))
             .callback(cb => {
-                this.alarms.push(this.createStubAlarm(alarmName, alarmInfo.when));
+                this.alarms.push(this.createStubAlarm(alarmName, scheduledTime));
                 this.alarmListener(cb);
             })
             .verifiable(Times.exactly(times));
@@ -58,13 +54,13 @@ export class ChromeAlarmsAPMIMock {
     }
 
     public createMockCallback() {
-        let mockCallback: IMock<(name: Alarms.Alarm) => void> =
+        const mockCallback: IMock<(name: Alarms.Alarm) => void> =
             Mock.ofType<(name: Alarms.Alarm) => void>();
         return mockCallback;
     }
 
     public createStubAlarm(name: string, scheduledTime: number) {
-        let stubAlarm: Alarms.Alarm = {
+        const stubAlarm: Alarms.Alarm = {
             name,
             scheduledTime,
         };

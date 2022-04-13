@@ -40,7 +40,7 @@ describe('AlarmUtilsTest', () => {
     });
 
     it('createAlarm calls chrome alarms API with name and alarmInfo', async () => {
-        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo);
+        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo.when);
         testSubject = new AlarmUtilsStub(mockChromeAlarmsAPI);
         testSubject.createAlarm(testAlarmName, testAlarmInfo.when);
         expect(mockChromeAlarmsAPI.getAlarms().length).toBe(1);
@@ -50,7 +50,7 @@ describe('AlarmUtilsTest', () => {
     });
 
     it('createAlarmWithCallback registers alarm callback and creates alarms API alarm', async () => {
-        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo);
+        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo.when);
         testSubject = new AlarmUtilsStub(mockChromeAlarmsAPI);
         mockCallback.setup(c => c()).verifiable(Times.never());
         testSubject.createAlarmWithCallback(testAlarmName, testAlarmInfo.when, mockCallback.object);
@@ -64,7 +64,7 @@ describe('AlarmUtilsTest', () => {
     });
 
     it('clearAlarm clears the alarm from the chrome API', () => {
-        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo);
+        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo.when);
         mockChromeAlarmsAPI.setupClear(testAlarmName);
         testSubject = new AlarmUtilsStub(mockChromeAlarmsAPI);
         testSubject.createAlarm(testAlarmName, testAlarmInfo.when);
@@ -75,7 +75,7 @@ describe('AlarmUtilsTest', () => {
     });
 
     it('handleAlarm calls callback and clears alarm', () => {
-        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo);
+        mockChromeAlarmsAPI.setupCreate(testAlarmName, testAlarmInfo.when);
         mockChromeAlarmsAPI.setupClear(testAlarmName);
         const testAlarm = mockChromeAlarmsAPI.createStubAlarm(testAlarmName, testAlarmInfo.when);
         testSubject = new AlarmUtilsStub(mockChromeAlarmsAPI);
