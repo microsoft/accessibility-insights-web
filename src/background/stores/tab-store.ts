@@ -1,18 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Tab } from 'common/itab';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class TabStore extends BaseStoreImpl<TabStoreData> {
+export class TabStore extends PersistentStore<TabStoreData> {
     private tabActions: TabActions;
     private visualizationActions: VisualizationActions;
 
-    constructor(tabActions: TabActions, visualizationActions: VisualizationActions) {
-        super(StoreNames.TabStore);
+    constructor(
+        tabActions: TabActions,
+        visualizationActions: VisualizationActions,
+        persistedState: TabStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+    ) {
+        super(StoreNames.TabStore, persistedState, idbInstance, IndexedDBDataKeys.tabStore, logger);
 
         this.tabActions = tabActions;
         this.visualizationActions = visualizationActions;

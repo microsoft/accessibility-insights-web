@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { StoreNames } from 'common/stores/store-names';
 import {
@@ -8,7 +9,6 @@ import {
 } from 'common/types/store-data/launch-panel-store-data';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
-import { BaseStoreImpl } from '../base-store-impl';
 import { LaunchPanelStateActions } from './../../actions/launch-panel-state-action';
 
 export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
