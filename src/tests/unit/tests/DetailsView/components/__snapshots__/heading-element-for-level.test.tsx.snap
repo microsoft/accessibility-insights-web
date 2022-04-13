@@ -2,7 +2,7 @@
 
 exports[`HeadingElementForLevel should render a h1 1`] = `
 <h1
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h1>
@@ -10,7 +10,7 @@ exports[`HeadingElementForLevel should render a h1 1`] = `
 
 exports[`HeadingElementForLevel should render a h2 1`] = `
 <h2
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h2>
@@ -18,7 +18,7 @@ exports[`HeadingElementForLevel should render a h2 1`] = `
 
 exports[`HeadingElementForLevel should render a h3 1`] = `
 <h3
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h3>
@@ -26,7 +26,7 @@ exports[`HeadingElementForLevel should render a h3 1`] = `
 
 exports[`HeadingElementForLevel should render a h4 1`] = `
 <h4
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h4>
@@ -34,7 +34,7 @@ exports[`HeadingElementForLevel should render a h4 1`] = `
 
 exports[`HeadingElementForLevel should render a h5 1`] = `
 <h5
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h5>
@@ -42,7 +42,7 @@ exports[`HeadingElementForLevel should render a h5 1`] = `
 
 exports[`HeadingElementForLevel should render a h6 1`] = `
 <h6
-  className="a class"
+  className="headingElementForLevel a class"
 >
   A Heading
 </h6>

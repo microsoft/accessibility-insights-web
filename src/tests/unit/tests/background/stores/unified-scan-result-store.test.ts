@@ -133,7 +133,13 @@ describe('UnifiedScanResultStore Test', () => {
         actionName: keyof UnifiedScanResultActions,
     ): StoreTester<UnifiedScanResultStoreData, UnifiedScanResultActions> {
         const factory = (unifiedScanResultActions: UnifiedScanResultActions) =>
-            new UnifiedScanResultStore(unifiedScanResultActions, new TabActions());
+            new UnifiedScanResultStore(
+                unifiedScanResultActions,
+                new TabActions(),
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
     }
@@ -142,7 +148,13 @@ describe('UnifiedScanResultStore Test', () => {
         actionName: keyof TabActions,
     ): StoreTester<UnifiedScanResultStoreData, TabActions> {
         const factory = (tabActions: TabActions) =>
-            new UnifiedScanResultStore(new UnifiedScanResultActions(), tabActions);
+            new UnifiedScanResultStore(
+                new UnifiedScanResultActions(),
+                tabActions,
+                null,
+                null,
+                null,
+            );
 
         return new StoreTester(TabActions, actionName, factory);
     }

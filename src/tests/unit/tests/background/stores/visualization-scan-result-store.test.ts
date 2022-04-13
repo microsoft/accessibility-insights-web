@@ -564,6 +564,9 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
             );
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
@@ -580,6 +583,9 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -596,6 +602,9 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
             );
 
         return new StoreTester(TabStopRequirementActions, actionName, factory);
@@ -612,6 +621,9 @@ describe('VisualizationScanResultStoreTest', () => {
                 actions,
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);

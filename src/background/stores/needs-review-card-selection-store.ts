@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { forOwn, isEmpty } from 'lodash';
@@ -11,14 +15,22 @@ import {
     RuleExpandCollapsePayload,
     UnifiedScanCompletedPayload,
 } from '../actions/action-payloads';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class NeedsReviewCardSelectionStore extends BaseStoreImpl<NeedsReviewCardSelectionStoreData> {
+export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCardSelectionStoreData> {
     constructor(
         private readonly needsReviewCardSelectionActions: NeedsReviewCardSelectionActions,
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
+        persistedState: NeedsReviewCardSelectionStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.NeedsReviewCardSelectionStore);
+        super(
+            StoreNames.NeedsReviewCardSelectionStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.needsReviewCardSelectionStore,
+            logger,
+        );
     }
 
     protected addActionListeners(): void {

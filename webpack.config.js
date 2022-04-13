@@ -97,7 +97,9 @@ const commonConfig = {
     resolve: {
         // It is important that src is absolute but node_modules is relative. See #2520
         modules: [path.resolve(__dirname, './src'), 'node_modules'],
-        extensions: ['.tsx', '.ts', '.js'],
+        // We only directly use .tsx and .ts, but some of our transitive dependencies directly
+        // require .js or .json files
+        extensions: ['.tsx', '.ts', '.js', '.json'],
         // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
         // See https://github.com/dequelabs/axe-core/issues/2873
         fallback: { crypto: false },

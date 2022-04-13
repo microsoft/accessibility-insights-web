@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import {
     ModifiedCommandsTelemetryData,
     SHORTCUT_MODIFIED,
@@ -8,14 +12,25 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
 import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
-import { BaseStoreImpl } from '../base-store-impl';
 
-export class CommandStore extends BaseStoreImpl<CommandStoreData> {
+export class CommandStore extends PersistentStore<CommandStoreData> {
     private commandActions: CommandActions;
     private telemetryEventHandler: TelemetryEventHandler;
 
-    constructor(commandActions: CommandActions, telemetryEventHandler: TelemetryEventHandler) {
-        super(StoreNames.CommandStore);
+    constructor(
+        commandActions: CommandActions,
+        telemetryEventHandler: TelemetryEventHandler,
+        persistedState: CommandStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+    ) {
+        super(
+            StoreNames.CommandStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.commandStore,
+            logger,
+        );
 
         this.commandActions = commandActions;
         this.telemetryEventHandler = telemetryEventHandler;
