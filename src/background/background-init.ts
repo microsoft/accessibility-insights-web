@@ -80,6 +80,8 @@ async function initialize(): Promise<void> {
         IndexedDBDataKeys.visualizationStore,
         IndexedDBDataKeys.visualizationScanResultStore,
         IndexedDBDataKeys.unifiedScanResultStore,
+        IndexedDBDataKeys.knownTabIds,
+        IndexedDBDataKeys.tabIdToDetailsViewMap,
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
@@ -156,7 +158,11 @@ async function initialize(): Promise<void> {
     telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
-    const detailsViewController = new ExtensionDetailsViewController(browserAdapter);
+    const detailsViewController = new ExtensionDetailsViewController(
+        browserAdapter,
+        persistedData.tabIdToDetailsViewMap ?? {},
+        indexedDBInstance,
+    );
 
     const tabToContextMap: TabToContextMap = {};
 
@@ -216,6 +222,8 @@ async function initialize(): Promise<void> {
         detailsViewController,
         tabContextFactory,
         logger,
+        persistedData.knownTabIds ?? [],
+        indexedDBInstance,
     );
 
     await targetPageController.initialize();
