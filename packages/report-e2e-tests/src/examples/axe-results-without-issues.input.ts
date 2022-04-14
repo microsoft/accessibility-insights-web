@@ -4860,10 +4860,10 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<label for="country">Country:</label>',
+                        html: '<label for="country/region">Country/Region:</label>',
                         impact: null,
                         none: [],
-                        target: ['label[for="country"]'],
+                        target: ['label[for="country/region"]'],
                     },
                     {
                         all: [],
@@ -4884,10 +4884,10 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<input type="text" name="country" id="country">',
+                        html: '<input type="text" name="country/region" id="country/region">',
                         impact: null,
                         none: [],
-                        target: ['#country'],
+                        target: ['#country/region'],
                     },
                     {
                         all: [],
@@ -5592,7 +5592,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                         all: [],
                         any: [
                             {
-                                data: 'country',
+                                data: 'country/region',
                                 id: 'duplicate-id-aria',
                                 impact: 'critical',
                                 message:
@@ -5600,10 +5600,10 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<input type="text" name="country" id="country">',
+                        html: '<input type="text" name="country/region" id="country/region">',
                         impact: null,
                         none: [],
-                        target: ['#country'],
+                        target: ['#country/region'],
                     },
                     {
                         all: [],
@@ -6622,7 +6622,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html: '<input type="text" name="country" id="country">',
+                        html: '<input type="text" name="country/region" id="country/region">',
                         impact: null,
                         none: [
                             {
@@ -6632,13 +6632,13 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 message: 'Form field does not have multiple label elements',
                                 relatedNodes: [
                                     {
-                                        html: '<label for="country">Country:</label>',
-                                        target: ['label[for="country"]'],
+                                        html: '<label for="country/region">Country/Region:</label>',
+                                        target: ['label[for="country/region"]'],
                                     },
                                 ],
                             },
                         ],
-                        target: ['#country'],
+                        target: ['#country/region'],
                     },
                     {
                         all: [],
@@ -7391,7 +7391,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html: '<input type="text" name="country" id="country">',
+                        html: '<input type="text" name="country/region" id="country/region">',
                         impact: null,
                         none: [
                             {
@@ -7403,7 +7403,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        target: ['#country'],
+                        target: ['#country/region'],
                     },
                     {
                         all: [],
@@ -7665,7 +7665,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<input type="text" name="country" id="country">',
+                        html: '<input type="text" name="country/region" id="country/region">',
                         impact: null,
                         none: [
                             {
@@ -7676,7 +7676,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        target: ['#country'],
+                        target: ['#country/region'],
                     },
                     {
                         all: [],

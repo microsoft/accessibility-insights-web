@@ -2456,7 +2456,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
+                        html: '<div>\n          Country/Region:\n          <input type="text" name="country/region">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['div:nth-child(7)'],
@@ -2480,10 +2480,10 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html: '<input type="text" name="country">',
+                        html: '<input type="text" name="country/region">',
                         impact: null,
                         none: [],
-                        target: ['input[name="country"]'],
+                        target: ['input[name="country/region"]'],
                     },
                     {
                         all: [],
@@ -3294,7 +3294,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html: '<input type="text" name="country">',
+                        html: '<input type="text" name="country/region">',
                         impact: null,
                         none: [
                             {
@@ -3305,7 +3305,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        target: ['input[name="country"]'],
+                        target: ['input[name="country/region"]'],
                     },
                     {
                         all: [],
@@ -3860,7 +3860,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html: '<input type="text" name="country">',
+                        html: '<input type="text" name="country/region">',
                         impact: null,
                         none: [
                             {
@@ -3872,7 +3872,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        target: ['input[name="country"]'],
+                        target: ['input[name="country/region"]'],
                     },
                     {
                         all: [],
@@ -5354,10 +5354,10 @@ export const axeResultsWithIssues: AxeReportParameters = {
                         ],
                         failureSummary:
                             'Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Form element does not have an implicit (wrapped) <label>\n  Form element does not have an explicit <label>\n  Element has no title attribute or the title attribute is empty',
-                        html: '<input type="text" name="country">',
+                        html: '<input type="text" name="country/region">',
                         impact: 'critical',
                         none: [],
-                        target: ['input[name="country"]'],
+                        target: ['input[name="country/region"]'],
                     },
                     {
                         all: [],
@@ -6106,7 +6106,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['form > div:nth-child(6)'],
                                     },
                                     {
-                                        html: '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
+                                        html: '<div>\n          Country/Region:\n          <input type="text" name="country/region">\n        </div>',
                                         target: ['div:nth-child(7)'],
                                     },
                                     {
