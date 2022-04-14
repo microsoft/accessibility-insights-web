@@ -19,4 +19,6 @@ export class IndexedDBDataKeys {
     public static readonly visualizationStore: string = 'visualizationStore';
     public static readonly visualizationScanResultStore: string = 'visualizationScanResultStore';
     public static readonly unifiedScanResultStore: string = 'unifiedScanResultStore';
+    public static readonly knownTabIds: string = 'knownTabIds';
+    public static readonly tabIdToDetailsViewMap: string = 'tabIdToDetailsViewMap';
 }
