@@ -12,7 +12,6 @@ import {
     UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
-    ResetTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
