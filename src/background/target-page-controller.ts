@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
@@ -18,12 +20,17 @@ export class TargetPageController {
         private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
+        private readonly knownTabIds: number[],
+        private readonly idbInstance: IndexedDBAPI,
     ) {}
 
     public async initialize(): Promise<void> {
+        this.knownTabIds.forEach(tabId => this.addTabContext(tabId));
+
         const tabs = await this.browserAdapter.tabsQuery({});
-        if (tabs) {
-            tabs.forEach(tab => {
+        const newTabs = tabs.filter(tab => !this.knownTabIds.includes(tab.id));
+        if (newTabs) {
+            newTabs.forEach(tab => {
                 this.handleTabUrlUpdate(tab.id);
             });
         }
@@ -40,6 +47,20 @@ export class TargetPageController {
 
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
+
+    private addKnownTabId = async (tabId: number) => {
+        if (!this.knownTabIds.includes(tabId)) {
+            this.knownTabIds.push(tabId);
+            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+        }
+    };
+
+    private removeKnownTabId = async (tabId: number) => {
+        if (this.knownTabIds.includes(tabId)) {
+            this.knownTabIds.splice(this.knownTabIds.indexOf(tabId, 0), 1);
+            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+        }
+    };
 
     private onTabNavigated = (
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
@@ -96,6 +117,7 @@ export class TargetPageController {
         }
 
         this.sendTabUrlUpdatedAction(tabId);
+        this.addKnownTabId(tabId);
     };
 
     private hasTabContext(tabId: number): boolean {
@@ -167,6 +189,7 @@ export class TargetPageController {
     private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
         delete this.targetPageTabIdToContextMap[tabId];
+        this.removeKnownTabId(tabId);
     };
 
     private onDetailsViewTabRemoved = (tabId: number): void => {

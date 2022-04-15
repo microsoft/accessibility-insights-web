@@ -73,6 +73,10 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
+    public override getDefaultState(): AssessmentStoreData {
+        return this.generateDefaultState(this.persistedState);
+    }
+
     protected addActionListeners(): void {
         this.assessmentActions.getCurrentState.addListener(this.onGetCurrentState);
         this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
