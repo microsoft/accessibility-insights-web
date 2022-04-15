@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 export class AlarmUtils {
     protected alarmCallbacks = {};
-    constructor(protected alarmAPI?) {
-        this.alarmAPI ||= chrome.alarms;
+    constructor(protected readonly alarmAPI = chrome.alarms) {
         this.alarmAPI.onAlarm.addListener(this.handleAlarm);
     }
 

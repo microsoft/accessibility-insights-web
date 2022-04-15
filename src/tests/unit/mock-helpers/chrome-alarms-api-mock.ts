@@ -14,7 +14,7 @@ export class ChromeAlarmsAPMIMock {
     public setupAddListener(callback: (name: Alarms.Alarm) => void, times = 1) {
         const mockOnAlarm: IMock<Events.Event<(name: Alarms.Alarm) => void>> =
             Mock.ofType<Events.Event<(name: Alarms.Alarm) => void>>();
-        Mock.ofType<(callback: (name: Alarms.Alarm) => void) => void>();
+
         mockOnAlarm
             .setup(a => a.addListener(It.isAny()))
             .callback(() => {
