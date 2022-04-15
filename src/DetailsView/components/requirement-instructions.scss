@@ -13,17 +13,21 @@
 
 .requirement-instructions {
     font-family: $fontFamily;
+
     p,
     ol,
     li {
-        margin: 5px 0px;
+        margin: 5px 0;
     }
+
     ol {
         -webkit-padding-start: 16px;
     }
+
     ol ol {
         list-style-type: lower-alpha;
     }
+
     ol ol ol {
         list-style-type: lower-roman;
     }

@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    browser,
+import browser, {
     ExtensionTypes,
     Notifications,
     Permissions,
     Runtime,
     Tabs,
     Windows,
-} from 'webextension-polyfill-ts';
+} from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';

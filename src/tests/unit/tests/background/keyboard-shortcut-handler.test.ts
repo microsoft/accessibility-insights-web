@@ -23,7 +23,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 

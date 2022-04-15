@@ -6,16 +6,18 @@
 
 @mixin fill-available-width {
     width: -moz-available;
+
     /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;
+
     /* Mozilla-based browsers will ignore this. */
     width: fill-available;
 }
 
 .hidden-highlight-button {
     opacity: 0;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     border: none;
 }
 
@@ -23,7 +25,7 @@
     border-radius: 4px;
     border: 1px solid $card-border;
     outline-style: 'border-style';
-    box-shadow: 0px 0.6px 1.8px $box-shadow-108, 0px 3.2px 7.2px $box-shadow-132;
+    box-shadow: 0 0.6px 1.8px $box-shadow-108, 0 3.2px 7.2px $box-shadow-132;
     margin-bottom: 16px;
     @include fill-available-width;
 }
@@ -52,19 +54,17 @@
 }
 
 .instance-details-card.interactive:hover {
-    box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
+    box-shadow: 0 8px 10px $box-shadow-108, 0 8px 10px $box-shadow-132;
 }
 
 .report-instance-table {
     background: $neutral-0;
-
     display: table;
     table-layout: fixed;
     @include fill-available-width;
 
     border-radius: inherit;
     border-collapse: collapse;
-
     overflow-wrap: break-word;
     word-break: break-word;
 
@@ -77,17 +77,19 @@
         // are presented side-by-side or wrapped
         padding-top: 2px;
         padding-bottom: 14px;
-        padding-left: 0px;
+        padding-left: 0;
         padding-right: 20px;
+
         > * {
             margin-top: 12px;
-            margin-bottom: 0px;
+            margin-bottom: 0;
             margin-left: 20px;
-            margin-right: 0px;
+            margin-right: 0;
             padding: 0;
         }
 
         border-bottom: 0.5px solid $neutral-10;
+
         &:last-child {
             border-bottom: none;
         }
@@ -100,7 +102,6 @@
         flex-basis: 90px;
         flex-shrink: 1;
         flex-grow: 0;
-
         font-size: 14px;
         line-height: 20px;
         font-weight: $fontWeightSemiBold;
@@ -112,7 +113,6 @@
         flex-basis: 200px;
         flex-shrink: 1;
         flex-grow: 1;
-
         color: $secondary-text;
         font-size: 14px;
         line-height: 20px;

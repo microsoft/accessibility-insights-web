@@ -258,7 +258,7 @@ describe('AssessmentStore', () => {
             assessmentKey,
             requirementKey,
         );
-        setupDataGeneratorMock(null, expectedState);
+        setupDataGeneratorMock(null, expectedState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -307,7 +307,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
         const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
-        setupDataGeneratorMock(null, finalState);
+        setupDataGeneratorMock(null, finalState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -359,7 +359,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
         const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
-        setupDataGeneratorMock(null, finalState);
+        setupDataGeneratorMock(null, finalState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -433,7 +433,7 @@ describe('AssessmentStore', () => {
             .withTargetTab(tabId, url, title, false)
             .build();
 
-        setupDataGeneratorMock(null, getDefaultState());
+        setupDataGeneratorMock(null, getDefaultState(), Times.exactly(2));
 
         createStoreTesterForAssessmentActions('resetAllAssessmentsData')
             .withActionParam(tabId)
@@ -1940,11 +1940,12 @@ describe('AssessmentStore', () => {
     function setupDataGeneratorMock(
         persistedData: AssessmentStoreData,
         initialData: AssessmentStoreData,
+        times: Times = Times.once(),
     ): void {
         initialAssessmentStoreDataGeneratorMock
             .setup(im => im.generateInitialState(persistedData))
             .returns(() => initialData)
-            .verifiable(Times.once());
+            .verifiable(times);
     }
 
     function getSampleTestStepsData(): ManualTestStatusData {

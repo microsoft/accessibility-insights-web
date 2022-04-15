@@ -25,7 +25,6 @@
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
-
     width: 100%;
     height: $default-title-height;
     display: flex;
@@ -58,7 +57,7 @@
         font-size: 14.51px;
         font-weight: $fontWeightSemiBold;
         line-height: 19.3px;
-        margin: 0px;
+        margin: 0;
     }
 
     :global(.header-icon) {
@@ -72,6 +71,7 @@
             color: $neutral-0;
             font-size: 12px;
         }
+
         svg {
             width: 12px;
             height: 12px;

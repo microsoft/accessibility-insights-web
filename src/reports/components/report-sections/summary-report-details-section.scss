@@ -6,7 +6,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .crawl-details-section {
-    @include boxShadow();
+    @include boxShadow;
 
     background-color: $neutral-0;
     padding: 20px;
@@ -16,7 +16,7 @@
         list-style: none;
         font-size: 14px;
         line-height: 16px;
-        padding-left: 0px;
+        padding-left: 0;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -24,6 +24,7 @@
 
         li {
             display: inline-block;
+
             .icon {
                 padding-right: 12px;
                 position: relative;
@@ -42,9 +43,11 @@
         color: $neutral-55;
         @include text-style-body-m;
     }
+
     .label {
         font-weight: $fontWeightSemiBold;
     }
+
     .label.no-icon {
         padding-left: 29px;
     }
