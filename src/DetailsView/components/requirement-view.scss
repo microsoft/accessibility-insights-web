@@ -3,7 +3,7 @@
 @import '../../common/styles/common.scss';
 
 .requirement-view {
-    margin: 0px 18px;
+    margin: 0 18px;
     padding-left: 6px;
     padding-top: 1vh;
     display: flex;
@@ -35,6 +35,7 @@
     display: flex;
     padding-top: 1.5vh;
     flex-wrap: wrap;
+
     :global(.visual-helper-text) {
         padding-right: 0.9vh;
         font-family: $fontFamily;

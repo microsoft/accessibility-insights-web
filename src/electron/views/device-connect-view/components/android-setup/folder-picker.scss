@@ -4,13 +4,12 @@
 
 .folder-picker {
     .instructions {
-        margin-top: 0px;
+        margin-top: 0;
         @include text-style-body-m;
     }
 
     .picker-control {
         margin-top: 24px;
-
         display: flex;
         flex-direction: row;
 
@@ -18,13 +17,11 @@
             flex-grow: 1;
             flex-shrink: 1;
             flex-basis: auto;
-
             min-width: 100px;
         }
 
         .browse-button {
             margin-left: 8px;
-
             flex-grow: 0;
             flex-shrink: 0;
             flex-basis: auto;

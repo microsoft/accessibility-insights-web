@@ -9,12 +9,9 @@
 
     .ad-hoc-tools-grid {
         display: grid;
-
         grid-auto-flow: column;
-
         grid-template-columns: auto auto;
         grid-template-rows: auto 1px auto 1px auto;
-
         grid-column-gap: 30px;
         grid-row-gap: 14px;
     }
