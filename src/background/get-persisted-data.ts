@@ -49,6 +49,8 @@ const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
     [IndexedDBDataKeys.installation]: 'installationData',
     [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
+    [IndexedDBDataKeys.knownTabIds]: 'knownTabIds',
+    [IndexedDBDataKeys.tabIdToDetailsViewMap]: 'tabIdToDetailsViewMap',
 };
 
 export function getPersistedData(
