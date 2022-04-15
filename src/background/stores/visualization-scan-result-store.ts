@@ -198,14 +198,6 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onResetTabStopRequirementStatus = (
-        payload: ResetTabStopRequirementStatusPayload,
-    ): void => {
-        const { requirementId } = payload;
-        this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
-        this.emitChanged();
-    };
-
     private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
         const { requirementId, description, selector, html } = payload;
         this.state.tabStops.requirements[requirementId].status = 'fail';
