@@ -5,7 +5,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { ExtensionTypes } from 'webextension-polyfill-ts';
+import { ExtensionTypes } from 'webextension-polyfill';
 
 describe('ContentScriptInjector', () => {
     const testTabId = 1;

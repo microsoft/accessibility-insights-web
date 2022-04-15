@@ -1,45 +1,83 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createDefaultPromiseFactory, TimeoutError } from 'common/promises/promise-factory';
+import {
+    createAlarmPromiseFactory,
+    createDefaultPromiseFactory,
+    TimeoutError,
+} from 'common/promises/promise-factory';
+import { ChromeAlarmsAPMIMock } from 'tests/unit/mock-helpers/chrome-alarms-api-mock';
+import { AlarmUtilsStub } from 'tests/unit/stubs/alarm-utils-stub';
 
-describe(createDefaultPromiseFactory, () => {
-    const testObject = createDefaultPromiseFactory();
+function neverResolveAsync(): Promise<never> {
+    return new Promise(() => {});
+}
 
+describe(`promiseFactory`, () => {
+    const testTimeoutId = `timeout-promise-${Date.now()}`;
+    const mockAlarmsAPI = new ChromeAlarmsAPMIMock();
+    mockAlarmsAPI.setupAddListener(mockAlarmsAPI.createMockCallback().object); //verify addlistener is called
+    mockAlarmsAPI.setupCreate(testTimeoutId, 50);
+    mockAlarmsAPI.setupClear(testTimeoutId);
+    const alarmUtils = new AlarmUtilsStub(mockAlarmsAPI);
+    mockAlarmsAPI.setAlarmListener(alarmUtils.handleAlarm); //set the listener to the correct function
+    const testAlarmObject = createAlarmPromiseFactory(alarmUtils);
+    const testDefaultObject = createDefaultPromiseFactory();
     describe('timeout', () => {
-        it("propogates an underlying Promise's resolve", async () => {
-            const actual = 'the result';
-            const resolving = Promise.resolve(actual);
+        it.each`
+            testObject           | promiseFactoryType
+            ${testDefaultObject}
+            ${testAlarmObject}
+        `(
+            "$promiseFactoryType propogates an underlying Promise's resolve",
+            async ({ testObject }) => {
+                const actual = 'the result';
+                const resolving = Promise.resolve(actual);
 
-            const result = testObject.timeout(resolving, 10);
+                const result = testObject.timeout(resolving, 10);
 
-            await expect(result).resolves.toEqual(actual);
-        });
+                await expect(result).resolves.toEqual(actual);
+            },
+        );
 
-        it("propogates an underlying Promise's reject", async () => {
-            const reason = 'rejecting!';
-            const rejecting = testObject.timeout(Promise.reject(reason), 10);
+        it.each`
+            testObject           | promiseFactoryType
+            ${testDefaultObject}
+            ${testAlarmObject}
+        `(
+            "$promiseFactoryType propogates an underlying Promise's reject",
+            async ({ testObject }) => {
+                const reason = 'rejecting!';
+                const rejecting = testObject.timeout(Promise.reject(reason), 10);
 
-            await expect(rejecting).rejects.toEqual(reason);
-        });
+                await expect(rejecting).rejects.toEqual(reason);
+            },
+        );
 
-        it('rejects with a TimeoutError on timeout', async () => {
+        it.each`
+            testObject           | promiseFactoryType
+            ${testDefaultObject}
+            ${testAlarmObject}
+        `('$promiseFactoryType rejects with a TimeoutError on timeout', async ({ testObject }) => {
             const delay = 1;
             const timingOut = testObject.timeout(neverResolveAsync(), delay);
 
             await expect(timingOut).rejects.toThrowError(TimeoutError);
         });
 
-        it('rejects with the pinned error message on timeout', async () => {
-            const delay = 1;
-            const timingOut = testObject.timeout(neverResolveAsync(), delay);
+        it.each`
+            testObject           | promiseFactoryType
+            ${testDefaultObject}
+            ${testAlarmObject}
+        `(
+            '$promiseFactoryType rejects with the pinned error message on timeout',
+            async ({ testObject }) => {
+                const delay = 1;
+                const timingOut = testObject.timeout(neverResolveAsync(), delay);
 
-            await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Timed out after 1ms"`,
-            );
-        });
-
-        function neverResolveAsync(): Promise<never> {
-            return new Promise(() => {});
-        }
+                await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
+                    `"Timed out after 1ms"`,
+                );
+            },
+        );
     });
 });
