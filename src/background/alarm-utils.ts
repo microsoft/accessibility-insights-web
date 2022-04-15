@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import browser from 'webextension-polyfill';
+
 export class AlarmUtils {
     protected alarmCallbacks = {};
-    constructor(protected readonly alarmAPI = chrome.alarms) {
+    constructor(protected readonly alarmAPI: typeof browser.alarms = chrome.alarms) {
         this.alarmAPI.onAlarm.addListener(this.handleAlarm);
     }
 
