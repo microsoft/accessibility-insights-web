@@ -5,7 +5,7 @@ import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
 import { TargetTabFinder } from 'popup/target-tab-finder';
 import { IMock, It, Mock } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('TargetTabFinderTest', () => {
     let testSubject: TargetTabFinder;

@@ -113,6 +113,7 @@
         "@types/serve-static": "^1.13.10",
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^8.3.4",
+        "@types/webextension-polyfill": "^0.8.3",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
         "app-builder-lib": "^23.0.6",
@@ -198,7 +199,7 @@
         "tabbable": "^5.2.1",
         "ua-parser-js": "^1.0.2",
         "uuid": "^8.3.2",
-        "webextension-polyfill-ts": "^0.26.0"
+        "webextension-polyfill": "^0.9.0"
     },
     "resolutions": {
         "@types/node": "^14.14.6",

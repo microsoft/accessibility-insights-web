@@ -3,7 +3,7 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
-import { Runtime, Tabs, Windows } from 'webextension-polyfill-ts';
+import { Runtime, Tabs, Windows } from 'webextension-polyfill';
 
 // This is a mock BrowserAdapter that maintains simulated state about which "windows" and "tabs"
 // exist and which listeners have been registered, and provides a few helper functions to simulate
