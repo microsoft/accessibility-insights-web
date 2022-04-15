@@ -26,8 +26,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     align-content: stretch;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
     width: 100%;
     min-height: 0;
     height: 100%;
@@ -46,14 +46,17 @@
         overflow: auto;
         box-sizing: border-box;
         max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+
         > div {
             width: 100%;
             height: auto;
         }
+
         :global(.ms-MessageBar-icon) i {
             margin-left: 12px;
             color: $secondary-text;
         }
+
         .view {
             flex-grow: 1;
             height: 100%;
@@ -61,12 +64,14 @@
             display: flex;
             flex-direction: column;
             min-height: 0;
+
             h1 {
-                margin: 0px;
+                margin: 0;
                 font-weight: $fontWeightSemiBold;
                 font-size: 21px;
                 color: $neutral-100;
             }
+
             b {
                 font-weight: 600;
             }

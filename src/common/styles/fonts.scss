@@ -35,9 +35,7 @@ $fonts: (
     'Segoe UI Emoji',
     'Segoe UI Symbol'
 );
-
 $common-font-family: make-font-family($fonts) !default;
-
 $fontFamily: $common-font-family !default;
 $fontStack: $common-font-family !default;
 $toolbarFontFamily: $common-font-family !default;
@@ -60,7 +58,7 @@ $fontSizeXL: 36px !default;
 $fontSizeXXL: 40px !default;
 $fontSizeXXXL: 56px !default;
 $fontSizeXXXXL: 72px !default;
-$codeFontFamily: Menlo, Consolas, Courier New, monospace !default;
+$codeFontFamily: menlo, consolas, courier new, monospace !default;
 
 @mixin text-style-title-m {
     font-weight: $fontWeightSemiBold;

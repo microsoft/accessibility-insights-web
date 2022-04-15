@@ -8,15 +8,19 @@
     padding-right: $fastPassRightPanelMarginRight;
     padding-left: $fastPassRightPanelMarginLeft;
     margin-bottom: auto;
+
     ol {
         -webkit-padding-start: 16px;
+
         li ul li {
             list-style-type: disc;
         }
     }
+
     i {
         font-size: 16px;
     }
+
     background-color: $neutral-2;
     height: 100%;
 }
@@ -26,14 +30,16 @@
     margin-top: 12px;
     height: 40px;
     background-color: $neutral-4;
+
     :global {
         .ms-Toggle-label {
             float: left;
             margin: 5px 8px 5px 8px;
             color: $neutral-100;
         }
+
         .ms-Toggle-innerContainer {
-            margin: 10px 0px 10px 0px;
+            margin: 10px 0 10px 0;
         }
     }
 }

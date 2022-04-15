@@ -3,6 +3,7 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "msjsdiag.debugger-for-chrome",
-        "psioniq.psi-header"
+        "psioniq.psi-header",
+        "stylelint.vscode-stylelint"
     ]
 }

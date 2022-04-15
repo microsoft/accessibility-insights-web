@@ -8,36 +8,45 @@
         margin-top: 0.5vh;
         margin-bottom: 0.5vh;
     }
+
     .selector-list {
         border: solid 1px $neutral-30;
         margin-top: 1vh;
         margin-bottom: 3vh;
         height: 15%;
         overflow: auto;
+
         :global(.ms-List-cell):last-child {
             border-bottom: solid $neutral-20 1px;
         }
+
         :global(.ms-List-cell + .ms-List-cell) {
             border-top: solid $neutral-20 1px;
         }
+
         .delete-selector-button {
             background: $neutral-0;
-            padding-right: 0px;
+            padding-right: 0;
             margin: 1px;
+
             .delete-selector-icon {
                 color: $neutral-30;
             }
         }
     }
+
     .selector-input-field {
         width: 55%;
     }
+
     .add-selector-buttons {
         width: 40%;
+
         .textbox-add-selector-button {
             width: 80%;
         }
     }
+
     .textbox-add-selector-button {
         width: 35%;
     }
@@ -45,6 +54,7 @@
 
 .selector-input-item-cell {
     padding-left: 1vh;
+
     .selector-input-item-content {
         display: flex;
         justify-content: space-between;

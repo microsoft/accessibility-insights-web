@@ -23,16 +23,14 @@
     }
 
     .collapsible-control {
-        font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont,
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont,
             Roboto, 'Helvetica Neue', Helvetica, Ubuntu, Arial, sans-serif, 'Apple Color Emoji',
             'Segoe UI Emoji', 'Segoe UI Symbol';
         background-color: transparent;
         cursor: pointer;
         border: none;
-
         display: flex;
         align-items: baseline;
-
         width: 100%;
         height: fit-content;
 
@@ -42,18 +40,19 @@
         }
     }
 
-    .collapsible-control[aria-expanded='false']:before {
+    .collapsible-control[aria-expanded='false']::before {
         @extend %common-control-chevron;
         @include transform(rotate(-45deg));
     }
 
-    .collapsible-control[aria-expanded='true']:before {
+    .collapsible-control[aria-expanded='true']::before {
         @extend %common-control-chevron;
         @include transform(rotate(45deg));
     }
 
     .collapsible-container-content {
         margin-left: 24px;
+
         &[aria-hidden='true'] {
             display: none;
         }
