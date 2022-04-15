@@ -23,8 +23,9 @@ export class BrowserAdapterEventManager {
     protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener[]> = {};
     protected adapterListener: AdapterListener =
         (eventType: string) =>
-        (...eventArgs: any[]) =>
+        (...eventArgs: any[]) => {
             this.processEvent(eventType, eventArgs);
+        };
     constructor(
         private promiseFactory?: PromiseFactory,
         private setTimeoutManager?: SetTimeoutManager,
@@ -66,18 +67,18 @@ export class BrowserAdapterEventManager {
                 //prevents the service worker going idle before a response is sent
                 await this.promiseFactory.timeout(result, 240000);
             }
-            return result;
         } else {
             // it is possible that this is the result of a fire and forget listener
             // wrap in 2-minute timeout to ensure it completes during service worker lifetime
             if (this.setTimeoutManager) {
-                this.setTimeoutManager.setTimeout(
-                    () => Promise.resolve(),
+                return this.setTimeoutManager.setTimeout(
+                    () => Promise.resolve(result),
                     120000,
                     `wrapper-timeout-${Date.now()}`,
                 );
             }
         }
+        return result;
     }
 
     private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
