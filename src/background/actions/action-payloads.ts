@@ -134,10 +134,6 @@ export interface AddTabbedElementPayload extends BaseActionPayload {
 export interface ResetTabStopRequirementStatusPayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> de85b0fc6 (add action for undo button in requirements table)
 export interface UpdateTabStopRequirementStatusPayload
     extends ResetTabStopRequirementStatusPayload {
     status: TabStopRequirementStatus;

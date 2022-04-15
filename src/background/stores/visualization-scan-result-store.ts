@@ -11,17 +11,10 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import {
-<<<<<<< HEAD
     TabStopRequirementStatuses,
     VisualizationScanResultData,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-=======
-    VisualizationScanResultData,
-    TabStopRequirementStatuses,
-} from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
->>>>>>> de85b0fc6 (add action for undo button in requirements table)
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
@@ -32,12 +25,9 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
-<<<<<<< HEAD
     ToggleTabStopRequirementExpandPayload,
     UpdateNeedToCollectTabbingResultsPayload,
     UpdateTabbingCompletedPayload,
-=======
->>>>>>> de85b0fc6 (add action for undo button in requirements table)
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
