@@ -23,6 +23,20 @@ describe(`setTimeout`, () => {
                 testAlarmTimeoutManager.setTimeout(callback, delayInMs, testTimeoutId);
                 mockAlarmUtils.verifyAll();
             });
+
+            it('setTimeout logs an error if name is not provided', () => {
+                console.error = jest.fn();
+                const mockAlarmUtils: IMock<AlarmUtils> = Mock.ofType<AlarmUtils>();
+                mockAlarmUtils
+                    .setup(a => a.createAlarmWithCallback(testTimeoutId, delayInMs, callback))
+                    .verifiable(Times.never());
+                const testAlarmTimeoutManager = new SetTimeoutManager({
+                    alarmUtils: mockAlarmUtils.object,
+                });
+                testAlarmTimeoutManager.setTimeout(callback, delayInMs);
+                mockAlarmUtils.verifyAll();
+                expect(console.error).toHaveBeenCalled();
+            });
         });
         describe('with windowUtils', () => {
             it('setTimeout calls windowUtils.setTimeout', () => {
@@ -36,6 +50,14 @@ describe(`setTimeout`, () => {
 
                 testWindowTimeoutManager.setTimeout(callback, delayInMs);
                 mockWindowUtils.verifyAll();
+            });
+        });
+        describe('with empty utils', () => {
+            it('setTimeout logs an error if both alarmUtils and windowUtils are empty', () => {
+                console.error = jest.fn();
+                const testWindowTimeoutManager = new SetTimeoutManager({});
+                testWindowTimeoutManager.setTimeout(callback, delayInMs);
+                expect(console.error).toHaveBeenCalled();
             });
         });
     });

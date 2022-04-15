@@ -4,6 +4,7 @@ import { SetTimeoutManager } from 'background/set-timeout-manager';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
+import { remove } from 'lodash';
 
 export interface ApplicationListener {
     (...args: any[]): any;
@@ -18,6 +19,9 @@ export interface AdapterListener {
     (eventType: string): (eventArgs: any[]) => any;
 }
 
+const TWO_MINUTES = 120000;
+const FOUR_MINUTES = 2 * TWO_MINUTES;
+
 export class BrowserAdapterEventManager {
     protected deferredEvents: EventDetails[] = [];
     protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener[]> = {};
@@ -27,8 +31,8 @@ export class BrowserAdapterEventManager {
             this.processEvent(eventType, eventArgs);
         };
     constructor(
-        private promiseFactory?: PromiseFactory,
-        private setTimeoutManager?: SetTimeoutManager,
+        private promiseFactory: PromiseFactory,
+        private setTimeoutManager: SetTimeoutManager,
     ) {}
 
     public registerEventToApplicationListener = (
@@ -62,21 +66,17 @@ export class BrowserAdapterEventManager {
     ): Promise<any> {
         const result = listener(...eventArgs);
         if (!!result && typeof result.then === 'function') {
-            if (this.promiseFactory) {
-                //wrapping application listener promise responses in a 4-minute promise race
-                //prevents the service worker going idle before a response is sent
-                await this.promiseFactory.timeout(result, 240000);
-            }
+            //wrapping application listener promise responses in a 4-minute promise race
+            //prevents the service worker going idle before a response is sent
+            await this.promiseFactory.timeout(result, FOUR_MINUTES);
         } else {
             // it is possible that this is the result of a fire and forget listener
             // wrap in 2-minute timeout to ensure it completes during service worker lifetime
-            if (this.setTimeoutManager) {
-                return this.setTimeoutManager.setTimeout(
-                    () => Promise.resolve(result),
-                    120000,
-                    `wrapper-timeout-${Date.now()}`,
-                );
-            }
+            return this.setTimeoutManager.setTimeout(
+                () => Promise.resolve(result),
+                TWO_MINUTES,
+                `wrapper-timeout-${Date.now()}`,
+            );
         }
         return result;
     }
@@ -90,16 +90,14 @@ export class BrowserAdapterEventManager {
         listener: ApplicationListener,
     ) {
         const allListeners = this.eventsToApplicationListenersMapping[eventType];
-        const applicationListenerIndex = allListeners.findIndex(listener);
-        if (applicationListenerIndex < 0) {
-            console.error('no application listeners found for ', eventType);
+
+        if (allListeners.length === 1) {
+            delete this.eventsToApplicationListenersMapping[eventType];
         } else {
-            if (allListeners.length === 1) {
-                delete this.eventsToApplicationListenersMapping[eventType];
-            } else {
-                this.eventsToApplicationListenersMapping[eventType] =
-                    allListeners.splice(applicationListenerIndex);
-            }
+            remove(
+                this.eventsToApplicationListenersMapping[eventType],
+                applicationListener => applicationListener === listener,
+            );
         }
     }
 
