@@ -15,6 +15,7 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { DictionaryStringTo } from 'types/common-types';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -40,12 +41,16 @@ export interface PersistedData {
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    knownTabIds: number[];
+    tabIdToDetailsViewMap: DictionaryStringTo<number>;
 }
 
 const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
     [IndexedDBDataKeys.installation]: 'installationData',
     [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
+    [IndexedDBDataKeys.knownTabIds]: 'knownTabIds',
+    [IndexedDBDataKeys.tabIdToDetailsViewMap]: 'tabIdToDetailsViewMap',
 };
 
 export function getPersistedData(

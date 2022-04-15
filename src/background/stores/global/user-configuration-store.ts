@@ -55,6 +55,10 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         return Object.assign(defaultState, persistedState);
     }
 
+    public override getDefaultState(): UserConfigurationStoreData {
+        return this.generateDefaultState(this.persistedState);
+    }
+
     public getState(): UserConfigurationStoreData {
         return cloneDeep(this.state);
     }

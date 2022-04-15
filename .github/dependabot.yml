@@ -50,20 +50,6 @@ updates:
   - dependency-name: electron
     versions:
     - ">= 0"
-    # Spectron major versions are tied to Electron major versions.
-    # We can only take major version updates as part of Electron updates.
-  - dependency-name: spectron
-    versions:
-    - ">=13.0.0"
-    # We use webdriverio only indirectly via spectron; our direct
-    # dependency on the package is only for the sake of typings, so
-    # we stick to the major version of webdriverio used by spectron.
-    #
-    # The spectron issue tracking their update to v5 is
-    # https://github.com/electron-userland/spectron/issues/349
-  - dependency-name: webdriverio
-    versions:
-    - ">=5.0.0"
     # Major version of @types/node is pinned to match the version of node we
     # use for builds (ideally, latest LTS)
   - dependency-name: "@types/node"
