@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SetTimeoutManager } from 'background/set-timeout-manager';
 import { PromiseFactory } from 'common/promises/promise-factory';
+import { TimeoutFactory, TimeoutType } from 'common/timeouts/timeout-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
-import { remove } from 'lodash';
 
 export interface ApplicationListener {
     (...args: any[]): any;
@@ -30,10 +29,7 @@ export class BrowserAdapterEventManager {
         (...eventArgs: any[]) => {
             this.processEvent(eventType, eventArgs);
         };
-    constructor(
-        private promiseFactory: PromiseFactory,
-        private setTimeoutManager: SetTimeoutManager,
-    ) {}
+    constructor(private promiseFactory: PromiseFactory, private timeoutFactory: TimeoutFactory) {}
 
     public registerEventToApplicationListener = (
         eventType: string,
@@ -72,42 +68,15 @@ export class BrowserAdapterEventManager {
         } else {
             // it is possible that this is the result of a fire and forget listener
             // wrap in 2-minute timeout to ensure it completes during service worker lifetime
-            return this.setTimeoutManager.setTimeout(
-                () => Promise.resolve(result),
-                TWO_MINUTES,
-                `wrapper-timeout-${Date.now()}`,
-            );
+            return this.timeoutFactory.timeoutType === TimeoutType.Alarm
+                ? this.timeoutFactory.createTimeout(
+                      () => Promise.resolve(result),
+                      TWO_MINUTES,
+                      `wrapper-timeout-${Date.now()}`,
+                  )
+                : this.timeoutFactory.createTimeout(() => Promise.resolve(result), TWO_MINUTES);
         }
         return result;
-    }
-
-    private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
-        event.removeListener(this.adapterListener(eventType));
-    }
-
-    private unregisterApplicationListenerForEvent(
-        eventType: string,
-        listener: ApplicationListener,
-    ) {
-        const allListeners = this.eventsToApplicationListenersMapping[eventType];
-
-        if (allListeners.length === 1) {
-            delete this.eventsToApplicationListenersMapping[eventType];
-        } else {
-            remove(
-                this.eventsToApplicationListenersMapping[eventType],
-                applicationListener => applicationListener === listener,
-            );
-        }
-    }
-
-    public removeListener(
-        event: Events.Event<any>,
-        eventType: string,
-        listener: ApplicationListener,
-    ) {
-        this.unregisterAdapterListener(event, eventType);
-        this.unregisterApplicationListenerForEvent(eventType, listener);
     }
 
     public processEvent(eventType: string, eventArgs: any[], isDeferred?: boolean): boolean {
