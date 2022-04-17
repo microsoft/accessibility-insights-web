@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { TimeoutFactory, TimeoutType } from 'common/timeouts/timeout-factory';
+import { remove } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
-import { remove } from 'lodash';
 export interface ApplicationListener {
     (...args: any[]): any;
 }
