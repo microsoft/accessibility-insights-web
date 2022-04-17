@@ -58,26 +58,33 @@ describe('BrowserAdapterEventManager', () => {
         validator = new BrowserAdapterEventManagerValidator();
     });
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'registerAdapterListenerForEvent adds adapter listener bound to eventType to eventAPI with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'registerAdapterListenerForEvent adds adapter listener bound to eventType to eventAPI with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const testSubject = validator.buildBrowserAdapterEventManager();
             const mockAdapterListener = validator.setupAdapterListener(testEventType, testArgs, 1);
             validator.setTestSubjectProperties(testSubject, {
                 adapterListener: mockAdapterListener.object,
             });
-            const mockEventAPI = validator.setupMockEventAPI(testEventType, 1);
+            const mockEventAPI = validator.setupMockEventAPIAddListener(testEventType, 1);
             testSubject.registerAdapterListenerForEvent(mockEventAPI.object, testEventType);
             validator.verifyAll();
             mockEventAPI.verifyAll();
         },
     );
-
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'registerEventToApplicationListener creates a new array of events if no events are found for eventType with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'registerEventToApplicationListener creates a new array of events if no events are found for eventType with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const testSubject = validator.buildBrowserAdapterEventManager();
             expect(testSubject.getEventsToApplicationListenersMapping()[testEventType]).toBe(
                 undefined,
@@ -93,10 +100,14 @@ describe('BrowserAdapterEventManager', () => {
         },
     );
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'registerEventToApplicationListener adds to the event array of events if existing events are found for eventType with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'registerEventToApplicationListener adds to the event array of events if existing events are found for eventType with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
                 eventsToApplicationListenersMapping: {
                     [testEventType]: [testApplicationListener],
@@ -113,10 +124,14 @@ describe('BrowserAdapterEventManager', () => {
         },
     );
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent calls registered listener and starts timeout for non-promise results with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent calls registered listener and starts timeout for non-promise results with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 1);
             const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
                 eventsToApplicationListenersMapping: {
@@ -129,10 +144,14 @@ describe('BrowserAdapterEventManager', () => {
             mockApplicationListener.verifyAll();
         },
     );
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent passes multiple args through to registered listener with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent passes multiple args through to registered listener with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const multiArgs = ['a', 1, null];
             const mockApplicationListener = validator.setupMockApplicationListener(multiArgs, 1);
             const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
@@ -147,10 +166,14 @@ describe('BrowserAdapterEventManager', () => {
         },
     );
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent calls registered listener and starts promise race for promise results with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent calls registered listener and starts promise race for promise results with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const mockApplicationListener = validator.setupMockAsyncApplicationListener(
                 testArgs,
                 1,
@@ -166,11 +189,14 @@ describe('BrowserAdapterEventManager', () => {
             mockApplicationListener.verifyAll();
         },
     );
-
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent calls all registered listeners if multiple are available with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent calls all registered listeners if multiple are available with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 1);
             const mockApplicationListener2 = validator.setupMockApplicationListener(testArgs, 1);
             const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
@@ -189,10 +215,14 @@ describe('BrowserAdapterEventManager', () => {
         },
     );
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent defers event if no listeners are available with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent defers event if no listeners are available with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const testSubject = validator.buildBrowserAdapterEventManager();
             validator.setupTimeoutFactory(0).setupPromiseFactory(0);
             expect(testSubject.getDeferredEvents().length).toBe(0);
@@ -205,10 +235,14 @@ describe('BrowserAdapterEventManager', () => {
             validator.verifyAll();
         },
     );
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'processEvent does not defer event if no listeners are available but isDeferred is true with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'processEvent does not defer event if no listeners are available but isDeferred is true with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const testSubject = validator.buildBrowserAdapterEventManager();
 
             validator.setupTimeoutFactory(0).setupPromiseFactory(0);
@@ -219,10 +253,14 @@ describe('BrowserAdapterEventManager', () => {
         },
     );
 
-    it.each([TimeoutType.Alarm, TimeoutType.Window])(
-        'registerEventToApplicationListener processes deferred events for eventType with %s timeout factory',
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'registerEventToApplicationListener processes deferred events for eventType with $timeoutType timeout factory',
         timeoutType => {
-            validator.setTimoutType(timeoutType);
+            validator.setTimeoutType(timeoutType);
             const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 2);
             const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
                 deferredEvents: [
@@ -239,6 +277,44 @@ describe('BrowserAdapterEventManager', () => {
             mockApplicationListener.verifyAll();
         },
     );
+
+    it.each`
+        timeoutType           | typeName
+        ${TimeoutType.Alarm}  | ${'alarm'}
+        ${TimeoutType.Window} | ${'window'}
+    `(
+        'removeListener calls removeListener on eventAPI and removes listener from mapping with $typeName timeout',
+        timeoutType => {
+            validator.setTimeoutType(timeoutType);
+            const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
+                eventsToApplicationListenersMapping: {
+                    [testEventType]: [testApplicationListener, testApplicationListener2],
+                },
+            });
+            const mockAdapterListener = validator.setupAdapterListener(testEventType, testArgs, 1);
+            validator.setTestSubjectProperties(testSubject, {
+                adapterListener: mockAdapterListener.object,
+            });
+            const mockEventAPI = validator.setupMockEventAPIRemoveListener(testEventType, 1);
+            testSubject.removeListener(mockEventAPI.object, testEventType, testApplicationListener);
+            expect(testSubject.getEventsToApplicationListenersMapping()[testEventType].length).toBe(
+                1,
+            );
+            expect(
+                testSubject.getEventsToApplicationListenersMapping()[testEventType],
+            ).toStrictEqual([testApplicationListener2]);
+            validator.verifyAll();
+            mockEventAPI.verifyAll();
+            testSubject.removeListener(
+                mockEventAPI.object,
+                testEventType,
+                testApplicationListener2,
+            );
+            expect(
+                testSubject.getEventsToApplicationListenersMapping()[testEventType],
+            ).toBeUndefined();
+        },
+    );
 });
 
 type BrowserAdapterEventManagerProperties = {
@@ -252,7 +328,7 @@ class BrowserAdapterEventManagerValidator {
     private mockAdapterListener: IMock<AdapterListener>;
     private timeoutType: TimeoutType;
 
-    public setTimoutType(timeoutType: TimeoutType) {
+    public setTimeoutType(timeoutType: TimeoutType) {
         this.timeoutType = timeoutType;
         return this;
     }
@@ -314,10 +390,18 @@ class BrowserAdapterEventManagerValidator {
         return this.mockAdapterListener;
     }
 
-    public setupMockEventAPI(eventType: string, times: number) {
+    public setupMockEventAPIAddListener(eventType: string, times: number) {
         const mockEventAPI: IMock<Events.Event<any>> = Mock.ofType<Events.Event<any>>();
         mockEventAPI
             .setup(e => e.addListener(this.mockAdapterListener.object(eventType)))
+            .verifiable(Times.exactly(times));
+        return mockEventAPI;
+    }
+
+    public setupMockEventAPIRemoveListener(eventType: string, times: number) {
+        const mockEventAPI: IMock<Events.Event<any>> = Mock.ofType<Events.Event<any>>();
+        mockEventAPI
+            .setup(e => e.removeListener(this.mockAdapterListener.object(eventType)))
             .verifiable(Times.exactly(times));
         return mockEventAPI;
     }

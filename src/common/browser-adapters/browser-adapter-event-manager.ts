@@ -4,7 +4,7 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 import { TimeoutFactory, TimeoutType } from 'common/timeouts/timeout-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
-
+import { remove } from 'lodash';
 export interface ApplicationListener {
     (...args: any[]): any;
 }
@@ -95,5 +95,34 @@ export class BrowserAdapterEventManager {
             }
             return false;
         }
+    }
+
+    private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
+        event.removeListener(this.adapterListener(eventType));
+    }
+
+    private unregisterApplicationListenerForEvent(
+        eventType: string,
+        listener: ApplicationListener,
+    ) {
+        const allListeners = this.eventsToApplicationListenersMapping[eventType];
+
+        if (allListeners.length === 1) {
+            delete this.eventsToApplicationListenersMapping[eventType];
+        } else {
+            remove(
+                this.eventsToApplicationListenersMapping[eventType],
+                applicationListener => applicationListener === listener,
+            );
+        }
+    }
+
+    public removeListener(
+        event: Events.Event<any>,
+        eventType: string,
+        listener: ApplicationListener,
+    ) {
+        this.unregisterAdapterListener(event, eventType);
+        this.unregisterApplicationListenerForEvent(eventType, listener);
     }
 }
