@@ -7,12 +7,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background-color: $neutral-2;
     min-height: 48px;
-
     padding-left: 12px;
-
     border-top: 0.5px solid $card-footer-border;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
@@ -21,7 +18,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         background: transparent;
 
         svg {
@@ -35,7 +31,6 @@
         label {
             color: $secondary-text;
             font-size: $fontSizeM;
-
             overflow-wrap: break-word;
             word-break: break-word;
         }

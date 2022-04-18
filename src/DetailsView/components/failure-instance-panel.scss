@@ -7,28 +7,29 @@
     .observed-failure-textfield {
         padding-bottom: 12px;
     }
+
     :global(.header-text) {
         font-size: 21px;
     }
 }
 
 .failure-instance-snippet-empty-body {
-    margin: 8px 0px 24px 0px;
+    margin: 8px 0 24px 0;
     color: $secondary-text;
 }
 
 .failure-instance-snippet-title {
-    margin: 24px 0px 8px 0px;
+    margin: 24px 0 8px 0;
     color: $primary-text;
 }
 
 .failure-instance-selector-note {
     color: $secondary-text;
-    margin: 8px 0px 8px 0px;
+    margin: 8px 0 8px 0;
 }
 
 .failure-instance-snippet-filled-body {
-    margin: 8px 0px 24px 0px;
+    margin: 8px 0 24px 0;
     padding: 12px 16px 12px 16px;
     max-height: 200px;
     color: $primary-text;
@@ -38,7 +39,7 @@
 }
 
 .failure-instance-snippet-error {
-    margin: 9px 0px 50px 9px;
+    margin: 9px 0 50px 9px;
     color: $secondary-text;
     display: flex;
     flex-direction: row;
@@ -53,14 +54,17 @@
     font-size: 16px !important;
     line-height: 24px !important;
     color: $neutral-100 !important;
+
     &:hover,
     &:focus {
-        color: LinkText !important;
+        color: linktext !important;
     }
 
     @media screen and (forced-colors: active) {
         @include fluent-forced-color-adjust-override;
+
         color: inherit !important;
+
         &:hover,
         &:focus {
             color: initial !important;

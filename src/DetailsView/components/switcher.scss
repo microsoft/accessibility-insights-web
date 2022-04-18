@@ -22,18 +22,20 @@
 
             background-color: $neutral-0;
             height: 32px;
-
             box-sizing: border-box;
             width: inherit;
             color: $neutral-alpha-90;
+
             i {
                 margin-right: 8px;
             }
         }
+
         :global(.ms-Dropdown-caretDownWrapper) {
             top: 2px;
             right: 18px;
         }
+
         :global(.ms-Dropdown-caretDown) {
             color: $neutral-alpha-90;
         }
@@ -50,6 +52,7 @@
 .switcher-dropdown-option {
     display: flex;
     flex-direction: row;
+
     i {
         margin-right: 8px;
     }

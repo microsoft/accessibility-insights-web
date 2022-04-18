@@ -9,7 +9,6 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
-
     background-color: $ada-brand-color;
     height: $detailsViewHeaderBarHeight;
     width: 100%;
@@ -23,11 +22,9 @@
 
     .header-text {
         margin-left: 8px;
-
         color: $header-bar-title-color;
-
         flex-shrink: 1;
-        @include ellipsedText();
+        @include ellipsedText;
         @include text-style-header-s;
     }
 }

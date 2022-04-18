@@ -64,6 +64,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             idbInstance,
             IndexedDBDataKeys.assessmentStore,
             logger,
+            true,
         );
     }
 

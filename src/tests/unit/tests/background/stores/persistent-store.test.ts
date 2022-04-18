@@ -60,45 +60,66 @@ describe('PersistentStoreTest', () => {
         idbInstanceMock.verifyAll();
     });
 
-    test('Initialize with initial state', async () => {
-        const testObject = new TestStore();
+    describe('Initialize with store data', () => {
+        test('Initialize with initial state', async () => {
+            const testObject = new TestStore();
 
-        const init = { value: 'value' };
-        testObject.initialize(init);
+            const init = { value: 'value' };
+            testObject.initialize(init);
 
-        expect(testObject.getState()).toBe(init);
+            expect(testObject.getState()).toBe(init);
+        });
+
+        test('Initialize with persisted data', async () => {
+            const testObject = new TestStore();
+
+            testObject.initialize();
+
+            expect(testObject.getState()).toBe(persistedState);
+        });
+
+        test('Initialize without persisted data', async () => {
+            const testObject = new TestStore(false);
+
+            testObject.initialize();
+
+            expect(testObject.getState()).toBe(defaultState);
+        });
+
+        test('Initialize with persisted data and generateDefaultState override', async () => {
+            const testObject = new GenerateDefaultStateTestStore();
+
+            testObject.initialize();
+
+            expect(testObject.getState()).toBe(generatedState);
+        });
+
+        test('Initialize without persisted data and generateDefaultState override', async () => {
+            const testObject = new GenerateDefaultStateTestStore(false);
+
+            testObject.initialize();
+
+            expect(testObject.getState()).toBe(generatedState);
+        });
     });
 
-    test('Initialize with persisted data', async () => {
-        const testObject = new TestStore();
+    describe('Initialize without store data', () => {
+        test('Initialize with initial state', async () => {
+            const testObject = new TestStore(true, false);
 
-        testObject.initialize();
+            const init = { value: 'value' };
+            testObject.initialize(init);
 
-        expect(testObject.getState()).toBe(persistedState);
-    });
+            expect(testObject.getState()).toBe(init);
+        });
 
-    test('Initialize without persisted data', async () => {
-        const testObject = new TestStore(false);
+        test('Initialize without initial state', async () => {
+            const testObject = new TestStore(true, false);
 
-        testObject.initialize();
+            testObject.initialize();
 
-        expect(testObject.getState()).toBe(defaultState);
-    });
-
-    test('Initialize with persisted data and generateDefaultState override', async () => {
-        const testObject = new GenerateDefaultStateTestStore();
-
-        testObject.initialize();
-
-        expect(testObject.getState()).toBe(generatedState);
-    });
-
-    test('Initialize without persisted data and generateDefaultState override', async () => {
-        const testObject = new GenerateDefaultStateTestStore(false);
-
-        testObject.initialize();
-
-        expect(testObject.getState()).toBe(generatedState);
+            expect(testObject.getState()).toBe(defaultState);
+        });
     });
 
     interface TestData {
@@ -106,7 +127,7 @@ describe('PersistentStoreTest', () => {
     }
 
     class TestStore extends PersistentStore<TestData> {
-        constructor(passNonNullParams = true) {
+        constructor(passNonNullParams = true, initializeWithStoreData = true) {
             if (passNonNullParams) {
                 super(
                     storeName,
@@ -114,9 +135,10 @@ describe('PersistentStoreTest', () => {
                     idbInstanceMock.object,
                     indexedDBDataKey,
                     loggerMock.object,
+                    initializeWithStoreData,
                 );
             } else {
-                super(null, null, null, null, null);
+                super(null, null, null, null, null, initializeWithStoreData);
             }
         }
 

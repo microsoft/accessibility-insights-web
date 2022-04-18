@@ -10,18 +10,22 @@
     button:disabled,
     button[aria-disabled='true'] {
         color: $disabled-text;
+
         .start-over-menu-item-icon {
             color: $disabled-text;
         }
     }
+
     button:active {
         .start-over-menu-item-icon {
             color: $primary-text;
         }
     }
+
     button:hover {
         background-color: $neutral-0;
         color: $insights-button-hover;
+
         .start-over-menu-item-icon {
             color: $insights-button-hover;
         }
