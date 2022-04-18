@@ -25,8 +25,8 @@ describe(`promiseFactory`, () => {
     describe('timeout', () => {
         it.each`
             testObject           | promiseFactoryType
-            ${testDefaultObject}
-            ${testAlarmObject}
+            ${testDefaultObject} | ${'default promise factory'}
+            ${testAlarmObject}   | ${'alarm promise factory'}
         `(
             "$promiseFactoryType propogates an underlying Promise's resolve",
             async ({ testObject }) => {
@@ -41,8 +41,8 @@ describe(`promiseFactory`, () => {
 
         it.each`
             testObject           | promiseFactoryType
-            ${testDefaultObject}
-            ${testAlarmObject}
+            ${testDefaultObject} | ${'default promise factory'}
+            ${testAlarmObject}   | ${'alarm promise factory'}
         `(
             "$promiseFactoryType propogates an underlying Promise's reject",
             async ({ testObject }) => {
@@ -55,8 +55,8 @@ describe(`promiseFactory`, () => {
 
         it.each`
             testObject           | promiseFactoryType
-            ${testDefaultObject}
-            ${testAlarmObject}
+            ${testDefaultObject} | ${'default promise factory'}
+            ${testAlarmObject}   | ${'alarm promise factory'}
         `('$promiseFactoryType rejects with a TimeoutError on timeout', async ({ testObject }) => {
             const delay = 1;
             const timingOut = testObject.timeout(neverResolveAsync(), delay);
@@ -66,8 +66,8 @@ describe(`promiseFactory`, () => {
 
         it.each`
             testObject           | promiseFactoryType
-            ${testDefaultObject}
-            ${testAlarmObject}
+            ${testDefaultObject} | ${'default promise factory'}
+            ${testAlarmObject}   | ${'alarm promise factory'}
         `(
             '$promiseFactoryType rejects with the pinned error message on timeout',
             async ({ testObject }) => {

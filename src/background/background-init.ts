@@ -160,7 +160,7 @@ async function initialize(): Promise<void> {
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const detailsViewController = new ExtensionDetailsViewController(
         browserAdapter,
-        persistedData.tabIdToDetailsViewMap ?? {},
+        {},
         indexedDBInstance,
     );
 
@@ -222,7 +222,7 @@ async function initialize(): Promise<void> {
         detailsViewController,
         tabContextFactory,
         logger,
-        persistedData.knownTabIds ?? [],
+        [],
         indexedDBInstance,
     );
 
