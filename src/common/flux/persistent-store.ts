@@ -12,6 +12,7 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         protected readonly idbInstance: IndexedDBAPI,
         protected readonly indexedDBDataKey: string,
         protected readonly logger: Logger,
+        private initializeWithStoreData = false,
     ) {
         super(storeName);
     }
@@ -26,11 +27,15 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
     }
 
     public override initialize(initialState?: TState): void {
-        const generatedPersistedState = this.generateDefaultState(this.persistedState);
+        if (this.initializeWithStoreData) {
+            const generatedPersistedState = this.generateDefaultState(this.persistedState);
 
-        this.state = initialState || (generatedPersistedState ?? this.getDefaultState());
+            this.state = initialState || (generatedPersistedState ?? this.getDefaultState());
 
-        this.addActionListeners();
+            this.addActionListeners();
+        } else {
+            super.initialize(initialState);
+        }
     }
 
     protected emitChanged(): void {

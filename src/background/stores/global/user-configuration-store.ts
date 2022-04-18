@@ -44,6 +44,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             indexDbApi,
             IndexedDBDataKeys.userConfiguration,
             logger,
+            true,
         );
     }
 
