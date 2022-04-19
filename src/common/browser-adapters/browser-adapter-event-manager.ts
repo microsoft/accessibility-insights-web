@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PromiseFactory } from 'common/promises/promise-factory';
-import { TimeoutFactory, TimeoutType } from 'common/timeouts/timeout-factory';
-import { remove } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
 export interface ApplicationListener {
@@ -12,6 +10,7 @@ export interface ApplicationListener {
 export interface EventDetails {
     eventType: string;
     eventArgs: any[];
+    resolveDeferred?: (eventDetails: EventDetails) => any;
 }
 
 export interface AdapterListener {
@@ -23,23 +22,20 @@ const FOUR_MINUTES = 2 * TWO_MINUTES;
 
 export class BrowserAdapterEventManager {
     protected deferredEvents: EventDetails[] = [];
-    protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener[]> = {};
+    protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     protected adapterListener: AdapterListener =
         (eventType: string) =>
         (...eventArgs: any[]) => {
             this.processEvent(eventType, eventArgs);
         };
-    constructor(private promiseFactory: PromiseFactory, private timeoutFactory: TimeoutFactory) {}
+
+    constructor(private promiseFactory: PromiseFactory) {}
 
     public registerEventToApplicationListener = (
         eventType: string,
         callback: ApplicationListener,
     ): void => {
-        if (this.eventsToApplicationListenersMapping[eventType]) {
-            this.eventsToApplicationListenersMapping[eventType].push(callback);
-        } else {
-            this.eventsToApplicationListenersMapping[eventType] = [callback];
-        }
+        this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
     };
 
@@ -51,49 +47,84 @@ export class BrowserAdapterEventManager {
     };
 
     private processDeferredEvents(): void {
-        this.deferredEvents = this.deferredEvents.filter(
-            event => this.processEvent(event.eventType, event.eventArgs, true) === false,
-        );
+        let stillDeferred: EventDetails[] = [];
+        this.deferredEvents.forEach(deferredEvent => {
+            if (this.eventsToApplicationListenersMapping[deferredEvent.eventType]) {
+                deferredEvent.resolveDeferred(deferredEvent);
+            } else {
+                stillDeferred.push(deferredEvent);
+            }
+        });
+        this.deferredEvents = stillDeferred;
     }
 
     private async forwardEventToApplicationListener(
         listener: ApplicationListener,
         eventArgs: any[],
     ): Promise<any> {
-        const result = listener(...eventArgs);
+        let result = undefined;
+        try {
+            result = listener(...eventArgs);
+        } catch (error) {
+            console.error('Error thrown in application listener: ', error);
+        }
         if (!!result && typeof result.then === 'function') {
             //wrapping application listener promise responses in a 4-minute promise race
             //prevents the service worker going idle before a response is sent
-            await this.promiseFactory.timeout(result, FOUR_MINUTES);
+            return await this.promiseFactory.timeout(result, FOUR_MINUTES);
         } else {
             // it is possible that this is the result of a fire and forget listener
             // wrap in 2-minute timeout to ensure it completes during service worker lifetime
-            return this.timeoutFactory.timeoutType === TimeoutType.Alarm
-                ? this.timeoutFactory.createTimeout(
-                      () => Promise.resolve(result),
-                      TWO_MINUTES,
-                      `wrapper-timeout-${Date.now()}`,
-                  )
-                : this.timeoutFactory.createTimeout(() => Promise.resolve(result), TWO_MINUTES);
+            return globalThis.setTimeout(() => Promise.resolve(result), TWO_MINUTES)
         }
-        return result;
     }
 
-    public processEvent(eventType: string, eventArgs: any[], isDeferred?: boolean): boolean {
-        if (this.eventsToApplicationListenersMapping[eventType]) {
-            this.eventsToApplicationListenersMapping[eventType].forEach(applicationListener => {
-                this.forwardEventToApplicationListener(applicationListener, eventArgs);
-            });
-            return true;
+    private resolveDeferredEvent =
+        (resolve: (value: unknown) => any, reject: (value: unknown) => any) =>
+        (eventDetails: EventDetails): any => {
+            return this.processEvent(eventDetails.eventType, eventDetails.eventArgs)
+                .then(result => {
+                    return resolve(result);
+                })
+                .catch(error => {
+                    return reject(error);
+                });
+        };
+
+    private deferEvent(eventDetails: EventDetails): Promise<any> {
+        let resolve: (value: unknown) => any, reject: (reason?: any) => any;
+
+        const deferredPromise = new Promise((res, rej) => {
+            resolve = res;
+            reject = rej;
+        });
+
+        this.deferredEvents.push({
+            resolveDeferred: this.resolveDeferredEvent(resolve, reject),
+            ...eventDetails,
+        });
+        return deferredPromise;
+    }
+
+    public processEvent(eventType: string, eventArgs: any[]): Promise<any> {
+        const applicationListener = this.eventsToApplicationListenersMapping[eventType];
+        if (applicationListener) {
+            return this.forwardEventToApplicationListener(applicationListener, eventArgs);
         } else {
-            if (!isDeferred) {
-                const eventDetails: EventDetails = {
+            if (
+                this.deferredEvents.find(
+                    eventDetails =>
+                        eventDetails.eventType === eventType &&
+                        eventDetails.eventArgs === eventArgs,
+                )
+            ) {
+                //noop, don't defer twice
+            } else {
+                return this.deferEvent({
                     eventType,
                     eventArgs,
-                };
-                this.deferredEvents.push(eventDetails);
+                });
             }
-            return false;
         }
     }
 
@@ -101,28 +132,13 @@ export class BrowserAdapterEventManager {
         event.removeListener(this.adapterListener(eventType));
     }
 
-    private unregisterApplicationListenerForEvent(
-        eventType: string,
-        listener: ApplicationListener,
-    ) {
-        const allListeners = this.eventsToApplicationListenersMapping[eventType];
-
-        if (allListeners.length === 1) {
+    private unregisterApplicationListenerForEvent(eventType: string) {
+        this.eventsToApplicationListenersMapping[eventType] &&
             delete this.eventsToApplicationListenersMapping[eventType];
-        } else {
-            remove(
-                this.eventsToApplicationListenersMapping[eventType],
-                applicationListener => applicationListener === listener,
-            );
-        }
     }
 
-    public removeListener(
-        event: Events.Event<any>,
-        eventType: string,
-        listener: ApplicationListener,
-    ) {
+    public removeListener(event: Events.Event<any>, eventType: string) {
         this.unregisterAdapterListener(event, eventType);
-        this.unregisterApplicationListenerForEvent(eventType, listener);
+        this.unregisterApplicationListenerForEvent(eventType);
     }
 }
