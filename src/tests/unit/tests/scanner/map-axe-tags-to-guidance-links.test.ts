@@ -14,7 +14,7 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         expect(mapAxeTagsToGuidanceLinks(tags)).toEqual([]);
     });
 
-    const wcagAAAtags = ['wcag223', 'wcag224', 'wcag248', 'wcag249', 'wcag325'];
+    const wcagAAAtags = ['wcag146', 'wcag223', 'wcag224', 'wcag248', 'wcag249', 'wcag325'];
     const irrelevantAxeCoreTags = [
         // axe-core specific, not required for our purposes
         'cat.aria',
