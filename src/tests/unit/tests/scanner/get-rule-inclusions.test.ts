@@ -85,6 +85,24 @@ describe('getRuleInclusions', () => {
         });
     });
 
+    it('excludes rules mapped to wcag2aaa tag and populates reason', () => {
+        const aaaRule = [
+            {
+                id: 'aaa-rule',
+                selector: 'fake-selector',
+                enabled: true,
+                tags: ['wcag2aaa'],
+            },
+        ];
+        const inclusions = getRuleInclusions(aaaRule, {});
+        expect(inclusions).toMatchObject({
+            'aaa-rule': {
+                status: 'excluded',
+                reason: 'rule is tagged wcag2aaa',
+            },
+        });
+    });
+
     it('excludes rules mapped to experimental tag and populates reason', () => {
         const experimentalRule = [
             {

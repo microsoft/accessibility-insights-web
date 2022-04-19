@@ -78,6 +78,13 @@ function getRuleIncludedConfig(
         };
     }
 
+    if (rule.tags.includes('wcag2aaa')) {
+        return {
+            status: 'excluded',
+            reason: 'rule is tagged wcag2aaa',
+        };
+    }
+
     return {
         status: 'included',
     };
