@@ -25,7 +25,7 @@ export class WindowUtils {
     }
 
     public setTimeout(handler: Function, timeout: number): number {
-        return window.setTimeout(handler, timeout);
+        return globalThis.setTimeout(handler, timeout);
     }
 
     public setInterval(handler: Function, timeout: number): number {

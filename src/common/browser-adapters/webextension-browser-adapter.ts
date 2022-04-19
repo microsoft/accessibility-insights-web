@@ -91,12 +91,22 @@ export abstract class WebExtensionBrowserAdapter
         details: ExtensionTypes.InjectDetails,
     ): Promise<any[]> {
         this.verifyPathCompatibility(details.file);
-        return browser.tabs.executeScript(tabId, details);
+        return typeof browser.tabs.executeScript === 'function'
+            ? browser.tabs.executeScript(tabId, details)
+            : chrome.scripting.executeScript({
+                  target: { tabId, allFrames: details.allFrames },
+                  files: [details.file],
+              } as chrome.scripting.ScriptInjection);
     }
 
     public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
         this.verifyPathCompatibility(details.file);
-        return browser.tabs.insertCSS(tabId, details);
+        return typeof browser.tabs.insertCSS === 'function'
+            ? browser.tabs.insertCSS(tabId, details)
+            : chrome.scripting.insertCSS({
+                  target: { tabId, allFrames: details.allFrames },
+                  files: [details.file],
+              } as chrome.scripting.CSSInjection);
     }
 
     public createActiveTab(url: string): Promise<Tabs.Tab> {
@@ -206,7 +216,9 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public getUrl(urlPart: string): string {
-        return chrome.extension.getURL(urlPart);
+        return typeof chrome.extension?.getURL === 'function'
+            ? chrome.extension.getURL(urlPart)
+            : chrome.runtime.getURL(urlPart);
     }
 
     public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {
