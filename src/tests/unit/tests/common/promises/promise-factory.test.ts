@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createDefaultPromiseFactory, TimeoutError } from 'common/promises/promise-factory';
+import {
+    createDefaultPromiseFactory,
+    ExternalResolutionPromise,
+    TimeoutError,
+} from 'common/promises/promise-factory';
 
 function neverResolveAsync(): Promise<never> {
     return new Promise(() => {});
@@ -39,6 +43,27 @@ describe(`promiseFactory`, () => {
             await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"Timed out after 1ms"`,
             );
+        });
+    });
+
+    describe('createPromiseForExternalResolution', () => {
+        let promiseForExternalResolution: ExternalResolutionPromise;
+        beforeEach(() => {
+            promiseForExternalResolution = testObject.externalResolutionPromise();
+        });
+
+        it('returns a promise for external resolution', () => {
+            expect(promiseForExternalResolution.promise).toHaveProperty('then');
+        });
+
+        it('calling returned reject resolves the promise', async () => {
+            promiseForExternalResolution.rejectHook('rejecting promise');
+            await expect(promiseForExternalResolution.promise).rejects.toBe('rejecting promise');
+        });
+
+        it('calling returned resolve resolves the promise', async () => {
+            promiseForExternalResolution.resolveHook('resolving promise');
+            await expect(promiseForExternalResolution.promise).resolves.toBe('resolving promise');
         });
     });
 });

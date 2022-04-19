@@ -4,10 +4,10 @@
 import {
     BrowserAdapterEventManager,
     ApplicationListener,
-    EventDetails,
     AdapterListener,
+    DeferredEventDetails,
 } from 'common/browser-adapters/browser-adapter-event-manager';
-import { PromiseFactory } from 'common/promises/promise-factory';
+import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
@@ -17,7 +17,7 @@ class TestableBrowserAdapterEventManager extends BrowserAdapterEventManager {
         return this.deferredEvents;
     }
 
-    public setDeferredEvents(events: EventDetails[]) {
+    public setDeferredEvents(events: DeferredEventDetails[]) {
         this.deferredEvents = events;
     }
 
@@ -112,23 +112,34 @@ describe('BrowserAdapterEventManager', () => {
 
     it('processEvent defers event if no listeners are available', () => {
         const testSubject = validator.buildBrowserAdapterEventManager();
+
         const eventDetails = {
             eventType: testEventType,
             eventArgs: testArgs,
         };
-        validator.setupPromiseFactory(0);
+        validator.setupPromiseFactory(0).setupExternalResolutionPromise(1);
         expect(testSubject.getDeferredEvents().length).toBe(0);
         testSubject.processEvent(testEventType, testArgs);
         expect(testSubject.getDeferredEvents().length).toBe(1);
         expect(testSubject.getDeferredEvents()[0].eventType).toEqual(eventDetails.eventType);
         expect(testSubject.getDeferredEvents()[0].eventArgs).toStrictEqual(eventDetails.eventArgs);
-        expect(testSubject.getDeferredEvents()[0].resolveDeferred).toBeDefined();
+        expect(testSubject.getDeferredEvents()[0].deferredResolution).toBeDefined();
 
         validator.verifyAll();
     });
     it('processEvent does not duplicate deferred event if no listeners are available', () => {
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
-            deferredEvents: [{ eventType: testEventType, eventArgs: testArgs }],
+            deferredEvents: [
+                {
+                    eventType: testEventType,
+                    eventArgs: testArgs,
+                    deferredResolution: {
+                        promise: new Promise((resolve, reject) => 'hello'),
+                        resolveHook: value => value,
+                        rejectHook: reason => reason,
+                    },
+                },
+            ],
         });
 
         validator.setupPromiseFactory(0);
@@ -140,20 +151,30 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('registerEventToApplicationListener processes deferred events for eventType', () => {
-        const mockResolveDeferred = Mock.ofType<(eventDetails: EventDetails) => any>();
-        mockResolveDeferred.setup(r => r(It.isAny())).verifiable(Times.once());
-        const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 0);
+        // const mockSetTimeout = Mock.ofType<typeof setTimeout>();
+        // mockSetTimeout.setup(s => s(itIsFunction, It.isAnyNumber())).verifiable(Times.once());
+        // globalThis.setTimeout = mockSetTimeout.object;
+        const mockDeferredResolution = Mock.ofType<ExternalResolutionPromise>();
+        mockDeferredResolution
+            .setup(d => d.resolveHook)
+            .returns(() => value => value)
+            .verifiable(Times.once());
+        const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 1);
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             deferredEvents: [
                 {
                     eventType: testEventType,
                     eventArgs: testArgs,
-                    resolveDeferred: mockResolveDeferred.object,
+                    deferredResolution: mockDeferredResolution.object,
                 },
                 {
                     eventType: `${testEventType}-2`,
                     eventArgs: testArgs,
-                    resolveDeferred: Mock.ofType<(eventDetails: EventDetails) => any>().object,
+                    deferredResolution: {
+                        promise: new Promise((resolve, reject) => 'hello'),
+                        resolveHook: value => value,
+                        rejectHook: reason => reason,
+                    },
                 },
             ],
         });
@@ -163,7 +184,7 @@ describe('BrowserAdapterEventManager', () => {
         );
         expect(testSubject.getDeferredEvents().length).toBe(1);
         mockApplicationListener.verifyAll();
-        mockResolveDeferred.verifyAll();
+        mockDeferredResolution.verifyAll();
     });
 
     it('removeListener calls removeListener on eventAPI and removes listener from mapping with $typeName timeout', () => {
@@ -185,7 +206,7 @@ describe('BrowserAdapterEventManager', () => {
 });
 
 type BrowserAdapterEventManagerProperties = {
-    deferredEvents?: EventDetails[];
+    deferredEvents?: DeferredEventDetails[];
     eventsToApplicationListenersMapping?: DictionaryStringTo<ApplicationListener>;
     adapterListener?: AdapterListener;
 };
@@ -261,10 +282,28 @@ class BrowserAdapterEventManagerValidator {
         return this;
     }
 
+    public setupExternalResolutionPromise(times: number): BrowserAdapterEventManagerValidator {
+        this.mockPromiseFactory
+            .setup(p => p.externalResolutionPromise())
+            .returns(() => {
+                return {
+                    promise: new Promise((resolve, reject) => null),
+                    resolveHook: (value: any) => value,
+                    rejectHook: (reason: any) => reason,
+                };
+            })
+            .verifiable(Times.exactly(times));
+
+        return this;
+    }
+
     public setupMockApplicationListener(listenerArgs: any[], times: number) {
         const mockApplicationListener: IMock<ApplicationListener> =
             Mock.ofType<ApplicationListener>();
-        mockApplicationListener.setup(l => l(...listenerArgs)).verifiable(Times.exactly(times));
+        mockApplicationListener
+            .setup(l => l(...listenerArgs))
+            .returns(() => true)
+            .verifiable(Times.exactly(times));
         return mockApplicationListener;
     }
 
@@ -275,6 +314,7 @@ class BrowserAdapterEventManagerValidator {
             .setup(l => l(...listenerArgs))
             .returns(() => new Promise((resolve, reject) => resolve(true)))
             .verifiable(Times.exactly(times));
+
         return mockApplicationListener;
     }
 

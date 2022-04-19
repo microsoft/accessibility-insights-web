@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PromiseFactory } from 'common/promises/promise-factory';
+import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
 export interface ApplicationListener {
@@ -10,7 +10,10 @@ export interface ApplicationListener {
 export interface EventDetails {
     eventType: string;
     eventArgs: any[];
-    resolveDeferred?: (eventDetails: EventDetails) => any;
+}
+
+export interface DeferredEventDetails extends EventDetails {
+    deferredResolution: ExternalResolutionPromise;
 }
 
 export interface AdapterListener {
@@ -21,7 +24,7 @@ const TWO_MINUTES = 120000;
 const FOUR_MINUTES = 2 * TWO_MINUTES;
 
 export class BrowserAdapterEventManager {
-    protected deferredEvents: EventDetails[] = [];
+    protected deferredEvents: DeferredEventDetails[] = [];
     protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     protected adapterListener: AdapterListener =
         (eventType: string) =>
@@ -47,10 +50,16 @@ export class BrowserAdapterEventManager {
     };
 
     private processDeferredEvents(): void {
-        let stillDeferred: EventDetails[] = [];
+        const stillDeferred: DeferredEventDetails[] = [];
         this.deferredEvents.forEach(deferredEvent => {
             if (this.eventsToApplicationListenersMapping[deferredEvent.eventType]) {
-                deferredEvent.resolveDeferred(deferredEvent);
+                try {
+                    this.processEvent(deferredEvent.eventType, deferredEvent.eventArgs);
+                    deferredEvent.deferredResolution.resolveHook(true);
+                } catch (error) {
+                    console.error(error);
+                    deferredEvent.deferredResolution.rejectHook();
+                }
             } else {
                 stillDeferred.push(deferredEvent);
             }
@@ -58,52 +67,40 @@ export class BrowserAdapterEventManager {
         this.deferredEvents = stillDeferred;
     }
 
-    private async forwardEventToApplicationListener(
+    private forwardEventToApplicationListener(
         listener: ApplicationListener,
         eventArgs: any[],
     ): Promise<any> {
-        let result = undefined;
+        let result: any;
         try {
             result = listener(...eventArgs);
         } catch (error) {
             console.error('Error thrown in application listener: ', error);
+            throw error;
         }
         if (!!result && typeof result.then === 'function') {
             //wrapping application listener promise responses in a 4-minute promise race
             //prevents the service worker going idle before a response is sent
-            return await this.promiseFactory.timeout(result, FOUR_MINUTES);
+            return this.promiseFactory.timeout(result, FOUR_MINUTES);
         } else {
             // it is possible that this is the result of a fire and forget listener
             // wrap in 2-minute timeout to ensure it completes during service worker lifetime
-            return globalThis.setTimeout(() => Promise.resolve(result), TWO_MINUTES)
+            globalThis.setTimeout(() => {
+                Promise.resolve(result);
+            }, TWO_MINUTES);
+            return Promise.resolve(result);
         }
     }
 
-    private resolveDeferredEvent =
-        (resolve: (value: unknown) => any, reject: (value: unknown) => any) =>
-        (eventDetails: EventDetails): any => {
-            return this.processEvent(eventDetails.eventType, eventDetails.eventArgs)
-                .then(result => {
-                    return resolve(result);
-                })
-                .catch(error => {
-                    return reject(error);
-                });
-        };
-
     private deferEvent(eventDetails: EventDetails): Promise<any> {
-        let resolve: (value: unknown) => any, reject: (reason?: any) => any;
-
-        const deferredPromise = new Promise((res, rej) => {
-            resolve = res;
-            reject = rej;
-        });
+        const deferredResolution = this.promiseFactory.externalResolutionPromise();
 
         this.deferredEvents.push({
-            resolveDeferred: this.resolveDeferredEvent(resolve, reject),
+            deferredResolution: deferredResolution,
             ...eventDetails,
         });
-        return deferredPromise;
+
+        return deferredResolution.promise;
     }
 
     public processEvent(eventType: string, eventArgs: any[]): Promise<any> {
@@ -111,14 +108,12 @@ export class BrowserAdapterEventManager {
         if (applicationListener) {
             return this.forwardEventToApplicationListener(applicationListener, eventArgs);
         } else {
-            if (
-                this.deferredEvents.find(
-                    eventDetails =>
-                        eventDetails.eventType === eventType &&
-                        eventDetails.eventArgs === eventArgs,
-                )
-            ) {
-                //noop, don't defer twice
+            const alreadyDeferred = this.deferredEvents.find(
+                eventDetails =>
+                    eventDetails.eventType === eventType && eventDetails.eventArgs === eventArgs,
+            );
+            if (alreadyDeferred) {
+                return alreadyDeferred.deferredResolution.promise;
             } else {
                 return this.deferEvent({
                     eventType,

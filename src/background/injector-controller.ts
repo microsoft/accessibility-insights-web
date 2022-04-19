@@ -30,7 +30,6 @@ export class InjectorController {
         this.inspectStore.addChangedListener(this.inject);
     }
 
-
     private inject = (): void => {
         const tabId: number = this.tabStore.getState().id;
         const inspectStoreState = this.inspectStore.getState();
