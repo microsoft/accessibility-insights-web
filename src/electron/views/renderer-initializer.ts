@@ -123,7 +123,7 @@ import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/r
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
-import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
+import { getGlobalPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
@@ -188,7 +188,7 @@ const indexedDBDataKeysToFetch = [
 
 const logger = createDefaultLogger();
 
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
+getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
     ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
 })
     .then((persistedData: Partial<PersistedData>) => {
@@ -253,9 +253,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const unifiedScanResultStore = new UnifiedScanResultStore(
             unifiedScanResultActions,
             tabActions,
-            persistedData.unifiedScanResultStoreData,
+            null,
             indexedDBInstance,
             logger,
+            null,
         );
         unifiedScanResultStore.initialize();
 
@@ -268,9 +269,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
-            persistedData.cardSelectionStoreData,
+            null,
             indexedDBInstance,
             logger,
+            null,
         );
         cardSelectionStore.initialize();
 
@@ -278,9 +280,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             contentActions,
             detailsViewActions,
             sidePanelActions,
-            persistedData.detailsViewStoreData,
+            null,
             indexedDBInstance,
             logger,
+            null,
         );
         detailsViewStore.initialize();
 

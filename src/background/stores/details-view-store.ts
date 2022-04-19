@@ -25,12 +25,13 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         persistedState: DetailsViewStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
     ) {
         super(
             StoreNames.DetailsViewStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.detailsViewStore,
+            IndexedDBDataKeys.detailsViewStore(tabId),
             logger,
         );
     }

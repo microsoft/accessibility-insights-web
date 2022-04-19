@@ -22,6 +22,7 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
             null,
             null,
             null,
+            null,
         ).getDefaultState();
     }
 

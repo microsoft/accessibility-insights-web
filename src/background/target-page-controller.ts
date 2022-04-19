@@ -9,7 +9,7 @@ import { Messages } from 'common/messages';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { TabToContextMap } from './tab-context';
+import { TabContext, TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TargetPageController {
@@ -55,9 +55,10 @@ export class TargetPageController {
         }
     };
 
-    private removeKnownTabId = async (tabId: number) => {
+    private removeKnownTabId = async (tabId: number, context: TabContext) => {
         if (this.knownTabIds.includes(tabId)) {
             this.knownTabIds.splice(this.knownTabIds.indexOf(tabId, 0), 1);
+            context.teardown();
             await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
         }
     };
@@ -129,6 +130,7 @@ export class TargetPageController {
             this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
             this.browserAdapter,
             this.detailsViewController,
+            tabId,
         );
     }
 
@@ -188,8 +190,9 @@ export class TargetPageController {
 
     private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
+        const context = this.targetPageTabIdToContextMap[tabId];
         delete this.targetPageTabIdToContextMap[tabId];
-        this.removeKnownTabId(tabId);
+        this.removeKnownTabId(tabId, context);
     };
 
     private onDetailsViewTabRemoved = (tabId: number): void => {

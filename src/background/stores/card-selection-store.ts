@@ -25,12 +25,13 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         persistedState: CardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
     ) {
         super(
             StoreNames.CardSelectionStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.cardSelectionStore,
+            IndexedDBDataKeys.cardSelectionStore(tabId),
             logger,
         );
     }

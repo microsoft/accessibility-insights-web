@@ -89,9 +89,23 @@ export class StoreMocks {
         null,
     ).getDefaultState();
     public scopingStoreData = new ScopingStore(null, null, null, null).getDefaultState();
-    public inspectStoreData = new InspectStore(null, null, null, null, null).getDefaultState();
-    public pathSnippetStoreData = new PathSnippetStore(null, null, null, null).getDefaultState();
+    public inspectStoreData = new InspectStore(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
+    public pathSnippetStoreData = new PathSnippetStore(
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public unifiedScanResultStoreData = new UnifiedScanResultStore(
+        null,
         null,
         null,
         null,
@@ -99,6 +113,7 @@ export class StoreMocks {
         null,
     ).getDefaultState();
     public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
+        null,
         null,
         null,
         null,
@@ -123,8 +138,10 @@ export class StoreMocks {
         null,
         null,
         null,
+        null,
     ).getDefaultState();
     public needsReviewCardSelectionStoreData = new NeedsReviewCardSelectionStore(
+        null,
         null,
         null,
         null,

@@ -16,12 +16,13 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
         persistedState: DevToolStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
     ) {
         super(
             StoreNames.DevToolsStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.devToolStore,
+            IndexedDBDataKeys.devToolStore(tabId),
             logger,
         );
 
