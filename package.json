@@ -95,7 +95,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.14.1",
-        "@swc/core": "^1.2.168",
+        "@swc/core": "^1.2.170",
         "@swc/jest": "^0.2.20",
         "@types/chrome": "0.0.181",
         "@types/enzyme": "^3.10.12",
@@ -129,7 +129,7 @@
         "eslint": "^7.32.0",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-react": "^7.29.4",
-        "eslint-plugin-security": "^1.4.0",
+        "eslint-plugin-security": "^1.5.0",
         "express": "^4.17.3",
         "extract-zip": "^2.0.1",
         "fake-indexeddb": "^3.1.7",
