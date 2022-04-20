@@ -46,6 +46,33 @@ describe(`promiseFactory`, () => {
         });
     });
 
+    describe('delay', () => {
+        it("propogates an underlying Promise's resolve", async () => {
+            const actual = 'the result';
+            const resolving = new Promise(resolve => {
+                setTimeout(() => resolve(actual), 10);
+            });
+
+            const result = testObject.delay(resolving, 20);
+
+            expect(result).resolves.toEqual(actual);
+        });
+
+        it("propogates an underlying Promise's reject", async () => {
+            const reason = 'rejecting!';
+            const rejecting = new Promise((resolve, reject) => {
+                setTimeout(() => reject(reason), 10);
+            });
+            expect(rejecting).rejects.toEqual(reason);
+        });
+
+        it('resolves the pending promise if it times out', async () => {
+            const timingOut = testObject.delay(neverResolveAsync(), 10);
+
+            expect(timingOut).resolves.toBeCalled();
+        });
+    });
+
     describe('createPromiseForExternalResolution', () => {
         let promiseForExternalResolution: ExternalResolutionPromise;
         beforeEach(() => {
