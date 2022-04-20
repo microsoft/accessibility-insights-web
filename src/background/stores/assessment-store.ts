@@ -64,6 +64,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             idbInstance,
             IndexedDBDataKeys.assessmentStore,
             logger,
+            true,
         );
     }
 
@@ -71,6 +72,10 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         persistedData: AssessmentStoreData,
     ): AssessmentStoreData {
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
+    }
+
+    public override getDefaultState(): AssessmentStoreData {
+        return this.generateDefaultState(this.persistedState);
     }
 
     protected addActionListeners(): void {

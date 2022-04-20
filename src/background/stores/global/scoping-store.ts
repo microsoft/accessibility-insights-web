@@ -1,18 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
-import { BaseStoreImpl } from '../base-store-impl';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
 import { ScopingInputTypes } from './../../scoping-input-types';
 
-export class ScopingStore extends BaseStoreImpl<ScopingStoreData> {
+export class ScopingStore extends PersistentStore<ScopingStoreData> {
     private scopingActions: ScopingActions;
 
-    constructor(scopingActions: ScopingActions) {
-        super(StoreNames.ScopingPanelStateStore);
+    constructor(
+        scopingActions: ScopingActions,
+        persistedState: ScopingStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+    ) {
+        super(
+            StoreNames.ScopingPanelStateStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.scopingStore,
+            logger,
+        );
 
         this.scopingActions = scopingActions;
     }

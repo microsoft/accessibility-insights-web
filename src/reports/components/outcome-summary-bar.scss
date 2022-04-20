@@ -16,6 +16,7 @@ $outcome-not-applicable-color: $neutral-outcome;
 
 .outcome-summary-bar {
     $outcome-summary-icon-size: 16px;
+
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
@@ -23,7 +24,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     flex-wrap: wrap;
     align-items: center;
     margin-top: 16px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     line-height: 24px;
     font-size: 17px;
     font-weight: 600;
@@ -40,65 +41,80 @@ $outcome-not-applicable-color: $neutral-outcome;
         align-items: center;
         margin-right: 4px;
     }
+
     .count {
         font-weight: 600;
     }
+
     .fail {
         @extend .block;
-        @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-color);
+        @include cross-icon-styles($outcome-summary-icon-size, 0, $outcome-fail-color);
 
         .check-container {
             bottom: -1px;
             margin-right: 8px;
         }
+
         background-color: $outcome-fail-color;
     }
+
     .pass {
         @extend .block;
-        @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-color);
+        @include check-icon-styles($outcome-summary-icon-size, 0, $outcome-pass-color);
+
         .check-container {
             bottom: -1px;
             margin-right: 8px;
             margin-left: 4px;
         }
+
         background-color: $outcome-pass-color;
     }
+
     .inapplicable,
     .unscannable {
         @extend .block;
         @include inapplicable-icon-styles(
             $outcome-summary-icon-size,
-            0px,
+            0,
             $outcome-not-applicable-color
         );
+
         .check-container {
             bottom: -1px;
             margin-right: 8px;
             margin-left: 4px;
         }
+
         background-color: $outcome-not-applicable-color;
     }
+
     .incomplete {
         @extend .block;
         @include incomplete-icon-styles(14px, 3px);
+
         .check-container {
             margin-right: 6px;
             border-color: $outcome-incomplete-summary-consistent-foreground;
         }
+
         background-color: $outcome-incomplete-summary-background;
         color: $outcome-incomplete-summary-consistent-foreground;
         border: 2px $outcome-incomplete-border-color solid;
         height: 12px;
     }
+
     .summary-bar-left-edge {
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
     }
+
     .summary-bar-right-edge {
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
-        margin-right: 0px;
+        margin-right: 0;
     }
+
     .label {
         font-weight: normal;
     }

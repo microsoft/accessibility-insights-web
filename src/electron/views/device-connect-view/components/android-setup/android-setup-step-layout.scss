@@ -8,7 +8,6 @@
     flex-wrap: nowrap;
     align-items: flex-start;
     justify-items: stretch;
-
     box-sizing: border-box;
     width: 100%;
     min-height: 100%; // can exceed 100% at high text scaling
@@ -27,7 +26,6 @@
     .header {
         margin-top: 0;
         margin-bottom: 0;
-
         font-size: $fontSizeLML;
         font-weight: $fontWeightNormal;
         line-height: 25px;
@@ -42,7 +40,6 @@
         flex-grow: 1;
         flex-shrink: 1;
         flex-basis: auto;
-
         width: 100%;
         font-size: $fontSizeM;
         line-height: 16px;

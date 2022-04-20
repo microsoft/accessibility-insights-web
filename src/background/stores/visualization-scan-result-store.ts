@@ -3,8 +3,12 @@
 
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import {
     TabStopRequirementStatuses,
@@ -29,8 +33,7 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { BaseStoreImpl } from './base-store-impl';
-export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
+export class VisualizationScanResultStore extends PersistentStore<VisualizationScanResultData> {
     constructor(
         private visualizationScanResultActions: VisualizationScanResultActions,
         private tabActions: TabActions,
@@ -38,8 +41,17 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         private visualizationActions: VisualizationActions,
         private generateUID: () => string,
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
+        persistedState: VisualizationScanResultData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.VisualizationScanResultStore);
+        super(
+            StoreNames.VisualizationScanResultStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.visualizationScanResultStore,
+            logger,
+        );
     }
 
     public getDefaultState(): VisualizationScanResultData {

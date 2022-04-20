@@ -74,9 +74,7 @@ describe('AxeConfigurator', () => {
 
             configureMock.setup(cm => cm(It.isValue({ locale: localeConfiguration }))).verifiable();
 
-            configureMock
-                .setup(cm => cm(It.isValue({ branding: { brand: 'axe', application: 'msftAI' } })))
-                .verifiable();
+            configureMock.setup(cm => cm(It.isValue({ branding: 'msftAI' }))).verifiable();
 
             const axeStub = {
                 configure: configureMock.object,

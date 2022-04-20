@@ -1,26 +1,38 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { SidePanel } from 'background/stores/side-panel';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
 type SidePanelToStoreKey = {
     [P in SidePanel]: keyof DetailsViewStoreData['currentPanel'];
 };
 
-export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
+export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
     constructor(
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
         private sidePanelActions: SidePanelActions,
+        persistedState: DetailsViewStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
     ) {
-        super(StoreNames.DetailsViewStore);
+        super(
+            StoreNames.DetailsViewStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.detailsViewStore,
+            logger,
+        );
     }
 
     public getDefaultState(): DetailsViewStoreData {

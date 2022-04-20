@@ -75,7 +75,8 @@ describe('PathSnippetStoreTest', () => {
     function createStoreForPathSnippetActions(
         actionName: keyof PathSnippetActions,
     ): StoreTester<PathSnippetStoreData, PathSnippetActions> {
-        const factory = (actions: PathSnippetActions) => new PathSnippetStore(actions);
+        const factory = (actions: PathSnippetActions) =>
+            new PathSnippetStore(actions, null, null, null);
         return new StoreTester(PathSnippetActions, actionName, factory);
     }
 });

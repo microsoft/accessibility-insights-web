@@ -44,6 +44,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             indexDbApi,
             IndexedDBDataKeys.userConfiguration,
             logger,
+            true,
         );
     }
 
@@ -53,6 +54,10 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         const persistedState = cloneDeep(persistedData);
         const defaultState = cloneDeep(UserConfigurationStore.defaultState);
         return Object.assign(defaultState, persistedState);
+    }
+
+    public override getDefaultState(): UserConfigurationStoreData {
+        return this.generateDefaultState(this.persistedState);
     }
 
     public getState(): UserConfigurationStoreData {

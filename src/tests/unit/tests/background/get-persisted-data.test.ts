@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { getPersistedData, PersistedData } from 'background/get-persisted-data';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { IMock, Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
 import { InstallationData } from '../../../../background/installation-data';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
@@ -17,6 +19,9 @@ describe('GetPersistedDataTest', () => {
     let assessmentStoreData: AssessmentStoreData;
     let userConfigurationData: UserConfigurationStoreData;
     let installationData: InstallationData;
+    let permissionsStateStoreData: PermissionsStateStoreData;
+    let knownTabIds: number[];
+    let tabIdToDetailsViewMap: DictionaryStringTo<number>;
 
     beforeEach(() => {
         assessmentStoreData = {
@@ -42,6 +47,9 @@ describe('GetPersistedDataTest', () => {
             month: 0,
             year: 0,
         };
+        permissionsStateStoreData = { hasAllUrlAndFilePermissions: true };
+        knownTabIds = [0, 9];
+        tabIdToDetailsViewMap = { key: 9 };
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 
@@ -73,6 +81,9 @@ describe('GetPersistedDataTest', () => {
         const indexedDataKeysToFetch = [
             IndexedDBDataKeys.userConfiguration,
             IndexedDBDataKeys.installation,
+            IndexedDBDataKeys.permissionsStateStore,
+            IndexedDBDataKeys.knownTabIds,
+            IndexedDBDataKeys.tabIdToDetailsViewMap,
         ];
 
         indexedDBInstanceStrictMock
@@ -81,6 +92,15 @@ describe('GetPersistedDataTest', () => {
         indexedDBInstanceStrictMock
             .setup(i => i.getItem(IndexedDBDataKeys.installation))
             .returns(async () => installationData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.permissionsStateStore))
+            .returns(async () => permissionsStateStoreData);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.knownTabIds))
+            .returns(async () => knownTabIds);
+        indexedDBInstanceStrictMock
+            .setup(i => i.getItem(IndexedDBDataKeys.tabIdToDetailsViewMap))
+            .returns(async () => tabIdToDetailsViewMap);
 
         const data = await getPersistedData(
             indexedDBInstanceStrictMock.object,
@@ -90,6 +110,9 @@ describe('GetPersistedDataTest', () => {
         expect(data).toEqual({
             userConfigurationData: userConfigurationData,
             installationData: installationData,
+            permissionsStateStoreData: permissionsStateStoreData,
+            knownTabIds: knownTabIds,
+            tabIdToDetailsViewMap: tabIdToDetailsViewMap,
         } as Partial<PersistedData>);
     });
 });

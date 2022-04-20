@@ -66,6 +66,22 @@ async function initialize(): Promise<void> {
     const indexedDBDataKeysToFetch = [
         IndexedDBDataKeys.assessmentStore,
         IndexedDBDataKeys.userConfiguration,
+        IndexedDBDataKeys.cardSelectionStore,
+        IndexedDBDataKeys.detailsViewStore,
+        IndexedDBDataKeys.devToolStore,
+        IndexedDBDataKeys.commandStore,
+        IndexedDBDataKeys.permissionsStateStore,
+        IndexedDBDataKeys.inspectStore,
+        IndexedDBDataKeys.scopingStore,
+        IndexedDBDataKeys.tabStore,
+        IndexedDBDataKeys.pathSnippetStore,
+        IndexedDBDataKeys.needsReviewScanResultsStore,
+        IndexedDBDataKeys.needsReviewCardSelectionStore,
+        IndexedDBDataKeys.visualizationStore,
+        IndexedDBDataKeys.visualizationScanResultStore,
+        IndexedDBDataKeys.unifiedScanResultStore,
+        IndexedDBDataKeys.knownTabIds,
+        IndexedDBDataKeys.tabIdToDetailsViewMap,
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
@@ -142,7 +158,11 @@ async function initialize(): Promise<void> {
     telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
-    const detailsViewController = new ExtensionDetailsViewController(browserAdapter);
+    const detailsViewController = new ExtensionDetailsViewController(
+        browserAdapter,
+        {},
+        indexedDBInstance,
+    );
 
     const tabToContextMap: TabToContextMap = {};
 
@@ -191,6 +211,8 @@ async function initialize(): Promise<void> {
         logger,
         usageLogger,
         windowUtils,
+        persistedData,
+        indexedDBInstance,
     );
 
     const targetPageController = new TargetPageController(
@@ -200,6 +222,8 @@ async function initialize(): Promise<void> {
         detailsViewController,
         tabContextFactory,
         logger,
+        [],
+        indexedDBInstance,
     );
 
     await targetPageController.initialize();

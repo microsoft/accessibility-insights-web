@@ -5,7 +5,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .urls-summary-section {
-    @include boxShadow();
+    @include boxShadow;
 
     background-color: $neutral-0;
     padding: 20px;
@@ -14,12 +14,15 @@
     h2 {
         margin-bottom: 16px !important;
     }
+
     .total-urls {
         font-weight: $fontWeightSemiBold;
     }
+
     .failure-instances {
         margin-top: 40px;
     }
+
     .failure-outcome-chip {
         display: flex;
         justify-content: flex-start;

@@ -1,17 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsViewController } from 'background/details-view-controller';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { DictionaryStringTo } from 'types/common-types';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { DictionaryStringTo } from '../types/common-types';
 
 export class ExtensionDetailsViewController implements DetailsViewController {
-    private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
     private detailsViewRemovedHandler: (tabId: number) => void;
 
-    constructor(private readonly browserAdapter: BrowserAdapter) {
+    constructor(
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
+        private readonly idbInstance: IndexedDBAPI,
+    ) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
         this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
+
+    private persistTabIdToDetailsViewMap = async () => {
+        await this.idbInstance.setItem(
+            IndexedDBDataKeys.tabIdToDetailsViewMap,
+            this.tabIdToDetailsViewMap,
+        );
+    };
 
     public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {
         this.detailsViewRemovedHandler = handler;
@@ -31,14 +43,15 @@ export class ExtensionDetailsViewController implements DetailsViewController {
 
         if (tab?.id != null) {
             this.tabIdToDetailsViewMap[targetTabId] = tab.id;
+            await this.persistTabIdToDetailsViewMap();
         }
     }
 
-    private onUpdateTab = (
+    private onUpdateTab = async (
         tabId: number,
         changeInfo: chrome.tabs.TabChangeInfo,
         tab: chrome.tabs.Tab,
-    ): void => {
+    ): Promise<void> => {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -50,6 +63,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             if (this.detailsViewRemovedHandler != null) {
                 this.detailsViewRemovedHandler(targetTabId);
             }
+            await this.persistTabIdToDetailsViewMap();
         }
     };
 
@@ -84,7 +98,10 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         return null;
     }
 
-    private onRemoveTab = (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void => {
+    private onRemoveTab = async (
+        tabId: number,
+        removeInfo: chrome.tabs.TabRemoveInfo,
+    ): Promise<void> => {
         if (this.tabIdToDetailsViewMap[tabId]) {
             delete this.tabIdToDetailsViewMap[tabId];
         } else {
@@ -96,5 +113,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
                 }
             }
         }
+
+        await this.persistTabIdToDetailsViewMap();
     };
 }

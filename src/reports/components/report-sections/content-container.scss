@@ -3,14 +3,15 @@
 @import './common-mixins.scss';
 
 .outer-container {
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
     .content-container {
-        @include contentSize();
+        @include contentSize;
+
         margin-top: 24px;
 
         h2 {
-            margin: 0px;
+            margin: 0;
             font-size: 17px;
             line-height: 24px;
         }

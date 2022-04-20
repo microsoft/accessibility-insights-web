@@ -8,10 +8,12 @@
     .settings-panel-layer-host {
         top: $mac-title-height !important;
     }
+
     .application-view {
         height: calc(100% - (#{$mac-title-height}));
     }
 }
+
 .settings-panel-layer-host {
     top: $default-title-height !important;
 }
@@ -26,7 +28,6 @@
     flex-direction: column;
     height: 100%;
     width: 100%;
-
     -webkit-app-region: no-drag;
     background-color: $neutral-2;
 
@@ -41,12 +42,14 @@
         display: flex;
         flex-grow: 1;
         overflow: hidden;
+
         main {
             margin-top: 16px;
             margin-bottom: 16px;
             margin-left: 24px;
             margin-right: 24px;
         }
+
         .main-content-wrapper {
             width: 70%;
             flex-grow: 1;
