@@ -31,12 +31,20 @@ class TestableBrowserAdapterEventManager extends BrowserAdapterEventManager {
         this.eventsToApplicationListenersMapping = mapping;
     }
 
-    public getAdapterListener() {
-        return this.adapterListener;
+    public getEventsToAdapterListenersMapping() {
+        return this.eventsToAdapterListenersMapping;
     }
 
-    public setAdapterListener(listener: AdapterListener) {
-        this.adapterListener = listener;
+    public setEventsToAdapterListenersMapping(mapping: DictionaryStringTo<AdapterListener>) {
+        this.eventsToAdapterListenersMapping = mapping;
+    }
+
+    public getHandleEvent() {
+        return this.handleEvent;
+    }
+
+    public setHandleEvent(listener: (eventType: string) => AdapterListener) {
+        this.handleEvent = listener;
     }
 }
 
@@ -52,15 +60,25 @@ describe('BrowserAdapterEventManager', () => {
 
     it('registerAdapterListenerForEvent adds adapter listener bound to eventType to eventAPI', () => {
         const testSubject = validator.buildBrowserAdapterEventManager();
-        const mockAdapterListener = validator.setupAdapterListener(testEventType, testArgs, 1);
+        const mockAdapterListener = validator.setupMockAdapterListener(testArgs, 0);
+        const mockHandleEvent = validator.setupHandleEvent(
+            mockAdapterListener.object,
+            testEventType,
+            1,
+        );
         validator.setTestSubjectProperties(testSubject, {
-            adapterListener: mockAdapterListener.object,
+            handleEvent: mockHandleEvent.object,
         });
-        const mockEventAPI = validator.setupMockEventAPIAddListener(testEventType, 1);
+        const mockEventAPI = validator.setupMockEventAPIAddListener(mockAdapterListener.object, 1);
         testSubject.registerAdapterListenerForEvent(mockEventAPI.object, testEventType);
+        expect(testSubject.getEventsToAdapterListenersMapping()[testEventType]).toBe(
+            mockAdapterListener.object,
+        );
         validator.verifyAll();
         mockEventAPI.verifyAll();
+        mockAdapterListener.verifyAll();
     });
+
     it('registerEventToApplicationListener creates a new mapping if no events are found for eventType', () => {
         const testSubject = validator.buildBrowserAdapterEventManager();
         expect(testSubject.getEventsToApplicationListenersMapping()[testEventType]).toBe(undefined);
@@ -71,55 +89,89 @@ describe('BrowserAdapterEventManager', () => {
         validator.verifyAll();
     });
 
-    it('processEvent calls registered listener and starts timeout for non-promise results', () => {
-        const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 1);
+    it('processEvent calls registered listener and starts 2-minute delay for undefined results', () => {
+        const mockApplicationListener = validator.setupMockFireAndForgetApplicationListener(
+            testArgs,
+            1,
+        );
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             eventsToApplicationListenersMapping: {
                 [testEventType]: mockApplicationListener.object,
             },
         });
-        validator.setupPromiseFactory(0);
+        validator.setupPromiseFactoryDelay(2, 1);
         testSubject.processEvent(testEventType, testArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
+
     it('processEvent passes multiple args through to registered listener', () => {
         const multiArgs = ['a', 1, null];
-        const mockApplicationListener = validator.setupMockApplicationListener(multiArgs, 1);
+        const mockApplicationListener = validator.setupMockFireAndForgetApplicationListener(
+            multiArgs,
+            1,
+        );
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             eventsToApplicationListenersMapping: {
                 [testEventType]: mockApplicationListener.object,
             },
         });
-        validator.setupPromiseFactory(0);
+        validator.setupPromiseFactoryDelay(2, 1);
         testSubject.processEvent(testEventType, multiArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
 
-    it('processEvent calls registered listener and starts promise race for promise results', () => {
+    it('processEvent calls registered listener and starts 4-minute delay for promise results', () => {
         const mockApplicationListener = validator.setupMockAsyncApplicationListener(testArgs, 1);
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             eventsToApplicationListenersMapping: {
                 [testEventType]: mockApplicationListener.object,
             },
         });
-        validator.setupPromiseFactory(1);
+        validator.setupPromiseFactoryDelay(4, 1);
         testSubject.processEvent(testEventType, testArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
 
-    it('processEvent defers event if no listeners are available', () => {
+    it('processEvent calls registered listener and logs an error for non-promise, non-undefined return values', () => {
+        const mockApplicationListener = validator.setupMockPlainReturnApplicationListener(
+            testArgs,
+            1,
+        );
+        const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
+            eventsToApplicationListenersMapping: {
+                [testEventType]: mockApplicationListener.object,
+            },
+        });
+        testSubject
+            .processEvent(testEventType, testArgs)
+            .catch(error =>
+                expect(error).toBe(`Application listener returned a non-promise result`),
+            );
+        validator.verifyAll();
+        mockApplicationListener.verifyAll();
+    });
+
+    it('processEvent returns null if no listeners are available', () => {
+        const testSubject = validator.buildBrowserAdapterEventManager();
+        expect(testSubject.processEvent(testEventType, testArgs)).toBeNull();
+
+        validator.verifyAll();
+    });
+
+    it('handleEvent defers event if processEvent returns null', () => {
         const testSubject = validator.buildBrowserAdapterEventManager();
 
         const eventDetails = {
             eventType: testEventType,
             eventArgs: testArgs,
         };
-        validator.setupPromiseFactory(0).setupExternalResolutionPromise(1);
+        validator.setupPromiseFactoryDelay(2, 0).setupExternalResolutionPromise(1);
         expect(testSubject.getDeferredEvents().length).toBe(0);
-        testSubject.processEvent(testEventType, testArgs);
+        const adapterListener: AdapterListener = testSubject.getHandleEvent()(testEventType);
+        adapterListener(...testArgs);
         expect(testSubject.getDeferredEvents().length).toBe(1);
         expect(testSubject.getDeferredEvents()[0].eventType).toEqual(eventDetails.eventType);
         expect(testSubject.getDeferredEvents()[0].eventArgs).toStrictEqual(eventDetails.eventArgs);
@@ -127,39 +179,17 @@ describe('BrowserAdapterEventManager', () => {
 
         validator.verifyAll();
     });
-    it('processEvent does not duplicate deferred event if no listeners are available', () => {
-        const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
-            deferredEvents: [
-                {
-                    eventType: testEventType,
-                    eventArgs: testArgs,
-                    deferredResolution: {
-                        promise: new Promise((resolve, reject) => 'hello'),
-                        resolveHook: value => value,
-                        rejectHook: reason => reason,
-                    },
-                },
-            ],
-        });
-
-        validator.setupPromiseFactory(0);
-
-        testSubject.processEvent(testEventType, testArgs);
-        expect(testSubject.getDeferredEvents().length).toBe(1);
-
-        validator.verifyAll();
-    });
 
     it('registerEventToApplicationListener processes deferred events for eventType', () => {
-        // const mockSetTimeout = Mock.ofType<typeof setTimeout>();
-        // mockSetTimeout.setup(s => s(itIsFunction, It.isAnyNumber())).verifiable(Times.once());
-        // globalThis.setTimeout = mockSetTimeout.object;
         const mockDeferredResolution = Mock.ofType<ExternalResolutionPromise>();
         mockDeferredResolution
             .setup(d => d.resolveHook)
             .returns(() => value => value)
             .verifiable(Times.once());
-        const mockApplicationListener = validator.setupMockApplicationListener(testArgs, 1);
+        const mockApplicationListener = validator.setupMockFireAndForgetApplicationListener(
+            testArgs,
+            1,
+        );
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             deferredEvents: [
                 {
@@ -187,36 +217,41 @@ describe('BrowserAdapterEventManager', () => {
         mockDeferredResolution.verifyAll();
     });
 
-    it('removeListener calls removeListener on eventAPI and removes listener from mapping with $typeName timeout', () => {
+    it('removeListener calls removeListener on eventAPI and removes listeners from mappings', () => {
+        const mockAdapterListener = validator.setupMockAdapterListener(testArgs, 0);
         const testSubject = validator.buildBrowserAdapterEventManagerWithProperties({
             eventsToApplicationListenersMapping: {
                 [testEventType]: testApplicationListener,
             },
+            eventsToAdapterListenersMapping: {
+                [testEventType]: mockAdapterListener.object,
+            },
         });
-        const mockAdapterListener = validator.setupAdapterListener(testEventType, testArgs, 1);
-        validator.setTestSubjectProperties(testSubject, {
-            adapterListener: mockAdapterListener.object,
-        });
-        const mockEventAPI = validator.setupMockEventAPIRemoveListener(testEventType, 1);
+        const mockEventAPI = validator.setupMockEventAPIRemoveListener(
+            mockAdapterListener.object,
+            1,
+        );
         testSubject.removeListener(mockEventAPI.object, testEventType);
         expect(testSubject.getEventsToApplicationListenersMapping()[testEventType]).toBeUndefined();
+        expect(testSubject.getEventsToAdapterListenersMapping()[testEventType]).toBeUndefined();
         validator.verifyAll();
         mockEventAPI.verifyAll();
+        mockAdapterListener.verifyAll();
     });
 });
 
 type BrowserAdapterEventManagerProperties = {
     deferredEvents?: DeferredEventDetails[];
     eventsToApplicationListenersMapping?: DictionaryStringTo<ApplicationListener>;
-    adapterListener?: AdapterListener;
+    eventsToAdapterListenersMapping?: DictionaryStringTo<AdapterListener>;
+    handleEvent?: (eventType: string) => AdapterListener;
 };
 class BrowserAdapterEventManagerValidator {
     private mockPromiseFactory: IMock<PromiseFactory>;
-    private mockAdapterListener: IMock<AdapterListener>;
-
+    private mockHandleEvent: IMock<(eventType: string) => AdapterListener>;
     public buildBrowserAdapterEventManager(): TestableBrowserAdapterEventManager {
         this.mockPromiseFactory = Mock.ofType<PromiseFactory>();
-        this.mockAdapterListener = Mock.ofType<AdapterListener>();
+        this.mockHandleEvent = Mock.ofType<(eventType: string) => AdapterListener>();
 
         return new TestableBrowserAdapterEventManager(this.mockPromiseFactory.object);
     }
@@ -225,7 +260,7 @@ class BrowserAdapterEventManagerValidator {
         properties: BrowserAdapterEventManagerProperties,
     ): TestableBrowserAdapterEventManager {
         this.mockPromiseFactory = Mock.ofType<PromiseFactory>();
-        this.mockAdapterListener = Mock.ofType<AdapterListener>();
+        this.mockHandleEvent = Mock.ofType<(eventType: string) => AdapterListener>();
 
         const testSubject = new TestableBrowserAdapterEventManager(this.mockPromiseFactory.object);
 
@@ -244,39 +279,44 @@ class BrowserAdapterEventManagerValidator {
                 case 'eventsToApplicationListenersMapping':
                     testSubject.setEventsToApplicationListenersMapping(properties[key]);
                     break;
-                case 'adapterListener':
-                    testSubject.setAdapterListener(properties[key]);
+                case 'eventsToAdapterListenersMapping':
+                    testSubject.setEventsToAdapterListenersMapping(properties[key]);
+                    break;
+                case 'handleEvent':
+                    testSubject.setHandleEvent(properties[key]);
                     break;
             }
         });
         return testSubject;
     }
 
-    public setupAdapterListener(eventType: string, eventArgs: any[], times: number) {
-        this.mockAdapterListener.setup(a => a(eventType)).verifiable(Times.exactly(times + 1)); //this gets called when setting up mockEventAPI in addition to where it runs in the test
+    public setupHandleEvent(listener: AdapterListener, eventType: string, times: number) {
+        this.mockHandleEvent
+            .setup(a => a(eventType))
+            .returns(() => listener)
+            .verifiable(Times.exactly(times));
 
-        return this.mockAdapterListener;
+        return this.mockHandleEvent;
     }
 
-    public setupMockEventAPIAddListener(eventType: string, times: number) {
+    public setupMockEventAPIAddListener(listener: AdapterListener, times: number) {
         const mockEventAPI: IMock<Events.Event<any>> = Mock.ofType<Events.Event<any>>();
-        mockEventAPI
-            .setup(e => e.addListener(this.mockAdapterListener.object(eventType)))
-            .verifiable(Times.exactly(times));
+        mockEventAPI.setup(e => e.addListener(listener)).verifiable(Times.exactly(times));
         return mockEventAPI;
     }
 
-    public setupMockEventAPIRemoveListener(eventType: string, times: number) {
+    public setupMockEventAPIRemoveListener(listener: AdapterListener, times: number) {
         const mockEventAPI: IMock<Events.Event<any>> = Mock.ofType<Events.Event<any>>();
-        mockEventAPI
-            .setup(e => e.removeListener(this.mockAdapterListener.object(eventType)))
-            .verifiable(Times.exactly(times));
+        mockEventAPI.setup(e => e.removeListener(listener)).verifiable(Times.exactly(times));
         return mockEventAPI;
     }
 
-    public setupPromiseFactory(times: number): BrowserAdapterEventManagerValidator {
+    public setupPromiseFactoryDelay(
+        delayInMinutes: number,
+        times: number,
+    ): BrowserAdapterEventManagerValidator {
         this.mockPromiseFactory
-            .setup(p => p.timeout(It.isAny(), It.isAnyNumber()))
+            .setup(p => p.delay(It.isAny(), delayInMinutes * 60000))
             .verifiable(Times.exactly(times));
 
         return this;
@@ -297,12 +337,21 @@ class BrowserAdapterEventManagerValidator {
         return this;
     }
 
-    public setupMockApplicationListener(listenerArgs: any[], times: number) {
+    public setupMockAdapterListener(listenerArgs: any[], times: number) {
+        const mockAdapterListener: IMock<AdapterListener> = Mock.ofType<AdapterListener>();
+        mockAdapterListener
+            .setup(l => l(listenerArgs))
+            .returns(() => true)
+            .verifiable(Times.exactly(times));
+        return mockAdapterListener;
+    }
+
+    public setupMockFireAndForgetApplicationListener(listenerArgs: any[], times: number) {
         const mockApplicationListener: IMock<ApplicationListener> =
             Mock.ofType<ApplicationListener>();
         mockApplicationListener
             .setup(l => l(...listenerArgs))
-            .returns(() => true)
+            .returns(() => undefined)
             .verifiable(Times.exactly(times));
         return mockApplicationListener;
     }
@@ -318,13 +367,24 @@ class BrowserAdapterEventManagerValidator {
         return mockApplicationListener;
     }
 
+    public setupMockPlainReturnApplicationListener(listenerArgs: any[], times: number) {
+        const mockApplicationListener: IMock<ApplicationListener> =
+            Mock.ofType<ApplicationListener>();
+        mockApplicationListener
+            .setup(l => l(...listenerArgs))
+            .returns(() => true)
+            .verifiable(Times.exactly(times));
+
+        return mockApplicationListener;
+    }
+
     public verifyAll(): void {
         this.mockPromiseFactory.verifyAll();
-        this.mockAdapterListener.verifyAll();
+        this.mockHandleEvent.verifyAll();
     }
 
     public resetVerify(): void {
         this.mockPromiseFactory.reset();
-        this.mockAdapterListener.reset();
+        this.mockHandleEvent.reset();
     }
 }

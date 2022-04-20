@@ -15,9 +15,8 @@ export interface EventDetails {
 export interface DeferredEventDetails extends EventDetails {
     deferredResolution: ExternalResolutionPromise;
 }
-
 export interface AdapterListener {
-    (eventType: string): (eventArgs: any[]) => any;
+    (...eventArgs: any[]): any;
 }
 
 const TWO_MINUTES = 120000;
@@ -26,10 +25,13 @@ const FOUR_MINUTES = 2 * TWO_MINUTES;
 export class BrowserAdapterEventManager {
     protected deferredEvents: DeferredEventDetails[] = [];
     protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
-    protected adapterListener: AdapterListener =
+    protected eventsToAdapterListenersMapping: DictionaryStringTo<AdapterListener> = {};
+    protected handleEvent: (eventType: string) => AdapterListener =
         (eventType: string) =>
         (...eventArgs: any[]) => {
-            this.processEvent(eventType, eventArgs);
+            return (
+                this.processEvent(eventType, eventArgs) ?? this.deferEvent({ eventType, eventArgs })
+            );
         };
 
     constructor(private promiseFactory: PromiseFactory) {}
@@ -38,6 +40,9 @@ export class BrowserAdapterEventManager {
         eventType: string,
         callback: ApplicationListener,
     ): void => {
+        if (this.eventsToApplicationListenersMapping[eventType]) {
+            throw new Error(`Listener already registered for ${eventType}`);
+        }
         this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
     };
@@ -46,12 +51,26 @@ export class BrowserAdapterEventManager {
         event: Events.Event<any>,
         eventType: string,
     ): void => {
-        event.addListener(this.adapterListener(eventType));
+        const eventListener = this.handleEvent(eventType);
+        event.addListener(eventListener);
+        this.eventsToAdapterListenersMapping[eventType] = eventListener;
     };
+
+    public processEvent(eventType: string, eventArgs: any[]): Promise<any> | null {
+        const applicationListener = this.eventsToApplicationListenersMapping[eventType];
+        return applicationListener
+            ? this.forwardEventToApplicationListener(applicationListener, eventArgs)
+            : null;
+    }
+
+    public removeListener(event: Events.Event<any>, eventType: string) {
+        this.unregisterAdapterListener(event, eventType);
+        this.unregisterApplicationListenerForEvent(eventType);
+    }
 
     private processDeferredEvents(): void {
         const stillDeferred: DeferredEventDetails[] = [];
-        this.deferredEvents.forEach(deferredEvent => {
+        for (const deferredEvent of this.deferredEvents) {
             if (this.eventsToApplicationListenersMapping[deferredEvent.eventType]) {
                 try {
                     this.processEvent(deferredEvent.eventType, deferredEvent.eventArgs);
@@ -63,7 +82,7 @@ export class BrowserAdapterEventManager {
             } else {
                 stillDeferred.push(deferredEvent);
             }
-        });
+        }
         this.deferredEvents = stillDeferred;
     }
 
@@ -76,19 +95,27 @@ export class BrowserAdapterEventManager {
             result = listener(...eventArgs);
         } catch (error) {
             console.error('Error thrown in application listener: ', error);
-            throw error;
+            result = error;
         }
         if (!!result && typeof result.then === 'function') {
-            //wrapping application listener promise responses in a 4-minute promise race
+            //wrapping application listener promise responses in a 4-minute promise resolution
             //prevents the service worker going idle before a response is sent
-            return this.promiseFactory.timeout(result, FOUR_MINUTES);
+            return this.promiseFactory.delay(result, FOUR_MINUTES);
         } else {
-            // it is possible that this is the result of a fire and forget listener
-            // wrap in 2-minute timeout to ensure it completes during service worker lifetime
-            globalThis.setTimeout(() => {
-                Promise.resolve(result);
-            }, TWO_MINUTES);
-            return Promise.resolve(result);
+            if (result === undefined) {
+                // it is possible that this is the result of a fire and forget listener
+                // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
+                return this.promiseFactory.delay(result, TWO_MINUTES);
+            } else {
+                //this is an odd case we should be aware of.
+                //if triggered, update listener to return a Promise with the result
+                console.error(
+                    `Application listener returned a non-promise result`,
+                    listener,
+                    eventArgs,
+                );
+                return Promise.resolve(result);
+            }
         }
     }
 
@@ -99,41 +126,20 @@ export class BrowserAdapterEventManager {
             deferredResolution: deferredResolution,
             ...eventDetails,
         });
+        //resolve the promise in four minutes in case a listener is never registered
+        setTimeout(() => {
+            deferredResolution.resolveHook('no listener registered');
+        }, FOUR_MINUTES);
 
         return deferredResolution.promise;
     }
 
-    public processEvent(eventType: string, eventArgs: any[]): Promise<any> {
-        const applicationListener = this.eventsToApplicationListenersMapping[eventType];
-        if (applicationListener) {
-            return this.forwardEventToApplicationListener(applicationListener, eventArgs);
-        } else {
-            const alreadyDeferred = this.deferredEvents.find(
-                eventDetails =>
-                    eventDetails.eventType === eventType && eventDetails.eventArgs === eventArgs,
-            );
-            if (alreadyDeferred) {
-                return alreadyDeferred.deferredResolution.promise;
-            } else {
-                return this.deferEvent({
-                    eventType,
-                    eventArgs,
-                });
-            }
-        }
-    }
-
     private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
-        event.removeListener(this.adapterListener(eventType));
+        event.removeListener(this.eventsToAdapterListenersMapping[eventType]);
+        delete this.eventsToAdapterListenersMapping[eventType];
     }
 
     private unregisterApplicationListenerForEvent(eventType: string) {
-        this.eventsToApplicationListenersMapping[eventType] &&
-            delete this.eventsToApplicationListenersMapping[eventType];
-    }
-
-    public removeListener(event: Events.Event<any>, eventType: string) {
-        this.unregisterAdapterListener(event, eventType);
-        this.unregisterApplicationListenerForEvent(eventType);
+        delete this.eventsToApplicationListenersMapping[eventType];
     }
 }
