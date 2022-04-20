@@ -30,7 +30,7 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
       text="Rescan"
     />
     <StyledWithViewportComponent
-      ariaLabel="android devices"
+      ariaLabelForGrid="android devices"
       checkButtonAriaLabel="select"
       checkboxCellClassName="checkmarkCell"
       checkboxVisibility={1}

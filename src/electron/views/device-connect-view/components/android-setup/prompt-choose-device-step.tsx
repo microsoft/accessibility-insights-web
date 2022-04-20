@@ -64,7 +64,7 @@ export class PromptChooseDeviceStep extends React.Component<
                     <DetailsList
                         setKey={'devices'}
                         compact={true}
-                        ariaLabel="android devices"
+                        ariaLabelForGrid="android devices"
                         className={styles.phoneList}
                         items={listItems}
                         selection={this.selection}
