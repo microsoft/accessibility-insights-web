@@ -1,13 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import browser, {
-    ExtensionTypes,
-    Notifications,
-    Permissions,
-    Runtime,
-    Tabs,
-    Windows,
-} from 'webextension-polyfill';
+import browser, { Notifications, Permissions, Runtime, Tabs, Windows } from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
@@ -88,7 +81,10 @@ export abstract class WebExtensionBrowserAdapter
 
     public executeScriptInTab(
         tabId: number,
-        details: ExtensionTypes.InjectDetails,
+        details: {
+            file: string;
+            allFrames?: boolean | undefined;
+        },
     ): Promise<any[]> {
         this.verifyPathCompatibility(details.file);
         return typeof browser.tabs.executeScript === 'function'
@@ -96,17 +92,23 @@ export abstract class WebExtensionBrowserAdapter
             : chrome.scripting.executeScript({
                   target: { tabId, allFrames: details.allFrames },
                   files: [details.file],
-              } as chrome.scripting.ScriptInjection);
+              });
     }
 
-    public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+    public insertCSSInTab(
+        tabId: number,
+        details: {
+            file: string;
+            allFrames?: boolean | undefined;
+        },
+    ): Promise<void> {
         this.verifyPathCompatibility(details.file);
         return typeof browser.tabs.insertCSS === 'function'
             ? browser.tabs.insertCSS(tabId, details)
             : chrome.scripting.insertCSS({
                   target: { tabId, allFrames: details.allFrames },
                   files: [details.file],
-              } as chrome.scripting.CSSInjection);
+              });
     }
 
     public createActiveTab(url: string): Promise<Tabs.Tab> {
