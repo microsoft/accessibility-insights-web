@@ -216,9 +216,7 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public getUrl(urlPart: string): string {
-        return typeof chrome.extension?.getURL === 'function'
-            ? chrome.extension.getURL(urlPart)
-            : chrome.runtime.getURL(urlPart);
+        return browser.runtime.getURL(urlPart);
     }
 
     public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {

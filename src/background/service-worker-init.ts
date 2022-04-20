@@ -38,7 +38,6 @@ import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { UrlValidator } from 'common/url-validator';
-import { WindowUtils } from 'common/window-utils';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import UAParser from 'ua-parser-js';
@@ -177,7 +176,6 @@ async function initialize(): Promise<void> {
         visualizationConfigurationFactory,
     );
     const promiseFactory = createDefaultPromiseFactory();
-    const windowUtils = new WindowUtils();
 
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
@@ -187,7 +185,7 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils,
+        globalThis.setTimeout.bind(this),
         persistedData,
         indexedDBInstance,
     );

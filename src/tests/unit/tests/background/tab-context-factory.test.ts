@@ -21,7 +21,6 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
-import { WindowUtils } from 'common/window-utils';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { UsageLogger } from '../../../../background/usage-logger';
@@ -43,7 +42,7 @@ describe('TabContextFactoryTest', () => {
     let mockLogger: IMock<Logger>;
     let mockUsageLogger: IMock<UsageLogger>;
     let mockNotificationCreator: IMock<NotificationCreator>;
-    let mockWindowUtils: IMock<WindowUtils>;
+    let mockSetTimeout: IMock<(handler: Function, timeout: number) => number>;
     let mockDBInstance: IMock<IndexedDBAPI>;
     let persistedDataStub: PersistedData;
 
@@ -53,7 +52,7 @@ describe('TabContextFactoryTest', () => {
         mockUsageLogger = Mock.ofType<UsageLogger>();
         mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
         mockNotificationCreator = Mock.ofType<NotificationCreator>();
-        mockWindowUtils = Mock.ofType<WindowUtils>();
+        mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
         persistedDataStub = {} as PersistedData;
     });
@@ -111,7 +110,7 @@ describe('TabContextFactoryTest', () => {
             promiseFactoryMock.object,
             mockLogger.object,
             mockUsageLogger.object,
-            mockWindowUtils.object,
+            mockSetTimeout.object,
             persistedDataStub,
             mockDBInstance.object,
         );
