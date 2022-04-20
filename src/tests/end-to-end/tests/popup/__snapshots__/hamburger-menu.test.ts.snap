@@ -6,7 +6,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
     class="ms-ContextualMenu-container container-000"
     id="id__000-menu"
     role="menu"
-    tabindex="-1"
+    tabindex="0"
   >
     <div
       class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
