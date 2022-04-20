@@ -17,14 +17,13 @@ import { TelemetryClient } from './telemetry-client';
 export const getTelemetryClient = (
     applicationTelemetryDataFactory: ApplicationTelemetryDataFactory,
     baseClients: TelemetryClient[],
-    applicationInsightsImpl: typeof ApplicationInsights = ApplicationInsights,
 ): TelemetryClient => {
     const clients = [...baseClients];
 
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
     if (appInsightsInstrumentationKey != null) {
-        const applicationInsights = new applicationInsightsImpl({
+        const applicationInsights = new ApplicationInsights({
             config: {
                 instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
                 disableTelemetry: true,
