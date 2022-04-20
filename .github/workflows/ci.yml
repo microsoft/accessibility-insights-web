@@ -215,7 +215,7 @@ jobs:
         path: |
           test-results/e2e/chrome-logs
           test-results/e2e/failure-screenshots
-      timeout-minutes: 3
+      timeout-minutes: 15 # chrome-logs is several GB, this can take a while
   
   e2e-unified-tests:
     name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
