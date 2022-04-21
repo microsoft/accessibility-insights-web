@@ -524,53 +524,6 @@ module.exports = function (grunt) {
                 content_security_policy:
                     "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
                 optional_permissions: ['*://*/*'],
-                commands: {
-                    _execute_browser_action: {
-                        suggested_key: {
-                            windows: 'Alt+Shift+K',
-                            mac: 'Alt+Shift+K',
-                            chromeos: 'Alt+Shift+K',
-                            linux: 'Alt+Shift+K',
-                        },
-                        description: 'Activate the extension',
-                    },
-                    '01_toggle-issues': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+1',
-                            mac: 'Alt+Shift+1',
-                            chromeos: 'Alt+Shift+1',
-                            linux: 'Alt+Shift+1',
-                        },
-                        description: 'Toggle Automated checks',
-                    },
-                    '02_toggle-landmarks': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+2',
-                            mac: 'Alt+Shift+2',
-                            chromeos: 'Alt+Shift+2',
-                            linux: 'Alt+Shift+2',
-                        },
-                        description: 'Toggle Landmarks',
-                    },
-                    '03_toggle-headings': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+3',
-                            mac: 'Alt+Shift+3',
-                            chromeos: 'Alt+Shift+3',
-                            linux: 'Alt+Shift+3',
-                        },
-                        description: 'Toggle Headings',
-                    },
-                    '04_toggle-tabStops': {
-                        description: 'Toggle Tab stops',
-                    },
-                    '05_toggle-color': {
-                        description: 'Toggle Color',
-                    },
-                    '06_toggle-needsReview': {
-                        description: 'Toggle Needs review',
-                    },
-                },
             });
         }
 
