@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
@@ -29,12 +30,13 @@ export class BrowserAdapterEventManager {
     protected handleEvent: (eventType: string) => AdapterListener =
         (eventType: string) =>
         (...eventArgs: any[]) => {
-            return (
-                this.processEvent(eventType, eventArgs) ?? this.deferEvent({ eventType, eventArgs })
-            );
+            const processedResults = this.processEvent(eventType, eventArgs); //guard in case we return undefined for a timed out promise resoponse
+            return processedResults === null
+                ? this.deferEvent({ eventType, eventArgs })
+                : processedResults;
         };
 
-    constructor(private promiseFactory: PromiseFactory) {}
+    constructor(private promiseFactory: PromiseFactory, private logger: Logger) {}
 
     public registerEventToApplicationListener = (
         eventType: string,
@@ -76,7 +78,7 @@ export class BrowserAdapterEventManager {
                     this.processEvent(deferredEvent.eventType, deferredEvent.eventArgs);
                     deferredEvent.deferredResolution.resolveHook(true);
                 } catch (error) {
-                    console.error(error);
+                    this.logger.error(error);
                     deferredEvent.deferredResolution.rejectHook();
                 }
             } else {
@@ -94,13 +96,18 @@ export class BrowserAdapterEventManager {
         try {
             result = listener(...eventArgs);
         } catch (error) {
-            console.error('Error thrown in application listener: ', error);
+            this.logger.error('Error thrown in application listener: ', error);
             result = error;
         }
         if (!!result && typeof result.then === 'function') {
             //wrapping application listener promise responses in a 4-minute promise resolution
             //prevents the service worker going idle before a response is sent
-            return this.promiseFactory.delay(result, FOUR_MINUTES);
+            return this.promiseFactory.timeout(result, FOUR_MINUTES).catch(() => {
+                // We want to avoid rejecting the Promise we give back to the browser event handler
+                // because doing so is liable to cause the browser to tear down our Service Worker
+                // immediately, even if other events are in progress.
+                return undefined;
+            });
         } else {
             if (result === undefined) {
                 // it is possible that this is the result of a fire and forget listener
@@ -109,7 +116,7 @@ export class BrowserAdapterEventManager {
             } else {
                 //this is an odd case we should be aware of.
                 //if triggered, update listener to return a Promise with the result
-                console.error(
+                this.logger.error(
                     `Application listener returned a non-promise result`,
                     listener,
                     eventArgs,
