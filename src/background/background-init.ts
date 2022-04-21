@@ -210,7 +210,7 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils,
+        windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
     );
