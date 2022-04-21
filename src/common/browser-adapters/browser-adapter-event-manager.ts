@@ -23,6 +23,16 @@ export interface AdapterListener {
 const TWO_MINUTES = 120000;
 const FOUR_MINUTES = 2 * TWO_MINUTES;
 
+// BrowserAdapterEventManager is to be used by a BrowserAdapter to ensure the browser does not
+// determine that the service worker can be shut down due to events not responding within 5 minutes.
+//
+// It is responsible for acting as a mediator between browser-level events and application-level listeners:
+//   * registering a handleEvent listener per eventType to respond to all browser-level events by:
+//      * ensuring a response is sent to the browser within 4 minutes to prevent the 5-minute watchdog timeout
+//      * delaying potential fire-and-forget responses for 2 minutes to give potential promises time to finish
+//      * deferring any events without an associated application-level listener until one is registered
+//   * registering application-level listeners to be called inside the handleEvent listener
+
 export class BrowserAdapterEventManager {
     protected deferredEvents: DeferredEventDetails[] = [];
     protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
