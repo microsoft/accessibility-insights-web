@@ -3,6 +3,7 @@
 import {
     createDefaultPromiseFactory,
     ExternalResolutionPromise,
+    PromiseFactory,
     TimeoutError,
 } from 'common/promises/promise-factory';
 
@@ -11,8 +12,12 @@ function neverResolveAsync(): Promise<never> {
 }
 
 describe(`promiseFactory`, () => {
-    const testObject = createDefaultPromiseFactory();
+    let testObject: PromiseFactory;
+
     describe('timeout', () => {
+        beforeEach(() => {
+            testObject = createDefaultPromiseFactory();
+        });
         it("propogates an underlying Promise's resolve", async () => {
             const actual = 'the result';
             const resolving = Promise.resolve(actual);
@@ -47,6 +52,9 @@ describe(`promiseFactory`, () => {
     });
 
     describe('delay', () => {
+        beforeEach(() => {
+            testObject = createDefaultPromiseFactory();
+        });
         it("propogates an underlying Promise's resolve", async () => {
             const actual = 'the result';
             const resolving = new Promise(resolve => {
@@ -55,27 +63,38 @@ describe(`promiseFactory`, () => {
 
             const result = testObject.delay(resolving, 20);
 
-            expect(result).resolves.toEqual(actual);
+            await expect(result).resolves.toEqual(actual);
         });
 
-        it("propogates an underlying Promise's reject", async () => {
+        it("resolves with an underlying Promise's reject", async () => {
             const reason = 'rejecting!';
             const rejecting = new Promise((resolve, reject) => {
-                setTimeout(() => reject(reason), 10);
+                setTimeout(() => {
+                    reject(reason);
+                }, 10);
+            }).catch(error => {
+                //jest expects caught rejections
+                expect(error).toEqual(reason);
+                return reason;
             });
-            expect(rejecting).rejects.toEqual(reason);
+            const result = testObject.delay(rejecting, 20);
+            await expect(result).resolves.toEqual(reason);
         });
 
         it('resolves the pending promise if it times out', async () => {
-            const timingOut = testObject.delay(neverResolveAsync(), 10);
-
-            expect(timingOut).resolves.toBeCalled();
+            const actual = 'the result';
+            const resolving = new Promise(resolve => {
+                setTimeout(() => resolve(actual), 1000);
+            });
+            const timingOut = testObject.delay(resolving, 10);
+            await expect(timingOut).resolves.toStrictEqual(actual);
         });
     });
 
     describe('createPromiseForExternalResolution', () => {
         let promiseForExternalResolution: ExternalResolutionPromise;
         beforeEach(() => {
+            testObject = createDefaultPromiseFactory();
             promiseForExternalResolution = testObject.externalResolutionPromise();
         });
 
