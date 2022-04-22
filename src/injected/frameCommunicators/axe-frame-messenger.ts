@@ -10,39 +10,15 @@ import {
     CallbackWindowCommandMessageListener,
 } from './respondable-command-message-communicator';
 
-// These are the corrected typings from https://github.com/dequelabs/axe-core/pull/2885, which
-// didn't quite make the axe-core 4.2.1 release. They can be replaced with axe.* typings once
-// https://github.com/dequelabs/axe-core/pull/2885 merges and releases.
-namespace axe2885 {
-    export type FrameMessenger = {
-        open: (topicHandler: TopicHandler) => Close | void;
-        post: (frameWindow: Window, data: TopicData, replyHandler: ReplyHandler) => boolean | void;
-    };
-    export type Close = Function;
-    export type TopicHandler = (data: TopicData, responder: Responder) => void;
-    export type ReplyHandler = (
-        message: any | Error,
-        keepalive: boolean,
-        responder: Responder,
-    ) => void;
-    export type Responder = (
-        message: any | Error,
-        keepalive?: boolean,
-        replyHandler?: ReplyHandler,
-    ) => void;
-    export type TopicData = { topic: String } & ReplyData;
-    export type ReplyData = { channelId: String; message: any; keepalive: boolean };
-}
-
 const postCommand = 'axe.frameMessenger.post';
-type PostCommandRequestPayload = axe2885.TopicData;
+type PostCommandRequestPayload = axe.TopicData;
 type PostCommandResponsePayload =
     | { type: 'success'; message: any; keepalive: boolean }
     | { type: 'error' };
 
 // AxeFrameMessenger is an axe-core axe.frameMessenger-compatible version of our FrameMessenger
-export class AxeFrameMessenger implements axe2885.FrameMessenger {
-    private topicHandlers: axe2885.TopicHandler[] = [];
+export class AxeFrameMessenger implements axe.FrameMessenger {
+    private topicHandlers: axe.TopicHandler[] = [];
 
     constructor(
         private readonly underlyingCommunicator: RespondableCommandMessageCommunicator,
@@ -55,7 +31,7 @@ export class AxeFrameMessenger implements axe2885.FrameMessenger {
         axeInstance.frameMessenger(this as any);
     }
 
-    public open = (topicHandler: axe2885.TopicHandler): axe2885.Close => {
+    public open = (topicHandler: axe.TopicHandler): axe.Close => {
         if (this.topicHandlers.length === 0) {
             this.underlyingCommunicator.addCallbackCommandMessageListener(
                 postCommand,
@@ -66,7 +42,7 @@ export class AxeFrameMessenger implements axe2885.FrameMessenger {
         return () => this.close(topicHandler);
     };
 
-    public close = (topicHandler: axe2885.TopicHandler) => {
+    public close = (topicHandler: axe.TopicHandler) => {
         this.topicHandlers = this.topicHandlers.filter(h => h !== topicHandler);
         if (this.topicHandlers.length === 0) {
             this.underlyingCommunicator.removeCommandMessageListener(postCommand);
@@ -75,13 +51,13 @@ export class AxeFrameMessenger implements axe2885.FrameMessenger {
 
     public post = (
         frameWindow: Window,
-        topicData: axe2885.TopicData,
-        replyHandler: axe2885.ReplyHandler,
+        topicData: axe.TopicData,
+        replyHandler: axe.ReplyHandler,
     ): boolean => {
         const payload: PostCommandRequestPayload = topicData;
         const message: CommandMessage = { command: postCommand, payload };
 
-        const replyToReplyCallback: axe2885.Responder = () => {
+        const replyToReplyCallback: axe.Responder = () => {
             // As of 4.2.1, axe-core is documented as not using replies to replies, and we don't
             // use any axe-core plugins that might require this.
             this.logger.error(
@@ -143,11 +119,11 @@ export class AxeFrameMessenger implements axe2885.FrameMessenger {
         }
 
         const receivedPayload: PostCommandRequestPayload = receivedMessage.payload;
-        const topicData: axe2885.TopicData = receivedPayload;
-        const topicResponder: axe2885.Responder = (
+        const topicData: axe.TopicData = receivedPayload;
+        const topicResponder: axe.Responder = (
             message: any,
             keepalive?: boolean,
-            replyHandler?: axe2885.ReplyHandler,
+            replyHandler?: axe.ReplyHandler,
         ): void => {
             if (replyHandler != null) {
                 // As of 4.2.1, axe-core is documented as not using replies to replies, and we don't

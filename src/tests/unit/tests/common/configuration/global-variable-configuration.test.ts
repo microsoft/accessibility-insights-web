@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WindowVariableConfiguration } from 'common/configuration/window-variable-configuration';
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { GlobalVariableConfiguration } from 'common/configuration/global-variable-configuration';
 
-describe('WindowVariableConfiguration', () => {
-    const config = new WindowVariableConfiguration();
+describe('GlobalVariableConfiguration', () => {
+    const config = new GlobalVariableConfiguration();
 
     beforeEach(() => config.reset());
     afterAll(() => config.reset());
