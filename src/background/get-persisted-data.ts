@@ -23,26 +23,32 @@ import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { InstallationData } from './installation-data';
 
 export interface PersistedData {
+    tabData: {
+        [tabId: number]: TabSpecificPersistedData;
+    };
     assessmentStoreData: AssessmentStoreData;
     userConfigurationData: UserConfigurationStoreData;
     installationData: InstallationData;
     featureFlags: FeatureFlagStoreData;
+    commandStoreData: CommandStoreData;
+    permissionsStateStoreData: PermissionsStateStoreData;
+    scopingStoreData: ScopingStoreData;
+    knownTabIds: number[];
+    tabIdToDetailsViewMap: DictionaryStringTo<number>;
+}
+
+export interface TabSpecificPersistedData {
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     devToolStoreData: DevToolStoreData;
-    commandStoreData: CommandStoreData;
-    permissionsStateStoreData: PermissionsStateStoreData;
     inspectStoreData: InspectStoreData;
-    scopingStoreData: ScopingStoreData;
-    tabStoreData: TabStoreData;
-    pathSnippetStoreData: PathSnippetStoreData;
     needsReviewScanResultsStoreData: NeedsReviewScanResultStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
-    visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultStoreData: VisualizationScanResultData;
+    pathSnippetStoreData: PathSnippetStoreData;
+    tabStoreData: TabStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
-    knownTabIds: number[];
-    tabIdToDetailsViewMap: DictionaryStringTo<number>;
+    visualizationScanResultStoreData: VisualizationScanResultData;
+    visualizationStoreData: VisualizationStoreData;
 }
 
 const keyToPersistedDataMappingOverrides = {
@@ -53,7 +59,53 @@ const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.tabIdToDetailsViewMap]: 'tabIdToDetailsViewMap',
 };
 
-export function getPersistedData(
+function getPersistedDataKey(key: string): string {
+    return keyToPersistedDataMappingOverrides[key] ?? `${key}Data`;
+}
+
+function getGlobalPersistedPromises(
+    dataKeysToFetch: string[],
+    indexedDBInstance: IndexedDBAPI,
+    persistedData: PersistedData,
+): Promise<any>[] {
+    const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
+        return indexedDBInstance.getItem(key).then(data => {
+            const persistedDataKey = getPersistedDataKey(key);
+            persistedData[persistedDataKey] = data;
+        });
+    });
+
+    return promises;
+}
+
+function getTabSpecificPersistedPromises(
+    tabId: number,
+    keyFunc: (tabId) => string,
+    indexedDBInstance: IndexedDBAPI,
+    persistedData: PersistedData,
+): Promise<any> {
+    const keyWithTabId = keyFunc(tabId);
+    const keyWithoutTabId = keyFunc('');
+
+    return indexedDBInstance.getItem(keyWithTabId).then(data => {
+        const persistedDataKey = getPersistedDataKey(keyWithoutTabId);
+        persistedData.tabData[tabId][persistedDataKey] = data;
+    });
+}
+
+function getAllTabSpecificPersistedPromises(
+    tabId: number,
+    indexedDBInstance: IndexedDBAPI,
+    persistedData: PersistedData,
+): Promise<any>[] {
+    persistedData.tabData[tabId] = {} as TabSpecificPersistedData;
+
+    return IndexedDBDataKeys.tabSpecificKeys.map(keyFunc => {
+        return getTabSpecificPersistedPromises(tabId, keyFunc, indexedDBInstance, persistedData);
+    });
+}
+
+export function getGlobalPersistedData(
     indexedDBInstance: IndexedDBAPI,
     dataKeysToFetch: string[],
     options?: { ignorePersistedData: boolean }, // this option is for tests to ensure they can use mock-adb
@@ -63,12 +115,31 @@ export function getPersistedData(
         return Promise.resolve(persistedData); //empty object
     }
 
-    const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
-        return indexedDBInstance.getItem(key).then(data => {
-            const persistedDataKey = keyToPersistedDataMappingOverrides[key] ?? `${key}Data`;
-            persistedData[persistedDataKey] = data;
+    const promises = getGlobalPersistedPromises(dataKeysToFetch, indexedDBInstance, persistedData);
+
+    return Promise.all(promises).then(() => persistedData);
+}
+
+export async function getAllPersistedData(indexedDBInstance: IndexedDBAPI): Promise<PersistedData> {
+    const persistedData = { tabData: {} } as PersistedData;
+
+    let promises = getGlobalPersistedPromises(
+        IndexedDBDataKeys.globalKeys,
+        indexedDBInstance,
+        persistedData,
+    );
+
+    const knownTabIds: number[] = await indexedDBInstance.getItem(IndexedDBDataKeys.knownTabIds);
+    if (knownTabIds && knownTabIds.length > 0) {
+        knownTabIds.forEach(tabId => {
+            const tabSpecificPromises = getAllTabSpecificPersistedPromises(
+                tabId,
+                indexedDBInstance,
+                persistedData,
+            );
+            promises = promises.concat(tabSpecificPromises);
         });
-    });
+    }
 
     return Promise.all(promises).then(() => persistedData);
 }

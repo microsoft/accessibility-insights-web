@@ -53,6 +53,7 @@ export class TabContextFactory {
         broadcastMessage: (message) => Promise<void>,
         browserAdapter: BrowserAdapter,
         detailsViewController: ExtensionDetailsViewController,
+        tabId: number,
     ): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
@@ -62,6 +63,7 @@ export class TabContextFactory {
             this.persistedData,
             this.indexedDBInstance,
             this.logger,
+            tabId,
         );
         const notificationCreator = new NotificationCreator(
             browserAdapter,

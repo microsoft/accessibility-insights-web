@@ -26,7 +26,7 @@ import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-ser
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { getPersistedData } from './get-persisted-data';
+import { getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
@@ -66,26 +66,13 @@ async function initialize(): Promise<void> {
     const indexedDBDataKeysToFetch = [
         IndexedDBDataKeys.assessmentStore,
         IndexedDBDataKeys.userConfiguration,
-        IndexedDBDataKeys.cardSelectionStore,
-        IndexedDBDataKeys.detailsViewStore,
-        IndexedDBDataKeys.devToolStore,
-        IndexedDBDataKeys.commandStore,
-        IndexedDBDataKeys.permissionsStateStore,
-        IndexedDBDataKeys.inspectStore,
-        IndexedDBDataKeys.scopingStore,
-        IndexedDBDataKeys.tabStore,
-        IndexedDBDataKeys.pathSnippetStore,
-        IndexedDBDataKeys.needsReviewScanResultsStore,
-        IndexedDBDataKeys.needsReviewCardSelectionStore,
-        IndexedDBDataKeys.visualizationStore,
-        IndexedDBDataKeys.visualizationScanResultStore,
-        IndexedDBDataKeys.unifiedScanResultStore,
-        IndexedDBDataKeys.knownTabIds,
-        IndexedDBDataKeys.tabIdToDetailsViewMap,
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
-    const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    const persistedDataPromise = getGlobalPersistedData(
+        indexedDBInstance,
+        indexedDBDataKeysToFetch,
+    );
     const userDataPromise = browserAdapter.getUserData(storageDataKeys);
     const persistedData = await persistedDataPromise;
     const userData = await userDataPromise;

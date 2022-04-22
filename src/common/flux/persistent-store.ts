@@ -38,6 +38,10 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         }
     }
 
+    public async teardown(): Promise<void> {
+        await this.idbInstance.removeItem(this.indexedDBDataKey);
+    }
+
     protected emitChanged(): void {
         const storeData = this.getState();
 

@@ -60,6 +60,18 @@ describe('PersistentStoreTest', () => {
         idbInstanceMock.verifyAll();
     });
 
+    test('Teardown', async () => {
+        const testObject = new TestStore();
+        idbInstanceMock
+            .setup(db => db.removeItem(indexedDBDataKey))
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
+
+        await testObject.teardown();
+
+        idbInstanceMock.verifyAll();
+    });
+
     describe('Initialize with store data', () => {
         test('Initialize with initial state', async () => {
             const testObject = new TestStore();

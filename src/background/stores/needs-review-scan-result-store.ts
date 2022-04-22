@@ -17,12 +17,13 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         persistedState: NeedsReviewScanResultStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
     ) {
         super(
             StoreNames.NeedsReviewScanResultStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.needsReviewScanResultsStore,
+            IndexedDBDataKeys.needsReviewScanResultsStore(tabId),
             logger,
         );
     }

@@ -20,8 +20,15 @@ export class TabStore extends PersistentStore<TabStoreData> {
         persistedState: TabStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
     ) {
-        super(StoreNames.TabStore, persistedState, idbInstance, IndexedDBDataKeys.tabStore, logger);
+        super(
+            StoreNames.TabStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.tabStore(tabId),
+            logger,
+        );
 
         this.tabActions = tabActions;
         this.visualizationActions = visualizationActions;

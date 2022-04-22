@@ -139,6 +139,7 @@ describe('UnifiedScanResultStore Test', () => {
                 null,
                 null,
                 null,
+                null,
             );
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
@@ -151,6 +152,7 @@ describe('UnifiedScanResultStore Test', () => {
             new UnifiedScanResultStore(
                 new UnifiedScanResultActions(),
                 tabActions,
+                null,
                 null,
                 null,
                 null,

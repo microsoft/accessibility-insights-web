@@ -34,6 +34,7 @@ describe('TargetPageController', () => {
     let knownTabIds: number[];
     const indexedDBDataKey: string = 'knownTabIds';
     const idbInstanceMock: IMock<IndexedDBAPI> = Mock.ofType<IndexedDBAPI>();
+    let tabContextTeardownMock: IMock<() => Promise<void>>;
 
     const EXISTING_WINDOW_ID = 101;
     const EXISTING_WINDOW = { id: EXISTING_WINDOW_ID } as chrome.windows.Window;
@@ -81,6 +82,7 @@ describe('TargetPageController', () => {
         mockTabContextFactory = setupMockTabContextFactory(mockTabInterpreters);
         idbInstanceMock.reset();
         knownTabIds = [];
+        tabContextTeardownMock = Mock.ofInstance(() => Promise.resolve());
 
         testSubject = new TargetPageController(
             tabToContextMap,
@@ -98,6 +100,7 @@ describe('TargetPageController', () => {
         it('should register the expected listeners', async () => {
             setupDatabaseInstance([EXISTING_ACTIVE_TAB_ID], Times.once());
             setupDatabaseInstance([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID], Times.once());
+            setupTeardownInstance(Times.never());
 
             await testSubject.initialize();
 
@@ -137,6 +140,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_ACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        EXISTING_ACTIVE_TAB_ID,
                     ),
                 Times.once(),
             );
@@ -151,6 +155,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_INACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        EXISTING_INACTIVE_TAB_ID,
                     ),
                 Times.once(),
             );
@@ -163,6 +168,7 @@ describe('TargetPageController', () => {
                 f =>
                     f.createTabContext(
                         itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                        It.isAny(),
                         It.isAny(),
                         It.isAny(),
                     ),
@@ -187,6 +193,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_ACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        EXISTING_ACTIVE_TAB_ID,
                     ),
                 Times.once(),
             );
@@ -201,6 +208,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_INACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        It.isAny(),
                     ),
                 Times.once(),
             );
@@ -213,6 +221,7 @@ describe('TargetPageController', () => {
                 f =>
                     f.createTabContext(
                         itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                        It.isAny(),
                         It.isAny(),
                         It.isAny(),
                     ),
@@ -238,6 +247,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_ACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        EXISTING_ACTIVE_TAB_ID,
                     ),
                 Times.once(),
             );
@@ -252,6 +262,7 @@ describe('TargetPageController', () => {
                         itIsFakeBroadcasterForTabId(EXISTING_INACTIVE_TAB_ID),
                         It.isAny(),
                         It.isAny(),
+                        It.isAny(),
                     ),
                 Times.once(),
             );
@@ -264,6 +275,7 @@ describe('TargetPageController', () => {
                 f =>
                     f.createTabContext(
                         itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                        It.isAny(),
                         It.isAny(),
                         It.isAny(),
                     ),
@@ -312,6 +324,7 @@ describe('TargetPageController', () => {
 
             it('should ignore updates for non-root frames', () => {
                 setupDatabaseInstance(null, Times.never());
+                setupTeardownInstance(Times.never());
 
                 mockBrowserAdapter.notifyWebNavigationUpdated({
                     frameId: nonRootFrameId,
@@ -338,6 +351,7 @@ describe('TargetPageController', () => {
                             itIsFakeBroadcasterForTabId(NEW_TAB_ID),
                             It.isAny(),
                             It.isAny(),
+                            NEW_TAB_ID,
                         ),
                     Times.once(),
                 );
@@ -370,12 +384,14 @@ describe('TargetPageController', () => {
         describe('onTabRemoved', () => {
             it('should ignore removals of non-tracked tabs', () => {
                 setupDatabaseInstance(null, Times.never());
+                setupTeardownInstance(Times.once());
                 mockBrowserAdapter.notifyTabsOnRemoved(NEW_TAB_ID, null);
                 verifyNoInterpreterMessages(mockTabInterpreters);
             });
 
             it('should send a Tab.Remove message for tracked tabs', () => {
                 setupDatabaseInstance([EXISTING_INACTIVE_TAB_ID], Times.once());
+                setupTeardownInstance(Times.once());
 
                 const expectedMessage = {
                     messageType: Messages.Tab.Remove,
@@ -391,6 +407,7 @@ describe('TargetPageController', () => {
 
             it('should remove tabToContextMap entries for tabs that are removed', () => {
                 setupDatabaseInstance([EXISTING_INACTIVE_TAB_ID], Times.once());
+                setupTeardownInstance(Times.once());
 
                 mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
 
@@ -399,6 +416,7 @@ describe('TargetPageController', () => {
 
             it('should stop sending future messages after tabs are removed', () => {
                 setupDatabaseInstance([EXISTING_INACTIVE_TAB_ID], Times.once());
+                setupTeardownInstance(Times.once());
 
                 mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
                 resetInterpreterMocks(mockTabInterpreters);
@@ -411,6 +429,7 @@ describe('TargetPageController', () => {
         describe('onDetailsViewTabRemoved', () => {
             beforeEach(() => {
                 setupDatabaseInstance(null, Times.never());
+                setupTeardownInstance(Times.never());
             });
 
             it('should ignore removals of non-tracked tabs', () => {
@@ -436,6 +455,7 @@ describe('TargetPageController', () => {
         describe('onWindowsFocusChanged', () => {
             beforeEach(() => {
                 setupDatabaseInstance(null, Times.never());
+                setupTeardownInstance(Times.never());
             });
 
             const irrelevantWindowId = -1;
@@ -579,6 +599,7 @@ describe('TargetPageController', () => {
                             itIsFakeBroadcasterForTabId(NEW_TAB_ID),
                             It.isAny(),
                             It.isAny(),
+                            NEW_TAB_ID,
                         ),
                     Times.once(),
                 );
@@ -653,10 +674,12 @@ describe('TargetPageController', () => {
                 It.isAny(),
                 mockBrowserAdapter.object,
                 mockDetailsViewController.object,
+                It.isAny(),
             ),
         ).returns((fakeBroadcaster, _2, _3) => ({
             stores: null,
             interpreter: interpreters[fakeBroadcaster.tabId].object,
+            teardown: tabContextTeardownMock.object,
         }));
         return mock;
     }
@@ -670,5 +693,12 @@ describe('TargetPageController', () => {
         } else {
             idbInstanceMock.setup(db => db.setItem(indexedDBDataKey, It.isAny())).verifiable(times);
         }
+    };
+
+    const setupTeardownInstance = (times: Times) => {
+        tabContextTeardownMock
+            .setup(teardown => teardown())
+            .returns(() => Promise.resolve())
+            .verifiable(times);
     };
 });
