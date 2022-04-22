@@ -101,7 +101,7 @@ describe('BrowserAdapterEventManager', () => {
             },
         });
         validator.setupPromiseFactoryDelay(2, 1);
-        testSubject.processEvent(testEventType, testArgs);
+        testSubject.tryProcessEvent(testEventType, testArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
@@ -118,7 +118,7 @@ describe('BrowserAdapterEventManager', () => {
             },
         });
         validator.setupPromiseFactoryDelay(2, 1);
-        testSubject.processEvent(testEventType, multiArgs);
+        testSubject.tryProcessEvent(testEventType, multiArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
@@ -131,7 +131,7 @@ describe('BrowserAdapterEventManager', () => {
             },
         });
         validator.setupPromiseFactoryTimeout(4, 1);
-        testSubject.processEvent(testEventType, testArgs);
+        testSubject.tryProcessEvent(testEventType, testArgs);
         validator.verifyAll();
         mockApplicationListener.verifyAll();
     });
@@ -145,7 +145,7 @@ describe('BrowserAdapterEventManager', () => {
         });
         validator.setupPromiseFactoryTimeout(4, 1, true);
         try {
-            expect(testSubject.processEvent(testEventType, testArgs)).toEqual(undefined);
+            expect(testSubject.tryProcessEvent(testEventType, testArgs)).toEqual(undefined);
         } catch (rejection) {
             expect(rejection).toBeDefined();
         }
@@ -169,7 +169,7 @@ describe('BrowserAdapterEventManager', () => {
             [nonPromiseResultErrorMsg, mockApplicationListener.object, testArgs],
             1,
         );
-        expect(testSubject.processEvent(testEventType, testArgs)).resolves.toEqual(true);
+        expect(testSubject.tryProcessEvent(testEventType, testArgs)).resolves.toEqual(true);
 
         validator.verifyAll();
         mockApplicationListener.verifyAll();
@@ -177,7 +177,7 @@ describe('BrowserAdapterEventManager', () => {
 
     it('processEvent returns null if no listeners are available', () => {
         const testSubject = validator.buildBrowserAdapterEventManager();
-        expect(testSubject.processEvent(testEventType, testArgs)).toBeNull();
+        expect(testSubject.tryProcessEvent(testEventType, testArgs)).toBeNull();
 
         validator.verifyAll();
     });
