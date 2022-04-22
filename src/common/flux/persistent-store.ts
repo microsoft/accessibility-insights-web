@@ -12,13 +12,16 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         protected readonly idbInstance: IndexedDBAPI,
         protected readonly indexedDBDataKey: string,
         protected readonly logger: Logger,
-        private initializeWithStoreData = false,
+        private persistStoreData = false,
     ) {
         super(storeName);
     }
 
     protected async persistData(storeData: any): Promise<boolean> {
-        return await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
+        if (this.persistStoreData) {
+            return await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
+        }
+        return Promise.resolve(true);
     }
 
     // Allow specific stores to override default state behavior
@@ -27,7 +30,7 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
     }
 
     public override initialize(initialState?: TState): void {
-        if (this.initializeWithStoreData) {
+        if (this.persistStoreData) {
             const generatedPersistedState = this.generateDefaultState(this.persistedState);
 
             this.state = initialState || (generatedPersistedState ?? this.getDefaultState());
@@ -39,13 +42,15 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
     }
 
     public async teardown(): Promise<void> {
-        await this.idbInstance.removeItem(this.indexedDBDataKey);
+        if (this.persistStoreData) {
+            await this.idbInstance.removeItem(this.indexedDBDataKey);
+        }
     }
 
     protected emitChanged(): void {
         const storeData = this.getState();
 
-        if (this.idbInstance && this.logger) {
+        if (this.idbInstance && this.logger && this.persistStoreData) {
             this.persistData(storeData).catch(this.logger.error);
         }
 
