@@ -187,9 +187,6 @@ describe('TargetPageController', () => {
         });
 
         it('should remove tabs that no longer exist', async () => {
-            setupDatabaseInstance([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID], Times.once());
-            setupTeardownInstance(Times.once());
-
             knownTabIds.push(EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID, NEW_TAB_ID);
 
             await testSubject.initialize();
