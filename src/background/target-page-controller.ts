@@ -22,6 +22,7 @@ export class TargetPageController {
         private readonly logger: Logger,
         private readonly knownTabIds: number[],
         private readonly idbInstance: IndexedDBAPI,
+        private persistStoreData = false,
     ) {}
 
     public async initialize(): Promise<void> {
@@ -57,7 +58,9 @@ export class TargetPageController {
     private addKnownTabId = async (tabId: number) => {
         if (!this.knownTabIds.includes(tabId)) {
             this.knownTabIds.push(tabId);
-            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+            if (this.persistStoreData) {
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+            }
         }
     };
 
@@ -65,7 +68,9 @@ export class TargetPageController {
         if (this.knownTabIds.includes(tabId)) {
             this.knownTabIds.splice(this.knownTabIds.indexOf(tabId, 0), 1);
             context.teardown();
-            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+            if (this.persistStoreData) {
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+            }
         }
     };
 
