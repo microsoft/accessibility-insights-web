@@ -174,9 +174,16 @@ async function initialize(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
     const messageDistributor = new MessageDistributor(
         globalContext,
         tabToContextMap,
+        postMessageContentHandler,
         browserAdapter,
         logger,
     );
@@ -217,17 +224,6 @@ async function initialize(): Promise<void> {
 
     const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
     devToolsBackgroundListener.initialize();
-
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(
-        postMessageContentRepository,
-        browserAdapter,
-    );
-
-    postMessageContentHandler.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;
