@@ -4,9 +4,8 @@ import { Assessments } from 'assessments/assessments';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DevToolsListener } from 'background/dev-tools-listener';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
-import { getPersistedData } from 'background/get-persisted-data';
+import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { MessageDistributor } from 'background/message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
@@ -57,13 +56,9 @@ async function initialize(): Promise<void> {
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
-    const indexedDBDataKeysToFetch = [
-        IndexedDBDataKeys.assessmentStore,
-        IndexedDBDataKeys.userConfiguration,
-    ];
 
     // // These can run concurrently, both because they are read-only and because they use different types of underlying storage
-    const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    const persistedDataPromise = getAllPersistedData(indexedDBInstance);
     const userDataPromise = browserAdapter.getUserData(storageDataKeys); // localStorage
     const persistedData = await persistedDataPromise; //indexedDB
     const userData = await userDataPromise;
