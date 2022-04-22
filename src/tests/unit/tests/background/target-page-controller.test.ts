@@ -103,7 +103,6 @@ describe('TargetPageController', () => {
             resetInterpreterMocks(mockTabInterpreters);
 
             setupDatabaseInstance(null, Times.never());
-            setupTeardownInstance(Times.never());
         });
 
         it('should not persist data on init', async () => {

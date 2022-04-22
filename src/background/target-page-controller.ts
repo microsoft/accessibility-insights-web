@@ -67,8 +67,8 @@ export class TargetPageController {
     private removeKnownTabId = async (tabId: number, context: TabContext) => {
         if (this.knownTabIds.includes(tabId)) {
             this.knownTabIds.splice(this.knownTabIds.indexOf(tabId, 0), 1);
+            context.teardown();
             if (this.persistStoreData) {
-                context.teardown();
                 await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
             }
         }

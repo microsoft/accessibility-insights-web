@@ -21,7 +21,7 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         if (this.persistStoreData) {
             return await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
         }
-        return Promise.resolve(true);
+        return true;
     }
 
     // Allow specific stores to override default state behavior
