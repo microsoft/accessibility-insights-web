@@ -48,9 +48,9 @@ describe(StoreUpdateMessageDistributor, () => {
         } as StoreUpdateMessage<string>;
 
         testSubject = new StoreUpdateMessageDistributor(
-            tabId,
             browserAdapterMock.object,
             loggerMock.object,
+            tabId,
         );
 
         testSubject.initialize();

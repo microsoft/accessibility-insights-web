@@ -4,6 +4,7 @@ import { loadTheme } from '@fluentui/react';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { textContent } from 'content/strings/text-content';
 import * as ReactDOM from 'react-dom';
 import { Content } from 'views/content/content';
@@ -39,9 +40,12 @@ export const rendererDependencies: (
         actionMessageDispatcher,
     );
 
+    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter, logger);
+    storeUpdateMessageDistributor.initialize();
+
     const store = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const storesHub = new BaseClientStoresHub<any>([store]);
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(

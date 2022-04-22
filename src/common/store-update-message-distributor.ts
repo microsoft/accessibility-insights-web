@@ -12,9 +12,9 @@ export class StoreUpdateMessageDistributor {
     private readonly registeredUpdateListeners: { [key: string]: StoreUpdateMessageListener } = {};
 
     constructor(
-        private readonly tabId: number,
         private readonly browserAdapter: BrowserAdapter,
         private readonly logger: Logger,
+        private readonly tabId?: number,
     ) {}
 
     public initialize(): void {

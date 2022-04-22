@@ -6,10 +6,12 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
+import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -36,8 +38,9 @@ export const initializeDebugTools = () => {
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+    const logger = createDefaultLogger();
 
-    const storeProxies = createStoreProxies(browserAdapter);
+    const storeProxies = createStoreProxies(browserAdapter, logger);
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
@@ -65,22 +68,25 @@ export const initializeDebugTools = () => {
     render(props);
 };
 
-const createStoreProxies = (browserAdapter: BrowserAdapter) => {
+const createStoreProxies = (browserAdapter: BrowserAdapter, logger: Logger) => {
+    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter, logger);
+    storeUpdateMessageDistributor.initialize();
+
     const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
         StoreNames[StoreNames.FeatureFlagStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const scopingStore = new StoreProxy<ScopingStoreData>(
         StoreNames[StoreNames.ScopingPanelStateStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const permissionsStore = new StoreProxy<PermissionsStateStoreData>(
         StoreNames[StoreNames.PermissionsStateStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];

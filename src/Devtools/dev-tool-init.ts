@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import * as UAParser from 'ua-parser-js';
 import { DevToolInitializer } from './dev-tool-initializer';
@@ -8,11 +9,13 @@ import { DevToolInitializer } from './dev-tool-initializer';
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+const logger = createDefaultLogger();
 
 const targetPageInspector = new TargetPageInspector(chrome.devtools.inspectedWindow);
 
 const devToolInitializer: DevToolInitializer = new DevToolInitializer(
     browserAdapter,
     targetPageInspector,
+    logger,
 );
 devToolInitializer.initialize();
