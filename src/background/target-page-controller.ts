@@ -28,6 +28,12 @@ export class TargetPageController {
         this.knownTabIds.forEach(tabId => this.addTabContext(tabId));
 
         const tabs = await this.browserAdapter.tabsQuery({});
+
+        const removedTabs = this.knownTabIds.filter(
+            knownTab => !tabs.map(tab => tab.id).includes(knownTab),
+        );
+        removedTabs.forEach(removedTabId => this.onTargetTabRemoved(removedTabId));
+
         const newTabs = tabs.filter(tab => !this.knownTabIds.includes(tab.id));
         if (newTabs) {
             newTabs.forEach(tab => {

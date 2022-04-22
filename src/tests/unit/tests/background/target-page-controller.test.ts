@@ -294,6 +294,75 @@ describe('TargetPageController', () => {
                 Times.once(),
             );
         });
+
+        it('should remove tabs that no longer exist', async () => {
+            setupDatabaseInstance([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID], Times.once());
+            setupTeardownInstance(Times.once());
+
+            knownTabIds.push(EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID, NEW_TAB_ID);
+
+            await testSubject.initialize();
+
+            mockTabContextFactory.verify(
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(EXISTING_ACTIVE_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                        EXISTING_ACTIVE_TAB_ID,
+                    ),
+                Times.once(),
+            );
+            expect(tabToContextMap[EXISTING_ACTIVE_TAB_ID]).toHaveProperty(
+                'interpreter',
+                mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].object,
+            );
+
+            mockTabContextFactory.verify(
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(EXISTING_INACTIVE_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                        It.isAny(),
+                    ),
+                Times.once(),
+            );
+            expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
+                'interpreter',
+                mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].object,
+            );
+
+            mockTabContextFactory.verify(
+                f =>
+                    f.createTabContext(
+                        itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                        It.isAny(),
+                        It.isAny(),
+                        It.isAny(),
+                    ),
+                Times.once(),
+            );
+            expect(tabToContextMap[NEW_TAB_ID]).toBeUndefined();
+
+            idbInstanceMock.verifyAll();
+
+            mockTabInterpreters[EXISTING_ACTIVE_TAB_ID].verify(
+                i => i.interpret(It.isAny()),
+                Times.never(),
+            );
+            mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].verify(
+                i => i.interpret(It.isAny()),
+                Times.never(),
+            );
+
+            const expectedMessage = {
+                messageType: Messages.Tab.Remove,
+                payload: null,
+                tabId: NEW_TAB_ID,
+            };
+            mockTabInterpreters[NEW_TAB_ID].verify(i => i.interpret(expectedMessage), Times.once());
+        });
     });
 
     describe('in initialized state', () => {
