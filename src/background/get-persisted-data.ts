@@ -78,6 +78,33 @@ function getGlobalPersistedPromises(
     return promises;
 }
 
+function getTabSpecificPersistedPromises(
+    tabId: number,
+    keyFunc: (tabId) => string,
+    indexedDBInstance: IndexedDBAPI,
+    persistedData: PersistedData,
+): Promise<any> {
+    const keyWithTabId = keyFunc(tabId);
+    const keyWithoutTabId = keyFunc('');
+
+    return indexedDBInstance.getItem(keyWithTabId).then(data => {
+        const persistedDataKey = getPersistedDataKey(keyWithoutTabId);
+        persistedData.tabData[tabId][persistedDataKey] = data;
+    });
+}
+
+function getAllTabSpecificPersistedPromises(
+    tabId: number,
+    indexedDBInstance: IndexedDBAPI,
+    persistedData: PersistedData,
+): Promise<any>[] {
+    persistedData.tabData[tabId] = {} as TabSpecificPersistedData;
+
+    return IndexedDBDataKeys.tabSpecificKeys.map(keyFunc => {
+        return getTabSpecificPersistedPromises(tabId, keyFunc, indexedDBInstance, persistedData);
+    });
+}
+
 export function getGlobalPersistedData(
     indexedDBInstance: IndexedDBAPI,
     dataKeysToFetch: string[],
@@ -105,16 +132,12 @@ export async function getAllPersistedData(indexedDBInstance: IndexedDBAPI): Prom
     const knownTabIds: number[] = await indexedDBInstance.getItem(IndexedDBDataKeys.knownTabIds);
     if (knownTabIds && knownTabIds.length > 0) {
         knownTabIds.forEach(tabId => {
-            persistedData.tabData[tabId] = {} as TabSpecificPersistedData;
-            promises = promises.concat(
-                IndexedDBDataKeys.tabSpecificKeys.map(keyFunc => {
-                    const key = keyFunc(tabId);
-                    return indexedDBInstance.getItem(key).then(data => {
-                        const persistedDataKey = getPersistedDataKey(keyFunc(''));
-                        persistedData.tabData[tabId][persistedDataKey] = data;
-                    });
-                }),
+            const tabSpecificPromises = getAllTabSpecificPersistedPromises(
+                tabId,
+                indexedDBInstance,
+                persistedData,
             );
+            promises = promises.concat(tabSpecificPromises);
         });
     }
 
