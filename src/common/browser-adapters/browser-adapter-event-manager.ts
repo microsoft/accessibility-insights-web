@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
-import { defer } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
 export interface ApplicationListener {
@@ -16,6 +15,7 @@ export interface EventDetails {
 
 export interface DeferredEventDetails extends EventDetails {
     deferredResolution: ExternalResolutionPromise;
+    isStale: boolean;
 }
 export interface AdapterListener {
     (...eventArgs: any[]): any;
@@ -94,6 +94,10 @@ export class BrowserAdapterEventManager {
     private processDeferredEvents(): void {
         const stillDeferred: DeferredEventDetails[] = [];
         for (const deferredEvent of this.deferredEvents) {
+            if (deferredEvent.isStale) {
+                continue; // without persisting to stillDeferred
+            }
+
             const maybeResponsePromise = this.tryProcessEvent(
                 deferredEvent.eventType,
                 deferredEvent.eventArgs,
@@ -152,21 +156,17 @@ export class BrowserAdapterEventManager {
         const deferredResolution = this.promiseFactory.externalResolutionPromise();
         const deferredEventDetails = {
             deferredResolution: deferredResolution,
+            isStale: false,
             ...eventDetails,
         };
         this.deferredEvents.push(deferredEventDetails);
 
-        // Settle the promise in four minutes in case a listener is never registered
-        setTimeout(() => {
-            // Note that this timeout will still run if the deferred event resolves and is no
-            // longer present in the deferredEvents list
-            this.deferredEvents = this.deferredEvents.filter(e => e !== deferredEventDetails);
-            // This relies on the Promise behavior where a Promise which has already been
-            // resolved/rejected ignores subsequent calls to its resolve/reject hooks
-            deferredResolution.rejectHook('no listener registered within timeout');
-        }, FOUR_MINUTES);
-
-        return deferredResolution.promise;
+        // It's important that we ensure the promise settles even if a listener never registers
+        // to prevent the Service Worker from being detected as stalled and torn down while other
+        // work is still in progress.
+        return this.promiseFactory.timeout(deferredResolution.promise, FOUR_MINUTES).finally(() => {
+            deferredEventDetails.isStale = true;
+        });
     }
 
     private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
