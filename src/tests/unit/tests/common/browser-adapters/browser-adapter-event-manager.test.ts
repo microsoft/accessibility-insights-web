@@ -2,28 +2,24 @@
 // Licensed under the MIT License.
 
 import { BrowserAdapterEventManager } from 'common/browser-adapters/browser-adapter-event-manager';
-import {
-    createDefaultPromiseFactory,
-    ExternalResolutionPromise,
-    PromiseFactory,
-    TimeoutError,
-} from 'common/promises/promise-factory';
+import { createDefaultPromiseFactory, PromiseFactory } from 'common/promises/promise-factory';
 import { RecordingLogger } from 'tests/unit/common/recording-logger';
-import type * as browser from 'webextension-polyfill';
+import { SimulatedBrowserEvent } from 'tests/unit/common/simulated-browser-event';
+import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
 
 describe('BrowserAdapterEventManager', () => {
     let realPromiseFactory: PromiseFactory;
-    let timeTrackingPromiseFactory: TimeTrackingPromiseFactory;
+    let timeSimulatingPromiseFactory: TimeSimulatingPromiseFactory;
     let recordingLogger: RecordingLogger;
-    let testEvent: SingleListenerTestEvent<() => Promise<string>>;
+    let testEvent: SimulatedBrowserEvent<() => Promise<string>>;
     let testSubject: BrowserAdapterEventManager;
 
     beforeEach(() => {
         realPromiseFactory = createDefaultPromiseFactory();
-        timeTrackingPromiseFactory = new TimeTrackingPromiseFactory();
+        timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
         recordingLogger = new RecordingLogger();
-        testEvent = new SingleListenerTestEvent();
-        testSubject = new BrowserAdapterEventManager(timeTrackingPromiseFactory, recordingLogger);
+        testEvent = new SimulatedBrowserEvent();
+        testSubject = new BrowserAdapterEventManager(timeSimulatingPromiseFactory, recordingLogger);
     });
 
     it('delegates to pre-registered, Promise-based ApplicationListeners', async () => {
@@ -35,7 +31,7 @@ describe('BrowserAdapterEventManager', () => {
 
         await expect(testEvent.invoke()).resolves.toBe('app listener result');
         expect(recordingLogger.allMessages).toStrictEqual([]);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('defers to a Promise-based ApplicationListener that registers after the event occurs', async () => {
@@ -49,7 +45,7 @@ describe('BrowserAdapterEventManager', () => {
         await expect(promiseReturnedToEvent).resolves.toBe('app listener result');
 
         expect(recordingLogger.allMessages).toStrictEqual([]);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('continues deferring events past registration of unrelated event types', async () => {
@@ -63,7 +59,7 @@ describe('BrowserAdapterEventManager', () => {
         );
 
         expect(recordingLogger.allMessages).toStrictEqual([]);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
 
         testSubject.registerEventToApplicationListener(
             'event-type',
@@ -72,7 +68,7 @@ describe('BrowserAdapterEventManager', () => {
         await expect(promiseReturnedToEvent).resolves.toBe('app listener result');
 
         expect(recordingLogger.allMessages).toStrictEqual([]);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('can track multiple outstanding deferrals', async () => {
@@ -101,11 +97,11 @@ describe('BrowserAdapterEventManager', () => {
 
         // The synchronous app listener should fire before we start delaying
         expect(appListenerFired).toBe(true);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
@@ -113,7 +109,7 @@ describe('BrowserAdapterEventManager', () => {
         // This test involves a 2 minute fire-and-forget delay and a 4-minute timeout racing each
         // other. This case is to test that the delay is present, so we make sure the delay wins
         // the race by forcing the timeout to take a nonzero amount of real time.
-        timeTrackingPromiseFactory.actualTimeoutMs = 1000;
+        timeSimulatingPromiseFactory.actualTimeoutMs = 1000;
 
         testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
         // event invoked before listener registered
@@ -126,11 +122,11 @@ describe('BrowserAdapterEventManager', () => {
 
         // The synchronous app listener should fire before we start delaying
         expect(appListenerFired).toBe(true);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
@@ -138,7 +134,7 @@ describe('BrowserAdapterEventManager', () => {
         // This test involves a 2 minute fire-and-forget delay and a 4-minute timeout racing each
         // other. This case is to test that the timeout is present, so we make sure the timeout wins
         // the race by forcing the delay to take a nonzero amount of real time.
-        timeTrackingPromiseFactory.actualDelayMs = 1000;
+        timeSimulatingPromiseFactory.actualDelayMs = 1000;
 
         testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
         // event invoked before listener registered
@@ -151,11 +147,11 @@ describe('BrowserAdapterEventManager', () => {
 
         // The synchronous app listener should fire before we start delaying
         expect(appListenerFired).toBe(true);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
             Array [
               "Error while processing browser event-type event: {}",
@@ -170,7 +166,7 @@ describe('BrowserAdapterEventManager', () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
             Array [
               "Error while processing browser event-type event: {}",
@@ -198,7 +194,7 @@ describe('BrowserAdapterEventManager', () => {
         );
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
             Array [
               "Error while processing browser event-type event: {}",
@@ -222,7 +218,7 @@ describe('BrowserAdapterEventManager', () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
             Array [
               "Error while processing browser event-type event: {}",
@@ -242,7 +238,7 @@ describe('BrowserAdapterEventManager', () => {
               "Unexpected sync ApplicationListener for event type event-type: ",
             ]
         `);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('logs and eats an error for throwing ApplicationListeners', async () => {
@@ -259,7 +255,7 @@ describe('BrowserAdapterEventManager', () => {
               "Error while processing browser event-type event: {}",
             ]
         `);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('logs and eats an error for Promise-based ApplicationListeners which reject', async () => {
@@ -275,7 +271,7 @@ describe('BrowserAdapterEventManager', () => {
               "Error while processing browser event-type event: {}",
             ]
         `);
-        expect(timeTrackingPromiseFactory.elapsedTime).toBe(0);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
     });
 
     it('does not allow multiple registrations for the same event type', () => {
@@ -309,68 +305,3 @@ describe('BrowserAdapterEventManager', () => {
         });
     });
 });
-
-class SingleListenerTestEvent<T extends (...args: any[]) => any>
-    implements browser.Events.Event<T>
-{
-    private listener: null | T = null;
-    addListener(callback: T, ...params: any[]): void {
-        if (this.listener !== null) {
-            throw new Error('Invalid second addListener call');
-        }
-        this.listener = callback;
-    }
-    hasListener(callback: T): boolean {
-        return this.listener === callback;
-    }
-    hasListeners(): boolean {
-        return this.listener !== null;
-    }
-    removeListener(callback: T): void {
-        if (this.listener !== callback) {
-            throw new Error('Invalid removeListener call');
-        }
-        this.listener = null;
-    }
-    invoke(...params: Parameters<T>): ReturnType<T> {
-        return this.listener(...params);
-    }
-}
-
-class TimeTrackingPromiseFactory implements PromiseFactory {
-    public elapsedTime: number = 0;
-    public actualDelayMs: number = 0;
-    public actualTimeoutMs: number = 0;
-
-    constructor(
-        private readonly realPromiseFactory: PromiseFactory = createDefaultPromiseFactory(),
-    ) {}
-
-    reset() {
-        this.elapsedTime = 0;
-    }
-
-    delay(result: any, delayInMs: number): Promise<any> {
-        const startTime = this.elapsedTime;
-        const externalResolution = this.realPromiseFactory.externalResolutionPromise();
-        setTimeout(() => {
-            this.elapsedTime = Math.max(startTime + delayInMs, this.elapsedTime);
-            externalResolution.resolveHook(result);
-        }, this.actualDelayMs);
-        return externalResolution.promise;
-    }
-
-    externalResolutionPromise(): ExternalResolutionPromise {
-        return this.realPromiseFactory.externalResolutionPromise();
-    }
-
-    timeout<T>(promise: Promise<T>, delayInMs: number): Promise<T> {
-        const startTime = this.elapsedTime;
-        return this.realPromiseFactory.timeout(promise, this.actualTimeoutMs).catch(async e => {
-            if (e instanceof TimeoutError) {
-                this.elapsedTime = Math.max(startTime + delayInMs, this.elapsedTime);
-            }
-            throw e;
-        });
-    }
-}
