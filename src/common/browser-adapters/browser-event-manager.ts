@@ -44,7 +44,6 @@ const FIRE_AND_FORGET_EVENT_DELAY = 2 * 60 * 1000; // 2 minutes
 //      * delaying potential fire-and-forget responses for 2 minutes to give potential promises time to finish
 //      * deferring any events without an associated application-level listener until one is registered
 //   * registering application-level listeners to be called inside the handleEvent listener
-
 export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
