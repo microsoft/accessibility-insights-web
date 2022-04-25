@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { isPromise } from 'common/promises/is-promise';
 import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
@@ -188,9 +189,4 @@ export class BrowserEventManager {
     private removeApplicationListener(eventType: string) {
         delete this.eventsToApplicationListenersMapping[eventType];
     }
-}
-
-function isPromise(value: unknown): value is Promise<unknown> {
-    // Don't use instanceof Promise; it can get confused by transpilation
-    return !!value && typeof (value as any).then === 'function';
 }
