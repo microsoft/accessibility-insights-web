@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+type TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
+type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
 
-type TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
-type PromiseDelay = (result: any, delayInMs: number) => Promise<any>;
 export type ExternalResolutionPromise = {
     promise: Promise<any>;
     resolveHook: (value: unknown) => any;
@@ -12,19 +12,19 @@ export type ExternalResolutionPromise = {
 export class TimeoutError extends Error {}
 
 export type PromiseFactory = {
-    timeout: TimeoutPromise;
-    delay: PromiseDelay;
+    timeout: TimeoutCreator;
+    delay: DelayCreator;
     externalResolutionPromise: () => ExternalResolutionPromise;
 };
 
-const createDelay: PromiseDelay = (result: any, delayInMs: number) => {
+const createDelay: DelayCreator = (result: any, delayInMs: number) => {
     const externalResolution = createPromiseForExternalResolution();
 
     setTimeout(() => externalResolution.resolveHook(result), delayInMs);
     return externalResolution.promise;
 };
 
-const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
+const createTimeout: TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
     const timeout = new Promise<T>((resolve, reject) => {
         const timeoutId = setTimeout(() => {
             clearTimeout(timeoutId);
