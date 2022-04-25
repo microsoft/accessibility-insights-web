@@ -46,6 +46,9 @@ const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
 //      * delaying potential fire-and-forget responses for 2 minutes to give potential promises time to finish
 //      * deferring any events without an associated application-level listener until one is registered
 //   * registering application-level listeners to be called inside the handleEvent listener
+//
+// For more info on Chromium's Service Worker lifetime restrictions, see
+// https://chromium.googlesource.com/chromium/src/+/refs/tags/103.0.5025.1/docs/security/service-worker-security-faq.md#do-service-workers-live-forever
 export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
