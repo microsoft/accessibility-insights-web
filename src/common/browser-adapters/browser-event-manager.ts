@@ -135,7 +135,7 @@ export class BrowserEventManager {
             );
             throw error;
         }
-        if (!!result && typeof result.then === 'function') {
+        if (isPromise(result)) {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
             // prevents the service worker going idle before a response is sent
             return await this.promiseFactory.timeout(result, EVENT_TIMEOUT);
@@ -186,4 +186,9 @@ export class BrowserEventManager {
     private removeApplicationListener(eventType: string) {
         delete this.eventsToApplicationListenersMapping[eventType];
     }
+}
+
+function isPromise(value: unknown): value is Promise<unknown> {
+    // Don't use instanceof Promise; it can get confused by transpilation
+    return !!value && typeof value['then'] === 'function';
 }
