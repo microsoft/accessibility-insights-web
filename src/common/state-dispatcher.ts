@@ -3,8 +3,7 @@
 import { StoreHub } from 'background/stores/store-hub';
 import { Logger } from 'common/logging/logger';
 import { BaseStore } from './base-store';
-import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
-import { StoreUpdateMessage } from './types/store-update-message';
+import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
 
 export class StateDispatcher {
     constructor(
@@ -26,9 +25,8 @@ export class StateDispatcher {
     private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
         return () => {
             this.broadcastMessage({
-                isStoreUpdateMessage: true,
                 storeId: store.getId(),
-                messageType: GenericStoreMessageTypes.storeStateChanged,
+                messageType: storeUpdateMessageType,
                 storeType: this.stores.getStoreType(),
                 payload: store.getState(),
             }).catch(this.logger.error);
