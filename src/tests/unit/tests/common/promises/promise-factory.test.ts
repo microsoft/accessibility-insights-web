@@ -18,7 +18,7 @@ describe(`promiseFactory`, () => {
         beforeEach(() => {
             testObject = createDefaultPromiseFactory();
         });
-        it("propogates an underlying Promise's resolve", async () => {
+        it("propagates an underlying Promise's resolve", async () => {
             const actual = 'the result';
             const resolving = Promise.resolve(actual);
 
@@ -27,7 +27,7 @@ describe(`promiseFactory`, () => {
             await expect(result).resolves.toEqual(actual);
         });
 
-        it("propogates an underlying Promise's reject", async () => {
+        it("propagates an underlying Promise's reject", async () => {
             const reason = 'rejecting!';
             const rejecting = testObject.timeout(Promise.reject(reason), 10);
 
@@ -55,7 +55,7 @@ describe(`promiseFactory`, () => {
         beforeEach(() => {
             testObject = createDefaultPromiseFactory();
         });
-        it("propogates an underlying Promise's resolve", async () => {
+        it("propagates an underlying Promise's resolve", async () => {
             const actual = 'the result';
             const resolving = new Promise(resolve => {
                 setTimeout(() => resolve(actual), 10);

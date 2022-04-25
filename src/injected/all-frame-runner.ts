@@ -29,7 +29,7 @@ before calling runner.start() / runner.stop()
 - runner.start() will run target.start() in the current frame, and then in any child frames
 - runner.stop() will run target.stop() in the current frame, and then in any child frames
 - runner provides target with a reportResults callback. When target.reportResults(payload) is 
-called, runner propogates payload to parent frames. In each parent frame, runner replaces the 
+called, runner propagates payload to parent frames. In each parent frame, runner replaces the 
 payload with target.transformChildResultForParent(payload). When the result reaches the top window, 
 runner calls topWindowCallback(payload)
 */

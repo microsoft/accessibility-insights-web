@@ -219,7 +219,7 @@ describe(BrowserEventManager, () => {
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
 
-    it('logs an error and propogates sync value-returning ApplicationListeners', async () => {
+    it('logs an error and propagates sync value-returning ApplicationListeners', async () => {
         const syncAppListener = (() => 'app listener result') as unknown as ApplicationListener;
         testSubject.addBrowserListener(testEvent, 'event-type');
         testSubject.addApplicationListener('event-type', syncAppListener);
