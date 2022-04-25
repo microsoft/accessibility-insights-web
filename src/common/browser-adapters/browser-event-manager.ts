@@ -10,6 +10,10 @@ export type FireAndForgetApplicationListener = (...eventArgs: any[]) => void;
 
 export type ApplicationListener = AsyncApplicationListner | FireAndForgetApplicationListener;
 
+interface BrowserListener {
+    (...eventArgs: any[]): any;
+}
+
 interface EventDetails {
     eventType: string;
     eventArgs: any[];
@@ -18,9 +22,6 @@ interface EventDetails {
 interface DeferredEventDetails extends EventDetails {
     deferredResolution: ExternalResolutionPromise;
     isStale: boolean;
-}
-interface BrowserListener {
-    (...eventArgs: any[]): any;
 }
 
 // As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
