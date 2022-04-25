@@ -81,9 +81,7 @@ export class BrowserEventManager {
             this.tryProcessEvent(eventType, eventArgs) ?? this.deferEvent({ eventType, eventArgs });
 
         return responsePromise.catch(error => {
-            this.logger.error(
-                `Error while processing browser ${eventType} event: ${JSON.stringify(error)}`,
-            );
+            this.logger.error(`Error while processing browser ${eventType} event: `, error);
 
             // We want to avoid rejecting the Promise we give back to the browser event handler
             // because doing so is liable to cause the browser to tear down our Service Worker
@@ -131,10 +129,13 @@ export class BrowserEventManager {
             result = listener(...eventArgs);
         } catch (error) {
             this.logger.error(
-                `Error thrown from ApplicationListener for event type ${eventType}: `,
+                `Error thrown from ApplicationListener for browser ${eventType} event: `,
                 error,
             );
-            throw error;
+
+            // Re-throwing here would be caught by handleBrowserEvent and turned into undefined
+            // anyway; returning undefined here instead avoids a redundant error message
+            return undefined;
         }
         if (isPromise(result)) {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
@@ -151,7 +152,7 @@ export class BrowserEventManager {
                 // how long their response takes to process) or void/undefined (to indicate
                 // that they are "fire and forget", and should trigger the above delay case).
                 this.logger.error(
-                    `Unexpected sync ApplicationListener for event type ${eventType}: `,
+                    `Unexpected sync ApplicationListener for browser ${eventType} event: `,
                     listener,
                     eventArgs,
                 );
