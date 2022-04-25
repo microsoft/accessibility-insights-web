@@ -105,6 +105,12 @@ export class BrowserEventManager {
         const stillDeferred: DeferredEventDetails[] = [];
         for (const deferredEvent of this.deferredEvents) {
             if (deferredEvent.isStale) {
+                // Stale events are ones that have already timed out before a corresponding
+                // ApplicationListener was added. This is a pretty unexpected error case; we discard
+                // stale events rather than allowing them to forward to a very late-attached
+                // listener because we expect debugging just a timeout error log would be easier
+                // than debugging whatever undefined behavior happens if our Service Worker gets
+                // torn down an ApplicationListener is in progress.
                 continue; // without persisting to stillDeferred
             }
 
