@@ -839,6 +839,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
+                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -857,6 +858,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
+                true,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
@@ -875,6 +877,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
+                true,
             );
 
         return new StoreTester(InjectionActions, actionName, factory);

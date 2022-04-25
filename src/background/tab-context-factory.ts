@@ -54,6 +54,7 @@ export class TabContextFactory {
         browserAdapter: BrowserAdapter,
         detailsViewController: ExtensionDetailsViewController,
         tabId: number,
+        persistStoreData: boolean,
     ): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
@@ -64,6 +65,7 @@ export class TabContextFactory {
             this.indexedDBInstance,
             this.logger,
             tabId,
+            persistStoreData,
         );
         const notificationCreator = new NotificationCreator(
             browserAdapter,

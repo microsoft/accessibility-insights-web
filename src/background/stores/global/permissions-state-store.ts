@@ -15,6 +15,7 @@ export class PermissionsStateStore extends PersistentStore<PermissionsStateStore
         protected readonly persistedState: PermissionsStateStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.PermissionsStateStore,
@@ -22,6 +23,7 @@ export class PermissionsStateStore extends PersistentStore<PermissionsStateStore
             idbInstance,
             IndexedDBDataKeys.permissionsStateStore,
             logger,
+            persistStoreData,
         );
     }
 

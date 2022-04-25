@@ -87,7 +87,15 @@ describe('CardSelectionStore Test', () => {
         actionName: keyof UnifiedScanResultActions,
     ): StoreTester<CardSelectionStoreData, UnifiedScanResultActions> {
         const factory = (actions: UnifiedScanResultActions) =>
-            new CardSelectionStore(new CardSelectionActions(), actions, null, null, null, null);
+            new CardSelectionStore(
+                new CardSelectionActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
     }
@@ -388,7 +396,15 @@ describe('CardSelectionStore Test', () => {
         actionName: keyof CardSelectionActions,
     ): StoreTester<CardSelectionStoreData, CardSelectionActions> {
         const factory = (actions: CardSelectionActions) =>
-            new CardSelectionStore(actions, new UnifiedScanResultActions(), null, null, null, null);
+            new CardSelectionStore(
+                actions,
+                new UnifiedScanResultActions(),
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
 
         return new StoreTester(CardSelectionActions, actionName, factory);
     }

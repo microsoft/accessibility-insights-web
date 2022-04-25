@@ -135,6 +135,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         browserAdapter,
         logger,
+        false,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 

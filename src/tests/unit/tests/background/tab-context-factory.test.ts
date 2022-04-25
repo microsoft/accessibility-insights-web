@@ -120,6 +120,7 @@ describe('TabContextFactoryTest', () => {
             mockBrowserAdapter.object,
             mockDetailsViewController.object,
             null,
+            true,
         );
 
         broadcastMock.verifyAll();

@@ -92,6 +92,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
+                true,
             );
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);
@@ -393,6 +394,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
+                true,
             );
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);

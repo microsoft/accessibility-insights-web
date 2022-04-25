@@ -142,6 +142,7 @@ export class TargetPageController {
             this.browserAdapter,
             this.detailsViewController,
             tabId,
+            this.persistStoreData,
         );
     }
 

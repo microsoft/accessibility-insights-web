@@ -257,6 +257,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             indexedDBInstance,
             logger,
             null,
+            false,
         );
         unifiedScanResultStore.initialize();
 
@@ -273,6 +274,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             indexedDBInstance,
             logger,
             null,
+            false,
         );
         cardSelectionStore.initialize();
 
@@ -284,6 +286,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             indexedDBInstance,
             logger,
             null,
+            false,
         );
         detailsViewStore.initialize();
 

@@ -41,6 +41,7 @@ export class TabContextStoreHub implements StoreHub {
         indexedDBInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
+        persistStoreData: boolean,
     ) {
         const persistedTabData = persistedData.tabData ? persistedData.tabData[tabId] : null;
 
@@ -53,6 +54,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.visualizationStore.initialize();
 
@@ -67,6 +69,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.visualizationScanResultStore.initialize();
 
@@ -77,6 +80,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.tabStore.initialize();
 
@@ -86,6 +90,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.devToolStore.initialize();
 
@@ -97,6 +102,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.detailsViewStore.initialize();
 
@@ -107,6 +113,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.inspectStore.initialize();
 
@@ -116,6 +123,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.pathSnippetStore.initialize();
 
@@ -126,6 +134,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.unifiedScanResultStore.initialize();
 
@@ -136,6 +145,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.cardSelectionStore.initialize();
 
@@ -146,6 +156,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.needsReviewScanResultStore.initialize();
 
@@ -156,6 +167,7 @@ export class TabContextStoreHub implements StoreHub {
             indexedDBInstance,
             logger,
             tabId,
+            persistStoreData,
         );
         this.needsReviewCardSelectionStore.initialize();
     }

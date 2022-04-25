@@ -21,6 +21,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.TabStore,
@@ -28,6 +29,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
             idbInstance,
             IndexedDBDataKeys.tabStore(tabId),
             logger,
+            persistStoreData,
         );
 
         this.tabActions = tabActions;
