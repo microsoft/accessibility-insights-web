@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
 
@@ -51,8 +52,6 @@ export class StoreUpdateMessageDistributor {
     }
 
     private isMessageForCurrentTab(message: StoreUpdateMessage<any>): boolean {
-        return (
-            this.tabId == null || message.tabId === this.tabId // tabid will be null on inital state in content script of target page
-        );
+        return _.isEmpty(this.tabId) || message.tabId === this.tabId;
     }
 }
