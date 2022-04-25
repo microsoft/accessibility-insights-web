@@ -45,7 +45,6 @@ describe('StoreProxyTest', () => {
             tabId: 1,
             storeId: 'TestStore',
             storeType: StoreType.TabContextStore,
-            isStoreUpdateMessage: true,
             payload: 'test',
         } as StoreUpdateMessage<string>);
 
@@ -58,7 +57,6 @@ describe('StoreProxyTest', () => {
             messageType: storeUpdateMessageType,
             tabId: 1,
             storeId: 'TestStore',
-            isStoreUpdateMessage: true,
             storeType: StoreType.TabContextStore,
             payload: 'test',
         };

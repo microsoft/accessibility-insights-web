@@ -25,7 +25,6 @@ export class StateDispatcher {
     private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
         return () => {
             this.broadcastMessage({
-                isStoreUpdateMessage: true,
                 storeId: store.getId(),
                 messageType: storeUpdateMessageType,
                 storeType: this.stores.getStoreType(),

@@ -16,7 +16,6 @@ describe('StateDispatcherTest', () => {
     test('fire changed event on initialize', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
             messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
@@ -64,7 +63,6 @@ describe('StateDispatcherTest', () => {
     test('fire changed event from store', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
             messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
@@ -116,7 +114,6 @@ describe('StateDispatcherTest', () => {
     test('propagate exceptions in broadcasting changes to logger.error', async () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
             messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
