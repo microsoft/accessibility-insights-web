@@ -102,20 +102,11 @@ export class MainWindowInitializer extends WindowInitializer {
     private needsReviewCardSelectionStoreProxy: StoreProxy<NeedsReviewCardSelectionStoreData>;
     private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
-    constructor() {
-        super();
-    }
-
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
-        const logger = createDefaultLogger();
-
-        this.storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
-            this.browserAdapter,
-            logger,
-        );
+        this.storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(this.browserAdapter);
         this.storeUpdateMessageDistributor.initialize();
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
@@ -178,6 +169,8 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.PermissionsStateStore],
             this.storeUpdateMessageDistributor,
         );
+
+        const logger = createDefaultLogger();
 
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,

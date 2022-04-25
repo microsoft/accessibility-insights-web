@@ -121,7 +121,6 @@ export class PopupInitializer {
 
         const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
             this.browserAdapter,
-            this.logger,
             tab.id,
         );
         storeUpdateMessageDistributor.initialize();

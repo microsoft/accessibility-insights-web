@@ -40,7 +40,7 @@ export const rendererDependencies: (
         actionMessageDispatcher,
     );
 
-    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter, logger);
+    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter);
     storeUpdateMessageDistributor.initialize();
 
     const store = new StoreProxy<UserConfigurationStoreData>(

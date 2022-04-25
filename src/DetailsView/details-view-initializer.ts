@@ -164,10 +164,8 @@ if (tabId != null) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const logger = createDefaultLogger();
             const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
                 browserAdapter,
-                logger,
                 tab.id,
             );
             storeUpdateMessageDistributor.initialize();
@@ -252,6 +250,7 @@ if (tabId != null) {
                 tabStopsViewStore,
             ]);
 
+            const logger = createDefaultLogger();
             const actionMessageDispatcher = new RemoteActionMessageDispatcher(
                 browserAdapter.sendMessageToFrames,
                 tab.id,

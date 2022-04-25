@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { Logger } from './logging/logger';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
 
@@ -11,11 +10,7 @@ type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
 export class StoreUpdateMessageDistributor {
     private readonly registeredUpdateListeners: { [key: string]: StoreUpdateMessageListener } = {};
 
-    constructor(
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly logger: Logger,
-        private readonly tabId?: number,
-    ) {}
+    constructor(private readonly browserAdapter: BrowserAdapter, private readonly tabId?: number) {}
 
     public initialize(): void {
         this.browserAdapter.addListenerOnMessage(this.handleMessage);
@@ -37,16 +32,12 @@ export class StoreUpdateMessageDistributor {
 
     private handleMessage = (message: StoreUpdateMessage<any>): void => {
         if (!this.isValidMessage(message)) {
-            this.logger.log('Unable to interpret message - ', message);
-
             return;
         }
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
             listener(message);
-        } else {
-            this.logger.log('No listeners registered for message - ', message);
         }
     };
 

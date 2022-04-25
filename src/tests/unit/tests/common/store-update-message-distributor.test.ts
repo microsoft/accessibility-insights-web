@@ -3,7 +3,6 @@
 
 import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { Logger } from '../../../../common/logging/logger';
 import { StoreUpdateMessageDistributor } from '../../../../common/store-update-message-distributor';
 import { StoreType } from '../../../../common/types/store-type';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
@@ -12,7 +11,6 @@ describe(StoreUpdateMessageDistributor, () => {
     const tabId = 1;
     const storeId = 'TestStore';
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let loggerMock: IMock<Logger>;
     let onMessage: (message: StoreUpdateMessage<any>, sender?: any) => void;
     let registeredListener: jest.Mock;
 
@@ -26,8 +24,6 @@ describe(StoreUpdateMessageDistributor, () => {
         browserAdapterMock
             .setup(b => b.addListenerOnMessage(It.isAny()))
             .callback(listener => (onMessage = listener));
-
-        loggerMock = Mock.ofType<Logger>();
 
         registeredListener = jest.fn();
 
@@ -47,11 +43,7 @@ describe(StoreUpdateMessageDistributor, () => {
             storeType: StoreType.GlobalStore,
         } as StoreUpdateMessage<string>;
 
-        testSubject = new StoreUpdateMessageDistributor(
-            browserAdapterMock.object,
-            loggerMock.object,
-            tabId,
-        );
+        testSubject = new StoreUpdateMessageDistributor(browserAdapterMock.object, tabId);
 
         testSubject.initialize();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
@@ -59,7 +51,6 @@ describe(StoreUpdateMessageDistributor, () => {
 
     afterEach(() => {
         browserAdapterMock.verifyAll();
-        loggerMock.verifyAll();
     });
 
     const invalidMessages: StoreUpdateMessage<string>[] = [
@@ -68,35 +59,17 @@ describe(StoreUpdateMessageDistributor, () => {
         { ...tabContextMessage, storeId: undefined },
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
-    it.each(invalidMessages)('logs and ignores invalid message: %o', message => {
-        loggerMock
-            .setup(l =>
-                l.log(
-                    It.is(x => x.includes('Unable to interpret message')),
-                    It.isAny(),
-                ),
-            )
-            .verifiable();
-
+    it.each(invalidMessages)('ignores invalid message: %o', message => {
         onMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
     });
 
-    it('logs and ignores if no listener is registered for this message', () => {
+    it('ignores if no listener is registered for this message', () => {
         const message = {
             ...tabContextMessage,
             storeId: 'AnotherStore',
         };
-
-        loggerMock
-            .setup(l =>
-                l.log(
-                    It.is(x => x.includes('No listeners registered for message')),
-                    It.isAny(),
-                ),
-            )
-            .verifiable();
 
         onMessage(message);
 

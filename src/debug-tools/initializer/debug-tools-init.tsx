@@ -6,7 +6,6 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { Logger } from 'common/logging/logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
@@ -38,9 +37,8 @@ export const initializeDebugTools = () => {
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
-    const logger = createDefaultLogger();
 
-    const storeProxies = createStoreProxies(browserAdapter, logger);
+    const storeProxies = createStoreProxies(browserAdapter);
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
@@ -68,8 +66,8 @@ export const initializeDebugTools = () => {
     render(props);
 };
 
-const createStoreProxies = (browserAdapter: BrowserAdapter, logger: Logger) => {
-    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter, logger);
+const createStoreProxies = (browserAdapter: BrowserAdapter) => {
+    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter);
     storeUpdateMessageDistributor.initialize();
 
     const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
