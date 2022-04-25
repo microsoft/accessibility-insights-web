@@ -48,6 +48,7 @@ export class GlobalContextFactory {
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
+        persistStoreData: boolean,
     ): Promise<GlobalContext> {
         const interpreter = new Interpreter();
 
@@ -62,6 +63,7 @@ export class GlobalContextFactory {
             persistedData,
             storageAdapter,
             logger,
+            persistStoreData,
         );
 
         const featureFlagsController = new FeatureFlagsController(

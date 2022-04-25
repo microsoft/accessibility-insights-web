@@ -12,7 +12,7 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         protected readonly idbInstance: IndexedDBAPI,
         protected readonly indexedDBDataKey: string,
         protected readonly logger: Logger,
-        private persistStoreData = false,
+        private persistStoreData: boolean,
     ) {
         super(storeName);
     }

@@ -119,6 +119,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         browserAdapter,
         logger,
+        true,
     );
 
     telemetryLogger.initialize(globalContext.featureFlagsController);
@@ -134,6 +135,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         persistedData.tabIdToDetailsViewMap ?? {},
         indexedDBInstance,
+        true,
     );
     const tabToContextMap: TabToContextMap = {};
 
@@ -201,6 +203,7 @@ async function initialize(): Promise<void> {
         logger,
         persistedData.knownTabIds ?? [],
         indexedDBInstance,
+        true,
     );
 
     await targetPageController.initialize();

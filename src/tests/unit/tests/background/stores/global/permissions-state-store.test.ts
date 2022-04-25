@@ -26,6 +26,7 @@ describe('PermissionsStateStoreTest', () => {
             null,
             null,
             null,
+            true,
         );
         testSubject.initialize();
 
@@ -77,12 +78,12 @@ describe('PermissionsStateStoreTest', () => {
         actionName: keyof PermissionsStateActions,
     ): StoreTester<PermissionsStateStoreData, PermissionsStateActions> {
         const factory = (actions: PermissionsStateActions) =>
-            new PermissionsStateStore(actions, null, null, null);
+            new PermissionsStateStore(actions, null, null, null, true);
 
         return new StoreTester(PermissionsStateActions, actionName, factory);
     }
 
     function createPermissionsState(): PermissionsStateStoreData {
-        return new PermissionsStateStore(null, null, null, null).getDefaultState();
+        return new PermissionsStateStore(null, null, null, null, null).getDefaultState();
     }
 });

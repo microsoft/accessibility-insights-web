@@ -23,6 +23,7 @@ export class CommandStore extends PersistentStore<CommandStoreData> {
         persistedState: CommandStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.CommandStore,
@@ -30,6 +31,7 @@ export class CommandStore extends PersistentStore<CommandStoreData> {
             idbInstance,
             IndexedDBDataKeys.commandStore,
             logger,
+            persistStoreData,
         );
 
         this.commandActions = commandActions;

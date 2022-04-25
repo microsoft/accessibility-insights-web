@@ -45,6 +45,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.VisualizationScanResultStore,
@@ -52,6 +53,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
             idbInstance,
             IndexedDBDataKeys.visualizationScanResultStore(tabId),
             logger,
+            persistStoreData,
         );
     }
 

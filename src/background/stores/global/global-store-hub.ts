@@ -45,6 +45,7 @@ export class GlobalStoreHub implements StoreHub {
         persistedData: PersistedData,
         storageAdapter: StorageAdapter,
         logger: Logger,
+        persistStoreData: boolean,
     ) {
         this.commandStore = new CommandStore(
             globalActionHub.commandActions,
@@ -52,6 +53,7 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.commandStoreData,
             indexedDbInstance,
             logger,
+            persistStoreData,
         );
         this.featureFlagStore = new FeatureFlagStore(
             globalActionHub.featureFlagActions,
@@ -69,6 +71,7 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.scopingStoreData,
             indexedDbInstance,
             logger,
+            persistStoreData,
         );
         this.assessmentStore = new AssessmentStore(
             browserAdapter,
@@ -92,6 +95,7 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.permissionsStateStoreData,
             indexedDbInstance,
             logger,
+            persistStoreData,
         );
     }
 

@@ -115,6 +115,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         EXISTING_ACTIVE_TAB_ID,
+                        false,
                     ),
                 Times.once(),
             );
@@ -130,6 +131,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         EXISTING_INACTIVE_TAB_ID,
+                        false,
                     ),
                 Times.once(),
             );
@@ -145,6 +147,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         It.isAny(),
+                        false,
                     ),
                 Times.never(),
             );
@@ -168,6 +171,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         NEW_TAB_ID,
+                        false,
                     ),
                 Times.once(),
             );
@@ -197,6 +201,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         EXISTING_ACTIVE_TAB_ID,
+                        false,
                     ),
                 Times.once(),
             );
@@ -212,6 +217,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         It.isAny(),
+                        false,
                     ),
                 Times.once(),
             );
@@ -227,6 +233,7 @@ describe('TargetPageController', () => {
                         It.isAny(),
                         It.isAny(),
                         It.isAny(),
+                        false,
                     ),
                 Times.once(),
             );
@@ -324,6 +331,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             EXISTING_ACTIVE_TAB_ID,
+                            true,
                         ),
                     Times.once(),
                 );
@@ -339,9 +347,11 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             EXISTING_INACTIVE_TAB_ID,
+                            true,
                         ),
                     Times.once(),
                 );
+
                 expect(tabToContextMap[EXISTING_INACTIVE_TAB_ID]).toHaveProperty(
                     'interpreter',
                     mockTabInterpreters[EXISTING_INACTIVE_TAB_ID].object,
@@ -354,6 +364,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             It.isAny(),
+                            true,
                         ),
                     Times.never(),
                 );
@@ -377,6 +388,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             EXISTING_ACTIVE_TAB_ID,
+                            true,
                         ),
                     Times.once(),
                 );
@@ -392,6 +404,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             It.isAny(),
+                            true,
                         ),
                     Times.once(),
                 );
@@ -407,6 +420,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             It.isAny(),
+                            true,
                         ),
                     Times.never(),
                 );
@@ -434,6 +448,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             EXISTING_ACTIVE_TAB_ID,
+                            true,
                         ),
                     Times.once(),
                 );
@@ -449,6 +464,7 @@ describe('TargetPageController', () => {
                             It.isAny(),
                             It.isAny(),
                             It.isAny(),
+                            true,
                         ),
                     Times.once(),
                 );
@@ -461,6 +477,7 @@ describe('TargetPageController', () => {
                     f =>
                         f.createTabContext(
                             itIsFakeBroadcasterForTabId(NEW_TAB_ID),
+                            It.isAny(),
                             It.isAny(),
                             It.isAny(),
                             It.isAny(),
@@ -538,6 +555,7 @@ describe('TargetPageController', () => {
                                 It.isAny(),
                                 It.isAny(),
                                 NEW_TAB_ID,
+                                true,
                             ),
                         Times.once(),
                     );
@@ -796,6 +814,7 @@ describe('TargetPageController', () => {
                                 It.isAny(),
                                 It.isAny(),
                                 NEW_TAB_ID,
+                                true,
                             ),
                         Times.once(),
                     );
@@ -871,6 +890,7 @@ describe('TargetPageController', () => {
                 It.isAny(),
                 mockBrowserAdapter.object,
                 mockDetailsViewController.object,
+                It.isAny(),
                 It.isAny(),
             ),
         ).returns((fakeBroadcaster, _2, _3) => ({
