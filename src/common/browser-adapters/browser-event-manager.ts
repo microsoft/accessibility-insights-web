@@ -5,9 +5,10 @@ import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promi
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
 
-export interface ApplicationListener {
-    (...eventArgs: any[]): Promise<any> | undefined;
-}
+export type AsyncApplicationListner = (...eventArgs: any[]) => Promise<any>;
+export type FireAndForgetApplicationListener = (...eventArgs: any[]) => void;
+
+export type ApplicationListener = AsyncApplicationListner | FireAndForgetApplicationListener;
 
 interface EventDetails {
     eventType: string;

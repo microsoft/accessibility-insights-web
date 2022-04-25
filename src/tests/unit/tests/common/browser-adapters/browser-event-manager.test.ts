@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import {
+    ApplicationListener,
+    BrowserEventManager,
+} from 'common/browser-adapters/browser-event-manager';
 import { createDefaultPromiseFactory, PromiseFactory } from 'common/promises/promise-factory';
 import { RecordingLogger } from 'tests/unit/common/recording-logger';
 import { SimulatedBrowserEvent } from 'tests/unit/common/simulated-browser-event';
@@ -214,7 +217,10 @@ describe(BrowserEventManager, () => {
 
     it('logs an error and propogates sync value-returning ApplicationListeners', async () => {
         testSubject.addBrowserListener(testEvent, 'event-type');
-        testSubject.addApplicationListener('event-type', () => 'app listener result');
+        testSubject.addApplicationListener(
+            'event-type',
+            (() => 'app listener result') as unknown as ApplicationListener,
+        );
 
         await expect(testEvent.invoke()).resolves.toBe('app listener result');
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
