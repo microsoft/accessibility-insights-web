@@ -3,10 +3,12 @@
 
 import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StoreUpdateMessageDistributor } from '../../../../common/store-update-message-distributor';
 import { StoreType } from '../../../../common/types/store-type';
-import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
+import {
+    StoreUpdateMessage,
+    storeUpdateMessageType,
+} from '../../../../common/types/store-update-message';
 
 describe(StoreUpdateMessageDistributor, () => {
     const tabId = 1;
@@ -29,7 +31,7 @@ describe(StoreUpdateMessageDistributor, () => {
         registeredListener = jest.fn();
 
         tabContextMessage = {
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             storeId,
             payload: 'store update payload',
             tabId,
@@ -37,7 +39,7 @@ describe(StoreUpdateMessageDistributor, () => {
         } as StoreUpdateMessage<string>;
 
         globalStoreMessage = {
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             storeId,
             payload: 'store update payload',
             tabId: null,

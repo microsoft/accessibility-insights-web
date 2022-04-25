@@ -3,9 +3,8 @@
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import _ from 'lodash';
-import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { StoreType } from './types/store-type';
-import { StoreUpdateMessage } from './types/store-update-message';
+import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
 
 type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
 
@@ -45,7 +44,7 @@ export class StoreUpdateMessageDistributor {
 
     private isValidMessage(message: StoreUpdateMessage<any>): boolean {
         return (
-            message.messageType === GenericStoreMessageTypes.storeStateChanged &&
+            message.messageType === storeUpdateMessageType &&
             message.storeId &&
             message.payload &&
             (this.isMessageForCurrentTab(message) || message.storeType === StoreType.GlobalStore)
@@ -53,6 +52,6 @@ export class StoreUpdateMessageDistributor {
     }
 
     private isMessageForCurrentTab(message: StoreUpdateMessage<any>): boolean {
-        return _.isEmpty(this.tabId) || message.tabId === this.tabId;
+        return _.isNil(this.tabId) || message.tabId === this.tabId;
     }
 }

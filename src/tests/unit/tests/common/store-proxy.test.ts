@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { IMock, It, Mock } from 'typemoq';
-import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StoreProxy } from '../../../../common/store-proxy';
 import { StoreType } from '../../../../common/types/store-type';
-import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
+import {
+    StoreUpdateMessage,
+    storeUpdateMessageType,
+} from '../../../../common/types/store-update-message';
 
 class TestableStoreProxy<TState> extends StoreProxy<TState> {
     public emitChangedCallCount: number = 0;
@@ -39,7 +41,7 @@ describe('StoreProxyTest', () => {
 
     test('onChange when state is different', () => {
         onChange.call(testSubject, {
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             tabId: 1,
             storeId: 'TestStore',
             storeType: StoreType.TabContextStore,
@@ -53,7 +55,7 @@ describe('StoreProxyTest', () => {
 
     test('onChange when state is same', () => {
         const stateUpdateMessage: StoreUpdateMessage<string> = {
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             tabId: 1,
             storeId: 'TestStore',
             isStoreUpdateMessage: true,
