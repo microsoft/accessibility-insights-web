@@ -191,5 +191,5 @@ export class BrowserEventManager {
 
 function isPromise(value: unknown): value is Promise<unknown> {
     // Don't use instanceof Promise; it can get confused by transpilation
-    return !!value && typeof value['then'] === 'function';
+    return !!value && typeof (value as any).then === 'function';
 }
