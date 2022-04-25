@@ -70,30 +70,4 @@ describe('StoreProxyTest', () => {
         expect(testSubject.getState()).toEqual(expectedData);
         expect(testSubject.emitChangedCallCount).toBe(0);
     });
-
-    test('onChange message type is not GenericStoreMessageTypes.storeChanged', () => {
-        onChange.call(testSubject, {
-            messageType: 'ANOTHER_KIND_OF_MESSAGE',
-            tabId: 1,
-            storeType: StoreType.TabContextStore,
-            storeId: 'TestStore',
-            payload: 'store state',
-        } as unknown as StoreUpdateMessage<string>);
-
-        expect(testSubject.getState()).not.toBeDefined();
-        expect(testSubject.emitChangedCallCount).toBe(0);
-    });
-
-    test('onChange message is store update message', () => {
-        onChange.call(testSubject, {
-            messageType: GenericStoreMessageTypes.storeStateChanged,
-            tabId: 1,
-            storeType: StoreType.TabContextStore,
-            storeId: 'TestStore',
-            payload: 'store state',
-        } as StoreUpdateMessage<string>);
-
-        expect(testSubject.getState()).not.toBeDefined();
-        expect(testSubject.emitChangedCallCount).toBe(0);
-    });
 });

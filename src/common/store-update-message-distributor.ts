@@ -3,9 +3,9 @@
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import _ from 'lodash';
+import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
-import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 
 type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
 
