@@ -49,7 +49,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
   items={
     Array [
       Object {
-        "description": "All interactive elements can be reached using the Tab and arrow keys.",
+        "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
@@ -61,7 +61,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
         "name": "Keyboard navigation",
       },
       Object {
-        "description": "There are no interactive elements that “trap” input focus and prevent navigating away.",
+        "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
@@ -73,7 +73,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
         "name": "Keyboard traps",
       },
       Object {
-        "description": "All interactive elements give a visible indication when they have input focus.",
+        "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
@@ -85,7 +85,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
         "name": "Focus indicator",
       },
       Object {
-        "description": "The tab order is consistent with the logical order that's communicated visually.",
+        "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
@@ -97,7 +97,7 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
         "name": "Tab order",
       },
       Object {
-        "description": "Input focus does not move unexpectedly without the user initiating it.",
+        "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
         "guidance": Array [
           Object {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
