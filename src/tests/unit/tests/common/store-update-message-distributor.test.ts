@@ -94,6 +94,16 @@ describe(StoreUpdateMessageDistributor, () => {
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
 
+    it('Calls registered listener if not created with a tab id', () => {
+        testSubject = new StoreUpdateMessageDistributor(browserAdapterMock.object);
+        testSubject.initialize();
+        testSubject.registerStoreUpdateListener(storeId, registeredListener);
+
+        onMessage(tabContextMessage);
+
+        expect(registeredListener).toBeCalledWith(tabContextMessage);
+    });
+
     it('Does not overwrite listeners for the same store', () => {
         expect(() => testSubject.registerStoreUpdateListener(storeId, () => null)).toThrow();
     });
