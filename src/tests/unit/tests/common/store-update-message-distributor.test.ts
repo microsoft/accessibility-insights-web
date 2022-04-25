@@ -3,6 +3,7 @@
 
 import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StoreUpdateMessageDistributor } from '../../../../common/store-update-message-distributor';
 import { StoreType } from '../../../../common/types/store-type';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
@@ -28,7 +29,7 @@ describe(StoreUpdateMessageDistributor, () => {
         registeredListener = jest.fn();
 
         tabContextMessage = {
-            isStoreUpdateMessage: true,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeId,
             payload: 'store update payload',
             tabId,
@@ -36,7 +37,7 @@ describe(StoreUpdateMessageDistributor, () => {
         } as StoreUpdateMessage<string>;
 
         globalStoreMessage = {
-            isStoreUpdateMessage: true,
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             storeId,
             payload: 'store update payload',
             tabId: null,
@@ -54,7 +55,10 @@ describe(StoreUpdateMessageDistributor, () => {
     });
 
     const invalidMessages: StoreUpdateMessage<string>[] = [
-        { ...tabContextMessage, isStoreUpdateMessage: false },
+        {
+            ...tabContextMessage,
+            messageType: 'something else',
+        } as unknown as StoreUpdateMessage<string>,
         { ...tabContextMessage, payload: undefined },
         { ...tabContextMessage, storeId: undefined },
         { ...tabContextMessage, tabId: tabId + 10 },

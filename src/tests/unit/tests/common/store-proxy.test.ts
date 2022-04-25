@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { IMock, It, Mock } from 'typemoq';
-
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StoreProxy } from '../../../../common/store-proxy';
 import { StoreType } from '../../../../common/types/store-type';
@@ -78,9 +77,8 @@ describe('StoreProxyTest', () => {
             tabId: 1,
             storeType: StoreType.TabContextStore,
             storeId: 'TestStore',
-            isStoreUpdateMessage: true,
             payload: 'store state',
-        } as StoreUpdateMessage<string>);
+        } as unknown as StoreUpdateMessage<string>);
 
         expect(testSubject.getState()).not.toBeDefined();
         expect(testSubject.emitChangedCallCount).toBe(0);
@@ -88,7 +86,7 @@ describe('StoreProxyTest', () => {
 
     test('onChange message is store update message', () => {
         onChange.call(testSubject, {
-            messageType: 'STORE_UPDATED',
+            messageType: GenericStoreMessageTypes.storeStateChanged,
             tabId: 1,
             storeType: StoreType.TabContextStore,
             storeId: 'TestStore',

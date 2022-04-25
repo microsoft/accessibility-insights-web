@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { isEqual } from 'lodash';
-
 import { BaseStore } from './base-store';
-import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
 import { StoreUpdateMessage } from './types/store-update-message';
 
@@ -20,10 +18,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     }
 
     private onChange = (message: StoreUpdateMessage<TState>): void => {
-        if (
-            message.messageType === GenericStoreMessageTypes.storeStateChanged &&
-            !isEqual(this.state, message.payload)
-        ) {
+        if (!isEqual(this.state, message.payload)) {
             this.state = message.payload;
             this.emitChanged();
         }

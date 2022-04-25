@@ -5,6 +5,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
+import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 
 type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
 
@@ -44,7 +45,7 @@ export class StoreUpdateMessageDistributor {
 
     private isValidMessage(message: StoreUpdateMessage<any>): boolean {
         return (
-            message.isStoreUpdateMessage &&
+            message.messageType === GenericStoreMessageTypes.storeStateChanged &&
             message.storeId &&
             message.payload &&
             (this.isMessageForCurrentTab(message) || message.storeType === StoreType.GlobalStore)
