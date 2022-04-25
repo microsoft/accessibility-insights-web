@@ -4,28 +4,38 @@ import { Logger } from 'common/logging/logger';
 import { ExternalResolutionPromise, PromiseFactory } from 'common/promises/promise-factory';
 import { DictionaryStringTo } from 'types/common-types';
 import { Events } from 'webextension-polyfill';
+
 export interface ApplicationListener {
-    (...args: any[]): any;
+    (...eventArgs: any[]): Promise<any> | undefined;
 }
 
-export interface EventDetails {
+interface EventDetails {
     eventType: string;
     eventArgs: any[];
 }
 
-export interface DeferredEventDetails extends EventDetails {
+interface DeferredEventDetails extends EventDetails {
     deferredResolution: ExternalResolutionPromise;
     isStale: boolean;
 }
-export interface AdapterListener {
+interface BrowserListener {
     (...eventArgs: any[]): any;
 }
 
-const TWO_MINUTES = 120000;
-const FOUR_MINUTES = 2 * TWO_MINUTES;
+// As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
+// service worker if this is exceeded, even if other work is outstanding. To avoid this, our
+// own timeout MUST be shorter than Chromium's.
+const EVENT_TIMEOUT = 4 * 60 * 1000; // 4 minutes
 
-// BrowserAdapterEventManager is to be used by a BrowserAdapter to ensure the browser does not
-// determine that the service worker can be shut down due to events not responding within 5 minutes.
+// Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
+// whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
+// and continue to do some async work after returning undefined. To ensure those listeners have
+// time to do their work, the event manager adds this (arbitrary) delay into its response to the
+// browser event.
+const FIRE_AND_FORGET_EVENT_DELAY = 2 * 60 * 1000; // 2 minutes
+
+// BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
+// that the service worker can be shut down due to events not responding within 5 minutes.
 //
 // It is responsible for acting as a mediator between browser-level events and application-level listeners:
 //   * registering a handleEvent listener per eventType to respond to all browser-level events by:
@@ -34,35 +44,14 @@ const FOUR_MINUTES = 2 * TWO_MINUTES;
 //      * deferring any events without an associated application-level listener until one is registered
 //   * registering application-level listeners to be called inside the handleEvent listener
 
-export class BrowserAdapterEventManager {
-    protected deferredEvents: DeferredEventDetails[] = [];
-    protected eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
-    protected eventsToAdapterListenersMapping: DictionaryStringTo<AdapterListener> = {};
-    protected handleEvent: (eventType: string) => AdapterListener =
-        (eventType: string) =>
-        (...eventArgs: any[]) => {
-            const responsePromise =
-                this.tryProcessEvent(eventType, eventArgs) ??
-                this.deferEvent({ eventType, eventArgs });
+export class BrowserEventManager {
+    private deferredEvents: DeferredEventDetails[] = [];
+    private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
+    private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
 
-            return responsePromise.catch(error => {
-                this.logger.error(
-                    `Error while processing browser ${eventType} event: ${JSON.stringify(error)}`,
-                );
+    constructor(private readonly promiseFactory: PromiseFactory, private readonly logger: Logger) {}
 
-                // We want to avoid rejecting the Promise we give back to the browser event handler
-                // because doing so is liable to cause the browser to tear down our Service Worker
-                // immediately, even if other events are in progress.
-                return undefined;
-            });
-        };
-
-    constructor(private promiseFactory: PromiseFactory, private logger: Logger) {}
-
-    public registerEventToApplicationListener = (
-        eventType: string,
-        callback: ApplicationListener,
-    ): void => {
+    public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
         if (this.eventsToApplicationListenersMapping[eventType]) {
             throw new Error(`Listener already registered for ${eventType}`);
         }
@@ -70,25 +59,43 @@ export class BrowserAdapterEventManager {
         this.processDeferredEvents();
     };
 
-    public registerAdapterListenerForEvent = (
-        event: Events.Event<any>,
-        eventType: string,
-    ): void => {
-        const eventListener = this.handleEvent(eventType);
+    public addBrowserListener = (event: Events.Event<any>, eventType: string): void => {
+        const eventListener = this.createBrowserListenerForEventType(eventType);
         event.addListener(eventListener);
-        this.eventsToAdapterListenersMapping[eventType] = eventListener;
+        this.eventsToBrowserListenersMapping[eventType] = eventListener;
     };
 
-    public tryProcessEvent(eventType: string, eventArgs: any[]): Promise<any> | null {
+    public removeListeners(event: Events.Event<any>, eventType: string) {
+        this.removeBrowserListener(event, eventType);
+        this.removeApplicationListener(eventType);
+    }
+
+    private createBrowserListenerForEventType: (eventType: string) => BrowserListener =
+        (eventType: string) =>
+        (...eventArgs: any[]) =>
+            this.handleBrowserEvent(eventType, eventArgs);
+
+    private handleBrowserEvent(eventType: string, eventArgs: any[]): Promise<any> {
+        const responsePromise =
+            this.tryProcessEvent(eventType, eventArgs) ?? this.deferEvent({ eventType, eventArgs });
+
+        return responsePromise.catch(error => {
+            this.logger.error(
+                `Error while processing browser ${eventType} event: ${JSON.stringify(error)}`,
+            );
+
+            // We want to avoid rejecting the Promise we give back to the browser event handler
+            // because doing so is liable to cause the browser to tear down our Service Worker
+            // immediately, even if other events are in progress.
+            return undefined;
+        });
+    }
+
+    private tryProcessEvent(eventType: string, eventArgs: any[]): Promise<any> | null {
         const applicationListener = this.eventsToApplicationListenersMapping[eventType];
         return applicationListener
             ? this.forwardEventToApplicationListener(applicationListener, eventType, eventArgs)
             : null;
-    }
-
-    public removeListener(event: Events.Event<any>, eventType: string) {
-        this.unregisterAdapterListener(event, eventType);
-        this.unregisterApplicationListenerForEvent(eventType);
     }
 
     private processDeferredEvents(): void {
@@ -131,12 +138,12 @@ export class BrowserAdapterEventManager {
         if (!!result && typeof result.then === 'function') {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
             // prevents the service worker going idle before a response is sent
-            return await this.promiseFactory.timeout(result, FOUR_MINUTES);
+            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT);
         } else {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.promiseFactory.delay(result, TWO_MINUTES);
+                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
@@ -164,17 +171,19 @@ export class BrowserAdapterEventManager {
         // It's important that we ensure the promise settles even if a listener never registers
         // to prevent the Service Worker from being detected as stalled and torn down while other
         // work is still in progress.
-        return this.promiseFactory.timeout(deferredResolution.promise, FOUR_MINUTES).finally(() => {
-            deferredEventDetails.isStale = true;
-        });
+        return this.promiseFactory
+            .timeout(deferredResolution.promise, EVENT_TIMEOUT)
+            .finally(() => {
+                deferredEventDetails.isStale = true;
+            });
     }
 
-    private unregisterAdapterListener(event: Events.Event<any>, eventType: string) {
-        event.removeListener(this.eventsToAdapterListenersMapping[eventType]);
-        delete this.eventsToAdapterListenersMapping[eventType];
+    private removeBrowserListener(event: Events.Event<any>, eventType: string) {
+        event.removeListener(this.eventsToBrowserListenersMapping[eventType]);
+        delete this.eventsToBrowserListenersMapping[eventType];
     }
 
-    private unregisterApplicationListenerForEvent(eventType: string) {
+    private removeApplicationListener(eventType: string) {
         delete this.eventsToApplicationListenersMapping[eventType];
     }
 }

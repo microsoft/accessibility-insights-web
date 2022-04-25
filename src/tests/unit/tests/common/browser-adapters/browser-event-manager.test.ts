@@ -1,33 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { BrowserAdapterEventManager } from 'common/browser-adapters/browser-adapter-event-manager';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { createDefaultPromiseFactory, PromiseFactory } from 'common/promises/promise-factory';
 import { RecordingLogger } from 'tests/unit/common/recording-logger';
 import { SimulatedBrowserEvent } from 'tests/unit/common/simulated-browser-event';
 import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
 
-describe('BrowserAdapterEventManager', () => {
+describe(BrowserEventManager, () => {
     let realPromiseFactory: PromiseFactory;
     let timeSimulatingPromiseFactory: TimeSimulatingPromiseFactory;
     let recordingLogger: RecordingLogger;
     let testEvent: SimulatedBrowserEvent<() => Promise<string>>;
-    let testSubject: BrowserAdapterEventManager;
+    let testSubject: BrowserEventManager;
 
     beforeEach(() => {
         realPromiseFactory = createDefaultPromiseFactory();
         timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
         recordingLogger = new RecordingLogger();
         testEvent = new SimulatedBrowserEvent();
-        testSubject = new BrowserAdapterEventManager(timeSimulatingPromiseFactory, recordingLogger);
+        testSubject = new BrowserEventManager(timeSimulatingPromiseFactory, recordingLogger);
     });
 
     it('delegates to pre-registered, Promise-based ApplicationListeners', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
-        testSubject.registerEventToApplicationListener(
-            'event-type',
-            async () => 'app listener result',
-        );
+        testSubject.addBrowserListener(testEvent, 'event-type');
+        testSubject.addApplicationListener('event-type', async () => 'app listener result');
 
         await expect(testEvent.invoke()).resolves.toBe('app listener result');
         expect(recordingLogger.allMessages).toStrictEqual([]);
@@ -35,13 +31,10 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('defers to a Promise-based ApplicationListener that registers after the event occurs', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         const promiseReturnedToEvent = testEvent.invoke();
-        testSubject.registerEventToApplicationListener(
-            'event-type',
-            async () => 'app listener result',
-        );
+        testSubject.addApplicationListener('event-type', async () => 'app listener result');
         await expect(promiseReturnedToEvent).resolves.toBe('app listener result');
 
         expect(recordingLogger.allMessages).toStrictEqual([]);
@@ -49,11 +42,11 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('continues deferring events past registration of unrelated event types', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         const promiseReturnedToEvent = testEvent.invoke();
 
-        testSubject.registerEventToApplicationListener(
+        testSubject.addApplicationListener(
             'unrelated-event-type',
             async () => 'unrelated app listener result',
         );
@@ -61,10 +54,7 @@ describe('BrowserAdapterEventManager', () => {
         expect(recordingLogger.allMessages).toStrictEqual([]);
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
 
-        testSubject.registerEventToApplicationListener(
-            'event-type',
-            async () => 'app listener result',
-        );
+        testSubject.addApplicationListener('event-type', async () => 'app listener result');
         await expect(promiseReturnedToEvent).resolves.toBe('app listener result');
 
         expect(recordingLogger.allMessages).toStrictEqual([]);
@@ -72,12 +62,12 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('can track multiple outstanding deferrals', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         const invokePromises = [testEvent.invoke(), testEvent.invoke(), testEvent.invoke()];
 
         let appListenerInvocations = 0;
-        testSubject.registerEventToApplicationListener('event-type', async () => {
+        testSubject.addApplicationListener('event-type', async () => {
             return appListenerInvocations++;
         });
 
@@ -86,10 +76,10 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('delegates to pre-registered, fire-and-forget ApplicationListeners with a 2 minute post-delay', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         let appListenerFired = false;
-        testSubject.registerEventToApplicationListener('event-type', () => {
+        testSubject.addApplicationListener('event-type', () => {
             appListenerFired = true;
         });
 
@@ -111,12 +101,12 @@ describe('BrowserAdapterEventManager', () => {
         // the race by forcing the timeout to take a nonzero amount of real time.
         timeSimulatingPromiseFactory.actualTimeoutMs = 1000;
 
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
         // event invoked before listener registered
         const promiseReturnedToEvent = testEvent.invoke();
 
         let appListenerFired = false;
-        testSubject.registerEventToApplicationListener('event-type', () => {
+        testSubject.addApplicationListener('event-type', () => {
             appListenerFired = true;
         });
 
@@ -136,12 +126,12 @@ describe('BrowserAdapterEventManager', () => {
         // the race by forcing the delay to take a nonzero amount of real time.
         timeSimulatingPromiseFactory.actualDelayMs = 1000;
 
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
         // event invoked before listener registered
         const promiseReturnedToEvent = testEvent.invoke();
 
         let appListenerFired = false;
-        testSubject.registerEventToApplicationListener('event-type', () => {
+        testSubject.addApplicationListener('event-type', () => {
             appListenerFired = true;
         });
 
@@ -160,7 +150,7 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('times out after 4 minutes if no ApplicationListener registers in time', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         // This shouldn't reject, despite timing out; if it does, the browser might tear down the
         // whole Service Worker with other work still in progress.
@@ -174,7 +164,7 @@ describe('BrowserAdapterEventManager', () => {
         `);
 
         let appListenerFired = false;
-        testSubject.registerEventToApplicationListener('event-type', () => {
+        testSubject.addApplicationListener('event-type', () => {
             appListenerFired = true;
         });
 
@@ -182,16 +172,13 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('times out late-registered Promise-based ApplicationListeners after 4 minutes', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         // Event invoked before app listener is registered
         const promiseReturnedToEvent = testEvent.invoke();
 
         const stalledAppListenerResponse = realPromiseFactory.externalResolutionPromise();
-        testSubject.registerEventToApplicationListener(
-            'event-type',
-            () => stalledAppListenerResponse.promise,
-        );
+        testSubject.addApplicationListener('event-type', () => stalledAppListenerResponse.promise);
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
@@ -205,14 +192,11 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('times out pre-registered Promise-based ApplicationListeners after 4 minutes', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        testSubject.addBrowserListener(testEvent, 'event-type');
 
         // App listener registered before event invoked
         const stalledAppListenerResponse = realPromiseFactory.externalResolutionPromise();
-        testSubject.registerEventToApplicationListener(
-            'event-type',
-            () => stalledAppListenerResponse.promise,
-        );
+        testSubject.addApplicationListener('event-type', () => stalledAppListenerResponse.promise);
 
         // This shouldn't reject, despite timing out; if it does, the browser might tear down the
         // whole Service Worker with other work still in progress.
@@ -229,8 +213,8 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('logs an error and propogates sync value-returning ApplicationListeners', async () => {
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
-        testSubject.registerEventToApplicationListener('event-type', () => 'app listener result');
+        testSubject.addBrowserListener(testEvent, 'event-type');
+        testSubject.addApplicationListener('event-type', () => 'app listener result');
 
         await expect(testEvent.invoke()).resolves.toBe('app listener result');
         expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
@@ -243,8 +227,8 @@ describe('BrowserAdapterEventManager', () => {
 
     it('logs and eats an error for throwing ApplicationListeners', async () => {
         const appListenerError = new Error('from app listener');
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
-        testSubject.registerEventToApplicationListener('event-type', () => {
+        testSubject.addBrowserListener(testEvent, 'event-type');
+        testSubject.addApplicationListener('event-type', () => {
             throw appListenerError;
         });
 
@@ -260,8 +244,8 @@ describe('BrowserAdapterEventManager', () => {
 
     it('logs and eats an error for Promise-based ApplicationListeners which reject', async () => {
         const appListenerError = new Error('from app listener');
-        testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
-        testSubject.registerEventToApplicationListener('event-type', async () => {
+        testSubject.addBrowserListener(testEvent, 'event-type');
+        testSubject.addApplicationListener('event-type', async () => {
             throw appListenerError;
         });
 
@@ -275,32 +259,29 @@ describe('BrowserAdapterEventManager', () => {
     });
 
     it('does not allow multiple registrations for the same event type', () => {
-        testSubject.registerEventToApplicationListener('event-type', () => {});
+        testSubject.addApplicationListener('event-type', () => {});
 
         expect(() => {
-            testSubject.registerEventToApplicationListener('event-type', () => {});
+            testSubject.addApplicationListener('event-type', () => {});
         }).toThrowErrorMatchingInlineSnapshot(`"Listener already registered for event-type"`);
     });
 
     describe('removeListener', () => {
-        it('removes adapter listeners', () => {
-            testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+        it('removes browser listeners', () => {
+            testSubject.addBrowserListener(testEvent, 'event-type');
             expect(testEvent.hasListeners()).toBe(true);
 
-            testSubject.removeListener(testEvent, 'event-type');
+            testSubject.removeListeners(testEvent, 'event-type');
             expect(testEvent.hasListeners()).toBe(false);
         });
 
-        it('removes app listeners', async () => {
-            testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
-            testSubject.registerEventToApplicationListener(
-                'event-type',
-                async () => 'app listener result',
-            );
+        it('removes application listeners', async () => {
+            testSubject.addBrowserListener(testEvent, 'event-type');
+            testSubject.addApplicationListener('event-type', async () => 'app listener result');
 
-            testSubject.removeListener(testEvent, 'event-type');
+            testSubject.removeListeners(testEvent, 'event-type');
 
-            testSubject.registerAdapterListenerForEvent(testEvent, 'event-type');
+            testSubject.addBrowserListener(testEvent, 'event-type');
             await expect(testEvent.invoke()).resolves.not.toBe('app listener result');
         });
     });
