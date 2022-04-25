@@ -27,14 +27,14 @@ interface DeferredEventDetails extends EventDetails {
 // As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
 // service worker if this is exceeded, even if other work is outstanding. To avoid this, our
 // own timeout MUST be shorter than Chromium's.
-const EVENT_TIMEOUT = 4 * 60 * 1000; // 4 minutes
+const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
 
 // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
 // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
 // and continue to do some async work after returning undefined. To ensure those listeners have
 // time to do their work, the event manager adds this (arbitrary) delay into its response to the
 // browser event.
-const FIRE_AND_FORGET_EVENT_DELAY = 2 * 60 * 1000; // 2 minutes
+const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
 
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
@@ -140,12 +140,12 @@ export class BrowserEventManager {
         if (isPromise(result)) {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
             // prevents the service worker going idle before a response is sent
-            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT);
+            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT_MS);
         } else {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY);
+                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY_MS);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
@@ -174,7 +174,7 @@ export class BrowserEventManager {
         // to prevent the Service Worker from being detected as stalled and torn down while other
         // work is still in progress.
         return this.promiseFactory
-            .timeout(deferredResolution.promise, EVENT_TIMEOUT)
+            .timeout(deferredResolution.promise, EVENT_TIMEOUT_MS)
             .finally(() => {
                 deferredEventDetails.isStale = true;
             });
