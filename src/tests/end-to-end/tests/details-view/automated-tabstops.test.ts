@@ -124,7 +124,6 @@ describe('Automated TabStops Results', () => {
             addExtraPermissionsToManifest: 'all-origins',
         });
         backgroundPage = await browser.backgroundPage();
-        await backgroundPage.enableFeatureFlag('tabStopsAutomation');
         targetPage = await browser.newTargetPage({
             testResourcePath,
         });
