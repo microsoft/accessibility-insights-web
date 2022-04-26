@@ -42,8 +42,8 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
 
             results.push({
                 id: requirementId,
-                name: requirements()[requirementId].name,
-                description: requirements()[requirementId].description,
+                name: requirements[requirementId].name,
+                description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             });

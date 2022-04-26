@@ -61,14 +61,14 @@ export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecks
             if (data.status !== status) {
                 continue;
             }
-            const requirementResults = requirements();
+
             results.push({
-                id: requirementResults[requirementId].name,
-                description: requirementResults[requirementId].description,
+                id: requirements[requirementId].name,
+                description: requirements[requirementId].description,
                 nodes: [],
                 isExpanded: data.isExpanded,
                 url: '',
-                guidance: requirementResults[requirementId].guidance,
+                guidance: requirements[requirementId].guidance,
             });
         }
         return results;

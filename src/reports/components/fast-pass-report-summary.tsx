@@ -29,8 +29,8 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
         for (const [requirementId, data] of Object.entries(results.tabStops)) {
             const resultsObject = {
                 id: requirementId,
-                name: requirements()[requirementId].name,
-                description: requirements()[requirementId].description,
+                name: requirements[requirementId].name,
+                description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             };
