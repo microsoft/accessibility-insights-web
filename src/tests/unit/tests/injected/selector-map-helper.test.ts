@@ -108,34 +108,15 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    test('getState: tabStops without tab stop automation enabled', () => {
-        const visualizationType = VisualizationType.TabStops;
-        const state = new VisualizationScanResultStoreDataBuilder().build();
-        state.tabStops.tabbedElements = [];
-        const featureFlagStoreData = {
-            [FeatureFlags.tabStopsAutomation]: false,
-        } as FeatureFlagStoreData;
-        const storeData: VisualizationRelatedStoreData = {
-            visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagStoreData,
-        } as VisualizationRelatedStoreData;
-
-        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual([]);
-    });
-
-    test('getState: tabStops with tab stop automation enabled', () => {
+    test('getState: tabStops', () => {
         const visualizationType = VisualizationType.TabStops;
         const state = new VisualizationScanResultStoreDataBuilder().build();
         state.tabStops.tabbedElements = [];
         const expectedResults = {
             'some;target': null,
         } as SelectorToVisualizationMap;
-        const featureFlagStoreData = {
-            [FeatureFlags.tabStopsAutomation]: true,
-        } as FeatureFlagStoreData;
         const storeData: VisualizationRelatedStoreData = {
             visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagStoreData,
         } as VisualizationRelatedStoreData;
 
         getVisualizationInstancesForTabStopsMock
