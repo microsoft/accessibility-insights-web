@@ -3,7 +3,6 @@
 
 import { CheckboxVisibility, DetailsList, IColumn } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
@@ -15,7 +14,6 @@ import * as React from 'react';
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
     requirementState: TabStopRequirementState;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export type TabStopsRequirementsTableDeps = {

@@ -58,14 +58,6 @@ describe('TabStopsRequirementsTable', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test('renders table with feature flag enabled', () => {
-        props.featureFlagStoreData = {
-            ['tabStopsAutomation']: true,
-        };
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
-
     test('renders requirement column', () => {
         const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
         const columns = testSubject.find(DetailsList).props().columns;
