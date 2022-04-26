@@ -75,7 +75,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
         return (
             <DetailsList
                 className={styles.requirementTable}
-                items={requirementsList()}
+                items={requirementsList}
                 columns={columns}
                 checkboxVisibility={CheckboxVisibility.hidden}
             />
