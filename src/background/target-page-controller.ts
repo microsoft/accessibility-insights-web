@@ -6,6 +6,7 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { DictionaryNumberTo } from 'types/common-types';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
@@ -20,26 +21,36 @@ export class TargetPageController {
         private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
-        private readonly knownTabIds: number[],
+        private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
         private persistStoreData = false,
     ) {}
 
     public async initialize(): Promise<void> {
-        this.knownTabIds.forEach(tabId => this.addTabContext(tabId));
+        const knownTabIds: number[] = Object.keys(this.knownTabs).map(knownTab =>
+            parseInt(knownTab),
+        );
+
+        knownTabIds.forEach(tabId => this.addTabContext(tabId));
 
         const tabs = await this.browserAdapter.tabsQuery({});
 
-        const removedTabs = this.knownTabIds.filter(
+        const removedTabs = knownTabIds.filter(
             knownTab => !tabs.map(tab => tab.id).includes(knownTab),
         );
         removedTabs.forEach(removedTabId => this.onTargetTabRemoved(removedTabId));
 
-        const newTabs = tabs.filter(tab => !this.knownTabIds.includes(tab.id));
-        if (newTabs) {
-            newTabs.forEach(tab => {
-                this.handleTabUrlUpdate(tab.id);
-            });
+        const newTabs = tabs.filter(tab => {
+            if (!knownTabIds.includes(tab.id)) {
+                return true;
+            }
+
+            // Treat it as new if the url has changed
+            const tabUrl = this.knownTabs[tab.id];
+            return tabUrl !== tab.url;
+        });
+        for (const tab of newTabs) {
+            await this.handleTabUrlUpdate(tab.id);
         }
 
         this.browserAdapter.addListenerOnConnect(port => {
@@ -55,36 +66,50 @@ export class TargetPageController {
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
+    private getUrl = async (tabId: number): Promise<string> => {
+        const tabs = await this.browserAdapter.tabsQuery({});
+        const tab = tabs.filter(t => t.id === tabId);
+        if (tab && tab.length === 1) {
+            return tab[0].url ?? '';
+        } else {
+            return '';
+        }
+    };
+
     private addKnownTabId = async (tabId: number) => {
-        if (!this.knownTabIds.includes(tabId)) {
-            this.knownTabIds.push(tabId);
+        const url = await this.getUrl(tabId);
+        if (this.knownTabs[tabId] === undefined || this.knownTabs[tabId] !== url) {
+            this.knownTabs[tabId] = url;
             if (this.persistStoreData) {
-                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
             }
         }
     };
 
     private removeKnownTabId = async (tabId: number, context: TabContext) => {
-        if (this.knownTabIds.includes(tabId)) {
-            this.knownTabIds.splice(this.knownTabIds.indexOf(tabId, 0), 1);
+        if (Object.keys(this.knownTabs).includes(tabId.toString())) {
+            delete this.knownTabs[tabId];
             context.teardown();
             if (this.persistStoreData) {
-                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabIds);
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
             }
         }
     };
 
-    private onTabNavigated = (
+    private onTabNavigated = async (
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
-    ): void => {
+    ): Promise<void> => {
         if (details.frameId === 0) {
-            this.handleTabUrlUpdate(details.tabId);
+            await this.handleTabUrlUpdate(details.tabId);
         }
     };
 
-    private onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
+    private onTabUpdated = async (
+        tabId: number,
+        changeInfo: chrome.tabs.TabChangeInfo,
+    ): Promise<void> => {
         if (changeInfo.url) {
-            this.handleTabUrlUpdate(tabId);
+            await this.handleTabUrlUpdate(tabId);
         }
     };
 
@@ -123,13 +148,13 @@ export class TargetPageController {
         });
     };
 
-    private handleTabUrlUpdate = (tabId: number): void => {
+    private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
         if (!this.hasTabContext(tabId)) {
             this.addTabContext(tabId);
         }
 
         this.sendTabUrlUpdatedAction(tabId);
-        this.addKnownTabId(tabId);
+        await this.addKnownTabId(tabId);
     };
 
     private hasTabContext(tabId: number): boolean {

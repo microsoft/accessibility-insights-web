@@ -13,24 +13,26 @@ export class IndexedDBDataKeys {
     public static readonly tabIdToDetailsViewMap: string = 'tabIdToDetailsViewMap';
 
     // Tab specific keys- there may be multiple instances of these stores for each tab
-    public static readonly cardSelectionStore: (tabId) => string = tabId =>
+    public static readonly cardSelectionStore: (tabId: number) => string = tabId =>
         'cardSelectionStore' + tabId;
-    public static readonly detailsViewStore: (tabId) => string = tabId =>
+    public static readonly detailsViewStore: (tabId: number) => string = tabId =>
         'detailsViewStore' + tabId;
-    public static readonly devToolStore: (tabId) => string = tabId => 'devToolStore' + tabId;
-    public static readonly inspectStore: (tabId) => string = tabId => 'inspectStore' + tabId;
-    public static readonly tabStore: (tabId) => string = tabId => 'tabStore' + tabId;
-    public static readonly pathSnippetStore: (tabId) => string = tabId =>
+    public static readonly devToolStore: (tabId: number) => string = tabId =>
+        'devToolStore' + tabId;
+    public static readonly inspectStore: (tabId: number) => string = tabId =>
+        'inspectStore' + tabId;
+    public static readonly tabStore: (tabId: number) => string = tabId => 'tabStore' + tabId;
+    public static readonly pathSnippetStore: (tabId: number) => string = tabId =>
         'pathSnippetStore' + tabId;
-    public static readonly needsReviewScanResultsStore: (tabId) => string = tabId =>
+    public static readonly needsReviewScanResultsStore: (tabId: number) => string = tabId =>
         'needsReviewScanResultsStore' + tabId;
-    public static readonly needsReviewCardSelectionStore: (tabId) => string = tabId =>
+    public static readonly needsReviewCardSelectionStore: (tabId: number) => string = tabId =>
         'needsReviewCardSelectionStore' + tabId;
-    public static readonly visualizationStore: (tabId) => string = tabId =>
+    public static readonly visualizationStore: (tabId: number) => string = tabId =>
         'visualizationStore' + tabId;
-    public static readonly visualizationScanResultStore: (tabId) => string = tabId =>
+    public static readonly visualizationScanResultStore: (tabId: number) => string = tabId =>
         'visualizationScanResultStore' + tabId;
-    public static readonly unifiedScanResultStore: (tabId) => string = tabId =>
+    public static readonly unifiedScanResultStore: (tabId: number) => string = tabId =>
         'unifiedScanResultStore' + tabId;
 
     public static readonly globalKeys: string[] = [
@@ -45,7 +47,7 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.tabIdToDetailsViewMap,
     ];
 
-    public static readonly tabSpecificKeys: ((tabId) => string)[] = [
+    public static readonly tabSpecificKeys: ((tabId: number) => string)[] = [
         IndexedDBDataKeys.cardSelectionStore,
         IndexedDBDataKeys.detailsViewStore,
         IndexedDBDataKeys.devToolStore,
