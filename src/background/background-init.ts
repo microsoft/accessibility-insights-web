@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
+import { TabContextManager } from 'background/tab-context-manager';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -210,12 +211,18 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const targetPageController = new TargetPageController(
+    const tabContextManager = new TabContextManager(
         tabToContextMap,
         messageBroadcasterFactory,
         browserAdapter,
         detailsViewController,
         tabContextFactory,
+    );
+
+    const targetPageController = new TargetPageController(
+        tabContextManager,
+        browserAdapter,
+        detailsViewController,
         logger,
         {},
         indexedDBInstance,

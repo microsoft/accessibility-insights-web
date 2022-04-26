@@ -12,6 +12,7 @@ import { PostMessageContentHandler } from 'background/post-message-content-handl
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabToContextMap } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
+import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
@@ -194,12 +195,18 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const targetPageController = new TargetPageController(
+    const tabContextManager = new TabContextManager(
         tabToContextMap,
         messageBroadcasterFactory,
         browserAdapter,
         detailsViewController,
         tabContextFactory,
+    );
+
+    const targetPageController = new TargetPageController(
+        tabContextManager,
+        browserAdapter,
+        detailsViewController,
         logger,
         persistedData.knownTabIds ?? {},
         indexedDBInstance,
