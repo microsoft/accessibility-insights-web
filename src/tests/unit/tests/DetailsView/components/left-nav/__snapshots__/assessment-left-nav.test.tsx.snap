@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders with reflow feature flag enabled 1`] = `
+exports[`AssessmentLeftNav renders with reflow feature flag enabled 1`] = `
 <BaseLeftNav
   links={
     Array [

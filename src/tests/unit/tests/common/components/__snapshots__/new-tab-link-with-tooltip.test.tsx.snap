@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` handles children 1`] = `
+exports[`NewTabLinkWithTooltip handles children 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {
@@ -26,7 +26,7 @@ exports[` handles children 1`] = `
 </StyledTooltipHostBase>
 `;
 
-exports[` renders with null tooltip content 1`] = `
+exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {
@@ -49,7 +49,7 @@ exports[` renders with null tooltip content 1`] = `
 </StyledTooltipHostBase>
 `;
 
-exports[` renders with tooltip content 1`] = `
+exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {

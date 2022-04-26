@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` should render from switcher nav 1`] = `
+exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
 <div
   className="leftNav main-nav"
 >

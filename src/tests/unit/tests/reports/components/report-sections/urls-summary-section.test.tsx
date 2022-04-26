@@ -7,7 +7,7 @@ import {
     UrlsSummarySectionProps,
 } from 'reports/components/report-sections/urls-summary-section';
 
-describe(UrlsSummarySection, () => {
+describe(UrlsSummarySection.displayName, () => {
     const props: UrlsSummarySectionProps = {
         passedUrlsCount: 1,
         failedUrlsCount: 2,

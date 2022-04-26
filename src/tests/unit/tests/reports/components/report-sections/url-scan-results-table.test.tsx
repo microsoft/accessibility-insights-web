@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { UrlScanResultsTable } from 'reports/components/report-sections/url-scan-results-table';
 
-describe(UrlScanResultsTable, () => {
+describe(UrlScanResultsTable.displayName, () => {
     it('renders', () => {
         const results = [
             {

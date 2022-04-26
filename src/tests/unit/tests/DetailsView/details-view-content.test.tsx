@@ -48,7 +48,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
 
-describe(DetailsViewContent, () => {
+describe(DetailsViewContent.displayName, () => {
     const pageTitle = 'DetailsViewContainerTest title';
     const pageUrl = 'http://detailsViewContainerTest/url/';
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
