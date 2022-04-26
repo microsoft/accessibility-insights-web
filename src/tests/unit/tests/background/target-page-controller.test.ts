@@ -592,7 +592,6 @@ describe('TargetPageController', () => {
 
             describe('onConnect', () => {
                 it('should not have any observable effect', () => {
-                    idbInstanceMock.reset();
                     setupDatabaseInstance(Times.never());
 
                     mockBrowserAdapter.notifyOnConnect({
@@ -672,10 +671,6 @@ describe('TargetPageController', () => {
             });
 
             describe('onTabRemoved', () => {
-                beforeEach(() => {
-                    idbInstanceMock.reset();
-                });
-
                 it('should ignore removals of non-tracked tabs', () => {
                     setupDatabaseInstance(Times.never());
                     setupTeardownInstance(Times.once());
@@ -749,7 +744,6 @@ describe('TargetPageController', () => {
 
             describe('onWindowsFocusChanged', () => {
                 beforeEach(() => {
-                    idbInstanceMock.reset();
                     setupDatabaseInstance(Times.never());
                     setupTeardownInstance(Times.never());
                 });
