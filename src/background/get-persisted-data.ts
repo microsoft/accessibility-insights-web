@@ -15,7 +15,7 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { DictionaryStringTo } from 'types/common-types';
+import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -33,7 +33,7 @@ export interface PersistedData {
     commandStoreData: CommandStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     scopingStoreData: ScopingStoreData;
-    knownTabIds: number[];
+    knownTabIds: DictionaryNumberTo<string>;
     tabIdToDetailsViewMap: DictionaryStringTo<number>;
 }
 
@@ -129,11 +129,13 @@ export async function getAllPersistedData(indexedDBInstance: IndexedDBAPI): Prom
         persistedData,
     );
 
-    const knownTabIds: number[] = await indexedDBInstance.getItem(IndexedDBDataKeys.knownTabIds);
-    if (knownTabIds && knownTabIds.length > 0) {
-        knownTabIds.forEach(tabId => {
+    const knownTabIds: DictionaryNumberTo<string> = await indexedDBInstance.getItem(
+        IndexedDBDataKeys.knownTabIds,
+    );
+    if (knownTabIds && Object.keys(knownTabIds).length > 0) {
+        Object.keys(knownTabIds).forEach(tabId => {
             const tabSpecificPromises = getAllTabSpecificPersistedPromises(
-                tabId,
+                parseInt(tabId),
                 indexedDBInstance,
                 persistedData,
             );

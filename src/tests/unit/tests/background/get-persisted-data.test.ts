@@ -9,7 +9,7 @@ import {
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { IMock, Mock } from 'typemoq';
-import { DictionaryStringTo } from 'types/common-types';
+import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 
 import { InstallationData } from '../../../../background/installation-data';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
@@ -25,7 +25,7 @@ describe('GetPersistedDataTest', () => {
     let userConfigurationData: UserConfigurationStoreData;
     let installationData: InstallationData;
     let permissionsStateStoreData: PermissionsStateStoreData;
-    let knownTabIds: number[];
+    let knownTabIds: DictionaryNumberTo<string>;
     let tabIdToDetailsViewMap: DictionaryStringTo<number>;
 
     beforeEach(() => {
@@ -53,7 +53,7 @@ describe('GetPersistedDataTest', () => {
             year: 0,
         };
         permissionsStateStoreData = { hasAllUrlAndFilePermissions: true };
-        knownTabIds = [0, 9];
+        knownTabIds = { 0: 'url0', 9: 'url9' };
         tabIdToDetailsViewMap = { key: 9 };
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -127,14 +127,14 @@ describe('GetPersistedDataTest', () => {
         it('returns global data when no known tabs exist', async () => {
             indexedDBInstanceStrictMock
                 .setup(i => i.getItem(IndexedDBDataKeys.knownTabIds))
-                .returns(() => Promise.resolve([]));
+                .returns(() => Promise.resolve({}));
             setupGlobalData();
 
             const data = await getAllPersistedData(indexedDBInstanceStrictMock.object);
 
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
-                knownTabIds: [],
+                knownTabIds: {},
                 userConfigurationData: {},
                 commandStoreData: {},
                 featureFlags: {},
@@ -203,10 +203,10 @@ describe('GetPersistedDataTest', () => {
         }
 
         function setupTabData() {
-            knownTabIds.forEach(tabId => {
+            Object.keys(knownTabIds).forEach(tabId => {
                 IndexedDBDataKeys.tabSpecificKeys.forEach(key => {
                     indexedDBInstanceStrictMock
-                        .setup(i => i.getItem(key(tabId)))
+                        .setup(i => i.getItem(key(parseInt(tabId))))
                         .returns(async () => Promise.resolve({}));
                 });
             });

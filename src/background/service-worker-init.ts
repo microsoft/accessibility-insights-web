@@ -201,7 +201,7 @@ async function initialize(): Promise<void> {
         detailsViewController,
         tabContextFactory,
         logger,
-        persistedData.knownTabIds ?? [],
+        persistedData.knownTabIds ?? {},
         indexedDBInstance,
         true,
     );

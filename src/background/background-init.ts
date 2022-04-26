@@ -217,7 +217,7 @@ async function initialize(): Promise<void> {
         detailsViewController,
         tabContextFactory,
         logger,
-        [],
+        {},
         indexedDBInstance,
     );
 
