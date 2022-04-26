@@ -348,7 +348,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
             tabStopsRequirementResultProcessor,
-            this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),

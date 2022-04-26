@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
@@ -108,34 +106,15 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    test('getState: tabStops without tab stop automation enabled', () => {
-        const visualizationType = VisualizationType.TabStops;
-        const state = new VisualizationScanResultStoreDataBuilder().build();
-        state.tabStops.tabbedElements = [];
-        const featureFlagStoreData = {
-            [FeatureFlags.tabStopsAutomation]: false,
-        } as FeatureFlagStoreData;
-        const storeData: VisualizationRelatedStoreData = {
-            visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagStoreData,
-        } as VisualizationRelatedStoreData;
-
-        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual([]);
-    });
-
-    test('getState: tabStops with tab stop automation enabled', () => {
+    test('getState: tabStops', () => {
         const visualizationType = VisualizationType.TabStops;
         const state = new VisualizationScanResultStoreDataBuilder().build();
         state.tabStops.tabbedElements = [];
         const expectedResults = {
             'some;target': null,
         } as SelectorToVisualizationMap;
-        const featureFlagStoreData = {
-            [FeatureFlags.tabStopsAutomation]: true,
-        } as FeatureFlagStoreData;
         const storeData: VisualizationRelatedStoreData = {
             visualizationScanResultStoreData: state,
-            featureFlagStoreData: featureFlagStoreData,
         } as VisualizationRelatedStoreData;
 
         getVisualizationInstancesForTabStopsMock

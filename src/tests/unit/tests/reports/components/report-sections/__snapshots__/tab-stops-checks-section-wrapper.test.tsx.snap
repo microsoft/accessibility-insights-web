@@ -8,7 +8,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
       "cards": Object {
         "fail": Array [
           Object {
-            "description": "There are no interactive elements that “trap” input focus and prevent navigating away.",
+            "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
@@ -25,7 +25,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
         "inapplicable": Array [],
         "pass": Array [
           Object {
-            "description": "All interactive elements can be reached using the Tab and arrow keys.",
+            "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
@@ -39,7 +39,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
             "url": "",
           },
           Object {
-            "description": "The tab order is consistent with the logical order that's communicated visually.",
+            "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
@@ -55,7 +55,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
         ],
         "unknown": Array [
           Object {
-            "description": "All interactive elements give a visible indication when they have input focus.",
+            "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
@@ -69,7 +69,7 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
             "url": "",
           },
           Object {
-            "description": "Input focus does not move unexpectedly without the user initiating it.",
+            "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
             "guidance": Array [
               Object {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
