@@ -8,4 +8,4 @@ exports[`AdhocStaticTestView render handles no content & guidance 1`] = `"<Stati
 
 exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `"<StaticContentDetailsView deps=\\"stub-deps\\" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} stepsText=\\"Step 0 of 3\\" />"`;
 
-exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} featureFlagStoreData={{...}} detailsViewActionMessageCreator={[Function (anonymous)]} />"`;
+exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} detailsViewActionMessageCreator={[Function (anonymous)]} />"`;
