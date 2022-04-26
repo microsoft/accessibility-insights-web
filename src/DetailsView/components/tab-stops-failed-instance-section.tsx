@@ -4,7 +4,6 @@
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
@@ -27,7 +26,6 @@ export interface TabStopsFailedInstanceSectionProps {
     tabStopRequirementState: TabStopRequirementState;
     alwaysRenderSection: boolean;
     sectionHeadingLevel: HeadingLevel;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';

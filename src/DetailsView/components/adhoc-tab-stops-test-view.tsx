@@ -98,27 +98,24 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         </li>
                     </ol>
                 </li>
-                {props.featureFlagStoreData != null &&
-                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation] ? (
-                    <li>
-                        Record your results for each requirement:
-                        <ol>
-                            <li>
-                                If you find any failures, select <Markup.Term>Fail</Markup.Term>,
-                                then add them as failure instances.
-                            </li>
-                            <li>
-                                Select <Markup.Term>Pass</Markup.Term> if all instances meet the
-                                requirement.
-                            </li>
-                            <li>
-                                <Markup.Emphasis>
-                                    Review any auto-discovered failures to be sure they are valid.
-                                </Markup.Emphasis>
-                            </li>
-                        </ol>
-                    </li>
-                ) : null}
+                <li>
+                    Record your results for each requirement:
+                    <ol>
+                        <li>
+                            If you find any failures, select <Markup.Term>Fail</Markup.Term>, then
+                            add them as failure instances.
+                        </li>
+                        <li>
+                            Select <Markup.Term>Pass</Markup.Term> if all instances meet the
+                            requirement.
+                        </li>
+                        <li>
+                            <Markup.Emphasis>
+                                Review any auto-discovered failures to be sure they are valid.
+                            </Markup.Emphasis>
+                        </li>
+                    </ol>
+                </li>
             </ol>
         );
 
@@ -193,30 +190,19 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         }
                         alwaysRenderSection={false}
                         sectionHeadingLevel={2}
-                        featureFlagStoreData={props.featureFlagStoreData}
                     />
                     <TabStopsFailedInstancePanel
                         deps={props.deps}
                         failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
                         requirementState={requirementState}
                     />
-                    <FlaggedComponent
-                        featureFlag={FeatureFlags.tabStopsAutomation}
-                        featureFlagStoreData={props.featureFlagStoreData}
-                        enableJSXElement={
-                            <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
-                        }
-                    />
-                    <FlaggedComponent
-                        featureFlag={FeatureFlags.tabStopsAutomation}
-                        featureFlagStoreData={props.featureFlagStoreData}
-                        enableJSXElement={
-                            <AutoDetectedFailuresDialog
-                                deps={props.deps}
-                                visualizationScanResultData={props.visualizationScanResultData}
-                                userConfigurationStoreData={props.userConfigurationStoreData}
-                            />
-                        }
+
+                    <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+
+                    <AutoDetectedFailuresDialog
+                        deps={props.deps}
+                        visualizationScanResultData={props.visualizationScanResultData}
+                        userConfigurationStoreData={props.userConfigurationStoreData}
                     />
                 </ThemeFamilyCustomizer>
             </>
