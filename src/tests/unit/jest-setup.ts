@@ -15,5 +15,5 @@ setIconOptions({
 // We have a few tests that intentionally load a fresh JSDOM context (to test in an isolated
 // document) from within a JSDOM-based environment (because several of our dependencies expect
 // global window APIs to be available).
-window.TextEncoder = util.TextEncoder;
-window.TextDecoder = util.TextDecoder;
+window.TextEncoder = util.TextEncoder as unknown as typeof window.TextEncoder;
+window.TextDecoder = util.TextDecoder as unknown as typeof window.TextDecoder;
