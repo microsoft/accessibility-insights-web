@@ -571,10 +571,7 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
-                tabStopRequirements: requirements(
-                    featureFlagStore.getState() != null &&
-                        featureFlagStore.getState()[FeatureFlags.tabStopsAutomation],
-                ),
+                tabStopRequirements: requirements(),
                 tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
