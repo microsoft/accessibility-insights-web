@@ -21,6 +21,7 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'json', 'js'],
     reporters: [
         'default',
+        'github-actions',
         [
             'jest-junit',
             { outputDirectory: '<rootDir>/test-results/e2e/', outputName: 'junit-e2e.xml' },
