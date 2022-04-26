@@ -135,7 +135,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     displayableData={displayableData}
                     visualizationType={selectedTest}
                     toggleClickHandler={clickHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
                     detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 />
             );
