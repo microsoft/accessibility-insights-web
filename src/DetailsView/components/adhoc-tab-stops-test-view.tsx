@@ -3,12 +3,10 @@
 
 import { Toggle } from '@fluentui/react';
 import { CollapsibleComponent } from 'common/components/collapsible-component';
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { FeatureFlags } from 'common/feature-flags';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -181,7 +179,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     <TabStopsRequirementsTable
                         deps={props.deps}
                         requirementState={requirementState}
-                        featureFlagStoreData={props.featureFlagStoreData}
                     />
                     <TabStopsFailedInstanceSection
                         deps={props.deps}

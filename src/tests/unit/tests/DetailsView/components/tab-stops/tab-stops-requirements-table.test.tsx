@@ -27,7 +27,6 @@ describe('TabStopsRequirementsTable', () => {
         id: string;
     } & TabStopRequirementContent;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
-    let featureFlagStoreData;
 
     beforeEach(() => {
         tabStopsTestViewControllerMock = Mock.ofType<TabStopsTestViewController>();
@@ -35,7 +34,6 @@ describe('TabStopsRequirementsTable', () => {
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         requirementState = new VisualizationScanResultStoreDataBuilder().build().tabStops
             .requirements;
-        featureFlagStoreData = null;
         props = {
             deps: {
                 tabStopRequirementActionMessageCreator:
@@ -43,7 +41,6 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
-            featureFlagStoreData,
         };
         requirementContentStub = {
             id: 'test id',
