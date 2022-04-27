@@ -146,11 +146,6 @@ async function initialize(): Promise<void> {
     telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
-    const detailsViewController = new ExtensionDetailsViewController(
-        browserAdapter,
-        {},
-        indexedDBInstance,
-    );
 
     const tabContextManager = new TabContextManager();
 
@@ -197,6 +192,13 @@ async function initialize(): Promise<void> {
 
     const promiseFactory = createDefaultPromiseFactory();
 
+    const detailsViewController = new ExtensionDetailsViewController(
+        browserAdapter,
+        {},
+        indexedDBInstance,
+        tabContextManager,
+    );
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -218,7 +220,6 @@ async function initialize(): Promise<void> {
         tabContextManager,
         tabContextFactory,
         browserAdapter,
-        detailsViewController,
         logger,
         {},
         indexedDBInstance,
