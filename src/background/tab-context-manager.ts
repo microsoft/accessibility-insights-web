@@ -33,7 +33,7 @@ export class TabContextManager {
         const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             delete this.targetPageTabIdToContextMap[tabId];
-            await tabContext.teardown(); // Make sure this doesn't need to happen in a specific order with removeKnownTab
+            await tabContext.teardown();
         }
     }
 

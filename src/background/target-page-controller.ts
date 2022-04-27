@@ -189,8 +189,8 @@ export class TargetPageController {
 
     private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
-        this.tabContextManager.deleteTabContext(tabId);
         this.removeKnownTabId(tabId);
+        this.tabContextManager.deleteTabContext(tabId);
     };
 
     private onDetailsViewTabRemoved = (tabId: number): void => {
