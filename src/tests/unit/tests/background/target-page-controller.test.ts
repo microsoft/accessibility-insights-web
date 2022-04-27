@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
-import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
@@ -504,19 +503,14 @@ describe('TargetPageController', () => {
 
     function setupTryCreateTabContexts(tabIds: number[]) {
         tabIds.forEach(tabId => {
-            const tabContextMock = Mock.ofType<TabContext>();
-            mockTabContextFactory
-                .setup(m => m.createTabContext(tabId))
-                .returns(() => tabContextMock.object);
             mockTabContextManager
-                .setup(m => m.addTabContextIfNotExists(tabId, tabContextMock.object))
+                .setup(m => m.addTabContextIfNotExists(tabId, mockTabContextFactory.object))
                 .verifiable(Times.atLeastOnce());
         });
     }
 
     function setupNeverCreateTabContexts(tabIds: number[]) {
         tabIds.forEach(tabId => {
-            mockTabContextFactory.setup(m => m.createTabContext(tabId)).verifiable(Times.never());
             mockTabContextManager
                 .setup(m => m.addTabContextIfNotExists(tabId, It.isAny()))
                 .verifiable(Times.never());

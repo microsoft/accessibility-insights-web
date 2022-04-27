@@ -29,10 +29,9 @@ export class TargetPageController {
             parseInt(knownTab),
         );
 
-        knownTabIds.forEach(tabId => {
-            const tabContext = this.tabContextFactory.createTabContext(tabId);
-            this.tabContextManager.addTabContextIfNotExists(tabId, tabContext);
-        });
+        knownTabIds.forEach(tabId =>
+            this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory),
+        );
 
         const tabs = await this.browserAdapter.tabsQuery({});
 
@@ -149,8 +148,7 @@ export class TargetPageController {
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
-        const tabContext = this.tabContextFactory.createTabContext(tabId);
-        this.tabContextManager.addTabContextIfNotExists(tabId, tabContext);
+        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
         this.sendTabUrlUpdatedAction(tabId);
         await this.addKnownTabId(tabId);
     };

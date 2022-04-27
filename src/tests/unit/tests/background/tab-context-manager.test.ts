@@ -2,21 +2,24 @@
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
+import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { Message } from 'common/message';
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
 describe(TabContextManager, () => {
     const tabId = 4;
 
     let tabToContextMap: DictionaryNumberTo<TabContext>;
+    let tabContextFactoryMock: IMock<TabContextFactory>;
     let tabContextMock: IMock<TabContext>;
     let interpreterMock: IMock<Interpreter>;
 
     let testSubject: TabContextManager;
 
     beforeEach(() => {
+        tabContextFactoryMock = Mock.ofType<TabContextFactory>();
         tabContextMock = Mock.ofType<TabContext>();
         tabToContextMap = {};
         tabContextMock = Mock.ofType<TabContext>();
@@ -27,22 +30,38 @@ describe(TabContextManager, () => {
 
     afterEach(() => {
         tabContextMock.verifyAll();
+        tabContextFactoryMock.verifyAll();
         interpreterMock.verifyAll();
     });
 
     it('Adds new tab context to map', () => {
-        testSubject.addTabContextIfNotExists(tabId, tabContextMock.object);
+        tabContextFactoryMock
+            .setup(t => t.createTabContext(tabId))
+            .returns(() => tabContextMock.object);
+
+        testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
         expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
     });
 
     it('Does not recreate tab context if already exists', () => {
-        const existingTabContext = Mock.ofType<TabContext>();
-        tabToContextMap[tabId] = existingTabContext.object;
+        tabToContextMap[tabId] = tabContextMock.object;
 
-        testSubject.addTabContextIfNotExists(tabId, tabContextMock.object);
+        tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
 
-        expect(tabToContextMap[tabId]).toBe(existingTabContext.object);
+        testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+
+        expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
+    });
+
+    it('Does not overwrite tab context if tab context is undefined', () => {
+        tabToContextMap[tabId] = undefined;
+
+        tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
+
+        testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+
+        expect(tabToContextMap[tabId]).toBeUndefined();
     });
 
     it('Deletes tab context and calls teardown', async () => {
@@ -52,7 +71,15 @@ describe(TabContextManager, () => {
 
         await testSubject.deleteTabContext(tabId);
 
-        expect(tabToContextMap[tabId]).toBeUndefined();
+        expect(Object.keys(tabToContextMap)).not.toContain(tabId);
+    });
+
+    it('Deletes undefined tab context', async () => {
+        tabToContextMap[tabId] = undefined;
+
+        await testSubject.deleteTabContext(tabId);
+
+        expect(Object.keys(tabToContextMap)).not.toContain(tabId);
     });
 
     it('Handles deleteTabContext on tab id with no context', async () => {
