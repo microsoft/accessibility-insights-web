@@ -203,6 +203,9 @@ async function initialize(): Promise<void> {
         telemetryEventHandler,
         targetTabController,
         notificationCreator,
+        detailsViewController,
+        browserAdapter,
+        messageBroadcasterFactory,
         promiseFactory,
         logger,
         usageLogger,
@@ -211,16 +214,11 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const tabContextManager = new TabContextManager(
-        tabToContextMap,
-        messageBroadcasterFactory,
-        browserAdapter,
-        detailsViewController,
-        tabContextFactory,
-    );
+    const tabContextManager = new TabContextManager(tabToContextMap);
 
     const targetPageController = new TargetPageController(
         tabContextManager,
+        tabContextFactory,
         browserAdapter,
         detailsViewController,
         logger,

@@ -187,24 +187,23 @@ async function initialize(): Promise<void> {
         telemetryEventHandler,
         targetTabController,
         notificationCreator,
+        detailsViewController,
+        browserAdapter,
+        messageBroadcasterFactory,
         promiseFactory,
         logger,
         usageLogger,
         globalThis.setTimeout.bind(this),
         persistedData,
         indexedDBInstance,
+        true,
     );
 
-    const tabContextManager = new TabContextManager(
-        tabToContextMap,
-        messageBroadcasterFactory,
-        browserAdapter,
-        detailsViewController,
-        tabContextFactory,
-    );
+    const tabContextManager = new TabContextManager(tabToContextMap);
 
     const targetPageController = new TargetPageController(
         tabContextManager,
+        tabContextFactory,
         browserAdapter,
         detailsViewController,
         logger,

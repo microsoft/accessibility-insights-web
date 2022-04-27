@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
@@ -8,12 +10,12 @@ import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryNumberTo } from 'types/common-types';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
-import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { TabContextManager } from './tab-context-manager';
 
 export class TargetPageController {
     constructor(
         private readonly tabContextManager: TabContextManager,
+        private readonly tabContextFactory: TabContextFactory,
         private readonly browserAdapter: BrowserAdapter,
         private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly logger: Logger,
@@ -27,7 +29,10 @@ export class TargetPageController {
             parseInt(knownTab),
         );
 
-        knownTabIds.forEach(tabId => this.tabContextManager.addTabContextIfNotExists(tabId));
+        knownTabIds.forEach(tabId => {
+            const tabContext = this.tabContextFactory.createTabContext(tabId);
+            this.tabContextManager.addTabContextIfNotExists(tabId, tabContext);
+        });
 
         const tabs = await this.browserAdapter.tabsQuery({});
 
@@ -144,7 +149,8 @@ export class TargetPageController {
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
-        this.tabContextManager.addTabContextIfNotExists(tabId);
+        const tabContext = this.tabContextFactory.createTabContext(tabId);
+        this.tabContextManager.addTabContextIfNotExists(tabId, tabContext);
         this.sendTabUrlUpdatedAction(tabId);
         await this.addKnownTabId(tabId);
     };

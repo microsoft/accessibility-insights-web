@@ -1,27 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    BrowserMessageBroadcasterFactory,
-    MessageBroadcaster,
-} from 'background/browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TabContext } from 'background/tab-context';
-import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { Message } from 'common/message';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe(TabContextManager, () => {
     const tabId = 4;
-    const persistStoreData = false;
 
-    let mockBroadcasterFactoryMock: IMock<BrowserMessageBroadcasterFactory>;
-    let mockTabContextFactory: IMock<TabContextFactory>;
-    let mockBrowserAdapter: IMock<BrowserAdapter>;
-    let mockDetailsViewController: IMock<ExtensionDetailsViewController>;
     let tabToContextMap: DictionaryNumberTo<TabContext>;
     let tabContextMock: IMock<TabContext>;
     let interpreterMock: IMock<Interpreter>;
@@ -29,65 +17,32 @@ describe(TabContextManager, () => {
     let testSubject: TabContextManager;
 
     beforeEach(() => {
-        mockBroadcasterFactoryMock = Mock.ofType<BrowserMessageBroadcasterFactory>();
-        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
-        mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
+        tabContextMock = Mock.ofType<TabContext>();
         tabToContextMap = {};
-        mockTabContextFactory = Mock.ofType<TabContextFactory>();
         tabContextMock = Mock.ofType<TabContext>();
         interpreterMock = Mock.ofType<Interpreter>();
 
-        testSubject = new TabContextManager(
-            tabToContextMap,
-            mockBroadcasterFactoryMock.object,
-            mockBrowserAdapter.object,
-            mockDetailsViewController.object,
-            mockTabContextFactory.object,
-            persistStoreData,
-        );
+        testSubject = new TabContextManager(tabToContextMap);
     });
 
     afterEach(() => {
-        mockBroadcasterFactoryMock.verifyAll();
-        mockTabContextFactory.verifyAll();
         tabContextMock.verifyAll();
         interpreterMock.verifyAll();
     });
 
-    it('Creates new tab context', () => {
-        const broadcasterMock = Mock.ofType<MessageBroadcaster>();
-        mockBroadcasterFactoryMock
-            .setup(m => m.createTabSpecificBroadcaster(tabId))
-            .returns(() => broadcasterMock.object)
-            .verifiable();
-        mockTabContextFactory
-            .setup(m =>
-                m.createTabContext(
-                    broadcasterMock.object,
-                    mockBrowserAdapter.object,
-                    mockDetailsViewController.object,
-                    tabId,
-                    persistStoreData,
-                ),
-            )
-            .returns(() => tabContextMock.object)
-            .verifiable();
-
-        testSubject.addTabContextIfNotExists(tabId);
+    it('Adds new tab context to map', () => {
+        testSubject.addTabContextIfNotExists(tabId, tabContextMock.object);
 
         expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
     });
 
     it('Does not recreate tab context if already exists', () => {
-        tabToContextMap[tabId] = tabContextMock.object;
+        const existingTabContext = Mock.ofType<TabContext>();
+        tabToContextMap[tabId] = existingTabContext.object;
 
-        mockTabContextFactory
-            .setup(m =>
-                m.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()),
-            )
-            .verifiable(Times.never());
+        testSubject.addTabContextIfNotExists(tabId, tabContextMock.object);
 
-        testSubject.addTabContextIfNotExists(tabId);
+        expect(tabToContextMap[tabId]).toBe(existingTabContext.object);
     });
 
     it('Deletes tab context and calls teardown', async () => {

@@ -1,31 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { Message } from '../common/message';
-import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { TabToContextMap } from './tab-context';
-import { TabContextFactory } from './tab-context-factory';
+import { TabContext, TabToContextMap } from './tab-context';
 
 export class TabContextManager {
-    constructor(
-        private readonly targetPageTabIdToContextMap: TabToContextMap,
-        private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly detailsViewController: ExtensionDetailsViewController,
-        private readonly tabContextFactory: TabContextFactory,
-        private persistStoreData = false,
-    ) {}
+    constructor(private readonly targetPageTabIdToContextMap: TabToContextMap) {}
 
-    public addTabContextIfNotExists(tabId: number): void {
+    public addTabContextIfNotExists(tabId: number, tabContext: TabContext): void {
         if (this.targetPageTabIdToContextMap[tabId] === undefined) {
-            this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
-                this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
-                this.browserAdapter,
-                this.detailsViewController,
-                tabId,
-                this.persistStoreData,
-            );
+            this.targetPageTabIdToContextMap[tabId] = tabContext;
         }
     }
 
