@@ -51,7 +51,7 @@ export class TabContextFactory {
         private readonly setTimeout: (handler: Function, timeout: number) => number,
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
-        private readonly persistStoreData: boolean = false,
+        private readonly persistStoreData: boolean,
     ) {}
 
     public createTabContext(tabId: number): TabContext {

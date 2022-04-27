@@ -212,6 +212,7 @@ async function initialize(): Promise<void> {
         windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
+        false,
     );
 
     const tabContextManager = new TabContextManager(tabToContextMap);
