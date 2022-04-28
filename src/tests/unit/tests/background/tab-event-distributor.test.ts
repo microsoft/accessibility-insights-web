@@ -8,27 +8,12 @@ import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
 } from 'tests/unit/common/simulated-browser-adapter';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 describe(TabEventDistributor, () => {
-    const existingWindow = { id: 101 } as chrome.windows.Window;
-
-    const existingActiveTab = {
+    const tab = {
         id: 1,
-        windowId: existingWindow.id,
-        active: true,
-    } as chrome.tabs.Tab;
-
-    const existingInactiveTab = {
-        id: 2,
-        windowId: existingWindow.id,
-        active: false,
-    } as chrome.tabs.Tab;
-
-    const newTab = {
-        id: 3,
-        windowId: existingWindow.id,
-        active: true,
+        windowId: 101,
     } as chrome.tabs.Tab;
 
     let browserAdapterMock: SimulatedBrowserAdapter;
@@ -38,10 +23,7 @@ describe(TabEventDistributor, () => {
     let testSubject: TabEventDistributor;
 
     beforeEach(() => {
-        browserAdapterMock = createSimulatedBrowserAdapter(
-            [existingActiveTab, existingInactiveTab],
-            [existingWindow],
-        );
+        browserAdapterMock = createSimulatedBrowserAdapter([tab], []);
         targetPageControllerMock = Mock.ofType(TargetPageController, MockBehavior.Strict);
         detailsViewControllerMock = Mock.ofType(
             ExtensionDetailsViewController,
@@ -53,31 +35,53 @@ describe(TabEventDistributor, () => {
             targetPageControllerMock.object,
             detailsViewControllerMock.object,
         );
+
+        testSubject.initialize();
+    });
+
+    afterEach(() => {
+        targetPageControllerMock.verifyAll();
+        // detailsViewControllerMock.verifyAll();
     });
 
     it('webNavigationUpdated event', async () => {
-        await browserAdapterMock.notifyWebNavigationUpdated({
+        const navigationDetails = {
             frameId: 0,
-            tabId: newTab.id,
-        } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
+            tabId: tab.id,
+        } as chrome.webNavigation.WebNavigationFramedCallbackDetails;
+
+        targetPageControllerMock.setup(t => t.onTabNavigated(navigationDetails)).verifiable();
+
+        await browserAdapterMock.notifyWebNavigationUpdated(navigationDetails);
     });
 
     it('tabsOnRemoved event', async () => {
-        const removeInfo = {} as chrome.tabs.TabRemoveInfo;
-        await browserAdapterMock.notifyTabsOnRemoved(existingActiveTab.id, removeInfo);
+        targetPageControllerMock.setup(t => t.onTargetTabRemoved(tab.id)).verifiable();
+
+        await browserAdapterMock.notifyTabsOnRemoved(tab.id, {} as chrome.tabs.TabRemoveInfo);
     });
 
     it('onWindowsFocusChanged event', async () => {
-        const otherWindowId = 202;
-        await browserAdapterMock.notifyWindowsFocusChanged(otherWindowId);
+        targetPageControllerMock.setup(t => t.onWindowFocusChanged()).verifiable();
+
+        await browserAdapterMock.notifyWindowsFocusChanged(tab.windowId);
     });
 
     it('onTabActivated event', async () => {
-        await browserAdapterMock.activateTab(existingInactiveTab);
+        targetPageControllerMock
+            .setup(t =>
+                t.onTabActivated(It.isObjectWith({ tabId: tab.id, windowId: tab.windowId })),
+            )
+            .verifiable();
+
+        await browserAdapterMock.activateTab(tab);
     });
 
     it('onTabUpdated event', async () => {
         const changeInfo: chrome.tabs.TabChangeInfo = {};
-        await browserAdapterMock.updateTab(existingActiveTab.id, changeInfo);
+
+        targetPageControllerMock.setup(t => t.onTabUpdated(tab.id, changeInfo)).verifiable();
+
+        await browserAdapterMock.updateTab(tab.id, changeInfo);
     });
 });

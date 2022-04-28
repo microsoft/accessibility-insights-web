@@ -27,28 +27,28 @@ export class TabEventDistributor {
     private onTabNavigated = async (
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
     ): Promise<void> => {
-        //TODO: implement
+        await this.targetPageController.onTabNavigated(details);
     };
 
     private onTabRemoved = async (
         tabId: number,
         removeInfo: chrome.tabs.TabRemoveInfo,
     ): Promise<void> => {
-        //TODO: implement
+        this.targetPageController.onTargetTabRemoved(tabId);
     };
 
     private onWindowFocusChanged = async (windowId: number): Promise<void> => {
-        //TODO: implement
+        await this.targetPageController.onWindowFocusChanged();
     };
 
     private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
-        //TODO: implement
+        await this.targetPageController.onTabActivated(activeInfo);
     };
 
     private onTabUpdated = async (
         tabId: number,
         changeInfo: chrome.tabs.TabChangeInfo,
     ): Promise<void> => {
-        //TODO: implement
+        await this.targetPageController.onTabUpdated(tabId, changeInfo);
     };
 }

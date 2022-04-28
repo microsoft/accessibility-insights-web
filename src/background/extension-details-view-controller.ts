@@ -16,8 +16,8 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
         private persistStoreData = false,
     ) {
-        this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
-        this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
+        // this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
+        // this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
 
     private persistTabIdToDetailsViewMap = async () => {
