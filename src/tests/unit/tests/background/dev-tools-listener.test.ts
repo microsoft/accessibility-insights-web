@@ -20,10 +20,6 @@ describe('DevToolsListenerTests', () => {
 
     beforeEach(() => {
         tabContextManagerMock = Mock.ofType<TabContextManager>();
-        // tabIdToContextMap = {
-        //     1: new TabContext(tabId1InterpreterMock.object, null),
-        //     2: new TabContext(tabId2InterpreterMock.object, null),
-        // };
         browserAdapterMock = new DevToolsBrowserAdapterMock();
         testSubject = new DevToolsListener(
             tabContextManagerMock.object,
