@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DevToolsListener } from 'background/dev-tools-listener';
-import { Interpreter } from 'background/interpreter';
-import { TabContext, TabToContextMap } from 'background/tab-context';
+import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
@@ -17,19 +16,19 @@ import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
 describe('DevToolsListenerTests', () => {
     let testSubject: DevToolsListener;
     let browserAdapterMock: DevToolsBrowserAdapterMock;
-    let tabIdToContextMap: TabToContextMap;
-    let tabId1InterpreterMock: IMock<Interpreter>;
-    let tabId2InterpreterMock: IMock<Interpreter>;
+    let tabContextManagerMock: IMock<TabContextManager>;
 
     beforeEach(() => {
-        tabId1InterpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
-        tabId2InterpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
-        tabIdToContextMap = {
-            1: new TabContext(tabId1InterpreterMock.object, null),
-            2: new TabContext(tabId2InterpreterMock.object, null),
-        };
+        tabContextManagerMock = Mock.ofType<TabContextManager>();
+        // tabIdToContextMap = {
+        //     1: new TabContext(tabId1InterpreterMock.object, null),
+        //     2: new TabContext(tabId2InterpreterMock.object, null),
+        // };
         browserAdapterMock = new DevToolsBrowserAdapterMock();
-        testSubject = new DevToolsListener(tabIdToContextMap, browserAdapterMock.getObject());
+        testSubject = new DevToolsListener(
+            tabContextManagerMock.object,
+            browserAdapterMock.getObject(),
+        );
     });
 
     test('initialize - ignore non-dev tools connections', () => {
@@ -101,9 +100,10 @@ describe('DevToolsListenerTests', () => {
             connectListenerCB = cb;
         });
 
-        tabId2InterpreterMock
-            .setup(x =>
-                x.interpret(
+        tabContextManagerMock
+            .setup(t =>
+                t.interpretMessageForTab(
+                    2,
                     It.isValue({
                         payload: {
                             status: true,
@@ -125,7 +125,7 @@ describe('DevToolsListenerTests', () => {
         onDisconnectPortMock.verify();
 
         expect(portStub.targetPageTabId).toBe(2);
-        tabId2InterpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     test('initialize - disconnect - call interpreter with status false', () => {
@@ -151,9 +151,10 @@ describe('DevToolsListenerTests', () => {
             connectListenerCB = cb;
         });
 
-        tabId2InterpreterMock
-            .setup(x =>
-                x.interpret(
+        tabContextManagerMock
+            .setup(t =>
+                t.interpretMessageForTab(
+                    2,
                     It.isValue({
                         payload: {
                             status: false,
@@ -174,6 +175,6 @@ describe('DevToolsListenerTests', () => {
         onMessagePortMockValidator.verify();
         onDisconnectPortMockValidator.verify();
 
-        tabId2InterpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 });

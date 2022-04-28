@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { Message } from '../common/message';
 import { TabToContextMap } from './tab-context';
 
 export class TabContextManager {
-    constructor(private readonly targetPageTabIdToContextMap: TabToContextMap) {}
+    constructor(private readonly targetPageTabIdToContextMap: TabToContextMap = {}) {}
 
     public addTabContextIfNotExists(tabId: number, tabContextFactory: TabContextFactory): void {
         if (!(tabId in this.targetPageTabIdToContextMap)) {
@@ -21,11 +22,18 @@ export class TabContextManager {
         }
     }
 
-    public interpretMessageForTab(tabId: number, message: Message): void {
+    public interpretMessageForTab(tabId: number, message: Message): boolean {
         const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
-            interpreter.interpret(message);
+
+            return interpreter.interpret(message);
         }
+
+        return false;
+    }
+
+    public getTabContextStores(tabId: number): TabContextStoreHub | undefined {
+        return this.targetPageTabIdToContextMap[tabId]?.stores;
     }
 }

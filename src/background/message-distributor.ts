@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Tab } from '../common/itab';
 import { Logger } from '../common/logging/logger';
 import { InterpreterMessage } from '../common/message';
 import { GlobalContext } from './global-context';
 import { PostMessageContentHandler } from './post-message-content-handler';
-import { TabToContextMap } from './tab-context';
 
 export interface Sender {
     tab?: Tab;
@@ -15,7 +15,7 @@ export interface Sender {
 export class MessageDistributor {
     constructor(
         private readonly globalContext: GlobalContext,
-        private readonly tabToContextMap: TabToContextMap,
+        private readonly tabContextManager: TabContextManager,
         private readonly postMessageContentHandler: PostMessageContentHandler,
         private readonly browserAdapter: BrowserAdapter,
         private readonly logger: Logger,
@@ -57,13 +57,10 @@ export class MessageDistributor {
     }
 
     private tryInterpretUsingTabContext(message: InterpreterMessage): boolean {
-        let hasInterpreted: boolean;
-        const tabContext = this.tabToContextMap[message.tabId];
-
-        if (tabContext != null) {
-            hasInterpreted = tabContext.interpreter.interpret(message);
+        if (message.tabId != null) {
+            return this.tabContextManager.interpretMessageForTab(message.tabId, message);
         }
 
-        return hasInterpreted;
+        return false;
     }
 }

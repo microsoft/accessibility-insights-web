@@ -10,7 +10,6 @@ import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { MessageDistributor } from 'background/message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
-import { TabToContextMap } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
@@ -138,7 +137,7 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
         true,
     );
-    const tabToContextMap: TabToContextMap = {};
+    const tabContextManager = new TabContextManager();
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
@@ -148,7 +147,7 @@ async function initialize(): Promise<void> {
     );
 
     const keyboardShortcutHandler = new KeyboardShortcutHandler(
-        tabToContextMap,
+        tabContextManager,
         browserAdapter,
         urlValidator,
         notificationCreator,
@@ -169,7 +168,7 @@ async function initialize(): Promise<void> {
 
     const messageDistributor = new MessageDistributor(
         globalContext,
-        tabToContextMap,
+        tabContextManager,
         postMessageContentHandler,
         browserAdapter,
         logger,
@@ -199,8 +198,6 @@ async function initialize(): Promise<void> {
         true,
     );
 
-    const tabContextManager = new TabContextManager(tabToContextMap);
-
     const targetPageController = new TargetPageController(
         tabContextManager,
         tabContextFactory,
@@ -214,7 +211,7 @@ async function initialize(): Promise<void> {
 
     await targetPageController.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();
 
     await cleanKeysFromStoragePromise;

@@ -33,7 +33,6 @@ import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
-import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -153,7 +152,7 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const tabToContextMap: TabToContextMap = {};
+    const tabContextManager = new TabContextManager();
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
@@ -163,7 +162,7 @@ async function initialize(): Promise<void> {
     );
 
     const keyboardShortcutHandler = new KeyboardShortcutHandler(
-        tabToContextMap,
+        tabContextManager,
         browserAdapter,
         urlValidator,
         notificationCreator,
@@ -184,7 +183,7 @@ async function initialize(): Promise<void> {
 
     const messageDistributor = new MessageDistributor(
         globalContext,
-        tabToContextMap,
+        tabContextManager,
         postMessageContentHandler,
         browserAdapter,
         logger,
@@ -215,8 +214,6 @@ async function initialize(): Promise<void> {
         false,
     );
 
-    const tabContextManager = new TabContextManager(tabToContextMap);
-
     const targetPageController = new TargetPageController(
         tabContextManager,
         tabContextFactory,
@@ -229,7 +226,7 @@ async function initialize(): Promise<void> {
 
     await targetPageController.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
