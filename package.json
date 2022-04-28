@@ -95,7 +95,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.14.1",
-        "@swc/core": "^1.2.172",
+        "@swc/core": "^1.2.173",
         "@swc/jest": "^0.2.20",
         "@types/chrome": "0.0.183",
         "@types/enzyme": "^3.10.12",
@@ -143,7 +143,8 @@
         "grunt-contrib-watch": "^1.1.0",
         "grunt-exec": "^3.0.0",
         "grunt-sass": "^3.1.0",
-        "jest": "^27.5.1",
+        "jest": "^28.0.0",
+        "jest-environment-jsdom": "^28.0.0",
         "jest-junit": "^13.2.0",
         "js-yaml": "^4.1.0",
         "lerna": "^4.0.0",
