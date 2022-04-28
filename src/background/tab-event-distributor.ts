@@ -35,6 +35,7 @@ export class TabEventDistributor {
         removeInfo: chrome.tabs.TabRemoveInfo,
     ): Promise<void> => {
         this.targetPageController.onTargetTabRemoved(tabId);
+        await this.detailsViewController.onRemoveTab(tabId);
     };
 
     private onWindowFocusChanged = async (windowId: number): Promise<void> => {
@@ -48,7 +49,9 @@ export class TabEventDistributor {
     private onTabUpdated = async (
         tabId: number,
         changeInfo: chrome.tabs.TabChangeInfo,
+        tab: chrome.tabs.Tab,
     ): Promise<void> => {
         await this.targetPageController.onTabUpdated(tabId, changeInfo);
+        await this.detailsViewController.onUpdateTab(tabId, changeInfo);
     };
 }

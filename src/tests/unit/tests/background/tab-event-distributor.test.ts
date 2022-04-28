@@ -41,7 +41,7 @@ describe(TabEventDistributor, () => {
 
     afterEach(() => {
         targetPageControllerMock.verifyAll();
-        // detailsViewControllerMock.verifyAll();
+        detailsViewControllerMock.verifyAll();
     });
 
     it('webNavigationUpdated event', async () => {
@@ -57,6 +57,7 @@ describe(TabEventDistributor, () => {
 
     it('tabsOnRemoved event', async () => {
         targetPageControllerMock.setup(t => t.onTargetTabRemoved(tab.id)).verifiable();
+        detailsViewControllerMock.setup(d => d.onRemoveTab(tab.id)).verifiable();
 
         await browserAdapterMock.notifyTabsOnRemoved(tab.id, {} as chrome.tabs.TabRemoveInfo);
     });
@@ -81,6 +82,7 @@ describe(TabEventDistributor, () => {
         const changeInfo: chrome.tabs.TabChangeInfo = {};
 
         targetPageControllerMock.setup(t => t.onTabUpdated(tab.id, changeInfo)).verifiable();
+        detailsViewControllerMock.setup(d => d.onUpdateTab(tab.id, changeInfo)).verifiable();
 
         await browserAdapterMock.updateTab(tab.id, changeInfo);
     });
