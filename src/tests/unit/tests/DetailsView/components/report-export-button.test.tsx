@@ -10,7 +10,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-describe(ReportExportButton, () => {
+describe(ReportExportButton.displayName, () => {
     let showDialogMock: IMock<() => void>;
     let props: ReportExportButtonProps;
 

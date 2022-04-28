@@ -7,7 +7,7 @@ import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
 
-describe(CombinedReportSummarySection, () => {
+describe(CombinedReportSummarySection.displayName, () => {
     const urlResultCounts = {
         passedUrls: 1,
         failedUrls: 2,

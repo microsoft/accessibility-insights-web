@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders visualization based left nav with appropriate params 1`] = `
+exports[`FastPassLeftNav renders visualization based left nav with appropriate params 1`] = `
 <VisualizationBasedLeftNav
   deps={
     Object {

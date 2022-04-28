@@ -19,6 +19,7 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     reporters: [
         'default',
+        'github-actions',
         [
             'jest-junit',
             {

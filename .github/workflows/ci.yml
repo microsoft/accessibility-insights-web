@@ -160,15 +160,13 @@ jobs:
       timeout-minutes: 10
 
   e2e-web-tests:
-    name: e2e-web-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.21.1-focal
     strategy:
       fail-fast: false
       matrix:
-        test-filename-prefix-pattern:
-          - "[a-k]"
-          - "[^a-k]"
+        shard-index: [1, 2]
 
     steps:
     - uses: actions/checkout@v2
@@ -192,7 +190,7 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       env:
         # If you need to debug Playwright/Chromium, using pw:* instead may help
         DEBUG: pw:api
@@ -203,7 +201,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-web-tests-${{ strategy.job-index }}-results
+        name: e2e-web-tests-${{ matrix.shard-index }}-results
         path: test-results/e2e/junit-e2e.xml
       timeout-minutes: 3
 
@@ -211,14 +209,14 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ failure() }}
       with:
-        name: e2e-web-tests-${{ strategy.job-index }}-debug-logs
+        name: e2e-web-tests-${{ matrix.shard-index }}-debug-logs
         path: |
           test-results/e2e/chrome-logs
           test-results/e2e/failure-screenshots
       timeout-minutes: 15 # chrome-logs is several GB, this can take a while
   
   e2e-unified-tests:
-    name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    name: e2e-unified-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     env:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
@@ -227,9 +225,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test-filename-prefix-pattern:
-          - "a" # about half the tests start with "android-setup-"
-          - "[^a]"
+        shard-index: [1, 2]
 
     steps:
     - uses: actions/checkout@v2
@@ -271,14 +267,14 @@ jobs:
 
     - name: yarn test:unified
       run: |
-        yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+        yarn test:unified --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-unified-tests-${{ strategy.job-index }}-results
+        name: e2e-unified-tests-${{ matrix.shard-index }}-results
         path: test-results/electron
       timeout-minutes: 3
 
