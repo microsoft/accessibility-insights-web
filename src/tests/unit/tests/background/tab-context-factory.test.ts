@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { PersistedData } from 'background/get-persisted-data';
 import { Interpreter } from 'background/interpreter';
@@ -44,6 +45,7 @@ describe('TabContextFactoryTest', () => {
     let mockNotificationCreator: IMock<NotificationCreator>;
     let mockSetTimeout: IMock<(handler: Function, timeout: number) => number>;
     let mockDBInstance: IMock<IndexedDBAPI>;
+    let mockBroadcasterFactory: IMock<BrowserMessageBroadcasterFactory>;
     let persistedDataStub: PersistedData;
 
     beforeEach(() => {
@@ -54,10 +56,12 @@ describe('TabContextFactoryTest', () => {
         mockNotificationCreator = Mock.ofType<NotificationCreator>();
         mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
+        mockBroadcasterFactory = Mock.ofType<BrowserMessageBroadcasterFactory>();
         persistedDataStub = {} as PersistedData;
     });
 
     it('createInterpreter', () => {
+        const tabId = 5;
         const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
             null,
             MockBehavior.Strict,
@@ -101,27 +105,29 @@ describe('TabContextFactoryTest', () => {
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
             .returns(theType => getConfigs(theType));
 
+        mockBroadcasterFactory
+            .setup(m => m.createTabSpecificBroadcaster(tabId))
+            .returns(() => broadcastMock.object);
+
         const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
             targetTabControllerMock.object,
             mockNotificationCreator.object,
+            mockDetailsViewController.object,
+            mockBrowserAdapter.object,
+            mockBroadcasterFactory.object,
             promiseFactoryMock.object,
             mockLogger.object,
             mockUsageLogger.object,
             mockSetTimeout.object,
             persistedDataStub,
             mockDBInstance.object,
-        );
-
-        const tabContext = testObject.createTabContext(
-            broadcastMock.object,
-            mockBrowserAdapter.object,
-            mockDetailsViewController.object,
-            null,
             true,
         );
+
+        const tabContext = testObject.createTabContext(tabId);
 
         broadcastMock.verifyAll();
         broadcastMock.reset();

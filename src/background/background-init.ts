@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
+import { TabContextManager } from 'background/tab-context-manager';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -32,7 +33,6 @@ import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
-import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -152,7 +152,7 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const tabToContextMap: TabToContextMap = {};
+    const tabContextManager = new TabContextManager();
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
@@ -162,7 +162,7 @@ async function initialize(): Promise<void> {
     );
 
     const keyboardShortcutHandler = new KeyboardShortcutHandler(
-        tabToContextMap,
+        tabContextManager,
         browserAdapter,
         urlValidator,
         notificationCreator,
@@ -183,7 +183,7 @@ async function initialize(): Promise<void> {
 
     const messageDistributor = new MessageDistributor(
         globalContext,
-        tabToContextMap,
+        tabContextManager,
         postMessageContentHandler,
         browserAdapter,
         logger,
@@ -202,20 +202,23 @@ async function initialize(): Promise<void> {
         telemetryEventHandler,
         targetTabController,
         notificationCreator,
+        detailsViewController,
+        browserAdapter,
+        messageBroadcasterFactory,
         promiseFactory,
         logger,
         usageLogger,
         windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
+        false,
     );
 
     const targetPageController = new TargetPageController(
-        tabToContextMap,
-        messageBroadcasterFactory,
+        tabContextManager,
+        tabContextFactory,
         browserAdapter,
         detailsViewController,
-        tabContextFactory,
         logger,
         {},
         indexedDBInstance,
@@ -223,7 +226,7 @@ async function initialize(): Promise<void> {
 
     await targetPageController.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
