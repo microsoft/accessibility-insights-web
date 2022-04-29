@@ -109,6 +109,11 @@ jobs:
     needs: unit-tests # This waits for *all* of the unit-tests jobs
     runs-on: ubuntu-20.04
     steps:
+    # This only needs to be present so codecov can use the source tree for some post-processing
+    # This job doesn't require that we install dependencies
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
     - uses: actions/download-artifact@v3
       with:
         name: unit-tests-1-results
