@@ -413,14 +413,16 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
     private onResetData = (payload: ToggleActionPayload): void => {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
-        const defaultTestStatus: AssessmentData = config.getAssessmentData(this.getDefaultState());
+        const defaultTestStatus: AssessmentData = config.getAssessmentData(
+            this.generateDefaultState(null),
+        );
         this.state.assessments[test.key] = defaultTestStatus;
         this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
         this.emitChanged();
     };
 
     private onResetAllAssessmentsData = (targetTabId: number): void => {
-        this.state = this.getDefaultState();
+        this.state = this.generateDefaultState(null);
         this.updateTargetTabWithId(targetTabId);
     };
 

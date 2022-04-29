@@ -1,18 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+type TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
+type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
 
-import { AlarmUtils } from 'background/alarm-utils';
-
-type TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
-type AlarmTimeoutPromise = (alarmUtils: AlarmUtils) => TimeoutPromise;
+export type ExternalResolutionPromise = {
+    promise: Promise<any>;
+    resolveHook: (value: unknown) => any;
+    rejectHook: (reason?: any) => any;
+};
 
 export class TimeoutError extends Error {}
 
 export type PromiseFactory = {
-    timeout: TimeoutPromise;
+    timeout: TimeoutCreator;
+    delay: DelayCreator;
+    externalResolutionPromise: () => ExternalResolutionPromise;
 };
 
-const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
+const createDelay: DelayCreator = (result: any, delayInMs: number) => {
+    const externalResolution = createPromiseForExternalResolution();
+
+    setTimeout(() => externalResolution.resolveHook(result), delayInMs);
+    return externalResolution.promise;
+};
+
+const createTimeout: TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
     const timeout = new Promise<T>((resolve, reject) => {
         const timeoutId = setTimeout(() => {
             clearTimeout(timeoutId);
@@ -23,28 +35,26 @@ const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMillisecon
     return Promise.race([promise, timeout]);
 };
 
-export const createDefaultPromiseFactory = (): PromiseFactory => {
+const createPromiseForExternalResolution = (): ExternalResolutionPromise => {
+    let resolveHook: (value: unknown) => any = (value: unknown) => value;
+    let rejectHook: (reason?: any) => any = (reason?: any) => reason;
+
+    const promise = new Promise((resolve, reject) => {
+        resolveHook = resolve;
+        rejectHook = reject;
+    });
+
     return {
-        timeout: createTimeout,
+        promise,
+        resolveHook,
+        rejectHook,
     };
 };
 
-const createAlarmTimeout: AlarmTimeoutPromise =
-    (alarmUtils: AlarmUtils) =>
-    <T>(promise: Promise<T>, delayInMilliseconds: number) => {
-        const timeout = new Promise<T>((resolve, reject) => {
-            const timeoutId = `timeout-promise-${Date.now()}`;
-            alarmUtils.createAlarmWithCallback(timeoutId, delayInMilliseconds, () => {
-                reject(new TimeoutError(`Timed out after ${delayInMilliseconds}ms`));
-                alarmUtils.clearAlarm(timeoutId);
-            });
-        });
-
-        return Promise.race([promise, timeout]);
-    };
-
-export const createAlarmPromiseFactory = (alarmUtils: AlarmUtils): PromiseFactory => {
+export const createDefaultPromiseFactory = (): PromiseFactory => {
     return {
-        timeout: createAlarmTimeout(alarmUtils),
+        timeout: createTimeout,
+        externalResolutionPromise: createPromiseForExternalResolution,
+        delay: createDelay,
     };
 };

@@ -567,6 +567,8 @@ describe('VisualizationScanResultStoreTest', () => {
                 null,
                 null,
                 null,
+                null,
+                true,
             );
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
@@ -586,6 +588,8 @@ describe('VisualizationScanResultStoreTest', () => {
                 null,
                 null,
                 null,
+                null,
+                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -605,6 +609,8 @@ describe('VisualizationScanResultStoreTest', () => {
                 null,
                 null,
                 null,
+                null,
+                true,
             );
 
         return new StoreTester(TabStopRequirementActions, actionName, factory);
@@ -624,6 +630,8 @@ describe('VisualizationScanResultStoreTest', () => {
                 null,
                 null,
                 null,
+                null,
+                true,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);

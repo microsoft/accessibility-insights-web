@@ -238,7 +238,7 @@ describe('TabStoreTest', () => {
         actionName: keyof TabActions,
     ): StoreTester<TabStoreData, TabActions> {
         const factory = (actions: TabActions) =>
-            new TabStore(actions, new VisualizationActions(), null, null, null);
+            new TabStore(actions, new VisualizationActions(), null, null, null, null, true);
         return new StoreTester(TabActions, actionName, factory);
     }
 
@@ -246,7 +246,7 @@ describe('TabStoreTest', () => {
         actionName: keyof VisualizationActions,
     ): StoreTester<TabStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) =>
-            new TabStore(new TabActions(), actions, null, null, null);
+            new TabStore(new TabActions(), actions, null, null, null, null, true);
         return new StoreTester(VisualizationActions, actionName, factory);
     }
 });

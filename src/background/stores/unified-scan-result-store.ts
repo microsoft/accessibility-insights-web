@@ -17,13 +17,16 @@ export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultSto
         persistedState: UnifiedScanResultStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.UnifiedScanResultStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.unifiedScanResultStore,
+            IndexedDBDataKeys.unifiedScanResultStore(tabId),
             logger,
+            persistStoreData,
         );
     }
 

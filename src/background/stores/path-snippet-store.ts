@@ -14,13 +14,16 @@ export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
         persistedState: PathSnippetStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.PathSnippetStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.pathSnippetStore,
+            IndexedDBDataKeys.pathSnippetStore(tabId),
             logger,
+            persistStoreData,
         );
     }
 

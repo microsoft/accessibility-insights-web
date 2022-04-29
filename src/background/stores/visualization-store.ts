@@ -42,13 +42,16 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         persistedState: VisualizationStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.VisualizationStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.visualizationStore,
+            IndexedDBDataKeys.visualizationStore(tabId),
             logger,
+            persistStoreData,
         );
 
         this.visualizationActions = visualizationActions;

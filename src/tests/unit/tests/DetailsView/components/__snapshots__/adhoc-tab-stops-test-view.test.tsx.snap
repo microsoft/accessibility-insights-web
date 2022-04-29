@@ -54,6 +54,30 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
                 </li>
               </ol>
             </li>
+            <li>
+              Record your results for each requirement:
+              <ol>
+                <li>
+                  If you find any failures, select 
+                  <Term>
+                    Fail
+                  </Term>
+                  , then add them as failure instances.
+                </li>
+                <li>
+                  Select 
+                  <Term>
+                    Pass
+                  </Term>
+                   if all instances meet the requirement.
+                </li>
+                <li>
+                  <Emphasis>
+                    Review any auto-discovered failures to be sure they are valid.
+                  </Emphasis>
+                </li>
+              </ol>
+            </li>
           </ol>
         }
         contentClassName="requirementInstructions"
@@ -78,12 +102,10 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
       >
         <TabStopsRequirementsTable
           deps="stub-deps"
-          featureFlagStoreData={Object {}}
         />
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
-          featureFlagStoreData={Object {}}
           sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
@@ -94,30 +116,18 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
             }
           }
         />
-        <FlaggedComponent
-          enableJSXElement={
-            <FocusComponent
-              deps="stub-deps"
-              tabbingEnabled={true}
-            />
-          }
-          featureFlag="tabStopsAutomation"
-          featureFlagStoreData={Object {}}
+        <FocusComponent
+          deps="stub-deps"
+          tabbingEnabled={true}
         />
-        <FlaggedComponent
-          enableJSXElement={
-            <AutoDetectedFailuresDialog
-              deps="stub-deps"
-              userConfigurationStoreData="stub-user-configuration-store-data"
-              visualizationScanResultData={
-                Object {
-                  "tabStops": Object {},
-                }
-              }
-            />
+        <AutoDetectedFailuresDialog
+          deps="stub-deps"
+          userConfigurationStoreData="stub-user-configuration-store-data"
+          visualizationScanResultData={
+            Object {
+              "tabStops": Object {},
+            }
           }
-          featureFlag="tabStopsAutomation"
-          featureFlagStoreData={Object {}}
         />
       </ThemeCustomizer>
     </React.Fragment>
@@ -178,6 +188,30 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
                 </li>
               </ol>
             </li>
+            <li>
+              Record your results for each requirement:
+              <ol>
+                <li>
+                  If you find any failures, select 
+                  <Term>
+                    Fail
+                  </Term>
+                  , then add them as failure instances.
+                </li>
+                <li>
+                  Select 
+                  <Term>
+                    Pass
+                  </Term>
+                   if all instances meet the requirement.
+                </li>
+                <li>
+                  <Emphasis>
+                    Review any auto-discovered failures to be sure they are valid.
+                  </Emphasis>
+                </li>
+              </ol>
+            </li>
           </ol>
         }
         contentClassName="requirementInstructions"
@@ -202,12 +236,10 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       >
         <TabStopsRequirementsTable
           deps="stub-deps"
-          featureFlagStoreData={Object {}}
         />
         <TabStopsFailedInstanceSection
           alwaysRenderSection={false}
           deps="stub-deps"
-          featureFlagStoreData={Object {}}
           sectionHeadingLevel={2}
         />
         <TabStopsFailedInstancePanel
@@ -218,30 +250,18 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
             }
           }
         />
-        <FlaggedComponent
-          enableJSXElement={
-            <FocusComponent
-              deps="stub-deps"
-              tabbingEnabled={true}
-            />
-          }
-          featureFlag="tabStopsAutomation"
-          featureFlagStoreData={Object {}}
+        <FocusComponent
+          deps="stub-deps"
+          tabbingEnabled={true}
         />
-        <FlaggedComponent
-          enableJSXElement={
-            <AutoDetectedFailuresDialog
-              deps="stub-deps"
-              userConfigurationStoreData="stub-user-configuration-store-data"
-              visualizationScanResultData={
-                Object {
-                  "tabStops": Object {},
-                }
-              }
-            />
+        <AutoDetectedFailuresDialog
+          deps="stub-deps"
+          userConfigurationStoreData="stub-user-configuration-store-data"
+          visualizationScanResultData={
+            Object {
+              "tabStops": Object {},
+            }
           }
-          featureFlag="tabStopsAutomation"
-          featureFlagStoreData={Object {}}
         />
       </ThemeCustomizer>
     </React.Fragment>
@@ -258,7 +278,6 @@ exports[`AdhocTabStopsTestView render should return target page changed view as 
       "toggleLabel": "test toggle label",
     }
   }
-  featureFlagStoreData={Object {}}
   toggleClickHandler={[Function]}
   visualizationType={-1}
 />

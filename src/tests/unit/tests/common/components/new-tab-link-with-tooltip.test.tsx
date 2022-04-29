@@ -4,7 +4,7 @@ import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-toolt
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-describe(NewTabLinkWithTooltip, () => {
+describe(NewTabLinkWithTooltip.displayName, () => {
     const props = {
         href: 'test',
         tooltipContent: 'tooltip text',

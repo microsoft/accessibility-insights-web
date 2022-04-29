@@ -9,7 +9,7 @@ import {
 } from '../../../../../../DetailsView/components/left-nav/fast-pass-left-nav';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 
-describe(FastPassLeftNav, () => {
+describe(FastPassLeftNav.displayName, () => {
     let onRightPanelContentSwitch: () => void;
     let setNavComponentRef: (_) => void;
     let navLinkHandlerStub: NavLinkHandler;

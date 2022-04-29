@@ -3,15 +3,12 @@
 
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
+import { InterpreterMessage } from 'common/message';
 import {
     BackchannelStoreRequestMessage,
     BackchannelRetrieveRequestMessage,
     BackchannelRetrieveResponseMessage,
 } from 'common/types/backchannel-message-type';
-import {
-    createSimulatedBrowserAdapter,
-    SimulatedBrowserAdapter,
-} from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('PostMessageContentHandlerTest', () => {
@@ -31,17 +28,11 @@ describe('PostMessageContentHandlerTest', () => {
     };
 
     let mockPostMessageContentRepository: IMock<PostMessageContentRepository>;
-    let mockBrowserAdapter: SimulatedBrowserAdapter;
     let testSubject: PostMessageContentHandler;
 
     beforeEach(() => {
         mockPostMessageContentRepository = Mock.ofType<PostMessageContentRepository>();
-        mockBrowserAdapter = createSimulatedBrowserAdapter();
-        testSubject = new PostMessageContentHandler(
-            mockPostMessageContentRepository.object,
-            mockBrowserAdapter.object,
-        );
-        testSubject.initialize();
+        testSubject = new PostMessageContentHandler(mockPostMessageContentRepository.object);
     });
 
     it('stores content in PostMessageContentRepository when the corresponding message is received', () => {
@@ -54,20 +45,7 @@ describe('PostMessageContentHandlerTest', () => {
             )
             .verifiable(Times.once());
 
-        mockBrowserAdapter.notifyOnMessage(storeMessage);
-
-        mockPostMessageContentRepository.verifyAll();
-    });
-
-    it('does not attempt to store content when the messageType is irrelevant', () => {
-        mockPostMessageContentRepository
-            .setup(repository => repository.storeContent(It.isAnyString(), It.isAnyString()))
-            .verifiable(Times.never());
-
-        const messageStub = {
-            messageType: 'irrelevant-type' as any,
-        } as BackchannelStoreRequestMessage;
-        expect(mockBrowserAdapter.notifyOnMessage(messageStub)).not.toBeInstanceOf(Promise);
+        testSubject.handleMessage(storeMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -78,24 +56,31 @@ describe('PostMessageContentHandlerTest', () => {
             .returns(() => retrieveResponseMessage.stringifiedMessageData)
             .verifiable(Times.once());
 
-        const response = mockBrowserAdapter.notifyOnMessage(retrieveRequestMessage);
+        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
 
+        expect(success).toBeTruthy();
         expect(response).toBeInstanceOf(Promise);
         expect(await response).toEqual(retrieveResponseMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });
 
-    it('does not attempt to retrieve content when the messageType is irrelevant', () => {
+    it('does not attempt to store or retrieve content when the messageType is irrelevant', () => {
+        mockPostMessageContentRepository
+            .setup(repository => repository.storeContent(It.isAnyString(), It.isAnyString()))
+            .verifiable(Times.never());
         mockPostMessageContentRepository
             .setup(repository => repository.popContent(It.isAnyString()))
             .verifiable(Times.never());
 
         const messageStub = {
             messageType: 'irrelevant-type' as any,
-        } as BackchannelRetrieveRequestMessage;
+        } as InterpreterMessage;
 
-        expect(mockBrowserAdapter.notifyOnMessage(messageStub)).not.toBeInstanceOf(Promise);
+        const { success, response } = testSubject.handleMessage(messageStub);
+
+        expect(success).toBeFalsy();
+        expect(response).not.toBeInstanceOf(Promise);
         mockPostMessageContentRepository.verifyAll();
     });
 
@@ -106,8 +91,9 @@ describe('PostMessageContentHandlerTest', () => {
             .throws(new Error(errorMessage))
             .verifiable(Times.once());
 
-        const response = mockBrowserAdapter.notifyOnMessage(retrieveRequestMessage);
+        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
 
+        expect(success).toBeTruthy();
         expect(response).toBeInstanceOf(Promise);
         await expect(response).rejects.toThrowError(errorMessage);
 

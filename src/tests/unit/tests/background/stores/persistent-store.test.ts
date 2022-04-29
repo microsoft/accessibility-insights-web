@@ -3,7 +3,7 @@
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('PersistentStoreTest', () => {
@@ -15,52 +15,7 @@ describe('PersistentStoreTest', () => {
     const indexedDBDataKey: string = 'indexedDBDataKey';
     const loggerMock: IMock<Logger> = Mock.ofType<Logger>();
 
-    test('getDefaultState', () => {
-        const testObject = new TestStore();
-
-        expect(testObject.getDefaultState()).toEqual(defaultState);
-    });
-
-    test('persistData', async () => {
-        const testObject = new TestStore();
-        const newData = { value: 'newData' };
-        idbInstanceMock
-            .setup(db => db.setItem(indexedDBDataKey, newData))
-            .returns(() => Promise.resolve(true))
-            .verifiable(Times.once());
-
-        await testObject.callPersistData(newData);
-
-        idbInstanceMock.verifyAll();
-    });
-
-    test('emitChanged', async () => {
-        const testObject = new TestStore();
-        testObject.initialize();
-        idbInstanceMock
-            .setup(db => db.setItem(indexedDBDataKey, persistedState))
-            .returns(() => Promise.resolve(true))
-            .verifiable(Times.once());
-
-        testObject.callEmitChanged();
-
-        idbInstanceMock.verifyAll();
-    });
-
-    test('emitChanged with null parameters', async () => {
-        const testObject = new TestStore(false);
-        testObject.initialize();
-        idbInstanceMock
-            .setup(db => db.setItem(indexedDBDataKey, persistedState))
-            .returns(() => Promise.resolve(true))
-            .verifiable(Times.once());
-
-        testObject.callEmitChanged();
-
-        idbInstanceMock.verifyAll();
-    });
-
-    describe('Initialize with store data', () => {
+    describe('Persist store data', () => {
         test('Initialize with initial state', async () => {
             const testObject = new TestStore();
 
@@ -101,9 +56,75 @@ describe('PersistentStoreTest', () => {
 
             expect(testObject.getState()).toBe(generatedState);
         });
+
+        test('getDefaultState', () => {
+            const testObject = new TestStore();
+
+            expect(testObject.getDefaultState()).toEqual(defaultState);
+        });
+
+        test('persistData', async () => {
+            const testObject = new TestStore();
+            const newData = { value: 'newData' };
+            idbInstanceMock
+                .setup(db => db.setItem(indexedDBDataKey, newData))
+                .returns(() => Promise.resolve(true))
+                .verifiable(Times.once());
+
+            await testObject.callPersistData(newData);
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('emitChanged', async () => {
+            const testObject = new TestStore();
+            testObject.initialize();
+            idbInstanceMock
+                .setup(db => db.setItem(indexedDBDataKey, persistedState))
+                .returns(() => Promise.resolve(true))
+                .verifiable(Times.once());
+
+            testObject.callEmitChanged();
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('emitChanged with null parameters', async () => {
+            const testObject = new TestStore(false);
+            testObject.initialize();
+            idbInstanceMock
+                .setup(db => db.setItem(indexedDBDataKey, persistedState))
+                .returns(() => Promise.resolve(true))
+                .verifiable(Times.once());
+
+            testObject.callEmitChanged();
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('Teardown', async () => {
+            const testObject = new TestStore();
+            idbInstanceMock
+                .setup(db => db.removeItem(indexedDBDataKey))
+                .returns(() => Promise.resolve(true))
+                .verifiable(Times.once());
+
+            await testObject.teardown();
+
+            idbInstanceMock.verifyAll();
+        });
     });
 
-    describe('Initialize without store data', () => {
+    describe('Do not persist store data', () => {
+        beforeEach(() => {
+            idbInstanceMock.reset();
+
+            idbInstanceMock
+                .setup(db => db.setItem(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            idbInstanceMock.setup(db => db.removeItem(It.isAny())).verifiable(Times.never());
+        });
+
         test('Initialize with initial state', async () => {
             const testObject = new TestStore(true, false);
 
@@ -120,6 +141,47 @@ describe('PersistentStoreTest', () => {
 
             expect(testObject.getState()).toBe(defaultState);
         });
+
+        test('getDefaultState', () => {
+            const testObject = new TestStore(true, false);
+
+            expect(testObject.getDefaultState()).toEqual(defaultState);
+        });
+
+        test('persistData', async () => {
+            const testObject = new TestStore(true, false);
+            const newData = { value: 'newData' };
+
+            await testObject.callPersistData(newData);
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('emitChanged', async () => {
+            const testObject = new TestStore(true, false);
+            testObject.initialize();
+
+            testObject.callEmitChanged();
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('emitChanged with null parameters', async () => {
+            const testObject = new TestStore(false, false);
+            testObject.initialize();
+
+            testObject.callEmitChanged();
+
+            idbInstanceMock.verifyAll();
+        });
+
+        test('Teardown', async () => {
+            const testObject = new TestStore(true, false);
+
+            await testObject.teardown();
+
+            idbInstanceMock.verifyAll();
+        });
     });
 
     interface TestData {
@@ -127,7 +189,7 @@ describe('PersistentStoreTest', () => {
     }
 
     class TestStore extends PersistentStore<TestData> {
-        constructor(passNonNullParams = true, initializeWithStoreData = true) {
+        constructor(passNonNullParams = true, persistStoreData = true) {
             if (passNonNullParams) {
                 super(
                     storeName,
@@ -135,10 +197,10 @@ describe('PersistentStoreTest', () => {
                     idbInstanceMock.object,
                     indexedDBDataKey,
                     loggerMock.object,
-                    initializeWithStoreData,
+                    persistStoreData,
                 );
             } else {
-                super(null, null, null, null, null, initializeWithStoreData);
+                super(null, null, null, null, null, persistStoreData);
             }
         }
 

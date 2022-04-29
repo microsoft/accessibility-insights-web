@@ -7,7 +7,7 @@ import { SummaryReportDetailsSection } from 'reports/components/report-sections/
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { IMock, Mock } from 'typemoq';
 
-describe(SummaryReportDetailsSection, () => {
+describe(SummaryReportDetailsSection.displayName, () => {
     const scanStart = new Date(0, 1, 2, 3);
     const scanComplete = new Date(4, 5, 6, 7);
     const durationSeconds = 10;

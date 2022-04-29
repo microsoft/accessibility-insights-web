@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
+import { TabContextManager } from 'background/tab-context-manager';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -26,13 +27,12 @@ import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-ser
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { getPersistedData } from './get-persisted-data';
+import { getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
-import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -66,26 +66,13 @@ async function initialize(): Promise<void> {
     const indexedDBDataKeysToFetch = [
         IndexedDBDataKeys.assessmentStore,
         IndexedDBDataKeys.userConfiguration,
-        IndexedDBDataKeys.cardSelectionStore,
-        IndexedDBDataKeys.detailsViewStore,
-        IndexedDBDataKeys.devToolStore,
-        IndexedDBDataKeys.commandStore,
-        IndexedDBDataKeys.permissionsStateStore,
-        IndexedDBDataKeys.inspectStore,
-        IndexedDBDataKeys.scopingStore,
-        IndexedDBDataKeys.tabStore,
-        IndexedDBDataKeys.pathSnippetStore,
-        IndexedDBDataKeys.needsReviewScanResultsStore,
-        IndexedDBDataKeys.needsReviewCardSelectionStore,
-        IndexedDBDataKeys.visualizationStore,
-        IndexedDBDataKeys.visualizationScanResultStore,
-        IndexedDBDataKeys.unifiedScanResultStore,
-        IndexedDBDataKeys.knownTabIds,
-        IndexedDBDataKeys.tabIdToDetailsViewMap,
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
-    const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    const persistedDataPromise = getGlobalPersistedData(
+        indexedDBInstance,
+        indexedDBDataKeysToFetch,
+    );
     const userDataPromise = browserAdapter.getUserData(storageDataKeys);
     const persistedData = await persistedDataPromise;
     const userData = await userDataPromise;
@@ -148,6 +135,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         browserAdapter,
         logger,
+        false,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -164,7 +152,7 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
     );
 
-    const tabToContextMap: TabToContextMap = {};
+    const tabContextManager = new TabContextManager();
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
@@ -174,7 +162,7 @@ async function initialize(): Promise<void> {
     );
 
     const keyboardShortcutHandler = new KeyboardShortcutHandler(
-        tabToContextMap,
+        tabContextManager,
         browserAdapter,
         urlValidator,
         notificationCreator,
@@ -187,9 +175,16 @@ async function initialize(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
     const messageDistributor = new MessageDistributor(
         globalContext,
-        tabToContextMap,
+        tabContextManager,
+        postMessageContentHandler,
         browserAdapter,
         logger,
     );
@@ -207,40 +202,32 @@ async function initialize(): Promise<void> {
         telemetryEventHandler,
         targetTabController,
         notificationCreator,
+        detailsViewController,
+        browserAdapter,
+        messageBroadcasterFactory,
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils,
+        windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
+        false,
     );
 
     const targetPageController = new TargetPageController(
-        tabToContextMap,
-        messageBroadcasterFactory,
+        tabContextManager,
+        tabContextFactory,
         browserAdapter,
         detailsViewController,
-        tabContextFactory,
         logger,
-        [],
+        {},
         indexedDBInstance,
     );
 
     await targetPageController.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();
-
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(
-        postMessageContentRepository,
-        browserAdapter,
-    );
-
-    postMessageContentHandler.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;

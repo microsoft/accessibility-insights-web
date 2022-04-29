@@ -9,7 +9,7 @@ import {
 } from 'reports/components/report-sections/rules-results-container';
 import { Mock } from 'typemoq';
 
-describe(RulesResultsContainer, () => {
+describe(RulesResultsContainer.displayName, () => {
     it('renders', () => {
         const getScriptMock = Mock.ofInstance(() => '');
         getScriptMock.setup(getScript => getScript()).returns(() => 'test script');

@@ -66,7 +66,6 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
             displayableData={props.configuration.displayableData}
             visualizationType={selectedTest}
             toggleClickHandler={clickHandler}
-            featureFlagStoreData={props.featureFlagStoreData}
             detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
         />
     );

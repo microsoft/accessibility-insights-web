@@ -23,13 +23,16 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         persistedState: NeedsReviewCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.NeedsReviewCardSelectionStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.needsReviewCardSelectionStore,
+            IndexedDBDataKeys.needsReviewCardSelectionStore(tabId),
             logger,
+            persistStoreData,
         );
     }
 

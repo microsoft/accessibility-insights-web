@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly tabStopsAutomation = 'tabStopsAutomation';
 }
 
 export interface FeatureFlagDetail {
@@ -97,14 +96,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.tabStopsAutomation,
-            defaultValue: true,
-            displayableName: 'Tab Stops Automation',
-            displayableDescription: 'Enables the new tab stops automation',
-            isPreviewFeature: true,
-            forceDefault: true,
         },
     ];
 }

@@ -3,9 +3,7 @@
 
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
-import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import * as styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
@@ -28,7 +26,6 @@ export interface TabStopsFailedInstanceSectionProps {
     tabStopRequirementState: TabStopRequirementState;
     alwaysRenderSection: boolean;
     sectionHeadingLevel: HeadingLevel;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -42,14 +39,11 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
             if (data.status !== 'fail') {
                 continue;
             }
-            const displayAutomatedInfo =
-                props.featureFlagStoreData != null &&
-                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation];
 
             results.push({
                 id: requirementId,
-                name: requirements(displayAutomatedInfo)[requirementId].name,
-                description: requirements(displayAutomatedInfo)[requirementId].description,
+                name: requirements[requirementId].name,
+                description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
             });

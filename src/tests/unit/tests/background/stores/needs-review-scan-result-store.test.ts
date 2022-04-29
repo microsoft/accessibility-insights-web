@@ -133,7 +133,7 @@ describe('NeedsReviewScanResultStore Test', () => {
         actionName: keyof NeedsReviewScanResultActions,
     ): StoreTester<NeedsReviewScanResultStoreData, NeedsReviewScanResultActions> {
         const factory = (actions: NeedsReviewScanResultActions) =>
-            new NeedsReviewScanResultStore(actions, new TabActions(), null, null, null);
+            new NeedsReviewScanResultStore(actions, new TabActions(), null, null, null, null, true);
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);
     }
@@ -148,6 +148,8 @@ describe('NeedsReviewScanResultStore Test', () => {
                 null,
                 null,
                 null,
+                null,
+                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);

@@ -69,6 +69,7 @@ describe('GlobalContextFactoryTest', () => {
             storageAdapterMock.object,
             commandsAdapterMock.object,
             loggerMock.object,
+            true,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);

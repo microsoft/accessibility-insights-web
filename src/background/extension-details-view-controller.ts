@@ -13,16 +13,19 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly browserAdapter: BrowserAdapter,
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
+        private persistStoreData = false,
     ) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
         this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
 
     private persistTabIdToDetailsViewMap = async () => {
-        await this.idbInstance.setItem(
-            IndexedDBDataKeys.tabIdToDetailsViewMap,
-            this.tabIdToDetailsViewMap,
-        );
+        if (this.persistStoreData) {
+            await this.idbInstance.setItem(
+                IndexedDBDataKeys.tabIdToDetailsViewMap,
+                this.tabIdToDetailsViewMap,
+            );
+        }
     };
 
     public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {

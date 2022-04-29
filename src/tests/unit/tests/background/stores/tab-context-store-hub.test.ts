@@ -14,6 +14,8 @@ describe('TabContextStoreHubTest', () => {
             {} as PersistedData,
             null,
             null,
+            null,
+            true,
         );
     });
 

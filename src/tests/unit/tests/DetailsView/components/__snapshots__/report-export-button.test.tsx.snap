@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders ReportExportButton 1`] = `
+exports[`ReportExportButton renders ReportExportButton 1`] = `
 <InsightsCommandButton
   componentRef={Object {}}
   data-automation-id="report-export-button"

@@ -20,13 +20,16 @@ export class InspectStore extends PersistentStore<InspectStoreData> {
         persistedState: InspectStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
         super(
             StoreNames.InspectStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.inspectStore,
+            IndexedDBDataKeys.inspectStore(tabId),
             logger,
+            persistStoreData,
         );
 
         this.inspectActions = inspectActions;

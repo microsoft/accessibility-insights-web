@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders 1`] = `
+exports[`InlineStartOverButton renders 1`] = `
 <InsightsCommandButton
   className="inlineStartOverButton"
   data-automation-id="inline-start-over-button"

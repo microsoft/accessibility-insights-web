@@ -10,7 +10,6 @@ import {
     TabStopShadowDomSelectors,
     TargetPageInjectedComponentSelectors,
 } from 'tests/end-to-end/common/element-identifiers/target-page-selectors';
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
@@ -20,7 +19,6 @@ describe('Automated TabStops Results', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundPage;
     const longRunningTabStopsTestTimeout = 40000;
 
     afterEach(async () => {
@@ -123,8 +121,6 @@ describe('Automated TabStops Results', () => {
             suppressFirstTimeDialog: true,
             addExtraPermissionsToManifest: 'all-origins',
         });
-        backgroundPage = await browser.backgroundPage();
-        await backgroundPage.enableFeatureFlag('tabStopsAutomation');
         targetPage = await browser.newTargetPage({
             testResourcePath,
         });

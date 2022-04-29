@@ -76,7 +76,7 @@ describe('InspectStoreTest', () => {
     ): StoreTester<InspectStoreData, InspectActions> {
         const tabActions = new TabActions();
         const factory = (actions: InspectActions) =>
-            new InspectStore(actions, tabActions, null, null, null);
+            new InspectStore(actions, tabActions, null, null, null, null, true);
 
         return new StoreTester(InspectActions, actionName, factory);
     }
@@ -85,7 +85,7 @@ describe('InspectStoreTest', () => {
         actionName: keyof TabActions,
     ): StoreTester<InspectStoreData, TabActions> {
         const factory = (actions: TabActions) =>
-            new InspectStore(new InspectActions(), actions, null, null, null);
+            new InspectStore(new InspectActions(), actions, null, null, null, null, true);
         return new StoreTester(TabActions, actionName, factory);
     }
 });
