@@ -7,7 +7,7 @@ import {
     TableColumn,
 } from 'reports/components/report-sections/summary-results-table';
 
-describe(SummaryResultsTable, () => {
+describe(SummaryResultsTable.displayName, () => {
     it('renders', () => {
         const columns: TableColumn[] = [
             {

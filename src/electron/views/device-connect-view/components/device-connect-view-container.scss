@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 .window-container {
     -webkit-app-region: drag;
-
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -10,7 +9,6 @@
 
     .content-scroll-container {
         flex: 1 1 auto;
-
         -webkit-app-region: no-drag; // Scrollbars need to be interactable
         overflow: auto;
 

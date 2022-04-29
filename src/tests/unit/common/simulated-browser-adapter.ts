@@ -3,7 +3,7 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
-import { Runtime, Tabs, Windows } from 'webextension-polyfill-ts';
+import { Runtime, Tabs, Windows } from 'webextension-polyfill';
 
 // This is a mock BrowserAdapter that maintains simulated state about which "windows" and "tabs"
 // exist and which listeners have been registered, and provides a few helper functions to simulate
@@ -19,22 +19,25 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     tabs: chrome.tabs.Tab[];
 
     // These are set directly to whichever listener was last registered in the corresponding this.object.addListener* call
-    notifyOnConnect?: (port: chrome.runtime.Port) => void;
-    notifyTabsOnActivated?: (activeInfo: chrome.tabs.TabActiveInfo) => void;
+    notifyOnConnect?: (port: chrome.runtime.Port) => void | Promise<void>;
+    notifyTabsOnActivated?: (activeInfo: chrome.tabs.TabActiveInfo) => void | Promise<void>;
     notifyTabsOnUpdated?: (
         tabId: number,
         changeInfo: chrome.tabs.TabChangeInfo,
         tab: chrome.tabs.Tab,
-    ) => void;
-    notifyTabsOnRemoved?: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
+    ) => void | Promise<void>;
+    notifyTabsOnRemoved?: (
+        tabId: number,
+        removeInfo: chrome.tabs.TabRemoveInfo,
+    ) => void | Promise<void>;
     notifyWebNavigationUpdated?: (
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
-    ) => void;
-    notifyWindowsFocusChanged?: (windowId: number) => void;
+    ) => void | Promise<void>;
+    notifyWindowsFocusChanged?: (windowId: number) => void | Promise<void>;
 
     // These simulate real "update"/"activate" events (they update the windows/tabs state and send the notifications)
-    updateTab: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void;
-    activateTab: (tab: chrome.tabs.Tab) => void;
+    updateTab: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void | Promise<void>;
+    activateTab: (tab: chrome.tabs.Tab) => void | Promise<void>;
 
     // This simulates normal browser runtime.onMessage behavior:
     //  - it loops through each listener previously registered with addListenerOnMessage
@@ -81,7 +84,7 @@ export function createSimulatedBrowserAdapter(
     mock.setup(m => m.getAllWindows(It.isAny())).returns(() =>
         Promise.resolve(mock.windows as Windows.Window[]),
     );
-    mock.setup(m => m.getTab(It.isAny(), It.isAny(), It.isAny())).callback(
+    mock.setup(m => m.getTab(It.isAny(), It.isAny(), It.isAny())).returns(
         (tabId, resolve, reject) => {
             const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);
             if (matchingTabs.length === 1) {

@@ -7,7 +7,7 @@ import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-co
 import { createFileIssueHandler } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingUrlProvider } from 'issue-filing/types/issue-filing-service';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('createFileIssueHandler', () => {
     const serviceMap: IssueFilingServicePropertiesMap = {};

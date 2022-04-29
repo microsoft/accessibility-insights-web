@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders 1`] = `
+exports[`RulesResultsContainer renders 1`] = `
 <React.Fragment>
   <div
     className="rulesResultsContainer"

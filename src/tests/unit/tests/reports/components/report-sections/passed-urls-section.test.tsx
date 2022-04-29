@@ -8,7 +8,7 @@ import {
 } from 'reports/components/report-sections/passed-urls-section';
 import { SummaryScanError, SummaryScanResult } from 'reports/package/accessibilityInsightsReport';
 
-describe(PassedUrlsSection, () => {
+describe(PassedUrlsSection.displayName, () => {
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];

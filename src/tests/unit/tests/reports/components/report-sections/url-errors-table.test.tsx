@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { UrlErrorsTable } from 'reports/components/report-sections/url-errors-table';
 
-describe(UrlErrorsTable, () => {
+describe(UrlErrorsTable.displayName, () => {
     it('renders', () => {
         const errors = [
             {

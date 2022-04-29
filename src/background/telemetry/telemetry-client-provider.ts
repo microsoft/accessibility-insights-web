@@ -28,6 +28,7 @@ export const getTelemetryClient = (
                 instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
                 disableTelemetry: true,
                 disableAjaxTracking: true,
+                disableFetchTracking: true,
             },
         });
         clients.push(

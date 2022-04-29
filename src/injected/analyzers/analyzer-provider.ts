@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
@@ -27,7 +26,6 @@ export class AnalyzerProvider {
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
-        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly scopingStore: BaseStore<ScopingStoreData>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
@@ -114,7 +112,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
             this.logger,
-            this.featureFlagStore,
             this.tabStopsDoneAnalyzingTracker,
             null,
         );
@@ -127,7 +124,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
             this.logger,
-            this.featureFlagStore,
             this.tabStopsDoneAnalyzingTracker,
             this.tabStopsRequirementResultProcessor,
         );

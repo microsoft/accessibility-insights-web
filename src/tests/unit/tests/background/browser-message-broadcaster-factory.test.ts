@@ -7,7 +7,7 @@ import {
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('BrowserMessageBroadcasterFactory', () => {
     let loggerMock: IMock<Logger>;

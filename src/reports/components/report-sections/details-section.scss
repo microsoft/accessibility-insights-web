@@ -5,7 +5,7 @@
 @import './common-mixins.scss';
 
 .scan-details-section {
-    @include boxShadow();
+    @include boxShadow;
 
     background-color: $neutral-0;
     padding: 20px;
@@ -15,7 +15,7 @@
         list-style: none;
         font-size: 14px;
         line-height: 16px;
-        padding-left: 0px;
+        padding-left: 0;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -23,7 +23,7 @@
     }
 
     h3 {
-        margin: 0px;
+        margin: 0;
         font-size: 17px;
         line-height: 24px;
     }
@@ -35,6 +35,7 @@
     li {
         display: inline-block;
         padding-top: 12px;
+
         .icon {
             padding-right: 12px;
             position: relative;

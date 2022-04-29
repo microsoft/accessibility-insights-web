@@ -13,6 +13,11 @@ export class TabContext {
 
     public devToolsConnection?: chrome.runtime.Port;
 
+    public teardown = async () => {
+        const promises = this.stores.getAllStores().map(store => store.teardown());
+        await Promise.all(promises);
+    };
+
     constructor(interpreter: Interpreter, storeHub: TabContextStoreHub) {
         this.interpreter = interpreter;
         this.stores = storeHub;

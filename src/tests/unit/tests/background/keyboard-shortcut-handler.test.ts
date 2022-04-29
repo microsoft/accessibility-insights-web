@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Interpreter } from 'background/interpreter';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { VisualizationStore } from 'background/stores/visualization-store';
-import { TabContext, TabToContextMap } from 'background/tab-context';
+import { TabContextManager } from 'background/tab-context-manager';
 import { UsageLogger } from 'background/usage-logger';
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -23,23 +22,23 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { UrlValidator } from 'common/url-validator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 describe('KeyboardShortcutHandler', () => {
+    const existingTabId = 1;
+
     let testSubject: KeyboardShortcutHandler;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let commandsAdapterMock: IMock<CommandsAdapter>;
     let urlValidatorMock: IMock<UrlValidator>;
-    let tabToContextMap: TabToContextMap;
+    let tabContextManagerMock: IMock<TabContextManager>;
     let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
-    let interpreterMock: IMock<Interpreter>;
     let loggerMock: IMock<Logger>;
     let usageLoggerMock: IMock<UsageLogger>;
 
     let commandCallback: (commandId: string) => Promise<void>;
-    let existingTabId: number;
     let notificationCreatorMock: IMock<NotificationCreator>;
     let storeState: VisualizationStoreData;
     let simulatedIsFirstTimeUserConfiguration: boolean;
@@ -52,17 +51,16 @@ describe('KeyboardShortcutHandler', () => {
 
     beforeEach(() => {
         visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
-        interpreterMock = Mock.ofType(Interpreter);
 
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         visualizationStoreMock.setup(vs => vs.getState()).returns(() => storeState);
 
-        tabToContextMap = {};
-
-        existingTabId = 1;
-        tabToContextMap[existingTabId] = new TabContext(interpreterMock.object, {
-            visualizationStore: visualizationStoreMock.object,
-        } as TabContextStoreHub);
+        tabContextManagerMock = Mock.ofType<TabContextManager>();
+        tabContextManagerMock
+            .setup(t => t.getTabContextStores(existingTabId))
+            .returns(
+                () => ({ visualizationStore: visualizationStoreMock.object } as TabContextStoreHub),
+            );
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
@@ -111,7 +109,7 @@ describe('KeyboardShortcutHandler', () => {
         loggerMock = Mock.ofType<Logger>();
         usageLoggerMock = Mock.ofType<UsageLogger>();
         testSubject = new KeyboardShortcutHandler(
-            tabToContextMap,
+            tabContextManagerMock.object,
             browserAdapterMock.object,
             urlValidatorMock.object,
             notificationCreatorMock.object,
@@ -163,9 +161,9 @@ describe('KeyboardShortcutHandler', () => {
                 visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             let receivedMessage: Message;
-            interpreterMock
-                .setup(x => x.interpret(It.isAny()))
-                .returns(message => {
+            tabContextManagerMock
+                .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
+                .returns((_tabId, message) => {
                     receivedMessage = message;
                     return true;
                 })
@@ -188,7 +186,7 @@ describe('KeyboardShortcutHandler', () => {
             });
 
             usageLoggerMock.verify(m => m.record(), Times.once());
-            interpreterMock.verifyAll();
+            tabContextManagerMock.verifyAll();
         },
     );
 
@@ -200,9 +198,9 @@ describe('KeyboardShortcutHandler', () => {
                 visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             let receivedMessage: Message;
-            interpreterMock
-                .setup(x => x.interpret(It.isAny()))
-                .returns(message => {
+            tabContextManagerMock
+                .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
+                .returns((_tabId, message) => {
                     receivedMessage = message;
                     return true;
                 })
@@ -225,7 +223,7 @@ describe('KeyboardShortcutHandler', () => {
             });
 
             usageLoggerMock.verify(m => m.record(), Times.once());
-            interpreterMock.verifyAll();
+            tabContextManagerMock.verifyAll();
         },
     );
 
@@ -267,35 +265,41 @@ describe('KeyboardShortcutHandler', () => {
     );
 
     it('does not emit toggle messages for unknown command strings', async () => {
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        tabContextManagerMock
+            .setup(t => t.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback('unknown-command');
 
         usageLoggerMock.verify(m => m.record(), Times.once());
-        interpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it('does not emit toggle messages if the first-time dialog has not been dismissed yet', async () => {
         simulatedIsFirstTimeUserConfiguration = true;
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        tabContextManagerMock
+            .setup(t => t.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
         usageLoggerMock.verify(m => m.record(), Times.never());
-        interpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it('does not emit toggle messages when the active/current tab has no known tab context', async () => {
         simulatedActiveTabId = 12;
         expect(simulatedActiveTabId !== existingTabId);
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        tabContextManagerMock
+            .setup(t => t.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
         usageLoggerMock.verify(m => m.record(), Times.once());
-        interpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it('does not emit toggle messages if scanning is in progress already', async () => {
@@ -308,23 +312,27 @@ describe('KeyboardShortcutHandler', () => {
             VisualizationType.Issues,
         );
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        tabContextManagerMock
+            .setup(t => t.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(configuration.chromeCommand);
 
         usageLoggerMock.verify(m => m.record(), Times.once());
-        interpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it("does not emit toggle messages if the active/current tab's URL is not supported", async () => {
         simulatedIsSupportedUrlResponse = false;
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
+        tabContextManagerMock
+            .setup(t => t.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
 
         await commandCallback(getArbitraryValidChromeCommand());
 
         usageLoggerMock.verify(m => m.record(), Times.once());
-        interpreterMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it.each`

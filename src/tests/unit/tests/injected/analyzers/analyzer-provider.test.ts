@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
@@ -42,7 +41,6 @@ describe('AnalyzerProviderTests', () => {
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
-    let featureFlagStoreMock: IMock<FeatureFlagStore>;
 
     beforeEach(() => {
         typeStub = -1;
@@ -61,13 +59,11 @@ describe('AnalyzerProviderTests', () => {
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         tabStopsDoneAnalyzingTrackerMock = Mock.ofType<TabStopsDoneAnalyzingTracker>();
         tabStopsRequirementResultProcessorMock = Mock.ofType<TabStopsRequirementResultProcessor>();
-        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
 
         testObject = new AnalyzerProvider(
             tabStopsListener.object,
             tabStopsDoneAnalyzingTrackerMock.object,
             tabStopsRequirementResultProcessorMock.object,
-            featureFlagStoreMock.object,
             scopingStoreMock.object,
             sendMessageMock.object,
             scannerMock.object,
@@ -204,7 +200,6 @@ describe('AnalyzerProviderTests', () => {
         expect(openAnalyzer.tabStopsDoneAnalyzingTracker).toEqual(
             tabStopsDoneAnalyzingTrackerMock.object,
         );
-        expect(openAnalyzer.featureFlagStore).toEqual(featureFlagStoreMock.object);
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);
     }

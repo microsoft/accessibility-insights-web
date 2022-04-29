@@ -13,6 +13,7 @@
 
     .title {
         @include text-style-title-s;
+
         margin-right: 6px;
         color: $primary-text;
     }

@@ -8,7 +8,7 @@ import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Notifications } from 'webextension-polyfill-ts';
+import { Notifications } from 'webextension-polyfill';
 
 type GetNotificationMessage = AssessmentVisualizationConfiguration['getNotificationMessage'];
 

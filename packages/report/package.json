@@ -1,6 +1,6 @@
 {
     "name": "accessibility-insights-report",
-    "version": "4.2.2",
+    "version": "4.3.0",
     "description": "Accessibility Insights Report",
     "license": "MIT",
     "files": [
@@ -19,10 +19,10 @@
     },
     "dependencies": {
         "@fluentui/react": "^8.49.6",
-        "axe-core": "4.3.2",
+        "axe-core": "4.4.1",
         "classnames": "^2.3.1",
         "lodash": "^4.17.21",
-        "luxon": "^2.3.1",
+        "luxon": "^2.3.2",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",

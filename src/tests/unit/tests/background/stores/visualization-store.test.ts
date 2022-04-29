@@ -835,6 +835,11 @@ describe('VisualizationStoreTest ', () => {
                 actions,
                 new InjectionActions(),
                 new WebVisualizationConfigurationFactory(),
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -849,6 +854,11 @@ describe('VisualizationStoreTest ', () => {
                 new TabActions(),
                 new InjectionActions(),
                 new WebVisualizationConfigurationFactory(),
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
@@ -863,6 +873,11 @@ describe('VisualizationStoreTest ', () => {
                 new TabActions(),
                 actions,
                 new WebVisualizationConfigurationFactory(),
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(InjectionActions, actionName, factory);

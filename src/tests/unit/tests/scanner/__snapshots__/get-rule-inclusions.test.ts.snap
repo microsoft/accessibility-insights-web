@@ -95,6 +95,10 @@ Object {
   "color-contrast": Object {
     "status": "included",
   },
+  "color-contrast-enhanced": Object {
+    "reason": "disabled in axe config",
+    "status": "excluded",
+  },
   "css-orientation-lock": Object {
     "reason": "rule is tagged experimental",
     "status": "excluded",
@@ -166,7 +170,7 @@ Object {
     "status": "included",
   },
   "identical-links-same-purpose": Object {
-    "reason": "rule is tagged best-practice",
+    "reason": "rule is tagged wcag2aaa",
     "status": "excluded",
   },
   "image-alt": Object {

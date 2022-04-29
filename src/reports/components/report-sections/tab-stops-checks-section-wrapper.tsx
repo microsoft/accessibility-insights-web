@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HeadingLevel } from 'common/components/heading-element-for-level';
-import { FeatureFlags } from 'common/feature-flags';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -62,17 +61,14 @@ export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecks
             if (data.status !== status) {
                 continue;
             }
-            const requirementResults = requirements(
-                this.props.featureFlagStoreData != null &&
-                    this.props.featureFlagStoreData[FeatureFlags.tabStopsAutomation],
-            );
+
             results.push({
-                id: requirementResults[requirementId].name,
-                description: requirementResults[requirementId].description,
+                id: requirements[requirementId].name,
+                description: requirements[requirementId].description,
                 nodes: [],
                 isExpanded: data.isExpanded,
                 url: '',
-                guidance: requirementResults[requirementId].guidance,
+                guidance: requirements[requirementId].guidance,
             });
         }
         return results;

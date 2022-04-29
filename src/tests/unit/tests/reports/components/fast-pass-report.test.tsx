@@ -13,7 +13,7 @@ import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
-describe(FastPassReport, () => {
+describe(FastPassReport.displayName, () => {
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';

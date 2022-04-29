@@ -510,7 +510,7 @@
         "./src/tests/unit/common/test-document-creator.ts",
         "./src/tests/unit/common/typemoq-helper.ts",
         "./src/tests/unit/common/visualization-toggle-props-builder.ts",
-        "./src/tests/unit/common/webextension-polyfill-ts-setup.ts",
+        "./src/tests/unit/common/webextension-polyfill-setup.ts",
         "./src/tests/unit/jest-setup.ts",
         "./src/tests/unit/mock-helpers/chrome-event-mock.ts",
         "./src/tests/unit/mock-helpers/port-on-disconnect-mock.ts",

@@ -416,7 +416,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             });
         });
 
-        it('propogates errors from the underlying postMessage by rejecting with them as-is', async () => {
+        it('propagates errors from the underlying postMessage by rejecting with them as-is', async () => {
             testSubject.initialize();
 
             const targetWindow = {} as Window;
@@ -588,7 +588,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             receiverLogger.verifyNoErrors();
         });
 
-        it('propogates errors from the underlying postMessage by rejecting with them as-is', () => {
+        it('propagates errors from the underlying postMessage by rejecting with them as-is', () => {
             const unlinkedWindow = {} as Window;
             expect(() =>
                 sender.sendCallbackCommandMessage(

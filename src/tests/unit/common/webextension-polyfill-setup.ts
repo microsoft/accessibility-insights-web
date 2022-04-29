@@ -10,7 +10,7 @@ if (mockChromeGlobalRequired) {
 // This must be "require" and not "import" to avoid swc hoisting the statement above the window
 // setup. See https://github.com/swc-project/swc/issues/1686 and
 // https://github.com/microsoft/TypeScript/pull/39764
-require('webextension-polyfill-ts');
+require('webextension-polyfill');
 
 if (mockChromeGlobalRequired) {
     delete (window as any).chrome;

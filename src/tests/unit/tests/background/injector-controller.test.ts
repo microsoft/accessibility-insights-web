@@ -10,7 +10,6 @@ import { TabStore } from 'background/stores/tab-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { Messages } from 'common/messages';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { WindowUtils } from 'common/window-utils';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
@@ -141,7 +140,7 @@ class InjectorControllerValidator {
     private injectedScriptsDeferred: Promise<void>;
     private injectedScriptsDeferredResolver: () => void;
 
-    private mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
+    private mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
     private setTimeoutHandler: Function;
 
     public buildInjectorController(): InjectorController {
@@ -177,14 +176,14 @@ class InjectorControllerValidator {
             this.mockInterpreter.object,
             this.mockTabStore.object,
             this.mockInspectStore.object,
-            this.mockWindowUtils.object,
+            this.mockSetTimeout.object,
             failTestOnErrorLogger,
         );
     }
 
     public setupTimeoutHandler(times: number): InjectorControllerValidator {
-        this.mockWindowUtils
-            .setup(x => x.setTimeout(itIsFunction, It.isAnyNumber()))
+        this.mockSetTimeout
+            .setup(x => x(itIsFunction, It.isAnyNumber()))
             .callback(handler => {
                 this.setTimeoutHandler = handler;
             })
@@ -292,7 +291,7 @@ class InjectorControllerValidator {
         this.mockTabStore.verifyAll();
         this.mockInjector.verifyAll();
         this.mockInterpreter.verifyAll();
-        this.mockWindowUtils.verifyAll();
+        this.mockSetTimeout.verifyAll();
     }
 
     public resetVerify(): void {
@@ -301,6 +300,6 @@ class InjectorControllerValidator {
         this.mockTabStore.reset();
         this.mockInjector.reset();
         this.mockInterpreter.reset();
-        this.mockWindowUtils.reset();
+        this.mockSetTimeout.reset();
     }
 }
