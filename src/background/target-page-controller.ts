@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -17,7 +16,6 @@ export class TargetPageController {
         private readonly tabContextManager: TabContextManager,
         private readonly tabContextFactory: TabContextFactory,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly detailsViewController: ExtensionDetailsViewController,
         private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
@@ -62,8 +60,6 @@ export class TargetPageController {
         this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
         this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
         this.browserAdapter.addListenerToTabsOnUpdated(this.onTabUpdated);
-
-        this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
     private getUrl = async (tabId: number): Promise<string> => {
@@ -183,21 +179,13 @@ export class TargetPageController {
         this.tabContextManager.interpretMessageForTab(tabId, message);
     }
 
-    private onTabRemoved = (tabId: number, messageType: string): void => {
+    private onTargetTabRemoved = (tabId: number): void => {
         this.tabContextManager.interpretMessageForTab(tabId, {
-            messageType: messageType,
+            messageType: Messages.Tab.Remove,
             payload: null,
             tabId: tabId,
         });
-    };
-
-    private onTargetTabRemoved = (tabId: number): void => {
-        this.onTabRemoved(tabId, Messages.Tab.Remove);
         this.removeKnownTabId(tabId);
         this.tabContextManager.deleteTabContext(tabId);
-    };
-
-    private onDetailsViewTabRemoved = (tabId: number): void => {
-        this.onTabRemoved(tabId, Messages.Visualizations.DetailsView.Close);
     };
 }

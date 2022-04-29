@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
@@ -8,7 +7,6 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { isFunction } from 'lodash';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import {
     createSimulatedBrowserAdapter,
@@ -22,7 +20,6 @@ describe('TargetPageController', () => {
 
     let mockLogger: IMock<Logger>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;
-    let mockDetailsViewController: SimulatedDetailsViewController;
     let knownTabIds: DictionaryNumberTo<string>;
     let mockTabContextFactory: IMock<TabContextFactory>;
     let mockTabContextManager: IMock<TabContextManager>;
@@ -59,7 +56,6 @@ describe('TargetPageController', () => {
             [EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB],
             [EXISTING_WINDOW],
         );
-        mockDetailsViewController = setupMockDetailsViewController();
         mockTabContextFactory = Mock.ofType<TabContextFactory>();
         mockTabContextManager = Mock.ofType<TabContextManager>();
         idbInstanceMock.reset();
@@ -72,7 +68,6 @@ describe('TargetPageController', () => {
                 mockTabContextManager.object,
                 mockTabContextFactory.object,
                 mockBrowserAdapter.object,
-                mockDetailsViewController.object,
                 mockLogger.object,
                 knownTabIds,
                 idbInstanceMock.object,
@@ -142,7 +137,6 @@ describe('TargetPageController', () => {
                 mockTabContextManager.object,
                 mockTabContextFactory.object,
                 mockBrowserAdapter.object,
-                mockDetailsViewController.object,
                 mockLogger.object,
                 knownTabIds,
                 idbInstanceMock.object,
@@ -190,11 +184,6 @@ describe('TargetPageController', () => {
                 );
                 mockBrowserAdapter.verify(
                     m => m.addListenerToWebNavigationUpdated(It.isAny()),
-                    Times.once(),
-                );
-
-                mockDetailsViewController.verify(
-                    m => m.setupDetailsViewTabRemovedHandler(It.isAny()),
                     Times.once(),
                 );
             });
@@ -357,23 +346,6 @@ describe('TargetPageController', () => {
                         .setup(m => m.deleteTabContext(EXISTING_ACTIVE_TAB_ID))
                         .verifiable();
                     await mockBrowserAdapter.notifyTabsOnRemoved(EXISTING_ACTIVE_TAB_ID, null);
-                });
-            });
-
-            describe('onDetailsViewTabRemoved', () => {
-                beforeEach(() => {
-                    idbInstanceMock.reset();
-                    setupDatabaseInstance(Times.never());
-                    setupNeverDeleteTabs();
-                });
-
-                it('should send a Messages.Visualizations.DetailsView.Close message', () => {
-                    setupInterpretMessageForTab(
-                        EXISTING_ACTIVE_TAB_ID,
-                        Messages.Visualizations.DetailsView.Close,
-                    );
-
-                    mockDetailsViewController.notifyDetailsViewTabRemoved(EXISTING_ACTIVE_TAB_ID);
                 });
             });
 
@@ -545,18 +517,6 @@ describe('TargetPageController', () => {
 
     function setupNeverDeleteTabs(): void {
         mockTabContextManager.setup(m => m.deleteTabContext(It.isAny())).verifiable(Times.never());
-    }
-
-    type SimulatedDetailsViewController = IMock<ExtensionDetailsViewController> & {
-        notifyDetailsViewTabRemoved?: (tabId: number) => void;
-    };
-
-    function setupMockDetailsViewController(): SimulatedDetailsViewController {
-        const mock: SimulatedDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
-        mock.setup(m => m.setupDetailsViewTabRemovedHandler(It.is(isFunction))).callback(
-            c => (mock.notifyDetailsViewTabRemoved = c),
-        );
-        return mock;
     }
 
     const setupDatabaseInstance = (

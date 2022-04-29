@@ -22,7 +22,7 @@ export class TabContextManager {
         }
     }
 
-    public interpretMessageForTab(tabId: number, message: Message): boolean {
+    public readonly interpretMessageForTab = (tabId: number, message: Message): boolean => {
         const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
@@ -31,7 +31,7 @@ export class TabContextManager {
         }
 
         return false;
-    }
+    };
 
     public getTabContextStores(tabId: number): TabContextStoreHub | undefined {
         return this.targetPageTabIdToContextMap[tabId]?.stores;

@@ -3,16 +3,17 @@
 import { DetailsViewController } from 'background/details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { DictionaryStringTo } from 'types/common-types';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export class ExtensionDetailsViewController implements DetailsViewController {
-    private detailsViewRemovedHandler: (tabId: number) => void;
-
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
+        private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
         private persistStoreData = false,
     ) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
@@ -27,10 +28,6 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             );
         }
     };
-
-    public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {
-        this.detailsViewRemovedHandler = handler;
-    }
 
     public async showDetailsView(targetTabId: number): Promise<void> {
         const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
@@ -63,9 +60,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
 
         if (this.hasUrlChange(changeInfo, targetTabId)) {
             delete this.tabIdToDetailsViewMap[targetTabId];
-            if (this.detailsViewRemovedHandler != null) {
-                this.detailsViewRemovedHandler(targetTabId);
-            }
+            this.onDetailsViewTabRemoved(targetTabId);
             await this.persistTabIdToDetailsViewMap();
         }
     };
@@ -111,12 +106,18 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
             if (targetTabId) {
                 delete this.tabIdToDetailsViewMap[targetTabId];
-                if (this.detailsViewRemovedHandler != null) {
-                    this.detailsViewRemovedHandler(targetTabId);
-                }
+                this.onDetailsViewTabRemoved(targetTabId);
             }
         }
 
         await this.persistTabIdToDetailsViewMap();
     };
+
+    private onDetailsViewTabRemoved(targetTabId: number): void {
+        this.interpretMessageForTab(targetTabId, {
+            messageType: Messages.Visualizations.DetailsView.Close,
+            payload: null,
+            tabId: targetTabId,
+        });
+    }
 }

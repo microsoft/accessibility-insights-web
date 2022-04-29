@@ -3,12 +3,15 @@
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
+    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => void>;
     let testSubject: ExtensionDetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
     let onUpdateTabCallback: (
@@ -22,6 +25,7 @@ describe('ExtensionDetailsViewController', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
+        interpretMessageForTabMock = Mock.ofInstance(() => null);
 
         browserAdapterMock
             .setup(adapter => adapter.addListenerToTabsOnRemoved(It.isAny()))
@@ -47,6 +51,7 @@ describe('ExtensionDetailsViewController', () => {
                 browserAdapterMock.object,
                 tabIdToDetailsViewMap,
                 idbInstanceMock.object,
+                interpretMessageForTabMock.object,
                 false,
             );
 
@@ -119,6 +124,7 @@ describe('ExtensionDetailsViewController', () => {
                 browserAdapterMock.object,
                 tabIdToDetailsViewMap,
                 idbInstanceMock.object,
+                interpretMessageForTabMock.object,
                 true,
             );
         });
@@ -265,12 +271,15 @@ describe('ExtensionDetailsViewController', () => {
             setupDatabaseInstance({}, Times.once());
             setupDatabaseInstance({ '5': -1 }, Times.once());
 
-            const detailsViewRemovedHandlerMock = Mock.ofInstance((tabId: number) => {});
-            detailsViewRemovedHandlerMock
-                .setup(handler => handler(targetTabId))
-                .verifiable(Times.once());
-
-            testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
+                        tabId: targetTabId,
+                        payload: null,
+                        messageType: Messages.Visualizations.DetailsView.Close,
+                    }),
+                )
+                .verifiable();
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 
@@ -296,7 +305,7 @@ describe('ExtensionDetailsViewController', () => {
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
-            detailsViewRemovedHandlerMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
             idbInstanceMock.verifyAll();
         });
 
@@ -497,11 +506,15 @@ describe('ExtensionDetailsViewController', () => {
             setupDatabaseInstance({}, Times.once());
             setupDatabaseInstance({ '5': -1 }, Times.once());
 
-            const detailsViewRemovedHandlerMock = Mock.ofInstance((tabId: number) => {});
-            detailsViewRemovedHandlerMock
-                .setup(handler => handler(targetTabId))
-                .verifiable(Times.once());
-            testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
+                        tabId: targetTabId,
+                        payload: null,
+                        messageType: Messages.Visualizations.DetailsView.Close,
+                    }),
+                )
+                .verifiable();
 
             // call show details once
             await testSubject.showDetailsView(targetTabId);
@@ -517,8 +530,8 @@ describe('ExtensionDetailsViewController', () => {
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
-            detailsViewRemovedHandlerMock.verifyAll();
             idbInstanceMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
         });
 
         test('showDetailsView after details tab removed, remove handler not set', async () => {
