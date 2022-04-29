@@ -106,9 +106,7 @@ jobs:
       timeout-minutes: 5
 
   publish-code-coverage:
-    needs:
-    - 'unit-tests (1/2)'
-    - 'unit-tests (2/2)'
+    needs: unit-tests # This waits for *all* of the unit-tests jobs
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/download-artifact@v3
