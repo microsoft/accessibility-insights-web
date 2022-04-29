@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
-import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
@@ -11,7 +11,7 @@ import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let tabContextManagerMock: IMock<TabContextManager>;
+    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => void>;
     let testSubject: ExtensionDetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
     let onUpdateTabCallback: (
@@ -25,7 +25,7 @@ describe('ExtensionDetailsViewController', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        tabContextManagerMock = Mock.ofType<TabContextManager>();
+        interpretMessageForTabMock = Mock.ofInstance(() => null);
 
         browserAdapterMock
             .setup(adapter => adapter.addListenerToTabsOnRemoved(It.isAny()))
@@ -51,7 +51,7 @@ describe('ExtensionDetailsViewController', () => {
                 browserAdapterMock.object,
                 tabIdToDetailsViewMap,
                 idbInstanceMock.object,
-                tabContextManagerMock.object,
+                interpretMessageForTabMock.object,
                 false,
             );
 
@@ -124,7 +124,7 @@ describe('ExtensionDetailsViewController', () => {
                 browserAdapterMock.object,
                 tabIdToDetailsViewMap,
                 idbInstanceMock.object,
-                tabContextManagerMock.object,
+                interpretMessageForTabMock.object,
                 true,
             );
         });
@@ -271,9 +271,9 @@ describe('ExtensionDetailsViewController', () => {
             setupDatabaseInstance({}, Times.once());
             setupDatabaseInstance({ '5': -1 }, Times.once());
 
-            tabContextManagerMock
-                .setup(t =>
-                    t.interpretMessageForTab(targetTabId, {
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
                         tabId: targetTabId,
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
@@ -305,7 +305,7 @@ describe('ExtensionDetailsViewController', () => {
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
-            tabContextManagerMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
             idbInstanceMock.verifyAll();
         });
 
@@ -506,9 +506,9 @@ describe('ExtensionDetailsViewController', () => {
             setupDatabaseInstance({}, Times.once());
             setupDatabaseInstance({ '5': -1 }, Times.once());
 
-            tabContextManagerMock
-                .setup(t =>
-                    t.interpretMessageForTab(targetTabId, {
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
                         tabId: targetTabId,
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
@@ -531,7 +531,7 @@ describe('ExtensionDetailsViewController', () => {
 
             browserAdapterMock.verifyAll();
             idbInstanceMock.verifyAll();
-            tabContextManagerMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
         });
 
         test('showDetailsView after details tab removed, remove handler not set', async () => {

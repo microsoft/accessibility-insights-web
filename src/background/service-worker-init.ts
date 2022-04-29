@@ -178,7 +178,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         persistedData.tabIdToDetailsViewMap ?? {},
         indexedDBInstance,
-        tabContextManager,
+        tabContextManager.interpretMessageForTab,
         true,
     );
 

@@ -196,7 +196,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         {},
         indexedDBInstance,
-        tabContextManager,
+        tabContextManager.interpretMessageForTab,
     );
 
     const tabContextFactory = new TabContextFactory(

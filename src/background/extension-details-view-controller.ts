@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { DetailsViewController } from 'background/details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { TabContextManager } from 'background/tab-context-manager';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryStringTo } from 'types/common-types';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -13,7 +13,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly browserAdapter: BrowserAdapter,
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
-        private readonly tabContextManager: TabContextManager,
+        private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
         private persistStoreData = false,
     ) {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
@@ -114,7 +114,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     };
 
     private onDetailsViewTabRemoved(targetTabId: number): void {
-        this.tabContextManager.interpretMessageForTab(targetTabId, {
+        this.interpretMessageForTab(targetTabId, {
             messageType: Messages.Visualizations.DetailsView.Close,
             payload: null,
             tabId: targetTabId,
