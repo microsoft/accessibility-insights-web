@@ -241,6 +241,13 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               >
                 axe-core
               </a>
+              <div
+                hidden=""
+                id="tooltip000"
+                style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+              >
+                Navigate to axe-core npm page
+              </div>
             </div>
              4.4.1
           </div>
