@@ -105,18 +105,22 @@ export function createSimulatedBrowserAdapter(
         return Promise.resolve(result as Tabs.Tab[]);
     });
 
-    mock.updateTab = (tabId, changeInfo) => {
-        mock.tabs!.filter(tab => tab.id === tabId).forEach((tab, index) => {
-            mock.tabs![index] = { ...tab, ...changeInfo };
-            mock.notifyTabsOnUpdated!(tabId, changeInfo, mock.tabs![index]);
-        });
+    mock.updateTab = async (tabId, changeInfo) => {
+        await Promise.all(
+            mock
+                .tabs!.filter(tab => tab.id === tabId)
+                .map(async (tab, index) => {
+                    mock.tabs![index] = { ...tab, ...changeInfo };
+                    await mock.notifyTabsOnUpdated!(tabId, changeInfo, mock.tabs![index]);
+                }),
+        );
     };
-    mock.activateTab = tabToActivate => {
+    mock.activateTab = async tabToActivate => {
         mock.tabs!.filter(tab => tab.windowId === tabToActivate.windowId).forEach((tab, index) => {
             mock.tabs![index] = { ...tab, active: tabToActivate.id === tab.id };
         });
         if (tabToActivate.id != null) {
-            mock.notifyTabsOnActivated!({
+            await mock.notifyTabsOnActivated!({
                 windowId: tabToActivate.windowId,
                 tabId: tabToActivate.id,
             });
