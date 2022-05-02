@@ -70,7 +70,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
         }
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         if (!this.state.dialogEnabled) {
             return null;
         }
