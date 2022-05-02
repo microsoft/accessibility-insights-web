@@ -13,12 +13,6 @@ describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
     let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => void>;
     let testSubject: ExtensionDetailsViewController;
-    let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
-    let onUpdateTabCallback: (
-        tabId: number,
-        changeInfo: chrome.tabs.TabChangeInfo,
-        tab: chrome.tabs.Tab,
-    ) => Promise<void>;
     let tabIdToDetailsViewMap: DictionaryStringTo<number>;
     const indexedDBDataKey: string = 'tabIdToDetailsViewMap';
     const idbInstanceMock: IMock<IndexedDBAPI> = Mock.ofType<IndexedDBAPI>();
@@ -26,20 +20,6 @@ describe('ExtensionDetailsViewController', () => {
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         interpretMessageForTabMock = Mock.ofInstance(() => null);
-
-        browserAdapterMock
-            .setup(adapter => adapter.addListenerToTabsOnRemoved(It.isAny()))
-            .callback(callback => {
-                onTabRemoveCallback = callback;
-            })
-            .verifiable();
-
-        browserAdapterMock
-            .setup(adapter => adapter.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(callback => {
-                onUpdateTabCallback = callback;
-            })
-            .verifiable();
 
         tabIdToDetailsViewMap = {};
         idbInstanceMock.reset();
@@ -82,7 +62,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // update target tab
-            await onUpdateTabCallback(targetTabId, null, null);
+            await testSubject.onUpdateTab(targetTabId, null);
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -106,7 +86,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove target tab
-            onTabRemoveCallback(targetTabId, null);
+            await testSubject.onRemoveTab(targetTabId);
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -251,7 +231,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // update target tab
-            await onUpdateTabCallback(targetTabId, null, null);
+            await testSubject.onUpdateTab(targetTabId, null);
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -293,11 +273,9 @@ describe('ExtensionDetailsViewController', () => {
                 .setup(adapter => adapter.getUrl(It.isAny()))
                 .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-            await onUpdateTabCallback(
-                detailsViewTabId,
-                { url: 'www.bing.com/DetailsView/detailsView.html?tabId=' + targetTabId },
-                null,
-            );
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'www.bing.com/DetailsView/detailsView.html?tabId=' + targetTabId,
+            });
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -329,11 +307,9 @@ describe('ExtensionDetailsViewController', () => {
                 .setup(adapter => adapter.getUrl(It.isAny()))
                 .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-            await onUpdateTabCallback(
-                detailsViewTabId,
-                { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' },
-                null,
-            );
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90',
+            });
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -362,11 +338,9 @@ describe('ExtensionDetailsViewController', () => {
                 .setup(adapter => adapter.getUrl(It.isAny()))
                 .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-            await onUpdateTabCallback(
-                detailsViewTabId,
-                { url: 'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId },
-                null,
-            );
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId,
+            });
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -396,16 +370,10 @@ describe('ExtensionDetailsViewController', () => {
                 .setup(adapter => adapter.getUrl(It.isAny()))
                 .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-            await onUpdateTabCallback(
-                detailsViewTabId,
-                {
-                    url:
-                        'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' +
-                        targetTabId +
-                        '#',
-                },
-                null,
-            );
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url:
+                    'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId + '#',
+            });
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -431,7 +399,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // update details tab
-            await onUpdateTabCallback(detailsViewTabId, { title: 'issues' }, null);
+            await testSubject.onUpdateTab(detailsViewTabId, { title: 'issues' });
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -457,7 +425,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove details tab
-            await onUpdateTabCallback(123, { title: 'issues' }, null);
+            await testSubject.onUpdateTab(123, { title: 'issues' });
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -485,7 +453,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove target tab
-            onTabRemoveCallback(targetTabId, null);
+            await testSubject.onRemoveTab(targetTabId);
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -522,7 +490,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove details tab
-            onTabRemoveCallback(detailsViewTabId, null);
+            await testSubject.onRemoveTab(detailsViewTabId);
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -550,7 +518,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove details tab
-            onTabRemoveCallback(detailsViewTabId, null);
+            await testSubject.onRemoveTab(detailsViewTabId);
 
             setupCreateDetailsViewForAnyUrl(Times.once());
 
@@ -575,7 +543,7 @@ describe('ExtensionDetailsViewController', () => {
             browserAdapterMock.reset();
 
             // remove details tab
-            onTabRemoveCallback(100, null);
+            await testSubject.onRemoveTab(100);
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);

@@ -5,6 +5,7 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextManager } from 'background/tab-context-manager';
+import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -232,6 +233,13 @@ async function initialize(): Promise<void> {
     );
 
     await targetPageController.initialize();
+
+    const tabEventDistributor = new TabEventDistributor(
+        browserAdapter,
+        targetPageController,
+        detailsViewController,
+    );
+    tabEventDistributor.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();
