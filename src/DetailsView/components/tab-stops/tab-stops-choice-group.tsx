@@ -77,6 +77,8 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
                         </Link>
                     </>
                 );
+            default:
+                return null;
         }
     }
 
