@@ -41,7 +41,7 @@ export class FocusComponent extends React.Component<FocusComponentProps> {
         }
     };
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         return null;
     }
 }
