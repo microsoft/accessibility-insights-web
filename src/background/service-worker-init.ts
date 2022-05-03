@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DevToolsListener } from 'background/dev-tools-listener';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
-import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextFactory } from 'background/tab-context-factory';

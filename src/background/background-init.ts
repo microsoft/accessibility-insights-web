@@ -26,6 +26,7 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
 import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
+import { BackgroundMessageDistributor } from './background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
@@ -33,7 +34,6 @@ import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-dat
 import { GlobalContextFactory } from './global-context-factory';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
-import { BackgroundMessageDistributor } from './background-message-distributor';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
