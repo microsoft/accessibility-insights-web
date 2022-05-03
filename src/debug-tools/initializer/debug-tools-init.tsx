@@ -10,7 +10,7 @@ import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-ac
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -67,24 +67,24 @@ export const initializeDebugTools = () => {
 };
 
 const createStoreProxies = (browserAdapter: BrowserAdapter) => {
-    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter);
-    storeUpdateMessageDistributor.initialize();
+    const storeUpdateMessageHub = new StoreUpdateMessageHub();
+    browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
 
     const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
         StoreNames[StoreNames.FeatureFlagStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const scopingStore = new StoreProxy<ScopingStoreData>(
         StoreNames[StoreNames.ScopingPanelStateStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const permissionsStore = new StoreProxy<PermissionsStateStoreData>(
         StoreNames[StoreNames.PermissionsStateStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BackgroundMessageDistributor, Sender } from 'background/background-message-distributor';
 import { GlobalContext } from 'background/global-context';
 import { Interpreter } from 'background/interpreter';
-import { BackgroundMessageDistributor, Sender } from 'background/background-message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, Times } from 'typemoq';

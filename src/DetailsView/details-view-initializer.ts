@@ -102,7 +102,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
-import { StoreUpdateMessageDistributor } from '../common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from '../common/store-update-message-hub';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -164,67 +164,64 @@ if (tabId != null) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
-                browserAdapter,
-                tab.id,
-            );
-            storeUpdateMessageDistributor.initialize();
+            const storeUpdateMessageHub = new StoreUpdateMessageHub(tab.id);
+            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
 
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const permissionsStateStore = new StoreProxy<PermissionsStateStoreData>(
                 StoreNames[StoreNames.PermissionsStateStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const tabStore = new StoreProxy<TabStoreData>(
                 StoreNames[StoreNames.TabStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
                 StoreNames[StoreNames.UnifiedScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
                 StoreNames[StoreNames.CardSelectionStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
                 StoreNames[StoreNames.NeedsReviewScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
                 StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
                 StoreNames[StoreNames.DetailsViewStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const assessmentStore = new StoreProxy<AssessmentStoreData>(
                 StoreNames[StoreNames.AssessmentStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const scopingStore = new StoreProxy<ScopingStoreData>(
                 StoreNames[StoreNames.ScopingPanelStateStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
 
             const tabStopsViewActions = new TabStopsViewActions();

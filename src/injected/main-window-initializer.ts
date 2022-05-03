@@ -6,7 +6,7 @@ import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -85,7 +85,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private pathSnippetController: PathSnippetController;
-    private storeUpdateMessageDistributor: StoreUpdateMessageDistributor;
+    private storeUpdateMessageHub: StoreUpdateMessageHub;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
@@ -106,68 +106,68 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
-        this.storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(this.browserAdapter);
-        this.storeUpdateMessageDistributor.initialize();
+        this.storeUpdateMessageHub = new StoreUpdateMessageHub();
+        this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(
             StoreNames[StoreNames.ScopingPanelStateStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
             StoreNames[StoreNames.AssessmentStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.tabStoreProxy = new StoreProxy<TabStoreData>(
             StoreNames[StoreNames.TabStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(
             StoreNames[StoreNames.InspectStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
             StoreNames[StoreNames.PathSnippetStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
             StoreNames[StoreNames.UnifiedScanResultStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
             StoreNames[StoreNames.CardSelectionStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.needsReviewScanResultStoreProxy = new StoreProxy<NeedsReviewScanResultStoreData>(
             StoreNames[StoreNames.NeedsReviewScanResultStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.needsReviewCardSelectionStoreProxy = new StoreProxy<NeedsReviewCardSelectionStoreData>(
             StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
         this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
             StoreNames[StoreNames.PermissionsStateStore],
-            this.storeUpdateMessageDistributor,
+            this.storeUpdateMessageHub,
         );
 
         const logger = createDefaultLogger();
@@ -423,6 +423,6 @@ export class MainWindowInitializer extends WindowInitializer {
     protected dispose(): void {
         super.dispose();
 
-        this.storeUpdateMessageDistributor.dispose();
+        this.browserAdapter.removeListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
     }
 }
