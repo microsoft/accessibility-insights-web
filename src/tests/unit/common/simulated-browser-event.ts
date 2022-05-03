@@ -30,6 +30,9 @@ export class SimulatedBrowserEvent<T extends (...args: any[]) => any>
         this.listener = null;
     }
     invoke(...params: Parameters<T>): ReturnType<T> {
+        if (this.listener === null) {
+            throw new Error('Invalid listener');
+        }
         return this.listener(...params);
     }
 }

@@ -33,8 +33,8 @@ export class WindowStateActionCreator {
 
     private setWindowBoundsFromSavedWindowBounds(): void {
         const state: UserConfigurationStoreData = this.userConfigurationStore.getState();
-        const lastWindowState: WindowState = state.lastWindowState;
-        const lastWindowBounds: Rectangle = state.lastWindowBounds;
+        const lastWindowState: WindowState | null = state.lastWindowState;
+        const lastWindowBounds: Rectangle | null = state.lastWindowBounds;
 
         // Fully restoring the previous state means setting the stored bounds
         // (if we have them), THEN setting maximize or full screen
