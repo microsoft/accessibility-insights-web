@@ -19,7 +19,7 @@ export class TargetPageController {
         private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
-        private persistStoreData = false,
+        private persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {

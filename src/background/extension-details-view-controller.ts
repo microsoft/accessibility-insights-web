@@ -14,7 +14,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
         private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
-        private persistStoreData = false,
+        private readonly persistStoreData: boolean,
     ) {}
 
     public async onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
