@@ -106,7 +106,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         applicationTelemetryDataFactory,
     );
-    debugToolsTelemetryClient.initialize();
 
     const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
         consoleTelemetryClient,
@@ -143,6 +142,7 @@ async function initialize(): Promise<void> {
         persistData,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
+    debugToolsTelemetryClient.initialize(globalContext.featureFlagsController);
 
     const telemetryStateListener = new TelemetryStateListener(
         globalContext.stores.userConfigurationStore,
