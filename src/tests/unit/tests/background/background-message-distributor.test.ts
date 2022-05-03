@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { GlobalContext } from 'background/global-context';
 import { Interpreter } from 'background/interpreter';
-import { MessageDistributor, Sender } from 'background/message-distributor';
+import { BackgroundMessageDistributor, Sender } from 'background/background-message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -10,7 +10,7 @@ import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adap
 import { Logger } from '../../../../common/logging/logger';
 import { InterpreterMessage } from '../../../../common/message';
 
-describe('MessageDistributorTest', () => {
+describe(BackgroundMessageDistributor, () => {
     const tabId = 1;
 
     let mockBrowserAdapter: IMock<BrowserAdapter>;
@@ -20,7 +20,7 @@ describe('MessageDistributorTest', () => {
     let postMessageContentHandlerMock: IMock<PostMessageContentHandler>;
     let loggerMock: IMock<Logger>;
 
-    let testSubject: MessageDistributor;
+    let testSubject: BackgroundMessageDistributor;
 
     let distributeMessageCallback: (message: any, sender?: Sender) => any;
 
@@ -38,7 +38,7 @@ describe('MessageDistributorTest', () => {
         postMessageContentHandlerMock = Mock.ofType<PostMessageContentHandler>();
 
         loggerMock = Mock.ofType<Logger>();
-        testSubject = new MessageDistributor(
+        testSubject = new BackgroundMessageDistributor(
             globalContextMock.object,
             tabContextManagerMock.object,
             postMessageContentHandlerMock.object,

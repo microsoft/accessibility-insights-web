@@ -7,7 +7,7 @@ import { ExtensionDetailsViewController } from 'background/extension-details-vie
 import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
-import { MessageDistributor } from 'background/message-distributor';
+import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextFactory } from 'background/tab-context-factory';
@@ -160,7 +160,7 @@ async function initialize(): Promise<void> {
 
     const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
 
-    const messageDistributor = new MessageDistributor(
+    const messageDistributor = new BackgroundMessageDistributor(
         globalContext,
         tabContextManager,
         postMessageContentHandler,

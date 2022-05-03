@@ -33,7 +33,7 @@ import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-dat
 import { GlobalContextFactory } from './global-context-factory';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
-import { MessageDistributor } from './message-distributor';
+import { BackgroundMessageDistributor } from './background-message-distributor';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -181,7 +181,7 @@ async function initialize(): Promise<void> {
 
     const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
 
-    const messageDistributor = new MessageDistributor(
+    const messageDistributor = new BackgroundMessageDistributor(
         globalContext,
         tabContextManager,
         postMessageContentHandler,
