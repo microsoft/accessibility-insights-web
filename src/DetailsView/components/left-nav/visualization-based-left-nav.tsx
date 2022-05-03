@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { INav } from 'office-ui-fabric-react';
+import { INav } from '@fluentui/react';
 import * as React from 'react';
 
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -23,16 +23,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -44,14 +36,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -78,11 +63,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -104,16 +89,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -125,14 +102,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -159,11 +129,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -185,16 +155,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -206,14 +168,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -240,11 +195,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -266,16 +221,8 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -287,14 +234,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -321,11 +261,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -347,16 +287,8 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -368,14 +300,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -402,11 +327,11 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -428,16 +353,8 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -449,14 +366,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -483,11 +393,11 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -509,16 +419,8 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -530,14 +432,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -565,11 +460,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -591,16 +486,8 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -612,14 +499,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -646,11 +526,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;
 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "showCloseButton": false,
@@ -672,16 +552,8 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   <IssueFilingSettingsContainer
     deps={
       Object {
-        "issueFilingActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "source": undefined,
-          "telemetryFactory": undefined,
-        },
-        "issueFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "services": undefined,
-        },
+        "issueFilingActionMessageCreator": [typemoq mock object],
+        "issueFilingServiceProvider": [typemoq mock object],
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -693,14 +565,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
             "version": "engine-version",
           },
         },
-        "userConfigMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "saveIssueFilingSettings": [Function],
-          "saveWindowBounds": [Function],
-          "setIssueFilingService": [Function],
-          "setIssueFilingServiceProperty": [Function],
-        },
+        "userConfigMessageCreator": [typemoq mock object],
       }
     }
     onPropertyUpdateCallback={[Function]}
@@ -727,5 +592,5 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
       primaryButtonText="File issue"
     />
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;

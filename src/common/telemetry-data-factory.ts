@@ -9,6 +9,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    AutoDetectedFailuresDialogStateTelemetryData,
     BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -293,10 +294,13 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forTabStopRequirement(requirementId: TabStopRequirementId) {
+    public forTabStopRequirement(
+        requirementId: TabStopRequirementId,
+        source: TelemetryEventSource,
+    ) {
         return {
             triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
+            source,
             requirementId: requirementId,
         };
     }
@@ -478,6 +482,7 @@ export class TelemetryDataFactory {
 
     public forAutomatedTabStopsResults(
         results: AutomatedTabStopRequirementResult[],
+        source: TelemetryEventSource,
     ): TabStopsAutomatedResultsTelemetryData | undefined {
         if (!results || results.length === 0) {
             return undefined;
@@ -491,8 +496,20 @@ export class TelemetryDataFactory {
 
         return {
             triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
+            source,
             tabStopAutomatedFailuresInstanceCount,
+        };
+    }
+
+    public forSetAutoDetectedFailuresDialogState(
+        enabled: boolean,
+    ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
         };
     }
 }

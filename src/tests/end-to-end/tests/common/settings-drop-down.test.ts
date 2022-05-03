@@ -50,7 +50,7 @@ describe('Settings Dropdown', () => {
 
             const button = await popupPage.getSelectorElement(CommonSelectors.settingsGearButton);
             const menuCalloutId = await button.evaluate(element =>
-                element.getAttribute('aria-owns'),
+                element.getAttribute('aria-controls'),
             );
 
             const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
@@ -73,7 +73,7 @@ describe('Settings Dropdown', () => {
                 CommonSelectors.settingsGearButton,
             );
             const menuCalloutId = await button.evaluate(element =>
-                element.getAttribute('aria-owns'),
+                element.getAttribute('aria-controls'),
             );
 
             const results = await scanForAccessibilityIssues(detailsViewPage, `#${menuCalloutId}`);
@@ -85,7 +85,9 @@ describe('Settings Dropdown', () => {
         await page.clickSelector(CommonSelectors.settingsGearButton);
 
         const button = await page.getSelectorElement(CommonSelectors.settingsGearButton);
-        const menuCalloutId = await button.evaluate(element => element.getAttribute('aria-owns'));
+        const menuCalloutId = await button.evaluate(element =>
+            element.getAttribute('aria-controls'),
+        );
 
         return await formatPageElementForSnapshot(page, `#${menuCalloutId}`);
     }

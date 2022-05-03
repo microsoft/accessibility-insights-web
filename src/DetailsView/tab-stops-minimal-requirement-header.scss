@@ -10,6 +10,10 @@
     align-items: baseline;
     text-align: left;
 
+    strong {
+        font-weight: $fontWeightSemiBold;
+    }
+
     :global(.outcome-chip) {
         vertical-align: middle;
         margin-bottom: 2px;
@@ -18,6 +22,7 @@
 
 .requirement-detail-description {
     @include text-style-body-m;
+
     word-break: break-all;
 }
 

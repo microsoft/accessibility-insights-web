@@ -48,13 +48,15 @@ body {
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;
-        border-bottom: 0px;
+        border-bottom: 0;
     }
+
     .ms-DetailsRow {
         .content-cell:first-child {
             padding-left: 13px !important;
         }
     }
+
     .ms-DetailsRow.is-selected {
         .expanded-property-div,
         .property-bag-div,
@@ -64,15 +66,17 @@ body {
             }
         }
     }
+
     .ms-DetailsHeader {
         .content-header {
             > span:first-of-type {
                 padding-left: 5px;
             }
         }
+
         .content-header ~ .content-header {
             > span:first-of-type {
-                padding-left: 0px;
+                padding-left: 0;
             }
         }
     }

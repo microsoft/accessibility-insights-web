@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
+import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -133,11 +133,7 @@ export class WindowInitializer {
         );
         this.manualTabStopListener.initialize();
 
-        const tabbableElementGetter = new TabbableElementGetter(
-            document,
-            getUniqueSelector,
-            tabbable,
-        );
+        const tabbableElementGetter = new TabbableElementGetter(document, tabbable);
         const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtils,
             getUniqueSelector,

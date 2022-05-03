@@ -130,12 +130,6 @@ module.exports = function (grunt) {
                         expand: true,
                     },
                     {
-                        cwd: './node_modules/office-ui-fabric-react/dist/css',
-                        src: 'fabric.min.css',
-                        dest: path.join(extensionPath, 'common/styles/'),
-                        expand: true,
-                    },
-                    {
                         cwd: './dist/src/debug-tools',
                         src: '*.css',
                         dest: path.join(extensionPath, 'debug-tools'),
@@ -443,7 +437,7 @@ module.exports = function (grunt) {
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
             '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
-        const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
+        const configJS = `${copyrightHeader}globalThis.insights = ${configJSON};`;
         grunt.file.write(configJSPath, configJS);
     });
 
@@ -467,15 +461,39 @@ module.exports = function (grunt) {
             // Settings that are specific to MV3
             merge(manifestJSON, {
                 action: {
+                    default_popup: 'popup/popup.html',
                     default_icon: {
                         20: config.options.icon16,
                         40: config.options.icon48,
                     },
                 },
+                permissions: [
+                    'alarms',
+                    'notifications',
+                    'scripting',
+                    'storage',
+                    'tabs',
+                    'webNavigation',
+                ],
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                host_permissions: [],
+                host_permissions: ['*://*/*'],
+                web_accessible_resources: [
+                    {
+                        resources: [
+                            'insights.html',
+                            'assessments/*',
+                            'injected/*',
+                            'background/*',
+                            'common/*',
+                            'DetailsView/*',
+                            'bundle/*',
+                            'NOTICE.html',
+                        ],
+                        matches: ['<all_urls>'],
+                    },
+                ],
             });
         } else {
             // Settings that are specific to MV2. Note that many of these settings--especially the
@@ -506,53 +524,6 @@ module.exports = function (grunt) {
                 content_security_policy:
                     "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
                 optional_permissions: ['*://*/*'],
-                commands: {
-                    _execute_browser_action: {
-                        suggested_key: {
-                            windows: 'Alt+Shift+K',
-                            mac: 'Alt+Shift+K',
-                            chromeos: 'Alt+Shift+K',
-                            linux: 'Alt+Shift+K',
-                        },
-                        description: 'Activate the extension',
-                    },
-                    '01_toggle-issues': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+1',
-                            mac: 'Alt+Shift+1',
-                            chromeos: 'Alt+Shift+1',
-                            linux: 'Alt+Shift+1',
-                        },
-                        description: 'Toggle Automated checks',
-                    },
-                    '02_toggle-landmarks': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+2',
-                            mac: 'Alt+Shift+2',
-                            chromeos: 'Alt+Shift+2',
-                            linux: 'Alt+Shift+2',
-                        },
-                        description: 'Toggle Landmarks',
-                    },
-                    '03_toggle-headings': {
-                        suggested_key: {
-                            windows: 'Alt+Shift+3',
-                            mac: 'Alt+Shift+3',
-                            chromeos: 'Alt+Shift+3',
-                            linux: 'Alt+Shift+3',
-                        },
-                        description: 'Toggle Headings',
-                    },
-                    '04_toggle-tabStops': {
-                        description: 'Toggle Tab stops',
-                    },
-                    '05_toggle-color': {
-                        description: 'Toggle Color',
-                    },
-                    '06_toggle-needsReview': {
-                        description: 'Toggle Needs review',
-                    },
-                },
             });
         }
 
@@ -616,8 +587,13 @@ module.exports = function (grunt) {
 
         // Manually copying the license files is a workaround for electron-builder #1495.
         // On win/linux builds these are automatically included, but in Mac they are omitted.
+        // Mac notarization also requires specific structuring of code; these files should be put in
+        // the Contents/Resources folder which electron-builder will do for 'extraResources'.
+        // https://developer.apple.com/forums/thread/128166, section "Structure Your Code Correctly"
         if (process.platform === 'darwin') {
-            config.extraFiles.push(
+            config.extraResources = config.extraResources.concat(config.extraFiles);
+            config.extraFiles = [];
+            config.extraResources.push(
                 {
                     from: 'node_modules/electron/dist/LICENSE',
                     to: 'LICENSE.electron.txt',

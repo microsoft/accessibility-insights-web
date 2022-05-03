@@ -3,33 +3,45 @@
 import { GlobalContext } from 'background/global-context';
 import { Interpreter } from 'background/interpreter';
 import { MessageDistributor, Sender } from 'background/message-distributor';
-import { TabContext, TabToContextMap } from 'background/tab-context';
+import { PostMessageContentHandler } from 'background/post-message-content-handler';
+import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Logger } from '../../../../common/logging/logger';
 import { InterpreterMessage } from '../../../../common/message';
 
 describe('MessageDistributorTest', () => {
+    const tabId = 1;
+
     let mockBrowserAdapter: IMock<BrowserAdapter>;
-    let testSubject: MessageDistributor;
-    let tabToInterpreterMap: TabToContextMap;
+    let tabContextManagerMock: IMock<TabContextManager>;
     let globalContextMock: IMock<GlobalContext>;
-    let globalInterpreter: Interpreter;
+    let globalInterpreterMock: IMock<Interpreter>;
+    let postMessageContentHandlerMock: IMock<PostMessageContentHandler>;
     let loggerMock: IMock<Logger>;
 
-    let distributeMessageCallback: (message: any, sender?: Sender) => void;
+    let testSubject: MessageDistributor;
+
+    let distributeMessageCallback: (message: any, sender?: Sender) => any;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
-        tabToInterpreterMap = {};
+
+        globalInterpreterMock = Mock.ofType(Interpreter);
+        setupGlobalInterpreterInteraction(false);
+
+        tabContextManagerMock = Mock.ofType(TabContextManager);
 
         globalContextMock = Mock.ofType(GlobalContext);
-        globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreter);
+        globalContextMock.setup(x => x.interpreter).returns(() => globalInterpreterMock.object);
+
+        postMessageContentHandlerMock = Mock.ofType<PostMessageContentHandler>();
 
         loggerMock = Mock.ofType<Logger>();
         testSubject = new MessageDistributor(
             globalContextMock.object,
-            tabToInterpreterMap,
+            tabContextManagerMock.object,
+            postMessageContentHandlerMock.object,
             mockBrowserAdapter.object,
             loggerMock.object,
         );
@@ -42,108 +54,128 @@ describe('MessageDistributorTest', () => {
             .verifiable();
     });
 
-    test('distribute message to both global & tabcontext', () => {
-        const tabId = 1;
+    afterEach(() => {
+        tabContextManagerMock.verifyAll();
+        globalInterpreterMock.verifyAll();
+        postMessageContentHandlerMock.verifyAll();
+        loggerMock.verifyAll();
+    });
 
-        const globalInterpreterMock = createInterpreterMockWithInteraction();
-        globalInterpreter = globalInterpreterMock.object;
-        const tabContextInterpreterMock = createInterpreterMockWithInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+    test('distribute message to both global & tabcontext', () => {
         const message = { tabId: tabId, payload: {} };
+
+        setupTabInterpreterInteraction(true);
+        setupBackchannelIgnoreMessage(message);
+        setupNeverLogFailure();
 
         testSubject.initialize();
 
         distributeMessageCallback(message);
-
-        tabContextInterpreterMock.verifyAll();
-        globalInterpreterMock.verifyAll();
     });
 
     test('should not distribute message, when tabid is not set', () => {
-        const tabId = 1;
-
-        const globalInterpreterMock = createInterpreterMockWithInteraction();
-        globalInterpreter = globalInterpreterMock.object;
-        const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
-
-        testSubject.initialize();
         const message = { payload: {} };
 
-        distributeMessageCallback(message);
+        setupTabInterpreterWithoutInteraction();
+        setupBackchannelIgnoreMessage(message);
+        setupLogFailure();
 
-        tabContextInterpreterMock.verifyAll();
-        globalInterpreterMock.verifyAll();
+        testSubject.initialize();
+
+        distributeMessageCallback(message);
     });
 
     test('should not distribute message, when tabid is not set & sender tab is null ', () => {
-        const tabId = 1;
-
-        const globalInterpreterMock = createInterpreterMockWithInteraction();
-        globalInterpreter = globalInterpreterMock.object;
-        const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
-
-        testSubject.initialize();
         const message = { payload: {} };
         const sender: Sender = {};
 
-        distributeMessageCallback(message, sender);
+        setupTabInterpreterWithoutInteraction();
+        setupBackchannelIgnoreMessage(message);
+        setupLogFailure();
 
-        tabContextInterpreterMock.verifyAll();
-        globalInterpreterMock.verifyAll();
+        testSubject.initialize();
+
+        distributeMessageCallback(message, sender);
     });
 
     test('should distribute message, when sender has tab id', () => {
-        const tabId = 1;
         const message = { payload: {} } as InterpreterMessage;
+        const sender: Sender = { tab: { id: 1 } };
 
-        const globalInterpreterMock = createInterpreterMockWithInteraction();
-        globalInterpreter = globalInterpreterMock.object;
-        const tabContextInterpreterMock = createInterpreterMockWithInteraction();
-        tabToInterpreterMap[tabId] = new TabContext(tabContextInterpreterMock.object as any, null);
+        setupTabInterpreterInteraction(true);
+        setupBackchannelIgnoreMessage(message);
+        setupNeverLogFailure();
 
         testSubject.initialize();
-        const sender: Sender = { tab: { id: 1 } };
 
         distributeMessageCallback(message, sender);
 
-        tabContextInterpreterMock.verifyAll();
-        globalInterpreterMock.verifyAll();
         expect(message.tabId).toBe(tabId);
     });
 
-    test('should not distribute message, when interpreter is not available', () => {
-        const anotherTabId = 10;
+    test.each(['response obj', undefined])(
+        'should distribute backchannel message and return %s',
+        response => {
+            const message = { payload: {} };
 
-        const globalInterpreterMock = createInterpreterMockWithInteraction();
-        globalInterpreter = globalInterpreterMock.object;
+            setupTabInterpreterWithoutInteraction();
+            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
+            setupNeverLogFailure();
 
-        const tabContextInterpreterMock = createInterpreterMockWithoutInteraction();
-        tabToInterpreterMap[1] = new TabContext(tabContextInterpreterMock.object as any, null);
+            testSubject.initialize();
 
-        testSubject.initialize();
-        const message = { tabId: anotherTabId, payload: {} };
+            const actualResponse = distributeMessageCallback(message);
 
-        distributeMessageCallback(message);
+            expect(actualResponse).toEqual(response);
+        },
+    );
 
-        tabContextInterpreterMock.verifyAll();
-        globalInterpreterMock.verifyAll();
-    });
-
-    function createInterpreterMockWithoutInteraction(): IMock<Interpreter> {
-        const interpreterMock = Mock.ofType(Interpreter);
-
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.never());
-
-        return interpreterMock;
+    function setupTabInterpreterWithoutInteraction(): void {
+        tabContextManagerMock
+            .setup(m => m.interpretMessageForTab(It.isAny(), It.isAny()))
+            .verifiable(Times.never());
     }
 
-    function createInterpreterMockWithInteraction(): IMock<Interpreter> {
-        const interpreterMock = Mock.ofType(Interpreter);
+    function setupGlobalInterpreterInteraction(success: boolean): void {
+        globalInterpreterMock
+            .setup(x => x.interpret(It.isAny()))
+            .returns(() => success)
+            .verifiable(Times.once());
+    }
 
-        interpreterMock.setup(x => x.interpret(It.isAny())).verifiable(Times.once());
+    function setupTabInterpreterInteraction(success: boolean): void {
+        tabContextManagerMock
+            .setup(m => m.interpretMessageForTab(tabId, It.isAny()))
+            .returns(() => success)
+            .verifiable(Times.once());
+    }
 
-        return interpreterMock;
+    function setupBackchannelIgnoreMessage(message: any): void {
+        postMessageContentHandlerMock
+            .setup(o => o.handleMessage(It.isObjectWith(message)))
+            .returns(() => ({ success: false }))
+            .verifiable();
+    }
+
+    function setupInterpretBackchannelMessage(message: InterpreterMessage, response?: any): void {
+        postMessageContentHandlerMock
+            .setup(o => o.handleMessage(It.isObjectWith(message)))
+            .returns(() => ({ success: true, response }))
+            .verifiable();
+    }
+
+    function setupLogFailure() {
+        loggerMock
+            .setup(l =>
+                l.log(
+                    It.is(message => (message as string).includes('Unable to interpret message')),
+                    It.isAny(),
+                ),
+            )
+            .verifiable();
+    }
+
+    function setupNeverLogFailure() {
+        loggerMock.setup(l => l.log(It.isAny(), It.isAny())).verifiable(Times.never());
     }
 });

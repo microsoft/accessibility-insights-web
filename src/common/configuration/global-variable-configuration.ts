@@ -14,12 +14,15 @@ const globalVariableName = 'insights';
 
 // Appropriate for contexts with a DOM that has pre-loaded insights.config.js in a <script> tag,
 // but without access to the fs module (eg, all extension contexts, electron renderer processes)
-export class WindowVariableConfiguration implements ConfigAccessor, ConfigMutator {
+export class GlobalVariableConfiguration implements ConfigAccessor, ConfigMutator {
     public set config(value: InsightsConfiguration) {
-        window[globalVariableName] = value;
+        globalThis[globalVariableName] = value;
     }
     public get config(): InsightsConfiguration {
-        return (window[globalVariableName] = defaultsDeep(window[globalVariableName], defaults));
+        return (globalThis[globalVariableName] = defaultsDeep(
+            globalThis[globalVariableName],
+            defaults,
+        ));
     }
 
     public reset(): ConfigMutator {
@@ -36,7 +39,7 @@ export class WindowVariableConfiguration implements ConfigAccessor, ConfigMutato
     public setOption<K extends keyof InsightsConfigurationOptions>(
         name: K,
         value: InsightsConfigurationOptions[K],
-    ): WindowVariableConfiguration {
+    ): GlobalVariableConfiguration {
         this.config.options[name] = value;
         return this;
     }

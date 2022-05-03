@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ChoiceGroup, IChoiceGroup, Link } from '@fluentui/react';
 import {
     ITabStopsChoiceGroup,
     onAddFailureInstanceClicked,
@@ -10,7 +11,6 @@ import {
     TabStopsChoiceGroupsProps,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import { shallow } from 'enzyme';
-import { ChoiceGroup, IChoiceGroup, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 

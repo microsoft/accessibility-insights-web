@@ -5,18 +5,22 @@
 
 .left-nav-panel-host {
     top: $default-title-height;
+
     .left-nav-panel {
         :global(.ms-Panel-main) {
             width: calc(#{$detailsViewLeftNavWidth} + #{$detailsViewLeftNavBorderWidth});
         }
+
         :global(.ms-Panel-content) {
-            padding: 0px;
+            padding: 0;
         }
     }
+
     .nav-menu-container {
         display: flex;
         min-height: $detailsViewCommandBarHeight;
         align-items: center;
+
         .nav-menu {
             color: $primary-text;
         }

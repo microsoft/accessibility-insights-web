@@ -9,7 +9,7 @@ const fakeRuleConfigurationA: RuleConfiguration = {
         {
             id: 'fake-check-id',
             evaluate: () => {
-                throw 'unimplemented evaluate stub';
+                throw new Error('unimplemented evaluate stub');
             },
             passMessage: () => passMessageStub,
             failMessage: () => failMessageStub,

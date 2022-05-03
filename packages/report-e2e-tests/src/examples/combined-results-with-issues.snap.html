@@ -5,15 +5,15 @@
       >Accessibility Insights automated checks result</title
     ><style>
       :root {
-        --black: #000000;
+        --black: #000;
         --light-black: #161616;
-        --white: #ffffff;
+        --white: #fff;
         --brand-blue: #004880;
-        --grey: #333333;
+        --grey: #333;
         --ada-brand-color: var(--brand-blue);
-        --primary-text: rgba(0, 0, 0, 0.9);
-        --secondary-text: rgba(0, 0, 0, 0.7);
-        --disabled-text: rgba(0, 0, 0, 0.38);
+        --primary-text: rgb(0 0 0 / 90%);
+        --secondary-text: rgb(0 0 0 / 70%);
+        --disabled-text: rgb(0 0 0 / 38%);
         --communication-primary: #106ebe;
         --communication-tint-40: #eff6fc;
         --communication-tint-30: #deecf9;
@@ -31,27 +31,27 @@
         --neutral-20: #c8c8c8;
         --neutral-30: #a6a6a6;
         --neutral-55: #6e6e6e;
-        --neutral-60: #666666;
+        --neutral-60: #666;
         --neutral-70: #3c3c3c;
         --neutral-80: var(--grey);
         --neutral-100: var(--black);
-        --neutral-alpha-2: rgba(0, 0, 0, 0.02);
-        --neutral-alpha-4: rgba(0, 0, 0, 0.04);
-        --neutral-alpha-6: rgba(0, 0, 0, 0.06);
-        --neutral-alpha-8: rgba(0, 0, 0, 0.08);
-        --neutral-alpha-10: rgba(0, 0, 0, 0.1);
-        --neutral-alpha-20: rgba(0, 0, 0, 0.2);
-        --neutral-alpha-30: rgba(0, 0, 0, 0.3);
-        --neutral-alpha-60: rgba(0, 0, 0, 0.6);
-        --neutral-alpha-70: rgba(0, 0, 0, 0.7);
-        --neutral-alpha-80: rgba(0, 0, 0, 0.8);
-        --neutral-alpha-90: rgba(0, 0, 0, 0.9);
+        --neutral-alpha-2: rgb(0 0 0 / 2%);
+        --neutral-alpha-4: rgb(0 0 0 / 4%);
+        --neutral-alpha-6: rgb(0 0 0 / 6%);
+        --neutral-alpha-8: rgb(0 0 0 / 8%);
+        --neutral-alpha-10: rgb(0 0 0 / 10%);
+        --neutral-alpha-20: rgb(0 0 0 / 20%);
+        --neutral-alpha-30: rgb(0 0 0 / 30%);
+        --neutral-alpha-60: rgb(0 0 0 / 60%);
+        --neutral-alpha-70: rgb(0 0 0 / 70%);
+        --neutral-alpha-80: rgb(0 0 0 / 80%);
+        --neutral-alpha-90: rgb(0 0 0 / 90%);
         --positive-outcome: #228722;
         --negative-outcome: #e81123;
         --neutral-outcome: var(--neutral-60);
-        --box-shadow-108: rgba(0, 0, 0, 0.108);
-        --box-shadow-132: rgba(0, 0, 0, 0.132);
-        --box-shadow-27: rgba(0, 0, 0, 0.27);
+        --box-shadow-108: rgb(0 0 0 / 10.8%);
+        --box-shadow-132: rgb(0 0 0 / 13.2%);
+        --box-shadow-27: rgb(0 0 0 / 27%);
         --screenshot-image-outline: #8b8b8b;
         --card-border: transparent;
         --card-footer-border: var(--neutral-10);
@@ -72,7 +72,7 @@
         --nav-link-selected: var(--communication-tint-20);
         --nav-link-expanded: var(--communication-tint-40);
         --insights-button-hover: #0179d4;
-        --report-footer-text: #222222;
+        --report-footer-text: #222;
         --landmark-contentinfo: #00a88c;
         --landmark-main: #cb2e6d;
         --landmark-complementary: #6b9d1a;
@@ -115,8 +115,8 @@
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
         --index-circle-background: var(--communication-tint-40);
-        --link-hover: #ffff00;
-        --link: #ffff00;
+        --link-hover: #ff0;
+        --link: #ff0;
         --menu-border: var(--grey);
         --menu-item-background-active: var(--communication-tint-40);
         --menu-item-background-hover: var(--grey);
@@ -160,12 +160,17 @@
         color: var(--link) !important;
         text-decoration: none;
       }
+      @media screen and (forced-colors: active) {
+        .insights-link {
+          forced-color-adjust: unset;
+        }
+      }
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
       }
       .insights-code {
-        font-family: Menlo, Consolas, Courier New, monospace;
+        font-family: menlo, consolas, courier new, monospace;
       }
       .ms-Spinner .ms-Spinner-circle {
         border-top-color: var(--spinner-text);
@@ -184,16 +189,16 @@
       }
       .hidden-highlight-button {
         opacity: 0;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
         border: none;
       }
       .instance-details-card {
         border-radius: 4px;
         border: 1px solid var(--card-border);
         outline-style: "border-style";
-        box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
-          0px 3.2px 7.2px var(--box-shadow-132);
+        box-shadow: 0 0.6px 1.8px var(--box-shadow-108),
+          0 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
@@ -218,8 +223,8 @@
         cursor: pointer;
       }
       .instance-details-card.interactive:hover {
-        box-shadow: 0px 8px 10px var(--box-shadow-108),
-          0px 8px 10px var(--box-shadow-132);
+        box-shadow: 0 8px 10px var(--box-shadow-108),
+          0 8px 10px var(--box-shadow-132);
       }
       .report-instance-table {
         background: var(--neutral-0);
@@ -238,15 +243,15 @@
         flex-wrap: wrap;
         padding-top: 2px;
         padding-bottom: 14px;
-        padding-left: 0px;
+        padding-left: 0;
         padding-right: 20px;
         border-bottom: 0.5px solid var(--neutral-10);
       }
       .report-instance-table .row > * {
         margin-top: 12px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         margin-left: 20px;
-        margin-right: 0px;
+        margin-right: 0;
         padding: 0;
       }
       .report-instance-table .row:last-child {
@@ -280,7 +285,7 @@
         flex-wrap: wrap;
         align-items: center;
         margin-top: 16px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         line-height: 24px;
         font-size: 17px;
         font-weight: 600;
@@ -316,7 +321,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-summary-bar .fail .check-container svg circle {
         fill: var(--negative-outcome);
@@ -334,7 +339,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-summary-bar .pass .check-container svg circle {
         fill: var(--positive-outcome);
@@ -355,7 +360,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-summary-bar .inapplicable .check-container,
       .outcome-summary-bar .unscannable .check-container {
@@ -388,7 +393,7 @@
       .outcome-summary-bar .summary-bar-right-edge {
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
-        margin-right: 0px;
+        margin-right: 0;
       }
       .outcome-summary-bar .label {
         font-weight: normal;
@@ -408,7 +413,7 @@
       .outcome-chip {
         height: 16px;
         color: var(--primary-text);
-        border-radius: 0px 8px 8px 0px;
+        border-radius: 0 8px 8px 0;
         margin: 0 4px 0 4px;
         display: inline-flex;
         align-items: center;
@@ -434,8 +439,8 @@
       @media screen and (forced-colors: active) {
         .outcome-chip .count {
           forced-color-adjust: none;
-          border-color: CanvasText !important;
-          color: CanvasText;
+          border-color: canvastext !important;
+          color: canvastext;
         }
       }
       .outcome-chip.outcome-chip-pass .check-container {
@@ -444,7 +449,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-chip.outcome-chip-pass .check-container svg circle {
         fill: var(--positive-outcome);
@@ -480,7 +485,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-chip.outcome-chip-fail .check-container svg circle {
         fill: var(--negative-outcome);
@@ -499,7 +504,7 @@
         height: 16px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-chip.outcome-chip-inapplicable .check-container,
       .outcome-chip.outcome-chip-unscannable .check-container {
@@ -520,7 +525,7 @@
         height: 14px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-icon-set .outcome-icon-pass .check-container svg circle {
         fill: var(--positive-outcome);
@@ -542,7 +547,7 @@
         height: 14px;
         display: inline-block;
         border-radius: 50%;
-        border: 0px solid var(--neutral-0);
+        border: 0 solid var(--neutral-0);
       }
       .outcome-icon-set .outcome-icon-fail .check-container svg circle {
         fill: var(--negative-outcome);
@@ -557,7 +562,7 @@
           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       }
       .outer-container {
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
       .outer-container .content-container {
         max-width: 960px;
@@ -565,7 +570,7 @@
         margin-top: 24px;
       }
       .outer-container .content-container h2 {
-        margin: 0px;
+        margin: 0;
         font-size: 17px;
         line-height: 24px;
       }
@@ -575,8 +580,8 @@
         }
       }
       .scan-details-section {
-        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
-          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
         background-color: var(--neutral-0);
         padding: 20px;
@@ -586,14 +591,14 @@
         list-style: none;
         font-size: 14px;
         line-height: 16px;
-        padding-left: 0px;
+        padding-left: 0;
         display: flex;
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
       }
       .scan-details-section h3 {
-        margin: 0px;
+        margin: 0;
         font-size: 17px;
         line-height: 24px;
       }
@@ -635,7 +640,7 @@
       }
       @media only screen and (max-width: 1000px) {
         .report-footer-container {
-          margin: 0px 16px 68px 16px;
+          margin: 0 16px 68px 16px;
         }
       }
       .report-header-command-bar {
@@ -646,11 +651,11 @@
         min-height: fit-content;
         align-items: center;
         background-color: var(--neutral-0);
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
       .report-header-command-bar .target-page {
         white-space: nowrap;
-        margin: 0px 0px 0px 16px;
+        margin: 0 0 0 16px;
         display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
@@ -689,7 +694,7 @@
       }
       .title-section h1 {
         font-weight: 600;
-        margin: 0px 0px 24px 0px;
+        margin: 0 0 24px 0;
         font-size: 21px;
         line-height: 32px;
         letter-spacing: -0.02em;
@@ -697,14 +702,19 @@
       .results-container {
         margin-top: 56px;
       }
+      .results-container .title-container :is(h1, h2, h3, h4, h5, h6) {
+        font-weight: unset;
+        margin-block: 0;
+        margin-inline: 0;
+      }
       @media screen and (max-width: 640px) {
         .outcome-past-tense {
           display: none;
         }
       }
       .summary-section {
-        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
-          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
         background-color: var(--neutral-0);
         padding: 20px;
@@ -727,9 +737,9 @@
         padding-right: 16px;
         position: relative;
       }
-      .collapsible-container .collapsible-control[aria-expanded="true"]:before,
+      .collapsible-container .collapsible-control[aria-expanded="true"]::before,
       .collapsible-container
-        .collapsible-control[aria-expanded="false"]:before {
+        .collapsible-control[aria-expanded="false"]::before {
         display: inline-block;
         border-right: 1px solid var(--secondary-text);
         border-bottom: 1px solid var(--secondary-text);
@@ -741,7 +751,7 @@
         transition: transform 0.1s linear 0s;
       }
       .collapsible-container .collapsible-control {
-        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+        font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system,
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         background-color: transparent;
@@ -755,12 +765,13 @@
         background-color: var(--neutral-alpha-4);
       }
       .collapsible-container
-        .collapsible-control[aria-expanded="false"]:before {
+        .collapsible-control[aria-expanded="false"]::before {
         -webkit-transform: rotate(-45deg);
         -ms-transform: rotate(-45deg);
         transform: rotate(-45deg);
       }
-      .collapsible-container .collapsible-control[aria-expanded="true"]:before {
+      .collapsible-container
+        .collapsible-control[aria-expanded="true"]::before {
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
@@ -781,6 +792,10 @@
         margin-bottom: unset;
       }</style
     ><style>
+      .heading-element-for-level--OfRDW {
+        margin-block-start: unset;
+        margin-block-end: unset;
+      }
       .failed-instances-container--FqWV6 .collapsible-content {
         margin-left: 24px;
       }
@@ -789,16 +804,16 @@
       }
       .hidden-highlight-button--PePzJ {
         opacity: 0;
-        margin: 0px;
-        padding: 0px;
+        margin: 0;
+        padding: 0;
         border: none;
       }
       .instance-details-card--R0aAh {
         border-radius: 4px;
         border: 1px solid var(--card-border);
         outline-style: "border-style";
-        box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
-          0px 3.2px 7.2px var(--box-shadow-132);
+        box-shadow: 0 0.6px 1.8px var(--box-shadow-108),
+          0 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
@@ -823,8 +838,8 @@
         cursor: pointer;
       }
       .instance-details-card--R0aAh.interactive--NgYOy:hover {
-        box-shadow: 0px 8px 10px var(--box-shadow-108),
-          0px 8px 10px var(--box-shadow-132);
+        box-shadow: 0 8px 10px var(--box-shadow-108),
+          0 8px 10px var(--box-shadow-132);
       }
       .report-instance-table--YIu0s {
         background: var(--neutral-0);
@@ -843,15 +858,15 @@
         flex-wrap: wrap;
         padding-top: 2px;
         padding-bottom: 14px;
-        padding-left: 0px;
+        padding-left: 0;
         padding-right: 20px;
         border-bottom: 0.5px solid var(--neutral-10);
       }
       .report-instance-table--YIu0s .row--m8TLI > * {
         margin-top: 12px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         margin-left: 20px;
-        margin-right: 0px;
+        margin-right: 0;
         padding: 0;
       }
       .report-instance-table--YIu0s .row--m8TLI:last-child {
@@ -913,7 +928,7 @@
         height: 14px;
         display: inline-block;
         vertical-align: -5%;
-        margin: 0px 2px;
+        margin: 0 2px;
         border: 1px solid var(--light-black);
       }
       .insights-fix-instruction-list--G3vyY .screen-reader-only--yQjgp {
@@ -935,7 +950,7 @@
         margin-bottom: 4px;
       }
       .snippet--wZrK1 {
-        font-family: Menlo, Consolas, Courier New, monospace;
+        font-family: menlo, consolas, courier new, monospace;
         white-space: normal;
       }
       div.insights-dialog-main-override--Mlek6 {
@@ -996,10 +1011,10 @@
         position: absolute;
       }
       div.kebab-menu-callout--o23oT {
-        box-shadow: 0px 6.4px 14.4px var(--box-shadow-132),
-          0px 1.2px 3.6px var(--box-shadow-108);
+        box-shadow: 0 6.4px 14.4px var(--box-shadow-132),
+          0 1.2px 3.6px var(--box-shadow-108);
         border-radius: 4px;
-        border-width: 0px;
+        border-width: 0;
       }
       div.kebab-menu-callout--o23oT > div {
         border-radius: 4px;
@@ -1016,6 +1031,11 @@
       }
       .kebab-menu--eviKu button:hover {
         background-color: var(--menu-item-background-hover);
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu--eviKu button:hover {
+          background-color: inherit;
+        }
       }
       .kebab-menu--eviKu button:active {
         background-color: var(--menu-item-background-active);
@@ -1051,6 +1071,16 @@
       button.kebab-menu-button--dy7Ui:active svg > circle,
       button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
         stroke: var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        button.kebab-menu-button--dy7Ui:active,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
+          color: inherit;
+        }
+        button.kebab-menu-button--dy7Ui:active svg > circle,
+        button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
+          stroke: inherit;
+        }
       }
       button.kebab-menu-button--dy7Ui > span {
         justify-content: center;
@@ -1105,8 +1135,8 @@
         margin-bottom: 16px;
         padding: 14px 20px;
         background-color: var(--neutral-0);
-        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
-          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
         border: 1px solid var(--card-border);
         line-height: 20px;
@@ -1139,12 +1169,15 @@
         font-weight: 600;
         color: var(--primary-text) !important;
       }
+      .rule-details-group--U69fz .rule-detail .rule-details-id strong {
+        font-weight: 600;
+      }
       .rule-details-group--U69fz .rule-detail .rule-detail-description {
         color: var(--secondary-text) !important;
         word-break: break-all;
       }
       .collapsible-rule-details-group--h0lvd {
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
       .collapsible-rule-details-group--h0lvd .rule-detail {
         box-shadow: unset;
@@ -1194,7 +1227,7 @@
         bottom: 2px;
       }
       .result-section--j6fYr > h2 {
-        margin: 0px;
+        margin: 0;
         font-size: 17px;
         line-height: 24px;
       }
@@ -1235,11 +1268,11 @@
         min-height: fit-content;
         align-items: center;
         background-color: var(--neutral-0);
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
       .report-header-command-bar--wDg1t .target-page--giudb {
         white-space: nowrap;
-        margin: 0px 0px 0px 16px;
+        margin: 0 0 0 16px;
         display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
@@ -1278,8 +1311,8 @@
         color: var(--primary-text);
       }
       .urls-summary-section--DjUWc {
-        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
-          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
         background-color: var(--neutral-0);
         padding: 20px;
@@ -1310,8 +1343,8 @@
         line-height: 24px;
       }
       .crawl-details-section--WhRL4 {
-        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
-          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
         background-color: var(--neutral-0);
         padding: 20px;
@@ -1321,7 +1354,7 @@
         list-style: none;
         font-size: 14px;
         line-height: 16px;
-        padding-left: 0px;
+        padding-left: 0;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -1375,9 +1408,9 @@
       }
       .summary-results-table--Pb4_B {
         width: 100%;
-        margin: 0px;
+        margin: 0;
         text-align: left;
-        border-spacing: 0px;
+        border-spacing: 0;
         border-collapse: collapse;
         font-size: 14px;
         line-height: 20px;
@@ -1415,7 +1448,7 @@
         height: 14px;
         display: inline-block;
         vertical-align: -5%;
-        margin: 0px 2px;
+        margin: 0 2px;
         border: 1px solid var(--light-black);
       }
       .screen-reader-only--n1Ocs {
@@ -1612,15 +1645,19 @@
                 ><a
                   target="_blank"
                   href="https://example.com/mock-base-url"
-                  class="ms-Link insights-link root-49"
+                  class="ms-Link insights-link root-109"
                   title="Mock base without failures or unscannables"
                   id="new-tab-link-with-confirmation-dialog__0"
                   >https://example.com/mock-base-url</a
                 ><script>
-                  (function (linkId, doc, confirmCallback) {
-                    const targetPageLink = doc.getElementById(linkId);
+                  (function addConfirmOnClickHandler(
+                    linkId,
+                    doc,
+                    confirmCallback
+                  ) {
+                    var targetPageLink = doc.getElementById(linkId);
                     targetPageLink.addEventListener("click", function (event) {
-                      const result = confirmCallback(
+                      var result = confirmCallback(
                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                           "Cancel to stay on the current page."
@@ -1760,7 +1797,7 @@
           ><div class="results-heading--pyS7R"><h2>Rules</h2></div
           ><div class="result-section"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="heading-element-for-level--OfRDW title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -1771,7 +1808,7 @@
                       >Failed rules (2)</span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-combined-report-failed-section"
                 class="collapsible-content"
@@ -1781,7 +1818,8 @@
                   data-automation-id="rule-details-group"
                   ><div
                     class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                    ><div class="title-container" role="heading" aria-level="4"
+                    ><h4
+                      class="heading-element-for-level--OfRDW title-container"
                       ><button
                         class="collapsible-control"
                         aria-expanded="false"
@@ -1829,7 +1867,7 @@
                             ><span
                               data-automation-id="cards-rule-id"
                               class="rule-details-id"
-                              >bypass</span
+                              ><strong>bypass</strong></span
                             >:
                             <span class="rule-details-description"
                               >Ensures each page has at least one mechanism for
@@ -1838,7 +1876,7 @@
                             ></span
                           ></span
                         ></button
-                      ></div
+                      ></h4
                     ><div
                       id="content-container-bypass"
                       class="collapsible-content"
@@ -1850,16 +1888,20 @@
                           ><a
                             target="_blank"
                             href="https://accessibilityinsights.io/info-examples/web/bypass"
-                            class="ms-Link insights-link root-49"
+                            class="ms-Link insights-link root-109"
                             id="new-tab-link-with-confirmation-dialog__1"
                             >More information about bypass</a
                           ><script>
-                            (function (linkId, doc, confirmCallback) {
-                              const targetPageLink = doc.getElementById(linkId);
+                            (function addConfirmOnClickHandler(
+                              linkId,
+                              doc,
+                              confirmCallback
+                            ) {
+                              var targetPageLink = doc.getElementById(linkId);
                               targetPageLink.addEventListener(
                                 "click",
                                 function (event) {
-                                  const result = confirmCallback(
+                                  var result = confirmCallback(
                                     "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                       "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                       "Cancel to stay on the current page."
@@ -1880,17 +1922,20 @@
                             ><a
                               target="_blank"
                               href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
-                              class="ms-Link insights-link root-49"
+                              class="ms-Link insights-link root-109"
                               id="new-tab-link-with-confirmation-dialog__2"
                               >WCAG 2.4.1</a
                             ><script>
-                              (function (linkId, doc, confirmCallback) {
-                                const targetPageLink =
-                                  doc.getElementById(linkId);
+                              (function addConfirmOnClickHandler(
+                                linkId,
+                                doc,
+                                confirmCallback
+                              ) {
+                                var targetPageLink = doc.getElementById(linkId);
                                 targetPageLink.addEventListener(
                                   "click",
                                   function (event) {
-                                    const result = confirmCallback(
+                                    var result = confirmCallback(
                                       "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                         "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                         "Cancel to stay on the current page."
@@ -1928,21 +1973,21 @@
                                             ><a
                                               target="_blank"
                                               href="https://url/rule-1/failure-1"
-                                              class="ms-Link insights-link root-49"
+                                              class="ms-Link insights-link root-109"
                                               id="new-tab-link-with-confirmation-dialog__3"
                                               >https://url/rule-1/failure-1</a
                                             ><script>
-                                              (function (
+                                              (function addConfirmOnClickHandler(
                                                 linkId,
                                                 doc,
                                                 confirmCallback
                                               ) {
-                                                const targetPageLink =
+                                                var targetPageLink =
                                                   doc.getElementById(linkId);
                                                 targetPageLink.addEventListener(
                                                   "click",
                                                   function (event) {
-                                                    const result =
+                                                    var result =
                                                       confirmCallback(
                                                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
@@ -2015,21 +2060,21 @@
                                             ><a
                                               target="_blank"
                                               href="https://url/rule-1/failure-1"
-                                              class="ms-Link insights-link root-49"
+                                              class="ms-Link insights-link root-109"
                                               id="new-tab-link-with-confirmation-dialog__4"
                                               >https://url/rule-1/failure-1</a
                                             ><script>
-                                              (function (
+                                              (function addConfirmOnClickHandler(
                                                 linkId,
                                                 doc,
                                                 confirmCallback
                                               ) {
-                                                const targetPageLink =
+                                                var targetPageLink =
                                                   doc.getElementById(linkId);
                                                 targetPageLink.addEventListener(
                                                   "click",
                                                   function (event) {
-                                                    const result =
+                                                    var result =
                                                       confirmCallback(
                                                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
@@ -2050,21 +2095,21 @@
                                             ><a
                                               target="_blank"
                                               href="https://url/rule1/failure-2"
-                                              class="ms-Link insights-link root-49"
+                                              class="ms-Link insights-link root-109"
                                               id="new-tab-link-with-confirmation-dialog__5"
                                               >https://url/rule1/failure-2</a
                                             ><script>
-                                              (function (
+                                              (function addConfirmOnClickHandler(
                                                 linkId,
                                                 doc,
                                                 confirmCallback
                                               ) {
-                                                const targetPageLink =
+                                                var targetPageLink =
                                                   doc.getElementById(linkId);
                                                 targetPageLink.addEventListener(
                                                   "click",
                                                   function (event) {
-                                                    const result =
+                                                    var result =
                                                       confirmCallback(
                                                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
@@ -2126,7 +2171,8 @@
                     ></div
                   ><div
                     class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                    ><div class="title-container" role="heading" aria-level="4"
+                    ><h4
+                      class="heading-element-for-level--OfRDW title-container"
                       ><button
                         class="collapsible-control"
                         aria-expanded="false"
@@ -2174,7 +2220,7 @@
                             ><span
                               data-automation-id="cards-rule-id"
                               class="rule-details-id"
-                              >color-contrast</span
+                              ><strong>color-contrast</strong></span
                             >:
                             <span class="rule-details-description"
                               >Ensures the contrast between foreground and
@@ -2183,7 +2229,7 @@
                             ></span
                           ></span
                         ></button
-                      ></div
+                      ></h4
                     ><div
                       id="content-container-color-contrast"
                       class="collapsible-content"
@@ -2195,16 +2241,20 @@
                           ><a
                             target="_blank"
                             href="https://accessibilityinsights.io/info-examples/web/color-contrast"
-                            class="ms-Link insights-link root-49"
+                            class="ms-Link insights-link root-109"
                             id="new-tab-link-with-confirmation-dialog__6"
                             >More information about color-contrast</a
                           ><script>
-                            (function (linkId, doc, confirmCallback) {
-                              const targetPageLink = doc.getElementById(linkId);
+                            (function addConfirmOnClickHandler(
+                              linkId,
+                              doc,
+                              confirmCallback
+                            ) {
+                              var targetPageLink = doc.getElementById(linkId);
                               targetPageLink.addEventListener(
                                 "click",
                                 function (event) {
-                                  const result = confirmCallback(
+                                  var result = confirmCallback(
                                     "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                       "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                       "Cancel to stay on the current page."
@@ -2225,17 +2275,20 @@
                             ><a
                               target="_blank"
                               href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
-                              class="ms-Link insights-link root-49"
+                              class="ms-Link insights-link root-109"
                               id="new-tab-link-with-confirmation-dialog__7"
                               >WCAG 1.4.3</a
                             ><script>
-                              (function (linkId, doc, confirmCallback) {
-                                const targetPageLink =
-                                  doc.getElementById(linkId);
+                              (function addConfirmOnClickHandler(
+                                linkId,
+                                doc,
+                                confirmCallback
+                              ) {
+                                var targetPageLink = doc.getElementById(linkId);
                                 targetPageLink.addEventListener(
                                   "click",
                                   function (event) {
-                                    const result = confirmCallback(
+                                    var result = confirmCallback(
                                       "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                         "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                         "Cancel to stay on the current page."
@@ -2273,21 +2326,21 @@
                                             ><a
                                               target="_blank"
                                               href="https://url/rule2/failure1"
-                                              class="ms-Link insights-link root-49"
+                                              class="ms-Link insights-link root-109"
                                               id="new-tab-link-with-confirmation-dialog__8"
                                               >https://url/rule2/failure1</a
                                             ><script>
-                                              (function (
+                                              (function addConfirmOnClickHandler(
                                                 linkId,
                                                 doc,
                                                 confirmCallback
                                               ) {
-                                                const targetPageLink =
+                                                var targetPageLink =
                                                   doc.getElementById(linkId);
                                                 targetPageLink.addEventListener(
                                                   "click",
                                                   function (event) {
-                                                    const result =
+                                                    var result =
                                                       confirmCallback(
                                                         "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                                           "This link will open the target page in a new tab.\n\nPress OK to continue or " +
@@ -2424,7 +2477,7 @@
             ></div
           ><div class="result-section"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="heading-element-for-level--OfRDW title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -2435,7 +2488,7 @@
                       >Passed rules (2)</span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-pass-checks-section"
                 class="collapsible-content"
@@ -2447,7 +2500,7 @@
                         ><a
                           target="_blank"
                           href="https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule area-alt"
                           aria-describedby="passed-rule-area-alt-description"
                           >area-alt</a
@@ -2462,16 +2515,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__9"
                           >WCAG 1.1.1</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2495,7 +2552,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-hidden-focus"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-hidden-focus"
                           aria-describedby="passed-rule-aria-hidden-focus-description"
                           >aria-hidden-focus</a
@@ -2510,16 +2567,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__10"
                           >WCAG 1.3.1</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2538,16 +2599,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__11"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2571,7 +2636,7 @@
             ></div
           ><div class="result-section"
             ><div class="collapsible-container collapsed"
-              ><div class="title-container" role="heading" aria-level="3"
+              ><h3 class="heading-element-for-level--OfRDW title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
@@ -2583,7 +2648,7 @@
                       >Not applicable rules (3)</span
                     ></span
                   ></button
-                ></div
+                ></h3
               ><div
                 id="content-container-inapplicable-checks-section"
                 class="collapsible-content"
@@ -2595,7 +2660,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-input-field-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-input-field-name"
                           aria-describedby="not-applicable-rule-aria-input-field-name-description"
                           >aria-input-field-name</a
@@ -2610,16 +2675,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__12"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2643,7 +2712,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/aria-toggle-field-name"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule aria-toggle-field-name"
                           aria-describedby="not-applicable-rule-aria-toggle-field-name-description"
                           >aria-toggle-field-name</a
@@ -2658,16 +2727,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__13"
                           >WCAG 4.1.2</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2691,7 +2764,7 @@
                         ><a
                           target="_blank"
                           href="https://accessibilityinsights.io/info-examples/web/autocomplete-valid"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           aria-label="rule autocomplete-valid"
                           aria-describedby="not-applicable-rule-autocomplete-valid-description"
                           >autocomplete-valid</a
@@ -2706,16 +2779,20 @@
                         ><a
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
-                          class="ms-Link insights-link root-49"
+                          class="ms-Link insights-link root-109"
                           id="new-tab-link-with-confirmation-dialog__14"
                           >WCAG 1.3.5</a
                         ><script>
-                          (function (linkId, doc, confirmCallback) {
-                            const targetPageLink = doc.getElementById(linkId);
+                          (function addConfirmOnClickHandler(
+                            linkId,
+                            doc,
+                            confirmCallback
+                          ) {
+                            var targetPageLink = doc.getElementById(linkId);
                             targetPageLink.addEventListener(
                               "click",
                               function (event) {
-                                const result = confirmCallback(
+                                var result = confirmCallback(
                                   "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
                                     "This link will open the target page in a new tab.\n\nPress OK to continue or " +
                                     "Cancel to stay on the current page."
@@ -2741,35 +2818,32 @@
             ></div
           ></div
         ><script>
-          (function (doc) {
-            const collapsibles = doc.getElementsByClassName(
-              "collapsible-container"
-            );
-            for (let index = 0; index < collapsibles.length; index++) {
-              const container = collapsibles.item(index);
-              const button =
+          (function addEventListenerForCollapsibleSection(doc) {
+            var _loop = function (index) {
+              var container = collapsibles.item(index);
+              var button =
                 container === null || container === void 0
                   ? void 0
                   : container.querySelector(".collapsible-control");
               if (button == null) {
-                continue;
+                return "continue";
               }
               button.addEventListener("click", function () {
                 var _a;
-                const content =
+                var content =
                   (_a = button.parentElement) === null || _a === void 0
                     ? void 0
                     : _a.nextElementSibling;
                 if (content == null) {
                   throw Error(
-                    `Expected button element's parent to have a next sibling`
+                    "Expected button element's parent to have a next sibling"
                   );
                 }
-                const wasExpandedBefore =
+                var wasExpandedBefore =
                   button.getAttribute("aria-expanded") === "false"
                     ? false
                     : true;
-                const isExpandedAfter = !wasExpandedBefore;
+                var isExpandedAfter = !wasExpandedBefore;
                 button.setAttribute("aria-expanded", isExpandedAfter + "");
                 content.setAttribute("aria-hidden", !isExpandedAfter + "");
                 if (isExpandedAfter) {
@@ -2778,7 +2852,12 @@
                   container.classList.add("collapsed");
                 }
               });
-            }
+            };
+            var collapsibles = doc.getElementsByClassName(
+              "collapsible-container"
+            );
+            for (var index = 0; index < collapsibles.length; index++)
+              _loop(index);
           })(document);
         </script></div
       ></main
@@ -2792,7 +2871,7 @@
         <a
           target="_blank"
           href="http://aka.ms/AccessibilityInsights"
-          class="ms-Link insights-link tool-name-link root-49"
+          class="ms-Link insights-link tool-name-link root-109"
           title="Get more information and download Accessibility Insights for Web"
           >http://aka.ms/AccessibilityInsights</a
         >.</div

@@ -3,7 +3,7 @@
 exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false 1`] = `null`;
 
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
-<StyledWithResponsiveMode
+<Dialog
   dialogContentProps={
     Object {
       "subText": "Please select a valid *.a11ywebassessment file",
@@ -29,5 +29,5 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
       OK
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
-</StyledWithResponsiveMode>
+</Dialog>
 `;

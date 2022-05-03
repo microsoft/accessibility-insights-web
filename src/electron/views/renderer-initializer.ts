@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppInsights } from 'applicationinsights-js';
+import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { ContentActions } from 'background/actions/content-actions';
@@ -22,6 +22,7 @@ import { DetailsViewStore } from 'background/stores/details-view-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { UsageLogger } from 'background/usage-logger';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
@@ -116,14 +117,13 @@ import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-
 import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
-import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
+import { getGlobalPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
@@ -188,7 +188,7 @@ const indexedDBDataKeysToFetch = [
 
 const logger = createDefaultLogger();
 
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
+getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
     ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
 })
     .then((persistedData: Partial<PersistedData>) => {
@@ -211,9 +211,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         userConfigurationStore.initialize();
 
+        const telemetryDataFactory = new TelemetryDataFactory();
+
         const interpreter = new Interpreter();
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            dispatcher,
+            telemetryDataFactory,
+        );
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
@@ -248,6 +253,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const unifiedScanResultStore = new UnifiedScanResultStore(
             unifiedScanResultActions,
             tabActions,
+            null,
+            indexedDBInstance,
+            logger,
+            null,
+            false,
         );
         unifiedScanResultStore.initialize();
 
@@ -260,6 +270,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
+            null,
+            indexedDBInstance,
+            logger,
+            null,
+            false,
         );
         cardSelectionStore.initialize();
 
@@ -267,6 +282,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             contentActions,
             detailsViewActions,
             sidePanelActions,
+            null,
+            indexedDBInstance,
+            logger,
+            null,
+            false,
         );
         detailsViewStore.initialize();
 
@@ -303,11 +323,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(
-            userConfigActions,
-        );
-
-        const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger(logger);
         telemetryLogger.initialize(featureFlagsController);
 
@@ -316,10 +331,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             telemetryLogger,
         );
 
-        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
             consoleTelemetryClient,
         ]);
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(
+            userConfigActions,
+            telemetryEventHandler,
+        );
 
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
 
@@ -545,6 +565,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
+
+        const usageLogger = new UsageLogger(storageAdapter, DateProvider.getCurrentDate, logger);
+        usageLogger.record();
 
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,

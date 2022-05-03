@@ -11,7 +11,7 @@ import {
 import * as React from 'react';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { Mock, MockBehavior } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('FileUrlUnsupportedMessagePanel', () => {
     it('renders', () => {

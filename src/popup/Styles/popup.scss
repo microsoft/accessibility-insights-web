@@ -32,12 +32,13 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
         // number. We can unset it in our case because the fixed popup window size means the dialog
         // height is fixed at a value that doesn't actually engage max-height anyway.
         max-height: unset;
+
         // Normally, office fabric uses padding of 0/24/24/24 and uses a media query to change it to
         // 0/16/16/16 at small window widths. #4178 means that the media query doesn't get triggered
         // like it's supposed to, but since the popup's window width is fixed, we can just force the
         // correct padding values without using the media query as a workaround.
         .ms-Dialog-inner {
-            padding-top: 0px;
+            padding-top: 0;
             padding-right: 16px;
             padding-bottom: 16px;
             padding-left: 16px;
@@ -54,7 +55,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
 
     .ms-Checkbox-checkmark {
         @media screen and (forced-colors: active) {
-            color: CanvasText !important;
+            color: canvastext !important;
         }
     }
 
@@ -115,19 +116,27 @@ html {
     -moz-box-sizing: border-box;
 }
 
-#popup-container [role='heading'] {
+#popup-container :is(h1, h2, h3, h4, h5, h6) {
+    margin-block: 0;
     width: fit-content;
     padding-left: 0;
 }
 
 #popup-container .launch-panel {
     width: 296px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
 }
 
 #popup-container .ad-hoc-tools-panel {
     width: 540px;
-    margin: 10px 0px 20px 0px;
+    margin: 10px 0 20px 0;
+}
+
+#popup-container .popup-grid {
+    display: grid;
+    margin-left: 8px;
+    margin-right: 8px;
+    font-size: 14px;
 }
 
 #popup-container .insights-spinner {
@@ -179,7 +188,7 @@ html {
 
 #popup-container .main-section .ms-Toggle {
     padding-top: 2px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #popup-container .main-section .ms-Spinner {
@@ -234,6 +243,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
     .launch-pad-title {
         font-size: 14px;
+        font-weight: 600;
         margin-bottom: -4px;
     }
 
@@ -242,7 +252,6 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             color: $neutral-60;
             font-weight: 300;
             font-size: 11px;
-
             margin-bottom: 12px;
             margin-top: 12px;
 
@@ -256,16 +265,16 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
         }
 
         .launch-pad-hr {
-            margin: 12px 0px 0px 0px;
-            border-width: 1px 0px 0px 0px;
-            padding: 0px;
+            margin: 12px 0 0 0;
+            border-width: 1px 0 0 0;
+            padding: 0;
             border-style: solid;
             border-color: $neutral-8;
         }
 
         .launch-pad-item-title {
-            margin: 5px 0px 5px 0px;
-            padding: 0px;
+            margin: 5px 0 5px 0;
+            padding: 0;
             height: 20px;
 
             .ms-Link {
@@ -284,7 +293,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
     .launch-pad-main-section {
         width: 100%;
-        margin: 0px;
+        margin: 0;
     }
 
     .launch-pad-item-description {
@@ -318,6 +327,11 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             color: $secondary-text;
             font-style: normal;
         }
+    }
+
+    .launch-pad-item-grid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
     }
 
     ::placeholder {

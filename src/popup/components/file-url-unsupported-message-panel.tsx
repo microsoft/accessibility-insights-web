@@ -28,31 +28,33 @@ export const FileUrlUnsupportedMessagePanel = NamedFC<FileUrlUnsupportedMessageP
         return (
             <div className="ms-Fabric unsupported-url-info-panel">
                 {header}
-                <div className="ms-Grid main-section">
-                    <div className="launch-panel-general-container">
-                        {DisplayableStrings.fileUrlDoesNotHaveAccess}
-                    </div>
-                    <div>
-                        <div>To allow this extension to run on file URLs:</div>
-                        <div>
-                            {'1. Open '}
-                            <NewTabLink
-                                // It's important that we use an onClick handler that invokes
-                                // createActiveTab, rather than just setting href.
-                                // The browser will allow the former but not the latter.
-                                onClick={openExtensionPage}
-                                aria-label={`open ${title} extension page`}
-                            >
-                                {`${title} extension page`}
-                            </NewTabLink>
-                            {'.'}
+                <div className="main-section">
+                    <div className="popup-grid">
+                        <div className="launch-panel-general-container">
+                            {DisplayableStrings.fileUrlDoesNotHaveAccess}
                         </div>
                         <div>
-                            {'2. Enable '}
-                            <span className="ms-fontWeight-semibold">
-                                Allow Access to file URLs
-                            </span>
-                            .
+                            <div>To allow this extension to run on file URLs:</div>
+                            <div>
+                                {'1. Open '}
+                                <NewTabLink
+                                    // It's important that we use an onClick handler that invokes
+                                    // createActiveTab, rather than just setting href.
+                                    // The browser will allow the former but not the latter.
+                                    onClick={openExtensionPage}
+                                    aria-label={`open ${title} extension page`}
+                                >
+                                    {`${title} extension page`}
+                                </NewTabLink>
+                                {'.'}
+                            </div>
+                            <div>
+                                {'2. Enable '}
+                                <span className="ms-fontWeight-semibold">
+                                    Allow Access to file URLs
+                                </span>
+                                .
+                            </div>
                         </div>
                     </div>
                 </div>

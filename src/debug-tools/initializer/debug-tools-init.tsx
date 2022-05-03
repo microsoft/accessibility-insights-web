@@ -10,6 +10,7 @@ import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-ac
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
+import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -66,21 +67,24 @@ export const initializeDebugTools = () => {
 };
 
 const createStoreProxies = (browserAdapter: BrowserAdapter) => {
+    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter);
+    storeUpdateMessageDistributor.initialize();
+
     const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
         StoreNames[StoreNames.FeatureFlagStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const scopingStore = new StoreProxy<ScopingStoreData>(
         StoreNames[StoreNames.ScopingPanelStateStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
     const permissionsStore = new StoreProxy<PermissionsStateStoreData>(
         StoreNames[StoreNames.PermissionsStateStore],
-        browserAdapter,
+        storeUpdateMessageDistributor,
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];

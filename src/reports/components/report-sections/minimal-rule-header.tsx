@@ -40,7 +40,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
 
     const renderRuleName = () => (
         <span data-automation-id={cardsRuleIdAutomationId} className="rule-details-id">
-            {rule.id}
+            <strong>{rule.id}</strong>
         </span>
     );
 

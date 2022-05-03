@@ -6,6 +6,7 @@ import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -84,6 +85,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private pathSnippetController: PathSnippetController;
+    private storeUpdateMessageDistributor: StoreUpdateMessageDistributor;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
@@ -104,65 +106,68 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
+        this.storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(this.browserAdapter);
+        this.storeUpdateMessageDistributor.initialize();
+
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(
             StoreNames[StoreNames.ScopingPanelStateStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
             StoreNames[StoreNames.AssessmentStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.tabStoreProxy = new StoreProxy<TabStoreData>(
             StoreNames[StoreNames.TabStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(
             StoreNames[StoreNames.InspectStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
             StoreNames[StoreNames.PathSnippetStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
             StoreNames[StoreNames.UnifiedScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
             StoreNames[StoreNames.CardSelectionStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.needsReviewScanResultStoreProxy = new StoreProxy<NeedsReviewScanResultStoreData>(
             StoreNames[StoreNames.NeedsReviewScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.needsReviewCardSelectionStoreProxy = new StoreProxy<NeedsReviewCardSelectionStoreData>(
             StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
         this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
             StoreNames[StoreNames.PermissionsStateStore],
-            this.browserAdapter,
+            this.storeUpdateMessageDistributor,
         );
 
         const logger = createDefaultLogger();
@@ -214,9 +219,13 @@ export class MainWindowInitializer extends WindowInitializer {
         const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
             telemetryDataFactory,
             actionMessageDispatcher,
+            TelemetryEventSource.TargetPage,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+            telemetryDataFactory,
+        );
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
@@ -339,7 +348,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
             tabStopsRequirementResultProcessor,
-            this.featureFlagStoreProxy,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),
@@ -415,9 +423,6 @@ export class MainWindowInitializer extends WindowInitializer {
     protected dispose(): void {
         super.dispose();
 
-        this.tabStoreProxy.dispose();
-        this.visualizationScanResultStoreProxy.dispose();
-        this.visualizationStoreProxy.dispose();
-        this.devToolStoreProxy.dispose();
+        this.storeUpdateMessageDistributor.dispose();
     }
 }

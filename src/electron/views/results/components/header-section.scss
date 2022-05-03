@@ -9,6 +9,7 @@
 
     .title {
         @include text-style-title-m;
+
         line-height: 25px;
         color: $primary-text;
         margin-top: 0;

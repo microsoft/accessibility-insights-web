@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IButton, IContextualMenuItem, IRefObject } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -12,7 +13,6 @@ import {
     StartOverDropdown,
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
-import { IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './start-over-menu-item.scss';
 

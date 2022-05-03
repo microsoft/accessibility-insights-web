@@ -54,59 +54,55 @@ describe('LaunchPad', () => {
         const testObject = new LaunchPad(props);
 
         const expected = (
-            <div className="ms-Grid main-section">
-                <main>
-                    <div
-                        role="heading"
-                        aria-level={2}
-                        className="launch-pad-title ms-fontWeight-semibold"
-                    >
-                        Launch pad
-                    </div>
-                    <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                    <div className="launch-pad-main-section">
-                        <div key="row-item-1">
-                            <LaunchPadItemRow
-                                iconName={'Rocket'}
-                                description="Description 1"
-                                title="Title 1"
-                                onClickTitle={null}
-                            />
-                            <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                        </div>
+            <div className="main-section">
+                <div className="popup-grid">
+                    <main>
+                        <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
+                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                        <div className="launch-pad-main-section">
+                            <div key="row-item-1">
+                                <LaunchPadItemRow
+                                    iconName={'Rocket'}
+                                    description="Description 1"
+                                    title="Title 1"
+                                    onClickTitle={null}
+                                />
+                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                            </div>
 
-                        <div key="row-item-2">
-                            <LaunchPadItemRow
-                                iconName={'testBeaker'}
-                                description="Description 2"
-                                title="Title 2"
-                                onClickTitle={null}
-                            />
-                            <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
-                        </div>
+                            <div key="row-item-2">
+                                <LaunchPadItemRow
+                                    iconName={'testBeaker'}
+                                    description="Description 2"
+                                    title="Title 2"
+                                    onClickTitle={null}
+                                />
+                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                            </div>
 
-                        <div key="row-item-3">
-                            <LaunchPadItemRow
-                                iconName={'Medical'}
-                                description="Description 3"
-                                title="Title 3"
-                                onClickTitle={null}
-                            />
-                            <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                            <div key="row-item-3">
+                                <LaunchPadItemRow
+                                    iconName={'Medical'}
+                                    description="Description 3"
+                                    title="Title 3"
+                                    onClickTitle={null}
+                                />
+                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                            </div>
                         </div>
-                    </div>
-                </main>
-                <div role="complementary" className="launch-pad-footer">
-                    <div>
-                        {`Version ${props.version} | Powered by `}
-                        <ExternalLink
-                            deps={deps}
-                            title="Navigate to axe-core npm page"
-                            href="https://www.npmjs.com/package/axe-core"
-                        >
-                            axe-core
-                        </ExternalLink>{' '}
-                        {AXE_CORE_VERSION}
+                    </main>
+                    <div role="complementary" className="launch-pad-footer">
+                        <div>
+                            {`Version ${props.version} | Powered by `}
+                            <ExternalLink
+                                deps={deps}
+                                title="Navigate to axe-core npm page"
+                                href="https://www.npmjs.com/package/axe-core"
+                            >
+                                axe-core
+                            </ExternalLink>{' '}
+                            {AXE_CORE_VERSION}
+                        </div>
                     </div>
                 </div>
             </div>

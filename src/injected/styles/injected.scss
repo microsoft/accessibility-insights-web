@@ -15,6 +15,7 @@
     line-height: 1.5 !important;
     letter-spacing: 0.12em !important;
     word-spacing: 0.16em !important;
+
     p {
         margin-bottom: 2em !important;
     }
@@ -41,23 +42,24 @@
         z-index: 2147483647 !important;
     }
 
-    @include max-z-index();
+    @include max-z-index;
 
     position: absolute !important;
-    top: 0px !important;
-    left: 0px !important;
-    padding: 0px !important;
-    margin: 0px !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
     width: 100% !important;
     height: 100% !important;
 
     .insights-dialog-container {
-        @include max-z-index();
+        @include max-z-index;
+
         position: absolute !important;
-        top: 0px !important;
-        left: 0px !important;
-        padding: 0px !important;
-        margin: 0px !important;
+        top: 0 !important;
+        left: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     div.insights-dialog-main-container {
@@ -65,6 +67,7 @@
         max-width: 25%;
         user-select: text;
         min-width: 520px;
+
         svg path {
             @media screen and (forced-colors: active) {
                 forced-color-adjust: none !important;
@@ -170,7 +173,7 @@
     .insights-dialog-main-override {
         .insights-dialog-title {
             margin-bottom: 16px !important;
-            padding-bottom: 0px !important;
+            padding-bottom: 0 !important;
             color: $primary-text !important;
             font-size: 21px !important;
             font-weight: $fontWeightSemiBold !important;
@@ -190,7 +193,7 @@
             font-size: 14px !important;
 
             ul {
-                margin: 8px 8px 0px 8px !important;
+                margin: 8px 8px 0 8px !important;
                 padding-left: 8px !important;
             }
         }
@@ -222,14 +225,16 @@
             color: $primary-text !important;
             font-size: $fontSizeM !important;
             align-items: center !important;
-
             grid-template-columns: 100px 1fr 100px !important;
+
             :nth-child(1) {
                 text-align: left !important;
             }
+
             :nth-child(2) {
                 text-align: center !important;
             }
+
             :nth-child(3) {
                 text-align: right !important;
             }
@@ -239,7 +244,8 @@
     .insights-highlight-container,
     .insights-highlight-container svg {
         position: absolute !important;
-        @include max-z-index-1();
+        @include max-z-index-1;
+
         top: 0 !important;
         left: 0 !important;
         overflow: visible !important;
@@ -280,7 +286,8 @@
     }
 
     :host {
-        @include max-z-index-1();
+        @include max-z-index-1;
+
         top: 0 !important;
         left: 0 !important;
         width: 0 !important;

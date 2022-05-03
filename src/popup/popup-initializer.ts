@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from '@fluentui/react';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { loadTheme } from 'office-ui-fabric-react';
+import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -102,7 +103,10 @@ export class PopupInitializer {
             windowUtils,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+            telemetryFactory,
+        );
 
         const contentActionMessageCreator = new ContentActionMessageCreator(
             telemetryFactory,
@@ -115,6 +119,12 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
+        const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
+            this.browserAdapter,
+            tab.id,
+        );
+        storeUpdateMessageDistributor.initialize();
+
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
         const featureFlagStoreName = StoreNames[StoreNames.FeatureFlagStore];
@@ -123,28 +133,23 @@ export class PopupInitializer {
 
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
-            this.browserAdapter,
-            tab.id,
+            storeUpdateMessageDistributor,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
-            this.browserAdapter,
-            tab.id,
+            storeUpdateMessageDistributor,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
-            this.browserAdapter,
-            tab.id,
+            storeUpdateMessageDistributor,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
-            this.browserAdapter,
-            tab.id,
+            storeUpdateMessageDistributor,
         );
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
             userConfigurationStoreName,
-            this.browserAdapter,
-            tab.id,
+            storeUpdateMessageDistributor,
         );
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(

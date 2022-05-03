@@ -4,6 +4,7 @@ import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
+import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
@@ -19,9 +20,8 @@ describe('CollapsibleComponentCardsTest', () => {
     let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
-        header: <div>Some header</div>,
+        header: <HeadingElementForLevel headingLevel={5}>Some header</HeadingElementForLevel>,
         content: <div>Some content</div>,
-        headingLevel: 5,
         isExpanded: true,
     };
 

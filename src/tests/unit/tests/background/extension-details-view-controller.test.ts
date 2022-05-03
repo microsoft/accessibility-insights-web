@@ -2,41 +2,43 @@
 // Licensed under the MIT License.
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { DictionaryStringTo } from 'types/common-types';
+import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
+    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => void>;
     let testSubject: ExtensionDetailsViewController;
-    let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
-    let onUpdateTabCallback: (
-        tabId: number,
-        changeInfo: chrome.tabs.TabChangeInfo,
-        tab: chrome.tabs.Tab,
-    ) => void;
+    let tabIdToDetailsViewMap: DictionaryStringTo<number>;
+    const indexedDBDataKey: string = 'tabIdToDetailsViewMap';
+    const idbInstanceMock: IMock<IndexedDBAPI> = Mock.ofType<IndexedDBAPI>();
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
+        interpretMessageForTabMock = Mock.ofInstance(() => null);
 
-        browserAdapterMock
-            .setup(adapter => adapter.addListenerToTabsOnRemoved(It.isAny()))
-            .callback(callback => {
-                onTabRemoveCallback = callback;
-            })
-            .verifiable();
-
-        browserAdapterMock
-            .setup(adapter => adapter.addListenerToTabsOnUpdated(It.isAny()))
-            .callback(callback => {
-                onUpdateTabCallback = callback;
-            })
-            .verifiable();
-
-        testSubject = new ExtensionDetailsViewController(browserAdapterMock.object);
+        tabIdToDetailsViewMap = {};
+        idbInstanceMock.reset();
     });
 
-    describe('showDetailsView', () => {
-        it('creates a details view the first time', async () => {
+    describe('No Persisted Data', () => {
+        beforeEach(() => {
+            testSubject = new ExtensionDetailsViewController(
+                browserAdapterMock.object,
+                tabIdToDetailsViewMap,
+                idbInstanceMock.object,
+                interpretMessageForTabMock.object,
+                false,
+            );
+
+            setupDatabaseInstance(null, Times.never());
+        });
+
+        it('Does not persist data when details view created', async () => {
             const targetTabId = 12;
             const detailsViewTabId = 10;
 
@@ -45,17 +47,22 @@ describe('ExtensionDetailsViewController', () => {
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
         });
 
-        it('switch to existing tab the second time', async () => {
+        test('Does not persist data when tab updated', async () => {
             const targetTabId = 5;
             const detailsViewTabId = 10;
 
-            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
+            // call show details once
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.reset();
+
+            // update target tab
+            await testSubject.onUpdateTab(targetTabId, null);
 
             setupCreateDetailsViewForAnyUrl(Times.never());
             setupSwitchToTab(detailsViewTabId);
@@ -64,343 +71,489 @@ describe('ExtensionDetailsViewController', () => {
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
         });
 
-        it('propagates error from failing browser adapter call to switch to tab', async () => {
+        test('Does not persist data when tab removed', async () => {
             const targetTabId = 5;
             const detailsViewTabId = 10;
 
-            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
+            // call show details once
             await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.reset();
 
-            const errorMessage = 'switchToTab failed with dummy error';
-            browserAdapterMock
-                .setup(adapter => adapter.switchToTab(detailsViewTabId))
-                .returns(() => Promise.reject(errorMessage));
+            // remove target tab
+            await testSubject.onRemoveTab(targetTabId);
 
-            await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(errorMessage);
+            setupCreateDetailsViewForAnyUrl(Times.once());
+
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
+    });
+
+    describe('Persisted Data', () => {
+        beforeEach(() => {
+            testSubject = new ExtensionDetailsViewController(
+                browserAdapterMock.object,
+                tabIdToDetailsViewMap,
+                idbInstanceMock.object,
+                interpretMessageForTabMock.object,
+                true,
+            );
         });
 
-        it('propagates error from failing browser adapter call to create tab', async () => {
+        describe('showDetailsView', () => {
+            it('creates a details view the first time', async () => {
+                const targetTabId = 12;
+                const detailsViewTabId = 10;
+
+                setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+                setupDatabaseInstance({ '12': detailsViewTabId }, Times.once());
+
+                await testSubject.showDetailsView(targetTabId);
+
+                browserAdapterMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            });
+
+            it('creates a details view the first time with persisted items', async () => {
+                tabIdToDetailsViewMap['9'] = 99;
+
+                const targetTabId = 12;
+                const detailsViewTabId = 10;
+
+                setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+                setupDatabaseInstance(
+                    {
+                        '12': detailsViewTabId,
+                        '9': 99,
+                    },
+                    Times.once(),
+                );
+
+                await testSubject.showDetailsView(targetTabId);
+
+                browserAdapterMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            });
+
+            it('switch to existing tab the second time', async () => {
+                const targetTabId = 5;
+                const detailsViewTabId = 10;
+
+                setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+                setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+
+                await testSubject.showDetailsView(targetTabId);
+
+                browserAdapterMock.reset();
+
+                setupCreateDetailsViewForAnyUrl(Times.never());
+                setupSwitchToTab(detailsViewTabId);
+
+                // call show details second time
+                await testSubject.showDetailsView(targetTabId);
+
+                browserAdapterMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            });
+
+            it('propagates error from failing browser adapter call to switch to tab', async () => {
+                const targetTabId = 5;
+                const detailsViewTabId = 10;
+
+                setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
+
+                setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+
+                await testSubject.showDetailsView(targetTabId);
+
+                browserAdapterMock.reset();
+
+                const errorMessage = 'switchToTab failed with dummy error';
+                browserAdapterMock
+                    .setup(adapter => adapter.switchToTab(detailsViewTabId))
+                    .returns(() => Promise.reject(errorMessage));
+
+                await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(
+                    errorMessage,
+                );
+
+                browserAdapterMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            });
+
+            it('propagates error from failing browser adapter call to create tab', async () => {
+                const targetTabId = 5;
+                const errorMessage = 'error creating new window (from browser adapter)';
+
+                setupDatabaseInstance(null, Times.never());
+
+                browserAdapterMock
+                    .setup(adapter =>
+                        adapter.createTabInNewWindow(
+                            '/DetailsView/detailsView.html?tabId=' + targetTabId,
+                        ),
+                    )
+                    .returns(() => Promise.reject(errorMessage))
+                    .verifiable(Times.once());
+
+                await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(
+                    errorMessage,
+                );
+
+                browserAdapterMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            });
+        });
+
+        test('showDetailsView after target tab updated', async () => {
             const targetTabId = 5;
-            const errorMessage = 'error creating new window (from browser adapter)';
+            const detailsViewTabId = 10;
 
-            browserAdapterMock
-                .setup(adapter =>
-                    adapter.createTabInNewWindow(
-                        '/DetailsView/detailsView.html?tabId=' + targetTabId,
-                    ),
-                )
-                .returns(() => Promise.reject(errorMessage))
-                .verifiable(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-            await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(errorMessage);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
+
+            browserAdapterMock.reset();
+
+            // update target tab
+            await testSubject.onUpdateTab(targetTabId, null);
+
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
+
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
             browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
         });
-    });
 
-    test('showDetailsView after target tab updated', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+        test('showDetailsView after details tab navigated to another page', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+            setupDatabaseInstance({}, Times.once());
+            setupDatabaseInstance({ '5': -1 }, Times.once());
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
+                        tabId: targetTabId,
+                        payload: null,
+                        messageType: Messages.Visualizations.DetailsView.Close,
+                    }),
+                )
+                .verifiable();
 
-        browserAdapterMock.reset();
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // update target tab
-        onUpdateTabCallback(targetTabId, null, null);
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+            browserAdapterMock.reset();
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            // update details tab
+            browserAdapterMock
+                .setup(adapter => adapter.getUrl(It.isAny()))
+                .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-        browserAdapterMock.verifyAll();
-    });
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'www.bing.com/DetailsView/detailsView.html?tabId=' + targetTabId,
+            });
 
-    test('showDetailsView after details tab navigated to another page', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            setupCreateDetailsViewForAnyUrl(Times.once());
 
-        const detailsViewRemovedHandlerMock = Mock.ofInstance((tabId: number) => {});
-        detailsViewRemovedHandlerMock
-            .setup(handler => handler(targetTabId))
-            .verifiable(Times.once());
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
+            browserAdapterMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+        test('showDetailsView after details tab navigated to different details page', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        browserAdapterMock.reset();
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+            setupDatabaseInstance({}, Times.once());
+            setupDatabaseInstance({ '5': -1 }, Times.once());
 
-        // update details tab
-        browserAdapterMock
-            .setup(adapter => adapter.getUrl(It.isAny()))
-            .returns(suffix => `browser://mock_ext_id${suffix}`);
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        onUpdateTabCallback(
-            detailsViewTabId,
-            { url: 'www.bing.com/DetailsView/detailsView.html?tabId=' + targetTabId },
-            null,
-        );
+            browserAdapterMock.reset();
 
-        setupCreateDetailsViewForAnyUrl(Times.once());
+            // update details tab
+            browserAdapterMock
+                .setup(adapter => adapter.getUrl(It.isAny()))
+                .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90',
+            });
 
-        browserAdapterMock.verifyAll();
-        detailsViewRemovedHandlerMock.verifyAll();
-    });
+            setupCreateDetailsViewForAnyUrl(Times.once());
 
-    test('showDetailsView after details tab navigated to different details page', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+        test('showDetailsView after details tab refresh', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        browserAdapterMock.reset();
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // update details tab
-        browserAdapterMock
-            .setup(adapter => adapter.getUrl(It.isAny()))
-            .returns(suffix => `browser://mock_ext_id${suffix}`);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
 
-        onUpdateTabCallback(
-            detailsViewTabId,
-            { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' },
-            null,
-        );
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        setupCreateDetailsViewForAnyUrl(Times.once());
+            browserAdapterMock.reset();
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            // update details tab
+            browserAdapterMock
+                .setup(adapter => adapter.getUrl(It.isAny()))
+                .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-        browserAdapterMock.verifyAll();
-    });
+            await testSubject.onUpdateTab(detailsViewTabId, {
+                url: 'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId,
+            });
 
-    test('showDetailsView after details tab refresh', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        browserAdapterMock.reset();
+        test('showDetailsView after details tab has # at end', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        // update details tab
-        browserAdapterMock
-            .setup(adapter => adapter.getUrl(It.isAny()))
-            .returns(suffix => `browser://mock_ext_id${suffix}`);
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        onUpdateTabCallback(
-            detailsViewTabId,
-            { url: 'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId },
-            null,
-        );
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            browserAdapterMock.reset();
 
-        browserAdapterMock.verifyAll();
-    });
+            // update details tab
+            browserAdapterMock
+                .setup(adapter => adapter.getUrl(It.isAny()))
+                .returns(suffix => `browser://mock_ext_id${suffix}`);
 
-    test('showDetailsView after details tab has # at end', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
-
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
-
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
-
-        browserAdapterMock.reset();
-
-        // update details tab
-        browserAdapterMock
-            .setup(adapter => adapter.getUrl(It.isAny()))
-            .returns(suffix => `browser://mock_ext_id${suffix}`);
-
-        onUpdateTabCallback(
-            detailsViewTabId,
-            {
+            await testSubject.onUpdateTab(detailsViewTabId, {
                 url:
                     'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId + '#',
-            },
-            null,
-        );
+            });
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        browserAdapterMock.verifyAll();
-    });
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-    test('showDetailsView after details tab title update', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+        test('showDetailsView after details tab title update', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
 
-        browserAdapterMock.reset();
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        // update details tab
-        onUpdateTabCallback(detailsViewTabId, { title: 'issues' }, null);
+            browserAdapterMock.reset();
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+            // update details tab
+            await testSubject.onUpdateTab(detailsViewTabId, { title: 'issues' });
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
 
-        browserAdapterMock.verifyAll();
-    });
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-    test('showDetailsView after random tab updated', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+        test('showDetailsView after random tab updated', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        browserAdapterMock.reset();
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
 
-        // remove details tab
-        onUpdateTabCallback(123, { title: 'issues' }, null);
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+            browserAdapterMock.reset();
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            // remove details tab
+            await testSubject.onUpdateTab(123, { title: 'issues' });
 
-        browserAdapterMock.verifyAll();
-    });
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
 
-    test('showDetailsView after target tab removed', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+        test('showDetailsView after target tab removed', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        browserAdapterMock.reset();
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // remove target tab
-        onTabRemoveCallback(targetTabId, null);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+            setupDatabaseInstance({}, Times.once());
+            setupDatabaseInstance({ '5': -1 }, Times.once());
 
-        setupCreateDetailsViewForAnyUrl(Times.once());
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            browserAdapterMock.reset();
 
-        browserAdapterMock.verifyAll();
-    });
+            // remove target tab
+            await testSubject.onRemoveTab(targetTabId);
 
-    test('showDetailsView after details tab removed', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            setupCreateDetailsViewForAnyUrl(Times.once());
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        const detailsViewRemovedHandlerMock = Mock.ofInstance((tabId: number) => {});
-        detailsViewRemovedHandlerMock
-            .setup(handler => handler(targetTabId))
-            .verifiable(Times.once());
-        testSubject.setupDetailsViewTabRemovedHandler(detailsViewRemovedHandlerMock.object);
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+        test('showDetailsView after details tab removed', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        browserAdapterMock.reset();
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // remove details tab
-        onTabRemoveCallback(detailsViewTabId, null);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+            setupDatabaseInstance({}, Times.once());
+            setupDatabaseInstance({ '5': -1 }, Times.once());
 
-        setupCreateDetailsViewForAnyUrl(Times.once());
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(targetTabId, {
+                        tabId: targetTabId,
+                        payload: null,
+                        messageType: Messages.Visualizations.DetailsView.Close,
+                    }),
+                )
+                .verifiable();
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-        browserAdapterMock.verifyAll();
-        detailsViewRemovedHandlerMock.verifyAll();
-    });
+            browserAdapterMock.reset();
 
-    test('showDetailsView after details tab removed, remove handler not set', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            // remove details tab
+            await testSubject.onRemoveTab(detailsViewTabId);
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            setupCreateDetailsViewForAnyUrl(Times.once());
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        browserAdapterMock.reset();
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+            interpretMessageForTabMock.verifyAll();
+        });
 
-        // remove details tab
-        onTabRemoveCallback(detailsViewTabId, null);
+        test('showDetailsView after details tab removed, remove handler not set', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        setupCreateDetailsViewForAnyUrl(Times.once());
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.once());
+            setupDatabaseInstance({}, Times.once());
+            setupDatabaseInstance({ '5': -1 }, Times.once());
 
-        browserAdapterMock.verifyAll();
-    });
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
 
-    test('showDetailsView after random tab removed', async () => {
-        const targetTabId = 5;
-        const detailsViewTabId = 10;
+            browserAdapterMock.reset();
 
-        setupCreateDetailsView(targetTabId, detailsViewTabId);
+            // remove details tab
+            await testSubject.onRemoveTab(detailsViewTabId);
 
-        // call show details once
-        await testSubject.showDetailsView(targetTabId);
+            setupCreateDetailsViewForAnyUrl(Times.once());
 
-        browserAdapterMock.reset();
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
 
-        // remove details tab
-        onTabRemoveCallback(100, null);
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
 
-        setupCreateDetailsViewForAnyUrl(Times.never());
-        setupSwitchToTab(detailsViewTabId);
+        test('showDetailsView after random tab removed', async () => {
+            const targetTabId = 5;
+            const detailsViewTabId = 10;
 
-        // call show details second time
-        await testSubject.showDetailsView(targetTabId);
+            setupCreateDetailsView(targetTabId, detailsViewTabId);
 
-        browserAdapterMock.verifyAll();
+            setupDatabaseInstance({ '5': detailsViewTabId }, Times.exactly(2));
+
+            // call show details once
+            await testSubject.showDetailsView(targetTabId);
+
+            browserAdapterMock.reset();
+
+            // remove details tab
+            await testSubject.onRemoveTab(100);
+
+            setupCreateDetailsViewForAnyUrl(Times.never());
+            setupSwitchToTab(detailsViewTabId);
+
+            // call show details second time
+            await testSubject.showDetailsView(targetTabId);
+
+            browserAdapterMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
     });
 
     const setupSwitchToTab = (tabId: number) => {
@@ -422,5 +575,16 @@ describe('ExtensionDetailsViewController', () => {
             .setup(adapter => adapter.createTabInNewWindow(It.isAny()))
             .returns(() => Promise.resolve({ id: -1 } as Tabs.Tab))
             .verifiable(times);
+    };
+
+    const setupDatabaseInstance = (expectedMap: DictionaryStringTo<number>, times: Times) => {
+        if (expectedMap) {
+            idbInstanceMock
+                .setup(db => db.setItem(indexedDBDataKey, expectedMap))
+                .returns(() => Promise.resolve(true))
+                .verifiable(times);
+        } else {
+            idbInstanceMock.setup(db => db.setItem(indexedDBDataKey, It.isAny())).verifiable(times);
+        }
     };
 });

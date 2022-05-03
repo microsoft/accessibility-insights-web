@@ -19,6 +19,7 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: unified-mac-${{ parameters.channel }}-unsigned
           signedArtifactName: unified_mac_${{ parameters.channel }}_signed
+          channel: ${{ parameters.channel }}
 
     - template: sign-release-package-linux.yaml
       parameters:

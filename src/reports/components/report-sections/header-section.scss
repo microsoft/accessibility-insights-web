@@ -12,11 +12,11 @@
     min-height: fit-content;
     align-items: center;
     background-color: $neutral-0;
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
     .target-page {
         white-space: nowrap;
-        margin: 0px 0px 0px 16px;
+        margin: 0 0 0 16px;
         display: flex;
         color: $primary-text;
         font-family: $fontFamily;
@@ -26,7 +26,7 @@
         min-width: 0;
 
         a {
-            @include ellipsedText();
+            @include ellipsedText;
         }
     }
 }

@@ -4,19 +4,19 @@ exports[`ContentLink render null when reference is not defined 1`] = `""`;
 
 exports[`ContentLink renders from content, only have the icon 1`] = `
 "<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"Guidance\\">
-  <StyledIconBase iconName=\\"test icon 1\\" />
+  <Icon iconName=\\"test icon 1\\" />
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders from path, only have the icon 1`] = `
 "<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"Guidance\\">
-  <StyledIconBase iconName=\\"test icon 2\\" />
+  <Icon iconName=\\"test icon 2\\" />
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders with both text and icon 1`] = `
 "<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"test guidance\\">
-  <StyledIconBase iconName=\\"test icon\\" />
+  <Icon iconName=\\"test icon\\" />
   test
 </NewTabLinkWithTooltip>"
 `;

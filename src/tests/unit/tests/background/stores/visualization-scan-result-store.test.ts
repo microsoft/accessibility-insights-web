@@ -64,15 +64,20 @@ describe('VisualizationScanResultStoreTest', () => {
         );
     });
 
-    test('onTabStopDisabled', () => {
-        const tabEvents: TabbedElementData[] = [
+    function getTabbedElementDataStub() {
+        return [
             {
                 target: ['selector'],
                 timestamp: 1,
                 html: 'test',
                 tabOrder: 1,
+                instanceId: 'some instance id',
             },
         ];
+    }
+
+    test('onTabStopDisabled', () => {
+        const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withTabStopsTabbedElements(tabEvents)
@@ -88,14 +93,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onRescanVisualization: for test that has state', () => {
-        const tabEvents: TabbedElementData[] = [
-            {
-                target: ['selector'],
-                timestamp: 1,
-                html: 'test',
-                tabOrder: 1,
-            },
-        ];
+        const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = AdHocTestkeys.TabStops;
         const visualizationTypeStub = -2;
         const configStub: VisualizationConfiguration = {
@@ -118,14 +116,7 @@ describe('VisualizationScanResultStoreTest', () => {
     });
 
     test('onRescanVisualizationv: for test that does not have state', () => {
-        const tabEvents: TabbedElementData[] = [
-            {
-                target: ['selector'],
-                timestamp: 1,
-                html: 'test',
-                tabOrder: 1,
-            },
-        ];
+        const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = 'some test key';
         const visualizationTypeStub = -2;
         const configStub: VisualizationConfiguration = {
@@ -285,6 +276,7 @@ describe('VisualizationScanResultStoreTest', () => {
                 target: payload.tabbedElements[0].target,
                 html: 'test',
                 tabOrder: 1,
+                instanceId: 'abc',
             },
         ];
 
@@ -304,12 +296,14 @@ describe('VisualizationScanResultStoreTest', () => {
                 target: ['selector-10'],
                 html: 'test',
                 tabOrder: 1,
+                instanceId: 'some instance id',
             },
             {
                 timestamp: 30,
                 target: ['selector-30'],
                 html: 'test',
                 tabOrder: 2,
+                instanceId: 'some other instance id',
             },
         ];
 
@@ -334,11 +328,10 @@ describe('VisualizationScanResultStoreTest', () => {
                 target: payload.tabbedElements[0].target,
                 html: 'test',
                 tabOrder: 2,
+                instanceId: 'abc',
             },
             {
-                target: initialTabbedElements[1].target,
-                timestamp: initialTabbedElements[1].timestamp,
-                html: 'test',
+                ...initialTabbedElements[1],
                 tabOrder: 3,
             },
         ];
@@ -458,23 +451,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
-
-        test('does not add instance when needToCollectTabbingResults is false', () => {
-            initialState.tabStops.needToCollectTabbingResults = false;
-
-            expectedState.tabStops.needToCollectTabbingResults = false;
-
-            const unsavedInstancePayload: AddTabStopInstancePayload = {
-                requirementId: 'keyboard-navigation',
-                description: 'test2',
-                selector: ['selector should not be saved'],
-                html: 'html should not be saved',
-            };
-
-            createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-                .withActionParam(unsavedInstancePayload)
-                .testListenerToNeverBeCalled(initialState, expectedState);
-        });
     });
 
     test('onUpdateTabStopInstance', () => {
@@ -588,6 +564,11 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
@@ -604,6 +585,11 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -620,6 +606,11 @@ describe('VisualizationScanResultStoreTest', () => {
                 new VisualizationActions(),
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(TabStopRequirementActions, actionName, factory);
@@ -636,6 +627,11 @@ describe('VisualizationScanResultStoreTest', () => {
                 actions,
                 generateUIDStub,
                 visualizationConfigurationFactoryMock.object,
+                null,
+                null,
+                null,
+                null,
+                true,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);

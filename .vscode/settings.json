@@ -40,5 +40,6 @@
     "editor.formatOnSave": true,
     "editor.rulers": [100, 140],
     "typescript.tsdk": "node_modules/typescript/lib",
-    "eslint.workingDirectories": [{ "pattern": "./packages/*/" }, { "directory": "./" }]
+    "eslint.workingDirectories": [{ "pattern": "./packages/*/" }, { "directory": "./" }],
+    "stylelint.validate": ["css", "scss"]
 }

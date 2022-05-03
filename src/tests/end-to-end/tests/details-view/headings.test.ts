@@ -36,9 +36,12 @@ describe('Details View -> Assessment -> Headings', () => {
             await headingsPage.closeNavTestLink('Headings');
         });
 
-        it.each([true, false])(
-            'should pass accessibility validation with highContrastMode=%s',
-            async highContrastMode => {
+        it.each([
+            [true, 1],
+            [false, 0],
+        ])(
+            'should pass accessibility validation with highContrastMode=%s, %i errors expected',
+            async (highContrastMode, errorsExpected) => {
                 await browser.setHighContrastMode(highContrastMode);
                 await headingsPage.waitForHighContrastMode(highContrastMode);
 
@@ -46,7 +49,7 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                expect(results).toHaveLength(0);
+                expect(results).toHaveLength(errorsExpected);
             },
         );
     });
@@ -60,9 +63,12 @@ describe('Details View -> Assessment -> Headings', () => {
             await headingsPage.closeNavTestLink('Headings');
         });
 
-        it.each([true, false])(
-            'Getting started page should pass accessibility validation with highContrastMode=%s',
-            async highContrastMode => {
+        it.each([
+            [true, 1],
+            [false, 0],
+        ])(
+            'Getting started page should pass accessibility validation with highContrastMode=%s, %i errors expected',
+            async (highContrastMode, errorsExpected) => {
                 await browser.setHighContrastMode(highContrastMode);
                 await headingsPage.waitForHighContrastMode(highContrastMode);
 
@@ -70,7 +76,7 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                expect(results).toHaveLength(0);
+                expect(results).toHaveLength(errorsExpected);
             },
         );
     });

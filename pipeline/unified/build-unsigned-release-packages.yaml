@@ -17,7 +17,9 @@ pool:
     vmImage: $(vmImage)
 
 variables:
-    RUN_RELEASE_TESTS: true
+    - group: mac-notarization-developerid-certificate-secrets
+    - name: RUN_RELEASE_TESTS
+      value: 'true'
 
 steps:
     - template: ../install-node-prerequisites.yaml
@@ -44,6 +46,24 @@ steps:
 
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:unified:all
+
+    - script: |
+          security create-keychain -p password $(System.DefaultWorkingDirectory)/agent.keychain
+          security default-keychain -s $(System.DefaultWorkingDirectory)/agent.keychain
+          security unlock-keychain -p password $(System.DefaultWorkingDirectory)/agent.keychain
+          echo "$(mac-notarization-developerid-certificate-base64p12)" | base64 -D > $(System.DefaultWorkingDirectory)/cert.p12
+          security import $(System.DefaultWorkingDirectory)/cert.p12 -k $(System.DefaultWorkingDirectory)/agent.keychain -P "$(mac-notarization-developerid-certificate-password)" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $(System.DefaultWorkingDirectory)/agent.keychain
+          yarn unified-mac-sign $(mac-notarization-developerid-certificate-identity) $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist
+      displayName: codesign .app bundles
+      condition: and(succeeded(), eq(variables.platform, 'mac'))
+
+    - script: |
+          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/*.app
+          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed/mac/*.app
+          codesign -v -vvv --deep $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
+      displayName: verify codesign for .app bundles
+      condition: and(succeeded(), eq(variables.platform, 'mac'))
 
     - script: yarn pack:unified:all
       displayName: yarn pack:unified:all

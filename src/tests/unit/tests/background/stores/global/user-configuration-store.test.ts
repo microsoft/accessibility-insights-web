@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -41,6 +42,7 @@ describe('UserConfigurationStoreTest', () => {
             adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -52,6 +54,7 @@ describe('UserConfigurationStoreTest', () => {
             adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -99,6 +102,7 @@ describe('UserConfigurationStoreTest', () => {
             isFirstTime: true,
             enableHighContrast: true,
             adbLocation: 'test',
+            showAutoDetectedFailuresDialog: true,
         };
         const expected: UserConfigurationStoreData = {
             bugService: 'none',
@@ -206,6 +210,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -218,6 +223,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 indexDbStrictMock
@@ -258,6 +264,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -274,6 +281,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 indexDbStrictMock
@@ -314,6 +322,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -330,6 +339,7 @@ describe('UserConfigurationStoreTest', () => {
                     adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
+                    showAutoDetectedFailuresDialog: true,
                 };
 
                 indexDbStrictMock
@@ -361,6 +371,7 @@ describe('UserConfigurationStoreTest', () => {
                 adbLocation: null,
                 lastWindowState: null,
                 lastWindowBounds: null,
+                showAutoDetectedFailuresDialog: true,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -406,6 +417,7 @@ describe('UserConfigurationStoreTest', () => {
                 adbLocation: null,
                 lastWindowState: null,
                 lastWindowBounds: null,
+                showAutoDetectedFailuresDialog: true,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
@@ -483,6 +495,30 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
+    test('setAutoDetectedFailuresDialogState', () => {
+        const storeTester = createStoreToTestAction('setAutoDetectedFailuresDialogState');
+        const showAutoDetectedFailuresDialog = false;
+        const payload: AutoDetectedFailuresDialogStatePayload = {
+            enabled: showAutoDetectedFailuresDialog,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            showAutoDetectedFailuresDialog,
+        };
+
+        indexDbStrictMock
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
+
+        storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
     test.each(['normal', 'maximized', 'full-screen'])(
         'saveLastWindowBounds windowState:$windowState',
         windowState => {
@@ -503,6 +539,7 @@ describe('UserConfigurationStoreTest', () => {
                 adbLocation: null,
                 lastWindowState: null,
                 lastWindowBounds: null,
+                showAutoDetectedFailuresDialog: true,
             };
 
             const expectedState: UserConfigurationStoreData = {

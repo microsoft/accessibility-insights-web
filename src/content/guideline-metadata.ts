@@ -226,6 +226,7 @@ export const guidelineMetadata = {
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html',
         guidanceTags: [],
     },
+    // wcag146: intentionally omitted, AAA
     'WCAG 1.4.10': {
         number: '1.4.10',
         axeTag: 'wcag1410',

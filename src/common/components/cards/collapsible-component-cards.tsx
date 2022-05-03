@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { ActionButton } from '@fluentui/react';
+import { css } from '@fluentui/utilities';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
-import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
 import * as styles from './collapsible-component-cards.scss';
@@ -43,7 +44,6 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             onExpandToggle: onExpandToggle,
         } = props;
 
-        const containerProps = { role: 'heading', 'aria-level': headingLevel };
         let contentWrapper: JSX.Element | null = null;
         let collapsedCSSClassName: string | null = 'collapsed';
 
@@ -76,7 +76,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                     collapsedCSSClassName,
                 )}
             >
-                <div {...containerProps}>
+                <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>
                     <ActionButton
                         data-automation-id={collapsibleButtonAutomationId}
                         className={styles.collapsibleControl}
@@ -86,7 +86,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                     >
                         <span className={styles.collapsibleTitle}>{header}</span>
                     </ActionButton>
-                </div>
+                </HeadingElementForLevel>
                 {contentWrapper}
             </div>
         );

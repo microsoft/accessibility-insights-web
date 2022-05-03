@@ -16,16 +16,20 @@
         .left-nav-icon {
             color: $neutral-60;
         }
+
         .ms-Nav-groupContent {
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
+
         .ms-Nav-link {
             height: fit-content;
             width: unset;
         }
+
         button.ms-Nav-link {
             width: 100%;
         }
+
         .overview-label {
             padding-left: 10%;
             text-align: left;
@@ -34,56 +38,67 @@
             display: flex;
             flex-direction: column;
         }
+
         .overview-name {
             line-height: 20px;
         }
+
         .overview-percent {
             color: $neutral-55;
             line-height: 16px;
             font-size: 12px;
         }
+
         .ms-Nav-navItems {
-            margin-top: 0px !important;
+            margin-top: 0 !important;
         }
+
         .ms-Nav-compositeLink {
             a,
             button {
-                border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
-                border-top: 0px;
-                border-bottom: 0px;
+                border-top: 0;
+                border-bottom: 0;
             }
+
             .ms-Button-label {
                 color: $neutral-100;
             }
+
             &.is-selected {
                 a,
                 button {
                     background-color: $communication-tint-40;
-                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
-                        $communication-primary;
+
                     .ms-Button-label,
                     .overview-percent {
                         color: $highlighted-text;
                     }
+
                     .left-nav-icon {
                         color: $left-nav-icon;
                     }
                 }
+
                 a::after,
                 button::after {
-                    border-left: 0px;
+                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
+                        $communication-primary;
                 }
+
                 .ms-Button-label {
                     color: $always-black;
                 }
             }
         }
+
         .ms-Pivot-text {
             font-size: $fontSizeS;
         }
+
         .ms-Pivot-icon {
             font-size: 9px;
         }
+
         button {
             text-align: left;
         }

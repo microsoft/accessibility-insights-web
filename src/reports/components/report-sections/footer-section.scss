@@ -4,17 +4,17 @@
 @import './common-mixins.scss';
 
 .report-footer-container {
-    @include contentSize();
+    @include contentSize;
+
     margin-bottom: 68px;
     margin-top: 24px;
 
     .report-footer {
         line-height: 20px;
-
         color: $report-footer-text;
     }
 
     @media only screen and (max-width: 1000px) {
-        margin: 0px 16px 68px 16px;
+        margin: 0 16px 68px 16px;
     }
 }

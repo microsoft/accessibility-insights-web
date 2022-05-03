@@ -1,29 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsibleScriptProvider produces script source that matches snapshot 1`] = `
-"(function (doc) {
-  const collapsibles = doc.getElementsByClassName(\\"collapsible-container\\");
-  for (let index = 0; index < collapsibles.length; index++) {
-    const container = collapsibles.item(index);
-    const button =
+"(function addEventListenerForCollapsibleSection(doc) {
+  var _loop = function (index) {
+    var container = collapsibles.item(index);
+    var button =
       container === null || container === void 0
         ? void 0
         : container.querySelector(\\".collapsible-control\\");
     if (button == null) {
-      continue;
+      return \\"continue\\";
     }
     button.addEventListener(\\"click\\", function () {
       var ref;
-      const content =
+      var content =
         (ref = button.parentElement) === null || ref === void 0
           ? void 0
           : ref.nextElementSibling;
       if (content == null) {
-        throw Error(\`Expected button element's parent to have a next sibling\`);
+        throw Error(\\"Expected button element's parent to have a next sibling\\");
       }
-      const wasExpandedBefore =
+      var wasExpandedBefore =
         button.getAttribute(\\"aria-expanded\\") === \\"false\\" ? false : true;
-      const isExpandedAfter = !wasExpandedBefore;
+      var isExpandedAfter = !wasExpandedBefore;
       button.setAttribute(\\"aria-expanded\\", isExpandedAfter + \\"\\");
       content.setAttribute(\\"aria-hidden\\", !isExpandedAfter + \\"\\");
       if (isExpandedAfter) {
@@ -32,7 +31,9 @@ exports[`CollapsibleScriptProvider produces script source that matches snapshot 
         container.classList.add(\\"collapsed\\");
       }
     });
-  }
+  };
+  var collapsibles = doc.getElementsByClassName(\\"collapsible-container\\");
+  for (var index = 0; index < collapsibles.length; index++) _loop(index);
 })(document);
 "
 `;

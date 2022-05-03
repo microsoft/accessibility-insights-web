@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Toggle } from '@fluentui/react';
 import { CollapsibleComponent } from 'common/components/collapsible-component';
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { FocusComponent, FocusComponentDeps } from 'common/components/focus-component';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { FeatureFlags } from 'common/feature-flags';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
@@ -34,14 +35,14 @@ import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stop
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
-import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import * as Markup from '../../assessments/markup';
 
 export type AdhocTabStopsTestViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    userConfigMessageCreator: UserConfigMessageCreator;
 } & TabStopsRequirementsTableDeps &
     TabStopsFailedInstancePanelDeps &
     TabStopsFailedInstanceSectionDeps &
@@ -95,27 +96,24 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         </li>
                     </ol>
                 </li>
-                {props.featureFlagStoreData != null &&
-                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation] ? (
-                    <li>
-                        Record your results for each requirement:
-                        <ol>
-                            <li>
-                                If you find any failures, select <Markup.Term>Fail</Markup.Term>,
-                                then add them as failure instances.
-                            </li>
-                            <li>
-                                Select <Markup.Term>Pass</Markup.Term> if all instances meet the
-                                requirement.
-                            </li>
-                            <li>
-                                <Markup.Emphasis>
-                                    Review any auto-discovered failures to be sure they are valid.
-                                </Markup.Emphasis>
-                            </li>
-                        </ol>
-                    </li>
-                ) : null}
+                <li>
+                    Record your results for each requirement:
+                    <ol>
+                        <li>
+                            If you find any failures, select <Markup.Term>Fail</Markup.Term>, then
+                            add them as failure instances.
+                        </li>
+                        <li>
+                            Select <Markup.Term>Pass</Markup.Term> if all instances meet the
+                            requirement.
+                        </li>
+                        <li>
+                            <Markup.Emphasis>
+                                Review any auto-discovered failures to be sure they are valid.
+                            </Markup.Emphasis>
+                        </li>
+                    </ol>
+                </li>
             </ol>
         );
 
@@ -137,7 +135,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     displayableData={displayableData}
                     visualizationType={selectedTest}
                     toggleClickHandler={clickHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
                     detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 />
             );
@@ -145,78 +142,71 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
 
         const tabStopsTestViewContents = (
             <>
-                <h1>
-                    {displayableData.title}
-                    {` ${stepsText} `}
-                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
-                </h1>
+                <HeadingWithContentLink
+                    deps={props.deps}
+                    headingTitleClassName={styles.tabStopsTestViewHeader}
+                    headingTitle={displayableData.title}
+                    secondaryText={` ${stepsText} `}
+                    guidance={props.guidance}
+                />
                 {description}
-                <ThemeFamilyCustomizer
-                    themeFamily={'default'}
-                    userConfigurationStoreData={props.userConfigurationStoreData}
-                >
-                    <Toggle
-                        onClick={clickHandler}
-                        id="tab-stops-visual-helper"
-                        label="Visual helper"
-                        checked={scanData.enabled}
-                        className={styles.visualHelperToggle}
-                    />
-                </ThemeFamilyCustomizer>
+                <Toggle
+                    onClick={clickHandler}
+                    id="tab-stops-visual-helper"
+                    label="Visual helper"
+                    checked={scanData.enabled}
+                    className={styles.visualHelperToggle}
+                />
                 <CollapsibleComponent
-                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    header={
+                        <span
+                            className={styles.requirementHowToTestHeader}
+                            role="heading"
+                            aria-level={2}
+                        >
+                            How to test
+                        </span>
+                    }
                     content={howToTest}
                     contentClassName={requirementInstructionStyles.requirementInstructions}
                 />
                 <h2 className={styles.requirementTableTitle}>Record your results</h2>
-                <TabStopsRequirementsTable
-                    deps={props.deps}
-                    requirementState={requirementState}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                />
-                <TabStopsFailedInstanceSection
-                    deps={props.deps}
-                    tabStopRequirementState={
-                        props.visualizationScanResultData.tabStops.requirements
-                    }
-                    alwaysRenderSection={false}
-                    sectionHeadingLevel={2}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                />
-                <TabStopsFailedInstancePanel
-                    deps={props.deps}
-                    failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
-                    requirementState={requirementState}
-                />
-                <FlaggedComponent
-                    featureFlag={FeatureFlags.tabStopsAutomation}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    enableJSXElement={
-                        <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
-                    }
-                />
-                <FlaggedComponent
-                    featureFlag={FeatureFlags.tabStopsAutomation}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    enableJSXElement={
-                        <AutoDetectedFailuresDialog
-                            visualizationScanResultData={props.visualizationScanResultData}
-                        />
-                    }
-                />
+                <ThemeFamilyCustomizer
+                    themeFamily={'fast-pass'}
+                    userConfigurationStoreData={props.userConfigurationStoreData}
+                >
+                    <TabStopsRequirementsTable
+                        deps={props.deps}
+                        requirementState={requirementState}
+                    />
+                    <TabStopsFailedInstanceSection
+                        deps={props.deps}
+                        tabStopRequirementState={
+                            props.visualizationScanResultData.tabStops.requirements
+                        }
+                        alwaysRenderSection={false}
+                        sectionHeadingLevel={2}
+                    />
+                    <TabStopsFailedInstancePanel
+                        deps={props.deps}
+                        failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
+                        requirementState={requirementState}
+                    />
+
+                    <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />
+
+                    <AutoDetectedFailuresDialog
+                        deps={props.deps}
+                        visualizationScanResultData={props.visualizationScanResultData}
+                        userConfigurationStoreData={props.userConfigurationStoreData}
+                    />
+                </ThemeFamilyCustomizer>
             </>
         );
 
         return (
             <div className={styles.tabStopsTestViewContainer}>
-                <div className={styles.tabStopsTestView}>
-                    <ThemeFamilyCustomizer
-                        themeFamily={'fast-pass'}
-                        userConfigurationStoreData={props.userConfigurationStoreData}
-                    >
-                        {tabStopsTestViewContents}
-                    </ThemeFamilyCustomizer>
-                </div>
+                <div className={styles.tabStopsTestView}>{tabStopsTestViewContents}</div>
             </div>
         );
     },

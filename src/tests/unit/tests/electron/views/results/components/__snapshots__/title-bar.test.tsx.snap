@@ -35,23 +35,10 @@ exports[`TitleBar renders 1`] = `
   className="titleBar"
   deps={
     Object {
-      "platformInfo": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "currentProcess": undefined,
-      },
-      "storeActionMessageCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "dispatcher": undefined,
-        "getStateMessages": undefined,
-      },
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
-      },
-      "windowFrameActionCreator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "windowFrameActions": undefined,
-      },
+      "platformInfo": [typemoq mock object],
+      "storeActionMessageCreator": [typemoq mock object],
+      "storesHub": [typemoq mock object],
+      "windowFrameActionCreator": [typemoq mock object],
     }
   }
   headerTextClassName="headerText"
@@ -66,23 +53,10 @@ exports[`TitleBar renders 1`] = `
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
       Object {
-        "platformInfo": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "currentProcess": undefined,
-        },
-        "storeActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "dispatcher": undefined,
-          "getStateMessages": undefined,
-        },
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
+        "platformInfo": [typemoq mock object],
+        "storeActionMessageCreator": [typemoq mock object],
+        "storesHub": [typemoq mock object],
+        "windowFrameActionCreator": [typemoq mock object],
       }
     }
   />

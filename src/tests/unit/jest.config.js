@@ -13,6 +13,7 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     reporters: [
         'default',
+        'github-actions',
         [
             'jest-junit',
             { outputDirectory: '<rootDir>/test-results/unit/', outputName: 'junit.xml' },

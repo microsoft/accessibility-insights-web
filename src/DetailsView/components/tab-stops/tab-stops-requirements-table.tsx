@@ -1,22 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { FeatureFlags } from 'common/feature-flags';
+import { CheckboxVisibility, DetailsList, IColumn } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { CheckboxVisibility, DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
     requirementState: TabStopRequirementState;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export type TabStopsRequirementsTableDeps = {
@@ -75,14 +72,10 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             },
         ];
 
-        const requirements = requirementsList(
-            props.featureFlagStoreData &&
-                props.featureFlagStoreData[FeatureFlags.tabStopsAutomation],
-        );
         return (
             <DetailsList
                 className={styles.requirementTable}
-                items={requirements}
+                items={requirementsList}
                 columns={columns}
                 checkboxVisibility={CheckboxVisibility.hidden}
             />

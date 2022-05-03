@@ -62,7 +62,6 @@ describe('TabStopsFailedInstanceSection', () => {
             },
             alwaysRenderSection: false,
             sectionHeadingLevel: 2,
-            featureFlagStoreData: {},
         };
     });
 

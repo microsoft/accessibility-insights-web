@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
+import { getRTL } from '@fluentui/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { RecommendColor } from 'common/components/recommend-color';
 import { NavigatorUtils } from 'common/navigator-utils';

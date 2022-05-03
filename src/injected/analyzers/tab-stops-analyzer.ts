@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseStore } from 'common/base-store';
-import { FeatureFlags } from 'common/feature-flags';
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
@@ -29,7 +26,6 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
-        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
         private readonly debounceImpl: typeof debounce = debounce,
@@ -46,20 +42,16 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         };
         this.tabStopListenerRunner.start();
 
-        if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
-            this.tabStopsDoneAnalyzingTracker.reset();
-            if (this.tabStopsRequirementResultProcessor) {
-                this.tabStopsRequirementResultProcessor.start();
-            }
+        this.tabStopsDoneAnalyzingTracker.reset();
+        if (this.tabStopsRequirementResultProcessor) {
+            this.tabStopsRequirementResultProcessor.start();
         }
 
         return this.emptyResults;
     };
 
     private processTabEvents = (): void => {
-        if (this.featureFlagStore.getState()[FeatureFlags.tabStopsAutomation] === true) {
-            this.tabStopsDoneAnalyzingTracker.addTabStopEvents(this.pendingTabbedElements);
-        }
+        this.tabStopsDoneAnalyzingTracker.addTabStopEvents(this.pendingTabbedElements);
 
         const results = this.pendingTabbedElements;
         this.pendingTabbedElements = [];

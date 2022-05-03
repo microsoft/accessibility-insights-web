@@ -18,10 +18,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     <CopyIssueDetailsButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -29,10 +26,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     <IssueFilingButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -66,10 +60,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     <CopyIssueDetailsButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -77,10 +68,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     <IssueFilingButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -120,10 +108,7 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
     <CopyIssueDetailsButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -131,10 +116,7 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
     <IssueFilingButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -168,10 +150,7 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
     <CopyIssueDetailsButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
@@ -179,10 +158,7 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
     <IssueFilingButton
       deps={
         Object {
-          "axeResultToIssueFilingDataConverter": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "shortenSelector": undefined,
-          },
+          "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
       issueDetailsData={Object {}}
