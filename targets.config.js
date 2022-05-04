@@ -93,7 +93,7 @@ module.exports = {
                 ...commonExtensionOptions,
                 ...icons.canary,
                 manifestVersion: 3,
-                fullName: 'Accessibility Insights for Web - Canary (Manifest 3)',
+                fullName: 'Accessibility Insights for Web - Canary (M3)',
                 telemetryBuildName: 'CanaryMV3',
             },
         },
