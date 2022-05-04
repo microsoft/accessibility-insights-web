@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextManager } from 'background/tab-context-manager';
+import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -27,9 +29,8 @@ import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-ser
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
 import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { getGlobalPersistedData } from './get-persisted-data';
+import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
-import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
@@ -49,6 +50,8 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 declare let window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
+    const persistData = true;
+
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
@@ -69,10 +72,12 @@ async function initialize(): Promise<void> {
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
-    const persistedDataPromise = getGlobalPersistedData(
-        indexedDBInstance,
-        indexedDBDataKeysToFetch,
-    );
+    let persistedDataPromise;
+    if (persistData) {
+        persistedDataPromise = getAllPersistedData(indexedDBInstance);
+    } else {
+        persistedDataPromise = getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    }
     const userDataPromise = browserAdapter.getUserData(storageDataKeys);
     const persistedData = await persistedDataPromise;
     const userData = await userDataPromise;
@@ -135,7 +140,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         browserAdapter,
         logger,
-        false,
+        persistData,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -194,9 +199,10 @@ async function initialize(): Promise<void> {
 
     const detailsViewController = new ExtensionDetailsViewController(
         browserAdapter,
-        {},
+        persistedData.tabIdToDetailsViewMap ?? {},
         indexedDBInstance,
         tabContextManager.interpretMessageForTab,
+        persistData,
     );
 
     const tabContextFactory = new TabContextFactory(
@@ -213,7 +219,7 @@ async function initialize(): Promise<void> {
         windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
-        false,
+        persistData,
     );
 
     const targetPageController = new TargetPageController(
@@ -221,11 +227,19 @@ async function initialize(): Promise<void> {
         tabContextFactory,
         browserAdapter,
         logger,
-        {},
+        persistedData.knownTabIds ?? {},
         indexedDBInstance,
+        persistData,
     );
 
     await targetPageController.initialize();
+
+    const tabEventDistributor = new TabEventDistributor(
+        browserAdapter,
+        targetPageController,
+        detailsViewController,
+    );
+    tabEventDistributor.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();

@@ -12,6 +12,7 @@ import { PostMessageContentHandler } from 'background/post-message-content-handl
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
+import { TabEventDistributor } from 'background/tab-event-distributor';
 import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
@@ -209,8 +210,14 @@ async function initialize(): Promise<void> {
         indexedDBInstance,
         true,
     );
-
     await targetPageController.initialize();
+
+    const tabEventDistributor = new TabEventDistributor(
+        browserAdapter,
+        targetPageController,
+        detailsViewController,
+    );
+    tabEventDistributor.initialize();
 
     const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
     devToolsBackgroundListener.initialize();

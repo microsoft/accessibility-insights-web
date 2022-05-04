@@ -19,7 +19,7 @@ export class TargetPageController {
         private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
-        private persistStoreData = false,
+        private persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {
@@ -50,16 +50,65 @@ export class TargetPageController {
         for (const tab of newTabs) {
             await this.handleTabUrlUpdate(tab.id);
         }
+    }
 
-        this.browserAdapter.addListenerOnConnect(port => {
-            // do not remove this. We need this to detect if the extension is reloaded from the content scripts
+    public async onTabNavigated(
+        details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
+    ): Promise<void> {
+        if (details.frameId === 0) {
+            await this.handleTabUrlUpdate(details.tabId);
+        }
+    }
+
+    public async onTabUpdated(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
+        if (changeInfo.url) {
+            await this.handleTabUrlUpdate(tabId);
+        }
+    }
+
+    public async onTabActivated(activeInfo: chrome.tabs.TabActiveInfo): Promise<void> {
+        const activeTabId = activeInfo.tabId;
+        const windowId = activeInfo.windowId;
+
+        this.sendTabVisibilityChangeAction(activeTabId, false);
+
+        const tabs = await this.browserAdapter.tabsQuery({ windowId });
+        tabs.forEach(tab => {
+            if (!tab.active) {
+                this.sendTabVisibilityChangeAction(tab.id, true);
+            }
+        });
+    }
+
+    public async onWindowFocusChanged(): Promise<void> {
+        const chromeWindows = await this.browserAdapter.getAllWindows({
+            populate: false,
+            windowTypes: ['normal', 'popup'],
         });
 
-        this.browserAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
-        this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
-        this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
-        this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
-        this.browserAdapter.addListenerToTabsOnUpdated(this.onTabUpdated);
+        chromeWindows.forEach(async chromeWindow => {
+            const activeTabs = await this.browserAdapter.tabsQuery({
+                active: true,
+                windowId: chromeWindow.id,
+            });
+
+            for (const activeTab of activeTabs) {
+                this.sendTabVisibilityChangeAction(
+                    activeTab.id,
+                    chromeWindow.state === 'minimized',
+                );
+            }
+        });
+    }
+
+    public onTargetTabRemoved(tabId: number): void {
+        this.tabContextManager.interpretMessageForTab(tabId, {
+            messageType: Messages.Tab.Remove,
+            payload: null,
+            tabId: tabId,
+        });
+        this.removeKnownTabId(tabId);
+        this.tabContextManager.deleteTabContext(tabId);
     }
 
     private getUrl = async (tabId: number): Promise<string> => {
@@ -89,58 +138,6 @@ export class TargetPageController {
                 await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
             }
         }
-    };
-
-    private onTabNavigated = async (
-        details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
-    ): Promise<void> => {
-        if (details.frameId === 0) {
-            await this.handleTabUrlUpdate(details.tabId);
-        }
-    };
-
-    private onTabUpdated = async (
-        tabId: number,
-        changeInfo: chrome.tabs.TabChangeInfo,
-    ): Promise<void> => {
-        if (changeInfo.url) {
-            await this.handleTabUrlUpdate(tabId);
-        }
-    };
-
-    private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
-        const activeTabId = activeInfo.tabId;
-        const windowId = activeInfo.windowId;
-
-        this.sendTabVisibilityChangeAction(activeTabId, false);
-
-        const tabs = await this.browserAdapter.tabsQuery({ windowId });
-        tabs.forEach(tab => {
-            if (!tab.active) {
-                this.sendTabVisibilityChangeAction(tab.id, true);
-            }
-        });
-    };
-
-    private onWindowFocusChanged = async (windowId: number): Promise<void> => {
-        const chromeWindows = await this.browserAdapter.getAllWindows({
-            populate: false,
-            windowTypes: ['normal', 'popup'],
-        });
-
-        chromeWindows.forEach(async chromeWindow => {
-            const activeTabs = await this.browserAdapter.tabsQuery({
-                active: true,
-                windowId: chromeWindow.id,
-            });
-
-            for (const activeTab of activeTabs) {
-                this.sendTabVisibilityChangeAction(
-                    activeTab.id,
-                    chromeWindow.state === 'minimized',
-                );
-            }
-        });
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
@@ -178,14 +175,4 @@ export class TargetPageController {
         };
         this.tabContextManager.interpretMessageForTab(tabId, message);
     }
-
-    private onTargetTabRemoved = (tabId: number): void => {
-        this.tabContextManager.interpretMessageForTab(tabId, {
-            messageType: Messages.Tab.Remove,
-            payload: null,
-            tabId: tabId,
-        });
-        this.removeKnownTabId(tabId);
-        this.tabContextManager.deleteTabContext(tabId);
-    };
 }
