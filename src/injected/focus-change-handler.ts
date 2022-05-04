@@ -60,7 +60,7 @@ export class FocusChangeHandler {
     }
 
     private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
-        const focusedResult = storeData.unifiedScanResultStoreData.results.find(
+        const focusedResult = storeData.unifiedScanResultStoreData.results!.find(
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
 
