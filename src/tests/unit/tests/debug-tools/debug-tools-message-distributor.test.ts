@@ -6,7 +6,7 @@ import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { StoreUpdateMessage } from 'common/types/store-update-message';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(DebugToolsMessageDistributor, () => {
     let registeredListener: (message: any) => void;
@@ -21,10 +21,6 @@ describe(DebugToolsMessageDistributor, () => {
         telemetryListenerMock = Mock.ofType<TelemetryListener>();
         storeUpdateHubMock = Mock.ofType<StoreUpdateMessageHub>();
 
-        browserAdapterMock
-            .setup(b => b.addListenerOnMessage(It.isAny()))
-            .returns(listener => (registeredListener = listener));
-
         testSubject = new DebugToolsMessageDistributor(
             browserAdapterMock.object,
             storeUpdateHubMock.object,
@@ -32,9 +28,27 @@ describe(DebugToolsMessageDistributor, () => {
         );
     });
 
+    afterEach(() => {
+        telemetryListenerMock.verifyAll();
+        storeUpdateHubMock.verifyAll();
+        browserAdapterMock.verifyAll();
+    });
+
+    it('initialize registers message listener', () => {
+        browserAdapterMock
+            .setup(b => b.addListenerOnMessage(It.isAny()))
+            .returns(listener => (registeredListener = listener))
+            .verifiable(Times.once());
+
+        testSubject.initialize();
+    });
+
     it('registers listener that calls both message handlers', () => {
         const message = { messageType: 'message type' };
 
+        browserAdapterMock
+            .setup(b => b.addListenerOnMessage(It.isAny()))
+            .returns(listener => (registeredListener = listener));
         telemetryListenerMock.setup(t => t.onTelemetryMessage(message)).verifiable();
         storeUpdateHubMock
             .setup(s => s.handleMessage(message as StoreUpdateMessage<unknown>))
@@ -44,8 +58,5 @@ describe(DebugToolsMessageDistributor, () => {
 
         expect(registeredListener).toBeDefined();
         registeredListener(message);
-
-        telemetryListenerMock.verifyAll();
-        storeUpdateHubMock.verifyAll();
     });
 });
