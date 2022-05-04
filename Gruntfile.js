@@ -467,14 +467,7 @@ module.exports = function (grunt) {
                         40: config.options.icon48,
                     },
                 },
-                permissions: [
-                    'alarms',
-                    'notifications',
-                    'scripting',
-                    'storage',
-                    'tabs',
-                    'webNavigation',
-                ],
+                permissions: ['notifications', 'scripting', 'storage', 'tabs', 'webNavigation'],
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
