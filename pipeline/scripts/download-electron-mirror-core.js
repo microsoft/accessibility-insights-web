@@ -34,8 +34,9 @@ const clearAndExtract = async (zipFilePath, destinationPath) => {
 
     console.log(`extracting to ${destinationPath}`);
 
-    fs.rmdirSync(destinationPath, { recursive: true });
-
+    if (fs.existsSync(destinationPath)) {
+        fs.rmdirSync(destinationPath, { recursive: true });
+    }
     await extract(zipFilePath, { dir: destinationPath });
 };
 
