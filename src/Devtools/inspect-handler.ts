@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Messages } from 'common/messages';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
-import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage, DevToolsStatusResponse } from '../common/types/dev-tools-messages';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 
 export class InspectHandler {
@@ -27,6 +28,23 @@ export class InspectHandler {
                 this.targetPageInspector.inspectElement(selector, state.frameUrl ?? undefined);
             }
         });
+
+        // TODO: create a new DevToolsMessageDistributor to handle these messages
+        this.browserAdapter.addListenerOnMessage(
+            (message): void | Promise<DevToolsStatusResponse> => {
+                console.log(
+                    `Tab ${this.browserAdapter.getInspectedWindowTabId()} Received message ${JSON.stringify(
+                        message,
+                    )}`,
+                );
+                if (
+                    message.messageType === Messages.DevTools.StatusRequest &&
+                    message.tabId === this.browserAdapter.getInspectedWindowTabId()
+                ) {
+                    return Promise.resolve({ isActive: true, tabId: message.tabId });
+                }
+            },
+        );
 
         const backgroundPageConnection = this.browserAdapter.connect({
             name: ConnectionNames.devTools,

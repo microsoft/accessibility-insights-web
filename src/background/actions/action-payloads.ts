@@ -167,7 +167,7 @@ export interface SetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
 }
 
-export interface OnDevToolOpenPayload extends BaseActionPayload {
+export interface OnDevToolStatusPayload extends BaseActionPayload {
     status: boolean;
 }
 

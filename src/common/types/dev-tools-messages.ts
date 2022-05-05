@@ -3,3 +3,7 @@
 export interface DevToolsOpenMessage {
     tabId: number;
 }
+
+export interface DevToolsStatusResponse {
+    isActive: boolean;
+}

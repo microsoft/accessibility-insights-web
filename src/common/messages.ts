@@ -47,7 +47,10 @@ export const Messages = {
     },
 
     DevTools: {
-        DevtoolStatus: `${messagePrefix}/devtools/status`,
+        Open: `${messagePrefix}/devtools/open`,
+        Close: `${messagePrefix}/devtools/close`,
+        StatusRequest: `${messagePrefix}/devtools/getStatus`,
+        DevtoolStatus: `${messagePrefix}/devtools/status`, // TODO: remove this, replace with Open
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
     },
