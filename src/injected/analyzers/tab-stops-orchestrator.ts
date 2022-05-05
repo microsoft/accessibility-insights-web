@@ -17,7 +17,7 @@ export class TabStopRequirementOrchestrator
 
     private tabbableTabStops: FocusableElement[];
     private actualTabStops: Set<HTMLElement> = new Set();
-    private latestVisitedTabStop: HTMLElement = null;
+    private latestVisitedTabStop: HTMLElement | null = null;
 
     constructor(
         private readonly dom: Document,
@@ -107,8 +107,12 @@ export class TabStopRequirementOrchestrator
 
         const oldElement = this.dom.activeElement;
         this.windowUtils.setTimeout(() => {
+            const newElement = this.dom.activeElement;
+            if(oldElement == null || newElement == null){
+                return;
+            }
             const result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
-                this.dom.activeElement,
+                newElement,
                 oldElement,
             );
             if (result == null) {
