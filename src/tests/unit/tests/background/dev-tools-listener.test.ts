@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DevToolsListener } from 'background/dev-tools-listener';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
-import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-messages';
 import {
     DevToolsBrowserAdapterMock,
     PortWithTabTabIdStub,
@@ -17,13 +18,16 @@ describe('DevToolsListenerTests', () => {
     let testSubject: DevToolsListener;
     let browserAdapterMock: DevToolsBrowserAdapterMock;
     let tabContextManagerMock: IMock<TabContextManager>;
+    let devToolsMonitorMock: IMock<DevToolsMonitor>;
 
     beforeEach(() => {
         tabContextManagerMock = Mock.ofType<TabContextManager>();
         browserAdapterMock = new DevToolsBrowserAdapterMock();
+        devToolsMonitorMock = Mock.ofType<DevToolsMonitor>();
         testSubject = new DevToolsListener(
             tabContextManagerMock.object,
             browserAdapterMock.getObject(),
+            devToolsMonitorMock.object,
         );
     });
 
@@ -111,6 +115,8 @@ describe('DevToolsListenerTests', () => {
             )
             .verifiable(Times.once());
 
+        devToolsMonitorMock.setup(d => d.startMonitoringDevtool(2)).verifiable(Times.once());
+
         testSubject.initialize();
         connectListenerCB(portStub);
 
@@ -122,6 +128,8 @@ describe('DevToolsListenerTests', () => {
 
         expect(portStub.targetPageTabId).toBe(2);
         tabContextManagerMock.verifyAll();
+
+        devToolsMonitorMock.verifyAll();
     });
 
     test('initialize - disconnect - call interpreter with status false', () => {

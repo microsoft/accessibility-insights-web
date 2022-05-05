@@ -28,7 +28,7 @@ export class DevToolsListener {
                 ) => {
                     devToolsConnection.targetPageTabId = message.tabId;
                     this.sendDevToolStatus(devToolsConnection, true);
-                    this.devToolsMonitor.monitorActiveDevtool(message.tabId);
+                    this.devToolsMonitor.startMonitoringDevtool(message.tabId);
                 };
 
                 devToolsConnection.onMessage.addListener(devToolsListener);

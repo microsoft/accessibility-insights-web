@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-type TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
-type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
+export type TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
+export type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
 
 export type ExternalResolutionPromise = {
     promise: Promise<any>;

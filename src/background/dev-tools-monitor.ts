@@ -11,7 +11,7 @@ export class DevToolsMonitor {
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly promiseFactory: PromiseFactory,
-        private readonly activeDevtoolTabIds: number[],
+        protected readonly activeDevtoolTabIds: number[],
         private readonly messageTimeoutMilliseconds = 5000,
         private readonly pollIntervalMilliseconds = 1000,
     ) {}
@@ -20,12 +20,12 @@ export class DevToolsMonitor {
         // TODO: initialize with persisted activeDevtoolTabIds, start monitor if needed
     }
 
-    public monitorActiveDevtool(tabId: number): void {
+    public startMonitoringDevtool(tabId: number): void {
         this.addActiveDevtool(tabId);
 
         if (this.activeDevtoolTabIds.length === 1) {
             // Do not await, we want to continue running other synchronous code
-            this.waitForAllDevtoolsClosed();
+            this.monitorActiveDevtools();
         }
     }
 
@@ -44,7 +44,7 @@ export class DevToolsMonitor {
         // TODO: persist activeDevtoolTabIds
     }
 
-    private async waitForAllDevtoolsClosed(): Promise<void> {
+    protected async monitorActiveDevtools(): Promise<void> {
         while (this.activeDevtoolTabIds.length > 0) {
             await this.promiseFactory.delay(null, this.pollIntervalMilliseconds);
             await this.removeInactiveDevtools();
@@ -70,14 +70,12 @@ export class DevToolsMonitor {
     }
 
     private async isDevtoolOpen(tabId: number): Promise<boolean> {
-        const devtoolStatusPromise = await this.browserAdapter.sendRuntimeMessage({
-            messageType: Messages.DevTools.StatusRequest,
-            tabId: tabId,
-        });
-
         try {
             const statusResponse: DevToolsStatusResponse = await this.promiseFactory.timeout(
-                devtoolStatusPromise,
+                this.browserAdapter.sendRuntimeMessage({
+                    messageType: Messages.DevTools.StatusRequest,
+                    tabId: tabId,
+                }),
                 this.messageTimeoutMilliseconds,
             );
 
