@@ -18,7 +18,11 @@ export function screenshotViewModelProvider(
     const viewPortInfo = tryGetViewPort(unifiedScanResultStoreData.platformInfo);
 
     let highlightBoxViewModels: HighlightBoxViewModel[] = [];
-    if (screenshotData != null && viewPortInfo != null && unifiedScanResultStoreData.results != null) {
+    if (
+        screenshotData != null &&
+        viewPortInfo != null &&
+        unifiedScanResultStoreData.results != null
+    ) {
         highlightBoxViewModels = getHighlightBoxViewModels(
             unifiedScanResultStoreData.results,
             highlightedResultUids,

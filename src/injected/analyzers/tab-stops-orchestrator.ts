@@ -108,7 +108,7 @@ export class TabStopRequirementOrchestrator
         const oldElement = this.dom.activeElement;
         this.windowUtils.setTimeout(() => {
             const newElement = this.dom.activeElement;
-            if(oldElement == null || newElement == null){
+            if (oldElement == null || newElement == null) {
                 return;
             }
             const result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
