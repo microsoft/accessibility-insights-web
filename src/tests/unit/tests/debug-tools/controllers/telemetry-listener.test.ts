@@ -1,62 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ConnectionNames } from 'common/constants/connection-names';
+import { Messages } from 'common/messages';
 import {
     DebugToolsTelemetryMessage,
     DebugToolsTelemetryMessageListener,
     TelemetryListener,
 } from 'debug-tools/controllers/telemetry-listener';
-import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TelemetryListener', () => {
-    type Port = chrome.runtime.Port;
-    type OnMessage = Port['onMessage'];
-
-    let onMessageMock: IMock<OnMessage>;
-    let connectionMock: IMock<Port>;
-    let browserAdapterMock: IMock<BrowserAdapter>;
     let getDateMock: IMock<() => Date>;
 
     let testSubject: TelemetryListener;
 
     beforeEach(() => {
-        onMessageMock = Mock.ofType<OnMessage>();
-
-        connectionMock = Mock.ofType<Port>();
-        connectionMock
-            .setup(connection => connection.onMessage)
-            .returns(() => onMessageMock.object);
-
-        browserAdapterMock = Mock.ofType<BrowserAdapter>();
-
-        browserAdapterMock
-            .setup(adapter =>
-                adapter.connect(
-                    It.isValue({
-                        name: ConnectionNames.debugToolsTelemetry,
-                    }),
-                ),
-            )
-            .returns(() => connectionMock.object);
-
         getDateMock = Mock.ofType<() => Date>();
 
-        testSubject = new TelemetryListener(browserAdapterMock.object, getDateMock.object);
+        testSubject = new TelemetryListener(getDateMock.object);
     });
 
     it('handles incoming messages', () => {
-        let internalListener: Function;
-
-        onMessageMock
-            .setup(onMessage => onMessage.addListener(It.is(isFunction)))
-            .callback(listener => (internalListener = listener));
-
         const millisSinceEpoch = 0;
         getDateMock.setup(getter => getter()).returns(() => new Date(millisSinceEpoch));
-
-        testSubject.initialize();
 
         const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
 
@@ -80,6 +45,7 @@ describe('TelemetryListener', () => {
         const name = 'test-event-name';
 
         const incommingMessage = {
+            messageType: Messages.DebugTools.Telemetry,
             name,
             properties: {
                 ...baseProperties,
@@ -87,7 +53,7 @@ describe('TelemetryListener', () => {
             },
         };
 
-        internalListener(incommingMessage);
+        testSubject.onTelemetryMessage(incommingMessage);
 
         const expectedMessage: DebugToolsTelemetryMessage = {
             name,
@@ -102,11 +68,18 @@ describe('TelemetryListener', () => {
         );
     });
 
-    it('close the connection', () => {
-        testSubject.initialize();
+    it('ignores message with incorrect type', () => {
+        const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
 
-        testSubject.dispose();
+        testSubject.addListener(externalListenerMock.object);
 
-        connectionMock.verify(connection => connection.disconnect(), Times.once());
+        const incommingMessage = {
+            name,
+            timestamp: 0,
+        };
+
+        testSubject.onTelemetryMessage(incommingMessage);
+
+        externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });
 });

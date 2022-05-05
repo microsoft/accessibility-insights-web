@@ -10,7 +10,7 @@ import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-ac
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -27,6 +27,7 @@ import {
 } from 'debug-tools/components/debug-tools-view';
 import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
+import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -38,7 +39,8 @@ export const initializeDebugTools = () => {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
-    const storeProxies = createStoreProxies(browserAdapter);
+    const storeUpdateMessageHub = new StoreUpdateMessageHub();
+    const storeProxies = createStoreProxies(storeUpdateMessageHub);
     const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
@@ -50,8 +52,14 @@ export const initializeDebugTools = () => {
     const allStores = [...storeProxies, debugToolsNavStore];
     const storesHub = new BaseClientStoresHub<DebugToolsViewState>(allStores);
 
-    const telemetryListener = new TelemetryListener(browserAdapter, DateProvider.getCurrentDate);
-    telemetryListener.initialize();
+    const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
+
+    const messageDistributor = new DebugToolsMessageDistributor(
+        browserAdapter,
+        storeUpdateMessageHub,
+        telemetryListener,
+    );
+    messageDistributor.initialize();
 
     const props: DebugToolsViewDeps = {
         debugToolsNavActionCreator,
@@ -66,25 +74,22 @@ export const initializeDebugTools = () => {
     render(props);
 };
 
-const createStoreProxies = (browserAdapter: BrowserAdapter) => {
-    const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(browserAdapter);
-    storeUpdateMessageDistributor.initialize();
-
+const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
     const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
         StoreNames[StoreNames.FeatureFlagStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const scopingStore = new StoreProxy<ScopingStoreData>(
         StoreNames[StoreNames.ScopingPanelStateStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
     const permissionsStore = new StoreProxy<PermissionsStateStoreData>(
         StoreNames[StoreNames.PermissionsStateStore],
-        storeUpdateMessageDistributor,
+        storeUpdateMessageHub,
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];

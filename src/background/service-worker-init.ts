@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DevToolsListener } from 'background/dev-tools-listener';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
-import { MessageDistributor } from 'background/message-distributor';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { TabContextFactory } from 'background/tab-context-factory';
@@ -86,7 +86,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         applicationTelemetryDataFactory,
     );
-    debugToolsTelemetryClient.initialize();
 
     const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
         consoleTelemetryClient,
@@ -124,6 +123,7 @@ async function initialize(): Promise<void> {
     );
 
     telemetryLogger.initialize(globalContext.featureFlagsController);
+    debugToolsTelemetryClient.initialize(globalContext.featureFlagsController);
 
     const telemetryStateListener = new TelemetryStateListener(
         globalContext.stores.userConfigurationStore,
@@ -160,7 +160,7 @@ async function initialize(): Promise<void> {
 
     const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
 
-    const messageDistributor = new MessageDistributor(
+    const messageDistributor = new BackgroundMessageDistributor(
         globalContext,
         tabContextManager,
         postMessageContentHandler,

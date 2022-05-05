@@ -265,7 +265,7 @@
         "./src/common/platform.ts",
         "./src/common/state-dispatcher.ts",
         "./src/common/store-proxy.ts",
-        "./src/common/store-update-message-distributor.ts",
+        "./src/common/store-update-message-hub.ts",
         "./src/common/tabbable-elements-helper.ts",
         "./src/common/telemetry-data-factory.ts",
         "./src/common/uid-generator.ts",

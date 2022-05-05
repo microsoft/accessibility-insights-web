@@ -195,5 +195,6 @@ export const Messages = {
 
     DebugTools: {
         Open: `${messagePrefix}/debugTools/open`,
+        Telemetry: `${messagePrefix}/debugTools/telemetry`,
     },
 };

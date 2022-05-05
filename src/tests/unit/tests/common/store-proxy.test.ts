@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { IMock, It, Mock } from 'typemoq';
 import { StoreProxy } from '../../../../common/store-proxy';
 import { StoreType } from '../../../../common/types/store-type';
@@ -21,22 +21,22 @@ describe('StoreProxyTest', () => {
     const expectedData = 'test';
     const storeId = 'TestStore';
     let onChange: (message: StoreUpdateMessage<string>) => void;
-    let messageDistributorMock: IMock<StoreUpdateMessageDistributor>;
+    let storeUpdateHubMock: IMock<StoreUpdateMessageHub>;
 
     let testSubject: TestableStoreProxy<string>;
 
     beforeEach(() => {
-        messageDistributorMock = Mock.ofType<StoreUpdateMessageDistributor>();
-        messageDistributorMock
+        storeUpdateHubMock = Mock.ofType<StoreUpdateMessageHub>();
+        storeUpdateHubMock
             .setup(m => m.registerStoreUpdateListener(storeId, It.isAny()))
             .callback((storeId, callback) => (onChange = callback))
             .verifiable();
 
-        testSubject = new TestableStoreProxy('TestStore', messageDistributorMock.object);
+        testSubject = new TestableStoreProxy('TestStore', storeUpdateHubMock.object);
     });
 
     afterEach(() => {
-        messageDistributorMock.verifyAll();
+        storeUpdateHubMock.verifyAll();
     });
 
     test('onChange when state is different', () => {
