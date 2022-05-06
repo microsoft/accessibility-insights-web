@@ -43,22 +43,12 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.devToolActions.setDevToolState.addListener(this.onDevToolStatusChanged); // TODO: remove
-        this.devToolActions.openDevTools.addListener(this.onDevToolOpened);
-        this.devToolActions.openDevTools.addListener(this.onDevToolClosed);
+        this.devToolActions.setDevToolState.addListener(this.onDevToolStatusChanged);
         this.devToolActions.setInspectElement.addListener(this.onInspectElement);
         this.devToolActions.setFrameUrl.addListener(this.onSetFrameUrl);
 
         this.devToolActions.getCurrentState.addListener(this.onGetCurrentState);
     }
-
-    private onDevToolOpened = (): void => {
-        this.onDevToolStatusChanged(true);
-    };
-
-    private onDevToolClosed = (): void => {
-        this.onDevToolStatusChanged(false);
-    };
 
     private onDevToolStatusChanged = (status: boolean): void => {
         if (this.state.isOpen !== status) {
