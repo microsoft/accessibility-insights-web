@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { Messages } from 'common/messages';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
-import { DevToolsOpenMessage, DevToolsStatusResponse } from '../common/types/dev-tools-messages';
+import { DevToolsOpenMessage } from '../common/types/dev-tools-messages';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 
 export class InspectHandler {
