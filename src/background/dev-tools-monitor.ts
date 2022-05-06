@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { OnDevToolStatusPayload } from 'background/actions/action-payloads';
+import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Messages } from 'common/messages';
 import { PromiseFactory, TimeoutError } from 'common/promises/promise-factory';
@@ -12,13 +14,10 @@ export class DevToolsMonitor {
         private readonly browserAdapter: BrowserAdapter,
         private readonly promiseFactory: PromiseFactory,
         protected readonly activeDevtoolTabIds: number[],
+        private readonly tabContextManager: TabContextManager,
         private readonly messageTimeoutMilliseconds = 5000,
         private readonly pollIntervalMilliseconds = 1000,
     ) {}
-
-    public initialize() {
-        // TODO: initialize with persisted activeDevtoolTabIds, start monitor if needed
-    }
 
     public startMonitoringDevtool(tabId: number): void {
         this.addActiveDevtool(tabId);
@@ -33,7 +32,6 @@ export class DevToolsMonitor {
         if (!_.isNil(tabId) && !this.activeDevtoolTabIds.includes(tabId)) {
             this.activeDevtoolTabIds.push(tabId);
         }
-        // TODO: persist activeDevtoolTabIds
     }
 
     private removeActiveDevtool(tabId: number): void {
@@ -41,7 +39,6 @@ export class DevToolsMonitor {
         if (index >= 0) {
             this.activeDevtoolTabIds.splice(index, 1);
         }
-        // TODO: persist activeDevtoolTabIds
     }
 
     protected async monitorActiveDevtools(): Promise<void> {
@@ -89,6 +86,12 @@ export class DevToolsMonitor {
     }
 
     private onDevtoolsClosed(tabId: number): void {
-        // TODO
+        this.tabContextManager.interpretMessageForTab(tabId, {
+            payload: {
+                status: false,
+            } as OnDevToolStatusPayload,
+            tabId: tabId,
+            messageType: Messages.DevTools.DevtoolStatus,
+        });
     }
 }

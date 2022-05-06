@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { OnDevToolStatusPayload } from 'background/actions/action-payloads';
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
+import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Messages } from 'common/messages';
 import {
@@ -36,6 +38,7 @@ describe(DevToolsMonitor, () => {
     let timeoutMock: IMock<TimeoutCreator>;
     let delayMock: IMock<DelayCreator>;
     let promiseFactory: PromiseFactory;
+    let tabContextManagerMock: IMock<TabContextManager>;
 
     let testSubject: TestDevToolsMonitor;
 
@@ -47,11 +50,13 @@ describe(DevToolsMonitor, () => {
             timeout: timeoutMock.object,
             delay: delayMock.object,
         } as PromiseFactory;
+        tabContextManagerMock = Mock.ofType<TabContextManager>();
 
         testSubject = new TestDevToolsMonitor(
             browserAdapterMock.object,
             promiseFactory,
             [],
+            tabContextManagerMock.object,
             messageTimeout,
             pollInterval,
         );
@@ -61,6 +66,7 @@ describe(DevToolsMonitor, () => {
         browserAdapterMock.verifyAll();
         timeoutMock.verifyAll();
         delayMock.verifyAll();
+        tabContextManagerMock.verifyAll();
     });
 
     it.each([1, 3])(
@@ -128,6 +134,9 @@ describe(DevToolsMonitor, () => {
             })
             .verifiable(Times.atLeastOnce());
 
+        setupDevtoolClosed(tabId);
+        setupDevtoolClosed(anotherTabId);
+
         testSubject.startMonitoringDevtool(tabId);
 
         await flushSettledPromises();
@@ -191,6 +200,8 @@ describe(DevToolsMonitor, () => {
                 }
             })
             .verifiable(Times.exactly(times));
+
+        setupDevtoolClosed(pollTabId);
     }
 
     function setupTimeoutCreator(times: Times): void {
@@ -208,5 +219,19 @@ describe(DevToolsMonitor, () => {
 
     function setupDelayCreator(times: Times): void {
         delayMock.setup(d => d(It.isAny(), pollInterval)).verifiable(times);
+    }
+
+    function setupDevtoolClosed(tabId): void {
+        tabContextManagerMock
+            .setup(t =>
+                t.interpretMessageForTab(tabId, {
+                    payload: {
+                        status: false,
+                    } as OnDevToolStatusPayload,
+                    tabId: tabId,
+                    messageType: Messages.DevTools.DevtoolStatus,
+                }),
+            )
+            .verifiable();
     }
 });
