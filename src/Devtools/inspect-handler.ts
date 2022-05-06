@@ -29,23 +29,6 @@ export class InspectHandler {
             }
         });
 
-        // TODO: create a new DevToolsMessageDistributor to handle these messages
-        this.browserAdapter.addListenerOnMessage(
-            (message): void | Promise<DevToolsStatusResponse> => {
-                console.log(
-                    `Tab ${this.browserAdapter.getInspectedWindowTabId()} Received message ${JSON.stringify(
-                        message,
-                    )}`,
-                );
-                if (
-                    message.messageType === Messages.DevTools.StatusRequest &&
-                    message.tabId === this.browserAdapter.getInspectedWindowTabId()
-                ) {
-                    return Promise.resolve({ isActive: true, tabId: message.tabId });
-                }
-            },
-        );
-
         const backgroundPageConnection = this.browserAdapter.connect({
             name: ConnectionNames.devTools,
         });
