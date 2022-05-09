@@ -78,7 +78,7 @@ export class DevToolsMonitor {
 
             return statusResponse?.isActive === true;
         } catch (e) {
-            if (e instanceof TimeoutError) {
+            if (e instanceof TimeoutError || e.message.includes('Could not establish connection')) {
                 return false;
             }
             throw e;

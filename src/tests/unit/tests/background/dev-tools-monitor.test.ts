@@ -151,6 +151,24 @@ describe(DevToolsMonitor, () => {
         );
     });
 
+    it("Handles 'Could not establish connection' error on message", async () => {
+        const testError = new Error(
+            'Error: Could not establish connection. Receiving end does not exist.',
+        );
+        browserAdapterMock
+            .setup(b =>
+                b.sendRuntimeMessage({ messageType: Messages.DevTools.StatusRequest, tabId }),
+            )
+            .throws(testError);
+        setupTimeoutCreator(Times.never()); // mock call is not verified if return hook throws
+        setupDelayCreator(Times.once());
+        setupDevtoolClosed(tabId);
+
+        testSubject.activeDevtoolTabIds = [tabId];
+
+        await testSubject.testPollLoop();
+    });
+
     it('Throws in loop if a non timeout error occurs', async () => {
         const testError = new Error('Non-timeout error');
         browserAdapterMock
