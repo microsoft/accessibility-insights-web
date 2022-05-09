@@ -3,7 +3,7 @@
 import {
     InspectElementPayload,
     InspectFrameUrlPayload,
-    OnDevToolOpenPayload,
+    OnDevToolStatusPayload,
 } from 'background/actions/action-payloads';
 import { DevToolsActionCreator } from 'background/actions/dev-tools-action-creator';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
@@ -27,7 +27,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     it('handles DevToolStatus message', () => {
-        const payload: OnDevToolOpenPayload = {
+        const payload: OnDevToolStatusPayload = {
             status: true,
         };
 

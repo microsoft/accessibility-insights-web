@@ -3,7 +3,7 @@
 import {
     InspectElementPayload,
     InspectFrameUrlPayload,
-    OnDevToolOpenPayload,
+    OnDevToolStatusPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
@@ -22,7 +22,7 @@ export class DevToolActionMessageCreator {
             messageType: Messages.DevTools.DevtoolStatus,
             payload: {
                 status: status,
-            } as OnDevToolOpenPayload,
+            } as OnDevToolStatusPayload,
         };
 
         this.dispatcher.dispatchMessage(message);

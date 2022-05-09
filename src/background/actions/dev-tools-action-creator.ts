@@ -9,7 +9,7 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     InspectElementPayload,
     InspectFrameUrlPayload,
-    OnDevToolOpenPayload,
+    OnDevToolStatusPayload,
 } from './action-payloads';
 import { DevToolActions } from './dev-tools-actions';
 
@@ -23,7 +23,7 @@ export class DevToolsActionCreator {
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.DevTools.DevtoolStatus,
-            this.onDevToolOpened,
+            this.onDevToolStatusChanged,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.DevTools.InspectElement,
@@ -39,7 +39,7 @@ export class DevToolsActionCreator {
         );
     }
 
-    private onDevToolOpened = (payload: OnDevToolOpenPayload): void => {
+    private onDevToolStatusChanged = (payload: OnDevToolStatusPayload): void => {
         this.devToolActions.setDevToolState.invoke(payload.status);
     };
 

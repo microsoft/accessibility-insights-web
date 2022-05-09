@@ -4,7 +4,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { BaseStore } from '../common/base-store';
 import { ConnectionNames } from '../common/constants/connection-names';
-import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
+import { DevToolsOpenMessage } from '../common/types/dev-tools-messages';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 
 export class InspectHandler {

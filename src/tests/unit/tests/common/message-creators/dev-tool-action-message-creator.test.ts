@@ -3,7 +3,7 @@
 import {
     InspectElementPayload,
     InspectFrameUrlPayload,
-    OnDevToolOpenPayload,
+    OnDevToolStatusPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -33,7 +33,7 @@ describe('DevToolActionMessageCreatorTest', () => {
             messageType: Messages.DevTools.DevtoolStatus,
             payload: {
                 status: status,
-            } as OnDevToolOpenPayload,
+            } as OnDevToolStatusPayload,
         };
 
         testSubject.setDevToolStatus(status);

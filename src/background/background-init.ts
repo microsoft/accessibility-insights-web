@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
@@ -241,7 +242,17 @@ async function initialize(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
+    const devToolsMonitor = new DevToolsMonitor(
+        browserAdapter,
+        promiseFactory,
+        [],
+        tabContextManager,
+    );
+    const devToolsBackgroundListener = new DevToolsListener(
+        tabContextManager,
+        browserAdapter,
+        devToolsMonitor,
+    );
     devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;

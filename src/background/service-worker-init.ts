@@ -4,6 +4,7 @@ import { Assessments } from 'assessments/assessments';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { DevToolsListener } from 'background/dev-tools-listener';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
@@ -219,7 +220,17 @@ async function initialize(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabContextManager, browserAdapter);
+    const devToolsMonitor = new DevToolsMonitor(
+        browserAdapter,
+        promiseFactory,
+        [],
+        tabContextManager,
+    );
+    const devToolsBackgroundListener = new DevToolsListener(
+        tabContextManager,
+        browserAdapter,
+        devToolsMonitor,
+    );
     devToolsBackgroundListener.initialize();
 
     await cleanKeysFromStoragePromise;
