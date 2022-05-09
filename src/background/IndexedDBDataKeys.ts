@@ -11,6 +11,7 @@ export class IndexedDBDataKeys {
     public static readonly scopingStore: string = 'scopingStore';
     public static readonly knownTabIds: string = 'knownTabIds';
     public static readonly tabIdToDetailsViewMap: string = 'tabIdToDetailsViewMap';
+    public static readonly activeDevtoolTabIds: string = 'activeDevtoolTabIds';
 
     // Tab specific keys- there may be multiple instances of these stores for each tab
     public static readonly cardSelectionStore: (tabId: number) => string = tabId =>
@@ -45,6 +46,7 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.scopingStore,
         IndexedDBDataKeys.knownTabIds,
         IndexedDBDataKeys.tabIdToDetailsViewMap,
+        IndexedDBDataKeys.activeDevtoolTabIds,
     ];
 
     public static readonly tabSpecificKeys: ((tabId: number) => string)[] = [

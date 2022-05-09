@@ -245,9 +245,13 @@ async function initialize(): Promise<void> {
     const devToolsMonitor = new DevToolsMonitor(
         browserAdapter,
         promiseFactory,
-        [],
+        persistedData.activeDevtoolTabIds ?? [],
         tabContextManager,
+        indexedDBInstance,
+        persistData,
     );
+    devToolsMonitor.initialize();
+    
     const devToolsBackgroundListener = new DevToolsListener(
         tabContextManager,
         browserAdapter,
