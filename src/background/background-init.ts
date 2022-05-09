@@ -242,7 +242,12 @@ async function initialize(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
-    const devToolsMonitor = new DevToolsMonitor(browserAdapter, promiseFactory, [], tabContextManager);
+    const devToolsMonitor = new DevToolsMonitor(
+        browserAdapter,
+        promiseFactory,
+        [],
+        tabContextManager,
+    );
     const devToolsBackgroundListener = new DevToolsListener(
         tabContextManager,
         browserAdapter,
