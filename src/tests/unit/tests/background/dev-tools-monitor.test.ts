@@ -12,7 +12,7 @@ import {
     TimeoutCreator,
     TimeoutError,
 } from 'common/promises/promise-factory';
-import _ from 'lodash';
+import { isEqual, max } from 'lodash';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
@@ -173,7 +173,7 @@ describe(DevToolsMonitor, () => {
         Object.keys(expectedTabPollCounts).forEach(pollTabId => {
             const tabPollCount: number = expectedTabPollCounts[pollTabId];
             totalMessageCount += tabPollCount;
-            totalLoopCount = _.max([totalLoopCount, tabPollCount]);
+            totalLoopCount = max([totalLoopCount, tabPollCount]);
 
             setupPollTabTimes(parseInt(pollTabId), tabPollCount);
         });
@@ -209,7 +209,7 @@ describe(DevToolsMonitor, () => {
             .setup(t => t(It.isAny(), messageTimeout))
             .returns(async (promise, timeout) => {
                 const result = await promise;
-                if (_.isEqual(result, mockTimeoutResponse)) {
+                if (isEqual(result, mockTimeoutResponse)) {
                     return Promise.reject(new TimeoutError('Test timeout error'));
                 }
                 return result;

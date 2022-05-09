@@ -7,7 +7,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Messages } from 'common/messages';
 import { PromiseFactory, TimeoutError } from 'common/promises/promise-factory';
 import { DevToolsStatusResponse } from 'common/types/dev-tools-messages';
-import _ from 'lodash';
+import { isNil } from 'lodash';
 
 export class DevToolsMonitor {
     constructor(
@@ -15,8 +15,8 @@ export class DevToolsMonitor {
         private readonly promiseFactory: PromiseFactory,
         protected readonly activeDevtoolTabIds: number[],
         private readonly tabContextManager: TabContextManager,
-        private readonly messageTimeoutMilliseconds = 5000,
-        private readonly pollIntervalMilliseconds = 1000,
+        private readonly messageTimeoutMilliseconds = 500,
+        private readonly pollIntervalMilliseconds = 500,
     ) {}
 
     public startMonitoringDevtool(tabId: number): void {
@@ -29,7 +29,7 @@ export class DevToolsMonitor {
     }
 
     private addActiveDevtool(tabId: number): void {
-        if (!_.isNil(tabId) && !this.activeDevtoolTabIds.includes(tabId)) {
+        if (!isNil(tabId) && !this.activeDevtoolTabIds.includes(tabId)) {
             this.activeDevtoolTabIds.push(tabId);
         }
     }
