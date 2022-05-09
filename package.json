@@ -120,7 +120,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
         "commander": "^9.2.0",
-        "core-js-bundle": "^3.22.3",
+        "core-js-bundle": "^3.22.4",
         "cross-env": "^7.0.3",
         "css-loader": "^6.7.1",
         "electron-builder": "23.0.3",
@@ -177,7 +177,7 @@
     },
     "dependencies": {
         "@fluentui/react": "^8.66.1",
-        "@microsoft/applicationinsights-web": "^2.8.1",
+        "@microsoft/applicationinsights-web": "^2.8.3",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
