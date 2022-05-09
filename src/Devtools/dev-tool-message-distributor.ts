@@ -18,9 +18,9 @@ export class DevToolsMessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    // Must return a promise for the response to send correctly
     private distributeMessage = (message: Message): void | Promise<DevToolsStatusResponse> => {
         if (this.isStatusRequestForTab(message)) {
+            // Must return a promise for the response to send correctly
             return Promise.resolve({ isActive: true });
         } else {
             this.storeUpdateHub.handleMessage(message as StoreUpdateMessage<unknown>);

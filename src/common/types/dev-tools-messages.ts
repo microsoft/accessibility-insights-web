@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
 import { Message } from 'common/message';
 
-// Licensed under the MIT License.
 export interface DevToolsOpenMessage {
     tabId: number;
 }
