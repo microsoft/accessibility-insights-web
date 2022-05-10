@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { TabContextManager } from 'background/tab-context-manager';
+import { DevToolsOpenMessage } from 'common/types/dev-tools-messages';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
-import { DevToolsOpenMessage } from '../common/types/dev-tools-messages';
 
 export interface PortWithTabId extends chrome.runtime.Port {
     targetPageTabId: number;
