@@ -143,6 +143,7 @@ describe('GetPersistedDataTest', () => {
                 scopingStoreData: {},
                 tabIdToDetailsViewMap: {},
                 tabData: {},
+                activeDevtoolTabIds: [],
             } as PersistedData);
         });
 
@@ -182,6 +183,7 @@ describe('GetPersistedDataTest', () => {
                 permissionsStateStoreData: {},
                 scopingStoreData: {},
                 tabIdToDetailsViewMap: {},
+                activeDevtoolTabIds: [],
                 tabData,
             } as PersistedData);
         });
