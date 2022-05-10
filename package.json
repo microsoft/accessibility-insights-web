@@ -96,7 +96,7 @@
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.14.1",
         "@swc/core": "^1.2.179",
-        "@swc/jest": "^0.2.20",
+        "@swc/jest": "^0.2.21",
         "@types/chrome": "0.0.184",
         "@types/enzyme": "^3.10.12",
         "@types/enzyme-adapter-react-16": "^1.0.6",
