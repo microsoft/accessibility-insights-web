@@ -118,7 +118,7 @@ describe(DevToolsMonitor, () => {
                 setupDevtoolClosed(tabId);
                 setupPollLoop(tabPollCounts);
 
-                testSubject.startMonitoringDevtool(tabId);
+                await testSubject.startMonitoringDevtool(tabId);
 
                 await flushSettledPromises();
             },
@@ -151,7 +151,7 @@ describe(DevToolsMonitor, () => {
                     // During the first loop, add another tabId to monitor
                     if (firstIteration) {
                         firstIteration = false;
-                        testSubject.startMonitoringDevtool(anotherTabId);
+                        await testSubject.startMonitoringDevtool(anotherTabId);
                     }
                     // stop the loop on the next iteration after the second tab has been messaged
                     if (!stopLoop && message.tabId === anotherTabId) {
@@ -168,7 +168,7 @@ describe(DevToolsMonitor, () => {
             setupDevtoolClosed(tabId);
             setupDevtoolClosed(anotherTabId);
 
-            testSubject.startMonitoringDevtool(tabId);
+            await testSubject.startMonitoringDevtool(tabId);
 
             await flushSettledPromises();
 

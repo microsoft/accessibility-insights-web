@@ -30,8 +30,8 @@ export class DevToolsMonitor {
         });
     }
 
-    public startMonitoringDevtool(tabId: number): void {
-        this.addActiveDevtool(tabId);
+    public async startMonitoringDevtool(tabId: number): Promise<void> {
+        await this.addActiveDevtool(tabId);
 
         if (!this.monitorIsActive) {
             // Do not await, we want to continue running other synchronous code
@@ -39,11 +39,11 @@ export class DevToolsMonitor {
         }
     }
 
-    private addActiveDevtool(tabId: number): void {
+    private async addActiveDevtool(tabId: number): Promise<void> {
         if (!isNil(tabId) && !this.activeDevtoolTabIds.includes(tabId)) {
             this.activeDevtoolTabIds.push(tabId);
             if (this.persistStoreData) {
-                this.idbInstance.setItem(
+                await this.idbInstance.setItem(
                     IndexedDBDataKeys.activeDevtoolTabIds,
                     this.activeDevtoolTabIds,
                 );
@@ -51,7 +51,7 @@ export class DevToolsMonitor {
         }
     }
 
-    private removeActiveDevtool(tabId: number): void {
+    private async removeActiveDevtool(tabId: number): Promise<void> {
         const index = this.activeDevtoolTabIds.indexOf(tabId);
         if (index >= 0) {
             this.activeDevtoolTabIds.splice(index, 1);
@@ -87,10 +87,12 @@ export class DevToolsMonitor {
             }),
         );
 
-        idsToRemove.forEach(tabId => {
-            this.removeActiveDevtool(tabId);
-            this.onDevtoolsClosed(tabId);
-        });
+        await Promise.all(
+            idsToRemove.map(async tabId => {
+                await this.removeActiveDevtool(tabId);
+                this.onDevtoolsClosed(tabId);
+            }),
+        );
     }
 
     private async isDevtoolOpen(tabId: number): Promise<boolean> {
