@@ -26,6 +26,14 @@ export class DevToolsActionCreator {
             this.onDevToolStatusChanged,
         );
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.DevTools.Opened,
+            this.onDevToolOpened,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.DevTools.Closed,
+            this.onDevToolClosed,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             Messages.DevTools.InspectElement,
             this.onDevToolInspectElement,
         );
@@ -38,6 +46,14 @@ export class DevToolsActionCreator {
             this.onDevToolGetCurrentState,
         );
     }
+
+    private onDevToolOpened = (): void => {
+        this.devToolActions.setDevToolState.invoke(true);
+    };
+
+    private onDevToolClosed = (): void => {
+        this.devToolActions.setDevToolState.invoke(false);
+    };
 
     private onDevToolStatusChanged = (payload: OnDevToolStatusPayload): void => {
         this.devToolActions.setDevToolState.invoke(payload.status);

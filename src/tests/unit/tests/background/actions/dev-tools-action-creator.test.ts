@@ -50,6 +50,38 @@ describe('DevToolsActionCreatorTest', () => {
         setDevToolsStateMock.verifyAll();
     });
 
+    it('handles DevToolOpened message', () => {
+        const setDevToolsStateMock = createActionMock(true);
+        const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, undefined, tabId);
+
+        const newTestObject = new DevToolsActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        newTestObject.registerCallbacks();
+
+        setDevToolsStateMock.verifyAll();
+    });
+
+    it('handles DevToolClosed message', () => {
+        const setDevToolsStateMock = createActionMock(false);
+        const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Closed, undefined, tabId);
+
+        const newTestObject = new DevToolsActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        newTestObject.registerCallbacks();
+
+        setDevToolsStateMock.verifyAll();
+    });
+
     it('handles GetState message', () => {
         const getCurrentStateMock = createActionMock(null);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);

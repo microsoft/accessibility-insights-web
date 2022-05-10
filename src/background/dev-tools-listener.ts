@@ -6,7 +6,6 @@ import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-messages';
-import { OnDevToolStatusPayload } from './actions/action-payloads';
 
 export interface PortWithTabId extends chrome.runtime.Port {
     targetPageTabId: number;
@@ -27,14 +26,14 @@ export class DevToolsListener {
                     port: chrome.runtime.Port,
                 ) => {
                     devToolsConnection.targetPageTabId = message.tabId;
-                    this.sendDevToolStatus(devToolsConnection, true);
+                    this.sendDevToolOpened(devToolsConnection);
                     this.devToolsMonitor.startMonitoringDevtool(message.tabId);
                 };
 
                 devToolsConnection.onMessage.addListener(devToolsListener);
 
                 devToolsConnection.onDisconnect.addListener(() => {
-                    this.sendDevToolStatus(devToolsConnection, false);
+                    this.sendDevToolClosed(devToolsConnection);
 
                     devToolsConnection.onMessage.removeListener(devToolsListener);
                 });
@@ -42,14 +41,19 @@ export class DevToolsListener {
         });
     }
 
-    private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean): void {
+    private sendDevToolOpened(devToolsConnection: PortWithTabId): void {
         const tabId = devToolsConnection.targetPageTabId;
         this.tabContextManager.interpretMessageForTab(tabId, {
-            payload: {
-                status: status,
-            } as OnDevToolStatusPayload,
             tabId: tabId,
-            messageType: Messages.DevTools.DevtoolStatus,
+            messageType: Messages.DevTools.Opened,
+        });
+    }
+
+    private sendDevToolClosed(devToolsConnection: PortWithTabId): void {
+        const tabId = devToolsConnection.targetPageTabId;
+        this.tabContextManager.interpretMessageForTab(tabId, {
+            tabId: tabId,
+            messageType: Messages.DevTools.Closed,
         });
     }
 }

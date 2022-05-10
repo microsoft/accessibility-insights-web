@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { OnDevToolStatusPayload } from 'background/actions/action-payloads';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -115,11 +114,8 @@ export class DevToolsMonitor {
 
     private onDevtoolsClosed(tabId: number): void {
         this.tabContextManager.interpretMessageForTab(tabId, {
-            payload: {
-                status: false,
-            } as OnDevToolStatusPayload,
             tabId: tabId,
-            messageType: Messages.DevTools.DevtoolStatus,
+            messageType: Messages.DevTools.Closed,
         });
     }
 }

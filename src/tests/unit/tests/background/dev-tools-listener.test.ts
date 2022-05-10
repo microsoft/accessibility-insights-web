@@ -105,11 +105,8 @@ describe('DevToolsListenerTests', () => {
                 t.interpretMessageForTab(
                     2,
                     It.isValue({
-                        payload: {
-                            status: true,
-                        },
                         tabId: 2,
-                        messageType: Messages.DevTools.DevtoolStatus,
+                        messageType: Messages.DevTools.Opened,
                     }),
                 ),
             )
@@ -160,11 +157,8 @@ describe('DevToolsListenerTests', () => {
                 t.interpretMessageForTab(
                     2,
                     It.isValue({
-                        payload: {
-                            status: false,
-                        },
                         tabId: 2,
-                        messageType: Messages.DevTools.DevtoolStatus,
+                        messageType: Messages.DevTools.Closed,
                     }),
                 ),
             )

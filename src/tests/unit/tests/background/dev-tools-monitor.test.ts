@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { OnDevToolStatusPayload } from 'background/actions/action-payloads';
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -276,11 +275,8 @@ describe(DevToolsMonitor, () => {
         tabContextManagerMock
             .setup(t =>
                 t.interpretMessageForTab(tabId, {
-                    payload: {
-                        status: false,
-                    } as OnDevToolStatusPayload,
                     tabId: tabId,
-                    messageType: Messages.DevTools.DevtoolStatus,
+                    messageType: Messages.DevTools.Closed,
                 }),
             )
             .verifiable();
