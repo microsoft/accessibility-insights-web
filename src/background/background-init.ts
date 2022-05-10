@@ -251,7 +251,7 @@ async function initialize(): Promise<void> {
         persistData,
     );
     devToolsMonitor.initialize();
-    
+
     const devToolsBackgroundListener = new DevToolsListener(
         tabContextManager,
         browserAdapter,
