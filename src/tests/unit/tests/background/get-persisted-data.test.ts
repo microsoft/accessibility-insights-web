@@ -27,6 +27,7 @@ describe('GetPersistedDataTest', () => {
     let permissionsStateStoreData: PermissionsStateStoreData;
     let knownTabIds: DictionaryNumberTo<string>;
     let tabIdToDetailsViewMap: DictionaryStringTo<number>;
+    let activeDevtoolTabIds: number[];
 
     beforeEach(() => {
         assessmentStoreData = {
@@ -55,6 +56,7 @@ describe('GetPersistedDataTest', () => {
         permissionsStateStoreData = { hasAllUrlAndFilePermissions: true };
         knownTabIds = { 0: 'url0', 9: 'url9' };
         tabIdToDetailsViewMap = { key: 9 };
+        activeDevtoolTabIds = [123, 456];
         indexedDBInstanceStrictMock = Mock.ofType<IndexedDBAPI>();
     });
 
@@ -143,7 +145,7 @@ describe('GetPersistedDataTest', () => {
                 scopingStoreData: {},
                 tabIdToDetailsViewMap: {},
                 tabData: {},
-                activeDevtoolTabIds: [],
+                activeDevtoolTabIds,
             } as PersistedData);
         });
 
@@ -183,7 +185,7 @@ describe('GetPersistedDataTest', () => {
                 permissionsStateStoreData: {},
                 scopingStoreData: {},
                 tabIdToDetailsViewMap: {},
-                activeDevtoolTabIds: [],
+                activeDevtoolTabIds,
                 tabData,
             } as PersistedData);
         });
@@ -192,10 +194,14 @@ describe('GetPersistedDataTest', () => {
             indexedDBInstanceStrictMock
                 .setup(i => i.getItem(IndexedDBDataKeys.assessmentStore))
                 .returns(async () => assessmentStoreData);
+            indexedDBInstanceStrictMock
+                .setup(i => i.getItem(IndexedDBDataKeys.activeDevtoolTabIds))
+                .returns(async () => activeDevtoolTabIds);
             IndexedDBDataKeys.globalKeys.forEach(key => {
                 if (
                     key !== IndexedDBDataKeys.knownTabIds &&
-                    key !== IndexedDBDataKeys.assessmentStore
+                    key !== IndexedDBDataKeys.assessmentStore &&
+                    key !== IndexedDBDataKeys.activeDevtoolTabIds
                 ) {
                     indexedDBInstanceStrictMock
                         .setup(i => i.getItem(key))
