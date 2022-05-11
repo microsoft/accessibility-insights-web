@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
-import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import {
     DelayCreator,
@@ -40,7 +40,7 @@ describe(DevToolsMonitor, () => {
     let timeoutMock: IMock<TimeoutCreator>;
     let delayMock: IMock<DelayCreator>;
     let promiseFactory: PromiseFactory;
-    let tabContextManagerMock: IMock<TabContextManager>;
+    let interpretMessageMock: IMock<(tabId: number, message: Message) => void>;
     let idbInstanceMock: IMock<IndexedDBAPI>;
 
     let testSubject: TestDevToolsMonitor;
@@ -53,7 +53,7 @@ describe(DevToolsMonitor, () => {
             timeout: timeoutMock.object,
             delay: delayMock.object,
         } as PromiseFactory;
-        tabContextManagerMock = Mock.ofType<TabContextManager>();
+        interpretMessageMock = Mock.ofInstance(() => null);
         idbInstanceMock = Mock.ofType<IndexedDBAPI>(null, MockBehavior.Strict);
     });
 
@@ -61,7 +61,7 @@ describe(DevToolsMonitor, () => {
         browserAdapterMock.verifyAll();
         timeoutMock.verifyAll();
         delayMock.verifyAll();
-        tabContextManagerMock.verifyAll();
+        interpretMessageMock.verifyAll();
         idbInstanceMock.verifyAll();
     });
 
@@ -72,7 +72,7 @@ describe(DevToolsMonitor, () => {
                 browserAdapterMock.object,
                 promiseFactory,
                 [],
-                tabContextManagerMock.object,
+                interpretMessageMock.object,
                 idbInstanceMock.object,
                 persistData,
                 messageTimeout,
@@ -272,9 +272,9 @@ describe(DevToolsMonitor, () => {
     }
 
     function setupDevtoolClosed(tabId: number): void {
-        tabContextManagerMock
-            .setup(t =>
-                t.interpretMessageForTab(tabId, {
+        interpretMessageMock
+            .setup(i =>
+                i(tabId, {
                     tabId: tabId,
                     messageType: Messages.DevTools.Closed,
                 }),

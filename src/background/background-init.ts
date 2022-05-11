@@ -209,7 +209,7 @@ async function initialize(): Promise<void> {
         browserAdapter,
         promiseFactory,
         persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager,
+        tabContextManager.interpretMessageForTab,
         indexedDBInstance,
         persistData,
     );

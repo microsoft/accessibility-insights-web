@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { PromiseFactory, TimeoutError } from 'common/promises/promise-factory';
 import { DevToolsStatusResponse } from 'common/types/dev-tools-messages';
@@ -17,7 +17,7 @@ export class DevToolsMonitor {
         private readonly browserAdapter: BrowserAdapter,
         private readonly promiseFactory: PromiseFactory,
         protected readonly activeDevtoolTabIds: number[],
-        private readonly tabContextManager: TabContextManager,
+        private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
         private readonly idbInstance: IndexedDBAPI,
         private persistStoreData: boolean,
         private readonly messageTimeoutMilliseconds = 500,
@@ -115,7 +115,7 @@ export class DevToolsMonitor {
     }
 
     private onDevtoolsClosed(tabId: number): void {
-        this.tabContextManager.interpretMessageForTab(tabId, {
+        this.interpretMessageForTab(tabId, {
             tabId: tabId,
             messageType: Messages.DevTools.Closed,
         });
