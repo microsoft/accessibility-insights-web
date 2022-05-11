@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { OnDevToolStatusPayload } from 'background/actions/action-payloads';
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Messages } from 'common/messages';
 import {
     DelayCreator,
@@ -14,7 +14,7 @@ import {
 } from 'common/promises/promise-factory';
 import { isEqual, max } from 'lodash';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
 
 class TestDevToolsMonitor extends DevToolsMonitor {
@@ -34,11 +34,14 @@ describe(DevToolsMonitor, () => {
     const messageSuccessResponse = { isActive: true };
     const mockTimeoutResponse = { isTimeout: true };
 
+    let persistData: boolean;
+
     let browserAdapterMock: IMock<BrowserAdapter>;
     let timeoutMock: IMock<TimeoutCreator>;
     let delayMock: IMock<DelayCreator>;
     let promiseFactory: PromiseFactory;
     let tabContextManagerMock: IMock<TabContextManager>;
+    let idbInstanceMock: IMock<IndexedDBAPI>;
 
     let testSubject: TestDevToolsMonitor;
 
@@ -51,15 +54,7 @@ describe(DevToolsMonitor, () => {
             delay: delayMock.object,
         } as PromiseFactory;
         tabContextManagerMock = Mock.ofType<TabContextManager>();
-
-        testSubject = new TestDevToolsMonitor(
-            browserAdapterMock.object,
-            promiseFactory,
-            [],
-            tabContextManagerMock.object,
-            messageTimeout,
-            pollInterval,
-        );
+        idbInstanceMock = Mock.ofType<IndexedDBAPI>(null, MockBehavior.Strict);
     });
 
     afterEach(() => {
@@ -67,121 +62,158 @@ describe(DevToolsMonitor, () => {
         timeoutMock.verifyAll();
         delayMock.verifyAll();
         tabContextManagerMock.verifyAll();
+        idbInstanceMock.verifyAll();
     });
 
-    it.each([1, 3])(
-        'Start poll loop and run %s times when first devtool tab id is added',
-        async pollCount => {
-            const tabPollCounts: DictionaryNumberTo<number> = {};
-            tabPollCounts[tabId] = pollCount;
+    describe.each([true, false])('With persistData=%s', persist => {
+        beforeEach(() => {
+            persistData = persist;
+            testSubject = new TestDevToolsMonitor(
+                browserAdapterMock.object,
+                promiseFactory,
+                [],
+                tabContextManagerMock.object,
+                idbInstanceMock.object,
+                persistData,
+                messageTimeout,
+                pollInterval,
+            );
+        });
 
-            setupPollLoop(tabPollCounts);
+        it('initialize() does nothing if activeDevtoolTabIds is empty', async () => {
+            timeoutMock.setup(t => t(It.isAny(), It.isAny())).verifiable(Times.never());
+            delayMock.setup(d => d(It.isAny(), It.isAny())).verifiable(Times.never());
+            browserAdapterMock
+                .setup(b => b.sendRuntimeMessage(It.isAny()))
+                .verifiable(Times.never());
 
-            testSubject.startMonitoringDevtool(tabId);
+            testSubject.initialize();
 
             await flushSettledPromises();
-        },
-    );
+        });
 
-    it('Does not start poll loop if another devtool is already being monitored', async () => {
-        testSubject.activeDevtoolTabIds = [anotherTabId];
+        it('initialize() starts monitoring if activeDevtoolTabIds is not empty', async () => {
+            testSubject.activeDevtoolTabIds = [tabId, anotherTabId];
 
-        timeoutMock.setup(t => t(It.isAny(), It.isAny())).verifiable(Times.never());
-        delayMock.setup(d => d(It.isAny(), It.isAny())).verifiable(Times.never());
-        browserAdapterMock.setup(b => b.sendRuntimeMessage(It.isAny())).verifiable(Times.never());
+            const tabPollCounts: DictionaryNumberTo<number> = {};
+            tabPollCounts[tabId] = 1;
+            tabPollCounts[anotherTabId] = 1;
 
-        testSubject.startMonitoringDevtool(tabId);
+            setupDevtoolClosed(tabId);
+            setupDevtoolClosed(anotherTabId);
+            setupPollLoop(tabPollCounts);
 
-        await flushSettledPromises();
+            testSubject.initialize();
 
-        expect(testSubject.activeDevtoolTabIds).toContain(tabId);
-    });
+            await flushSettledPromises();
+        });
 
-    it('Polls two devtool tabs until both have closed', async () => {
-        testSubject.activeDevtoolTabIds = [tabId, anotherTabId];
+        it.each([1, 3])(
+            'startMonitoringDevtool starts poll loop and run %s times when first devtool tab id is added',
+            async pollCount => {
+                const tabPollCounts: DictionaryNumberTo<number> = {};
+                tabPollCounts[tabId] = pollCount;
 
-        const tabPollCounts: DictionaryNumberTo<number> = {};
-        tabPollCounts[tabId] = 2;
-        tabPollCounts[anotherTabId] = 4;
+                setupAddTab(tabId);
+                setupDevtoolClosed(tabId);
+                setupPollLoop(tabPollCounts);
 
-        setupPollLoop(tabPollCounts);
+                await testSubject.startMonitoringDevtool(tabId);
 
-        await testSubject.testPollLoop();
-    });
-
-    it('Add a devtool tab while monitor loop is running asynchronously', async () => {
-        let firstIteration = true;
-        let stopLoop = false;
-
-        setupDelayCreator(Times.atLeastOnce());
-        setupTimeoutCreator(Times.atLeastOnce());
-
-        browserAdapterMock
-            .setup(b => b.sendRuntimeMessage(It.isAny()))
-            .returns(async message => {
-                // During the first loop, add another tabId to monitor
-                if (firstIteration) {
-                    firstIteration = false;
-                    testSubject.startMonitoringDevtool(anotherTabId);
-                }
-                // stop the loop on the next iteration after the second tab has been messaged
-                if (!stopLoop && message.tabId === anotherTabId) {
-                    stopLoop = true;
-                } else if (stopLoop) {
-                    return mockTimeoutResponse;
-                }
-                return messageSuccessResponse;
-            })
-            .verifiable(Times.atLeastOnce());
-
-        setupDevtoolClosed(tabId);
-        setupDevtoolClosed(anotherTabId);
-
-        testSubject.startMonitoringDevtool(tabId);
-
-        await flushSettledPromises();
-
-        browserAdapterMock.verify(
-            b => b.sendRuntimeMessage(It.isObjectWith({ tabId: tabId })),
-            Times.atLeastOnce(),
+                await flushSettledPromises();
+            },
         );
-        browserAdapterMock.verify(
-            b => b.sendRuntimeMessage(It.isObjectWith({ tabId: anotherTabId })),
-            Times.atLeastOnce(),
-        );
-    });
 
-    it("Handles 'Could not establish connection' error on message", async () => {
-        const testError = new Error(
-            'Error: Could not establish connection. Receiving end does not exist.',
-        );
-        browserAdapterMock
-            .setup(b =>
-                b.sendRuntimeMessage({ messageType: Messages.DevTools.StatusRequest, tabId }),
-            )
-            .throws(testError);
-        setupTimeoutCreator(Times.never()); // mock call is not verified if return hook throws
-        setupDelayCreator(Times.once());
-        setupDevtoolClosed(tabId);
+        it('Polls two devtool tabs until both have closed', async () => {
+            testSubject.activeDevtoolTabIds = [tabId, anotherTabId];
 
-        testSubject.activeDevtoolTabIds = [tabId];
+            const tabPollCounts: DictionaryNumberTo<number> = {};
+            tabPollCounts[tabId] = 2;
+            tabPollCounts[anotherTabId] = 4;
 
-        await testSubject.testPollLoop();
-    });
+            setupDevtoolClosed(tabId);
+            setupDevtoolClosed(anotherTabId);
+            setupPollLoop(tabPollCounts);
 
-    it('Throws in loop if a non timeout error occurs', async () => {
-        const testError = new Error('Non-timeout error');
-        browserAdapterMock
-            .setup(b =>
-                b.sendRuntimeMessage({ messageType: Messages.DevTools.StatusRequest, tabId }),
-            )
-            .throws(testError);
-        setupTimeoutCreator(Times.never()); // mock call is not verified if return hook throws
-        setupDelayCreator(Times.once());
+            await testSubject.testPollLoop();
+        });
 
-        testSubject.activeDevtoolTabIds = [tabId];
+        it('Add a devtool tab while monitor loop is running asynchronously', async () => {
+            let firstIteration = true;
+            let stopLoop = false;
 
-        await expect(testSubject.testPollLoop()).rejects.toThrow(testError);
+            setupDelayCreator(Times.atLeastOnce());
+            setupTimeoutCreator(Times.atLeastOnce());
+
+            browserAdapterMock
+                .setup(b => b.sendRuntimeMessage(It.isAny()))
+                .returns(async message => {
+                    // During the first loop, add another tabId to monitor
+                    if (firstIteration) {
+                        firstIteration = false;
+                        await testSubject.startMonitoringDevtool(anotherTabId);
+                    }
+                    // stop the loop on the next iteration after the second tab has been messaged
+                    if (!stopLoop && message.tabId === anotherTabId) {
+                        stopLoop = true;
+                    } else if (stopLoop) {
+                        return mockTimeoutResponse;
+                    }
+                    return messageSuccessResponse;
+                })
+                .verifiable(Times.atLeastOnce());
+
+            setupAddTab(tabId);
+            setupAddTab(anotherTabId);
+            setupDevtoolClosed(tabId);
+            setupDevtoolClosed(anotherTabId);
+
+            await testSubject.startMonitoringDevtool(tabId);
+
+            await flushSettledPromises();
+
+            browserAdapterMock.verify(
+                b => b.sendRuntimeMessage(It.isObjectWith({ tabId: tabId })),
+                Times.atLeastOnce(),
+            );
+            browserAdapterMock.verify(
+                b => b.sendRuntimeMessage(It.isObjectWith({ tabId: anotherTabId })),
+                Times.atLeastOnce(),
+            );
+        });
+
+        it("Handles 'Could not establish connection' error on message", async () => {
+            const testError = new Error(
+                'Error: Could not establish connection. Receiving end does not exist.',
+            );
+            browserAdapterMock
+                .setup(b =>
+                    b.sendRuntimeMessage({ messageType: Messages.DevTools.StatusRequest, tabId }),
+                )
+                .throws(testError);
+            setupTimeoutCreator(Times.never()); // mock call is not verified if return hook throws
+            setupDelayCreator(Times.once());
+            setupDevtoolClosed(tabId);
+
+            testSubject.activeDevtoolTabIds = [tabId];
+
+            await testSubject.testPollLoop();
+        });
+
+        it('Throws in loop if a non timeout error occurs', async () => {
+            const testError = new Error('Non-timeout error');
+            browserAdapterMock
+                .setup(b =>
+                    b.sendRuntimeMessage({ messageType: Messages.DevTools.StatusRequest, tabId }),
+                )
+                .throws(testError);
+            setupTimeoutCreator(Times.never()); // mock call is not verified if return hook throws
+            setupDelayCreator(Times.once());
+
+            testSubject.activeDevtoolTabIds = [tabId];
+
+            await expect(testSubject.testPollLoop()).rejects.toThrow(testError);
+        });
     });
 
     function setupPollLoop(expectedTabPollCounts: DictionaryNumberTo<number>): void {
@@ -239,17 +271,37 @@ describe(DevToolsMonitor, () => {
         delayMock.setup(d => d(It.isAny(), pollInterval)).verifiable(times);
     }
 
-    function setupDevtoolClosed(tabId): void {
+    function setupDevtoolClosed(tabId: number): void {
         tabContextManagerMock
             .setup(t =>
                 t.interpretMessageForTab(tabId, {
-                    payload: {
-                        status: false,
-                    } as OnDevToolStatusPayload,
                     tabId: tabId,
-                    messageType: Messages.DevTools.DevtoolStatus,
+                    messageType: Messages.DevTools.Closed,
                 }),
             )
             .verifiable();
+        if (persistData) {
+            idbInstanceMock
+                .setup(i =>
+                    i.setItem(
+                        'activeDevtoolTabIds',
+                        It.is(list => !list.includes(tabId)),
+                    ),
+                )
+                .verifiable(Times.atLeastOnce());
+        }
+    }
+
+    function setupAddTab(tabId: number): void {
+        if (persistData) {
+            idbInstanceMock
+                .setup(i =>
+                    i.setItem(
+                        'activeDevtoolTabIds',
+                        It.is(list => list.includes(tabId)),
+                    ),
+                )
+                .verifiable(Times.atLeastOnce());
+        }
     }
 });

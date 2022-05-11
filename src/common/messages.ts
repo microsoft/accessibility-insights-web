@@ -48,7 +48,8 @@ export const Messages = {
 
     DevTools: {
         StatusRequest: `${messagePrefix}/devtools/getStatus`,
-        DevtoolStatus: `${messagePrefix}/devtools/status`,
+        Opened: `${messagePrefix}/devtools/opened`,
+        Closed: `${messagePrefix}/devtools/closed`,
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
     },
