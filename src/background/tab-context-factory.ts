@@ -4,6 +4,7 @@ import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-
 import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { PersistedData } from 'background/get-persisted-data';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -44,6 +45,7 @@ export class TabContextFactory {
         private notificationCreator: NotificationCreator,
         private detailsViewController: ExtensionDetailsViewController,
         private browserAdapter: BrowserAdapter,
+        private readonly devToolsMonitor: DevToolsMonitor,
         private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
@@ -122,6 +124,7 @@ export class TabContextFactory {
             interpreter,
             actionsHub.devToolActions,
             this.telemetryEventHandler,
+            this.devToolsMonitor,
         );
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,

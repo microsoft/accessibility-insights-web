@@ -3,6 +3,7 @@
 import { InspectElementPayload, InspectFrameUrlPayload } from 'background/actions/action-payloads';
 import { DevToolsActionCreator } from 'background/actions/dev-tools-action-creator';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
@@ -17,25 +18,30 @@ import {
 describe('DevToolsActionCreatorTest', () => {
     const tabId: number = -1;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let devtoolsMonitorMock: IMock<DevToolsMonitor>;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
+        devtoolsMonitorMock = Mock.ofType<DevToolsMonitor>();
     });
 
     it('handles DevToolOpened message', () => {
         const setDevToolsStateMock = createActionMock(true);
         const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
-        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, undefined, tabId);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, null, tabId);
+        devtoolsMonitorMock.setup(m => m.startMonitoringDevtool(tabId)).verifiable();
 
         const newTestObject = new DevToolsActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            devtoolsMonitorMock.object,
         );
 
         newTestObject.registerCallbacks();
 
         setDevToolsStateMock.verifyAll();
+        devtoolsMonitorMock.verifyAll();
     });
 
     it('handles DevToolClosed message', () => {
@@ -47,6 +53,7 @@ describe('DevToolsActionCreatorTest', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            devtoolsMonitorMock.object,
         );
 
         newTestObject.registerCallbacks();
@@ -67,6 +74,7 @@ describe('DevToolsActionCreatorTest', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            devtoolsMonitorMock.object,
         );
 
         newTestObject.registerCallbacks();
@@ -91,6 +99,7 @@ describe('DevToolsActionCreatorTest', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            devtoolsMonitorMock.object,
         );
 
         newTestObject.registerCallbacks();
@@ -119,6 +128,7 @@ describe('DevToolsActionCreatorTest', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            devtoolsMonitorMock.object,
         );
 
         newTestObject.registerCallbacks();

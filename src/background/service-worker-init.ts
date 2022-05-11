@@ -3,7 +3,6 @@
 import { Assessments } from 'assessments/assessments';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
-import { DevToolsListener } from 'background/dev-tools-listener';
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { getAllPersistedData } from 'background/get-persisted-data';
@@ -184,6 +183,15 @@ async function initialize(): Promise<void> {
         true,
     );
 
+    const devToolsMonitor = new DevToolsMonitor(
+        browserAdapter,
+        promiseFactory,
+        persistedData.activeDevtoolTabIds ?? [],
+        tabContextManager,
+        indexedDBInstance,
+        true,
+    );
+
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
@@ -192,6 +200,7 @@ async function initialize(): Promise<void> {
         notificationCreator,
         detailsViewController,
         browserAdapter,
+        devToolsMonitor,
         messageBroadcasterFactory,
         promiseFactory,
         logger,
@@ -220,22 +229,7 @@ async function initialize(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
-    const devToolsMonitor = new DevToolsMonitor(
-        browserAdapter,
-        promiseFactory,
-        persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager,
-        indexedDBInstance,
-        true,
-    );
     devToolsMonitor.initialize();
-
-    const devToolsBackgroundListener = new DevToolsListener(
-        tabContextManager,
-        browserAdapter,
-        devToolsMonitor,
-    );
-    devToolsBackgroundListener.initialize();
 
     await cleanKeysFromStoragePromise;
 

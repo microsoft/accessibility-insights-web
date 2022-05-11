@@ -29,7 +29,6 @@ import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BackgroundMessageDistributor } from './background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
@@ -206,6 +205,15 @@ async function initialize(): Promise<void> {
         persistData,
     );
 
+    const devToolsMonitor = new DevToolsMonitor(
+        browserAdapter,
+        promiseFactory,
+        persistedData.activeDevtoolTabIds ?? [],
+        tabContextManager,
+        indexedDBInstance,
+        persistData,
+    );
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -213,6 +221,7 @@ async function initialize(): Promise<void> {
         notificationCreator,
         detailsViewController,
         browserAdapter,
+        devToolsMonitor,
         messageBroadcasterFactory,
         promiseFactory,
         logger,
@@ -242,22 +251,7 @@ async function initialize(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
-    const devToolsMonitor = new DevToolsMonitor(
-        browserAdapter,
-        promiseFactory,
-        persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager,
-        indexedDBInstance,
-        persistData,
-    );
     devToolsMonitor.initialize();
-
-    const devToolsBackgroundListener = new DevToolsListener(
-        tabContextManager,
-        browserAdapter,
-        devToolsMonitor,
-    );
-    devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;

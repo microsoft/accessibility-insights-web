@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { PersistedData } from 'background/get-persisted-data';
 import { Interpreter } from 'background/interpreter';
@@ -46,6 +47,7 @@ describe('TabContextFactoryTest', () => {
     let mockSetTimeout: IMock<(handler: Function, timeout: number) => number>;
     let mockDBInstance: IMock<IndexedDBAPI>;
     let mockBroadcasterFactory: IMock<BrowserMessageBroadcasterFactory>;
+    let mockDevToolsMonitor: IMock<DevToolsMonitor>;
     let persistedDataStub: PersistedData;
 
     beforeEach(() => {
@@ -57,6 +59,7 @@ describe('TabContextFactoryTest', () => {
         mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
         mockBroadcasterFactory = Mock.ofType<BrowserMessageBroadcasterFactory>();
+        mockDevToolsMonitor = Mock.ofType<DevToolsMonitor>();
         persistedDataStub = {} as PersistedData;
     });
 
@@ -117,6 +120,7 @@ describe('TabContextFactoryTest', () => {
             mockNotificationCreator.object,
             mockDetailsViewController.object,
             mockBrowserAdapter.object,
+            mockDevToolsMonitor.object,
             mockBroadcasterFactory.object,
             promiseFactoryMock.object,
             mockLogger.object,
