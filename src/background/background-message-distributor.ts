@@ -25,7 +25,7 @@ export class BackgroundMessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (message: InterpreterMessage, sender?: Sender): any => {
+    private distributeMessage = (message: InterpreterMessage, sender?: Sender): Promise<any> => {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
@@ -43,6 +43,8 @@ export class BackgroundMessageDistributor {
 
         if (response) {
             return response;
+        } else {
+            return Promise.resolve();
         }
     };
 

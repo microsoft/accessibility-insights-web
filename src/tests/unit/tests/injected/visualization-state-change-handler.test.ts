@@ -19,7 +19,7 @@ describe('VisualizationStateChangeHandler', () => {
     beforeEach(() => {
         assessmentProviderMock = Mock.ofType<AssessmentsProvider>();
         visualizationUpdaterMock = Mock.ofType<UpdateVisualization>();
-        storeDataStub = {} as TargetPageStoreData;
+        storeDataStub = { assessmentStoreData: {} } as TargetPageStoreData;
         visualizations = [-1, -2];
         testSubject = new VisualizationStateChangeHandler(
             visualizations,

@@ -27,6 +27,7 @@ import { UsageLogger } from 'background/usage-logger';
 import { createToolData } from 'common/application-properties-provider';
 import { AxeInfo } from 'common/axe-info';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
 import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
@@ -46,7 +47,10 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 async function initialize(): Promise<void> {
     const userAgentParser = new UAParser(globalThis.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+    const logger = createDefaultLogger();
+    const promiseFactory = createDefaultPromiseFactory();
+    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -64,7 +68,6 @@ async function initialize(): Promise<void> {
     const userData = await userDataPromise;
     const assessmentsProvider = Assessments;
     const telemetryDataFactory = new TelemetryDataFactory();
-    const logger = createDefaultLogger();
     const telemetryLogger = new TelemetryLogger(logger);
 
     const { installationData } = userData;
@@ -172,7 +175,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         visualizationConfigurationFactory,
     );
-    const promiseFactory = createDefaultPromiseFactory();
 
     const detailsViewController = new ExtensionDetailsViewController(
         browserAdapter,

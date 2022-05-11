@@ -3,6 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -72,14 +73,16 @@ export class WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-        const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+        const logger = createDefaultLogger();
+        const promiseFactory = createDefaultPromiseFactory();
+        const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
-        const logger = createDefaultLogger();
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
@@ -107,7 +110,7 @@ export class WindowInitializer {
         this.respondableCommandMessageCommunicator = new RespondableCommandMessageCommunicator(
             this.windowMessagePoster,
             generateUID,
-            createDefaultPromiseFactory(),
+            promiseFactory,
             logger,
         );
 

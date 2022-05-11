@@ -47,6 +47,8 @@ export class FocusChangeHandler {
 
     private automatedChecksDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.cardSelectionStoreData &&
+            storeData.unifiedScanResultStoreData &&
             storeData.cardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.unifiedScanResultStoreData.results)
         );
@@ -54,6 +56,8 @@ export class FocusChangeHandler {
 
     private needsReviewDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.needsReviewCardSelectionStoreData &&
+            storeData.needsReviewScanResultStoreData &&
             storeData.needsReviewCardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.needsReviewScanResultStoreData.results)
         );

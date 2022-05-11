@@ -113,7 +113,7 @@ describe(BackgroundMessageDistributor, () => {
         expect(message.tabId).toBe(tabId);
     });
 
-    test.each(['response obj', undefined])(
+    test.each(['response obj', Promise.resolve()])(
         'should distribute backchannel message and return %s',
         response => {
             const message = { payload: {} };

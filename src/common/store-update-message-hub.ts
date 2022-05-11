@@ -22,15 +22,16 @@ export class StoreUpdateMessageHub {
         this.registeredUpdateListeners[storeId] = listener;
     }
 
-    public readonly handleMessage = (message: StoreUpdateMessage<any>): void => {
+    public readonly handleMessage = (message: StoreUpdateMessage<any>): Promise<void> => {
         if (!this.isValidMessage(message)) {
-            return;
+            return Promise.resolve();
         }
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
             listener(message);
         }
+        return Promise.resolve();
     };
 
     private isValidMessage(message: StoreUpdateMessage<any>): boolean {

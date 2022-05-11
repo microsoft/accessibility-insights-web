@@ -36,6 +36,21 @@ describe('ClientStoreListener', () => {
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
+            storeHubMock
+                .setup(shm => shm.getAllStoreData())
+                .returns(() => {
+                    return {
+                        visualizationStoreData: null,
+                    } as TargetPageStoreData;
+                });
+            triggerOnChange();
+            onReadyToExecuteVisualizationUpdatesMock.verify(
+                callback => callback(It.isAny()),
+                Times.never(),
+            );
+        });
+
+        test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => null);
             triggerOnChange();
             onReadyToExecuteVisualizationUpdatesMock.verify(

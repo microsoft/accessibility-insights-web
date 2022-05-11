@@ -3,12 +3,14 @@
 import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { StoreProxy } from 'common/store-proxy';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
@@ -37,7 +39,10 @@ export const initializeDebugTools = () => {
     initializeFabricIcons();
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+    const logger = createDefaultLogger();
+    const promiseFactory = createDefaultPromiseFactory();
+    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
 
     const storeUpdateMessageHub = new StoreUpdateMessageHub();
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
