@@ -3,7 +3,6 @@
 import { Assessments } from 'assessments/assessments';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
-import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { getAllPersistedData } from 'background/get-persisted-data';
 import { GlobalContextFactory } from 'background/global-context-factory';
@@ -183,15 +182,6 @@ async function initialize(): Promise<void> {
         true,
     );
 
-    const devToolsMonitor = new DevToolsMonitor(
-        browserAdapter,
-        promiseFactory,
-        persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager.interpretMessageForTab,
-        indexedDBInstance,
-        true,
-    );
-
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
@@ -200,7 +190,6 @@ async function initialize(): Promise<void> {
         notificationCreator,
         detailsViewController,
         browserAdapter,
-        devToolsMonitor,
         messageBroadcasterFactory,
         promiseFactory,
         logger,
@@ -228,8 +217,6 @@ async function initialize(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
-
-    devToolsMonitor.initialize();
 
     await cleanKeysFromStoragePromise;
 

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
@@ -15,7 +14,6 @@ export class DevToolsActionCreator {
         private readonly interpreter: Interpreter,
         private readonly devToolActions: DevToolActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly devToolsMonitor: DevToolsMonitor,
     ) {}
 
     public registerCallbacks(): void {
@@ -41,8 +39,7 @@ export class DevToolsActionCreator {
         );
     }
 
-    private onDevToolOpened = (_: unknown, tabId: number): void => {
-        this.devToolsMonitor.startMonitoringDevtool(tabId);
+    private onDevToolOpened = (): void => {
         this.devToolActions.setDevToolState.invoke(true);
     };
 

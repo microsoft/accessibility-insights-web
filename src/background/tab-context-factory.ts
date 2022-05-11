@@ -45,7 +45,6 @@ export class TabContextFactory {
         private notificationCreator: NotificationCreator,
         private detailsViewController: ExtensionDetailsViewController,
         private browserAdapter: BrowserAdapter,
-        private readonly devToolsMonitor: DevToolsMonitor,
         private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
@@ -124,7 +123,6 @@ export class TabContextFactory {
             interpreter,
             actionsHub.devToolActions,
             this.telemetryEventHandler,
-            this.devToolsMonitor,
         );
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,
@@ -201,6 +199,15 @@ export class TabContextFactory {
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
         dispatcher.initialize();
+
+        const devToolsMonitor = new DevToolsMonitor(
+            tabId,
+            this.browserAdapter,
+            this.promiseFactory,
+            interpreter,
+            actionsHub.devToolActions,
+        );
+        devToolsMonitor.initialize();
 
         return new TabContext(interpreter, storeHub);
     }

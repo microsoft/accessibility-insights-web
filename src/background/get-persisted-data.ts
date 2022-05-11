@@ -35,7 +35,6 @@ export interface PersistedData {
     scopingStoreData: ScopingStoreData;
     knownTabIds: DictionaryNumberTo<string>;
     tabIdToDetailsViewMap: DictionaryStringTo<number>;
-    activeDevtoolTabIds: number[];
 }
 
 export interface TabSpecificPersistedData {
@@ -58,7 +57,6 @@ const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
     [IndexedDBDataKeys.knownTabIds]: 'knownTabIds',
     [IndexedDBDataKeys.tabIdToDetailsViewMap]: 'tabIdToDetailsViewMap',
-    [IndexedDBDataKeys.activeDevtoolTabIds]: 'activeDevtoolTabIds',
 };
 
 function getPersistedDataKey(key: string): string {

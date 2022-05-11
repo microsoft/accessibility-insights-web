@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
-import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
@@ -205,15 +204,6 @@ async function initialize(): Promise<void> {
         persistData,
     );
 
-    const devToolsMonitor = new DevToolsMonitor(
-        browserAdapter,
-        promiseFactory,
-        persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager.interpretMessageForTab,
-        indexedDBInstance,
-        persistData,
-    );
-
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -221,7 +211,6 @@ async function initialize(): Promise<void> {
         notificationCreator,
         detailsViewController,
         browserAdapter,
-        devToolsMonitor,
         messageBroadcasterFactory,
         promiseFactory,
         logger,
@@ -250,8 +239,6 @@ async function initialize(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
-
-    devToolsMonitor.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;
