@@ -199,4 +199,8 @@ export const Messages = {
         Open: `${messagePrefix}/debugTools/open`,
         Telemetry: `${messagePrefix}/debugTools/telemetry`,
     },
+
+    Common: {
+        Ping: `${messagePrefix}/injected/ping`,
+    },
 };
