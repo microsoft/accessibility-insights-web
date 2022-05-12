@@ -157,7 +157,6 @@
         "./src/background/is-an-assessment-selected.ts",
         "./src/background/issue-details-text-generator.ts",
         "./src/background/local-storage-data-keys.ts",
-        "./src/background/ping-responder.ts",
         "./src/background/post-message-content-handler.ts",
         "./src/background/post-message-content-repository.ts",
         "./src/background/scan-unscanned-requirement.ts",
