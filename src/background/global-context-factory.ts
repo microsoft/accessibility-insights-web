@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
-import { Logger } from 'common/logging/logger';
 import { PingResponder } from 'background/ping-responder';
+import { Logger } from 'common/logging/logger';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
