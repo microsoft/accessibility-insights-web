@@ -65,6 +65,12 @@ export class ExtensionDisabledMonitor {
             });
             return true;
         } catch (error: unknown) {
+            // As of writing, the specific error the browser gives us in the
+            // disabled case looks like new Error('Extension context invalidated.')
+            //
+            // We intentionally treat *any* error as "unreachable" rather than
+            // parsing for that specific message because there's no documented guarantee
+            // that the message will be stable across browser versions.
             return false;
         }
     }
