@@ -30,13 +30,6 @@ interface DeferredEventDetails extends EventDetails {
 // own timeout MUST be shorter than Chromium's.
 const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
 
-// Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
-// whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
-// and continue to do some async work after returning undefined. To ensure those listeners have
-// time to do their work, the event manager adds this (arbitrary) delay into its response to the
-// browser event.
-const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
-
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
 //
@@ -54,7 +47,17 @@ export class BrowserEventManager {
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
 
-    constructor(private readonly promiseFactory: PromiseFactory, private readonly logger: Logger) {}
+    constructor(
+        private readonly promiseFactory: PromiseFactory,
+        private readonly logger: Logger,
+        // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
+        // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
+        // and continue to do some async work after returning undefined. To ensure those listeners have
+        // time to do their work, the event manager adds this (arbitrary) delay into its response to the
+        // browser event.
+        // We default to 0 to ensure we don't create unnecessary timeouts in the manifest v2 extension.
+        private readonly fireAndForgetEventDelayMs: number = 0,
+    ) {}
 
     public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
         if (this.eventsToApplicationListenersMapping[eventType]) {
@@ -155,7 +158,7 @@ export class BrowserEventManager {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY_MS);
+                return await this.promiseFactory.delay(result, this.fireAndForgetEventDelayMs);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding

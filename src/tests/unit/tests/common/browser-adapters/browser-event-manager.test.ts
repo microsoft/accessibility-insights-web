@@ -98,6 +98,32 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
+        expect(recordingLogger.allMessages).toStrictEqual([]);
+    });
+
+    it('honors fire and forget timeout override', async () => {
+        testSubject = new BrowserEventManager(
+            timeSimulatingPromiseFactory,
+            recordingLogger,
+            120000,
+        );
+
+        testSubject.addBrowserListener(testEvent, 'event-type');
+
+        let appListenerFired = false;
+        testSubject.addApplicationListener('event-type', () => {
+            appListenerFired = true;
+        });
+
+        const promiseReturnedToEvent = testEvent.invoke();
+
+        // The synchronous app listener should fire before we start delaying
+        expect(appListenerFired).toBe(true);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
+
+        await expect(promiseReturnedToEvent).resolves.toBe(undefined);
+
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
@@ -123,7 +149,7 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 

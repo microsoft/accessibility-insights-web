@@ -49,7 +49,12 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+    const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
+    const browserEventManager = new BrowserEventManager(
+        promiseFactory,
+        logger,
+        FIRE_AND_FORGET_EVENT_DELAY_MS,
+    );
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
