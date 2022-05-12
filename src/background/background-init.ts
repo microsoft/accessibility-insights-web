@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
-import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
@@ -29,7 +28,6 @@ import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { BackgroundMessageDistributor } from './background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
 import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
@@ -241,23 +239,6 @@ async function initialize(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
-
-    const devToolsMonitor = new DevToolsMonitor(
-        browserAdapter,
-        promiseFactory,
-        persistedData.activeDevtoolTabIds ?? [],
-        tabContextManager,
-        indexedDBInstance,
-        persistData,
-    );
-    devToolsMonitor.initialize();
-
-    const devToolsBackgroundListener = new DevToolsListener(
-        tabContextManager,
-        browserAdapter,
-        devToolsMonitor,
-    );
-    devToolsBackgroundListener.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;
