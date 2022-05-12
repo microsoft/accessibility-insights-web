@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
-import { Messages } from 'common/messages';
 import { PromiseFactory } from 'common/promises/promise-factory';
 
 // The browser can set our extension to a "disabled" state in a few cases:
