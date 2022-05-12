@@ -54,6 +54,9 @@ export interface BrowserAdapter {
     ): void;
     getManifest(): chrome.runtime.Manifest;
 
+    // undefined implies "the extension has been disabled/uninstalled"
+    getExtensionId(): string | undefined;
+
     getUrl(urlPart: string): string;
     requestPermissions(permissions: Permissions.Permissions): Promise<boolean>;
     addListenerOnPermissionsAdded(callback: (permissions: Permissions.Permissions) => void): void;

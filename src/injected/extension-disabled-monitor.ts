@@ -19,59 +19,25 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 // This class enables our injected content script to detect this case and
 // perform any necessary cleanup (eg, hiding any active visualizations).
 export class ExtensionDisabledMonitor {
+    private readonly pollIntervalMs = 1000;
+
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
     ) {}
 
-    private readonly pollIntervalMs = 1000;
-    private onDisabledCallback: null | Function = null;
-
     public async monitorUntilDisabled(onDisabledCallback: Function): Promise<void> {
-        this.onDisabledCallback = onDisabledCallback;
-
-        // Instead of polling, it would be possible to use browser.runtime.connect()
-        // to open an indefinitely-lived port to the background and watch its
-        // onDisconnect event.
-        //
-        // We avoid that because in a manifest v3 service worker, the browser treats
-        // a port that remains open for too long (> 5min) like a timed out message and
-        // tears down the background worker after that timeout, even if it's in the
-        // middle of other work.
-        await this.pollUntilDisabled();
-    }
-
-    private async pollUntilDisabled(): Promise<void> {
-        while (await this.isBackgroundReachable()) {
+        while (this.isExtensionContextAvailable()) {
             await this.promiseFactory.delay(null, this.pollIntervalMs);
         }
 
         this.logger.log('Detected extension disablement');
 
-        this.onDisabledCallback?.();
+        onDisabledCallback();
     }
 
-    private async isBackgroundReachable(): Promise<boolean> {
-        try {
-            // Ideally this would use browser.management.getSelf(), but
-            // that API isn't available to content scripts.
-            //
-            // This could use a dispatcher instead of a browserAdapter; it
-            // doesn't do so only because the error behavior is tightly
-            // coupled to the browser behavior.
-            await this.browserAdapter.sendRuntimeMessage({
-                messageType: Messages.Common.Ping,
-            });
-            return true;
-        } catch (error: unknown) {
-            // As of writing, the specific error the browser gives us in the
-            // disabled case looks like new Error('Extension context invalidated.')
-            //
-            // We intentionally treat *any* error as "unreachable" rather than
-            // parsing for that specific message because there's no documented guarantee
-            // that the message will be stable across browser versions.
-            return false;
-        }
+    private isExtensionContextAvailable(): boolean {
+        return this.browserAdapter.getExtensionId() != null;
     }
 }

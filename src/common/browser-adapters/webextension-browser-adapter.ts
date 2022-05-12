@@ -205,6 +205,12 @@ export abstract class WebExtensionBrowserAdapter
         return chrome.runtime.getManifest();
     }
 
+    public getExtensionId(): string | undefined {
+        // The webextension typings lie; it *is* possible for this to be
+        // undefined if queried from a content script of a disabled extension
+        return browser.runtime.id;
+    }
+
     public getVersion(): string {
         return this.getManifest().version;
     }
