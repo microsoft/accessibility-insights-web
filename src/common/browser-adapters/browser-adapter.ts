@@ -45,7 +45,6 @@ export interface BrowserAdapter {
     getRuntimeLastError(): chrome.runtime.LastError | undefined;
     isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
-    addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(
         callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
@@ -53,7 +52,6 @@ export interface BrowserAdapter {
     removeListenerOnMessage(
         callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
-    connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
     getManifest(): chrome.runtime.Manifest;
 
     getUrl(urlPart: string): string;
