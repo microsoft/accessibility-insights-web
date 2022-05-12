@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders 1`] = `
+exports[`CombinedReportSummarySection renders 1`] = `
 <UrlsSummarySection
   failedUrlsCount={2}
   failureInstancesCount={4}

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { loadTheme, setFocusVisibility } from '@fluentui/react';
 import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
@@ -13,6 +14,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -38,20 +40,22 @@ import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessm
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
-import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
+import {
+    TabStopsFailedCounterIncludingNoInstance,
+    TabStopsFailedCounterInstancesOnly,
+} from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
@@ -65,7 +69,6 @@ import {
 } from 'reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
-import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -99,6 +102,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
+import { StoreUpdateMessageHub } from '../common/store-update-message-hub';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -160,75 +164,64 @@ if (tabId != null) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
+            const storeUpdateMessageHub = new StoreUpdateMessageHub(tab.id);
+            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
+
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const permissionsStateStore = new StoreProxy<PermissionsStateStoreData>(
                 StoreNames[StoreNames.PermissionsStateStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const tabStore = new StoreProxy<TabStoreData>(
                 StoreNames[StoreNames.TabStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
                 StoreNames[StoreNames.UnifiedScanResultStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
                 StoreNames[StoreNames.CardSelectionStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
                 StoreNames[StoreNames.NeedsReviewScanResultStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
                 StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
                 StoreNames[StoreNames.DetailsViewStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const assessmentStore = new StoreProxy<AssessmentStoreData>(
                 StoreNames[StoreNames.AssessmentStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const scopingStore = new StoreProxy<ScopingStoreData>(
                 StoreNames[StoreNames.ScopingPanelStateStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
-                browserAdapter,
-                tab.id,
+                storeUpdateMessageHub,
             );
 
             const tabStopsViewActions = new TabStopsViewActions();
@@ -265,6 +258,7 @@ if (tabId != null) {
                 new TabStopRequirementActionMessageCreator(
                     telemetryFactory,
                     actionMessageDispatcher,
+                    TelemetryEventSource.DetailsView,
                 );
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
@@ -303,7 +297,10 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
-            const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+            const userConfigMessageCreator = new UserConfigMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+            );
             const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
                 storesHub.stores,
             );
@@ -355,19 +352,6 @@ if (tabId != null) {
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
 
-            // This is for a soon-to-be-legacy FastPass report format.
-            // It should be removed with #1897885.
-            const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
-                AutomatedChecksReportSectionFactory,
-                reactStaticRenderer,
-                getDefaultAddListenerForCollapsibleSection,
-                DateProvider.getUTCStringFromDate,
-                GetGuidanceTagsFromGuidanceLinks,
-                fixInstructionProcessor,
-                recommendColor,
-                getPropertyConfiguration,
-            );
-
             const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
@@ -376,6 +360,10 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
+                new TabStopsFailedCounterIncludingNoInstance(),
+                toolData,
+                DateProvider.getCurrentDate,
+                GetNextHeadingLevel,
             );
 
             // Represents the language in which pages are to be displayed
@@ -451,7 +439,6 @@ if (tabId != null) {
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                automatedChecksReportHtmlGenerator,
                 fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,
@@ -493,8 +480,6 @@ if (tabId != null) {
                 document,
                 loadAssessmentDataValidator,
             );
-
-            const tabStopsFailedCounter = new TabStopsFailedCounter();
 
             const deps: DetailsViewContainerDeps = {
                 textContent,
@@ -577,8 +562,10 @@ if (tabId != null) {
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
                 tabStopRequirements: requirements,
-                tabStopsFailedCounter,
+                tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
+                tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: GetNextHeadingLevel,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -28,10 +28,11 @@ module.exports = {
         '@uifabric/utilities': '@uifabric/utilities/lib-commonjs',
         '@uifabric/styling': '@uifabric/styling/lib-commonjs',
         /* Using proxy to handle css modules, as per: https://jestjs.io/docs/en/webpack#mocking-css-modules */
-        '\\.(scss)$': 'identity-obj-proxy',
+        '\\.(scss)$': `${__dirname}/src/tests/common/identity-obj-proxy`,
     },
     reporters: [
         'default',
+        'github-actions',
         [
             'jest-junit',
             {
@@ -40,10 +41,13 @@ module.exports = {
             },
         ],
     ],
+    resolver: `${__dirname}/src/tests/common/resolver.js`,
+    setupFilesAfterEnv: [`${__dirname}/src/tests/common/flush-promises-after-each-test.ts`],
+    snapshotSerializers: [`${__dirname}/src/tests/common/typemoq-snapshot-serializer.ts`],
     testEnvironment: 'node',
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],
     transform: {
-        '^.+\\.(ts|tsx|js|jsx)$': [`${__dirname}/src/tests/common/swc-transformer`],
+        '^.+\\.(ts|tsx|js|jsx)$': ['@swc/jest'],
     },
 };

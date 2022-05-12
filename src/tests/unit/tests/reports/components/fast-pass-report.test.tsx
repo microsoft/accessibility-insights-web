@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CommonInstancesSectionDeps } from 'common/components/cards/common-instances-section-props';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { FastPassReport, FastPassReportProps } from 'reports/components/fast-pass-report';
+import {
+    FastPassReport,
+    FastPassReportDeps,
+    FastPassReportProps,
+} from 'reports/components/fast-pass-report';
 import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
-describe(FastPassReport, () => {
+describe(FastPassReport.displayName, () => {
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
@@ -33,7 +36,7 @@ describe(FastPassReport, () => {
         const targetAppInfo = { name: 'app' };
 
         const props: FastPassReportProps = {
-            deps: {} as CommonInstancesSectionDeps,
+            deps: {} as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
             pageTitle,
@@ -58,7 +61,18 @@ describe(FastPassReport, () => {
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,
                 },
-                tabStops: null, // Should be filled in as part of #1897876
+                tabStops: {
+                    'keyboard-traps': {
+                        status: 'pass',
+                        instances: [{ id: 'test-id-2', description: 'test desc 2' }],
+                        isExpanded: false,
+                    },
+                    'tab-order': {
+                        status: 'fail',
+                        instances: [{ id: 'test-id-4', description: 'test desc 4' }],
+                        isExpanded: false,
+                    },
+                },
             },
             userConfigurationStoreData: null,
             targetAppInfo,
@@ -70,6 +84,7 @@ describe(FastPassReport, () => {
                     scanComplete: scanDate,
                 },
             },
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<FastPassReport {...props} />);

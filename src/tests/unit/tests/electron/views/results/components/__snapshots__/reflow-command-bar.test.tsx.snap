@@ -5,7 +5,7 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
   <div className=\\"farItems reflow\\">
     <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
     <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
-    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"FastPass\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />
   </div>
 </section>"
 `;
@@ -23,7 +23,7 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
     <ReportExportButton showReportExportDialog={[Function (anonymous)]} />
     <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={false} />
     <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
-    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"FastPass\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />
   </div>
 </section>"
 `;
@@ -33,7 +33,7 @@ exports[`ReflowCommandBar renders does not create report export when allowsExpor
   <div className=\\"farItems reflow\\">
     <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={false} />
     <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
-    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"FastPass\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />
   </div>
 </section>"
 `;
@@ -53,7 +53,7 @@ exports[`ReflowCommandBar renders with start over button disabled 1`] = `
     <ReportExportButton showReportExportDialog={[Function (anonymous)]} />
     <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={true} />
     <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
-    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={[undefined]} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"FastPass\\" pageTitle=\\"scan target name\\" scanDate={[undefined]} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />
   </div>
 </section>"
 `;

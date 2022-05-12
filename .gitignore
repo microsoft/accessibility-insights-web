@@ -17,6 +17,7 @@ drop/
 test-results/
 analysis/
 *.scss.d.ts
+original-manifest-copy.json
 
 # Dependency directories
 node_modules/

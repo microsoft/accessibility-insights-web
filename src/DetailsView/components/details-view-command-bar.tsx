@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IButton } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -43,7 +43,6 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
-import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -92,7 +91,7 @@ export interface DetailsViewCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
-    featureFlagStoreData: FeatureFlagStoreData;
+    tabStopRequirementData: TabStopRequirementState;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
@@ -206,8 +205,7 @@ export class DetailsViewCommandBar extends React.Component<
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
             selectedTest: this.props.selectedTest,
-            visualizationStoreData: this.props.visualizationStoreData,
-            featureFlagStoreData: this.props.featureFlagStoreData,
+            tabStoreData: this.props.tabStoreData,
         };
 
         const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(

@@ -21,6 +21,7 @@
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
+
         svg circle {
             fill: $iconColor;
         }
@@ -33,6 +34,7 @@
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
+
         $cross-line-height: (math.div(8, 14) * $true-icon-size);
         $bottom-value: math.div($true-icon-size - $cross-line-height, 2);
         $left-value: math.div($true-icon-size - $width-value, 2);
@@ -55,6 +57,7 @@
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
+
         $inapplicable-line-height: (math.div(4, 7) * $true-icon-size);
         $bottom-value: math.div($true-icon-size - $inapplicable-line-height, 2);
         $left-value: math.div($true-icon-size - $width-value, 2);

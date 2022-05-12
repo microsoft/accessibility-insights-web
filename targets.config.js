@@ -25,6 +25,7 @@ const commonExtensionOptions = {
         'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
     bundled: true,
     productCategory: 'extension',
+    manifestVersion: 2, // Will get overwritten for MV3 configs
 };
 
 const commonUnifiedOptions = {
@@ -45,6 +46,19 @@ module.exports = {
         },
         bundleFolder: 'devBundle',
         mustExistFile: 'background.bundle.js',
+    },
+    'dev-mv3': {
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.dev,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web - Dev (Manifest 3)',
+                telemetryBuildName: 'DevMV3',
+            },
+        },
+        bundleFolder: 'devMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     playground: {
         release: true,
@@ -71,6 +85,20 @@ module.exports = {
         },
         bundleFolder: 'devBundle',
         mustExistFile: 'background.bundle.js',
+    },
+    'canary-mv3': {
+        release: true,
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.canary,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web - Canary (M3)',
+                telemetryBuildName: 'CanaryMV3',
+            },
+        },
+        bundleFolder: 'devMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     insider: {
         release: true,

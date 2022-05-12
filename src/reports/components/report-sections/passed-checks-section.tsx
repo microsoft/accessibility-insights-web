@@ -13,13 +13,15 @@ export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 
 export type PassedChecksSectionProps = Pick<
     SectionProps,
-    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator'
->;
+    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'sectionHeadingLevel'
+> & {
+    testKey?: string;
+};
 
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
-    ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
-        const cardRuleResults = cardsViewData.cards.pass;
+    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey, sectionHeadingLevel }) => {
+        const cardRuleResults = cardsViewData?.cards?.pass ?? [];
 
         return (
             <CollapsibleResultSection
@@ -31,6 +33,8 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                 badgeCount={cardRuleResults.length}
                 containerId="passed-checks-section"
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
+                testKey={testKey}
+                headingLevel={sectionHeadingLevel}
             />
         );
     },

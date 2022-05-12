@@ -7,7 +7,7 @@ import {
     Runtime,
     Tabs,
     Windows,
-} from 'webextension-polyfill-ts';
+} from 'webextension-polyfill';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;

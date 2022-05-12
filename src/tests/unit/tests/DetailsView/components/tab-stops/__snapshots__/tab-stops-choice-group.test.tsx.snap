@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsChoiceGroup render options with no label 1`] = `<React.Fragment />`;
+exports[`TabStopsChoiceGroup render options with no label 1`] = `null`;
 
-exports[`TabStopsChoiceGroup render options with no label 2`] = `<React.Fragment />`;
+exports[`TabStopsChoiceGroup render options with no label 2`] = `null`;
 
 exports[`TabStopsChoiceGroup render with fail status 1`] = `
 <React.Fragment>
   <div
     className="tabStopsChoiceGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="fail"
       componentRef={[Function]}
       data-automation-id="tabStopsPassFailChoiceGroup"
@@ -39,7 +39,7 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
         className="undoButton"
         onClick={[Function]}
       >
-        <StyledIconBase
+        <Memo(Icon)
           ariaLabel="undo"
           className="undoButtonIcon"
           iconName="undo"
@@ -50,7 +50,7 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
         data-automation-id="addTabStopsFailureInstance"
         onClick={[Function]}
       >
-        <StyledIconBase
+        <Memo(Icon)
           ariaLabel="add failure instance"
           iconName="add"
         />
@@ -65,7 +65,7 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
   <div
     className="tabStopsChoiceGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="pass"
       componentRef={[Function]}
       data-automation-id="tabStopsPassFailChoiceGroup"
@@ -94,7 +94,7 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
       className="undoButton"
       onClick={[Function]}
     >
-      <StyledIconBase
+      <Memo(Icon)
         ariaLabel="undo"
         className="undoButtonIcon"
         iconName="undo"
@@ -109,7 +109,7 @@ exports[`TabStopsChoiceGroup render with unknown status 1`] = `
   <div
     className="tabStopsChoiceGroup"
   >
-    <StyledChoiceGroupBase
+    <StyledChoiceGroup
       className="unknown"
       componentRef={[Function]}
       data-automation-id="tabStopsPassFailChoiceGroup"

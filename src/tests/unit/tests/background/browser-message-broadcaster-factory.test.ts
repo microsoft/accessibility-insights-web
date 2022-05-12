@@ -7,7 +7,7 @@ import {
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('BrowserMessageBroadcasterFactory', () => {
     let loggerMock: IMock<Logger>;
@@ -53,7 +53,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const testMessage = { someData: 'test data' } as any;
             const testError = { message: 'test error' };
             const expectedMessage =
-                "sendMessageToFrames failed for message { someData: 'test data' } with browser error message: test error";
+                'sendMessageToFrames failed for message {"someData":"test data"} with browser error message: test error';
 
             browserAdapterMock
                 .setup(ba => ba.tabsQuery({}))
@@ -76,7 +76,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const testMessage = { someData: 'test data' } as any;
             const testError = { message: 'test error' };
             const expectedMessage =
-                "sendMessageToTab(1) failed for message { someData: 'test data' } with browser error message: test error";
+                'sendMessageToTab(1) failed for message {"someData":"test data"} with browser error message: test error';
 
             browserAdapterMock
                 .setup(ba => ba.tabsQuery({}))
@@ -141,7 +141,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const testMessage = { someData: 'test data' } as any;
             const testError = { message: 'test error' };
             const expectedMessage =
-                "sendMessageToFrames failed for message { someData: 'test data', tabId: 1 } with browser error message: test error";
+                'sendMessageToFrames failed for message {"someData":"test data","tabId":1} with browser error message: test error';
 
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(It.isAny()))
@@ -161,7 +161,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
             const testMessage = { someData: 'test data' } as any;
             const testError = { message: 'test error' };
             const expectedMessage =
-                "sendMessageToTab(1) failed for message { someData: 'test data', tabId: 1 } with browser error message: test error";
+                'sendMessageToTab(1) failed for message {"someData":"test data","tabId":1} with browser error message: test error';
 
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(It.isAny()))

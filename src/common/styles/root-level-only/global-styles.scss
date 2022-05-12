@@ -32,6 +32,7 @@ button::after {
             text-decoration: underline;
         }
     }
+
     .is-selected {
         .status-icon {
             color: $high-contrast-icon-color !important;
@@ -43,6 +44,7 @@ button::after {
     // marking important to override office fabric style
     color: $link !important;
     text-decoration: none;
+    @include fluent-forced-color-adjust-override;
 
     &:hover {
         color: $link-hover !important;

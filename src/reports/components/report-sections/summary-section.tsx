@@ -21,6 +21,7 @@ export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummaryS
         }, 0),
         pass: cards.pass.length,
         inapplicable: cards.inapplicable.length,
+        incomplete: 0, // never used
         review: 0, // never used
     };
 

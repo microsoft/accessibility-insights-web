@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -88,13 +89,39 @@ describe('NeedsReviewScanResultStore Test', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onScanStarted', () => {
-        const initialState = getDefaultState();
-        const finalState = getDefaultState();
+    test('onExistingTabUpdated', () => {
+        const initialState = {
+            results: [
+                {
+                    uid: 'test-uid',
+                },
+            ],
+            rules: [
+                {
+                    id: 'test-rule-id',
+                },
+            ],
+            toolInfo: {
+                scanEngineProperties: {
+                    name: 'test-scan-engine-name',
+                },
+            },
+            timestamp: 'timestamp',
+            scanIncompleteWarnings: ['some-incomplete-warning-id' as ScanIncompleteWarningId],
+            screenshotData: {
+                base64PngData: 'testScreenshotText',
+            },
+            targetAppInfo: { name: 'app name' },
+            platformInfo: {
+                deviceName: 'test-device-name',
+            },
+        } as NeedsReviewScanResultStoreData;
 
-        createStoreForNeedsReviewScanResultActions('startScan').testListenerToBeCalledOnce(
+        const expectedState = getDefaultState();
+
+        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
             initialState,
-            finalState,
+            expectedState,
         );
     });
 
@@ -106,8 +133,25 @@ describe('NeedsReviewScanResultStore Test', () => {
         actionName: keyof NeedsReviewScanResultActions,
     ): StoreTester<NeedsReviewScanResultStoreData, NeedsReviewScanResultActions> {
         const factory = (actions: NeedsReviewScanResultActions) =>
-            new NeedsReviewScanResultStore(actions);
+            new NeedsReviewScanResultStore(actions, new TabActions(), null, null, null, null, true);
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);
+    }
+
+    function createStoreTesterForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<NeedsReviewScanResultStoreData, TabActions> {
+        const factory = (tabActions: TabActions) =>
+            new NeedsReviewScanResultStore(
+                new NeedsReviewScanResultActions(),
+                tabActions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });

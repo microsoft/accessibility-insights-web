@@ -58,7 +58,6 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
                     displayableData={displayableData}
                     visualizationType={selectedTest}
                     toggleClickHandler={clickHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
                     detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 />
             );

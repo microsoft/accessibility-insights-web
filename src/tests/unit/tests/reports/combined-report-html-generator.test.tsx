@@ -7,7 +7,6 @@ import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import {
     ScanMetadata,
     ScanTimespan,
@@ -85,13 +84,11 @@ describe('CombinedReportHtmlGenerator', () => {
     let getScriptMock: IMock<() => string>;
     let sectionFactoryMock: IMock<ReportSectionFactory<CombinedReportSectionProps>>;
     let rendererMock: IMock<ReactStaticRenderer>;
-    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
 
     beforeEach(() => {
         getScriptMock = Mock.ofInstance(() => '');
         sectionFactoryMock = Mock.ofType<ReportSectionFactory<CombinedReportSectionProps>>();
         rendererMock = Mock.ofType<ReactStaticRenderer>();
-        cardSelectionMessageCreatorMock = Mock.ofType<CardSelectionMessageCreator>();
 
         testSubject = new CombinedReportHtmlGenerator(
             sectionFactoryMock.object,
@@ -122,10 +119,10 @@ describe('CombinedReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             scanMetadata,
             cardsViewData,
             urlResultCounts,
+            sectionHeadingLevel: 2,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -143,12 +140,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(
-            scanMetadata,
-            cardsViewData,
-            cardSelectionMessageCreatorMock.object,
-            urlResultCounts,
-        );
+        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
 
         expect(html).toMatchSnapshot();
     });

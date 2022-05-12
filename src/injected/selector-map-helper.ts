@@ -8,8 +8,8 @@ import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { includes } from 'lodash';
-
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
@@ -30,6 +30,7 @@ export class SelectorMapHelper {
     constructor(
         private assessmentsProvider: AssessmentsProvider,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
+        private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
     ) {}
 
     public getSelectorMap(
@@ -112,7 +113,9 @@ export class SelectorMapHelper {
                 selectorMap = visualizationScanResultData.landmarks.fullAxeResultsMap;
                 break;
             case VisualizationType.TabStops:
-                selectorMap = visualizationScanResultData.tabStops.tabbedElements;
+                selectorMap = this.getVisualizationInstancesForTabStops(
+                    visualizationScanResultData.tabStops,
+                );
                 break;
             default:
                 selectorMap = visualizationScanResultData.color.fullAxeResultsMap;

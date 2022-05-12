@@ -2,16 +2,22 @@
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ReportTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
-import { FastPassReport, FastPassReportProps } from 'reports/components/fast-pass-report';
+import {
+    FastPassReport,
+    FastPassReportDeps,
+    FastPassReportProps,
+} from 'reports/components/fast-pass-report';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import { SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import {
     FastPassReportHtmlGenerator,
     FastPassReportModel,
@@ -30,7 +36,9 @@ describe(FastPassReportHtmlGenerator, () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
+        const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
+        const tabStopsFailedCounterMock = Mock.ofType<TabStopsFailedCounter>();
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -49,22 +57,14 @@ describe(FastPassReportHtmlGenerator, () => {
 
         const getScriptMock = Mock.ofInstance(() => '');
 
-        const targetAppInfo = {
+        const targetPage = {
             name: pageTitle,
             url: pageUrl,
         };
 
-        const scanMetadata = {
-            toolData: toolData,
-            targetAppInfo: targetAppInfo,
-            timespan: {
-                scanComplete: scanDate,
-            },
-        } as ScanMetadata;
-
         const model: FastPassReportModel = {
             description,
-            scanMetadata,
+            targetPage,
             results: {
                 automatedChecks: {
                     cards: exampleUnifiedStatusResults,
@@ -75,7 +75,15 @@ describe(FastPassReportHtmlGenerator, () => {
             },
         };
 
-        const props: FastPassReportProps = {
+        const expectedScanMetadata: ScanMetadata = {
+            targetAppInfo: targetPage,
+            timespan: {
+                scanComplete: scanDate,
+            },
+            toolData,
+        };
+
+        const expectedProps: FastPassReportProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
                 recommendColor: recommendColorMock.object,
@@ -85,7 +93,10 @@ describe(FastPassReportHtmlGenerator, () => {
                 cardInteractionSupport: cardInteractionSupport,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
-            } as SectionDeps,
+                tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+                tabStopsInstanceSectionPropsFactory: ReportTabStopsInstanceSectionPropsFactory,
+                getNextHeadingLevel: getNextHeadingLevelStub,
+            } as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
             description,
@@ -93,10 +104,11 @@ describe(FastPassReportHtmlGenerator, () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             results: model.results,
-            scanMetadata,
+            scanMetadata: expectedScanMetadata,
+            sectionHeadingLevel: 3,
         };
 
-        const reportElement: JSX.Element = <FastPassReport {...props} />;
+        const reportElement: JSX.Element = <FastPassReport {...expectedProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
         rendererMock
@@ -112,6 +124,10 @@ describe(FastPassReportHtmlGenerator, () => {
             fixInstructionProcessorMock.object,
             recommendColorMock.object,
             getPropertyConfigurationStub,
+            tabStopsFailedCounterMock.object,
+            toolData,
+            () => scanDate,
+            getNextHeadingLevelStub,
         );
 
         const actual = testObject.generateHtml(model);

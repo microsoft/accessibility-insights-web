@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { inspect } from 'util';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
 
@@ -64,7 +63,7 @@ export class BrowserMessageBroadcasterFactory {
             return;
         }
 
-        const msg = `${operationDescription} failed for message ${inspect(
+        const msg = `${operationDescription} failed for message ${JSON.stringify(
             message,
         )} with browser error message: ${chromeError.message}`;
         this.logger.error(msg);

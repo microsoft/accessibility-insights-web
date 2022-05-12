@@ -4,4 +4,5 @@ export interface FocusIndicator {
     circle: Element;
     tabIndexLabel?: Element;
     line?: Element;
+    failureLabel?: Element;
 }

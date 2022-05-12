@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
-import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
-import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import {
     CheckboxVisibility,
     ColumnActionsMode,
@@ -11,7 +8,11 @@ import {
     IColumn,
     Icon,
     Link,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
+import { NamedFC } from 'common/react/named-fc';
+import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
+import { tabStopsRequirementsTableActionColumnWidthPx } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
+import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import * as styles from './tab-stops-requirement-instances-collapsible-content.scss';
@@ -37,7 +38,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     <AssessmentInstanceDetailsColumn
                         background={'#767676'}
                         textContent={instance.description}
-                        headerText={'Comment:'}
+                        headerText={'Comment'}
                         tooltipId={instance.id}
                     />
                 );
@@ -77,8 +78,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     key: 'failureDescription',
                     name: 'Failure description',
                     fieldName: 'description',
-                    minWidth: 200,
-                    maxWidth: 400,
+                    minWidth: 100,
                     isResizable: true,
                     onRender: onRenderCapturedInstanceDetailsColumn,
                     columnActionsMode: ColumnActionsMode.disabled,
@@ -88,8 +88,9 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     name: 'instance actions',
                     isIconOnly: true,
                     fieldName: 'instanceActionButtons',
-                    minWidth: 100,
-                    maxWidth: 100,
+                    // Matching the Requirements table ensures that corresponding icons line up
+                    minWidth: tabStopsRequirementsTableActionColumnWidthPx,
+                    maxWidth: tabStopsRequirementsTableActionColumnWidthPx,
                     isResizable: false,
                     onRender: onRenderCapturedInstanceIconsColumn,
                     columnActionsMode: ColumnActionsMode.disabled,
@@ -103,7 +104,6 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     checkboxVisibility={CheckboxVisibility.hidden}
                     constrainMode={ConstrainMode.horizontalConstrained}
                     onRenderDetailsHeader={() => null}
-                    className={styles.failedInstancesDetails}
                 />
             );
         },

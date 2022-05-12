@@ -17,6 +17,7 @@ import {
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     DETAILS_VIEW_OPEN,
+    ExportFastPassResultsTelemetryData,
     ExportResultsTelemetryData,
     EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
@@ -1065,6 +1066,49 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry);
 
         testSubject.exportResultsClicked(exportResultsType, serviceKey, event);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(EXPORT_RESULTS, telemetry),
+            Times.once(),
+        );
+    });
+
+    test('exportResultsClicked', () => {
+        const serviceKey = 'html';
+        const event = eventStubFactory.createMouseClickEvent() as any;
+
+        const telemetry: ExportFastPassResultsTelemetryData = {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'mouseclick',
+            exportResultsService: 'html',
+            exportResultsType: 'export result type',
+            wereAutomatedChecksRun: true,
+            tabStopRequirementInstanceCount: { pass: {}, unknown: {}, fail: {} },
+        };
+        const tabStopRequirementData = {};
+        const wereAutomatedChecksRun = true;
+        const exportResultsType = 'FastPass';
+
+        telemetryFactoryMock
+            .setup(tf =>
+                tf.forExportedResultsWithFastPassData(
+                    tabStopRequirementData,
+                    wereAutomatedChecksRun,
+                    exportResultsType,
+                    serviceKey,
+                    event,
+                    TelemetryEventSource.DetailsView,
+                ),
+            )
+            .returns(() => telemetry);
+
+        testSubject.exportResultsClickedFastPass(
+            tabStopRequirementData,
+            wereAutomatedChecksRun,
+            exportResultsType,
+            serviceKey,
+            event,
+        );
 
         dispatcherMock.verify(
             dispatcher => dispatcher.sendTelemetry(EXPORT_RESULTS, telemetry),

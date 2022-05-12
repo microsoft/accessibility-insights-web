@@ -146,20 +146,25 @@ export interface RemoveTabStopInstancePayload extends BaseActionPayload {
 export interface ToggleTabStopRequirementExpandPayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
 }
+export interface UpdateTabbingCompletedPayload extends BaseActionPayload {
+    tabbingCompleted: boolean;
+}
+export interface UpdateNeedToCollectTabbingResultsPayload extends BaseActionPayload {
+    needToCollectTabbingResults: boolean;
+}
 export interface AddTabStopInstancePayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
     description: string;
+    selector?: string[];
+    html?: string;
 }
+
 export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
     id: string;
 }
 
 export interface SetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
-}
-
-export interface OnDevToolOpenPayload extends BaseActionPayload {
-    status: boolean;
 }
 
 export interface InspectElementPayload extends BaseActionPayload {
@@ -240,4 +245,8 @@ export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
 export interface SaveWindowBoundsPayload extends BaseActionPayload {
     windowState: WindowState;
     windowBounds: Rectangle;
+}
+
+export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
 }

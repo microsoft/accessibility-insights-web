@@ -33,7 +33,6 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               aria-hidden="true"
               class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
               data-icon-name="Gear"
-              role="presentation"
               style="font-family: FabricMDL2Icons;"
             >
               
@@ -56,7 +55,6 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               aria-hidden="true"
               class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
               data-icon-name="GlobalNavButton"
-              role="presentation"
               style="font-family: FabricMDL2Icons;"
             >
               
@@ -80,32 +78,30 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
       </div>
     </header>
     <div
-      class="ms-Grid main-section"
+      class="main-section"
     >
-      <main>
-        <div
-          aria-level="2"
-          class="launch-pad-title ms-fontWeight-semibold"
-          role="heading"
-        >
-          Launch pad
-        </div>
-        <hr
-          class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
-        />
-        <div
-          class="launch-pad-main-section"
-        >
-          <div>
-            <div
-              class="ms-Grid"
-            >
+      <div
+        class="popup-grid"
+      >
+        <main>
+          <h2
+            class="launch-pad-title ms-fontWeight-semibold"
+          >
+            Launch pad
+          </h2>
+          <hr
+            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+          />
+          <div
+            class="launch-pad-main-section"
+          >
+            <div>
               <div
-                class="ms-Grid-row"
+                class="launch-pad-item-grid"
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
+                  class="popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
@@ -115,9 +111,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                     
                   </i>
                 </div>
-                <div
-                  class="ms-Grid-col ms-sm000"
-                >
+                <div>
                   <div
                     class="launch-pad-item-title"
                   >
@@ -139,21 +133,17 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                   </div>
                 </div>
               </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
             </div>
-            <hr
-              class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
-            />
-          </div>
-          <div>
-            <div
-              class="ms-Grid"
-            >
+            <div>
               <div
-                class="ms-Grid-row"
+                class="launch-pad-item-grid"
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
+                  class="popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
@@ -163,9 +153,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                     
                   </i>
                 </div>
-                <div
-                  class="ms-Grid-col ms-sm000"
-                >
+                <div>
                   <div
                     class="launch-pad-item-title"
                   >
@@ -187,21 +175,17 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                   </div>
                 </div>
               </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
             </div>
-            <hr
-              class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
-            />
-          </div>
-          <div>
-            <div
-              class="ms-Grid"
-            >
+            <div>
               <div
-                class="ms-Grid-row"
+                class="launch-pad-item-grid"
               >
                 <div
                   aria-hidden="true"
-                  class="ms-Grid-col ms-sm000 popup-start-dialog-icon-circle"
+                  class="popup-start-dialog-icon-circle"
                 >
                   <i
                     aria-hidden="true"
@@ -211,9 +195,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                     
                   </i>
                 </div>
-                <div
-                  class="ms-Grid-col ms-sm000"
-                >
+                <div>
                   <div
                     class="launch-pad-item-title"
                   >
@@ -235,32 +217,40 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                   </div>
                 </div>
               </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
             </div>
-            <hr
-              class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
-            />
           </div>
-        </div>
-      </main>
-      <div
-        class="launch-pad-footer"
-        role="complementary"
-      >
-        <div>
-          Version 1.0.4 | Powered by 
-          <div
-            class="ms-TooltipHost insights-tooltip-host--{{CSS_MODULE_HASH}} root-000"
-          >
-            <a
-              aria-label="Navigate to axe-core npm page"
-              class="ms-Link insights-link root-000"
-              href="https://www.npmjs.com/package/axe-core"
-              target="_blank"
+        </main>
+        <div
+          class="launch-pad-footer"
+          role="complementary"
+        >
+          <div>
+            Version 1.0.4 | Powered by 
+            <div
+              class="ms-TooltipHost insights-tooltip-host--{{CSS_MODULE_HASH}} root-000"
+              role="none"
             >
-              axe-core
-            </a>
+              <a
+                aria-label="Navigate to axe-core npm page"
+                class="ms-Link insights-link insights-link--{{CSS_MODULE_HASH}} root-000"
+                href="https://www.npmjs.com/package/axe-core"
+                target="_blank"
+              >
+                axe-core
+              </a>
+              <div
+                hidden=""
+                id="tooltip000"
+                style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+              >
+                Navigate to axe-core npm page
+              </div>
+            </div>
+             4.4.1
           </div>
-           4.3.2
         </div>
       </div>
     </div>

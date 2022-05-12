@@ -27,6 +27,7 @@ const commonEntryFiles = {
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
+    serviceWorker: [path.resolve(__dirname, 'src/background/service-worker-init.ts')],
     debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
@@ -96,10 +97,9 @@ const commonConfig = {
     resolve: {
         // It is important that src is absolute but node_modules is relative. See #2520
         modules: [path.resolve(__dirname, './src'), 'node_modules'],
-        extensions: ['.tsx', '.ts', '.js'],
-        // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
-        // See https://github.com/dequelabs/axe-core/issues/2873
-        fallback: { crypto: false },
+        // We only directly use .tsx and .ts, but some of our transitive dependencies directly
+        // require .js or .json files
+        extensions: ['.tsx', '.ts', '.js', '.json'],
     },
     plugins: commonPlugins,
     performance: {
@@ -167,6 +167,25 @@ const devConfig = {
     devtool: 'eval-source-map',
     output: {
         path: path.join(__dirname, 'extension/devBundle'),
+        filename: '[name].bundle.js',
+    },
+    optimization: {
+        splitChunks: false,
+    },
+};
+
+const devMv3Config = {
+    ...commonConfig,
+    entry: {
+        ...commonEntryFiles,
+        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
+    },
+    name: 'dev-mv3',
+    mode: 'development',
+    devtool: 'inline-source-map',
+    output: {
+        path: path.join(__dirname, 'extension/devMv3Bundle'),
         filename: '[name].bundle.js',
     },
     optimization: {
@@ -245,4 +264,11 @@ const packageUIConfig = {
 };
 
 // For just one config, use "webpack --config-name dev", "webpack --config-name prod", etc
-module.exports = [devConfig, prodConfig, unifiedConfig, packageReportConfig, packageUIConfig];
+module.exports = [
+    devConfig,
+    devMv3Config,
+    prodConfig,
+    unifiedConfig,
+    packageReportConfig,
+    packageUIConfig,
+];

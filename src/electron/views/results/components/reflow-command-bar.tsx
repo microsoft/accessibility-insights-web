@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css, IButton } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
@@ -17,7 +19,6 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -29,6 +30,7 @@ export type ReflowCommandBarDeps = {
     reportHtmlGenerator: ReportHtmlGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ReportExportComponentDeps;
 
 export interface ReflowCommandBarProps {
@@ -85,7 +87,7 @@ export class ReflowCommandBar extends React.Component<
                 <ReportExportComponent
                     deps={deps}
                     isOpen={this.state.reportExportDialogIsOpen}
-                    reportExportFormat={'AutomatedChecks'}
+                    reportExportFormat={'FastPass'}
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
                     htmlGenerator={description =>
@@ -107,6 +109,17 @@ export class ReflowCommandBar extends React.Component<
                         this.dropdownMenuButtonRef.focus();
                     }}
                     reportExportServices={deps.reportExportServiceProvider.servicesForFastPass()}
+                    exportResultsClickedTelemetry={(
+                        reportExportFormat,
+                        selectedServiceKey,
+                        event,
+                    ) =>
+                        deps.detailsViewActionMessageCreator.exportResultsClicked(
+                            reportExportFormat,
+                            selectedServiceKey,
+                            event,
+                        )
+                    }
                 />
             );
         }

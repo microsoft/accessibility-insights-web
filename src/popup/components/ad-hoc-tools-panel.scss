@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
 .ad-hoc-tools-panel {
     padding-right: 8px;
@@ -8,12 +9,9 @@
 
     .ad-hoc-tools-grid {
         display: grid;
-
         grid-auto-flow: column;
-
         grid-template-columns: auto auto;
         grid-template-rows: auto 1px auto 1px auto;
-
         grid-column-gap: 30px;
         grid-row-gap: 14px;
     }
@@ -28,6 +26,7 @@
         .link {
             color: $link !important;
             font-size: 11px;
+            @include fluent-forced-color-adjust-override;
         }
 
         .back-to-launch-pad-icon {

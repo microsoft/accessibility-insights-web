@@ -22,6 +22,23 @@ describe('PassedChecksSection', () => {
                     unknown: [],
                 },
             } as CardsViewModel,
+            sectionHeadingLevel: 3,
+        };
+
+        const wrapper = shallow(<PassedChecksSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders when card data is missing', () => {
+        const props: PassedChecksSectionProps = {
+            deps: {} as SectionDeps,
+            cardsViewData: {
+                cards: {
+                    /* missing */
+                },
+            } as CardsViewModel,
+            sectionHeadingLevel: 3,
         };
 
         const wrapper = shallow(<PassedChecksSection {...props} />);

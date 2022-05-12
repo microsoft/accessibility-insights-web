@@ -11,7 +11,6 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AdhocIssuesTestView,
     AdhocIssuesTestViewProps,
@@ -53,9 +52,7 @@ describe('AdhocIssuesTestView', () => {
         selectedTest: selectedTest,
         scanIncompleteWarnings: [],
         instancesSection: NamedFC<CommonInstancesSectionProps>('test', _ => null),
-        deps: {
-            detailsViewActionMessageCreator: {} as DetailsViewActionMessageCreator,
-        },
+        deps: {},
     } as AdhocIssuesTestViewProps;
 
     const scanDataStub: ScanData = {

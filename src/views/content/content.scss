@@ -24,7 +24,6 @@
 .content {
     flex-grow: 10;
     max-width: 1120px;
-
     font-family: $fontFamily;
     font-size: 14px;
     margin: 10px;
@@ -68,6 +67,7 @@
 
     ol {
         -webkit-padding-start: 16px;
+
         li ul li {
             list-style-type: disc;
         }
@@ -77,16 +77,19 @@
         .content-inline {
             line-height: 20px;
             margin-bottom: 6px;
+
             .insights-link {
                 display: inline;
             }
         }
+
         .insights-link {
             line-height: 20px;
             margin-bottom: 6px;
             display: block;
         }
     }
+
     .code-example {
         .code-example-code {
             font-family: $codeFontFamily;
@@ -217,21 +220,23 @@
     }
 
     .do-header {
-        @include check-icon-styles($icon-size, 0px, $do-color);
+        @include check-icon-styles($icon-size, 0, $do-color);
+
         border-bottom: 2px solid $do-color;
     }
 
     .dont-header {
-        @include cross-icon-styles($icon-size, 0px, $dont-color);
+        @include cross-icon-styles($icon-size, 0, $dont-color);
+
         border-bottom: 2px solid $dont-color;
     }
 
     .pass-header {
-        @include check-icon-styles(12px, 0px, $do-color);
+        @include check-icon-styles(12px, 0, $do-color);
     }
 
     .fail-header {
-        @include cross-icon-styles(12px, 0px, $dont-color);
+        @include cross-icon-styles(12px, 0, $dont-color);
     }
 
     .table {

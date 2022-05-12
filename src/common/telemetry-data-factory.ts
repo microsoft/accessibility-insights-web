@@ -1,17 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-
 import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
+    AutoDetectedFailuresDialogStateTelemetryData,
     BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
+    ExportFastPassResultsTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
@@ -28,6 +31,9 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    TabStopAutomatedFailuresInstanceCount,
+    TabStopRequirementInstanceCount,
+    TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
@@ -93,6 +99,37 @@ export class TelemetryDataFactory {
             ...this.withTriggeredByAndSource(event, source),
             exportResultsType: reportExportFormat,
             exportResultsService: selectedServiceKey,
+        };
+    }
+
+    public forExportedResultsWithFastPassData(
+        tabStopRequirementData: TabStopRequirementState,
+        wereAutomatedChecksRun: boolean,
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+        source: TelemetryEventSource,
+    ): ExportFastPassResultsTelemetryData {
+        const tabStopRequirementInstanceCount: TabStopRequirementInstanceCount = {
+            pass: {},
+            fail: {},
+            unknown: {},
+        };
+
+        Object.entries(tabStopRequirementData).forEach(([requirementId, data]) => {
+            if (data.status === 'fail') {
+                tabStopRequirementInstanceCount[data.status][requirementId] = data.instances.length;
+            } else {
+                tabStopRequirementInstanceCount[data.status][requirementId] = 1;
+            }
+        });
+
+        return {
+            ...this.withTriggeredByAndSource(event, source),
+            exportResultsType: reportExportFormat,
+            exportResultsService: selectedServiceKey,
+            wereAutomatedChecksRun,
+            tabStopRequirementInstanceCount,
         };
     }
 
@@ -257,10 +294,13 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forTabStopRequirement(requirementId: TabStopRequirementId) {
+    public forTabStopRequirement(
+        requirementId: TabStopRequirementId,
+        source: TelemetryEventSource,
+    ) {
         return {
             triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
+            source,
             requirementId: requirementId,
         };
     }
@@ -437,6 +477,39 @@ export class TelemetryDataFactory {
         return {
             ...this.withTriggeredByAndSource(event, source),
             permissionState,
+        };
+    }
+
+    public forAutomatedTabStopsResults(
+        results: AutomatedTabStopRequirementResult[],
+        source: TelemetryEventSource,
+    ): TabStopsAutomatedResultsTelemetryData | undefined {
+        if (!results || results.length === 0) {
+            return undefined;
+        }
+
+        const tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount = {};
+        results.forEach(({ requirementId }) => {
+            const count = tabStopAutomatedFailuresInstanceCount[requirementId] ?? 0;
+            tabStopAutomatedFailuresInstanceCount[requirementId] = count + 1;
+        });
+
+        return {
+            triggeredBy: TriggeredByNotApplicable,
+            source,
+            tabStopAutomatedFailuresInstanceCount,
+        };
+    }
+
+    public forSetAutoDetectedFailuresDialogState(
+        enabled: boolean,
+    ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
         };
     }
 }

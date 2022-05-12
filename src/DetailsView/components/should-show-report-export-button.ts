@@ -2,22 +2,18 @@
 // Licensed under the MIT License.
 
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
 export interface ShouldShowReportExportButtonProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
-    visualizationStoreData: VisualizationStoreData;
-    featureFlagStoreData: FeatureFlagStoreData;
+    tabStoreData: TabStoreData;
 }
 
 export type ShouldShowReportExportButton = (props: ShouldShowReportExportButtonProps) => boolean;
 
-export function shouldShowReportExportButtonForAssessment(
-    props: ShouldShowReportExportButtonProps,
-): boolean {
+export function shouldShowReportExportButtonForAssessment(): boolean {
     return true;
 }
 
@@ -25,9 +21,6 @@ export function shouldShowReportExportButtonForFastpass(
     props: ShouldShowReportExportButtonProps,
 ): boolean {
     const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-    const shouldShow = config.shouldShowExportReport(props.featureFlagStoreData);
-
-    const scanData = config.getStoreData(props.visualizationStoreData.tests);
-    const isEnabled = config.getTestStatus(scanData);
-    return shouldShow || isEnabled;
+    const isTargetPageChangedViewVisible = props.tabStoreData.isChanged;
+    return config.shouldShowExportReport() && !isTargetPageChangedViewVisible;
 }

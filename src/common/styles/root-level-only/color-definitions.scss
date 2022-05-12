@@ -10,19 +10,19 @@
 
 :root {
     // Consistent colors; these don't vary with high-contrast mode. Use sparingly.
-    --black: #000000;
+    --black: #000;
     --light-black: #161616;
-    --white: #ffffff;
+    --white: #fff;
     --brand-blue: #004880;
-    --grey: #333333;
+    --grey: #333;
 
     // Accessibility Insights brand color
     --ada-brand-color: var(--brand-blue);
 
     // Text colors
-    --primary-text: rgba(0, 0, 0, 0.9);
-    --secondary-text: rgba(0, 0, 0, 0.7);
-    --disabled-text: rgba(0, 0, 0, 0.38);
+    --primary-text: rgb(0 0 0 / 90%);
+    --secondary-text: rgb(0 0 0 / 70%);
+    --disabled-text: rgb(0 0 0 / 38%);
 
     // UI colors
     --communication-primary: #106ebe;
@@ -44,21 +44,21 @@
     --neutral-20: #c8c8c8;
     --neutral-30: #a6a6a6;
     --neutral-55: #6e6e6e;
-    --neutral-60: #666666;
+    --neutral-60: #666;
     --neutral-70: #3c3c3c;
     --neutral-80: var(--grey);
     --neutral-100: var(--black);
-    --neutral-alpha-2: rgba(0, 0, 0, 0.02);
-    --neutral-alpha-4: rgba(0, 0, 0, 0.04);
-    --neutral-alpha-6: rgba(0, 0, 0, 0.06);
-    --neutral-alpha-8: rgba(0, 0, 0, 0.08);
-    --neutral-alpha-10: rgba(0, 0, 0, 0.1);
-    --neutral-alpha-20: rgba(0, 0, 0, 0.2);
-    --neutral-alpha-30: rgba(0, 0, 0, 0.3);
-    --neutral-alpha-60: rgba(0, 0, 0, 0.6);
-    --neutral-alpha-70: rgba(0, 0, 0, 0.7);
-    --neutral-alpha-80: rgba(0, 0, 0, 0.8);
-    --neutral-alpha-90: rgba(0, 0, 0, 0.9);
+    --neutral-alpha-2: rgb(0 0 0 / 2%);
+    --neutral-alpha-4: rgb(0 0 0 / 4%);
+    --neutral-alpha-6: rgb(0 0 0 / 6%);
+    --neutral-alpha-8: rgb(0 0 0 / 8%);
+    --neutral-alpha-10: rgb(0 0 0 / 10%);
+    --neutral-alpha-20: rgb(0 0 0 / 20%);
+    --neutral-alpha-30: rgb(0 0 0 / 30%);
+    --neutral-alpha-60: rgb(0 0 0 / 60%);
+    --neutral-alpha-70: rgb(0 0 0 / 70%);
+    --neutral-alpha-80: rgb(0 0 0 / 80%);
+    --neutral-alpha-90: rgb(0 0 0 / 90%);
 
     // Outcome colors
     --positive-outcome: #228722;
@@ -66,9 +66,9 @@
     --neutral-outcome: var(--neutral-60);
 
     // Additional colors
-    --box-shadow-108: rgba(0, 0, 0, 0.108);
-    --box-shadow-132: rgba(0, 0, 0, 0.132);
-    --box-shadow-27: rgba(0, 0, 0, 0.27);
+    --box-shadow-108: rgb(0 0 0 / 10.8%);
+    --box-shadow-132: rgb(0 0 0 / 13.2%);
+    --box-shadow-27: rgb(0 0 0 / 27%);
     --screenshot-image-outline: #8b8b8b;
     --card-border: transparent;
     --card-footer-border: var(--neutral-10);
@@ -89,7 +89,7 @@
     --nav-link-selected: var(--communication-tint-20);
     --nav-link-expanded: var(--communication-tint-40);
     --insights-button-hover: #0179d4;
-    --report-footer-text: #222222;
+    --report-footer-text: #222;
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -121,6 +121,7 @@
         --neutral-4: var(--light-black);
         --neutral-6: var(--light-black);
         --neutral-6-5: var(--light-black);
+
         // 8 being "lighter" than 10 in high-contrast is intended based on current usage
         --neutral-8: var(--white);
         --neutral-10: var(--light-black);
@@ -146,8 +147,8 @@
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
         --index-circle-background: var(--communication-tint-40);
-        --link-hover: #ffff00;
-        --link: #ffff00;
+        --link-hover: #ff0;
+        --link: #ff0;
         --menu-border: var(--grey);
         --menu-item-background-active: var(--communication-tint-40);
         --menu-item-background-hover: var(--grey);

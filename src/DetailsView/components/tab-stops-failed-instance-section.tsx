@@ -2,24 +2,30 @@
 // Licensed under the MIT License.
 
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import * as styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import {
     TabStopsRequirementsWithInstances,
     TabStopsRequirementsWithInstancesDeps,
 } from 'DetailsView/tab-stops-requirements-with-instances';
 import * as React from 'react';
-import * as styles from './tab-stops-failed-instance-section.scss';
 
 export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps & {
     tabStopsFailedCounter: TabStopsFailedCounter;
+    tabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionPropsFactory;
+    getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel;
 };
 
 export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
-    visualizationScanResultData: VisualizationScanResultData;
+    tabStopRequirementState: TabStopRequirementState;
+    alwaysRenderSection: boolean;
+    sectionHeadingLevel: HeadingLevel;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -28,8 +34,8 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
     'TabStopsFailedInstanceSection',
     props => {
         const results = [];
-        const storeData = props.visualizationScanResultData;
-        for (const [requirementId, data] of Object.entries(storeData.tabStops.requirements)) {
+
+        for (const [requirementId, data] of Object.entries(props.tabStopRequirementState)) {
             if (data.status !== 'fail') {
                 continue;
             }
@@ -46,28 +52,31 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
         const totalFailedInstancesCount: number =
             props.deps.tabStopsFailedCounter.getTotalFailed(results);
 
-        if (totalFailedInstancesCount === 0) {
+        if (!props.alwaysRenderSection && totalFailedInstancesCount === 0) {
             return null;
         }
+
+        const instanceSectionProps = props.deps.tabStopsInstanceSectionPropsFactory({
+            headingLevel: props.deps.getNextHeadingLevel(props.sectionHeadingLevel),
+            results,
+            tabStopRequirementState: props.tabStopRequirementState,
+            deps: props.deps,
+        });
 
         return (
             <div
                 className={styles.tabStopsFailureInstanceSection}
                 data-automation-id={tabStopsFailedInstanceSectionAutomationId}
             >
-                <h2>
+                <HeadingElementForLevel headingLevel={props.sectionHeadingLevel}>
                     <ResultSectionTitle
                         title="Failed instances"
                         badgeCount={totalFailedInstancesCount}
                         outcomeType="fail"
                         titleSize="title"
                     />
-                </h2>
-                <TabStopsRequirementsWithInstances
-                    results={results}
-                    headingLevel={3}
-                    deps={props.deps}
-                />
+                </HeadingElementForLevel>
+                <TabStopsRequirementsWithInstances {...instanceSectionProps} />
             </div>
         );
     },

@@ -3,4 +3,10 @@
 
 .results-container {
     margin-top: 56px;
+
+    .title-container :is(h1, h2, h3, h4, h5, h6) {
+        font-weight: unset;
+        margin-block: 0;
+        margin-inline: 0;
+    }
 }

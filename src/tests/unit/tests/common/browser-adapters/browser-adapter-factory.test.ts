@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-// This must be the first import, otherwise importing webextension-polyfill-ts from within
+// This must be the first import, otherwise importing webextension-polyfill from within
 // adapter implementations will fail
-import 'tests/unit/common/webextension-polyfill-ts-setup';
+import 'tests/unit/common/webextension-polyfill-setup';
 
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';

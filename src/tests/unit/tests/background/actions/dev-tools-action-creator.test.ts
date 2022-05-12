@@ -1,10 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    InspectElementPayload,
-    InspectFrameUrlPayload,
-    OnDevToolOpenPayload,
-} from 'background/actions/action-payloads';
+import { InspectElementPayload, InspectFrameUrlPayload } from 'background/actions/action-payloads';
 import { DevToolsActionCreator } from 'background/actions/dev-tools-action-creator';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
@@ -26,18 +22,26 @@ describe('DevToolsActionCreatorTest', () => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
     });
 
-    it('handles DevToolStatus message', () => {
-        const payload: OnDevToolOpenPayload = {
-            status: true,
-        };
-
-        const setDevToolsStateMock = createActionMock(payload.status);
+    it('handles DevToolOpened message', () => {
+        const setDevToolsStateMock = createActionMock(true);
         const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.DevTools.DevtoolStatus,
-            payload,
-            tabId,
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, null, tabId);
+
+        const newTestObject = new DevToolsActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
         );
+
+        newTestObject.registerCallbacks();
+
+        setDevToolsStateMock.verifyAll();
+    });
+
+    it('handles DevToolClosed message', () => {
+        const setDevToolsStateMock = createActionMock(false);
+        const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Closed, undefined, tabId);
 
         const newTestObject = new DevToolsActionCreator(
             interpreterMock.object,

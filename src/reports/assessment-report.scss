@@ -9,12 +9,15 @@
 @import './components/assessment-scan-details.scss';
 @import './components/assessment-report-body-header.scss';
 @import '../common/components/guidance-tags.scss';
+
 * {
     font-family: $fontFamily;
     -webkit-print-color-adjust: exact;
+
     /* Chrome, Safari */
     color-adjust: exact;
-    /*Firefox*/
+
+    /* Firefox */
 }
 
 body {
@@ -31,32 +34,33 @@ header {
 }
 
 .details-section-header {
-    margin: 0px 0px 32px 0px;
+    margin: 0 0 32px 0;
     display: flex;
     align-items: center;
     font-size: 21px;
-    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
     line-height: 32px;
 }
 
 .assessment-details {
-    margin: 0px 0px 32px 0px;
+    margin: 0 0 32px 0;
 }
 
 .assessment-header {
-    margin: 0px 0px 32px 0px;
+    margin: 0 0 32px 0;
     flex-wrap: wrap;
     display: flex;
     align-items: center;
     font-size: 17px;
-    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
 }
 
 .step-details {
-    margin: 0px 0px 24px 48px;
+    margin: 0 0 24px 48px;
     max-width: calc(100vw - 62px);
+
     &:last-child {
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 }
 
@@ -93,6 +97,7 @@ header {
     padding-left: 12px;
     padding-top: 12px;
     width: 100%;
+
     &:not(:last-child) {
         padding-bottom: 14px;
         border-bottom: $neutral-8 solid 1px;
@@ -114,7 +119,7 @@ header {
 
 .instance-key {
     font-size: 12px;
-    font-family: $semiBoldFontFamily;
+    font-weight: $fontWeightSemiBold;
     vertical-align: top;
     text-align: left;
     width: 140px;
@@ -122,11 +127,13 @@ header {
 
 .instance-subsection-header {
     @extend .instance-key;
+
     text-align: left;
 }
 
 .instance-key-indented {
     @extend .instance-key;
+
     padding-left: 30px;
 }
 
@@ -158,6 +165,7 @@ header {
 .ms-Link,
 .link {
     color: $link;
+
     &:hover {
         color: $link-hover;
     }

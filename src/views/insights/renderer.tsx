@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme, ThemeDeps } from 'common/components/theme';
+import { config } from 'common/configuration';
+import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import { Theme, ThemeDeps } from '../../common/components/theme';
-import { config } from '../../common/configuration';
-import { DocumentManipulator } from '../../common/document-manipulator';
-import { Router, RouterDeps } from './router';
+import { InsightsRouter, ContentRouteDeps } from './insights-router';
 
 export type RendererDeps = {
     dom: Document;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
-} & RouterDeps &
+} & ContentRouteDeps &
     ThemeDeps;
 
 export function renderer(deps: RendererDeps): void {
@@ -27,7 +26,7 @@ export function renderer(deps: RendererDeps): void {
     render(
         <>
             <Theme deps={deps} />
-            <Router deps={deps} />
+            <InsightsRouter deps={deps} />
         </>,
         insightsRoot,
     );

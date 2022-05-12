@@ -15,7 +15,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
   >
     example: https://dev.azure.com/org/project
   </span>
-  <StyledWithResponsiveMode
+  <Dropdown
     label="Select a field for issue details"
     onChange={[Function]}
     options={
@@ -51,7 +51,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
   >
     example: https://dev.azure.com/org/project
   </span>
-  <StyledWithResponsiveMode
+  <Dropdown
     label="Select a field for issue details"
     onChange={[Function]}
     options={

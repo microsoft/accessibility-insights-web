@@ -19,6 +19,7 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     reporters: [
         'default',
+        'github-actions',
         [
             'jest-junit',
             {
@@ -29,5 +30,5 @@ module.exports = {
     ],
     rootDir: rootDir,
     roots: [currentDir],
-    setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
+    setupFilesAfterEnv: [...baseConfig.setupFilesAfterEnv, `${currentDir}/setup/test-setup.ts`],
 };

@@ -1034,12 +1034,11 @@ exports[`Guidance Content pages adhoc/tabstops/guidance matches the snapshot 1`]
           Note: this test requires you to use a keyboard and to visually identify interactive elements.
         </em>
       </p>
-      <div
-        aria-level="1"
-        role="heading"
+      <h2
+        class="heading-element-for-level--{{CSS_MODULE_HASH}}"
       >
         How to test
-      </div>
+      </h2>
       <ol>
         <li>
           Refresh the target page to put it in its default state.

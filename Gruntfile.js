@@ -9,7 +9,7 @@ const targets = require('./targets.config');
 
 module.exports = function (grunt) {
     const pkgPath = path.resolve('./node_modules/.bin/pkg');
-    const tsmPath = path.resolve('./node_modules/.bin/tsm');
+    const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
     const webpackPath = path.resolve('./node_modules/.bin/webpack');
 
     const extensionPath = 'extension';
@@ -51,7 +51,12 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'webpack-all': ['exec:webpack-dev', 'exec:webpack-unified', 'exec:webpack-prod'],
+            'webpack-all': [
+                'exec:webpack-dev',
+                'exec:webpack-dev-mv3',
+                'exec:webpack-unified',
+                'exec:webpack-prod',
+            ],
         },
         copy: {
             code: {
@@ -125,12 +130,6 @@ module.exports = function (grunt) {
                         expand: true,
                     },
                     {
-                        cwd: './node_modules/office-ui-fabric-react/dist/css',
-                        src: 'fabric.min.css',
-                        dest: path.join(extensionPath, 'common/styles/'),
-                        expand: true,
-                    },
-                    {
                         cwd: './dist/src/debug-tools',
                         src: '*.css',
                         dest: path.join(extensionPath, 'debug-tools'),
@@ -169,11 +168,12 @@ module.exports = function (grunt) {
         },
         exec: {
             'webpack-dev': `"${webpackPath}" --config-name dev`,
+            'webpack-dev-mv3': `"${webpackPath}" --config-name dev-mv3`,
             'webpack-prod': `"${webpackPath}" --config-name prod`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'generate-scss-typings': `"${tsmPath}" src`,
+            'generate-scss-typings': `"${typedScssModulesPath}" src`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
         },
         sass: {
@@ -204,20 +204,25 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
+            },
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
+            'webpack-dev-mv3-output': {
+                files: ['extension/devMv3Bundle/**/*.*'],
+                tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
@@ -432,28 +437,89 @@ module.exports = function (grunt) {
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
             '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
-        const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
+        const configJS = `${copyrightHeader}globalThis.insights = ${configJSON};`;
         grunt.file.write(configJSPath, configJS);
     });
 
     grunt.registerMultiTask('manifest', function () {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
+
+        // Build-specific settings that exist in both MV2 and MV3
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
+            manifest_version: config.options.manifestVersion,
             icons: {
                 16: config.options.icon16,
                 48: config.options.icon48,
                 128: config.options.icon128,
             },
-            browser_action: {
-                default_icon: {
-                    20: config.options.icon16,
-                    40: config.options.icon48,
-                },
-            },
         });
+
+        if (config.options.manifestVersion === 3) {
+            // Settings that are specific to MV3
+            merge(manifestJSON, {
+                action: {
+                    default_popup: 'popup/popup.html',
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                permissions: ['notifications', 'scripting', 'storage', 'tabs', 'webNavigation'],
+                background: {
+                    service_worker: 'bundle/serviceWorker.bundle.js',
+                },
+                host_permissions: ['*://*/*'],
+                web_accessible_resources: [
+                    {
+                        resources: [
+                            'insights.html',
+                            'assessments/*',
+                            'injected/*',
+                            'background/*',
+                            'common/*',
+                            'DetailsView/*',
+                            'bundle/*',
+                            'NOTICE.html',
+                        ],
+                        matches: ['<all_urls>'],
+                    },
+                ],
+            });
+        } else {
+            // Settings that are specific to MV2. Note that many of these settings--especially the
+            // commands--will eventually be restored to manifest.json. They are here only because
+            // we want to vet each settings as we convert from MV2 to MV3.
+            merge(manifestJSON, {
+                browser_action: {
+                    default_popup: 'popup/popup.html',
+                    default_icon: {
+                        20: config.options.icon16,
+                        40: config.options.icon48,
+                    },
+                },
+                background: {
+                    page: 'background/background.html',
+                    persistent: true,
+                },
+                web_accessible_resources: [
+                    'insights.html',
+                    'assessments/*',
+                    'injected/*',
+                    'background/*',
+                    'common/*',
+                    'DetailsView/*',
+                    'bundle/*',
+                    'NOTICE.html',
+                ],
+                content_security_policy:
+                    "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
+                optional_permissions: ['*://*/*'],
+            });
+        }
+
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
@@ -514,8 +580,13 @@ module.exports = function (grunt) {
 
         // Manually copying the license files is a workaround for electron-builder #1495.
         // On win/linux builds these are automatically included, but in Mac they are omitted.
+        // Mac notarization also requires specific structuring of code; these files should be put in
+        // the Contents/Resources folder which electron-builder will do for 'extraResources'.
+        // https://developer.apple.com/forums/thread/128166, section "Structure Your Code Correctly"
         if (process.platform === 'darwin') {
-            config.extraFiles.push(
+            config.extraResources = config.extraResources.concat(config.extraFiles);
+            config.extraFiles = [];
+            config.extraResources.push(
                 {
                     from: 'node_modules/electron/dist/LICENSE',
                     to: 'LICENSE.electron.txt',
@@ -722,6 +793,13 @@ module.exports = function (grunt) {
         'build-assets',
         'drop:dev',
     ]);
+    grunt.registerTask('build-dev-mv3', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-dev-mv3',
+        'build-assets',
+        'drop:dev-mv3',
+    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
@@ -765,6 +843,7 @@ module.exports = function (grunt) {
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
+        'drop:dev-mv3',
         'drop:unified-dev',
         'extension-release-drops',
     ]);

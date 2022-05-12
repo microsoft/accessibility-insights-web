@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
+import { TabContextManager } from 'background/tab-context-manager';
+import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -24,16 +26,13 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
 import { title, toolName } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
+import { BackgroundMessageDistributor } from './background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { DevToolsListener } from './dev-tools-listener';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { getPersistedData } from './get-persisted-data';
+import { getAllPersistedData, getGlobalPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
-import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { KeyboardShortcutHandler } from './keyboard-shortcut-handler';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
-import { MessageDistributor } from './message-distributor';
-import { TabToContextMap } from './tab-context';
 import { TabContextFactory } from './tab-context-factory';
 import { TargetPageController } from './target-page-controller';
 import { TargetTabController } from './target-tab-controller';
@@ -50,6 +49,8 @@ import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 declare let window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
+    const persistData = true;
+
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
@@ -70,7 +71,12 @@ async function initialize(): Promise<void> {
     ];
 
     // These can run concurrently, both because they are read-only and because they use different types of underlying storage
-    const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    let persistedDataPromise;
+    if (persistData) {
+        persistedDataPromise = getAllPersistedData(indexedDBInstance);
+    } else {
+        persistedDataPromise = getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+    }
     const userDataPromise = browserAdapter.getUserData(storageDataKeys);
     const persistedData = await persistedDataPromise;
     const userData = await userDataPromise;
@@ -99,9 +105,8 @@ async function initialize(): Promise<void> {
         browserAdapter,
         applicationTelemetryDataFactory,
     );
-    debugToolsTelemetryClient.initialize();
 
-    const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, AppInsights, [
+    const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
         consoleTelemetryClient,
         debugToolsTelemetryClient,
     ]);
@@ -133,8 +138,10 @@ async function initialize(): Promise<void> {
         browserAdapter,
         browserAdapter,
         logger,
+        persistData,
     );
     telemetryLogger.initialize(globalContext.featureFlagsController);
+    debugToolsTelemetryClient.initialize(globalContext.featureFlagsController);
 
     const telemetryStateListener = new TelemetryStateListener(
         globalContext.stores.userConfigurationStore,
@@ -143,9 +150,8 @@ async function initialize(): Promise<void> {
     telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
-    const detailsViewController = new ExtensionDetailsViewController(browserAdapter);
 
-    const tabToContextMap: TabToContextMap = {};
+    const tabContextManager = new TabContextManager();
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
@@ -155,7 +161,7 @@ async function initialize(): Promise<void> {
     );
 
     const keyboardShortcutHandler = new KeyboardShortcutHandler(
-        tabToContextMap,
+        tabContextManager,
         browserAdapter,
         urlValidator,
         notificationCreator,
@@ -168,9 +174,16 @@ async function initialize(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
-    const messageDistributor = new MessageDistributor(
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
+    const messageDistributor = new BackgroundMessageDistributor(
         globalContext,
-        tabToContextMap,
+        tabContextManager,
+        postMessageContentHandler,
         browserAdapter,
         logger,
     );
@@ -183,41 +196,49 @@ async function initialize(): Promise<void> {
 
     const promiseFactory = createDefaultPromiseFactory();
 
+    const detailsViewController = new ExtensionDetailsViewController(
+        browserAdapter,
+        persistedData.tabIdToDetailsViewMap ?? {},
+        indexedDBInstance,
+        tabContextManager.interpretMessageForTab,
+        persistData,
+    );
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
         targetTabController,
         notificationCreator,
+        detailsViewController,
+        browserAdapter,
+        messageBroadcasterFactory,
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils,
+        windowUtils.setTimeout,
+        persistedData,
+        indexedDBInstance,
+        persistData,
     );
 
     const targetPageController = new TargetPageController(
-        tabToContextMap,
-        messageBroadcasterFactory,
-        browserAdapter,
-        detailsViewController,
+        tabContextManager,
         tabContextFactory,
+        browserAdapter,
         logger,
+        persistedData.knownTabIds ?? {},
+        indexedDBInstance,
+        persistData,
     );
 
     await targetPageController.initialize();
 
-    const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
-    devToolsBackgroundListener.initialize();
-
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(
-        postMessageContentRepository,
+    const tabEventDistributor = new TabEventDistributor(
         browserAdapter,
+        targetPageController,
+        detailsViewController,
     );
-
-    postMessageContentHandler.initialize();
+    tabEventDistributor.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;

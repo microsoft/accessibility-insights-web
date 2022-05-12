@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IPoint } from '@uifabric/utilities';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import {
     ContextualMenu,
     DirectionalHint,
     IButton,
     IContextualMenuItem,
     IRefObject,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
+import { IPoint } from '@fluentui/utilities';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';

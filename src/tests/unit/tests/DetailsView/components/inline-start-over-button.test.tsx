@@ -11,7 +11,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-describe(InlineStartOverButton, () => {
+describe(InlineStartOverButton.displayName, () => {
     const testType: VisualizationType = 1;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let props: InlineStartOverButtonProps;

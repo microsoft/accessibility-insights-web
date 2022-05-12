@@ -2,20 +2,21 @@
 // Licensed under the MIT License.
 import { StoreHub } from 'background/stores/store-hub';
 import { Logger } from 'common/logging/logger';
-import { tick } from 'tests/unit/common/tick';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
-import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StateDispatcher } from '../../../../common/state-dispatcher';
 import { StoreType } from '../../../../common/types/store-type';
-import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
+import {
+    StoreUpdateMessage,
+    storeUpdateMessageType,
+} from '../../../../common/types/store-update-message';
 
 describe('StateDispatcherTest', () => {
     test('fire changed event on initialize', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,
@@ -62,8 +63,7 @@ describe('StateDispatcherTest', () => {
     test('fire changed event from store', () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,
@@ -114,8 +114,7 @@ describe('StateDispatcherTest', () => {
     test('propagate exceptions in broadcasting changes to logger.error', async () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
-            isStoreUpdateMessage: true,
-            messageType: GenericStoreMessageTypes.storeStateChanged,
+            messageType: storeUpdateMessageType,
             storeId: 'testStoreId',
             storeType: StoreType.TabContextStore,
             payload: newstoreData,
@@ -158,7 +157,7 @@ describe('StateDispatcherTest', () => {
         broadcastMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
 
         privateDispatcher.call(stateDispatcher);
-        await tick();
+        await flushSettledPromises();
 
         loggerMock.verifyAll();
     });

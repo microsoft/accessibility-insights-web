@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingChoiceGroupTest render 1`] = `
-<StyledChoiceGroupBase
+<StyledChoiceGroup
   ariaLabelledBy="issue-filing-heading"
   className="issue-filing-choice-group"
   onChange={[Function]}

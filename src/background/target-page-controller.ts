@@ -1,61 +1,72 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { DictionaryNumberTo } from 'types/common-types';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
-import { BrowserMessageBroadcasterFactory } from './browser-message-broadcaster-factory';
-import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { TabToContextMap } from './tab-context';
-import { TabContextFactory } from './tab-context-factory';
+import { TabContextManager } from './tab-context-manager';
 
 export class TargetPageController {
     constructor(
-        private readonly targetPageTabIdToContextMap: TabToContextMap,
-        private readonly broadcasterFactory: BrowserMessageBroadcasterFactory,
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly detailsViewController: ExtensionDetailsViewController,
+        private readonly tabContextManager: TabContextManager,
         private readonly tabContextFactory: TabContextFactory,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly logger: Logger,
+        private readonly knownTabs: DictionaryNumberTo<string>,
+        private readonly idbInstance: IndexedDBAPI,
+        private persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {
+        const knownTabIds: number[] = Object.keys(this.knownTabs).map(knownTab =>
+            parseInt(knownTab),
+        );
+
+        knownTabIds.forEach(tabId =>
+            this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory),
+        );
+
         const tabs = await this.browserAdapter.tabsQuery({});
-        if (tabs) {
-            tabs.forEach(tab => {
-                this.handleTabUrlUpdate(tab.id);
-            });
-        }
 
-        this.browserAdapter.addListenerOnConnect(port => {
-            // do not remove this. We need this to detect if the extension is reloaded from the content scripts
+        const removedTabs = knownTabIds.filter(
+            knownTab => !tabs.map(tab => tab.id).includes(knownTab),
+        );
+        removedTabs.forEach(removedTabId => this.onTargetTabRemoved(removedTabId));
+
+        const newTabs = tabs.filter(tab => {
+            if (!knownTabIds.includes(tab.id)) {
+                return true;
+            }
+
+            // Treat it as new if the url has changed
+            const tabUrl = this.knownTabs[tab.id];
+            return tabUrl !== tab.url;
         });
-
-        this.browserAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
-        this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
-        this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
-        this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
-        this.browserAdapter.addListenerToTabsOnUpdated(this.onTabUpdated);
-
-        this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
+        for (const tab of newTabs) {
+            await this.handleTabUrlUpdate(tab.id);
+        }
     }
 
-    private onTabNavigated = (
+    public async onTabNavigated(
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
-    ): void => {
+    ): Promise<void> {
         if (details.frameId === 0) {
-            this.handleTabUrlUpdate(details.tabId);
+            await this.handleTabUrlUpdate(details.tabId);
         }
-    };
+    }
 
-    private onTabUpdated = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
+    public async onTabUpdated(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
         if (changeInfo.url) {
-            this.handleTabUrlUpdate(tabId);
+            await this.handleTabUrlUpdate(tabId);
         }
-    };
+    }
 
-    private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
+    public async onTabActivated(activeInfo: chrome.tabs.TabActiveInfo): Promise<void> {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
@@ -67,9 +78,9 @@ export class TargetPageController {
                 this.sendTabVisibilityChangeAction(tab.id, true);
             }
         });
-    };
+    }
 
-    private onWindowFocusChanged = async (windowId: number): Promise<void> => {
+    public async onWindowFocusChanged(): Promise<void> {
         const chromeWindows = await this.browserAdapter.getAllWindows({
             populate: false,
             windowTypes: ['normal', 'popup'],
@@ -88,41 +99,62 @@ export class TargetPageController {
                 );
             }
         });
-    };
+    }
 
-    private handleTabUrlUpdate = (tabId: number): void => {
-        if (!this.hasTabContext(tabId)) {
-            this.addTabContext(tabId);
+    public onTargetTabRemoved(tabId: number): void {
+        this.tabContextManager.interpretMessageForTab(tabId, {
+            messageType: Messages.Tab.Remove,
+            payload: null,
+            tabId: tabId,
+        });
+        this.removeKnownTabId(tabId);
+        this.tabContextManager.deleteTabContext(tabId);
+    }
+
+    private getUrl = async (tabId: number): Promise<string> => {
+        const tabs = await this.browserAdapter.tabsQuery({});
+        const tab = tabs.filter(t => t.id === tabId);
+        if (tab && tab.length === 1) {
+            return tab[0].url ?? '';
+        } else {
+            return '';
         }
-
-        this.sendTabUrlUpdatedAction(tabId);
     };
 
-    private hasTabContext(tabId: number): boolean {
-        return tabId in this.targetPageTabIdToContextMap;
-    }
+    private addKnownTabId = async (tabId: number) => {
+        const url = await this.getUrl(tabId);
+        if (this.knownTabs[tabId] === undefined || this.knownTabs[tabId] !== url) {
+            this.knownTabs[tabId] = url;
+            if (this.persistStoreData) {
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
+            }
+        }
+    };
 
-    private addTabContext(tabId: number): void {
-        this.targetPageTabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
-            this.broadcasterFactory.createTabSpecificBroadcaster(tabId),
-            this.browserAdapter,
-            this.detailsViewController,
-        );
-    }
+    private removeKnownTabId = async (tabId: number) => {
+        if (Object.keys(this.knownTabs).includes(tabId.toString())) {
+            delete this.knownTabs[tabId];
+            if (this.persistStoreData) {
+                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
+            }
+        }
+    };
+
+    private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
+        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
+        this.sendTabUrlUpdatedAction(tabId);
+        await this.addKnownTabId(tabId);
+    };
 
     private sendTabUrlUpdatedAction(tabId: number): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
-                const tabContext = this.targetPageTabIdToContextMap[tabId];
-                if (tabContext) {
-                    const interpreter = tabContext.interpreter;
-                    interpreter.interpret({
-                        messageType: Messages.Tab.ExistingTabUpdated,
-                        payload: tab,
-                        tabId: tabId,
-                    });
-                }
+                this.tabContextManager.interpretMessageForTab(tabId, {
+                    messageType: Messages.Tab.ExistingTabUpdated,
+                    payload: tab,
+                    tabId: tabId,
+                });
             },
             () => {
                 this.logger.log(
@@ -133,14 +165,6 @@ export class TargetPageController {
     }
 
     private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {
-        if (!this.hasTabContext(tabId)) {
-            return;
-        }
-        const tabContext = this.targetPageTabIdToContextMap[tabId];
-        if (tabContext == null) {
-            return;
-        }
-        const interpreter = tabContext.interpreter;
         const payload: PageVisibilityChangeTabPayload = {
             hidden: isHidden,
         };
@@ -149,27 +173,6 @@ export class TargetPageController {
             payload: payload,
             tabId: tabId,
         };
-        interpreter.interpret(message);
+        this.tabContextManager.interpretMessageForTab(tabId, message);
     }
-
-    private onTabRemoved = (tabId: number, messageType: string): void => {
-        const tabContext = this.targetPageTabIdToContextMap[tabId];
-        if (tabContext) {
-            const interpreter = tabContext.interpreter;
-            interpreter.interpret({
-                messageType: messageType,
-                payload: null,
-                tabId: tabId,
-            });
-        }
-    };
-
-    private onTargetTabRemoved = (tabId: number): void => {
-        this.onTabRemoved(tabId, Messages.Tab.Remove);
-        delete this.targetPageTabIdToContextMap[tabId];
-    };
-
-    private onDetailsViewTabRemoved = (tabId: number): void => {
-        this.onTabRemoved(tabId, Messages.Visualizations.DetailsView.Close);
-    };
 }

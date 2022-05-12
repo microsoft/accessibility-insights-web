@@ -3,6 +3,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
@@ -44,50 +45,37 @@ import {
 } from './../actions/action-payloads';
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
+export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly assessmentActions: AssessmentActions,
         private readonly assessmentDataConverter: AssessmentDataConverter,
         private readonly assessmentDataRemover: AssessmentDataRemover,
         private readonly assessmentsProvider: AssessmentsProvider,
-        private readonly idbInstance: IndexedDBAPI,
-        private readonly persistedData: AssessmentStoreData,
+        protected readonly idbInstance: IndexedDBAPI,
+        protected readonly persistedData: AssessmentStoreData,
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
-        private readonly logger: Logger,
+        protected readonly logger: Logger,
     ) {
-        super(StoreNames.AssessmentStore);
-    }
-
-    private generateDefaultState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
-        return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
-    }
-
-    public getDefaultState(): AssessmentStoreData {
-        return this.generateDefaultState(this.persistedData);
-    }
-
-    private async persistAssessmentData(
-        assessmentStoreData: AssessmentStoreData,
-    ): Promise<boolean> {
-        return await this.idbInstance.setItem(
+        super(
+            StoreNames.AssessmentStore,
+            persistedData,
+            idbInstance,
             IndexedDBDataKeys.assessmentStore,
-            assessmentStoreData,
+            logger,
+            true,
         );
     }
 
-    /**
-     * overriding emitChanged to persist assessment store
-     * into indexedDB
-     */
-    protected emitChanged(): void {
-        const assessmentStoreData = this.getState();
+    protected override generateDefaultState(
+        persistedData: AssessmentStoreData,
+    ): AssessmentStoreData {
+        return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
+    }
 
-        this.persistAssessmentData(assessmentStoreData).catch(this.logger.error);
-
-        super.emitChanged();
+    public override getDefaultState(): AssessmentStoreData {
+        return this.generateDefaultState(this.persistedState);
     }
 
     protected addActionListeners(): void {
@@ -426,7 +414,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: AssessmentData = config.getAssessmentData(
-            this.generateDefaultState(),
+            this.generateDefaultState(null),
         );
         this.state.assessments[test.key] = defaultTestStatus;
         this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
@@ -434,7 +422,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     };
 
     private onResetAllAssessmentsData = (targetTabId: number): void => {
-        this.state = this.generateDefaultState();
+        this.state = this.generateDefaultState(null);
         this.updateTargetTabWithId(targetTabId);
     };
 

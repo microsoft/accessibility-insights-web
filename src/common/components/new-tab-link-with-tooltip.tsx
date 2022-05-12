@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from '@fluentui/react';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import * as styles from './new-tab-link-with-tooltip.scss';
@@ -23,7 +23,7 @@ export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
         };
         return (
             <TooltipHost content={tooltipContent} styles={hostStyles} calloutProps={calloutProps}>
-                <NewTabLink {...linkProps} />
+                <NewTabLink className={styles.insightsLink} {...linkProps} />
             </TooltipHost>
         );
     },

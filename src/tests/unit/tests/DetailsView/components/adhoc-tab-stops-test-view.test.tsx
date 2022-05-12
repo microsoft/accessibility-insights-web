@@ -5,6 +5,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ScanData,
@@ -33,7 +34,9 @@ describe('AdhocTabStopsTestView', () => {
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: VisualizationStoreData;
     let selectedTest: VisualizationType;
+
     let featureFlagStoreDataStub: FeatureFlagStoreData;
+    let userConfigurationStoreDataStub: UserConfigurationStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
@@ -54,6 +57,7 @@ describe('AdhocTabStopsTestView', () => {
         clickHandlerStub = () => {};
         selectedTest = -1;
         featureFlagStoreDataStub = {};
+        userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;
         visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
         props = {
             deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
@@ -72,6 +76,7 @@ describe('AdhocTabStopsTestView', () => {
                     actionType: CapturedInstanceActionType.CREATE,
                 },
             } as TabStopsViewStoreData,
+            userConfigurationStoreData: userConfigurationStoreDataStub,
         };
 
         getStoreDataMock

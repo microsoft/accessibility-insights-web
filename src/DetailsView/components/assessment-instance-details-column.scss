@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 @import '../../common/styles/common.scss';
+
 .assessment-instance-label {
     width: 24px;
     font-size: 14px;
@@ -12,15 +13,18 @@
     line-height: 24px;
     color: $always-white;
 }
+
 .assessment-instance-label:global(.radio) {
     width: 14px;
     height: 14px;
     border-radius: 50%;
     margin-top: 6px;
 }
+
 .assessment-instance-label:global(.not-applicable) {
     font-size: 10px;
 }
+
 .all-content {
     display: flex;
     flex-direction: row;
@@ -28,6 +32,7 @@
     font-size: 14px;
     line-height: 24px;
 }
+
 .instance-header {
     color: $primary-text;
     white-space: pre;
@@ -35,6 +40,7 @@
         color: inherit;
     }
 }
+
 .assessment-instance-textContent {
     overflow: hidden;
     white-space: normal;

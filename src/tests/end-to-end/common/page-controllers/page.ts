@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
-
 import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
@@ -33,25 +33,14 @@ export class Page {
         }
 
         underlyingPage.on('pageerror', error => {
-            if (
-                error.message.startsWith(
-                    "TypeError: Cannot read property 'focusElement' of null",
-                ) &&
-                error.message.includes(
-                    'office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js',
-                )
-            ) {
-                return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
-            }
-
             if (`${error.message}` === 'Object') {
                 // unknown flakiness, tracked by https://github.com/microsoft/accessibility-insights-web/issues/3529
                 console.warn(`'pageerror' (console.error): ${serializeError(error)}`);
                 return;
             }
-
             forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
+
         underlyingPage.on('requestfailed', request => {
             const failure = request.failure()!;
             const url = request.url();
@@ -136,6 +125,10 @@ export class Page {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             });
         });
+    }
+
+    public deleteFile(filePath: string): void {
+        fs.unlinkSync(filePath);
     }
 
     public async getSelectorElement(

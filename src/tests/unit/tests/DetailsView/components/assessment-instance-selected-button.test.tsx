@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IconButton } from '@fluentui/react';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     AssessmentInstanceSelectedButton,
     AssessmentInstanceSelectedButtonProps,
 } from 'DetailsView/components/assessment-instance-selected-button';
 import { shallow } from 'enzyme';
-import { IconButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';

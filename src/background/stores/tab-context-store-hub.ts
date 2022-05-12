@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PersistedData } from 'background/get-persisted-data';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
-import { BaseStore } from '../../common/base-store';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { StoreType } from '../../common/types/store-type';
 import { generateUID } from '../../common/uid-generator';
@@ -34,12 +37,24 @@ export class TabContextStoreHub implements StoreHub {
     constructor(
         actionHub: ActionHub,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
+        persistedData: PersistedData,
+        indexedDBInstance: IndexedDBAPI,
+        logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
     ) {
+        const persistedTabData = persistedData.tabData ? persistedData.tabData[tabId] : null;
+
         this.visualizationStore = new VisualizationStore(
             actionHub.visualizationActions,
             actionHub.tabActions,
             actionHub.injectionActions,
             visualizationConfigurationFactory,
+            persistedTabData?.visualizationStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.visualizationStore.initialize();
 
@@ -50,50 +65,114 @@ export class TabContextStoreHub implements StoreHub {
             actionHub.visualizationActions,
             generateUID,
             visualizationConfigurationFactory,
+            persistedTabData?.visualizationScanResultStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.visualizationScanResultStore.initialize();
 
-        this.tabStore = new TabStore(actionHub.tabActions, actionHub.visualizationActions);
+        this.tabStore = new TabStore(
+            actionHub.tabActions,
+            actionHub.visualizationActions,
+            persistedTabData?.tabStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
         this.tabStore.initialize();
 
-        this.devToolStore = new DevToolStore(actionHub.devToolActions);
+        this.devToolStore = new DevToolStore(
+            actionHub.devToolActions,
+            persistedTabData?.devToolStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
         this.devToolStore.initialize();
 
         this.detailsViewStore = new DetailsViewStore(
             actionHub.contentActions,
             actionHub.detailsViewActions,
             actionHub.sidePanelActions,
+            persistedTabData?.detailsViewStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.detailsViewStore.initialize();
 
-        this.inspectStore = new InspectStore(actionHub.inspectActions, actionHub.tabActions);
+        this.inspectStore = new InspectStore(
+            actionHub.inspectActions,
+            actionHub.tabActions,
+            persistedTabData?.inspectStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
         this.inspectStore.initialize();
 
-        this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
+        this.pathSnippetStore = new PathSnippetStore(
+            actionHub.pathSnippetActions,
+            persistedTabData?.pathSnippetStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
         this.pathSnippetStore.initialize();
 
-        this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
+        this.unifiedScanResultStore = new UnifiedScanResultStore(
+            actionHub.unifiedScanResultActions,
+            actionHub.tabActions,
+            persistedTabData?.unifiedScanResultStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
         this.unifiedScanResultStore.initialize();
 
         this.cardSelectionStore = new CardSelectionStore(
             actionHub.cardSelectionActions,
-            actionHub.scanResultActions,
+            actionHub.unifiedScanResultActions,
+            persistedTabData?.cardSelectionStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.cardSelectionStore.initialize();
 
         this.needsReviewScanResultStore = new NeedsReviewScanResultStore(
             actionHub.needsReviewScanResultActions,
+            actionHub.tabActions,
+            persistedTabData?.needsReviewScanResultsStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.needsReviewScanResultStore.initialize();
 
         this.needsReviewCardSelectionStore = new NeedsReviewCardSelectionStore(
             actionHub.needsReviewCardSelectionActions,
             actionHub.needsReviewScanResultActions,
+            persistedTabData?.needsReviewCardSelectionStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
         );
         this.needsReviewCardSelectionStore.initialize();
     }
 
-    public getAllStores(): BaseStore<any>[] {
+    public getAllStores(): PersistentStore<any>[] {
         return [
             this.tabStore,
             this.visualizationStore,

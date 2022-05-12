@@ -3,7 +3,7 @@
 import { ShortcutsPageController } from 'background/shortcuts-page-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IMock, Mock, Times } from 'typemoq';
-import { Tabs } from 'webextension-polyfill-ts';
+import { Tabs } from 'webextension-polyfill';
 
 describe('ShortcutsPageController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;

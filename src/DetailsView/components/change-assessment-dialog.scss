@@ -12,9 +12,11 @@
 .change-assessment-dialog {
     border-radius: 6px;
     box-shadow: 0 0 10px 0 $neutral-alpha-60;
+
     :global(.ms-Dialog-title) {
         font-weight: $fontWeightSemiBold;
     }
+
     .change-assessment-dialog-button-container {
         display: flex;
         flex-wrap: wrap;
@@ -22,16 +24,19 @@
 
         .action-cancel-button-col {
             text-align: right;
-            padding-left: 0px;
+            padding-left: 0;
             margin-top: 4px;
         }
+
         .action-cancel-button-col + .action-cancel-button-col {
             margin-left: 8px;
         }
+
         button {
             padding: 0;
             height: 32px;
         }
+
         .continue-button {
             button {
                 width: 140px;

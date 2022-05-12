@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { css } from '@fluentui/utilities';
 import * as React from 'react';
 import { WindowUtils } from '../window-utils';
 import * as styles from './toast.scss';

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DetailsList } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -12,7 +13,6 @@ import {
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { shallow } from 'enzyme';
-import { DetailsList } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
@@ -46,6 +46,7 @@ describe('TabStopsRequirementsTable', () => {
             id: 'test id',
             name: 'test name',
             description: 'test description',
+            guidance: [],
         };
     });
 

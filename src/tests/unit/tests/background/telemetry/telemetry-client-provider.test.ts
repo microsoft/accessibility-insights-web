@@ -35,7 +35,6 @@ describe('TelemetryClientProvider', () => {
 
             const result = getTelemetryClient(
                 Mock.ofType<ApplicationTelemetryDataFactory>().object,
-                Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
                 baseClients,
             );
 
@@ -48,7 +47,6 @@ describe('TelemetryClientProvider', () => {
 
             const result = getTelemetryClient(
                 Mock.ofType<ApplicationTelemetryDataFactory>().object,
-                Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
                 baseClients,
             );
 

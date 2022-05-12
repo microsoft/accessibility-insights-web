@@ -16,6 +16,7 @@ interface IssuesScanResultData {
 export interface TabbedElementData extends TabStopEvent {
     tabOrder: number;
     propertyBag?: TabOrderPropertyBag;
+    instanceId: string;
 }
 
 export enum TabStopRequirementStatuses {
@@ -26,20 +27,28 @@ export enum TabStopRequirementStatuses {
 
 export type TabStopRequirementStatus = keyof typeof TabStopRequirementStatuses;
 
-export type TabStopRequirementState = {
-    [requirementId: string]: {
-        status: TabStopRequirementStatus;
-        instances: {
-            description: string;
-            id: string;
-        }[];
-        isExpanded: boolean;
-    };
+export type TabStopRequirementInstance = {
+    description: string;
+    id: string;
+    selector?: string[];
+    html?: string;
 };
 
-interface TabStopsScanResultData {
+export type SingleTabStopRequirementState = {
+    status: TabStopRequirementStatus;
+    instances: TabStopRequirementInstance[];
+    isExpanded: boolean;
+};
+
+export type TabStopRequirementState = {
+    [requirementId: string]: SingleTabStopRequirementState;
+};
+
+export interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
     requirements?: TabStopRequirementState;
+    tabbingCompleted: boolean;
+    needToCollectTabbingResults: boolean;
 }
 
 export interface VisualizationScanResultData {

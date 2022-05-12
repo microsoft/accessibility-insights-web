@@ -26,6 +26,9 @@ export const Messages = {
             UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
             RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
             RequirementExpansionToggled: `${messagePrefix}/visualization/tab-stops/toggleTabStopRequirementExpand`,
+            TabbingCompleted: `${messagePrefix}/visualization/tab-stops/tabbingCompleted`,
+            NeedToCollectTabbingResults: `${messagePrefix}/visualization/tab-stops/NeedToCollectTabbingResults`,
+            AutomatedTabbingResultsCompleted: `${messagePrefix}/visualization/tab-stops/AutomatedTabbingResultsCompleted`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
@@ -44,7 +47,9 @@ export const Messages = {
     },
 
     DevTools: {
-        DevtoolStatus: `${messagePrefix}/devtools/status`,
+        StatusRequest: `${messagePrefix}/devtools/getStatus`,
+        Opened: `${messagePrefix}/devtools/opened`,
+        Closed: `${messagePrefix}/devtools/closed`,
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
     },
@@ -62,6 +67,7 @@ export const Messages = {
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
         SetAdbLocationConfig: `${messagePrefix}/userConfig/setAdbLocationConfig`,
         SaveWindowBounds: `${messagePrefix}/userConfig/saveWindowBounds`,
+        SetAutoDetectedFailuresDialogState: `${messagePrefix}/userConfig/setAutoDetectedFailuresDialogState`,
     },
 
     Popup: {
@@ -191,5 +197,6 @@ export const Messages = {
 
     DebugTools: {
         Open: `${messagePrefix}/debugTools/open`,
+        Telemetry: `${messagePrefix}/debugTools/telemetry`,
     },
 };

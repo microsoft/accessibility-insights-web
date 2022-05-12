@@ -6,9 +6,7 @@
 .rule-details-group {
     :global(.rule-detail) {
         font-size: 14px;
-
         padding: 16px 8px;
-
         display: flex;
         align-items: baseline;
         text-align: left;
@@ -19,13 +17,17 @@
         }
 
         :global(.rule-details-id) {
-            font-family: $semiBoldFontFamily;
+            font-weight: $fontWeightSemiBold;
             color: $primary-text;
             word-break: break-all;
 
             a {
-                font-family: $semiBoldFontFamily;
+                font-weight: $fontWeightSemiBold;
                 color: $primary-text !important;
+            }
+
+            strong {
+                font-weight: $fontWeightSemiBold;
             }
         }
 
@@ -37,7 +39,7 @@
 }
 
 .collapsible-rule-details-group {
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
     :global(.rule-detail) {
         box-shadow: unset;

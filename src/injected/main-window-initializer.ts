@@ -6,6 +6,7 @@ import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -14,9 +15,12 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
+import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
+import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -27,6 +31,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -80,6 +85,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private pathSnippetController: PathSnippetController;
+    private storeUpdateMessageHub: StoreUpdateMessageHub;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
@@ -100,65 +106,68 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize());
 
+        this.storeUpdateMessageHub = new StoreUpdateMessageHub();
+        this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
+
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(
             StoreNames[StoreNames.ScopingPanelStateStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
             StoreNames[StoreNames.AssessmentStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.tabStoreProxy = new StoreProxy<TabStoreData>(
             StoreNames[StoreNames.TabStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.devToolStoreProxy = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(
             StoreNames[StoreNames.InspectStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
             StoreNames[StoreNames.PathSnippetStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
             StoreNames[StoreNames.UnifiedScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
             StoreNames[StoreNames.CardSelectionStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.needsReviewScanResultStoreProxy = new StoreProxy<NeedsReviewScanResultStoreData>(
             StoreNames[StoreNames.NeedsReviewScanResultStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.needsReviewCardSelectionStoreProxy = new StoreProxy<NeedsReviewCardSelectionStoreData>(
             StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
         this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
             StoreNames[StoreNames.PermissionsStateStore],
-            this.browserAdapter,
+            this.storeUpdateMessageHub,
         );
 
         const logger = createDefaultLogger();
@@ -207,8 +216,16 @@ export class MainWindowInitializer extends WindowInitializer {
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
+        const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
+            telemetryDataFactory,
+            actionMessageDispatcher,
+            TelemetryEventSource.TargetPage,
+        );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
+        const userConfigMessageCreator = new UserConfigMessageCreator(
+            actionMessageDispatcher,
+            telemetryDataFactory,
+        );
 
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
@@ -240,6 +257,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const selectorMapHelper = new SelectorMapHelper(
             Assessments,
             elementBasedViewModelCreator.getElementBasedViewModel,
+            GetVisualizationInstancesForTabStops,
         );
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
@@ -316,8 +334,20 @@ export class MainWindowInitializer extends WindowInitializer {
             filterNeedsReviewResults,
         );
 
+        const tabStopsDoneAnalyzingTracker = new TabStopsDoneAnalyzingTracker(
+            tabStopRequirementActionMessageCreator,
+        );
+
+        const tabStopsRequirementResultProcessor = new TabStopsRequirementResultProcessor(
+            this.tabStopRequirementRunner,
+            tabStopRequirementActionMessageCreator,
+            this.visualizationScanResultStoreProxy,
+        );
+
         const analyzerProvider = new AnalyzerProvider(
-            this.tabStopsListener,
+            this.manualTabStopListener,
+            tabStopsDoneAnalyzingTracker,
+            tabStopsRequirementResultProcessor,
             this.scopingStoreProxy,
             this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, logger, generateUID),
@@ -393,9 +423,6 @@ export class MainWindowInitializer extends WindowInitializer {
     protected dispose(): void {
         super.dispose();
 
-        this.tabStoreProxy.dispose();
-        this.visualizationScanResultStoreProxy.dispose();
-        this.visualizationStoreProxy.dispose();
-        this.devToolStoreProxy.dispose();
+        this.browserAdapter.removeListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
     }
 }

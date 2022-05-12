@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from '@fluentui/react';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { textContent } from 'content/strings/text-content';
-import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { Content } from 'views/content/content';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -38,9 +40,12 @@ export const rendererDependencies: (
         actionMessageDispatcher,
     );
 
+    const storeUpdateMessageHub = new StoreUpdateMessageHub();
+    browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
+
     const store = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
-        browserAdapter,
+        storeUpdateMessageHub,
     );
     const storesHub = new BaseClientStoresHub<any>([store]);
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
@@ -62,5 +67,6 @@ export const rendererDependencies: (
         storeActionMessageCreator,
         documentManipulator,
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+        ContentRootComponent: Content,
     };
 };

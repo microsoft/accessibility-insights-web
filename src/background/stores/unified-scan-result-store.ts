@@ -1,14 +1,33 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabActions } from 'background/actions/tab-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { PersistentStore } from 'common/flux/persistent-store';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanResultStoreData } from '../../common/types/store-data/unified-data-interface';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
-import { BaseStoreImpl } from './base-store-impl';
 
-export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStoreData> {
-    constructor(private readonly unifiedScanResultActions: UnifiedScanResultActions) {
-        super(StoreNames.UnifiedScanResultStore);
+export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultStoreData> {
+    constructor(
+        private readonly unifiedScanResultActions: UnifiedScanResultActions,
+        private readonly tabActions: TabActions,
+        persistedState: UnifiedScanResultStoreData,
+        idbInstance: IndexedDBAPI,
+        logger: Logger,
+        tabId: number,
+        persistStoreData: boolean,
+    ) {
+        super(
+            StoreNames.UnifiedScanResultStore,
+            persistedState,
+            idbInstance,
+            IndexedDBDataKeys.unifiedScanResultStore(tabId),
+            logger,
+            persistStoreData,
+        );
     }
 
     public getDefaultState(): UnifiedScanResultStoreData {
@@ -29,7 +48,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     protected addActionListeners(): void {
         this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.unifiedScanResultActions.startScan.addListener(this.onScanStarted);
+        this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
@@ -44,7 +63,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.emitChanged();
     };
 
-    private onScanStarted = (): void => {
+    private onResetStoreData = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

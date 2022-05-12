@@ -37,7 +37,8 @@
         "**/test-results",
         "**/yarn.lock",
         "Dockerfile",
-        ".eslintignore"
+        ".eslintignore",
+        "**/*.plist"
     ],
     "licenseFormats": {
         "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {

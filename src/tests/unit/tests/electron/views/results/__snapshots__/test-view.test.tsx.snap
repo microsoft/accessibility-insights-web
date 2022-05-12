@@ -24,6 +24,7 @@ exports[`TestView when status scan <Completed> 1`] = `
         },
       }
     }
+    sectionHeadingLevel={2}
     shouldAlertFailuresCount={true}
     tabStopsEnabled={true}
     userConfigurationStoreData={

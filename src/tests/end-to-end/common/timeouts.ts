@@ -14,7 +14,7 @@ export const DEFAULT_E2E_TEST_TIMEOUT_MS: number = 30000;
 export const DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS = 15000;
 
 // How long to wait for an existing page to stop churning in response to a UI action
-export const DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS = 5000;
+export const DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS = 10000;
 
 // How long to wait for an operation that involves scanning the target page
 export const DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS = 15000;
@@ -22,8 +22,7 @@ export const DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS = 15000;
 // How long to wait for a new page to load in response to the UI action that launched it
 export const DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS = 5000;
 
-// How long of a wait to artificially inject between element hover/mousedown/mouseup during clicks
-export const DEFAULT_CLICK_HOVER_DELAY_MS = 100;
+// How long of a wait to artificially inject between element mouseup during clicks
 export const DEFAULT_CLICK_MOUSEUP_DELAY_MS = 50;
 
 // How long to allow screenshotOnError to take (we don't want to allow arbitrarily long because the

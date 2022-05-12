@@ -35,11 +35,9 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
     };
 
     const axeResults = await client.evaluate(
-        async ({ selector, axeRunOptions }) => {
+        ({ selector, axeRunOptions }) => {
             const elementContext = selector === undefined ? document : { include: [selector] };
-
-            const results = await window.axe.run(elementContext, axeRunOptions);
-            return results;
+            return window.axe.run(elementContext, axeRunOptions);
         },
         { selector, axeRunOptions },
     );

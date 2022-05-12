@@ -1,14 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    browser,
-    ExtensionTypes,
-    Notifications,
-    Permissions,
-    Runtime,
-    Tabs,
-    Windows,
-} from 'webextension-polyfill-ts';
+import browser, { Notifications, Permissions, Runtime, Tabs, Windows } from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
@@ -89,15 +81,34 @@ export abstract class WebExtensionBrowserAdapter
 
     public executeScriptInTab(
         tabId: number,
-        details: ExtensionTypes.InjectDetails,
+        details: {
+            file: string;
+            allFrames?: boolean | undefined;
+        },
     ): Promise<any[]> {
         this.verifyPathCompatibility(details.file);
-        return browser.tabs.executeScript(tabId, details);
+        return typeof browser.tabs.executeScript === 'function'
+            ? browser.tabs.executeScript(tabId, details)
+            : chrome.scripting.executeScript({
+                  target: { tabId, allFrames: details.allFrames },
+                  files: [details.file],
+              });
     }
 
-    public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+    public insertCSSInTab(
+        tabId: number,
+        details: {
+            file: string;
+            allFrames?: boolean | undefined;
+        },
+    ): Promise<void> {
         this.verifyPathCompatibility(details.file);
-        return browser.tabs.insertCSS(tabId, details);
+        return typeof browser.tabs.insertCSS === 'function'
+            ? browser.tabs.insertCSS(tabId, details)
+            : chrome.scripting.insertCSS({
+                  target: { tabId, allFrames: details.allFrames },
+                  files: [details.file],
+              });
     }
 
     public createActiveTab(url: string): Promise<Tabs.Tab> {
@@ -207,7 +218,7 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public getUrl(urlPart: string): string {
-        return chrome.extension.getURL(urlPart);
+        return browser.runtime.getURL(urlPart);
     }
 
     public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {

@@ -1,18 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getRTL } from '@uifabric/utilities';
+import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
+import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
+import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
+import { tabbable } from 'tabbable';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -34,7 +42,6 @@ import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-a
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
-import { TabStopsListener } from './tab-stops-listener';
 import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
@@ -50,7 +57,8 @@ export class WindowInitializer {
     protected windowUtils: WindowUtils;
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
-    protected tabStopsListener: TabStopsListener;
+    protected manualTabStopListener: AllFrameRunner<TabStopEvent>;
+    protected tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
@@ -112,13 +120,39 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
-        this.tabStopsListener = new TabStopsListener(
-            this.frameMessenger,
-            this.windowUtils,
-            htmlElementUtils,
+        const singleFrameListener = new SingleFrameTabStopListener(
+            'manual-tab-stop-listener',
             getUniqueSelector,
             document,
         );
+        this.manualTabStopListener = new AllFrameRunner<TabStopEvent>(
+            this.frameMessenger,
+            htmlElementUtils,
+            this.windowUtils,
+            singleFrameListener,
+        );
+        this.manualTabStopListener.initialize();
+
+        const tabbableElementGetter = new TabbableElementGetter(document, tabbable);
+        const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
+            htmlElementUtils,
+            getUniqueSelector,
+        );
+        const tabStopsOrchestrator = new TabStopRequirementOrchestrator(
+            document,
+            tabbableElementGetter,
+            this.windowUtils,
+            tabStopRequirementEvaluator,
+            getUniqueSelector,
+        );
+        this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
+            this.frameMessenger,
+            htmlElementUtils,
+            this.windowUtils,
+            tabStopsOrchestrator,
+        );
+        this.tabStopRequirementRunner.initialize();
+
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,
@@ -145,7 +179,6 @@ export class WindowInitializer {
         );
         this.windowMessagePoster.initialize();
         this.respondableCommandMessageCommunicator.initialize();
-        this.tabStopsListener.initialize();
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();

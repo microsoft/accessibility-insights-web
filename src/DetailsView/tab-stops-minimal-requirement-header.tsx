@@ -22,7 +22,7 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
         const { requirement } = props;
 
         const renderCountBadge = () => {
-            const count = props.deps.tabStopsFailedCounter.getFailedByRequirementId(
+            const count = props.deps.tabStopsFailedCounter.getTotalFailedByRequirementId(
                 [requirement],
                 requirement.id,
             );
@@ -35,7 +35,9 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
         };
 
         const renderRuleName = () => (
-            <span className={styles.requirementDetailsId}>{requirement.name}</span>
+            <span className={styles.requirementDetailsId}>
+                <strong>{requirement.name}</strong>
+            </span>
         );
 
         const renderDescription = () => (
