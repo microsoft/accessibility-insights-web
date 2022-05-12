@@ -25,7 +25,7 @@ describe('DevToolsActionCreatorTest', () => {
     it('handles DevToolOpened message', () => {
         const setDevToolsStateMock = createActionMock(true);
         const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
-        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, undefined, tabId);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, null, tabId);
 
         const newTestObject = new DevToolsActionCreator(
             interpreterMock.object,

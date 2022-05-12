@@ -1,106 +1,61 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { TabContextManager } from 'background/tab-context-manager';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Messages } from 'common/messages';
 import { PromiseFactory, TimeoutError } from 'common/promises/promise-factory';
 import { DevToolsStatusResponse } from 'common/types/dev-tools-messages';
-import { isNil } from 'lodash';
 
 export class DevToolsMonitor {
-    private monitorIsActive = false;
+    private monitorIsActive: boolean = false;
 
     constructor(
+        private readonly tabId: number,
         private readonly browserAdapter: BrowserAdapter,
         private readonly promiseFactory: PromiseFactory,
-        protected readonly activeDevtoolTabIds: number[],
-        private readonly tabContextManager: TabContextManager,
-        private readonly idbInstance: IndexedDBAPI,
-        private persistStoreData: boolean,
+        private readonly interpreter: Interpreter,
+        private readonly devtoolActions: DevToolActions,
         private readonly messageTimeoutMilliseconds = 500,
         private readonly pollIntervalMilliseconds = 500,
     ) {}
 
     public initialize(): void {
-        this.activeDevtoolTabIds.forEach(tabId => {
-            this.startMonitoringDevtool(tabId);
-        });
+        this.devtoolActions.setDevToolState.addListener(this.onSetDevtoolState);
+        this.startMonitor();
     }
 
-    public async startMonitoringDevtool(tabId: number): Promise<void> {
-        await this.addActiveDevtool(tabId);
+    private onSetDevtoolState = (status: boolean) => {
+        if (status) {
+            this.startMonitor();
+        }
+    };
 
+    private startMonitor(): void {
         if (!this.monitorIsActive) {
-            // Do not await, we want to continue running other synchronous code
-            this.monitorActiveDevtools();
+            // Do not await, we want the polling loop to run asynchronously
+            this.pollUntilClosed();
         }
     }
 
-    private async addActiveDevtool(tabId: number): Promise<void> {
-        if (!isNil(tabId) && !this.activeDevtoolTabIds.includes(tabId)) {
-            this.activeDevtoolTabIds.push(tabId);
-            if (this.persistStoreData) {
-                await this.idbInstance.setItem(
-                    IndexedDBDataKeys.activeDevtoolTabIds,
-                    this.activeDevtoolTabIds,
-                );
-            }
-        }
-    }
-
-    private async removeActiveDevtool(tabId: number): Promise<void> {
-        const index = this.activeDevtoolTabIds.indexOf(tabId);
-        if (index >= 0) {
-            this.activeDevtoolTabIds.splice(index, 1);
-            if (this.persistStoreData) {
-                this.idbInstance.setItem(
-                    IndexedDBDataKeys.activeDevtoolTabIds,
-                    this.activeDevtoolTabIds,
-                );
-            }
-        }
-    }
-
-    protected async monitorActiveDevtools(): Promise<void> {
+    protected async pollUntilClosed(): Promise<void> {
         this.monitorIsActive = true;
 
-        while (this.activeDevtoolTabIds.length > 0) {
+        while ((await this.isDevtoolOpen()) === true) {
             await this.promiseFactory.delay(null, this.pollIntervalMilliseconds);
-            await this.removeInactiveDevtools();
         }
 
         this.monitorIsActive = false;
+        this.onDevtoolClosed();
     }
 
-    private async removeInactiveDevtools(): Promise<void> {
-        const idsToRemove: number[] = [];
-
-        await Promise.all(
-            this.activeDevtoolTabIds.map(async tabId => {
-                const isOpen = await this.isDevtoolOpen(tabId);
-                if (!isOpen) {
-                    idsToRemove.push(tabId);
-                }
-            }),
-        );
-
-        await Promise.all(
-            idsToRemove.map(async tabId => {
-                await this.removeActiveDevtool(tabId);
-                this.onDevtoolsClosed(tabId);
-            }),
-        );
-    }
-
-    private async isDevtoolOpen(tabId: number): Promise<boolean> {
+    private async isDevtoolOpen(): Promise<boolean> {
         try {
             const statusResponse: DevToolsStatusResponse = await this.promiseFactory.timeout(
                 this.browserAdapter.sendRuntimeMessage({
                     messageType: Messages.DevTools.StatusRequest,
-                    tabId: tabId,
+                    tabId: this.tabId,
                 }),
                 this.messageTimeoutMilliseconds,
             );
@@ -114,9 +69,9 @@ export class DevToolsMonitor {
         }
     }
 
-    private onDevtoolsClosed(tabId: number): void {
-        this.tabContextManager.interpretMessageForTab(tabId, {
-            tabId: tabId,
+    private onDevtoolClosed(): void {
+        this.interpreter.interpret({
+            tabId: this.tabId,
             messageType: Messages.DevTools.Closed,
         });
     }

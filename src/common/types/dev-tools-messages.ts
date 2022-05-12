@@ -3,10 +3,6 @@
 
 import { Message } from 'common/message';
 
-export interface DevToolsOpenMessage {
-    tabId: number;
-}
-
 export interface DevToolsStatusRequest extends Message {
     tabId: number;
 }
