@@ -2480,10 +2480,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.184":
-  version "0.0.184"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.184.tgz#b75b6ad175b6f7ac1fd41cc8974d5a77dfdbf2d1"
-  integrity sha512-Wvawa0L2jUyLd6RNd0mx/1z0R/RZXkGKDI77+twsbcmhLlsGA64xrXQYxFr/F7yu6yGLEqKpEmrrJ1tveuVkIQ==
+"@types/chrome@0.0.185":
+  version "0.0.185"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.185.tgz#5aee082a4eccf8d151750bae0af377b7f5ab7fd1"
+  integrity sha512-HU0q31jtBHSfqtqW5TqqgU+BnSiUJdB98qFWT1SD2gXZxk8NVuogNmv7T+WUL+q2/GEer/4est19A1h8FdehYQ==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
