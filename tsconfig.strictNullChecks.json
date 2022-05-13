@@ -388,6 +388,7 @@
         "./src/injected/constants.ts",
         "./src/injected/element-finder-by-path.ts",
         "./src/injected/element-finder-by-position.ts",
+        "./src/injected/extension-disabled-monitor.ts",
         "./src/injected/focus-change-handler.ts",
         "./src/injected/frame-url-controller.ts",
         "./src/injected/frame-url-finder.ts",

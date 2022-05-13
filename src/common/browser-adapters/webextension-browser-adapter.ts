@@ -231,10 +231,6 @@ export abstract class WebExtensionBrowserAdapter
         chrome.commands.getAll(callback);
     }
 
-    public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
-        this.browserEventManager.addApplicationListener('RuntimeOnConnect', callback);
-    }
-
     public addListenerOnMessage(
         callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void {
@@ -245,12 +241,14 @@ export abstract class WebExtensionBrowserAdapter
         this.browserEventManager.removeListeners(browser.runtime.onMessage, 'RuntimeOnMessage');
     }
 
-    public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
-        return chrome.runtime.connect(chrome.runtime.id, connectionInfo);
-    }
-
     public getManifest(): chrome.runtime.Manifest {
         return chrome.runtime.getManifest();
+    }
+
+    public getExtensionId(): string | undefined {
+        // The webextension typings lie; it *is* possible for this to be
+        // undefined if queried from a content script of a disabled extension
+        return browser.runtime.id;
     }
 
     public getVersion(): string {
