@@ -112,6 +112,6 @@ describe(StoreUpdateMessageHub, () => {
     it('Returns resolved void promise', () => {
         const result = testSubject.handleMessage(tabContextMessage);
 
-        expect(result).resolves.toBe(undefined);
+        expect(result).toBe(undefined);
     });
 });

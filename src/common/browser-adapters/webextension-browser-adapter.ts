@@ -18,18 +18,34 @@ import { StorageAdapter } from './storage-adapter';
 export abstract class WebExtensionBrowserAdapter
     implements BrowserAdapter, StorageAdapter, CommandsAdapter
 {
-    private browserEventManager: BrowserEventManager;
+    constructor(private readonly browserEventManager: BrowserEventManager) {}
 
-    constructor(
-        browserEventManager: BrowserEventManager,
-        browserEvents: DictionaryStringTo<Events.Event<any>>,
-    ) {
-        this.browserEventManager = browserEventManager;
+    public initialize(): void {
+        // Add browser listeners synchronously on initialization
+        const browserEvents = this.getDefaultBrowserEvents();
         for (const [eventType, event] of Object.entries(browserEvents)) {
             if (event !== undefined) {
                 this.browserEventManager.addBrowserListener(event, eventType);
             }
         }
+    }
+
+    private getDefaultBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
+        const browserEvents: DictionaryStringTo<Events.Event<any>> = {
+            TabsOnActivated: chrome.tabs?.onActivated,
+            TabsOnUpdated: chrome.tabs?.onUpdated,
+            TabsOnRemoved: chrome.tabs?.onRemoved,
+            WebNavigationOnDOMContentLoaded: chrome.webNavigation?.onDOMContentLoaded,
+            WindowsOnFocusChanged: chrome.windows?.onFocusChanged,
+            CommandsOnCommand: chrome.commands?.onCommand,
+            RuntimeOnConnect: chrome.runtime.onConnect,
+            RuntimeOnMessage: browser.runtime.onMessage,
+            // casting browser as any due to typings for permissions onAdded not currently supported.
+            PermissionsOnAdded: (browser as any).permissions?.onAdded,
+            // casting browser as any due to typings for permissions onRemoved not currently supported.
+            PermissionsOnRemoved: (browser as any).permissions?.onRemoved,
+        };
+        return browserEvents;
     }
 
     public abstract getManageExtensionUrl(): string;

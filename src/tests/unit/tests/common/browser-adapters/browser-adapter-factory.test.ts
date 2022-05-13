@@ -10,16 +10,7 @@ import { BrowserEventManager } from 'common/browser-adapters/browser-event-manag
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
 import { IMock, Mock } from 'typemoq';
-import { DictionaryStringTo } from 'types/common-types';
 import * as UAParser from 'ua-parser-js';
-import { Events } from 'webextension-polyfill';
-
-class TestBrowserAdapterFactory extends BrowserAdapterFactory {
-    protected override getDefaultBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
-        // Return empty events list instead of real chrome events
-        return {};
-    }
-}
 
 describe('BrowserAdapterFactory', () => {
     describe('makeFromUserAgent', () => {
@@ -31,28 +22,28 @@ describe('BrowserAdapterFactory', () => {
             mockBrowserEventManager = Mock.ofType<BrowserEventManager>();
             mockUAParser = Mock.ofType<UAParser>();
 
-            testSubject = new TestBrowserAdapterFactory(mockUAParser.object);
+            testSubject = new BrowserAdapterFactory(mockUAParser.object);
         });
 
         it('produces a FirefoxAdapter for a Gecko-engine user agent', () => {
             setupMockEngine('Gecko');
-            expect(testSubject.makeFromUserAgent(mockBrowserEventManager.object)).toBeInstanceOf(
-                FirefoxAdapter,
-            );
+            expect(
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+            ).toBeInstanceOf(FirefoxAdapter);
         });
 
         it('produces a ChromiumAdapter for a WebKit-engine user agent (Chrome, new Edge)', () => {
             setupMockEngine('WebKit');
-            expect(testSubject.makeFromUserAgent(mockBrowserEventManager.object)).toBeInstanceOf(
-                ChromiumAdapter,
-            );
+            expect(
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+            ).toBeInstanceOf(ChromiumAdapter);
         });
 
         it('produces a ChromiumAdapter as a fallback for an unrecognized user agent', () => {
             setupMockEngine('some unrecognized engine name');
-            expect(testSubject.makeFromUserAgent(mockBrowserEventManager.object)).toBeInstanceOf(
-                ChromiumAdapter,
-            );
+            expect(
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+            ).toBeInstanceOf(ChromiumAdapter);
         });
 
         function setupMockEngine(engineName: string): void {

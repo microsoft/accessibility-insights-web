@@ -41,7 +41,7 @@ export class ClientStoreListener {
 
     private onChangedState = (): void => {
         const storeData = this.storeHub.getAllStoreData();
-        if (storeData == null || !storeData.visualizationStoreData) {
+        if (storeData?.visualizationStoreData == null) {
             return;
         }
 

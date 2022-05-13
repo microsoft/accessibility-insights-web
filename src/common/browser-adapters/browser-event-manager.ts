@@ -30,6 +30,14 @@ interface DeferredEventDetails extends EventDetails {
 // own timeout MUST be shorter than Chromium's.
 const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
 
+// Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
+// whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
+// and continue to do some async work after returning undefined. To ensure those listeners have
+// time to do their work, the event manager adds this (arbitrary) delay into its response to the
+// browser event.
+// We default to 0 to ensure we don't create unnecessary timeouts in the manifest v2 extension.
+const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
+
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
 //
@@ -46,18 +54,17 @@ export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
+    private readonly fireAndForgetEventDelayMs: number = 0;
 
     constructor(
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
-        // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
-        // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
-        // and continue to do some async work after returning undefined. To ensure those listeners have
-        // time to do their work, the event manager adds this (arbitrary) delay into its response to the
-        // browser event.
-        // We default to 0 to ensure we don't create unnecessary timeouts in the manifest v2 extension.
-        private readonly fireAndForgetEventDelayMs: number = 0,
-    ) {}
+        isServiceWorker: boolean = false,
+    ) {
+        if (isServiceWorker) {
+            this.fireAndForgetEventDelayMs = FIRE_AND_FORGET_EVENT_DELAY_MS;
+        }
+    }
 
     public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
         if (this.eventsToApplicationListenersMapping[eventType]) {

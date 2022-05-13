@@ -102,12 +102,8 @@ describe(BrowserEventManager, () => {
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
-    it('honors fire and forget timeout override', async () => {
-        testSubject = new BrowserEventManager(
-            timeSimulatingPromiseFactory,
-            recordingLogger,
-            120000,
-        );
+    it('honors fire and forget timeout when isServiceWorker is set', async () => {
+        testSubject = new BrowserEventManager(timeSimulatingPromiseFactory, recordingLogger, true);
 
         testSubject.addBrowserListener(testEvent, 'event-type');
 
