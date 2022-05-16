@@ -14,7 +14,6 @@ module.exports = {
         'no-invalid-position-at-import-rule': null,
         'no-duplicate-at-import-rules': null,
         'scss/no-global-function-names': null,
-        'scss/comment-no-empty': null,
         'no-descending-specificity': null,
 
         // TO BE CONFIGURED: Limit shorthand for margin, padding
