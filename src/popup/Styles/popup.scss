@@ -24,6 +24,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     width: 368px;
 
     // Workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
+    //
     // The bug seems to affect only Chromium 91 (not 90 or 92); the workaround can be removed after
     // Edge/Chrome stable have been on 92 for a few weeks (ie, around September 2021).
     > .ms-Modal-scrollableContent {

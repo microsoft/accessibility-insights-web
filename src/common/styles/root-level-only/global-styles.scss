@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 // This file should *only* be @imported from root-level SCSS files, *not* individual SCSS modules.
+//
 // If an SCSS module @imports this, the styles will be repeated once per @importing module in the
 // final packed .css file, which causes perf issues (especially with Chromium's dev tools).
 
