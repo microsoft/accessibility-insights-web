@@ -258,6 +258,11 @@
         position: absolute !important;
         overflow: hidden !important;
         pointer-events: none !important;
+
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            outline-color: Highlight !important;
+        }
     }
 
     .insights-highlight-container .insights-highlight-box .insights-highlight-text {
@@ -268,13 +273,6 @@
         float: right !important;
         position: relative !important;
         text-align: center !important;
-    }
-
-    .insights-highlight-container .insights-highlight-box {
-        @include ms-high-contrast-override {
-            forced-color-adjust: none;
-            outline-color: Highlight !important;
-        }
     }
 
     .insights-highlight-container .insights-highlight-text {
