@@ -108,10 +108,4 @@ describe(StoreUpdateMessageHub, () => {
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
     });
-
-    it('Returns resolved void promise', () => {
-        const result = testSubject.handleMessage(tabContextMessage);
-
-        expect(result).toBe(undefined);
-    });
 });
