@@ -8,10 +8,9 @@ module.exports = {
         'declaration-block-no-duplicate-properties': [true, { ignore: ['consecutive-duplicates'] }],
         'declaration-block-no-redundant-longhand-properties': null, // Prefer longhand to improve readability
         'shorthand-property-no-redundant-values': null, // Prefer longhand to improve readability
+        'scss/comment-no-empty': null, // Disabled to allow for paragraph breaks in longer comments which is not supported yet: https://github.com/stylelint-scss/stylelint-scss/issues/606
 
         // TO BE ENABLED: Recommended fixes
-        'no-duplicate-selectors': null,
-        'scss/comment-no-empty': null,
         'no-descending-specificity': null,
 
         // TO BE CONFIGURED: Limit shorthand for margin, padding
