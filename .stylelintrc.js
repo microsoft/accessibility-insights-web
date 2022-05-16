@@ -11,7 +11,6 @@ module.exports = {
 
         // TO BE ENABLED: Recommended fixes
         'scss/at-extend-no-missing-placeholder': null,
-        'no-duplicate-selectors': null,
         'no-invalid-position-at-import-rule': null,
         'no-duplicate-at-import-rules': null,
         'scss/no-global-function-names': null,
