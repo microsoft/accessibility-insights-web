@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 @import '../../common/styles/root-level-only/color-definitions.scss';
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
 #accessibility-insights-root-container {
     visibility: hidden !important;
@@ -30,10 +31,6 @@
 
 #accessibility-insights-root-container,
 #insights-shadow-container {
-    @import '../../common/styles/colors.scss';
-    @import '../../common/styles/common.scss';
-    @import '../../common/components/toast.scss';
-
     @mixin max-z-index-1 {
         z-index: 2147483646 !important;
     }
