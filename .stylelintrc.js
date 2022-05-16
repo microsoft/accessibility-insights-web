@@ -10,7 +10,6 @@ module.exports = {
         'shorthand-property-no-redundant-values': null, // Prefer longhand to improve readability
 
         // TO BE ENABLED: Recommended fixes
-        'scss/at-extend-no-missing-placeholder': null,
         'no-duplicate-selectors': null,
         'scss/comment-no-empty': null,
         'no-descending-specificity': null,
