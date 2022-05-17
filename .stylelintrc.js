@@ -11,10 +11,6 @@ module.exports = {
         'scss/comment-no-empty': null, // Disabled to allow for paragraph breaks in longer comments which is not supported yet: https://github.com/stylelint-scss/stylelint-scss/issues/606
 
         // TO BE ENABLED: Recommended fixes
-        'scss/at-extend-no-missing-placeholder': null,
-        'no-invalid-position-at-import-rule': null,
-        'no-duplicate-at-import-rules': null,
-        'scss/no-global-function-names': null,
         'no-descending-specificity': null,
 
         // TO BE CONFIGURED: Limit shorthand for margin, padding
