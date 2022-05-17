@@ -28,25 +28,23 @@ export interface TargetPageStoreData {
 }
 
 export class ClientStoreListener {
-    private onReadyToExecuteVisualizationUpdates: ((
-        storeData: Partial<TargetPageStoreData>,
-    ) => void)[] = [];
+    private onReadyToExecuteVisualizationUpdates: ((storeData: TargetPageStoreData) => void)[] = [];
     constructor(private storeHub: BaseClientStoresHub<TargetPageStoreData>) {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
     public registerOnReadyToExecuteVisualizationCallback = (
-        callback: (storeData: Partial<TargetPageStoreData>) => void,
+        callback: (storeData: TargetPageStoreData) => void,
     ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
 
     private onChangedState = (): void => {
-        const storeData = this.storeHub.getAllStoreData();
-        if (storeData == null) {
+        if (!this.storeHub.hasStores() || !this.storeHub.hasStoreData()) {
             return;
         }
 
+        const storeData = this.storeHub.getAllStoreData() as TargetPageStoreData;
         if (storeData.visualizationStoreData?.scanning != null) {
             return;
         }
