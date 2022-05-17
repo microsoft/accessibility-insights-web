@@ -181,6 +181,7 @@ async function initialize(): Promise<void> {
         tabContextManager.interpretMessageForTab,
         true,
     );
+    await detailsViewController.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
     const tabContextFactory = new TabContextFactory(
