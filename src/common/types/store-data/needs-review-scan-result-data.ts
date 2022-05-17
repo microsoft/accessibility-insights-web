@@ -12,12 +12,12 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 
 export interface NeedsReviewScanResultStoreData {
-    results: UnifiedResult[];
-    rules: UnifiedRule[];
-    platformInfo?: PlatformData;
-    toolInfo?: ToolData;
-    targetAppInfo?: TargetAppData;
-    timestamp?: string;
-    scanIncompleteWarnings?: ScanIncompleteWarningId[];
-    screenshotData?: ScreenshotData;
+    results: UnifiedResult[] | null;
+    rules: UnifiedRule[] | null;
+    platformInfo?: PlatformData | null;
+    toolInfo?: ToolData | null;
+    targetAppInfo?: TargetAppData | null;
+    timestamp?: string | null;
+    scanIncompleteWarnings?: ScanIncompleteWarningId[] | null;
+    screenshotData?: ScreenshotData | null;
 }

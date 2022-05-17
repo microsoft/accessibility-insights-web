@@ -18,7 +18,11 @@ export function screenshotViewModelProvider(
     const viewPortInfo = tryGetViewPort(unifiedScanResultStoreData.platformInfo);
 
     let highlightBoxViewModels: HighlightBoxViewModel[] = [];
-    if (screenshotData != null && viewPortInfo != null) {
+    if (
+        screenshotData != null &&
+        viewPortInfo != null &&
+        unifiedScanResultStoreData.results != null
+    ) {
         highlightBoxViewModels = getHighlightBoxViewModels(
             unifiedScanResultStoreData.results,
             highlightedResultUids,
@@ -37,7 +41,7 @@ type RequiredViewPortProperties = {
     height: number;
 };
 
-function tryGetViewPort(platformInfo?: PlatformData): RequiredViewPortProperties | null {
+function tryGetViewPort(platformInfo?: PlatformData | null): RequiredViewPortProperties | null {
     const viewPortInfo = platformInfo?.viewPortInfo ?? {};
     const { width, height } = viewPortInfo;
     if (width != null && height != null) {

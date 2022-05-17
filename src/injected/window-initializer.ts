@@ -37,6 +37,7 @@ import { DetailsDialogHandler } from './details-dialog-handler';
 import { DrawingController } from './drawing-controller';
 import { ElementFinderByPath } from './element-finder-by-path';
 import { ElementFinderByPosition } from './element-finder-by-position';
+import { ExtensionDisabledMonitor } from './extension-disabled-monitor';
 import { FrameUrlFinder } from './frame-url-finder';
 import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
@@ -73,6 +74,7 @@ export class WindowInitializer {
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
         const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+        const promiseFactory = createDefaultPromiseFactory();
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;
@@ -107,7 +109,7 @@ export class WindowInitializer {
         this.respondableCommandMessageCommunicator = new RespondableCommandMessageCommunicator(
             this.windowMessagePoster,
             generateUID,
-            createDefaultPromiseFactory(),
+            promiseFactory,
             logger,
         );
 
@@ -194,9 +196,6 @@ export class WindowInitializer {
             visualizationTypeDrawerRegistrar.registerType,
         );
 
-        const port = this.browserAdapter.connect();
-        port.onDisconnect.addListener(() => this.dispose());
-
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameMessenger,
             this.clientUtils,
@@ -209,6 +208,14 @@ export class WindowInitializer {
         this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);
+
+        const extensionDisabledMonitor = new ExtensionDisabledMonitor(
+            this.browserAdapter,
+            promiseFactory,
+            logger,
+        );
+        // Intentionally floating this promise
+        extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
     }
 
     protected dispose(): void {
