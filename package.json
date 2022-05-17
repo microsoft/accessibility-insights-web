@@ -93,7 +93,7 @@
         "watch:webpack-unified": "webpack --watch --config-name unified --color --progress"
     },
     "devDependencies": {
-        "7zip-bin": "^5.1.1",
+        "7zip-bin": "^5.2.0",
         "@electron/get": "^1.14.1",
         "@swc/core": "^1.2.182",
         "@swc/jest": "^0.2.21",
@@ -181,7 +181,7 @@
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
-        "appium-adb": "^9.2.4",
+        "appium-adb": "^9.4.0",
         "axe-core": "4.4.1",
         "classnames": "^2.3.1",
         "electron": "14.0.0",
