@@ -23,7 +23,6 @@ export class InitialAssessmentStoreDataGenerator {
         const targetTab: PersistedTabInfo = persistedData &&
             persistedData.persistedTabInfo && {
                 ...persistedData.persistedTabInfo,
-                appRefreshed: true,
             };
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if

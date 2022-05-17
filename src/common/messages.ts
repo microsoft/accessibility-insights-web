@@ -39,6 +39,7 @@ export const Messages = {
         },
         DetailsView: {
             Open: `${messagePrefix}/details-view/open`,
+            Initialize: `${messagePrefix}/details-view/initialize`,
             Select: `${messagePrefix}/details-view/select`,
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,

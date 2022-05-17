@@ -104,6 +104,10 @@ export interface OnDetailsViewOpenPayload extends UpdateSelectedDetailsViewPaylo
     telemetry: TelemetryEvents.DetailsViewOpenTelemetryData;
 }
 
+export interface OnDetailsViewInitializedPayload extends BaseActionPayload {
+    detailsViewId: string;
+}
+
 export interface OnDetailsViewPivotSelected extends BaseActionPayload {
     pivotKey: DetailsViewPivotType;
 }

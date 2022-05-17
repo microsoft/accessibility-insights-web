@@ -17,7 +17,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
     const assessments = assesssmentsProvider.all();
-    const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
+    const validTargetTab = { id: 1, url: 'url', title: 'title', detailsViewId: 'fakeId' };
     const knownTestType = assessments[0].visualizationType;
     const unknownTestType = -100 as VisualizationType;
     const knownRequirementIds = flatMap(assessments, test =>
@@ -96,21 +96,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         },
     );
 
-    it.each([[undefined], [true], [false]])(
-        'outputs persistedTabInfo.appRefreshed as true even if it was set to %p in input persistedData',
-        persistedAppRefreshed => {
-            const generatedState = generator.generateInitialState({
-                persistedTabInfo: { ...validTargetTab, appRefreshed: persistedAppRefreshed },
-                assessmentNavState: null,
-                assessments: null,
-                resultDescription: '',
-            });
-
-            expect(generatedState.persistedTabInfo.appRefreshed).toBe(true);
-        },
-    );
-
-    it('outputs persistedTabInfo properties other than appRefreshed as they appeared in persistedData', () => {
+    it('outputs persistedTabInfo properties as they appeared in persistedData', () => {
         const generatedState = generator.generateInitialState({
             persistedTabInfo: validTargetTab,
             assessmentNavState: null,
@@ -118,7 +104,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
             resultDescription: '',
         });
 
-        const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;
+        const { detailsViewId, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;
         expect(generatedState.persistedTabInfo).toMatchObject(tabInfoPropertiesThatShouldPropagate);
     });
 

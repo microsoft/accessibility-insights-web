@@ -198,7 +198,7 @@ describe('AssessmentViewTest', () => {
             id: 1,
             url: '1',
             title: '2',
-            appRefreshed: false,
+            detailsViewId: undefined,
         };
         const assessmentNavState = {
             selectedTestSubview: firstStep.key,

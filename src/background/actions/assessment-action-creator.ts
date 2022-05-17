@@ -28,6 +28,7 @@ import {
     SelectTestSubviewPayload,
     ToggleActionPayload,
     LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
@@ -140,6 +141,10 @@ export class AssessmentActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.DetailsView.Select,
             this.onPivotChildSelected,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.DetailsView.Initialize,
+            this.onDetailsViewInitialized,
         );
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SaveAssessment,
@@ -309,5 +314,9 @@ export class AssessmentActionCreator {
 
     private onPivotChildSelected = (payload: OnDetailsViewOpenPayload): void => {
         this.assessmentActions.updateSelectedPivotChild.invoke(payload);
+    };
+
+    private onDetailsViewInitialized = (payload: OnDetailsViewInitializedPayload): void => {
+        this.assessmentActions.updateDetailsViewId.invoke(payload);
     };
 }

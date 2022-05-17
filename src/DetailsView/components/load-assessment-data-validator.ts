@@ -179,8 +179,8 @@ export class LoadAssessmentDataValidator {
                                 title: {
                                     type: 'string',
                                 },
-                                appRefreshed: {
-                                    type: 'boolean',
+                                detailsViewId: {
+                                    type: 'string',
                                 },
                             },
                             additionalProperties: false,

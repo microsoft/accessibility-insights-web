@@ -57,6 +57,32 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
+    test('initialize', () => {
+        const telemetry = {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+        };
+
+        const detailsViewId = 'testId';
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.DetailsView.Initialize,
+            payload: {
+                telemetry,
+                detailsViewId,
+            },
+        };
+
+        setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
+
+        testSubject.initialize(detailsViewId);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
     test('updateFocusedInstanceTarget', () => {
         const instanceTarget = ['#headings-1'];
         const expectedMessage = {

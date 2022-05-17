@@ -31,6 +31,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -481,6 +482,9 @@ if (tabId != null) {
                 loadAssessmentDataValidator,
             );
 
+            const detailsViewId = generateUID();
+            detailsViewActionMessageCreator.initialize(detailsViewId);
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -566,6 +570,7 @@ if (tabId != null) {
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
                 getNextHeadingLevel: GetNextHeadingLevel,
+                detailsViewId,
             };
 
             const renderer = new DetailsViewRenderer(
