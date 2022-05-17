@@ -46,16 +46,15 @@ export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
         });
     }
 
-    public getAllStoreData(): T | null {
+    public getAllStoreData(): Partial<T> | null {
         if (!this.hasStores()) {
             return null;
         }
 
-        const state: Partial<T> = this.stores.reduce((builtState: Partial<T>, store) => {
+        return this.stores.reduce((builtState: Partial<T>, store) => {
             const key = `${lowerFirst(store.getId())}Data`;
             builtState[key as keyof T] = store.getState();
             return builtState;
         }, {} as Partial<T>);
-        return state as T;
     }
 }

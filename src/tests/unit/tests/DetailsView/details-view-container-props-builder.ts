@@ -14,6 +14,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import {
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
+    DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DictionaryStringTo } from 'types/common-types';
 import { StoreMocks } from './store-mocks';
@@ -96,7 +97,7 @@ export class DetailsViewContainerPropsBuilder {
 
         const props: DetailsViewContainerProps = {
             deps: this.deps,
-            storeState: storeState,
+            storeState: storeState as DetailsViewContainerState,
         };
 
         return props;

@@ -17,16 +17,16 @@ export type WithStoreSubscriptionDeps<T> = {
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
     WrappedComponent: React.ComponentType<P>,
-): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, S> & {
+): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, Partial<S>> & {
     displayName: string;
 } {
-    return class extends React.Component<P, S> {
+    return class extends React.Component<P, Partial<S>> {
         public static readonly displayName = `WithStoreSubscriptionFor${WrappedComponent.displayName}`;
 
         constructor(props: P) {
             super(props);
             if (this.hasStores()) {
-                this.state = this.props.deps.storesHub.getAllStoreData()!;
+                this.state = this.props.deps.storesHub.getAllStoreData()! as S;
             } else {
                 this.state = {} as S;
             }

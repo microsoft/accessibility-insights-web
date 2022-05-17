@@ -28,13 +28,15 @@ export interface TargetPageStoreData {
 }
 
 export class ClientStoreListener {
-    private onReadyToExecuteVisualizationUpdates: ((storeData: TargetPageStoreData) => void)[] = [];
+    private onReadyToExecuteVisualizationUpdates: ((
+        storeData: Partial<TargetPageStoreData>,
+    ) => void)[] = [];
     constructor(private storeHub: BaseClientStoresHub<TargetPageStoreData>) {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
     public registerOnReadyToExecuteVisualizationCallback = (
-        callback: (storeData: TargetPageStoreData) => void,
+        callback: (storeData: Partial<TargetPageStoreData>) => void,
     ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
@@ -45,7 +47,7 @@ export class ClientStoreListener {
             return;
         }
 
-        if (storeData.visualizationStoreData.scanning != null) {
+        if (storeData.visualizationStoreData?.scanning != null) {
             return;
         }
 
