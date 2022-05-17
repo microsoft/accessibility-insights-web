@@ -45,7 +45,7 @@ export class ClientStoreListener {
         }
 
         const storeData = this.storeHub.getAllStoreData() as TargetPageStoreData;
-        if (storeData.visualizationStoreData?.scanning != null) {
+        if (storeData.visualizationStoreData.scanning != null) {
             return;
         }
 
