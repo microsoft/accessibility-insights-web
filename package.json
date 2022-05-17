@@ -97,7 +97,7 @@
         "@electron/get": "^1.14.1",
         "@swc/core": "^1.2.182",
         "@swc/jest": "^0.2.21",
-        "@types/chrome": "0.0.184",
+        "@types/chrome": "0.0.186",
         "@types/enzyme": "^3.10.12",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^27.5.1",
