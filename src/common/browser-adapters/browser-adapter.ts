@@ -49,9 +49,7 @@ export interface BrowserAdapter {
         callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
 
-    removeListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void;
+    removeListenersOnMessage(): void;
     getManifest(): chrome.runtime.Manifest;
 
     // undefined implies "the extension has been disabled/uninstalled"

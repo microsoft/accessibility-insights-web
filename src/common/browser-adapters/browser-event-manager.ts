@@ -35,6 +35,7 @@ const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
 // and continue to do some async work after returning undefined. To ensure those listeners have
 // time to do their work, the event manager adds this (arbitrary) delay into its response to the
 // browser event.
+// We default to 0 to ensure we don't create unnecessary timeouts in the manifest v2 extension.
 const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
 
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
@@ -53,12 +54,24 @@ export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
+    private readonly fireAndForgetEventDelayMs: number = 0;
 
-    constructor(private readonly promiseFactory: PromiseFactory, private readonly logger: Logger) {}
+    constructor(
+        private readonly promiseFactory: PromiseFactory,
+        private readonly logger: Logger,
+        isServiceWorker: boolean = false,
+    ) {
+        if (isServiceWorker) {
+            this.fireAndForgetEventDelayMs = FIRE_AND_FORGET_EVENT_DELAY_MS;
+        }
+    }
 
     public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
         if (this.eventsToApplicationListenersMapping[eventType]) {
             throw new Error(`Listener already registered for ${eventType}`);
+        }
+        if (!this.eventsToBrowserListenersMapping[eventType]) {
+            throw new Error(`No browser listener registered for ${eventType}`);
         }
         this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
@@ -155,7 +168,7 @@ export class BrowserEventManager {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY_MS);
+                return await this.promiseFactory.delay(result, this.fireAndForgetEventDelayMs);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding

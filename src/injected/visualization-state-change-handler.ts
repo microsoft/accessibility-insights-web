@@ -14,6 +14,9 @@ export class VisualizationStateChangeHandler {
     ) {}
 
     public updateVisualizationsWithStoreData = (storeData: TargetPageStoreData) => {
+        if (!storeData.assessmentStoreData) {
+            return;
+        }
         this.visualizations.forEach(visualizationType => {
             if (this.assessmentProvider.isValidType(visualizationType)) {
                 const stepMap = this.assessmentProvider.getStepMap(visualizationType);

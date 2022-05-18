@@ -50,6 +50,8 @@ describe(BrowserEventManager, () => {
 
     it('continues deferring events past registration of unrelated event types', async () => {
         testSubject.addBrowserListener(testEvent, 'event-type');
+        const unrelatedBrowserEvent = new SimulatedBrowserEvent();
+        testSubject.addBrowserListener(unrelatedBrowserEvent, 'unrelated-event-type');
 
         const promiseReturnedToEvent = testEvent.invoke();
 
@@ -98,6 +100,28 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
+        expect(recordingLogger.allMessages).toStrictEqual([]);
+    });
+
+    it('honors fire and forget timeout when isServiceWorker is set', async () => {
+        testSubject = new BrowserEventManager(timeSimulatingPromiseFactory, recordingLogger, true);
+
+        testSubject.addBrowserListener(testEvent, 'event-type');
+
+        let appListenerFired = false;
+        testSubject.addApplicationListener('event-type', () => {
+            appListenerFired = true;
+        });
+
+        const promiseReturnedToEvent = testEvent.invoke();
+
+        // The synchronous app listener should fire before we start delaying
+        expect(appListenerFired).toBe(true);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
+
+        await expect(promiseReturnedToEvent).resolves.toBe(undefined);
+
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
@@ -123,7 +147,7 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
@@ -275,11 +299,18 @@ describe(BrowserEventManager, () => {
     });
 
     it('does not allow multiple registrations for the same event type', () => {
+        testSubject.addBrowserListener(testEvent, 'event-type');
         testSubject.addApplicationListener('event-type', () => {});
 
         expect(() => {
             testSubject.addApplicationListener('event-type', () => {});
         }).toThrowErrorMatchingInlineSnapshot(`"Listener already registered for event-type"`);
+    });
+
+    it('does not allow ApplicationListener added for an event that does not have a browser listener', async () => {
+        expect(() => {
+            testSubject.addApplicationListener('event-type', async () => 'app listener result');
+        }).toThrowErrorMatchingInlineSnapshot(`"No browser listener registered for event-type"`);
     });
 
     describe('removeListener', () => {
