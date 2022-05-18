@@ -93,7 +93,7 @@
         "watch:webpack-unified": "webpack --watch --config-name unified --color --progress"
     },
     "devDependencies": {
-        "7zip-bin": "^5.1.1",
+        "7zip-bin": "^5.2.0",
         "@electron/get": "^1.14.1",
         "@swc/core": "^1.2.186",
         "@swc/jest": "^0.2.21",
