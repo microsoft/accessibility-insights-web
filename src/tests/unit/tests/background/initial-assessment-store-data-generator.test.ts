@@ -25,6 +25,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     );
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
+    const knownExpandedTestType = assessments[0].visualizationType;
+    const unknownExpandedTestType = -100 as VisualizationType;
+    const undefinedType = undefined;
     const assessmentDataStub = {} as AssessmentData;
     let defaultState: AssessmentStoreData;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
@@ -109,22 +112,31 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     });
 
     it.each`
-        selectedTestStep      | selectedTestType
-        ${unknownRequirement} | ${unknownTestType}
-        ${unknownRequirement} | ${knownTestType}
-        ${knownRequirement1}  | ${unknownTestType}
-        ${knownRequirement1}  | ${knownTestType}
+        selectedTestSubview   | selectedTestType   | expandedTestType
+        ${unknownRequirement} | ${unknownTestType} | ${knownExpandedTestType}
+        ${unknownRequirement} | ${knownTestType}   | ${unknownExpandedTestType}
+        ${knownRequirement1}  | ${unknownTestType} | ${knownExpandedTestType}
+        ${knownRequirement1}  | ${knownTestType}   | ${unknownExpandedTestType}
+        ${undefinedType}      | ${undefinedType}   | ${undefinedType}
     `(
-        'outputs the first test/step for assessmentNavState regardless of the persisted state ($selectedTestStep/$selectedTestType)',
-        ({ selectedTestStep, selectedTestType }) => {
+        'outputs the assessmentNavState as they appear in persisted state ($selectedTestSubview/$selectedTestType/$expandedTestType)',
+        ({ selectedTestSubview, selectedTestType, expandedTestType }) => {
             const generatedState = generator.generateInitialState({
                 assessmentNavState: {
-                    selectedTestSubview: selectedTestStep,
+                    selectedTestSubview: selectedTestSubview,
                     selectedTestType,
+                    expandedTestType,
                 },
             } as AssessmentStoreData);
 
-            expect(generatedState.assessmentNavState).toEqual(defaultState.assessmentNavState);
+            const expectedNavState = {
+                expandedTestType,
+                selectedTestSubview:
+                    selectedTestSubview ?? defaultState.assessmentNavState.selectedTestSubview,
+                selectedTestType:
+                    selectedTestType ?? defaultState.assessmentNavState.selectedTestType,
+            };
+            expect(generatedState.assessmentNavState).toEqual(expectedNavState);
         },
     );
 });
