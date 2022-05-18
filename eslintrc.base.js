@@ -63,7 +63,7 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-type-assertion': 'off',
         '@typescript-eslint/no-misused-promises': 'off',
         '@typescript-eslint/restrict-template-expressions': 'off',
-        '@typescript-eslint/no-floating-promises': 'off',
+        '@typescript-eslint/no-floating-promises': ['warn'],
         '@typescript-eslint/require-await': 'off',
         '@typescript-eslint/no-implied-eval': 'off',
         '@typescript-eslint/prefer-regexp-exec': 'off',
@@ -93,7 +93,14 @@ module.exports = {
             },
         },
         {
-            files: ['src/tests/**/*'],
+            files: ['./**/*'],
+            excludedFiles: [
+                'src/background/**/*',
+                'src/common/**/*',
+                'src/Devtools/**/*',
+                'src/electron/**/*',
+                'src/injected/**/*',
+            ],
             rules: {
                 '@typescript-eslint/no-floating-promises': ['error'],
             },
