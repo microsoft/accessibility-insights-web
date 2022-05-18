@@ -209,6 +209,7 @@ async function initialize(): Promise<void> {
         tabContextManager.interpretMessageForTab,
         persistData,
     );
+    await detailsViewController.initialize();
 
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,

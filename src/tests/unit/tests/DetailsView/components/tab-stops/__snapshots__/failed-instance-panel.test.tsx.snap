@@ -18,7 +18,7 @@ exports[`FailedInstancePanel primary button disabled without description 1`] = `
     placeholder="Comment"
     resizable={false}
     rows={8}
-    value={null}
+    value=""
   />
   <div>
     <ActionAndCancelButtonsComponent

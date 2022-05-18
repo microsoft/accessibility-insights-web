@@ -35,14 +35,8 @@ describe('ClientStoreListener', () => {
             );
         });
 
-        test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
-            storeHubMock
-                .setup(shm => shm.getAllStoreData())
-                .returns(() => {
-                    return {
-                        visualizationStoreData: null,
-                    } as TargetPageStoreData;
-                });
+        test('registerOnReadyToExecuteVisualizationCallback: no stores', () => {
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => false);
             triggerOnChange();
             onReadyToExecuteVisualizationUpdatesMock.verify(
                 callback => callback(It.isAny()),
@@ -51,7 +45,8 @@ describe('ClientStoreListener', () => {
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
-            storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => null);
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => false);
             triggerOnChange();
             onReadyToExecuteVisualizationUpdatesMock.verify(
                 callback => callback(It.isAny()),
@@ -66,6 +61,8 @@ describe('ClientStoreListener', () => {
                 },
             } as TargetPageStoreData;
 
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();
@@ -83,6 +80,8 @@ describe('ClientStoreListener', () => {
                 },
             } as TargetPageStoreData;
 
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();

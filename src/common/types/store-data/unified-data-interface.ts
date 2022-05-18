@@ -67,14 +67,14 @@ export interface UnifiedRule {
 }
 
 export interface UnifiedScanResultStoreData {
-    results: UnifiedResult[];
-    rules: UnifiedRule[];
-    platformInfo?: PlatformData;
-    toolInfo?: ToolData;
-    targetAppInfo?: TargetAppData;
-    timestamp?: string;
-    scanIncompleteWarnings?: ScanIncompleteWarningId[];
-    screenshotData?: ScreenshotData;
+    results: UnifiedResult[] | null;
+    rules: UnifiedRule[] | null;
+    platformInfo?: PlatformData | null;
+    toolInfo?: ToolData | null;
+    targetAppInfo?: TargetAppData | null;
+    timestamp?: string | null;
+    scanIncompleteWarnings?: ScanIncompleteWarningId[] | null;
+    screenshotData?: ScreenshotData | null;
 }
 
 export interface InstancePropertyBag {

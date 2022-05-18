@@ -93,11 +93,11 @@
         "watch:webpack-unified": "webpack --watch --config-name unified --color --progress"
     },
     "devDependencies": {
-        "7zip-bin": "^5.1.1",
+        "7zip-bin": "^5.2.0",
         "@electron/get": "^1.14.1",
-        "@swc/core": "^1.2.182",
+        "@swc/core": "^1.2.186",
         "@swc/jest": "^0.2.21",
-        "@types/chrome": "0.0.184",
+        "@types/chrome": "0.0.186",
         "@types/enzyme": "^3.10.12",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^27.5.1",
@@ -153,7 +153,7 @@
         "mini-css-extract-plugin": "2.6.0",
         "npm-run-all": "^4.1.5",
         "pkg": "^5.6.0",
-        "playwright": "^1.21.1",
+        "playwright": "^1.22.1",
         "preprocess": "^3.2.0",
         "prettier": "^2.6.2",
         "regenerator-runtime": "^0.13.9",
@@ -176,12 +176,12 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "@fluentui/react": "^8.66.1",
+        "@fluentui/react": "^8.68.2",
         "@microsoft/applicationinsights-web": "^2.8.3",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
-        "appium-adb": "^9.2.4",
+        "appium-adb": "^9.4.0",
         "axe-core": "4.4.1",
         "classnames": "^2.3.1",
         "electron": "14.0.0",
