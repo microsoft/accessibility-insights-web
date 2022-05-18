@@ -28,6 +28,7 @@ import { createToolData } from 'common/application-properties-provider';
 import { AxeInfo } from 'common/axe-info';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
 import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
@@ -49,8 +50,12 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
+    const browserEventProvider = new BrowserEventProvider();
     const browserEventManager = new BrowserEventManager(promiseFactory, logger, true);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+        browserEventManager,
+        browserEventProvider.getBackgroundBrowserEvents(),
+    );
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(

@@ -11,16 +11,20 @@ import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
 import { IMock, Mock } from 'typemoq';
 import * as UAParser from 'ua-parser-js';
+import { Events } from 'webextension-polyfill';
+import { DictionaryStringTo } from 'types/common-types';
 
 describe('BrowserAdapterFactory', () => {
     describe('makeFromUserAgent', () => {
         let mockUAParser: IMock<UAParser>;
         let mockBrowserEventManager: IMock<BrowserEventManager>;
         let testSubject: BrowserAdapterFactory;
+        let browserEvents: DictionaryStringTo<Events.Event<any>>;
 
         beforeEach(() => {
             mockBrowserEventManager = Mock.ofType<BrowserEventManager>();
             mockUAParser = Mock.ofType<UAParser>();
+            browserEvents = {};
 
             testSubject = new BrowserAdapterFactory(mockUAParser.object);
         });
@@ -28,21 +32,21 @@ describe('BrowserAdapterFactory', () => {
         it('produces a FirefoxAdapter for a Gecko-engine user agent', () => {
             setupMockEngine('Gecko');
             expect(
-                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, browserEvents, false),
             ).toBeInstanceOf(FirefoxAdapter);
         });
 
         it('produces a ChromiumAdapter for a WebKit-engine user agent (Chrome, new Edge)', () => {
             setupMockEngine('WebKit');
             expect(
-                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, browserEvents, false),
             ).toBeInstanceOf(ChromiumAdapter);
         });
 
         it('produces a ChromiumAdapter as a fallback for an unrecognized user agent', () => {
             setupMockEngine('some unrecognized engine name');
             expect(
-                testSubject.makeFromUserAgent(mockBrowserEventManager.object, false),
+                testSubject.makeFromUserAgent(mockBrowserEventManager.object, browserEvents, false),
             ).toBeInstanceOf(ChromiumAdapter);
         });
 

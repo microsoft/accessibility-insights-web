@@ -51,6 +51,7 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -76,8 +77,12 @@ export class WindowInitializer {
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
         const logger = createDefaultLogger();
         const promiseFactory = createDefaultPromiseFactory();
+        const browserEventProvider = new BrowserEventProvider();
         const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-        const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+            browserEventManager,
+            browserEventProvider.getMinimalBrowserEvents(),
+        );
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;

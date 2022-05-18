@@ -4,6 +4,7 @@ import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { DateProvider } from 'common/date-provider';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -41,8 +42,12 @@ export const initializeDebugTools = () => {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
+    const browserEventProvider = new BrowserEventProvider();
     const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+        browserEventManager,
+        browserEventProvider.getMinimalBrowserEvents(),
+    );
 
     const storeUpdateMessageHub = new StoreUpdateMessageHub();
     const storeProxies = createStoreProxies(storeUpdateMessageHub);

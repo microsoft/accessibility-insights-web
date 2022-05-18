@@ -14,6 +14,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -153,8 +154,12 @@ const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const logger = createDefaultLogger();
 const promiseFactory = createDefaultPromiseFactory();
+const browserEventProvider = new BrowserEventProvider();
 const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+    browserEventManager,
+    browserEventProvider.getMinimalBrowserEvents(),
+);
 
 const urlParser = new UrlParser();
 const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId');
