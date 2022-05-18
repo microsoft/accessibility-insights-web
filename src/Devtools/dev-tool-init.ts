@@ -26,4 +26,4 @@ const devToolInitializer: DevToolInitializer = new DevToolInitializer(
     browserAdapter,
     targetPageInspector,
 );
-devToolInitializer.initialize();
+void devToolInitializer.initialize();

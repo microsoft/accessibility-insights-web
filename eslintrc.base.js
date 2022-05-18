@@ -97,7 +97,6 @@ module.exports = {
             excludedFiles: [
                 'src/background/**/*',
                 'src/common/**/*',
-                'src/Devtools/**/*',
                 'src/electron/**/*',
                 'src/injected/**/*',
             ],

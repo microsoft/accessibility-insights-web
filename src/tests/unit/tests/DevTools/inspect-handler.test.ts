@@ -26,21 +26,21 @@ describe(InspectHandler, () => {
         );
     });
 
-    test('initialize - send about dev tools open message to background ', () => {
+    test('initialize - send about dev tools open message to background ', async () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         setupDevtoolOpenedMessage();
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         devtoolsStoreProxyMock.verifyAll();
         browserAdapterMock.verifyAll();
     });
 
-    test('initialize - do not throw when state is null', () => {
+    test('initialize - do not throw when state is null', async () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(null);
         setupDevtoolOpenedMessage();
-        testSubject.initialize();
+        await testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -48,7 +48,7 @@ describe(InspectHandler, () => {
         browserAdapterMock.verifyAll();
     });
 
-    test('initialize - do not throw when inspectElement is not set', () => {
+    test('initialize - do not throw when inspectElement is not set', async () => {
         const state = {
             inspectElement: null,
         } as DevToolStoreData;
@@ -56,7 +56,7 @@ describe(InspectHandler, () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
         setupDevtoolOpenedMessage();
-        testSubject.initialize();
+        await testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -64,7 +64,7 @@ describe(InspectHandler, () => {
         browserAdapterMock.verifyAll();
     });
 
-    test('initialize - inspect on state change: target at parent level', () => {
+    test('initialize - inspect on state change: target at parent level', async () => {
         const state = {
             inspectElement: ['#testElement'],
             frameUrl: null,
@@ -77,7 +77,7 @@ describe(InspectHandler, () => {
             .setup(inspector => inspector.inspectElement('#testElement', undefined))
             .verifiable(Times.once());
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -85,7 +85,7 @@ describe(InspectHandler, () => {
         targetPageInspectorMock.verifyAll();
     });
 
-    test('initialize - inspect on state change: target not at parent level with frame url provided', () => {
+    test('initialize - inspect on state change: target not at parent level with frame url provided', async () => {
         const state = {
             inspectElement: ['#testElement', 'test'],
             frameUrl: 'testUrl',
@@ -98,7 +98,7 @@ describe(InspectHandler, () => {
             .setup(inspector => inspector.inspectElement('test', 'testUrl'))
             .verifiable(Times.once());
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
@@ -106,7 +106,7 @@ describe(InspectHandler, () => {
         targetPageInspectorMock.verifyAll();
     });
 
-    test("initialize - don't inspect if inspect element length > 1 and frame Url not set", () => {
+    test("initialize - don't inspect if inspect element length > 1 and frame Url not set", async () => {
         const state = {
             inspectElement: ['#testElement', 'test'],
             frameUrl: null,
@@ -115,7 +115,7 @@ describe(InspectHandler, () => {
         devtoolsStoreProxyMock.setupGetState(state);
         setupDevtoolOpenedMessage();
 
-        testSubject.initialize();
+        await testSubject.initialize();
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
