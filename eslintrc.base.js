@@ -92,5 +92,11 @@ module.exports = {
                 'security/detect-eval-with-expression': 'off',
             },
         },
+        {
+            files: ['src/tests/**/*'],
+            rules: {
+                '@typescript-eslint/no-floating-promises': ['error'],
+            },
+        },
     ],
 };
