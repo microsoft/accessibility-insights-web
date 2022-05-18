@@ -4,6 +4,7 @@ import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -51,7 +52,6 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 
 export class WindowInitializer {
     public shadowInitializer: any;

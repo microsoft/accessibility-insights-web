@@ -10,9 +10,9 @@ import { BrowserEventManager } from 'common/browser-adapters/browser-event-manag
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
 import { IMock, Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import * as UAParser from 'ua-parser-js';
 import { Events } from 'webextension-polyfill';
-import { DictionaryStringTo } from 'types/common-types';
 
 describe('BrowserAdapterFactory', () => {
     describe('makeFromUserAgent', () => {
