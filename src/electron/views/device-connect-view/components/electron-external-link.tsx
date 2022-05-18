@@ -14,8 +14,8 @@ export interface ElectronExternalLinkProps {
 export const ElectronExternalLink = NamedFC<ElectronExternalLinkProps>(
     'ElectronExternalLink',
     (props: ElectronExternalLinkProps) => {
-        const onClick = (event: React.MouseEvent<any>) => {
-            props.shell.openExternal(props.href);
+        const onClick = async (event: React.MouseEvent<any>) => {
+            await props.shell.openExternal(props.href);
             event.preventDefault();
             event.stopPropagation();
         };

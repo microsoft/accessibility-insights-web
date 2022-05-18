@@ -25,11 +25,11 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     'TabStopsTestingContent',
     props => {
         const tabStopsActionCreator = props.deps.tabStopsActionCreator;
-        const onToggle = (e: SupportedMouseEvent) => {
+        const onToggle = async (e: SupportedMouseEvent) => {
             if (props.tabStopsEnabled) {
-                tabStopsActionCreator.disableTabStops(e);
+                await tabStopsActionCreator.disableTabStops(e);
             } else {
-                tabStopsActionCreator.enableTabStops(e);
+                await tabStopsActionCreator.enableTabStops(e);
             }
         };
 

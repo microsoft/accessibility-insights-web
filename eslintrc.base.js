@@ -94,12 +94,7 @@ module.exports = {
         },
         {
             files: ['./**/*'],
-            excludedFiles: [
-                'src/background/**/*',
-                'src/common/**/*',
-                'src/electron/**/*',
-                'src/injected/**/*',
-            ],
+            excludedFiles: ['src/background/**/*', 'src/injected/**/*'],
             rules: {
                 '@typescript-eslint/no-floating-promises': ['error'],
             },
