@@ -22,7 +22,10 @@ export class InitialAssessmentStoreDataGenerator {
     public generateInitialState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&
             persistedData.persistedTabInfo && {
-                ...persistedData.persistedTabInfo,
+                id: persistedData?.persistedTabInfo?.id,
+                url: persistedData?.persistedTabInfo?.url,
+                title: persistedData?.persistedTabInfo?.title,
+                detailsViewId: persistedData?.persistedTabInfo?.detailsViewId,
             };
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if

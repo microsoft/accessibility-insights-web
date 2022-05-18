@@ -82,7 +82,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
         id: number,
         url: string,
         title: string,
-        detailsViewId: string,
+        detailsViewId?: string,
     ): AssessmentsStoreDataBuilder {
         this.data.persistedTabInfo = { id, url, title, detailsViewId };
         return this;

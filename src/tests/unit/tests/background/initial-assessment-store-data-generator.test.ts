@@ -9,6 +9,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     AssessmentData,
     AssessmentStoreData,
+    PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -139,4 +140,19 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
             expect(generatedState.assessmentNavState).toEqual(expectedNavState);
         },
     );
+
+    it('removed depreciated appRefreshed property if present', () => {
+        const tabWithAppRefreshed = {
+            appRefreshed: false,
+            detailsViewId: 'testId',
+        } as PersistedTabInfo;
+        const generatedState = generator.generateInitialState({
+            persistedTabInfo: tabWithAppRefreshed,
+            assessmentNavState: null,
+            assessments: null,
+            resultDescription: '',
+        });
+
+        expect(generatedState.persistedTabInfo).toMatchObject({ detailsViewId: 'testId' });
+    });
 });

@@ -552,14 +552,14 @@ describe('AssessmentStore', () => {
             assessmentDataConverterMock.object,
         )
             .withSelectedTestType(VisualizationType.Color)
-            .withTargetTab(oldTabId, null, null, undefined)
+            .withTargetTab(oldTabId, null, null)
             .build();
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, undefined)
+            .withTargetTab(tabId, url, title)
             .build();
 
         // Called with persisted data from initialize
@@ -624,7 +624,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(oldTabId, null, null, undefined)
+            .withTargetTab(oldTabId, null, null)
             .build();
 
         const payload: LoadAssessmentPayload = {
@@ -639,7 +639,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, undefined)
+            .withTargetTab(tabId, url, title)
             .build();
 
         setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
@@ -1164,7 +1164,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, undefined)
+            .withTargetTab(tabId, url, title)
             .build();
 
         createStoreTesterForAssessmentActions('updateTargetTabId')
