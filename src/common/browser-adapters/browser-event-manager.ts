@@ -70,6 +70,9 @@ export class BrowserEventManager {
         if (this.eventsToApplicationListenersMapping[eventType]) {
             throw new Error(`Listener already registered for ${eventType}`);
         }
+        if (!this.eventsToBrowserListenersMapping[eventType]) {
+            throw new Error(`No browser listener registered for ${eventType}`);
+        }
         this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
     };

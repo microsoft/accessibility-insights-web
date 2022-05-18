@@ -50,6 +50,8 @@ describe(BrowserEventManager, () => {
 
     it('continues deferring events past registration of unrelated event types', async () => {
         testSubject.addBrowserListener(testEvent, 'event-type');
+        const unrelatedBrowserEvent = new SimulatedBrowserEvent();
+        testSubject.addBrowserListener(unrelatedBrowserEvent, 'unrelated-event-type');
 
         const promiseReturnedToEvent = testEvent.invoke();
 
@@ -297,11 +299,18 @@ describe(BrowserEventManager, () => {
     });
 
     it('does not allow multiple registrations for the same event type', () => {
+        testSubject.addBrowserListener(testEvent, 'event-type');
         testSubject.addApplicationListener('event-type', () => {});
 
         expect(() => {
             testSubject.addApplicationListener('event-type', () => {});
         }).toThrowErrorMatchingInlineSnapshot(`"Listener already registered for event-type"`);
+    });
+
+    it('does not allow ApplicationListener added for an event that does not have a browser listener', async () => {
+        expect(() => {
+            testSubject.addApplicationListener('event-type', async () => 'app listener result');
+        }).toThrowErrorMatchingInlineSnapshot(`"No browser listener registered for event-type"`);
     });
 
     describe('removeListener', () => {

@@ -52,6 +52,7 @@ async function initialize(): Promise<void> {
     const promiseFactory = createDefaultPromiseFactory();
     const browserEventProvider = new BrowserEventProvider();
     const browserEventManager = new BrowserEventManager(promiseFactory, logger, true);
+    // Create browser adapter before any async calls to ensure that browser listeners are registered first
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(
         browserEventManager,
         browserEventProvider.getBackgroundBrowserEvents(),
