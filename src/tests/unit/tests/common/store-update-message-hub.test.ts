@@ -19,7 +19,7 @@ describe(StoreUpdateMessageHub, () => {
     let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
-        registeredListener = jest.fn();
+        registeredListener = jest.fn(() => Promise.resolve());
 
         tabContextMessage = {
             messageType: storeUpdateMessageType,
@@ -51,40 +51,40 @@ describe(StoreUpdateMessageHub, () => {
         { ...tabContextMessage, storeId: undefined },
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
-    it.each(invalidMessages)('ignores invalid message: %o', message => {
-        testSubject.handleMessage(message);
+    it.each(invalidMessages)('ignores invalid message: %o', async message => {
+        await testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
     });
 
-    it('ignores if no listener is registered for this message', () => {
+    it('ignores if no listener is registered for this message', async () => {
         const message = {
             ...tabContextMessage,
             storeId: 'AnotherStore',
         };
 
-        testSubject.handleMessage(message);
+        await testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
     });
 
-    it('Calls registered listener for tab context store message', () => {
-        testSubject.handleMessage(tabContextMessage);
+    it('Calls registered listener for tab context store message', async () => {
+        await testSubject.handleMessage(tabContextMessage);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
 
-    it('Calls registered listener for global store message', () => {
-        testSubject.handleMessage(globalStoreMessage);
+    it('Calls registered listener for global store message', async () => {
+        await testSubject.handleMessage(globalStoreMessage);
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
 
-    it('Calls registered listener if not created with a tab id', () => {
+    it('Calls registered listener if not created with a tab id', async () => {
         testSubject = new StoreUpdateMessageHub();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        testSubject.handleMessage(tabContextMessage);
+        await testSubject.handleMessage(tabContextMessage);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -93,7 +93,7 @@ describe(StoreUpdateMessageHub, () => {
         expect(() => testSubject.registerStoreUpdateListener(storeId, () => null)).toThrow();
     });
 
-    it('Registers multiple listeners and distributes messages correctly', () => {
+    it('Registers multiple listeners and distributes messages correctly', async () => {
         const anotherStoreId = 'AnotherStore';
         const anotherListener = jest.fn();
 
@@ -102,8 +102,8 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        testSubject.handleMessage(messageForStore);
-        testSubject.handleMessage(messageForAnotherStore);
+        await testSubject.handleMessage(messageForStore);
+        await testSubject.handleMessage(messageForAnotherStore);
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
