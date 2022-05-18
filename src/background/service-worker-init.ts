@@ -52,7 +52,11 @@ async function initialize(): Promise<void> {
     const promiseFactory = createDefaultPromiseFactory();
     const browserEventProvider = new BrowserEventProvider();
     const browserEventManager = new BrowserEventManager(promiseFactory, logger, true);
-    // Create browser adapter before any async calls to ensure that browser listeners are registered first
+    // It is important that the browser adapter gets initialized *before* any "await" statement.
+    //
+    // If a service worker does not register all of its browser listeners *synchronously* during worker initialization,
+    // the browser may decide that the worker is "done" as soon as the synchronous part of initialization finishes
+    // and tear down the worker before we tell it which events to wake us back up for.
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(
         browserEventManager,
         browserEventProvider.getBackgroundBrowserEvents(),
