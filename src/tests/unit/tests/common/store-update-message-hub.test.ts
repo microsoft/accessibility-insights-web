@@ -15,11 +15,13 @@ describe(StoreUpdateMessageHub, () => {
 
     let tabContextMessage: StoreUpdateMessage<string>;
     let globalStoreMessage: StoreUpdateMessage<string>;
+    let listenerPromise: Promise<void>;
 
     let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
-        registeredListener = jest.fn(() => null);
+        listenerPromise = Promise.resolve();
+        registeredListener = jest.fn(() => listenerPromise);
 
         tabContextMessage = {
             messageType: storeUpdateMessageType,
@@ -73,7 +75,7 @@ describe(StoreUpdateMessageHub, () => {
     it('Calls registered listener for tab context store message', async () => {
         const resultPromise = testSubject.handleMessage(tabContextMessage);
 
-        expect(resultPromise).toBeInstanceOf(Promise);
+        expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
@@ -82,7 +84,7 @@ describe(StoreUpdateMessageHub, () => {
     it('Calls registered listener for global store message', async () => {
         const resultPromise = testSubject.handleMessage(globalStoreMessage);
 
-        expect(resultPromise).toBeInstanceOf(Promise);
+        expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
@@ -94,7 +96,7 @@ describe(StoreUpdateMessageHub, () => {
 
         const resultPromise = testSubject.handleMessage(tabContextMessage);
 
-        expect(resultPromise).toBeInstanceOf(Promise);
+        expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
@@ -106,7 +108,7 @@ describe(StoreUpdateMessageHub, () => {
 
     it('Registers multiple listeners and distributes messages correctly', async () => {
         const anotherStoreId = 'AnotherStore';
-        const anotherListener = jest.fn();
+        const anotherListener = jest.fn(() => Promise.resolve());
 
         const messageForStore = { ...tabContextMessage };
         const messageForAnotherStore = { ...tabContextMessage, storeId: anotherStoreId };

@@ -29,7 +29,7 @@ export class StoreUpdateMessageHub {
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
-            return Promise.resolve(listener(message));
+            return listener(message);
         }
     };
 
