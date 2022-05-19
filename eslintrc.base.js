@@ -93,7 +93,7 @@ module.exports = {
         },
         {
             // Temporarily disabling this rule in these directories until the errors are fixed
-            files: ['src/background/**/*', 'src/injected/**/*'],
+            files: ['src/injected/**/*'],
             rules: {
                 '@typescript-eslint/no-floating-promises': 'off',
             },
