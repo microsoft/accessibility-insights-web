@@ -8,5 +8,5 @@ export interface ClientStoresHub<T> {
     removeChangedListenerFromAllStores(listener: () => void): void;
     hasStores(): boolean;
     hasStoreData(): boolean;
-    getAllStoreData(): T | null;
+    getAllStoreData(): Partial<T> | null;
 }

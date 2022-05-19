@@ -422,7 +422,6 @@ export class MainWindowInitializer extends WindowInitializer {
 
     protected dispose(): void {
         super.dispose();
-
-        this.browserAdapter.removeListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
+        this.browserAdapter.removeListenersOnMessage();
     }
 }
