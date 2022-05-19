@@ -79,7 +79,7 @@ describe('DrawingControllerTest', () => {
         hTMLElementUtils = Mock.ofType(HTMLElementUtils);
     });
 
-    test('initialize', () => {
+    test('initialize', async () => {
         let addMessageListenerCallback: (
             message: CommandMessage,
         ) => Promise<CommandMessageResponse>;
@@ -130,13 +130,13 @@ describe('DrawingControllerTest', () => {
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
-        addMessageListenerCallback(commandMessage);
+        await addMessageListenerCallback(commandMessage);
 
         frameMessengerMock.verifyAll();
         axeResultsHelperMock.verifyAll();
     });
 
-    test('enable visualization test', () => {
+    test('enable visualization test', async () => {
         const featureFlagStoreData = getDefaultFeatureFlagsWeb();
 
         const configId = 'id';
@@ -229,7 +229,7 @@ describe('DrawingControllerTest', () => {
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
-        addMessageListenerCallback(commandMessage);
+        await addMessageListenerCallback(commandMessage);
 
         frameMessengerMock.verifyAll();
         axeResultsHelperMock.verifyAll();
@@ -237,7 +237,7 @@ describe('DrawingControllerTest', () => {
         drawerMock.verifyAll();
     });
 
-    test('enable visualization test when results is null - tabstops', () => {
+    test('enable visualization test when results is null - tabstops', async () => {
         const configId = 'id';
         let addMessageListenerCallback: (
             message: CommandMessage,
@@ -310,7 +310,7 @@ describe('DrawingControllerTest', () => {
 
         testObject.initialize();
         testObject.registerDrawer(configId, drawerMock.object);
-        addMessageListenerCallback(commandMessageStub);
+        await addMessageListenerCallback(commandMessageStub);
 
         frameMessengerMock.verifyAll();
         axeResultsHelperMock.verifyAll();

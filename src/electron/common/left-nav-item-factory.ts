@@ -26,7 +26,7 @@ const createLeftNavItem = (
         featureFlag: config.featureFlag,
         onSelect: () => {
             actionCreator.itemSelected(config.key);
-            tabStopsActionCreator.resetTabStopsToDefaultState();
+            void tabStopsActionCreator.resetTabStopsToDefaultState();
         },
     };
 };

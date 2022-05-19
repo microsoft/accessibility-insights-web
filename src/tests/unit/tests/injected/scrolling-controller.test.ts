@@ -23,7 +23,7 @@ describe('ScrollingControllerTest', () => {
         HTMLElementUtilsMock = Mock.ofType(HTMLElementUtils);
     });
 
-    test('scroll in current frame', () => {
+    test('scroll in current frame', async () => {
         let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
         frameMessengerMock
@@ -63,13 +63,13 @@ describe('ScrollingControllerTest', () => {
         );
 
         testObject.initialize();
-        addMessageCallback(commandMessage);
+        await addMessageCallback(commandMessage);
 
         frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();
     });
 
-    test('scroll to nonexistent element is a noop', () => {
+    test('scroll to nonexistent element is a noop', async () => {
         let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
         frameMessengerMock
@@ -105,13 +105,13 @@ describe('ScrollingControllerTest', () => {
         );
 
         testObject.initialize();
-        addMessageCallback(commandMessage);
+        await addMessageCallback(commandMessage);
 
         frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();
     });
 
-    test('scroll in other frames', () => {
+    test('scroll in other frames', async () => {
         let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
         frameMessengerMock
@@ -158,7 +158,7 @@ describe('ScrollingControllerTest', () => {
         );
 
         testObject.initialize();
-        addMessageCallback(commandMessageToProcess);
+        await addMessageCallback(commandMessageToProcess);
 
         frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();

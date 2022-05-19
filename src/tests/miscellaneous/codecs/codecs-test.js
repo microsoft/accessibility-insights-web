@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 const { app, BrowserWindow } = require('electron');
 
-app.whenReady().then(() => {
+void app.whenReady().then(async () => {
     const win = new BrowserWindow({
         webPreferences: {
             webgl: true,
@@ -13,5 +13,5 @@ app.whenReady().then(() => {
             contextIsolation: false,
         },
     });
-    win.loadFile('codecs.html');
+    await win.loadFile('codecs.html');
 });

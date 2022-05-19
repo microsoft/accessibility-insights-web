@@ -3,10 +3,10 @@
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 
 describe('NullDrawer', () => {
-    test('null drawer does nothing', () => {
+    test('null drawer does nothing', async () => {
         const testObject = new NullDrawer();
         testObject.initialize(null);
-        testObject.drawLayout();
+        await testObject.drawLayout();
         testObject.eraseLayout();
     });
 });
