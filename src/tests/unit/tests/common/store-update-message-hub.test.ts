@@ -19,7 +19,7 @@ describe(StoreUpdateMessageHub, () => {
     let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
-        registeredListener = jest.fn(() => Promise.resolve());
+        registeredListener = jest.fn(() => null);
 
         tabContextMessage = {
             messageType: storeUpdateMessageType,
@@ -51,31 +51,39 @@ describe(StoreUpdateMessageHub, () => {
         { ...tabContextMessage, storeId: undefined },
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
-    it.each(invalidMessages)('ignores invalid message: %o', async message => {
-        await testSubject.handleMessage(message);
+    it.each(invalidMessages)('ignores invalid message: %o', message => {
+        const result = testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
+        expect(result).toBeUndefined();
     });
 
-    it('ignores if no listener is registered for this message', async () => {
+    it('ignores if no listener is registered for this message', () => {
         const message = {
             ...tabContextMessage,
             storeId: 'AnotherStore',
         };
 
-        await testSubject.handleMessage(message);
+        const result = testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
+        expect(result).toBeUndefined();
     });
 
     it('Calls registered listener for tab context store message', async () => {
-        await testSubject.handleMessage(tabContextMessage);
+        const resultPromise = testSubject.handleMessage(tabContextMessage);
+
+        expect(resultPromise).toBeInstanceOf(Promise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
 
     it('Calls registered listener for global store message', async () => {
-        await testSubject.handleMessage(globalStoreMessage);
+        const resultPromise = testSubject.handleMessage(globalStoreMessage);
+
+        expect(resultPromise).toBeInstanceOf(Promise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
@@ -84,7 +92,10 @@ describe(StoreUpdateMessageHub, () => {
         testSubject = new StoreUpdateMessageHub();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        await testSubject.handleMessage(tabContextMessage);
+        const resultPromise = testSubject.handleMessage(tabContextMessage);
+
+        expect(resultPromise).toBeInstanceOf(Promise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -102,8 +113,14 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        await testSubject.handleMessage(messageForStore);
-        await testSubject.handleMessage(messageForAnotherStore);
+        const resultPromise1 = testSubject.handleMessage(messageForStore);
+        const resultPromise2 = testSubject.handleMessage(messageForAnotherStore);
+
+        expect(resultPromise1).toBeInstanceOf(Promise);
+        expect(resultPromise2).toBeInstanceOf(Promise);
+
+        await resultPromise1;
+        await resultPromise2;
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
