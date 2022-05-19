@@ -126,6 +126,25 @@ describe('LoadAssessmentHelper', () => {
         expect(inputStub.accept).toBe('.a11ywebassessment');
     });
 
+    it('does not toggle dialog when prevTargetPageData does not have tab data', () => {
+        toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+
+        testSubject.getAssessmentForLoad(
+            setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
+            toggleLoadDialogMock.object,
+            { detailsViewId: 'testId' },
+            tabId,
+        );
+
+        inputStub.onchange(event);
+        fileReaderMock.object.onload(readerEvent);
+
+        expect(inputStub.type).toBe('file');
+        expect(inputStub.accept).toBe('.a11ywebassessment');
+    });
+
     it('toggles dialog when prevTargetPageData is not null', () => {
         detailsViewActionMessageCreatorMock
             .setup(d => d.loadAssessment(assessmentData, tabId))
@@ -197,5 +216,35 @@ describe('LoadAssessmentHelper', () => {
 
         inputStub.onchange(event);
         fileReaderMock.object.onload(readerEvent);
+    });
+
+    it('it sets detailsViewId if missing', () => {
+        assessmentData = { assessmentData: { persistedTabInfo: {} } } as VersionedAssessmentData;
+
+        setAssessmentStateMock.reset();
+        setAssessmentStateMock
+            .setup(asm =>
+                asm({
+                    assessmentData: { persistedTabInfo: { detailsViewId: 'testId' } },
+                } as VersionedAssessmentData),
+            )
+            .verifiable(Times.once());
+
+        toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+
+        testSubject.getAssessmentForLoad(
+            setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
+            toggleLoadDialogMock.object,
+            { detailsViewId: 'testId' },
+            tabId,
+        );
+
+        inputStub.onchange(event);
+        fileReaderMock.object.onload(readerEvent);
+
+        expect(inputStub.type).toBe('file');
+        expect(inputStub.accept).toBe('.a11ywebassessment');
     });
 });
