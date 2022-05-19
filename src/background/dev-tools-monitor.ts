@@ -35,7 +35,7 @@ export class DevToolsMonitor {
     private startMonitor(): void {
         if (!this.monitorIsActive) {
             // Do not await, we want the polling loop to run asynchronously
-            this.pollUntilClosed();
+            void this.pollUntilClosed();
         }
     }
 

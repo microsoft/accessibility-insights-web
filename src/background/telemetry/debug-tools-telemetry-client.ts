@@ -27,14 +27,14 @@ export class DebugToolsTelemetryClient implements TelemetryClient {
         // no-op as we always want to send telemetry to the debug tools page (if feature flag is enabled)
     }
 
-    public trackEvent(name: string, properties?: Object): void {
+    public async trackEvent(name: string, properties?: Object): Promise<void> {
         if (this.featureFlagChecker?.isEnabled(FeatureFlags.debugTools)) {
             const finalProperties = {
                 ...properties,
                 ...this.telemetryDataFactory.getData(),
             };
 
-            this.browserAdapter.sendRuntimeMessage({
+            await this.browserAdapter.sendRuntimeMessage({
                 messageType: Messages.DebugTools.Telemetry,
                 name,
                 properties: finalProperties,

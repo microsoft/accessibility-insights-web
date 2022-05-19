@@ -32,7 +32,7 @@ describe('ConsoleTelemetryClient', () => {
     });
 
     describe('trackEvent', () => {
-        it('should log telemetry', () => {
+        it('should log telemetry', async () => {
             const name = 'test-event-name';
             const appDataStub = {
                 applicationVersion: 'test version',
@@ -57,7 +57,7 @@ describe('ConsoleTelemetryClient', () => {
 
             const testObject = createDefaultTestObject();
 
-            testObject.trackEvent(name, properties);
+            await testObject.trackEvent(name, properties);
 
             telemetryDataFactoryMock.verifyAll();
             loggerMock.verifyAll();

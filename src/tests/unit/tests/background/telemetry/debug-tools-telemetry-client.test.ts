@@ -80,7 +80,7 @@ describe('DebugToolsTelemetryClient', () => {
             expect(action).not.toThrow();
         });
 
-        it('send runtime message if feature flag is enabled', () => {
+        it('send runtime message if feature flag is enabled', async () => {
             const appData: ApplicationTelemetryData = {
                 applicationBuild: 'test-application-build',
                 applicationName: 'test-application-name',
@@ -99,7 +99,7 @@ describe('DebugToolsTelemetryClient', () => {
             telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => appData);
             browserAdapterMock.setup(b => b.sendRuntimeMessage(expectedMessage)).verifiable();
 
-            testSubject.trackEvent(eventName, eventProperties);
+            await testSubject.trackEvent(eventName, eventProperties);
         });
     });
 });
