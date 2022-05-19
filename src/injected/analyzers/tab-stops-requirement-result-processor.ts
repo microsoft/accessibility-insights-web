@@ -18,7 +18,7 @@ export class TabStopsRequirementResultProcessor {
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
     ) {}
 
-    public start = (): void => {
+    public start = async (): Promise<void> => {
         const state = this.visualizationResultsStore.getState();
 
         if (!this.isStopped || !state.tabStops.needToCollectTabbingResults) {
@@ -29,7 +29,7 @@ export class TabStopsRequirementResultProcessor {
 
         this.seenTabStopRequirementResults = [];
         this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
-        this.tabStopRequirementRunner.start();
+        await this.tabStopRequirementRunner.start();
 
         this.isStopped = false;
     };
@@ -43,12 +43,12 @@ export class TabStopsRequirementResultProcessor {
         }
     };
 
-    public stop = (): void => {
+    public stop = async (): Promise<void> => {
         if (this.isStopped) {
             return;
         }
 
-        this.tabStopRequirementRunner.stop();
+        await this.tabStopRequirementRunner.stop();
         this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
             this.seenTabStopRequirementResults,
         );

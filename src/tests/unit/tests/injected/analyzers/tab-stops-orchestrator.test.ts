@@ -79,7 +79,7 @@ describe('TabStopRequirementOrchestrator', () => {
         );
     });
 
-    test('addNewTabStop new and unique tabstop gets non-null result and reports it', () => {
+    test('addNewTabStop new and unique tabstop gets non-null result and reports it', async () => {
         const eventStub = {
             target: elementStub as EventTarget,
         } as Event;
@@ -93,14 +93,14 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.once());
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         focusInCallback(eventStub);
         focusInCallback(newEventStub);
 
         reportResultsMock.verifyAll();
     });
 
-    test('addNewTabStop new and unique tabstop gets null result and does not report it', () => {
+    test('addNewTabStop new and unique tabstop gets null result and does not report it', async () => {
         tabStopRequirementResultStub = null;
         const eventStub = {
             target: elementStub as EventTarget,
@@ -115,14 +115,14 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         focusInCallback(eventStub);
         focusInCallback(newEventStub);
 
         reportResultsMock.verifyAll();
     });
 
-    test('start: addNewTabStop tab stop already seen, does nothing', () => {
+    test('start: addNewTabStop tab stop already seen, does nothing', async () => {
         const eventStub = {
             target: elementStub as EventTarget,
         } as Event;
@@ -133,18 +133,18 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         focusInCallback(eventStub);
         focusInCallback(eventStub);
 
         reportResultsMock.verifyAll();
     });
 
-    test('stop removes event listeners and sends keyboard navigation results', () => {
+    test('stop removes event listeners and sends keyboard navigation results', async () => {
         const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
 
         domMock.setup(m => m.removeEventListener('focusin', focusInCallback)).verifiable();
         domMock.setup(m => m.removeEventListener('keydown', keydownCallback)).verifiable();
@@ -157,16 +157,16 @@ describe('TabStopRequirementOrchestrator', () => {
             reportResultsMock.setup(m => m(result)).verifiable(Times.once());
         });
 
-        testSubject.stop();
+        await testSubject.stop();
 
         domMock.verifyAll();
         reportResultsMock.verifyAll();
     });
 
-    test('stop does not resend stale events when called twice', () => {
+    test('stop does not resend stale events when called twice', async () => {
         const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
 
         domMock
             .setup(m => m.removeEventListener('focusin', focusInCallback))
@@ -183,29 +183,29 @@ describe('TabStopRequirementOrchestrator', () => {
             reportResultsMock.setup(m => m(result)).verifiable(Times.once());
         });
 
-        testSubject.stop();
+        await testSubject.stop();
 
         tabStopsRequirementEvaluatorMock.reset();
         tabStopsRequirementEvaluatorMock
             .setup(m => m.getKeyboardNavigationResults([], It.isValue(new Set())))
             .returns(() => [])
             .verifiable(Times.once());
-        testSubject.stop();
+        await testSubject.stop();
         tabStopsRequirementEvaluatorMock.verifyAll();
 
         domMock.verifyAll();
         reportResultsMock.verifyAll();
     });
 
-    test('start: onKeydownForFocusTraps tab event with a non-null result is reported', () => {
-        testOnkeydownForFocusTrapsWithResult(tabStopRequirementResultStub, Times.once());
+    test('start: onKeydownForFocusTraps tab event with a non-null result is reported', async () => {
+        await testOnkeydownForFocusTrapsWithResult(tabStopRequirementResultStub, Times.once());
     });
 
-    test('start: onKeydownForFocusTraps tab event with a null result and is not reported', () => {
-        testOnkeydownForFocusTrapsWithResult(null, Times.never());
+    test('start: onKeydownForFocusTraps tab event with a null result and is not reported', async () => {
+        await testOnkeydownForFocusTrapsWithResult(null, Times.never());
     });
 
-    function testOnkeydownForFocusTrapsWithResult(
+    async function testOnkeydownForFocusTrapsWithResult(
         givenTabStopRequirementResult: AutomatedTabStopRequirementResult,
         givenTimes: Times,
     ) {
@@ -222,7 +222,7 @@ describe('TabStopRequirementOrchestrator', () => {
             });
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         keydownCallback(eventStub);
 
         domMock.reset();
@@ -237,7 +237,7 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.verifyAll();
     }
 
-    test('start: onKeydownForFocusTraps event is not tab so do nothing', () => {
+    test('start: onKeydownForFocusTraps event is not tab so do nothing', async () => {
         const eventStub = {
             key: 'Enter',
         } as KeyboardEvent;
@@ -245,13 +245,13 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.setup(m => m(tabStopRequirementResultStub)).verifiable(Times.never());
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         keydownCallback(eventStub);
 
         reportResultsMock.verifyAll();
     });
 
-    test('start: onKeydownForFocusTraps active element is body so do nothing', () => {
+    test('start: onKeydownForFocusTraps active element is body so do nothing', async () => {
         const eventStub = {
             key: 'Tab',
         } as KeyboardEvent;
@@ -261,7 +261,7 @@ describe('TabStopRequirementOrchestrator', () => {
         domMock.setup(m => m.body).returns(() => bodyElement);
 
         testSubject.setResultCallback(reportResultsMock.object);
-        testSubject.start();
+        await testSubject.start();
         keydownCallback(eventStub);
 
         reportResultsMock.verifyAll();
