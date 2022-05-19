@@ -88,5 +88,23 @@ describe(DevToolsMessageDistributor, () => {
 
             expect(response).toBeUndefined();
         });
+
+        it('Returns a promise if storeUpdateMessageHub returns a promise', async () => {
+            const message = {
+                messageType: 'another message type',
+            };
+            storeUpdateHubMock
+                .setup(s => s.handleMessage(message as StoreUpdateMessage<unknown>))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
+
+            const responsePromise = distributeMessage(message);
+
+            expect(responsePromise).toBeInstanceOf(Promise);
+
+            const response = await responsePromise;
+
+            expect(response).toBeUndefined();
+        });
     });
 });
