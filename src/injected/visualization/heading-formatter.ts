@@ -62,7 +62,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         element: HTMLElement,
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
-        const level = this.isHTag(element)
+        const level = this.getAriaLevel(element)
             ? this.getAriaLevel(element)
             : this.getHTagLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
