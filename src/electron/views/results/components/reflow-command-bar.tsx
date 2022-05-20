@@ -22,7 +22,7 @@ import { ContentPageInfo } from 'electron/types/content-page-info';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import * as styles from './reflow-command-bar.scss';
+import styles from './reflow-command-bar.scss';
 
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;

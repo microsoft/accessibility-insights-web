@@ -4,7 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { InlineImage, InlineImageType } from 'reports/components/inline-image';
 import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
-import * as styles from './no-failed-instances-congrats.scss';
+import styles from './no-failed-instances-congrats.scss';
 
 export type NoFailedInstancesCongratsDeps = {
     customCongratsContinueInvestigatingMessage?: string;

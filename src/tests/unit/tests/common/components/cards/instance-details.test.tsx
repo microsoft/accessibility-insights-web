@@ -20,13 +20,8 @@ import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import {
-    focused,
-    hiddenHighlightButton,
-    instanceDetailsCard,
-} from 'reports/components/instance-details.scss';
+import styles from 'reports/automated-checks-report.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 jest.mock('react', () => {
@@ -82,7 +77,7 @@ describe('InstanceDetails', () => {
         setupGetPropertyConfigByIdMock();
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const element = wrapper.find(`.${instanceDetailsCard}`);
+        const element = wrapper.find(`.${styles.instanceDetailsCard}`);
         expect(element.length).toBe(1);
 
         element.simulate('click');
@@ -104,7 +99,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const element = wrapper.find(`.${hiddenHighlightButton}`);
+        const element = wrapper.find(`.${styles.hiddenHighlightButton}`);
         expect(element.length).toBe(1);
 
         element.simulate('click', eventStub);
@@ -116,14 +111,14 @@ describe('InstanceDetails', () => {
         (React.useRef as jest.Mock).mockReturnValue(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const button = wrapper.find(`.${hiddenHighlightButton}`);
+        const button = wrapper.find(`.${styles.hiddenHighlightButton}`);
         expect(button.length).toBe(1);
 
         button.prop('onFocus')({} as any);
-        expect(wrapper.find(`.${focused}`).length).toBe(1);
+        expect(wrapper.find(`.${styles.focused}`).length).toBe(1);
 
         button.prop('onBlur')({} as any);
-        expect(wrapper.find(`.${focused}`).length).toBe(0);
+        expect(wrapper.find(`.${styles.focused}`).length).toBe(0);
     });
 
     it('does not dispatch the card selection message when card is clicked if highlighting is not supported', () => {
@@ -144,7 +139,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.never());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find(`.${instanceDetailsCard}`);
+        const divElem = wrapper.find(`.${styles.instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
         divElem.simulate('click');

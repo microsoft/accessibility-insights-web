@@ -7,10 +7,10 @@ import {
     AssessmentLeftNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
-import * as commonLeftNavLinkStyles from 'DetailsView/components/left-nav/common-left-nav-link.scss';
+import commonLeftNavLinkStyles from 'DetailsView/components/left-nav/common-left-nav-link.scss';
 import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
-import * as styles from 'DetailsView/components/left-nav/nav-link-renderer.scss';
+import styles from 'DetailsView/components/left-nav/nav-link-renderer.scss';
 import { OverviewLeftNavLink } from 'DetailsView/components/left-nav/overview-left-nav-link';
 import { TestViewLeftNavLink } from 'DetailsView/components/left-nav/test-view-left-nav-link';
 import * as React from 'react';

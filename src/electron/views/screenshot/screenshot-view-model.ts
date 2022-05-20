@@ -13,6 +13,6 @@ export type HighlightBoxViewModel = {
 
 export type ScreenshotViewModel = {
     // "screenshotData == null" means that the view should show a "screenshot unavailable" message
-    screenshotData?: ScreenshotData;
+    screenshotData?: ScreenshotData | null;
     highlightBoxViewModels: HighlightBoxViewModel[];
 };

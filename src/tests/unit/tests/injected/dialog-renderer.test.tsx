@@ -180,8 +180,8 @@ describe('DialogRendererTests', () => {
 
         const testObject = createDialogRenderer();
 
-        GlobalScope.using(getMainWindowContextMock).with(() => {
-            testObject.render(testData);
+        GlobalScope.using(getMainWindowContextMock).with(async () => {
+            await testObject.render(testData);
         });
 
         setupDomMockVerify();
@@ -190,7 +190,7 @@ describe('DialogRendererTests', () => {
         getMainWindowContextMock.verifyAll();
     });
 
-    test('test render in iframe', () => {
+    test('test render in iframe', async () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
@@ -206,8 +206,8 @@ describe('DialogRendererTests', () => {
 
         const testObject = createDialogRenderer();
 
-        GlobalScope.using(getMainWindowContextMock).with(() => {
-            testObject.render(testData);
+        GlobalScope.using(getMainWindowContextMock).with(async () => {
+            await testObject.render(testData);
         });
 
         setupDomMockVerify();
@@ -236,8 +236,8 @@ describe('DialogRendererTests', () => {
 
         createDialogRenderer();
 
-        GlobalScope.using(getMainWindowContextMock).with(() => {
-            addMessageListenerCallback(commandMessage, undefined);
+        GlobalScope.using(getMainWindowContextMock).with(async () => {
+            await addMessageListenerCallback(commandMessage, undefined);
         });
 
         setupDomMockVerify();

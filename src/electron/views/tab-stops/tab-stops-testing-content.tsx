@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import * as React from 'react';
-import * as styles from './tab-stops-testing-content.scss';
+import styles from './tab-stops-testing-content.scss';
 
 export type TabStopsTestingContentDeps = {
     tabStopsActionCreator: TabStopsActionCreator;
@@ -25,11 +25,11 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     'TabStopsTestingContent',
     props => {
         const tabStopsActionCreator = props.deps.tabStopsActionCreator;
-        const onToggle = (e: SupportedMouseEvent) => {
+        const onToggle = async (e: SupportedMouseEvent) => {
             if (props.tabStopsEnabled) {
-                tabStopsActionCreator.disableTabStops(e);
+                await tabStopsActionCreator.disableTabStops(e);
             } else {
-                tabStopsActionCreator.enableTabStops(e);
+                await tabStopsActionCreator.enableTabStops(e);
             }
         };
 

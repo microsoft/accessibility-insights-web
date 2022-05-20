@@ -6,7 +6,7 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
-import * as styles from './requirement-view-title.scss';
+import styles from './requirement-view-title.scss';
 
 export type RequirementViewTitleDeps = GuidanceTagsDeps & ContentPanelButtonDeps;
 

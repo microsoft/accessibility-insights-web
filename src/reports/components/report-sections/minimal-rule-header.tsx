@@ -3,8 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
-import { outcomeChipContainer } from 'reports/components/report-sections/minimal-rule-header.scss';
-
+import styles from 'reports/components/report-sections/minimal-rule-header.scss';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 
@@ -50,7 +49,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
 
     return (
         <span data-automation-id={ruleDetailAutomationId} className="rule-detail">
-            <span className={outcomeChipContainer}>{renderCountBadge()}</span>
+            <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
             <span>
                 {renderRuleName()}: {renderDescription()}
             </span>

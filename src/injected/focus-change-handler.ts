@@ -47,6 +47,8 @@ export class FocusChangeHandler {
 
     private automatedChecksDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.cardSelectionStoreData !== null &&
+            storeData.unifiedScanResultStoreData !== null &&
             storeData.cardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.unifiedScanResultStoreData.results)
         );
@@ -54,13 +56,15 @@ export class FocusChangeHandler {
 
     private needsReviewDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.needsReviewCardSelectionStoreData !== null &&
+            storeData.needsReviewScanResultStoreData !== null &&
             storeData.needsReviewCardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.needsReviewScanResultStoreData.results)
         );
     }
 
     private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
-        const focusedResult = storeData.unifiedScanResultStoreData.results.find(
+        const focusedResult = storeData.unifiedScanResultStoreData.results!.find(
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
 
@@ -72,7 +76,7 @@ export class FocusChangeHandler {
     }
 
     private findNeedsReviewFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
-        const focusedResult = storeData.needsReviewScanResultStoreData.results.find(
+        const focusedResult = storeData.needsReviewScanResultStoreData.results!.find(
             result => result.uid === storeData.needsReviewCardSelectionStoreData.focusedResultUid,
         );
 

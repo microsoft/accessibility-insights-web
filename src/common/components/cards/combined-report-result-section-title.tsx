@@ -4,7 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeType } from 'reports/components/outcome-type';
 
-import * as styles from './combined-report-result-section-title.scss';
+import styles from './combined-report-result-section-title.scss';
 
 export type CombinedReportResultSectionTitleProps = {
     title: string;

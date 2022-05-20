@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import * as React from 'react';
-import * as styles from './header-bar.scss';
+import styles from './header-bar.scss';
 
 export type HeaderBarProps = {
     headerText: string;

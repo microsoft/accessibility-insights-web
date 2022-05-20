@@ -13,7 +13,7 @@ import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import * as styles from './test-status-choice-group.scss';
+import styles from './test-status-choice-group.scss';
 
 export interface TestStatusChoiceGroupProps {
     test: VisualizationType;

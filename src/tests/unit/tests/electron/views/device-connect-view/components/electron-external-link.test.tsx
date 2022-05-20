@@ -7,6 +7,7 @@ import {
 } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { Mock, Times } from 'typemoq';
 
 describe('ElectronExternalLink', () => {
@@ -25,7 +26,7 @@ describe('ElectronExternalLink', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    test('click', () => {
+    test('click', async () => {
         const mockShell = Mock.ofType<Shell>();
         const mockPreventDefault = Mock.ofInstance(() => {});
         const mockStopPropagation = Mock.ofInstance(() => {});
@@ -46,6 +47,8 @@ describe('ElectronExternalLink', () => {
 
         const rendered = shallow(<ElectronExternalLink {...props} />);
         rendered.simulate('click', mockEvent);
+
+        await flushSettledPromises();
 
         mockShell.verifyAll();
         mockPreventDefault.verifyAll();

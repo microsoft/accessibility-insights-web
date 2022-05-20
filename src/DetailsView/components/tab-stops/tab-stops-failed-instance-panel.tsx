@@ -47,8 +47,8 @@ export const TabStopsFailedInstancePanel = NamedFC<TabStopsFailedInstancePanelPr
             confirmButtonText: 'Add failed instance',
             onConfirm: () => {
                 tabStopRequirementActionMessageCreator.addTabStopInstance({
-                    description: failureInstanceState.description,
-                    requirementId: failureInstanceState.selectedRequirementId,
+                    description: failureInstanceState.description!,
+                    requirementId: failureInstanceState.selectedRequirementId!,
                 });
             },
             onChange: (_, description) => {
@@ -65,9 +65,9 @@ export const TabStopsFailedInstancePanel = NamedFC<TabStopsFailedInstancePanelPr
                 }`,
                 onConfirm: () => {
                     tabStopRequirementActionMessageCreator.updateTabStopInstance(
-                        failureInstanceState.selectedRequirementId,
-                        failureInstanceState.selectedInstanceId,
-                        failureInstanceState.description,
+                        failureInstanceState.selectedRequirementId!,
+                        failureInstanceState.selectedInstanceId!,
+                        failureInstanceState.description!,
                     );
                 },
                 confirmButtonText: 'Save',

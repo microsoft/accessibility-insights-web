@@ -5,7 +5,7 @@ import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
 
-type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
+type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void | Promise<void>;
 
 export class StoreUpdateMessageHub {
     private readonly registeredUpdateListeners: { [key: string]: StoreUpdateMessageListener } = {};
@@ -22,14 +22,14 @@ export class StoreUpdateMessageHub {
         this.registeredUpdateListeners[storeId] = listener;
     }
 
-    public readonly handleMessage = (message: StoreUpdateMessage<any>): void => {
+    public readonly handleMessage = (message: StoreUpdateMessage<any>): void | Promise<void> => {
         if (!this.isValidMessage(message)) {
             return;
         }
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
-            listener(message);
+            return listener(message);
         }
     };
 

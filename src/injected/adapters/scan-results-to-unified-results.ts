@@ -125,7 +125,7 @@ export class ConvertScanResultsToUnifiedResults {
                 snippet: nodeResult.snippet || nodeResult.html,
             },
             resolution: {
-                howToFixSummary: nodeResult.failureSummary,
+                howToFixSummary: nodeResult.failureSummary!,
                 ...getResolution({ ruleId: ruleResultData.ruleID, nodeResult: nodeResult }),
             },
         };

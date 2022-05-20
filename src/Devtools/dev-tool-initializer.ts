@@ -15,7 +15,7 @@ export class DevToolInitializer {
         private readonly targetPageInspector: TargetPageInspector,
     ) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
         const storeUpdateMessageHub = new StoreUpdateMessageHub();
 
         const devtoolsStore = new StoreProxy<DevToolStoreData>(
@@ -35,6 +35,6 @@ export class DevToolInitializer {
             this.targetPageInspector,
         );
 
-        inspectHandler.initialize();
+        await inspectHandler.initialize();
     }
 }

@@ -7,7 +7,7 @@ import {
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { ReportCollapsibleContainerProps } from 'reports/components/report-sections/report-collapsible-container';
-import * as styles from './collapsible-url-result-section.scss';
+import styles from './collapsible-url-result-section.scss';
 
 export type CollapsibleUrlResultSectionDeps = {
     collapsibleControl: (props: ReportCollapsibleContainerProps) => JSX.Element;

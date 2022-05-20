@@ -19,7 +19,7 @@ import { clone, isEqual } from 'lodash';
 import * as React from 'react';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
-import * as styles from './failure-instance-panel.scss';
+import styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
 export interface FailureInstancePanelControlProps {

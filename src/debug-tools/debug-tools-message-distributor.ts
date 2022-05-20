@@ -17,8 +17,8 @@ export class DebugToolsMessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (message: any) => {
+    private distributeMessage = async (message: any) => {
         this.telemetryListener.onTelemetryMessage(message);
-        this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
+        await this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
     };
 }

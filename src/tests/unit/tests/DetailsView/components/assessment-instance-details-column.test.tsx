@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TooltipHost } from '@fluentui/react';
-import * as styles from 'DetailsView/components/assessment-instance-details-column.scss';
+import styles from 'DetailsView/components/assessment-instance-details-column.scss';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 

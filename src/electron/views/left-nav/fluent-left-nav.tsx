@@ -7,7 +7,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
-import * as styles from 'electron/views/left-nav/fluent-left-nav.scss';
+import styles from 'electron/views/left-nav/fluent-left-nav.scss';
 import { LeftNav, LeftNavDeps, LeftNavProps } from 'electron/views/left-nav/left-nav';
 import * as React from 'react';
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import * as styles from 'assessments/assessment-default-message-generator.scss';
+import styles from 'assessments/assessment-default-message-generator.scss';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
 import * as React from 'react';

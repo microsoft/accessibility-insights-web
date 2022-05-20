@@ -16,7 +16,7 @@ import * as React from 'react';
 
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
-import * as styles from './instance-details-footer.scss';
+import styles from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 

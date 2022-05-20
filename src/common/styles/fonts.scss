@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@use 'sass:string';
 
 // This file is @imported by many SCSS modules, which means it *must not* contain any actual style
 // definitions; it may *only* contain SCSS directives (eg, $variable, @function, and @mixin).
@@ -9,7 +10,7 @@
     $family: '';
     @each $font in $fonts {
         $font: if(
-            str-index($font, ' ') == null and str-index($font, '-') != 1,
+            string.index($font, ' ') == null and string.index($font, '-') != 1,
             $font,
             "'#{$font}'"
         );

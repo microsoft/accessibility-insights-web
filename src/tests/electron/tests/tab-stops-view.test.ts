@@ -34,8 +34,8 @@ describe('TabStopsView', () => {
         await setupMockAdb(commonAdbConfigs['single-device'], mockAdbLogsBase, mockAdbLogsFolder);
 
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
-        app.client.setViewportSize({ width, height });
+        await app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
+        await app.client.setViewportSize({ width, height });
         logController = new LogController(logsContext, mockAdbFolder);
         tabStopsViewController = new TabStopsViewController(app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);

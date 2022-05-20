@@ -5,11 +5,11 @@ import { TextField } from '@fluentui/react';
 import { ActionAndCancelButtonsComponent } from 'DetailsView/components/action-and-cancel-buttons-component';
 import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-panel';
 import * as React from 'react';
-import * as styles from '../failure-instance-panel.scss';
+import styles from '../failure-instance-panel.scss';
 
 export interface FailedInstancePanelProps {
     isOpen: boolean;
-    instanceDescription: string;
+    instanceDescription: string | null;
     headerText: string;
     confirmButtonText: string;
     onConfirm: () => void;
@@ -39,7 +39,7 @@ export class FailedInstancePanel extends React.Component<FailedInstancePanelProp
                     label="Comment"
                     multiline={true}
                     rows={8}
-                    value={this.props.instanceDescription}
+                    value={this.props.instanceDescription ?? ''}
                     onChange={this.props.onChange}
                     resizable={false}
                     placeholder="Comment"

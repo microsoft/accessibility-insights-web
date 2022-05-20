@@ -40,11 +40,11 @@ export class ClientStoreListener {
     };
 
     private onChangedState = (): void => {
-        const storeData = this.storeHub.getAllStoreData();
-        if (storeData == null) {
+        if (!this.storeHub.hasStores() || !this.storeHub.hasStoreData()) {
             return;
         }
 
+        const storeData = this.storeHub.getAllStoreData() as TargetPageStoreData;
         if (storeData.visualizationStoreData.scanning != null) {
             return;
         }

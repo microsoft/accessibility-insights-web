@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { InlineStartOverButton } from 'DetailsView/components/inline-start-over-button';
-import * as commonStaticStyles from 'DetailsView/components/static-content-common.scss';
-import * as styles from 'DetailsView/components/target-page-changed-view.scss';
+import commonStaticStyles from 'DetailsView/components/static-content-common.scss';
+import styles from 'DetailsView/components/target-page-changed-view.scss';
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';

@@ -12,7 +12,7 @@ import {
     DetailsViewLeftNavDeps,
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
-import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
+import styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 

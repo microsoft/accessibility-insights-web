@@ -39,12 +39,6 @@ body {
     flex-direction: column;
     height: 100%;
 
-    .ms-DetailsRow {
-        .property-bag-div {
-            white-space: normal;
-        }
-    }
-
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;
@@ -52,6 +46,10 @@ body {
     }
 
     .ms-DetailsRow {
+        .property-bag-div {
+            white-space: normal;
+        }
+
         .content-cell:first-child {
             padding-left: 13px !important;
         }

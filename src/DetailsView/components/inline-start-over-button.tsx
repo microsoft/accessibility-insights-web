@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
-import * as styles from './inline-start-over-button.scss';
+import styles from './inline-start-over-button.scss';
 
 export const inlineStartOverButtonDataAutomationId = 'inline-start-over-button';
 
