@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 
 export type IsSupportedBrowser = () => boolean;
 
