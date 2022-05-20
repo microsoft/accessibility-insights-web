@@ -13,19 +13,23 @@ export class VisualizationStateChangeHandler {
         private assessmentProvider: AssessmentsProvider,
     ) {}
 
-    public updateVisualizationsWithStoreData = (storeData: TargetPageStoreData) => {
+    public updateVisualizationsWithStoreData = async (storeData: TargetPageStoreData) => {
         if (!storeData.assessmentStoreData) {
             return;
         }
-        this.visualizations.forEach(visualizationType => {
-            if (this.assessmentProvider.isValidType(visualizationType)) {
-                const stepMap = this.assessmentProvider.getStepMap(visualizationType);
-                Object.values(stepMap).forEach(step => {
-                    this.visualizationUpdater(visualizationType, step.key, storeData);
-                });
-            } else {
-                this.visualizationUpdater(visualizationType, null, storeData);
-            }
-        });
+        await Promise.all(
+            this.visualizations.map(async visualizationType => {
+                if (this.assessmentProvider.isValidType(visualizationType)) {
+                    const stepMap = this.assessmentProvider.getStepMap(visualizationType);
+                    await Promise.all(
+                        Object.values(stepMap).map(step =>
+                            this.visualizationUpdater(visualizationType, step.key, storeData),
+                        ),
+                    );
+                } else {
+                    await this.visualizationUpdater(visualizationType, null, storeData);
+                }
+            }),
+        );
     };
 }

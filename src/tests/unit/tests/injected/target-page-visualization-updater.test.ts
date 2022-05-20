@@ -89,7 +89,7 @@ describe('TargetPageVisualizationUpdater', () => {
         );
     });
 
-    test('visualization does need not to be updated', () => {
+    test('visualization does need not to be updated', async () => {
         expectedNewState.enabled = isVisualizationEnabledResult = true;
         setupVisualizationNeedsUpdateMock(false);
 
@@ -102,15 +102,15 @@ describe('TargetPageVisualizationUpdater', () => {
             )
             .verifiable(Times.never());
 
-        testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
+        await testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
         visualizationNeedsUpdateMock.verifyAll();
 
-        verifyPreviousState(expectedPreviousState);
+        await verifyPreviousState(expectedPreviousState);
     });
 
-    test('visualization needs to be enabled', () => {
+    test('visualization needs to be enabled', async () => {
         expectedNewState.enabled = isVisualizationEnabledResult = true;
         setupVisualizationNeedsUpdateMock(true);
 
@@ -130,15 +130,15 @@ describe('TargetPageVisualizationUpdater', () => {
             )
             .verifiable();
 
-        testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
+        await testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
         visualizationNeedsUpdateMock.verifyAll();
 
-        verifyPreviousState(expectedNewState);
+        await verifyPreviousState(expectedNewState);
     });
 
-    test('visualization needs to be disabled', () => {
+    test('visualization needs to be disabled', async () => {
         expectedNewState.enabled = isVisualizationEnabledResult = false;
         setupVisualizationNeedsUpdateMock(true);
 
@@ -152,12 +152,12 @@ describe('TargetPageVisualizationUpdater', () => {
             )
             .verifiable();
 
-        testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
+        await testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
         visualizationNeedsUpdateMock.verifyAll();
 
-        verifyPreviousState(expectedNewState);
+        await verifyPreviousState(expectedNewState);
     });
 
     function setupVisualizationNeedsUpdateMock(needsUpdate: boolean): void {
@@ -166,14 +166,16 @@ describe('TargetPageVisualizationUpdater', () => {
             .returns(() => needsUpdate);
     }
 
-    function verifyPreviousState(expectedPreviousState: TestStepVisualizationState): void {
+    async function verifyPreviousState(
+        expectedPreviousState: TestStepVisualizationState,
+    ): Promise<void> {
         visualizationNeedsUpdateMock.reset();
         visualizationNeedsUpdateMock
             .setup(vnum => vnum(It.isAny(), It.isValue(expectedPreviousState)))
             .returns(() => false)
             .verifiable();
 
-        testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
+        await testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         visualizationNeedsUpdateMock.verifyAll();
     }

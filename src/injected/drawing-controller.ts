@@ -57,9 +57,9 @@ export class DrawingController {
             const elementResultsByFrames = message.elementResults
                 ? this.axeResultsHelper.splitResultsByFrame(message.elementResults)
                 : null;
-            this.enableVisualization(elementResultsByFrames, message.configId);
+            await this.enableVisualization(elementResultsByFrames, message.configId);
         } else {
-            this.disableVisualization(message.configId);
+            await this.disableVisualization(message.configId);
         }
     };
 
@@ -70,20 +70,20 @@ export class DrawingController {
         return { payload: response };
     };
 
-    private enableVisualization(
+    private async enableVisualization(
         elementResultsByFrames: HTMLIFrameResult[],
         configId: string,
-    ): void {
+    ): Promise<void> {
         if (elementResultsByFrames) {
             for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
                 const resultsForFrame = elementResultsByFrames[pos];
                 if (resultsForFrame.frame == null) {
-                    this.enableVisualizationInCurrentFrame(
+                    await this.enableVisualizationInCurrentFrame(
                         resultsForFrame.elementResults,
                         configId,
                     );
                 } else {
-                    this.enableVisualizationInIFrames(
+                    await this.enableVisualizationInIFrames(
                         resultsForFrame.frame,
                         resultsForFrame.elementResults,
                         configId,
@@ -91,11 +91,11 @@ export class DrawingController {
                 }
             }
         } else {
-            this.enableVisualizationInCurrentFrame(null, configId);
+            await this.enableVisualizationInCurrentFrame(null, configId);
 
             const iframes = this.getAllFrames();
             for (let pos = 0; pos < iframes.length; pos++) {
-                this.enableVisualizationInIFrames(iframes[pos], null, configId);
+                await this.enableVisualizationInIFrames(iframes[pos], null, configId);
             }
         }
     }
@@ -130,9 +130,9 @@ export class DrawingController {
         );
     };
 
-    private disableVisualization(configId: string): void {
+    private async disableVisualization(configId: string): Promise<void> {
         this.disableVisualizationInCurrentFrame(configId);
-        this.disableVisualizationInIFrames(configId);
+        await this.disableVisualizationInIFrames(configId);
     }
 
     private createFrameRequestMessage(message: VisualizationWindowMessage): CommandMessage {

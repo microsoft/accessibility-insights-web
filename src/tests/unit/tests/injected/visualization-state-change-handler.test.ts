@@ -28,7 +28,7 @@ describe('VisualizationStateChangeHandler', () => {
         );
     });
 
-    test('non-assessment visualizations', () => {
+    test('non-assessment visualizations', async () => {
         visualizations.forEach(visualizationType => {
             assessmentProviderMock
                 .setup(apm => apm.isValidType(visualizationType))
@@ -37,12 +37,12 @@ describe('VisualizationStateChangeHandler', () => {
                 .setup(vum => vum(visualizationType, null, storeDataStub))
                 .verifiable();
         });
-        testSubject.updateVisualizationsWithStoreData(storeDataStub);
+        await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
         visualizationUpdaterMock.verifyAll();
     });
 
-    test('assessment visualizations', () => {
+    test('assessment visualizations', async () => {
         const requirementOneStub = {
             key: 'some key',
         } as Requirement;
@@ -68,7 +68,7 @@ describe('VisualizationStateChangeHandler', () => {
             });
         });
 
-        testSubject.updateVisualizationsWithStoreData(storeDataStub);
+        await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
         visualizationUpdaterMock.verifyAll();
     });
