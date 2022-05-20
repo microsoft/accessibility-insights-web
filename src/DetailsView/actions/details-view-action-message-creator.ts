@@ -590,7 +590,21 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public loadAssessment = (assessmentData: VersionedAssessmentData, tabId: number): void => {
+    public loadAssessment = (
+        assessmentData: VersionedAssessmentData,
+        tabId: number,
+        detailsViewId: string,
+    ): void => {
+        if (assessmentData !== undefined) {
+            assessmentData.assessmentData.persistedTabInfo.detailsViewId = detailsViewId;
+        } else {
+            assessmentData = {
+                assessmentData: {
+                    persistedTabInfo: { detailsViewId },
+                },
+            } as VersionedAssessmentData;
+        }
+
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,

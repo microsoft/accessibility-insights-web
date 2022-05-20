@@ -520,7 +520,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('loadAssessment', () => {
         const assessmentData: VersionedAssessmentData = {
             version: 2,
-            assessmentData: {} as AssessmentStoreData,
+            assessmentData: { persistedTabInfo: {} } as AssessmentStoreData,
         };
         const tabId = -1;
         const telemetry: BaseTelemetryData = {
@@ -532,7 +532,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.Assessment.LoadAssessment,
             payload: {
                 tabId,
-                versionedAssessmentData: assessmentData,
+                versionedAssessmentData: {
+                    version: 2,
+                    assessmentData: {
+                        persistedTabInfo: { detailsViewId: 'testId' },
+                    } as AssessmentStoreData,
+                },
                 telemetry,
             } as LoadAssessmentPayload,
         };
@@ -545,7 +550,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .setup(tf => tf.fromDetailsViewNoTriggeredBy())
             .returns(() => telemetry);
 
-        testSubject.loadAssessment(assessmentData, tabId);
+        testSubject.loadAssessment(assessmentData, tabId, 'testId');
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToLoadAssessment)),

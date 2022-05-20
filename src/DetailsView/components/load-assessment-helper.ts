@@ -45,14 +45,6 @@ export class LoadAssessmentHelper {
                 return;
             }
 
-            if (
-                parsedAssessmentData !== undefined &&
-                parsedAssessmentData.assessmentData.persistedTabInfo.detailsViewId === undefined
-            ) {
-                parsedAssessmentData.assessmentData.persistedTabInfo.detailsViewId =
-                    prevTargetPageData.detailsViewId;
-            }
-
             setAssessmentState(parsedAssessmentData);
 
             if (
@@ -66,6 +58,7 @@ export class LoadAssessmentHelper {
                 this.detailsViewActionMessageCreator.loadAssessment(
                     parsedAssessmentData,
                     newTargetPageId,
+                    prevTargetPageData?.detailsViewId,
                 );
             }
         };

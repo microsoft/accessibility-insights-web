@@ -105,7 +105,7 @@ describe('LoadAssessmentHelper', () => {
 
     it('it loads assessment when prevTargetPageData is null', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.once());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
@@ -147,7 +147,7 @@ describe('LoadAssessmentHelper', () => {
 
     it('toggles dialog when prevTargetPageData is not null', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.once());
@@ -167,7 +167,7 @@ describe('LoadAssessmentHelper', () => {
 
     it('toggles invalid dialog when validationData is not valid', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
@@ -194,7 +194,7 @@ describe('LoadAssessmentHelper', () => {
 
     it('toggles invalid dialog when parsed data is not valid JSON', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
@@ -216,35 +216,5 @@ describe('LoadAssessmentHelper', () => {
 
         inputStub.onchange(event);
         fileReaderMock.object.onload(readerEvent);
-    });
-
-    it('it sets detailsViewId if missing', () => {
-        assessmentData = { assessmentData: { persistedTabInfo: {} } } as VersionedAssessmentData;
-
-        setAssessmentStateMock.reset();
-        setAssessmentStateMock
-            .setup(asm =>
-                asm({
-                    assessmentData: { persistedTabInfo: { detailsViewId: 'testId' } },
-                } as VersionedAssessmentData),
-            )
-            .verifiable(Times.once());
-
-        toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
-        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
-
-        testSubject.getAssessmentForLoad(
-            setAssessmentStateMock.object,
-            toggleInvalidLoadDialogMock.object,
-            toggleLoadDialogMock.object,
-            { detailsViewId: 'testId' },
-            tabId,
-        );
-
-        inputStub.onchange(event);
-        fileReaderMock.object.onload(readerEvent);
-
-        expect(inputStub.type).toBe('file');
-        expect(inputStub.accept).toBe('.a11ywebassessment');
     });
 });
