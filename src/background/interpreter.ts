@@ -3,6 +3,11 @@
 import { InterpreterMessage, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
+export interface InterpreterResponse {
+    success: boolean;
+    result?: Promise<void> | void;
+}
+
 export class Interpreter {
     protected messageToActionMapping: DictionaryStringTo<PayloadCallback<any>> = {};
 
@@ -13,11 +18,16 @@ export class Interpreter {
         this.messageToActionMapping[messageType] = callback;
     };
 
-    public interpret(message: InterpreterMessage): boolean {
+    public interpret(message: InterpreterMessage): InterpreterResponse {
         if (this.messageToActionMapping[message.messageType]) {
-            this.messageToActionMapping[message.messageType](message.payload, message.tabId);
-            return true;
+            return {
+                success: true,
+                result: this.messageToActionMapping[message.messageType](
+                    message.payload,
+                    message.tabId,
+                ),
+            };
         }
-        return false;
+        return { success: false };
     }
 }

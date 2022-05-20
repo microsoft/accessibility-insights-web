@@ -8,5 +8,5 @@ export interface Message {
 export type InterpreterMessage = Message & { tabId?: number };
 
 export interface PayloadCallback<Payload> {
-    (payload: Payload, tabId?: number): void;
+    (payload: Payload, tabId?: number): void | Promise<void>;
 }
