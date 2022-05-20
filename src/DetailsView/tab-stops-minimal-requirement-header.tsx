@@ -5,7 +5,7 @@ import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { OutcomeChip } from 'reports/components/outcome-chip';
-import * as styles from '../DetailsView/tab-stops-minimal-requirement-header.scss';
+import styles from '../DetailsView/tab-stops-minimal-requirement-header.scss';
 
 export interface TabStopsMinimalRequirementHeaderDeps {
     tabStopsFailedCounter: TabStopsFailedCounter;

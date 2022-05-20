@@ -9,7 +9,7 @@ import {
     List,
     TextField,
 } from '@fluentui/react';
-import * as styles from 'common/components/selector-input-list.scss';
+import styles from 'common/components/selector-input-list.scss';
 import * as _ from 'lodash/index';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';

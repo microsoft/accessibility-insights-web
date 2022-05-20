@@ -4,7 +4,7 @@ import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from '@flu
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
-import * as styles from './command-bar-buttons-menu.scss';
+import styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;

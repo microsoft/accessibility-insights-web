@@ -5,7 +5,7 @@ import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feat
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericToggle } from './generic-toggle';
-import * as styles from './preview-features-toggle-list.scss';
+import styles from './preview-features-toggle-list.scss';
 
 export type PreviewFeaturesToggleListDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

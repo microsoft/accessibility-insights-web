@@ -11,7 +11,7 @@ import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
 } from 'DetailsView/components/change-assessment-dialog';
-import * as styles from 'DetailsView/components/target-change-dialog.scss';
+import styles from 'DetailsView/components/target-change-dialog.scss';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';

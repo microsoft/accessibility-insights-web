@@ -4,7 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { HighlightBox } from 'electron/views/screenshot/highlight-box';
 import { Screenshot } from 'electron/views/screenshot/screenshot';
-import { screenshotContainer } from 'electron/views/screenshot/screenshot-container.scss';
+import styles from 'electron/views/screenshot/screenshot-container.scss';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
@@ -18,7 +18,7 @@ export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>(
     'ScreenshotContainer',
     props => {
         return (
-            <div className={screenshotContainer}>
+            <div className={styles.screenshotContainer}>
                 <Screenshot encodedImage={props.screenshotData.base64PngData} />
                 {renderHighlightBoxes(props.highlightBoxViewModels)}
             </div>

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './summary-results-table.scss';
+import styles from './summary-results-table.scss';
 
 const cellClassNames = {
     text: styles.textCell,

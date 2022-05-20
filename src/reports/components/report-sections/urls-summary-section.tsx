@@ -5,7 +5,7 @@ import * as React from 'react';
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import { OutcomeSummaryBar } from 'reports/components/outcome-summary-bar';
 import { allUrlOutcomeTypes, UrlOutcomeType } from 'reports/components/url-outcome-type';
-import * as styles from './urls-summary-section.scss';
+import styles from './urls-summary-section.scss';
 
 export type UrlsSummarySectionProps = {
     passedUrlsCount: number;

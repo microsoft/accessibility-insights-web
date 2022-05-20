@@ -4,7 +4,7 @@ import { productName } from 'content/strings/application';
 import * as React from 'react';
 
 import { NamedFC } from '../../../common/react/named-fc';
-import * as styles from './overview-heading.scss';
+import styles from './overview-heading.scss';
 
 export const overviewHeadingAutomationId = 'overview-heading';
 

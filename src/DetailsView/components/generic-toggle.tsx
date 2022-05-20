@@ -3,7 +3,7 @@
 import { Toggle } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './generic-toggle.scss';
+import styles from './generic-toggle.scss';
 
 export interface GenericToggleProps {
     enabled: boolean;

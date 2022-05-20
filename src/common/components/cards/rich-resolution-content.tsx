@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { LinkComponentType } from 'common/types/link-component-type';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
-import * as styles from './rich-resolution-content.scss';
+import styles from './rich-resolution-content.scss';
 
 export type RichResolutionContentDeps = {
     LinkComponent: LinkComponentType;

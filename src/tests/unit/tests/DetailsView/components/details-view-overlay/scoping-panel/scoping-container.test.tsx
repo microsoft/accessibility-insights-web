@@ -10,7 +10,7 @@ import {
     ScopingContainer,
     ScopingContainerProps,
 } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
-import * as styles from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container.scss';
+import styles from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container.scss';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';

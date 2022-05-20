@@ -19,7 +19,7 @@ import {
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import * as styles from './card-kebab-menu-button.scss';
+import styles from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;

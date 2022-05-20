@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './header-section.scss';
+import styles from './header-section.scss';
 
 export type HeaderSectionProps = {
     title: string;
