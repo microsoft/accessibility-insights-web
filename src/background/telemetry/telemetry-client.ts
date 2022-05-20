@@ -3,5 +3,5 @@
 export interface TelemetryClient {
     enableTelemetry(): void;
     disableTelemetry(): void;
-    trackEvent(name: string, properties?: Object): Promise<void>;
+    trackEvent(name: string, properties?: Object): void;
 }

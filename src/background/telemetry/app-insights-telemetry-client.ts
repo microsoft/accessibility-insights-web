@@ -36,7 +36,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         this.updateTelemetryState();
     }
 
-    public async trackEvent(name: string, properties?: { [name: string]: string }): Promise<void> {
+    public trackEvent(name: string, properties?: { [name: string]: string }): void {
         if (this.enabled) {
             this.applicationInsights.trackEvent({ name }, properties);
         }

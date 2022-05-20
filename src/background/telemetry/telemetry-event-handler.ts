@@ -28,7 +28,6 @@ export class TelemetryEventHandler {
 
         const flattenTelemetryInfo: DictionaryStringTo<string> =
             this.flattenTelemetryInfo(telemetryInfo);
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
