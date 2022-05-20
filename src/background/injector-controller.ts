@@ -51,11 +51,13 @@ export class InjectorController {
 
             this.injector
                 .injectScripts(tabId)
-                .then(() => {
-                    this.interpreter.interpret({
+                .then(async () => {
+                    const response = this.interpreter.interpret({
                         messageType: Messages.Visualizations.State.InjectionCompleted,
                         tabId: tabId,
                     });
+
+                    await response.result;
                 })
                 .catch(this.logger.error);
         }

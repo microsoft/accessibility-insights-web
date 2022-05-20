@@ -7,6 +7,11 @@ export interface Message {
 
 export type InterpreterMessage = Message & { tabId?: number };
 
+export interface InterpreterResponse {
+    success: boolean;
+    result?: Promise<void> | void;
+}
+
 export interface PayloadCallback<Payload> {
     (payload: Payload, tabId?: number): void | Promise<void>;
 }

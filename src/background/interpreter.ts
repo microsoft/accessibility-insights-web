@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InterpreterMessage, PayloadCallback } from '../common/message';
+import { InterpreterMessage, InterpreterResponse, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
-
-export interface InterpreterResponse {
-    success: boolean;
-    result?: Promise<void> | void;
-}
 
 export class Interpreter {
     protected messageToActionMapping: DictionaryStringTo<PayloadCallback<any>> = {};
