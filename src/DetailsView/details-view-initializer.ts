@@ -73,7 +73,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';

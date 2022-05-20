@@ -23,7 +23,7 @@ import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirem
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';

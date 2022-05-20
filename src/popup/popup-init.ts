@@ -5,7 +5,7 @@ import { BrowserEventManager } from 'common/browser-adapters/browser-event-manag
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { createSupportedBrowserChecker } from '../common/is-supported-browser';
 import { UrlParser } from '../common/url-parser';

@@ -34,7 +34,7 @@ import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-di
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();

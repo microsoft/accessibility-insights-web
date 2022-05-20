@@ -6,7 +6,7 @@ import { BrowserEventProvider } from 'common/browser-adapters/browser-event-prov
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { DevToolInitializer } from './dev-tool-initializer';
 
 const userAgentParser = new UAParser(window.navigator.userAgent);

@@ -9,7 +9,7 @@ import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { SelfFastPass, SelfFastPassContainer } from 'common/self-fast-pass';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { rendererDependencies } from './dependencies';
 import { renderer } from './renderer';
 

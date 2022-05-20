@@ -14,7 +14,7 @@ import { BrowserEventManager } from 'common/browser-adapters/browser-event-manag
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { WindowUtils } from 'common/window-utils';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { DateProvider } from '../common/date-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
