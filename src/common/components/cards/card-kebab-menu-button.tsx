@@ -121,7 +121,7 @@ export class CardKebabMenuButton extends React.Component<
                     iconName: 'copy',
                 },
                 onClick: event => {
-                    this.copyFailureDetails(event);
+                    void this.copyFailureDetails(event);
                 },
             });
         }

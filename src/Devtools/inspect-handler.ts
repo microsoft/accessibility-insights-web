@@ -14,7 +14,7 @@ export class InspectHandler {
         private readonly targetPageInspector: TargetPageInspector,
     ) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
         this.devToolsStore.addChangedListener(() => {
             const state = this.devToolsStore.getState();
 
@@ -28,15 +28,15 @@ export class InspectHandler {
             }
         });
 
-        this.sendDevtoolOpened();
+        await this.sendDevtoolOpened();
     }
 
-    private sendDevtoolOpened(): void {
+    private async sendDevtoolOpened(): Promise<void> {
         const message: InterpreterMessage = {
             messageType: Messages.DevTools.Opened,
             tabId: this.browserAdapter.getInspectedWindowTabId(),
         };
 
-        this.browserAdapter.sendMessageToFrames(message);
+        await this.browserAdapter.sendMessageToFrames(message);
     }
 }
