@@ -1,20 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
-import { Icon } from '@fluentui/react';
-import { ILabelStyles } from '@fluentui/react';
-import { ITextFieldStyles, TextField } from '@fluentui/react';
+import { DefaultButton, Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
 import * as React from 'react';
-
 import { NamedFC } from '../../common/react/named-fc';
-import {
-    failureInstanceSelectorNote,
-    failureInstanceSnippetEmptyBody,
-    failureInstanceSnippetError,
-    failureInstanceSnippetErrorIcon,
-    failureInstanceSnippetFilledBody,
-    failureInstanceSnippetTitle,
-} from './failure-instance-panel.scss';
+import styles from './failure-instance-panel.scss';
 
 export type FailureInstancePanelDetailsProps = {
     path: string;
@@ -29,22 +18,24 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
         const getSnippetInfo = (): JSX.Element => {
             if (!props.snippet) {
                 return (
-                    <div className={failureInstanceSnippetEmptyBody}>
+                    <div className={styles.failureInstanceSnippetEmptyBody}>
                         Code snippet will auto-populate based on the CSS selector input.
                     </div>
                 );
             } else if (props.snippet.startsWith('No code snippet is map')) {
                 return (
-                    <div className={failureInstanceSnippetError}>
+                    <div className={styles.failureInstanceSnippetError}>
                         <Icon
                             iconName="statusErrorFull"
-                            className={failureInstanceSnippetErrorIcon}
+                            className={styles.failureInstanceSnippetErrorIcon}
                         />
                         <div>{props.snippet}</div>
                     </div>
                 );
             } else {
-                return <div className={failureInstanceSnippetFilledBody}>{props.snippet}</div>;
+                return (
+                    <div className={styles.failureInstanceSnippetFilledBody}>{props.snippet}</div>
+                );
             }
         };
         return (
@@ -59,7 +50,7 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                     resizable={false}
                     placeholder="CSS Selector"
                 />
-                <div className={failureInstanceSelectorNote}>
+                <div className={styles.failureInstanceSelectorNote}>
                     Note: If the CSS selector maps to multiple snippets, the first will be selected
                 </div>
                 <div>
@@ -70,7 +61,7 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                     />
                 </div>
                 <div aria-live="polite" aria-atomic="true">
-                    <div className={failureInstanceSnippetTitle}>Code Snippet</div>
+                    <div className={styles.failureInstanceSnippetTitle}>Code Snippet</div>
                     {getSnippetInfo()}
                 </div>
             </div>

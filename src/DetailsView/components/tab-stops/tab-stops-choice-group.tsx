@@ -4,7 +4,7 @@ import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption, Icon, Link } from '@flue
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { InstanceResultStatus } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-import * as styles from './tab-stops-choice-group.scss';
+import styles from './tab-stops-choice-group.scss';
 
 export type onGroupChoiceChange = (ev: SupportedMouseEvent, status: InstanceResultStatus) => void;
 export type onUndoClicked = (ev: SupportedMouseEvent) => void;

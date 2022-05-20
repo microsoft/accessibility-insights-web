@@ -3,7 +3,7 @@
 import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './requirement-instructions.scss';
+import styles from './requirement-instructions.scss';
 
 export interface RequirementInstructionsProps {
     howToTest: JSX.Element;

@@ -64,7 +64,7 @@
         "react-devtools": "react-devtools",
         "react-devtools:setup": "yarn add -W --dev react-devtools && echo \"react-devtools installed, rebuild required. Do not commit this package.json/yarn.lock change!\"",
         "run:binskim": "node ./pipeline/scripts/run-binskim.js",
-        "scss:build": "typed-scss-modules \"src/**/*.scss\"",
+        "scss:build": "typed-scss-modules \"src/**/*.scss\" --exportType default",
         "scss:clean": "grunt clean:scss",
         "start:unified": "electron drop/electron/unified-dev/product/bundle/main.bundle.js",
         "start:unified:dev": "cross-env DEV_MODE=true yarnpkg start:unified",

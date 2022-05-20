@@ -79,7 +79,6 @@ const scssRule = (useHash = true) => ({
             options: {
                 esModule: true,
                 modules: {
-                    namedExport: true,
                     localIdentName: '[local]' + (useHash ? '--[hash:base64:5]' : ''),
                     exportLocalsConvention: 'camelCaseOnly',
                 },

@@ -5,13 +5,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
-
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     TestStatusChoiceGroup,
     TestStatusChoiceGroupProps,
 } from '../../../../../DetailsView/components/test-status-choice-group';
-import { undoButton } from '../../../../../DetailsView/components/test-status-choice-group.scss';
+import styles from '../../../../../DetailsView/components/test-status-choice-group.scss';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -151,7 +150,7 @@ describe('TestStatusChoiceGroup', () => {
 
         const component = React.createElement(TestableTestStatusChoiceGroup, props);
         const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, undoButton);
+        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, styles.undoButton);
 
         expect(link).toBeDefined();
 

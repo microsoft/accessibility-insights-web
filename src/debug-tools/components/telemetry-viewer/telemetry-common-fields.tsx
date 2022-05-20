@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
-import * as styles from './telemetry-common-fields.scss';
+import styles from './telemetry-common-fields.scss';
 
 export type TelemetryCommonFieldsProps = Pick<
     DebugToolsTelemetryMessage,

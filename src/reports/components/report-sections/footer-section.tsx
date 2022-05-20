@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { toolName } from 'content/strings/application';
 import * as React from 'react';
 
-import * as styles from './footer-section.scss';
+import styles from './footer-section.scss';
 
 export const FooterSection = NamedFC('FooterSection', () => {
     return (

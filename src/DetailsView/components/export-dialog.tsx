@@ -12,7 +12,7 @@ import {
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
-import * as styles from './export-dialog.scss';
+import styles from './export-dialog.scss';
 
 export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 

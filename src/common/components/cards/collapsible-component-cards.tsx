@@ -6,7 +6,7 @@ import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
-import * as styles from './collapsible-component-cards.scss';
+import styles from './collapsible-component-cards.scss';
 
 export const collapsibleButtonAutomationId = 'collapsible-component-cards-button';
 

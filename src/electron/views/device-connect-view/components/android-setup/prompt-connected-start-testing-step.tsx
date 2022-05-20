@@ -6,7 +6,7 @@ import {
     DeviceDescription,
     DeviceDescriptionProps,
 } from 'electron/views/device-connect-view/components/android-setup/device-description';
-import * as styles from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step.scss';
+import styles from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step.scss';
 import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import * as React from 'react';
 

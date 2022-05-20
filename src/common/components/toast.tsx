@@ -3,7 +3,7 @@
 import { css } from '@fluentui/utilities';
 import * as React from 'react';
 import { WindowUtils } from '../window-utils';
-import * as styles from './toast.scss';
+import styles from './toast.scss';
 
 export type ToastDeps = {
     windowUtils: WindowUtils;

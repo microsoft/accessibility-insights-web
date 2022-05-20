@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { OutcomeType } from 'reports/components/outcome-type';
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
-import * as styles from './result-section-title.scss';
+import styles from './result-section-title.scss';
 
 export type ResultSectionTitleProps = {
     title: string;

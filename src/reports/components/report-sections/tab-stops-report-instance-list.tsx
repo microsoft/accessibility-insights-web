@@ -6,7 +6,7 @@ import {
     ReportInstanceList,
     ReportInstanceListProps,
 } from 'reports/components/report-instance-list';
-import * as styles from './tab-stops-report-instance-list.scss';
+import styles from './tab-stops-report-instance-list.scss';
 
 export type TabStopsReportInstanceListProps = ReportInstanceListProps;
 

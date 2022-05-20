@@ -16,7 +16,7 @@ import {
     CollapsibleComponentCardsProps,
 } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
-import * as styles from './rules-with-instances.scss';
+import styles from './rules-with-instances.scss';
 
 export const ruleGroupAutomationId = 'cards-rule-group';
 

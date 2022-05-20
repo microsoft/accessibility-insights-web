@@ -6,7 +6,7 @@ import * as React from 'react';
 import { DropdownClickHandler } from '../dropdown-click-handler';
 import { FeatureFlags } from '../feature-flags';
 import { FeatureFlagStoreData } from '../types/store-data/feature-flag-store-data';
-import * as styles from './gear-menu-button.scss';
+import styles from './gear-menu-button.scss';
 
 export type GearMenuButtonDeps = {
     dropdownClickHandler: DropdownClickHandler;

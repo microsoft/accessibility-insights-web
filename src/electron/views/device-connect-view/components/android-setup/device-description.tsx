@@ -5,7 +5,7 @@ import { css, Icon } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import * as React from 'react';
-import * as styles from './device-description.scss';
+import styles from './device-description.scss';
 
 export interface DeviceDescriptionProps {
     deviceInfo?: DeviceInfo;

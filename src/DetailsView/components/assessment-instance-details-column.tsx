@@ -4,7 +4,7 @@ import { TooltipHost } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import * as React from 'react';
 
-import * as styles from './assessment-instance-details-column.scss';
+import styles from './assessment-instance-details-column.scss';
 
 export interface AssessmentInstanceDetailsColumnProps {
     labelText?: string;

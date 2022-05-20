@@ -7,7 +7,7 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import * as styles from './switcher.scss';
+import styles from './switcher.scss';
 
 export type SwitcherDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

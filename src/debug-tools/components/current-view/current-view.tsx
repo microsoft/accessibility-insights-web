@@ -8,7 +8,7 @@ import {
     TelemetryViewerDeps,
 } from 'debug-tools/components/telemetry-viewer/telemetry-viewer';
 import * as React from 'react';
-import * as styles from '../debug-tools-view.scss';
+import styles from '../debug-tools-view.scss';
 
 export type CurrentViewState = StoresTreeState & DebugToolsNavState;
 export type CurrentViewDeps = TelemetryViewerDeps & StoresTreeDeps;

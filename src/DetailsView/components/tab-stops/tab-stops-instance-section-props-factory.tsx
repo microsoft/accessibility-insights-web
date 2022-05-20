@@ -6,7 +6,7 @@ import { TabStopsMinimalRequirementHeader } from 'DetailsView/tab-stops-minimal-
 import { TabStopsRequirementInstancesCollapsibleContent } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import { TabStopsRequirementsWithInstancesProps } from 'DetailsView/tab-stops-requirements-with-instances';
-import * as styles from 'DetailsView/tab-stops-requirements-with-instances.scss';
+import styles from 'DetailsView/tab-stops-requirements-with-instances.scss';
 import * as React from 'react';
 import { InstanceReportModel } from 'reports/assessment-report-model';
 import { TabStopsReportInstanceList } from 'reports/components/report-sections/tab-stops-report-instance-list';

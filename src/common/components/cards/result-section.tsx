@@ -11,7 +11,7 @@ import {
     ResultSectionContentProps,
 } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
-import * as styles from './result-section.scss';
+import styles from './result-section.scss';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
 

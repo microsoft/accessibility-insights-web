@@ -22,7 +22,7 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
-import * as styles from './debug-tools-view.scss';
+import styles from './debug-tools-view.scss';
 
 export type DebugToolsViewState = DebugToolsNavState & CurrentViewState;
 
