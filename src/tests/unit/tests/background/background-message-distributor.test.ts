@@ -113,22 +113,46 @@ describe(BackgroundMessageDistributor, () => {
         expect(message.tabId).toBe(tabId);
     });
 
-    test.each(['response obj', undefined])(
-        'should distribute backchannel message and return %s',
-        response => {
-            const message = { payload: {} };
+    describe('should distribute backchannel message', () => {
+        const message = { payload: {} };
 
+        beforeEach(() => {
             setupTabInterpreterWithoutInteraction();
-            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
             setupNeverLogFailure();
-
             testSubject.initialize();
+        });
+
+        test('and return undefined if there is no response object', () => {
+            setupInterpretBackchannelMessage(message as InterpreterMessage);
 
             const actualResponse = distributeMessageCallback(message);
 
-            expect(actualResponse).toEqual(response);
-        },
-    );
+            expect(actualResponse).toBeUndefined();
+        });
+
+        test('and returns received non-promise response wrapped in a promise', async () => {
+            const response = 'response obj';
+            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
+
+            const actualResponse = distributeMessageCallback(message);
+
+            expect(actualResponse).toBeInstanceOf(Promise);
+            expect(await actualResponse).toBe(response);
+        });
+
+        test('and returns received promise response', async () => {
+            const response = 'response obj';
+            setupInterpretBackchannelMessage(
+                message as InterpreterMessage,
+                Promise.resolve(response),
+            );
+
+            const actualResponse = distributeMessageCallback(message);
+
+            expect(actualResponse).toBeInstanceOf(Promise);
+            expect(await actualResponse).toBe(response);
+        });
+    });
 
     function setupTabInterpreterWithoutInteraction(): void {
         tabContextManagerMock
@@ -139,14 +163,14 @@ describe(BackgroundMessageDistributor, () => {
     function setupGlobalInterpreterInteraction(success: boolean): void {
         globalInterpreterMock
             .setup(x => x.interpret(It.isAny()))
-            .returns(() => success)
+            .returns(() => ({ success, result: success ? Promise.resolve() : undefined }))
             .verifiable(Times.once());
     }
 
     function setupTabInterpreterInteraction(success: boolean): void {
         tabContextManagerMock
             .setup(m => m.interpretMessageForTab(tabId, It.isAny()))
-            .returns(() => success)
+            .returns(() => ({ success, result: success ? Promise.resolve() : undefined }))
             .verifiable(Times.once());
     }
 

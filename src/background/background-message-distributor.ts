@@ -4,7 +4,7 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Tab } from '../common/itab';
 import { Logger } from '../common/logging/logger';
-import { InterpreterMessage } from '../common/message';
+import { InterpreterMessage, InterpreterResponse } from '../common/message';
 import { GlobalContext } from './global-context';
 import { PostMessageContentHandler } from './post-message-content-handler';
 
@@ -31,12 +31,16 @@ export class BackgroundMessageDistributor {
     ): void | Promise<any> => {
         message.tabId = this.getTabId(message, sender);
 
-        const globalContextInterpreterPromise = this.globalContext.interpreter.interpret(message);
+        const { success: isInterpretedUsingGlobalContext, result: globalContextResult } =
+            this.globalContext.interpreter.interpret(message);
 
-        const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
-        const isInterpretedUsingTabContext = this.tryInterpretUsingTabContext(message);
-        const { success: isInterpretedAsBackchannelWindowMessage, response } =
-            this.postMessageContentHandler.handleMessage(message);
+        const { success: isInterpretedUsingTabContext, result: tabContextResult } =
+            this.tryInterpretUsingTabContext(message);
+
+        const {
+            success: isInterpretedAsBackchannelWindowMessage,
+            response: backchannelMessageResponse,
+        } = this.postMessageContentHandler.handleMessage(message);
 
         if (
             !isInterpretedUsingGlobalContext &&
@@ -46,8 +50,11 @@ export class BackgroundMessageDistributor {
             this.logger.log('Unable to interpret message - ', message);
         }
 
-        if (response) {
-            return response;
+        if (globalContextResult || tabContextResult || backchannelMessageResponse) {
+            return this.createResponsePromise(
+                [globalContextResult, tabContextResult],
+                backchannelMessageResponse,
+            );
         }
     };
 
@@ -61,11 +68,20 @@ export class BackgroundMessageDistributor {
         return null;
     }
 
-    private tryInterpretUsingTabContext(message: InterpreterMessage): boolean {
+    private tryInterpretUsingTabContext(message: InterpreterMessage): InterpreterResponse {
         if (message.tabId != null) {
             return this.tabContextManager.interpretMessageForTab(message.tabId, message);
         }
 
-        return false;
+        return { success: false };
+    }
+
+    private async createResponsePromise(
+        promisesToAwait: (Promise<void> | void)[],
+        response: any | Promise<any>,
+    ): Promise<any> {
+        await Promise.all(promisesToAwait);
+
+        return response;
     }
 }
