@@ -17,7 +17,7 @@ export class ConsoleTelemetryClient implements TelemetryClient {
     public disableTelemetry(): void {
         // no-op
     }
-    public trackEvent(name: string, properties?: { [name: string]: string }): void {
+    public async trackEvent(name: string, properties?: { [name: string]: string }): Promise<void> {
         properties = {
             ...properties,
             ...this.telemetryDataFactory.getData(),
