@@ -58,6 +58,9 @@ describe('TargetPageController', () => {
         );
         mockTabContextFactory = Mock.ofType<TabContextFactory>();
         mockTabContextManager = Mock.ofType<TabContextManager>();
+        mockTabContextManager
+            .setup(m => m.interpretMessageForTab(It.isAny(), It.isAny()))
+            .returns(() => ({ success: true }));
         idbInstanceMock.reset();
         knownTabIds = {};
     });
@@ -226,6 +229,7 @@ describe('TargetPageController', () => {
                 };
                 mockTabContextManager
                     .setup(m => m.interpretMessageForTab(EXISTING_ACTIVE_TAB_ID, expectedMessage))
+                    .returns(() => ({ success: true }))
                     .verifiable();
 
                 await testSubject.initialize();
@@ -309,6 +313,7 @@ describe('TargetPageController', () => {
 
                 it('should remove tabToContextMap entries for tabs that are removed', async () => {
                     setupDatabaseInstance(Times.once(), [EXISTING_INACTIVE_TAB_ID]);
+                    setupInterpretMessageForTab(EXISTING_ACTIVE_TAB_ID, Messages.Tab.Remove);
                     mockTabContextManager
                         .setup(m => m.deleteTabContext(EXISTING_ACTIVE_TAB_ID))
                         .verifiable();
@@ -346,6 +351,11 @@ describe('TargetPageController', () => {
 
                 it('should ignore inactive tabs', async () => {
                     setupNeverInterpretMessage(EXISTING_INACTIVE_TAB_ID);
+                    setupInterpretMessageForTab(
+                        EXISTING_ACTIVE_TAB_ID,
+                        Messages.Tab.VisibilityChange,
+                        { hidden: false },
+                    );
                     await testSubject.onWindowFocusChanged();
                 });
             });
@@ -368,6 +378,11 @@ describe('TargetPageController', () => {
                         Messages.Tab.VisibilityChange,
                         { hidden: false },
                     );
+                    setupInterpretMessageForTab(
+                        EXISTING_ACTIVE_TAB_ID,
+                        Messages.Tab.VisibilityChange,
+                        { hidden: true },
+                    );
 
                     await testSubject.onTabActivated(activeInfo);
                 });
@@ -383,6 +398,11 @@ describe('TargetPageController', () => {
                         EXISTING_ACTIVE_TAB_ID,
                         Messages.Tab.VisibilityChange,
                         { hidden: true },
+                    );
+                    setupInterpretMessageForTab(
+                        EXISTING_INACTIVE_TAB_ID,
+                        Messages.Tab.VisibilityChange,
+                        { hidden: false },
                     );
 
                     await testSubject.onTabActivated(activeInfo);
@@ -400,6 +420,14 @@ describe('TargetPageController', () => {
                         Messages.Tab.VisibilityChange,
                         { hidden: true },
                     );
+                    setupInterpretMessageForTab(
+                        EXISTING_INACTIVE_TAB_ID,
+                        Messages.Tab.VisibilityChange,
+                        { hidden: true },
+                    );
+                    setupInterpretMessageForTab(NEW_TAB_ID, Messages.Tab.VisibilityChange, {
+                        hidden: false,
+                    });
 
                     await testSubject.onTabActivated(activeInfo);
                 });
@@ -429,6 +457,9 @@ describe('TargetPageController', () => {
                         EXISTING_INACTIVE_TAB_ID,
                         NEW_TAB_ID,
                     ]);
+                    setupInterpretMessageForTab(NEW_TAB_ID, Messages.Tab.ExistingTabUpdated, {
+                        ...NEW_TAB,
+                    });
                     setupTryCreateTabContexts([NEW_TAB_ID]);
                     mockBrowserAdapter.tabs.push(NEW_TAB);
                     updateTabInBrowserMock(NEW_TAB_ID, changeInfoWithoutUrl);
@@ -498,6 +529,7 @@ describe('TargetPageController', () => {
         }
         mockTabContextManager
             .setup(m => m.interpretMessageForTab(tabId, expectedMessage))
+            .returns(() => ({ success: true }))
             .verifiable();
     }
 

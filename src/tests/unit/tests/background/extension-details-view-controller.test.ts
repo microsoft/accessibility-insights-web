@@ -3,7 +3,7 @@
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Message } from 'common/message';
+import { InterpreterResponse, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { isEmpty } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -12,7 +12,7 @@ import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => void>;
+    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => InterpreterResponse>;
     let testSubject: ExtensionDetailsViewController;
     let tabIdToDetailsViewMap: DictionaryStringTo<number>;
     const indexedDBDataKey: string = 'tabIdToDetailsViewMap';
@@ -20,7 +20,7 @@ describe('ExtensionDetailsViewController', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        interpretMessageForTabMock = Mock.ofInstance(() => null);
+        interpretMessageForTabMock = Mock.ofInstance(() => ({ success: true }));
 
         tabIdToDetailsViewMap = {};
         idbInstanceMock.reset();
@@ -76,6 +76,7 @@ describe('ExtensionDetailsViewController', () => {
                             tabId: 3,
                         }),
                     )
+                    .returns(() => ({ success: true }))
                     .verifiable(Times.once());
 
                 if (persistData) {
@@ -340,6 +341,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
+                .returns(() => ({ success: true }))
                 .verifiable();
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
@@ -371,6 +373,10 @@ describe('ExtensionDetailsViewController', () => {
         test('showDetailsView after details tab navigated to different details page', async () => {
             const targetTabId = 5;
             const detailsViewTabId = 10;
+
+            interpretMessageForTabMock
+                .setup(i => i(It.isAny(), It.isAny()))
+                .returns(() => ({ success: true }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 
@@ -563,6 +569,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
+                .returns(() => ({ success: true }))
                 .verifiable();
 
             // call show details once
@@ -586,6 +593,10 @@ describe('ExtensionDetailsViewController', () => {
         test('showDetailsView after details tab removed, remove handler not set', async () => {
             const targetTabId = 5;
             const detailsViewTabId = 10;
+
+            interpretMessageForTabMock
+                .setup(i => i(It.isAny(), It.isAny()))
+                .returns(() => ({ success: true }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 
