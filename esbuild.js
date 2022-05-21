@@ -22,7 +22,7 @@ const webExtensionEntryFiles = {
     injected: `${src}/injected/client-init.ts`,
     popup: `${src}/popup/popup-init.ts`,
     insights: `${src}/views/insights/initializer.ts`,
-    'details-view': `${src}/DetailsView/details-view-initializer.ts`,
+    detailsView: `${src}/DetailsView/details-view-initializer.ts`,
     devtools: `${src}/Devtools/dev-tool-init.ts`,
     serviceWorker: `${src}/background/service-worker-init.ts`,
     debugTools: `${src}/debug-tools/initializer/debug-tools-init.tsx`,
@@ -56,7 +56,7 @@ switch (argsObj.env) {
     case 'prod':
         isProd = true;
         outdir = prodWebExtensionOutDir;
-        delete entryFiles['details-view'];
+        delete entryFiles.detailsView;
         break;
 
     case 'devM3':
@@ -119,7 +119,7 @@ esbuild
         // minification of the details-view bundle leads to a collision with the axe-core package,
         // so we do not minify that bundle specifically.
         config.entryPoints = {
-            'details-view': `${src}/DetailsView/details-view-initializer.ts`,
+            detailsView: `${src}/DetailsView/details-view-initializer.ts`,
         };
         config.minify = false;
         esbuild.build(config).catch(() => process.exit(1));
