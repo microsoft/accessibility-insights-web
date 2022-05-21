@@ -24,7 +24,7 @@ const commonEntryFiles = {
     ],
     popup: [path.resolve(__dirname, 'src/popup/popup-init.ts')],
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
-    detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
+    'details-view': [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
     devtools: [path.resolve(__dirname, 'src/Devtools/dev-tool-init.ts')],
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
     serviceWorker: [path.resolve(__dirname, 'src/background/service-worker-init.ts')],
@@ -158,7 +158,7 @@ const devConfig = {
     ...commonConfig,
     entry: {
         ...commonEntryFiles,
-        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        'details-view': [...reactDevtoolsEntryFiles, ...commonEntryFiles['details-view']],
         popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
     },
     name: 'dev',
@@ -177,7 +177,7 @@ const devMv3Config = {
     ...commonConfig,
     entry: {
         ...commonEntryFiles,
-        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        'details-view': [...reactDevtoolsEntryFiles, ...commonEntryFiles['details-view']],
         popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
     },
     name: 'dev-mv3',

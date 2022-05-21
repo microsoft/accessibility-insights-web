@@ -15,6 +15,8 @@ module.exports = {
         '!<rootDir>/**/jest.config.js',
         '!<rootDir>/**/prettier.config.js',
         '!<rootDir>/**/webpack.config.js',
+        '!<rootDir>/**/esbuild.js',
+        '!<rootDir>/**/style-config.js',
         '!<rootDir>/**/node_modules/**',
         '!<rootDir>/**/test-results/**',
     ],
