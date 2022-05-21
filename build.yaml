@@ -25,10 +25,6 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn type-check
-            displayName: type check code
-            timeoutInMinutes: 3
-
           - script: yarn lint:check:all
             displayName: check lint errors
             timeoutInMinutes: 5
@@ -43,6 +39,10 @@ jobs:
 
           - script: yarn scss:build
             displayName: generate typings for scss files
+            timeoutInMinutes: 3
+
+          - script: yarn type-check
+            displayName: type check code
             timeoutInMinutes: 3
 
           - script: yarn null:check
