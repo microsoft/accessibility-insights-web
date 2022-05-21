@@ -174,7 +174,7 @@ module.exports = function (grunt) {
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'generate-scss-typings': `"${typedScssModulesPath}" src`,
+            'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
         },
         sass: {
