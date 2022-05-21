@@ -27,7 +27,7 @@ jobs:
 
           - script: yarn type-check
             displayName: type check code
-            timeoutInMinutes: 5
+            timeoutInMinutes: 3
 
           - script: yarn lint:check:all
             displayName: check lint errors

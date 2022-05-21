@@ -167,7 +167,7 @@ jobs:
       timeout-minutes: 1
 
     - run: yarn type-check
-      timeout-minutes: 1
+      timeout-minutes: 3
 
     - run: yarn format:check
       timeout-minutes: 5
