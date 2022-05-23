@@ -83,7 +83,7 @@ export class DrawingController {
                         configId,
                     );
                 } else {
-                    await this.enableVisualizationInIFrames(
+                    this.enableVisualizationInIFrames(
                         resultsForFrame.frame,
                         resultsForFrame.elementResults,
                         configId,
@@ -95,7 +95,7 @@ export class DrawingController {
 
             const iframes = this.getAllFrames();
             for (let pos = 0; pos < iframes.length; pos++) {
-                await this.enableVisualizationInIFrames(iframes[pos], null, configId);
+                this.enableVisualizationInIFrames(iframes[pos], null, configId);
             }
         }
     }
@@ -112,11 +112,11 @@ export class DrawingController {
         await drawer.drawLayout();
     };
 
-    private enableVisualizationInIFrames = async (
+    private enableVisualizationInIFrames = (
         frame: HTMLIFrameElement,
         frameResults: AssessmentVisualizationInstance[],
         configId: string,
-    ): Promise<void> => {
+    ): void => {
         const message: VisualizationWindowMessage = {
             elementResults: frameResults,
             isEnabled: true,
@@ -124,10 +124,9 @@ export class DrawingController {
             configId: configId,
         };
 
-        await this.frameMessenger.sendMessageToFrame(
-            frame,
-            this.createFrameRequestMessage(message),
-        );
+        // This message recursively triggers enableVisualization in all iframes.
+        // Intentionally floating this promise.
+        void this.frameMessenger.sendMessageToFrame(frame, this.createFrameRequestMessage(message));
     };
 
     private async disableVisualization(configId: string): Promise<void> {
