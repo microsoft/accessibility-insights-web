@@ -121,7 +121,7 @@ describe('FocusChangeHandler', () => {
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target from card selection is not null, does not match a result and different from old target', () => {
+    test('onStoreChange: new target from card selection is not null, does not match a result and different from old target', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -138,7 +138,7 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrowError(
+        await expect(testSubject.handleFocusChangeWithStoreData(storeData)).rejects.toThrowError(
             'focused result was not found',
         );
     });
