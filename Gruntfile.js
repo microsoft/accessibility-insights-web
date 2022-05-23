@@ -168,7 +168,7 @@ module.exports = function (grunt) {
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
-            'esbuild-dev-mv3': `node esbuild.js --env devM3`,
+            'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
             'webpack-prod': `"${webpackPath}" --config-name prod`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,

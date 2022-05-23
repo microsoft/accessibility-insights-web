@@ -59,7 +59,7 @@ switch (argsObj.env) {
         delete entryFiles.detailsView;
         break;
 
-    case 'devM3':
+    case 'dev-mv3':
         outdir = devWebExtensionM3Outdir;
         define = {
             global: 'globalThis',
