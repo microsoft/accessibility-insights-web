@@ -42,7 +42,7 @@
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
         "download:electron-mirror:binaries": "node ./pipeline/scripts/download-electron-mirror-binaries.js",
         "download:electron-mirror:symbols": "node ./pipeline/scripts/download-electron-mirror-symbols.js",
-        "fastpass": "npm-run-all --print-label scss:build --parallel copyright:check lint:check lint:scss format:check null:check && grunt ada-cat",
+        "fastpass": "npm-run-all --print-label scss:build --parallel type-check copyright:check lint:check lint:scss format:check null:check && grunt ada-cat",
         "fastpass:fix": "npm-run-all --print-label --serial scss:clean copyright:fix lint:fix lint:scss:fix format:fix",
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
