@@ -3336,10 +3336,10 @@ app-builder-lib@^23.0.9:
     tar "^6.1.11"
     temp-file "^3.4.0"
 
-appium-adb@^9.5.0:
-  version "9.5.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.5.0.tgz#fc56a61c8a0862cf28da3933f77ed57ba2be38fc"
-  integrity sha512-iCzhqyjiqRO6dOMmq5n3r7Al/s64SqeZtsfOcSy3XC2BlLZ3zlgXc7NOvHp+OrNRMqLnscVrlFXsyvp4Yr5TxQ==
+appium-adb@^9.6.0:
+  version "9.6.0"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.6.0.tgz#141cde077d0668f50b91d0aaae1ed1fe17b7f260"
+  integrity sha512-3xK6Eut1zx6ngOAoBsciNq/DafQyegzgkaz3GqRidyAhWc7rlVjx3k9sj0yJywa5u1570WDMoW+H2/XkNVbI4Q==
   dependencies:
     "@appium/support" "^2.55.3"
     "@babel/runtime" "^7.0.0"
@@ -11297,10 +11297,10 @@ sass-loader@^13.0.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.52.0:
-  version "1.52.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.52.0.tgz#3dc755ff459858ce7062887181648701f028c4f5"
-  integrity sha512-6EnTglag2oVD8sNJCxUi2Jd3ICH9tJ5Mqudt/gIZNBR2uKJUBZuTpW9O1t04SkDLP7VFa76FCWTV2rwchqM8Kw==
+sass@^1.52.1:
+  version "1.52.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.52.1.tgz#554693da808543031f9423911d62c60a1acf7889"
+  integrity sha512-fSzYTbr7z8oQnVJ3Acp9hV80dM1fkMN7mSD/25mpcct9F7FPBMOI8krEYALgU1aZoqGhQNhTPsuSmxjnIvAm4Q==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
