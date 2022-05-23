@@ -95,7 +95,7 @@
     "devDependencies": {
         "7zip-bin": "^5.2.0",
         "@electron/get": "^1.14.1",
-        "@swc/core": "^1.2.187",
+        "@swc/core": "^1.2.189",
         "@swc/jest": "^0.2.21",
         "@types/chrome": "0.0.188",
         "@types/enzyme": "^3.10.12",
@@ -157,7 +157,7 @@
         "preprocess": "^3.2.0",
         "prettier": "^2.6.2",
         "regenerator-runtime": "^0.13.9",
-        "sass": "^1.52.0",
+        "sass": "^1.52.1",
         "sass-loader": "^13.0.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.15.0",
