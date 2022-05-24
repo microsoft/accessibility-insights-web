@@ -520,7 +520,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     test('loadAssessment', () => {
         const assessmentData: VersionedAssessmentData = {
             version: 2,
-            assessmentData: { persistedTabInfo: {} } as AssessmentStoreData,
+            assessmentData: {} as AssessmentStoreData,
         };
         const tabId = -1;
         const telemetry: BaseTelemetryData = {
@@ -534,11 +534,10 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                 tabId,
                 versionedAssessmentData: {
                     version: 2,
-                    assessmentData: {
-                        persistedTabInfo: { detailsViewId: 'testId' },
-                    } as AssessmentStoreData,
+                    assessmentData: {} as AssessmentStoreData,
                 },
                 telemetry,
+                detailsViewId: 'testId',
             } as LoadAssessmentPayload,
         };
         const expectedMessageToGoToOverview = {

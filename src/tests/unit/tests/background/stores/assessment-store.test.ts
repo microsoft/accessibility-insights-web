@@ -613,6 +613,7 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
+        const detailsViewId = 'testId';
 
         const tab: Tab = {
             id: tabId,
@@ -624,7 +625,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(oldTabId, null, null)
+            .withTargetTab(oldTabId, null, null, 'oldId')
             .build();
 
         const payload: LoadAssessmentPayload = {
@@ -633,13 +634,14 @@ describe('AssessmentStore', () => {
                 version: -1,
                 assessmentData: initialState,
             },
+            detailsViewId,
         };
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title)
+            .withTargetTab(tabId, url, title, detailsViewId)
             .build();
 
         setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);

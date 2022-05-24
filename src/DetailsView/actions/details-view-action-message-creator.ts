@@ -595,21 +595,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         tabId: number,
         detailsViewId: string,
     ): void => {
-        if (assessmentData !== undefined) {
-            assessmentData.assessmentData.persistedTabInfo.detailsViewId = detailsViewId;
-        } else {
-            assessmentData = {
-                assessmentData: {
-                    persistedTabInfo: { detailsViewId },
-                },
-            } as VersionedAssessmentData;
-        }
-
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
             tabId,
+            detailsViewId,
         };
         const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
         this.dispatcher.dispatchMessage({
