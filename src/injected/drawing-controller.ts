@@ -76,8 +76,9 @@ export class DrawingController {
     ): Promise<void> {
         if (elementResultsByFrames) {
             await Promise.all(
-                elementResultsByFrames.map(frameResults =>
-                    this.enableVisualizationForFrameResults(frameResults, configId),
+                elementResultsByFrames.map(
+                    async frameResults =>
+                        await this.enableVisualizationForFrameResults(frameResults, configId),
                 ),
             );
         } else {
@@ -85,8 +86,9 @@ export class DrawingController {
 
             const childFrames = this.getChildFrames();
             await Promise.all(
-                childFrames.map(iframe =>
-                    this.enableVisualizationInChildFrame(iframe, null, configId),
+                childFrames.map(
+                    async iframe =>
+                        await this.enableVisualizationInChildFrame(iframe, null, configId),
                 ),
             );
         }
@@ -154,7 +156,7 @@ export class DrawingController {
 
         await Promise.all(
             iframes.map(async iframe => {
-                this.disableVisualizationInChildFrame(configId, iframe);
+                await this.disableVisualizationInChildFrame(configId, iframe);
             }),
         );
     };
