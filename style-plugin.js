@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+const path = require('path');
 const postcss = require('postcss');
 const postCssModules = require('postcss-modules');
 const sass = require('sass');
@@ -16,9 +17,9 @@ const CreateStylePlugin = isProd => {
                 },
                 args => {
                     const prefixLen = 'css-module:'.length;
-                    const suffixLen = '.scss'.length;
+                    const extNameLength = path.extname(args.path).length;
                     return {
-                        path: args.path.slice(prefixLen, args.path.length - suffixLen),
+                        path: args.path.slice(prefixLen, args.path.length - extNameLength),
                         namespace: 'css-modules',
                         pluginData: args.pluginData,
                     };
