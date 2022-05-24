@@ -116,12 +116,14 @@ esbuild
             return;
         }
 
-        // minification of the details-view bundle leads to a collision with the axe-core package,
-        // so we do not minify that bundle specifically.
+        // minification of the details-view bundle can lead to a collision with the axe-core
+        // package, so we do not minify the identifiers specifically for the details-view bundle.
         config.entryPoints = {
             detailsView: `${src}/DetailsView/details-view-initializer.ts`,
         };
         config.minify = false;
+        config.minifyWhitespace = true;
+        config.minifySyntax = true;
         esbuild.build(config).catch(console.error);
     })
     .catch(console.error);
