@@ -9261,7 +9261,7 @@ mv@2.1.1:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-nanoid@^3.3.3:
+nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
@@ -10401,12 +10401,12 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
-postcss@^8.4.13, postcss@^8.4.7:
-  version "8.4.13"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.13.tgz#7c87bc268e79f7f86524235821dfdf9f73e5d575"
-  integrity sha512-jtL6eTBrza5MPzy8oJLFuUscHDXTV5KcLlqAWHl5q5WYRfnNRGSmOZmOZ1T6Gy7A99mOZfqungmZMpMmCVJ8ZA==
+postcss@^8.4.14, postcss@^8.4.7:
+  version "8.4.14"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
+  integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
   dependencies:
-    nanoid "^3.3.3"
+    nanoid "^3.3.4"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
@@ -12070,10 +12070,10 @@ stylelint-scss@^4.0.0:
     postcss-selector-parser "^6.0.6"
     postcss-value-parser "^4.1.0"
 
-stylelint@^14.8.3:
-  version "14.8.3"
-  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-14.8.3.tgz#25d2df1e010cda52ff56327059d1ce25319109be"
-  integrity sha512-aLpskXwSgFEBYbFRKA/BfuyYMGuXNtn2t5GqoffNPSezvw97x/vVNWcZNF0+cwt+LBjfvyq9/MRE3OjInGRgNA==
+stylelint@^14.8.4:
+  version "14.8.4"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-14.8.4.tgz#e8bfa12cba88a244bcab4c94b6a7481c5b730963"
+  integrity sha512-VoyFmif50YNL2R1NC0NxbprTbvnihiqE9tdwb/IAUvlncoS3dEllSSEfvTaQQ6BTCp6iv6daIg5v7ryRSlBdgw==
   dependencies:
     balanced-match "^2.0.0"
     colord "^2.9.2"
@@ -12099,7 +12099,7 @@ stylelint@^14.8.3:
     micromatch "^4.0.5"
     normalize-path "^3.0.0"
     picocolors "^1.0.0"
-    postcss "^8.4.13"
+    postcss "^8.4.14"
     postcss-media-query-parser "^0.2.3"
     postcss-resolve-nested-selector "^0.1.1"
     postcss-safe-parser "^6.0.0"
