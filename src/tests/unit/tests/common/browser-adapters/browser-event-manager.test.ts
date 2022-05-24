@@ -122,7 +122,7 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
@@ -173,7 +173,7 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
@@ -190,7 +190,7 @@ describe(BrowserEventManager, () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
@@ -217,7 +217,7 @@ describe(BrowserEventManager, () => {
         testSubject.addApplicationListener('event-type', () => stalledAppListenerResponse.promise);
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
@@ -240,7 +240,7 @@ describe(BrowserEventManager, () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,

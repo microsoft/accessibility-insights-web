@@ -28,15 +28,14 @@ interface DeferredEventDetails extends EventDetails {
 // As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
 // service worker if this is exceeded, even if other work is outstanding. To avoid this, our
 // own timeout MUST be shorter than Chromium's.
-const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
+const EVENT_TIMEOUT_MS = 60 * 1000;
 
 // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
 // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
 // and continue to do some async work after returning undefined. To ensure those listeners have
 // time to do their work, the event manager adds this (arbitrary) delay into its response to the
 // browser event.
-// We default to 0 to ensure we don't create unnecessary timeouts in the manifest v2 extension.
-const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
+const FIRE_AND_FORGET_EVENT_DELAY_MS = 30 * 1000;
 
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
@@ -54,16 +53,17 @@ export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
-    private readonly fireAndForgetEventDelayMs: number = 0;
+    private readonly fireAndForgetEventDelayMs: number;
 
     constructor(
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
         isServiceWorker: boolean = false,
     ) {
-        if (isServiceWorker) {
-            this.fireAndForgetEventDelayMs = FIRE_AND_FORGET_EVENT_DELAY_MS;
-        }
+        // The fire and forget delay is not necessary in the manifest v2 background page, so we
+        // avoid using it there because it carries a high risk of accidentally breaking it while
+        // we're still working on manifest v3 changes to eliminate fire and forget events entirely
+        this.fireAndForgetEventDelayMs = isServiceWorker ? FIRE_AND_FORGET_EVENT_DELAY_MS : 0;
     }
 
     public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
