@@ -54,10 +54,7 @@ export class DrawingController {
     public processRequest = async (message: VisualizationWindowMessage): Promise<void> => {
         this.featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
-            const elementResultsByFrames = message.elementResults
-                ? this.axeResultsHelper.splitResultsByFrame(message.elementResults)
-                : null;
-            await this.enableVisualization(elementResultsByFrames, message.configId);
+            await this.enableVisualization(message.elementResults, message.configId);
         } else {
             await this.disableVisualization(message.configId);
         }
@@ -71,12 +68,14 @@ export class DrawingController {
     };
 
     private async enableVisualization(
-        elementResultsByFrames: HTMLIFrameResult[] | null,
+        elementResults: AssessmentVisualizationInstance[] | undefined,
         configId: string,
     ): Promise<void> {
-        if (elementResultsByFrames) {
+        if (elementResults) {
+            const elementResultsByFrame = this.axeResultsHelper.splitResultsByFrame(elementResults);
+
             await Promise.all(
-                elementResultsByFrames.map(
+                elementResultsByFrame.map(
                     async frameResults =>
                         await this.enableVisualizationForFrameResults(frameResults, configId),
                 ),
