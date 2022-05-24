@@ -122,6 +122,6 @@ esbuild
             detailsView: `${src}/DetailsView/details-view-initializer.ts`,
         };
         config.minify = false;
-        esbuild.build(config).catch(() => process.exit(1));
+        esbuild.build(config).catch(console.error);
     })
-    .catch(() => process.exit(1));
+    .catch(console.error);
