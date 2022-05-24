@@ -62,8 +62,11 @@ const CreateStylePlugin = isProd => {
                         }),
                     ]).process(source, { from: undefined });
 
+                    const pathAsJsString = JSON.stringify(args.path);
+                    const cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
+
                     return {
-                        contents: `import "css-module:${args.path}";\nexport default ${singleModuleCssJSON};`,
+                        contents: `import ${cssModuleImportString};\nexport default ${singleModuleCssJSON};`,
                         loader: 'js',
                         pluginData: css,
                     };
