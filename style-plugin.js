@@ -50,7 +50,9 @@ const CreateStylePlugin = isProd => {
                     filter: /\.s?css$/,
                 },
                 async args => {
-                    const source = await sass.renderSync({ file: args.path }).css.toString();
+                    // per sass documentation, compile is twice as fast as compileAsync, hence it's
+                    // usage here. https://sass-lang.com/documentation/js-api/modules#compileAsync
+                    const source = sass.compile(args.path).css.toString();
                     let singleModuleCssJSON;
                     const { css } = await postcss([
                         postCssModules({
