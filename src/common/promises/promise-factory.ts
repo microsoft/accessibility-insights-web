@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export type TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
+export type TimeoutCreator = <T>(
+    promise: Promise<T>,
+    delayInMilliseconds: number,
+    errorContext?: any,
+) => Promise<T>;
 export type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
 
 export type ExternalResolutionPromise = {
@@ -9,7 +13,13 @@ export type ExternalResolutionPromise = {
     rejectHook: (reason?: any) => any;
 };
 
-export class TimeoutError extends Error {}
+export class TimeoutError extends Error {
+    public context?: string;
+    public constructor(message: string, context?: string) {
+        super(message);
+        this.context = context;
+    }
+}
 
 export type PromiseFactory = {
     timeout: TimeoutCreator;
@@ -24,11 +34,19 @@ const createDelay: DelayCreator = (result: any, delayInMs: number) => {
     return externalResolution.promise;
 };
 
-const createTimeout: TimeoutCreator = <T>(promise: Promise<T>, delayInMilliseconds: number) => {
+const createTimeout: TimeoutCreator = <T>(
+    promise: Promise<T>,
+    delayInMilliseconds: number,
+    errorContext?: string,
+) => {
     const timeout = new Promise<T>((resolve, reject) => {
         const timeoutId = setTimeout(() => {
             clearTimeout(timeoutId);
-            reject(new TimeoutError(`Timed out after ${delayInMilliseconds}ms`));
+            let errorMessage = `Timed out after ${delayInMilliseconds}ms`;
+            if (errorContext) {
+                errorMessage += ` at context ${errorContext}`;
+            }
+            reject(new TimeoutError(errorMessage, errorContext));
         }, delayInMilliseconds);
     });
 

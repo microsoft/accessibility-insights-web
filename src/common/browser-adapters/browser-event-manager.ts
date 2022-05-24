@@ -163,7 +163,11 @@ export class BrowserEventManager {
         if (isPromise(result)) {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
             // prevents the service worker going idle before a response is sent
-            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT_MS);
+            const timeoutErrorContext = `[browser event listener: ${JSON.stringify({
+                eventType,
+                eventArgs,
+            })}]`;
+            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT_MS, timeoutErrorContext);
         } else {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
@@ -193,11 +197,13 @@ export class BrowserEventManager {
         };
         this.deferredEvents.push(deferredEventDetails);
 
+        const timeoutErrorContext = `[deferred browser event: ${JSON.stringify(eventDetails)}]`;
+
         // It's important that we ensure the promise settles even if a listener never registers
         // to prevent the Service Worker from being detected as stalled and torn down while other
         // work is still in progress.
         return this.promiseFactory
-            .timeout(deferredResolution.promise, EVENT_TIMEOUT_MS)
+            .timeout(deferredResolution.promise, EVENT_TIMEOUT_MS, timeoutErrorContext)
             .finally(() => {
                 deferredEventDetails.isStale = true;
             });

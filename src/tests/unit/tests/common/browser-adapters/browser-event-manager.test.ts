@@ -159,7 +159,8 @@ describe(BrowserEventManager, () => {
 
         testSubject.addBrowserListener(testEvent, 'event-type');
         // event invoked before listener registered
-        const promiseReturnedToEvent = testEvent.invoke();
+        const testEventArg = 'test-event-arg';
+        const promiseReturnedToEvent = testEvent.invoke(testEventArg);
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', () => {
@@ -177,7 +178,9 @@ describe(BrowserEventManager, () => {
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot();
     });
 
     it('times out after 4 minutes if no ApplicationListener registers in time', async () => {
@@ -192,7 +195,9 @@ describe(BrowserEventManager, () => {
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot();
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', () => {
@@ -217,7 +222,9 @@ describe(BrowserEventManager, () => {
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot();
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
@@ -238,7 +245,9 @@ describe(BrowserEventManager, () => {
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot();
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
