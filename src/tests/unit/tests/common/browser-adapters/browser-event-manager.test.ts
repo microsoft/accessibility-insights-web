@@ -180,7 +180,9 @@ describe(BrowserEventManager, () => {
         );
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot();
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[\\"test-event-arg\\"]}]"`,
+        );
     });
 
     it('times out after 4 minutes if no ApplicationListener registers in time', async () => {
@@ -197,7 +199,9 @@ describe(BrowserEventManager, () => {
         );
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot();
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', () => {
@@ -224,7 +228,9 @@ describe(BrowserEventManager, () => {
         );
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot();
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
@@ -247,7 +253,9 @@ describe(BrowserEventManager, () => {
         );
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot();
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[browser event listener: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
