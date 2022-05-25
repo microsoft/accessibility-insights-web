@@ -222,7 +222,7 @@ export class WindowInitializer {
             logger,
         );
         // Intentionally floating this promise
-        extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
+        void extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
     }
 
     protected dispose(): void {

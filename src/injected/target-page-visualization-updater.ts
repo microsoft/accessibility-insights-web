@@ -24,7 +24,7 @@ export type UpdateVisualization = (
     visualizationType: VisualizationType,
     step: string,
     storeData: TargetPageStoreData,
-) => void;
+) => Promise<void>;
 export class TargetPageVisualizationUpdater {
     private previousVisualizationStates: TestStepVisualizationStateMap = {};
 
@@ -36,7 +36,7 @@ export class TargetPageVisualizationUpdater {
         private visualizationNeedsUpdate: VisualizationNeedsUpdateCallback,
     ) {}
 
-    public updateVisualization: UpdateVisualization = (
+    public updateVisualization: UpdateVisualization = async (
         visualizationType: VisualizationType,
         stepKey: string,
         storeData: TargetPageStoreData,
@@ -60,7 +60,7 @@ export class TargetPageVisualizationUpdater {
         this.updatePreviousVisualizationState(visualizationType, configId, newState);
 
         if (newState.enabled) {
-            this.drawingInitiator.enableVisualization(
+            await this.drawingInitiator.enableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
                 cloneDeep(newState.selectorMap),
@@ -68,7 +68,7 @@ export class TargetPageVisualizationUpdater {
                 configuration.visualizationInstanceProcessor(stepKey),
             );
         } else {
-            this.drawingInitiator.disableVisualization(
+            await this.drawingInitiator.disableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
                 configId,

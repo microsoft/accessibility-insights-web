@@ -15,11 +15,11 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         private readonly getCurrentDate: typeof DateProvider.getCurrentDate = DateProvider.getCurrentDate,
     ) {}
 
-    public start = () => {
+    public start = async () => {
         this.dom.addEventListener('focusin', this.onFocusIn);
     };
 
-    public stop = () => {
+    public stop = async () => {
         this.dom.removeEventListener('focusin', this.onFocusIn);
     };
 
