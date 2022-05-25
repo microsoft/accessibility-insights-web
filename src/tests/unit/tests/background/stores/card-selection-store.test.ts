@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabActions } from 'background/actions/tab-actions';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
@@ -34,7 +35,7 @@ describe('CardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeDefined();
+        expect(defaultState.rules).toBeUndefined();
     });
 
     it.each`
@@ -90,6 +91,7 @@ describe('CardSelectionStore Test', () => {
             new CardSelectionStore(
                 new CardSelectionActions(),
                 actions,
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -384,6 +386,17 @@ describe('CardSelectionStore Test', () => {
         });
     });
 
+    test('reset data on tab URL change', () => {
+        initialState.rules = {};
+        initialState.visualHelperEnabled = true;
+        expectedState.rules = undefined;
+        expectedState.visualHelperEnabled = false;
+        createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
+    });
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
@@ -399,6 +412,7 @@ describe('CardSelectionStore Test', () => {
             new CardSelectionStore(
                 actions,
                 new UnifiedScanResultActions(),
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -407,5 +421,23 @@ describe('CardSelectionStore Test', () => {
             );
 
         return new StoreTester(CardSelectionActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<CardSelectionStoreData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new CardSelectionStore(
+                new CardSelectionActions(),
+                new UnifiedScanResultActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });

@@ -13,7 +13,7 @@ export interface RuleExpandCollapseDataDictionary {
 }
 
 export interface CardSelectionStoreData {
-    rules: RuleExpandCollapseDataDictionary;
+    rules?: RuleExpandCollapseDataDictionary;
     visualHelperEnabled: boolean;
     focusedResultUid: string | null;
 }

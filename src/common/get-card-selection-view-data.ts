@@ -40,16 +40,16 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (isEmpty(cardSelectionStoreData) || unifiedScanResultStoreData?.results == null) {
+    if (isEmpty(cardSelectionStoreData?.rules) || unifiedScanResultStoreData?.results == null) {
         return viewData;
     }
 
     viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
-    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
+    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules!);
 
     const candidateResults = unifiedScanResultStoreData.results.filter(resultsFilter);
     const candidateResultUids = candidateResults.map(res => res.uid);
-    const allFilteredUids = getAllFilteredUids(candidateResultUids, cardSelectionStoreData.rules);
+    const allFilteredUids = getAllFilteredUids(candidateResultUids, cardSelectionStoreData.rules!);
 
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
         candidateResults,
@@ -57,7 +57,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
         isResultHighlightUnavailable,
     );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
-        cardSelectionStoreData.rules,
+        cardSelectionStoreData.rules!,
         viewData.expandedRuleIds,
         candidateResultUids,
     );
@@ -72,7 +72,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
         visibleResultUids = selectedResultUids;
     } else {
         visibleResultUids = getFilteredResultUidsFromRuleIdArray(
-            cardSelectionStoreData.rules,
+            cardSelectionStoreData.rules!,
             viewData.expandedRuleIds,
             candidateResultUids,
         );

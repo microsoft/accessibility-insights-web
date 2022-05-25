@@ -152,8 +152,10 @@ export class StoreMocks {
         null,
         null,
         null,
+        null,
     ).getDefaultState();
     public needsReviewCardSelectionStoreData = new NeedsReviewCardSelectionStore(
+        null,
         null,
         null,
         null,

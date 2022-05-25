@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -32,7 +33,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeDefined();
+        expect(defaultState.rules).toBeUndefined();
     });
 
     it.each`
@@ -88,6 +89,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             new NeedsReviewCardSelectionStore(
                 new NeedsReviewCardSelectionActions(),
                 actions,
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -375,6 +377,17 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         });
     });
 
+    test('reset data on tab URL change', () => {
+        initialState.rules = {};
+        initialState.visualHelperEnabled = true;
+        expectedState.rules = undefined;
+        expectedState.visualHelperEnabled = false;
+        createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
+    });
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
@@ -390,6 +403,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             new NeedsReviewCardSelectionStore(
                 actions,
                 new NeedsReviewScanResultActions(),
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -398,5 +412,23 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             );
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<NeedsReviewCardSelectionStoreData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new NeedsReviewCardSelectionStore(
+                new NeedsReviewCardSelectionActions(),
+                new NeedsReviewScanResultActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });
