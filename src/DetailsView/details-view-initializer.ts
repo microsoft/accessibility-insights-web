@@ -170,9 +170,9 @@ const documentElementSetter = new DocumentManipulator(dom);
 initializeFabricIcons();
 
 if (tabId != null) {
-    browserAdapter.getTab(
-        tabId,
-        (tab: Tab): void => {
+    void browserAdapter
+        .getTabAsync(tabId)
+        .then((tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
             const storeUpdateMessageHub = new StoreUpdateMessageHub(tab.id);
@@ -597,16 +597,15 @@ if (tabId != null) {
                 logger,
             );
             window.selfFastPass = selfFastPass;
-        },
-        () => {
+        })
+        .catch(() => {
             const renderer = createNullifiedRenderer(
                 document,
                 ReactDOM.render,
                 createDefaultLogger(),
             );
             renderer.render();
-        },
-    );
+        });
 }
 
 function createNullifiedRenderer(

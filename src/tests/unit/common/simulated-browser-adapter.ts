@@ -90,6 +90,14 @@ export function createSimulatedBrowserAdapter(
             }
         },
     );
+    mock.setup(m => m.getTabAsync(It.isAny())).returns(async tabId => {
+        const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);
+        if (matchingTabs.length === 1) {
+            return matchingTabs[0];
+        } else {
+            throw new Error(`Tab with id ${tabId} not found`);
+        }
+    });
 
     mock.setup(m => m.tabsQuery(It.isAny())).returns(query => {
         const result = mock.tabs!.filter(

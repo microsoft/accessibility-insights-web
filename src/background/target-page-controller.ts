@@ -149,25 +149,20 @@ export class TargetPageController {
     };
 
     private async sendTabUrlUpdatedAction(tabId: number): Promise<void> {
-        await new Promise<void>((resolve, reject) => {
-            this.browserAdapter.getTab(
-                tabId,
-                (tab: chrome.tabs.Tab) => {
-                    resolve(
-                        this.interpretMessageAsync({
-                            messageType: Messages.Tab.ExistingTabUpdated,
-                            payload: tab,
-                            tabId: tabId,
-                        }),
-                    );
-                },
-                () => {
-                    this.logger.log(
-                        `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
-                    );
-                    resolve();
-                },
+        let tab: chrome.tabs.Tab;
+        try {
+            tab = await this.browserAdapter.getTabAsync(tabId);
+        } catch (e) {
+            this.logger.log(
+                `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
             );
+            return;
+        }
+
+        await this.interpretMessageAsync({
+            messageType: Messages.Tab.ExistingTabUpdated,
+            payload: tab,
+            tabId: tabId,
         });
     }
 
