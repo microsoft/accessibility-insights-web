@@ -35,12 +35,7 @@ export class ElementBasedViewModelCreator {
         cardSelectionData,
     ) => {
         const { rules, results } = unifiedScanResultStoreData;
-        if (
-            rules == null ||
-            results == null ||
-            cardSelectionData == null ||
-            cardSelectionData.rules == null
-        ) {
+        if (rules == null || results == null || cardSelectionData?.rules == null) {
             return null;
         }
 
