@@ -14,7 +14,9 @@ describe('UserConfigurationController', () => {
 
     beforeEach(() => {
         interpreterMock = Mock.ofType<Interpreter>();
-        interpreterMock.setup(i => i.interpret(It.isAny())).returns(() => ({ success: true }));
+        interpreterMock
+            .setup(i => i.interpret(It.isAny()))
+            .returns(() => ({ messageHandled: true }));
 
         testSubject = new UserConfigurationController(interpreterMock.object);
     });

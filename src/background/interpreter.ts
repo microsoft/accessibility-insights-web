@@ -16,13 +16,13 @@ export class Interpreter {
     public interpret(message: InterpreterMessage): InterpreterResponse {
         if (this.messageToActionMapping[message.messageType]) {
             return {
-                success: true,
+                messageHandled: true,
                 result: this.messageToActionMapping[message.messageType](
                     message.payload,
                     message.tabId,
                 ),
             };
         }
-        return { success: false };
+        return { messageHandled: false };
     }
 }

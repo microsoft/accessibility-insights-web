@@ -38,7 +38,7 @@ describe('InterpreterTest', () => {
             payload: 'payload',
         });
 
-        expect(response.success).toBeTruthy();
+        expect(response.messageHandled).toBeTruthy();
         expect(response.result).toBeUndefined();
 
         sampleCallback.verifyAll();
@@ -60,7 +60,7 @@ describe('InterpreterTest', () => {
             payload: 'payload',
         });
 
-        expect(response.success).toBeTruthy();
+        expect(response.messageHandled).toBeTruthy();
         expect(response.result).toBeInstanceOf(Promise);
 
         sampleCallback.verifyAll();
@@ -79,7 +79,7 @@ describe('InterpreterTest', () => {
             payload: 'payload',
         });
 
-        expect(result.success).toBeFalsy();
+        expect(result.messageHandled).toBeFalsy();
 
         sampleCallback.verifyAll();
     });

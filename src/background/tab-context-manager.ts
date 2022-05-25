@@ -33,7 +33,7 @@ export class TabContextManager {
             return interpreter.interpret(message);
         }
 
-        return { success: false };
+        return { messageHandled: false };
     };
 
     public getTabContextStores(tabId: number): TabContextStoreHub | undefined {

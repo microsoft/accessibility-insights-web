@@ -20,7 +20,7 @@ describe('ExtensionDetailsViewController', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        interpretMessageForTabMock = Mock.ofInstance(() => ({ success: true }));
+        interpretMessageForTabMock = Mock.ofInstance(() => ({ messageHandled: true }));
 
         tabIdToDetailsViewMap = {};
         idbInstanceMock.reset();
@@ -76,7 +76,7 @@ describe('ExtensionDetailsViewController', () => {
                             tabId: 3,
                         }),
                     )
-                    .returns(() => ({ success: true }))
+                    .returns(() => ({ messageHandled: true }))
                     .verifiable(Times.once());
 
                 if (persistData) {
@@ -341,7 +341,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
-                .returns(() => ({ success: true }))
+                .returns(() => ({ messageHandled: true }))
                 .verifiable();
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
@@ -376,7 +376,7 @@ describe('ExtensionDetailsViewController', () => {
 
             interpretMessageForTabMock
                 .setup(i => i(It.isAny(), It.isAny()))
-                .returns(() => ({ success: true }));
+                .returns(() => ({ messageHandled: true }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 
@@ -569,7 +569,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
-                .returns(() => ({ success: true }))
+                .returns(() => ({ messageHandled: true }))
                 .verifiable();
 
             // call show details once
@@ -596,7 +596,7 @@ describe('ExtensionDetailsViewController', () => {
 
             interpretMessageForTabMock
                 .setup(i => i(It.isAny(), It.isAny()))
-                .returns(() => ({ success: true }));
+                .returns(() => ({ messageHandled: true }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 

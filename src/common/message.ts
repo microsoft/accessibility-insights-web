@@ -8,7 +8,7 @@ export interface Message {
 export type InterpreterMessage = Message & { tabId?: number };
 
 export interface InterpreterResponse {
-    success: boolean;
+    messageHandled: boolean;
     result?: Promise<void> | void;
 }
 

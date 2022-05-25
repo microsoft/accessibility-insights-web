@@ -81,7 +81,7 @@ describe('FeatureFlagsControllerTest', () => {
 
         interpreterMock
             .setup(i => i.interpret(It.isObjectWith(message)))
-            .returns(() => ({ success: true }))
+            .returns(() => ({ messageHandled: true }))
             .verifiable();
         featureFlagStoreMock
             .setup(f => f.getState())
@@ -106,7 +106,7 @@ describe('FeatureFlagsControllerTest', () => {
         };
         interpreterMock
             .setup(i => i.interpret(It.isObjectWith(message)))
-            .returns(() => ({ success: true }))
+            .returns(() => ({ messageHandled: true }))
             .verifiable();
 
         testObject = new FeatureFlagsController(

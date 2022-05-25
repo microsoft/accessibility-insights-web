@@ -28,7 +28,7 @@ describe('BrowserPermissionsTracker', () => {
         interpreterMock
             .setup(i => i.interpret(It.isAny()))
             .returns(() => ({
-                success: true,
+                messageHandled: true,
             }));
 
         testSubject = new BrowserPermissionsTracker(

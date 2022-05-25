@@ -163,28 +163,34 @@ describe(BackgroundMessageDistributor, () => {
     function setupGlobalInterpreterInteraction(success: boolean): void {
         globalInterpreterMock
             .setup(x => x.interpret(It.isAny()))
-            .returns(() => ({ success, result: success ? Promise.resolve() : undefined }))
+            .returns(() => ({
+                messageHandled: success,
+                result: success ? Promise.resolve() : undefined,
+            }))
             .verifiable(Times.once());
     }
 
     function setupTabInterpreterInteraction(success: boolean): void {
         tabContextManagerMock
             .setup(m => m.interpretMessageForTab(tabId, It.isAny()))
-            .returns(() => ({ success, result: success ? Promise.resolve() : undefined }))
+            .returns(() => ({
+                messageHandled: success,
+                result: success ? Promise.resolve() : undefined,
+            }))
             .verifiable(Times.once());
     }
 
     function setupBackchannelIgnoreMessage(message: any): void {
         postMessageContentHandlerMock
             .setup(o => o.handleMessage(It.isObjectWith(message)))
-            .returns(() => ({ success: false }))
+            .returns(() => ({ messageHandled: false }))
             .verifiable();
     }
 
     function setupInterpretBackchannelMessage(message: InterpreterMessage, response?: any): void {
         postMessageContentHandlerMock
             .setup(o => o.handleMessage(It.isObjectWith(message)))
-            .returns(() => ({ success: true, response }))
+            .returns(() => ({ messageHandled: true, response }))
             .verifiable();
     }
 

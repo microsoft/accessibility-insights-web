@@ -31,14 +31,14 @@ export class BackgroundMessageDistributor {
     ): void | Promise<any> => {
         message.tabId = this.getTabId(message, sender);
 
-        const { success: isInterpretedUsingGlobalContext, result: globalContextResult } =
+        const { messageHandled: isInterpretedUsingGlobalContext, result: globalContextResult } =
             this.globalContext.interpreter.interpret(message);
 
-        const { success: isInterpretedUsingTabContext, result: tabContextResult } =
+        const { messageHandled: isInterpretedUsingTabContext, result: tabContextResult } =
             this.tryInterpretUsingTabContext(message);
 
         const {
-            success: isInterpretedAsBackchannelWindowMessage,
+            messageHandled: isInterpretedAsBackchannelWindowMessage,
             response: backchannelMessageResponse,
         } = this.postMessageContentHandler.handleMessage(message);
 
@@ -73,7 +73,7 @@ export class BackgroundMessageDistributor {
             return this.tabContextManager.interpretMessageForTab(message.tabId, message);
         }
 
-        return { success: false };
+        return { messageHandled: false };
     }
 
     private async createResponsePromise(
