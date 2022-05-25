@@ -9,7 +9,11 @@ import { UnhandledExceptionTelemetryData } from '../../common/extension-telemetr
 export class ExceptionTelemetryListener {
     constructor(private readonly telemetryEventHandler: TelemetryEventHandler) {}
 
-    public initialize(logger: Logger): void {
+    public initialize(
+        logger: Logger,
+        extWindow: Window = window,
+        extConsole: Console = console,
+    ): void {
         const sendExceptionTelemetry = (message: string, stackTrace?: string): void => {
             const telemetry: UnhandledExceptionTelemetryData = { message, stackTrace };
             const payload: BaseActionPayload = {
@@ -23,7 +27,7 @@ export class ExceptionTelemetryListener {
         };
 
         // Catch top level synchronous errors
-        window.onerror = function (
+        extWindow.onerror = function (
             message: string,
             source: string,
             lineno: number,
@@ -35,31 +39,31 @@ export class ExceptionTelemetryListener {
         };
 
         // Catch errors thrown in promises
-        window.onunhandledrejection = function (event: PromiseRejectionEvent) {
+        extWindow.onunhandledrejection = function (event: PromiseRejectionEvent) {
             sendExceptionTelemetry(event.reason);
             return false;
         };
 
         // Catch errors written to console.error
-        var consoleError = console.error;
-        console.error = function (message?: any, ...optionalParams: any[]) {
+        const consoleError = extConsole.error;
+        extConsole.error = function (message?: any, ...optionalParams: any[]) {
             const err = optionalParams[0] as Error;
             if (message || err) {
                 sendExceptionTelemetry(message, err?.stack);
             }
 
-            consoleError(message, ...optionalParams);
+            consoleError(message, err);
         };
 
         // Catch errors written to logger.error
-        var loggerError = logger.error;
+        const loggerError = logger.error;
         logger.error = function (message?: any, ...optionalParams: any[]) {
             const err = optionalParams[0] as Error;
             if (message || err) {
                 sendExceptionTelemetry(message, err?.stack);
             }
 
-            loggerError(message, ...optionalParams);
+            loggerError(message, err);
         };
     }
 }
