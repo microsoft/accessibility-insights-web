@@ -57,6 +57,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
 
     public getDefaultState(): CardSelectionStoreData {
         const defaultValue: CardSelectionStoreData = {
+            rules: null,
             visualHelperEnabled: false,
             focusedResultUid: null,
         };
@@ -81,11 +82,11 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
     };
 
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
-        if (!payload || !this.state.rules || !this.state.rules[payload.ruleId]) {
+        if (!payload || !this.state.rules?.[payload.ruleId]) {
             return;
         }
 
-        const rule = this.state.rules![payload.ruleId];
+        const rule = this.state.rules[payload.ruleId];
 
         rule.isExpanded = !rule.isExpanded;
 
@@ -99,14 +100,13 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
     private toggleCardSelection = (payload: CardSelectionPayload): void => {
         if (
             !payload ||
-            !this.state.rules ||
-            !this.state.rules![payload.ruleId] ||
+            !this.state.rules?.[payload.ruleId] ||
             this.state.rules![payload.ruleId].cards[payload.resultInstanceUid] === undefined
         ) {
             return;
         }
 
-        const rule = this.state.rules![payload.ruleId];
+        const rule = this.state.rules[payload.ruleId];
         const isSelected = !rule.cards[payload.resultInstanceUid];
         rule.cards[payload.resultInstanceUid] = isSelected;
 
@@ -124,7 +124,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
             return;
         }
 
-        forOwn(this.state.rules!, rule => {
+        forOwn(this.state.rules, rule => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
         });
@@ -137,7 +137,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
             return;
         }
 
-        forOwn(this.state.rules!, rule => {
+        forOwn(this.state.rules, rule => {
             rule.isExpanded = true;
         });
 
@@ -191,10 +191,10 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.state.focusedResultUid = null;
 
         if (this.state.rules) {
-            for (const ruleId in this.state.rules!) {
-                this.state.rules![ruleId].isExpanded = false;
-                for (const resultId in this.state.rules![ruleId].cards) {
-                    this.state.rules![ruleId].cards[resultId] = false;
+            for (const ruleId in this.state.rules) {
+                this.state.rules[ruleId].isExpanded = false;
+                for (const resultId in this.state.rules[ruleId].cards) {
+                    this.state.rules[ruleId].cards[resultId] = false;
                 }
             }
         }

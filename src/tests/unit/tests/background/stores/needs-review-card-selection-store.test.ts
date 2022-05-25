@@ -33,7 +33,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeUndefined();
+        expect(defaultState.rules).toBeNull();
     });
 
     it.each`
@@ -258,7 +258,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
 
     describe('collapseAllRules', () => {
         test('Does nothing if rules is null', () => {
-            initialState.rules = undefined;
+            initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
             createStoreForNeedsReviewCardSelectionActions(
@@ -278,7 +278,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
 
     describe('expandAllRules', () => {
         test('Does nothing if rules is null', () => {
-            initialState.rules = undefined;
+            initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
             createStoreForNeedsReviewCardSelectionActions(
@@ -325,8 +325,8 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             ).testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        test('toggle off when rules is undefined', () => {
-            initialState.rules = undefined;
+        test('toggle off when rules is null', () => {
+            initialState.rules = null;
             initialState.visualHelperEnabled = true;
 
             expectedState = cloneDeep(initialState);
@@ -343,7 +343,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             expectedState.visualHelperEnabled = true;
         });
 
-        it.each([undefined, {}])(
+        it.each([null, {}])(
             'should reset the focused element and turn off visual helper when rules = %s',
             rules => {
                 initialState.focusedResultUid = 'sampleUid1';
@@ -422,7 +422,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
     test('reset data on tab URL change', () => {
         initialState.rules = {};
         initialState.visualHelperEnabled = true;
-        expectedState.rules = undefined;
+        expectedState.rules = null;
         expectedState.visualHelperEnabled = false;
         createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
             initialState,

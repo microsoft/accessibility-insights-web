@@ -35,7 +35,7 @@ describe('CardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeUndefined();
+        expect(defaultState.rules).toBeNull();
     });
 
     it.each`
@@ -260,7 +260,7 @@ describe('CardSelectionStore Test', () => {
 
     describe('collapseAllRules', () => {
         it('does nothing if rules is null', () => {
-            initialState.rules = undefined;
+            initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
             createStoreForCardSelectionActions('collapseAllRules').testListenerToNeverBeCalled(
@@ -282,7 +282,7 @@ describe('CardSelectionStore Test', () => {
 
     describe('expandAllRules', () => {
         it('does nothing if rules is null', () => {
-            initialState.rules = undefined;
+            initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
             createStoreForCardSelectionActions('expandAllRules').testListenerToNeverBeCalled(
@@ -337,7 +337,7 @@ describe('CardSelectionStore Test', () => {
             expectedState.visualHelperEnabled = true;
         });
 
-        it.each([undefined, {}])(
+        it.each([null, {}])(
             'should reset the focused element and turn of visual helper when rules = %s',
             rules => {
                 initialState.focusedResultUid = 'sampleUid1';
@@ -419,7 +419,7 @@ describe('CardSelectionStore Test', () => {
     test('reset data on tab URL change', () => {
         initialState.rules = {};
         initialState.visualHelperEnabled = true;
-        expectedState.rules = undefined;
+        expectedState.rules = null;
         expectedState.visualHelperEnabled = false;
         createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
             initialState,
