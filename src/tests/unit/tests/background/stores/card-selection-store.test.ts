@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabActions } from 'background/actions/tab-actions';
-import { createStore } from 'idb-keyval';
-import { cloneDeep, forOwn, initial } from 'lodash';
+import { cloneDeep, forOwn } from 'lodash';
 
 import {
     BaseActionPayload,
