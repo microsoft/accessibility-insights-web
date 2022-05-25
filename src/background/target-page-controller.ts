@@ -47,9 +47,7 @@ export class TargetPageController {
             const tabUrl = this.knownTabs[tab.id];
             return tabUrl !== tab.url;
         });
-        for (const tab of newTabs) {
-            await this.handleTabUrlUpdate(tab.id);
-        }
+        await Promise.all(newTabs.map(tab => this.handleTabUrlUpdate(tab.id)));
     }
 
     public async onTabNavigated(
@@ -94,12 +92,14 @@ export class TargetPageController {
                 windowId: chromeWindow.id,
             });
 
-            for (const activeTab of activeTabs) {
-                await this.sendTabVisibilityChangeAction(
-                    activeTab.id,
-                    chromeWindow.state === 'minimized',
-                );
-            }
+            await Promise.all(
+                activeTabs.map(activeTab =>
+                    this.sendTabVisibilityChangeAction(
+                        activeTab.id,
+                        chromeWindow.state === 'minimized',
+                    ),
+                ),
+            );
         });
     }
 
