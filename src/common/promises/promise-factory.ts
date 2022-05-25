@@ -3,7 +3,7 @@
 export type TimeoutCreator = <T>(
     promise: Promise<T>,
     delayInMilliseconds: number,
-    errorContext?: any,
+    errorContext?: string,
 ) => Promise<T>;
 export type DelayCreator = (result: any, delayInMs: number) => Promise<any>;
 

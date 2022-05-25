@@ -28,14 +28,14 @@ interface DeferredEventDetails extends EventDetails {
 // As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
 // service worker if this is exceeded, even if other work is outstanding. To avoid this, our
 // own timeout MUST be shorter than Chromium's.
-const EVENT_TIMEOUT_MS = 60 * 1000;
+const EVENT_TIMEOUT_MS = 60 * 1000; // 1 minute
 
 // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
 // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
 // and continue to do some async work after returning undefined. To ensure those listeners have
 // time to do their work, the event manager adds this (arbitrary) delay into its response to the
 // browser event.
-const FIRE_AND_FORGET_EVENT_DELAY_MS = 30 * 1000;
+const FIRE_AND_FORGET_EVENT_DELAY_MS = 30 * 1000; // 30 seconds
 
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
