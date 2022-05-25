@@ -20,6 +20,7 @@ import {
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
@@ -49,4 +50,5 @@ export class AssessmentActions {
     public readonly updateTargetTabId = new Action<number>();
     public readonly continuePreviousAssessment = new Action<number>();
     public readonly LoadAssessment = new Action<LoadAssessmentPayload>();
+    public readonly updateDetailsViewId = new Action<OnDetailsViewInitializedPayload>();
 }

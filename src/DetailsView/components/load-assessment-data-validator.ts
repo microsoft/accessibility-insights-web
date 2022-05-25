@@ -179,6 +179,11 @@ export class LoadAssessmentDataValidator {
                                 title: {
                                     type: 'string',
                                 },
+                                detailsViewId: {
+                                    type: 'string',
+                                },
+                                // This field is depreciated and no longer used, but included for
+                                // the sake of backwards compatibility
                                 appRefreshed: {
                                     type: 'boolean',
                                 },

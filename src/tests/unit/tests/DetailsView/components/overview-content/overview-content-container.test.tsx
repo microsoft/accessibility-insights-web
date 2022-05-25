@@ -55,6 +55,7 @@ describe('OverviewContainer', () => {
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
+        detailsViewId: undefined,
     };
 
     const featureFlagDataStub = {};

@@ -87,7 +87,7 @@ describe('DetailsViewCommandBar', () => {
             id: 5,
             title: thePageTitle,
             isClosed: false,
-            appRefreshed: false,
+            detailsViewId: undefined,
         } as PersistedTabInfo;
 
         loadAssessmentButtonPropsStub = {

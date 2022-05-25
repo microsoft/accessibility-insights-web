@@ -13,7 +13,7 @@ export type GettingStarted = 'getting-started';
 export const gettingStartedSubview: GettingStarted = 'getting-started';
 
 export type PersistedTabInfo = Tab & {
-    appRefreshed: boolean;
+    detailsViewId?: string;
 };
 
 export interface AssessmentStoreData {
