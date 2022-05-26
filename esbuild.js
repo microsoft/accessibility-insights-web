@@ -84,7 +84,7 @@ switch (argsObj.env) {
         define = {
             global: 'globalThis',
         };
-        checkToAddReactDevTools();
+        checkToAddReactDevTools(entryFiles);
 
         break;
 
@@ -112,7 +112,7 @@ switch (argsObj.env) {
 
     // dev web extension
     default:
-        checkToAddReactDevTools();
+        checkToAddReactDevTools(entryFiles);
         break;
 }
 
