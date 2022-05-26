@@ -89,7 +89,10 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
             }
         };
 
-        // float this promise to keep function synchronous and match axe's interface
+        // Float this promise to keep function synchronous and match axe's interface.
+        // This means that we can't catch errors and return false to short-circuit axe's
+        // polling mechanism if this message fails, but axe should still time out and
+        // handle the failure.
         void this.underlyingCommunicator
             .sendCallbackCommandMessage(
                 frameWindow,
