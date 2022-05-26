@@ -74,7 +74,7 @@ describe('ElementBasedViewModelCreator', () => {
         expect(
             testSubject.getElementBasedViewModel(
                 { rules: [], results: [] } as UnifiedScanResultStoreData,
-                { visualHelperEnabled: true, focusedResultUid: null },
+                { rules: null, visualHelperEnabled: true, focusedResultUid: null },
             ),
         ).toBeNull();
     });
