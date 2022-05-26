@@ -8,7 +8,7 @@ import {
     UnifiedResult,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
-import { flatMap, forOwn, intersection, isEmpty, keys } from 'lodash';
+import { flatMap, forOwn, intersection, keys } from 'lodash';
 
 import {
     CardSelectionStoreData,
@@ -40,7 +40,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (isEmpty(cardSelectionStoreData) || unifiedScanResultStoreData?.results == null) {
+    if (cardSelectionStoreData?.rules == null || unifiedScanResultStoreData?.results == null) {
         return viewData;
     }
 

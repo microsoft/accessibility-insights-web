@@ -40,7 +40,7 @@ describe('ElementBasedViewModelCreator', () => {
             isResultHighlightUnavailableStub,
         );
 
-        cardSelectionData = {} as CardSelectionStoreData;
+        cardSelectionData = { rules: {} } as CardSelectionStoreData;
     });
 
     test('getElementBasedViewModel: rules are null', () => {
@@ -66,6 +66,15 @@ describe('ElementBasedViewModelCreator', () => {
             testSubject.getElementBasedViewModel(
                 { rules: [], results: [] } as UnifiedScanResultStoreData,
                 null,
+            ),
+        ).toBeNull();
+    });
+
+    test('getElementBasedViewModel: cardSelectionData.rules are null', () => {
+        expect(
+            testSubject.getElementBasedViewModel(
+                { rules: [], results: [] } as UnifiedScanResultStoreData,
+                { rules: null, visualHelperEnabled: true, focusedResultUid: null },
             ),
         ).toBeNull();
     });

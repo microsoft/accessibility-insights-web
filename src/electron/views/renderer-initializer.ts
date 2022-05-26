@@ -270,6 +270,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
+            tabActions,
             null,
             indexedDBInstance,
             logger,
