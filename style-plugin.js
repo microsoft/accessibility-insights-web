@@ -44,6 +44,11 @@ const CreateStylePlugin = isProd => {
 
             Note: the stylesheet only needs to be read once, in the first onLoad method, and can be
             passed from there to the onResolve method, and from there to the second onLoad method.
+
+            The general idea for this solution was mainly derived from, in addition to looking at
+            various scss/sass esbuild plugins, this issue/comment: 
+            (https://github.com/evanw/esbuild/issues/1723#issuecomment-954160553).
+            More info on plugins here: https://esbuild.github.io/plugins/.
             */
             build.onLoad(
                 {
