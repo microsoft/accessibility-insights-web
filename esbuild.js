@@ -32,6 +32,26 @@ const devWebExtensionM3Outdir = path.join(__dirname, 'extension/devMv3Bundle');
 
 const prodWebExtensionOutDir = path.join(__dirname, 'extension/prodBundle');
 
+function isReactDevtoolsInstalled() {
+    try {
+        require.resolve('react-devtools');
+        return true;
+    } catch (error) {
+        if (error.code === 'MODULE_NOT_FOUND') {
+            return false;
+        } else {
+            throw error;
+        }
+    }
+}
+
+function checkToAddReactDevTools(entryFiles) {
+    if (isReactDevtoolsInstalled()) {
+        entryFiles.detailsView = `${src}/DetailsView/details-view-init-with-react-devtools.ts`;
+        entryFiles.popup = `${src}/popup/popup-init-with-react-devtools.ts`;
+    }
+}
+
 // Default behavior; builds dev extension.
 let entryFiles = webExtensionEntryFiles;
 let outdir = devWebExtensionOutdir;
@@ -64,6 +84,8 @@ switch (argsObj.env) {
         define = {
             global: 'globalThis',
         };
+        checkToAddReactDevTools();
+
         break;
 
     case 'report':
@@ -86,6 +108,11 @@ switch (argsObj.env) {
                 },
             }),
         );
+        break;
+
+    // dev web extension
+    default:
+        checkToAddReactDevTools();
         break;
 }
 
