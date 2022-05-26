@@ -287,6 +287,8 @@ export type AutoDetectedFailuresDialogStateTelemetryData = {
 export type UnhandledExceptionTelemetryData = {
     message: string;
     stackTrace?: string;
+    source: string;
+    errorType: string;
 };
 
 export type TelemetryData =

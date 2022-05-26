@@ -6,7 +6,17 @@ import { Logger } from 'common/logging/logger';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { UnhandledExceptionTelemetryData } from '../../common/extension-telemetry-events';
 
+enum ErrorType {
+    WindowError = 'WindowError',
+    UnhandledRejection = 'UnhandledRejection',
+    ConsoleError = 'ConsoleError',
+    LoggerError = 'LoggerError',
+}
+
 export class ExceptionTelemetryListener {
+    private readonly MAX_MESSAGE_CHARS = 300;
+    private readonly MAX_STACK_CHARS = 5000;
+
     constructor(private readonly telemetryEventHandler: TelemetryEventHandler) {}
 
     public initialize(
@@ -14,17 +24,11 @@ export class ExceptionTelemetryListener {
         extWindow: Window = window,
         extConsole: Console = console,
     ): void {
-        const sendExceptionTelemetry = (message: string, stackTrace?: string): void => {
-            const telemetry: UnhandledExceptionTelemetryData = { message, stackTrace };
-            const payload: BaseActionPayload = {
-                telemetry,
-            };
-
-            this.telemetryEventHandler.publishTelemetry(
-                TelemetryEvents.UNHANDLED_EXCEPTION,
-                payload,
-            );
-        };
+        const sendExceptionTelemetry = this.sendExceptionTelemetry;
+        let windowErrorHookIsActive = false;
+        let windowRejectionHookIsActive = false;
+        let consoleHookIsActive = false;
+        let loggingHookIsActive = false;
 
         // Catch top level synchronous errors
         extWindow.onerror = function (
@@ -34,36 +38,120 @@ export class ExceptionTelemetryListener {
             colno: number,
             error: Error = null,
         ) {
-            sendExceptionTelemetry(message, error?.stack);
-            return false;
+            if (windowErrorHookIsActive) {
+                return;
+            }
+            windowErrorHookIsActive = true;
+            try {
+                sendExceptionTelemetry(ErrorType.WindowError, message, error?.stack, source);
+                return false;
+            } finally {
+                windowErrorHookIsActive = false;
+            }
         };
 
         // Catch errors thrown in promises
         extWindow.onunhandledrejection = function (event: PromiseRejectionEvent) {
-            sendExceptionTelemetry(event.reason);
-            return false;
+            if (windowRejectionHookIsActive) {
+                return;
+            }
+            windowRejectionHookIsActive = true;
+            try {
+                sendExceptionTelemetry(ErrorType.UnhandledRejection, event.reason);
+                return false;
+            } finally {
+                windowRejectionHookIsActive = false;
+            }
         };
 
         // Catch errors written to console.error
         const consoleError = extConsole.error;
         extConsole.error = function (message?: any, ...optionalParams: any[]) {
-            const err = optionalParams[0] as Error;
-            if (message || err) {
-                sendExceptionTelemetry(message, err?.stack);
+            if (consoleHookIsActive) {
+                return;
             }
+            consoleHookIsActive = true;
+            try {
+                const err = optionalParams[0] as Error;
+                if (message || err) {
+                    sendExceptionTelemetry(ErrorType.ConsoleError, message, err?.stack);
+                }
 
-            consoleError(message, err);
+                if (optionalParams.length > 1) {
+                    consoleError(message, ...optionalParams);
+                } else {
+                    consoleError(message, err);
+                }
+            } finally {
+                consoleHookIsActive = false;
+            }
         };
 
         // Catch errors written to logger.error
+        // Note that this is separate from console.error (despite the default logger deferring to
+        // console.error) because we generated the default logger before updating console.error
+        // above, meaning logger.error still has the old console.error implementation.
         const loggerError = logger.error;
         logger.error = function (message?: any, ...optionalParams: any[]) {
-            const err = optionalParams[0] as Error;
-            if (message || err) {
-                sendExceptionTelemetry(message, err?.stack);
+            if (loggingHookIsActive) {
+                return;
             }
+            loggingHookIsActive = true;
+            try {
+                const err = optionalParams[0] as Error;
+                if (message || err) {
+                    sendExceptionTelemetry(ErrorType.LoggerError, message, err?.stack);
+                }
 
-            loggerError(message, err);
+                if (optionalParams.length > 1) {
+                    loggerError(message, ...optionalParams);
+                } else {
+                    loggerError(message, err);
+                }
+            } finally {
+                loggingHookIsActive = false;
+            }
         };
     }
+
+    private sendExceptionTelemetry = (
+        errorType: string,
+        message: string,
+        stackTrace?: string,
+        source?: string,
+    ): void => {
+        const telemetry: UnhandledExceptionTelemetryData = {
+            message,
+            stackTrace,
+            source,
+            errorType,
+        };
+        const sanitizedTelemetry = this.sanitizeTelemetryData(telemetry);
+
+        if (sanitizedTelemetry) {
+            const payload: BaseActionPayload = {
+                telemetry: sanitizedTelemetry,
+            };
+
+            this.telemetryEventHandler.publishTelemetry(
+                TelemetryEvents.UNHANDLED_EXCEPTION,
+                payload,
+            );
+        }
+    };
+
+    private sanitizeTelemetryData = (
+        telemetryData: UnhandledExceptionTelemetryData,
+    ): UnhandledExceptionTelemetryData => {
+        if (telemetryData.message && telemetryData.message.length > this.MAX_MESSAGE_CHARS) {
+            telemetryData.message = telemetryData.message.substring(0, this.MAX_MESSAGE_CHARS);
+        }
+        if (telemetryData.stackTrace && telemetryData.stackTrace.length > this.MAX_STACK_CHARS) {
+            telemetryData.stackTrace = telemetryData.stackTrace.substring(0, this.MAX_STACK_CHARS);
+        }
+        if (telemetryData.message?.includes('http') || telemetryData.stackTrace?.includes('http')) {
+            return undefined;
+        }
+        return telemetryData;
+    };
 }

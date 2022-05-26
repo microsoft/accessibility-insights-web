@@ -16,6 +16,7 @@ import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
 import {
     getApplicationTelemetryDataFactory,
     getTelemetryClient,
@@ -107,6 +108,9 @@ async function initialize(): Promise<void> {
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+    const exceptionTelemetryListener = new ExceptionTelemetryListener(telemetryEventHandler);
+    exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(navigator, logger).getBrowserSpec();
 
