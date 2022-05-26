@@ -121,7 +121,7 @@ export class ExceptionTelemetryListener {
         source?: string,
     ): void => {
         const telemetry: UnhandledExceptionTelemetryData = {
-            message,
+            message: message.toString(),
             stackTrace,
             source,
             errorType,
@@ -149,7 +149,10 @@ export class ExceptionTelemetryListener {
         if (telemetryData.stackTrace && telemetryData.stackTrace.length > this.MAX_STACK_CHARS) {
             telemetryData.stackTrace = telemetryData.stackTrace.substring(0, this.MAX_STACK_CHARS);
         }
-        if (telemetryData.message?.includes('http') || telemetryData.stackTrace?.includes('http')) {
+        if (
+            (telemetryData.message && telemetryData.message.includes('http')) ||
+            (telemetryData.stackTrace && telemetryData.stackTrace.includes('http'))
+        ) {
             return undefined;
         }
         return telemetryData;
