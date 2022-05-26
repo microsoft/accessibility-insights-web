@@ -9,6 +9,7 @@ import {
     AssessmentViewUpdateHandlerDeps,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
+import { isEmpty } from 'lodash';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -36,6 +37,20 @@ describe('AssessmentViewTest', () => {
                 )
                 .verifiable(Times.once());
             const props = buildProps();
+
+            testObject.onMount(props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('enable assessment if prev target does not have id', () => {
+            detailsViewActionMessageCreatorMock
+                .setup(a =>
+                    a.enableVisualHelper(firstAssessment.visualizationType, stepName, true, true),
+                )
+                .verifiable(Times.once());
+            const prevTarget = { detailsViewId: 'testId' };
+            const props = buildProps({}, true, false, prevTarget);
 
             testObject.onMount(props);
 
@@ -182,6 +197,7 @@ describe('AssessmentViewTest', () => {
         generatedAssessmentInstancesMap = {},
         isTargetChanged = false,
         isStepScanned = false,
+        prevTarget = {},
     ): AssessmentViewUpdateHandlerProps {
         const deps: AssessmentViewUpdateHandlerDeps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
@@ -194,12 +210,14 @@ describe('AssessmentViewTest', () => {
             url: '2',
             title: '2',
         };
-        const prevTarget = {
-            id: 1,
-            url: '1',
-            title: '2',
-            appRefreshed: false,
-        };
+        prevTarget = isEmpty(prevTarget)
+            ? {
+                  id: 1,
+                  url: '1',
+                  title: '2',
+                  detailsViewId: undefined,
+              }
+            : prevTarget;
         const assessmentNavState = {
             selectedTestSubview: firstStep.key,
             selectedTestType: assessment.visualizationType,

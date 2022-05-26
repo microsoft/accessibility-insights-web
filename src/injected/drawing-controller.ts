@@ -54,12 +54,9 @@ export class DrawingController {
     public processRequest = async (message: VisualizationWindowMessage): Promise<void> => {
         this.featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
-            const elementResultsByFrames = message.elementResults
-                ? this.axeResultsHelper.splitResultsByFrame(message.elementResults)
-                : null;
-            this.enableVisualization(elementResultsByFrames, message.configId);
+            await this.enableVisualization(message.elementResults, message.configId);
         } else {
-            this.disableVisualization(message.configId);
+            await this.disableVisualization(message.configId);
         }
     };
 
@@ -70,35 +67,46 @@ export class DrawingController {
         return { payload: response };
     };
 
-    private enableVisualization(
-        elementResultsByFrames: HTMLIFrameResult[],
+    private async enableVisualization(
+        elementResults: AssessmentVisualizationInstance[] | undefined,
         configId: string,
-    ): void {
-        if (elementResultsByFrames) {
-            for (let pos = 0; pos < elementResultsByFrames.length; pos++) {
-                const resultsForFrame = elementResultsByFrames[pos];
-                if (resultsForFrame.frame == null) {
-                    this.enableVisualizationInCurrentFrame(
-                        resultsForFrame.elementResults,
-                        configId,
-                    );
-                } else {
-                    this.enableVisualizationInIFrames(
-                        resultsForFrame.frame,
-                        resultsForFrame.elementResults,
-                        configId,
-                    );
-                }
-            }
-        } else {
-            this.enableVisualizationInCurrentFrame(null, configId);
+    ): Promise<void> {
+        if (elementResults) {
+            const elementResultsByFrame = this.axeResultsHelper.splitResultsByFrame(elementResults);
 
-            const iframes = this.getAllFrames();
-            for (let pos = 0; pos < iframes.length; pos++) {
-                this.enableVisualizationInIFrames(iframes[pos], null, configId);
-            }
+            await Promise.all(
+                elementResultsByFrame.map(
+                    async frameResults =>
+                        await this.enableVisualizationForFrameResults(frameResults, configId),
+                ),
+            );
+        } else {
+            await this.enableVisualizationInCurrentFrame(null, configId);
+
+            const childFrames = this.getChildFrames();
+            await Promise.all(
+                childFrames.map(
+                    async iframe =>
+                        await this.enableVisualizationInChildFrame(iframe, null, configId),
+                ),
+            );
         }
     }
+
+    private enableVisualizationForFrameResults = async (
+        frameResults: HTMLIFrameResult,
+        configId: string,
+    ): Promise<void> => {
+        if (frameResults.frame == null) {
+            await this.enableVisualizationInCurrentFrame(frameResults.elementResults, configId);
+        } else {
+            await this.enableVisualizationInChildFrame(
+                frameResults.frame,
+                frameResults.elementResults,
+                configId,
+            );
+        }
+    };
 
     private enableVisualizationInCurrentFrame = async (
         currentFrameResults: AssessmentVisualizationInstance[],
@@ -112,7 +120,7 @@ export class DrawingController {
         await drawer.drawLayout();
     };
 
-    private enableVisualizationInIFrames = async (
+    private enableVisualizationInChildFrame = async (
         frame: HTMLIFrameElement,
         frameResults: AssessmentVisualizationInstance[],
         configId: string,
@@ -130,9 +138,9 @@ export class DrawingController {
         );
     };
 
-    private disableVisualization(configId: string): void {
+    private async disableVisualization(configId: string): Promise<void> {
         this.disableVisualizationInCurrentFrame(configId);
-        this.disableVisualizationInIFrames(configId);
+        await this.disableVisualizationInChildFrames(configId);
     }
 
     private createFrameRequestMessage(message: VisualizationWindowMessage): CommandMessage {
@@ -142,23 +150,29 @@ export class DrawingController {
         };
     }
 
-    private disableVisualizationInIFrames = async (configId: string): Promise<void> => {
-        const iframes = this.getAllFrames();
+    private disableVisualizationInChildFrames = async (configId: string): Promise<void> => {
+        const iframes = this.getChildFrames();
 
-        for (let i = 0; i < iframes.length; i++) {
-            const iframe = iframes[i];
-            if (iframe != null) {
-                const message: VisualizationWindowMessage = {
-                    isEnabled: false,
-                    configId: configId,
-                };
+        await Promise.all(
+            iframes.map(async iframe => {
+                await this.disableVisualizationInChildFrame(configId, iframe);
+            }),
+        );
+    };
 
-                await this.frameMessenger.sendMessageToFrame(
-                    iframe,
-                    this.createFrameRequestMessage(message),
-                );
-            }
-        }
+    private disableVisualizationInChildFrame = async (
+        configId: string,
+        iframe: HTMLIFrameElement,
+    ): Promise<void> => {
+        const message: VisualizationWindowMessage = {
+            isEnabled: false,
+            configId: configId,
+        };
+
+        await this.frameMessenger.sendMessageToFrame(
+            iframe,
+            this.createFrameRequestMessage(message),
+        );
     };
 
     private disableVisualizationInCurrentFrame(configId: string): void {
@@ -166,10 +180,12 @@ export class DrawingController {
         drawer.eraseLayout();
     }
 
-    private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName(
-            'iframe',
-        ) as HTMLCollectionOf<HTMLIFrameElement>;
+    private getChildFrames(): HTMLIFrameElement[] {
+        return Array.from(
+            this.htmlElementUtils.getAllElementsByTagName(
+                'iframe',
+            ) as HTMLCollectionOf<HTMLIFrameElement>,
+        );
     }
 
     private getDrawer(configId: string): Drawer {

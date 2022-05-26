@@ -18,52 +18,56 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 describe('TargetChangeDialog test set for prev tab null', () => {
     const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
 
-    test.each([null, undefined, {} as PersistedTabInfo])(
-        'should render null when prevTab does not exists',
-        prevTab => {
-            const detailsViewActionMessageCreatorMock = Mock.ofType(
-                DetailsViewActionMessageCreator,
-            );
+    test.each([
+        null,
+        undefined,
+        {} as PersistedTabInfo,
+        { detailsViewId: 'testId' } as PersistedTabInfo,
+    ])('should render null when prevTab does not exists', prevTab => {
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
 
-            const newTab = {
-                id: 111,
-                url: 'https://www.def.com',
-                title: 'test title',
-            };
+        const newTab = {
+            id: 111,
+            url: 'https://www.def.com',
+            title: 'test title',
+        };
 
-            urlParserMock
-                .setup(urlParserObject => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
-                .returns(() => true)
-                .verifiable(Times.never());
+        urlParserMock
+            .setup(urlParserObject => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
+            .returns(() => true)
+            .verifiable(Times.never());
 
-            const targetChangeProps: TargetChangeDialogProps = {
-                deps: {
-                    urlParser: urlParserMock.object,
-                    detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-                },
-                prevTab: prevTab,
-                newTab: newTab,
-            };
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: {
+                urlParser: urlParserMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                detailsViewId: '',
+            },
+            prevTab: prevTab,
+            newTab: newTab,
+        };
 
-            const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
+        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
 
-            expect(wrapper.find(Dialog).exists()).toBe(false);
-            urlParserMock.verifyAll();
-        },
-    );
+        expect(wrapper.find(Dialog).exists()).toBe(false);
+        urlParserMock.verifyAll();
+    });
 });
 
 describe('TargetChangeDialog test sets for same prev tab and newTab values', () => {
     let urlParserMock: IMock<UrlParser>;
     let prevTab: PersistedTabInfo;
     let newTab: Tab;
+    let deps: any;
+    let detailsViewActionMessageCreatorMock;
 
     beforeEach(() => {
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         prevTab = {
             id: 111,
             url: 'https://www.abc.com',
             title: 'test title 1',
-            appRefreshed: false,
+            detailsViewId: 'detailsViewId',
         };
         newTab = {
             id: 123,
@@ -71,6 +75,11 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             title: 'test title 2',
         };
         urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
+        deps = {
+            urlParser: urlParserMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            detailsViewId: 'detailsViewId',
+        };
     });
 
     afterEach(() => {
@@ -78,17 +87,13 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('should show dialog when target tab id changed', () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable(Times.once());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };
@@ -101,10 +106,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('snapshot: render when target tab id changed', () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         prevTab = {
             ...prevTab,
-            appRefreshed: false,
         };
 
         urlParserMock
@@ -115,10 +118,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable();
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };
@@ -128,11 +128,9 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('snapshot: render when previous tab info shows app is refreshed', () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
         prevTab = {
             ...prevTab,
-            appRefreshed: true,
+            detailsViewId: 'differentDetailsViewId',
         };
 
         urlParserMock
@@ -141,10 +139,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };
@@ -154,11 +149,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('snapshot: render when tab ids are same but url changes', () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-
         prevTab = {
             ...prevTab,
-            appRefreshed: false,
         };
         newTab = {
             ...newTab,
@@ -171,10 +163,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable();
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };
@@ -184,11 +173,6 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test("snapshot: render when tab ids are same and also url doesn't change", () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        prevTab = {
-            ...prevTab,
-            appRefreshed: true,
-        };
         newTab = {
             ...newTab,
             url: 'https://www.abc.com',
@@ -197,13 +181,10 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => false)
-            .verifiable(Times.never());
+            .verifiable();
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };
@@ -212,10 +193,10 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('snapshot: render the only information available in prevTab is appRefreshed', () => {
-        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+    test('snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId', () => {
         prevTab = {
-            appRefreshed: true,
+            id: 456,
+            detailsViewId: 'differentDetailsViewId',
         };
         newTab = {
             ...newTab,
@@ -228,10 +209,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             .verifiable(Times.never());
 
         const targetChangeProps: TargetChangeDialogProps = {
-            deps: {
-                urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
+            deps,
             prevTab,
             newTab,
         };

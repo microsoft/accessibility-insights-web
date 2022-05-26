@@ -18,7 +18,7 @@ export class TabStopsRequirementResultProcessor {
         private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
     ) {}
 
-    public start = (): void => {
+    public start = async (): Promise<void> => {
         const state = this.visualizationResultsStore.getState();
 
         if (!this.isStopped || !state.tabStops.needToCollectTabbingResults) {
@@ -29,26 +29,26 @@ export class TabStopsRequirementResultProcessor {
 
         this.seenTabStopRequirementResults = [];
         this.tabStopRequirementRunner.topWindowCallback = this.processTabStopRequirementResults;
-        this.tabStopRequirementRunner.start();
+        await this.tabStopRequirementRunner.start();
 
         this.isStopped = false;
     };
 
-    private onStateChange = (): void => {
+    private onStateChange = async (): Promise<void> => {
         // Checking state here rather than in stop(), to ensure results are recorded when stop() is
         // called during teardown, when tabbing may not have been completed (i.e. user disables toggle)
         const state = this.visualizationResultsStore.getState();
         if (state.tabStops.tabbingCompleted && state.tabStops.needToCollectTabbingResults) {
-            this.stop();
+            await this.stop();
         }
     };
 
-    public stop = (): void => {
+    public stop = async (): Promise<void> => {
         if (this.isStopped) {
             return;
         }
 
-        this.tabStopRequirementRunner.stop();
+        await this.tabStopRequirementRunner.stop();
         this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
             this.seenTabStopRequirementResults,
         );

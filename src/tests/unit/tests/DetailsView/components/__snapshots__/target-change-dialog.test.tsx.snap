@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab is appRefreshed 1`] = `
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId 1`] = `
 <ChangeAssessmentDialog
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
     }
   }
@@ -43,7 +44,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonText="Continue previous"
   prevTab={
     Object {
-      "appRefreshed": true,
+      "detailsViewId": "differentDetailsViewId",
+      "id": 456,
     }
   }
   rightButtonDataAutomationId="target-change-start-new-button"
@@ -59,6 +61,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
     }
   }
@@ -97,7 +100,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonText="Continue previous"
   prevTab={
     Object {
-      "appRefreshed": true,
+      "detailsViewId": "differentDetailsViewId",
       "id": 111,
       "title": "test title 1",
       "url": "https://www.abc.com",
@@ -116,6 +119,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
     }
   }
@@ -154,7 +158,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonText="Continue previous"
   prevTab={
     Object {
-      "appRefreshed": true,
+      "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",
       "url": "https://www.abc.com",
@@ -173,6 +177,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
     }
   }
@@ -211,7 +216,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonText="Continue previous"
   prevTab={
     Object {
-      "appRefreshed": false,
+      "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",
       "url": "https://www.abc.com",
@@ -230,6 +235,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
     }
   }
@@ -268,7 +274,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonText="Continue previous"
   prevTab={
     Object {
-      "appRefreshed": false,
+      "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",
       "url": "https://www.abc.com",

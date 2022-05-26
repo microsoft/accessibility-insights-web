@@ -122,7 +122,7 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(120000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
@@ -159,7 +159,8 @@ describe(BrowserEventManager, () => {
 
         testSubject.addBrowserListener(testEvent, 'event-type');
         // event invoked before listener registered
-        const promiseReturnedToEvent = testEvent.invoke();
+        const testEventArg = 'test-event-arg';
+        const promiseReturnedToEvent = testEvent.invoke(testEventArg);
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', () => {
@@ -172,12 +173,16 @@ describe(BrowserEventManager, () => {
 
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[\\"test-event-arg\\"]}]"`,
+        );
     });
 
     it('times out after 4 minutes if no ApplicationListener registers in time', async () => {
@@ -187,12 +192,16 @@ describe(BrowserEventManager, () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', () => {
@@ -212,12 +221,16 @@ describe(BrowserEventManager, () => {
         testSubject.addApplicationListener('event-type', () => stalledAppListenerResponse.promise);
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });
@@ -233,12 +246,16 @@ describe(BrowserEventManager, () => {
         // whole Service Worker with other work still in progress.
         await expect(testEvent.invoke()).resolves.toBe(undefined);
 
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(240000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
         expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
             `"Error while processing browser event-type event: "`,
         );
-        expect(recordingLogger.errorRecords[0].optionalParams[0]).toBeInstanceOf(TimeoutError);
+        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
+        expect(loggedError).toBeInstanceOf(TimeoutError);
+        expect(loggedError.context).toMatchInlineSnapshot(
+            `"[browser event listener: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+        );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
     });

@@ -16,6 +16,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export type LoadAssessmentDialogDeps = {
     urlParser: UrlParser;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    detailsViewId: string;
 };
 
 export const loadAssessmentDialogLoadButtonAutomationId = 'load-assessment-dialog-load-button';
@@ -35,6 +36,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
             props.deps.detailsViewActionMessageCreator.loadAssessment(
                 props.loadedAssessmentData,
                 props.tabId,
+                props.deps.detailsViewId,
             );
             props.onClose();
         };

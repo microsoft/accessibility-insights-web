@@ -18,8 +18,8 @@ type UnitTestTargetType = {
 describe('AllFrameRunnerTests', () => {
     const unitTestListener: AllFrameRunnerTarget<UnitTestTargetType> = {
         commandSuffix: '',
-        start: () => {},
-        stop: () => {},
+        start: async () => {},
+        stop: async () => {},
         transformChildResultForParent: _ => null,
         setResultCallback: _ => {},
     };

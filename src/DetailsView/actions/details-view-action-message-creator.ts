@@ -20,6 +20,7 @@ import {
     SwitchToTargetTabPayload,
     ToggleActionPayload,
     LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -41,6 +42,20 @@ import { DetailsViewRightContentPanelType } from '../components/left-nav/details
 const messages = Messages.Visualizations;
 
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
+    public initialize = (detailsViewId: string): void => {
+        const messageType = Messages.Visualizations.DetailsView.Initialize;
+        const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
+        const payload: OnDetailsViewInitializedPayload = {
+            detailsViewId,
+            telemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: messageType,
+            payload,
+        });
+    };
+
     public closePreviewFeaturesPanel = (): void => {
         const messageType = Messages.PreviewFeatures.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
@@ -575,12 +590,17 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public loadAssessment = (assessmentData: VersionedAssessmentData, tabId: number): void => {
+    public loadAssessment = (
+        assessmentData: VersionedAssessmentData,
+        tabId: number,
+        detailsViewId: string,
+    ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
             tabId,
+            detailsViewId,
         };
         const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
         this.dispatcher.dispatchMessage({

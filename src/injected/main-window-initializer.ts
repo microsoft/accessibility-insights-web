@@ -415,7 +415,7 @@ export class MainWindowInitializer extends WindowInitializer {
             pathSnippetActionMessageCreator.addCorrespondingSnippet,
         );
 
-        this.pathSnippetController.listenToStore();
+        await this.pathSnippetController.listenToStore();
 
         await Promise.all(asyncInitializationSteps);
     }

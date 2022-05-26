@@ -17,13 +17,13 @@ export class FocusChangeHandler {
         private scrollingController: ScrollingController,
     ) {}
 
-    public handleFocusChangeWithStoreData = (storeData: TargetPageStoreData) => {
+    public handleFocusChangeWithStoreData = async (storeData: TargetPageStoreData) => {
         const newTarget = this.getTarget(storeData);
-        this.handleFocusChange(newTarget);
+        await this.handleFocusChange(newTarget);
         this.previousFocusedTarget = newTarget;
     };
 
-    private handleFocusChange = (newTarget: string[] | null) => {
+    private handleFocusChange = async (newTarget: string[] | null) => {
         if (
             newTarget == null ||
             (this.previousFocusedTarget != null && newTarget === this.previousFocusedTarget)
@@ -34,7 +34,7 @@ export class FocusChangeHandler {
         const scrollingMessage: ScrollingWindowMessage = {
             focusedTarget: newTarget,
         };
-        this.scrollingController.processRequest(scrollingMessage);
+        await this.scrollingController.processRequest(scrollingMessage);
         this.targetPageActionMessageCreator.scrollRequested();
     };
 

@@ -40,11 +40,11 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
         };
-        this.tabStopListenerRunner.start();
+        await this.tabStopListenerRunner.start();
 
         this.tabStopsDoneAnalyzingTracker.reset();
         if (this.tabStopsRequirementResultProcessor) {
-            this.tabStopsRequirementResultProcessor.start();
+            await this.tabStopsRequirementResultProcessor.start();
         }
 
         return this.emptyResults;
@@ -70,10 +70,10 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.sendMessage(message);
     };
 
-    public teardown(): void {
+    public async teardown(): Promise<void> {
         this.debouncedProcessTabEvents?.cancel();
-        this.tabStopListenerRunner.stop();
-        this.tabStopsRequirementResultProcessor.stop();
+        await this.tabStopListenerRunner.stop();
+        await this.tabStopsRequirementResultProcessor.stop();
 
         const payload: ScanBasePayload = {
             key: this.config.key,
