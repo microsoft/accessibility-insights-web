@@ -16,6 +16,17 @@ enum ErrorType {
 export class ExceptionTelemetryListener {
     private readonly MAX_MESSAGE_CHARS = 300;
     private readonly MAX_STACK_CHARS = 5000;
+    private readonly EXCLUDED_PROPERTIES = [
+        'http',
+        'html',
+        'target',
+        'url',
+        'path',
+        'snippet',
+        'selector',
+        'elementSelector',
+        'cssSelector',
+    ];
 
     constructor(private readonly telemetryEventHandler: TelemetryEventHandler) {}
 
@@ -152,6 +163,18 @@ export class ExceptionTelemetryListener {
         if (
             (telemetryData.message && telemetryData.message.includes('http')) ||
             (telemetryData.stackTrace && telemetryData.stackTrace.includes('http'))
+        ) {
+            return undefined;
+        }
+        if (
+            (telemetryData.message &&
+                this.EXCLUDED_PROPERTIES.some(property =>
+                    telemetryData.message.includes(property),
+                )) ||
+            (telemetryData.stackTrace &&
+                this.EXCLUDED_PROPERTIES.some(property =>
+                    telemetryData.stackTrace.includes(property),
+                ))
         ) {
             return undefined;
         }

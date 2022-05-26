@@ -190,6 +190,17 @@ describe(ExceptionTelemetryListener, () => {
                     source: sourceStub,
                 };
             });
+
+            test('it does not send data that includes html', () => {
+                errorMessageStub = 'html';
+
+                expectedTelemetry = {
+                    message: errorMessageStub,
+                    stackTrace: errorStub.stack,
+                    errorType: 'WindowError',
+                    source: sourceStub,
+                };
+            });
         });
     });
 });
