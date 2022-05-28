@@ -141,6 +141,7 @@ export class TabContextStoreHub implements StoreHub {
         this.cardSelectionStore = new CardSelectionStore(
             actionHub.cardSelectionActions,
             actionHub.unifiedScanResultActions,
+            actionHub.tabActions,
             persistedTabData?.cardSelectionStoreData,
             indexedDBInstance,
             logger,
@@ -163,6 +164,7 @@ export class TabContextStoreHub implements StoreHub {
         this.needsReviewCardSelectionStore = new NeedsReviewCardSelectionStore(
             actionHub.needsReviewCardSelectionActions,
             actionHub.needsReviewScanResultActions,
+            actionHub.tabActions,
             persistedTabData?.needsReviewCardSelectionStoreData,
             indexedDBInstance,
             logger,

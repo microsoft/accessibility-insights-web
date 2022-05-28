@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
@@ -20,6 +21,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
     constructor(
         private readonly needsReviewCardSelectionActions: NeedsReviewCardSelectionActions,
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
+        private readonly tabActions: TabActions,
         persistedState: NeedsReviewCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
@@ -56,11 +58,12 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         this.needsReviewCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
+        this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
     public getDefaultState(): NeedsReviewCardSelectionStoreData {
         const defaultValue: NeedsReviewCardSelectionStoreData = {
-            rules: {},
+            rules: null,
             visualHelperEnabled: false,
             focusedResultUid: null,
         };
@@ -79,13 +82,17 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
     };
 
     private deselectAllCards = (): void => {
+        if (!this.state.rules) {
+            return;
+        }
+
         forOwn(this.state.rules, rule => {
             this.deselectAllCardsInRule(rule);
         });
     };
 
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
-        if (!payload || !this.state.rules[payload.ruleId]) {
+        if (!payload || !this.state.rules?.[payload.ruleId]) {
             return;
         }
 
@@ -103,7 +110,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
     private toggleCardSelection = (payload: CardSelectionPayload): void => {
         if (
             !payload ||
-            !this.state.rules[payload.ruleId] ||
+            !this.state.rules?.[payload.ruleId] ||
             this.state.rules[payload.ruleId].cards[payload.resultInstanceUid] === undefined
         ) {
             return;
@@ -123,6 +130,10 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
     };
 
     private collapseAllRules = (): void => {
+        if (!this.state.rules) {
+            return;
+        }
+
         forOwn(this.state.rules, rule => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
@@ -132,6 +143,10 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
     };
 
     private expandAllRules = (): void => {
+        if (!this.state.rules) {
+            return;
+        }
+
         forOwn(this.state.rules, rule => {
             rule.isExpanded = true;
         });
@@ -151,6 +166,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state = this.getDefaultState();
+        this.state.rules = {};
 
         if (!payload) {
             return;
@@ -161,14 +177,14 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
                 return;
             }
 
-            if (this.state.rules[result.ruleId] === undefined) {
-                this.state.rules[result.ruleId] = {
+            if (this.state.rules![result.ruleId] === undefined) {
+                this.state.rules![result.ruleId] = {
                     isExpanded: false,
                     cards: {},
                 };
             }
 
-            this.state.rules[result.ruleId].cards[result.uid] = false;
+            this.state.rules![result.ruleId].cards[result.uid] = false;
         });
 
         this.state.visualHelperEnabled = true;
@@ -183,13 +199,20 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
 
     private onNavigateToNewCardsView = (): void => {
         this.state.focusedResultUid = null;
-        for (const ruleId in this.state.rules) {
-            this.state.rules[ruleId].isExpanded = false;
-            for (const resultId in this.state.rules[ruleId].cards) {
-                this.state.rules[ruleId].cards[resultId] = false;
+        if (this.state.rules) {
+            for (const ruleId in this.state.rules) {
+                this.state.rules[ruleId].isExpanded = false;
+                for (const resultId in this.state.rules[ruleId].cards) {
+                    this.state.rules[ruleId].cards[resultId] = false;
+                }
             }
         }
         this.state.visualHelperEnabled = !isEmpty(this.state.rules);
+        this.emitChanged();
+    };
+
+    private onResetStoreData = (): void => {
+        this.state = this.getDefaultState();
         this.emitChanged();
     };
 }
