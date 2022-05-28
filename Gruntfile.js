@@ -347,7 +347,7 @@ module.exports = function (grunt) {
             'embed-styles': {
                 [targetName]: {
                     cwd: path.resolve(extensionPath, bundleFolder),
-                    src: '**/*bundle.js',
+                    src: '**/*bundle.js**',
                     dest: path.resolve(extensionPath, bundleFolder),
                     cssPath: path.resolve(extensionPath, bundleFolder),
                     expand: true,
@@ -411,7 +411,7 @@ module.exports = function (grunt) {
                 const cssFile = path.resolve(cssPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
-                return styles.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\\n');
+                return styles.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
             });
             grunt.file.write(dest, output, fileOptions);
             grunt.log.writeln(`    written to ${dest}`);
