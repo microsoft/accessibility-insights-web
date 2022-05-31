@@ -33,7 +33,7 @@ $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;
 
-@mixin ellipsedText {
+@mixin ellipsed-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
