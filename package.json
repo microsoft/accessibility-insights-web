@@ -116,7 +116,7 @@
         "@types/webextension-polyfill": "^0.8.3",
         "@typescript-eslint/eslint-plugin": "^5.27.0",
         "@typescript-eslint/parser": "^5.26.0",
-        "app-builder-lib": "^23.0.9",
+        "app-builder-lib": "^23.1.0",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
         "commander": "^9.2.0",
