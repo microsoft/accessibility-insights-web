@@ -4,7 +4,7 @@
 @import './common-mixins.scss';
 
 .report-footer-container {
-    @include contentSize;
+    @include content-size;
 
     margin-bottom: 68px;
     margin-top: 24px;

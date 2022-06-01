@@ -32,7 +32,7 @@
         font-size: $fontSizeML;
         font-family: $fontFamily;
 
-        @include ellipsedText;
+        @include ellipsed-text;
     }
 
     .spacer {
