@@ -347,7 +347,7 @@ module.exports = function (grunt) {
             'embed-styles': {
                 [targetName]: {
                     cwd: path.resolve(extensionPath, bundleFolder),
-                    src: '**/*bundle.js**',
+                    src: ['**/*bundle.js', '**/*bundle.js.map'],
                     dest: path.resolve(extensionPath, bundleFolder),
                     cssPath: path.resolve(extensionPath, bundleFolder),
                     expand: true,

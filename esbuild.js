@@ -136,4 +136,7 @@ const config = {
     define,
 };
 
-esbuild.build(config).catch(console.error);
+esbuild.build(config).catch(e => {
+    console.error(e);
+    process.exit(1);
+});
