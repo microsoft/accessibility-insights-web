@@ -16,6 +16,14 @@ export class DevToolInitializer {
     ) {}
 
     public async initialize(): Promise<void> {
+        const inspectedWindowTabId = this.browserAdapter.getInspectedWindowTabId();
+        if (inspectedWindowTabId === -1) {
+            // This usually means the inspectee is a non-UX context, like a
+            // background page or a service worker, where it doesn't make sense
+            // for us to run.
+            return;
+        }
+
         const storeUpdateMessageHub = new StoreUpdateMessageHub();
 
         const devtoolsStore = new StoreProxy<DevToolStoreData>(
