@@ -39,4 +39,4 @@ async function initClient() {
     window.windowInitializer.initialize().catch(logger.error);
 }
 
-initClient();
+void initClient();
