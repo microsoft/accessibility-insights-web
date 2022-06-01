@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
-import { DirectionalHint, IContextualMenuItem } from '@fluentui/react';
-import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
+import { ActionButton, DirectionalHint, IContextualMenuItem } from '@fluentui/react';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
@@ -71,15 +69,13 @@ export class CardKebabMenuButton extends React.Component<
                 <ActionButton
                     className={styles.kebabMenuButton}
                     ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
-                    onRenderMenuIcon={MoreActionsMenuIcon}
+                    menuIconProps={{
+                        iconName: 'MoreVertical',
+                    }}
                     menuProps={{
-                        className: styles.kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
-                        calloutProps: {
-                            className: styles.kebabMenuCallout,
-                        },
                     }}
                 />
                 {this.renderIssueFilingSettingContent()}
@@ -105,7 +101,7 @@ export class CardKebabMenuButton extends React.Component<
         if (cardInteractionSupport.supportsIssueFiling) {
             items.push({
                 key: 'fileissue',
-                name: 'File issue',
+                text: 'File issue',
                 iconProps: {
                     iconName: 'ladybugSolid',
                 },
@@ -116,7 +112,7 @@ export class CardKebabMenuButton extends React.Component<
         if (cardInteractionSupport.supportsCopyFailureDetails) {
             items.push({
                 key: 'copyfailuredetails',
-                name: `Copy failure details`,
+                text: `Copy failure details`,
                 iconProps: {
                     iconName: 'copy',
                 },
