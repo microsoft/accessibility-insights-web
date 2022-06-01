@@ -66,7 +66,7 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
             );
         };
 
-        const responseCallback = (response: CommandMessageResponse): void => {
+        const responseCallback = async (response: CommandMessageResponse): Promise<void> => {
             const payload: PostCommandResponsePayload = response.payload;
             // This behavior of passing an Error object if the respondee throws an error is missing
             // from the axe-core frame-messenger documentation, but it matches the default axe-core
@@ -91,23 +91,27 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
             }
         };
 
-        try {
-            this.underlyingCommunicator.sendCallbackCommandMessage(
+        // Float this promise to keep function synchronous and match axe's interface.
+        // This means that we can't catch errors and return false to short-circuit axe's
+        // polling mechanism if this message fails, but axe should still time out and
+        // handle the failure.
+        void this.underlyingCommunicator
+            .sendCallbackCommandMessage(
                 frameWindow,
                 message,
                 responseCallback,
                 // Usage for keepAlive is missing from the axe-core frame-messenger documentation,
                 // but this behavior matches the default axe-core frame messenger.
                 topicData.keepalive ? 'multiple' : 'single',
+            )
+            .catch(e =>
+                this.logger.error(
+                    `Error while attempting to send axe-core frameMessenger message: ${e.message}`,
+                    e,
+                ),
             );
-            return true;
-        } catch (e) {
-            this.logger.error(
-                `Error while attempting to send axe-core frameMessenger message: ${e.message}`,
-                e,
-            );
-            return false;
-        }
+
+        return true;
     };
 
     public onMessage: CallbackWindowCommandMessageListener = (

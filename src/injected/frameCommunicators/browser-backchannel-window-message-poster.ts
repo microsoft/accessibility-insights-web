@@ -9,7 +9,7 @@ import { BackchannelWindowMessageTranslator } from './backchannel-window-message
 export type WindowMessageListener = (receivedMessage: any, sourceWindow: Window) => void;
 
 export interface WindowMessagePoster {
-    postMessage(win: Window, message: any): void;
+    postMessage(win: Window, message: any): Promise<void>;
     addMessageListener(listener: WindowMessageListener): void;
     dispose(): void;
 }
@@ -37,11 +37,11 @@ export class BrowserBackchannelWindowMessagePoster implements WindowMessagePoste
         this.windowUtils.addEventListener(window, 'message', this.onWindowMessageEvent, false);
     }
 
-    public postMessage(win: Window, message: any): void {
+    public async postMessage(win: Window, message: any): Promise<void> {
         const { windowMessageMetadata: windowMessage, backchannelMessage } =
             this.backchannelWindowMessageTranslator.splitWindowMessage(message);
 
-        this.browserAdapter.sendRuntimeMessage(backchannelMessage);
+        await this.browserAdapter.sendRuntimeMessage(backchannelMessage);
         this.windowUtils.postMessage(win, windowMessage, '*');
     }
 
