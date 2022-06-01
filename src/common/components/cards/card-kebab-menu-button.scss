@@ -11,4 +11,16 @@
     &:global(.is-expanded) {
         background-color: #edebe9;
     }
+
+    &:hover :global(.ms-Icon) {
+        @media screen and (forced-colors: active) {
+            color: highlight; // Add hover state to context menu items
+        }
+    }
+}
+
+.kebab-menu button:hover {
+    @media screen and (forced-colors: active) {
+        color: highlight; // Add hover state to kebab button
+    }
 }

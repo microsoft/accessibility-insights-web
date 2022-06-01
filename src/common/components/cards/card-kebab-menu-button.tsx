@@ -73,6 +73,7 @@ export class CardKebabMenuButton extends React.Component<
                         iconName: 'MoreVertical',
                     }}
                     menuProps={{
+                        className: styles.kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
