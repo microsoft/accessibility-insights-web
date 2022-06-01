@@ -5,7 +5,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .urls-summary-section {
-    @include boxShadow;
+    @include box-shadow;
 
     background-color: $neutral-0;
     padding: 20px;

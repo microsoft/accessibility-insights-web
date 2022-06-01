@@ -24,7 +24,7 @@
         margin-left: 8px;
         color: $header-bar-title-color;
         flex-shrink: 1;
-        @include ellipsedText;
+        @include ellipsed-text;
         @include text-style-header-s;
     }
 }

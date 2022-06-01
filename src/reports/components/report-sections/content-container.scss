@@ -6,7 +6,7 @@
     box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
     .content-container {
-        @include contentSize;
+        @include content-size;
 
         margin-top: 24px;
 
