@@ -6,7 +6,7 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/tab-stop-event';
@@ -71,11 +71,10 @@ export class WindowInitializer {
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
 
-    public async initialize(): Promise<void> {
+    public async initialize(logger: Logger): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-        const logger = createDefaultLogger();
         const promiseFactory = createDefaultPromiseFactory();
         const browserEventProvider = new BrowserEventProvider();
         const browserEventManager = new BrowserEventManager(promiseFactory, logger);

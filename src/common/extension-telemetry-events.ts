@@ -104,6 +104,8 @@ export enum TelemetryEventSource {
     ContentPage,
     ElectronDeviceConnect,
     ElectronResultsView,
+    Background,
+    PopUp,
 }
 
 export type BaseTelemetryData = {

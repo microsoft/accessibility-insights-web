@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { ForwardingExceptionTelemetryListener } from 'background/telemetry/forwarding-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -102,9 +103,9 @@ export class MainWindowInitializer extends WindowInitializer {
     private needsReviewCardSelectionStoreProxy: StoreProxy<NeedsReviewCardSelectionStoreData>;
     private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
-    public async initialize(): Promise<void> {
+    public async initialize(logger: Logger): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
-        asyncInitializationSteps.push(super.initialize());
+        asyncInitializationSteps.push(super.initialize(logger));
 
         this.storeUpdateMessageHub = new StoreUpdateMessageHub();
         this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
@@ -170,13 +171,17 @@ export class MainWindowInitializer extends WindowInitializer {
             this.storeUpdateMessageHub,
         );
 
-        const logger = createDefaultLogger();
-
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
             null,
             logger,
         );
+
+        const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
+            actionMessageDispatcher,
+            TelemetryEventSource.TargetPage,
+        );
+        exceptionTelemetryListener.initialize(logger);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
             actionMessageDispatcher,

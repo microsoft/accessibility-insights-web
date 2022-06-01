@@ -1,17 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
-import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { ErrorType, UnhandledErrorTelemetryData } from 'common/extension-telemetry-events';
+import {
+    ErrorType,
+    TelemetryEventSource,
+    UnhandledErrorTelemetryData,
+} from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-describe(ExceptionTelemetryListener, () => {
-    const telemetryType: string = 'unhandledError';
+class TestExtensionTelemetryListener extends ExceptionTelemetryListener {
+    public publishExceptionTelemetryCalls: UnhandledErrorTelemetryData[] = [];
 
-    let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    protected override publishErrorTelemetry = (telemetry: UnhandledErrorTelemetryData): void => {
+        this.publishExceptionTelemetryCalls.push(telemetry);
+    };
+}
+
+describe(ExceptionTelemetryListener, () => {
+    const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
     let windowFunctionMock: IMock<(...any) => void>;
     let loggingFunctionMock: IMock<(message: string, error: Error) => void>;
     let windowStub: Window;
@@ -22,12 +30,10 @@ describe(ExceptionTelemetryListener, () => {
     let errorStub: Error;
     let rejectedPromiseStub: PromiseRejectionEvent;
     let expectedTelemetry: UnhandledErrorTelemetryData;
-    let expectedPayload: BaseActionPayload;
 
-    let testSubject: ExceptionTelemetryListener;
+    let testSubject: TestExtensionTelemetryListener;
 
     beforeEach(async () => {
-        telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         windowFunctionMock = Mock.ofType<(...any) => void>();
         windowFunctionMock.setup(f => f(It.isAny())).verifiable(Times.never());
         loggingFunctionMock = Mock.ofType<(message: string, error: Error) => void>();
@@ -42,11 +48,10 @@ describe(ExceptionTelemetryListener, () => {
         errorStub = new Error();
         rejectedPromiseStub = { reason: errorMessageStub } as PromiseRejectionEvent;
 
-        testSubject = new ExceptionTelemetryListener(telemetryEventHandlerMock.object);
+        testSubject = new TestExtensionTelemetryListener(exceptionSource);
     });
 
     afterEach(() => {
-        telemetryEventHandlerMock.verifyAll();
         windowFunctionMock.verifyAll();
         loggingFunctionMock.verifyAll();
     });
@@ -57,17 +62,14 @@ describe(ExceptionTelemetryListener, () => {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
                 errorType: ErrorType.WindowError,
-                source: undefined,
+                source: exceptionSource,
             };
-            expectedPayload = { telemetry: expectedTelemetry };
-
-            telemetryEventHandlerMock
-                .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
-                .verifiable(Times.once());
 
             testSubject.initialize(loggerStub, windowStub, consoleStub);
 
             windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
+
+            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('window on unhandled rejection sends telemetry', () => {
@@ -75,17 +77,14 @@ describe(ExceptionTelemetryListener, () => {
                 message: errorMessageStub,
                 stackTrace: undefined,
                 errorType: ErrorType.UnhandledRejection,
-                source: undefined,
+                source: exceptionSource,
             };
-            expectedPayload = { telemetry: expectedTelemetry };
-
-            telemetryEventHandlerMock
-                .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
-                .verifiable(Times.once());
 
             testSubject.initialize(loggerStub, windowStub, consoleStub);
 
             windowStub.onunhandledrejection(rejectedPromiseStub);
+
+            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('console error sends telemetry', () => {
@@ -93,19 +92,16 @@ describe(ExceptionTelemetryListener, () => {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
                 errorType: ErrorType.ConsoleError,
-                source: undefined,
+                source: exceptionSource,
             };
-            expectedPayload = { telemetry: expectedTelemetry };
-
-            telemetryEventHandlerMock
-                .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
-                .verifiable(Times.once());
 
             loggingFunctionMock.setup(f => f(errorMessageStub, errorStub)).verifiable(Times.once());
 
             testSubject.initialize(loggerStub, windowStub, consoleStub);
 
             consoleStub.error(errorMessageStub, errorStub);
+
+            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('logger error sends telemetry', () => {
@@ -113,33 +109,29 @@ describe(ExceptionTelemetryListener, () => {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
                 errorType: ErrorType.LoggerError,
-                source: undefined,
+                source: exceptionSource,
             };
-            expectedPayload = { telemetry: expectedTelemetry };
-
-            telemetryEventHandlerMock
-                .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
-                .verifiable(Times.once());
 
             loggingFunctionMock.setup(f => f(errorMessageStub, errorStub)).verifiable(Times.once());
 
             testSubject.initialize(loggerStub, windowStub, consoleStub);
 
             loggerStub.error(errorMessageStub, errorStub);
+
+            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
     });
+
     describe('it sanitizes telemetry', () => {
         describe('it truncates long data', () => {
             afterEach(() => {
-                expectedPayload = { telemetry: expectedTelemetry };
-
-                telemetryEventHandlerMock
-                    .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
-                    .verifiable(Times.once());
-
                 testSubject.initialize(loggerStub, windowStub, consoleStub);
 
                 windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
+
+                expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([
+                    expectedTelemetry,
+                ]);
             });
 
             test('it truncates messages beyond size cap', () => {
@@ -149,7 +141,7 @@ describe(ExceptionTelemetryListener, () => {
                     message: errorMessageStub.substring(0, 300),
                     stackTrace: errorStub.stack,
                     errorType: ErrorType.WindowError,
-                    source: undefined,
+                    source: exceptionSource,
                 };
             });
 
@@ -160,44 +152,26 @@ describe(ExceptionTelemetryListener, () => {
                     message: errorMessageStub,
                     stackTrace: errorStub.stack.substring(0, 5000),
                     errorType: ErrorType.WindowError,
-                    source: undefined,
+                    source: exceptionSource,
                 };
             });
         });
 
         describe('it does not send invalid data', () => {
             afterEach(() => {
-                expectedPayload = { telemetry: expectedTelemetry };
-
-                telemetryEventHandlerMock
-                    .setup(t => t.publishTelemetry(It.isAny(), It.isAny()))
-                    .verifiable(Times.never());
-
                 testSubject.initialize(loggerStub, windowStub, consoleStub);
 
                 windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
+
+                expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([]);
             });
 
             test('it does not send data that includes urls', () => {
                 errorMessageStub = 'https://accessibilityinsights.io/';
-
-                expectedTelemetry = {
-                    message: errorMessageStub,
-                    stackTrace: errorStub.stack,
-                    errorType: ErrorType.WindowError,
-                    source: undefined,
-                };
             });
 
             test('it does not send data that includes html', () => {
                 errorMessageStub = '"html"';
-
-                expectedTelemetry = {
-                    message: errorMessageStub,
-                    stackTrace: errorStub.stack,
-                    errorType: ErrorType.WindowError,
-                    source: undefined,
-                };
             });
         });
     });

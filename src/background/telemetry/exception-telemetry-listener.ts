@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload } from 'background/actions/action-payloads';
-import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
 import { escapeRegExp } from 'lodash';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { UnhandledErrorTelemetryData } from '../../common/extension-telemetry-events';
 
-export class ExceptionTelemetryListener {
+export abstract class ExceptionTelemetryListener {
     private readonly MAX_MESSAGE_CHARS = 300;
     private readonly MAX_STACK_CHARS = 5000;
     private readonly EXCLUDED_PROPERTIES = [
@@ -22,7 +20,7 @@ export class ExceptionTelemetryListener {
         'cssSelector',
     ];
 
-    constructor(private readonly telemetryEventHandler: TelemetryEventHandler) {}
+    constructor(private readonly exceptionSource: TelemetryEvents.TelemetryEventSource) {}
 
     public initialize(
         logger: Logger,
@@ -143,14 +141,13 @@ export class ExceptionTelemetryListener {
             source,
             errorType,
         };
+
+        telemetry.source = telemetry.source ? telemetry.source : this.exceptionSource;
+
         const sanitizedTelemetry = this.sanitizeTelemetryData(telemetry);
 
         if (sanitizedTelemetry) {
-            const payload: BaseActionPayload = {
-                telemetry: sanitizedTelemetry,
-            };
-
-            this.telemetryEventHandler.publishTelemetry(TelemetryEvents.UNHANDLED_ERROR, payload);
+            this.publishErrorTelemetry(sanitizedTelemetry);
         }
     };
 
@@ -185,4 +182,6 @@ export class ExceptionTelemetryListener {
         // eslint-disable-next-line security/detect-non-literal-regexp
         return new RegExp(questionableSubstringPattern);
     }
+
+    protected abstract publishErrorTelemetry: (telemetry: UnhandledErrorTelemetryData) => void;
 }

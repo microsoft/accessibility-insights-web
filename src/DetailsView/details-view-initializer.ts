@@ -7,8 +7,19 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { getStoreProxyFeatureFlagChecker } from 'background/feature-flag-checker';
+import { InstallationData } from 'background/installation-data';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
+import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
+import {
+    getApplicationTelemetryDataFactory,
+    getTelemetryClient,
+} from 'background/telemetry/telemetry-client-provider';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { createToolData } from 'common/application-properties-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
@@ -35,7 +46,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { generateUID } from 'common/uid-generator';
-import { toolName } from 'content/strings/application';
+import { title, toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
@@ -234,6 +245,38 @@ if (tabId != null) {
                 StoreNames[StoreNames.UserConfigurationStore],
                 storeUpdateMessageHub,
             );
+
+            const telemetryLogger = new TelemetryLogger(logger);
+            const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
+                {} as InstallationData,
+                browserAdapter,
+                browserAdapter,
+                title,
+            );
+            const consoleTelemetryClient = new ConsoleTelemetryClient(
+                applicationTelemetryDataFactory,
+                telemetryLogger,
+            );
+            const debugToolsTelemetryClient = new DebugToolsTelemetryClient(
+                browserAdapter,
+                applicationTelemetryDataFactory,
+            );
+            const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
+                consoleTelemetryClient,
+                debugToolsTelemetryClient,
+            ]);
+
+            const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+            const featureFlagChecker = getStoreProxyFeatureFlagChecker(featureFlagStore);
+            telemetryLogger.initialize(featureFlagChecker);
+            debugToolsTelemetryClient.initialize(featureFlagChecker);
+
+            const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+                telemetryEventHandler,
+                TelemetryEventSource.DetailsView,
+            );
+            exceptionTelemetryListener.initialize(logger);
 
             const tabStopsViewActions = new TabStopsViewActions();
             const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
