@@ -144,6 +144,7 @@ export class RespondableCommandMessageCommunicator {
             if (timedOut) {
                 this.logger.error(
                     `Received a response for command ${commandMessage.command} after it timed out`,
+                    new Error(),
                 );
             }
             pendingResponseResolver(response);

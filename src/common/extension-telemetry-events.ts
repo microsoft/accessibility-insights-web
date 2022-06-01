@@ -80,7 +80,7 @@ export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
 export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const SET_AUTO_DETECTED_FAILURES_DIALOG_STATE: string = 'setAutoDetectedFailuresDialogState';
-export const UNHANDLED_EXCEPTION: string = 'unhandledException';
+export const UNHANDLED_ERROR: string = 'unhandledError';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
@@ -284,11 +284,18 @@ export type AutoDetectedFailuresDialogStateTelemetryData = {
     enabled: boolean;
 };
 
-export type UnhandledExceptionTelemetryData = {
+export enum ErrorType {
+    WindowError = 'WindowError',
+    UnhandledRejection = 'UnhandledRejection',
+    ConsoleError = 'ConsoleError',
+    LoggerError = 'LoggerError',
+}
+
+export type UnhandledErrorTelemetryData = {
     message: string;
     stackTrace?: string;
-    source: string;
-    errorType: string;
+    source: TelemetryEventSource;
+    errorType: ErrorType;
 };
 
 export type TelemetryData =
@@ -320,4 +327,4 @@ export type TelemetryData =
     | SetAllUrlsPermissionTelemetryData
     | TabStopsAutomatedResultsTelemetryData
     | AutoDetectedFailuresDialogStateTelemetryData
-    | UnhandledExceptionTelemetryData;
+    | UnhandledErrorTelemetryData;

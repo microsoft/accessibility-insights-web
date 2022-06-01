@@ -3,15 +3,9 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
+import { escapeRegExp } from 'lodash';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
-import { UnhandledExceptionTelemetryData } from '../../common/extension-telemetry-events';
-
-enum ErrorType {
-    WindowError = 'WindowError',
-    UnhandledRejection = 'UnhandledRejection',
-    ConsoleError = 'ConsoleError',
-    LoggerError = 'LoggerError',
-}
+import { UnhandledErrorTelemetryData } from '../../common/extension-telemetry-events';
 
 export class ExceptionTelemetryListener {
     private readonly MAX_MESSAGE_CHARS = 300;
@@ -54,7 +48,11 @@ export class ExceptionTelemetryListener {
             }
             windowErrorHookIsActive = true;
             try {
-                sendExceptionTelemetry(ErrorType.WindowError, message, error?.stack, source);
+                sendExceptionTelemetry(
+                    TelemetryEvents.ErrorType.WindowError,
+                    message,
+                    error?.stack,
+                );
                 return false;
             } finally {
                 windowErrorHookIsActive = false;
@@ -68,7 +66,7 @@ export class ExceptionTelemetryListener {
             }
             windowRejectionHookIsActive = true;
             try {
-                sendExceptionTelemetry(ErrorType.UnhandledRejection, event.reason);
+                sendExceptionTelemetry(TelemetryEvents.ErrorType.UnhandledRejection, event.reason);
                 return false;
             } finally {
                 windowRejectionHookIsActive = false;
@@ -85,7 +83,11 @@ export class ExceptionTelemetryListener {
             try {
                 const err = optionalParams[0] as Error;
                 if (message || err) {
-                    sendExceptionTelemetry(ErrorType.ConsoleError, message, err?.stack);
+                    sendExceptionTelemetry(
+                        TelemetryEvents.ErrorType.ConsoleError,
+                        message,
+                        err?.stack,
+                    );
                 }
 
                 if (optionalParams.length > 1) {
@@ -111,13 +113,17 @@ export class ExceptionTelemetryListener {
             try {
                 const err = optionalParams[0] as Error;
                 if (message || err) {
-                    sendExceptionTelemetry(ErrorType.LoggerError, message, err?.stack);
+                    sendExceptionTelemetry(
+                        TelemetryEvents.ErrorType.LoggerError,
+                        message ?? err.message,
+                        err?.stack,
+                    );
                 }
 
                 if (optionalParams.length > 1) {
-                    loggerError(message, ...optionalParams);
+                    loggerError(message ?? err.message, ...optionalParams);
                 } else {
-                    loggerError(message, err);
+                    loggerError(message ?? err.message, err);
                 }
             } finally {
                 loggingHookIsActive = false;
@@ -126,12 +132,12 @@ export class ExceptionTelemetryListener {
     }
 
     private sendExceptionTelemetry = (
-        errorType: string,
+        errorType: TelemetryEvents.ErrorType,
         message: string,
         stackTrace?: string,
-        source?: string,
+        source?: TelemetryEvents.TelemetryEventSource,
     ): void => {
-        const telemetry: UnhandledExceptionTelemetryData = {
+        const telemetry: UnhandledErrorTelemetryData = {
             message: message.toString(),
             stackTrace,
             source,
@@ -144,40 +150,39 @@ export class ExceptionTelemetryListener {
                 telemetry: sanitizedTelemetry,
             };
 
-            this.telemetryEventHandler.publishTelemetry(
-                TelemetryEvents.UNHANDLED_EXCEPTION,
-                payload,
-            );
+            this.telemetryEventHandler.publishTelemetry(TelemetryEvents.UNHANDLED_ERROR, payload);
         }
     };
 
     private sanitizeTelemetryData = (
-        telemetryData: UnhandledExceptionTelemetryData,
-    ): UnhandledExceptionTelemetryData => {
+        telemetryData: UnhandledErrorTelemetryData,
+    ): UnhandledErrorTelemetryData => {
         if (telemetryData.message && telemetryData.message.length > this.MAX_MESSAGE_CHARS) {
             telemetryData.message = telemetryData.message.substring(0, this.MAX_MESSAGE_CHARS);
         }
         if (telemetryData.stackTrace && telemetryData.stackTrace.length > this.MAX_STACK_CHARS) {
             telemetryData.stackTrace = telemetryData.stackTrace.substring(0, this.MAX_STACK_CHARS);
         }
+
+        const exclusionRegex = this.generateExclusionRegex();
         if (
-            (telemetryData.message && telemetryData.message.includes('http')) ||
-            (telemetryData.stackTrace && telemetryData.stackTrace.includes('http'))
-        ) {
-            return undefined;
-        }
-        if (
-            (telemetryData.message &&
-                this.EXCLUDED_PROPERTIES.some(property =>
-                    telemetryData.message.includes(property),
-                )) ||
-            (telemetryData.stackTrace &&
-                this.EXCLUDED_PROPERTIES.some(property =>
-                    telemetryData.stackTrace.includes(property),
-                ))
+            (telemetryData.message && exclusionRegex.test(telemetryData.message)) ||
+            (telemetryData.stackTrace && exclusionRegex.test(telemetryData.stackTrace))
         ) {
             return undefined;
         }
         return telemetryData;
     };
+
+    private generateExclusionRegex(): RegExp {
+        const urlPattern = ':\\/\\/';
+        const questionablePropertyNamePattern =
+            this.EXCLUDED_PROPERTIES.map(escapeRegExp).join('|');
+        const questionablePropertyPattern = `['"](${questionablePropertyNamePattern})['"]`;
+        const questionableSubstringPattern = `${urlPattern}|${questionablePropertyPattern}`;
+
+        // This argument *is* a constant built from literals, it's just built up from parts
+        // eslint-disable-next-line security/detect-non-literal-regexp
+        return new RegExp(questionableSubstringPattern);
+    }
 }

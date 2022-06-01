@@ -4,12 +4,12 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { UnhandledExceptionTelemetryData } from 'common/extension-telemetry-events';
+import { ErrorType, UnhandledErrorTelemetryData } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(ExceptionTelemetryListener, () => {
-    const telemetryType: string = 'unhandledException';
+    const telemetryType: string = 'unhandledError';
 
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let windowFunctionMock: IMock<(...any) => void>;
@@ -20,9 +20,8 @@ describe(ExceptionTelemetryListener, () => {
 
     let errorMessageStub: string;
     let errorStub: Error;
-    let sourceStub: string;
     let rejectedPromiseStub: PromiseRejectionEvent;
-    let expectedTelemetry: UnhandledExceptionTelemetryData;
+    let expectedTelemetry: UnhandledErrorTelemetryData;
     let expectedPayload: BaseActionPayload;
 
     let testSubject: ExceptionTelemetryListener;
@@ -41,7 +40,6 @@ describe(ExceptionTelemetryListener, () => {
 
         errorMessageStub = 'Error message';
         errorStub = new Error();
-        sourceStub = 'Source';
         rejectedPromiseStub = { reason: errorMessageStub } as PromiseRejectionEvent;
 
         testSubject = new ExceptionTelemetryListener(telemetryEventHandlerMock.object);
@@ -58,8 +56,8 @@ describe(ExceptionTelemetryListener, () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
-                errorType: 'WindowError',
-                source: sourceStub,
+                errorType: ErrorType.WindowError,
+                source: undefined,
             };
             expectedPayload = { telemetry: expectedTelemetry };
 
@@ -69,14 +67,14 @@ describe(ExceptionTelemetryListener, () => {
 
             testSubject.initialize(loggerStub, windowStub, consoleStub);
 
-            windowStub.onerror(errorMessageStub, sourceStub, 0, 0, errorStub);
+            windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
         });
 
         test('window on unhandled rejection sends telemetry', () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: undefined,
-                errorType: 'UnhandledRejection',
+                errorType: ErrorType.UnhandledRejection,
                 source: undefined,
             };
             expectedPayload = { telemetry: expectedTelemetry };
@@ -94,7 +92,7 @@ describe(ExceptionTelemetryListener, () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
-                errorType: 'ConsoleError',
+                errorType: ErrorType.ConsoleError,
                 source: undefined,
             };
             expectedPayload = { telemetry: expectedTelemetry };
@@ -114,7 +112,7 @@ describe(ExceptionTelemetryListener, () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
-                errorType: 'LoggerError',
+                errorType: ErrorType.LoggerError,
                 source: undefined,
             };
             expectedPayload = { telemetry: expectedTelemetry };
@@ -141,7 +139,7 @@ describe(ExceptionTelemetryListener, () => {
 
                 testSubject.initialize(loggerStub, windowStub, consoleStub);
 
-                windowStub.onerror(errorMessageStub, sourceStub, 0, 0, errorStub);
+                windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
             });
 
             test('it truncates messages beyond size cap', () => {
@@ -150,8 +148,8 @@ describe(ExceptionTelemetryListener, () => {
                 expectedTelemetry = {
                     message: errorMessageStub.substring(0, 300),
                     stackTrace: errorStub.stack,
-                    errorType: 'WindowError',
-                    source: sourceStub,
+                    errorType: ErrorType.WindowError,
+                    source: undefined,
                 };
             });
 
@@ -161,8 +159,8 @@ describe(ExceptionTelemetryListener, () => {
                 expectedTelemetry = {
                     message: errorMessageStub,
                     stackTrace: errorStub.stack.substring(0, 5000),
-                    errorType: 'WindowError',
-                    source: sourceStub,
+                    errorType: ErrorType.WindowError,
+                    source: undefined,
                 };
             });
         });
@@ -177,7 +175,7 @@ describe(ExceptionTelemetryListener, () => {
 
                 testSubject.initialize(loggerStub, windowStub, consoleStub);
 
-                windowStub.onerror(errorMessageStub, sourceStub, 0, 0, errorStub);
+                windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
             });
 
             test('it does not send data that includes urls', () => {
@@ -186,19 +184,19 @@ describe(ExceptionTelemetryListener, () => {
                 expectedTelemetry = {
                     message: errorMessageStub,
                     stackTrace: errorStub.stack,
-                    errorType: 'WindowError',
-                    source: sourceStub,
+                    errorType: ErrorType.WindowError,
+                    source: undefined,
                 };
             });
 
             test('it does not send data that includes html', () => {
-                errorMessageStub = 'html';
+                errorMessageStub = '"html"';
 
                 expectedTelemetry = {
                     message: errorMessageStub,
                     stackTrace: errorStub.stack,
-                    errorType: 'WindowError',
-                    source: sourceStub,
+                    errorType: ErrorType.WindowError,
+                    source: undefined,
                 };
             });
         });

@@ -62,6 +62,7 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
             // use any axe-core plugins that might require this.
             this.logger.error(
                 'AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.',
+                new Error(),
             );
         };
 
@@ -85,6 +86,7 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
                 // frame's console.
                 this.logger.error(
                     'An axe-core error occurred while processing a result from a child frame.',
+                    new Error(),
                 );
             }
         };
@@ -114,7 +116,10 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
         commandMessageResponder: (response: CommandMessageResponse) => void,
     ): void => {
         if (sourceWindow !== this.windowUtils.getParentWindow()) {
-            this.logger.error('Received unexpected axe-core message from a non-parent window');
+            this.logger.error(
+                'Received unexpected axe-core message from a non-parent window',
+                new Error(),
+            );
             return;
         }
 
@@ -130,6 +135,7 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
                 // use any axe-core plugins that might require this.
                 this.logger.error(
                     'AxeFrameMessenger does not support replies-to-replies, but a topicHandler provided a replyHandler in a response callback.',
+                    new Error(),
                 );
             }
             const responsePayload: PostCommandResponsePayload = {
