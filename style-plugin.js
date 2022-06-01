@@ -69,7 +69,7 @@ const CreateStylePlugin = isProd => {
                         }),
                     ]).process(source, { from: undefined });
 
-                    const pathAsJsString = JSON.stringify(args.path);
+                    let pathAsJsString = JSON.stringify(args.path.slice(args.path.indexOf('src')));
                     const cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
 
                     return {
