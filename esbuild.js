@@ -45,10 +45,10 @@ function isReactDevtoolsInstalled() {
     }
 }
 
-function checkToAddReactDevTools(entryFiles) {
+function checkToAddReactDevTools(givenEntryFiles) {
     if (isReactDevtoolsInstalled()) {
-        entryFiles.detailsView = `${src}/DetailsView/details-view-init-with-react-devtools.ts`;
-        entryFiles.popup = `${src}/popup/popup-init-with-react-devtools.ts`;
+        givenEntryFiles.detailsView = `${src}/DetailsView/details-view-init-with-react-devtools.ts`;
+        givenEntryFiles.popup = `${src}/popup/popup-init-with-react-devtools.ts`;
     }
 }
 
@@ -58,7 +58,7 @@ let outdir = devWebExtensionOutdir;
 let isProd = false;
 let platform = 'browser';
 let external = [];
-let format = 'esm';
+let format = 'iife';
 let define;
 let target = ['chrome90', 'firefox90'];
 let plugins = [CreateStylePlugin()];
@@ -76,7 +76,6 @@ switch (argsObj.env) {
     case 'prod':
         isProd = true;
         outdir = prodWebExtensionOutDir;
-        delete entryFiles.detailsView;
         break;
 
     case 'dev-mv3':
@@ -91,6 +90,7 @@ switch (argsObj.env) {
     case 'report':
         entryFiles = { report: `${src}/reports/package/reporter-factory.ts` };
         outdir = path.join(__dirname, 'packages/report/bundle');
+        format = 'esm';
 
         // esbuild doesn't have an easy way to ignore node_modules for monorepos,
         // so this plugin is necessary (marks all node_modules as external).
@@ -136,21 +136,4 @@ const config = {
     define,
 };
 
-esbuild
-    .build(config)
-    .then(() => {
-        if (!isProd) {
-            return;
-        }
-
-        // minification of the details-view bundle can lead to a collision with the axe-core
-        // package, so we do not minify the identifiers specifically for the details-view bundle.
-        config.entryPoints = {
-            detailsView: `${src}/DetailsView/details-view-initializer.ts`,
-        };
-        config.minify = false;
-        config.minifyWhitespace = true;
-        config.minifySyntax = true;
-        esbuild.build(config).catch(console.error);
-    })
-    .catch(console.error);
+esbuild.build(config).catch(console.error);
