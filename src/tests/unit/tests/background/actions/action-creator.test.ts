@@ -1040,7 +1040,7 @@ class ActionCreatorValidator {
     }
 
     public setupLogError(message: string): ActionCreatorValidator {
-        this.loggerMock.setup(logger => logger.error(message)).verifiable(Times.once());
+        this.loggerMock.setup(logger => logger.error(message, It.isAny())).verifiable(Times.once());
 
         return this;
     }

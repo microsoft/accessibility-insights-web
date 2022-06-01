@@ -8,6 +8,7 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
@@ -122,6 +123,9 @@ async function initialize(): Promise<void> {
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+    const exceptionTelemetryListener = new ExceptionTelemetryListener(telemetryEventHandler);
+    exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
