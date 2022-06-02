@@ -1016,9 +1016,11 @@
         height: 32px;
         border-width: 2px;
       }
-      .kebab-menu-button--dy7Ui:hover,
+      .kebab-menu-button--dy7Ui:hover {
+        background-color: var(--menu-item-background-hover);
+      }
       .kebab-menu-button--dy7Ui.is-expanded {
-        background-color: #edebe9;
+        background-color: var(--menu-item-background-active);
       }
       @media screen and (forced-colors: active) {
         .kebab-menu-button--dy7Ui.is-expanded .ms-Icon,
