@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ActionButton, DirectionalHint, IContextualMenuItem } from '@fluentui/react';
+import { registerIcons } from '@fluentui/react/lib/Styling';
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
@@ -18,6 +20,12 @@ import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
 import styles from './card-kebab-menu-button.scss';
+
+registerIcons({
+    icons: {
+        MoreActionsMenuIcon: <MoreActionsMenuIcon />,
+    },
+});
 
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -70,7 +78,7 @@ export class CardKebabMenuButton extends React.Component<
                     className={styles.kebabMenuButton}
                     ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                     menuIconProps={{
-                        iconName: 'MoreVertical',
+                        iconName: 'MoreActionsMenuIcon',
                     }}
                     menuProps={{
                         className: styles.kebabMenu,

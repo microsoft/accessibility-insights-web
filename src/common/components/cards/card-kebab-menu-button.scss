@@ -2,25 +2,27 @@
 // Licensed under the MIT License.
 .kebab-menu-button {
     margin-right: 8px;
-
-    :global(.ms-Icon) {
-        font-size: 18px; // Increase kebab icon size
-    }
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
 
     &:hover,
     &:global(.is-expanded) {
         background-color: #edebe9;
     }
 
+    // Add hover and active state that's not yet in FluentUI
+    &:global(.is-expanded) :global(.ms-Icon),
     &:hover :global(.ms-Icon) {
         @media screen and (forced-colors: active) {
-            color: highlight; // Add hover state to context menu items
+            color: highlight;
         }
     }
 }
 
+// Add hover state that's not yet in FluentUI to menu items
 .kebab-menu button:hover {
     @media screen and (forced-colors: active) {
-        color: highlight; // Add hover state to kebab button
+        color: highlight;
     }
 }
