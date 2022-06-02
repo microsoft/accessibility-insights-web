@@ -5,10 +5,14 @@
 .kebab-menu-button {
     margin-right: 8px;
 
-    // Since the menu uses a custom SVG icon, set the button shape:
+    // Since the menu uses a custom SVG, set the button shape:
     width: 32px;
     height: 32px;
-    border-width: 2px;
+
+    // Center the custom SVG:
+    :global(.ms-Icon) {
+        flex-grow: 1;
+    }
 
     &:hover {
         background-color: $menu-item-background-hover;
