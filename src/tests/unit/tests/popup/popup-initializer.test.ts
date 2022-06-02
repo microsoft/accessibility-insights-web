@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { IsSupportedBrowser } from '../../../../common/is-supported-browser';
 import { Logger } from '../../../../common/logging/logger';
 import { PopupInitializer } from '../../../../popup/popup-initializer';
