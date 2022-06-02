@@ -10,16 +10,17 @@ export class SendingExceptionTelemetryListener extends ExceptionTelemetryListene
         private readonly telemetryEventHandler: TelemetryEventHandler,
         exceptionSource: TelemetryEvents.TelemetryEventSource,
     ) {
-        super(exceptionSource);
-    }
+        const publishTelemetry = (
+            eventName: string,
+            telemetry: TelemetryEvents.UnhandledErrorTelemetryData,
+        ): void => {
+            const payload: BaseActionPayload = {
+                telemetry,
+            };
 
-    protected override publishErrorTelemetry = (
-        telemetry: TelemetryEvents.UnhandledErrorTelemetryData,
-    ): void => {
-        const payload: BaseActionPayload = {
-            telemetry,
+            this.telemetryEventHandler.publishTelemetry(eventName, payload);
         };
 
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.UNHANDLED_ERROR, payload);
-    };
+        super(exceptionSource, publishTelemetry);
+    }
 }

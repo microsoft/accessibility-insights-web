@@ -8,7 +8,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
-import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -177,9 +177,9 @@ export class MainWindowInitializer extends WindowInitializer {
             logger,
         );
 
-        const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
-            actionMessageDispatcher,
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.TargetPage,
+            actionMessageDispatcher.sendTelemetry,
         );
         exceptionTelemetryListener.initialize(logger);
 

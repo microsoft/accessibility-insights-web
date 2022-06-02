@@ -7,7 +7,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
-import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import UAParser from 'ua-parser-js';
 import { DevToolInitializer } from './dev-tool-initializer';
@@ -28,9 +28,9 @@ const actionMessageDispatcher = new RemoteActionMessageDispatcher(
     null,
     logger,
 );
-const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
-    actionMessageDispatcher,
+const exceptionTelemetryListener = new ExceptionTelemetryListener(
     TelemetryEventSource.DevTools,
+    actionMessageDispatcher.sendTelemetry,
 );
 exceptionTelemetryListener.initialize(logger);
 

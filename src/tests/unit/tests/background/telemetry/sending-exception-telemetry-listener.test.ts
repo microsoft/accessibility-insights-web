@@ -9,32 +9,34 @@ import {
     TelemetryEventSource,
     UnhandledErrorTelemetryData,
 } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
 import { IMock, Mock, Times } from 'typemoq';
-
-class TestSendingExceptionTelemetryListener extends SendingExceptionTelemetryListener {
-    public callPublishErrorTelemetry(telemetry: UnhandledErrorTelemetryData): void {
-        this.publishErrorTelemetry(telemetry);
-    }
-}
 
 describe(SendingExceptionTelemetryListener, () => {
     const telemetryType: string = 'unhandledError';
     const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
+    let loggingFunctionMock: IMock<(message: string, error: Error) => void>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let loggerStub: Logger;
     let errorMessageStub: string;
+    let errorStub: Error;
     let stackTraceStub: string;
     let sourceStub: TelemetryEventSource;
     let errorTypeStub: ErrorType;
     let telemetryStub: UnhandledErrorTelemetryData;
     let expectedPayload: BaseActionPayload;
-    let testSubject: TestSendingExceptionTelemetryListener;
+    let testSubject: SendingExceptionTelemetryListener;
 
     beforeEach(async () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        loggingFunctionMock = Mock.ofType<(message: string, error: Error) => void>();
+        loggerStub = { error: loggingFunctionMock.object } as Logger;
         errorMessageStub = 'Error message';
+        errorStub = new Error();
         stackTraceStub = 'Stack trace';
+        errorStub.stack = stackTraceStub;
         sourceStub = TelemetryEventSource.AdHocTools;
-        errorTypeStub = ErrorType.ConsoleError;
+        errorTypeStub = ErrorType.LoggerError;
         telemetryStub = {
             message: errorMessageStub,
             stackTrace: stackTraceStub,
@@ -43,10 +45,12 @@ describe(SendingExceptionTelemetryListener, () => {
         };
         expectedPayload = { telemetry: telemetryStub };
 
-        testSubject = new TestSendingExceptionTelemetryListener(
+        testSubject = new SendingExceptionTelemetryListener(
             telemetryEventHandlerMock.object,
             exceptionSource,
         );
+
+        testSubject.initialize(loggerStub);
     });
 
     afterEach(() => {
@@ -58,6 +62,6 @@ describe(SendingExceptionTelemetryListener, () => {
             .setup(t => t.publishTelemetry(telemetryType, expectedPayload))
             .verifiable(Times.once());
 
-        testSubject.callPublishErrorTelemetry(telemetryStub);
+        loggerStub.error(errorMessageStub, errorStub);
     });
 });

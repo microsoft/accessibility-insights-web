@@ -5,7 +5,7 @@ import { escapeRegExp } from 'lodash';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { UnhandledErrorTelemetryData } from '../../common/extension-telemetry-events';
 
-export abstract class ExceptionTelemetryListener {
+export class ExceptionTelemetryListener {
     private readonly MAX_MESSAGE_CHARS = 300;
     private readonly MAX_STACK_CHARS = 5000;
     private readonly EXCLUDED_PROPERTIES = [
@@ -20,7 +20,13 @@ export abstract class ExceptionTelemetryListener {
         'cssSelector',
     ];
 
-    constructor(private readonly exceptionSource: TelemetryEvents.TelemetryEventSource) {}
+    constructor(
+        private readonly exceptionSource: TelemetryEvents.TelemetryEventSource,
+        private readonly publishErrorTelemetry: (
+            eventName: string,
+            data: UnhandledErrorTelemetryData,
+        ) => void,
+    ) {}
 
     public initialize(
         logger: Logger,
@@ -145,7 +151,7 @@ export abstract class ExceptionTelemetryListener {
         const sanitizedTelemetry = this.sanitizeTelemetryData(telemetry);
 
         if (sanitizedTelemetry) {
-            this.publishErrorTelemetry(sanitizedTelemetry);
+            this.publishErrorTelemetry(TelemetryEvents.UNHANDLED_ERROR, sanitizedTelemetry);
         }
     };
 
@@ -180,6 +186,4 @@ export abstract class ExceptionTelemetryListener {
         // eslint-disable-next-line security/detect-non-literal-regexp
         return new RegExp(questionableSubstringPattern);
     }
-
-    protected abstract publishErrorTelemetry: (telemetry: UnhandledErrorTelemetryData) => void;
 }

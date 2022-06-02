@@ -10,14 +10,6 @@ import { Logger } from 'common/logging/logger';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-class TestExtensionTelemetryListener extends ExceptionTelemetryListener {
-    public publishExceptionTelemetryCalls: UnhandledErrorTelemetryData[] = [];
-
-    protected override publishErrorTelemetry = (telemetry: UnhandledErrorTelemetryData): void => {
-        this.publishExceptionTelemetryCalls.push(telemetry);
-    };
-}
-
 describe(ExceptionTelemetryListener, () => {
     const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
     let windowFunctionMock: IMock<(...any) => void>;
@@ -30,8 +22,10 @@ describe(ExceptionTelemetryListener, () => {
     let errorStub: Error;
     let rejectedPromiseStub: PromiseRejectionEvent;
     let expectedTelemetry: UnhandledErrorTelemetryData;
+    let publishExceptionTelemetryCalls: UnhandledErrorTelemetryData[];
+    let publishErrorTelemetry: (eventName: string, data: UnhandledErrorTelemetryData) => void;
 
-    let testSubject: TestExtensionTelemetryListener;
+    let testSubject: ExceptionTelemetryListener;
 
     beforeEach(async () => {
         windowFunctionMock = Mock.ofType<(...any) => void>();
@@ -47,8 +41,15 @@ describe(ExceptionTelemetryListener, () => {
         errorMessageStub = 'Error message';
         errorStub = new Error();
         rejectedPromiseStub = { reason: errorMessageStub } as PromiseRejectionEvent;
+        publishExceptionTelemetryCalls = [];
+        publishErrorTelemetry = (
+            eventType: string,
+            telemetry: UnhandledErrorTelemetryData,
+        ): void => {
+            publishExceptionTelemetryCalls.push(telemetry);
+        };
 
-        testSubject = new TestExtensionTelemetryListener(exceptionSource);
+        testSubject = new ExceptionTelemetryListener(exceptionSource, publishErrorTelemetry);
     });
 
     afterEach(() => {
@@ -69,7 +70,7 @@ describe(ExceptionTelemetryListener, () => {
 
             windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
 
-            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
+            expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('window on unhandled rejection sends telemetry', () => {
@@ -84,7 +85,7 @@ describe(ExceptionTelemetryListener, () => {
 
             windowStub.onunhandledrejection(rejectedPromiseStub);
 
-            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
+            expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('console error sends telemetry', () => {
@@ -101,7 +102,7 @@ describe(ExceptionTelemetryListener, () => {
 
             consoleStub.error(errorMessageStub, errorStub);
 
-            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
+            expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
         test('logger error sends telemetry', () => {
@@ -118,7 +119,7 @@ describe(ExceptionTelemetryListener, () => {
 
             loggerStub.error(errorMessageStub, errorStub);
 
-            expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
+            expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
     });
 
@@ -129,9 +130,7 @@ describe(ExceptionTelemetryListener, () => {
 
                 windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
 
-                expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([
-                    expectedTelemetry,
-                ]);
+                expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
             });
 
             test('it truncates messages beyond size cap', () => {
@@ -163,7 +162,7 @@ describe(ExceptionTelemetryListener, () => {
 
                 windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
 
-                expect(testSubject.publishExceptionTelemetryCalls).toMatchObject([]);
+                expect(publishExceptionTelemetryCalls).toMatchObject([]);
             });
 
             test('it does not send data that includes urls', () => {

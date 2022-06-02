@@ -5,7 +5,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -94,9 +94,9 @@ export class PopupInitializer {
             this.logger,
         );
 
-        const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
-            actionMessageDispatcher,
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.PopUp,
+            actionMessageDispatcher.sendTelemetry,
         );
         exceptionTelemetryListener.initialize(this.logger);
 
