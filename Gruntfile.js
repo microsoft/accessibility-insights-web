@@ -170,9 +170,8 @@ module.exports = function (grunt) {
             'esbuild-dev': `node esbuild.js`,
             'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
-            'webpack-prod': `"${webpackPath}" --config-name prod`,
+            'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
-            'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
@@ -737,7 +736,7 @@ module.exports = function (grunt) {
     grunt.registerTask('package-report', function () {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
-        mustExist(mustExistPath, 'Have you run webpack?');
+        mustExist(mustExistPath, 'Have you run esbuild?');
 
         grunt.task.run('embed-styles:package-report');
         grunt.task.run('clean:package-report');
@@ -825,8 +824,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-prod', // required to get the css assets
-        'exec:webpack-package-report',
+        'exec:esbuild-prod', // required to get the css assets
+        'exec:esbuild-package-report',
         'build-assets',
         'package-report',
     ]);
