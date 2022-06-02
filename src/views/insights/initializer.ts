@@ -3,10 +3,13 @@
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { SelfFastPass, SelfFastPassContainer } from 'common/self-fast-pass';
+import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
 import UAParser from 'ua-parser-js';
@@ -25,6 +28,17 @@ const browserAdapter = browserAdapterFactory.makeFromUserAgent(
     browserEventManager,
     browserEventProvider.getMinimalBrowserEvents(),
 );
+
+const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+    browserAdapter.sendMessageToFrames,
+    null,
+    logger,
+);
+const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
+    actionMessageDispatcher,
+    TelemetryEventSource.Insights,
+);
+exceptionTelemetryListener.initialize(logger);
 
 renderer(rendererDependencies(browserAdapter, logger));
 

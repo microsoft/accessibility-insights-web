@@ -6,6 +6,7 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
@@ -16,6 +17,7 @@ import { StoreProxy } from 'common/store-proxy';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
+import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
@@ -49,9 +51,24 @@ export const initializeDebugTools = () => {
         browserEventProvider.getMinimalBrowserEvents(),
     );
 
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+        browserAdapter.sendMessageToFrames,
+        null,
+        logger,
+    );
+    const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
+        actionMessageDispatcher,
+        TelemetryEventSource.DebugTools,
+    );
+    exceptionTelemetryListener.initialize(logger);
+
     const storeUpdateMessageHub = new StoreUpdateMessageHub();
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
-    const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
+    const storeActionMessageCreator = getStoreActionMessageCreator(
+        browserAdapter,
+        storeProxies,
+        actionMessageDispatcher,
+    );
 
     const debugToolsNavActions = new DebugToolsNavActions();
 
@@ -105,13 +122,11 @@ const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];
 };
 
-const getStoreActionMessageCreator = (browserAdapter: BrowserAdapter, stores: BaseStore<any>[]) => {
-    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
-        browserAdapter.sendMessageToFrames,
-        null,
-        createDefaultLogger(),
-    );
-
+const getStoreActionMessageCreator = (
+    browserAdapter: BrowserAdapter,
+    stores: BaseStore<any>[],
+    actionMessageDispatcher: RemoteActionMessageDispatcher,
+) => {
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
         actionMessageDispatcher,
     );
