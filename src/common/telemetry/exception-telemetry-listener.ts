@@ -39,7 +39,7 @@ export abstract class ExceptionTelemetryListener {
             source: string,
             lineno: number,
             colno: number,
-            error: Error = null,
+            error: Error | undefined = undefined,
         ) {
             if (windowErrorHookIsActive) {
                 return;
@@ -138,11 +138,9 @@ export abstract class ExceptionTelemetryListener {
         const telemetry: UnhandledErrorTelemetryData = {
             message: message.toString(),
             stackTrace,
-            source,
+            source: source ? source : this.exceptionSource,
             errorType,
         };
-
-        telemetry.source = telemetry.source ? telemetry.source : this.exceptionSource;
 
         const sanitizedTelemetry = this.sanitizeTelemetryData(telemetry);
 
@@ -153,7 +151,7 @@ export abstract class ExceptionTelemetryListener {
 
     private sanitizeTelemetryData = (
         telemetryData: UnhandledErrorTelemetryData,
-    ): UnhandledErrorTelemetryData => {
+    ): UnhandledErrorTelemetryData | undefined => {
         if (telemetryData.message && telemetryData.message.length > this.MAX_MESSAGE_CHARS) {
             telemetryData.message = telemetryData.message.substring(0, this.MAX_MESSAGE_CHARS);
         }

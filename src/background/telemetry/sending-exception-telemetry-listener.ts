@@ -3,7 +3,7 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
-import * as TelemetryEvents from '../extension-telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
 
 export class SendingExceptionTelemetryListener extends ExceptionTelemetryListener {
     constructor(

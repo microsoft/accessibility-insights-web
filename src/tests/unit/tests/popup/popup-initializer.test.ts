@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IsSupportedBrowser } from '../../../../common/is-supported-browser';
 import { Logger } from '../../../../common/logging/logger';
 import { PopupInitializer } from '../../../../popup/popup-initializer';
@@ -10,7 +10,7 @@ import { TargetTabFinder, TargetTabInfo } from '../../../../popup/target-tab-fin
 
 describe('PopupInitializerTests', () => {
     let targetTabStub: TargetTabInfo;
-    let browserAdapterMock: IMock<WebExtensionBrowserAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let targetTabFinderMock: IMock<TargetTabFinder>;
     let isSupportedBrowserMock: IMock<IsSupportedBrowser>;
     let loggerMock: IMock<Logger>;
@@ -24,7 +24,7 @@ describe('PopupInitializerTests', () => {
             hasAccess: true,
         };
 
-        browserAdapterMock = Mock.ofType<WebExtensionBrowserAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         targetTabFinderMock = Mock.ofType(TargetTabFinder);
         loggerMock = Mock.ofType<Logger>();
         isSupportedBrowserMock = Mock.ofType<IsSupportedBrowser>();

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { loadTheme } from '@fluentui/react';
-import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
@@ -55,7 +55,7 @@ export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
 
     constructor(
-        private readonly browserAdapter: WebExtensionBrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
         private readonly isSupportedBrowser: IsSupportedBrowser,
         private logger: Logger,
