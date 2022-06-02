@@ -9,9 +9,9 @@
     width: 32px;
     height: 32px;
 
-    // Center the custom SVG:
     :global(.ms-Icon) {
-        flex-grow: 1;
+        flex-grow: 1; // Center the custom SVG
+        color: $primary-text;
     }
 
     &:hover {
