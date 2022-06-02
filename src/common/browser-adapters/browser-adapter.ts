@@ -61,5 +61,5 @@ export interface BrowserAdapter {
     addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void;
     containsPermissions(permissions: Permissions.Permissions): Promise<boolean>;
 
-    getInspectedWindowTabId(): number;
+    getInspectedWindowTabId(): number | null;
 }

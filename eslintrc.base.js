@@ -92,12 +92,5 @@ module.exports = {
                 'security/detect-eval-with-expression': 'off',
             },
         },
-        {
-            // Temporarily disabling this rule in these directories until the errors are fixed
-            files: ['src/injected/**/*'],
-            rules: {
-                '@typescript-eslint/no-floating-promises': 'off',
-            },
-        },
     ],
 };

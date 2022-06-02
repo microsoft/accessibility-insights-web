@@ -115,7 +115,7 @@ describe('BrowserBackchannelWindowMessagePoster', () => {
             .verifiable(Times.once());
 
         // sending message to iframe
-        testSubject.postMessage(targetWindow, sampleMessage);
+        await testSubject.postMessage(targetWindow, sampleMessage);
         mockWindowUtils.verifyAll();
         mockBrowserAdapter.verifyAll();
         mockBackchannelWindowMessageTranslator.verifyAll();

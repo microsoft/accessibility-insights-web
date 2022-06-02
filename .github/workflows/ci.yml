@@ -46,7 +46,7 @@ jobs:
 
     # CG and NOTICE generation would go here
 
-    - run: yarn build:all
+    - run: yarn tbuild:all
       timeout-minutes: 10
 
     - name: upload artifact build-results
