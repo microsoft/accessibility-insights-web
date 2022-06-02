@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
-import { ForwardingExceptionTelemetryListener } from 'background/telemetry/forwarding-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -9,6 +8,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';

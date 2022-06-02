@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
 import {
     ErrorType,
     TelemetryEventSource,
     UnhandledErrorTelemetryData,
 } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 class TestExtensionTelemetryListener extends ExceptionTelemetryListener {

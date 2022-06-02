@@ -1,22 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { loadTheme } from '@fluentui/react';
-import { getStoreProxyFeatureFlagChecker } from 'background/feature-flag-checker';
-import { InstallationData } from 'background/installation-data';
-import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
-import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
-import {
-    getApplicationTelemetryDataFactory,
-    getTelemetryClient,
-} from 'background/telemetry/telemetry-client-provider';
-import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { title } from 'content/strings/application';
+import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -104,6 +93,13 @@ export class PopupInitializer {
             tab.id,
             this.logger,
         );
+
+        const exceptionTelemetryListener = new ForwardingExceptionTelemetryListener(
+            actionMessageDispatcher,
+            TelemetryEventSource.PopUp,
+        );
+        exceptionTelemetryListener.initialize(this.logger);
+
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
         );
@@ -160,38 +156,6 @@ export class PopupInitializer {
             userConfigurationStoreName,
             storeUpdateMessageDistributor,
         );
-
-        const telemetryLogger = new TelemetryLogger(this.logger);
-        const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
-            {} as InstallationData,
-            this.browserAdapter,
-            this.browserAdapter,
-            title,
-        );
-        const consoleTelemetryClient = new ConsoleTelemetryClient(
-            applicationTelemetryDataFactory,
-            telemetryLogger,
-        );
-        const debugToolsTelemetryClient = new DebugToolsTelemetryClient(
-            this.browserAdapter,
-            applicationTelemetryDataFactory,
-        );
-        const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
-            consoleTelemetryClient,
-            debugToolsTelemetryClient,
-        ]);
-
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
-
-        const featureFlagChecker = getStoreProxyFeatureFlagChecker(featureFlagStore);
-        telemetryLogger.initialize(featureFlagChecker);
-        debugToolsTelemetryClient.initialize(featureFlagChecker);
-
-        const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
-            telemetryEventHandler,
-            TelemetryEventSource.PopUp,
-        );
-        exceptionTelemetryListener.initialize(this.logger);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
             actionMessageDispatcher,

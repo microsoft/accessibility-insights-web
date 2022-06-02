@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { ForwardingExceptionTelemetryListener } from 'background/telemetry/forwarding-exception-telemetry-listener';
 import {
     ErrorType,
     TelemetryEventSource,
     UnhandledErrorTelemetryData,
 } from 'common/extension-telemetry-events';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
+import { ForwardingExceptionTelemetryListener } from 'common/telemetry/forwarding-exception-telemetry-listener';
 import { IMock, Mock, Times } from 'typemoq';
 
 class TestForwardingExceptionTelemetryListener extends ForwardingExceptionTelemetryListener {

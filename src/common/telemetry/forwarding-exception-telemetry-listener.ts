@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 
 export class ForwardingExceptionTelemetryListener extends ExceptionTelemetryListener {

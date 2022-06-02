@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import { BaseActionPayload } from 'background/actions/action-payloads';
-import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
     ErrorType,
     TelemetryEventSource,
     UnhandledErrorTelemetryData,
 } from 'common/extension-telemetry-events';
+import { SendingExceptionTelemetryListener } from 'common/telemetry/sending-exception-telemetry-listener';
 import { IMock, Mock, Times } from 'typemoq';
 
 class TestSendingExceptionTelemetryListener extends SendingExceptionTelemetryListener {

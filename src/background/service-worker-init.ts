@@ -16,7 +16,6 @@ import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import {
     getApplicationTelemetryDataFactory,
     getTelemetryClient,
@@ -40,6 +39,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { SendingExceptionTelemetryListener } from 'common/telemetry/sending-exception-telemetry-listener';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
