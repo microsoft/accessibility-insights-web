@@ -55,6 +55,7 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -99,9 +100,11 @@ export class WindowInitializer {
             logger,
         );
 
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
         const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.TargetPage,
             this.actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
         );
         exceptionTelemetryListener.initialize(logger);
 

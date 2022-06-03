@@ -10,6 +10,7 @@ import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-ac
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { SelfFastPass, SelfFastPassContainer } from 'common/self-fast-pass';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
 import UAParser from 'ua-parser-js';
@@ -34,9 +35,11 @@ const actionMessageDispatcher = new RemoteActionMessageDispatcher(
     null,
     logger,
 );
+const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
 const exceptionTelemetryListener = new ExceptionTelemetryListener(
     TelemetryEventSource.Insights,
     actionMessageDispatcher.sendTelemetry,
+    telemetrySanitizer,
 );
 exceptionTelemetryListener.initialize(logger);
 

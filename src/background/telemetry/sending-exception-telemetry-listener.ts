@@ -3,12 +3,14 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 
 export class SendingExceptionTelemetryListener extends ExceptionTelemetryListener {
     constructor(
         private readonly telemetryEventHandler: TelemetryEventHandler,
         exceptionSource: TelemetryEvents.TelemetryEventSource,
+        telemetrySanitizer: ExceptionTelemetrySanitizer,
     ) {
         const publishTelemetry = (
             eventName: string,
@@ -21,6 +23,6 @@ export class SendingExceptionTelemetryListener extends ExceptionTelemetryListene
             this.telemetryEventHandler.publishTelemetry(eventName, payload);
         };
 
-        super(exceptionSource, publishTelemetry);
+        super(exceptionSource, publishTelemetry, telemetrySanitizer);
     }
 }

@@ -15,6 +15,7 @@ import { BrowserEventManager } from 'common/browser-adapters/browser-event-manag
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -125,9 +126,11 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
         telemetryEventHandler,
         TelemetryEventSource.Background,
+        telemetrySanitizer,
     );
     exceptionTelemetryListener.initialize(logger);
 

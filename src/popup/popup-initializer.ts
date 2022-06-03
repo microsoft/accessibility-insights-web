@@ -6,6 +6,7 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -94,9 +95,13 @@ export class PopupInitializer {
             this.logger,
         );
 
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+            this.browserAdapter.getExtensionId(),
+        );
         const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.PopUp,
             actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
         );
         exceptionTelemetryListener.initialize(this.logger);
 

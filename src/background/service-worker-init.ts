@@ -40,6 +40,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
@@ -110,9 +111,11 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
         telemetryEventHandler,
         TelemetryEventSource.Background,
+        telemetrySanitizer,
     );
     exceptionTelemetryListener.initialize(logger);
 

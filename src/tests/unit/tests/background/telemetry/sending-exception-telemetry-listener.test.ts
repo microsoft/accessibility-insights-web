@@ -10,11 +10,13 @@ import {
     UnhandledErrorTelemetryData,
 } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
-import { IMock, Mock, Times } from 'typemoq';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(SendingExceptionTelemetryListener, () => {
     const telemetryType: string = 'unhandledError';
     const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
+    let telemetrySanitizerMock: IMock<ExceptionTelemetrySanitizer>;
     let loggingFunctionMock: IMock<(message: string, error: Error) => void>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let loggerStub: Logger;
@@ -28,6 +30,11 @@ describe(SendingExceptionTelemetryListener, () => {
     let testSubject: SendingExceptionTelemetryListener;
 
     beforeEach(async () => {
+        telemetrySanitizerMock = Mock.ofType<ExceptionTelemetrySanitizer>();
+        telemetrySanitizerMock
+            .setup(m => m.sanitizeTelemetryData(It.isAny()))
+            .returns(t => t)
+            .verifiable(Times.once());
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         loggingFunctionMock = Mock.ofType<(message: string, error: Error) => void>();
         loggerStub = { error: loggingFunctionMock.object } as Logger;
@@ -48,6 +55,7 @@ describe(SendingExceptionTelemetryListener, () => {
         testSubject = new SendingExceptionTelemetryListener(
             telemetryEventHandlerMock.object,
             exceptionSource,
+            telemetrySanitizerMock.object,
         );
 
         testSubject.initialize(loggerStub);

@@ -8,10 +8,12 @@ import {
 } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(ExceptionTelemetryListener, () => {
     const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
+    let telemetrySanitizerMock: IMock<ExceptionTelemetrySanitizer>;
     let windowFunctionMock: IMock<(...any) => void>;
     let loggingFunctionMock: IMock<(message: string, error: Error) => void>;
     let windowStub: Window;
@@ -28,6 +30,11 @@ describe(ExceptionTelemetryListener, () => {
     let testSubject: ExceptionTelemetryListener;
 
     beforeEach(async () => {
+        telemetrySanitizerMock = Mock.ofType<ExceptionTelemetrySanitizer>();
+        telemetrySanitizerMock
+            .setup(m => m.sanitizeTelemetryData(It.isAny()))
+            .returns(t => t)
+            .verifiable(Times.once());
         windowFunctionMock = Mock.ofType<(...any) => void>();
         windowFunctionMock.setup(f => f(It.isAny())).verifiable(Times.never());
         loggingFunctionMock = Mock.ofType<(message: string, error: Error) => void>();
@@ -49,12 +56,17 @@ describe(ExceptionTelemetryListener, () => {
             publishExceptionTelemetryCalls.push(telemetry);
         };
 
-        testSubject = new ExceptionTelemetryListener(exceptionSource, publishErrorTelemetry);
+        testSubject = new ExceptionTelemetryListener(
+            exceptionSource,
+            publishErrorTelemetry,
+            telemetrySanitizerMock.object,
+        );
     });
 
     afterEach(() => {
         windowFunctionMock.verifyAll();
         loggingFunctionMock.verifyAll();
+        telemetrySanitizerMock.verifyAll();
     });
 
     describe('it sends telemetry', () => {
@@ -120,58 +132,6 @@ describe(ExceptionTelemetryListener, () => {
             loggerStub.error(errorMessageStub, errorStub);
 
             expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
-        });
-    });
-
-    describe('it sanitizes telemetry', () => {
-        describe('it truncates long data', () => {
-            afterEach(() => {
-                testSubject.initialize(loggerStub, windowStub, consoleStub);
-
-                windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
-
-                expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
-            });
-
-            test('it truncates messages beyond size cap', () => {
-                errorMessageStub = 'very long message'.repeat(30);
-
-                expectedTelemetry = {
-                    message: errorMessageStub.substring(0, 300),
-                    stackTrace: errorStub.stack,
-                    errorType: ErrorType.WindowError,
-                    source: exceptionSource,
-                };
-            });
-
-            test('it truncates stack traces beyond size cap', () => {
-                errorStub.stack = 'very long stack'.repeat(500);
-
-                expectedTelemetry = {
-                    message: errorMessageStub,
-                    stackTrace: errorStub.stack.substring(0, 5000),
-                    errorType: ErrorType.WindowError,
-                    source: exceptionSource,
-                };
-            });
-        });
-
-        describe('it does not send invalid data', () => {
-            afterEach(() => {
-                testSubject.initialize(loggerStub, windowStub, consoleStub);
-
-                windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
-
-                expect(publishExceptionTelemetryCalls).toMatchObject([]);
-            });
-
-            test('it does not send data that includes urls', () => {
-                errorMessageStub = 'https://accessibilityinsights.io/';
-            });
-
-            test('it does not send data that includes html', () => {
-                errorMessageStub = '"html"';
-            });
         });
     });
 });

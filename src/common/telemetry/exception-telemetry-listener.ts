@@ -1,31 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { escapeRegExp } from 'lodash';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { UnhandledErrorTelemetryData } from '../../common/extension-telemetry-events';
 
 export class ExceptionTelemetryListener {
-    private readonly MAX_MESSAGE_CHARS = 300;
-    private readonly MAX_STACK_CHARS = 5000;
-    private readonly EXCLUDED_PROPERTIES = [
-        'http',
-        'html',
-        'target',
-        'url',
-        'path',
-        'snippet',
-        'selector',
-        'elementSelector',
-        'cssSelector',
-    ];
-
     constructor(
         private readonly exceptionSource: TelemetryEvents.TelemetryEventSource,
         private readonly publishErrorTelemetry: (
             eventName: string,
             data: UnhandledErrorTelemetryData,
         ) => void,
+        private readonly telemetrySanitizer: ExceptionTelemetrySanitizer,
     ) {}
 
     public initialize(
@@ -148,42 +135,10 @@ export class ExceptionTelemetryListener {
             errorType,
         };
 
-        const sanitizedTelemetry = this.sanitizeTelemetryData(telemetry);
+        const sanitizedTelemetry = this.telemetrySanitizer.sanitizeTelemetryData(telemetry);
 
         if (sanitizedTelemetry) {
             this.publishErrorTelemetry(TelemetryEvents.UNHANDLED_ERROR, sanitizedTelemetry);
         }
     };
-
-    private sanitizeTelemetryData = (
-        telemetryData: UnhandledErrorTelemetryData,
-    ): UnhandledErrorTelemetryData | undefined => {
-        if (telemetryData.message && telemetryData.message.length > this.MAX_MESSAGE_CHARS) {
-            telemetryData.message = telemetryData.message.substring(0, this.MAX_MESSAGE_CHARS);
-        }
-        if (telemetryData.stackTrace && telemetryData.stackTrace.length > this.MAX_STACK_CHARS) {
-            telemetryData.stackTrace = telemetryData.stackTrace.substring(0, this.MAX_STACK_CHARS);
-        }
-
-        const exclusionRegex = this.generateExclusionRegex();
-        if (
-            (telemetryData.message && exclusionRegex.test(telemetryData.message)) ||
-            (telemetryData.stackTrace && exclusionRegex.test(telemetryData.stackTrace))
-        ) {
-            return undefined;
-        }
-        return telemetryData;
-    };
-
-    private generateExclusionRegex(): RegExp {
-        const urlPattern = ':\\/\\/';
-        const questionablePropertyNamePattern =
-            this.EXCLUDED_PROPERTIES.map(escapeRegExp).join('|');
-        const questionablePropertyPattern = `['"](${questionablePropertyNamePattern})['"]`;
-        const questionableSubstringPattern = `${urlPattern}|${questionablePropertyPattern}`;
-
-        // This argument *is* a constant built from literals, it's just built up from parts
-        // eslint-disable-next-line security/detect-non-literal-regexp
-        return new RegExp(questionableSubstringPattern);
-    }
 }

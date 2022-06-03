@@ -16,6 +16,7 @@ import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
@@ -54,9 +55,11 @@ export const initializeDebugTools = () => {
         null,
         logger,
     );
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new ExceptionTelemetryListener(
         TelemetryEventSource.DebugTools,
         actionMessageDispatcher.sendTelemetry,
+        telemetrySanitizer,
     );
     exceptionTelemetryListener.initialize(logger);
 
