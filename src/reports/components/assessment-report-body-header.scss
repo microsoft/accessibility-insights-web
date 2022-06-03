@@ -9,7 +9,7 @@
     h1 {
         font-size: 28px;
         margin: 0 0 24px 0;
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
         line-height: 40px;
         letter-spacing: -1;
     }
@@ -17,7 +17,7 @@
     p {
         font-size: 14px;
         color: $secondary-text;
-        font-family: $fontFamily;
+        font-family: $font-family;
         margin: 0;
         line-height: 20px;
     }

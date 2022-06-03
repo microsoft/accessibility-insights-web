@@ -1079,80 +1079,31 @@
       }
 
       /* css-modules:src/common/components/cards/card-kebab-menu-button */
-      div.kebab-menu-callout--XvN24 {
-        box-shadow: 0 6.4px 14.4px var(--box-shadow-132),
-          0 1.2px 3.6px var(--box-shadow-108);
-        border-radius: 4px;
-        border-width: 0;
+      .kebab-menu-button--e-7v- {
+        margin-right: 8px;
+        width: 32px;
+        height: 32px;
       }
-      div.kebab-menu-callout--XvN24 > div {
-        border-radius: 4px;
-      }
-      .kebab-menu--eKCNX {
-        background: var(--neutral-3);
-        border: 1px solid var(--menu-border);
-      }
-      .kebab-menu--eKCNX li {
-        background-color: var(--neutral-3);
-      }
-      .kebab-menu--eKCNX button i {
+      .kebab-menu-button--e-7v- .ms-Icon {
+        flex-grow: 1;
         color: var(--primary-text);
       }
-      .kebab-menu--eKCNX button:hover {
+      .kebab-menu-button--e-7v-:hover {
         background-color: var(--menu-item-background-hover);
+      }
+      .kebab-menu-button--e-7v-.is-expanded {
+        background-color: var(--menu-item-background-active);
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu-button--e-7v-.is-expanded .ms-Icon,
+        .kebab-menu-button--e-7v-:hover .ms-Icon {
+          color: highlight;
+        }
       }
       @media screen and (forced-colors: active) {
         .kebab-menu--eKCNX button:hover {
-          background-color: inherit;
+          color: highlight;
         }
-      }
-      .kebab-menu--eKCNX button:active {
-        background-color: var(--menu-item-background-active);
-        color: var(--light-black);
-      }
-      .kebab-menu--eKCNX button:active i {
-        color: var(--light-black);
-      }
-      button.kebab-menu-button--e-7v- {
-        width: 34px;
-        height: 32px;
-        margin: 8px;
-        border-radius: 2px;
-        background: transparent;
-      }
-      button.kebab-menu-button--e-7v- svg {
-        stroke: var(--primary-text);
-      }
-      @media screen and (forced-colors: active) {
-        button.kebab-menu-button--e-7v- svg {
-          fill: ButtonFace !important;
-          stroke: ButtonText !important;
-        }
-      }
-      button.kebab-menu-button--e-7v-:hover {
-        background-color: var(--menu-item-background-hover);
-      }
-      button.kebab-menu-button--e-7v-:active,
-      button.kebab-menu-button--e-7v-[aria-expanded="true"] {
-        background-color: var(--menu-item-background-active);
-        color: var(--light-black);
-      }
-      button.kebab-menu-button--e-7v-:active svg > circle,
-      button.kebab-menu-button--e-7v-[aria-expanded="true"] svg > circle {
-        stroke: var(--light-black);
-      }
-      @media screen and (forced-colors: active) {
-        button.kebab-menu-button--e-7v-:active,
-        button.kebab-menu-button--e-7v-[aria-expanded="true"] {
-          color: inherit;
-        }
-        button.kebab-menu-button--e-7v-:active svg > circle,
-        button.kebab-menu-button--e-7v-[aria-expanded="true"] svg > circle {
-          stroke: inherit;
-        }
-      }
-      button.kebab-menu-button--e-7v- > span {
-        justify-content: center;
       }
 
       /* css-modules:src/common/components/cards/instance-details-footer */

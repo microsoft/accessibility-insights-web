@@ -9,8 +9,8 @@
     border-right: 1px solid $neutral-8;
     z-index: 100;
     background-color: $neutral-0;
-    max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-    height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+    max-height: calc(100vh - (#{$details-view-header-bar-height}));
+    height: calc(100vh - (#{$details-view-header-bar-height}));
 
     :global {
         .left-nav-icon {
@@ -81,7 +81,7 @@
 
                 a::after,
                 button::after {
-                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
+                    border-left: $pivot-item-left-border-width $pivot-item-border-style
                         $communication-primary;
                 }
 
@@ -92,7 +92,7 @@
         }
 
         .ms-Pivot-text {
-            font-size: $fontSizeS;
+            font-size: $font-size-s;
         }
 
         .ms-Pivot-icon {

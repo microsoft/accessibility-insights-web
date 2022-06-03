@@ -9,7 +9,7 @@
     width: 100%;
 
     > h2 {
-        font-family: $fontFamily;
+        font-family: $font-family;
         font-size: 21px;
         line-height: 32px;
         font-weight: 600;
@@ -23,7 +23,7 @@
 
         line-height: 24px;
         color: $primary-text;
-        font-family: $fontFamily;
+        font-family: $font-family;
         margin: 16px 0 21px 0;
     }
 }

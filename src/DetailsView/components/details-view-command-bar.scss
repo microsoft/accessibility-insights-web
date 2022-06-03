@@ -10,7 +10,7 @@
 }
 
 .details-view-command-bar {
-    height: $detailsViewCommandBarHeight;
+    height: $details-view-command-bar-height;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,7 @@
     background-color: $neutral-0;
     font-size: 14px;
     font-weight: normal;
-    border-bottom: $detailsViewCommandBarBorderHeight solid $neutral-alpha-8;
+    border-bottom: $details-view-command-bar-border-height solid $neutral-alpha-8;
 
     .details-view-target-page {
         margin-left: 12px;
