@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseStore } from 'common/base-store';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
@@ -64,11 +62,12 @@ export const initializeDebugTools = () => {
 
     const storeUpdateMessageHub = new StoreUpdateMessageHub();
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
-    const storeActionMessageCreator = getStoreActionMessageCreator(
-        browserAdapter,
-        storeProxies,
+
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
         actionMessageDispatcher,
     );
+
+    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
 
@@ -120,18 +119,6 @@ const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];
-};
-
-const getStoreActionMessageCreator = (
-    browserAdapter: BrowserAdapter,
-    stores: BaseStore<any>[],
-    actionMessageDispatcher: RemoteActionMessageDispatcher,
-) => {
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-        actionMessageDispatcher,
-    );
-
-    return storeActionMessageCreatorFactory.fromStores(stores);
 };
 
 const render = (deps: DebugToolsViewDeps) => {
