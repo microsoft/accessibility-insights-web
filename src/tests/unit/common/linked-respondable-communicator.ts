@@ -9,6 +9,7 @@ import {
     CommandMessage,
     CommandMessageResponse,
     RespondableCommandMessageCommunicator,
+    CommandMessageResponseCallback,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { Mock } from 'typemoq';
@@ -51,10 +52,10 @@ export class LinkedRespondableCommunicator extends RespondableCommandMessageComm
         return listenerResponse ?? { payload: null };
     }
 
-    public sendCallbackCommandMessage(
+    public async sendCallbackCommandMessage(
         target: Window,
         commandMessage: CommandMessage,
-        responseCallback: (response: CommandMessageResponse) => void,
+        responseCallback: CommandMessageResponseCallback,
         responsesExpected: 'single' | 'multiple',
     ) {
         this.assertIsLinkedWindow(target);
@@ -63,10 +64,10 @@ export class LinkedRespondableCommunicator extends RespondableCommandMessageComm
 
         const originalResponseCallback = responseCallback;
         let responseAlreadyReceived = false;
-        responseCallback = response => {
+        responseCallback = async response => {
             if (!responseAlreadyReceived || responsesExpected === 'multiple') {
                 responseAlreadyReceived = true;
-                originalResponseCallback(response);
+                await originalResponseCallback(response);
             }
         };
 

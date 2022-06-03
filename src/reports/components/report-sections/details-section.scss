@@ -5,7 +5,7 @@
 @import './common-mixins.scss';
 
 .scan-details-section {
-    @include boxShadow;
+    @include box-shadow;
 
     background-color: $neutral-0;
     padding: 20px;

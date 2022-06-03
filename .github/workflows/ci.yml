@@ -46,7 +46,7 @@ jobs:
 
     # CG and NOTICE generation would go here
 
-    - run: yarn build:all
+    - run: yarn tbuild:all
       timeout-minutes: 10
 
     - name: upload artifact build-results
@@ -193,7 +193,7 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.22.1-focal
+    container: mcr.microsoft.com/playwright:v1.22.2-focal
     strategy:
       fail-fast: false
       matrix:

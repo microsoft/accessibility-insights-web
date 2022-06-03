@@ -41,9 +41,14 @@ yarn install
 # One-time build
 yarn build
 
+# Build with type-checking
+yarn tbuild
+
 # Continuously rebuilds as you modify non-test files
 yarn watch:build:web
 ```
+
+IDEs/Editors like VSCode will run the TypeScript compiler in the background providing information about type-errors in those contexts; `tbuild` is useful when not developing in those environments.
 
 ### Running Locally
 

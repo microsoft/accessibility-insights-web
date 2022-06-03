@@ -51,11 +51,11 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'webpack-all': [
-                'exec:webpack-dev',
-                'exec:webpack-dev-mv3',
+            'compile-all': [
+                'exec:esbuild-dev',
+                'exec:esbuild-dev-mv3',
                 'exec:webpack-unified',
-                'exec:webpack-prod',
+                'exec:esbuild-prod',
             ],
         },
         copy: {
@@ -167,11 +167,11 @@ module.exports = function (grunt) {
             },
         },
         exec: {
-            'webpack-dev': `"${webpackPath}" --config-name dev`,
-            'webpack-dev-mv3': `"${webpackPath}" --config-name dev-mv3`,
-            'webpack-prod': `"${webpackPath}" --config-name prod`,
+            'esbuild-dev': `node esbuild.js`,
+            'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
+            'esbuild-prod': `node esbuild.js --env prod`,
+            'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
-            'webpack-package-report': `"${webpackPath}" --config-name package-report`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
@@ -214,13 +214,13 @@ module.exports = function (grunt) {
                 files: ['src/**/*.scss'],
                 tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
             },
-            // We assume webpack --watch is running separately (usually via 'yarn watch')
-            'webpack-dev-output': {
+            // We assume esbuild --watch is running separately (usually via 'yarn watch')
+            'esbuild-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
             },
-            // We assume webpack --watch is running separately (usually via 'yarn watch')
-            'webpack-dev-mv3-output': {
+            // We assume esbuild --watch is running separately (usually via 'yarn watch')
+            'esbuild-dev-mv3-output': {
                 files: ['extension/devMv3Bundle/**/*.*'],
                 tasks: ['drop:dev-mv3'],
             },
@@ -346,7 +346,7 @@ module.exports = function (grunt) {
             'embed-styles': {
                 [targetName]: {
                     cwd: path.resolve(extensionPath, bundleFolder),
-                    src: '**/*bundle.js',
+                    src: ['**/*bundle.js', '**/*bundle.js.map'],
                     dest: path.resolve(extensionPath, bundleFolder),
                     cssPath: path.resolve(extensionPath, bundleFolder),
                     expand: true,
@@ -410,7 +410,7 @@ module.exports = function (grunt) {
                 const cssFile = path.resolve(cssPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
-                return styles.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\\n');
+                return styles.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
             });
             grunt.file.write(dest, output, fileOptions);
             grunt.log.writeln(`    written to ${dest}`);
@@ -534,7 +534,7 @@ module.exports = function (grunt) {
 
         const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
 
-        mustExist(mustExistPath, 'Have you run webpack?');
+        mustExist(mustExistPath, 'Have you run the appropriate compiler (esbuild/webpack)?');
 
         grunt.task.run('embed-styles:' + targetName);
         grunt.task.run('clean:' + targetName);
@@ -736,7 +736,7 @@ module.exports = function (grunt) {
     grunt.registerTask('package-report', function () {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
-        mustExist(mustExistPath, 'Have you run webpack?');
+        mustExist(mustExistPath, 'Have you run esbuild?');
 
         grunt.task.run('embed-styles:package-report');
         grunt.task.run('clean:package-report');
@@ -789,21 +789,21 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-dev',
+        'exec:esbuild-dev',
         'build-assets',
         'drop:dev',
     ]);
     grunt.registerTask('build-dev-mv3', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-dev-mv3',
+        'exec:esbuild-dev-mv3',
         'build-assets',
         'drop:dev-mv3',
     ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-prod',
+        'exec:esbuild-prod',
         'build-assets',
         'drop:production',
     ]);
@@ -824,8 +824,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-prod', // required to get the css assets
-        'exec:webpack-package-report',
+        'exec:esbuild-prod', // required to get the css assets
+        'exec:esbuild-package-report',
         'build-assets',
         'package-report',
     ]);
@@ -840,7 +840,7 @@ module.exports = function (grunt) {
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:pkg-mock-adb',
-        'concurrent:webpack-all',
+        'concurrent:compile-all',
         'build-assets',
         'drop:dev',
         'drop:dev-mv3',

@@ -34,7 +34,7 @@ export class InspectHandler {
     private async sendDevtoolOpened(): Promise<void> {
         const message: InterpreterMessage = {
             messageType: Messages.DevTools.Opened,
-            tabId: this.browserAdapter.getInspectedWindowTabId(),
+            tabId: this.browserAdapter.getInspectedWindowTabId()!,
         };
 
         await this.browserAdapter.sendMessageToFrames(message);

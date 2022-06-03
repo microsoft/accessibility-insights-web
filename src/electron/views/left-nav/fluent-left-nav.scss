@@ -8,7 +8,7 @@
 
     .left-nav-panel {
         :global(.ms-Panel-main) {
-            width: calc(#{$detailsViewLeftNavWidth} + #{$detailsViewLeftNavBorderWidth});
+            width: calc(#{$details-view-left-nav-width} + #{$details-view-left-nav-border-width});
         }
 
         :global(.ms-Panel-content) {
@@ -18,7 +18,7 @@
 
     .nav-menu-container {
         display: flex;
-        min-height: $detailsViewCommandBarHeight;
+        min-height: $details-view-command-bar-height;
         align-items: center;
 
         .nav-menu {

@@ -1,86 +1,39 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../styles/colors.scss';
-@import '../../styles/common.scss';
 
-div.kebab-menu-callout {
-    box-shadow: 0 6.4px 14.4px $box-shadow-132, 0 1.2px 3.6px $box-shadow-108;
-    border-radius: 4px;
-    border-width: 0;
+.kebab-menu-button {
+    margin-right: 8px;
 
-    > div {
-        border-radius: 4px;
-    }
-}
-
-.kebab-menu {
-    background: $menu-background;
-    border: 1px solid $menu-border;
-
-    li {
-        background-color: $menu-background;
-    }
-
-    button {
-        i {
-            color: $primary-text;
-        }
-
-        &:hover {
-            background-color: $menu-item-background-hover;
-            @media screen and (forced-colors: active) {
-                background-color: inherit;
-            }
-        }
-
-        &:active {
-            background-color: $menu-item-background-active;
-            color: $always-black;
-
-            i {
-                color: $always-black;
-            }
-        }
-    }
-}
-
-button.kebab-menu-button {
-    width: 34px;
+    // Since the menu uses a custom SVG, set the button shape:
+    width: 32px;
     height: 32px;
-    margin: 8px;
-    border-radius: 2px;
-    background: transparent;
 
-    svg {
-        stroke: $primary-text;
-        @media screen and (forced-colors: active) {
-            fill: ButtonFace !important;
-            stroke: ButtonText !important;
-        }
+    :global(.ms-Icon) {
+        flex-grow: 1; // Center the custom SVG
+        color: $primary-text;
     }
 
     &:hover {
         background-color: $menu-item-background-hover;
     }
 
-    &:active,
-    &[aria-expanded='true'] {
+    &:global(.is-expanded) {
         background-color: $menu-item-background-active;
-        color: $always-black;
-
-        svg > circle {
-            stroke: $always-black;
-        }
-        @media screen and (forced-colors: active) {
-            color: inherit;
-
-            svg > circle {
-                stroke: inherit;
-            }
-        }
     }
 
-    > span {
-        justify-content: center;
+    // Add hover and active state:
+    &:global(.is-expanded) :global(.ms-Icon),
+    &:hover :global(.ms-Icon) {
+        @media screen and (forced-colors: active) {
+            color: highlight;
+        }
+    }
+}
+
+// Add hover state that's not yet in FluentUI to menu items:
+.kebab-menu button:hover {
+    @media screen and (forced-colors: active) {
+        color: highlight;
     }
 }

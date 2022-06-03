@@ -109,7 +109,7 @@ describe('InspectActionCreator', () => {
 
             changeInspectModeMock.verifyAll();
             loggerMock.verify(
-                logger => logger.error(`switchToTab failed: ${dummyError}`),
+                logger => logger.error(`switchToTab failed`, dummyError),
                 Times.once(),
             );
         });

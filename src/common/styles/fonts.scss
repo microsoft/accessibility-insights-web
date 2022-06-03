@@ -37,33 +37,33 @@ $fonts: (
     'Segoe UI Symbol'
 );
 $common-font-family: make-font-family($fonts) !default;
-$fontFamily: $common-font-family !default;
-$fontStack: $common-font-family !default;
-$toolbarFontFamily: $common-font-family !default;
-$fontWeightHeavy: bold !default;
-$fontWeightNormal: normal !default;
-$fontWeightLighter: 200 !default;
-$fontWeightSemiBold: 600 !default;
-$gridFontSize: 12px !default;
-$toolbarFontSize: 12px !default;
-$toolbarFontSemiLight: 500 $toolbarFontSize $toolbarFontFamily !default;
-$fontSizeXS: 10px !default;
-$fontSizeS: 11px !default;
-$fontSize: 12px !default;
-$fontSizeM: 14px !default;
-$fontSizeML: 16px !default;
-$fontSizeL: 18px !default;
-$fontSizeLML: 21px !default;
-$fontSizeLL: 24px !default;
-$fontSizeXL: 36px !default;
-$fontSizeXXL: 40px !default;
-$fontSizeXXXL: 56px !default;
-$fontSizeXXXXL: 72px !default;
-$codeFontFamily: menlo, consolas, courier new, monospace !default;
+$font-family: $common-font-family !default;
+$font-stack: $common-font-family !default;
+$toolbar-font-family: $common-font-family !default;
+$font-weight-heavy: bold !default;
+$font-weight-normal: normal !default;
+$font-weight-lighter: 200 !default;
+$font-weight-semi-bold: 600 !default;
+$grid-font-size: 12px !default;
+$toolbar-font-size: 12px !default;
+$toolbar-font-semi-light: 500 $toolbar-font-size $toolbar-font-family !default;
+$font-size-xs: 10px !default;
+$font-size-s: 11px !default;
+$font-size: 12px !default;
+$font-size-m: 14px !default;
+$font-size-ml: 16px !default;
+$font-size-l: 18px !default;
+$font-size-lml: 21px !default;
+$font-size-ll: 24px !default;
+$font-size-xl: 36px !default;
+$font-size-xxl: 40px !default;
+$font-size-xxxl: 56px !default;
+$font-size-xxxxl: 72px !default;
+$code-font-family: menlo, consolas, courier new, monospace !default;
 
 @mixin text-style-title-m {
-    font-weight: $fontWeightSemiBold;
-    font-size: $fontSizeLML;
+    font-weight: $font-weight-semi-bold;
+    font-size: $font-size-lml;
     line-height: 32px;
     letter-spacing: -0.02em;
 }
@@ -76,21 +76,21 @@ $codeFontFamily: menlo, consolas, courier new, monospace !default;
 }
 
 @mixin text-style-title-s {
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
     font-size: 17px;
     line-height: 24px;
 }
 
 @mixin text-style-header-s {
-    font-family: $fontFamily;
-    font-weight: $fontWeightNormal;
+    font-family: $font-family;
+    font-weight: $font-weight-normal;
     font-size: 17px;
     line-height: 24px;
 }
 
 @mixin text-style-body-m {
-    font-family: $fontFamily;
-    font-weight: $fontWeightNormal;
-    font-size: $fontSizeM;
+    font-family: $font-family;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-m;
     line-height: 20px;
 }

@@ -270,7 +270,7 @@ export abstract class WebExtensionBrowserAdapter
         return browser.permissions.contains(permissions);
     }
 
-    public getInspectedWindowTabId(): number {
-        return chrome.devtools.inspectedWindow.tabId;
+    public getInspectedWindowTabId(): number | null {
+        return chrome.devtools.inspectedWindow?.tabId;
     }
 }

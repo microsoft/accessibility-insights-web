@@ -193,7 +193,7 @@ describe('TestActionCreatorTest', () => {
                 Times.once(),
             );
             loggerMock.verify(
-                logger => logger.error(`switchToTab failed: ${dummyError}`),
+                logger => logger.error(`switchToTab failed: ${dummyError}`, dummyError),
                 Times.once(),
             );
         });

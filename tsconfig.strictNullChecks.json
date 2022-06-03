@@ -408,7 +408,6 @@
         "./src/injected/shadow-initializer.ts",
         "./src/injected/shadow-utils.ts",
         "./src/injected/single-frame-tab-stop-listener.ts",
-        "./src/injected/stylesheet-init.ts",
         "./src/injected/tab-order-property-bag.ts",
         "./src/injected/tab-stop-requirement-result.ts",
         "./src/injected/tab-stops-requirement-evaluator.ts",
