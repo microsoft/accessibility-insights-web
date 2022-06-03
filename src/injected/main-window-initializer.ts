@@ -8,7 +8,6 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
-import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -41,7 +40,6 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { PathSnippetActionMessageCreator } from '../common/message-creators/path-snippet-action-message-creator';
-import { RemoteActionMessageDispatcher } from '../common/message-creators/remote-action-message-dispatcher';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
@@ -171,20 +169,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.storeUpdateMessageHub,
         );
 
-        const actionMessageDispatcher = new RemoteActionMessageDispatcher(
-            this.browserAdapter.sendMessageToFrames,
-            null,
-            logger,
-        );
-
-        const exceptionTelemetryListener = new ExceptionTelemetryListener(
-            TelemetryEventSource.TargetPage,
-            actionMessageDispatcher.sendTelemetry,
-        );
-        exceptionTelemetryListener.initialize(logger);
-
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
@@ -209,26 +195,26 @@ export class MainWindowInitializer extends WindowInitializer {
         const telemetryDataFactory = new TelemetryDataFactory();
         const devToolActionMessageCreator = new DevToolActionMessageCreator(
             telemetryDataFactory,
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
             telemetryDataFactory,
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
         const tabStopRequirementActionMessageCreator = new TabStopRequirementActionMessageCreator(
             telemetryDataFactory,
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
             TelemetryEventSource.TargetPage,
         );
 
         const userConfigMessageCreator = new UserConfigMessageCreator(
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
             telemetryDataFactory,
         );
 
@@ -391,17 +377,17 @@ export class MainWindowInitializer extends WindowInitializer {
         const inspectActionMessageCreator = new InspectActionMessageCreator(
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
 
         const scopingActionMessageCreator = new ScopingActionMessageCreator(
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
 
         const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(
-            actionMessageDispatcher,
+            this.actionMessageDispatcher,
         );
 
         this.inspectController = new InspectController(

@@ -52,6 +52,9 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -70,6 +73,7 @@ export class WindowInitializer {
     protected frameMessenger: FrameMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
+    protected actionMessageDispatcher: RemoteActionMessageDispatcher;
 
     public async initialize(logger: Logger): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -88,6 +92,18 @@ export class WindowInitializer {
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
+
+        this.actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+            logger,
+        );
+
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
+            TelemetryEventSource.TargetPage,
+            this.actionMessageDispatcher.sendTelemetry,
+        );
+        exceptionTelemetryListener.initialize(logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
