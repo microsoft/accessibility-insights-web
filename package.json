@@ -139,6 +139,7 @@
         "extract-zip": "^2.0.1",
         "fake-indexeddb": "^3.1.7",
         "fork-ts-checker-webpack-plugin": "^7.2.11",
+        "generic-names": "^4.0.0",
         "grunt": "^1.5.3",
         "grunt-bom-removal": "1.0.1",
         "grunt-cli": "^1.4.3",

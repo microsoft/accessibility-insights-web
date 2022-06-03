@@ -2,11 +2,15 @@
 // Licensed under the MIT License.
 
 const path = require('path');
+const genericNames = require('generic-names');
 const postcss = require('postcss');
 const postCssModules = require('postcss-modules');
 const sass = require('sass');
 
-const CreateStylePlugin = isProd => {
+const generateScopedNameWithHash = genericNames('[local]--[hash:base64:5]');
+const generateScopedNameWithoutHash = genericNames('[local]');
+
+const CreateStylePlugin = (useHash = true) => {
     return {
         name: 'style-plugin',
 
@@ -57,11 +61,17 @@ const CreateStylePlugin = isProd => {
                 async args => {
                     // per sass documentation, compile is twice as fast as compileAsync, hence it's
                     // usage here. https://sass-lang.com/documentation/js-api/modules#compileAsync
-                    const source = sass.compile(args.path).css.toString();
+                    const normalizedPath = args.path.replaceAll(path.sep, path.posix.sep);
+                    const source = sass.compile(normalizedPath).css.toString();
                     let singleModuleCssJSON;
                     const { css } = await postcss([
                         postCssModules({
-                            generateScopedName: '[local]' + (!isProd ? '--[hash:base64:5]' : ''),
+                            generateScopedName: name => {
+                                const scopedName = useHash
+                                    ? generateScopedNameWithHash(name, normalizedPath)
+                                    : generateScopedNameWithoutHash(name, normalizedPath);
+                                return `${scopedName}`;
+                            },
                             localsConvention: 'camelCaseOnly',
                             getJSON(_, json) {
                                 singleModuleCssJSON = JSON.stringify(json);
@@ -69,8 +79,10 @@ const CreateStylePlugin = isProd => {
                         }),
                     ]).process(source, { from: undefined });
 
-                    let pathAsJsString = JSON.stringify(args.path.slice(args.path.indexOf('src')));
-                    const cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
+                    let pathAsJsString = JSON.stringify(
+                        normalizedPath.slice(normalizedPath.indexOf('src')),
+                    );
+                    let cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
 
                     return {
                         contents: `import ${cssModuleImportString};\nexport default ${singleModuleCssJSON};`,

@@ -62,6 +62,8 @@ let format = 'iife';
 let define;
 let target = ['chrome90', 'firefox90'];
 let plugins = [CreateStylePlugin()];
+let minify = false;
+let sourcemap = true;
 
 switch (argsObj.env) {
     // Note: currently causes errors when electron app is run.
@@ -74,7 +76,8 @@ switch (argsObj.env) {
         break;
 
     case 'prod':
-        isProd = true;
+        minify = true;
+        sourcemap = false;
         outdir = prodWebExtensionOutDir;
         break;
 
@@ -124,8 +127,8 @@ const config = {
     external,
     outbase: src,
     bundle: true,
-    minify: isProd,
-    sourcemap: !isProd,
+    minify: minify,
+    sourcemap: sourcemap,
     target,
     outdir: outdir,
     outExtension: {
