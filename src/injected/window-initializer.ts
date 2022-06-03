@@ -6,9 +6,12 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
@@ -52,9 +55,6 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';
-import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
-import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 
 export class WindowInitializer {
     public shadowInitializer: any;
