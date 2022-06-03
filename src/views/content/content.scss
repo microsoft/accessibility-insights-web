@@ -24,13 +24,13 @@
 .content {
     flex-grow: 10;
     max-width: 1120px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     font-size: 14px;
     margin: 10px;
     word-break: break-word;
 
     table {
-        font-family: $fontFamily;
+        font-family: $font-family;
         font-size: 14px;
     }
 
@@ -92,7 +92,7 @@
 
     .code-example {
         .code-example-code {
-            font-family: $codeFontFamily;
+            font-family: $code-font-family;
             margin-block-start: 1em;
             margin-block-end: 1em;
         }
@@ -130,7 +130,7 @@
     $dont-color: $negative-outcome;
 
     .insights-code {
-        font-family: $codeFontFamily;
+        font-family: $code-font-family;
     }
 
     .pass-fail-grid {

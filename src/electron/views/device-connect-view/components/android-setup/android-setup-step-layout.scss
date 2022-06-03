@@ -26,8 +26,8 @@
     .header {
         margin-top: 0;
         margin-bottom: 0;
-        font-size: $fontSizeLML;
-        font-weight: $fontWeightNormal;
+        font-size: $font-size-lml;
+        font-weight: $font-weight-normal;
         line-height: 25px;
         letter-spacing: -0.02em;
     }
@@ -41,7 +41,7 @@
         flex-shrink: 1;
         flex-basis: auto;
         width: 100%;
-        font-size: $fontSizeM;
+        font-size: $font-size-m;
         line-height: 16px;
 
         p {

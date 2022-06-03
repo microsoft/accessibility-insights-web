@@ -23,7 +23,6 @@ module.exports = {
         // TO BE CONFIGURED: Variable, selector, mixin case
         // https://stylelint.io/user-guide/rules/regex
         'selector-class-pattern': null,
-        'scss/dollar-variable-pattern': null,
 
         // Requires investigation
         'property-no-vendor-prefix': null,
