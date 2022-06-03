@@ -5,8 +5,12 @@ const path = require('path');
 const postcss = require('postcss');
 const postCssModules = require('postcss-modules');
 const sass = require('sass');
+const genericNames = require('generic-names');
 
-const CreateStylePlugin = isProd => {
+var generateScopedNameWithHash = genericNames('[local]--[hash:base64:5]');
+var generateScopedNameWithoutHash = genericNames('[local]');
+
+const CreateStylePlugin = (useHash = true) => {
     return {
         name: 'style-plugin',
 
@@ -61,8 +65,14 @@ const CreateStylePlugin = isProd => {
                     let singleModuleCssJSON;
                     const { css } = await postcss([
                         postCssModules({
-                            generateScopedName: '[local]' + (!isProd ? '--[hash:base64:5]' : ''),
+                            generateScopedName: name => {
+                                const scopedName = useHash
+                                    ? generateScopedNameWithHash(name, args.path)
+                                    : generateScopedNameWithoutHash(name, args.path);
+                                return `${scopedName}`;
+                            },
                             localsConvention: 'camelCaseOnly',
+                            hashPrefix: '',
                             getJSON(_, json) {
                                 singleModuleCssJSON = JSON.stringify(json);
                             },
