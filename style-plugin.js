@@ -72,7 +72,6 @@ const CreateStylePlugin = (useHash = true) => {
                                 return `${scopedName}`;
                             },
                             localsConvention: 'camelCaseOnly',
-                            hashPrefix: '',
                             getJSON(_, json) {
                                 singleModuleCssJSON = JSON.stringify(json);
                             },
