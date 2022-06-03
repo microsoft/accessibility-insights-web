@@ -75,8 +75,6 @@ export class BrowserEventManager {
         }
         this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
-
-        console.error('Browser event manager', new Error());
     };
 
     public addBrowserListener = (event: Events.Event<any>, eventType: string): void => {
