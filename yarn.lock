@@ -12814,10 +12814,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^6.4.1:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-6.4.1.tgz#3edb6d4ce37cb2d29baa8d9e79f49d3a655be734"
-  integrity sha512-+I8sdGZOU17nlz3lkTsQR8HbTSaSbqxhDhYd8LM+KpVVWTVfDHNG6rB2sNB4f1oldjCMJeQeEuiFHF4hIkbohA==
+typed-scss-modules@^6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-6.5.0.tgz#158940eac0e389bad6a23dcd86e8b52443adf036"
+  integrity sha512-84PmewX4VR45+ylkeU5q9CHj/8XSI2SnVLIl9XydHKJ5va5WinXQ6J15GLkhA7q0JKKAkla875KzbjYT0VRdFQ==
   dependencies:
     bundle-require "^3.0.4"
     chalk "4.1.2"
