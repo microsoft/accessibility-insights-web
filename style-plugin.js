@@ -61,7 +61,7 @@ const CreateStylePlugin = (useHash = true) => {
                 async args => {
                     // per sass documentation, compile is twice as fast as compileAsync, hence it's
                     // usage here. https://sass-lang.com/documentation/js-api/modules#compileAsync
-                    const normalizedPath = args.path.replace(path.sep, path.posix.sep);
+                    const normalizedPath = args.path.replaceAll(path.sep, path.posix.sep);
                     const source = sass.compile(normalizedPath).css.toString();
                     let singleModuleCssJSON;
                     const { css } = await postcss([
