@@ -61,14 +61,15 @@ const CreateStylePlugin = (useHash = true) => {
                 async args => {
                     // per sass documentation, compile is twice as fast as compileAsync, hence it's
                     // usage here. https://sass-lang.com/documentation/js-api/modules#compileAsync
-                    const source = sass.compile(args.path).css.toString();
+                    const normalizedPath = args.path.replace(path.sep, path.posix.sep);
+                    const source = sass.compile(normalizedPath).css.toString();
                     let singleModuleCssJSON;
                     const { css } = await postcss([
                         postCssModules({
                             generateScopedName: name => {
                                 const scopedName = useHash
-                                    ? generateScopedNameWithHash(name, args.path)
-                                    : generateScopedNameWithoutHash(name, args.path);
+                                    ? generateScopedNameWithHash(name, normalizedPath)
+                                    : generateScopedNameWithoutHash(name, normalizedPath);
                                 return `${scopedName}`;
                             },
                             localsConvention: 'camelCaseOnly',
@@ -78,8 +79,10 @@ const CreateStylePlugin = (useHash = true) => {
                         }),
                     ]).process(source, { from: undefined });
 
-                    let pathAsJsString = JSON.stringify(args.path.slice(args.path.indexOf('src')));
-                    const cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
+                    let pathAsJsString = JSON.stringify(
+                        normalizedPath.slice(normalizedPath.indexOf('src')),
+                    );
+                    let cssModuleImportString = pathAsJsString.replace(/^"/, '"css-module:');
 
                     return {
                         contents: `import ${cssModuleImportString};\nexport default ${singleModuleCssJSON};`,
