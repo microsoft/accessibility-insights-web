@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 const path = require('path');
+const genericNames = require('generic-names');
 const postcss = require('postcss');
 const postCssModules = require('postcss-modules');
 const sass = require('sass');
-const genericNames = require('generic-names');
 
-var generateScopedNameWithHash = genericNames('[local]--[hash:base64:5]');
-var generateScopedNameWithoutHash = genericNames('[local]');
+const generateScopedNameWithHash = genericNames('[local]--[hash:base64:5]');
+const generateScopedNameWithoutHash = genericNames('[local]');
 
 const CreateStylePlugin = (useHash = true) => {
     return {
