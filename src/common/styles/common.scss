@@ -17,21 +17,21 @@ $focus-ring-color: $neutral-100;
     }
 }
 
-$normalTitleFontWeight: 300 !default;
-$pivotItemLeftBorderWidth: 3px !default;
-$pivotItemBorderStyle: solid !default;
-$detailsViewHeaderBarHeight: 40px !default;
-$detailsViewNavPivotsHeight: 41px !default;
-$detailsViewCommandBarHeight: 40px !default;
-$detailsViewCommandBarBorderHeight: 1px !default;
-$detailsViewLeftNavWidth: 250px !default;
-$detailsViewLeftNavBorderWidth: 1px;
-$detailsViewTotalHeaderHeight: (
-    #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
+$normal-title-font-weight: 300 !default;
+$pivot-item-left-border-width: 3px !default;
+$pivot-item-border-style: solid !default;
+$details-view-header-bar-height: 40px !default;
+$details-view-nav-pivots-height: 41px !default;
+$details-view-command-bar-height: 40px !default;
+$details-view-command-bar-border-height: 1px !default;
+$details-view-left-nav-width: 250px !default;
+$details-view-left-nav-border-width: 1px;
+$details-view-total-header-height: (
+    #{$details-view-command-bar-border-height} + #{$details-view-command-bar-height} + #{$details-view-header-bar-height}
 );
-$fastPassRightPanelMarginRight: 24px !default;
-$fastPassRightPanelMarginLeft: 24px !default;
-$fastPassRightPanelMarginTop: 24px !default;
+$fast-pass-right-panel-margin-right: 24px !default;
+$fast-pass-right-panel-margin-left: 24px !default;
+$fast-pass-right-panel-margin-top: 24px !default;
 
 @mixin ellipsed-text {
     white-space: nowrap;
@@ -40,6 +40,6 @@ $fastPassRightPanelMarginTop: 24px !default;
 }
 
 @mixin h3 {
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
     font-size: 17px;
 }

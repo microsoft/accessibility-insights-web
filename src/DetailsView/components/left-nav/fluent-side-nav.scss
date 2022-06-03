@@ -3,20 +3,20 @@
 @import '../../../common/styles/common.scss';
 
 #side-nav-container {
-    width: $detailsViewLeftNavWidth;
+    width: $details-view-left-nav-width;
 }
 
 .left-nav-panel {
     :global(.ms-Panel-main) {
-        width: $detailsViewLeftNavWidth;
+        width: $details-view-left-nav-width;
     }
 
     :global(.ms-Panel-content) {
         padding: 0;
 
         :global(.main-nav) {
-            max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-            height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+            max-height: calc(100vh - (#{$details-view-header-bar-height}));
+            height: calc(100vh - (#{$details-view-header-bar-height}));
         }
     }
 }

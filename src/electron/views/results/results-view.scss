@@ -35,7 +35,9 @@
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        min-width: calc(100% - (#{$detailsViewLeftNavWidth} + (#{$detailsViewLeftNavBorderWidth})));
+        min-width: calc(
+            100% - (#{$details-view-left-nav-width} + (#{$details-view-left-nav-border-width}))
+        );
     }
 
     .results-panel-layout {
