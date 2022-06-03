@@ -42,7 +42,7 @@ export class ExceptionTelemetrySanitizer {
 
     private generateExclusionRegex(): RegExp {
         // Use lookahead/lookbehind regex syntax to disallow all urls other than the chrome extension url
-        const urlMatchingRegexPart = `(?<!chrome-extension):\/\/|:\/\/(?!${this.extensionId})`;
+        const urlMatchingRegexPart = `(?<!chrome-extension)://|://(?!${this.extensionId})`;
         const questionablePropertyNamePattern =
             this.EXCLUDED_PROPERTIES.map(escapeRegExp).join('|');
         const questionablePropertyPattern = `['"](${questionablePropertyNamePattern})['"]`;

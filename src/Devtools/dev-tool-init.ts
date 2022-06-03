@@ -29,7 +29,7 @@ const actionMessageDispatcher = new RemoteActionMessageDispatcher(
     null,
     logger,
 );
-const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId()!);
 const exceptionTelemetryListener = new ExceptionTelemetryListener(
     TelemetryEventSource.DevTools,
     actionMessageDispatcher.sendTelemetry,
