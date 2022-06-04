@@ -26,17 +26,17 @@ export abstract class WebExtensionBrowserAdapter
 
     public allRequiredEvents(): DictionaryStringTo<Events.Event<any>> {
         return {
-            TabsOnActivated: chrome.tabs.onActivated,
-            TabsOnUpdated: chrome.tabs.onUpdated,
-            TabsOnRemoved: chrome.tabs.onRemoved,
-            WebNavigationOnDOMContentLoaded: chrome.webNavigation.onDOMContentLoaded,
-            WindowsOnFocusChanged: chrome.windows.onFocusChanged,
-            CommandsOnCommand: chrome.commands.onCommand,
-            RuntimeOnMessage: browser.runtime.onMessage,
+            TabsOnActivated: browser.tabs?.onActivated,
+            TabsOnUpdated: browser.tabs?.onUpdated,
+            TabsOnRemoved: browser.tabs?.onRemoved,
+            WebNavigationOnDOMContentLoaded: browser.webNavigation?.onDOMContentLoaded,
+            WindowsOnFocusChanged: browser.windows?.onFocusChanged,
+            CommandsOnCommand: browser.commands?.onCommand,
+            RuntimeOnMessage: browser.runtime?.onMessage,
+
             // casting browser as any due to typings for permissions onAdded not currently supported.
-            PermissionsOnAdded: (browser as any).permissions.onAdded,
-            // casting browser as any due to typings for permissions onRemoved not currently supported.
-            PermissionsOnRemoved: (browser as any).permissions.onRemoved,
+            PermissionsOnAdded: (browser as any).permissions?.onAdded,
+            PermissionsOnRemoved: (browser as any).permissions?.onRemoved,
         };
     }
 
@@ -282,13 +282,10 @@ export abstract class WebExtensionBrowserAdapter
         return chrome.devtools.inspectedWindow?.tabId;
     }
 
-    private addListener(
-        eventName: WebExtensionBrowserEventName,
-        callback: ApplicationListener,
-    ): void {
+    private addListener(eventName: string, callback: ApplicationListener): void {
         this.browserEventManager.addApplicationListener(
             eventName,
-            WebExtensionBrowserEvents[eventName],
+            this.allRequiredEvents()[eventName],
             callback,
         );
     }
