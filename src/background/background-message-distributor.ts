@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { Tab } from '../common/itab';
-import { Logger } from '../common/logging/logger';
-import { InterpreterMessage, InterpreterResponse } from '../common/message';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
+import { Tab } from 'common/itab';
+import { InterpreterMessage, InterpreterResponse } from 'common/message';
+
 import { GlobalContext } from './global-context';
 import { PostMessageContentHandler } from './post-message-content-handler';
+import { TabContextManager } from './tab-context-manager';
 
 export interface Sender {
     tab?: Tab;
@@ -18,7 +19,7 @@ export class BackgroundMessageDistributor {
         private readonly tabContextManager: TabContextManager,
         private readonly postMessageContentHandler: PostMessageContentHandler,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly logger: Logger,
+        private readonly eventResponseFactory: EventResponseFactory,
     ) {}
 
     public initialize(): void {
@@ -29,44 +30,33 @@ export class BackgroundMessageDistributor {
         message: InterpreterMessage,
         sender?: Sender,
     ): void | Promise<any> => {
-        message.tabId = this.getTabId(message, sender);
-
-        const { messageHandled: isInterpretedUsingGlobalContext, result: globalContextResult } =
-            this.globalContext.interpreter.interpret(message);
-
-        const { messageHandled: isInterpretedUsingTabContext, result: tabContextResult } =
-            this.tryInterpretUsingTabContext(message);
-
-        const {
-            messageHandled: isInterpretedAsBackchannelWindowMessage,
-            response: backchannelMessageResponse,
-        } = this.postMessageContentHandler.handleMessage(message);
-
-        if (
-            !isInterpretedUsingGlobalContext &&
-            !isInterpretedUsingTabContext &&
-            !isInterpretedAsBackchannelWindowMessage
-        ) {
-            this.logger.log('Unable to interpret message - ', message);
+        if (sender?.tab?.id) {
+            message = { tabId: sender.tab.id, ...message };
         }
 
-        if (globalContextResult || tabContextResult || backchannelMessageResponse) {
-            return this.createResponsePromise(
-                [globalContextResult, tabContextResult],
-                backchannelMessageResponse,
-            );
+        const interpreterResponse = this.eventResponseFactory.mergeInterpreterResponses([
+            this.globalContext.interpreter.interpret(message),
+            this.tryInterpretUsingTabContext(message),
+        ]);
+
+        if (interpreterResponse.messageHandled) {
+            return interpreterResponse.result;
         }
+
+        const postMessageResponse = this.postMessageContentHandler.handleMessage(message);
+
+        if (postMessageResponse.messageHandled) {
+            if (postMessageResponse.response) {
+                return Promise.resolve(postMessageResponse.response);
+            } else {
+                return; // fire and forget
+            }
+        }
+
+        return Promise.reject(
+            new Error(`Unable to interpret message - ${JSON.stringify(message)}`),
+        );
     };
-
-    private getTabId(message: InterpreterMessage, sender?: Sender): number | null {
-        if (message != null && message.tabId != null) {
-            return message.tabId;
-        } else if (sender != null && sender.tab != null && sender.tab.id != null) {
-            return sender.tab.id;
-        }
-
-        return null;
-    }
 
     private tryInterpretUsingTabContext(message: InterpreterMessage): InterpreterResponse {
         if (message.tabId != null) {
@@ -74,14 +64,5 @@ export class BackgroundMessageDistributor {
         }
 
         return { messageHandled: false };
-    }
-
-    private async createResponsePromise(
-        promisesToAwait: (Promise<void> | void)[],
-        response: any | Promise<any>,
-    ): Promise<any> {
-        await Promise.all(promisesToAwait);
-
-        return response;
     }
 }

@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DictionaryStringTo } from 'types/common-types';
 import {
+    Events,
     ExtensionTypes,
     Notifications,
     Permissions,
@@ -10,6 +12,7 @@ import {
 } from 'webextension-polyfill';
 
 export interface BrowserAdapter {
+    allRequiredEvents(): DictionaryStringTo<Events.Event<any>>;
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
     addListenerToTabsOnUpdated(

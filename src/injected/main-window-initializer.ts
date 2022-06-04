@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { createToolData } from 'common/application-properties-provider';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
@@ -33,8 +32,6 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
-import { DictionaryStringTo } from 'types/common-types';
-import { Events } from 'webextension-polyfill';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -421,11 +418,6 @@ export class MainWindowInitializer extends WindowInitializer {
         await this.pathSnippetController.listenToStore();
 
         await Promise.all(asyncInitializationSteps);
-    }
-
-    protected override getBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
-        const browserEventProvider = new BrowserEventProvider();
-        return browserEventProvider.getMinimalBrowserEvents();
     }
 
     protected dispose(): void {
