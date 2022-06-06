@@ -3,10 +3,14 @@
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { SelfFastPass, SelfFastPassContainer } from 'common/self-fast-pass';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
 import UAParser from 'ua-parser-js';
@@ -25,6 +29,19 @@ const browserAdapter = browserAdapterFactory.makeFromUserAgent(
     browserEventManager,
     browserEventProvider.getMinimalBrowserEvents(),
 );
+
+const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+    browserAdapter.sendMessageToFrames,
+    null,
+    logger,
+);
+const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+const exceptionTelemetryListener = new ExceptionTelemetryListener(
+    TelemetryEventSource.Insights,
+    actionMessageDispatcher.sendTelemetry,
+    telemetrySanitizer,
+);
+exceptionTelemetryListener.initialize(logger);
 
 renderer(rendererDependencies(browserAdapter, logger));
 

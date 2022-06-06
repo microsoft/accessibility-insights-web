@@ -8,12 +8,14 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -124,7 +126,12 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const exceptionTelemetryListener = new ExceptionTelemetryListener(telemetryEventHandler);
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
     exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
