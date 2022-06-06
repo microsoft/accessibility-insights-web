@@ -27,6 +27,8 @@ import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -254,6 +256,16 @@ if (tabId != null) {
                 tab.id,
                 logger,
             );
+
+            const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+                browserAdapter.getExtensionId(),
+            );
+            const exceptionTelemetryListener = new ExceptionTelemetryListener(
+                TelemetryEventSource.DetailsView,
+                actionMessageDispatcher.sendTelemetry,
+                telemetrySanitizer,
+            );
+            exceptionTelemetryListener.initialize(logger);
 
             const tabStopRequirementActionMessageCreator =
                 new TabStopRequirementActionMessageCreator(

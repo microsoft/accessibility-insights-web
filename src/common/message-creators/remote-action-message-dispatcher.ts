@@ -27,7 +27,7 @@ export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
         });
     }
 
-    public sendTelemetry(eventName: string, eventData: TelemetryData): void {
+    public sendTelemetry = (eventName: string, eventData: TelemetryData): void => {
         const payload: PayloadWithEventName = {
             eventName: eventName,
             telemetry: eventData,
@@ -39,7 +39,7 @@ export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
         };
 
         this.dispatchMessage(message);
-    }
+    };
 
     private decorateWithTabId(message: Message): InterpreterMessage {
         const decorated: InterpreterMessage = {

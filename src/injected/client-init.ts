@@ -36,7 +36,7 @@ async function initClient() {
         window.windowInitializer = new WindowInitializer();
     }
 
-    window.windowInitializer.initialize().catch(logger.error);
+    window.windowInitializer.initialize(logger).catch(logger.error);
 }
 
 void initClient();
