@@ -62,7 +62,7 @@ async function initialize(): Promise<void> {
 
     const browserEventManager = new BackgroundBrowserEventManager(promiseFactory, logger, false);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
-    browserEventManager.preregisterBrowserListeners(browserAdapter.allRequiredEvents());
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(

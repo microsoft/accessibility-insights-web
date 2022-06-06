@@ -60,7 +60,7 @@ async function initialize(): Promise<void> {
     // If a service worker does not register all of its browser listeners *synchronously* during worker initialization,
     // the browser may decide that the worker is "done" as soon as the synchronous part of initialization finishes
     // and tear down the worker before we tell it which events to wake us back up for.
-    browserEventManager.preregisterBrowserListeners(browserAdapter.allRequiredEvents());
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(

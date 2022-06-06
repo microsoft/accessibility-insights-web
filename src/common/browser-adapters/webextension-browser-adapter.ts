@@ -24,19 +24,21 @@ export abstract class WebExtensionBrowserAdapter
 
     public abstract getManageExtensionUrl(): string;
 
-    public allRequiredEvents(): DictionaryStringTo<Events.Event<any>> {
+    public allSupportedEvents(): DictionaryStringTo<Events.Event<any>> {
         return {
-            TabsOnActivated: browser.tabs.onActivated,
-            TabsOnUpdated: browser.tabs.onUpdated,
-            TabsOnRemoved: browser.tabs.onRemoved,
-            WebNavigationOnDOMContentLoaded: browser.webNavigation.onDOMContentLoaded,
-            WindowsOnFocusChanged: browser.windows.onFocusChanged,
-            CommandsOnCommand: browser.commands.onCommand,
+            // This is supported in all contexts we can use a BrowserAdapter from
             RuntimeOnMessage: browser.runtime.onMessage,
 
-            // casting browser as any due to typings for permissions onAdded not currently supported.
-            PermissionsOnAdded: (browser as any).permissions?.onAdded,
-            PermissionsOnRemoved: (browser as any).permissions?.onRemoved,
+            // These are only supported from some contexts
+            // Particularly, none of these are supported in an injected content script
+            TabsOnActivated: browser.tabs?.onActivated,
+            TabsOnUpdated: browser.tabs?.onUpdated,
+            TabsOnRemoved: browser.tabs?.onRemoved,
+            WebNavigationOnDOMContentLoaded: browser.webNavigation?.onDOMContentLoaded,
+            WindowsOnFocusChanged: browser.windows?.onFocusChanged,
+            CommandsOnCommand: browser.commands?.onCommand,
+            PermissionsOnAdded: browser.permissions?.onAdded,
+            PermissionsOnRemoved: browser.permissions?.onRemoved,
         };
     }
 
@@ -273,7 +275,7 @@ export abstract class WebExtensionBrowserAdapter
     private addListener(eventName: string, callback: ApplicationListener): void {
         this.browserEventManager.addApplicationListener(
             eventName,
-            this.allRequiredEvents()[eventName],
+            this.allSupportedEvents()[eventName],
             callback,
         );
     }
