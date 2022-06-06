@@ -46,10 +46,10 @@ export class TestStatusChoiceGroup extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <div className={styles.flexContainer}>
+            <div className={styles.groupContainer}>
                 <ChoiceGroup
                     styles={{
-                        flexContainer: styles.flexContainer,
+                        flexContainer: styles.radioButtonGroup,
                     }}
                     onChange={this.onChange}
                     componentRef={this.componentRef}

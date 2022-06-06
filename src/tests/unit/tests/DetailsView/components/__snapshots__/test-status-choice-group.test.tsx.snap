@@ -2,7 +2,7 @@
 
 exports[`TestStatusChoiceGroup render 1`] = `
 <div
-  className="flexContainer"
+  className="groupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}
@@ -34,7 +34,7 @@ exports[`TestStatusChoiceGroup render 1`] = `
     selectedKey="PASS"
     styles={
       Object {
-        "flexContainer": "flexContainer",
+        "flexContainer": "radioButtonGroup",
       }
     }
   />
@@ -43,7 +43,7 @@ exports[`TestStatusChoiceGroup render 1`] = `
 
 exports[`TestStatusChoiceGroup render label 1`] = `
 <div
-  className="flexContainer"
+  className="groupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}
@@ -75,7 +75,7 @@ exports[`TestStatusChoiceGroup render label 1`] = `
     selectedKey="PASS"
     styles={
       Object {
-        "flexContainer": "flexContainer",
+        "flexContainer": "radioButtonGroup",
       }
     }
   />
@@ -84,7 +84,7 @@ exports[`TestStatusChoiceGroup render label 1`] = `
 
 exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as status is PASS 1`] = `
 <div
-  className="flexContainer"
+  className="groupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}
@@ -116,7 +116,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
     selectedKey="PASS"
     styles={
       Object {
-        "flexContainer": "flexContainer",
+        "flexContainer": "radioButtonGroup",
       }
     }
   />
@@ -125,7 +125,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
 
 exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status is UNKNOWN 1`] = `
 <div
-  className="flexContainer"
+  className="groupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}
@@ -157,7 +157,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status i
     selectedKey="UNKNOWN"
     styles={
       Object {
-        "flexContainer": "flexContainer",
+        "flexContainer": "radioButtonGroup",
       }
     }
   />

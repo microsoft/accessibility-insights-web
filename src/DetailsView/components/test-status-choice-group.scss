@@ -4,7 +4,8 @@
 
 // Create a horizontal ChoiceGroup
 // https://github.com/microsoft/fluentui/issues/21727
-.flex-container {
+.group-container,
+.radio-button-group {
     column-gap: 8px;
     display: flex;
     flex-direction: row;
