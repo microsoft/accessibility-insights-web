@@ -4,7 +4,6 @@ import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -23,7 +22,9 @@ import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirem
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
+import { DictionaryStringTo } from 'types/common-types';
 import UAParser from 'ua-parser-js';
+import { Events } from 'webextension-polyfill';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -77,11 +78,10 @@ export class WindowInitializer {
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
         const logger = createDefaultLogger();
         const promiseFactory = createDefaultPromiseFactory();
-        const browserEventProvider = new BrowserEventProvider();
         const browserEventManager = new BrowserEventManager(promiseFactory, logger);
         const browserAdapter = browserAdapterFactory.makeFromUserAgent(
             browserEventManager,
-            browserEventProvider.getMinimalBrowserEvents(),
+            this.getBrowserEvents(),
         );
 
         this.browserAdapter = browserAdapter;
@@ -223,6 +223,10 @@ export class WindowInitializer {
         );
         // Intentionally floating this promise
         void extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
+    }
+
+    protected getBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
+        return {};
     }
 
     protected dispose(): void {
