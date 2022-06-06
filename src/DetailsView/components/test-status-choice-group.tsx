@@ -1,13 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ChoiceGroup,
-    IChoiceGroup,
-    IChoiceGroupOption,
-    IChoiceGroupOptionProps,
-} from '@fluentui/react';
-import { Icon } from '@fluentui/react';
-import { Link } from '@fluentui/react';
+import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption, IconButton } from '@fluentui/react';
 import { isEqual } from 'lodash';
 import * as React from 'react';
 
@@ -36,6 +29,10 @@ export class TestStatusChoiceGroup extends React.Component<
 > {
     protected choiceGroup: IChoiceGroup;
 
+    public static defaultProps = {
+        isLabelVisible: false,
+    };
+
     constructor(props) {
         super(props);
         this.state = { selectedKey: ManualTestStatus[this.props.status] };
@@ -49,21 +46,20 @@ export class TestStatusChoiceGroup extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <div>
-                <div className={styles.radioButtonGroup}>
-                    <ChoiceGroup
-                        className={ManualTestStatus[this.props.status]}
-                        onChange={this.onChange}
-                        componentRef={this.compomentRef}
-                        selectedKey={this.state.selectedKey}
-                        options={[
-                            this.makeOption(ManualTestStatus.PASS, 'Pass'),
-                            this.makeOption(ManualTestStatus.FAIL, 'Fail'),
-                        ]}
-                    />
-                </div>
-
-                <div>{this.renderUndoButton()}</div>
+            <div className={styles.flexContainer}>
+                <ChoiceGroup
+                    styles={{
+                        flexContainer: styles.flexContainer,
+                    }}
+                    onChange={this.onChange}
+                    componentRef={this.componentRef}
+                    selectedKey={this.state.selectedKey}
+                    options={[
+                        this.makeOption(ManualTestStatus.PASS, 'Pass'),
+                        this.makeOption(ManualTestStatus.FAIL, 'Fail'),
+                    ]}
+                />
+                {this.renderUndoButton()}
             </div>
         );
     }
@@ -71,19 +67,15 @@ export class TestStatusChoiceGroup extends React.Component<
     private makeOption(manualTestStatus: ManualTestStatus, text: string): IChoiceGroupOption {
         return {
             key: ManualTestStatus[manualTestStatus],
-            text: text,
+            text: this.props.isLabelVisible ? text : '',
             ariaLabel: this.props.isLabelVisible ? undefined : text,
-            onRenderLabel: this.onRenderOptionLabel,
+            className: `option-${ManualTestStatus[manualTestStatus].toLowerCase()}`,
+            styles: {
+                root: styles.radioButtonOption,
+                field: styles.radioButtonOptionField,
+            },
         };
     }
-
-    private onRenderOptionLabel = (option: IChoiceGroupOptionProps): JSX.Element | null => {
-        return (
-            <span id={option.labelId} className={styles.radioLabel}>
-                {this.props.isLabelVisible ? option.text : ''}
-            </span>
-        );
-    };
 
     private renderUndoButton(): JSX.Element | null {
         if (this.props.originalStatus == null) {
@@ -91,13 +83,15 @@ export class TestStatusChoiceGroup extends React.Component<
         }
 
         return (
-            <Link className={styles.undoButton} onClick={this.onUndoClicked}>
-                <Icon className={styles.undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
-            </Link>
+            <IconButton
+                iconProps={{ iconName: 'undo' }}
+                ariaLabel="undo"
+                onClick={this.onUndoClicked}
+            />
         );
     }
 
-    protected compomentRef = (component: IChoiceGroup): void => {
+    protected componentRef = (component: IChoiceGroup): void => {
         this.choiceGroup = component;
     };
 

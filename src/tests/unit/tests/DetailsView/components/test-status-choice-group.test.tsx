@@ -10,7 +10,6 @@ import {
     TestStatusChoiceGroup,
     TestStatusChoiceGroupProps,
 } from '../../../../../DetailsView/components/test-status-choice-group';
-import styles from '../../../../../DetailsView/components/test-status-choice-group.scss';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -67,6 +66,27 @@ describe('TestStatusChoiceGroup', () => {
             status: ManualTestStatus.PASS,
         } as TestStatusChoiceGroupProps);
         expect(component.state).toMatchObject({ selectedKey: 'FAIL' });
+    });
+
+    test('render label', () => {
+        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
+        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
+        const props: TestStatusChoiceGroupProps = {
+            test: 1,
+            step: 'step',
+            selector: 'selector',
+            status: ManualTestStatus.PASS,
+            originalStatus: null,
+            onGroupChoiceChange: onGroupChoiceChangeMock.object,
+            onUndoClicked: onUndoMock.object,
+            isLabelVisible: true,
+        };
+        onGroupChoiceChangeMock
+            .setup(o => o(props.status, props.test, props.step, props.selector))
+            .verifiable(Times.once());
+
+        const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render', () => {
@@ -150,9 +170,9 @@ describe('TestStatusChoiceGroup', () => {
 
         const component = React.createElement(TestableTestStatusChoiceGroup, props);
         const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, styles.undoButton);
+        const iconButton = TestUtils.findRenderedDOMComponentWithTag(testObject, 'button');
 
-        expect(link).toBeDefined();
+        expect(iconButton).toBeDefined();
 
         focusMock.setup(f => f()).verifiable(Times.once());
 
@@ -177,7 +197,7 @@ class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
     }
 
     public getComponentRef(): (component: IChoiceGroup) => void {
-        return this.compomentRef;
+        return this.componentRef;
     }
 
     public getComponent(): IChoiceGroup {

@@ -2,86 +2,53 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 
-.radio-button-group {
-    float: left;
-    line-height: 24px;
+// Create a horizontal ChoiceGroup
+// https://github.com/microsoft/fluentui/issues/21727
+.flex-container {
+    column-gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 32px; // Match undo button height to prevent layout shift
+}
 
-    .radio-label {
-        font-size: 14px;
-        padding: 0 0 0 26px;
-        display: inline-block;
-    }
+.radio-button-option {
+    margin-top: 0; // Remove margin-top to align ChoiceGroup with undo button
 
     :global {
-        .ms-ChoiceField {
-            float: left;
-            margin-top: 0 !important;
-        }
-
-        .ms-ChoiceField-wrapper.is-inFocus .ms-ChoiceField-field {
-            @include ms-high-contrast-override {
-                outline: 3px HighlightText solid !important;
+        .option-pass ~ .is-checked {
+            &::before,
+            &::after {
+                border-color: $positive-outcome;
             }
         }
 
-        .ms-ChoiceField:nth-of-type(1) {
-            margin-right: 8px;
-        }
-
-        .ms-ChoiceField-input {
-            position: absolute;
-        }
-
-        .PASS {
-            .ms-ChoiceField:nth-of-type(1) {
-                .ms-ChoiceField-field::before,
-                .ms-ChoiceField-field::after {
-                    border-color: $positive-outcome;
-
-                    // See #3435
-                    @include ms-high-contrast-override {
-                        forced-color-adjust: none;
-                        border-color: Highlight;
-                        background-color: HighlightText;
-                    }
-                }
-            }
-        }
-
-        .FAIL {
-            .ms-ChoiceField:nth-of-type(2) {
-                .ms-ChoiceField-field::before,
-                .ms-ChoiceField-field::after {
-                    border-color: $negative-outcome;
-
-                    // See #3435
-                    @include ms-high-contrast-override {
-                        forced-color-adjust: none;
-                        border-color: Highlight;
-                        background-color: HighlightText;
-                    }
-                }
+        .option-fail ~ .is-checked {
+            &::before,
+            &::after {
+                border-color: $negative-outcome;
             }
         }
     }
-}
 
-.undo-button {
-    margin-left: 8px !important;
-
-    .undo-button-icon {
-        font-size: 16px;
-        line-height: 24px;
-        color: $neutral-100;
-        @include ms-high-contrast-override {
-            color: inherit;
-        }
-    }
-}
-
-.undo-button:focus,
-.undo-button-icon:focus {
+    // Set hover and checked state for high contrast mode
+    // See https://github.com/microsoft/accessibility-insights-web/issues/3435
     @include ms-high-contrast-override {
-        outline: 1px HighlightText solid !important;
+        .radio-button-option-field:global(.is-checked),
+        .radio-button-option-field:hover {
+            &::before,
+            &::after {
+                forced-color-adjust: none;
+                border-color: highlight !important;
+            }
+
+            &::before {
+                background-color: highlighttext;
+            }
+
+            &::after {
+                background-color: highlight;
+            }
+        }
     }
 }
