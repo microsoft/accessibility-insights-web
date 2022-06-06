@@ -36,6 +36,7 @@ import UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
+    const logger = createDefaultLogger();
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const browserAdapter = browserAdapterFactory.makeFromUserAgent();
