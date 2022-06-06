@@ -26,13 +26,13 @@ export abstract class WebExtensionBrowserAdapter
 
     public allRequiredEvents(): DictionaryStringTo<Events.Event<any>> {
         return {
-            TabsOnActivated: browser.tabs?.onActivated,
-            TabsOnUpdated: browser.tabs?.onUpdated,
-            TabsOnRemoved: browser.tabs?.onRemoved,
-            WebNavigationOnDOMContentLoaded: browser.webNavigation?.onDOMContentLoaded,
-            WindowsOnFocusChanged: browser.windows?.onFocusChanged,
-            CommandsOnCommand: browser.commands?.onCommand,
-            RuntimeOnMessage: browser.runtime?.onMessage,
+            TabsOnActivated: browser.tabs.onActivated,
+            TabsOnUpdated: browser.tabs.onUpdated,
+            TabsOnRemoved: browser.tabs.onRemoved,
+            WebNavigationOnDOMContentLoaded: browser.webNavigation.onDOMContentLoaded,
+            WindowsOnFocusChanged: browser.windows.onFocusChanged,
+            CommandsOnCommand: browser.commands.onCommand,
+            RuntimeOnMessage: browser.runtime.onMessage,
 
             // casting browser as any due to typings for permissions onAdded not currently supported.
             PermissionsOnAdded: (browser as any).permissions?.onAdded,
