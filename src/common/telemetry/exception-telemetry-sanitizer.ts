@@ -17,8 +17,11 @@ export class ExceptionTelemetrySanitizer {
         'elementSelector',
         'cssSelector',
     ];
+    private readonly exclusionRegex: RegExp;
 
-    constructor(private readonly extensionId: string) {}
+    constructor(private readonly extensionId: string) {
+        this.exclusionRegex = this.generateExclusionRegex();
+    }
 
     public sanitizeTelemetryData(
         telemetryData: UnhandledErrorTelemetryData,
@@ -29,11 +32,9 @@ export class ExceptionTelemetrySanitizer {
         if (telemetryData.stackTrace && telemetryData.stackTrace.length > this.MAX_STACK_CHARS) {
             telemetryData.stackTrace = telemetryData.stackTrace.substring(0, this.MAX_STACK_CHARS);
         }
-
-        const exclusionRegex = this.generateExclusionRegex();
         if (
-            (telemetryData.message && exclusionRegex.test(telemetryData.message)) ||
-            (telemetryData.stackTrace && exclusionRegex.test(telemetryData.stackTrace))
+            (telemetryData.message && this.exclusionRegex.test(telemetryData.message)) ||
+            (telemetryData.stackTrace && this.exclusionRegex.test(telemetryData.stackTrace))
         ) {
             return undefined;
         }

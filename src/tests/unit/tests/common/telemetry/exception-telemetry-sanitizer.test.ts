@@ -73,6 +73,13 @@ describe(ExceptionTelemetrySanitizer, () => {
 
     describe('it returns undefined on invalid data', () => {
         afterEach(() => {
+            telemetryStub = {
+                message: errorMessageStub,
+                stackTrace: errorStub.stack,
+                errorType,
+                source,
+            };
+
             const sanitizedTelemetry = testSubject.sanitizeTelemetryData(telemetryStub);
 
             expect(sanitizedTelemetry).toBeUndefined();
@@ -80,29 +87,38 @@ describe(ExceptionTelemetrySanitizer, () => {
 
         test('it does not send data that includes urls', () => {
             errorMessageStub = 'https://accessibilityinsights.io/';
-
-            telemetryStub = {
-                message: errorMessageStub,
-                stackTrace: errorStub.stack,
-                errorType,
-                source,
-            };
         });
 
-        test('it does not send data that includes html', () => {
-            errorMessageStub = '"html"';
+        test('it does not send data that includes file urls', () => {
+            errorMessageStub = 'file://test.html';
+        });
 
-            telemetryStub = {
-                message: errorMessageStub,
-                stackTrace: errorStub.stack,
-                errorType,
-                source,
-            };
+        test('it does not send data that includes other extension urls', () => {
+            errorMessageStub = 'chrome-extension://otherExtensionId';
+        });
+
+        test('it does not send data that includes urls with our extensionId', () => {
+            errorMessageStub = `https://fake/url/${extensionIdStub}`;
+        });
+
+        test('it does not send data that includes single quoted properties', () => {
+            errorMessageStub = "'html'";
+        });
+
+        test('it does not send data that includes double quoted properties', () => {
+            errorMessageStub = '"html"';
         });
     });
 
     describe('returns valid data', () => {
         afterEach(() => {
+            telemetryStub = {
+                message: errorMessageStub,
+                stackTrace: errorStub.stack,
+                errorType,
+                source,
+            };
+
             const sanitizedTelemetry = testSubject.sanitizeTelemetryData(telemetryStub);
 
             expect(sanitizedTelemetry).toMatchObject(telemetryStub);
@@ -110,13 +126,10 @@ describe(ExceptionTelemetrySanitizer, () => {
 
         test('it allows stacks to include extension url', () => {
             errorMessageStub = `chrome-extension://${extensionIdStub}`;
+        });
 
-            telemetryStub = {
-                message: errorMessageStub,
-                stackTrace: errorStub.stack,
-                errorType,
-                source,
-            };
+        test('it allows stacks to unquoted properties', () => {
+            errorMessageStub = `fake message containing html and path`;
         });
     });
 });
