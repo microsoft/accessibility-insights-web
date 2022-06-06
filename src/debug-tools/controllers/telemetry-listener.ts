@@ -41,6 +41,10 @@ export class TelemetryListener {
     public addListener(listener: DebugToolsTelemetryMessageListener): void {
         this.listeners.push(listener);
     }
+
+    public removeListener(listener: DebugToolsTelemetryMessageListener): void {
+        this.listeners = this.listeners.filter(l => l !== listener);
+    }
 }
 
 function convertToDebugToolTelemetryMessage(
