@@ -11,23 +11,21 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('TelemetryListener', () => {
     let getDateMock: IMock<() => Date>;
 
+    let millisSinceEpoch: number;
+    let baseProperties: Partial<DebugToolsTelemetryMessage>;
+    let customProperties: { [key: string]: any };
+    let name: string;
+    let legitimateInputMessage: any;
+
     let testSubject: TelemetryListener;
 
     beforeEach(() => {
         getDateMock = Mock.ofType<() => Date>();
 
-        testSubject = new TelemetryListener(getDateMock.object);
-    });
-
-    it('handles incoming messages', () => {
-        const millisSinceEpoch = 0;
+        millisSinceEpoch = 0;
         getDateMock.setup(getter => getter()).returns(() => new Date(millisSinceEpoch));
 
-        const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
-
-        testSubject.addListener(externalListenerMock.object);
-
-        const baseProperties = {
+        baseProperties = {
             applicationBuild: 'test-application-build',
             applicationName: 'test-application-name',
             applicationVersion: 'test-application-version',
@@ -35,16 +33,13 @@ describe('TelemetryListener', () => {
             source: 'test-source',
             triggeredBy: 'test-triggered-by',
         };
-
-        const customProperties = {
+        customProperties = {
             custom1: 'custom1',
             custom2: '2',
             custom3: 'false',
         };
-
-        const name = 'test-event-name';
-
-        const incommingMessage = {
+        name = 'test-event-name';
+        legitimateInputMessage = {
             messageType: Messages.DebugTools.Telemetry,
             name,
             properties: {
@@ -53,14 +48,21 @@ describe('TelemetryListener', () => {
             },
         };
 
-        testSubject.onTelemetryMessage(incommingMessage);
+        testSubject = new TelemetryListener(getDateMock.object);
+    });
 
-        const expectedMessage: DebugToolsTelemetryMessage = {
+    it('handles incoming messages', () => {
+        const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
+        testSubject.addListener(externalListenerMock.object);
+
+        testSubject.onTelemetryMessage(legitimateInputMessage);
+
+        const expectedMessage = {
             name,
             timestamp: millisSinceEpoch,
             ...baseProperties,
             customProperties,
-        };
+        } as DebugToolsTelemetryMessage;
 
         externalListenerMock.verify(
             listener => listener(It.isValue(expectedMessage)),
@@ -79,6 +81,17 @@ describe('TelemetryListener', () => {
         };
 
         testSubject.onTelemetryMessage(incommingMessage);
+
+        externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
+    });
+
+    it('stops propogating messages to removed listeners', () => {
+        const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
+
+        testSubject.addListener(externalListenerMock.object);
+        testSubject.removeListener(externalListenerMock.object);
+
+        testSubject.onTelemetryMessage(legitimateInputMessage);
 
         externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });
