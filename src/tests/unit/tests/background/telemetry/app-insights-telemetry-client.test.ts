@@ -128,7 +128,7 @@ describe('AppInsights telemetry client tests', () => {
     });
 
     describe('trackEvent', () => {
-        test('calls appInsights trackEvent', async () => {
+        test('calls appInsights trackEvent', () => {
             invokeFirstEnableTelemetryCall();
 
             const eventName: string = 'testEvent';
@@ -140,13 +140,13 @@ describe('AppInsights telemetry client tests', () => {
                 .setup(ai => ai.trackEvent({ name: eventName }, eventObject))
                 .verifiable(Times.once());
 
-            await testSubject.trackEvent(eventName, eventObject);
+            testSubject.trackEvent(eventName, eventObject);
 
             appInsightsStrictMock.verifyAll();
             expect(telemetryTraceStub.name).toEqual('');
         });
 
-        test('do nothing if not initialized', async () => {
+        test('do nothing if not initialized', () => {
             const eventName: string = 'testEvent';
             const eventObject = {
                 test: 'a',
@@ -155,11 +155,11 @@ describe('AppInsights telemetry client tests', () => {
                 .setup(ai => ai.trackEvent({ name: eventName }, eventObject))
                 .verifiable(Times.never());
 
-            await testSubject.trackEvent(eventName, eventObject);
+            testSubject.trackEvent(eventName, eventObject);
             appInsightsStrictMock.verifyAll();
         });
 
-        test('do nothing when not enabled', async () => {
+        test('do nothing when not enabled', () => {
             invokeFirstEnableTelemetryCall();
 
             const eventName: string = 'testEvent';
@@ -171,11 +171,11 @@ describe('AppInsights telemetry client tests', () => {
                 .setup(ai => ai.trackEvent({ name: eventName }, eventObject))
                 .verifiable(Times.exactly(2));
 
-            await testSubject.trackEvent(eventName, eventObject);
+            testSubject.trackEvent(eventName, eventObject);
             testSubject.disableTelemetry();
-            await testSubject.trackEvent(eventName, eventObject);
+            testSubject.trackEvent(eventName, eventObject);
             testSubject.enableTelemetry();
-            await testSubject.trackEvent(eventName, eventObject);
+            testSubject.trackEvent(eventName, eventObject);
 
             expect(telemetryTraceStub.name).toEqual('');
         });

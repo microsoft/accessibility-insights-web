@@ -28,9 +28,7 @@ export class TelemetryEventHandler {
 
         const flattenTelemetryInfo: DictionaryStringTo<string> =
             this.flattenTelemetryInfo(telemetryInfo);
-        // Disabling this temporarily to avoid errors in non-async ActionMessageCreators.
-        // Ideally, this method would be marked async so we can await this call.
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 
