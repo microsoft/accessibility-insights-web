@@ -39,13 +39,13 @@ describe('MultiplexingTelemetryClient', () => {
         thirdTelemetryClientMock.verify(client => client.disableTelemetry(), Times.once());
     });
 
-    it('calls trackEvent on all the clients', async () => {
+    it('calls trackEvent on all the clients', () => {
         const testName = 'test-name';
         const testProperties = {
             test: 'property',
         };
 
-        await testSubject.trackEvent(testName, testProperties);
+        testSubject.trackEvent(testName, testProperties);
 
         firstTelemetryClientMock.verify(
             client => client.trackEvent(testName, testProperties),

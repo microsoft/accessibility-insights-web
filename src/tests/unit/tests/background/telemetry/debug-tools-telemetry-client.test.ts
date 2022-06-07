@@ -15,6 +15,7 @@ describe('DebugToolsTelemetryClient', () => {
     let debugToolsFeatureFlag: boolean;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
+    let stubAppData: ApplicationTelemetryData;
     const featureFlagChecker: FeatureFlagChecker = {
         isEnabled: feature => feature === FeatureFlags.debugTools && debugToolsFeatureFlag,
     };
@@ -25,6 +26,13 @@ describe('DebugToolsTelemetryClient', () => {
         debugToolsFeatureFlag = true;
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         telemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
+
+        stubAppData = {
+            applicationBuild: 'test-application-build',
+            applicationName: 'test-application-name',
+            applicationVersion: 'test-application-version',
+            installationId: 'test-installation-id',
+        };
 
         testSubject = new DebugToolsTelemetryClient(
             browserAdapterMock.object,
@@ -80,26 +88,35 @@ describe('DebugToolsTelemetryClient', () => {
             expect(action).not.toThrow();
         });
 
-        it('send runtime message if feature flag is enabled', async () => {
-            const appData: ApplicationTelemetryData = {
-                applicationBuild: 'test-application-build',
-                applicationName: 'test-application-name',
-                applicationVersion: 'test-application-version',
-                installationId: 'test-installation-id',
-            };
+        it('sends runtime message if feature flag is enabled', () => {
             const expectedMessage = {
                 messageType: Messages.DebugTools.Telemetry,
                 name: eventName,
                 properties: {
                     ...eventProperties,
-                    ...appData,
+                    ...stubAppData,
                 },
             };
 
-            telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => appData);
-            browserAdapterMock.setup(b => b.sendRuntimeMessage(expectedMessage)).verifiable();
+            telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => stubAppData);
+            browserAdapterMock
+                .setup(b => b.sendRuntimeMessage(expectedMessage))
+                .returns(() => Promise.resolve())
+                .verifiable();
 
-            await testSubject.trackEvent(eventName, eventProperties);
+            testSubject.trackEvent(eventName, eventProperties);
+        });
+
+        it('ignores errors from browserAdapter.sendRuntimeMessage', () => {
+            telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => stubAppData);
+            browserAdapterMock
+                .setup(b => b.sendRuntimeMessage(It.isAny()))
+                .returns(() => Promise.reject('error from sendRuntimeMessage'))
+                .verifiable();
+
+            testSubject.trackEvent(eventName, eventProperties);
+
+            // The actual test is that Jest shouldn't emit any "unhandled promise rejection" error
         });
     });
 });
