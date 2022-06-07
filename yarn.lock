@@ -3449,10 +3449,10 @@ app-builder-lib@^23.1.0:
     tar "^6.1.11"
     temp-file "^3.4.0"
 
-appium-adb@^9.6.1:
-  version "9.6.1"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.6.1.tgz#d88dc5f30991121f108e118450f06da10c12954e"
-  integrity sha512-M2U/AQUZfD5qq9hyYoqnQhgHIl8cEEeSvxIfRnTwqCBKhoR2k8A6ye6pfIXRlpTNje22MgBVsj7a6iMRLuxQTw==
+appium-adb@^9.7.0:
+  version "9.7.0"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.7.0.tgz#2de0369e7924259a4af00fa7f66d7b4780203d3b"
+  integrity sha512-P7NIl5WbJhfnosMsbFTuzkDIZ5m9o8kf7b92ry9eMAUN7/2Xuze66CNi1l4drFaITl8r9//OF1RImHMMdguNsA==
   dependencies:
     "@appium/support" "^2.55.3"
     "@babel/runtime" "^7.0.0"
@@ -8947,12 +8947,7 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lru-cache@^7.3.0, lru-cache@^7.4.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.8.0.tgz#649aaeb294a56297b5cbc5d70f198dcc5ebe5747"
-  integrity sha512-AmXqneQZL3KZMIgBpaPTeI6pfwh+xQ2vutMsyqOu1TBdEXFZgpG/80wuJ531w2ZN7TI0/oc8CPxzh/DKQudZqg==
-
-lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
+lru-cache@^7.3.0, lru-cache@^7.4.0, lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   version "7.10.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.10.1.tgz#db577f42a94c168f676b638d15da8fb073448cab"
   integrity sha512-BQuhQxPuRl79J5zSXRP+uNzPOyZw2oFI9JLRQ80XswSvg21KMKNtQza9eF42rfI/3Z40RvzBdXgziEkudzjo8A==
