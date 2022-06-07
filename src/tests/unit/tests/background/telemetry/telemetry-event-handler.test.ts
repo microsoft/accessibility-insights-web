@@ -28,22 +28,22 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock = Mock.ofType<TelemetryClient>(null, MockBehavior.Strict);
     });
 
-    test('test for when telemetry is null', async () => {
+    test('test for when telemetry is null', () => {
         const payload: BaseActionPayload = {
             telemetry: null,
         };
 
         const testObject = createAndEnableTelemetryEventHandler();
-        await testObject.publishTelemetry(testEventName, payload);
+        testObject.publishTelemetry(testEventName, payload);
     });
 
-    test('test for when tab is null', async () => {
+    test('test for when tab is null', () => {
         telemetryClientStrictMock
             .setup(te => te.trackEvent(It.isAny(), It.isAny()))
             .verifiable(Times.once());
 
         const testObject = createAndEnableTelemetryEventHandler();
-        await testObject.publishTelemetry(testEventName, testTelemetryPayload);
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
         telemetryClientStrictMock.verifyAll();
     });
 
@@ -63,19 +63,19 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock.verifyAll();
     });
 
-    test('test for publishTelemetry when tab is not null', async () => {
+    test('test for publishTelemetry when tab is not null', () => {
         const expectedTelemetry = createExpectedAppInsightsTelemetry();
 
         setupTrackEvent(testEventName, expectedTelemetry);
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        await testObject.publishTelemetry(testEventName, testTelemetryPayload);
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
 
         telemetryClientStrictMock.verifyAll();
     });
 
-    test('test for publishTelemetry with random object as custom property', async () => {
+    test('test for publishTelemetry with random object as custom property', () => {
         const extraFields: DictionaryStringTo<any> = {
             ___featureA: {
                 __featureB__: {
@@ -102,7 +102,7 @@ describe('TelemetryEventHandlerTest', () => {
 
         const testObject = createAndEnableTelemetryEventHandler();
 
-        await testObject.publishTelemetry(testEventName, customTelemetryPayload);
+        testObject.publishTelemetry(testEventName, customTelemetryPayload);
 
         telemetryClientStrictMock.verifyAll();
     });
