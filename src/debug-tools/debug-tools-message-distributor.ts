@@ -13,7 +13,7 @@ export class DebugToolsMessageDistributor {
         private readonly telemetryListener: TelemetryListener,
     ) {}
 
-    public initialize() {
+    public initialize(): void {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
