@@ -12,7 +12,7 @@ import {
 } from 'webextension-polyfill';
 
 export interface BrowserAdapter {
-    allRequiredEvents(): DictionaryStringTo<Events.Event<any>>;
+    allSupportedEvents(): DictionaryStringTo<Events.Event<any>>;
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
     addListenerToTabsOnUpdated(

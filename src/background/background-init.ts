@@ -8,12 +8,14 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
@@ -66,7 +68,7 @@ async function initialize(): Promise<void> {
         logger,
     );
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
-    browserEventManager.preregisterBrowserListeners(browserAdapter.allRequiredEvents());
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -127,7 +129,12 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const exceptionTelemetryListener = new ExceptionTelemetryListener(telemetryEventHandler);
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
     exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();

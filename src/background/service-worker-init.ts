@@ -16,7 +16,7 @@ import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { ExceptionTelemetryListener } from 'background/telemetry/exception-telemetry-listener';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import {
     getApplicationTelemetryDataFactory,
     getTelemetryClient,
@@ -32,6 +32,7 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from 'common/indexedDB/indexedDB';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -39,6 +40,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
@@ -64,7 +66,7 @@ async function initialize(): Promise<void> {
     // If a service worker does not register all of its browser listeners *synchronously* during worker initialization,
     // the browser may decide that the worker is "done" as soon as the synchronous part of initialization finishes
     // and tear down the worker before we tell it which events to wake us back up for.
-    browserEventManager.preregisterBrowserListeners(browserAdapter.allRequiredEvents());
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -112,7 +114,12 @@ async function initialize(): Promise<void> {
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
-    const exceptionTelemetryListener = new ExceptionTelemetryListener(telemetryEventHandler);
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
     exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(navigator, logger).getBrowserSpec();

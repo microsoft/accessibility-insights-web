@@ -13,7 +13,7 @@ export class MultiplexingTelemetryClient implements TelemetryClient {
         this.wrappedClients.forEach(c => c.disableTelemetry());
     }
 
-    public async trackEvent(name: string, properties?: Object): Promise<void> {
-        await Promise.all(this.wrappedClients.map(c => c.trackEvent(name, properties)));
+    public trackEvent(name: string, properties?: Object): void {
+        this.wrappedClients.forEach(c => c.trackEvent(name, properties));
     }
 }

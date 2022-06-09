@@ -26,7 +26,6 @@ import {
 //
 // For more info on Chromium's Service Worker lifetime restrictions, see
 // https://chromium.googlesource.com/chromium/src/+/refs/tags/103.0.5025.1/docs/security/service-worker-security-faq.md#do-service-workers-live-forever
-
 export class BackgroundBrowserEventManager implements BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
