@@ -53,6 +53,18 @@ describe('LoadAssessmentDataValidator', () => {
         expect(validationResults.dataIsValid).toEqual(true);
     });
 
+    it('passes validation when depreciated appRefreshed is included', () => {
+        validJson.assessmentData.persistedTabInfo['appRefreshed'] = true;
+        const validationResults = testSubject.uploadedDataIsValid(validJson);
+        expect(validationResults.dataIsValid).toEqual(true);
+    });
+
+    it('passes validation when detailsViewId is included', () => {
+        validJson.assessmentData.persistedTabInfo['detailsViewId'] = 'testId';
+        const validationResults = testSubject.uploadedDataIsValid(validJson);
+        expect(validationResults.dataIsValid).toEqual(true);
+    });
+
     it("doesn't pass validation when an extra field is added", () => {
         validJson.assessmentData.persistedTabInfo['iAmHereToExploitYou'] = {};
         const validationResults = testSubject.uploadedDataIsValid(validJson);

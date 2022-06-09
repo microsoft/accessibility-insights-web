@@ -241,7 +241,7 @@ describe('TabStopsAnalyzer', () => {
                 payload: { key: configStub.key, testType: configStub.testType },
             });
 
-            testSubject.teardown();
+            await testSubject.teardown();
             await flushSettledPromises();
             verifyAll();
 

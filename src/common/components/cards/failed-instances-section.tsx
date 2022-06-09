@@ -5,7 +5,7 @@ import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { CommonInstancesSectionProps } from './common-instances-section-props';
-import * as styles from './failed-instances-section.scss';
+import styles from './failed-instances-section.scss';
 import { ResultSection } from './result-section';
 
 export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(

@@ -1,34 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IMock, It, Mock } from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { StoreUpdateMessageDistributor } from '../../../../common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from '../../../../common/store-update-message-hub';
 import { StoreType } from '../../../../common/types/store-type';
 import {
     StoreUpdateMessage,
     storeUpdateMessageType,
 } from '../../../../common/types/store-update-message';
 
-describe(StoreUpdateMessageDistributor, () => {
+describe(StoreUpdateMessageHub, () => {
     const tabId = 1;
     const storeId = 'TestStore';
-    let browserAdapterMock: IMock<BrowserAdapter>;
-    let onMessage: (message: StoreUpdateMessage<any>, sender?: any) => void;
     let registeredListener: jest.Mock;
 
     let tabContextMessage: StoreUpdateMessage<string>;
     let globalStoreMessage: StoreUpdateMessage<string>;
+    let listenerPromise: Promise<void>;
 
-    let testSubject: StoreUpdateMessageDistributor;
+    let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
-        browserAdapterMock = Mock.ofType<BrowserAdapter>();
-        browserAdapterMock
-            .setup(b => b.addListenerOnMessage(It.isAny()))
-            .callback(listener => (onMessage = listener));
-
-        registeredListener = jest.fn();
+        listenerPromise = Promise.resolve();
+        registeredListener = jest.fn(() => listenerPromise);
 
         tabContextMessage = {
             messageType: storeUpdateMessageType,
@@ -46,14 +39,9 @@ describe(StoreUpdateMessageDistributor, () => {
             storeType: StoreType.GlobalStore,
         } as StoreUpdateMessage<string>;
 
-        testSubject = new StoreUpdateMessageDistributor(browserAdapterMock.object, tabId);
+        testSubject = new StoreUpdateMessageHub(tabId);
 
-        testSubject.initialize();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
-    });
-
-    afterEach(() => {
-        browserAdapterMock.verifyAll();
     });
 
     const invalidMessages: StoreUpdateMessage<string>[] = [
@@ -66,9 +54,10 @@ describe(StoreUpdateMessageDistributor, () => {
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
     it.each(invalidMessages)('ignores invalid message: %o', message => {
-        onMessage(message);
+        const result = testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
+        expect(result).toBeUndefined();
     });
 
     it('ignores if no listener is registered for this message', () => {
@@ -77,29 +66,38 @@ describe(StoreUpdateMessageDistributor, () => {
             storeId: 'AnotherStore',
         };
 
-        onMessage(message);
+        const result = testSubject.handleMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
+        expect(result).toBeUndefined();
     });
 
-    it('Calls registered listener for tab context store message', () => {
-        onMessage(tabContextMessage);
+    it('Calls registered listener for tab context store message', async () => {
+        const resultPromise = testSubject.handleMessage(tabContextMessage);
+
+        expect(resultPromise).toBe(listenerPromise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
 
-    it('Calls registered listener for global store message', () => {
-        onMessage(globalStoreMessage);
+    it('Calls registered listener for global store message', async () => {
+        const resultPromise = testSubject.handleMessage(globalStoreMessage);
+
+        expect(resultPromise).toBe(listenerPromise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
 
-    it('Calls registered listener if not created with a tab id', () => {
-        testSubject = new StoreUpdateMessageDistributor(browserAdapterMock.object);
-        testSubject.initialize();
+    it('Calls registered listener if not created with a tab id', async () => {
+        testSubject = new StoreUpdateMessageHub();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        onMessage(tabContextMessage);
+        const resultPromise = testSubject.handleMessage(tabContextMessage);
+
+        expect(resultPromise).toBe(listenerPromise);
+        await resultPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -108,25 +106,25 @@ describe(StoreUpdateMessageDistributor, () => {
         expect(() => testSubject.registerStoreUpdateListener(storeId, () => null)).toThrow();
     });
 
-    it('Registers multiple listeners and distributes messages correctly', () => {
+    it('Registers multiple listeners and distributes messages correctly', async () => {
         const anotherStoreId = 'AnotherStore';
-        const anotherListener = jest.fn();
+        const anotherListener = jest.fn(() => Promise.resolve());
 
         const messageForStore = { ...tabContextMessage };
         const messageForAnotherStore = { ...tabContextMessage, storeId: anotherStoreId };
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        onMessage(messageForStore);
-        onMessage(messageForAnotherStore);
+        const resultPromise1 = testSubject.handleMessage(messageForStore);
+        const resultPromise2 = testSubject.handleMessage(messageForAnotherStore);
+
+        expect(resultPromise1).toBeInstanceOf(Promise);
+        expect(resultPromise2).toBeInstanceOf(Promise);
+
+        await resultPromise1;
+        await resultPromise2;
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
-    });
-
-    it('dispose removes message listener', () => {
-        browserAdapterMock.setup(o => o.removeListenerOnMessage(onMessage)).verifiable();
-
-        testSubject.dispose();
     });
 });

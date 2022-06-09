@@ -25,6 +25,10 @@ jobs:
           - script: yarn scss:build
             displayName: generate typings for scss files
 
+          - script: yarn type:check
+            displayName: type check code
+            timeoutInMinutes: 3
+
           - script: yarn test --ci
             displayName: run unit tests
 

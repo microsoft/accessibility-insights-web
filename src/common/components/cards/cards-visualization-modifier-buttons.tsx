@@ -10,7 +10,7 @@ import {
 } from 'common/components/cards/visual-helper-toggle';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './cards-visualization-modifier-buttons.scss';
+import styles from './cards-visualization-modifier-buttons.scss';
 
 export type CardsVisualizationModifierButtonsProps = ExpandCollapseAllButtonProps &
     VisualHelperToggleProps;

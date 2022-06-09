@@ -11,7 +11,7 @@
     text-align: left;
 
     strong {
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
     }
 
     :global(.outcome-chip) {
@@ -27,12 +27,12 @@
 }
 
 .requirement-details-id {
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
     color: $primary-text;
     word-break: break-all;
 
     a {
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
         color: $primary-text;
     }
 }

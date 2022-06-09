@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ConnectionNames } from 'common/constants/connection-names';
+
+import { Messages } from 'common/messages';
 
 export type DebugToolsTelemetryMessage = {
     timestamp: number;
@@ -24,23 +24,15 @@ export type DebugToolsTelemetryMessageListener = (
 type GetDate = () => Date;
 
 export class TelemetryListener {
-    private connection: chrome.runtime.Port;
     private listeners: DebugToolsTelemetryMessageListener[] = [];
 
-    constructor(
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly getDate: GetDate,
-    ) {}
+    constructor(private readonly getDate: GetDate) {}
 
-    public initialize(): void {
-        this.connection = this.browserAdapter.connect({
-            name: ConnectionNames.debugToolsTelemetry,
-        });
+    public readonly onTelemetryMessage = (telemetryMessage: any) => {
+        if (telemetryMessage.messageType !== Messages.DebugTools.Telemetry) {
+            return;
+        }
 
-        this.connection.onMessage.addListener(this.onTelemetryMessage);
-    }
-
-    private onTelemetryMessage = (telemetryMessage: any) => {
         this.listeners.forEach(listener =>
             listener(convertToDebugToolTelemetryMessage(telemetryMessage, this.getDate)),
         );
@@ -50,8 +42,8 @@ export class TelemetryListener {
         this.listeners.push(listener);
     }
 
-    public dispose(): void {
-        this.connection.disconnect();
+    public removeListener(listener: DebugToolsTelemetryMessageListener): void {
+        this.listeners = this.listeners.filter(l => l !== listener);
     }
 }
 

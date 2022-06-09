@@ -8,7 +8,7 @@ import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import * as styles from './rule-resources.scss';
+import styles from './rule-resources.scss';
 
 export type RuleResourcesDeps = GuidanceTagsDeps & {
     LinkComponent: LinkComponentType;

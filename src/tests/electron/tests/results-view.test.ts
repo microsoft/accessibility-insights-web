@@ -34,7 +34,7 @@ describe('ResultsView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
-        app.client.setViewportSize({
+        await app.client.setViewportSize({
             width: narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         });
@@ -50,7 +50,7 @@ describe('ResultsView', () => {
             config => config.featureFlag === undefined,
         )[testIndex].contentPageInfo.title;
 
-        app.client.setViewportSize({
+        await app.client.setViewportSize({
             width: narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         });

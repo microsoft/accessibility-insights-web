@@ -14,7 +14,7 @@ describe('SingleFrameTabStopListener', () => {
         html: 'outer-html',
     };
 
-    test('start', () => {
+    test('start', async () => {
         const domMock = Mock.ofType<Document>(null, MockBehavior.Strict);
 
         const singleFrameTabStopListener = new SingleFrameTabStopListener(
@@ -24,11 +24,11 @@ describe('SingleFrameTabStopListener', () => {
             null,
         );
 
-        captureOnFocusHandler(domMock, singleFrameTabStopListener);
+        await captureOnFocusHandler(domMock, singleFrameTabStopListener);
         domMock.verifyAll();
     });
 
-    test('stop', () => {
+    test('stop', async () => {
         const domMock = Mock.ofType<Document>(null, MockBehavior.Strict);
 
         const singleFrameTabStopListener = new SingleFrameTabStopListener(
@@ -40,7 +40,7 @@ describe('SingleFrameTabStopListener', () => {
 
         domMock.setup(m => m.removeEventListener('focusin', It.isAny())).verifiable(Times.once());
 
-        singleFrameTabStopListener.stop();
+        await singleFrameTabStopListener.stop();
         domMock.verifyAll();
     });
 
@@ -91,7 +91,7 @@ describe('SingleFrameTabStopListener', () => {
             getCurrentDateMock.object,
         );
 
-        const onFocusCallback = captureOnFocusHandler(domMock, singleFrameTabStopListener);
+        const onFocusCallback = await captureOnFocusHandler(domMock, singleFrameTabStopListener);
 
         const fakeEvent = {
             target: {
@@ -124,17 +124,17 @@ describe('SingleFrameTabStopListener', () => {
         reportResultMock.verifyAll();
     });
 
-    const captureOnFocusHandler = (
+    const captureOnFocusHandler = async (
         domMock: IMock<Document>,
         singleFrameTabStopListener: SingleFrameTabStopListener,
-    ): ((event: Event) => Promise<void>) => {
+    ): Promise<(event: Event) => Promise<void>> => {
         let onFocusCallback: (event: Event) => Promise<void> = null;
         domMock
             .setup(m => m.addEventListener('focusin', It.isAny()))
             .callback((_, func) => (onFocusCallback = func))
             .verifiable(Times.once());
 
-        singleFrameTabStopListener.start();
+        await singleFrameTabStopListener.start();
 
         return onFocusCallback;
     };

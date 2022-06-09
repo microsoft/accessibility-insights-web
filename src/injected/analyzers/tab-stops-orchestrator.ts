@@ -17,7 +17,7 @@ export class TabStopRequirementOrchestrator
 
     private tabbableTabStops: FocusableElement[];
     private actualTabStops: Set<HTMLElement> = new Set();
-    private latestVisitedTabStop: HTMLElement = null;
+    private latestVisitedTabStop: HTMLElement | null = null;
 
     constructor(
         private readonly dom: Document,
@@ -33,19 +33,17 @@ export class TabStopRequirementOrchestrator
         this.latestVisitedTabStop = null;
     };
 
-    public start = () => {
+    public start = async () => {
         this.dom.addEventListener('keydown', this.onKeydownForFocusTraps);
         this.dom.addEventListener('focusin', this.addNewTabStop);
 
         this.tabbableTabStops = this.tabbableElementGetter.getRawElements();
         const tabbableFocusOrderResults =
             this.tabStopsRequirementEvaluator.getTabbableFocusOrderResults(this.tabbableTabStops);
-        tabbableFocusOrderResults.forEach(result => {
-            this.reportResults(result);
-        });
+        await Promise.all(tabbableFocusOrderResults.map(result => this.reportResults(result)));
     };
 
-    public stop = () => {
+    public stop = async () => {
         this.dom.removeEventListener('keydown', this.onKeydownForFocusTraps);
         this.dom.removeEventListener('focusin', this.addNewTabStop);
 
@@ -54,7 +52,7 @@ export class TabStopRequirementOrchestrator
                 this.tabbableTabStops,
                 this.actualTabStops,
             );
-        keyboardNavigationResults.forEach(this.reportResults);
+        await Promise.all(keyboardNavigationResults.map(this.reportResults));
         this.resetFields();
     };
 
@@ -73,7 +71,7 @@ export class TabStopRequirementOrchestrator
         return result;
     };
 
-    private addNewTabStop = (focusEvent: FocusEvent) => {
+    private addNewTabStop = async (focusEvent: FocusEvent) => {
         const newTabStop = focusEvent.target as HTMLElement;
 
         if (this.latestVisitedTabStop == null) {
@@ -97,7 +95,7 @@ export class TabStopRequirementOrchestrator
         if (result == null) {
             return;
         }
-        this.reportResults(result);
+        await this.reportResults(result);
     };
 
     private onKeydownForFocusTraps = (e: KeyboardEvent) => {
@@ -106,15 +104,19 @@ export class TabStopRequirementOrchestrator
         }
 
         const oldElement = this.dom.activeElement;
-        this.windowUtils.setTimeout(() => {
+        this.windowUtils.setTimeout(async () => {
+            const newElement = this.dom.activeElement;
+            if (oldElement == null || newElement == null) {
+                return;
+            }
             const result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
-                this.dom.activeElement,
+                newElement,
                 oldElement,
             );
             if (result == null) {
                 return;
             }
-            this.reportResults(result);
+            await this.reportResults(result);
         }, TabStopRequirementOrchestrator.keyboardTrapTimeout);
     };
 }

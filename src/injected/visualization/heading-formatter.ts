@@ -62,9 +62,9 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         element: HTMLElement,
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
-        const level = this.isHTag(element)
-            ? this.getHTagLevel(element)
-            : this.getAriaLevel(element);
+        const level = this.getAriaLevel(element)
+            ? this.getAriaLevel(element)
+            : this.getHTagLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;
 
@@ -108,12 +108,12 @@ export class HeadingFormatter extends FailureInstanceFormatter {
 
     private getHTagLevel(element: HTMLElement): string {
         const headingLevel = element.tagName.toLowerCase().match(/h(\d)/);
-        return headingLevel ? headingLevel[1] : null;
+        return headingLevel ? headingLevel[1] : '-';
     }
 
     private getAriaLevel(element: HTMLElement): string {
         const attr = element.attributes.getNamedItem('aria-level');
-        return attr ? attr.textContent : '-';
+        return attr ? attr.textContent : null;
     }
 
     private getAttribute(element: HTMLElement, attrName: string): string {

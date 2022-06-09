@@ -19,7 +19,6 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     tabs: chrome.tabs.Tab[];
 
     // These are set directly to whichever listener was last registered in the corresponding this.object.addListener* call
-    notifyOnConnect?: (port: chrome.runtime.Port) => void | Promise<void>;
     notifyTabsOnActivated?: (activeInfo: chrome.tabs.TabActiveInfo) => void | Promise<void>;
     notifyTabsOnUpdated?: (
         tabId: number,
@@ -58,9 +57,6 @@ export function createSimulatedBrowserAdapter(
     mock.tabs = [...(tabs ?? [])];
     mock.windows = [...(windows ?? [])];
     const messageListeners: MessageListener[] = [];
-    mock.setup(m => m.addListenerOnConnect(It.is(isFunction))).callback(
-        c => (mock.notifyOnConnect = c),
-    );
     mock.setup(m => m.addListenerToTabsOnActivated(It.is(isFunction))).callback(
         c => (mock.notifyTabsOnActivated = c),
     );

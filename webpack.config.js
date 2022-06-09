@@ -18,10 +18,7 @@ const commonPlugins = [
 ];
 
 const commonEntryFiles = {
-    injected: [
-        path.resolve(__dirname, 'src/injected/stylesheet-init.ts'),
-        path.resolve(__dirname, 'src/injected/client-init.ts'),
-    ],
+    injected: [path.resolve(__dirname, 'src/injected/client-init.ts')],
     popup: [path.resolve(__dirname, 'src/popup/popup-init.ts')],
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/details-view-initializer.ts')],
@@ -79,7 +76,6 @@ const scssRule = (useHash = true) => ({
             options: {
                 esModule: true,
                 modules: {
-                    namedExport: true,
                     localIdentName: '[local]' + (useHash ? '--[hash:base64:5]' : ''),
                     exportLocalsConvention: 'camelCaseOnly',
                 },

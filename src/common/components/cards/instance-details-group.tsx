@@ -13,7 +13,7 @@ import {
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
-import * as styles from './instance-details-group.scss';
+import styles from './instance-details-group.scss';
 
 export const ruleContentAutomationId = 'cards-rule-content';
 

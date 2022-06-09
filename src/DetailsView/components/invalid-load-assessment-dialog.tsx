@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import * as styles from 'DetailsView/components/invalid-load-assessment-dialog.scss';
+import styles from 'DetailsView/components/invalid-load-assessment-dialog.scss';
 import * as React from 'react';
 
 export const invalidLoadAssessmentDialogOkButtonAutomationId =

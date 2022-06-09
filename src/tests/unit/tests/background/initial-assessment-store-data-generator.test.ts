@@ -9,6 +9,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     AssessmentData,
     AssessmentStoreData,
+    PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -17,7 +18,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     const assesssmentsProvider = CreateTestAssessmentProvider();
     const assessments = assesssmentsProvider.all();
-    const validTargetTab = { id: 1, url: 'url', title: 'title', appRefreshed: false };
+    const validTargetTab = { id: 1, url: 'url', title: 'title', detailsViewId: 'fakeId' };
     const knownTestType = assessments[0].visualizationType;
     const unknownTestType = -100 as VisualizationType;
     const knownRequirementIds = flatMap(assessments, test =>
@@ -25,6 +26,9 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     );
     const knownRequirement1 = knownRequirementIds[0];
     const unknownRequirement: string = 'unknown-requirement';
+    const knownExpandedTestType = assessments[0].visualizationType;
+    const unknownExpandedTestType = -100 as VisualizationType;
+    const undefinedType = undefined;
     const assessmentDataStub = {} as AssessmentData;
     let defaultState: AssessmentStoreData;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
@@ -96,21 +100,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         },
     );
 
-    it.each([[undefined], [true], [false]])(
-        'outputs persistedTabInfo.appRefreshed as true even if it was set to %p in input persistedData',
-        persistedAppRefreshed => {
-            const generatedState = generator.generateInitialState({
-                persistedTabInfo: { ...validTargetTab, appRefreshed: persistedAppRefreshed },
-                assessmentNavState: null,
-                assessments: null,
-                resultDescription: '',
-            });
-
-            expect(generatedState.persistedTabInfo.appRefreshed).toBe(true);
-        },
-    );
-
-    it('outputs persistedTabInfo properties other than appRefreshed as they appeared in persistedData', () => {
+    it('outputs persistedTabInfo properties as they appeared in persistedData', () => {
         const generatedState = generator.generateInitialState({
             persistedTabInfo: validTargetTab,
             assessmentNavState: null,
@@ -118,27 +108,51 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
             resultDescription: '',
         });
 
-        const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;
+        const { detailsViewId, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;
         expect(generatedState.persistedTabInfo).toMatchObject(tabInfoPropertiesThatShouldPropagate);
     });
 
     it.each`
-        selectedTestStep      | selectedTestType
-        ${unknownRequirement} | ${unknownTestType}
-        ${unknownRequirement} | ${knownTestType}
-        ${knownRequirement1}  | ${unknownTestType}
-        ${knownRequirement1}  | ${knownTestType}
+        selectedTestSubview   | selectedTestType   | expandedTestType
+        ${unknownRequirement} | ${unknownTestType} | ${knownExpandedTestType}
+        ${unknownRequirement} | ${knownTestType}   | ${unknownExpandedTestType}
+        ${knownRequirement1}  | ${unknownTestType} | ${knownExpandedTestType}
+        ${knownRequirement1}  | ${knownTestType}   | ${unknownExpandedTestType}
+        ${undefinedType}      | ${undefinedType}   | ${undefinedType}
     `(
-        'outputs the first test/step for assessmentNavState regardless of the persisted state ($selectedTestStep/$selectedTestType)',
-        ({ selectedTestStep, selectedTestType }) => {
+        'outputs the assessmentNavState as they appear in persisted state ($selectedTestSubview/$selectedTestType/$expandedTestType)',
+        ({ selectedTestSubview, selectedTestType, expandedTestType }) => {
             const generatedState = generator.generateInitialState({
                 assessmentNavState: {
-                    selectedTestSubview: selectedTestStep,
+                    selectedTestSubview: selectedTestSubview,
                     selectedTestType,
+                    expandedTestType,
                 },
             } as AssessmentStoreData);
 
-            expect(generatedState.assessmentNavState).toEqual(defaultState.assessmentNavState);
+            const expectedNavState = {
+                expandedTestType,
+                selectedTestSubview:
+                    selectedTestSubview ?? defaultState.assessmentNavState.selectedTestSubview,
+                selectedTestType:
+                    selectedTestType ?? defaultState.assessmentNavState.selectedTestType,
+            };
+            expect(generatedState.assessmentNavState).toEqual(expectedNavState);
         },
     );
+
+    it('removed depreciated appRefreshed property if present', () => {
+        const tabWithAppRefreshed = {
+            appRefreshed: false,
+            detailsViewId: 'testId',
+        } as PersistedTabInfo;
+        const generatedState = generator.generateInitialState({
+            persistedTabInfo: tabWithAppRefreshed,
+            assessmentNavState: null,
+            assessments: null,
+            resultDescription: '',
+        });
+
+        expect(generatedState.persistedTabInfo).toMatchObject({ detailsViewId: 'testId' });
+    });
 });

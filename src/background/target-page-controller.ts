@@ -19,7 +19,7 @@ export class TargetPageController {
         private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
-        private persistStoreData = false,
+        private persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {
@@ -101,14 +101,14 @@ export class TargetPageController {
         });
     }
 
-    public onTargetTabRemoved(tabId: number): void {
+    public async onTargetTabRemoved(tabId: number): Promise<void> {
         this.tabContextManager.interpretMessageForTab(tabId, {
             messageType: Messages.Tab.Remove,
             payload: null,
             tabId: tabId,
         });
-        this.removeKnownTabId(tabId);
-        this.tabContextManager.deleteTabContext(tabId);
+        await this.removeKnownTabId(tabId);
+        await this.tabContextManager.deleteTabContext(tabId);
     }
 
     private getUrl = async (tabId: number): Promise<string> => {

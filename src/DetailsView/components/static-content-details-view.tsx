@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
-import * as styles from 'DetailsView/components/static-content-common.scss';
+import styles from 'DetailsView/components/static-content-common.scss';
 import * as React from 'react';
 import { ContentInclude, ContentIncludeDeps } from 'views/content/content-include';
 import { ContentLinkDeps } from 'views/content/content-link';

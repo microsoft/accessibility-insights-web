@@ -6,7 +6,7 @@ import { Header, HeaderDeps } from 'common/components/header';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import * as styles from 'DetailsView/components/interactive-header.scss';
+import styles from 'DetailsView/components/interactive-header.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { SwitcherDeps } from './switcher';

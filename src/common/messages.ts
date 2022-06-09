@@ -39,6 +39,7 @@ export const Messages = {
         },
         DetailsView: {
             Open: `${messagePrefix}/details-view/open`,
+            Initialize: `${messagePrefix}/details-view/initialize`,
             Select: `${messagePrefix}/details-view/select`,
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
@@ -47,7 +48,9 @@ export const Messages = {
     },
 
     DevTools: {
-        DevtoolStatus: `${messagePrefix}/devtools/status`,
+        StatusRequest: `${messagePrefix}/devtools/getStatus`,
+        Opened: `${messagePrefix}/devtools/opened`,
+        Closed: `${messagePrefix}/devtools/closed`,
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
     },
@@ -195,5 +198,6 @@ export const Messages = {
 
     DebugTools: {
         Open: `${messagePrefix}/debugTools/open`,
+        Telemetry: `${messagePrefix}/debugTools/telemetry`,
     },
 };

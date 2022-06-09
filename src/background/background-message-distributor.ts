@@ -12,7 +12,7 @@ export interface Sender {
     tab?: Tab;
 }
 
-export class MessageDistributor {
+export class BackgroundMessageDistributor {
     constructor(
         private readonly globalContext: GlobalContext,
         private readonly tabContextManager: TabContextManager,

@@ -32,7 +32,7 @@ export class NavigatorUtils {
 
     public copyToClipboard(data: string): Promise<void> {
         return this.navigatorInfo.clipboard.writeText(data).catch(error => {
-            this.logger.error(`Error during copyToClipboard: ${error}`);
+            this.logger.error(`Error during copyToClipboard: ${error}`, error);
             throw error;
         });
     }

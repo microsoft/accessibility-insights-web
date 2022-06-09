@@ -14,8 +14,20 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
         private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
-        private persistStoreData = false,
+        private readonly persistStoreData: boolean,
     ) {}
+
+    public async initialize(): Promise<void> {
+        const tabIds = (await this.browserAdapter.tabsQuery({})).map(tab => tab.id);
+
+        const knownTabIds = Object.keys(this.tabIdToDetailsViewMap).flatMap(targetTabId => [
+            parseInt(targetTabId),
+            this.tabIdToDetailsViewMap[targetTabId],
+        ]);
+
+        const removedTabs = knownTabIds.filter(tabId => !tabIds.includes(tabId));
+        await Promise.all(removedTabs.map(tabId => this.onRemoveTab(tabId)));
+    }
 
     public async onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);

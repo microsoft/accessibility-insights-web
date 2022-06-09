@@ -15,7 +15,7 @@ import { tabStopsRequirementsTableActionColumnWidthPx } from 'DetailsView/compon
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-import * as styles from './tab-stops-requirement-instances-collapsible-content.scss';
+import styles from './tab-stops-requirement-instances-collapsible-content.scss';
 
 export type TabStopsRequirementInstancesCollapsibleContentProps = {
     requirementId: TabStopRequirementId;

@@ -30,8 +30,9 @@ $outcome-not-applicable-color: $neutral-outcome;
     font-weight: 600;
     white-space: pre-wrap;
 
-    .block {
-        font-family: $fontFamily;
+    .block,
+    %block {
+        font-family: $font-family;
         line-height: 20px;
         font-size: 16px;
         color: $neutral-0;
@@ -47,7 +48,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     }
 
     .fail {
-        @extend .block;
+        @extend %block;
         @include cross-icon-styles($outcome-summary-icon-size, 0, $outcome-fail-color);
 
         .check-container {
@@ -59,7 +60,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     }
 
     .pass {
-        @extend .block;
+        @extend %block;
         @include check-icon-styles($outcome-summary-icon-size, 0, $outcome-pass-color);
 
         .check-container {
@@ -73,7 +74,7 @@ $outcome-not-applicable-color: $neutral-outcome;
 
     .inapplicable,
     .unscannable {
-        @extend .block;
+        @extend %block;
         @include inapplicable-icon-styles(
             $outcome-summary-icon-size,
             0,
@@ -90,7 +91,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     }
 
     .incomplete {
-        @extend .block;
+        @extend %block;
         @include incomplete-icon-styles(14px, 3px);
 
         .check-container {

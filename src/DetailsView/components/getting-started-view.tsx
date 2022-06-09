@@ -3,7 +3,7 @@
 import { Assessment } from 'assessments/types/iassessment';
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { NamedFC } from 'common/react/named-fc';
-import * as styles from 'DetailsView/components/getting-started-view.scss';
+import styles from 'DetailsView/components/getting-started-view.scss';
 import {
     NextRequirementButton,
     NextRequirementButtonDeps,

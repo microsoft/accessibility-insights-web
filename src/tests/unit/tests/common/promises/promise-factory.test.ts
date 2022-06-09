@@ -41,12 +41,21 @@ describe(`promiseFactory`, () => {
             await expect(timingOut).rejects.toThrowError(TimeoutError);
         });
 
-        it(' rejects with the pinned error message on timeout', async () => {
+        it('rejects with the pinned error message on timeout', async () => {
             const delay = 1;
             const timingOut = testObject.timeout(neverResolveAsync(), delay);
 
             await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"Timed out after 1ms"`,
+            );
+        });
+
+        it('rejects with the pinned error message on timeout with error context', async () => {
+            const delay = 1;
+            const timingOut = testObject.timeout(neverResolveAsync(), delay, 'test-error-context');
+
+            await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
+                `"Timed out after 1ms at context test-error-context"`,
             );
         });
     });

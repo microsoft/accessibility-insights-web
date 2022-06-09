@@ -3,10 +3,15 @@
 import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
@@ -21,7 +26,9 @@ import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirem
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
-import * as UAParser from 'ua-parser-js';
+import { DictionaryStringTo } from 'types/common-types';
+import UAParser from 'ua-parser-js';
+import { Events } from 'webextension-polyfill';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -37,6 +44,7 @@ import { DetailsDialogHandler } from './details-dialog-handler';
 import { DrawingController } from './drawing-controller';
 import { ElementFinderByPath } from './element-finder-by-path';
 import { ElementFinderByPosition } from './element-finder-by-position';
+import { ExtensionDisabledMonitor } from './extension-disabled-monitor';
 import { FrameUrlFinder } from './frame-url-finder';
 import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
@@ -67,19 +75,38 @@ export class WindowInitializer {
     protected frameMessenger: FrameMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
+    protected actionMessageDispatcher: RemoteActionMessageDispatcher;
 
-    public async initialize(): Promise<void> {
+    public async initialize(logger: Logger): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-        const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+        const promiseFactory = createDefaultPromiseFactory();
+        const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+            browserEventManager,
+            this.getBrowserEvents(),
+        );
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
-        const logger = createDefaultLogger();
+
+        this.actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+            logger,
+        );
+
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
+            TelemetryEventSource.TargetPage,
+            this.actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
+        );
+        exceptionTelemetryListener.initialize(logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
@@ -107,7 +134,7 @@ export class WindowInitializer {
         this.respondableCommandMessageCommunicator = new RespondableCommandMessageCommunicator(
             this.windowMessagePoster,
             generateUID,
-            createDefaultPromiseFactory(),
+            promiseFactory,
             logger,
         );
 
@@ -194,9 +221,6 @@ export class WindowInitializer {
             visualizationTypeDrawerRegistrar.registerType,
         );
 
-        const port = this.browserAdapter.connect();
-        port.onDisconnect.addListener(() => this.dispose());
-
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameMessenger,
             this.clientUtils,
@@ -209,6 +233,18 @@ export class WindowInitializer {
         this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);
+
+        const extensionDisabledMonitor = new ExtensionDisabledMonitor(
+            this.browserAdapter,
+            promiseFactory,
+            logger,
+        );
+        // Intentionally floating this promise
+        void extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
+    }
+
+    protected getBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
+        return {};
     }
 
     protected dispose(): void {

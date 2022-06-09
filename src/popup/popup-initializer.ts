@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { loadTheme } from '@fluentui/react';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
@@ -92,6 +94,17 @@ export class PopupInitializer {
             tab.id,
             this.logger,
         );
+
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+            this.browserAdapter.getExtensionId(),
+        );
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
+            TelemetryEventSource.PopUp,
+            actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
+        );
+        exceptionTelemetryListener.initialize(this.logger);
+
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
         );
@@ -119,11 +132,8 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
-            this.browserAdapter,
-            tab.id,
-        );
-        storeUpdateMessageDistributor.initialize();
+        const storeUpdateMessageDistributor = new StoreUpdateMessageHub(tab.id);
+        this.browserAdapter.addListenerOnMessage(storeUpdateMessageDistributor.handleMessage);
 
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];

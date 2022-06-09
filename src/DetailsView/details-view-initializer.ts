@@ -13,6 +13,8 @@ import { createToolData } from 'common/application-properties-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
+import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -27,10 +29,14 @@ import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -70,7 +76,7 @@ import {
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
@@ -102,7 +108,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
-import { StoreUpdateMessageDistributor } from '../common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from '../common/store-update-message-hub';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -149,7 +155,14 @@ declare const window: SelfFastPassContainer & Window;
 
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+const logger = createDefaultLogger();
+const promiseFactory = createDefaultPromiseFactory();
+const browserEventProvider = new BrowserEventProvider();
+const browserEventManager = new BrowserEventManager(promiseFactory, logger);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent(
+    browserEventManager,
+    browserEventProvider.getMinimalBrowserEvents(),
+);
 
 const urlParser = new UrlParser();
 const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId');
@@ -164,67 +177,64 @@ if (tabId != null) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const storeUpdateMessageDistributor = new StoreUpdateMessageDistributor(
-                browserAdapter,
-                tab.id,
-            );
-            storeUpdateMessageDistributor.initialize();
+            const storeUpdateMessageHub = new StoreUpdateMessageHub(tab.id);
+            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
 
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const permissionsStateStore = new StoreProxy<PermissionsStateStoreData>(
                 StoreNames[StoreNames.PermissionsStateStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const tabStore = new StoreProxy<TabStoreData>(
                 StoreNames[StoreNames.TabStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
                 StoreNames[StoreNames.UnifiedScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
                 StoreNames[StoreNames.CardSelectionStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
                 StoreNames[StoreNames.NeedsReviewScanResultStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
                 StoreNames[StoreNames.NeedsReviewCardSelectionStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const detailsViewStore = new StoreProxy<DetailsViewStoreData>(
                 StoreNames[StoreNames.DetailsViewStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const assessmentStore = new StoreProxy<AssessmentStoreData>(
                 StoreNames[StoreNames.AssessmentStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const scopingStore = new StoreProxy<ScopingStoreData>(
                 StoreNames[StoreNames.ScopingPanelStateStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
-                storeUpdateMessageDistributor,
+                storeUpdateMessageHub,
             );
 
             const tabStopsViewActions = new TabStopsViewActions();
@@ -250,12 +260,21 @@ if (tabId != null) {
                 tabStopsViewStore,
             ]);
 
-            const logger = createDefaultLogger();
             const actionMessageDispatcher = new RemoteActionMessageDispatcher(
                 browserAdapter.sendMessageToFrames,
                 tab.id,
                 logger,
             );
+
+            const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+                browserAdapter.getExtensionId(),
+            );
+            const exceptionTelemetryListener = new ExceptionTelemetryListener(
+                TelemetryEventSource.DetailsView,
+                actionMessageDispatcher.sendTelemetry,
+                telemetrySanitizer,
+            );
+            exceptionTelemetryListener.initialize(logger);
 
             const tabStopRequirementActionMessageCreator =
                 new TabStopRequirementActionMessageCreator(
@@ -484,6 +503,9 @@ if (tabId != null) {
                 loadAssessmentDataValidator,
             );
 
+            const detailsViewId = generateUID();
+            detailsViewActionMessageCreator.initialize(detailsViewId);
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -569,6 +591,7 @@ if (tabId != null) {
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
                 getNextHeadingLevel: GetNextHeadingLevel,
+                detailsViewId,
             };
 
             const renderer = new DetailsViewRenderer(

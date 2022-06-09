@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { UrlInfo } from 'reports/package/accessibilityInsightsReport';
 import { SimpleCardRow } from './simple-card-row';
-import * as styles from './urls-card-row.scss';
+import styles from './urls-card-row.scss';
 
 export interface UrlsPropertyData {
     urlInfos: UrlInfo[];

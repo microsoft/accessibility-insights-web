@@ -5,6 +5,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { isEmpty } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { Tabs } from 'webextension-polyfill';
@@ -25,15 +26,101 @@ describe('ExtensionDetailsViewController', () => {
         idbInstanceMock.reset();
     });
 
+    describe('initialize()', () => {
+        const existingBrowserTabs = [{ id: 1 }, { id: 2 }, { id: 3 }] as Tabs.Tab[];
+
+        beforeEach(() => {
+            browserAdapterMock.setup(b => b.tabsQuery({})).returns(async () => existingBrowserTabs);
+        });
+
+        it('Does nothing when tabIdToDetailsViewMap is empty', async () => {
+            interpretMessageForTabMock
+                .setup(i => i(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            setupDatabaseInstance(null, Times.never());
+
+            testSubject = createTestSubject(true);
+            await testSubject.initialize();
+
+            expect(isEmpty(tabIdToDetailsViewMap)).toBe(true);
+            interpretMessageForTabMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
+
+        it('Does nothing when tabIdToDetailsViewMap only contains tabs still in browser', async () => {
+            tabIdToDetailsViewMap['1'] = 2;
+            interpretMessageForTabMock
+                .setup(i => i(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            setupDatabaseInstance(null, Times.never());
+
+            testSubject = createTestSubject(true);
+            await testSubject.initialize();
+
+            expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
+            expect(tabIdToDetailsViewMap['1']).toBe(2);
+            interpretMessageForTabMock.verifyAll();
+            idbInstanceMock.verifyAll();
+        });
+
+        it.each([true, false])(
+            'Removes details view tab id if it does not exist in browser with persistData=%s',
+            async persistData => {
+                tabIdToDetailsViewMap['1'] = 2;
+                tabIdToDetailsViewMap['3'] = 33;
+                interpretMessageForTabMock
+                    .setup(i =>
+                        i(3, {
+                            messageType: Messages.Visualizations.DetailsView.Close,
+                            payload: null,
+                            tabId: 3,
+                        }),
+                    )
+                    .verifiable(Times.once());
+
+                if (persistData) {
+                    setupDatabaseInstance({ '1': 2 }, Times.once());
+                } else {
+                    setupDatabaseInstance(null, Times.never());
+                }
+
+                testSubject = createTestSubject(persistData);
+                await testSubject.initialize();
+
+                expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
+                interpretMessageForTabMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            },
+        );
+
+        it.each([true, false])(
+            'Removes target tab id if it does not exist in browser with persistData=%s',
+            async persistData => {
+                tabIdToDetailsViewMap['1'] = 2;
+                tabIdToDetailsViewMap['33'] = 3;
+                interpretMessageForTabMock
+                    .setup(i => i(It.isAny(), It.isAny()))
+                    .verifiable(Times.never());
+
+                if (persistData) {
+                    setupDatabaseInstance({ '1': 2 }, Times.once());
+                } else {
+                    setupDatabaseInstance(null, Times.never());
+                }
+
+                testSubject = createTestSubject(persistData);
+                await testSubject.initialize();
+
+                expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
+                interpretMessageForTabMock.verifyAll();
+                idbInstanceMock.verifyAll();
+            },
+        );
+    });
+
     describe('No Persisted Data', () => {
         beforeEach(() => {
-            testSubject = new ExtensionDetailsViewController(
-                browserAdapterMock.object,
-                tabIdToDetailsViewMap,
-                idbInstanceMock.object,
-                interpretMessageForTabMock.object,
-                false,
-            );
+            testSubject = createTestSubject(false);
 
             setupDatabaseInstance(null, Times.never());
         });
@@ -100,13 +187,7 @@ describe('ExtensionDetailsViewController', () => {
 
     describe('Persisted Data', () => {
         beforeEach(() => {
-            testSubject = new ExtensionDetailsViewController(
-                browserAdapterMock.object,
-                tabIdToDetailsViewMap,
-                idbInstanceMock.object,
-                interpretMessageForTabMock.object,
-                true,
-            );
+            testSubject = createTestSubject(true);
         });
 
         describe('showDetailsView', () => {
@@ -586,5 +667,15 @@ describe('ExtensionDetailsViewController', () => {
         } else {
             idbInstanceMock.setup(db => db.setItem(indexedDBDataKey, It.isAny())).verifiable(times);
         }
+    };
+
+    const createTestSubject = (persistData: boolean): ExtensionDetailsViewController => {
+        return new ExtensionDetailsViewController(
+            browserAdapterMock.object,
+            tabIdToDetailsViewMap,
+            idbInstanceMock.object,
+            interpretMessageForTabMock.object,
+            persistData,
+        );
     };
 });

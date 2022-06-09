@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './screenshot.scss';
+import styles from './screenshot.scss';
 
 export const screenshotImageAutomationId = 'screenshot-image';
 

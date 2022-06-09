@@ -4,6 +4,7 @@ import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-
 import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
+import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { PersistedData } from 'background/get-persisted-data';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -198,6 +199,15 @@ export class TabContextFactory {
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
         dispatcher.initialize();
+
+        const devToolsMonitor = new DevToolsMonitor(
+            tabId,
+            this.browserAdapter,
+            this.promiseFactory,
+            interpreter,
+            actionsHub.devToolActions,
+        );
+        devToolsMonitor.initialize();
 
         return new TabContext(interpreter, storeHub);
     }

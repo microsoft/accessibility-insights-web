@@ -4,7 +4,7 @@ import { IconButton } from '@fluentui/react';
 import classNames from 'classnames';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
-import * as styles from './assessment-instance-selected-button.scss';
+import styles from './assessment-instance-selected-button.scss';
 
 export interface AssessmentInstanceSelectedButtonProps {
     test: VisualizationType;

@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 
-import * as styles from './no-content-available.scss';
+import styles from './no-content-available.scss';
 
 export const NoContentAvailable = NamedFC('NoContentAvailable', () => {
     return (

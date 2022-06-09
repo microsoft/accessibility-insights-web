@@ -28,14 +28,14 @@ interface DeferredEventDetails extends EventDetails {
 // As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
 // service worker if this is exceeded, even if other work is outstanding. To avoid this, our
 // own timeout MUST be shorter than Chromium's.
-const EVENT_TIMEOUT_MS = 4 * 60 * 1000; // 4 minutes
+const EVENT_TIMEOUT_MS = 60 * 1000; // 1 minute
 
 // Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
 // whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
 // and continue to do some async work after returning undefined. To ensure those listeners have
 // time to do their work, the event manager adds this (arbitrary) delay into its response to the
 // browser event.
-const FIRE_AND_FORGET_EVENT_DELAY_MS = 2 * 60 * 1000; // 2 minutes
+const FIRE_AND_FORGET_EVENT_DELAY_MS = 30 * 1000; // 30 seconds
 
 // BrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not determine
 // that the service worker can be shut down due to events not responding within 5 minutes.
@@ -53,12 +53,25 @@ export class BrowserEventManager {
     private deferredEvents: DeferredEventDetails[] = [];
     private eventsToApplicationListenersMapping: DictionaryStringTo<ApplicationListener> = {};
     private eventsToBrowserListenersMapping: DictionaryStringTo<BrowserListener> = {};
+    private readonly fireAndForgetEventDelayMs: number;
 
-    constructor(private readonly promiseFactory: PromiseFactory, private readonly logger: Logger) {}
+    constructor(
+        private readonly promiseFactory: PromiseFactory,
+        private readonly logger: Logger,
+        isServiceWorker: boolean = false,
+    ) {
+        // The fire and forget delay is not necessary in the manifest v2 background page, so we
+        // avoid using it there because it carries a high risk of accidentally breaking it while
+        // we're still working on manifest v3 changes to eliminate fire and forget events entirely
+        this.fireAndForgetEventDelayMs = isServiceWorker ? FIRE_AND_FORGET_EVENT_DELAY_MS : 0;
+    }
 
     public addApplicationListener = (eventType: string, callback: ApplicationListener): void => {
         if (this.eventsToApplicationListenersMapping[eventType]) {
             throw new Error(`Listener already registered for ${eventType}`);
+        }
+        if (!this.eventsToBrowserListenersMapping[eventType]) {
+            throw new Error(`No browser listener registered for ${eventType}`);
         }
         this.eventsToApplicationListenersMapping[eventType] = callback;
         this.processDeferredEvents();
@@ -150,12 +163,16 @@ export class BrowserEventManager {
         if (isPromise(result)) {
             // Wrapping the ApplicationListener promise responses in a 4-minute timeout
             // prevents the service worker going idle before a response is sent
-            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT_MS);
+            const timeoutErrorContext = `[browser event listener: ${JSON.stringify({
+                eventType,
+                eventArgs,
+            })}]`;
+            return await this.promiseFactory.timeout(result, EVENT_TIMEOUT_MS, timeoutErrorContext);
         } else {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY_MS);
+                return await this.promiseFactory.delay(result, this.fireAndForgetEventDelayMs);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
@@ -180,11 +197,13 @@ export class BrowserEventManager {
         };
         this.deferredEvents.push(deferredEventDetails);
 
+        const timeoutErrorContext = `[deferred browser event: ${JSON.stringify(eventDetails)}]`;
+
         // It's important that we ensure the promise settles even if a listener never registers
         // to prevent the Service Worker from being detected as stalled and torn down while other
         // work is still in progress.
         return this.promiseFactory
-            .timeout(deferredResolution.promise, EVENT_TIMEOUT_MS)
+            .timeout(deferredResolution.promise, EVENT_TIMEOUT_MS, timeoutErrorContext)
             .finally(() => {
                 deferredEventDetails.isStale = true;
             });

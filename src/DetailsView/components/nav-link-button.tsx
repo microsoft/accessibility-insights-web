@@ -3,7 +3,7 @@
 import { css, INavButtonProps, Link } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
-import * as styles from 'DetailsView/components/nav-link-button.scss';
+import styles from 'DetailsView/components/nav-link-button.scss';
 import * as React from 'react';
 
 export interface NavLinkButtonProps extends INavButtonProps {

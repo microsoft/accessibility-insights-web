@@ -18,7 +18,7 @@ export class LinkedWindowMessagePoster implements WindowMessagePoster {
     private other: LinkedWindowMessagePoster;
     private listeners: WindowMessageListener[] = [];
 
-    postMessage(target: Window, message: any): void {
+    async postMessage(target: Window, message: any): Promise<void> {
         if (target !== this.other.window) {
             throw new Error(
                 'target window unreachable (LinkedWindowMessagePoster not linked to it)',

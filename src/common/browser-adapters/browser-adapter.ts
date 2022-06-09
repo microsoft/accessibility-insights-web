@@ -45,16 +45,15 @@ export interface BrowserAdapter {
     getRuntimeLastError(): chrome.runtime.LastError | undefined;
     isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
-    addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(
         callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
 
-    removeListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void;
-    connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
+    removeListenersOnMessage(): void;
     getManifest(): chrome.runtime.Manifest;
+
+    // undefined implies "the extension has been disabled/uninstalled"
+    getExtensionId(): string | undefined;
 
     getUrl(urlPart: string): string;
     requestPermissions(permissions: Permissions.Permissions): Promise<boolean>;
@@ -62,5 +61,5 @@ export interface BrowserAdapter {
     addListenerOnPermissionsRemoved(callback: (permissions: Permissions.Permissions) => void): void;
     containsPermissions(permissions: Permissions.Permissions): Promise<boolean>;
 
-    getInspectedWindowTabId(): number;
+    getInspectedWindowTabId(): number | null;
 }

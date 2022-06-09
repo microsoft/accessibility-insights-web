@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DefaultButton, FocusZone, IconButton, ITextField, List, TextField } from '@fluentui/react';
-import * as styles from 'common/components/selector-input-list.scss';
+import styles from 'common/components/selector-input-list.scss';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';

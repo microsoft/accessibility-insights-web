@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DefaultButton, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
-import * as styles from 'DetailsView/components/common-dialog-styles.scss';
+import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
 

@@ -27,7 +27,7 @@ import {
 } from 'DetailsView/components/requirement-view-title';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
-import * as styles from './requirement-view.scss';
+import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

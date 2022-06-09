@@ -9,7 +9,7 @@ import { ScopingActionMessageCreator } from 'common/message-creators/scoping-act
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import * as React from 'react';
-import * as styles from './scoping-container.scss';
+import styles from './scoping-container.scss';
 
 export interface ScopingContainerProps {
     featureFlagData: FeatureFlagStoreData;

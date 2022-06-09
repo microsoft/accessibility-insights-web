@@ -13,10 +13,6 @@ export class TabEventDistributor {
     ) {}
 
     public initialize() {
-        this.browserAdapter.addListenerOnConnect(port => {
-            // do not remove this. We need this to detect if the extension is reloaded from the content scripts
-        });
-
         this.browserAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
         this.browserAdapter.addListenerToTabsOnRemoved(this.onTabRemoved);
         this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
@@ -34,7 +30,7 @@ export class TabEventDistributor {
         tabId: number,
         removeInfo: chrome.tabs.TabRemoveInfo,
     ): Promise<void> => {
-        this.targetPageController.onTargetTabRemoved(tabId);
+        await this.targetPageController.onTargetTabRemoved(tabId);
         await this.detailsViewController.onRemoveTab(tabId);
     };
 

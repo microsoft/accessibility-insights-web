@@ -28,27 +28,31 @@ export interface TargetPageStoreData {
 }
 
 export class ClientStoreListener {
-    private onReadyToExecuteVisualizationUpdates: ((storeData: TargetPageStoreData) => void)[] = [];
+    private onReadyToExecuteVisualizationUpdates: ((
+        storeData: TargetPageStoreData,
+    ) => void | Promise<void>)[] = [];
     constructor(private storeHub: BaseClientStoresHub<TargetPageStoreData>) {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
     public registerOnReadyToExecuteVisualizationCallback = (
-        callback: (storeData: TargetPageStoreData) => void,
+        callback: (storeData: TargetPageStoreData) => void | Promise<void>,
     ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
 
-    private onChangedState = (): void => {
-        const storeData = this.storeHub.getAllStoreData();
-        if (storeData == null) {
+    private onChangedState = async () => {
+        if (!this.storeHub.hasStores() || !this.storeHub.hasStoreData()) {
             return;
         }
 
+        const storeData = this.storeHub.getAllStoreData() as TargetPageStoreData;
         if (storeData.visualizationStoreData.scanning != null) {
             return;
         }
 
-        this.onReadyToExecuteVisualizationUpdates.forEach(callback => callback(storeData));
+        await Promise.all(
+            this.onReadyToExecuteVisualizationUpdates.map(callback => callback(storeData)),
+        );
     };
 }

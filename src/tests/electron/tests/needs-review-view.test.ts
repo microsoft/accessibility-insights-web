@@ -23,7 +23,7 @@ describe('NeedsReviewView', () => {
         );
 
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.client.setViewportSize({ width, height });
+        await app.client.setViewportSize({ width, height });
     });
 
     afterEach(async () => {

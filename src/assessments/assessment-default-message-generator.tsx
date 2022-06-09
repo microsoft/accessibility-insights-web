@@ -8,7 +8,7 @@ import {
 } from 'common/types/store-data/assessment-result-data';
 import { isEmpty, size } from 'lodash';
 import * as React from 'react';
-import * as styles from './assessment-default-message-generator.scss';
+import styles from './assessment-default-message-generator.scss';
 
 export type IMessageGenerator = (
     instancesMap: AssessmentInstancesMap,

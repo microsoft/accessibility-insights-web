@@ -3,7 +3,7 @@
 import { ActionButton, css, IButtonProps } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './insights-command-button.scss';
+import styles from './insights-command-button.scss';
 
 export type InsightsCommandButtonProps = IButtonProps;
 

@@ -8,7 +8,7 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { WindowTitle, WindowTitleDeps } from 'electron/views/common/window-title/window-title';
 import * as React from 'react';
 import { MaximizeRestoreButton } from './maximize-restore-button';
-import * as styles from './title-bar.scss';
+import styles from './title-bar.scss';
 
 export type TitleBarDeps = {
     windowFrameActionCreator: WindowFrameActionCreator;

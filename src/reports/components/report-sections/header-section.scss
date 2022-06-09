@@ -19,14 +19,14 @@
         margin: 0 0 0 16px;
         display: flex;
         color: $primary-text;
-        font-family: $fontFamily;
+        font-family: $font-family;
         font-size: 14px;
         line-height: 20px;
         font-weight: normal;
         min-width: 0;
 
         a {
-            @include ellipsedText;
+            @include ellipsed-text;
         }
     }
 }

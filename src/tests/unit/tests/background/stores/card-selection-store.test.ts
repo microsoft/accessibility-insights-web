@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabActions } from 'background/actions/tab-actions';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
@@ -34,7 +35,7 @@ describe('CardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeDefined();
+        expect(defaultState.rules).toBeNull();
     });
 
     it.each`
@@ -90,6 +91,7 @@ describe('CardSelectionStore Test', () => {
             new CardSelectionStore(
                 new CardSelectionActions(),
                 actions,
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -256,28 +258,52 @@ describe('CardSelectionStore Test', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('CollapseAllRules', () => {
-        expandRuleSelectCards(initialState.rules['sampleRuleId1']);
-        expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+    describe('collapseAllRules', () => {
+        it('does nothing if rules is null', () => {
+            initialState.rules = null;
+            expectedState = cloneDeep(initialState);
 
-        createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+            createStoreForCardSelectionActions('collapseAllRules').testListenerToNeverBeCalled(
+                initialState,
+                expectedState,
+            );
+        });
+
+        it('collapses all expanded rules', () => {
+            expandRuleSelectCards(initialState.rules['sampleRuleId1']);
+            expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+
+            createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(
+                initialState,
+                expectedState,
+            );
+        });
     });
 
-    test('expandAllRules', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+    describe('expandAllRules', () => {
+        it('does nothing if rules is null', () => {
+            initialState.rules = null;
+            expectedState = cloneDeep(initialState);
 
-        expectedState.rules['sampleRuleId1'].isExpanded = true;
-        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-        expectedState.rules['sampleRuleId2'].isExpanded = true;
+            createStoreForCardSelectionActions('expandAllRules').testListenerToNeverBeCalled(
+                initialState,
+                expectedState,
+            );
+        });
 
-        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        test('expands all collapsed rules', () => {
+            initialState.rules['sampleRuleId1'].isExpanded = true;
+            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+            expectedState.rules['sampleRuleId1'].isExpanded = true;
+            expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            expectedState.rules['sampleRuleId2'].isExpanded = true;
+
+            createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(
+                initialState,
+                expectedState,
+            );
+        });
     });
 
     test('toggleVisualHelper on - no card selection or rule expansion changes', () => {
@@ -311,15 +337,21 @@ describe('CardSelectionStore Test', () => {
             expectedState.visualHelperEnabled = true;
         });
 
-        it('should reset the focused element', () => {
-            initialState.focusedResultUid = 'sampleUid1';
-            expectedState.focusedResultUid = null;
+        it.each([null, {}])(
+            'should reset the focused element and turn of visual helper when rules = %s',
+            rules => {
+                initialState.focusedResultUid = 'sampleUid1';
+                initialState.rules = rules;
+                initialState.visualHelperEnabled = true;
+                expectedState.focusedResultUid = null;
+                expectedState.rules = rules;
+                expectedState.visualHelperEnabled = false;
 
-            createStoreForCardSelectionActions('navigateToNewCardsView').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
-        });
+                createStoreForCardSelectionActions(
+                    'navigateToNewCardsView',
+                ).testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
 
         it('should keep all rules/cards/results but set them to collapsed/unselected', () => {
             initialState.rules = {
@@ -384,6 +416,17 @@ describe('CardSelectionStore Test', () => {
         });
     });
 
+    test('reset data on tab URL change', () => {
+        initialState.rules = {};
+        initialState.visualHelperEnabled = true;
+        expectedState.rules = null;
+        expectedState.visualHelperEnabled = false;
+        createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
+    });
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
@@ -399,6 +442,7 @@ describe('CardSelectionStore Test', () => {
             new CardSelectionStore(
                 actions,
                 new UnifiedScanResultActions(),
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -407,5 +451,23 @@ describe('CardSelectionStore Test', () => {
             );
 
         return new StoreTester(CardSelectionActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<CardSelectionStoreData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new CardSelectionStore(
+                new CardSelectionActions(),
+                new UnifiedScanResultActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });

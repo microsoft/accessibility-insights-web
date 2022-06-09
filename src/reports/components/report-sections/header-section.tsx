@@ -5,7 +5,7 @@ import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { HeaderBar } from 'reports/components/header-bar';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import * as styles from './header-section.scss';
+import styles from './header-section.scss';
 
 export const reportHeaderSectionDataAutomationId: string = 'report-header-section';
 export interface HeaderSectionProps {

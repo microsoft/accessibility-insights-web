@@ -9,7 +9,7 @@ import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-cr
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
-import * as styles from './hamburger-menu-button.scss';
+import styles from './hamburger-menu-button.scss';
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
