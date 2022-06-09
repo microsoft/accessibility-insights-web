@@ -3,7 +3,6 @@
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { StoreUpdateMessage } from 'common/types/store-update-message';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -29,8 +28,6 @@ describe(DebugToolsMessageDistributor, () => {
     });
 
     afterEach(() => {
-        telemetryListenerMock.verifyAll();
-        storeUpdateHubMock.verifyAll();
         browserAdapterMock.verifyAll();
     });
 
@@ -43,20 +40,62 @@ describe(DebugToolsMessageDistributor, () => {
         testSubject.initialize();
     });
 
-    it('registers listener that calls both message handlers', () => {
-        const message = { messageType: 'message type' };
+    describe('listener', () => {
+        let message: any;
+        beforeEach(() => {
+            message = { messageType: 'message type' };
 
-        browserAdapterMock
-            .setup(b => b.addListenerOnMessage(It.isAny()))
-            .returns(listener => (registeredListener = listener));
-        telemetryListenerMock.setup(t => t.onTelemetryMessage(message)).verifiable();
-        storeUpdateHubMock
-            .setup(s => s.handleMessage(message as StoreUpdateMessage<unknown>))
-            .verifiable();
+            browserAdapterMock
+                .setup(b => b.addListenerOnMessage(It.isAny()))
+                .returns(listener => (registeredListener = listener));
 
-        testSubject.initialize();
+            testSubject.initialize();
+            expect(registeredListener).toBeDefined();
+        });
 
-        expect(registeredListener).toBeDefined();
-        registeredListener(message);
+        it('calls onTelemetryMessage', () => {
+            telemetryListenerMock
+                .setup(t => t.onTelemetryMessage(message))
+                .verifiable(Times.once());
+
+            registeredListener(message);
+
+            telemetryListenerMock.verifyAll();
+        });
+
+        it('calls and propagates a promise rejection from storeUpdateHub', async () => {
+            const errorFromStoreUpdateHub = new Error('from storeUpdateHub');
+
+            storeUpdateHubMock
+                .setup(m => m.handleMessage(message))
+                .returns(() => Promise.reject(errorFromStoreUpdateHub))
+                .verifiable(Times.once());
+
+            await expect(registeredListener(message)).rejects.toThrowError(errorFromStoreUpdateHub);
+
+            storeUpdateHubMock.verifyAll();
+        });
+
+        it('calls and propagates a promise fulfillment from storeUpdateHub', async () => {
+            storeUpdateHubMock
+                .setup(m => m.handleMessage(message))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
+
+            await expect(registeredListener(message)).resolves.toBeUndefined();
+
+            storeUpdateHubMock.verifyAll();
+        });
+
+        it('calls and propagates a void response from storeUpdateHub', () => {
+            storeUpdateHubMock
+                .setup(m => m.handleMessage(message))
+                .returns(() => {})
+                .verifiable(Times.once());
+
+            expect(registeredListener(message)).toBeUndefined();
+
+            storeUpdateHubMock.verifyAll();
+        });
     });
 });

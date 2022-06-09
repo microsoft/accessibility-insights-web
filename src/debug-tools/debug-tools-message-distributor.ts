@@ -19,6 +19,7 @@ export class DebugToolsMessageDistributor {
 
     private distributeMessage = (message: any) => {
         this.telemetryListener.onTelemetryMessage(message);
-        this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
+
+        return this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
     };
 }
