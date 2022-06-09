@@ -6,11 +6,10 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
-import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -54,14 +53,11 @@ export const initializeDebugTools = () => {
     );
     exceptionTelemetryListener.initialize(logger);
 
-    const storeUpdateMessageHub = new StoreUpdateMessageHub();
-    const storeProxies = createStoreProxies(storeUpdateMessageHub);
-
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+    const storeUpdateMessageHub = new StoreUpdateMessageHub(
+        browserAdapter,
         actionMessageDispatcher,
     );
-
-    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storeProxies);
+    const storeProxies = createStoreProxies(storeUpdateMessageHub);
 
     const debugToolsNavActions = new DebugToolsNavActions();
 
@@ -70,7 +66,7 @@ export const initializeDebugTools = () => {
     const debugToolsNavActionCreator = new DebugToolsNavActionCreator(debugToolsNavActions);
 
     const allStores = [...storeProxies, debugToolsNavStore];
-    const storesHub = new BaseClientStoresHub<DebugToolsViewState>(allStores);
+    const storesHub = new ClientStoresHub<DebugToolsViewState>(allStores);
 
     const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
 
@@ -83,7 +79,6 @@ export const initializeDebugTools = () => {
 
     const props: DebugToolsViewDeps = {
         debugToolsNavActionCreator,
-        storeActionMessageCreator,
         storesHub,
         telemetryListener,
         textContent,

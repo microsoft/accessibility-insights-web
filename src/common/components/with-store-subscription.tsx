@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
 import { ClientStoresHub } from '../stores/client-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
@@ -12,7 +11,6 @@ export type WithStoreSubscriptionProps<T> = {
 
 export type WithStoreSubscriptionDeps<T> = {
     storesHub: ClientStoresHub<T>;
-    storeActionMessageCreator: StoreActionMessageCreator;
 };
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
@@ -37,9 +35,8 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            const { storesHub, storeActionMessageCreator } = this.props.deps;
+            const { storesHub } = this.props.deps;
             storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            storeActionMessageCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {

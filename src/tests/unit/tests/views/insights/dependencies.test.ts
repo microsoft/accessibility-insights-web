@@ -42,10 +42,6 @@ describe('rendererDependencies', () => {
         expect(subject.storesHub).toBeDefined();
     });
 
-    it('includes storeActionCreator', () => {
-        expect(subject.storeActionMessageCreator).toBeDefined();
-    });
-
     it('includes ContentRootComponent', () => {
         expect(subject.ContentRootComponent).toBeDefined();
     });

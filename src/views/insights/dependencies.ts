@@ -13,9 +13,8 @@ import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { RemoteActionMessageDispatcher } from '../../common/message-creators/remote-action-message-dispatcher';
-import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
 import { StoreProxy } from '../../common/store-proxy';
-import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
+import { ClientStoresHub } from '../../common/stores/client-stores-hub';
 import { StoreNames } from '../../common/stores/store-names';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
@@ -40,19 +39,16 @@ export const rendererDependencies: (
         actionMessageDispatcher,
     );
 
-    const storeUpdateMessageHub = new StoreUpdateMessageHub();
-    browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
+    const storeUpdateMessageHub = new StoreUpdateMessageHub(
+        browserAdapter,
+        actionMessageDispatcher,
+    );
 
     const store = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],
         storeUpdateMessageHub,
     );
-    const storesHub = new BaseClientStoresHub<any>([store]);
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-        actionMessageDispatcher,
-    );
-    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
-
+    const storesHub = new ClientStoresHub<any>([store]);
     const documentManipulator = new DocumentManipulator(document);
 
     return {
@@ -64,7 +60,6 @@ export const rendererDependencies: (
         contentProvider: contentPages,
         contentActionMessageCreator,
         storesHub,
-        storeActionMessageCreator,
         documentManipulator,
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
         ContentRootComponent: Content,

@@ -19,12 +19,11 @@ import { Logger } from '../common/logging/logger';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { RemoteActionMessageDispatcher } from '../common/message-creators/remote-action-message-dispatcher';
-import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
-import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
+import { ClientStoresHub } from '../common/stores/client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { CommandStoreData } from '../common/types/store-data/command-store-data';
@@ -132,8 +131,11 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const storeUpdateMessageDistributor = new StoreUpdateMessageHub(tab.id);
-        this.browserAdapter.addListenerOnMessage(storeUpdateMessageDistributor.handleMessage);
+        const storeUpdateMessageHub = new StoreUpdateMessageHub(
+            this.browserAdapter,
+            actionMessageDispatcher,
+            tab.id,
+        );
 
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
@@ -143,36 +145,24 @@ export class PopupInitializer {
 
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
             userConfigurationStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
-
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            actionMessageDispatcher,
-        );
-
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
-            visualizationStore,
-            launchPanelStateStore,
-            commandStore,
-            featureFlagStore,
-            userConfigurationStore,
-        ]);
 
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -203,7 +193,7 @@ export class PopupInitializer {
 
         const visualizationTypes =
             EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
+        const storesHub = new ClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,
             commandStore,
@@ -223,7 +213,6 @@ export class PopupInitializer {
             dropdownClickHandler,
             userConfigMessageCreator,
             storesHub,
-            storeActionMessageCreator,
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,

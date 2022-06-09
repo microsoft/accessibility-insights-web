@@ -1,6 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { getStoreStateMessage } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+import {
+    createSimulatedBrowserAdapter,
+    SimulatedBrowserAdapter,
+} from 'tests/unit/common/simulated-browser-adapter';
+import { IMock, Mock, Times } from 'typemoq';
 import { StoreUpdateMessageHub } from '../../../../common/store-update-message-hub';
 import { StoreType } from '../../../../common/types/store-type';
 import {
@@ -13,6 +21,9 @@ describe(StoreUpdateMessageHub, () => {
     const storeId = 'TestStore';
     let registeredListener: jest.Mock;
 
+    let browserAdapter: SimulatedBrowserAdapter;
+    let mockDispatcher: IMock<ActionMessageDispatcher>;
+
     let tabContextMessage: StoreUpdateMessage<string>;
     let globalStoreMessage: StoreUpdateMessage<string>;
     let listenerPromise: Promise<void>;
@@ -20,6 +31,9 @@ describe(StoreUpdateMessageHub, () => {
     let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
+        browserAdapter = createSimulatedBrowserAdapter();
+        mockDispatcher = Mock.ofType<ActionMessageDispatcher>();
+
         listenerPromise = Promise.resolve();
         registeredListener = jest.fn(() => listenerPromise);
 
@@ -39,7 +53,11 @@ describe(StoreUpdateMessageHub, () => {
             storeType: StoreType.GlobalStore,
         } as StoreUpdateMessage<string>;
 
-        testSubject = new StoreUpdateMessageHub(tabId);
+        testSubject = new StoreUpdateMessageHub(
+            browserAdapter.object,
+            mockDispatcher.object,
+            tabId,
+        );
 
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
     });
@@ -54,10 +72,19 @@ describe(StoreUpdateMessageHub, () => {
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
     it.each(invalidMessages)('ignores invalid message: %o', message => {
-        const result = testSubject.handleMessage(message);
+        const result = browserAdapter.notifyOnMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
+    });
+
+    it('sends an initial getStoreState message on registration', () => {
+        const expectedMessage = getStoreStateMessage(StoreNames.FeatureFlagStore);
+        mockDispatcher.setup(m => m.dispatchType(expectedMessage)).verifiable(Times.once());
+
+        testSubject.registerStoreUpdateListener(StoreNames[StoreNames.FeatureFlagStore], () => {});
+
+        mockDispatcher.verifyAll();
     });
 
     it('ignores if no listener is registered for this message', () => {
@@ -66,14 +93,14 @@ describe(StoreUpdateMessageHub, () => {
             storeId: 'AnotherStore',
         };
 
-        const result = testSubject.handleMessage(message);
+        const result = browserAdapter.notifyOnMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
     });
 
     it('Calls registered listener for tab context store message', async () => {
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = browserAdapter.notifyOnMessage(tabContextMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -82,7 +109,7 @@ describe(StoreUpdateMessageHub, () => {
     });
 
     it('Calls registered listener for global store message', async () => {
-        const resultPromise = testSubject.handleMessage(globalStoreMessage);
+        const resultPromise = browserAdapter.notifyOnMessage(globalStoreMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -91,10 +118,10 @@ describe(StoreUpdateMessageHub, () => {
     });
 
     it('Calls registered listener if not created with a tab id', async () => {
-        testSubject = new StoreUpdateMessageHub();
+        testSubject = new StoreUpdateMessageHub(browserAdapter.object, mockDispatcher.object);
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = browserAdapter.notifyOnMessage(tabContextMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -115,8 +142,8 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        const resultPromise1 = testSubject.handleMessage(messageForStore);
-        const resultPromise2 = testSubject.handleMessage(messageForAnotherStore);
+        const resultPromise1 = browserAdapter.notifyOnMessage(messageForStore);
+        const resultPromise2 = browserAdapter.notifyOnMessage(messageForAnotherStore);
 
         expect(resultPromise1).toBeInstanceOf(Promise);
         expect(resultPromise2).toBeInstanceOf(Promise);
