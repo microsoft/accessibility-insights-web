@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InsightsDropdown adds aria-label for selected item with no label 1`] = `
+<Dropdown
+  options={
+    Array [
+      Object {
+        "ariaLabel": "Item 1 selected",
+        "key": "key1",
+        "text": "Item 1",
+      },
+      Object {
+        "ariaLabel": undefined,
+        "key": "key2",
+        "text": "Item 2",
+      },
+    ]
+  }
+  placeHolder="placeholder"
+  selectedKey="key1"
+/>
+`;
+
+exports[`InsightsDropdown modifies aria-label for selected item with a label 1`] = `
+<Dropdown
+  options={
+    Array [
+      Object {
+        "ariaLabel": undefined,
+        "key": "key1",
+        "text": "Item 1",
+      },
+      Object {
+        "ariaLabel": "Existing aria label selected",
+        "key": "key2",
+        "text": "Item 2",
+      },
+    ]
+  }
+  placeHolder="placeholder"
+  selectedKey="key2"
+/>
+`;
+
+exports[`InsightsDropdown renders with no item selected 1`] = `
+<Dropdown
+  options={
+    Array [
+      Object {
+        "ariaLabel": undefined,
+        "key": "key1",
+        "text": "Item 1",
+      },
+      Object {
+        "ariaLabel": undefined,
+        "key": "key2",
+        "text": "Item 2",
+      },
+    ]
+  }
+  placeHolder="placeholder"
+  selectedKey={null}
+/>
+`;

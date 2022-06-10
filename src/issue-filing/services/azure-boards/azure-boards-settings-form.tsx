@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dropdown, IDropdownOption, TextField } from '@fluentui/react';
+import { IDropdownOption, TextField } from '@fluentui/react';
+import { InsightsDropdown } from 'common/components/insights-dropdown';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SettingsFormProps } from '../../types/settings-form-props';
@@ -16,18 +17,16 @@ import {
 export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>(
     'AzureBoardsSettingsForm',
     props => {
-        const createDropdownOption = (
-            key: AzureBoardsIssueDetailField,
-            text: string,
-        ): AzureBoardsIssueDetailLocationDropdownOption => {
-            const isSelected = props.settings?.issueDetailsField === key;
-
-            return {
-                key,
-                text,
-                ariaLabel: isSelected ? `${text} selected` : undefined,
-            };
-        };
+        const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
+            {
+                key: 'reproSteps',
+                text: 'Repro steps',
+            },
+            {
+                key: 'description',
+                text: 'Description',
+            },
+        ];
 
         const onProjectURLChange = (
             event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -56,11 +55,6 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
         };
         const descriptionId = 'azure-boards-description';
 
-        const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
-            createDropdownOption('reproSteps', 'Repro steps'),
-            createDropdownOption('description', 'Description'),
-        ];
-
         return (
             <>
                 <TextField
@@ -73,12 +67,12 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                 <span id={descriptionId} className="textfield-description">
                     example: https://dev.azure.com/org/project
                 </span>
-                <Dropdown
+                <InsightsDropdown
                     options={options}
                     placeholder="Select an option"
                     label="Select a field for issue details"
                     onChange={onIssueDetailLocationChange}
-                    selectedKey={props.settings ? props.settings.issueDetailsField : null}
+                    selectedKey={props.settings?.issueDetailsField}
                 />
             </>
         );

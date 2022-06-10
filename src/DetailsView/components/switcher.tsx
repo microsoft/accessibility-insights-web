@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dropdown, IDropdownOption } from '@fluentui/react';
+import { IDropdownOption } from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { ResponsiveMode } from '@fluentui/react';
+import { InsightsDropdown } from 'common/components/insights-dropdown';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import * as React from 'react';
 
@@ -80,7 +81,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     public render(): JSX.Element {
         return (
             <div className={styles.leftNavSwitcher} role="region" aria-label="activity">
-                <Dropdown
+                <InsightsDropdown
                     className={styles.leftNavSwitcherDropdown}
                     ariaLabel="select activity"
                     responsiveMode={ResponsiveMode.large}
