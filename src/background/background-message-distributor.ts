@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabContextManager } from 'background/tab-context-manager';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { Tab } from '../common/itab';
 import { Logger } from '../common/logging/logger';
 import { InterpreterMessage } from '../common/message';
@@ -25,7 +25,10 @@ export class BackgroundMessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (message: InterpreterMessage, sender?: Sender): any => {
+    private distributeMessage = (
+        message: InterpreterMessage,
+        sender?: Sender,
+    ): OptionalMessageResponse => {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { InterpreterMessage } from '../common/message';
 import {
     BackchannelRequestMessage,
@@ -12,7 +13,7 @@ import { PostMessageContentRepository } from './post-message-content-repository'
 
 export type BackchannelMessageResponse = {
     success: boolean;
-    response?: any;
+    response?: OptionalMessageResponse;
 };
 
 export class PostMessageContentHandler {
@@ -59,11 +60,12 @@ export class PostMessageContentHandler {
 
     public handleMessage(message: InterpreterMessage): BackchannelMessageResponse {
         if (Object.keys(this.messageHandlers).includes(message.messageType)) {
+            const response = this.messageHandlers[message.messageType](
+                message as BackchannelRequestMessage,
+            );
             return {
                 success: true,
-                response: this.messageHandlers[message.messageType](
-                    message as BackchannelRequestMessage,
-                ),
+                response: { messageResponse: response },
             };
         }
 

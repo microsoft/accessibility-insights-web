@@ -14,7 +14,7 @@ import browser, {
     Windows,
 } from 'webextension-polyfill';
 
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 export abstract class WebExtensionBrowserAdapter
@@ -221,9 +221,18 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public addListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
+        callback: (message: any, sender: Runtime.MessageSender) => OptionalMessageResponse,
     ): void {
-        this.addListener('RuntimeOnMessage', callback);
+        const translatorCallback: (
+            message: any,
+            sender: Runtime.MessageSender,
+        ) => void | Promise<any> = (message: any, sender: Runtime.MessageSender) => {
+            const response: OptionalMessageResponse = callback(message, sender);
+            if (response && response.messageResponse) {
+                return response.messageResponse;
+            }
+        };
+        this.addListener('RuntimeOnMessage', translatorCallback);
     }
 
     public removeListenersOnMessage(): void {

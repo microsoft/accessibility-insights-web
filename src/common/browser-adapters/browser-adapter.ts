@@ -11,6 +11,10 @@ import {
     Windows,
 } from 'webextension-polyfill';
 
+export interface OptionalMessageResponse {
+    messageResponse: void | Promise<any>;
+}
+
 export interface BrowserAdapter {
     allSupportedEvents(): DictionaryStringTo<Events.Event<any>>;
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
@@ -49,7 +53,7 @@ export interface BrowserAdapter {
     isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
     addListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
+        callback: (message: any, sender: Runtime.MessageSender) => OptionalMessageResponse,
     ): void;
 
     removeListenersOnMessage(): void;

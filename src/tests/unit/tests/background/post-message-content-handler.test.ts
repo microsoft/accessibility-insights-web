@@ -57,10 +57,11 @@ describe('PostMessageContentHandlerTest', () => {
             .verifiable(Times.once());
 
         const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const messageResponse = response.messageResponse;
 
         expect(success).toBeTruthy();
-        expect(response).toBeInstanceOf(Promise);
-        expect(await response).toEqual(retrieveResponseMessage);
+        expect(messageResponse).toBeInstanceOf(Promise);
+        expect(await messageResponse).toEqual(retrieveResponseMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -92,10 +93,11 @@ describe('PostMessageContentHandlerTest', () => {
             .verifiable(Times.once());
 
         const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const messageResponse = response.messageResponse;
 
         expect(success).toBeTruthy();
-        expect(response).toBeInstanceOf(Promise);
-        await expect(response).rejects.toThrowError(errorMessage);
+        expect(messageResponse).toBeInstanceOf(Promise);
+        await expect(messageResponse).rejects.toThrowError(errorMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });

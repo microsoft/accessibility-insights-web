@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { DevToolsStatusRequest, DevToolsStatusResponse } from 'common/types/dev-tools-messages';
+import { DevToolsStatusRequest } from 'common/types/dev-tools-messages';
 import { StoreUpdateMessage } from 'common/types/store-update-message';
 
 export class DevToolsMessageDistributor {
@@ -18,12 +18,10 @@ export class DevToolsMessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (
-        message: Message,
-    ): void | Promise<void> | Promise<DevToolsStatusResponse> => {
+    private distributeMessage = (message: Message): OptionalMessageResponse => {
         if (this.isStatusRequestForTab(message)) {
             // Must return a promise for the response to send correctly
-            return Promise.resolve({ isActive: true });
+            return { messageResponse: Promise.resolve({ isActive: true }) };
         } else {
             return this.storeUpdateHub.handleMessage(message as StoreUpdateMessage<unknown>);
         }

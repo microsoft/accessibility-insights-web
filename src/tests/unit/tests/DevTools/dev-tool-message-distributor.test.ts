@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { DevToolsStatusResponse } from 'common/types/dev-tools-messages';
 import { StoreUpdateMessage } from 'common/types/store-update-message';
 import { DevToolsMessageDistributor } from 'Devtools/dev-tool-message-distributor';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -14,7 +13,7 @@ describe(DevToolsMessageDistributor, () => {
     const inspectedTabId = 10;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let storeUpdateHubMock: IMock<StoreUpdateMessageHub>;
-    let distributeMessage: (message: Message) => void | Promise<DevToolsStatusResponse>;
+    let distributeMessage: (message: Message) => OptionalMessageResponse;
 
     let testSubject: DevToolsMessageDistributor;
 
@@ -56,7 +55,8 @@ describe(DevToolsMessageDistributor, () => {
                 isActive: true,
             };
 
-            const responsePromise = distributeMessage(message);
+            const messageResponse = distributeMessage(message);
+            const responsePromise = messageResponse.messageResponse;
 
             expect(responsePromise).toBeInstanceOf(Promise);
 
@@ -95,10 +95,13 @@ describe(DevToolsMessageDistributor, () => {
             };
             storeUpdateHubMock
                 .setup(s => s.handleMessage(message as StoreUpdateMessage<unknown>))
-                .returns(() => Promise.resolve())
+                .returns(() => {
+                    return { messageResponse: Promise.resolve() };
+                })
                 .verifiable(Times.once());
 
-            const responsePromise = distributeMessage(message);
+            const messageResponse = distributeMessage(message);
+            const responsePromise = messageResponse.messageResponse;
 
             expect(responsePromise).toBeInstanceOf(Promise);
 

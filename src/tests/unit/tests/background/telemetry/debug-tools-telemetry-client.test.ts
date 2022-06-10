@@ -6,7 +6,7 @@ import {
     ApplicationTelemetryDataFactory,
 } from 'background/telemetry/application-telemetry-data-factory';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { FeatureFlags } from 'common/feature-flags';
 import { Messages } from 'common/messages';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -101,7 +101,7 @@ describe('DebugToolsTelemetryClient', () => {
             telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => stubAppData);
             browserAdapterMock
                 .setup(b => b.sendRuntimeMessage(expectedMessage))
-                .returns(() => Promise.resolve())
+                .returns(() => Promise.resolve({} as OptionalMessageResponse))
                 .verifiable();
 
             testSubject.trackEvent(eventName, eventProperties);

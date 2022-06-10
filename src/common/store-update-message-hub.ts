@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
@@ -22,15 +23,16 @@ export class StoreUpdateMessageHub {
         this.registeredUpdateListeners[storeId] = listener;
     }
 
-    public readonly handleMessage = (message: StoreUpdateMessage<any>): void | Promise<void> => {
+    public readonly handleMessage = (message: StoreUpdateMessage<any>): OptionalMessageResponse => {
         if (!this.isValidMessage(message)) {
-            return;
+            return { messageResponse: undefined };
         }
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
-            return listener(message);
+            return { messageResponse: listener(message) };
         }
+        return { messageResponse: undefined };
     };
 
     private isValidMessage(message: StoreUpdateMessage<any>): boolean {

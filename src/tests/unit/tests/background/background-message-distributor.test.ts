@@ -6,7 +6,10 @@ import { Interpreter } from 'background/interpreter';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import {
+    BrowserAdapter,
+    OptionalMessageResponse,
+} from '../../../../common/browser-adapters/browser-adapter';
 import { Logger } from '../../../../common/logging/logger';
 import { InterpreterMessage } from '../../../../common/message';
 
@@ -22,7 +25,7 @@ describe(BackgroundMessageDistributor, () => {
 
     let testSubject: BackgroundMessageDistributor;
 
-    let distributeMessageCallback: (message: any, sender?: Sender) => any;
+    let distributeMessageCallback: (message: any, sender?: Sender) => OptionalMessageResponse;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
@@ -113,22 +116,26 @@ describe(BackgroundMessageDistributor, () => {
         expect(message.tabId).toBe(tabId);
     });
 
-    test.each(['response obj', undefined])(
-        'should distribute backchannel message and return %s',
-        response => {
-            const message = { payload: {} };
-
-            setupTabInterpreterWithoutInteraction();
-            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
-            setupNeverLogFailure();
-
-            testSubject.initialize();
-
-            const actualResponse = distributeMessageCallback(message);
-
-            expect(actualResponse).toEqual(response);
+    test.each([
+        {
+            messageResponse: Promise.resolve('response obj'),
         },
-    );
+        {
+            messageResponse: Promise.resolve(undefined),
+        },
+    ])('should distribute backchannel message and return %s', response => {
+        const message = { payload: {} };
+
+        setupTabInterpreterWithoutInteraction();
+        setupInterpretBackchannelMessage(message as InterpreterMessage, response);
+        setupNeverLogFailure();
+
+        testSubject.initialize();
+
+        const actualResponse = distributeMessageCallback(message);
+
+        expect(actualResponse).toEqual(response);
+    });
 
     function setupTabInterpreterWithoutInteraction(): void {
         tabContextManagerMock
@@ -157,7 +164,10 @@ describe(BackgroundMessageDistributor, () => {
             .verifiable();
     }
 
-    function setupInterpretBackchannelMessage(message: InterpreterMessage, response?: any): void {
+    function setupInterpretBackchannelMessage(
+        message: InterpreterMessage,
+        response?: OptionalMessageResponse,
+    ): void {
         postMessageContentHandlerMock
             .setup(o => o.handleMessage(It.isObjectWith(message)))
             .returns(() => ({ success: true, response }))

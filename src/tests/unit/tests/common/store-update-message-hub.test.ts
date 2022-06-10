@@ -54,7 +54,8 @@ describe(StoreUpdateMessageHub, () => {
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
     it.each(invalidMessages)('ignores invalid message: %o', message => {
-        const result = testSubject.handleMessage(message);
+        const optionalMessageResponse = testSubject.handleMessage(message);
+        const result = optionalMessageResponse.messageResponse;
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
@@ -66,14 +67,16 @@ describe(StoreUpdateMessageHub, () => {
             storeId: 'AnotherStore',
         };
 
-        const result = testSubject.handleMessage(message);
+        const optionalMessageResponse = testSubject.handleMessage(message);
+        const result = optionalMessageResponse.messageResponse;
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
     });
 
     it('Calls registered listener for tab context store message', async () => {
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const optionalMessageResponse = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = optionalMessageResponse.messageResponse;
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -82,7 +85,8 @@ describe(StoreUpdateMessageHub, () => {
     });
 
     it('Calls registered listener for global store message', async () => {
-        const resultPromise = testSubject.handleMessage(globalStoreMessage);
+        const optionalMessageResponse = testSubject.handleMessage(globalStoreMessage);
+        const resultPromise = optionalMessageResponse.messageResponse;
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -94,7 +98,8 @@ describe(StoreUpdateMessageHub, () => {
         testSubject = new StoreUpdateMessageHub();
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const optionalMessageResponse = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = optionalMessageResponse.messageResponse;
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -115,8 +120,11 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        const resultPromise1 = testSubject.handleMessage(messageForStore);
-        const resultPromise2 = testSubject.handleMessage(messageForAnotherStore);
+        const optionalMessageResponse1 = testSubject.handleMessage(messageForStore);
+        const optionalMessageResponse2 = testSubject.handleMessage(messageForAnotherStore);
+
+        const resultPromise1 = optionalMessageResponse1.messageResponse;
+        const resultPromise2 = optionalMessageResponse2.messageResponse;
 
         expect(resultPromise1).toBeInstanceOf(Promise);
         expect(resultPromise2).toBeInstanceOf(Promise);

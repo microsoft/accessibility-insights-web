@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserAdapter, OptionalMessageResponse } from 'common/browser-adapters/browser-adapter';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(DebugToolsMessageDistributor, () => {
-    let registeredListener: (message: any) => void;
+    let registeredListener: (message: any) => OptionalMessageResponse;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryListenerMock: IMock<TelemetryListener>;
     let storeUpdateHubMock: IMock<StoreUpdateMessageHub>;
@@ -66,34 +66,45 @@ describe(DebugToolsMessageDistributor, () => {
         it('calls and propagates a promise rejection from storeUpdateHub', async () => {
             const errorFromStoreUpdateHub = new Error('from storeUpdateHub');
 
+            const recjectingOptionalMessageResponse = {
+                messageResponse: Promise.reject(errorFromStoreUpdateHub),
+            };
             storeUpdateHubMock
                 .setup(m => m.handleMessage(message))
-                .returns(() => Promise.reject(errorFromStoreUpdateHub))
+                .returns(() => recjectingOptionalMessageResponse)
                 .verifiable(Times.once());
 
-            await expect(registeredListener(message)).rejects.toThrowError(errorFromStoreUpdateHub);
+            await expect(registeredListener(message).messageResponse).rejects.toThrowError(
+                errorFromStoreUpdateHub,
+            );
 
             storeUpdateHubMock.verifyAll();
         });
 
         it('calls and propagates a promise fulfillment from storeUpdateHub', async () => {
+            const resolvingOptionalMessageResponse = {
+                messageResponse: Promise.resolve(),
+            };
             storeUpdateHubMock
                 .setup(m => m.handleMessage(message))
-                .returns(() => Promise.resolve())
+                .returns(() => resolvingOptionalMessageResponse)
                 .verifiable(Times.once());
 
-            await expect(registeredListener(message)).resolves.toBeUndefined();
+            await expect(registeredListener(message).messageResponse).resolves.toBeUndefined();
 
             storeUpdateHubMock.verifyAll();
         });
 
         it('calls and propagates a void response from storeUpdateHub', () => {
+            const undefinedOptionalMessageResponse = {
+                messageResponse: undefined,
+            };
             storeUpdateHubMock
                 .setup(m => m.handleMessage(message))
-                .returns(() => {})
+                .returns(() => undefinedOptionalMessageResponse)
                 .verifiable(Times.once());
 
-            expect(registeredListener(message)).toBeUndefined();
+            expect(registeredListener(message).messageResponse).toBeUndefined;
 
             storeUpdateHubMock.verifyAll();
         });
