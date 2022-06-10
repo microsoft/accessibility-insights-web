@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dropdown, TextField } from '@fluentui/react';
+import { TextField } from '@fluentui/react';
+import { InsightsDropdown } from 'common/components/insights-dropdown';
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { shallow } from 'enzyme';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
@@ -85,7 +86,9 @@ describe('AzureBoardsSettingsForm', () => {
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
 
-            testSubject.find(Dropdown).simulate('change', null, { key: newIssueDetailsFieldKey });
+            testSubject
+                .find(InsightsDropdown)
+                .simulate('change', null, { key: newIssueDetailsFieldKey });
 
             onPropertyUpdateCallbackMock.verifyAll();
         });
