@@ -16,16 +16,18 @@ import {
 export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>(
     'AzureBoardsSettingsForm',
     props => {
-        const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
-            {
-                key: 'reproSteps',
-                text: 'Repro steps',
-            },
-            {
-                key: 'description',
-                text: 'Description',
-            },
-        ];
+        const createDropdownOption = (
+            key: AzureBoardsIssueDetailField,
+            text: string,
+        ): AzureBoardsIssueDetailLocationDropdownOption => {
+            const isSelected = props.settings?.issueDetailsField === key;
+
+            return {
+                key,
+                text,
+                ariaLabel: isSelected ? `${text} selected` : undefined,
+            };
+        };
 
         const onProjectURLChange = (
             event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -53,6 +55,11 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
             props.onPropertyUpdateCallback(payload);
         };
         const descriptionId = 'azure-boards-description';
+
+        const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
+            createDropdownOption('reproSteps', 'Repro steps'),
+            createDropdownOption('description', 'Description'),
+        ];
 
         return (
             <>

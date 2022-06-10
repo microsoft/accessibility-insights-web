@@ -21,10 +21,12 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
     options={
       Array [
         Object {
+          "ariaLabel": undefined,
           "key": "reproSteps",
           "text": "Repro steps",
         },
         Object {
+          "ariaLabel": undefined,
           "key": "description",
           "text": "Description",
         },
@@ -57,10 +59,12 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
     options={
       Array [
         Object {
+          "ariaLabel": undefined,
           "key": "reproSteps",
           "text": "Repro steps",
         },
         Object {
+          "ariaLabel": "Description selected",
           "key": "description",
           "text": "Description",
         },
