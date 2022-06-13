@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { DevToolsMessageDistributor } from 'Devtools/dev-tool-message-distributor';
+import { DevToolsStatusResponder } from 'Devtools/dev-tools-status-responder';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
@@ -33,11 +34,12 @@ export class DevToolInitializer {
             logger,
         );
 
+        const devToolsStatusResponder = new DevToolsStatusResponder(this.browserAdapter);
         const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
-        const messageDistributor = new DevToolsMessageDistributor(
-            this.browserAdapter,
-            storeUpdateMessageHub,
-        );
+        const messageDistributor = new BrowserMessageDistributor(this.browserAdapter, [
+            devToolsStatusResponder.handleBrowserMessage,
+            storeUpdateMessageHub.handleBrowserMessage,
+        ]);
         messageDistributor.initialize();
 
         const devtoolsStore = new StoreProxy<DevToolStoreData>(

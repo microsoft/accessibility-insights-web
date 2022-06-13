@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
 import { DateProvider } from 'common/date-provider';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { initializeFabricIcons } from 'common/fabric-icons';
@@ -27,7 +28,6 @@ import {
 } from 'debug-tools/components/debug-tools-view';
 import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
-import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -56,11 +56,10 @@ export const initializeDebugTools = () => {
     const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
 
     const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
-    const messageDistributor = new DebugToolsMessageDistributor(
-        browserAdapter,
-        storeUpdateMessageHub,
-        telemetryListener,
-    );
+    const messageDistributor = new BrowserMessageDistributor(browserAdapter, [
+        telemetryListener.handleBrowserMessage,
+        storeUpdateMessageHub.handleBrowserMessage,
+    ]);
     messageDistributor.initialize();
 
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
