@@ -6,7 +6,7 @@ import { clone, forEach, size } from 'lodash';
 import { StoreMock } from 'tests/unit/mock-helpers/store-mock';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('BaseClientStoresHubTest', () => {
+describe(ClientStoresHub, () => {
     let store1Mock: StoreMock<TestStoreData>;
     let store2Mock: StoreMock<TestStoreData>;
     let store3Mock: StoreMock<TestStoreData>;

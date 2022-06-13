@@ -3,8 +3,6 @@
 
 import { Button } from '@fluentui/react';
 import { ThemeInnerState } from 'common/components/theme';
-import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -32,9 +30,7 @@ describe('TitleBar', () => {
             deps: {
                 windowFrameActionCreator: windowFrameActionCreator.object,
                 platformInfo: Mock.ofType(PlatformInfo).object,
-                storeActionMessageCreator: Mock.ofType(StoreActionMessageCreatorImpl).object,
-                storesHub:
-                    Mock.ofType<ClientStoresHub<ThemeInnerState>>(BaseClientStoresHub).object,
+                storesHub: Mock.ofType<ClientStoresHub<ThemeInnerState>>(ClientStoresHub).object,
             },
             pageTitle: 'test page title',
             windowStateStoreData,

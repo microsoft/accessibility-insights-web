@@ -67,7 +67,7 @@ describe(DebugToolsMessageDistributor, () => {
             const errorFromStoreUpdateHub = new Error('from storeUpdateHub');
 
             storeUpdateHubMock
-                .setup(m => m.handleMessage(message))
+                .setup(m => m.handleBrowserMessage(message))
                 .returns(() => Promise.reject(errorFromStoreUpdateHub))
                 .verifiable(Times.once());
 
@@ -78,7 +78,7 @@ describe(DebugToolsMessageDistributor, () => {
 
         it('calls and propagates a promise fulfillment from storeUpdateHub', async () => {
             storeUpdateHubMock
-                .setup(m => m.handleMessage(message))
+                .setup(m => m.handleBrowserMessage(message))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
 
@@ -89,7 +89,7 @@ describe(DebugToolsMessageDistributor, () => {
 
         it('calls and propagates a void response from storeUpdateHub', () => {
             storeUpdateHubMock
-                .setup(m => m.handleMessage(message))
+                .setup(m => m.handleBrowserMessage(message))
                 .returns(() => {})
                 .verifiable(Times.once());
 

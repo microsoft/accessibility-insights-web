@@ -21,7 +21,6 @@ describe(StoreUpdateMessageHub, () => {
     let listenerPromise: Promise<void>;
 
     let testSubject: StoreUpdateMessageHub;
-    let handleBrowserMessage: typeof testSubject.handleBrowserMessage;
 
     beforeEach(() => {
         mockDispatcher = Mock.ofType<ActionMessageDispatcher>();
@@ -47,7 +46,9 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject = new StoreUpdateMessageHub(mockDispatcher.object, tabId);
 
-        handleBrowserMessage = testSubject.handleBrowserMessage;
+        // Simulating setting up the listener to avoid error check in registerStoreUpdateListener
+        testSubject.handleBrowserMessage;
+
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
     });
 

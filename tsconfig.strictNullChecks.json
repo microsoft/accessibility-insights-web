@@ -565,7 +565,6 @@
         "./src/views/content/content.tsx",
         "./src/views/content/guidance-title.tsx",
         "./src/views/content/markup.tsx",
-        "./src/views/insights/dependencies.ts",
         "./src/views/insights/insights-router.tsx",
         "./src/views/insights/renderer.tsx",
         "./src/views/page/page.tsx"
