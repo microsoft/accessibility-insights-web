@@ -13,12 +13,12 @@ export class DebugToolsMessageDistributor {
         private readonly telemetryListener: TelemetryListener,
     ) {}
 
-    public initialize() {
+    public initialize(): void {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    private distributeMessage = async (message: any) => {
+    private distributeMessage = (message: any): void | Promise<void> => {
         this.telemetryListener.onTelemetryMessage(message);
-        await this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
+        return this.storeUpdateMessageHub.handleMessage(message as StoreUpdateMessage<unknown>);
     };
 }

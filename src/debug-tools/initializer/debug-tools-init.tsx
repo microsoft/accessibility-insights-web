@@ -1,21 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseStore } from 'common/base-store';
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { StoreProxy } from 'common/store-proxy';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
@@ -38,20 +36,32 @@ import UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
+    const logger = createDefaultLogger();
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const logger = createDefaultLogger();
-    const promiseFactory = createDefaultPromiseFactory();
-    const browserEventProvider = new BrowserEventProvider();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-        browserEventManager,
-        browserEventProvider.getMinimalBrowserEvents(),
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
+
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+        browserAdapter.sendMessageToFrames,
+        null,
+        logger,
     );
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new ExceptionTelemetryListener(
+        TelemetryEventSource.DebugTools,
+        actionMessageDispatcher.sendTelemetry,
+        telemetrySanitizer,
+    );
+    exceptionTelemetryListener.initialize(logger);
 
     const storeUpdateMessageHub = new StoreUpdateMessageHub();
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
-    const storeActionMessageCreator = getStoreActionMessageCreator(browserAdapter, storeProxies);
+
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
+        actionMessageDispatcher,
+    );
+
+    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
 
@@ -103,20 +113,6 @@ const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
     );
 
     return [featureFlagStore, scopingStore, userConfigurationStore, permissionsStore];
-};
-
-const getStoreActionMessageCreator = (browserAdapter: BrowserAdapter, stores: BaseStore<any>[]) => {
-    const actionMessageDispatcher = new RemoteActionMessageDispatcher(
-        browserAdapter.sendMessageToFrames,
-        null,
-        createDefaultLogger(),
-    );
-
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-        actionMessageDispatcher,
-    );
-
-    return storeActionMessageCreatorFactory.fromStores(stores);
 };
 
 const render = (deps: DebugToolsViewDeps) => {

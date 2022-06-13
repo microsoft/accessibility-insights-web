@@ -13,8 +13,6 @@ import { createToolData } from 'common/application-properties-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -29,7 +27,8 @@ import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -154,13 +153,7 @@ declare const window: SelfFastPassContainer & Window;
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const logger = createDefaultLogger();
-const promiseFactory = createDefaultPromiseFactory();
-const browserEventProvider = new BrowserEventProvider();
-const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-    browserEventManager,
-    browserEventProvider.getMinimalBrowserEvents(),
-);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
 const urlParser = new UrlParser();
 const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId');
@@ -263,6 +256,16 @@ if (tabId != null) {
                 tab.id,
                 logger,
             );
+
+            const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+                browserAdapter.getExtensionId(),
+            );
+            const exceptionTelemetryListener = new ExceptionTelemetryListener(
+                TelemetryEventSource.DetailsView,
+                actionMessageDispatcher.sendTelemetry,
+                telemetrySanitizer,
+            );
+            exceptionTelemetryListener.initialize(logger);
 
             const tabStopRequirementActionMessageCreator =
                 new TabStopRequirementActionMessageCreator(
