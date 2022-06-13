@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption, Icon, Link } from '@fluentui/react';
+import { IChoiceGroup, IChoiceGroupOption, IconButton } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { InstanceResultStatus } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-import styles from './tab-stops-choice-group.scss';
+import { ChoiceGroupPassFail } from '../choice-group-pass-fail';
 
 export type onGroupChoiceChange = (ev: SupportedMouseEvent, status: InstanceResultStatus) => void;
 export type onUndoClicked = (ev: SupportedMouseEvent) => void;
@@ -29,35 +29,19 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
 
     public render(): JSX.Element {
         return (
-            <>
-                <div className={styles.tabStopsChoiceGroup}>
-                    <ChoiceGroup
-                        data-automation-id={tabStopsPassFailChoiceGroupAutomationId}
-                        className={this.props.status}
-                        onChange={this.onChange}
-                        componentRef={this.setComponentRef}
-                        selectedKey={this.props.status}
-                        options={[this.makeOption('pass', 'Pass'), this.makeOption('fail', 'Fail')]}
-                    />
-                </div>
-
-                <div>{this.renderOptions()}</div>
-            </>
+            <ChoiceGroupPassFail
+                data-automation-id={tabStopsPassFailChoiceGroupAutomationId}
+                onChange={this.onChange}
+                componentRef={this.setComponentRef}
+                selectedKey={this.props.status}
+                options={[
+                    { text: 'Pass', key: 'pass' },
+                    { text: 'Fail', key: 'fail' },
+                ]}
+                secondaryControls={this.renderOptions()}
+            />
         );
     }
-
-    private makeOption(status: InstanceResultStatus, text: string): ITabStopsChoiceGroup {
-        return {
-            key: status,
-            text: text,
-            ariaLabel: text,
-            onRenderLabel: this.renderNoLabel,
-        };
-    }
-
-    private renderNoLabel = (): JSX.Element | null => {
-        return null;
-    };
 
     private renderOptions(): JSX.Element | null {
         switch (this.props.status) {
@@ -68,13 +52,12 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
                 return (
                     <>
                         {this.getUndoButton()}
-                        <Link
+                        <IconButton
                             data-automation-id={addTabStopsFailureInstanceAutomationId}
-                            className={styles.undoButton}
+                            iconProps={{ iconName: 'add' }}
+                            ariaLabel="add failure instance"
                             onClick={this.props.onAddFailureInstanceClicked}
-                        >
-                            <Icon iconName="add" ariaLabel={'add failure instance'} />
-                        </Link>
+                        />
                     </>
                 );
             default:
@@ -84,9 +67,11 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
 
     private getUndoButton(): JSX.Element {
         return (
-            <Link className={styles.undoButton} onClick={this.onUndoClicked}>
-                <Icon className={styles.undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
-            </Link>
+            <IconButton
+                onClick={this.onUndoClicked}
+                iconProps={{ iconName: 'undo' }}
+                ariaLabel="undo"
+            />
         );
     }
 

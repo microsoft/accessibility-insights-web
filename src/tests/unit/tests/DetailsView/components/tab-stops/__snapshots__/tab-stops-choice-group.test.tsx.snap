@@ -1,138 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsChoiceGroup render options with no label 1`] = `null`;
-
-exports[`TabStopsChoiceGroup render options with no label 2`] = `null`;
-
 exports[`TabStopsChoiceGroup render with fail status 1`] = `
-<React.Fragment>
-  <div
-    className="tabStopsChoiceGroup"
-  >
-    <StyledChoiceGroup
-      className="fail"
-      componentRef={[Function]}
-      data-automation-id="tabStopsPassFailChoiceGroup"
-      onChange={[Function]}
-      options={
-        Array [
-          Object {
-            "ariaLabel": "Pass",
-            "key": "pass",
-            "onRenderLabel": [Function],
-            "text": "Pass",
-          },
-          Object {
-            "ariaLabel": "Fail",
-            "key": "fail",
-            "onRenderLabel": [Function],
-            "text": "Fail",
-          },
-        ]
-      }
-      selectedKey="fail"
-    />
-  </div>
-  <div>
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  data-automation-id="tabStopsPassFailChoiceGroup"
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "key": "pass",
+        "text": "Pass",
+      },
+      Object {
+        "key": "fail",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={
     <React.Fragment>
-      <StyledLinkBase
-        className="undoButton"
+      <CustomizedIconButton
+        ariaLabel="undo"
+        iconProps={
+          Object {
+            "iconName": "undo",
+          }
+        }
         onClick={[Function]}
-      >
-        <Memo(Icon)
-          ariaLabel="undo"
-          className="undoButtonIcon"
-          iconName="undo"
-        />
-      </StyledLinkBase>
-      <StyledLinkBase
-        className="undoButton"
+      />
+      <CustomizedIconButton
+        ariaLabel="add failure instance"
         data-automation-id="addTabStopsFailureInstance"
+        iconProps={
+          Object {
+            "iconName": "add",
+          }
+        }
         onClick={[Function]}
-      >
-        <Memo(Icon)
-          ariaLabel="add failure instance"
-          iconName="add"
-        />
-      </StyledLinkBase>
+      />
     </React.Fragment>
-  </div>
-</React.Fragment>
+  }
+  selectedKey="fail"
+/>
 `;
 
 exports[`TabStopsChoiceGroup render with pass status 1`] = `
-<React.Fragment>
-  <div
-    className="tabStopsChoiceGroup"
-  >
-    <StyledChoiceGroup
-      className="pass"
-      componentRef={[Function]}
-      data-automation-id="tabStopsPassFailChoiceGroup"
-      onChange={[Function]}
-      options={
-        Array [
-          Object {
-            "ariaLabel": "Pass",
-            "key": "pass",
-            "onRenderLabel": [Function],
-            "text": "Pass",
-          },
-          Object {
-            "ariaLabel": "Fail",
-            "key": "fail",
-            "onRenderLabel": [Function],
-            "text": "Fail",
-          },
-        ]
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  data-automation-id="tabStopsPassFailChoiceGroup"
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "key": "pass",
+        "text": "Pass",
+      },
+      Object {
+        "key": "fail",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={
+    <CustomizedIconButton
+      ariaLabel="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
       }
-      selectedKey="pass"
-    />
-  </div>
-  <div>
-    <StyledLinkBase
-      className="undoButton"
       onClick={[Function]}
-    >
-      <Memo(Icon)
-        ariaLabel="undo"
-        className="undoButtonIcon"
-        iconName="undo"
-      />
-    </StyledLinkBase>
-  </div>
-</React.Fragment>
+    />
+  }
+  selectedKey="pass"
+/>
 `;
 
 exports[`TabStopsChoiceGroup render with unknown status 1`] = `
-<React.Fragment>
-  <div
-    className="tabStopsChoiceGroup"
-  >
-    <StyledChoiceGroup
-      className="unknown"
-      componentRef={[Function]}
-      data-automation-id="tabStopsPassFailChoiceGroup"
-      onChange={[Function]}
-      options={
-        Array [
-          Object {
-            "ariaLabel": "Pass",
-            "key": "pass",
-            "onRenderLabel": [Function],
-            "text": "Pass",
-          },
-          Object {
-            "ariaLabel": "Fail",
-            "key": "fail",
-            "onRenderLabel": [Function],
-            "text": "Fail",
-          },
-        ]
-      }
-      selectedKey="unknown"
-    />
-  </div>
-  <div />
-</React.Fragment>
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  data-automation-id="tabStopsPassFailChoiceGroup"
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "key": "pass",
+        "text": "Pass",
+      },
+      Object {
+        "key": "fail",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={null}
+  selectedKey="unknown"
+/>
 `;

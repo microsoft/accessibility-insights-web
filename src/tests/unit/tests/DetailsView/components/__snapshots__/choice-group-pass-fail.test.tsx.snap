@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChoiceGroupPassFail render 1`] = `
+<div
+  className="groupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "className": "option-pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "className": "option-fail",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="pass"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      aria-label="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
+<div
+  className="groupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "className": "option-pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "className": "option-fail",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="unknown"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      aria-label="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;

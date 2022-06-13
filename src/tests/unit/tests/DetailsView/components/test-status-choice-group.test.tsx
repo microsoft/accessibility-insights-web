@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
-import { shallow } from 'enzyme';
+import { IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
+import { ChoiceGroupPassFail } from 'DetailsView/components/choice-group-pass-fail';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
@@ -17,7 +18,7 @@ describe('TestStatusChoiceGroup', () => {
         { key: ManualTestStatus[ManualTestStatus.FAIL], text: 'Fail' },
     ];
 
-    test('constructor', () => {
+    test('render', () => {
         const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -27,28 +28,12 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: null,
             onUndoClicked: null,
         };
-        const component = new TestStatusChoiceGroup(props);
-        expect(component.state).toMatchObject({ selectedKey: 'PASS' });
+        const component = mount(<TestStatusChoiceGroup {...props} />);
+        const choiceGroup = component.find(ChoiceGroupPassFail);
+        expect(choiceGroup.props()).toMatchObject({ selectedKey: 'PASS' });
     });
 
-    test('componentDidUpdate: props have not changed', () => {
-        const props: TestStatusChoiceGroupProps = {
-            test: 1,
-            step: 'step',
-            selector: 'selector',
-            status: ManualTestStatus.PASS,
-            originalStatus: null,
-            onGroupChoiceChange: null,
-            onUndoClicked: null,
-        };
-        const component = shallow(
-            <TestStatusChoiceGroup {...props} />,
-        ).instance() as TestStatusChoiceGroup;
-        component.componentDidUpdate(props);
-        expect(component.state).toMatchObject({ selectedKey: 'PASS' });
-    });
-
-    test('componentDidUpdate: props have changed', () => {
+    test('props have changed', () => {
         const props: TestStatusChoiceGroupProps = {
             test: 1,
             step: 'step',
@@ -58,35 +43,9 @@ describe('TestStatusChoiceGroup', () => {
             onGroupChoiceChange: null,
             onUndoClicked: null,
         };
-        const component = shallow(
-            <TestStatusChoiceGroup {...props} />,
-        ).instance() as TestStatusChoiceGroup;
-        component.setState({ selectedKey: 'PASS' });
-        component.componentDidUpdate({
-            status: ManualTestStatus.PASS,
-        } as TestStatusChoiceGroupProps);
-        expect(component.state).toMatchObject({ selectedKey: 'FAIL' });
-    });
-
-    test('render label', () => {
-        const onGroupChoiceChangeMock = Mock.ofInstance((status, test, step, selector) => {});
-        const onUndoMock = Mock.ofInstance((test, step, selector) => {});
-        const props: TestStatusChoiceGroupProps = {
-            test: 1,
-            step: 'step',
-            selector: 'selector',
-            status: ManualTestStatus.PASS,
-            originalStatus: null,
-            onGroupChoiceChange: onGroupChoiceChangeMock.object,
-            onUndoClicked: onUndoMock.object,
-            isLabelVisible: true,
-        };
-        onGroupChoiceChangeMock
-            .setup(o => o(props.status, props.test, props.step, props.selector))
-            .verifiable(Times.once());
-
-        const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const component = mount(<TestStatusChoiceGroup {...props} />);
+        const choiceGroup = component.find(ChoiceGroupPassFail);
+        expect(choiceGroup.props()).toMatchObject({ selectedKey: 'FAIL' });
     });
 
     test('render', () => {
@@ -146,7 +105,7 @@ describe('TestStatusChoiceGroup', () => {
             .verifiable(Times.once());
 
         const testObject = shallow(<TestableTestStatusChoiceGroup {...props} />);
-        const choiceGroup = testObject.find(ChoiceGroup);
+        const choiceGroup = testObject.find(ChoiceGroupPassFail);
         choiceGroup.prop('onChange')(null, options[0]);
 
         onGroupChoiceChangeMock.verifyAll();

@@ -21,7 +21,7 @@ export type TabStopsRequirementsTableDeps = {
     tabStopsTestViewController: TabStopsTestViewController;
 };
 
-export const tabStopsRequirementsTableActionColumnWidthPx = 100;
+export const tabStopsRequirementsTableActionColumnWidthPx = 124;
 
 export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>(
     'TabStopsRequirementsTable',

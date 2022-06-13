@@ -1,165 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestStatusChoiceGroup render 1`] = `
-<div
-  className="groupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    onChange={[Function]}
-    options={
-      Array [
-        Object {
-          "ariaLabel": "Pass",
-          "className": "option-pass",
-          "key": "PASS",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-        Object {
-          "ariaLabel": "Fail",
-          "className": "option-fail",
-          "key": "FAIL",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-      ]
-    }
-    selectedKey="PASS"
-    styles={
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
       Object {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`TestStatusChoiceGroup render label 1`] = `
-<div
-  className="groupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    onChange={[Function]}
-    options={
-      Array [
-        Object {
-          "ariaLabel": undefined,
-          "className": "option-pass",
-          "key": "PASS",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        Object {
-          "ariaLabel": undefined,
-          "className": "option-fail",
-          "key": "FAIL",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="PASS"
-    styles={
+        "key": "PASS",
+        "text": "Pass",
+      },
       Object {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
-</div>
+        "key": "FAIL",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={null}
+  selectedKey="PASS"
+/>
 `;
 
 exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as status is PASS 1`] = `
-<div
-  className="groupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    onChange={[Function]}
-    options={
-      Array [
-        Object {
-          "ariaLabel": "Pass",
-          "className": "option-pass",
-          "key": "PASS",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-        Object {
-          "ariaLabel": "Fail",
-          "className": "option-fail",
-          "key": "FAIL",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-      ]
-    }
-    selectedKey="PASS"
-    styles={
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
       Object {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
-</div>
+        "key": "PASS",
+        "text": "Pass",
+      },
+      Object {
+        "key": "FAIL",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={null}
+  selectedKey="PASS"
+/>
 `;
 
 exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status is UNKNOWN 1`] = `
-<div
-  className="groupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    onChange={[Function]}
-    options={
-      Array [
-        Object {
-          "ariaLabel": "Pass",
-          "className": "option-pass",
-          "key": "PASS",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-        Object {
-          "ariaLabel": "Fail",
-          "className": "option-fail",
-          "key": "FAIL",
-          "styles": Object {
-            "field": "radioButtonOptionField",
-            "root": "radioButtonOption",
-          },
-          "text": "",
-        },
-      ]
-    }
-    selectedKey="UNKNOWN"
-    styles={
+<ChoiceGroupPassFail
+  componentRef={[Function]}
+  isLabelVisible={false}
+  onChange={[Function]}
+  options={
+    Array [
       Object {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
-</div>
+        "key": "PASS",
+        "text": "Pass",
+      },
+      Object {
+        "key": "FAIL",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={null}
+  selectedKey="UNKNOWN"
+/>
 `;

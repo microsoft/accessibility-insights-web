@@ -2,9 +2,16 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 
+.group-container {
+    display: flex;
+}
+
+.secondary-controls-wrapper {
+    margin-left: 4px;
+}
+
 // Create a horizontal ChoiceGroup
 // https://github.com/microsoft/fluentui/issues/21727
-.group-container,
 .radio-button-group {
     column-gap: 8px;
     display: flex;
@@ -30,6 +37,10 @@
                 border-color: $negative-outcome;
             }
         }
+    }
+
+    .radio-button-option-field {
+        min-width: 20px;
     }
 
     // Set hover and checked state for high contrast mode
