@@ -39,10 +39,8 @@ export const rendererDependencies: (
         actionMessageDispatcher,
     );
 
-    const storeUpdateMessageHub = new StoreUpdateMessageHub(
-        browserAdapter,
-        actionMessageDispatcher,
-    );
+    const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
+    browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
 
     const store = new StoreProxy<UserConfigurationStoreData>(
         StoreNames[StoreNames.UserConfigurationStore],

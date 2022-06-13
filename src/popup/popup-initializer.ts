@@ -131,11 +131,8 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const storeUpdateMessageHub = new StoreUpdateMessageHub(
-            this.browserAdapter,
-            actionMessageDispatcher,
-            tab.id,
-        );
+        const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher, tab.id);
+        this.browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
 
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];

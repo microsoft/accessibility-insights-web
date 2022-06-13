@@ -53,10 +53,16 @@ export const initializeDebugTools = () => {
     );
     exceptionTelemetryListener.initialize(logger);
 
-    const storeUpdateMessageHub = new StoreUpdateMessageHub(
+    const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
+
+    const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
+    const messageDistributor = new DebugToolsMessageDistributor(
         browserAdapter,
-        actionMessageDispatcher,
+        storeUpdateMessageHub,
+        telemetryListener,
     );
+    messageDistributor.initialize();
+
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
 
     const debugToolsNavActions = new DebugToolsNavActions();
@@ -67,15 +73,6 @@ export const initializeDebugTools = () => {
 
     const allStores = [...storeProxies, debugToolsNavStore];
     const storesHub = new ClientStoresHub<DebugToolsViewState>(allStores);
-
-    const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
-
-    const messageDistributor = new DebugToolsMessageDistributor(
-        browserAdapter,
-        storeUpdateMessageHub,
-        telemetryListener,
-    );
-    messageDistributor.initialize();
 
     const props: DebugToolsViewDeps = {
         debugToolsNavActionCreator,

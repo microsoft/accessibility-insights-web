@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { getStoreStateMessage } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
@@ -16,12 +14,9 @@ export class StoreUpdateMessageHub {
         {};
 
     constructor(
-        browserAdapter: BrowserAdapter,
         private readonly dispatcher: ActionMessageDispatcher,
         private readonly tabId?: number,
-    ) {
-        browserAdapter.addListenerOnMessage(this.handleBrowserMessage);
-    }
+    ) {}
 
     public registerStoreUpdateListener(
         storeId: string,
@@ -36,7 +31,7 @@ export class StoreUpdateMessageHub {
         this.dispatcher.dispatchType(message);
     }
 
-    private readonly handleBrowserMessage = (
+    public readonly handleBrowserMessage = (
         message: StoreUpdateMessage<any>,
     ): void | Promise<void> => {
         if (!this.isValidMessage(message)) {

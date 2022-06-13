@@ -33,18 +33,17 @@ export class DevToolInitializer {
             logger,
         );
 
-        const storeUpdateMessageHub = new StoreUpdateMessageHub(
+        const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
+        const messageDistributor = new DevToolsMessageDistributor(
             this.browserAdapter,
-            actionMessageDispatcher,
+            storeUpdateMessageHub,
         );
+        messageDistributor.initialize();
 
         const devtoolsStore = new StoreProxy<DevToolStoreData>(
             StoreNames[StoreNames.DevToolsStore],
             storeUpdateMessageHub,
         );
-
-        const messageDistributor = new DevToolsMessageDistributor(this.browserAdapter);
-        messageDistributor.initialize();
 
         const inspectHandler = new InspectHandler(
             devtoolsStore,
