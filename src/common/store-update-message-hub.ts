@@ -10,6 +10,7 @@ import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update
 type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void | Promise<void>;
 
 export class StoreUpdateMessageHub {
+    private browserMessageHandlerUsed: boolean = false;
     private readonly registeredUpdateListeners: { [storeId: string]: StoreUpdateMessageListener } =
         {};
 
@@ -22,6 +23,11 @@ export class StoreUpdateMessageHub {
         storeId: string,
         listener: StoreUpdateMessageListener,
     ): void {
+        if (!this.browserMessageHandlerUsed) {
+            throw new Error(
+                'StoreUpdateMessageHub.browserMessageHandler must be registered as a browser listener *before* registering individual store update listeners to avoid missing store state initialization messages',
+            );
+        }
         if (this.registeredUpdateListeners[storeId]) {
             throw new Error(`An update listener for store ${storeId} is already registered`);
         }
@@ -31,7 +37,12 @@ export class StoreUpdateMessageHub {
         this.dispatcher.dispatchType(message);
     }
 
-    public readonly handleBrowserMessage = (
+    public get handleBrowserMessage(): (message: StoreUpdateMessage<any>) => void | Promise<void> {
+        this.browserMessageHandlerUsed = true;
+        return this.handleBrowserMessageImpl;
+    }
+
+    private readonly handleBrowserMessageImpl = (
         message: StoreUpdateMessage<any>,
     ): void | Promise<void> => {
         if (!this.isValidMessage(message)) {

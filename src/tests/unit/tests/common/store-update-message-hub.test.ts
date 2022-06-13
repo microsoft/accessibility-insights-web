@@ -21,6 +21,7 @@ describe(StoreUpdateMessageHub, () => {
     let listenerPromise: Promise<void>;
 
     let testSubject: StoreUpdateMessageHub;
+    let handleBrowserMessage: typeof testSubject.handleBrowserMessage;
 
     beforeEach(() => {
         mockDispatcher = Mock.ofType<ActionMessageDispatcher>();
@@ -46,6 +47,7 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject = new StoreUpdateMessageHub(mockDispatcher.object, tabId);
 
+        handleBrowserMessage = testSubject.handleBrowserMessage;
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
     });
 
@@ -104,8 +106,21 @@ describe(StoreUpdateMessageHub, () => {
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
 
+    it("Errors if a store update listener is registered before the hub's listener", () => {
+        testSubject = new StoreUpdateMessageHub(mockDispatcher.object);
+
+        // no testSubject.handleBrowserMessage
+
+        expect(() =>
+            testSubject.registerStoreUpdateListener(storeId, registeredListener),
+        ).toThrowErrorMatchingInlineSnapshot(
+            `"StoreUpdateMessageHub.browserMessageHandler must be registered as a browser listener *before* registering individual store update listeners to avoid missing store state initialization messages"`,
+        );
+    });
+
     it('Calls registered listener if not created with a tab id', async () => {
         testSubject = new StoreUpdateMessageHub(mockDispatcher.object);
+        testSubject.handleBrowserMessage;
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
         const resultPromise = testSubject.handleBrowserMessage(tabContextMessage);
