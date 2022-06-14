@@ -26,7 +26,6 @@ import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
-import { act } from 'react-dom/test-utils';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('CardKebabMenuButtonTest', () => {
