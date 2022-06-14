@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    BrowserMessageDistributor,
-    BrowserMessageHandler,
-} from 'common/browser-adapters/browser-message-distributor';
+import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
+import { BrowserMessageHandler } from 'common/browser-adapters/browser-message-handler';
 import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
@@ -14,11 +12,11 @@ describe(BrowserMessageDistributor, () => {
     let mockBrowserAdapter: SimulatedBrowserAdapter;
 
     function makeIgnoringHandler(): BrowserMessageHandler {
-        return () => {};
+        return () => ({ messageHandled: false });
     }
 
     function makeRespondingHandler(response: any): BrowserMessageHandler {
-        return () => response;
+        return () => ({ messageHandled: true, response });
     }
 
     beforeEach(() => {

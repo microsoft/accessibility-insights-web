@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Messages } from 'common/messages';
 import { DevToolsStatusResponder } from 'Devtools/dev-tools-status-responder';
 import { IMock, Mock } from 'typemoq';
@@ -28,10 +29,15 @@ describe(DevToolsStatusResponder, () => {
             isActive: true,
         };
 
-        await expect(testSubject.handleBrowserMessage(message)).resolves.toEqual(expectedResponse);
+        const response = testSubject.handleBrowserMessage(message);
+
+        expect(response.messageHandled).toBe(true);
+        await expect((response as HandledBrowserMessageResponse).response).resolves.toEqual(
+            expectedResponse,
+        );
     });
 
-    it('Returns void for status requests for a different tab', () => {
+    it('Does not handle status requests for a different tab', () => {
         const message = {
             messageType: Messages.DevTools.StatusRequest,
             tabId: inspectedTabId + 10,
@@ -39,16 +45,16 @@ describe(DevToolsStatusResponder, () => {
 
         const response = testSubject.handleBrowserMessage(message);
 
-        expect(response).toBeUndefined();
+        expect(response.messageHandled).toBe(false);
     });
 
-    it('Returns void for unknown message types', () => {
+    it('Does not handle unknown message types', () => {
         const message = {
             messageType: 'another message type',
         };
 
         const response = testSubject.handleBrowserMessage(message);
 
-        expect(response).toBeUndefined();
+        expect(response.messageHandled).toBe(false);
     });
 });

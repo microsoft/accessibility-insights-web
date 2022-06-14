@@ -176,7 +176,7 @@ if (tabId != null) {
                 actionMessageDispatcher,
                 tab.id,
             );
-            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
+            browserAdapter.addListenerOnRuntimeMessage(storeUpdateMessageHub.handleBrowserMessage);
 
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],

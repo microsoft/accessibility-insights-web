@@ -72,7 +72,7 @@ export function createSimulatedBrowserAdapter(
     mock.setup(m => m.addListenerOnWindowsFocusChanged(It.is(isFunction))).callback(
         c => (mock.notifyWindowsFocusChanged = c),
     );
-    mock.setup(m => m.addListenerOnMessage(It.is(isFunction))).callback(c =>
+    mock.setup(m => m.addListenerOnRuntimeMessage(It.is(isFunction))).callback(c =>
         messageListeners.push(c),
     );
 

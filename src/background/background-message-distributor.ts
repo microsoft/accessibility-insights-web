@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Tab } from '../common/itab';
 import { Logger } from '../common/logging/logger';
 import { InterpreterMessage } from '../common/message';
@@ -22,10 +23,13 @@ export class BackgroundMessageDistributor {
     ) {}
 
     public initialize(): void {
-        this.browserAdapter.addListenerOnMessage(this.distributeMessage);
+        this.browserAdapter.addListenerOnRuntimeMessage(this.distributeMessage);
     }
 
-    private distributeMessage = (message: InterpreterMessage, sender?: Sender): any => {
+    private distributeMessage = (
+        message: InterpreterMessage,
+        sender?: Sender,
+    ): BrowserMessageResponse => {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
@@ -39,11 +43,11 @@ export class BackgroundMessageDistributor {
             !isInterpretedAsBackchannelWindowMessage
         ) {
             this.logger.log('Unable to interpret message - ', message);
+            // TODO: consolidate changes with #5538
+            return { messageHandled: false };
         }
 
-        if (response) {
-            return response;
-        }
+        return { messageHandled: true, response };
     };
 
     private getTabId(message: InterpreterMessage, sender?: Sender): number | null {

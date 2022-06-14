@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserMessageHandler } from 'common/browser-adapters/browser-message-handler';
 import { DictionaryStringTo } from 'types/common-types';
 import {
     Events,
     ExtensionTypes,
     Notifications,
     Permissions,
-    Runtime,
     Tabs,
     Windows,
 } from 'webextension-polyfill';
@@ -48,9 +48,7 @@ export interface BrowserAdapter {
     getRuntimeLastError(): chrome.runtime.LastError | undefined;
     isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
-    addListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void;
+    addListenerOnRuntimeMessage(callback: BrowserMessageHandler): void;
 
     removeListenersOnMessage(): void;
     getManifest(): chrome.runtime.Manifest;

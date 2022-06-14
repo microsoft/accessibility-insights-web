@@ -47,7 +47,7 @@ describe(BackgroundMessageDistributor, () => {
         );
 
         mockBrowserAdapter
-            .setup(adapter => adapter.addListenerOnMessage(It.isAny()))
+            .setup(adapter => adapter.addListenerOnRuntimeMessage(It.isAny()))
             .callback(callback => {
                 distributeMessageCallback = callback;
             })

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { getStoreStateMessage } from 'common/messages';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
@@ -86,23 +87,25 @@ describe(StoreUpdateMessageHub, () => {
         const result = testSubject.handleBrowserMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
-        expect(result).toBeUndefined();
+        expect(result).toEqual({ messageHandled: false });
     });
 
     it('Calls registered listener for tab context store message', async () => {
-        const resultPromise = testSubject.handleBrowserMessage(tabContextMessage);
+        const response = testSubject.handleBrowserMessage(tabContextMessage);
 
-        expect(resultPromise).toBe(listenerPromise);
-        await resultPromise;
+        expect(response.messageHandled).toBe(true);
+        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
 
     it('Calls registered listener for global store message', async () => {
-        const resultPromise = testSubject.handleBrowserMessage(globalStoreMessage);
+        const response = testSubject.handleBrowserMessage(globalStoreMessage);
 
-        expect(resultPromise).toBe(listenerPromise);
-        await resultPromise;
+        expect(response.messageHandled).toBe(true);
+        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
@@ -124,10 +127,11 @@ describe(StoreUpdateMessageHub, () => {
         testSubject.handleBrowserMessage;
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        const resultPromise = testSubject.handleBrowserMessage(tabContextMessage);
+        const response = testSubject.handleBrowserMessage(tabContextMessage);
 
-        expect(resultPromise).toBe(listenerPromise);
-        await resultPromise;
+        expect(response.messageHandled).toBe(true);
+        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -145,14 +149,17 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        const resultPromise1 = testSubject.handleBrowserMessage(messageForStore);
-        const resultPromise2 = testSubject.handleBrowserMessage(messageForAnotherStore);
+        const response1 = testSubject.handleBrowserMessage(messageForStore);
+        const response2 = testSubject.handleBrowserMessage(messageForAnotherStore);
 
-        expect(resultPromise1).toBeInstanceOf(Promise);
-        expect(resultPromise2).toBeInstanceOf(Promise);
+        expect(response1.messageHandled).toBe(true);
+        expect(response2.messageHandled).toBe(true);
 
-        await resultPromise1;
-        await resultPromise2;
+        expect((response1 as HandledBrowserMessageResponse).response).toBeInstanceOf(Promise);
+        expect((response2 as HandledBrowserMessageResponse).response).toBeInstanceOf(Promise);
+
+        await (response1 as HandledBrowserMessageResponse).response;
+        await (response2 as HandledBrowserMessageResponse).response;
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);

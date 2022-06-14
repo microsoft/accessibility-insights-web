@@ -105,7 +105,9 @@ export class MainWindowInitializer extends WindowInitializer {
         asyncInitializationSteps.push(super.initialize(logger));
 
         this.storeUpdateMessageHub = new StoreUpdateMessageHub(this.actionMessageDispatcher);
-        this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleBrowserMessage);
+        this.browserAdapter.addListenerOnRuntimeMessage(
+            this.storeUpdateMessageHub.handleBrowserMessage,
+        );
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],

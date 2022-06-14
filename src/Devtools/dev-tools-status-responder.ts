@@ -2,21 +2,23 @@
 // Licensed under the MIT License.
 
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { BrowserMessageHandler } from 'common/browser-adapters/browser-message-distributor';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { DevToolsStatusRequest, DevToolsStatusResponse } from 'common/types/dev-tools-messages';
+import { DevToolsStatusRequest } from 'common/types/dev-tools-messages';
 
 export class DevToolsStatusResponder {
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
-    public handleBrowserMessage: BrowserMessageHandler = (
-        message: Message,
-    ): void | Promise<DevToolsStatusResponse> => {
+    public handleBrowserMessage = (message: Message): BrowserMessageResponse => {
         if (this.isStatusRequestForTab(message)) {
-            // Must return a promise for the response to send correctly
-            return Promise.resolve({ isActive: true });
+            return {
+                messageHandled: true,
+                response: Promise.resolve({ isActive: true }),
+            };
         }
+
+        return { messageHandled: false };
     };
 
     private isStatusRequestForTab(message: Message): boolean {

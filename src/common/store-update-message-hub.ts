@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { getStoreStateMessage } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
@@ -7,7 +8,7 @@ import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
 
-type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void | Promise<void>;
+type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
 
 export class StoreUpdateMessageHub {
     private browserMessageHandlerUsed: boolean = false;
@@ -37,21 +38,22 @@ export class StoreUpdateMessageHub {
         this.dispatcher.dispatchType(message);
     }
 
-    public get handleBrowserMessage(): (message: StoreUpdateMessage<any>) => void | Promise<void> {
+    public get handleBrowserMessage(): (message: any) => BrowserMessageResponse {
         this.browserMessageHandlerUsed = true;
         return this.handleBrowserMessageImpl;
     }
 
     private readonly handleBrowserMessageImpl = (
         message: StoreUpdateMessage<any>,
-    ): void | Promise<void> => {
+    ): BrowserMessageResponse => {
         if (!this.isValidMessage(message)) {
-            return;
+            return { messageHandled: false };
         }
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
-            return listener(message);
+            listener(message);
+            return { messageHandled: true, response: Promise.resolve() };
         }
     };
 
