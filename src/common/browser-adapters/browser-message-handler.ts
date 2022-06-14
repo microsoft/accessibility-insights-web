@@ -11,6 +11,8 @@ export type BrowserMessageResponse =
 export type HandledBrowserMessageResponse = {
     messageHandled: true;
 
+    // This is intentionally non-optional; don't use void unless you really mean it!
+    //
     // void indicates a legacy "fire-and-forget" response which might include some async work not
     // tracked by a Promise. To indicate that the all work to handle this response completed
     // synchronously, use Promise.resolve().
