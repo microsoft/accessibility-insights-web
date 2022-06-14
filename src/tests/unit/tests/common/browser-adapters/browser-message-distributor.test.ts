@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
-import {
-    BrowserMessageHandler,
-    HandledBrowserMessageResponse,
-} from 'common/browser-adapters/browser-message-handler';
+import { BrowserMessageHandler } from 'common/browser-adapters/browser-message-handler';
 import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
@@ -40,8 +37,7 @@ describe(BrowserMessageDistributor, () => {
         const response = mockBrowserAdapter.notifyOnMessage('message');
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toBe('second handler response');
+        await expect(response.result).resolves.toBe('second handler response');
     });
 
     it("stops invoking further listeners once one indicates that it's handled the message", () => {

@@ -3,7 +3,6 @@
 
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { PostMessageContentRepository } from 'background/post-message-content-repository';
-import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { InterpreterMessage } from 'common/message';
 import {
     BackchannelStoreRequestMessage,
@@ -49,8 +48,7 @@ describe('PostMessageContentHandlerTest', () => {
         const response = testSubject.handleBrowserMessage(storeMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toBeUndefined();
+        await expect(response.result).resolves.toBeUndefined();
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -64,8 +62,7 @@ describe('PostMessageContentHandlerTest', () => {
         const response = testSubject.handleBrowserMessage(retrieveRequestMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toEqual(retrieveResponseMessage);
+        await expect(response.result).resolves.toEqual(retrieveResponseMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -98,8 +95,7 @@ describe('PostMessageContentHandlerTest', () => {
         const response = testSubject.handleBrowserMessage(retrieveRequestMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).rejects.toThrowError(errorMessage);
+        await expect(response.result).rejects.toThrowError(errorMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });

@@ -6,10 +6,7 @@ import { Interpreter } from 'background/interpreter';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import {
-    BrowserMessageResponse,
-    HandledBrowserMessageResponse,
-} from 'common/browser-adapters/browser-message-handler';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { InterpreterMessage, InterpreterResponse, Message } from 'common/message';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -177,7 +174,7 @@ describe(BackgroundMessageDistributor, () => {
             const response = distributeMessageCallback(message);
 
             expect(response.messageHandled).toBe(true);
-            expect((response as HandledBrowserMessageResponse).result).toBe(backchannelResult);
+            expect(response.result).toBe(backchannelResult);
         });
     });
 
@@ -195,9 +192,7 @@ describe(BackgroundMessageDistributor, () => {
             const response = distributeMessageCallback(message);
 
             expect(response.messageHandled).toBe(true);
-            await expect(
-                (response as HandledBrowserMessageResponse).result,
-            ).rejects.toThrowErrorMatchingInlineSnapshot(
+            await expect(response.result).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"Unable to interpret message - {\\"payload\\":\\"test-payload\\"}"`,
             );
         });

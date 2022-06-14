@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { TimeoutError } from 'common/promises/promise-factory';
 import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
@@ -86,8 +84,7 @@ describe(EventResponseFactory, () => {
             expect(testSubject.mergeRawBrowserMessageResponses).toHaveBeenCalledWith(
                 handledResults,
             );
-            const { result } = mergedOutput as HandledBrowserMessageResponse;
-            expect(result).toBe(mergeResponsesResult);
+            expect(mergedOutput.result).toBe(mergeResponsesResult);
         });
     });
 

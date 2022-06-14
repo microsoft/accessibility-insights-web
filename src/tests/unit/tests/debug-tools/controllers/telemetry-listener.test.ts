@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Messages } from 'common/messages';
 import {
     DebugToolsTelemetryMessage,
@@ -58,7 +57,7 @@ describe('TelemetryListener', () => {
 
         const response = testSubject.handleBrowserMessage(legitimateInputMessage);
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).result).resolves.toBe(undefined);
+        await expect(response.result).resolves.toBe(undefined);
 
         const expectedMessage = {
             name,
@@ -97,7 +96,7 @@ describe('TelemetryListener', () => {
 
         const response = testSubject.handleBrowserMessage(legitimateInputMessage);
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).result).resolves.toBe(undefined);
+        await expect(response.result).resolves.toBe(undefined);
 
         externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });

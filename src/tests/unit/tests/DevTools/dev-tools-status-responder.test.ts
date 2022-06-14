@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Messages } from 'common/messages';
 import { DevToolsStatusResponder } from 'Devtools/dev-tools-status-responder';
 import { IMock, Mock } from 'typemoq';
@@ -32,9 +30,7 @@ describe(DevToolsStatusResponder, () => {
         const response = testSubject.handleBrowserMessage(message);
 
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).result).resolves.toEqual(
-            expectedResponse,
-        );
+        await expect(response.result).resolves.toEqual(expectedResponse);
     });
 
     it('Does not handle status requests for a different tab', () => {

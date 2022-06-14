@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { getStoreStateMessage } from 'common/messages';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
@@ -93,8 +92,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toBe(undefined);
+        await expect(response.result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -103,8 +101,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(globalStoreMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toBe(undefined);
+        await expect(response.result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
@@ -129,8 +126,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        const { result } = response as HandledBrowserMessageResponse;
-        await expect(result).resolves.toBe(undefined);
+        await expect(response.result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -154,11 +150,8 @@ describe(StoreUpdateMessageHub, () => {
         expect(response1.messageHandled).toBe(true);
         expect(response2.messageHandled).toBe(true);
 
-        expect((response1 as HandledBrowserMessageResponse).result).toBeInstanceOf(Promise);
-        expect((response2 as HandledBrowserMessageResponse).result).toBeInstanceOf(Promise);
-
-        await (response1 as HandledBrowserMessageResponse).result;
-        await (response2 as HandledBrowserMessageResponse).result;
+        await expect(response1.result).resolves.toBe(undefined);
+        await expect(response2.result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
