@@ -142,8 +142,8 @@ export function createSimulatedBrowserAdapter(
             if (response.messageHandled) {
                 return response;
             }
-            return { messageHandled: false };
         }
+        return { messageHandled: false };
     };
 
     return mock as SimulatedBrowserAdapter;
