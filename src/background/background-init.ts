@@ -10,9 +10,8 @@ import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-c
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
+import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -60,12 +59,10 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
-    const browserEventProvider = new BrowserEventProvider();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-        browserEventManager,
-        browserEventProvider.getBackgroundBrowserEvents(),
-    );
+
+    const browserEventManager = new BackgroundBrowserEventManager(promiseFactory, logger, false);
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(

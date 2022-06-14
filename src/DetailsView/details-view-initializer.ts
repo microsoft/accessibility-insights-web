@@ -13,8 +13,6 @@ import { createToolData } from 'common/application-properties-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -29,7 +27,7 @@ import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -56,7 +54,6 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
-import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
@@ -101,7 +98,6 @@ import { InspectActionMessageCreator } from '../common/message-creators/inspect-
 import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { RemoteActionMessageDispatcher } from '../common/message-creators/remote-action-message-dispatcher';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
@@ -109,7 +105,6 @@ import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreUpdateMessageHub } from '../common/store-update-message-hub';
-import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -156,13 +151,7 @@ declare const window: SelfFastPassContainer & Window;
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const logger = createDefaultLogger();
-const promiseFactory = createDefaultPromiseFactory();
-const browserEventProvider = new BrowserEventProvider();
-const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-    browserEventManager,
-    browserEventProvider.getMinimalBrowserEvents(),
-);
+const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
 const urlParser = new UrlParser();
 const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId');
@@ -177,8 +166,17 @@ if (tabId != null) {
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const storeUpdateMessageHub = new StoreUpdateMessageHub(tab.id);
-            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleMessage);
+            const actionMessageDispatcher = new RemoteActionMessageDispatcher(
+                browserAdapter.sendMessageToFrames,
+                tab.id,
+                logger,
+            );
+
+            const storeUpdateMessageHub = new StoreUpdateMessageHub(
+                actionMessageDispatcher,
+                tab.id,
+            );
+            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
 
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],
@@ -242,7 +240,7 @@ if (tabId != null) {
             const tabStopsViewStore = new TabStopsViewStore(tabStopsViewActions);
             tabStopsViewStore.initialize();
 
-            const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
+            const storesHub = new ClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
                 permissionsStateStore,
@@ -259,12 +257,6 @@ if (tabId != null) {
                 userConfigStore,
                 tabStopsViewStore,
             ]);
-
-            const actionMessageDispatcher = new RemoteActionMessageDispatcher(
-                browserAdapter.sendMessageToFrames,
-                tab.id,
-                logger,
-            );
 
             const telemetrySanitizer = new ExceptionTelemetrySanitizer(
                 browserAdapter.getExtensionId(),
@@ -309,10 +301,6 @@ if (tabId != null) {
                 TelemetryEventSource.DetailsView,
             );
 
-            const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-                actionMessageDispatcher,
-            );
-
             const contentActionMessageCreator = new ContentActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -322,9 +310,6 @@ if (tabId != null) {
             const userConfigMessageCreator = new UserConfigMessageCreator(
                 actionMessageDispatcher,
                 telemetryFactory,
-            );
-            const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(
-                storesHub.stores,
             );
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(
@@ -544,7 +529,6 @@ if (tabId != null) {
                 assessmentsProviderWithFeaturesEnabled,
                 outcomeTypeSemanticsFromTestStatus,
                 getInnerTextFromJsxElement,
-                storeActionMessageCreator,
                 storesHub,
                 loadTheme,
                 urlParser,
@@ -628,12 +612,11 @@ function createNullifiedRenderer(
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
     const store = new UserConfigurationStore(null, new UserConfigurationActions(), null, logger);
-    const storesHub = new BaseClientStoresHub<ThemeInnerState>([store]);
+    const storesHub = new ClientStoresHub<ThemeInnerState>([store]);
 
     const deps: NoContentAvailableViewDeps = {
         textContent,
         storesHub,
-        storeActionMessageCreator: new NullStoreActionMessageCreator(),
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
     };
 

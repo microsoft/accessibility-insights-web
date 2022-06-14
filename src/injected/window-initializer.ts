@@ -3,7 +3,6 @@
 import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
@@ -26,9 +25,7 @@ import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirem
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
-import { DictionaryStringTo } from 'types/common-types';
 import UAParser from 'ua-parser-js';
-import { Events } from 'webextension-polyfill';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -82,11 +79,7 @@ export class WindowInitializer {
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
         const promiseFactory = createDefaultPromiseFactory();
-        const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-        const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-            browserEventManager,
-            this.getBrowserEvents(),
-        );
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;
@@ -241,10 +234,6 @@ export class WindowInitializer {
         );
         // Intentionally floating this promise
         void extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
-    }
-
-    protected getBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
-        return {};
     }
 
     protected dispose(): void {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -21,7 +21,7 @@ describe('DetailsViewContainer', () => {
 
     describe('render', () => {
         it('renders spinner when stores not ready', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
 
             const props: DetailsViewContainerProps = {
                 storeState: null,
@@ -40,7 +40,7 @@ describe('DetailsViewContainer', () => {
 
     describe('render content', () => {
         it('show NoContentAvailable when stores are not loaded', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
 
             const props: DetailsViewContainerProps = {
                 storeState: null,
@@ -56,7 +56,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('show NoContentAvailable when target tab is closed', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
 
             const props: DetailsViewContainerProps = {
                 storeState: {
@@ -78,7 +78,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('shows NoContentAvailable when target page is changed and no permissions granted', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
 
             const props: DetailsViewContainerProps = {
                 storeState: {
@@ -104,7 +104,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render once; should call details view opened', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {
                 storeState: {
@@ -135,7 +135,7 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render twice; should not call details view opened on second render', () => {
-            const storesHubMock = Mock.ofType(BaseClientStoresHub);
+            const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {
                 storeState: {

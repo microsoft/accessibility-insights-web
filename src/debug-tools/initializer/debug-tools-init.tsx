@@ -1,19 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
+import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
 import { DateProvider } from 'common/date-provider';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
-import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { StoreProxy } from 'common/store-proxy';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -31,7 +28,6 @@ import {
 } from 'debug-tools/components/debug-tools-view';
 import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
-import { DebugToolsMessageDistributor } from 'debug-tools/debug-tools-message-distributor';
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -39,16 +35,10 @@ import UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
+    const logger = createDefaultLogger();
     const userAgentParser = new UAParser(window.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const logger = createDefaultLogger();
-    const promiseFactory = createDefaultPromiseFactory();
-    const browserEventProvider = new BrowserEventProvider();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-        browserEventManager,
-        browserEventProvider.getMinimalBrowserEvents(),
-    );
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
     const actionMessageDispatcher = new RemoteActionMessageDispatcher(
         browserAdapter.sendMessageToFrames,
@@ -63,14 +53,16 @@ export const initializeDebugTools = () => {
     );
     exceptionTelemetryListener.initialize(logger);
 
-    const storeUpdateMessageHub = new StoreUpdateMessageHub();
+    const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
+
+    const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
+    const messageDistributor = new BrowserMessageDistributor(browserAdapter, [
+        telemetryListener.handleBrowserMessage,
+        storeUpdateMessageHub.handleBrowserMessage,
+    ]);
+    messageDistributor.initialize();
+
     const storeProxies = createStoreProxies(storeUpdateMessageHub);
-
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-        actionMessageDispatcher,
-    );
-
-    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storeProxies);
 
     const debugToolsNavActions = new DebugToolsNavActions();
 
@@ -79,20 +71,10 @@ export const initializeDebugTools = () => {
     const debugToolsNavActionCreator = new DebugToolsNavActionCreator(debugToolsNavActions);
 
     const allStores = [...storeProxies, debugToolsNavStore];
-    const storesHub = new BaseClientStoresHub<DebugToolsViewState>(allStores);
-
-    const telemetryListener = new TelemetryListener(DateProvider.getCurrentDate);
-
-    const messageDistributor = new DebugToolsMessageDistributor(
-        browserAdapter,
-        storeUpdateMessageHub,
-        telemetryListener,
-    );
-    messageDistributor.initialize();
+    const storesHub = new ClientStoresHub<DebugToolsViewState>(allStores);
 
     const props: DebugToolsViewDeps = {
         debugToolsNavActionCreator,
-        storeActionMessageCreator,
         storesHub,
         telemetryListener,
         textContent,

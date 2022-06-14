@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { createToolData } from 'common/application-properties-provider';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -33,8 +32,6 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
-import { DictionaryStringTo } from 'types/common-types';
-import { Events } from 'webextension-polyfill';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -44,7 +41,6 @@ import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { PathSnippetActionMessageCreator } from '../common/message-creators/path-snippet-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { StoreProxy } from '../common/store-proxy';
@@ -108,8 +104,8 @@ export class MainWindowInitializer extends WindowInitializer {
         const asyncInitializationSteps: Promise<void>[] = [];
         asyncInitializationSteps.push(super.initialize(logger));
 
-        this.storeUpdateMessageHub = new StoreUpdateMessageHub();
-        this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleMessage);
+        this.storeUpdateMessageHub = new StoreUpdateMessageHub(this.actionMessageDispatcher);
+        this.browserAdapter.addListenerOnMessage(this.storeUpdateMessageHub.handleBrowserMessage);
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
@@ -172,29 +168,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.storeUpdateMessageHub,
         );
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            this.actionMessageDispatcher,
-        );
-
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
-            this.visualizationStoreProxy,
-            this.scopingStoreProxy,
-            this.featureFlagStoreProxy,
-            this.userConfigStoreProxy,
-            this.visualizationScanResultStoreProxy,
-            this.assessmentStoreProxy,
-            this.tabStoreProxy,
-            this.devToolStoreProxy,
-            this.inspectStoreProxy,
-            this.pathSnippetStoreProxy,
-            this.unifiedScanResultStoreProxy,
-            this.cardSelectionStoreProxy,
-            this.needsReviewScanResultStoreProxy,
-            this.needsReviewCardSelectionStoreProxy,
-            this.permissionsStateStoreProxy,
-        ]);
-        storeActionMessageCreator.getAllStates();
-
         const telemetryDataFactory = new TelemetryDataFactory();
         const devToolActionMessageCreator = new DevToolActionMessageCreator(
             telemetryDataFactory,
@@ -254,7 +227,7 @@ export class MainWindowInitializer extends WindowInitializer {
             GetVisualizationInstancesForTabStops,
         );
 
-        const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
+        const storeHub = new ClientStoresHub<TargetPageStoreData>([
             this.visualizationStoreProxy,
             this.tabStoreProxy,
             this.visualizationScanResultStoreProxy,
@@ -412,11 +385,6 @@ export class MainWindowInitializer extends WindowInitializer {
         await this.pathSnippetController.listenToStore();
 
         await Promise.all(asyncInitializationSteps);
-    }
-
-    protected override getBrowserEvents(): DictionaryStringTo<Events.Event<any>> {
-        const browserEventProvider = new BrowserEventProvider();
-        return browserEventProvider.getMinimalBrowserEvents();
     }
 
     protected dispose(): void {
