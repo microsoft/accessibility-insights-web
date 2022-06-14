@@ -42,7 +42,6 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
     }
 
     protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
-        console.log(option.key);
         this.props.onGroupChoiceChange(
             option.key,
             this.props.test,
