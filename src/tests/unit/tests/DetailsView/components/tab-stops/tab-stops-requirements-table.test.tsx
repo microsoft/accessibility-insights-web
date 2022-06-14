@@ -3,7 +3,10 @@
 
 import { DetailsList } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    TabStopRequirementState,
+    TabStopRequirementStatuses,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
@@ -77,7 +80,7 @@ describe('TabStopsRequirementsTable', () => {
         const renderedProps = tabStopsChoiceGroup.props as TabStopsChoiceGroupsProps;
 
         renderedProps.onUndoClicked(eventStub);
-        renderedProps.onGroupChoiceChange(eventStub, 'fail');
+        renderedProps.onGroupChoiceChange(eventStub, TabStopRequirementStatuses.fail);
         renderedProps.onAddFailureInstanceClicked(eventStub);
 
         tabStopsRequirementActionMessageCreatorMock.verify(

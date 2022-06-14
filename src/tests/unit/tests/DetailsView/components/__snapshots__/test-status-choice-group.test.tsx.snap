@@ -1,67 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestStatusChoiceGroup render 1`] = `
+exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `
 <ChoiceGroupPassFail
-  componentRef={[Function]}
   isLabelVisible={false}
   onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
   options={
     Array [
       Object {
-        "key": "PASS",
+        "key": 0,
         "text": "Pass",
       },
       Object {
-        "key": "FAIL",
+        "key": 2,
         "text": "Fail",
       },
     ]
   }
-  secondaryControls={null}
-  selectedKey="PASS"
+  selectedKey={2}
 />
 `;
 
-exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as status is PASS 1`] = `
+exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
 <ChoiceGroupPassFail
-  componentRef={[Function]}
   isLabelVisible={false}
   onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
   options={
     Array [
       Object {
-        "key": "PASS",
+        "key": 0,
         "text": "Pass",
       },
       Object {
-        "key": "FAIL",
+        "key": 2,
         "text": "Fail",
       },
     ]
   }
-  secondaryControls={null}
-  selectedKey="PASS"
+  selectedKey={0}
 />
 `;
 
-exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status is UNKNOWN 1`] = `
+exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
 <ChoiceGroupPassFail
-  componentRef={[Function]}
   isLabelVisible={false}
   onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
   options={
     Array [
       Object {
-        "key": "PASS",
+        "key": 0,
         "text": "Pass",
       },
       Object {
-        "key": "FAIL",
+        "key": 2,
         "text": "Fail",
       },
     ]
   }
-  secondaryControls={null}
-  selectedKey="UNKNOWN"
+  selectedKey={1}
 />
 `;

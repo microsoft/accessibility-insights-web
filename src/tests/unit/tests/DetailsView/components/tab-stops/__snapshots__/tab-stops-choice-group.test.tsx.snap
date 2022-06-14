@@ -2,55 +2,10 @@
 
 exports[`TabStopsChoiceGroup render with fail status 1`] = `
 <ChoiceGroupPassFail
-  componentRef={[Function]}
   data-automation-id="tabStopsPassFailChoiceGroup"
   isLabelVisible={false}
   onChange={[Function]}
-  options={
-    Array [
-      Object {
-        "key": "pass",
-        "text": "Pass",
-      },
-      Object {
-        "key": "fail",
-        "text": "Fail",
-      },
-    ]
-  }
-  secondaryControls={
-    <React.Fragment>
-      <CustomizedIconButton
-        ariaLabel="undo"
-        iconProps={
-          Object {
-            "iconName": "undo",
-          }
-        }
-        onClick={[Function]}
-      />
-      <CustomizedIconButton
-        ariaLabel="add failure instance"
-        data-automation-id="addTabStopsFailureInstance"
-        iconProps={
-          Object {
-            "iconName": "add",
-          }
-        }
-        onClick={[Function]}
-      />
-    </React.Fragment>
-  }
-  selectedKey="fail"
-/>
-`;
-
-exports[`TabStopsChoiceGroup render with pass status 1`] = `
-<ChoiceGroupPassFail
-  componentRef={[Function]}
-  data-automation-id="tabStopsPassFailChoiceGroup"
-  isLabelVisible={false}
-  onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
   options={
     Array [
       Object {
@@ -65,25 +20,49 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
   }
   secondaryControls={
     <CustomizedIconButton
-      ariaLabel="undo"
+      ariaLabel="add failure instance"
+      data-automation-id="addTabStopsFailureInstance"
       iconProps={
         Object {
-          "iconName": "undo",
+          "iconName": "add",
         }
       }
       onClick={[Function]}
     />
   }
+  selectedKey="fail"
+/>
+`;
+
+exports[`TabStopsChoiceGroup render with pass status 1`] = `
+<ChoiceGroupPassFail
+  data-automation-id="tabStopsPassFailChoiceGroup"
+  isLabelVisible={false}
+  onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
+  options={
+    Array [
+      Object {
+        "key": "pass",
+        "text": "Pass",
+      },
+      Object {
+        "key": "fail",
+        "text": "Fail",
+      },
+    ]
+  }
+  secondaryControls={null}
   selectedKey="pass"
 />
 `;
 
 exports[`TabStopsChoiceGroup render with unknown status 1`] = `
 <ChoiceGroupPassFail
-  componentRef={[Function]}
   data-automation-id="tabStopsPassFailChoiceGroup"
   isLabelVisible={false}
   onChange={[Function]}
+  onUndoClickedPassThrough={[Function]}
   options={
     Array [
       Object {

@@ -24,7 +24,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
         Object {
           "ariaLabel": "Fail",
           "className": "option-fail",
-          "key": "pass",
+          "key": "fail",
           "onRenderLabel": [Function],
           "styles": Object {
             "field": "radioButtonOptionField",
@@ -45,10 +45,19 @@ exports[`ChoiceGroupPassFail render 1`] = `
     className="secondaryControlsWrapper"
   >
     <CustomizedIconButton
-      aria-label="undo"
+      ariaLabel="undo"
       iconProps={
         Object {
           "iconName": "undo",
+        }
+      }
+      onClick={[Function]}
+    />
+    <CustomizedIconButton
+      aria-label="add"
+      iconProps={
+        Object {
+          "iconName": "add",
         }
       }
       noClick={[Function]}
@@ -81,7 +90,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
         Object {
           "ariaLabel": "Fail",
           "className": "option-fail",
-          "key": "pass",
+          "key": "fail",
           "onRenderLabel": [Function],
           "styles": Object {
             "field": "radioButtonOptionField",
@@ -102,10 +111,10 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
     className="secondaryControlsWrapper"
   >
     <CustomizedIconButton
-      aria-label="undo"
+      aria-label="add"
       iconProps={
         Object {
-          "iconName": "undo",
+          "iconName": "add",
         }
       }
       noClick={[Function]}
