@@ -124,6 +124,8 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             payload: null,
             tabId: targetTabId,
         });
-        await response.result;
+        if (response.messageHandled) {
+            await response.result;
+        }
     }
 }

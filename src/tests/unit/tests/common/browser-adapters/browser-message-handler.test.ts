@@ -24,7 +24,7 @@ describe(makeRawBrowserMessageHandler, () => {
         const originalResponsePromise = Promise.resolve();
         const underlyingHandler = jest.fn((_message, _sender) => ({
             messageHandled: true,
-            response: originalResponsePromise,
+            result: originalResponsePromise,
         }));
         const testSubject = makeRawBrowserMessageHandler(underlyingHandler);
 
