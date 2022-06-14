@@ -25,20 +25,43 @@ describe('InterpreterTest', () => {
         expect(testSubject.getMessageToActionMapping()).toEqual({ test: sampleCallback });
     });
 
-    test('interpret', () => {
+    test('interpret with synchronous callback', () => {
         const testSubject = new TestableInterpreter();
         const sampleCallback = Mock.ofInstance((payload, tabId) => {});
         testSubject.setMessageToActionMapping({ test: sampleCallback.object });
 
         sampleCallback.setup(x => x('payload', 1)).verifiable();
 
-        expect(
-            testSubject.interpret({
-                messageType: 'test',
-                tabId: 1,
-                payload: 'payload',
-            }),
-        ).toBeTruthy();
+        const response = testSubject.interpret({
+            messageType: 'test',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(response.messageHandled).toBeTruthy();
+        expect(response.result).toBeUndefined();
+
+        sampleCallback.verifyAll();
+    });
+
+    test('interpret with async callback', () => {
+        const testSubject = new TestableInterpreter();
+        const sampleCallback = Mock.ofInstance(async (payload, tabId) => {});
+        testSubject.setMessageToActionMapping({ test: sampleCallback.object });
+
+        sampleCallback
+            .setup(x => x('payload', 1))
+            .returns(() => Promise.resolve())
+            .verifiable();
+
+        const response = testSubject.interpret({
+            messageType: 'test',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(response.messageHandled).toBeTruthy();
+        expect(response.result).toBeInstanceOf(Promise);
 
         sampleCallback.verifyAll();
     });
@@ -50,13 +73,13 @@ describe('InterpreterTest', () => {
 
         sampleCallback.setup(x => x('payload', 1)).verifiable(Times.never());
 
-        expect(
-            testSubject.interpret({
-                messageType: 'test2',
-                tabId: 1,
-                payload: 'payload',
-            }),
-        ).toBeFalsy();
+        const result = testSubject.interpret({
+            messageType: 'test2',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(result.messageHandled).toBeFalsy();
 
         sampleCallback.verifyAll();
     });

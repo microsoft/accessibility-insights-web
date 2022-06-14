@@ -12,7 +12,7 @@ import { Interpreter } from './interpreter';
 export class UserConfigurationController {
     constructor(private interpreter: Interpreter) {}
 
-    public setHighContrastMode(enableHighContrast: boolean): void {
+    public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
         };
@@ -21,10 +21,11 @@ export class UserConfigurationController {
             payload: payload,
             tabId: null,
         };
-        this.interpreter.interpret(message);
+        const response = this.interpreter.interpret(message);
+        await response.result;
     }
 
-    public setTelemetryState(enableTelemetry: boolean): void {
+    public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
         };
@@ -33,14 +34,16 @@ export class UserConfigurationController {
             payload: payload,
             tabId: null,
         };
-        this.interpreter.interpret(message);
+        const response = this.interpreter.interpret(message);
+        await response.result;
     }
 
-    public saveWindowBounds(payload: SaveWindowBoundsPayload): void {
+    public async saveWindowBounds(payload: SaveWindowBoundsPayload): Promise<void> {
         const message: Message = {
             messageType: Messages.UserConfig.SaveWindowBounds,
             payload: payload,
         };
-        this.interpreter.interpret(message);
+        const response = this.interpreter.interpret(message);
+        await response.result;
     }
 }

@@ -165,7 +165,7 @@ describe('KeyboardShortcutHandler', () => {
                 .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
                 .returns((_tabId, message) => {
                     receivedMessage = message;
-                    return true;
+                    return { messageHandled: true, result: Promise.resolve() };
                 })
                 .verifiable();
 
@@ -202,7 +202,7 @@ describe('KeyboardShortcutHandler', () => {
                 .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
                 .returns((_tabId, message) => {
                     receivedMessage = message;
-                    return true;
+                    return { messageHandled: true, result: Promise.resolve() };
                 })
                 .verifiable();
 

@@ -47,11 +47,13 @@ export class FeatureFlagsController {
         return this.listFeatureFlags();
     }
 
-    public resetFeatureFlags(): void {
+    public async resetFeatureFlags(): Promise<void> {
         const message: Message = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };
-        this.interpreter.interpret(message);
+        const response = this.interpreter.interpret(message);
+
+        await response.result;
     }
 }

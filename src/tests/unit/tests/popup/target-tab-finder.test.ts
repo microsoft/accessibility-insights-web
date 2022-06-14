@@ -4,7 +4,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
 import { TargetTabFinder } from 'popup/target-tab-finder';
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { Tabs } from 'webextension-polyfill';
 
 describe('TargetTabFinderTest', () => {
@@ -84,16 +84,15 @@ describe('TargetTabFinderTest', () => {
     });
 
     it('throws an error if tabId URL parameter is not found', async () => {
+        const testError = new Error('Tab not found');
         setupGetTabIdParamFromUrl(tabId);
         browserAdapterMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .callback((id, cb, reject) => {
-                reject();
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => {
+                throw testError;
             });
 
-        await expect(testSubject.getTargetTab()).rejects.toThrowError(
-            `Tab with Id ${tabId} not found`,
-        );
+        await expect(testSubject.getTargetTab()).rejects.toThrowError(testError);
     });
 
     it('throws an error there is neither a tabId URL parameter nor an active tab', async () => {
@@ -112,10 +111,8 @@ describe('TargetTabFinderTest', () => {
 
     function setupGetTabCall(): void {
         browserAdapterMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .callback((id, cb, reject) => {
-                cb(tabStub);
-            });
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => tabStub as chrome.tabs.Tab);
     }
 
     function setupTabQueryCall(returnValue: Tabs.Tab[]): void {

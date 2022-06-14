@@ -43,7 +43,8 @@ export class BrowserPermissionsTracker {
                 } as SetAllUrlsPermissionStatePayload,
             };
 
-            this.interpreter.interpret(message);
+            const response = this.interpreter.interpret(message);
+            await response.result;
         }
     };
 }

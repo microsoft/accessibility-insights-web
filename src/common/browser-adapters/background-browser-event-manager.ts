@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { Logger } from 'common/logging/logger';
 import { isPromise } from 'common/promises/is-promise';
 import { PromiseFactory } from 'common/promises/promise-factory';
@@ -12,18 +13,6 @@ import {
     BrowserListener,
     EventDetails,
 } from './browser-event-manager';
-
-// As of writing, Chromium maintains its own 5 minute event timeout and will tear down our
-// service worker if this is exceeded, even if other work is outstanding. To avoid this, our
-// own timeout MUST be shorter than Chromium's.
-const EVENT_TIMEOUT_MS = 60 * 1000; // 1 minute
-
-// Ideally, all of our ApplicationListeners would return a Promise whose lifetime encapsulates
-// whether the listener's work is done yet. As of writing, some listeners are "fire and forget",
-// and continue to do some async work after returning undefined. To ensure those listeners have
-// time to do their work, the event manager adds this (arbitrary) delay into its response to the
-// browser event.
-const FIRE_AND_FORGET_EVENT_DELAY_MS = 30 * 1000; // 30 seconds
 
 // BackgroundBrowserEventManager is to be used by a BrowserAdapter to ensure the browser does not
 // determine that the service worker can be shut down due to events not responding within 5 minutes.
@@ -44,8 +33,8 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
 
     constructor(
         private readonly promiseFactory: PromiseFactory,
+        private readonly eventResponseFactory: EventResponseFactory,
         private readonly logger: Logger,
-        private readonly isServiceWorker: boolean,
     ) {}
 
     public addApplicationListener = (
@@ -162,12 +151,12 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
                 eventType,
                 eventArgs,
             })}]`;
-            return await this.applyEventTimeout(result, timeoutErrorContext);
+            return await this.eventResponseFactory.applyEventTimeout(result, timeoutErrorContext);
         } else {
             if (result === undefined) {
                 // It is possible that this is the result of a fire and forget listener
                 // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.applyFireAndForgetDelay(result);
+                return await this.eventResponseFactory.applyFireAndForgetDelay(result);
             } else {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
@@ -197,11 +186,11 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
         // It's important that we ensure the promise settles even if a listener never registers
         // to prevent the Service Worker from being detected as stalled and torn down while other
         // work is still in progress.
-        return this.applyEventTimeout(deferredResolution.promise, timeoutErrorContext).finally(
-            () => {
+        return this.eventResponseFactory
+            .applyEventTimeout(deferredResolution.promise, timeoutErrorContext)
+            .finally(() => {
                 deferredEventDetails.isStale = true;
-            },
-        );
+            });
     }
 
     private removeBrowserListener(event: Events.Event<any>, eventType: string) {
@@ -211,23 +200,5 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
 
     private removeApplicationListener(eventType: string) {
         delete this.eventsToApplicationListenersMapping[eventType];
-    }
-
-    private async applyEventTimeout<T>(
-        original: Promise<T>,
-        timeoutErrorContext: string,
-    ): Promise<T> {
-        return await this.promiseFactory.timeout(original, EVENT_TIMEOUT_MS, timeoutErrorContext);
-    }
-
-    private async applyFireAndForgetDelay<T>(result: T): Promise<T> {
-        // The fire and forget delay is not necessary in the manifest v2 background page, so we
-        // avoid using it there because it carries a high risk of accidentally breaking it while
-        // we're still working on manifest v3 changes to eliminate fire and forget events entirely
-        if (this.isServiceWorker) {
-            return await this.promiseFactory.delay(result, FIRE_AND_FORGET_EVENT_DELAY_MS);
-        } else {
-            return result;
-        }
     }
 }

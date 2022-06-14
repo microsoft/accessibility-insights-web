@@ -11,7 +11,7 @@ import {
 import { PostMessageContentRepository } from './post-message-content-repository';
 
 export type BackchannelMessageResponse = {
-    success: boolean;
+    messageHandled: boolean;
     response?: any;
 };
 
@@ -60,13 +60,13 @@ export class PostMessageContentHandler {
     public handleMessage(message: InterpreterMessage): BackchannelMessageResponse {
         if (Object.keys(this.messageHandlers).includes(message.messageType)) {
             return {
-                success: true,
+                messageHandled: true,
                 response: this.messageHandlers[message.messageType](
                     message as BackchannelRequestMessage,
                 ),
             };
         }
 
-        return { success: false };
+        return { messageHandled: false };
     }
 }

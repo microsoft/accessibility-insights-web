@@ -102,6 +102,18 @@ export abstract class WebExtensionBrowserAdapter
         });
     }
 
+    public async getTabAsync(tabId: number): Promise<chrome.tabs.Tab> {
+        return new Promise((resolve, reject) => {
+            chrome.tabs.get(tabId, tab => {
+                if (tab) {
+                    resolve(tab);
+                } else {
+                    reject(new Error(`tab with Id ${tabId} not found`));
+                }
+            });
+        });
+    }
+
     private verifyPathCompatibility(path?: string): void {
         const looksRelative = path != null && !path.startsWith('/') && !path.includes('://');
         if (looksRelative) {
