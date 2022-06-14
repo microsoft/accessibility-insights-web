@@ -1,17 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { StoreUpdateMessageHub } from '../../../../common/store-update-message-hub';
-import { StoreType } from '../../../../common/types/store-type';
-import {
-    StoreUpdateMessage,
-    storeUpdateMessageType,
-} from '../../../../common/types/store-update-message';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { getStoreStateMessage } from 'common/messages';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
+import { StoreNames } from 'common/stores/store-names';
+import { StoreType } from 'common/types/store-type';
+import { StoreUpdateMessage, storeUpdateMessageType } from 'common/types/store-update-message';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe(StoreUpdateMessageHub, () => {
     const tabId = 1;
     const storeId = 'TestStore';
     let registeredListener: jest.Mock;
+
+    let mockDispatcher: IMock<ActionMessageDispatcher>;
 
     let tabContextMessage: StoreUpdateMessage<string>;
     let globalStoreMessage: StoreUpdateMessage<string>;
@@ -20,6 +23,8 @@ describe(StoreUpdateMessageHub, () => {
     let testSubject: StoreUpdateMessageHub;
 
     beforeEach(() => {
+        mockDispatcher = Mock.ofType<ActionMessageDispatcher>();
+
         listenerPromise = Promise.resolve();
         registeredListener = jest.fn(() => listenerPromise);
 
@@ -39,7 +44,10 @@ describe(StoreUpdateMessageHub, () => {
             storeType: StoreType.GlobalStore,
         } as StoreUpdateMessage<string>;
 
-        testSubject = new StoreUpdateMessageHub(tabId);
+        testSubject = new StoreUpdateMessageHub(mockDispatcher.object, tabId);
+
+        // Simulating setting up the listener to avoid error check in registerStoreUpdateListener
+        testSubject.handleBrowserMessage;
 
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
     });
@@ -54,10 +62,19 @@ describe(StoreUpdateMessageHub, () => {
         { ...tabContextMessage, tabId: tabId + 10 },
     ];
     it.each(invalidMessages)('ignores invalid message: %o', message => {
-        const result = testSubject.handleMessage(message);
+        const result = testSubject.handleBrowserMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
+    });
+
+    it('sends an initial getStoreState message on registration', () => {
+        const expectedMessage = getStoreStateMessage(StoreNames.FeatureFlagStore);
+        mockDispatcher.setup(m => m.dispatchType(expectedMessage)).verifiable(Times.once());
+
+        testSubject.registerStoreUpdateListener(StoreNames[StoreNames.FeatureFlagStore], () => {});
+
+        mockDispatcher.verifyAll();
     });
 
     it('ignores if no listener is registered for this message', () => {
@@ -66,14 +83,14 @@ describe(StoreUpdateMessageHub, () => {
             storeId: 'AnotherStore',
         };
 
-        const result = testSubject.handleMessage(message);
+        const result = testSubject.handleBrowserMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
         expect(result).toBeUndefined();
     });
 
     it('Calls registered listener for tab context store message', async () => {
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -82,7 +99,7 @@ describe(StoreUpdateMessageHub, () => {
     });
 
     it('Calls registered listener for global store message', async () => {
-        const resultPromise = testSubject.handleMessage(globalStoreMessage);
+        const resultPromise = testSubject.handleBrowserMessage(globalStoreMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -90,11 +107,24 @@ describe(StoreUpdateMessageHub, () => {
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
 
+    it("Errors if a store update listener is registered before the hub's listener", () => {
+        testSubject = new StoreUpdateMessageHub(mockDispatcher.object);
+
+        // no testSubject.handleBrowserMessage
+
+        expect(() =>
+            testSubject.registerStoreUpdateListener(storeId, registeredListener),
+        ).toThrowErrorMatchingInlineSnapshot(
+            `"StoreUpdateMessageHub.browserMessageHandler must be registered as a browser listener *before* registering individual store update listeners to avoid missing store state initialization messages"`,
+        );
+    });
+
     it('Calls registered listener if not created with a tab id', async () => {
-        testSubject = new StoreUpdateMessageHub();
+        testSubject = new StoreUpdateMessageHub(mockDispatcher.object);
+        testSubject.handleBrowserMessage;
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
-        const resultPromise = testSubject.handleMessage(tabContextMessage);
+        const resultPromise = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(resultPromise).toBe(listenerPromise);
         await resultPromise;
@@ -115,8 +145,8 @@ describe(StoreUpdateMessageHub, () => {
 
         testSubject.registerStoreUpdateListener(anotherStoreId, anotherListener);
 
-        const resultPromise1 = testSubject.handleMessage(messageForStore);
-        const resultPromise2 = testSubject.handleMessage(messageForAnotherStore);
+        const resultPromise1 = testSubject.handleBrowserMessage(messageForStore);
+        const resultPromise2 = testSubject.handleBrowserMessage(messageForAnotherStore);
 
         expect(resultPromise1).toBeInstanceOf(Promise);
         expect(resultPromise2).toBeInstanceOf(Promise);
