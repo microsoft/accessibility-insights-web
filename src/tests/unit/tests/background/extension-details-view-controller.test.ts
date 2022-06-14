@@ -20,7 +20,10 @@ describe('ExtensionDetailsViewController', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        interpretMessageForTabMock = Mock.ofInstance(() => ({ messageHandled: true }));
+        interpretMessageForTabMock = Mock.ofInstance(() => ({
+            messageHandled: true,
+            result: undefined,
+        }));
 
         tabIdToDetailsViewMap = {};
         idbInstanceMock.reset();
@@ -76,7 +79,7 @@ describe('ExtensionDetailsViewController', () => {
                             tabId: 3,
                         }),
                     )
-                    .returns(() => ({ messageHandled: true }))
+                    .returns(() => ({ messageHandled: true, result: undefined }))
                     .verifiable(Times.once());
 
                 if (persistData) {
@@ -341,7 +344,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
-                .returns(() => ({ messageHandled: true }))
+                .returns(() => ({ messageHandled: true, result: undefined }))
                 .verifiable();
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
@@ -376,7 +379,7 @@ describe('ExtensionDetailsViewController', () => {
 
             interpretMessageForTabMock
                 .setup(i => i(It.isAny(), It.isAny()))
-                .returns(() => ({ messageHandled: true }));
+                .returns(() => ({ messageHandled: true, result: undefined }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 
@@ -569,7 +572,7 @@ describe('ExtensionDetailsViewController', () => {
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
                 )
-                .returns(() => ({ messageHandled: true }))
+                .returns(() => ({ messageHandled: true, result: undefined }))
                 .verifiable();
 
             // call show details once
@@ -596,7 +599,7 @@ describe('ExtensionDetailsViewController', () => {
 
             interpretMessageForTabMock
                 .setup(i => i(It.isAny(), It.isAny()))
-                .returns(() => ({ messageHandled: true }));
+                .returns(() => ({ messageHandled: true, result: undefined }));
 
             setupCreateDetailsView(targetTabId, detailsViewTabId);
 

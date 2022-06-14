@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { TimeoutError } from 'common/promises/promise-factory';
 import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
@@ -53,13 +52,13 @@ describe(EventResponseFactory, () => {
         );
     });
 
-    describe('mergeInterpreterResponses', () => {
+    describe('mergeBrowserMessageResponses', () => {
         beforeEach(() => {
             testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
         });
 
         it('returns messageHandled false if no interpreter handled the message', () => {
-            const output = testSubject.mergeInterpreterResponses([
+            const output = testSubject.mergeBrowserMessageResponses([
                 { messageHandled: false },
                 { messageHandled: false },
                 { messageHandled: false },
@@ -68,38 +67,41 @@ describe(EventResponseFactory, () => {
             expect(output).toStrictEqual({ messageHandled: false });
         });
 
-        it('delegates to mergeResponses behavior if some interpreters handle the message', () => {
+        it('delegates to mergeRawBrowserMessageResponses behavior if some responses handle the message', () => {
             const mixedResponses = [
-                { messageHandled: true },
-                { messageHandled: false },
-                { messageHandled: true, result: Promise.resolve() },
+                { messageHandled: true as const, result: undefined },
+                { messageHandled: false as const },
+                { messageHandled: true as const, result: Promise.resolve() },
             ];
             const handledResults = [undefined, mixedResponses[2].result];
 
             const mergeResponsesResult = Promise.resolve();
-            testSubject.mergeResponses = jest.fn(() => mergeResponsesResult);
+            testSubject.mergeRawBrowserMessageResponses = jest.fn(() => mergeResponsesResult);
 
-            const mergeInterpreterResponsesOutput =
-                testSubject.mergeInterpreterResponses(mixedResponses);
+            const mergedOutput = testSubject.mergeBrowserMessageResponses(mixedResponses);
 
-            expect(mergeInterpreterResponsesOutput.messageHandled).toBe(true);
-            expect(testSubject.mergeResponses).toHaveBeenCalledWith(handledResults);
-            expect(mergeInterpreterResponsesOutput.result).toBe(mergeResponsesResult);
+            expect(mergedOutput.messageHandled).toBe(true);
+            expect(testSubject.mergeRawBrowserMessageResponses).toHaveBeenCalledWith(
+                handledResults,
+            );
+            expect(mergedOutput.result).toBe(mergeResponsesResult);
         });
     });
 
-    describe('mergeResponses', () => {
+    describe('mergeRawBrowserMessageResponses', () => {
         beforeEach(() => {
             testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
         });
 
         it('returns void if all inputs are void', async () => {
-            expect(testSubject.mergeResponses([undefined, undefined, undefined])).toBe(undefined);
+            expect(
+                testSubject.mergeRawBrowserMessageResponses([undefined, undefined, undefined]),
+            ).toBe(undefined);
         });
 
         it('returns input without wrapping for a single async response', async () => {
             const input = Promise.resolve();
-            expect(testSubject.mergeResponses([input])).toBe(input);
+            expect(testSubject.mergeRawBrowserMessageResponses([input])).toBe(input);
         });
 
         it('awaits all input promises concurrently if all inputs are async and successful', async () => {
@@ -109,7 +111,7 @@ describe(EventResponseFactory, () => {
                 timeSimulatingPromiseFactory.delay(undefined, 3),
             ];
 
-            await testSubject.mergeResponses(inputs);
+            await testSubject.mergeRawBrowserMessageResponses(inputs);
 
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(5);
         });
@@ -122,7 +124,9 @@ describe(EventResponseFactory, () => {
                 timeSimulatingPromiseFactory.delay(undefined, 2),
             ];
 
-            await expect(testSubject.mergeResponses(inputs)).rejects.toThrowError(error);
+            await expect(testSubject.mergeRawBrowserMessageResponses(inputs)).rejects.toThrowError(
+                error,
+            );
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
         });
 
@@ -136,7 +140,7 @@ describe(EventResponseFactory, () => {
             ];
 
             try {
-                await testSubject.mergeResponses(inputs);
+                await testSubject.mergeRawBrowserMessageResponses(inputs);
                 fail('should have thrown');
             } catch (e) {
                 expect(e).toBeInstanceOf(AggregateError);
@@ -153,7 +157,7 @@ describe(EventResponseFactory, () => {
             ];
             const inputs = [undefined, ...asyncInputs, undefined];
 
-            await testSubject.mergeResponses(inputs);
+            await testSubject.mergeRawBrowserMessageResponses(inputs);
 
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
         });

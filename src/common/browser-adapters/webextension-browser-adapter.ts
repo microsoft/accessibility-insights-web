@@ -4,15 +4,12 @@ import {
     ApplicationListener,
     BrowserEventManager,
 } from 'common/browser-adapters/browser-event-manager';
+import {
+    BrowserMessageHandler,
+    makeRawBrowserMessageHandler,
+} from 'common/browser-adapters/browser-message-handler';
 import { DictionaryStringTo } from 'types/common-types';
-import browser, {
-    Events,
-    Notifications,
-    Permissions,
-    Runtime,
-    Tabs,
-    Windows,
-} from 'webextension-polyfill';
+import browser, { Events, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
@@ -232,10 +229,8 @@ export abstract class WebExtensionBrowserAdapter
         chrome.commands.getAll(callback);
     }
 
-    public addListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void {
-        this.addListener('RuntimeOnMessage', callback);
+    public addListenerOnRuntimeMessage(callback: BrowserMessageHandler): void {
+        this.addListener('RuntimeOnMessage', makeRawBrowserMessageHandler(callback));
     }
 
     public removeListenersOnMessage(): void {
