@@ -53,6 +53,15 @@ export class BackgroundMessageDistributor {
             }
         }
 
+        // Responding with a rejected promise tells the browser "we are the authoritative handler
+        // of this type of message; it is invalid and you should immediately emit an error at the
+        // sender". This is different from returning void, which would instead indicate "we didn't
+        // know how to handle this message, but some other extension page might, so don't indicate
+        // an error at the sender until a timeout elapses with no context responding".
+        //
+        // This is only correct because our extension only ever uses client <-> background messages.
+        // If we ever start sending messages directly between different client pages, this will need
+        // to be updated to indicate "message not handled" instead.
         return Promise.reject(
             new Error(`Unable to interpret message - ${JSON.stringify(message)}`),
         );
