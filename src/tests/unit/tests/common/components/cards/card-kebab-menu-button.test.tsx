@@ -26,6 +26,7 @@ import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
+import { act } from 'react-dom/test-utils';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('CardKebabMenuButtonTest', () => {
@@ -219,11 +220,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
-        rendered.find(ActionButton).simulate('click', event);
-
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
-
-        // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         const toast = rendered.find(Toast);
@@ -253,10 +250,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
-        rendered.find(ActionButton).simulate('click', event);
-
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
-        // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         const toast = rendered.find(Toast);
