@@ -60,7 +60,7 @@ describe('TargetPageController', () => {
         mockTabContextManager = Mock.ofType<TabContextManager>();
         mockTabContextManager
             .setup(m => m.interpretMessageForTab(It.isAny(), It.isAny()))
-            .returns(() => ({ messageHandled: true }));
+            .returns(() => ({ messageHandled: true, result: undefined }));
         idbInstanceMock.reset();
         knownTabIds = {};
     });
@@ -229,7 +229,7 @@ describe('TargetPageController', () => {
                 };
                 mockTabContextManager
                     .setup(m => m.interpretMessageForTab(EXISTING_ACTIVE_TAB_ID, expectedMessage))
-                    .returns(() => ({ messageHandled: true }))
+                    .returns(() => ({ messageHandled: true, result: undefined }))
                     .verifiable();
 
                 await testSubject.initialize();
@@ -529,7 +529,7 @@ describe('TargetPageController', () => {
         }
         mockTabContextManager
             .setup(m => m.interpretMessageForTab(tabId, expectedMessage))
-            .returns(() => ({ messageHandled: true }))
+            .returns(() => ({ messageHandled: true, result: undefined }))
             .verifiable();
     }
 

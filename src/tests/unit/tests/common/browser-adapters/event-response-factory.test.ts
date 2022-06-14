@@ -71,9 +71,9 @@ describe(EventResponseFactory, () => {
 
         it('delegates to mergeRawBrowserMessageResponses behavior if some responses handle the message', () => {
             const mixedResponses = [
-                { messageHandled: true },
-                { messageHandled: false },
-                { messageHandled: true, result: Promise.resolve() },
+                { messageHandled: true as const, result: undefined },
+                { messageHandled: false as const },
+                { messageHandled: true as const, result: Promise.resolve() },
             ];
             const handledResults = [undefined, mixedResponses[2].result];
 

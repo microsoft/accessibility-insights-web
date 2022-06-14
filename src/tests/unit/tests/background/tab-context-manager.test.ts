@@ -99,7 +99,7 @@ describe(TabContextManager, () => {
             isInterpreted => {
                 const message: Message = { messageType: 'test message' };
                 tabToContextMap[tabId] = tabContextMock.object;
-                const expectedReturnValue = { messageHandled: isInterpreted };
+                const expectedReturnValue = { messageHandled: isInterpreted, result: undefined };
 
                 tabContextMock.setup(t => t.interpreter).returns(() => interpreterMock.object);
                 interpreterMock.setup(i => i.interpret(message)).returns(() => expectedReturnValue);

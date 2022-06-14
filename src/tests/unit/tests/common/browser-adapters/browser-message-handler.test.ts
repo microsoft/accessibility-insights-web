@@ -23,7 +23,7 @@ describe(makeRawBrowserMessageHandler, () => {
     it('propagates handled responses as their response value', () => {
         const originalResponsePromise = Promise.resolve();
         const underlyingHandler = jest.fn((_message, _sender) => ({
-            messageHandled: true,
+            messageHandled: true as const,
             result: originalResponsePromise,
         }));
         const testSubject = makeRawBrowserMessageHandler(underlyingHandler);

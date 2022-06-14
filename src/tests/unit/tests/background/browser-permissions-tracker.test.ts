@@ -29,6 +29,7 @@ describe('BrowserPermissionsTracker', () => {
             .setup(i => i.interpret(It.isAny()))
             .returns(() => ({
                 messageHandled: true,
+                result: undefined,
             }));
 
         testSubject = new BrowserPermissionsTracker(

@@ -20,6 +20,10 @@ export type HandledBrowserMessageResponse = {
 };
 export type UnhandledBrowserMessageResponse = {
     messageHandled: false;
+
+    // It would be more accurate to omit this, but including it makes it much more ergonomic for
+    // tests/etc await response.result or expect(response.result)
+    result?: undefined;
 };
 
 export type BrowserMessageHandler = (
