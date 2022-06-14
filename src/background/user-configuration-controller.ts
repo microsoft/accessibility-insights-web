@@ -22,9 +22,7 @@ export class UserConfigurationController {
             tabId: null,
         };
         const response = this.interpreter.interpret(message);
-        if (response.messageHandled) {
-            await response.result;
-        }
+        await response.result;
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
@@ -37,9 +35,7 @@ export class UserConfigurationController {
             tabId: null,
         };
         const response = this.interpreter.interpret(message);
-        if (response.messageHandled) {
-            await response.result;
-        }
+        await response.result;
     }
 
     public async saveWindowBounds(payload: SaveWindowBoundsPayload): Promise<void> {
@@ -48,8 +44,6 @@ export class UserConfigurationController {
             payload: payload,
         };
         const response = this.interpreter.interpret(message);
-        if (response.messageHandled) {
-            await response.result;
-        }
+        await response.result;
     }
 }
