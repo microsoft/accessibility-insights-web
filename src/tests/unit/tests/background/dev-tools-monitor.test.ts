@@ -235,6 +235,7 @@ describe(DevToolsMonitor, () => {
                     messageType: Messages.DevTools.Closed,
                 }),
             )
+            .returns(() => ({ messageHandled: true }))
             .verifiable(times ?? Times.once());
     }
 });

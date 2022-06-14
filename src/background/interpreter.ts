@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InterpreterMessage, PayloadCallback } from '../common/message';
+import { InterpreterMessage, InterpreterResponse, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class Interpreter {
@@ -13,11 +13,16 @@ export class Interpreter {
         this.messageToActionMapping[messageType] = callback;
     };
 
-    public interpret(message: InterpreterMessage): boolean {
+    public interpret(message: InterpreterMessage): InterpreterResponse {
         if (this.messageToActionMapping[message.messageType]) {
-            this.messageToActionMapping[message.messageType](message.payload, message.tabId);
-            return true;
+            return {
+                messageHandled: true,
+                result: this.messageToActionMapping[message.messageType](
+                    message.payload,
+                    message.tabId,
+                ),
+            };
         }
-        return false;
+        return { messageHandled: false };
     }
 }

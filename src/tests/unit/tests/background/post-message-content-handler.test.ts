@@ -56,7 +56,8 @@ describe('PostMessageContentHandlerTest', () => {
             .returns(() => retrieveResponseMessage.stringifiedMessageData)
             .verifiable(Times.once());
 
-        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const { messageHandled: success, response } =
+            testSubject.handleMessage(retrieveRequestMessage);
 
         expect(success).toBeTruthy();
         expect(response).toBeInstanceOf(Promise);
@@ -77,7 +78,7 @@ describe('PostMessageContentHandlerTest', () => {
             messageType: 'irrelevant-type' as any,
         } as InterpreterMessage;
 
-        const { success, response } = testSubject.handleMessage(messageStub);
+        const { messageHandled: success, response } = testSubject.handleMessage(messageStub);
 
         expect(success).toBeFalsy();
         expect(response).not.toBeInstanceOf(Promise);
@@ -91,7 +92,8 @@ describe('PostMessageContentHandlerTest', () => {
             .throws(new Error(errorMessage))
             .verifiable(Times.once());
 
-        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const { messageHandled: success, response } =
+            testSubject.handleMessage(retrieveRequestMessage);
 
         expect(success).toBeTruthy();
         expect(response).toBeInstanceOf(Promise);
