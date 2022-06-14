@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-
-import { UnhandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
-
 // Licensed under the MIT License.
+import { UnhandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 export interface Message {
     messageType: string;
     payload?: any;
