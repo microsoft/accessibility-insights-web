@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
+import {
+    BrowserMessageResponse,
+    HandledBrowserMessageResponse,
+} from 'common/browser-adapters/browser-message-handler';
 import { isPromise } from 'common/promises/is-promise';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { partition } from 'lodash';
@@ -49,7 +52,9 @@ export class EventResponseFactory {
     public mergeBrowserMessageResponses(
         responses: BrowserMessageResponse[],
     ): BrowserMessageResponse {
-        const handledResponses = responses.filter(r => r.messageHandled);
+        const handledResponses = responses.filter(
+            (r): r is HandledBrowserMessageResponse => r.messageHandled,
+        );
         if (handledResponses.length === 0) {
             return { messageHandled: false };
         }

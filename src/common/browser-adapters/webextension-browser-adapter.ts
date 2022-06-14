@@ -9,14 +9,7 @@ import {
     makeRawBrowserMessageHandler,
 } from 'common/browser-adapters/browser-message-handler';
 import { DictionaryStringTo } from 'types/common-types';
-import browser, {
-    Events,
-    Notifications,
-    Permissions,
-    Runtime,
-    Tabs,
-    Windows,
-} from 'webextension-polyfill';
+import browser, { Events, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';

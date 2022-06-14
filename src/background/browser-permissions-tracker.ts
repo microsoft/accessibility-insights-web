@@ -44,7 +44,9 @@ export class BrowserPermissionsTracker {
             };
 
             const response = this.interpreter.interpret(message);
-            await response.result;
+            if (response.messageHandled) {
+                await response.result;
+            }
         }
     };
 }

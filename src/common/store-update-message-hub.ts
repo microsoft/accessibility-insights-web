@@ -55,6 +55,8 @@ export class StoreUpdateMessageHub {
             listener(message);
             return { messageHandled: true, result: Promise.resolve() };
         }
+
+        return { messageHandled: false };
     };
 
     private isValidMessage(message: StoreUpdateMessage<any>): boolean {

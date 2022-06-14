@@ -36,6 +36,8 @@ export class TelemetryListener {
 
             return { messageHandled: true, result: Promise.resolve() };
         }
+
+        return { messageHandled: false };
     };
 
     public addListener(listener: DebugToolsTelemetryMessageListener): void {
