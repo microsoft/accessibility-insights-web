@@ -10,18 +10,15 @@ export type BrowserMessageResponse =
 
 export type HandledBrowserMessageResponse = {
     messageHandled: true;
-    response: Promise<any>;
-};
 
+    // void indicates a legacy "fire-and-forget" response which might include some async work not
+    // tracked by a Promise. To indicate that the all work to handle this response completed
+    // synchronously, use Promise.resolve().
+    result: Promise<any> | void;
+};
 export type UnhandledBrowserMessageResponse = {
     messageHandled: false;
 };
-
-export function isResponseHandled(
-    response: BrowserMessageResponse,
-): response is HandledBrowserMessageResponse {
-    return response.messageHandled;
-}
 
 export type BrowserMessageHandler = (
     message: any,
@@ -41,6 +38,6 @@ export function makeRawBrowserMessageHandler(
     // browser treats as "message handled, no response".
     return (message, sender) => {
         const response = handler(message, sender);
-        return response.messageHandled ? response.response : undefined;
+        return response.messageHandled ? response.result : undefined;
     };
 }

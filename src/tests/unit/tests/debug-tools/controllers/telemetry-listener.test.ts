@@ -58,7 +58,7 @@ describe('TelemetryListener', () => {
 
         const response = testSubject.handleBrowserMessage(legitimateInputMessage);
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).response).resolves.toBe(undefined);
+        await expect((response as HandledBrowserMessageResponse).result).resolves.toBe(undefined);
 
         const expectedMessage = {
             name,
@@ -97,7 +97,7 @@ describe('TelemetryListener', () => {
 
         const response = testSubject.handleBrowserMessage(legitimateInputMessage);
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).response).resolves.toBe(undefined);
+        await expect((response as HandledBrowserMessageResponse).result).resolves.toBe(undefined);
 
         externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });

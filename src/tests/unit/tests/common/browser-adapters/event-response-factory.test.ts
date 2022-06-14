@@ -77,13 +77,15 @@ describe(EventResponseFactory, () => {
             const handledResults = [undefined, mixedResponses[2].result];
 
             const mergeResponsesResult = Promise.resolve();
-            testSubject.mergeResponses = jest.fn(() => mergeResponsesResult);
+            testSubject.mergeRawBrowserMessageResponses = jest.fn(() => mergeResponsesResult);
 
             const mergeInterpreterResponsesOutput =
                 testSubject.mergeInterpreterResponses(mixedResponses);
 
             expect(mergeInterpreterResponsesOutput.messageHandled).toBe(true);
-            expect(testSubject.mergeResponses).toHaveBeenCalledWith(handledResults);
+            expect(testSubject.mergeRawBrowserMessageResponses).toHaveBeenCalledWith(
+                handledResults,
+            );
             expect(mergeInterpreterResponsesOutput.result).toBe(mergeResponsesResult);
         });
     });
@@ -94,12 +96,14 @@ describe(EventResponseFactory, () => {
         });
 
         it('returns void if all inputs are void', async () => {
-            expect(testSubject.mergeResponses([undefined, undefined, undefined])).toBe(undefined);
+            expect(
+                testSubject.mergeRawBrowserMessageResponses([undefined, undefined, undefined]),
+            ).toBe(undefined);
         });
 
         it('returns input without wrapping for a single async response', async () => {
             const input = Promise.resolve();
-            expect(testSubject.mergeResponses([input])).toBe(input);
+            expect(testSubject.mergeRawBrowserMessageResponses([input])).toBe(input);
         });
 
         it('awaits all input promises concurrently if all inputs are async and successful', async () => {
@@ -109,7 +113,7 @@ describe(EventResponseFactory, () => {
                 timeSimulatingPromiseFactory.delay(undefined, 3),
             ];
 
-            await testSubject.mergeResponses(inputs);
+            await testSubject.mergeRawBrowserMessageResponses(inputs);
 
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(5);
         });
@@ -122,7 +126,9 @@ describe(EventResponseFactory, () => {
                 timeSimulatingPromiseFactory.delay(undefined, 2),
             ];
 
-            await expect(testSubject.mergeResponses(inputs)).rejects.toThrowError(error);
+            await expect(testSubject.mergeRawBrowserMessageResponses(inputs)).rejects.toThrowError(
+                error,
+            );
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
         });
 
@@ -136,7 +142,7 @@ describe(EventResponseFactory, () => {
             ];
 
             try {
-                await testSubject.mergeResponses(inputs);
+                await testSubject.mergeRawBrowserMessageResponses(inputs);
                 fail('should have thrown');
             } catch (e) {
                 expect(e).toBeInstanceOf(AggregateError);
@@ -153,7 +159,7 @@ describe(EventResponseFactory, () => {
             ];
             const inputs = [undefined, ...asyncInputs, undefined];
 
-            await testSubject.mergeResponses(inputs);
+            await testSubject.mergeRawBrowserMessageResponses(inputs);
 
             expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
         });

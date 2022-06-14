@@ -34,7 +34,7 @@ export class TelemetryListener {
                 listener(convertToDebugToolTelemetryMessage(browserMessage, this.getDate)),
             );
 
-            return { messageHandled: true, response: Promise.resolve() };
+            return { messageHandled: true, result: Promise.resolve() };
         }
     };
 

@@ -16,7 +16,7 @@ describe(BrowserMessageDistributor, () => {
     }
 
     function makeRespondingHandler(response: any): BrowserMessageHandler {
-        return () => ({ messageHandled: true, response });
+        return () => ({ messageHandled: true, result: response });
     }
 
     beforeEach(() => {

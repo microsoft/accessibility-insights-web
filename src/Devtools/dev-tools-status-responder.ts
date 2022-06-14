@@ -14,7 +14,7 @@ export class DevToolsStatusResponder {
         if (this.isStatusRequestForTab(message)) {
             return {
                 messageHandled: true,
-                response: Promise.resolve({ isActive: true }),
+                result: Promise.resolve({ isActive: true }),
             };
         }
 

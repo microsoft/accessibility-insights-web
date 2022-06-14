@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InterpreterResponse } from 'common/message';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { isPromise } from 'common/promises/is-promise';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { partition } from 'lodash';
@@ -46,21 +46,23 @@ export class EventResponseFactory {
         }
     }
 
-    public mergeInterpreterResponses(
-        interpreterResponses: InterpreterResponse[],
-    ): InterpreterResponse {
-        const handledResponses = interpreterResponses.filter(r => r.messageHandled);
+    public mergeBrowserMessageResponses(
+        responses: BrowserMessageResponse[],
+    ): BrowserMessageResponse {
+        const handledResponses = responses.filter(r => r.messageHandled);
         if (handledResponses.length === 0) {
             return { messageHandled: false };
         }
 
         return {
             messageHandled: true,
-            result: this.mergeResponses(handledResponses.map(r => r.result)),
+            result: this.mergeRawBrowserMessageResponses(handledResponses.map(r => r.result)),
         };
     }
 
-    public mergeResponses(responses: (void | Promise<void>)[]): void | Promise<void> {
+    public mergeRawBrowserMessageResponses(
+        responses: (void | Promise<void>)[],
+    ): void | Promise<void> {
         const [asyncResponses, fireAndForgetResponses] = partition(responses, isPromise);
 
         if (asyncResponses.length === 0) {

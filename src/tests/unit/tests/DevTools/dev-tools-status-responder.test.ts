@@ -32,7 +32,7 @@ describe(DevToolsStatusResponder, () => {
         const response = testSubject.handleBrowserMessage(message);
 
         expect(response.messageHandled).toBe(true);
-        await expect((response as HandledBrowserMessageResponse).response).resolves.toEqual(
+        await expect((response as HandledBrowserMessageResponse).result).resolves.toEqual(
             expectedResponse,
         );
     });

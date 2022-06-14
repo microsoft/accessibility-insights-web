@@ -53,7 +53,7 @@ export class StoreUpdateMessageHub {
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
             listener(message);
-            return { messageHandled: true, response: Promise.resolve() };
+            return { messageHandled: true, result: Promise.resolve() };
         }
     };
 

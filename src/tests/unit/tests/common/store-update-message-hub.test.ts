@@ -94,7 +94,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
         await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
@@ -104,7 +104,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(globalStoreMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
         await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
@@ -130,7 +130,7 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).response).toBe(listenerPromise);
+        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
         await listenerPromise;
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
@@ -155,11 +155,11 @@ describe(StoreUpdateMessageHub, () => {
         expect(response1.messageHandled).toBe(true);
         expect(response2.messageHandled).toBe(true);
 
-        expect((response1 as HandledBrowserMessageResponse).response).toBeInstanceOf(Promise);
-        expect((response2 as HandledBrowserMessageResponse).response).toBeInstanceOf(Promise);
+        expect((response1 as HandledBrowserMessageResponse).result).toBeInstanceOf(Promise);
+        expect((response2 as HandledBrowserMessageResponse).result).toBeInstanceOf(Promise);
 
-        await (response1 as HandledBrowserMessageResponse).response;
-        await (response2 as HandledBrowserMessageResponse).response;
+        await (response1 as HandledBrowserMessageResponse).result;
+        await (response2 as HandledBrowserMessageResponse).result;
 
         expect(registeredListener).toBeCalledWith(messageForStore);
         expect(anotherListener).toBeCalledWith(messageForAnotherStore);
