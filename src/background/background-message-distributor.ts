@@ -59,7 +59,10 @@ export class BackgroundMessageDistributor {
         // know how to handle this message, but some other extension page might, so don't indicate
         // an error at the sender until a timeout elapses with no context responding".
         //
-        // This is only correct because our extension only ever uses client <-> background messages.
+        // This is only correct because:
+        //   * our extension only ever uses client <-> background messages
+        //   * this distributor is only for use in the (sole) background context
+        //
         // If we ever start sending messages directly between different client pages, this will need
         // to be updated to indicate "message not handled" instead.
         return Promise.reject(
