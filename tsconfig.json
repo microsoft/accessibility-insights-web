@@ -1,9 +1,9 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "target": "es2020",
+        "target": "es2021",
         "module": "es2020",
-        "lib": ["es2020", "dom", "scripthost", "webworker"],
+        "lib": ["es2021", "dom", "scripthost", "webworker"],
         "outDir": "./dist/",
         "rootDir": "./",
         "baseUrl": "./src",

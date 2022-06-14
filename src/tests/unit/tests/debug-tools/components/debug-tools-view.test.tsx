@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -18,7 +17,7 @@ describe('DebugToolsView', () => {
         let storesHubMock: IMock<ClientStoresHub<DebugToolsViewState>>;
 
         beforeEach(() => {
-            storesHubMock = Mock.ofType<ClientStoresHub<DebugToolsViewState>>(BaseClientStoresHub);
+            storesHubMock = Mock.ofType<ClientStoresHub<DebugToolsViewState>>(ClientStoresHub);
         });
 
         it.each([true, false])('when storesHub.hasStoresData = %s', hasStoreData => {

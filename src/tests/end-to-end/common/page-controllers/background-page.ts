@@ -25,16 +25,18 @@ export class BackgroundPage extends Page {
 
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
         await this.waitForInitialization();
-        await this.evaluate(enable => {
-            window.insightsUserConfiguration.setHighContrastMode(enable);
-        }, enableHighContrast);
+        await this.evaluate(
+            enable => window.insightsUserConfiguration.setHighContrastMode(enable),
+            enableHighContrast,
+        );
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
         await this.waitForInitialization();
-        await this.evaluate(enable => {
-            window.insightsUserConfiguration.setTelemetryState(enable);
-        }, enableTelemetry);
+        await this.evaluate(
+            enable => window.insightsUserConfiguration.setTelemetryState(enable),
+            enableTelemetry,
+        );
     }
 
     public async enableFeatureFlag(flag: string): Promise<void> {

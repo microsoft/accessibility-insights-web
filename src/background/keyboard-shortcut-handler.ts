@@ -95,7 +95,7 @@ export class KeyboardShortcutHandler {
 
             if (visualizationType != null) {
                 this.createEnableNotificationIfCurrentStateIsDisabled(visualizationType, state);
-                this.invokeToggleAction(visualizationType, state, tabId);
+                await this.invokeToggleAction(visualizationType, state, tabId);
             }
         } catch (err) {
             this.logger.error('Error occurred at chrome command handler:', err);
@@ -147,11 +147,11 @@ export class KeyboardShortcutHandler {
         return visualizationType !== VisualizationType.TabStops;
     }
 
-    private invokeToggleAction(
+    private async invokeToggleAction(
         visualizationType: VisualizationType,
         state: VisualizationStoreData,
         tabId: number,
-    ): void {
+    ): Promise<void> {
         const configuration =
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData: ScanData = configuration.getStoreData(state.tests);
@@ -168,10 +168,11 @@ export class KeyboardShortcutHandler {
             test: visualizationType,
         };
 
-        this.tabContextManager.interpretMessageForTab(tabId, {
+        const response = this.tabContextManager.interpretMessageForTab(tabId, {
             tabId: tabId,
             messageType: action,
             payload,
         });
+        await response.result;
     }
 }

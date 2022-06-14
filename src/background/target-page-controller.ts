@@ -5,7 +5,7 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import { Message } from 'common/message';
+import { InterpreterMessage, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryNumberTo } from 'types/common-types';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
@@ -36,7 +36,7 @@ export class TargetPageController {
         const removedTabs = knownTabIds.filter(
             knownTab => !tabs.map(tab => tab.id).includes(knownTab),
         );
-        removedTabs.forEach(removedTabId => this.onTargetTabRemoved(removedTabId));
+        await Promise.all(removedTabs.map(removedTabId => this.onTargetTabRemoved(removedTabId)));
 
         const newTabs = tabs.filter(tab => {
             if (!knownTabIds.includes(tab.id)) {
@@ -47,9 +47,7 @@ export class TargetPageController {
             const tabUrl = this.knownTabs[tab.id];
             return tabUrl !== tab.url;
         });
-        for (const tab of newTabs) {
-            await this.handleTabUrlUpdate(tab.id);
-        }
+        await Promise.all(newTabs.map(tab => this.handleTabUrlUpdate(tab.id)));
     }
 
     public async onTabNavigated(
@@ -70,14 +68,16 @@ export class TargetPageController {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
-        this.sendTabVisibilityChangeAction(activeTabId, false);
+        await this.sendTabVisibilityChangeAction(activeTabId, false);
 
         const tabs = await this.browserAdapter.tabsQuery({ windowId });
-        tabs.forEach(tab => {
-            if (!tab.active) {
-                this.sendTabVisibilityChangeAction(tab.id, true);
-            }
-        });
+        await Promise.all(
+            tabs.map(async tab => {
+                if (!tab.active) {
+                    await this.sendTabVisibilityChangeAction(tab.id, true);
+                }
+            }),
+        );
     }
 
     public async onWindowFocusChanged(): Promise<void> {
@@ -92,17 +92,19 @@ export class TargetPageController {
                 windowId: chromeWindow.id,
             });
 
-            for (const activeTab of activeTabs) {
-                this.sendTabVisibilityChangeAction(
-                    activeTab.id,
-                    chromeWindow.state === 'minimized',
-                );
-            }
+            await Promise.all(
+                activeTabs.map(activeTab =>
+                    this.sendTabVisibilityChangeAction(
+                        activeTab.id,
+                        chromeWindow.state === 'minimized',
+                    ),
+                ),
+            );
         });
     }
 
     public async onTargetTabRemoved(tabId: number): Promise<void> {
-        this.tabContextManager.interpretMessageForTab(tabId, {
+        await this.interpretMessageAsync({
             messageType: Messages.Tab.Remove,
             payload: null,
             tabId: tabId,
@@ -142,29 +144,29 @@ export class TargetPageController {
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
         this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
-        this.sendTabUrlUpdatedAction(tabId);
+        await this.sendTabUrlUpdatedAction(tabId);
         await this.addKnownTabId(tabId);
     };
 
-    private sendTabUrlUpdatedAction(tabId: number): void {
-        this.browserAdapter.getTab(
-            tabId,
-            (tab: chrome.tabs.Tab) => {
-                this.tabContextManager.interpretMessageForTab(tabId, {
-                    messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: tab,
-                    tabId: tabId,
-                });
-            },
-            () => {
-                this.logger.log(
-                    `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
-                );
-            },
-        );
+    private async sendTabUrlUpdatedAction(tabId: number): Promise<void> {
+        let tab: chrome.tabs.Tab;
+        try {
+            tab = await this.browserAdapter.getTabAsync(tabId);
+        } catch (e) {
+            this.logger.log(
+                `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
+            );
+            return;
+        }
+
+        await this.interpretMessageAsync({
+            messageType: Messages.Tab.ExistingTabUpdated,
+            payload: tab,
+            tabId: tabId,
+        });
     }
 
-    private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {
+    private async sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): Promise<void> {
         const payload: PageVisibilityChangeTabPayload = {
             hidden: isHidden,
         };
@@ -173,6 +175,11 @@ export class TargetPageController {
             payload: payload,
             tabId: tabId,
         };
-        this.tabContextManager.interpretMessageForTab(tabId, message);
+        await this.interpretMessageAsync(message);
+    }
+
+    private async interpretMessageAsync(message: InterpreterMessage): Promise<void> {
+        const response = this.tabContextManager.interpretMessageForTab(message.tabId, message);
+        await response.result;
     }
 }

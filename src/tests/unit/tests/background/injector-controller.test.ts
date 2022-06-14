@@ -223,6 +223,7 @@ class InjectorControllerValidator {
                     }),
                 ),
             )
+            .returns(() => ({ messageHandled: true }))
             .verifiable(Times.exactly(numTimes));
 
         return this;

@@ -28,14 +28,14 @@ export class TelemetryListener {
 
     constructor(private readonly getDate: GetDate) {}
 
-    public readonly onTelemetryMessage = (telemetryMessage: any) => {
-        if (telemetryMessage.messageType !== Messages.DebugTools.Telemetry) {
-            return;
-        }
+    public readonly handleBrowserMessage = (browserMessage: any): void | Promise<void> => {
+        if (browserMessage.messageType === Messages.DebugTools.Telemetry) {
+            this.listeners.forEach(listener =>
+                listener(convertToDebugToolTelemetryMessage(browserMessage, this.getDate)),
+            );
 
-        this.listeners.forEach(listener =>
-            listener(convertToDebugToolTelemetryMessage(telemetryMessage, this.getDate)),
-        );
+            return Promise.resolve(); // Indicates that we "handled" the message
+        }
     };
 
     public addListener(listener: DebugToolsTelemetryMessageListener): void {
