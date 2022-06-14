@@ -1,18 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { loadTheme } from '@fluentui/react';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { DocumentManipulator } from 'common/document-manipulator';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { initializeFabricIcons } from 'common/fabric-icons';
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
+import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { SelfFastPass, SelfFastPassContainer } from 'common/self-fast-pass';
+import { StoreProxy } from 'common/store-proxy';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { StoreNames } from 'common/stores/store-names';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { contentPages } from 'content';
+import { textContent } from 'content/strings/text-content';
 import { ScannerUtils } from 'injected/scanner-utils';
+import ReactDOM from 'react-dom';
 import { scan } from 'scanner/exposed-apis';
 import UAParser from 'ua-parser-js';
-import { rendererDependencies } from './dependencies';
-import { renderer } from './renderer';
+import { Content } from 'views/content/content';
+import { renderer, RendererDeps } from './renderer';
 
 declare const window: SelfFastPassContainer & Window;
 
@@ -34,7 +48,39 @@ const exceptionTelemetryListener = new ExceptionTelemetryListener(
 );
 exceptionTelemetryListener.initialize(logger);
 
-renderer(rendererDependencies(browserAdapter, logger));
+const telemetryFactory = new TelemetryDataFactory();
+
+const contentActionMessageCreator = new ContentActionMessageCreator(
+    telemetryFactory,
+    TelemetryEventSource.ContentPage,
+    actionMessageDispatcher,
+);
+
+const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
+browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
+
+const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
+    StoreNames[StoreNames.UserConfigurationStore],
+    storeUpdateMessageHub,
+);
+const storesHub = new ClientStoresHub<any>([userConfigurationStore]);
+const documentManipulator = new DocumentManipulator(document);
+
+const rendererDependencies: RendererDeps = {
+    textContent,
+    dom: document,
+    render: ReactDOM.render,
+    initializeFabricIcons,
+    loadTheme,
+    contentProvider: contentPages,
+    contentActionMessageCreator,
+    storesHub,
+    documentManipulator,
+    getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+    ContentRootComponent: Content,
+};
+
+renderer(rendererDependencies);
 
 const selfFastPass = new SelfFastPass(
     new ScannerUtils(scan, logger),

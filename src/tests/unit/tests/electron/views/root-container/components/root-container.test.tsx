@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ViewRoutes } from 'electron/flux/types/window-state-store-data';
@@ -20,7 +19,7 @@ describe('RootContainer', () => {
     let props: RootContainerProps;
 
     beforeEach(() => {
-        storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
+        storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(ClientStoresHub);
 
         deps = { storesHub: storeHubMock.object } as RootContainerDeps;
         props = {

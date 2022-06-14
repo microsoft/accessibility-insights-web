@@ -7,7 +7,7 @@ import {
 } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -249,8 +249,8 @@ describe(DetailsViewContent.displayName, () => {
         storeMocks: StoreMocks,
         hasStores = true,
         hasStoreData = true,
-    ): IMock<BaseClientStoresHub<any>> {
-        const storesHubMock = Mock.ofType(BaseClientStoresHub);
+    ): IMock<ClientStoresHub<any>> {
+        const storesHubMock = Mock.ofType(ClientStoresHub);
         storesHubMock.setup(s => s.hasStores()).returns(() => hasStores);
         storesHubMock.setup(s => s.hasStoreData()).returns(() => hasStoreData);
         storesHubMock.setup(s => s.addChangedListenerToAllStores(It.isAny())).verifiable();
