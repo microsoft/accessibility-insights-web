@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { getStoreStateMessage } from 'common/messages';
@@ -66,7 +65,7 @@ describe(StoreUpdateMessageHub, () => {
         const result = testSubject.handleBrowserMessage(message);
 
         expect(registeredListener).toBeCalledTimes(0);
-        expect(result).toBeUndefined();
+        expect(result).toEqual({ messageHandled: false });
     });
 
     it('sends an initial getStoreState message on registration', () => {
@@ -94,8 +93,8 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
-        await listenerPromise;
+        const { result } = response as HandledBrowserMessageResponse;
+        await expect(result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });
@@ -104,8 +103,8 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(globalStoreMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
-        await listenerPromise;
+        const { result } = response as HandledBrowserMessageResponse;
+        await expect(result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(globalStoreMessage);
     });
@@ -130,8 +129,8 @@ describe(StoreUpdateMessageHub, () => {
         const response = testSubject.handleBrowserMessage(tabContextMessage);
 
         expect(response.messageHandled).toBe(true);
-        expect((response as HandledBrowserMessageResponse).result).toBe(listenerPromise);
-        await listenerPromise;
+        const { result } = response as HandledBrowserMessageResponse;
+        await expect(result).resolves.toBe(undefined);
 
         expect(registeredListener).toBeCalledWith(tabContextMessage);
     });

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { HandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { TimeoutError } from 'common/promises/promise-factory';
 import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
@@ -53,13 +54,13 @@ describe(EventResponseFactory, () => {
         );
     });
 
-    describe('mergeInterpreterResponses', () => {
+    describe('mergeBrowserMessageResponses', () => {
         beforeEach(() => {
             testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
         });
 
         it('returns messageHandled false if no interpreter handled the message', () => {
-            const output = testSubject.mergeInterpreterResponses([
+            const output = testSubject.mergeBrowserMessageResponses([
                 { messageHandled: false },
                 { messageHandled: false },
                 { messageHandled: false },
@@ -68,7 +69,7 @@ describe(EventResponseFactory, () => {
             expect(output).toStrictEqual({ messageHandled: false });
         });
 
-        it('delegates to mergeResponses behavior if some interpreters handle the message', () => {
+        it('delegates to mergeRawBrowserMessageResponses behavior if some responses handle the message', () => {
             const mixedResponses = [
                 { messageHandled: true },
                 { messageHandled: false },
@@ -79,18 +80,18 @@ describe(EventResponseFactory, () => {
             const mergeResponsesResult = Promise.resolve();
             testSubject.mergeRawBrowserMessageResponses = jest.fn(() => mergeResponsesResult);
 
-            const mergeInterpreterResponsesOutput =
-                testSubject.mergeInterpreterResponses(mixedResponses);
+            const mergedOutput = testSubject.mergeBrowserMessageResponses(mixedResponses);
 
-            expect(mergeInterpreterResponsesOutput.messageHandled).toBe(true);
+            expect(mergedOutput.messageHandled).toBe(true);
             expect(testSubject.mergeRawBrowserMessageResponses).toHaveBeenCalledWith(
                 handledResults,
             );
-            expect(mergeInterpreterResponsesOutput.result).toBe(mergeResponsesResult);
+            const { result } = mergedOutput as HandledBrowserMessageResponse;
+            expect(result).toBe(mergeResponsesResult);
         });
     });
 
-    describe('mergeResponses', () => {
+    describe('mergeRawBrowserMessageResponses', () => {
         beforeEach(() => {
             testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
         });

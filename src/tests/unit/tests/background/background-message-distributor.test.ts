@@ -6,6 +6,10 @@ import { Interpreter } from 'background/interpreter';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import {
+    BrowserMessageResponse,
+    HandledBrowserMessageResponse,
+} from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { InterpreterMessage, InterpreterResponse, Message } from 'common/message';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -22,7 +26,7 @@ describe(BackgroundMessageDistributor, () => {
 
     let testSubject: BackgroundMessageDistributor;
 
-    let distributeMessageCallback: (message: any, sender?: Sender) => any;
+    let distributeMessageCallback: (message: any, sender?: Sender) => BrowserMessageResponse;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
@@ -101,7 +105,7 @@ describe(BackgroundMessageDistributor, () => {
 
                 eventResponseFactoryMock
                     .setup(m =>
-                        m.mergeInterpreterResponses([
+                        m.mergeBrowserMessageResponses([
                             globalInterpreterResponse,
                             tabInterpreterResponse,
                         ]),
@@ -113,14 +117,14 @@ describe(BackgroundMessageDistributor, () => {
             it('merges interpreter responses when tabId is embedded in message', () => {
                 const response = distributeMessageCallback(tabBoundMessage);
 
-                expect(response).toBe(mergedResponse.result);
+                expect(response).toBe(mergedResponse);
             });
 
             it('merges interpreter responses when tabId is inferred from sender', () => {
                 const sender = { tab: { id: tabId } };
                 const response = distributeMessageCallback(globalOnlyMessage, sender);
 
-                expect(response).toBe(mergedResponse.result);
+                expect(response).toBe(mergedResponse);
             });
         });
 
@@ -145,7 +149,7 @@ describe(BackgroundMessageDistributor, () => {
             };
 
             eventResponseFactoryMock
-                .setup(m => m.mergeInterpreterResponses(It.isAny()))
+                .setup(m => m.mergeBrowserMessageResponses(It.isAny()))
                 .callback(input => {
                     expect(input).toEqual([globalInterpreterResponse, notHandledResponse]);
                 })
@@ -154,7 +158,7 @@ describe(BackgroundMessageDistributor, () => {
 
             const response = distributeMessageCallback(globalOnlyMessage);
 
-            expect(response).toBe(mergedResponse.result);
+            expect(response).toBe(mergedResponse);
         });
     });
 
@@ -166,35 +170,14 @@ describe(BackgroundMessageDistributor, () => {
             testSubject.initialize();
         });
 
-        it('should return undefined if there is no response object', () => {
-            setupInterpretBackchannelMessage(message as InterpreterMessage);
-
-            const actualResponse = distributeMessageCallback(message);
-
-            expect(actualResponse).toBeUndefined();
-        });
-
-        it('should return received non-promise response wrapped in a promise', async () => {
-            const response = 'response obj';
-            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
-
-            const actualResponse = distributeMessageCallback(message);
-
-            expect(actualResponse).toBeInstanceOf(Promise);
-            expect(await actualResponse).toBe(response);
-        });
-
         it('should return received promise response', async () => {
-            const response = 'response obj';
-            setupInterpretBackchannelMessage(
-                message as InterpreterMessage,
-                Promise.resolve(response),
-            );
+            const backchannelResult = Promise.resolve('from backchannel');
+            setupBackchannelToHandleMessage(message as InterpreterMessage, backchannelResult);
 
-            const actualResponse = distributeMessageCallback(message);
+            const response = distributeMessageCallback(message);
 
-            expect(actualResponse).toBeInstanceOf(Promise);
-            expect(await actualResponse).toBe(response);
+            expect(response.messageHandled).toBe(true);
+            expect((response as HandledBrowserMessageResponse).result).toBe(backchannelResult);
         });
     });
 
@@ -209,9 +192,12 @@ describe(BackgroundMessageDistributor, () => {
 
             testSubject.initialize();
 
-            const result = distributeMessageCallback(message);
+            const response = distributeMessageCallback(message);
 
-            await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(
+            expect(response.messageHandled).toBe(true);
+            await expect(
+                (response as HandledBrowserMessageResponse).result,
+            ).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"Unable to interpret message - {\\"payload\\":\\"test-payload\\"}"`,
             );
         });
@@ -229,22 +215,25 @@ describe(BackgroundMessageDistributor, () => {
             .verifiable(Times.atMostOnce());
 
         eventResponseFactoryMock
-            .setup(m => m.mergeInterpreterResponses(It.isAny()))
+            .setup(m => m.mergeBrowserMessageResponses(It.isAny()))
             .returns(() => ({ messageHandled: false }))
             .verifiable(Times.atMostOnce());
     }
 
     function setupBackchannelToIgnoreMessages(): void {
         postMessageContentHandlerMock
-            .setup(o => o.handleMessage(It.isAny()))
+            .setup(o => o.handleBrowserMessage(It.isAny()))
             .returns(() => ({ messageHandled: false }))
             .verifiable(Times.atMostOnce());
     }
 
-    function setupInterpretBackchannelMessage(message: InterpreterMessage, response?: any): void {
+    function setupBackchannelToHandleMessage(
+        message: InterpreterMessage,
+        result: void | Promise<any>,
+    ): void {
         postMessageContentHandlerMock
-            .setup(o => o.handleMessage(It.isObjectWith(message)))
-            .returns(() => ({ messageHandled: true, response }))
+            .setup(o => o.handleBrowserMessage(It.isObjectWith(message)))
+            .returns(() => ({ messageHandled: true, result }))
             .verifiable();
     }
 });
