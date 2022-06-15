@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    BrowserMessageDistributor,
-    BrowserMessageHandler,
-} from 'common/browser-adapters/browser-message-distributor';
+import { BrowserMessageDistributor } from 'common/browser-adapters/browser-message-distributor';
+import { BrowserMessageHandler } from 'common/browser-adapters/browser-message-handler';
 import {
     createSimulatedBrowserAdapter,
     SimulatedBrowserAdapter,
@@ -14,11 +12,11 @@ describe(BrowserMessageDistributor, () => {
     let mockBrowserAdapter: SimulatedBrowserAdapter;
 
     function makeIgnoringHandler(): BrowserMessageHandler {
-        return () => {};
+        return () => ({ messageHandled: false });
     }
 
     function makeRespondingHandler(response: any): BrowserMessageHandler {
-        return () => response;
+        return () => ({ messageHandled: true, result: response });
     }
 
     beforeEach(() => {
@@ -36,9 +34,10 @@ describe(BrowserMessageDistributor, () => {
         ]);
         testSubject.initialize();
 
-        await expect(mockBrowserAdapter.notifyOnMessage('message')).resolves.toBe(
-            'second handler response',
-        );
+        const response = mockBrowserAdapter.notifyOnMessage('message');
+
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).resolves.toBe('second handler response');
     });
 
     it("stops invoking further listeners once one indicates that it's handled the message", () => {
@@ -62,6 +61,7 @@ describe(BrowserMessageDistributor, () => {
         ]);
         testSubject.initialize();
 
-        expect(mockBrowserAdapter.notifyOnMessage('message')).toBeUndefined();
+        const response = mockBrowserAdapter.notifyOnMessage('message');
+        expect(response.messageHandled).toBe(false);
     });
 });

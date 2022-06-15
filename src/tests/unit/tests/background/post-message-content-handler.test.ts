@@ -35,7 +35,7 @@ describe('PostMessageContentHandlerTest', () => {
         testSubject = new PostMessageContentHandler(mockPostMessageContentRepository.object);
     });
 
-    it('stores content in PostMessageContentRepository when the corresponding message is received', () => {
+    it('stores content in PostMessageContentRepository when the corresponding message is received', async () => {
         mockPostMessageContentRepository
             .setup(repository =>
                 repository.storeContent(
@@ -45,7 +45,10 @@ describe('PostMessageContentHandlerTest', () => {
             )
             .verifiable(Times.once());
 
-        testSubject.handleMessage(storeMessage);
+        const response = testSubject.handleBrowserMessage(storeMessage);
+
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).resolves.toBeUndefined();
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -56,11 +59,10 @@ describe('PostMessageContentHandlerTest', () => {
             .returns(() => retrieveResponseMessage.stringifiedMessageData)
             .verifiable(Times.once());
 
-        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const response = testSubject.handleBrowserMessage(retrieveRequestMessage);
 
-        expect(success).toBeTruthy();
-        expect(response).toBeInstanceOf(Promise);
-        expect(await response).toEqual(retrieveResponseMessage);
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).resolves.toEqual(retrieveResponseMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });
@@ -77,10 +79,9 @@ describe('PostMessageContentHandlerTest', () => {
             messageType: 'irrelevant-type' as any,
         } as InterpreterMessage;
 
-        const { success, response } = testSubject.handleMessage(messageStub);
+        const response = testSubject.handleBrowserMessage(messageStub);
 
-        expect(success).toBeFalsy();
-        expect(response).not.toBeInstanceOf(Promise);
+        expect(response.messageHandled).toBe(false);
         mockPostMessageContentRepository.verifyAll();
     });
 
@@ -91,11 +92,10 @@ describe('PostMessageContentHandlerTest', () => {
             .throws(new Error(errorMessage))
             .verifiable(Times.once());
 
-        const { success, response } = testSubject.handleMessage(retrieveRequestMessage);
+        const response = testSubject.handleBrowserMessage(retrieveRequestMessage);
 
-        expect(success).toBeTruthy();
-        expect(response).toBeInstanceOf(Promise);
-        await expect(response).rejects.toThrowError(errorMessage);
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).rejects.toThrowError(errorMessage);
 
         mockPostMessageContentRepository.verifyAll();
     });

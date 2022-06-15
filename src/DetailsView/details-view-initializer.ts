@@ -161,9 +161,9 @@ const documentElementSetter = new DocumentManipulator(dom);
 initializeFabricIcons();
 
 if (tabId != null) {
-    browserAdapter.getTab(
-        tabId,
-        (tab: Tab): void => {
+    void browserAdapter
+        .getTabAsync(tabId)
+        .then((tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
             const actionMessageDispatcher = new RemoteActionMessageDispatcher(
@@ -176,7 +176,7 @@ if (tabId != null) {
                 actionMessageDispatcher,
                 tab.id,
             );
-            browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
+            browserAdapter.addListenerOnRuntimeMessage(storeUpdateMessageHub.handleBrowserMessage);
 
             const visualizationStore = new StoreProxy<VisualizationStoreData>(
                 StoreNames[StoreNames.VisualizationStore],
@@ -593,16 +593,15 @@ if (tabId != null) {
                 logger,
             );
             window.selfFastPass = selfFastPass;
-        },
-        () => {
+        })
+        .catch(() => {
             const renderer = createNullifiedRenderer(
                 document,
                 ReactDOM.render,
                 createDefaultLogger(),
             );
             renderer.render();
-        },
-    );
+        });
 }
 
 function createNullifiedRenderer(

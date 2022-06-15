@@ -79,7 +79,10 @@ describe('FeatureFlagsControllerTest', () => {
             tabId: null,
         };
 
-        interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
+        interpreterMock
+            .setup(i => i.interpret(It.isObjectWith(message)))
+            .returns(() => ({ messageHandled: true, result: undefined }))
+            .verifiable();
         featureFlagStoreMock
             .setup(f => f.getState())
             .returns(() => storeDataStub)
@@ -96,18 +99,21 @@ describe('FeatureFlagsControllerTest', () => {
         featureFlagStoreMock.verifyAll();
     });
 
-    test('resetFeatureFlags', () => {
+    test('resetFeatureFlags', async () => {
         const message: Message = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };
-        interpreterMock.setup(i => i.interpret(It.isObjectWith(message))).verifiable();
+        interpreterMock
+            .setup(i => i.interpret(It.isObjectWith(message)))
+            .returns(() => ({ messageHandled: true, result: undefined }))
+            .verifiable();
 
         testObject = new FeatureFlagsController(
             featureFlagStoreMock.object,
             interpreterMock.object,
         );
-        testObject.resetFeatureFlags();
+        await testObject.resetFeatureFlags();
         interpreterMock.verifyAll();
     });
 });

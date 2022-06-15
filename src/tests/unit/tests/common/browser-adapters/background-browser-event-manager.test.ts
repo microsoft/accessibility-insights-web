@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { ApplicationListener } from 'common/browser-adapters/browser-event-manager';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import {
     createDefaultPromiseFactory,
     PromiseFactory,
@@ -14,6 +15,7 @@ import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-
 describe(BackgroundBrowserEventManager, () => {
     let realPromiseFactory: PromiseFactory;
     let timeSimulatingPromiseFactory: TimeSimulatingPromiseFactory;
+    let eventResponseFactory: EventResponseFactory;
     let recordingLogger: RecordingLogger;
     let testEvent: SimulatedBrowserEvent<(...args: string[]) => Promise<string>>;
     let testSubject: BackgroundBrowserEventManager;
@@ -23,10 +25,11 @@ describe(BackgroundBrowserEventManager, () => {
         timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
         recordingLogger = new RecordingLogger();
         testEvent = new SimulatedBrowserEvent();
+        eventResponseFactory = new EventResponseFactory(timeSimulatingPromiseFactory, true);
         testSubject = new BackgroundBrowserEventManager(
             timeSimulatingPromiseFactory,
+            eventResponseFactory,
             recordingLogger,
-            true,
         );
     });
 
@@ -124,8 +127,8 @@ describe(BackgroundBrowserEventManager, () => {
     it('honors fire and forget timeout when isServiceWorker is set', async () => {
         testSubject = new BackgroundBrowserEventManager(
             timeSimulatingPromiseFactory,
+            eventResponseFactory,
             recordingLogger,
-            true,
         );
 
         testSubject.preregisterBrowserListeners({ 'event-type': testEvent });

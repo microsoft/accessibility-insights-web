@@ -57,7 +57,7 @@ const contentActionMessageCreator = new ContentActionMessageCreator(
 );
 
 const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher);
-browserAdapter.addListenerOnMessage(storeUpdateMessageHub.handleBrowserMessage);
+browserAdapter.addListenerOnRuntimeMessage(storeUpdateMessageHub.handleBrowserMessage);
 
 const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
     StoreNames[StoreNames.UserConfigurationStore],

@@ -5,10 +5,11 @@ import { GlobalContext } from 'background/global-context';
 import { Interpreter } from 'background/interpreter';
 import { PostMessageContentHandler } from 'background/post-message-content-handler';
 import { TabContextManager } from 'background/tab-context-manager';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
+import { InterpreterMessage, InterpreterResponse, Message } from 'common/message';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { Logger } from '../../../../common/logging/logger';
-import { InterpreterMessage } from '../../../../common/message';
 
 describe(BackgroundMessageDistributor, () => {
     const tabId = 1;
@@ -18,18 +19,16 @@ describe(BackgroundMessageDistributor, () => {
     let globalContextMock: IMock<GlobalContext>;
     let globalInterpreterMock: IMock<Interpreter>;
     let postMessageContentHandlerMock: IMock<PostMessageContentHandler>;
-    let loggerMock: IMock<Logger>;
+    let eventResponseFactoryMock: IMock<EventResponseFactory>;
 
     let testSubject: BackgroundMessageDistributor;
 
-    let distributeMessageCallback: (message: any, sender?: Sender) => any;
+    let distributeMessageCallback: (message: any, sender?: Sender) => BrowserMessageResponse;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
 
         globalInterpreterMock = Mock.ofType(Interpreter);
-        setupGlobalInterpreterInteraction(false);
-
         tabContextManagerMock = Mock.ofType(TabContextManager);
 
         globalContextMock = Mock.ofType(GlobalContext);
@@ -37,17 +36,17 @@ describe(BackgroundMessageDistributor, () => {
 
         postMessageContentHandlerMock = Mock.ofType<PostMessageContentHandler>();
 
-        loggerMock = Mock.ofType<Logger>();
+        eventResponseFactoryMock = Mock.ofType<EventResponseFactory>();
         testSubject = new BackgroundMessageDistributor(
             globalContextMock.object,
             tabContextManagerMock.object,
             postMessageContentHandlerMock.object,
             mockBrowserAdapter.object,
-            loggerMock.object,
+            eventResponseFactoryMock.object,
         );
 
         mockBrowserAdapter
-            .setup(adapter => adapter.addListenerOnMessage(It.isAny()))
+            .setup(adapter => adapter.addListenerOnRuntimeMessage(It.isAny()))
             .callback(callback => {
                 distributeMessageCallback = callback;
             })
@@ -58,124 +57,178 @@ describe(BackgroundMessageDistributor, () => {
         tabContextManagerMock.verifyAll();
         globalInterpreterMock.verifyAll();
         postMessageContentHandlerMock.verifyAll();
-        loggerMock.verifyAll();
+        eventResponseFactoryMock.verifyAll();
     });
 
-    test('distribute message to both global & tabcontext', () => {
-        const message = { tabId: tabId, payload: {} };
+    describe('with interpreter-bound messages', () => {
+        const tabBoundMessage: Message = { tabId: tabId, messageType: 'type', payload: {} };
+        const globalOnlyMessage: Message = { messageType: 'type', payload: {} };
 
-        setupTabInterpreterInteraction(true);
-        setupBackchannelIgnoreMessage(message);
-        setupNeverLogFailure();
+        let globalInterpreterResponse: InterpreterResponse;
+        let tabInterpreterResponse: InterpreterResponse;
+        const notHandledResponse: InterpreterResponse = { messageHandled: false };
 
-        testSubject.initialize();
+        beforeEach(() => {
+            setupBackchannelToIgnoreMessages();
+            testSubject.initialize();
+        });
 
-        distributeMessageCallback(message);
+        describe('for a specific tab', () => {
+            let mergedResponse: InterpreterResponse;
+
+            beforeEach(() => {
+                globalInterpreterResponse = {
+                    messageHandled: true,
+                    result: Promise.resolve(),
+                } as InterpreterResponse;
+                globalInterpreterMock
+                    .setup(m => m.interpret(tabBoundMessage))
+                    .returns(() => globalInterpreterResponse)
+                    .verifiable(Times.once());
+
+                tabInterpreterResponse = {
+                    messageHandled: true,
+                    result: Promise.resolve(),
+                } as InterpreterResponse;
+                tabContextManagerMock
+                    .setup(m => m.interpretMessageForTab(tabId, tabBoundMessage))
+                    .returns(() => tabInterpreterResponse)
+                    .verifiable(Times.once());
+
+                mergedResponse = {
+                    messageHandled: true,
+                    result: Promise.resolve(),
+                };
+
+                eventResponseFactoryMock
+                    .setup(m =>
+                        m.mergeBrowserMessageResponses([
+                            globalInterpreterResponse,
+                            tabInterpreterResponse,
+                        ]),
+                    )
+                    .returns(() => mergedResponse)
+                    .verifiable(Times.once());
+            });
+
+            it('merges interpreter responses when tabId is embedded in message', () => {
+                const response = distributeMessageCallback(tabBoundMessage);
+
+                expect(response).toBe(mergedResponse);
+            });
+
+            it('merges interpreter responses when tabId is inferred from sender', () => {
+                const sender = { tab: { id: tabId } };
+                const response = distributeMessageCallback(globalOnlyMessage, sender);
+
+                expect(response).toBe(mergedResponse);
+            });
+        });
+
+        it('delegates globally-bound message merging to eventResponseHandler', () => {
+            globalInterpreterResponse = {
+                messageHandled: true,
+                result: Promise.resolve(),
+            } as InterpreterResponse;
+            globalInterpreterMock
+                .setup(m => m.interpret(globalOnlyMessage))
+                .returns(() => globalInterpreterResponse)
+                .verifiable(Times.once());
+
+            // Shouldn't send messages without tab id to tab context
+            tabContextManagerMock
+                .setup(m => m.interpretMessageForTab(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+
+            const mergedResponse: InterpreterResponse = {
+                messageHandled: true,
+                result: Promise.resolve(),
+            };
+
+            eventResponseFactoryMock
+                .setup(m => m.mergeBrowserMessageResponses(It.isAny()))
+                .callback(input => {
+                    expect(input).toEqual([globalInterpreterResponse, notHandledResponse]);
+                })
+                .returns(() => mergedResponse)
+                .verifiable(Times.once());
+
+            const response = distributeMessageCallback(globalOnlyMessage);
+
+            expect(response).toBe(mergedResponse);
+        });
     });
 
-    test('should not distribute message, when tabid is not set', () => {
+    describe('with backchannel window messages', () => {
         const message = { payload: {} };
 
-        setupTabInterpreterWithoutInteraction();
-        setupBackchannelIgnoreMessage(message);
-        setupLogFailure();
+        beforeEach(() => {
+            setupInterpretersToIgnoreMessages();
+            testSubject.initialize();
+        });
 
-        testSubject.initialize();
+        it('should return received promise response', async () => {
+            const backchannelResult = Promise.resolve('from backchannel');
+            setupBackchannelToHandleMessage(message as InterpreterMessage, backchannelResult);
 
-        distributeMessageCallback(message);
+            const response = distributeMessageCallback(message);
+
+            expect(response.messageHandled).toBe(true);
+            expect(response.result).toBe(backchannelResult);
+        });
     });
 
-    test('should not distribute message, when tabid is not set & sender tab is null ', () => {
-        const message = { payload: {} };
-        const sender: Sender = {};
+    describe('with unrecognized messages', () => {
+        beforeEach(() => {
+            setupInterpretersToIgnoreMessages();
+            setupBackchannelToIgnoreMessages();
+        });
 
-        setupTabInterpreterWithoutInteraction();
-        setupBackchannelIgnoreMessage(message);
-        setupLogFailure();
-
-        testSubject.initialize();
-
-        distributeMessageCallback(message, sender);
-    });
-
-    test('should distribute message, when sender has tab id', () => {
-        const message = { payload: {} } as InterpreterMessage;
-        const sender: Sender = { tab: { id: 1 } };
-
-        setupTabInterpreterInteraction(true);
-        setupBackchannelIgnoreMessage(message);
-        setupNeverLogFailure();
-
-        testSubject.initialize();
-
-        distributeMessageCallback(message, sender);
-
-        expect(message.tabId).toBe(tabId);
-    });
-
-    test.each(['response obj', undefined])(
-        'should distribute backchannel message and return %s',
-        response => {
-            const message = { payload: {} };
-
-            setupTabInterpreterWithoutInteraction();
-            setupInterpretBackchannelMessage(message as InterpreterMessage, response);
-            setupNeverLogFailure();
+        it('should emit a rejected promise describing the unrecognized message', async () => {
+            const message = { payload: 'test-payload' };
 
             testSubject.initialize();
 
-            const actualResponse = distributeMessageCallback(message);
+            const response = distributeMessageCallback(message);
 
-            expect(actualResponse).toEqual(response);
-        },
-    );
+            expect(response.messageHandled).toBe(true);
+            await expect(response.result).rejects.toThrowErrorMatchingInlineSnapshot(
+                `"Unable to interpret message - {\\"payload\\":\\"test-payload\\"}"`,
+            );
+        });
+    });
 
-    function setupTabInterpreterWithoutInteraction(): void {
+    function setupInterpretersToIgnoreMessages(): void {
         tabContextManagerMock
-            .setup(m => m.interpretMessageForTab(It.isAny(), It.isAny()))
-            .verifiable(Times.never());
-    }
+            .setup(m => m.interpretMessageForTab(It.isValue(tabId), It.isAny()))
+            .returns(() => ({ messageHandled: false }))
+            .verifiable(Times.atMostOnce());
 
-    function setupGlobalInterpreterInteraction(success: boolean): void {
         globalInterpreterMock
-            .setup(x => x.interpret(It.isAny()))
-            .returns(() => success)
-            .verifiable(Times.once());
+            .setup(m => m.interpret(It.isAny()))
+            .returns(() => ({ messageHandled: false }))
+            .verifiable(Times.atMostOnce());
+
+        eventResponseFactoryMock
+            .setup(m => m.mergeBrowserMessageResponses(It.isAny()))
+            .returns(() => ({ messageHandled: false }))
+            .verifiable(Times.atMostOnce());
     }
 
-    function setupTabInterpreterInteraction(success: boolean): void {
-        tabContextManagerMock
-            .setup(m => m.interpretMessageForTab(tabId, It.isAny()))
-            .returns(() => success)
-            .verifiable(Times.once());
-    }
-
-    function setupBackchannelIgnoreMessage(message: any): void {
+    function setupBackchannelToIgnoreMessages(): void {
         postMessageContentHandlerMock
-            .setup(o => o.handleMessage(It.isObjectWith(message)))
-            .returns(() => ({ success: false }))
-            .verifiable();
+            .setup(o => o.handleBrowserMessage(It.isAny()))
+            .returns(() => ({ messageHandled: false }))
+            .verifiable(Times.atMostOnce());
     }
 
-    function setupInterpretBackchannelMessage(message: InterpreterMessage, response?: any): void {
+    function setupBackchannelToHandleMessage(
+        message: InterpreterMessage,
+        result: void | Promise<any>,
+    ): void {
         postMessageContentHandlerMock
-            .setup(o => o.handleMessage(It.isObjectWith(message)))
-            .returns(() => ({ success: true, response }))
+            .setup(o => o.handleBrowserMessage(It.isObjectWith(message)))
+            .returns(() => ({ messageHandled: true, result }))
             .verifiable();
-    }
-
-    function setupLogFailure() {
-        loggerMock
-            .setup(l =>
-                l.log(
-                    It.is(message => (message as string).includes('Unable to interpret message')),
-                    It.isAny(),
-                ),
-            )
-            .verifiable();
-    }
-
-    function setupNeverLogFailure() {
-        loggerMock.setup(l => l.log(It.isAny(), It.isAny())).verifiable(Times.never());
     }
 });

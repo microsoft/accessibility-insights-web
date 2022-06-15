@@ -12,6 +12,7 @@ import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-
 import { createToolData } from 'common/application-properties-provider';
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -60,7 +61,12 @@ async function initialize(): Promise<void> {
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
 
-    const browserEventManager = new BackgroundBrowserEventManager(promiseFactory, logger, false);
+    const eventResponseFactory = new EventResponseFactory(promiseFactory, false);
+    const browserEventManager = new BackgroundBrowserEventManager(
+        promiseFactory,
+        eventResponseFactory,
+        logger,
+    );
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
     browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
@@ -201,7 +207,7 @@ async function initialize(): Promise<void> {
         tabContextManager,
         postMessageContentHandler,
         browserAdapter,
-        logger,
+        eventResponseFactory,
     );
     messageDistributor.initialize();
 

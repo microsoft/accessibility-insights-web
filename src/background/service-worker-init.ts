@@ -29,6 +29,7 @@ import { createToolData } from 'common/application-properties-provider';
 import { AxeInfo } from 'common/axe-info';
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -52,7 +53,12 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
-    const browserEventManager = new BackgroundBrowserEventManager(promiseFactory, logger, true);
+    const eventResponseFactory = new EventResponseFactory(promiseFactory, true);
+    const browserEventManager = new BackgroundBrowserEventManager(
+        promiseFactory,
+        eventResponseFactory,
+        logger,
+    );
     const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
 
     // It is important that the browser listeners gets preregistered *before* any "await" statement.
@@ -185,7 +191,7 @@ async function initialize(): Promise<void> {
         tabContextManager,
         postMessageContentHandler,
         browserAdapter,
-        logger,
+        eventResponseFactory,
     );
     messageDistributor.initialize();
 
