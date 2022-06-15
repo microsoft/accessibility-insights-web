@@ -3,7 +3,7 @@
 import { DetailsViewController } from 'background/details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Message } from 'common/message';
+import { InterpreterResponse, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryStringTo } from 'types/common-types';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -13,9 +13,24 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly browserAdapter: BrowserAdapter,
         private readonly tabIdToDetailsViewMap: DictionaryStringTo<number>,
         private readonly idbInstance: IndexedDBAPI,
-        private readonly interpretMessageForTab: (tabId: number, message: Message) => void,
-        private persistStoreData = false,
+        private readonly interpretMessageForTab: (
+            tabId: number,
+            message: Message,
+        ) => InterpreterResponse,
+        private readonly persistStoreData: boolean,
     ) {}
+
+    public async initialize(): Promise<void> {
+        const tabIds = (await this.browserAdapter.tabsQuery({})).map(tab => tab.id);
+
+        const knownTabIds = Object.keys(this.tabIdToDetailsViewMap).flatMap(targetTabId => [
+            parseInt(targetTabId),
+            this.tabIdToDetailsViewMap[targetTabId],
+        ]);
+
+        const removedTabs = knownTabIds.filter(tabId => !tabIds.includes(tabId));
+        await Promise.all(removedTabs.map(tabId => this.onRemoveTab(tabId)));
+    }
 
     public async onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
@@ -26,7 +41,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
 
         if (this.hasUrlChange(changeInfo, targetTabId)) {
             delete this.tabIdToDetailsViewMap[targetTabId];
-            this.onDetailsViewTabRemoved(targetTabId);
+            await this.onDetailsViewTabRemoved(targetTabId);
             await this.persistTabIdToDetailsViewMap();
         }
     }
@@ -38,7 +53,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
             if (targetTabId) {
                 delete this.tabIdToDetailsViewMap[targetTabId];
-                this.onDetailsViewTabRemoved(targetTabId);
+                await this.onDetailsViewTabRemoved(targetTabId);
             }
         }
 
@@ -103,11 +118,12 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         return null;
     }
 
-    private onDetailsViewTabRemoved(targetTabId: number): void {
-        this.interpretMessageForTab(targetTabId, {
+    private async onDetailsViewTabRemoved(targetTabId: number): Promise<void> {
+        const response = this.interpretMessageForTab(targetTabId, {
             messageType: Messages.Visualizations.DetailsView.Close,
             payload: null,
             tabId: targetTabId,
         });
+        await response.result;
     }
 }

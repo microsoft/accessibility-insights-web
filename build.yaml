@@ -41,6 +41,10 @@ jobs:
             displayName: generate typings for scss files
             timeoutInMinutes: 3
 
+          - script: yarn type:check
+            displayName: type check code
+            timeoutInMinutes: 3
+
           - script: yarn null:check
             displayName: check for strictNullChecks violations
             timeoutInMinutes: 5

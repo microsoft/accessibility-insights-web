@@ -5,7 +5,7 @@ import { CapturedInstanceActionType } from 'common/types/captured-instance-actio
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface FailureInstanceState {
-    isPanelOpen: boolean | null;
+    isPanelOpen: boolean;
     selectedRequirementId: TabStopRequirementId | null;
     selectedInstanceId: string | null;
     description: string | null;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -28,27 +28,31 @@ export interface TargetPageStoreData {
 }
 
 export class ClientStoreListener {
-    private onReadyToExecuteVisualizationUpdates: ((storeData: TargetPageStoreData) => void)[] = [];
-    constructor(private storeHub: BaseClientStoresHub<TargetPageStoreData>) {
+    private onReadyToExecuteVisualizationUpdates: ((
+        storeData: TargetPageStoreData,
+    ) => void | Promise<void>)[] = [];
+    constructor(private storeHub: ClientStoresHub<TargetPageStoreData>) {
         this.storeHub.addChangedListenerToAllStores(this.onChangedState);
     }
 
     public registerOnReadyToExecuteVisualizationCallback = (
-        callback: (storeData: TargetPageStoreData) => void,
+        callback: (storeData: TargetPageStoreData) => void | Promise<void>,
     ) => {
         this.onReadyToExecuteVisualizationUpdates.push(callback);
     };
 
-    private onChangedState = (): void => {
-        const storeData = this.storeHub.getAllStoreData();
-        if (storeData == null) {
+    private onChangedState = async () => {
+        if (!this.storeHub.hasStores() || !this.storeHub.hasStoreData()) {
             return;
         }
 
+        const storeData = this.storeHub.getAllStoreData() as TargetPageStoreData;
         if (storeData.visualizationStoreData.scanning != null) {
             return;
         }
 
-        this.onReadyToExecuteVisualizationUpdates.forEach(callback => callback(storeData));
+        await Promise.all(
+            this.onReadyToExecuteVisualizationUpdates.map(callback => callback(storeData)),
+        );
     };
 }

@@ -5,7 +5,7 @@ import { Logger } from 'common/logging/logger';
 import { NamedFC } from 'common/react/named-fc';
 import { OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import * as React from 'react';
-import * as styles from './folder-picker.scss';
+import styles from './folder-picker.scss';
 
 export type FolderPickerDeps = {
     showOpenFileDialog: (opts: OpenDialogOptions) => Promise<OpenDialogReturnValue>;

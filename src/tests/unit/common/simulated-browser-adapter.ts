@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import {
+    BrowserMessageHandler,
+    BrowserMessageResponse,
+} from 'common/browser-adapters/browser-message-handler';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
 import { Runtime, Tabs, Windows } from 'webextension-polyfill';
@@ -19,7 +23,6 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     tabs: chrome.tabs.Tab[];
 
     // These are set directly to whichever listener was last registered in the corresponding this.object.addListener* call
-    notifyOnConnect?: (port: chrome.runtime.Port) => void | Promise<void>;
     notifyTabsOnActivated?: (activeInfo: chrome.tabs.TabActiveInfo) => void | Promise<void>;
     notifyTabsOnUpdated?: (
         tabId: number,
@@ -41,13 +44,12 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
 
     // This simulates normal browser runtime.onMessage behavior:
     //  - it loops through each listener previously registered with addListenerOnMessage
-    //  - if any listener returns a Promise (as opposed to undefined), notify will return that
-    //    response Promise and will not call any further listeners
-    //  - if no listener returns a Promise, return undefined after the last listener is done
-    notifyOnMessage: (message: any, sender?: Runtime.MessageSender) => void | Promise<any>;
+    //  - if any listener indicates that it handled the message, notify will return that
+    //    listener's response and will not call any further listeners
+    //  - if no listener indicates that it handled the message, return { messageHandled: false }
+    //    after the last listener is done
+    notifyOnMessage: (message: any, sender?: Runtime.MessageSender) => BrowserMessageResponse;
 };
-
-type MessageListener = (message: any, sender: Runtime.MessageSender) => void | Promise<any>;
 
 export function createSimulatedBrowserAdapter(
     tabs?: chrome.tabs.Tab[],
@@ -57,10 +59,7 @@ export function createSimulatedBrowserAdapter(
         Mock.ofType<BrowserAdapter>();
     mock.tabs = [...(tabs ?? [])];
     mock.windows = [...(windows ?? [])];
-    const messageListeners: MessageListener[] = [];
-    mock.setup(m => m.addListenerOnConnect(It.is(isFunction))).callback(
-        c => (mock.notifyOnConnect = c),
-    );
+    const messageListeners: BrowserMessageHandler[] = [];
     mock.setup(m => m.addListenerToTabsOnActivated(It.is(isFunction))).callback(
         c => (mock.notifyTabsOnActivated = c),
     );
@@ -76,7 +75,7 @@ export function createSimulatedBrowserAdapter(
     mock.setup(m => m.addListenerOnWindowsFocusChanged(It.is(isFunction))).callback(
         c => (mock.notifyWindowsFocusChanged = c),
     );
-    mock.setup(m => m.addListenerOnMessage(It.is(isFunction))).callback(c =>
+    mock.setup(m => m.addListenerOnRuntimeMessage(It.is(isFunction))).callback(c =>
         messageListeners.push(c),
     );
 
@@ -94,6 +93,14 @@ export function createSimulatedBrowserAdapter(
             }
         },
     );
+    mock.setup(m => m.getTabAsync(It.isAny())).returns(async tabId => {
+        const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);
+        if (matchingTabs.length === 1) {
+            return matchingTabs[0];
+        } else {
+            throw new Error(`Tab with id ${tabId} not found`);
+        }
+    });
 
     mock.setup(m => m.tabsQuery(It.isAny())).returns(query => {
         const result = mock.tabs!.filter(
@@ -126,13 +133,17 @@ export function createSimulatedBrowserAdapter(
             });
         }
     };
-    mock.notifyOnMessage = (message: any, sender?: Runtime.MessageSender) => {
+    mock.notifyOnMessage = (
+        message: any,
+        sender?: Runtime.MessageSender,
+    ): BrowserMessageResponse => {
         for (const listener of messageListeners) {
-            const maybePromise = listener(message, sender ?? {});
-            if (maybePromise !== undefined) {
-                return maybePromise;
+            const response = listener(message, sender ?? {});
+            if (response.messageHandled) {
+                return response;
             }
         }
+        return { messageHandled: false };
     };
 
     return mock as SimulatedBrowserAdapter;

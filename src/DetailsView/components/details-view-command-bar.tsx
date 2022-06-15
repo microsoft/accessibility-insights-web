@@ -12,7 +12,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
-import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
+import styles from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
@@ -47,7 +47,6 @@ import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
-import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 
 export type DetailsViewCommandBarDeps = {
@@ -168,7 +167,7 @@ export class DetailsViewCommandBar extends React.Component<
             startOverElement
         ) {
             return (
-                <div className={detailsViewCommandButtons}>
+                <div className={styles.detailsViewCommandButtons}>
                     {reportExportElement}
                     {saveAssessmentButtonElement}
                     {loadAssessmentButtonElement}

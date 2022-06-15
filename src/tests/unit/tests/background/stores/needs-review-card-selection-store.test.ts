@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
+import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -32,7 +33,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeDefined();
+        expect(defaultState.rules).toBeNull();
     });
 
     it.each`
@@ -88,6 +89,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             new NeedsReviewCardSelectionStore(
                 new NeedsReviewCardSelectionActions(),
                 actions,
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -254,51 +256,86 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('CollapseAllRules', () => {
-        expandRuleSelectCards(initialState.rules['sampleRuleId1']);
-        expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+    describe('collapseAllRules', () => {
+        test('Does nothing if rules is null', () => {
+            initialState.rules = null;
+            expectedState = cloneDeep(initialState);
 
-        createStoreForNeedsReviewCardSelectionActions(
-            'collapseAllRules',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreForNeedsReviewCardSelectionActions(
+                'collapseAllRules',
+            ).testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        test('collapses all expanded rules', () => {
+            expandRuleSelectCards(initialState.rules['sampleRuleId1']);
+            expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+
+            createStoreForNeedsReviewCardSelectionActions(
+                'collapseAllRules',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
+        });
     });
 
-    test('expandAllRules', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+    describe('expandAllRules', () => {
+        test('Does nothing if rules is null', () => {
+            initialState.rules = null;
+            expectedState = cloneDeep(initialState);
 
-        expectedState.rules['sampleRuleId1'].isExpanded = true;
-        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-        expectedState.rules['sampleRuleId2'].isExpanded = true;
+            createStoreForNeedsReviewCardSelectionActions(
+                'expandAllRules',
+            ).testListenerToNeverBeCalled(initialState, expectedState);
+        });
 
-        createStoreForNeedsReviewCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        test('expands all collapsed rules', () => {
+            initialState.rules['sampleRuleId1'].isExpanded = true;
+            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+            expectedState.rules['sampleRuleId1'].isExpanded = true;
+            expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            expectedState.rules['sampleRuleId2'].isExpanded = true;
+
+            createStoreForNeedsReviewCardSelectionActions(
+                'expandAllRules',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
+        });
     });
 
-    test('toggleVisualHelper on - no card selection or rule expansion changes', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+    describe('toggleVisualHelper', () => {
+        test('toggle on - no card selection or rule expansion changes', () => {
+            initialState.rules['sampleRuleId1'].isExpanded = true;
+            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-        expectedState = cloneDeep(initialState);
-        expectedState.visualHelperEnabled = true;
+            expectedState = cloneDeep(initialState);
+            expectedState.visualHelperEnabled = true;
 
-        createStoreForNeedsReviewCardSelectionActions(
-            'toggleVisualHelper',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
-    });
+            createStoreForNeedsReviewCardSelectionActions(
+                'toggleVisualHelper',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
+        });
 
-    test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-        initialState.visualHelperEnabled = true;
+        test('toggle off - cards deselected, no rule expansion changes', () => {
+            initialState.rules['sampleRuleId1'].isExpanded = true;
+            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState.visualHelperEnabled = true;
 
-        expectedState.rules['sampleRuleId1'].isExpanded = true;
+            expectedState.rules['sampleRuleId1'].isExpanded = true;
 
-        createStoreForNeedsReviewCardSelectionActions(
-            'toggleVisualHelper',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
+            createStoreForNeedsReviewCardSelectionActions(
+                'toggleVisualHelper',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        test('toggle off when rules is null', () => {
+            initialState.rules = null;
+            initialState.visualHelperEnabled = true;
+
+            expectedState = cloneDeep(initialState);
+            expectedState.visualHelperEnabled = false;
+
+            createStoreForNeedsReviewCardSelectionActions(
+                'toggleVisualHelper',
+            ).testListenerToBeCalledOnce(initialState, expectedState);
+        });
     });
 
     describe('navigateToNewCardsView', () => {
@@ -306,14 +343,21 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             expectedState.visualHelperEnabled = true;
         });
 
-        it('should reset the focused element', () => {
-            initialState.focusedResultUid = 'sampleUid1';
-            expectedState.focusedResultUid = null;
+        it.each([null, {}])(
+            'should reset the focused element and turn off visual helper when rules = %s',
+            rules => {
+                initialState.focusedResultUid = 'sampleUid1';
+                initialState.rules = rules;
+                initialState.visualHelperEnabled = true;
+                expectedState.focusedResultUid = null;
+                expectedState.rules = rules;
+                expectedState.visualHelperEnabled = false;
 
-            createStoreForNeedsReviewCardSelectionActions(
-                'navigateToNewCardsView',
-            ).testListenerToBeCalledOnce(initialState, expectedState);
-        });
+                createStoreForNeedsReviewCardSelectionActions(
+                    'navigateToNewCardsView',
+                ).testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
 
         it('should keep all rules/cards/results but set them to collapsed/unselected', () => {
             initialState.rules = {
@@ -375,6 +419,17 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         });
     });
 
+    test('reset data on tab URL change', () => {
+        initialState.rules = {};
+        initialState.visualHelperEnabled = true;
+        expectedState.rules = null;
+        expectedState.visualHelperEnabled = false;
+        createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
+    });
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
@@ -390,6 +445,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             new NeedsReviewCardSelectionStore(
                 actions,
                 new NeedsReviewScanResultActions(),
+                new TabActions(),
                 null,
                 null,
                 null,
@@ -398,5 +454,23 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             );
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(
+        actionName: keyof TabActions,
+    ): StoreTester<NeedsReviewCardSelectionStoreData, TabActions> {
+        const factory = (actions: TabActions) =>
+            new NeedsReviewCardSelectionStore(
+                new NeedsReviewCardSelectionActions(),
+                new NeedsReviewScanResultActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(TabActions, actionName, factory);
     }
 });

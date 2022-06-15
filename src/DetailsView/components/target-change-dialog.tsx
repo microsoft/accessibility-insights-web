@@ -11,14 +11,14 @@ import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
 } from 'DetailsView/components/change-assessment-dialog';
-import * as styles from 'DetailsView/components/target-change-dialog.scss';
-import { isEmpty } from 'lodash';
+import styles from 'DetailsView/components/target-change-dialog.scss';
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    detailsViewId: string;
 };
 
 export interface TargetChangeDialogProps {
@@ -47,7 +47,12 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         dialogNoteText:
             "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
         dialogWarningText: "If 'Start new' is selected, all previous progress will be lost.",
-        isOpen: showTargetChangeDialog(props.prevTab, props.newTab, props.deps.urlParser),
+        isOpen: showTargetChangeDialog(
+            props.prevTab,
+            props.newTab,
+            props.deps.urlParser,
+            props.deps.detailsViewId,
+        ),
         rightButtonStyle: styles.restartButton,
         rightButtonDataAutomationId: 'target-change-start-new-button',
     };
@@ -78,12 +83,13 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         prevTab: PersistedTabInfo,
         newTab: Tab,
         urlParser: UrlParser,
+        detailsViewId: string,
     ): boolean {
-        if (isEmpty(prevTab)) {
+        if (!prevTab || (!prevTab.id && !prevTab.title && !prevTab.url)) {
             return false;
         }
 
-        if (prevTab.appRefreshed) {
+        if (prevTab.detailsViewId !== detailsViewId) {
             return true;
         }
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 @import '../../common/styles/root-level-only/color-definitions.scss';
 @import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
 #accessibility-insights-root-container {
     visibility: hidden !important;
@@ -30,10 +31,6 @@
 
 #accessibility-insights-root-container,
 #insights-shadow-container {
-    @import '../../common/styles/colors.scss';
-    @import '../../common/styles/common.scss';
-    @import '../../common/components/toast.scss';
-
     @mixin max-z-index-1 {
         z-index: 2147483646 !important;
     }
@@ -152,7 +149,7 @@
         margin-bottom: 8px !important;
         font-size: 12px !important;
         color: $negative-outcome !important;
-        font-weight: $fontWeightSemiBold !important;
+        font-weight: $font-weight-semi-bold !important;
     }
 
     .insights-dialog-main-override .file-issue-button-help {
@@ -160,14 +157,14 @@
         margin-bottom: 8px !important;
         font-size: 12px !important;
         color: $negative-outcome;
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
     }
 
     .insights-dialog-main-override .copy-issue-details-button-help {
         margin-top: 4px !important;
         font-size: 12px !important;
         color: $negative-outcome !important;
-        font-weight: $fontWeightSemiBold !important;
+        font-weight: $font-weight-semi-bold !important;
     }
 
     .insights-dialog-main-override {
@@ -176,7 +173,7 @@
             padding-bottom: 0 !important;
             color: $primary-text !important;
             font-size: 21px !important;
-            font-weight: $fontWeightSemiBold !important;
+            font-weight: $font-weight-semi-bold !important;
             letter-spacing: -0.02em !important;
         }
 
@@ -185,7 +182,7 @@
             margin-bottom: 4px !important;
             color: $primary-text !important;
             font-size: 15px !important;
-            font-weight: $fontWeightSemiBold !important;
+            font-weight: $font-weight-semi-bold !important;
         }
 
         .insights-dialog-content {
@@ -210,7 +207,7 @@
                 margin-left: 4px !important;
                 margin-right: 4px !important;
                 line-height: 100% !important;
-                font-weight: $fontWeightSemiBold !important;
+                font-weight: $font-weight-semi-bold !important;
             }
 
             svg {
@@ -223,7 +220,7 @@
             margin-top: 16px !important;
             display: grid !important;
             color: $primary-text !important;
-            font-size: $fontSizeM !important;
+            font-size: $font-size-m !important;
             align-items: center !important;
             grid-template-columns: 100px 1fr 100px !important;
 
@@ -258,6 +255,11 @@
         position: absolute !important;
         overflow: hidden !important;
         pointer-events: none !important;
+
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            outline-color: Highlight !important;
+        }
     }
 
     .insights-highlight-container .insights-highlight-box .insights-highlight-text {
@@ -268,13 +270,6 @@
         float: right !important;
         position: relative !important;
         text-align: center !important;
-    }
-
-    .insights-highlight-container .insights-highlight-box {
-        @include ms-high-contrast-override {
-            forced-color-adjust: none;
-            outline-color: Highlight !important;
-        }
     }
 
     .insights-highlight-container .insights-highlight-text {

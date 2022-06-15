@@ -9,7 +9,7 @@ import {
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
-import * as styles from './prompt-install-service-step.scss';
+import styles from './prompt-install-service-step.scss';
 
 export const installAutomationId = 'install';
 export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(

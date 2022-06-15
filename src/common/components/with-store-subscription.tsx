@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { StoreActionMessageCreator } from '../message-creators/store-action-message-creator';
 import { ClientStoresHub } from '../stores/client-stores-hub';
 
 export type WithStoreSubscriptionProps<T> = {
@@ -12,15 +11,14 @@ export type WithStoreSubscriptionProps<T> = {
 
 export type WithStoreSubscriptionDeps<T> = {
     storesHub: ClientStoresHub<T>;
-    storeActionMessageCreator: StoreActionMessageCreator;
 };
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
     WrappedComponent: React.ComponentType<P>,
-): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, S> & {
+): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, Partial<S>> & {
     displayName: string;
 } {
-    return class extends React.Component<P, S> {
+    return class extends React.Component<P, Partial<S>> {
         public static readonly displayName = `WithStoreSubscriptionFor${WrappedComponent.displayName}`;
 
         constructor(props: P) {
@@ -28,7 +26,7 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
             if (this.hasStores()) {
                 this.state = this.props.deps.storesHub.getAllStoreData()!;
             } else {
-                this.state = {} as S;
+                this.state = {} as Partial<S>;
             }
         }
 
@@ -37,9 +35,8 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
                 return;
             }
 
-            const { storesHub, storeActionMessageCreator } = this.props.deps;
+            const { storesHub } = this.props.deps;
             storesHub.addChangedListenerToAllStores(this.onStoreChange);
-            storeActionMessageCreator.getAllStates();
         }
 
         public componentWillUnmount(): void {

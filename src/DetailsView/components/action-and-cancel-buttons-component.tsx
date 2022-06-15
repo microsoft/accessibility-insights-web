@@ -4,7 +4,7 @@ import { DefaultButton } from '@fluentui/react';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import * as styles from './action-and-cancel-buttons-component.scss';
+import styles from './action-and-cancel-buttons-component.scss';
 
 export interface ActionAndCancelButtonsComponentProps {
     isHidden: boolean;

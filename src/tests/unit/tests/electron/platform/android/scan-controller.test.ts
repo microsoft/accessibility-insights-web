@@ -190,8 +190,8 @@ describe('ScanController', () => {
 
         await flushSettledPromises();
 
-        scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
-        deviceConnectedMock.verify(m => m.invoke(null), Times.once());
+        scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(), Times.once());
+        deviceConnectedMock.verify(m => m.invoke(), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
         deviceCommunicatorMock.verifyAll();
@@ -228,9 +228,9 @@ describe('ScanController', () => {
 
         await flushSettledPromises();
 
-        scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
+        scanFailedMock.verify(scanCompleted => scanCompleted.invoke(), Times.once());
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
-        deviceDisconnectedMock.verify(m => m.invoke(null), Times.once());
+        deviceDisconnectedMock.verify(m => m.invoke(), Times.once());
         deviceCommunicatorMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });

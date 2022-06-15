@@ -58,6 +58,7 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
 export interface LoadAssessmentPayload extends BaseActionPayload {
     versionedAssessmentData: VersionedAssessmentData;
     tabId: number;
+    detailsViewId: string;
 }
 export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
@@ -102,6 +103,10 @@ export interface PayloadWithEventName extends BaseActionPayload {
 
 export interface OnDetailsViewOpenPayload extends UpdateSelectedDetailsViewPayload {
     telemetry: TelemetryEvents.DetailsViewOpenTelemetryData;
+}
+
+export interface OnDetailsViewInitializedPayload extends BaseActionPayload {
+    detailsViewId: string;
 }
 
 export interface OnDetailsViewPivotSelected extends BaseActionPayload {
@@ -165,10 +170,6 @@ export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload 
 
 export interface SetLaunchPanelState extends BaseActionPayload {
     launchPanelType: LaunchPanelType;
-}
-
-export interface OnDevToolOpenPayload extends BaseActionPayload {
-    status: boolean;
 }
 
 export interface InspectElementPayload extends BaseActionPayload {

@@ -1,24 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import {
-    ClientStoreListener,
-    TargetPageStoreData,
-} from '../../../../injected/client-store-listener';
 
 describe('ClientStoreListener', () => {
     describe('initialize', () => {
         let testSubject: ClientStoreListener;
-        let storeHubMock: IMock<BaseClientStoresHub<TargetPageStoreData>>;
+        let storeHubMock: IMock<ClientStoresHub<TargetPageStoreData>>;
         let onReadyToExecuteVisualizationUpdatesMock: IMock<
             (storeData: TargetPageStoreData) => void
         >;
         let triggerOnChange: () => void;
 
         beforeEach(() => {
-            storeHubMock = Mock.ofType<BaseClientStoresHub<TargetPageStoreData>>(
+            storeHubMock = Mock.ofType<ClientStoresHub<TargetPageStoreData>>(
                 null,
                 MockBehavior.Strict,
             );
@@ -35,8 +31,18 @@ describe('ClientStoreListener', () => {
             );
         });
 
+        test('registerOnReadyToExecuteVisualizationCallback: no stores', () => {
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => false);
+            triggerOnChange();
+            onReadyToExecuteVisualizationUpdatesMock.verify(
+                callback => callback(It.isAny()),
+                Times.never(),
+            );
+        });
+
         test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
-            storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => null);
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => false);
             triggerOnChange();
             onReadyToExecuteVisualizationUpdatesMock.verify(
                 callback => callback(It.isAny()),
@@ -51,6 +57,8 @@ describe('ClientStoreListener', () => {
                 },
             } as TargetPageStoreData;
 
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();
@@ -68,6 +76,8 @@ describe('ClientStoreListener', () => {
                 },
             } as TargetPageStoreData;
 
+            storeHubMock.setup(shm => shm.hasStores()).returns(() => true);
+            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();

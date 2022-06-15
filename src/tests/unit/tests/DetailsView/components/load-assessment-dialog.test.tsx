@@ -41,6 +41,7 @@ describe('LoadAssessmentDialog', () => {
             deps: {
                 urlParser: urlParserMock.object,
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                detailsViewId: undefined,
             },
             prevTab: prevTab,
             newTab: newTab,

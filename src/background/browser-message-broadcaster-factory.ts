@@ -66,6 +66,6 @@ export class BrowserMessageBroadcasterFactory {
         const msg = `${operationDescription} failed for message ${JSON.stringify(
             message,
         )} with browser error message: ${chromeError.message}`;
-        this.logger.error(msg);
+        this.logger.error(msg, new Error());
     };
 }

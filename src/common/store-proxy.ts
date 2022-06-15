@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { StoreUpdateMessageDistributor } from 'common/store-update-message-distributor';
+import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { isEqual } from 'lodash';
 import { BaseStore } from './base-store';
 import { Store } from './flux/store';
@@ -11,10 +11,10 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
 
     constructor(
         private readonly storeId: string,
-        private readonly messageDistributor: StoreUpdateMessageDistributor,
+        private readonly messageHub: StoreUpdateMessageHub,
     ) {
         super();
-        this.messageDistributor.registerStoreUpdateListener(storeId, this.onChange);
+        this.messageHub.registerStoreUpdateListener(storeId, this.onChange);
     }
 
     private onChange = (message: StoreUpdateMessage<TState>): void => {

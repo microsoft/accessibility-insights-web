@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
-import { StoreActionMessageCreator } from 'common/message-creators/store-action-message-creator';
-import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
@@ -14,6 +13,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import {
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
+    DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
 import { DictionaryStringTo } from 'types/common-types';
 import { StoreMocks } from './store-mocks';
@@ -27,23 +27,8 @@ export class DetailsViewContainerPropsBuilder {
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
     private detailsViewStore: BaseStore<DetailsViewStoreData>;
-    private storeActionCreator: StoreActionMessageCreator;
-    private storesHub: BaseClientStoresHub<any>;
+    private storesHub: ClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
-
-    public setDetailsViewStoreActionMessageCreator(
-        creator: StoreActionMessageCreator,
-    ): DetailsViewContainerPropsBuilder {
-        this.storeActionCreator = creator;
-        return this;
-    }
-
-    public setStoreActionMessageCreator(
-        creator: StoreActionMessageCreator,
-    ): DetailsViewContainerPropsBuilder {
-        this.storeActionCreator = creator;
-        return this;
-    }
 
     public setDropdownClickHandler(
         creator: DropdownClickHandler,
@@ -57,7 +42,7 @@ export class DetailsViewContainerPropsBuilder {
         return this;
     }
 
-    public setStoresHubMock(hub: BaseClientStoresHub<any>): DetailsViewContainerPropsBuilder {
+    public setStoresHubMock(hub: ClientStoresHub<any>): DetailsViewContainerPropsBuilder {
         this.storesHub = hub;
         return this;
     }
@@ -77,7 +62,7 @@ export class DetailsViewContainerPropsBuilder {
     public build(): DetailsViewContainerProps {
         const storesHub =
             this.storesHub ||
-            new BaseClientStoresHub([
+            new ClientStoresHub([
                 this.detailsViewStore,
                 this.featureFlagStore,
                 this.tabStore,
@@ -91,12 +76,11 @@ export class DetailsViewContainerPropsBuilder {
         const storeState = this.storesHub ? this.storesHub.getAllStoreData() : null;
         if (this.deps !== null) {
             this.deps.storesHub = storesHub;
-            this.deps.storeActionMessageCreator = this.storeActionCreator;
         }
 
         const props: DetailsViewContainerProps = {
             deps: this.deps,
-            storeState: storeState,
+            storeState: storeState as DetailsViewContainerState,
         };
 
         return props;

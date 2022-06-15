@@ -39,13 +39,15 @@ export class TimeSimulatingPromiseFactory implements PromiseFactory {
         return this.realPromiseFactory.externalResolutionPromise();
     }
 
-    timeout<T>(promise: Promise<T>, delayInMs: number): Promise<T> {
+    timeout<T>(promise: Promise<T>, delayInMs: number, errorContext?: string): Promise<T> {
         const startTime = this.elapsedTime;
-        return this.realPromiseFactory.timeout(promise, this.actualTimeoutMs).catch(async e => {
-            if (e instanceof TimeoutError) {
-                this.elapsedTime = Math.max(startTime + delayInMs, this.elapsedTime);
-            }
-            throw e;
-        });
+        return this.realPromiseFactory
+            .timeout(promise, this.actualTimeoutMs, errorContext)
+            .catch(async e => {
+                if (e instanceof TimeoutError) {
+                    this.elapsedTime = Math.max(startTime + delayInMs, this.elapsedTime);
+                }
+                throw e;
+            });
     }
 }

@@ -6,7 +6,7 @@ import { CardRowProps } from '../../../common/configs/unified-result-property-co
 import { NamedFC } from '../../../common/react/named-fc';
 import { CheckType } from '../../types/check-type';
 import { FixInstructionPanel } from '../fix-instruction-panel';
-import * as styles from './how-to-fix-card-row.scss';
+import styles from './how-to-fix-card-row.scss';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface HowToFixWebPropertyData {

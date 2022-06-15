@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { TextContent } from 'content/strings/text-content';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
-import * as styles from './header.scss';
+import styles from './header.scss';
 
 export type HeaderDeps = { textContent: Pick<TextContent, 'applicationTitle'> } & HeaderIconDeps;
 

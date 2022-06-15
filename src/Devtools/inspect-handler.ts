@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { InterpreterMessage } from 'common/message';
+import { Messages } from 'common/messages';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
 import { BaseStore } from '../common/base-store';
-import { ConnectionNames } from '../common/constants/connection-names';
-import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
 
 export class InspectHandler {
@@ -14,7 +14,7 @@ export class InspectHandler {
         private readonly targetPageInspector: TargetPageInspector,
     ) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
         this.devToolsStore.addChangedListener(() => {
             const state = this.devToolsStore.getState();
 
@@ -28,12 +28,15 @@ export class InspectHandler {
             }
         });
 
-        const backgroundPageConnection = this.browserAdapter.connect({
-            name: ConnectionNames.devTools,
-        });
+        await this.sendDevtoolOpened();
+    }
 
-        backgroundPageConnection.postMessage({
-            tabId: this.browserAdapter.getInspectedWindowTabId(),
-        } as DevToolsOpenMessage);
+    private async sendDevtoolOpened(): Promise<void> {
+        const message: InterpreterMessage = {
+            messageType: Messages.DevTools.Opened,
+            tabId: this.browserAdapter.getInspectedWindowTabId()!,
+        };
+
+        await this.browserAdapter.sendMessageToFrames(message);
     }
 }

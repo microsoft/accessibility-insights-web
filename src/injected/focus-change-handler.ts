@@ -17,13 +17,13 @@ export class FocusChangeHandler {
         private scrollingController: ScrollingController,
     ) {}
 
-    public handleFocusChangeWithStoreData = (storeData: TargetPageStoreData) => {
+    public handleFocusChangeWithStoreData = async (storeData: TargetPageStoreData) => {
         const newTarget = this.getTarget(storeData);
-        this.handleFocusChange(newTarget);
+        await this.handleFocusChange(newTarget);
         this.previousFocusedTarget = newTarget;
     };
 
-    private handleFocusChange = (newTarget: string[] | null) => {
+    private handleFocusChange = async (newTarget: string[] | null) => {
         if (
             newTarget == null ||
             (this.previousFocusedTarget != null && newTarget === this.previousFocusedTarget)
@@ -34,7 +34,7 @@ export class FocusChangeHandler {
         const scrollingMessage: ScrollingWindowMessage = {
             focusedTarget: newTarget,
         };
-        this.scrollingController.processRequest(scrollingMessage);
+        await this.scrollingController.processRequest(scrollingMessage);
         this.targetPageActionMessageCreator.scrollRequested();
     };
 
@@ -47,6 +47,8 @@ export class FocusChangeHandler {
 
     private automatedChecksDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.cardSelectionStoreData !== null &&
+            storeData.unifiedScanResultStoreData !== null &&
             storeData.cardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.unifiedScanResultStoreData.results)
         );
@@ -54,13 +56,15 @@ export class FocusChangeHandler {
 
     private needsReviewDataIsPopulated(storeData: TargetPageStoreData): boolean {
         return (
+            storeData.needsReviewCardSelectionStoreData !== null &&
+            storeData.needsReviewScanResultStoreData !== null &&
             storeData.needsReviewCardSelectionStoreData.focusedResultUid !== null &&
             !isEmpty(storeData.needsReviewScanResultStoreData.results)
         );
     }
 
     private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
-        const focusedResult = storeData.unifiedScanResultStoreData.results.find(
+        const focusedResult = storeData.unifiedScanResultStoreData.results!.find(
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
 
@@ -72,7 +76,7 @@ export class FocusChangeHandler {
     }
 
     private findNeedsReviewFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
-        const focusedResult = storeData.needsReviewScanResultStoreData.results.find(
+        const focusedResult = storeData.needsReviewScanResultStoreData.results!.find(
             result => result.uid === storeData.needsReviewCardSelectionStoreData.focusedResultUid,
         );
 

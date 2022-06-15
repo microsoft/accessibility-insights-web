@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import * as React from 'react';
 
-import * as styles from './help-links.scss';
+import styles from './help-links.scss';
 
 export type HelpLinksDeps = ExternalLinkDeps;
 

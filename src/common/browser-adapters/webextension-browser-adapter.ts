@@ -1,15 +1,43 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import browser, { Notifications, Permissions, Runtime, Tabs, Windows } from 'webextension-polyfill';
+import {
+    ApplicationListener,
+    BrowserEventManager,
+} from 'common/browser-adapters/browser-event-manager';
+import {
+    BrowserMessageHandler,
+    makeRawBrowserMessageHandler,
+} from 'common/browser-adapters/browser-message-handler';
+import { DictionaryStringTo } from 'types/common-types';
+import browser, { Events, Notifications, Permissions, Tabs, Windows } from 'webextension-polyfill';
 
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
-
 export abstract class WebExtensionBrowserAdapter
     implements BrowserAdapter, StorageAdapter, CommandsAdapter
 {
+    constructor(private readonly browserEventManager: BrowserEventManager) {}
+
     public abstract getManageExtensionUrl(): string;
+
+    public allSupportedEvents(): DictionaryStringTo<Events.Event<any>> {
+        return {
+            // This is supported in all contexts we can use a BrowserAdapter from
+            RuntimeOnMessage: browser.runtime.onMessage,
+
+            // These are only supported from some contexts
+            // Particularly, none of these are supported in an injected content script
+            TabsOnActivated: browser.tabs?.onActivated,
+            TabsOnUpdated: browser.tabs?.onUpdated,
+            TabsOnRemoved: browser.tabs?.onRemoved,
+            WebNavigationOnDOMContentLoaded: browser.webNavigation?.onDOMContentLoaded,
+            WindowsOnFocusChanged: browser.windows?.onFocusChanged,
+            CommandsOnCommand: browser.commands?.onCommand,
+            PermissionsOnAdded: browser.permissions?.onAdded,
+            PermissionsOnRemoved: browser.permissions?.onRemoved,
+        };
+    }
 
     public getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
         return browser.windows.getAll(getInfo);
@@ -18,7 +46,7 @@ export abstract class WebExtensionBrowserAdapter
     public addListenerToTabsOnActivated(
         callback: (activeInfo: chrome.tabs.TabActiveInfo) => void,
     ): void {
-        chrome.tabs.onActivated.addListener(callback);
+        this.addListener('TabsOnActivated', callback);
     }
 
     public addListenerToTabsOnUpdated(
@@ -28,23 +56,23 @@ export abstract class WebExtensionBrowserAdapter
             tab: chrome.tabs.Tab,
         ) => void,
     ): void {
-        chrome.tabs.onUpdated.addListener(callback);
+        this.addListener('TabsOnUpdated', callback);
     }
 
     public addListenerToWebNavigationUpdated(
         callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void,
     ): void {
-        chrome.webNavigation.onDOMContentLoaded.addListener(callback);
+        this.addListener('WebNavigationOnDOMContentLoaded', callback);
     }
 
     public addListenerToTabsOnRemoved(
         callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void,
     ): void {
-        chrome.tabs.onRemoved.addListener(callback);
+        this.addListener('TabsOnRemoved', callback);
     }
 
     public addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void {
-        chrome.windows.onFocusChanged.addListener(callback);
+        this.addListener('WindowsOnFocusChanged', callback);
     }
 
     public tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
@@ -64,6 +92,18 @@ export abstract class WebExtensionBrowserAdapter
                     onReject();
                 }
             }
+        });
+    }
+
+    public async getTabAsync(tabId: number): Promise<chrome.tabs.Tab> {
+        return new Promise((resolve, reject) => {
+            chrome.tabs.get(tabId, tab => {
+                if (tab) {
+                    resolve(tab);
+                } else {
+                    reject(new Error(`tab with Id ${tabId} not found`));
+                }
+            });
         });
     }
 
@@ -182,35 +222,29 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public addCommandListener(callback: (command: string) => void): void {
-        chrome.commands.onCommand.addListener(callback);
+        this.addListener('CommandsOnCommand', callback);
     }
 
     public getCommands(callback: (commands: chrome.commands.Command[]) => void): void {
         chrome.commands.getAll(callback);
     }
 
-    public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
-        chrome.runtime.onConnect.addListener(callback);
+    public addListenerOnRuntimeMessage(callback: BrowserMessageHandler): void {
+        this.addListener('RuntimeOnMessage', makeRawBrowserMessageHandler(callback));
     }
 
-    public addListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void {
-        browser.runtime.onMessage.addListener(callback);
-    }
-
-    public removeListenerOnMessage(
-        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
-    ): void {
-        browser.runtime.onMessage.removeListener(callback);
-    }
-
-    public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
-        return chrome.runtime.connect(chrome.runtime.id, connectionInfo);
+    public removeListenersOnMessage(): void {
+        this.browserEventManager.removeListeners('RuntimeOnMessage', browser.runtime.onMessage);
     }
 
     public getManifest(): chrome.runtime.Manifest {
         return chrome.runtime.getManifest();
+    }
+
+    public getExtensionId(): string | undefined {
+        // The webextension typings lie; it *is* possible for this to be
+        // undefined if queried from a content script of a disabled extension
+        return browser.runtime.id;
     }
 
     public getVersion(): string {
@@ -228,22 +262,28 @@ export abstract class WebExtensionBrowserAdapter
     public addListenerOnPermissionsAdded(
         callback: (permissions: Permissions.Permissions) => void,
     ): void {
-        // casting browser as any due to typings for permissions onAdded not currently supported.
-        (browser as any).permissions.onAdded.addListener(callback);
+        this.addListener('PermissionsOnAdded', callback);
     }
 
     public addListenerOnPermissionsRemoved(
         callback: (permissions: Permissions.Permissions) => void,
     ): void {
-        // casting browser as any due to typings for permissions onRemoved not currently supported.
-        (browser as any).permissions.onRemoved.addListener(callback);
+        this.addListener('PermissionsOnRemoved', callback);
     }
 
     public containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
         return browser.permissions.contains(permissions);
     }
 
-    public getInspectedWindowTabId(): number {
-        return chrome.devtools.inspectedWindow.tabId;
+    public getInspectedWindowTabId(): number | null {
+        return chrome.devtools.inspectedWindow?.tabId;
+    }
+
+    private addListener(eventName: string, callback: ApplicationListener): void {
+        this.browserEventManager.addApplicationListener(
+            eventName,
+            this.allSupportedEvents()[eventName],
+            callback,
+        );
     }
 }

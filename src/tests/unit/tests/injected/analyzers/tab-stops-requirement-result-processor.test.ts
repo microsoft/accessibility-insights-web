@@ -8,6 +8,7 @@ import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { isFunction } from 'lodash';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsRequirementResultProcessor', () => {
@@ -53,7 +54,7 @@ describe('TabStopsRequirementResultProcessor', () => {
         );
     });
 
-    it('start adds expected listener', () => {
+    it('start adds expected listener', async () => {
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
@@ -61,12 +62,12 @@ describe('TabStopsRequirementResultProcessor', () => {
             tabStops: { needToCollectTabbingResults: true },
         } as VisualizationScanResultData);
 
-        testSubject.start();
+        await testSubject.start();
 
         verifyAll();
     });
 
-    it('start does not do anything when already started', () => {
+    it('start does not do anything when already started', async () => {
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.once());
@@ -75,13 +76,13 @@ describe('TabStopsRequirementResultProcessor', () => {
             tabStops: { needToCollectTabbingResults: true },
         } as VisualizationScanResultData);
 
-        testSubject.start();
-        testSubject.start();
+        await testSubject.start();
+        await testSubject.start();
 
         verifyAll();
     });
 
-    it('start does not do anything when needToCollectTabbingResults is false', () => {
+    it('start does not do anything when needToCollectTabbingResults is false', async () => {
         visualizationScanResultsStoreMock
             .setup(m => m.addChangedListener(It.is(isFunction)))
             .verifiable(Times.never());
@@ -90,7 +91,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             tabStops: { needToCollectTabbingResults: false },
         } as VisualizationScanResultData);
 
-        testSubject.start();
+        await testSubject.start();
 
         verifyAll();
     });
@@ -118,7 +119,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             tabStops: { needToCollectTabbingResults: true },
         } as VisualizationScanResultData);
 
-        testSubject.start();
+        await testSubject.start();
 
         // send 1 duplicate and 2 unique results
         requirementResultRunnerCallback(requirementResult);
@@ -129,7 +130,7 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     describe('onStateChange', () => {
-        it('sends message when tabbing is completed', () => {
+        it('sends message when tabbing is completed', async () => {
             const visualizationScanResultsStoreState = {
                 tabStops: { tabbingCompleted: true, needToCollectTabbingResults: true },
             } as VisualizationScanResultData;
@@ -147,13 +148,15 @@ describe('TabStopsRequirementResultProcessor', () => {
                 })
                 .verifiable(Times.once());
 
-            testSubject.start();
+            await testSubject.start();
             visualizationResultsListener();
+
+            await flushSettledPromises();
 
             verifyAll();
         });
 
-        it('does not send message when tabbing is not completed', () => {
+        it('does not send message when tabbing is not completed', async () => {
             tabStopRequirementActionMessageCreatorMock
                 .setup(m => m.updateNeedToCollectTabbingResults(It.isAny()))
                 .verifiable(Times.never());
@@ -169,7 +172,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             setupVisualizationScanResultStoreMock({
                 tabStops: { needToCollectTabbingResults: true },
             } as VisualizationScanResultData);
-            testSubject.start();
+            await testSubject.start();
             visualizationScanResultsStoreMock.reset();
 
             const visualizationScanResultsStoreState = {
@@ -183,7 +186,7 @@ describe('TabStopsRequirementResultProcessor', () => {
         });
     });
 
-    it('stop runs only when not already in a stopped state', () => {
+    it('stop runs only when not already in a stopped state', async () => {
         tabStopRequirementRunnerMock.setup(t => t.stop()).verifiable(Times.once());
         tabStopRequirementActionMessageCreatorMock
             .setup(t => t.automatedTabbingResultsCompleted([]))
@@ -198,9 +201,9 @@ describe('TabStopsRequirementResultProcessor', () => {
             tabStops: { needToCollectTabbingResults: true },
         } as VisualizationScanResultData);
 
-        testSubject.start();
-        testSubject.stop();
-        testSubject.stop();
+        await testSubject.start();
+        await testSubject.stop();
+        await testSubject.stop();
 
         verifyAll();
     });

@@ -15,7 +15,7 @@ import { AssessmentReportSummary } from 'reports/components/assessment-report-su
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
-import * as styles from './overview-content-container.scss';
+import styles from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 

@@ -6,7 +6,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .crawl-details-section {
-    @include boxShadow;
+    @include box-shadow;
 
     background-color: $neutral-0;
     padding: 20px;
@@ -45,7 +45,7 @@
     }
 
     .label {
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
     }
 
     .label.no-icon {

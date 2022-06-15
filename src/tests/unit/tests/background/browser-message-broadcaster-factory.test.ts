@@ -65,7 +65,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.resolve());
 
-            loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
+            loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 
             await testSubject.allTabsBroadcaster(testMessage);
 
@@ -88,7 +88,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.reject(testError));
 
-            loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
+            loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 
             await testSubject.allTabsBroadcaster(testMessage);
 
@@ -109,7 +109,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.reject(testError));
 
-            loggerMock.setup(m => m.error(It.isAny())).verifiable(Times.never());
+            loggerMock.setup(m => m.error(It.isAny(), It.isAny())).verifiable(Times.never());
 
             await testSubject.allTabsBroadcaster(testMessage);
 
@@ -150,7 +150,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.resolve());
 
-            loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
+            loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 
             await testSubject.createTabSpecificBroadcaster(1)(testMessage);
 
@@ -170,7 +170,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.reject(testError));
 
-            loggerMock.setup(m => m.error(expectedMessage)).verifiable(Times.once());
+            loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 
             await testSubject.createTabSpecificBroadcaster(1)(testMessage);
 

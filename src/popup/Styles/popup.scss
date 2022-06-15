@@ -9,7 +9,7 @@ body {
     overflow-y: auto;
     height: fit-content; // required for the popup's window to resize properly when the details view is zoomed in/out
     background: $neutral-0;
-    font-family: $fontFamily;
+    font-family: $font-family;
 }
 
 .telemetry-permission-dialog-modal {
@@ -46,7 +46,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     }
 
     .ms-Dialog-title {
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
     }
 
     .ms-Checkbox-checkbox {
@@ -122,11 +122,6 @@ html {
     padding-left: 0;
 }
 
-#popup-container .launch-panel {
-    width: 296px;
-    margin: 10px 0 10px 0;
-}
-
 #popup-container .ad-hoc-tools-panel {
     width: 540px;
     margin: 10px 0 20px 0;
@@ -155,6 +150,40 @@ html {
 #popup-container .main-section {
     margin-left: 14px;
     margin-right: 14px;
+
+    .launch-pad-footer {
+        color: $neutral-60;
+        font-weight: 300;
+        font-size: 11px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+
+        div + div {
+            margin-top: 1vh;
+        }
+
+        a {
+            font-weight: 600;
+        }
+    }
+
+    .launch-pad-hr {
+        margin: 12px 0 0 0;
+        border-width: 1px 0 0 0;
+        padding: 0;
+        border-style: solid;
+        border-color: $neutral-8;
+    }
+
+    .launch-pad-item-title {
+        margin: 5px 0 5px 0;
+        padding: 0;
+        height: 20px;
+
+        .ms-Link {
+            font-weight: 600;
+        }
+    }
 }
 
 #popup-container .main-section label {
@@ -246,42 +275,6 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
         font-weight: 600;
         margin-bottom: -4px;
     }
-
-    .main-section {
-        .launch-pad-footer {
-            color: $neutral-60;
-            font-weight: 300;
-            font-size: 11px;
-            margin-bottom: 12px;
-            margin-top: 12px;
-
-            div + div {
-                margin-top: 1vh;
-            }
-
-            a {
-                font-weight: 600;
-            }
-        }
-
-        .launch-pad-hr {
-            margin: 12px 0 0 0;
-            border-width: 1px 0 0 0;
-            padding: 0;
-            border-style: solid;
-            border-color: $neutral-8;
-        }
-
-        .launch-pad-item-title {
-            margin: 5px 0 5px 0;
-            padding: 0;
-            height: 20px;
-
-            .ms-Link {
-                font-weight: 600;
-            }
-        }
-    }
 }
 
 #popup-container #new-launch-pad {
@@ -290,26 +283,12 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
 #popup-container .launch-panel {
     width: 296px;
+    margin: 10px 0 10px 0;
 
     .launch-pad-main-section {
         width: 100%;
         margin: 0;
-    }
 
-    .launch-pad-item-description {
-        width: 280px;
-    }
-
-    .popup-start-dialog-icon-circle {
-        border-radius: 50%;
-        width: 59px;
-        height: 59px;
-        background-color: $communication-tint-30;
-        margin-top: 12px;
-        padding: 12px 14px 14px 14px;
-    }
-
-    .launch-pad-main-section {
         .ms-Button-icon {
             width: 31px;
             height: 31px;
@@ -327,6 +306,19 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             color: $secondary-text;
             font-style: normal;
         }
+    }
+
+    .launch-pad-item-description {
+        width: 280px;
+    }
+
+    .popup-start-dialog-icon-circle {
+        border-radius: 50%;
+        width: 59px;
+        height: 59px;
+        background-color: $communication-tint-30;
+        margin-top: 12px;
+        padding: 12px 14px 14px 14px;
     }
 
     .launch-pad-item-grid {

@@ -18,8 +18,8 @@ type UnitTestTargetType = {
 describe('AllFrameRunnerTests', () => {
     const unitTestListener: AllFrameRunnerTarget<UnitTestTargetType> = {
         commandSuffix: '',
-        start: () => {},
-        stop: () => {},
+        start: async () => {},
+        stop: async () => {},
         transformChildResultForParent: _ => null,
         setResultCallback: _ => {},
     };
@@ -244,7 +244,7 @@ describe('AllFrameRunnerTests', () => {
                     .verifiable(Times.once());
             });
 
-            expect(commandFunc(fakeCm, fakeWindow)).rejects.toThrow(
+            await expect(commandFunc(fakeCm, fakeWindow)).rejects.toThrow(
                 'unable to get frame element for the given window',
             );
         });

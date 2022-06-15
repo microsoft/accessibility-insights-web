@@ -73,8 +73,8 @@ export class ScanController {
         const payload = this.unifiedResultsBuilder(data);
 
         this.unifiedScanResultAction.scanCompleted.invoke(payload);
-        this.scanActions.scanCompleted.invoke(null);
-        this.deviceConnectionActions.statusConnected.invoke(null);
+        this.scanActions.scanCompleted.invoke();
+        this.deviceConnectionActions.statusConnected.invoke();
     }
 
     private buildAxeInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
@@ -127,8 +127,8 @@ export class ScanController {
             },
         });
 
-        this.scanActions.scanFailed.invoke(null);
-        this.deviceConnectionActions.statusDisconnected.invoke(null);
+        this.scanActions.scanFailed.invoke();
+        this.deviceConnectionActions.statusDisconnected.invoke();
     }
 
     private fetchScanResults = async (): Promise<AndroidScanResults> => {

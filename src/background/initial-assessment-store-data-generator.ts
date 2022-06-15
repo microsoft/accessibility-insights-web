@@ -22,15 +22,20 @@ export class InitialAssessmentStoreDataGenerator {
     public generateInitialState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
         const targetTab: PersistedTabInfo = persistedData &&
             persistedData.persistedTabInfo && {
-                ...persistedData.persistedTabInfo,
-                appRefreshed: true,
+                id: persistedData?.persistedTabInfo?.id,
+                url: persistedData?.persistedTabInfo?.url,
+                title: persistedData?.persistedTabInfo?.title,
+                detailsViewId: persistedData?.persistedTabInfo?.detailsViewId,
             };
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
-        const selectedTestType = first.visualizationType;
+        const selectedTestType =
+            persistedData?.assessmentNavState?.selectedTestType ?? first.visualizationType;
         const selectedTestStep =
-            first.requirements && first.requirements[0] && first.requirements[0].key;
+            persistedData?.assessmentNavState?.selectedTestSubview ??
+            (first.requirements && first.requirements[0] && first.requirements[0].key);
+        const expandedTestType = persistedData?.assessmentNavState?.expandedTestType;
         const resultDescription = (persistedData && persistedData.resultDescription) || '';
 
         const state: Partial<AssessmentStoreData> = {
@@ -38,6 +43,7 @@ export class InitialAssessmentStoreDataGenerator {
             assessmentNavState: {
                 selectedTestType: selectedTestType,
                 selectedTestSubview: selectedTestStep,
+                expandedTestType: expandedTestType,
             },
             assessments: this.constructInitialDataForAssessment(persistedTests),
             resultDescription: resultDescription,

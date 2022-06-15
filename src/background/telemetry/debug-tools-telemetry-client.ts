@@ -1,55 +1,52 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagChecker } from 'background/feature-flag-checker';
 import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ConnectionNames } from 'common/constants/connection-names';
+import { FeatureFlags } from 'common/feature-flags';
+import { Messages } from 'common/messages';
 
 export class DebugToolsTelemetryClient implements TelemetryClient {
-    private connections: chrome.runtime.Port[] = [];
+    private featureFlagChecker: FeatureFlagChecker;
 
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly telemetryDataFactory: ApplicationTelemetryDataFactory,
     ) {}
 
-    public initialize(): void {
-        this.browserAdapter.addListenerOnConnect((connection: chrome.runtime.Port) => {
-            if (connection.name !== ConnectionNames.debugToolsTelemetry) {
-                return;
-            }
-
-            connection.onDisconnect.addListener(() => {
-                this.connections = this.connections.filter(current => current !== connection);
-            });
-
-            this.connections.push(connection);
-        });
+    public initialize(featureFlagChecker: FeatureFlagChecker): void {
+        this.featureFlagChecker = featureFlagChecker;
     }
 
     public enableTelemetry(): void {
-        // no-op as we always want to send telemetry to the debug tools page (if there is a connection)
+        // no-op as we always want to send telemetry to the debug tools page (if feature flag is enabled)
     }
 
     public disableTelemetry(): void {
-        // no-op as we always want to send telemetry to the debug tools page (if there is a connection)
+        // no-op as we always want to send telemetry to the debug tools page (if feature flag is enabled)
     }
 
     public trackEvent(name: string, properties?: Object): void {
-        if (this.connections.length === 0) {
-            return;
+        if (this.featureFlagChecker?.isEnabled(FeatureFlags.debugTools)) {
+            const finalProperties = {
+                ...properties,
+                ...this.telemetryDataFactory.getData(),
+            };
+
+            // We intentionally don't wait for results and throw away rejections;
+            // we would rather drop debug tools telemetry than deal with async
+            // reentrancy issues with the exception listener that sends telemetry
+            // error.
+            void this.browserAdapter
+                .sendRuntimeMessage({
+                    messageType: Messages.DebugTools.Telemetry,
+                    name,
+                    properties: finalProperties,
+                })
+                .catch(() => {
+                    /* intentional no-op */
+                });
         }
-
-        const finalProperties = {
-            ...properties,
-            ...this.telemetryDataFactory.getData(),
-        };
-
-        this.connections.forEach(connection =>
-            connection.postMessage({
-                name,
-                properties: finalProperties,
-            }),
-        );
     }
 }

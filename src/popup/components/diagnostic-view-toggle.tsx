@@ -14,7 +14,7 @@ import { DictionaryStringTo } from 'types/common-types';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
-import * as styles from './diagnostic-view-toggle.scss';
+import styles from './diagnostic-view-toggle.scss';
 
 export interface DiagnosticViewToggleProps {
     deps: DiagnosticViewToggleDeps;

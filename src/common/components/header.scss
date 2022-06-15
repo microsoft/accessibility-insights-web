@@ -11,7 +11,7 @@
     align-items: center;
     align-content: stretch;
     background-color: $ada-brand-color;
-    min-height: $detailsViewHeaderBarHeight;
+    min-height: $details-view-header-bar-height;
     width: 100%;
 
     :global(.header-icon) {
@@ -29,10 +29,10 @@
         margin-right: 32px;
         margin-left: 8px;
         color: $header-bar-title-color;
-        font-size: $fontSizeML;
-        font-family: $fontFamily;
+        font-size: $font-size-ml;
+        font-family: $font-family;
 
-        @include ellipsedText;
+        @include ellipsed-text;
     }
 
     .spacer {

@@ -364,6 +364,19 @@ describe('getCardSelectionStoreviewData', () => {
         validateEmptyViewData(viewData);
     });
 
+    test('empty CardSelectionStoreData.rules, expect no results', () => {
+        const viewData = getCardSelectionViewData(
+            {
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            } as CardSelectionStoreData,
+            {} as UnifiedScanResultStoreData,
+            null,
+        );
+
+        validateEmptyViewData(viewData);
+    });
+
     test('null UnifiedScanResultStoreData, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {

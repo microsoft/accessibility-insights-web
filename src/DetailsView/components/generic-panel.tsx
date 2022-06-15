@@ -4,7 +4,7 @@ import { IPanelProps, Panel } from '@fluentui/react';
 import { css } from '@fluentui/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './generic-panel.scss';
+import styles from './generic-panel.scss';
 
 export type GenericPanelProps = IPanelProps & {
     innerPanelAutomationId?: string;

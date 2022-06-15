@@ -3,6 +3,7 @@
 import type * as axe from 'axe-core';
 import { WindowUtils } from 'common/window-utils';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { LinkedRespondableCommunicator } from 'tests/unit/common/linked-respondable-communicator';
 import { RecordingLogger } from 'tests/unit/common/recording-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -75,7 +76,7 @@ describe(AxeFrameMessenger, () => {
             expect(postReturn).toBe(true);
         });
 
-        it('invokes replyHandlers in response to corresponding replies', () => {
+        it('invokes replyHandlers in response to corresponding replies', async () => {
             const replyMessage = 'reply message';
             mockReplyHandler.setup(m => m(replyMessage, false, It.isAny())).verifiable();
 
@@ -90,12 +91,14 @@ describe(AxeFrameMessenger, () => {
                 mockReplyHandler.object,
             );
 
+            await flushSettledPromises();
+
             logger.verifyNoErrors();
             mockReplyHandler.verifyAll();
             expect(postReturn).toBe(true);
         });
 
-        it('supports invoking replyHandlers multiple times if keepalive is true', () => {
+        it('supports invoking replyHandlers multiple times if keepalive is true', async () => {
             const firstReply = 'first reply';
             const secondReply = 'second reply';
             mockReplyHandler.setup(m => m(firstReply, false, It.isAny())).verifiable();
@@ -116,6 +119,8 @@ describe(AxeFrameMessenger, () => {
                 topicData,
                 mockReplyHandler.object,
             );
+
+            await flushSettledPromises();
 
             logger.verifyNoErrors();
             mockReplyHandler.verifyAll();
@@ -154,7 +159,7 @@ describe(AxeFrameMessenger, () => {
             expect(postReturn).toBe(true);
         });
 
-        it('does not multi-invoke replyHandlers if keepalive is false', () => {
+        it('does not multi-invoke replyHandlers if keepalive is false', async () => {
             const firstReply = 'first reply';
             const secondReply = 'second reply';
             mockReplyHandler.setup(m => m(firstReply, false, It.isAny())).verifiable();
@@ -178,12 +183,14 @@ describe(AxeFrameMessenger, () => {
                 mockReplyHandler.object,
             );
 
+            await flushSettledPromises();
+
             logger.verifyNoErrors();
             mockReplyHandler.verifyAll();
             expect(postReturn).toBe(true);
         });
 
-        it('returns false and logs an error if the underlying communicator fails', () => {
+        it('logs an error if the underlying communicator fails', async () => {
             const unlinkedWindow = {} as Window;
             const postReturn = parentMessenger.post(
                 unlinkedWindow,
@@ -191,16 +198,18 @@ describe(AxeFrameMessenger, () => {
                 noopReplyHandler,
             );
 
+            await flushSettledPromises();
+
             expect(logger.errorMessages).toMatchInlineSnapshot(`
                 Array [
                   "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
                 ]
             `);
             mockTopicHandler.verifyAll();
-            expect(postReturn).toBe(false);
+            expect(postReturn).toBe(true);
         });
 
-        it("returns true and trusts in axe-core's timeout behavior if other side doesn't respond", () => {
+        it("returns true and trusts in axe-core's timeout behavior if other side doesn't respond", async () => {
             const noopTopicHandler = () => {};
             childMessenger.open(noopTopicHandler);
 
@@ -210,12 +219,14 @@ describe(AxeFrameMessenger, () => {
                 mockReplyHandler.object,
             );
 
+            await flushSettledPromises();
+
             logger.verifyNoErrors();
             mockReplyHandler.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
         });
 
-        it('does not invoke closed topic handlers', () => {
+        it('does not invoke closed topic handlers', async () => {
             const close = childMessenger.open(mockTopicHandler.object);
             close();
             const postReturn = parentMessenger.post(
@@ -224,16 +235,18 @@ describe(AxeFrameMessenger, () => {
                 noopReplyHandler,
             );
 
+            await flushSettledPromises();
+
             expect(logger.errorMessages).toMatchInlineSnapshot(`
                 Array [
                   "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
                 ]
             `);
             mockTopicHandler.verify(m => m(It.isAny(), It.isAny()), Times.never());
-            expect(postReturn).toBe(false);
+            expect(postReturn).toBe(true);
         });
 
-        it('passes a generic Error object to the replyHandler if a topicHandler throws', () => {
+        it('passes a generic Error object to the replyHandler if a topicHandler throws', async () => {
             const topicHandler = () => {
                 throw new Error('from topicHandler');
             };
@@ -252,12 +265,14 @@ describe(AxeFrameMessenger, () => {
                 mockReplyHandler.object,
             );
 
+            await flushSettledPromises();
+
             logger.verifyNoErrors();
             mockReplyHandler.verifyAll();
             expect(postReturn).toBe(true);
         });
 
-        it('logs an error and noops if a replyHandler throws', () => {
+        it('logs an error and noops if a replyHandler throws', async () => {
             const topicHandler = (_input, responder) => {
                 responder('topicHandler reply message');
             };
@@ -272,6 +287,8 @@ describe(AxeFrameMessenger, () => {
                 replyHandler,
             );
 
+            await flushSettledPromises();
+
             expect(logger.errorMessages).toMatchInlineSnapshot(`
                 Array [
                   "An axe-core error occurred while processing a result from a child frame.",
@@ -280,13 +297,15 @@ describe(AxeFrameMessenger, () => {
             expect(postReturn).toBe(true);
         });
 
-        it('does not accept messages that originate from non-parent windows', () => {
+        it('does not accept messages that originate from non-parent windows', async () => {
             parentMessenger.open(mockTopicHandler.object);
             const postReturn = childMessenger.post(
                 parentWindow,
                 singleReplyTopicData,
                 mockReplyHandler.object,
             );
+
+            await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
                 Array [
@@ -298,7 +317,7 @@ describe(AxeFrameMessenger, () => {
             expect(postReturn).toBe(true);
         });
 
-        it('logs an error and continues if a replyHandler attempts to reply to a reply', () => {
+        it('logs an error and continues if a replyHandler attempts to reply to a reply', async () => {
             const replyMessage = 'reply message';
             const topicHandler = (_input, responder) => {
                 responder(replyMessage);
@@ -313,6 +332,8 @@ describe(AxeFrameMessenger, () => {
                 singleReplyTopicData,
                 replyHandler,
             );
+
+            await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
                 Array [

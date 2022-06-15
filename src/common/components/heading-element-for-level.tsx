@@ -3,7 +3,7 @@
 import { css } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './heading-element-for-level.scss';
+import styles from './heading-element-for-level.scss';
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 export type HeadingElementForLevelProps = React.DetailedHTMLProps<

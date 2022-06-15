@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 @use 'sass:math';
 
-@mixin getCheckContainerStyle($height, $border-size: 1px) {
+@mixin get-check-container-style($height, $border-size: 1px) {
     position: relative;
     width: ($height - $border-size * 2);
     height: ($height - $border-size * 2);
@@ -11,52 +11,52 @@
     border: $border-size solid $neutral-0;
 }
 
-@mixin check-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
-    // maxTickLength = iconSize - borderthickness - spacingBetweenCircleAndTick
-    $maxTickLength: ($iconSize - $border-size * 2 - 2);
-    $check-height: math.div($maxTickLength, 2);
-    $bottom-value: (math.div($maxTickLength - $check-height, 2) + 1);
+@mixin check-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+    // max-tick-length = iconSize - borderthickness - spacingBetweenCircleAndTick
+    $max-tick-length: ($icon-size - $border-size * 2 - 2);
+    $check-height: math.div($max-tick-length, 2);
+    $bottom-value: (math.div($max-tick-length - $check-height, 2) + 1);
     $left-value: ($bottom-value);
-    $check-line-thickness: (math.div(2, 14) * $iconSize);
+    $check-line-thickness: (math.div(2, 14) * $icon-size);
 
     .check-container {
-        @include getCheckContainerStyle($iconSize, $border-size);
+        @include get-check-container-style($icon-size, $border-size);
 
         svg circle {
-            fill: $iconColor;
+            fill: $icon-color;
         }
     }
 }
 
-@mixin cross-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
-    $true-icon-size: ($iconSize - $border-size * 2);
+@mixin cross-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+    $true-icon-size: ($icon-size - $border-size * 2);
     $width-value: (math.div(2, 14) * $true-icon-size);
 
     .check-container {
-        @include getCheckContainerStyle($iconSize, $border-size);
+        @include get-check-container-style($icon-size, $border-size);
 
         $cross-line-height: (math.div(8, 14) * $true-icon-size);
         $bottom-value: math.div($true-icon-size - $cross-line-height, 2);
         $left-value: math.div($true-icon-size - $width-value, 2);
 
         svg circle {
-            fill: $iconColor;
+            fill: $icon-color;
         }
     }
 }
 
-@mixin incomplete-icon-styles($iconSize, $border-size: 1px) {
+@mixin incomplete-icon-styles($icon-size, $border-size: 1px) {
     .check-container {
-        @include getCheckContainerStyle($iconSize, $border-size);
+        @include get-check-container-style($icon-size, $border-size);
     }
 }
 
-@mixin inapplicable-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
-    $true-icon-size: ($iconSize - $border-size * 2);
+@mixin inapplicable-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+    $true-icon-size: ($icon-size - $border-size * 2);
     $width-value: (math.div(1, 7) * $true-icon-size);
 
     .check-container {
-        @include getCheckContainerStyle($iconSize, $border-size);
+        @include get-check-container-style($icon-size, $border-size);
 
         $inapplicable-line-height: (math.div(4, 7) * $true-icon-size);
         $bottom-value: math.div($true-icon-size - $inapplicable-line-height, 2);

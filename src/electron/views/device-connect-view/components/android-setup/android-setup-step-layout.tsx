@@ -9,7 +9,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
 import * as React from 'react';
-import * as styles from './android-setup-step-layout.scss';
+import styles from './android-setup-step-layout.scss';
 
 export type AndroidSetupFooterButtonProps = IButtonProps;
 export type AndroidSetupStepLayoutProps = {

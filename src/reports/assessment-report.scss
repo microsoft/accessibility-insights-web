@@ -11,7 +11,7 @@
 @import '../common/components/guidance-tags.scss';
 
 * {
-    font-family: $fontFamily;
+    font-family: $font-family;
     -webkit-print-color-adjust: exact;
 
     /* Chrome, Safari */
@@ -38,7 +38,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 21px;
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
     line-height: 32px;
 }
 
@@ -52,7 +52,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 17px;
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
 }
 
 .step-details {
@@ -70,7 +70,7 @@ header {
 
 .step-header-name {
     font-size: 15px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     display: inline;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -79,7 +79,7 @@ header {
 
 .step-header-description {
     font-size: 15px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     padding-left: 8px;
     padding-right: 8px;
     display: inline;
@@ -87,7 +87,7 @@ header {
 
 .step-header-message {
     font-size: 15px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     padding-left: 8px;
     padding-right: 8px;
     display: inline;
@@ -111,28 +111,29 @@ header {
 
 .instance-value {
     font-size: 12px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     vertical-align: top;
     word-break: break-all;
     white-space: pre-line;
 }
 
-.instance-key {
+.instance-key,
+%instance-key {
     font-size: 12px;
-    font-weight: $fontWeightSemiBold;
+    font-weight: $font-weight-semi-bold;
     vertical-align: top;
     text-align: left;
     width: 140px;
 }
 
 .instance-subsection-header {
-    @extend .instance-key;
+    @extend %instance-key;
 
     text-align: left;
 }
 
 .instance-key-indented {
-    @extend .instance-key;
+    @extend %instance-key;
 
     padding-left: 30px;
 }
@@ -141,14 +142,14 @@ header {
     display: inline;
     color: $primary-text;
     font-size: 14px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     padding-right: 8px;
     padding-left: 8px;
 }
 
 .report-footer {
     font-size: 14px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     color: $secondary-text;
     padding-top: 24px;
     padding-bottom: 36px;
@@ -158,7 +159,7 @@ header {
 
 .report-footer-link {
     font-size: 14px;
-    font-family: $fontFamily;
+    font-family: $font-family;
     text-decoration: none;
 }
 

@@ -28,11 +28,22 @@ describe('TelemetryViewer', () => {
         props = { deps };
     });
 
-    it('add listner for telemetry messages', () => {
+    it('adds listener for telemetry messages on mount', () => {
         shallow(<TelemetryViewer {...props} />);
 
         telemetryListenerMock.verify(
             listener => listener.addListener(It.is(isFunction)),
+            Times.once(),
+        );
+    });
+
+    it('removes listener for telemetry messages on unmount', () => {
+        const testSubject = shallow(<TelemetryViewer {...props} />);
+
+        testSubject.unmount();
+
+        telemetryListenerMock.verify(
+            listener => listener.removeListener(It.is(isFunction)),
             Times.once(),
         );
     });

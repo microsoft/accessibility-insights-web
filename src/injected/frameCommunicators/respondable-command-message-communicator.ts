@@ -14,7 +14,7 @@ export type CommandMessageResponse = {
     payload: any;
 };
 
-export type CommandMessageResponseCallback = (response: CommandMessageResponse) => void;
+export type CommandMessageResponseCallback = (response: CommandMessageResponse) => Promise<void>;
 
 // A listener may optionally respond to a message it receives. If it wishes to do so, it should
 // return a Promise which resolves to the response. If it does not wish to respond to a message,
@@ -98,26 +98,26 @@ export class RespondableCommandMessageCommunicator {
     // capability is required per axe-core's frameMessenger documentation, but it should only be
     // used if actually necessary, since there is currently no way for the communicator to know when
     // it's allowed to stop listening for further responses.
-    public sendCallbackCommandMessage(
+    public async sendCallbackCommandMessage(
         target: Window,
         commandMessage: CommandMessage,
-        responseCallback: (response: CommandMessageResponse) => void,
+        responseCallback: (response: CommandMessageResponse) => Promise<void>,
         responsesExpected: 'single' | 'multiple',
-    ): void {
+    ): Promise<void> {
         const commandMessageRequestWrapper =
             this.createCommandMessageRequestWrapper(commandMessage);
         const messageId = commandMessageRequestWrapper.commandMessageId;
 
         let recordedResponseCallback = responseCallback;
         if (responsesExpected === 'single') {
-            recordedResponseCallback = response => {
+            recordedResponseCallback = async response => {
                 delete this.responseCallbacks[messageId];
-                responseCallback(response);
+                await responseCallback(response);
             };
         }
 
         this.responseCallbacks[messageId] = recordedResponseCallback;
-        this.windowMessagePoster.postMessage(target, commandMessageRequestWrapper);
+        await this.windowMessagePoster.postMessage(target, commandMessageRequestWrapper);
     }
 
     // Sends a message to a corresponding listener in the target Window, which must have been
@@ -135,21 +135,22 @@ export class RespondableCommandMessageCommunicator {
         // This creates a "deferred" Promise which we will resolved later in onWindowMessage (by
         // calling the resolver function we're storing in pendingResponseResolvers) when we receive
         // a matching response from the windowMessagePoster.
-        let pendingResponseResolver: CommandMessageResponseCallback;
+        let pendingResponseResolver: (response: CommandMessageResponse) => void;
         const pendingResponsePromise = new Promise<CommandMessageResponse>(resolver => {
             pendingResponseResolver = resolver;
         });
 
-        const responseCallback = (response: CommandMessageResponse) => {
+        const responseCallback = async (response: CommandMessageResponse) => {
             if (timedOut) {
                 this.logger.error(
                     `Received a response for command ${commandMessage.command} after it timed out`,
+                    new Error(),
                 );
             }
             pendingResponseResolver(response);
         };
 
-        this.sendCallbackCommandMessage(target, commandMessage, responseCallback, 'single');
+        await this.sendCallbackCommandMessage(target, commandMessage, responseCallback, 'single');
 
         try {
             return await this.promiseFactory.timeout(
@@ -218,9 +219,12 @@ export class RespondableCommandMessageCommunicator {
     ): Promise<void> => {
         const responseCallback = this.responseCallbacks[receivedMessage.requestCommandMessageId];
         const unwrappedResponse = { payload: receivedMessage.payload };
-        await this.logErrors(`${receivedMessage.requestCommandMessageId} response callback`, () => {
-            responseCallback?.(unwrappedResponse);
-        });
+        await this.logErrors(
+            `${receivedMessage.requestCommandMessageId} response callback`,
+            async () => {
+                await responseCallback?.(unwrappedResponse);
+            },
+        );
     };
 
     private onRequestMessage = async (
@@ -237,7 +241,7 @@ export class RespondableCommandMessageCommunicator {
         const sendResponse = this.makeSendResponseCallback(commandMessageId, sourceWindow);
 
         if (listener == null) {
-            sendResponse({ payload: null });
+            await sendResponse({ payload: null });
         } else if (listener.type === 'callback') {
             await this.logErrors(`${command} listener callback`, () =>
                 listener.listener(unwrappedRequest, sourceWindow, sendResponse),
@@ -253,13 +257,13 @@ export class RespondableCommandMessageCommunicator {
             if (listenerResponse == null) {
                 listenerResponse = { payload: null };
             }
-            sendResponse(listenerResponse);
+            await sendResponse(listenerResponse);
         }
     };
 
-    private async logErrors(context, operation) {
+    private async logErrors(context: string, operation: (() => void) | (() => Promise<void>)) {
         try {
-            operation();
+            await operation();
         } catch (e) {
             this.logger.error(`Error at ${context}: ${e.message}`, e);
         }
@@ -269,12 +273,12 @@ export class RespondableCommandMessageCommunicator {
         requestCommandMessageId: string,
         sourceWindow: Window,
     ): CommandMessageResponseCallback {
-        return (response: CommandMessageResponse) => {
+        return async (response: CommandMessageResponse) => {
             const responseWrapper = this.createCommandMessageResponseWrapper(
                 requestCommandMessageId,
                 response,
             );
-            this.windowMessagePoster.postMessage(sourceWindow, responseWrapper);
+            await this.windowMessagePoster.postMessage(sourceWindow, responseWrapper);
         };
     }
 

@@ -15,6 +15,8 @@ pr:
             - targets.config.js
             - tsconfig.json
             - webpack.config.js
+            - esbuild.js
+            - style-config.js
 
 jobs:
     - template: ./build-all-job-per-environment.yaml

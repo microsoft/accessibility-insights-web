@@ -57,7 +57,6 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
-import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
@@ -137,7 +136,7 @@ import { TelemetryStateListener } from '../../background/telemetry/telemetry-sta
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
-import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
+import { ClientStoresHub } from '../../common/stores/client-stores-hub';
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
@@ -270,6 +269,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
+            tabActions,
             null,
             indexedDBInstance,
             logger,
@@ -307,7 +307,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
-        const storesHub = new BaseClientStoresHub<RootContainerState>([
+        const storesHub = new ClientStoresHub<RootContainerState>([
             userConfigurationStore,
             windowStateStore,
             scanStore,
@@ -585,7 +585,6 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
             ...testViewDeps,
-            storeActionMessageCreator: new NullStoreActionMessageCreator(),
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,
             documentManipulator,

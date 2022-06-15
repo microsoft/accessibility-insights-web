@@ -4,7 +4,7 @@ import { css, Icon, Link } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { flatMap } from 'lodash';
 import * as React from 'react';
-import * as styles from './ad-hoc-tools-panel.scss';
+import styles from './ad-hoc-tools-panel.scss';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
 
 export interface AdHocToolsPanelProps {

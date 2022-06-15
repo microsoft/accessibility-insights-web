@@ -10,7 +10,7 @@ import { tryAgainAutomationId } from 'electron/views/device-connect-view/compone
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
-import * as styles from './prompt-grant-permissions-step.scss';
+import styles from './prompt-grant-permissions-step.scss';
 
 export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptGrantPermissionsStep',

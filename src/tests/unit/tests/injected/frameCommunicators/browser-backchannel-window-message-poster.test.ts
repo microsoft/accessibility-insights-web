@@ -115,13 +115,13 @@ describe('BrowserBackchannelWindowMessagePoster', () => {
             .verifiable(Times.once());
 
         // sending message to iframe
-        testSubject.postMessage(targetWindow, sampleMessage);
+        await testSubject.postMessage(targetWindow, sampleMessage);
         mockWindowUtils.verifyAll();
         mockBrowserAdapter.verifyAll();
         mockBackchannelWindowMessageTranslator.verifyAll();
     });
 
-    test('onWindowMessageEvent bails if we cannot parse receive message', () => {
+    test('onWindowMessageEvent bails if we cannot parse receive message', async () => {
         testSubject.initialize();
         const targetWindow = {} as Window;
 
@@ -149,7 +149,7 @@ describe('BrowserBackchannelWindowMessagePoster', () => {
             .verifiable(Times.never());
 
         // trigger message
-        mockWindowUtils.notifyOnMessageEvent(sampleMessageEvent);
+        await mockWindowUtils.notifyOnMessageEvent(sampleMessageEvent);
         mockWindowUtils.verifyAll();
         mockBrowserAdapter.verifyAll();
         mockBackchannelWindowMessageTranslator.verifyAll();

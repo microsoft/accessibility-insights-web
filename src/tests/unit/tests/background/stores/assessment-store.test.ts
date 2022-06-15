@@ -12,6 +12,7 @@ import {
     EditFailureInstancePayload,
     ExpandTestNavPayload,
     LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
@@ -144,7 +145,7 @@ describe('AssessmentStore', () => {
             id: 1,
             url: 'url',
             title: 'title',
-            appRefreshed: true,
+            detailsViewId: 'testId',
         };
         const expectedTestType = -1 as VisualizationType;
         const expectedTestStep: string = 'assessment-1-step-1';
@@ -479,14 +480,14 @@ describe('AssessmentStore', () => {
             assessmentDataConverterMock.object,
         )
             .withSelectedTestType(VisualizationType.Color)
-            .withTargetTab(oldTabId, null, null, true)
+            .withTargetTab(oldTabId, null, null, 'testId')
             .build();
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, false)
+            .withTargetTab(tabId, url, title, 'testId')
             .build();
 
         setupDataGeneratorMock(null, getDefaultState(), Times.exactly(2));
@@ -551,14 +552,14 @@ describe('AssessmentStore', () => {
             assessmentDataConverterMock.object,
         )
             .withSelectedTestType(VisualizationType.Color)
-            .withTargetTab(oldTabId, null, null, true)
+            .withTargetTab(oldTabId, null, null)
             .build();
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, false)
+            .withTargetTab(tabId, url, title)
             .build();
 
         // Called with persisted data from initialize
@@ -592,14 +593,14 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(oldTabId, null, null, true)
+            .withTargetTab(oldTabId, null, null, 'testId')
             .build();
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, false)
+            .withTargetTab(tabId, url, title, 'testId')
             .build();
 
         createStoreTesterForAssessmentActions('continuePreviousAssessment')
@@ -612,6 +613,7 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
+        const detailsViewId = 'testId';
 
         const tab: Tab = {
             id: tabId,
@@ -623,7 +625,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(oldTabId, null, null, true)
+            .withTargetTab(oldTabId, null, null, 'oldId')
             .build();
 
         const payload: LoadAssessmentPayload = {
@@ -632,13 +634,14 @@ describe('AssessmentStore', () => {
                 version: -1,
                 assessmentData: initialState,
             },
+            detailsViewId,
         };
 
         const finalState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, false)
+            .withTargetTab(tabId, url, title, detailsViewId)
             .build();
 
         setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
@@ -1163,7 +1166,7 @@ describe('AssessmentStore', () => {
             assessmentsProvider,
             assessmentDataConverterMock.object,
         )
-            .withTargetTab(tabId, url, title, false)
+            .withTargetTab(tabId, url, title)
             .build();
 
         createStoreTesterForAssessmentActions('updateTargetTabId')
@@ -2064,6 +2067,41 @@ describe('AssessmentStore', () => {
             .build();
 
         createStoreTesterForAssessmentActions('addResultDescription')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    it.each([true, false])('onUpdateDetailsViewId', includeStartData => {
+        const payload: OnDetailsViewInitializedPayload = {
+            detailsViewId: 'testId',
+        } as OnDetailsViewInitializedPayload;
+        const tabId = 1000;
+        const url = 'url';
+        const title = 'title';
+
+        const initialDataBuilder = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        );
+        if (includeStartData) {
+            initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
+        } else {
+            initialDataBuilder.withTargetTab(undefined, undefined, undefined, 'initialId');
+        }
+        const initialState = initialDataBuilder.build();
+
+        const finalDataBuilder = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        );
+        if (includeStartData) {
+            finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
+        } else {
+            finalDataBuilder.withTargetTab(undefined, undefined, undefined, payload.detailsViewId);
+        }
+        const finalState = finalDataBuilder.build();
+
+        createStoreTesterForAssessmentActions('updateDetailsViewId')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });

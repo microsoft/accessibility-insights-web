@@ -5,7 +5,7 @@ import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton } from '@flue
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
-import * as styles from 'DetailsView/components/common-dialog-styles.scss';
+import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export type AutoDetectedFailuresDialogState = {
@@ -70,7 +70,7 @@ export class AutoDetectedFailuresDialog extends React.Component<
         }
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         if (!this.state.dialogEnabled) {
             return null;
         }

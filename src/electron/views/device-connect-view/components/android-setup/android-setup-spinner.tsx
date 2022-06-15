@@ -3,7 +3,7 @@
 import { Spinner, SpinnerSize } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './android-setup-spinner.scss';
+import styles from './android-setup-spinner.scss';
 
 export type AndroidSetupSpinnerProps = {
     label: string;

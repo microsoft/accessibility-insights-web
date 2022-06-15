@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { ConnectionNames } from 'common/constants/connection-names';
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
+import { Messages } from 'common/messages';
 
 export type DebugToolsTelemetryMessage = {
     timestamp: number;
@@ -24,34 +24,28 @@ export type DebugToolsTelemetryMessageListener = (
 type GetDate = () => Date;
 
 export class TelemetryListener {
-    private connection: chrome.runtime.Port;
     private listeners: DebugToolsTelemetryMessageListener[] = [];
 
-    constructor(
-        private readonly browserAdapter: BrowserAdapter,
-        private readonly getDate: GetDate,
-    ) {}
+    constructor(private readonly getDate: GetDate) {}
 
-    public initialize(): void {
-        this.connection = this.browserAdapter.connect({
-            name: ConnectionNames.debugToolsTelemetry,
-        });
+    public readonly handleBrowserMessage = (browserMessage: any): BrowserMessageResponse => {
+        if (browserMessage.messageType === Messages.DebugTools.Telemetry) {
+            this.listeners.forEach(listener =>
+                listener(convertToDebugToolTelemetryMessage(browserMessage, this.getDate)),
+            );
 
-        this.connection.onMessage.addListener(this.onTelemetryMessage);
-    }
+            return { messageHandled: true, result: Promise.resolve() };
+        }
 
-    private onTelemetryMessage = (telemetryMessage: any) => {
-        this.listeners.forEach(listener =>
-            listener(convertToDebugToolTelemetryMessage(telemetryMessage, this.getDate)),
-        );
+        return { messageHandled: false };
     };
 
     public addListener(listener: DebugToolsTelemetryMessageListener): void {
         this.listeners.push(listener);
     }
 
-    public dispose(): void {
-        this.connection.disconnect();
+    public removeListener(listener: DebugToolsTelemetryMessageListener): void {
+        this.listeners = this.listeners.filter(l => l !== listener);
     }
 }
 

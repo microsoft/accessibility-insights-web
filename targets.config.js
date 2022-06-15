@@ -86,6 +86,20 @@ module.exports = {
         bundleFolder: 'devBundle',
         mustExistFile: 'background.bundle.js',
     },
+    'canary-mv3': {
+        release: true,
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.canary,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web - Canary (M3)',
+                telemetryBuildName: 'CanaryMV3',
+            },
+        },
+        bundleFolder: 'devMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
+    },
     insider: {
         release: true,
         config: {

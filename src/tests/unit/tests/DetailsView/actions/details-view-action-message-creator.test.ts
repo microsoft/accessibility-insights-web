@@ -57,6 +57,32 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
+    test('initialize', () => {
+        const telemetry = {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+        };
+
+        const detailsViewId = 'testId';
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.DetailsView.Initialize,
+            payload: {
+                telemetry,
+                detailsViewId,
+            },
+        };
+
+        setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
+
+        testSubject.initialize(detailsViewId);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
     test('updateFocusedInstanceTarget', () => {
         const instanceTarget = ['#headings-1'];
         const expectedMessage = {
@@ -506,8 +532,12 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             messageType: Messages.Assessment.LoadAssessment,
             payload: {
                 tabId,
-                versionedAssessmentData: assessmentData,
+                versionedAssessmentData: {
+                    version: 2,
+                    assessmentData: {} as AssessmentStoreData,
+                },
                 telemetry,
+                detailsViewId: 'testId',
             } as LoadAssessmentPayload,
         };
         const expectedMessageToGoToOverview = {
@@ -519,7 +549,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .setup(tf => tf.fromDetailsViewNoTriggeredBy())
             .returns(() => telemetry);
 
-        testSubject.loadAssessment(assessmentData, tabId);
+        testSubject.loadAssessment(assessmentData, tabId, 'testId');
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToLoadAssessment)),

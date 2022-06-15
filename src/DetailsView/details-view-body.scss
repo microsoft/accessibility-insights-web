@@ -11,9 +11,9 @@
     flex-direction: column;
     padding-bottom: 1px;
     box-sizing: border-box;
-    width: calc(100vw - (#{$detailsViewLeftNavWidth}));
+    width: calc(100vw - (#{$details-view-left-nav-width}));
     height: 100%;
-    max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+    max-height: calc(100vh - (#{$details-view-header-bar-height}));
 
     &.narrow-mode {
         width: 100%;
@@ -45,7 +45,7 @@
         width: 100%;
         overflow: auto;
         box-sizing: border-box;
-        max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+        max-height: calc(100vh - (#{$details-view-total-header-height}));
 
         > div {
             width: 100%;
@@ -67,7 +67,7 @@
 
             h1 {
                 margin: 0;
-                font-weight: $fontWeightSemiBold;
+                font-weight: $font-weight-semi-bold;
                 font-size: 21px;
                 color: $neutral-100;
             }

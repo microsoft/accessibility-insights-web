@@ -7,8 +7,8 @@ import { BlockingDialog } from 'common/components/blocking-dialog';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
-import * as styles from 'DetailsView/components/change-assessment-dialog.scss';
-import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
+import styles from 'DetailsView/components/change-assessment-dialog.scss';
+import commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 export interface ChangeAssessmentDialogProps {
     prevTab: Tab;
