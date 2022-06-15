@@ -43,7 +43,7 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
         const showUndoButton = this.props.selectedKey !== TabStopRequirementStatuses.unknown;
 
         return (
-            <div className={styles.groupContainer}>
+            <div className={styles.choiceGroupContainer}>
                 <ChoiceGroup
                     styles={{
                         flexContainer: styles.radioButtonGroup,

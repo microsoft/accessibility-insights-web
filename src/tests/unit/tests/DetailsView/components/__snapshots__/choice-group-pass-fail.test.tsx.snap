@@ -2,7 +2,7 @@
 
 exports[`ChoiceGroupPassFail render 1`] = `
 <div
-  className="groupContainer"
+  className="choiceGroupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}
@@ -68,7 +68,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
 
 exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
 <div
-  className="groupContainer"
+  className="choiceGroupContainer"
 >
   <StyledChoiceGroup
     componentRef={[Function]}

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 
-.group-container {
+.choice-group-container {
     display: flex;
 }
 
@@ -62,7 +62,7 @@
     }
 
     @include ms-high-contrast-override {
-        // Improve contrast when option is inside DetailsRow (sometimes reverts back to white)
+        // Improve contrast when option is inside DetailsRow (it occasionally reverts back to white)
         :global(.ms-DetailsRow) & {
             .radio-button-option-field::before {
                 background-color: canvas;
