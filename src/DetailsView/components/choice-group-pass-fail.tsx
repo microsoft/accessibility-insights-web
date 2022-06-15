@@ -6,6 +6,7 @@ import {
     IChoiceGroupOption,
     IChoiceGroupProps,
     IconButton,
+    mergeStyles,
 } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -23,7 +24,7 @@ export interface ChoiceGroupPassFailProps {
     options: {
         key: OptionKey;
         // We expect text to be "Pass" or "Fail" so the option can receive
-        // `option-fail` or `option-pass` class
+        // its respective class name to style the option green or red
         text: 'Pass' | 'Fail';
     }[];
     selectedKey: OptionKey;
@@ -79,6 +80,18 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
     };
 
     private makeOptions = ({ key, text }): IChoiceGroupOption => {
+        let styledOption: string;
+        switch (text) {
+            case 'Pass':
+                styledOption = styles.radioButtonOptionPass;
+                break;
+            case 'Fail':
+                styledOption = styles.radioButtonOptionFail;
+                break;
+            default:
+                styledOption = '';
+                break;
+        }
         return {
             key,
             text,
@@ -87,10 +100,9 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
                 onRenderLabel: () => <></>,
                 ariaLabel: text,
             }),
-            className: `option-${text.toLowerCase()}`,
             styles: {
                 root: styles.radioButtonOption,
-                field: styles.radioButtonOptionField,
+                field: mergeStyles(styles.radioButtonOptionField, styledOption),
             },
         };
     };

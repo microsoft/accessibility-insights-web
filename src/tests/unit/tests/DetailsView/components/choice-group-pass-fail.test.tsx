@@ -60,15 +60,13 @@ describe('ChoiceGroupPassFail', () => {
         props.isLabelVisible = true;
 
         const testSubject = mount(<ChoiceGroupPassFail {...props} />);
-        const optionFail = testSubject.find('input.option-fail');
-        const optionPass = testSubject.find('input.option-pass');
-        expect(optionFail.props()['aria-label']).toBeUndefined();
-        expect(optionPass.props()['aria-label']).toBeUndefined();
+        const options = testSubject.find('input');
+        expect(options.at(0).props()['aria-label']).toBeUndefined();
+        expect(options.at(1).props()['aria-label']).toBeUndefined();
 
-        const optionLabelFail = testSubject.find('input.option-fail ~ label');
-        const optionLabelPass = testSubject.find('input.option-pass ~ label');
-        expect(optionLabelFail.text()).toEqual('Fail');
-        expect(optionLabelPass.text()).toEqual('Pass');
+        const labels = testSubject.find('label');
+        expect(labels.at(0).text()).toEqual('Pass');
+        expect(labels.at(1).text()).toEqual('Fail');
     });
 
     test('render options without label, aria-label is defined', () => {
@@ -76,15 +74,13 @@ describe('ChoiceGroupPassFail', () => {
         props.isLabelVisible = false;
 
         const testSubject = mount(<ChoiceGroupPassFail {...props} />);
-        const optionFail = testSubject.find('input.option-fail');
-        const optionPass = testSubject.find('input.option-pass');
-        expect(optionFail.props()['aria-label']).toEqual('Fail');
-        expect(optionPass.props()['aria-label']).toEqual('Pass');
+        const options = testSubject.find('input');
+        expect(options.at(0).props()['aria-label']).toEqual('Pass');
+        expect(options.at(1).props()['aria-label']).toEqual('Fail');
 
-        const optionLabelFail = testSubject.find('input.option-fail ~ label');
-        const optionLabelPass = testSubject.find('input.option-pass ~ label');
-        expect(optionLabelFail.text()).toEqual('');
-        expect(optionLabelPass.text()).toEqual('');
+        const labels = testSubject.find('label');
+        expect(labels.at(0).text()).toEqual('');
+        expect(labels.at(1).text()).toEqual('');
     });
 
     test('verify component is correctly used with undo', () => {

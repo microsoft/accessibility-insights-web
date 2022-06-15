@@ -12,22 +12,20 @@ exports[`ChoiceGroupPassFail render 1`] = `
       Array [
         Object {
           "ariaLabel": "Pass",
-          "className": "option-pass",
           "key": "pass",
           "onRenderLabel": [Function],
           "styles": Object {
-            "field": "radioButtonOptionField",
+            "field": "radioButtonOptionField radioButtonOptionPass",
             "root": "radioButtonOption",
           },
           "text": "Pass",
         },
         Object {
           "ariaLabel": "Fail",
-          "className": "option-fail",
           "key": "fail",
           "onRenderLabel": [Function],
           "styles": Object {
-            "field": "radioButtonOptionField",
+            "field": "radioButtonOptionField radioButtonOptionFail",
             "root": "radioButtonOption",
           },
           "text": "Fail",
@@ -78,22 +76,20 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
       Array [
         Object {
           "ariaLabel": "Pass",
-          "className": "option-pass",
           "key": "pass",
           "onRenderLabel": [Function],
           "styles": Object {
-            "field": "radioButtonOptionField",
+            "field": "radioButtonOptionField radioButtonOptionPass",
             "root": "radioButtonOption",
           },
           "text": "Pass",
         },
         Object {
           "ariaLabel": "Fail",
-          "className": "option-fail",
           "key": "fail",
           "onRenderLabel": [Function],
           "styles": Object {
-            "field": "radioButtonOptionField",
+            "field": "radioButtonOptionField radioButtonOptionFail",
             "root": "radioButtonOption",
           },
           "text": "Fail",

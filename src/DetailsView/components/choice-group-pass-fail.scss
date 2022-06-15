@@ -41,24 +41,22 @@
 .radio-button-option {
     margin-top: 0; // Remove margin-top to align ChoiceGroup with undo button
 
-    :global {
-        .option-pass ~ .is-checked {
-            &::before,
-            &::after {
-                border-color: $positive-outcome;
-            }
-        }
+    .radio-button-option-field {
+        min-width: 20px; // Prevents width from collapsing when the label is not visible
+    }
 
-        .option-fail ~ .is-checked {
-            &::before,
-            &::after {
-                border-color: $negative-outcome;
-            }
+    .radio-button-option-pass:global(.is-checked) {
+        &::before,
+        &::after {
+            border-color: $positive-outcome;
         }
     }
 
-    .radio-button-option-field {
-        min-width: 20px; // Prevents width from collapsing when the label is not visible
+    .radio-button-option-fail:global(.is-checked) {
+        &::before,
+        &::after {
+            border-color: $negative-outcome;
+        }
     }
 
     @include ms-high-contrast-override {
