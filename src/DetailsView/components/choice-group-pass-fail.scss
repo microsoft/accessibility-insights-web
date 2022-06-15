@@ -8,6 +8,24 @@
 
 .secondary-controls-wrapper {
     margin-left: 4px;
+
+    @include ms-high-contrast-override {
+        :global(.ms-DetailsRow) & {
+            // Improve contrast when button is inside DetailsRow
+            button {
+                color: buttontext;
+            }
+
+            button,
+            button:hover {
+                background-color: canvas;
+            }
+
+            button:hover {
+                color: highlight;
+            }
+        }
+    }
 }
 
 // Create a horizontal ChoiceGroup
@@ -43,9 +61,15 @@
         min-width: 20px;
     }
 
-    // Set hover and checked state for high contrast mode
-    // See https://github.com/microsoft/accessibility-insights-web/issues/3435
     @include ms-high-contrast-override {
+        // Improve contrast (needed for DetailsRow)
+        .radio-button-option-field::before {
+            background-color: canvas;
+            border-color: buttontext;
+        }
+
+        // Set hover and checked state for high contrast mode
+        // See https://github.com/microsoft/accessibility-insights-web/issues/3435
         .radio-button-option-field:global(.is-checked),
         .radio-button-option-field:hover {
             &::before,
