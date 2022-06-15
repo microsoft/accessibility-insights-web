@@ -55,9 +55,9 @@ describe('TelemetryListener', () => {
         const externalListenerMock = Mock.ofType<DebugToolsTelemetryMessageListener>();
         testSubject.addListener(externalListenerMock.object);
 
-        await expect(testSubject.handleBrowserMessage(legitimateInputMessage)).resolves.toBe(
-            undefined,
-        );
+        const response = testSubject.handleBrowserMessage(legitimateInputMessage);
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).resolves.toBe(undefined);
 
         const expectedMessage = {
             name,
@@ -82,7 +82,8 @@ describe('TelemetryListener', () => {
             timestamp: 0,
         };
 
-        expect(testSubject.handleBrowserMessage(nonTelemetryMessage)).toBeUndefined();
+        const response = testSubject.handleBrowserMessage(nonTelemetryMessage);
+        expect(response.messageHandled).toBe(false);
 
         externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });
@@ -93,9 +94,9 @@ describe('TelemetryListener', () => {
         testSubject.addListener(externalListenerMock.object);
         testSubject.removeListener(externalListenerMock.object);
 
-        await expect(testSubject.handleBrowserMessage(legitimateInputMessage)).resolves.toBe(
-            undefined,
-        );
+        const response = testSubject.handleBrowserMessage(legitimateInputMessage);
+        expect(response.messageHandled).toBe(true);
+        await expect(response.result).resolves.toBe(undefined);
 
         externalListenerMock.verify(listener => listener(It.isAny()), Times.never());
     });
