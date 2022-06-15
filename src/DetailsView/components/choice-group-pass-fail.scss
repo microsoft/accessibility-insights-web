@@ -58,7 +58,7 @@
     }
 
     .radio-button-option-field {
-        min-width: 20px;
+        min-width: 20px; // Prevents width from collapsing when the label is not visible
     }
 
     @include ms-high-contrast-override {
