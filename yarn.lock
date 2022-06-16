@@ -523,7 +523,7 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
-"@electron/get@^1.0.1", "@electron/get@^1.14.1":
+"@electron/get@^1.13.0", "@electron/get@^1.14.1":
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.14.1.tgz#16ba75f02dffb74c23965e72d617adc721d27f40"
   integrity sha512-BrZYyL/6m0ZXz/lDxy/nlVhQz+WF+iPS6qXolEU8atw7h6v1aYkjwJZ63m+bJMBTxDE66X+r2tPS4a/8C82sZw==
@@ -2748,7 +2748,7 @@
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
-"@types/node@*", "@types/node@16.9.1", "@types/node@^14.6.2", "@types/node@^16.11.7":
+"@types/node@*", "@types/node@16.9.1", "@types/node@^16.11.26", "@types/node@^16.11.7":
   version "16.11.26"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.26.tgz#63d204d136c9916fb4dcd1b50f9740fe86884e47"
   integrity sha512-GZ7bu5A6+4DtG7q9GsoHXy3ALcgeIHP4NnL0Vv2wu0uUB/yQex26v0tf6/na1mm0+bS9Uw+0DFex7aaKr2qawQ==
@@ -5439,13 +5439,13 @@ electron-updater@^5.0.1:
     lodash.isequal "^4.5.0"
     semver "^7.3.5"
 
-electron@14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-14.0.0.tgz#a096484bfbf71d87fc0fa85a943a7869d6b9bf94"
-  integrity sha512-O6EI7L1BPIrTpEIFefjjmdbmSn9LtE4mmrv4dfpV4Mqaa8uKuNYQogwZPEvSwaBexb69eb1LQ25n+f+kBcjiRQ==
+electron@18.3.3:
+  version "18.3.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-18.3.3.tgz#1c48273c1ad1522b8c18f19575e862c7ccd9f409"
+  integrity sha512-LYxf3uCDc/r0klu7LL0eZLxkseoGIY/vrCfS0Qj4YTU3M7LLjOaIqrajI7icKwaI2dgxiuJJH3n4eqALFpJAFg==
   dependencies:
-    "@electron/get" "^1.0.1"
-    "@types/node" "^14.6.2"
+    "@electron/get" "^1.13.0"
+    "@types/node" "^16.11.26"
     extract-zip "^1.0.3"
 
 emittery@^0.10.2:
