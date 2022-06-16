@@ -202,7 +202,7 @@
         "react-copy-to-clipboard": "^5.1.0",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
-        "react-resize-detector": "^7.1.1",
+        "react-resize-detector": "^7.1.2",
         "react-router-dom": "^6.3.0",
         "tabbable": "^5.3.3",
         "ua-parser-js": "^1.0.2",
