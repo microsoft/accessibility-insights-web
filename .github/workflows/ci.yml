@@ -221,7 +221,7 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --maxWorkers=2 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       env:
         # If you need to debug Playwright/Chromium, using pw:* instead may help
         DEBUG: pw:api
@@ -298,7 +298,7 @@ jobs:
 
     - name: yarn test:unified
       run: |
-        yarn test:unified --maxWorkers=2 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
+        yarn test:unified --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
