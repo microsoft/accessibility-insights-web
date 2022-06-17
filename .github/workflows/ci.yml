@@ -92,7 +92,7 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn test --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
+    - run: yarn test --maxWorkers=2 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
