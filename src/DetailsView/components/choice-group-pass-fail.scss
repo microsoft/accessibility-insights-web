@@ -14,15 +14,12 @@
             // Improve contrast when button is inside DetailsRow
             button {
                 color: buttontext;
-            }
-
-            button,
-            button:hover {
                 background-color: canvas;
-            }
 
-            button:hover {
-                color: highlight;
+                &:hover {
+                    color: highlight;
+                    background-color: canvas;
+                }
             }
         }
     }
