@@ -41,22 +41,9 @@ describe('TestStatusChoiceGroup', () => {
         expect(component.find(IconButton).exists()).toBeTruthy();
     });
 
-    test('render: pass', () => {
-        props.status = ManualTestStatus.PASS;
-        const component = mount(<TestStatusChoiceGroup {...props} />);
-        const choiceGroup = component.find(ChoiceGroupPassFail);
-        expect(choiceGroup.props()).toMatchObject({
-            selectedKey: ManualTestStatus.PASS,
-        });
-    });
-
-    test('render: fail', () => {
-        props.status = ManualTestStatus.FAIL;
-        const component = mount(<TestStatusChoiceGroup {...props} />);
-        const choiceGroup = component.find(ChoiceGroupPassFail);
-        expect(choiceGroup.props()).toMatchObject({
-            selectedKey: ManualTestStatus.FAIL,
-        });
+    test('render: status is set to UNKNOWN', () => {
+        const actual = shallow(<TestStatusChoiceGroup {...props} />);
+        expect(actual.getElement()).toMatchSnapshot();
     });
 
     test('render: status is set to PASS', () => {
@@ -68,12 +55,6 @@ describe('TestStatusChoiceGroup', () => {
 
         const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    test('render: status is set to UNKNOWN', () => {
-        props.status = ManualTestStatus.UNKNOWN;
-        const actual = shallow(<TestStatusChoiceGroup {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
     });
 
     test('render: status is set to FAIL', () => {

@@ -32,7 +32,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
         },
       ]
     }
-    selectedKey="pass"
+    selectedKey="unknown"
     styles={
       Object {
         "flexContainer": "radioButtonGroup",
@@ -42,15 +42,6 @@ exports[`ChoiceGroupPassFail render 1`] = `
   <div
     className="secondaryControlsWrapper"
   >
-    <CustomizedIconButton
-      ariaLabel="undo"
-      iconProps={
-        Object {
-          "iconName": "undo",
-        }
-      }
-      onClick={[Function]}
-    />
     <CustomizedIconButton
       aria-label="add"
       iconProps={
@@ -64,7 +55,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
 </div>
 `;
 
-exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
+exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
 <div
   className="choiceGroupContainer"
 >
@@ -96,7 +87,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
         },
       ]
     }
-    selectedKey="unknown"
+    selectedKey="fail"
     styles={
       Object {
         "flexContainer": "radioButtonGroup",
@@ -106,6 +97,79 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to UNKNOWN 1`] = `
   <div
     className="secondaryControlsWrapper"
   >
+    <CustomizedIconButton
+      ariaLabel="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      onClick={[Function]}
+    />
+    <CustomizedIconButton
+      aria-label="add"
+      iconProps={
+        Object {
+          "iconName": "add",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
+<div
+  className="choiceGroupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionPass",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "key": "fail",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionFail",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="pass"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      ariaLabel="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      onClick={[Function]}
+    />
     <CustomizedIconButton
       aria-label="add"
       iconProps={

@@ -31,26 +31,19 @@ describe('ChoiceGroupPassFail', () => {
         };
     });
 
-    test('selectedKey: pass', () => {
-        props.selectedKey = TabStopRequirementStatuses.pass;
-        const component = mount(<ChoiceGroupPassFail {...props} />);
-        expect(component.props()).toMatchObject({ selectedKey: 'pass' });
-    });
-
-    test('selectedKey: fail', () => {
-        props.selectedKey = TabStopRequirementStatuses.fail;
-        const component = mount(<ChoiceGroupPassFail {...props} />);
-        expect(component.props()).toMatchObject({ selectedKey: 'fail' });
-    });
-
     test('render', () => {
-        props.selectedKey = TabStopRequirementStatuses.pass;
         const wrapper = shallow(<ChoiceGroupPassFail {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render: selectedKey is set to UNKNOWN', () => {
-        props.selectedKey = TabStopRequirementStatuses.unknown;
+    test('render: selectedKey is set to FAIL', () => {
+        props.selectedKey = TabStopRequirementStatuses.fail;
+        const actual = shallow(<ChoiceGroupPassFail {...props} />);
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
+    test('render: selectedKey is set to PASS', () => {
+        props.selectedKey = TabStopRequirementStatuses.pass;
         const actual = shallow(<ChoiceGroupPassFail {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });
