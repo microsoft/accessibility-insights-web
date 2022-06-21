@@ -164,6 +164,7 @@
         "postcss-modules": "^4.3.1",
         "preprocess": "^3.2.0",
         "prettier": "^2.6.2",
+        "react-devtools": "^4.24.7",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.52.3",
         "sass-loader": "^13.0.0",
