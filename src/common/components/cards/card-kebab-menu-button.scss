@@ -9,11 +9,6 @@
     width: 32px;
     height: 32px;
 
-    :global(.ms-Icon) {
-        flex-grow: 1; // Center the custom SVG
-        color: $primary-text;
-    }
-
     &:hover {
         background-color: $menu-item-background-hover;
     }
@@ -23,11 +18,18 @@
     }
 
     // Add hover and active state:
-    &:global(.is-expanded) :global(.ms-Icon),
-    &:hover :global(.ms-Icon) {
+    &:global(.is-expanded) .kebab-menu-icon,
+    &:hover .kebab-menu-icon {
         @media screen and (forced-colors: active) {
             color: highlight;
         }
+    }
+}
+
+.kebab-menu-icon {
+    flex-grow: 1; // Center the custom SVG
+    @media screen and (forced-colors: active) {
+        color: buttontext;
     }
 }
 
