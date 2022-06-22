@@ -1084,10 +1084,6 @@
         width: 32px;
         height: 32px;
       }
-      .kebab-menu-button--e-7v- .ms-Icon {
-        flex-grow: 1;
-        color: var(--primary-text);
-      }
       .kebab-menu-button--e-7v-:hover {
         background-color: var(--menu-item-background-hover);
       }
@@ -1095,9 +1091,17 @@
         background-color: var(--menu-item-background-active);
       }
       @media screen and (forced-colors: active) {
-        .kebab-menu-button--e-7v-.is-expanded .ms-Icon,
-        .kebab-menu-button--e-7v-:hover .ms-Icon {
+        .kebab-menu-button--e-7v-.is-expanded .kebab-menu-icon--RzpyN,
+        .kebab-menu-button--e-7v-:hover .kebab-menu-icon--RzpyN {
           color: highlight;
+        }
+      }
+      .kebab-menu-icon--RzpyN {
+        flex-grow: 1;
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu-icon--RzpyN {
+          color: buttontext;
         }
       }
       @media screen and (forced-colors: active) {
