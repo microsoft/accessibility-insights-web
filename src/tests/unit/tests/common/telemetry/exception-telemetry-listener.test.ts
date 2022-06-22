@@ -14,9 +14,9 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe(ExceptionTelemetryListener, () => {
     const exceptionSource: TelemetryEventSource = TelemetryEventSource.AdHocTools;
     let telemetrySanitizerMock: IMock<ExceptionTelemetrySanitizer>;
-    let windowFunctionMock: IMock<(...any) => void>;
+    let globalScopeFunctionMock: IMock<(...any) => void>;
     let loggingFunctionMock: IMock<(message: string, error: Error) => void>;
-    let windowStub: Window;
+    let globalThisStub: typeof globalThis;
     let consoleStub: Console;
     let loggerStub: Logger;
 
@@ -35,13 +35,13 @@ describe(ExceptionTelemetryListener, () => {
             .setup(m => m.sanitizeTelemetryData(It.isAny()))
             .returns(t => t)
             .verifiable(Times.once());
-        windowFunctionMock = Mock.ofType<(...any) => void>();
-        windowFunctionMock.setup(f => f(It.isAny())).verifiable(Times.never());
+        globalScopeFunctionMock = Mock.ofType<(...any) => void>();
+        globalScopeFunctionMock.setup(f => f(It.isAny())).verifiable(Times.never());
         loggingFunctionMock = Mock.ofType<(message: string, error: Error) => void>();
-        windowStub = {
-            onerror: windowFunctionMock.object,
-            onunhandledrejection: windowFunctionMock.object,
-        } as Window;
+        globalThisStub = {
+            onerror: globalScopeFunctionMock.object,
+            onunhandledrejection: globalScopeFunctionMock.object,
+        } as typeof globalThis;
         consoleStub = { error: loggingFunctionMock.object } as Console;
         loggerStub = { error: loggingFunctionMock.object } as Logger;
 
@@ -64,13 +64,13 @@ describe(ExceptionTelemetryListener, () => {
     });
 
     afterEach(() => {
-        windowFunctionMock.verifyAll();
+        globalScopeFunctionMock.verifyAll();
         loggingFunctionMock.verifyAll();
         telemetrySanitizerMock.verifyAll();
     });
 
     describe('it sends telemetry', () => {
-        test('window on error sends telemetry', () => {
+        test('globalThis on error sends telemetry', () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: errorStub.stack,
@@ -78,14 +78,14 @@ describe(ExceptionTelemetryListener, () => {
                 source: exceptionSource,
             };
 
-            testSubject.initialize(loggerStub, windowStub, consoleStub);
+            testSubject.initialize(loggerStub, globalThisStub, consoleStub);
 
-            windowStub.onerror(errorMessageStub, '', 0, 0, errorStub);
+            globalThisStub.onerror(errorMessageStub, '', 0, 0, errorStub);
 
             expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
 
-        test('window on unhandled rejection sends telemetry', () => {
+        test('globalThis on unhandled rejection sends telemetry', () => {
             expectedTelemetry = {
                 message: errorMessageStub,
                 stackTrace: undefined,
@@ -93,9 +93,10 @@ describe(ExceptionTelemetryListener, () => {
                 source: exceptionSource,
             };
 
-            testSubject.initialize(loggerStub, windowStub, consoleStub);
+            testSubject.initialize(loggerStub, globalThisStub, consoleStub);
 
-            windowStub.onunhandledrejection(rejectedPromiseStub);
+            // Using .bind() fixes a typing error that doesn't affect the actual code
+            globalThisStub.onunhandledrejection.bind(globalThis)(rejectedPromiseStub);
 
             expect(publishExceptionTelemetryCalls).toMatchObject([expectedTelemetry]);
         });
@@ -110,7 +111,7 @@ describe(ExceptionTelemetryListener, () => {
 
             loggingFunctionMock.setup(f => f(errorMessageStub, errorStub)).verifiable(Times.once());
 
-            testSubject.initialize(loggerStub, windowStub, consoleStub);
+            testSubject.initialize(loggerStub, globalThisStub, consoleStub);
 
             consoleStub.error(errorMessageStub, errorStub);
 
@@ -127,7 +128,7 @@ describe(ExceptionTelemetryListener, () => {
 
             loggingFunctionMock.setup(f => f(errorMessageStub, errorStub)).verifiable(Times.once());
 
-            testSubject.initialize(loggerStub, windowStub, consoleStub);
+            testSubject.initialize(loggerStub, globalThisStub, consoleStub);
 
             loggerStub.error(errorMessageStub, errorStub);
 
