@@ -13,7 +13,7 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-view-switcher-nav';
-import * as styles from './details-view-left-nav.scss';
+import styles from './details-view-left-nav.scss';
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;

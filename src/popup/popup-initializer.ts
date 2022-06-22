@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { loadTheme } from '@fluentui/react';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import * as ReactDOM from 'react-dom';
 import { AxeInfo } from '../common/axe-info';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
@@ -17,12 +19,11 @@ import { Logger } from '../common/logging/logger';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { RemoteActionMessageDispatcher } from '../common/message-creators/remote-action-message-dispatcher';
-import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
-import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
+import { ClientStoresHub } from '../common/stores/client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { CommandStoreData } from '../common/types/store-data/command-store-data';
@@ -92,6 +93,17 @@ export class PopupInitializer {
             tab.id,
             this.logger,
         );
+
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(
+            this.browserAdapter.getExtensionId(),
+        );
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
+            TelemetryEventSource.PopUp,
+            actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
+        );
+        exceptionTelemetryListener.initialize(this.logger);
+
         const visualizationActionCreator = new VisualizationActionMessageCreator(
             actionMessageDispatcher,
         );
@@ -119,8 +131,8 @@ export class PopupInitializer {
             actionMessageDispatcher,
         );
 
-        const storeUpdateMessageDistributor = new StoreUpdateMessageHub(tab.id);
-        this.browserAdapter.addListenerOnMessage(storeUpdateMessageDistributor.handleMessage);
+        const storeUpdateMessageHub = new StoreUpdateMessageHub(actionMessageDispatcher, tab.id);
+        this.browserAdapter.addListenerOnRuntimeMessage(storeUpdateMessageHub.handleBrowserMessage);
 
         const visualizationStoreName = StoreNames[StoreNames.VisualizationStore];
         const commandStoreName = StoreNames[StoreNames.CommandStore];
@@ -130,36 +142,24 @@ export class PopupInitializer {
 
         const visualizationStore = new StoreProxy<VisualizationStoreData>(
             visualizationStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(
             launchPanelStateStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const commandStore = new StoreProxy<CommandStoreData>(
             commandStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(
             featureFlagStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(
             userConfigurationStoreName,
-            storeUpdateMessageDistributor,
+            storeUpdateMessageHub,
         );
-
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            actionMessageDispatcher,
-        );
-
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
-            visualizationStore,
-            launchPanelStateStore,
-            commandStore,
-            featureFlagStore,
-            userConfigurationStore,
-        ]);
 
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
@@ -190,7 +190,7 @@ export class PopupInitializer {
 
         const visualizationTypes =
             EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
+        const storesHub = new ClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,
             commandStore,
@@ -210,7 +210,6 @@ export class PopupInitializer {
             dropdownClickHandler,
             userConfigMessageCreator,
             storesHub,
-            storeActionMessageCreator,
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,

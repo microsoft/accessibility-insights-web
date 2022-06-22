@@ -11,7 +11,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import * as styles from 'DetailsView/components/adhoc-issues-test-view.scss';
+import styles from 'DetailsView/components/adhoc-issues-test-view.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     ScanIncompleteWarning,

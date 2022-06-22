@@ -13,7 +13,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
-        "storeActionMessageCreator": undefined,
         "storesHub": [typemoq mock object],
       }
     }
@@ -57,7 +56,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
-        "storeActionMessageCreator": undefined,
         "storesHub": [typemoq mock object],
       }
     }
@@ -392,7 +390,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
-        "storeActionMessageCreator": undefined,
         "storesHub": [typemoq mock object],
       }
     }

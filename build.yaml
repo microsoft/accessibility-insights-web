@@ -41,11 +41,17 @@ jobs:
             displayName: generate typings for scss files
             timeoutInMinutes: 3
 
+          - script: yarn type:check
+            displayName: type check code
+            timeoutInMinutes: 3
+
           - script: yarn null:check
             displayName: check for strictNullChecks violations
             timeoutInMinutes: 5
 
-          - script: yarn test --ci
+          # We set maxWorkers to 2 since our CI VMs have 2 cores and by default Jest only uses 1.
+          # If this were to change in the future, the number here should change accordingly.
+          - script: yarn test --maxWorkers=2 --ci
             displayName: run unit tests
             timeoutInMinutes: 25
 

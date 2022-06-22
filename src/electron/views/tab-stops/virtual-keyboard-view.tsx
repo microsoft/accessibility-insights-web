@@ -4,7 +4,7 @@
 import { css } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import * as commonStyles from 'electron/views/screenshot/common-visual-helper-section-styles.scss';
+import commonStyles from 'electron/views/screenshot/common-visual-helper-section-styles.scss';
 import {
     VirtualKeyboardButtons,
     VirtualKeyboardButtonsDeps,

@@ -36,6 +36,10 @@ export class TelemetryViewer extends React.Component<TelemetryViewerProps, Telem
         this.props.deps.telemetryListener.addListener(this.onTelemetryMessage);
     }
 
+    public componentWillUnmount(): void {
+        this.props.deps.telemetryListener.removeListener(this.onTelemetryMessage);
+    }
+
     public render(): JSX.Element {
         if (this.state.telemetryMessages.length === 0) {
             return this.renderNoMessages();

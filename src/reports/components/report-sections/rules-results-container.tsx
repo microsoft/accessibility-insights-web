@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
-import * as styles from './rules-results-container.scss';
+import styles from './rules-results-container.scss';
 
 export type RulesResultsContainerProps = Pick<CombinedReportSectionProps, 'getCollapsibleScript'>;
 

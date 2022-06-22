@@ -35,7 +35,7 @@ export class DevToolsMonitor {
     private startMonitor(): void {
         if (!this.monitorIsActive) {
             // Do not await, we want the polling loop to run asynchronously
-            this.pollUntilClosed();
+            void this.pollUntilClosed();
         }
     }
 
@@ -47,7 +47,7 @@ export class DevToolsMonitor {
         }
 
         this.monitorIsActive = false;
-        this.onDevtoolClosed();
+        await this.onDevtoolClosed();
     }
 
     private async isDevtoolOpen(): Promise<boolean> {
@@ -69,10 +69,11 @@ export class DevToolsMonitor {
         }
     }
 
-    private onDevtoolClosed(): void {
-        this.interpreter.interpret({
+    private async onDevtoolClosed(): Promise<void> {
+        const response = this.interpreter.interpret({
             tabId: this.tabId,
             messageType: Messages.DevTools.Closed,
         });
+        await response.result;
     }
 }

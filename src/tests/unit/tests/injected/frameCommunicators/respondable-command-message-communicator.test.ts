@@ -443,7 +443,7 @@ describe('RespondableCommandMessageCommunicator', () => {
 
     describe('callback message behavior', () => {
         const emptyCommand1Message = { command: 'command1', payload: {} };
-        const noopReplyHandler = () => {};
+        const noopReplyHandler = async () => {};
         const stubGenerateUID = () => 'unique_id';
         let senderWindow: Window;
         let sender: RespondableCommandMessageCommunicator;
@@ -473,12 +473,12 @@ describe('RespondableCommandMessageCommunicator', () => {
                 receiverLogger,
             );
             mockListener = Mock.ofInstance(() => {}, MockBehavior.Strict);
-            mockReplyHandler = Mock.ofInstance(() => {}, MockBehavior.Strict);
+            mockReplyHandler = Mock.ofInstance(async () => {}, MockBehavior.Strict);
             sender.initialize();
             receiver.initialize();
         });
 
-        it('supports callback-based communcation in single-response mode', () => {
+        it('supports callback-based communcation in single-response mode', async () => {
             const sentMessage: CommandMessage = {
                 command: 'command1',
                 payload: { request: 1 },
@@ -495,7 +495,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.setup(h => h(response)).verifiable(Times.once());
 
             receiver.addCallbackCommandMessageListener('command1', mockListener.object);
-            sender.sendCallbackCommandMessage(
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 sentMessage,
                 mockReplyHandler.object,
@@ -508,7 +508,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             receiverLogger.verifyNoErrors();
         });
 
-        it('supports callback-based communcation in multiple-response mode', () => {
+        it('supports callback-based communcation in multiple-response mode', async () => {
             const sentMessage: CommandMessage = {
                 command: 'command1',
                 payload: { request: 1 },
@@ -530,7 +530,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.setup(h => h(response2)).verifiable(Times.once());
 
             receiver.addCallbackCommandMessageListener('command1', mockListener.object);
-            sender.sendCallbackCommandMessage(
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 sentMessage,
                 mockReplyHandler.object,
@@ -543,8 +543,8 @@ describe('RespondableCommandMessageCommunicator', () => {
             receiverLogger.verifyNoErrors();
         });
 
-        it('does not apply a timeout to callback messages', () => {
-            sender.sendCallbackCommandMessage(
+        it('does not apply a timeout to callback messages', async () => {
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 emptyCommand1Message,
                 noopReplyHandler,
@@ -553,7 +553,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockPromiseFactory.verify(pf => pf.timeout(It.isAny(), It.isAny()), Times.never());
         });
 
-        it('ignores repeated responses to a single-response message', () => {
+        it('ignores repeated responses to a single-response message', async () => {
             const sentMessage: CommandMessage = {
                 command: 'command1',
                 payload: { request: 1 },
@@ -575,7 +575,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.setup(h => h(response2)).verifiable(Times.never());
 
             receiver.addCallbackCommandMessageListener('command1', mockListener.object);
-            sender.sendCallbackCommandMessage(
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 sentMessage,
                 mockReplyHandler.object,
@@ -588,21 +588,21 @@ describe('RespondableCommandMessageCommunicator', () => {
             receiverLogger.verifyNoErrors();
         });
 
-        it('propagates errors from the underlying postMessage by rejecting with them as-is', () => {
+        it('propagates errors from the underlying postMessage by rejecting with them as-is', async () => {
             const unlinkedWindow = {} as Window;
-            expect(() =>
+            await expect(
                 sender.sendCallbackCommandMessage(
                     unlinkedWindow,
                     emptyCommand1Message,
                     noopReplyHandler,
                     'single',
                 ),
-            ).toThrowErrorMatchingInlineSnapshot(
+            ).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"target window unreachable (LinkedWindowMessagePoster not linked to it)"`,
             );
         });
 
-        it('handles throwing listeners by logging an error at the receiver', () => {
+        it('handles throwing listeners by logging an error at the receiver', async () => {
             const listenerError = new Error('from listener');
             const sentMessage: CommandMessage = {
                 command: 'command1',
@@ -617,7 +617,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.setup(h => h(It.isAny())).verifiable(Times.never());
 
             receiver.addCallbackCommandMessageListener('command1', mockListener.object);
-            sender.sendCallbackCommandMessage(
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 sentMessage,
                 mockReplyHandler.object,
@@ -635,7 +635,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             `);
         });
 
-        it('handles throwing replyHandlers by logging an error at the sender', () => {
+        it('handles throwing replyHandlers by logging an error at the sender', async () => {
             const replyHandlerError = new Error('from replyHandler');
             const sentMessage: CommandMessage = {
                 command: 'command1',
@@ -658,7 +658,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                 .verifiable(Times.once());
 
             receiver.addCallbackCommandMessageListener('command1', mockListener.object);
-            sender.sendCallbackCommandMessage(
+            await sender.sendCallbackCommandMessage(
                 receiverWindow,
                 sentMessage,
                 mockReplyHandler.object,

@@ -11,8 +11,8 @@ import {
 
 export interface AllFrameRunnerTarget<T> {
     commandSuffix: string;
-    start: () => void;
-    stop: () => void;
+    start: () => Promise<void>;
+    stop: () => Promise<void>;
     transformChildResultForParent: (fromChild: T, messageSourceFrame: HTMLIFrameElement) => T;
     setResultCallback: (reportResults: (payload: T) => Promise<void>) => void;
 }
@@ -66,13 +66,15 @@ export class AllFrameRunner<T> {
     }
 
     public start = async () => {
-        this.listener.start();
+        const startPromise = this.listener.start();
         await this.sendCommandToFrames(this.startCommand);
+        await startPromise;
     };
 
     public stop = async () => {
-        this.listener.stop();
+        const stopPromise = this.listener.stop();
         await this.sendCommandToFrames(this.stopCommand);
+        await stopPromise;
     };
 
     private reportResultsThroughFrames = async (

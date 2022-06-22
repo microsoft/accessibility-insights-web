@@ -4,7 +4,7 @@ import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import * as styles from './no-displayable-preview-features-message.scss';
+import styles from './no-displayable-preview-features-message.scss';
 
 export const NoDisplayableFeatureFlagMessage = NamedFC('NoDisplayableFeatureFlagMessage', () => (
     <>

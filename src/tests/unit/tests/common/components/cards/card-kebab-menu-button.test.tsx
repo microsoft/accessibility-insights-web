@@ -219,11 +219,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
-        rendered.find(ActionButton).simulate('click', event);
-
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
-
-        // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         const toast = rendered.find(Toast);
@@ -253,10 +249,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
-        rendered.find(ActionButton).simulate('click', event);
-
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
-        // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         const toast = rendered.find(Toast);

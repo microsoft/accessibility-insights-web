@@ -56,7 +56,7 @@ describe('NavigatorUtils', () => {
                 .verifiable(Times.once());
 
             loggerMock
-                .setup(l => l.error('Error during copyToClipboard: Error: test text'))
+                .setup(l => l.error('Error during copyToClipboard: Error: test text', It.isAny()))
                 .verifiable(Times.once());
 
             await expect(testSubject.copyToClipboard('irrelevant')).rejects.toBe(testError);

@@ -33,7 +33,7 @@ describe('FocusChangeHandler', () => {
         );
     });
 
-    test('onStoreChange: no target in visualizationStoreData, cardSelectionStoreData, or needsReviewCardSelectionStoreData', () => {
+    test('onStoreChange: no target in visualizationStoreData, cardSelectionStoreData, or needsReviewCardSelectionStoreData', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -59,13 +59,13 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(It.isAny()))
             .verifiable(Times.never());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target from visualization store data is not null and different from old target', () => {
+    test('onStoreChange: new target from visualization store data is not null and different from old target', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
@@ -82,13 +82,13 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(sampleMessage))
             .verifiable(Times.once());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target from card selection is not null, matches a result, and different from old target', () => {
+    test('onStoreChange: new target from card selection is not null, matches a result, and different from old target', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -115,13 +115,13 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(sampleMessage))
             .verifiable(Times.once());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target from card selection is not null, does not match a result and different from old target', () => {
+    test('onStoreChange: new target from card selection is not null, does not match a result and different from old target', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -138,12 +138,12 @@ describe('FocusChangeHandler', () => {
             },
         } as TargetPageStoreData;
 
-        expect(() => testSubject.handleFocusChangeWithStoreData(storeData)).toThrowError(
+        await expect(testSubject.handleFocusChangeWithStoreData(storeData)).rejects.toThrowError(
             'focused result was not found',
         );
     });
 
-    test('onStoreChange: new target and old target are same', () => {
+    test('onStoreChange: new target and old target are same', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
@@ -160,7 +160,7 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(sampleMessage))
             .verifiable(Times.once());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();
@@ -175,13 +175,13 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(It.isAny()))
             .verifiable(Times.never());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();
     });
 
-    test('onStoreChange: new target from needs review card selection is not null, matches a result, and different from old target', () => {
+    test('onStoreChange: new target from needs review card selection is not null, matches a result, and different from old target', async () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -221,7 +221,7 @@ describe('FocusChangeHandler', () => {
             .setup(scm => scm.processRequest(sampleMessage))
             .verifiable(Times.once());
 
-        testSubject.handleFocusChangeWithStoreData(storeData);
+        await testSubject.handleFocusChangeWithStoreData(storeData);
 
         targetPageActionMessageCreatorMock.verifyAll();
         scrollingControllerMock.verifyAll();

@@ -408,7 +408,6 @@
         "./src/injected/shadow-initializer.ts",
         "./src/injected/shadow-utils.ts",
         "./src/injected/single-frame-tab-stop-listener.ts",
-        "./src/injected/stylesheet-init.ts",
         "./src/injected/tab-order-property-bag.ts",
         "./src/injected/tab-stop-requirement-result.ts",
         "./src/injected/tab-stops-requirement-evaluator.ts",
@@ -566,7 +565,6 @@
         "./src/views/content/content.tsx",
         "./src/views/content/guidance-title.tsx",
         "./src/views/content/markup.tsx",
-        "./src/views/insights/dependencies.ts",
         "./src/views/insights/insights-router.tsx",
         "./src/views/insights/renderer.tsx",
         "./src/views/page/page.tsx"

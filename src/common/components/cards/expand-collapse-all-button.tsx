@@ -4,7 +4,7 @@ import { ActionButton } from '@fluentui/react';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './expand-collapse-all-button.scss';
+import styles from './expand-collapse-all-button.scss';
 
 export type ExpandCollapseAllButtonProps = {
     allCardsCollapsed: boolean;

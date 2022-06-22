@@ -1,19 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ChoiceGroup,
-    IChoiceGroup,
-    IChoiceGroupOption,
-    IChoiceGroupOptionProps,
-} from '@fluentui/react';
-import { Icon } from '@fluentui/react';
-import { Link } from '@fluentui/react';
-import { isEqual } from 'lodash';
+import { IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
 import * as React from 'react';
-
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
-import * as styles from './test-status-choice-group.scss';
+import { ChoiceGroupPassFail } from './choice-group-pass-fail';
 
 export interface TestStatusChoiceGroupProps {
     test: VisualizationType;
@@ -26,94 +17,36 @@ export interface TestStatusChoiceGroupProps {
     onUndoClicked: (test, step, selector?) => void;
 }
 
-interface ChoiceGroupState {
-    selectedKey: string;
-}
-
-export class TestStatusChoiceGroup extends React.Component<
-    TestStatusChoiceGroupProps,
-    ChoiceGroupState
-> {
+export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps> {
     protected choiceGroup: IChoiceGroup;
 
-    constructor(props) {
-        super(props);
-        this.state = { selectedKey: ManualTestStatus[this.props.status] };
-    }
-
-    public componentDidUpdate(prevProps: Readonly<TestStatusChoiceGroupProps>): void {
-        if (isEqual(prevProps, this.props) === false) {
-            this.setState(() => ({ selectedKey: ManualTestStatus[this.props.status] }));
-        }
-    }
+    public static defaultProps = {
+        isLabelVisible: false,
+    };
 
     public render(): JSX.Element {
         return (
-            <div>
-                <div className={styles.radioButtonGroup}>
-                    <ChoiceGroup
-                        className={ManualTestStatus[this.props.status]}
-                        onChange={this.onChange}
-                        componentRef={this.compomentRef}
-                        selectedKey={this.state.selectedKey}
-                        options={[
-                            this.makeOption(ManualTestStatus.PASS, 'Pass'),
-                            this.makeOption(ManualTestStatus.FAIL, 'Fail'),
-                        ]}
-                    />
-                </div>
-
-                <div>{this.renderUndoButton()}</div>
-            </div>
+            <ChoiceGroupPassFail
+                onChange={this.onChange}
+                selectedKey={this.props.status}
+                options={[
+                    { key: ManualTestStatus.PASS, text: 'Pass' },
+                    { key: ManualTestStatus.FAIL, text: 'Fail' },
+                ]}
+                isLabelVisible={this.props.isLabelVisible}
+                onUndoClickedPassThrough={() => {
+                    this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
+                }}
+            />
         );
     }
-
-    private makeOption(manualTestStatus: ManualTestStatus, text: string): IChoiceGroupOption {
-        return {
-            key: ManualTestStatus[manualTestStatus],
-            text: text,
-            ariaLabel: this.props.isLabelVisible ? undefined : text,
-            onRenderLabel: this.onRenderOptionLabel,
-        };
-    }
-
-    private onRenderOptionLabel = (option: IChoiceGroupOptionProps): JSX.Element | null => {
-        return (
-            <span id={option.labelId} className={styles.radioLabel}>
-                {this.props.isLabelVisible ? option.text : ''}
-            </span>
-        );
-    };
-
-    private renderUndoButton(): JSX.Element | null {
-        if (this.props.originalStatus == null) {
-            return null;
-        }
-
-        return (
-            <Link className={styles.undoButton} onClick={this.onUndoClicked}>
-                <Icon className={styles.undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
-            </Link>
-        );
-    }
-
-    protected compomentRef = (component: IChoiceGroup): void => {
-        this.choiceGroup = component;
-    };
 
     protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
-        this.setState({ selectedKey: option.key });
         this.props.onGroupChoiceChange(
-            ManualTestStatus[option.key],
+            option.key,
             this.props.test,
             this.props.step,
             this.props.selector,
         );
-    };
-
-    protected onUndoClicked = (): void => {
-        this.choiceGroup.focus();
-        this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
-        this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     };
 }

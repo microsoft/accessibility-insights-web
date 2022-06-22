@@ -4,7 +4,7 @@ import { css, Toggle } from '@fluentui/react';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import * as styles from './visual-helper-toggle.scss';
+import styles from './visual-helper-toggle.scss';
 
 export type VisualHelperToggleProps = {
     visualHelperEnabled: boolean;

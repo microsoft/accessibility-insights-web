@@ -5,7 +5,7 @@ import { Dialog, DialogFooter, DialogType } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import * as styles from './device-disconnected-popup.scss';
+import styles from './device-disconnected-popup.scss';
 import { StatusCautionIcon } from './status-caution-icon';
 
 export type DeviceDisconnectedPopupProps = {

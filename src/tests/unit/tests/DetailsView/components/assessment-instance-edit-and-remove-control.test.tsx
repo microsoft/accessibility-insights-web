@@ -8,7 +8,7 @@ import {
     AssessmentInstanceEditAndRemoveControl,
     AssessmentInstanceEditAndRemoveControlProps,
 } from 'DetailsView/components/assessment-instance-edit-and-remove-control';
-import * as styles from 'DetailsView/components/assessment-instance-edit-and-remove-control.scss';
+import styles from 'DetailsView/components/assessment-instance-edit-and-remove-control.scss';
 import { FailureInstancePanelControl } from 'DetailsView/components/failure-instance-panel-control';
 import * as React from 'react';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';

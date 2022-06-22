@@ -3,12 +3,14 @@
 import { getRTL } from '@fluentui/utilities';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { createDefaultLogger } from 'common/logging/default-logger';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { Logger } from 'common/logging/logger';
+import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
@@ -23,7 +25,7 @@ import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirem
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -70,25 +72,34 @@ export class WindowInitializer {
     protected frameMessenger: FrameMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
+    protected actionMessageDispatcher: RemoteActionMessageDispatcher;
 
-    public async initialize(): Promise<void> {
+    public async initialize(logger: Logger): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
         const userAgentParser = new UAParser(window.navigator.userAgent);
         const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-        const logger = createDefaultLogger();
         const promiseFactory = createDefaultPromiseFactory();
-        const browserEventProvider = new BrowserEventProvider();
-        const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-        const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-            browserEventManager,
-            browserEventProvider.getMinimalBrowserEvents(),
-        );
+        const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
         this.browserAdapter = browserAdapter;
         this.appDataAdapter = browserAdapter;
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
+
+        this.actionMessageDispatcher = new RemoteActionMessageDispatcher(
+            this.browserAdapter.sendMessageToFrames,
+            null,
+            logger,
+        );
+
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+        const exceptionTelemetryListener = new ExceptionTelemetryListener(
+            TelemetryEventSource.TargetPage,
+            this.actionMessageDispatcher.sendTelemetry,
+            telemetrySanitizer,
+        );
+        exceptionTelemetryListener.initialize(logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
@@ -222,7 +233,7 @@ export class WindowInitializer {
             logger,
         );
         // Intentionally floating this promise
-        extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
+        void extensionDisabledMonitor.monitorUntilDisabled(() => this.dispose());
     }
 
     protected dispose(): void {

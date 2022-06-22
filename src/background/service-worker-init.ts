@@ -16,6 +16,7 @@ import { TargetPageController } from 'background/target-page-controller';
 import { TargetTabController } from 'background/target-tab-controller';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import {
     getApplicationTelemetryDataFactory,
     getTelemetryClient,
@@ -26,11 +27,12 @@ import { TelemetryStateListener } from 'background/telemetry/telemetry-state-lis
 import { UsageLogger } from 'background/usage-logger';
 import { createToolData } from 'common/application-properties-provider';
 import { AxeInfo } from 'common/axe-info';
+import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from 'common/indexedDB/indexedDB';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -38,6 +40,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
@@ -50,17 +53,20 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
-    const browserEventProvider = new BrowserEventProvider();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger, true);
-    // It is important that the browser adapter gets initialized *before* any "await" statement.
+    const eventResponseFactory = new EventResponseFactory(promiseFactory, true);
+    const browserEventManager = new BackgroundBrowserEventManager(
+        promiseFactory,
+        eventResponseFactory,
+        logger,
+    );
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+
+    // It is important that the browser listeners gets preregistered *before* any "await" statement.
     //
     // If a service worker does not register all of its browser listeners *synchronously* during worker initialization,
     // the browser may decide that the worker is "done" as soon as the synchronous part of initialization finishes
     // and tear down the worker before we tell it which events to wake us back up for.
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-        browserEventManager,
-        browserEventProvider.getBackgroundBrowserEvents(),
-    );
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -107,6 +113,14 @@ async function initialize(): Promise<void> {
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
+    exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(navigator, logger).getBrowserSpec();
 
@@ -177,7 +191,7 @@ async function initialize(): Promise<void> {
         tabContextManager,
         postMessageContentHandler,
         browserAdapter,
-        logger,
+        eventResponseFactory,
     );
     messageDistributor.initialize();
 

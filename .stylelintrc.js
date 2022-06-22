@@ -9,6 +9,8 @@ module.exports = {
         'declaration-block-no-redundant-longhand-properties': null, // Prefer longhand to improve readability
         'shorthand-property-no-redundant-values': null, // Prefer longhand to improve readability
         'scss/comment-no-empty': null, // Disabled to allow for paragraph breaks in longer comments which is not supported yet: https://github.com/stylelint-scss/stylelint-scss/issues/606
+        'selector-class-pattern':
+            '^(ms-([A-Z][a-z0-9]*)(-[a-z0-9]+)*)|(([a-z][a-z0-9]*)(-[a-z0-9]+)*)$', // Allows: kebab case and ms-Kebab-case
 
         // TO BE ENABLED: Recommended fixes
         'no-descending-specificity': null,
@@ -19,12 +21,6 @@ module.exports = {
 
         // TO BE CONFIGURED: Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},
-
-        // TO BE CONFIGURED: Variable, selector, mixin case
-        // https://stylelint.io/user-guide/rules/regex
-        'selector-class-pattern': null,
-        'scss/at-mixin-pattern': null,
-        'scss/dollar-variable-pattern': null,
 
         // Requires investigation
         'property-no-vendor-prefix': null,

@@ -4,7 +4,7 @@ import { css } from '@fluentui/utilities';
 import * as React from 'react';
 
 import { NamedFC } from '../../../common/react/named-fc';
-import * as styles from '../../../reports/components/instance-details.scss';
+import styles from '../../../reports/components/instance-details.scss';
 
 export interface SimpleCardRowProps {
     label: string;

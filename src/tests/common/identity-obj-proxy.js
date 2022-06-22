@@ -6,7 +6,7 @@
 //
 // We use this in our unit tests via a Jest moduleMapper rule that applies to all *.scss
 // imports so that unit tests can run without having to build *.scss.js files first, even if
-// a component uses "import * as styles from './self.scss';".
+// a component uses "import styles from './self.scss';".
 //
 // This is an alternative implementation of the identity-obj-proxy package which is
 // compatible with being used as an ESM module. We require this because swc requires

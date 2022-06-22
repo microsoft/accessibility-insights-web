@@ -8,13 +8,16 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { TabEventDistributor } from 'background/tab-event-distributor';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
+import { SendingExceptionTelemetryListener } from 'background/telemetry/sending-exception-telemetry-listener';
 import { createToolData } from 'common/application-properties-provider';
+import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
-import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
-import { BrowserEventProvider } from 'common/browser-adapters/browser-event-provider';
+import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { WindowUtils } from 'common/window-utils';
-import * as UAParser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { DateProvider } from '../common/date-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
@@ -57,12 +60,15 @@ async function initialize(): Promise<void> {
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
-    const browserEventProvider = new BrowserEventProvider();
-    const browserEventManager = new BrowserEventManager(promiseFactory, logger);
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(
-        browserEventManager,
-        browserEventProvider.getBackgroundBrowserEvents(),
+
+    const eventResponseFactory = new EventResponseFactory(promiseFactory, false);
+    const browserEventManager = new BackgroundBrowserEventManager(
+        promiseFactory,
+        eventResponseFactory,
+        logger,
     );
+    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+    browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
@@ -122,6 +128,14 @@ async function initialize(): Promise<void> {
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
+    exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
@@ -193,7 +207,7 @@ async function initialize(): Promise<void> {
         tabContextManager,
         postMessageContentHandler,
         browserAdapter,
-        logger,
+        eventResponseFactory,
     );
     messageDistributor.initialize();
 

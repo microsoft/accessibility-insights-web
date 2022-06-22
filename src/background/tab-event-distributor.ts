@@ -30,7 +30,7 @@ export class TabEventDistributor {
         tabId: number,
         removeInfo: chrome.tabs.TabRemoveInfo,
     ): Promise<void> => {
-        this.targetPageController.onTargetTabRemoved(tabId);
+        await this.targetPageController.onTargetTabRemoved(tabId);
         await this.detailsViewController.onRemoveTab(tabId);
     };
 

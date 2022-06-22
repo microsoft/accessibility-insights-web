@@ -46,7 +46,7 @@ jobs:
 
     # CG and NOTICE generation would go here
 
-    - run: yarn build:all
+    - run: yarn tbuild:all
       timeout-minutes: 10
 
     - name: upload artifact build-results
@@ -92,7 +92,9 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn test --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
+    # We set maxWorkers to 2 since GH Action VMs have 2 cores and by default Jest only uses 1.
+    # If this were to change in the future, the number here should change accordingly.
+    - run: yarn test --maxWorkers=2 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
@@ -193,7 +195,7 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.22.1-focal
+    container: mcr.microsoft.com/playwright:v1.22.2-focal
     strategy:
       fail-fast: false
       matrix:

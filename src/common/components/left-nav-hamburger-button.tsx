@@ -4,7 +4,7 @@ import { IconButton, css } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import * as styles from './left-nav-hamburger-button.scss';
+import styles from './left-nav-hamburger-button.scss';
 
 export type LeftNavHamburgerButtonProps = {
     ariaLabel: string;

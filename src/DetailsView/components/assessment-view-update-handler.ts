@@ -70,7 +70,11 @@ export class AssessmentViewUpdateHandler {
     }
 
     private isTargetChanged(props: AssessmentViewUpdateHandlerProps): boolean {
-        return props.prevTarget != null && props.prevTarget.id !== props.currentTarget.id;
+        return (
+            props.prevTarget != null &&
+            props.prevTarget.id != null &&
+            props.prevTarget.id !== props.currentTarget.id
+        );
     }
 
     private isStepSwitched(

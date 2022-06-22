@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
 import { Mock, Times } from 'typemoq';
-import { PayloadCallback } from '../../../../common/message';
+import { HandledInterpreterResponse, PayloadCallback } from '../../../../common/message';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class TestableInterpreter extends Interpreter {
@@ -25,20 +25,44 @@ describe('InterpreterTest', () => {
         expect(testSubject.getMessageToActionMapping()).toEqual({ test: sampleCallback });
     });
 
-    test('interpret', () => {
+    test('interpret with fire-and-forget callback', () => {
         const testSubject = new TestableInterpreter();
         const sampleCallback = Mock.ofInstance((payload, tabId) => {});
         testSubject.setMessageToActionMapping({ test: sampleCallback.object });
 
         sampleCallback.setup(x => x('payload', 1)).verifiable();
 
-        expect(
-            testSubject.interpret({
-                messageType: 'test',
-                tabId: 1,
-                payload: 'payload',
-            }),
-        ).toBeTruthy();
+        const response = testSubject.interpret({
+            messageType: 'test',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(response.messageHandled).toBe(true);
+        expect((response as HandledInterpreterResponse).result).toBeUndefined();
+
+        sampleCallback.verifyAll();
+    });
+
+    test('interpret with async callback', () => {
+        const testSubject = new TestableInterpreter();
+        const sampleCallback = Mock.ofInstance(async (payload, tabId) => {});
+        testSubject.setMessageToActionMapping({ test: sampleCallback.object });
+
+        const sampleCallbackResultPromise = Promise.resolve();
+        sampleCallback
+            .setup(x => x('payload', 1))
+            .returns(() => sampleCallbackResultPromise)
+            .verifiable();
+
+        const response = testSubject.interpret({
+            messageType: 'test',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(response.messageHandled).toBe(true);
+        expect((response as HandledInterpreterResponse).result).toBe(sampleCallbackResultPromise);
 
         sampleCallback.verifyAll();
     });
@@ -50,13 +74,13 @@ describe('InterpreterTest', () => {
 
         sampleCallback.setup(x => x('payload', 1)).verifiable(Times.never());
 
-        expect(
-            testSubject.interpret({
-                messageType: 'test2',
-                tabId: 1,
-                payload: 'payload',
-            }),
-        ).toBeFalsy();
+        const result = testSubject.interpret({
+            messageType: 'test2',
+            tabId: 1,
+            payload: 'payload',
+        });
+
+        expect(result.messageHandled).toBe(false);
 
         sampleCallback.verifyAll();
     });

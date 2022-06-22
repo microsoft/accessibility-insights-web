@@ -54,6 +54,7 @@ module.exports = {
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-unsafe-call': 'off',
         '@typescript-eslint/no-unsafe-return': 'off',
@@ -89,13 +90,6 @@ module.exports = {
                 'security/detect-unsafe-regex': 'off',
                 'security/detect-child-process': 'off',
                 'security/detect-eval-with-expression': 'off',
-            },
-        },
-        {
-            // Temporarily disabling this rule in these directories until the errors are fixed
-            files: ['src/background/**/*', 'src/injected/**/*'],
-            rules: {
-                '@typescript-eslint/no-floating-promises': 'off',
             },
         },
     ],

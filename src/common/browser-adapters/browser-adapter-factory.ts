@@ -3,28 +3,27 @@
 import { BrowserEventManager } from 'common/browser-adapters/browser-event-manager';
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
+import { PassthroughBrowserEventManager } from 'common/browser-adapters/passthrough-browser-event-manager';
 import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
-import { DictionaryStringTo } from 'types/common-types';
-import * as UAParser from 'ua-parser-js';
-import { Events } from 'webextension-polyfill';
+import UAParser from 'ua-parser-js';
 
 export class BrowserAdapterFactory {
     public constructor(private readonly uaParser: UAParser) {}
 
     public makeFromUserAgent(
-        browserEventManager: BrowserEventManager,
-        browserEvents: DictionaryStringTo<Events.Event<any>>,
-        initialize: boolean = true,
+        browserEventManager?: BrowserEventManager,
     ): WebExtensionBrowserAdapter {
-        let adapter;
+        if (!browserEventManager) {
+            browserEventManager = new PassthroughBrowserEventManager();
+        }
+
+        let adapter: WebExtensionBrowserAdapter;
         if (this.uaParser.getEngine().name === 'Gecko') {
             adapter = new FirefoxAdapter(browserEventManager);
         } else {
             adapter = new ChromiumAdapter(browserEventManager);
         }
-        if (initialize) {
-            adapter.initialize(browserEvents);
-        }
+
         return adapter;
     }
 }

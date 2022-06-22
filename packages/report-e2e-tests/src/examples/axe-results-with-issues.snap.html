@@ -129,6 +129,7 @@
         --nav-link-selected: var(--communication-tint-40);
         --nav-link-expanded: transparent;
       }
+
       .ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
         border: 1px solid var(--neutral-100);
       }
@@ -139,23 +140,28 @@
           border: 1px dashed windowtext !important;
         }
       }
+
       button::after {
         content: "";
         position: absolute;
       }
+
       .ms-fontColor-neutralPrimary,
       .ms-fontColor-neutralPrimary--hover:hover {
         color: var(--neutral-100) !important;
       }
+
       .ms-Fabric {
         color: var(--neutral-100);
       }
+
       .high-contrast-theme .insights-link:hover {
         text-decoration: underline;
       }
       .high-contrast-theme .is-selected .status-icon {
         color: var(--black) !important;
       }
+
       .insights-link {
         color: var(--link) !important;
         text-decoration: none;
@@ -169,15 +175,18 @@
         color: var(--link-hover) !important;
         text-decoration: underline;
       }
+
       .insights-code {
         font-family: menlo, consolas, courier new, monospace;
       }
+
       .ms-Spinner .ms-Spinner-circle {
         border-top-color: var(--spinner-text);
       }
       .ms-Spinner .ms-Spinner-label {
         color: var(--spinner-text);
       }
+
       .guidance-tags span {
         font-size: 12px;
         font-weight: normal;
@@ -187,12 +196,14 @@
         background-color: var(--pill-background);
         border-radius: 120px;
       }
+
       .hidden-highlight-button {
         opacity: 0;
         margin: 0;
         padding: 0;
         border: none;
       }
+
       .instance-details-card {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -200,38 +211,49 @@
         box-shadow: 0 0.6px 1.8px var(--box-shadow-108),
           0 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        width: -moz-available; /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;
+        /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available;
+        /* Mozilla-based browsers will ignore this. */
         width: fill-available;
       }
+
       .instance-details-card-container.selected {
         outline: 5px solid var(--communication-tint-10);
       }
+
       .instance-details-card.selected {
         border: 1px solid transparent;
       }
+
       .instance-details-card.focused,
       .instance-details-card:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+
       .instance-details-card.selected.focused,
       .instance-details-card.selected:focus {
         outline-offset: 8px;
       }
+
       .instance-details-card.interactive {
         cursor: pointer;
       }
+
       .instance-details-card.interactive:hover {
         box-shadow: 0 8px 10px var(--box-shadow-108),
           0 8px 10px var(--box-shadow-132);
       }
+
       .report-instance-table {
         background: var(--neutral-0);
         display: table;
         table-layout: fixed;
-        width: -moz-available; /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;
+        /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available;
+        /* Mozilla-based browsers will ignore this. */
         width: fill-available;
         border-radius: inherit;
         border-collapse: collapse;
@@ -277,6 +299,7 @@
         align-items: flex-end;
         display: flex;
       }
+
       .outcome-summary-bar {
         display: flex;
         flex-grow: 0;
@@ -398,6 +421,7 @@
       .outcome-summary-bar .label {
         font-weight: normal;
       }
+
       .screen-reader-only {
         position: absolute;
         left: -10000px;
@@ -406,10 +430,12 @@
         overflow: hidden;
         clip-path: inset(100% 100% 100% 100%);
       }
+
       .check-container svg {
         width: 100%;
         height: 100%;
       }
+
       .outcome-chip {
         height: 16px;
         color: var(--primary-text);
@@ -515,6 +541,7 @@
         background-color: transparent;
         border: 1.5px solid var(--neutral-outcome);
       }
+
       .outcome-icon-set .outcome-icon {
         margin-left: 4px;
         border-radius: 50%;
@@ -552,6 +579,7 @@
       .outcome-icon-set .outcome-icon-fail .check-container svg circle {
         fill: var(--negative-outcome);
       }
+
       body {
         font-size: 14px;
         margin: auto;
@@ -561,6 +589,7 @@
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       }
+
       .outer-container {
         box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
@@ -579,6 +608,7 @@
           margin: 24px 16px 0 16px;
         }
       }
+
       .scan-details-section {
         box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0 1.6px 3.6px rgba(0, 0, 0, 0.132);
@@ -628,6 +658,7 @@
         overflow: hidden;
         clip-path: inset(100% 100% 100% 100%);
       }
+
       .report-footer-container {
         max-width: 960px;
         margin: 0 auto;
@@ -643,6 +674,7 @@
           margin: 0 16px 68px 16px;
         }
       }
+
       .report-header-command-bar {
         height: 40px;
         width: 100%;
@@ -671,24 +703,29 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       .report-congrats-message {
         word-break: break-word;
         overflow-wrap: break-word;
       }
+
       .report-congrats-head {
         font-size: 16px;
         font-weight: 600;
         color: var(--primary-text);
         padding: 10px 0 10px 0;
       }
+
       .report-congrats-info {
         font-size: 14px;
         color: var(--secondary-text);
         padding: 10px 0 10px 0;
       }
+
       .sleeping-ada {
         height: 100px;
       }
+
       .title-section {
         margin-top: 56px;
       }
@@ -699,6 +736,7 @@
         line-height: 32px;
         letter-spacing: -0.02em;
       }
+
       .results-container {
         margin-top: 56px;
       }
@@ -707,6 +745,7 @@
         margin-block: 0;
         margin-inline: 0;
       }
+
       @media screen and (max-width: 640px) {
         .outcome-past-tense {
           display: none;
@@ -720,6 +759,7 @@
         padding: 20px;
         margin-bottom: 24px;
       }
+
       .result-section {
         padding-bottom: 24px;
       }
@@ -731,6 +771,7 @@
       .result-section .collapsible-content {
         margin-left: 16px;
       }
+
       .collapsible-container:not(.collapsible-rule-details-group)
         .collapsible-control {
         padding-left: 2px;
@@ -779,6 +820,7 @@
       .collapsible-container .collapsible-content[aria-hidden="true"] {
         display: none;
       }
+
       ul.instance-details-list {
         list-style-type: none;
         padding-inline-start: unset;
@@ -792,68 +834,75 @@
         margin-bottom: unset;
       }</style
     ><style>
-      .heading-element-for-level--OfRDW {
+      /* css-modules:src/common/components/heading-element-for-level */
+      .heading-element-for-level--ifVX6 {
         margin-block-start: unset;
         margin-block-end: unset;
       }
-      .failed-instances-container--FqWV6 .collapsible-content {
+
+      /* css-modules:src/common/components/cards/failed-instances-section */
+      .failed-instances-container--3UUNb .collapsible-content {
         margin-left: 24px;
       }
-      .outcome-chip-container--xYquF {
+
+      /* css-modules:src/reports/components/report-sections/minimal-rule-header */
+      .outcome-chip-container--G5Dfr {
         min-width: 50px;
       }
-      .hidden-highlight-button--PePzJ {
+
+      /* css-modules:src/reports/components/instance-details */
+      .hidden-highlight-button--vu3B3 {
         opacity: 0;
         margin: 0;
         padding: 0;
         border: none;
       }
-      .instance-details-card--R0aAh {
+      .instance-details-card--owGQF {
         border-radius: 4px;
         border: 1px solid var(--card-border);
         outline-style: "border-style";
         box-shadow: 0 0.6px 1.8px var(--box-shadow-108),
           0 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        width: -moz-available; /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;
+        width: -webkit-fill-available;
         width: fill-available;
       }
-      .instance-details-card-container--bKrcd.selected--Kp4AC {
+      .instance-details-card-container--KLHTp.selected--wEA4l {
         outline: 5px solid var(--communication-tint-10);
       }
-      .instance-details-card--R0aAh.selected--Kp4AC {
+      .instance-details-card--owGQF.selected--wEA4l {
         border: 1px solid transparent;
       }
-      .instance-details-card--R0aAh.focused--tV0ic,
-      .instance-details-card--R0aAh:focus {
+      .instance-details-card--owGQF.focused--pvBWq,
+      .instance-details-card--owGQF:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
-      .instance-details-card--R0aAh.selected--Kp4AC.focused--tV0ic,
-      .instance-details-card--R0aAh.selected--Kp4AC:focus {
+      .instance-details-card--owGQF.selected--wEA4l.focused--pvBWq,
+      .instance-details-card--owGQF.selected--wEA4l:focus {
         outline-offset: 8px;
       }
-      .instance-details-card--R0aAh.interactive--NgYOy {
+      .instance-details-card--owGQF.interactive--an0ab {
         cursor: pointer;
       }
-      .instance-details-card--R0aAh.interactive--NgYOy:hover {
+      .instance-details-card--owGQF.interactive--an0ab:hover {
         box-shadow: 0 8px 10px var(--box-shadow-108),
           0 8px 10px var(--box-shadow-132);
       }
-      .report-instance-table--YIu0s {
+      .report-instance-table--3VoZX {
         background: var(--neutral-0);
         display: table;
         table-layout: fixed;
-        width: -moz-available; /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: -moz-available;
+        width: -webkit-fill-available;
         width: fill-available;
         border-radius: inherit;
         border-collapse: collapse;
         overflow-wrap: break-word;
         word-break: break-word;
       }
-      .report-instance-table--YIu0s .row--m8TLI {
+      .report-instance-table--3VoZX .row---3i35 {
         display: flex;
         flex-wrap: wrap;
         padding-top: 2px;
@@ -862,17 +911,17 @@
         padding-right: 20px;
         border-bottom: 0.5px solid var(--neutral-10);
       }
-      .report-instance-table--YIu0s .row--m8TLI > * {
+      .report-instance-table--3VoZX .row---3i35 > * {
         margin-top: 12px;
         margin-bottom: 0;
         margin-left: 20px;
         margin-right: 0;
         padding: 0;
       }
-      .report-instance-table--YIu0s .row--m8TLI:last-child {
+      .report-instance-table--3VoZX .row---3i35:last-child {
         border-bottom: none;
       }
-      .report-instance-table--YIu0s .row-label--MxfuQ {
+      .report-instance-table--3VoZX .row-label--FlVZl {
         flex-basis: 90px;
         flex-shrink: 1;
         flex-grow: 0;
@@ -882,7 +931,7 @@
         color: var(--primary-text);
         text-align: left;
       }
-      .report-instance-table--YIu0s .row-content--ECKwg {
+      .report-instance-table--3VoZX .row-content--07KUh {
         flex-basis: 200px;
         flex-shrink: 1;
         flex-grow: 1;
@@ -892,38 +941,44 @@
         align-items: flex-end;
         display: flex;
       }
-      .multi-line-text-no-bullet--lNJS_ {
+
+      /* css-modules:src/common/components/cards/rich-resolution-content */
+      .multi-line-text-no-bullet--AUXXt {
         padding-left: 0;
         list-style: none;
       }
-      .multi-line-text-no-bullet--lNJS_ li:not(:last-child) {
+      .multi-line-text-no-bullet--AUXXt li:not(:last-child) {
         margin-bottom: 4px;
       }
-      .multi-line-text-yes-bullet--pp76P {
+      .multi-line-text-yes-bullet--TXyX- {
         padding-left: 16px;
       }
-      .multi-line-text-yes-bullet--pp76P li {
+      .multi-line-text-yes-bullet--TXyX- li {
         list-style-type: disc;
         margin-bottom: 4px;
       }
-      .combination-lists--O1dD_ {
+      .combination-lists--boK5y {
         flex-direction: column;
         display: flex;
       }
-      .urls-row-content--MxcA7 {
+
+      /* css-modules:src/common/components/cards/urls-card-row */
+      .urls-row-content--JDdRx {
         padding-left: 16px;
       }
-      .urls-row-content--MxcA7 li {
+      .urls-row-content--JDdRx li {
         list-style-type: disc;
         margin-bottom: 4px;
       }
-      .urls-row-content-new-Failure--uJPP3 {
+      .urls-row-content-new-Failure--oL5lS {
         color: var(--negative-outcome);
         font-weight: bold;
       }
-      .insights-fix-instruction-list--G3vyY
+
+      /* css-modules:src/common/components/fix-instruction-panel */
+      .insights-fix-instruction-list--eZigw
         li
-        span.fix-instruction-color-box--g6NfJ {
+        span.fix-instruction-color-box--sBkHG {
         width: 14px;
         height: 14px;
         display: inline-block;
@@ -931,7 +986,7 @@
         margin: 0 2px;
         border: 1px solid var(--light-black);
       }
-      .insights-fix-instruction-list--G3vyY .screen-reader-only--yQjgp {
+      .insights-fix-instruction-list--eZigw .screen-reader-only--irrXo {
         position: absolute;
         left: -10000px;
         top: auto;
@@ -939,63 +994,75 @@
         overflow: hidden;
         clip-path: inset(100% 100% 100% 100%);
       }
-      .how-to-fix-content--OHBLC {
+
+      /* css-modules:src/common/components/cards/how-to-fix-card-row */
+      .how-to-fix-content--Zz96u {
         margin-bottom: 16px;
       }
-      .how-to-fix-content--OHBLC ul {
+      .how-to-fix-content--Zz96u ul {
         padding-left: 16px;
       }
-      .how-to-fix-content--OHBLC ul li {
+      .how-to-fix-content--Zz96u ul li {
         list-style-type: disc;
         margin-bottom: 4px;
       }
-      .snippet--wZrK1 {
+
+      /* css-modules:src/common/components/cards/snippet-card-row */
+      .snippet--hSNfv {
         font-family: menlo, consolas, courier new, monospace;
         white-space: normal;
       }
-      div.insights-dialog-main-override--Mlek6 {
+
+      /* css-modules:src/DetailsView/components/common-dialog-styles */
+      div.insights-dialog-main-override--ma4DA {
         width: 75%;
         max-width: 500px;
         user-select: text;
       }
       @media screen and (max-width: 500px) {
-        div.insights-dialog-main-override--Mlek6 {
+        div.insights-dialog-main-override--ma4DA {
           min-width: 240px;
           width: 75%;
         }
       }
-      div.insights-dialog-main-override--Mlek6 .dialog-body--QtJ_D {
+      div.insights-dialog-main-override--ma4DA .dialog-body--cmWmz {
         font-size: 16px;
       }
-      .issue-filing-dialog--ZrD5s .ms-Dialog-title {
+
+      /* css-modules:src/DetailsView/components/issue-filing-dialog */
+      .issue-filing-dialog--F9jun .ms-Dialog-title {
         font-size: 21px;
         line-height: 32px;
         letter-spacing: -0.02em;
         font-weight: 600;
         padding-bottom: 0;
       }
-      .issue-filing-dialog--ZrD5s .ms-Dialog-subText {
+      .issue-filing-dialog--F9jun .ms-Dialog-subText {
         font-weight: 400;
         font-size: 15px;
         color: var(--secondary-text);
       }
-      .issue-filing-dialog--ZrD5s .textfield-description {
+      .issue-filing-dialog--F9jun .textfield-description {
         color: var(--secondary-text);
         font-style: italic;
       }
-      .action-and-cancel-buttons-component--HOvON {
+
+      /* css-modules:src/DetailsView/components/action-and-cancel-buttons-component */
+      .action-and-cancel-buttons-component--DF7bf {
         display: flex;
         justify-content: flex-end;
       }
-      .action-and-cancel-buttons-component--HOvON
-        .action-cancel-button-col--VrVAp
-        + .action-cancel-button-col--VrVAp {
+      .action-and-cancel-buttons-component--DF7bf
+        .action-cancel-button-col--RMfN-
+        + .action-cancel-button-col--RMfN- {
         margin-left: 8px;
       }
-      .toast-container--KsxE1 {
+
+      /* css-modules:src/common/components/toast */
+      .toast-container--L-5HM {
         display: inline-block;
       }
-      .toast-content--pEpMJ {
+      .toast-content--8-Mx1 {
         background: var(--neutral-70);
         border-radius: 4px;
         color: var(--neutral-0);
@@ -1010,82 +1077,41 @@
         z-index: 1000;
         position: absolute;
       }
-      div.kebab-menu-callout--o23oT {
-        box-shadow: 0 6.4px 14.4px var(--box-shadow-132),
-          0 1.2px 3.6px var(--box-shadow-108);
-        border-radius: 4px;
-        border-width: 0;
-      }
-      div.kebab-menu-callout--o23oT > div {
-        border-radius: 4px;
-      }
-      .kebab-menu--eviKu {
-        background: var(--neutral-3);
-        border: 1px solid var(--menu-border);
-      }
-      .kebab-menu--eviKu li {
-        background-color: var(--neutral-3);
-      }
-      .kebab-menu--eviKu button i {
-        color: var(--primary-text);
-      }
-      .kebab-menu--eviKu button:hover {
-        background-color: var(--menu-item-background-hover);
-      }
-      @media screen and (forced-colors: active) {
-        .kebab-menu--eviKu button:hover {
-          background-color: inherit;
-        }
-      }
-      .kebab-menu--eviKu button:active {
-        background-color: var(--menu-item-background-active);
-        color: var(--light-black);
-      }
-      .kebab-menu--eviKu button:active i {
-        color: var(--light-black);
-      }
-      button.kebab-menu-button--dy7Ui {
-        width: 34px;
+
+      /* css-modules:src/common/components/cards/card-kebab-menu-button */
+      .kebab-menu-button--e-7v- {
+        margin-right: 8px;
+        width: 32px;
         height: 32px;
-        margin: 8px;
-        border-radius: 2px;
-        background: transparent;
       }
-      button.kebab-menu-button--dy7Ui svg {
-        stroke: var(--primary-text);
-      }
-      @media screen and (forced-colors: active) {
-        button.kebab-menu-button--dy7Ui svg {
-          fill: ButtonFace !important;
-          stroke: ButtonText !important;
-        }
-      }
-      button.kebab-menu-button--dy7Ui:hover {
+      .kebab-menu-button--e-7v-:hover {
         background-color: var(--menu-item-background-hover);
       }
-      button.kebab-menu-button--dy7Ui:active,
-      button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
+      .kebab-menu-button--e-7v-.is-expanded {
         background-color: var(--menu-item-background-active);
-        color: var(--light-black);
-      }
-      button.kebab-menu-button--dy7Ui:active svg > circle,
-      button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
-        stroke: var(--light-black);
       }
       @media screen and (forced-colors: active) {
-        button.kebab-menu-button--dy7Ui:active,
-        button.kebab-menu-button--dy7Ui[aria-expanded="true"] {
-          color: inherit;
-        }
-        button.kebab-menu-button--dy7Ui:active svg > circle,
-        button.kebab-menu-button--dy7Ui[aria-expanded="true"] svg > circle {
-          stroke: inherit;
+        .kebab-menu-button--e-7v-.is-expanded .kebab-menu-icon--RzpyN,
+        .kebab-menu-button--e-7v-:hover .kebab-menu-icon--RzpyN {
+          color: highlight;
         }
       }
-      button.kebab-menu-button--dy7Ui > span {
-        justify-content: center;
+      .kebab-menu-icon--RzpyN {
+        flex-grow: 1;
       }
-      .foot--d1w5m {
+      @media screen and (forced-colors: active) {
+        .kebab-menu-icon--RzpyN {
+          color: buttontext;
+        }
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu--eKCNX button:hover {
+          color: highlight;
+        }
+      }
+
+      /* css-modules:src/common/components/cards/instance-details-footer */
+      .foot--p1DfC {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -1096,40 +1122,44 @@
         border-bottom-left-radius: inherit;
         border-bottom-right-radius: inherit;
       }
-      .foot--d1w5m .highlight-status--Bmqfx {
+      .foot--p1DfC .highlight-status--xJvvI {
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: transparent;
       }
-      .foot--d1w5m .highlight-status--Bmqfx svg {
+      .foot--p1DfC .highlight-status--xJvvI svg {
         fill: var(--secondary-text);
       }
       @media screen and (forced-colors: active) {
-        .foot--d1w5m .highlight-status--Bmqfx svg {
+        .foot--p1DfC .highlight-status--xJvvI svg {
           fill: ButtonFace !important;
           stroke: ButtonText !important;
         }
       }
-      .foot--d1w5m .highlight-status--Bmqfx label {
+      .foot--p1DfC .highlight-status--xJvvI label {
         color: var(--secondary-text);
         font-size: 14px;
         overflow-wrap: break-word;
         word-break: break-word;
       }
-      ul.instance-details-list--xiPPL {
+
+      /* css-modules:src/common/components/cards/instance-details-group */
+      ul.instance-details-list--YfkRy {
         list-style-type: none;
         padding-inline-start: unset;
         margin-block-start: unset;
         margin-block-end: unset;
       }
-      ul.instance-details-list--xiPPL > li {
+      ul.instance-details-list--YfkRy > li {
         margin-bottom: 16px;
       }
-      ul.instance-details-list--xiPPL > li:last-child {
+      ul.instance-details-list--YfkRy > li:last-child {
         margin-bottom: unset;
       }
-      .rule-more-resources--Bsblo {
+
+      /* css-modules:src/common/components/cards/rule-resources */
+      .rule-more-resources--uw9mc {
         display: flex;
         flex-direction: column;
         margin-bottom: 16px;
@@ -1143,49 +1173,53 @@
         overflow-wrap: break-word;
         word-break: break-word;
       }
-      .rule-more-resources--Bsblo .more-resources-title--whTFs {
+      .rule-more-resources--uw9mc .more-resources-title--jOuUL {
         font-weight: 600;
       }
-      .rule-more-resources--Bsblo .rule-details-id--n_S89 {
+      .rule-more-resources--uw9mc .rule-details-id--s-TpO {
         padding: 12px 0;
       }
-      .rule-details-group--U69fz .rule-detail {
+
+      /* css-modules:src/common/components/cards/rules-with-instances */
+      .rule-details-group--Tb-LW .rule-detail {
         font-size: 14px;
         padding: 16px 8px;
         display: flex;
         align-items: baseline;
         text-align: left;
       }
-      .rule-details-group--U69fz .rule-detail .outcome-chip {
+      .rule-details-group--Tb-LW .rule-detail .outcome-chip {
         vertical-align: middle;
         margin-bottom: 2px;
       }
-      .rule-details-group--U69fz .rule-detail .rule-details-id {
+      .rule-details-group--Tb-LW .rule-detail .rule-details-id {
         font-weight: 600;
         color: var(--primary-text);
         word-break: break-all;
       }
-      .rule-details-group--U69fz .rule-detail .rule-details-id a {
+      .rule-details-group--Tb-LW .rule-detail .rule-details-id a {
         font-weight: 600;
         color: var(--primary-text) !important;
       }
-      .rule-details-group--U69fz .rule-detail .rule-details-id strong {
+      .rule-details-group--Tb-LW .rule-detail .rule-details-id strong {
         font-weight: 600;
       }
-      .rule-details-group--U69fz .rule-detail .rule-detail-description {
+      .rule-details-group--Tb-LW .rule-detail .rule-detail-description {
         color: var(--secondary-text) !important;
         word-break: break-all;
       }
-      .collapsible-rule-details-group--h0lvd {
+      .collapsible-rule-details-group--V-HWh {
         box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
-      .collapsible-rule-details-group--h0lvd .rule-detail {
+      .collapsible-rule-details-group--V-HWh .rule-detail {
         box-shadow: unset;
       }
-      .collapsible-rule-details-group--h0lvd:not(.collapsed) {
+      .collapsible-rule-details-group--V-HWh:not(.collapsed) {
         box-shadow: unset;
       }
-      .result-section-title--qv3MK {
+
+      /* css-modules:src/common/components/cards/result-section-title */
+      .result-section-title--RGFI5 {
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -1193,45 +1227,49 @@
         margin-top: 8px;
         margin-bottom: 8px;
       }
-      .result-section-title--qv3MK .outcome-chip.outcome-chip-fail .count {
+      .result-section-title--RGFI5 .outcome-chip.outcome-chip-fail .count {
         line-height: 11px;
       }
-      .result-section-title--qv3MK .outcome-chip.outcome-chip-fail svg {
+      .result-section-title--RGFI5 .outcome-chip.outcome-chip-fail svg {
         margin-bottom: 3px;
       }
-      .result-section-title--qv3MK .title--neMma {
+      .result-section-title--RGFI5 .title--WBYFE {
         font-weight: 600;
         font-size: 17px;
         line-height: 24px;
         margin-right: 6px;
         color: var(--primary-text);
       }
-      .result-section-title--qv3MK .heading--VbGap {
+      .result-section-title--RGFI5 .heading--NdP4Q {
         font-weight: 600;
         font-size: 15px;
         line-height: 20px;
         margin-right: 6px;
         color: var(--primary-text);
       }
-      .result-section-title--qv3MK .outcome-chip-container--Wt0k4 {
+      .result-section-title--RGFI5 .outcome-chip-container--BT3j5 {
         display: flex;
         height: 16px;
       }
-      .result-section--j6fYr {
+
+      /* css-modules:src/common/components/cards/result-section */
+      .result-section--HfO9s {
         padding-bottom: 24px;
       }
-      .result-section--j6fYr
-        .title-container--gMYqW
-        .collapsible-control--V9OlA::before {
+      .result-section--HfO9s
+        .title-container--JzN4A
+        .collapsible-control--e42Z7::before {
         position: relative;
         bottom: 2px;
       }
-      .result-section--j6fYr > h2 {
+      .result-section--HfO9s > h2 {
         margin: 0;
         font-size: 17px;
         line-height: 24px;
       }
-      .report-header-bar--pkiTM {
+
+      /* css-modules:src/reports/components/header-bar */
+      .report-header-bar--SDV11 {
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -1240,13 +1278,13 @@
         height: 40px;
         width: 100%;
       }
-      .report-header-bar--pkiTM .header-icon {
+      .report-header-bar--SDV11 .header-icon {
         flex-shrink: 0;
         margin-left: 16px;
         height: 22px;
         width: 22px;
       }
-      .report-header-bar--pkiTM .header-text--dfm48 {
+      .report-header-bar--SDV11 .header-text--EdTxw {
         margin-left: 8px;
         color: var(--header-bar-title-color);
         flex-shrink: 1;
@@ -1260,7 +1298,9 @@
         font-size: 17px;
         line-height: 24px;
       }
-      .report-header-command-bar--wDg1t {
+
+      /* css-modules:src/reports/components/report-sections/header-section */
+      .report-header-command-bar--NJWdl {
         height: 40px;
         width: 100%;
         display: flex;
@@ -1270,7 +1310,7 @@
         background-color: var(--neutral-0);
         box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
       }
-      .report-header-command-bar--wDg1t .target-page--giudb {
+      .report-header-command-bar--NJWdl .target-page--hjh44 {
         white-space: nowrap;
         margin: 0 0 0 16px;
         display: flex;
@@ -1283,12 +1323,14 @@
         font-weight: normal;
         min-width: 0;
       }
-      .report-header-command-bar--wDg1t .target-page--giudb a {
+      .report-header-command-bar--NJWdl .target-page--hjh44 a {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .combined-report-result-section-title--XUDDo {
+
+      /* css-modules:src/common/components/cards/combined-report-result-section-title */
+      .combined-report-result-section-title--TqIZO {
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -1296,21 +1338,23 @@
         margin-top: 8px;
         margin-bottom: 8px;
       }
-      .combined-report-result-section-title--XUDDo .title--lcuIW {
+      .combined-report-result-section-title--TqIZO .title--6WIyt {
         font-weight: 600;
         font-size: 17px;
         line-height: 24px;
         margin-right: 6px;
         color: var(--primary-text);
       }
-      .combined-report-result-section-title--XUDDo .heading--uUq3e {
+      .combined-report-result-section-title--TqIZO .heading--UpAHf {
         font-weight: 600;
         font-size: 15px;
         line-height: 20px;
         margin-right: 6px;
         color: var(--primary-text);
       }
-      .urls-summary-section--DjUWc {
+
+      /* css-modules:src/reports/components/report-sections/urls-summary-section */
+      .urls-summary-section--jNa-v {
         box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
@@ -1318,31 +1362,35 @@
         padding: 20px;
         margin-bottom: 24px;
       }
-      .urls-summary-section--DjUWc h2 {
+      .urls-summary-section--jNa-v h2 {
         margin-bottom: 16px !important;
       }
-      .urls-summary-section--DjUWc .total-urls--Ig_eB {
+      .urls-summary-section--jNa-v .total-urls--95-ge {
         font-weight: 600;
       }
-      .urls-summary-section--DjUWc .failure-instances--Rq_Tj {
+      .urls-summary-section--jNa-v .failure-instances--2WDtT {
         margin-top: 40px;
       }
-      .urls-summary-section--DjUWc .failure-outcome-chip--YtjBX {
+      .urls-summary-section--jNa-v .failure-outcome-chip--JF-lj {
         display: flex;
         justify-content: flex-start;
         align-items: center;
       }
-      .rules-results-container--n7EEu {
+
+      /* css-modules:src/reports/components/report-sections/rules-results-container */
+      .rules-results-container--HaLDw {
         margin-top: 56px;
       }
-      .rules-results-container--n7EEu .results-heading--pyS7R {
+      .rules-results-container--HaLDw .results-heading--H9Puz {
         margin-top: 32px;
         margin-bottom: 32px;
         font-weight: 600;
         font-size: 17px;
         line-height: 24px;
       }
-      .crawl-details-section--WhRL4 {
+
+      /* css-modules:src/reports/components/report-sections/summary-report-details-section */
+      .crawl-details-section--a6evz {
         box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0 1.6px 3.6px rgba(0, 0, 0, 0.132);
         border-radius: 4px;
@@ -1350,7 +1398,7 @@
         padding: 20px;
         margin-bottom: 22px;
       }
-      .crawl-details-section--WhRL4 .crawl-details-section-list--Lrjqg {
+      .crawl-details-section--a6evz .crawl-details-section-list--WV1Di {
         list-style: none;
         font-size: 14px;
         line-height: 16px;
@@ -1360,24 +1408,24 @@
         justify-content: center;
         flex-direction: column;
       }
-      .crawl-details-section--WhRL4 .crawl-details-section-list--Lrjqg li {
+      .crawl-details-section--a6evz .crawl-details-section-list--WV1Di li {
         display: inline-block;
       }
-      .crawl-details-section--WhRL4
-        .crawl-details-section-list--Lrjqg
+      .crawl-details-section--a6evz
+        .crawl-details-section-list--WV1Di
         li
-        .icon--JdMPq {
+        .icon--APJEn {
         padding-right: 12px;
         position: relative;
         top: 3px;
       }
-      .crawl-details-section--WhRL4
-        .crawl-details-section-list--Lrjqg
-        li.targetSite--qXxid {
+      .crawl-details-section--a6evz
+        .crawl-details-section-list--WV1Di
+        li.targetSite--wBJT- {
         margin-bottom: 6px;
       }
-      .crawl-details-section--WhRL4 .text--swxfX,
-      .crawl-details-section--WhRL4 .label--yUuT2 {
+      .crawl-details-section--a6evz .text--rViTo,
+      .crawl-details-section--a6evz .label--DUNYf {
         word-break: break-all;
         color: var(--neutral-55);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
@@ -1387,26 +1435,30 @@
         font-size: 14px;
         line-height: 20px;
       }
-      .crawl-details-section--WhRL4 .label--yUuT2 {
+      .crawl-details-section--a6evz .label--DUNYf {
         font-weight: 600;
       }
-      .crawl-details-section--WhRL4 .label--yUuT2.no-icon--J7B9N {
+      .crawl-details-section--a6evz .label--DUNYf.no-icon--VrSr5 {
         padding-left: 29px;
       }
-      .url-result-section--PmEoY {
+
+      /* css-modules:src/reports/components/report-sections/collapsible-url-result-section */
+      .url-result-section--SkOlZ {
         padding-bottom: 31px;
       }
-      .url-result-section--PmEoY
+      .url-result-section--SkOlZ
         .title-container[aria-level="3"]
         .collapsible-control::before {
         position: relative;
         bottom: 2px;
         margin-right: 14px;
       }
-      .url-result-section--PmEoY .collapsible-content {
+      .url-result-section--SkOlZ .collapsible-content {
         margin-top: 19px;
       }
-      .summary-results-table--Pb4_B {
+
+      /* css-modules:src/reports/components/report-sections/summary-results-table */
+      .summary-results-table--Iezr- {
         width: 100%;
         margin: 0;
         text-align: left;
@@ -1415,35 +1467,39 @@
         font-size: 14px;
         line-height: 20px;
       }
-      .summary-results-table--Pb4_B th,
-      .summary-results-table--Pb4_B td {
+      .summary-results-table--Iezr- th,
+      .summary-results-table--Iezr- td {
         border: 1px solid var(--neutral-20);
         padding: 16px 8px 16px 8px;
       }
-      .summary-results-table--Pb4_B th {
+      .summary-results-table--Iezr- th {
         font-weight: 600;
         background-color: var(--neutral-6);
       }
-      .summary-results-table--Pb4_B thead tr :first-child {
+      .summary-results-table--Iezr- thead tr :first-child {
         width: 172px;
       }
-      .summary-results-table--Pb4_B td {
+      .summary-results-table--Iezr- td {
         background-color: var(--neutral-0);
       }
-      .summary-results-table--Pb4_B td.text-cell--p0dxL {
+      .summary-results-table--Iezr- td.text-cell--EaUrM {
         overflow-wrap: break-word;
       }
-      .summary-results-table--Pb4_B td.url-cell--yjU1V {
+      .summary-results-table--Iezr- td.url-cell--mg-3l {
         overflow-wrap: anywhere;
       }
-      .url-results-container--dXQbj {
+
+      /* css-modules:src/reports/components/report-sections/results-by-url-container */
+      .url-results-container---dq9B {
         margin-top: 56px;
       }
-      .url-results-container--dXQbj .results-heading--D3Qtr {
+      .url-results-container---dq9B .results-heading--2dWBX {
         margin-top: 32px;
         margin-bottom: 32px;
       }
-      span.fix-instruction-color-box--Xq1E4 {
+
+      /* css-modules:src/common/components/cards/fix-instruction-color-box */
+      span.fix-instruction-color-box--DQpQE {
         width: 14px;
         height: 14px;
         display: inline-block;
@@ -1451,7 +1507,7 @@
         margin: 0 2px;
         border: 1px solid var(--light-black);
       }
-      .screen-reader-only--n1Ocs {
+      .screen-reader-only--6LUiO {
         position: absolute;
         left: -10000px;
         top: auto;
@@ -1459,10 +1515,11 @@
         overflow: hidden;
         clip-path: inset(100% 100% 100% 100%);
       }
+      /*# sourceMappingURL=report.css.map */
     </style></head
   ><body
     ><header data-automation-id="report-header-section"
-      ><div class="report-header-bar--pkiTM"
+      ><div class="report-header-bar--SDV11"
         ><svg
           role="img"
           aria-hidden="true"
@@ -1619,9 +1676,9 @@
               <stop offset="1" stop-color="#D6E9F7" stop-opacity="0"></stop>
             </linearGradient>
           </defs></svg
-        ><div class="header-text--dfm48">Accessibility Insights</div></div
-      ><div class="report-header-command-bar--wDg1t"
-        ><div class="target-page--giudb"
+        ><div class="header-text--EdTxw">Accessibility Insights</div></div
+      ><div class="report-header-command-bar--NJWdl"
+        ><div class="target-page--hjh44"
           >Target page: <a
             target="_blank"
             href="https://markreay.github.io/AU/before.html"
@@ -1634,9 +1691,7 @@
               var targetPageLink = doc.getElementById(linkId);
               targetPageLink.addEventListener("click", function (event) {
                 var result = confirmCallback(
-                  "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
-                    "This link will open the target page in a new tab.\n\nPress OK to continue or " +
-                    "Cancel to stay on the current page."
+                  "Are you sure you want to navigate away from the Accessibility Insights report?\nThis link will open the target page in a new tab.\n\nPress OK to continue or Cancel to stay on the current page."
                 );
                 if (result === false) {
                   event.preventDefault();
@@ -1683,9 +1738,7 @@
                     var targetPageLink = doc.getElementById(linkId);
                     targetPageLink.addEventListener("click", function (event) {
                       var result = confirmCallback(
-                        "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
-                          "This link will open the target page in a new tab.\n\nPress OK to continue or " +
-                          "Cancel to stay on the current page."
+                        "Are you sure you want to navigate away from the Accessibility Insights report?\nThis link will open the target page in a new tab.\n\nPress OK to continue or Cancel to stay on the current page."
                       );
                       if (result === false) {
                         event.preventDefault();
@@ -1806,14 +1859,14 @@
           ></div
         ><div class="results-container"
           ><div
-            class="failed-instances-container--FqWV6 result-section--j6fYr"
+            class="failed-instances-container--3UUNb result-section--HfO9s"
             data-automation-id="result-section"
-            ><h2 class="heading-element-for-level--OfRDW"
-              ><span class="result-section-title--qv3MK"
+            ><h2 class="heading-element-for-level--ifVX6"
+              ><span class="result-section-title--RGFI5"
                 ><span class="screen-reader-only">Failed instances 26</span
-                ><span class="title--neMma" aria-hidden="true"
+                ><span class="title--WBYFE" aria-hidden="true"
                   >Failed instances</span
-                ><span class="outcome-chip-container--Wt0k4" aria-hidden="true"
+                ><span class="outcome-chip-container--BT3j5" aria-hidden="true"
                   ><span
                     class="outcome-chip outcome-chip-fail"
                     title="26 Failed"
@@ -1842,18 +1895,18 @@
                 ></span
               ></h2
             ><div
-              class="rule-details-group--U69fz"
+              class="rule-details-group--Tb-LW"
               data-automation-id="rule-details-group"
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-bypass"
                     aria-label="bypass 1 Failed Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -1906,10 +1959,10 @@
                   id="content-container-bypass"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://accessibilityinsights.io/info-examples/web/bypass"
@@ -1928,33 +1981,33 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg">html</td></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh">html</td></tr
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;html
                                     class=&quot;deque-axe-is-ready&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li>No valid skip link found</li
                                           ><li>Page does not have a header</li
                                           ><li
@@ -1975,15 +2028,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-color-contrast"
                     aria-label="color-contrast 4 Failed Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -2036,10 +2089,10 @@
                   id="content-container-color-contrast"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://accessibilityinsights.io/info-examples/web/color-contrast"
@@ -2058,36 +2111,36 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >li:nth-child(1) &gt;
                                     a[href=&quot;\#&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;a
                                     href=&quot;#&quot;&gt;About&lt;/a&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             ><span aria-hidden="true"
                                               ><span
@@ -2096,7 +2149,7 @@
                                                 color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #8a94a8;
                                                 "
@@ -2105,7 +2158,7 @@
                                                 >#8a94a8, background color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #e7ecd8;
                                                 "
@@ -2117,7 +2170,7 @@
                                                 4.5:1</span
                                               ></span
                                             ><span
-                                              class="screen-reader-only--n1Ocs"
+                                              class="screen-reader-only--6LUiO"
                                               >Element has insufficient color
                                               contrast of 2.52 (foreground
                                               color: #8a94a8, background color:
@@ -2132,7 +2185,7 @@
                                                     Use foreground color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #5e6572;
                                                     "
@@ -2142,7 +2195,7 @@
                                                     background color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #e7ecd8;
                                                     "
@@ -2152,7 +2205,7 @@
                                                     ratio of 4.86:1.</span
                                                   ></span
                                                 ><span
-                                                  class="screen-reader-only--n1Ocs"
+                                                  class="screen-reader-only--6LUiO"
                                                 >
                                                   Use foreground color: #5e6572
                                                   and the original background
@@ -2176,31 +2229,31 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >li:nth-child(2) &gt;
                                     a[href=&quot;\#&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;a
                                     href=&quot;#&quot;&gt;Academics&lt;/a&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             ><span aria-hidden="true"
                                               ><span
@@ -2209,7 +2262,7 @@
                                                 color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #8a94a8;
                                                 "
@@ -2218,7 +2271,7 @@
                                                 >#8a94a8, background color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #e7ecd8;
                                                 "
@@ -2230,7 +2283,7 @@
                                                 4.5:1</span
                                               ></span
                                             ><span
-                                              class="screen-reader-only--n1Ocs"
+                                              class="screen-reader-only--6LUiO"
                                               >Element has insufficient color
                                               contrast of 2.52 (foreground
                                               color: #8a94a8, background color:
@@ -2245,7 +2298,7 @@
                                                     Use foreground color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #5e6572;
                                                     "
@@ -2255,7 +2308,7 @@
                                                     background color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #e7ecd8;
                                                     "
@@ -2265,7 +2318,7 @@
                                                     ratio of 4.86:1.</span
                                                   ></span
                                                 ><span
-                                                  class="screen-reader-only--n1Ocs"
+                                                  class="screen-reader-only--6LUiO"
                                                 >
                                                   Use foreground color: #5e6572
                                                   and the original background
@@ -2289,31 +2342,31 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >li:nth-child(3) &gt;
                                     a[href=&quot;\#&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;a
                                     href=&quot;#&quot;&gt;Admissions&lt;/a&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             ><span aria-hidden="true"
                                               ><span
@@ -2322,7 +2375,7 @@
                                                 color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #8a94a8;
                                                 "
@@ -2331,7 +2384,7 @@
                                                 >#8a94a8, background color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #e7ecd8;
                                                 "
@@ -2343,7 +2396,7 @@
                                                 4.5:1</span
                                               ></span
                                             ><span
-                                              class="screen-reader-only--n1Ocs"
+                                              class="screen-reader-only--6LUiO"
                                               >Element has insufficient color
                                               contrast of 2.52 (foreground
                                               color: #8a94a8, background color:
@@ -2358,7 +2411,7 @@
                                                     Use foreground color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #5e6572;
                                                     "
@@ -2368,7 +2421,7 @@
                                                     background color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #e7ecd8;
                                                     "
@@ -2378,7 +2431,7 @@
                                                     ratio of 4.86:1.</span
                                                   ></span
                                                 ><span
-                                                  class="screen-reader-only--n1Ocs"
+                                                  class="screen-reader-only--6LUiO"
                                                 >
                                                   Use foreground color: #5e6572
                                                   and the original background
@@ -2402,31 +2455,31 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >li:nth-child(4) &gt;
                                     a[href=&quot;\#&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;a
                                     href=&quot;#&quot;&gt;Visitors&lt;/a&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             ><span aria-hidden="true"
                                               ><span
@@ -2435,7 +2488,7 @@
                                                 color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #8a94a8;
                                                 "
@@ -2444,7 +2497,7 @@
                                                 >#8a94a8, background color: </span
                                               ><span
                                                 aria-hidden="true"
-                                                class="fix-instruction-color-box--Xq1E4"
+                                                class="fix-instruction-color-box--DQpQE"
                                                 style="
                                                   background-color: #e7ecd8;
                                                 "
@@ -2456,7 +2509,7 @@
                                                 4.5:1</span
                                               ></span
                                             ><span
-                                              class="screen-reader-only--n1Ocs"
+                                              class="screen-reader-only--6LUiO"
                                               >Element has insufficient color
                                               contrast of 2.52 (foreground
                                               color: #8a94a8, background color:
@@ -2471,7 +2524,7 @@
                                                     Use foreground color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #5e6572;
                                                     "
@@ -2481,7 +2534,7 @@
                                                     background color: </span
                                                   ><span
                                                     aria-hidden="true"
-                                                    class="fix-instruction-color-box--Xq1E4"
+                                                    class="fix-instruction-color-box--DQpQE"
                                                     style="
                                                       background-color: #e7ecd8;
                                                     "
@@ -2491,7 +2544,7 @@
                                                     ratio of 4.86:1.</span
                                                   ></span
                                                 ><span
-                                                  class="screen-reader-only--n1Ocs"
+                                                  class="screen-reader-only--6LUiO"
                                                 >
                                                   Use foreground color: #5e6572
                                                   and the original background
@@ -2516,15 +2569,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-html-has-lang"
                     aria-label="html-has-lang 1 Failed Ensures every HTML document has a lang attribute"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -2576,10 +2629,10 @@
                   id="content-container-html-has-lang"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://accessibilityinsights.io/info-examples/web/html-has-lang"
@@ -2598,33 +2651,33 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg">html</td></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh">html</td></tr
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;html
                                     class=&quot;deque-axe-is-ready&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >The &lt;html&gt; element does not
                                             have a lang attribute</li
@@ -2643,15 +2696,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-image-alt"
                     aria-label="image-alt 4 Failed Ensures &lt;img&gt; elements have alternate text or a role of none or presentation"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -2703,10 +2756,10 @@
                   id="content-container-image-alt"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://accessibilityinsights.io/info-examples/web/image-alt"
@@ -2725,35 +2778,35 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >img[src$=&quot;slide2\.jpg&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;img
                                     src=&quot;images/slide2.jpg&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Element does not have an alt
                                             attribute</li
@@ -2790,30 +2843,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >img[src$=&quot;arrow-left\.png&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;img
                                     src=&quot;images/arrow-left.png&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Element does not have an alt
                                             attribute</li
@@ -2850,30 +2903,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >img[src$=&quot;arrow-right\.png&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;img
                                     src=&quot;images/arrow-right.png&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Element does not have an alt
                                             attribute</li
@@ -2910,30 +2963,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >img[src$=&quot;captcha\.png&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;img
                                     src=&quot;images/captcha.png&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Element does not have an alt
                                             attribute</li
@@ -2971,15 +3024,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-label"
                     aria-label="label 13 Failed Ensures every form element has a label"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -3030,10 +3083,10 @@
                   id="content-container-label"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://accessibilityinsights.io/info-examples/web/label"
@@ -3058,35 +3111,35 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;name&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;name&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3118,30 +3171,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;email&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;email&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3173,30 +3226,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;city&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;city&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3228,30 +3281,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;state&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;state&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3283,30 +3336,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;zip&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;zip&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3338,30 +3391,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;country/region&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;country/region&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3393,30 +3446,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_cs&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_cs&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3448,30 +3501,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_eng&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_eng&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3503,30 +3556,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_econ&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_econ&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3558,30 +3611,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_phy&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_phy&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3613,30 +3666,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_psy&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_psy&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3668,30 +3721,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;major_sp&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;checkbox&quot;
                                     name=&quot;major_sp&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3723,30 +3776,30 @@
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh"
                                     >input[name=&quot;captcha&quot;]</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;input type=&quot;text&quot;
                                     name=&quot;captcha&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix ONE of the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >aria-label attribute does not exist
                                             or is empty</li
@@ -3779,15 +3832,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-landmark-one-main"
                     aria-label="landmark-one-main 1 Failed Ensures the document has only one main landmark and each iframe in the page has at most one main landmark"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -3840,10 +3893,10 @@
                   id="content-container-landmark-one-main"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://dequeuniversity.com/rules/axe/3.3/landmark-one-main?application=webdriverjs"
@@ -3861,33 +3914,33 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg">html</td></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh">html</td></tr
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;html
                                     class=&quot;deque-axe-is-ready&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Document does not have a main
                                             landmark</li
@@ -3906,15 +3959,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-page-has-heading-one"
                     aria-label="page-has-heading-one 1 Failed Ensure that the page, or at least one of its frames contains a level-one heading"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -3966,10 +4019,10 @@
                   id="content-container-page-has-heading-one"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://dequeuniversity.com/rules/axe/3.3/page-has-heading-one?application=webdriverjs"
@@ -3987,33 +4040,33 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg">html</td></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh">html</td></tr
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;html
                                     class=&quot;deque-axe-is-ready&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Page must have a level-one
                                             heading</li
@@ -4032,15 +4085,15 @@
                   ></div
                 ></div
               ><div
-                class="collapsible-container collapsible-rule-details-group--h0lvd collapsed"
-                ><h3 class="heading-element-for-level--OfRDW title-container"
+                class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"
+                ><h3 class="heading-element-for-level--ifVX6 title-container"
                   ><button
                     class="collapsible-control"
                     aria-expanded="false"
                     aria-controls="content-container-region"
                     aria-label="region 1 Failed Ensures all page content is contained by landmarks"
                     ><span data-automation-id="rule-detail" class="rule-detail"
-                      ><span class="outcome-chip-container--xYquF"
+                      ><span class="outcome-chip-container--G5Dfr"
                         ><span aria-hidden="true"
                           ><span
                             class="outcome-chip outcome-chip-fail"
@@ -4092,10 +4145,10 @@
                   id="content-container-region"
                   class="collapsible-content"
                   aria-hidden="true"
-                  ><div class="rule-more-resources--Bsblo"
-                    ><div class="more-resources-title--whTFs"
+                  ><div class="rule-more-resources--uw9mc"
+                    ><div class="more-resources-title--jOuUL"
                       >Resources for this rule</div
-                    ><span class="rule-details-id--n_S89"
+                    ><span class="rule-details-id--s-TpO"
                       ><a
                         target="_blank"
                         href="https://dequeuniversity.com/rules/axe/3.3/region?application=webdriverjs"
@@ -4113,33 +4166,33 @@
                     ></div
                   ><ul
                     data-automation-id="cards-rule-content"
-                    class="instance-details-list--xiPPL"
+                    class="instance-details-list--YfkRy"
                     aria-label="instances with additional information like path, snippet and how to fix"
                     ><li
                       ><div
                         data-automation-id="instance-card"
-                        class="instance-details-card-container--bKrcd"
-                        ><div class="instance-details-card--R0aAh"
+                        class="instance-details-card-container--KLHTp"
+                        ><div class="instance-details-card--owGQF"
                           ><div
-                            ><table class="report-instance-table--YIu0s"
+                            ><table class="report-instance-table--3VoZX"
                               ><tbody
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Path</th
-                                  ><td class="row-content--ECKwg">html</td></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">Snippet</th
-                                  ><td class="row-content--ECKwg snippet--wZrK1"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Path</th
+                                  ><td class="row-content--07KUh">html</td></tr
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">Snippet</th
+                                  ><td class="row-content--07KUh snippet--hSNfv"
                                     >&lt;html
                                     class=&quot;deque-axe-is-ready&quot;&gt;</td
                                   ></tr
-                                ><tr class="row--m8TLI"
-                                  ><th class="row-label--MxfuQ">How to fix</th
-                                  ><td class="row-content--ECKwg"
-                                    ><div class="how-to-fix-content--OHBLC"
+                                ><tr class="row---3i35"
+                                  ><th class="row-label--FlVZl">How to fix</th
+                                  ><td class="row-content--07KUh"
+                                    ><div class="how-to-fix-content--Zz96u"
                                       ><div
                                         ><div>Fix the following:</div
                                         ><ul
-                                          class="insights-fix-instruction-list--G3vyY"
+                                          class="insights-fix-instruction-list--eZigw"
                                           ><li
                                             >Some page content is not contained
                                             by landmarks</li
@@ -4161,17 +4214,17 @@
             ></div
           ><div class="result-section"
             ><div class="collapsible-container collapsed"
-              ><h2 class="heading-element-for-level--OfRDW title-container"
+              ><h2 class="heading-element-for-level--ifVX6 title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
                   aria-controls="content-container-passed-checks-section"
-                  ><span class="result-section-title--qv3MK"
+                  ><span class="result-section-title--RGFI5"
                     ><span class="screen-reader-only">Passed checks 19</span
-                    ><span class="title--neMma" aria-hidden="true"
+                    ><span class="title--WBYFE" aria-hidden="true"
                       >Passed checks</span
                     ><span
-                      class="outcome-chip-container--Wt0k4"
+                      class="outcome-chip-container--BT3j5"
                       aria-hidden="true"
                       ><span
                         class="outcome-chip outcome-chip-pass"
@@ -4212,7 +4265,7 @@
                 id="content-container-passed-checks-section"
                 class="collapsible-content"
                 aria-hidden="true"
-                ><div class="rule-details-group--U69fz"
+                ><div class="rule-details-group--Tb-LW"
                   ><div class="rule-detail"
                     ><div>
                       <span class="rule-details-id"
@@ -4710,18 +4763,18 @@
             ></div
           ><div class="result-section"
             ><div class="collapsible-container collapsed"
-              ><h2 class="heading-element-for-level--OfRDW title-container"
+              ><h2 class="heading-element-for-level--ifVX6 title-container"
                 ><button
                   class="collapsible-control"
                   aria-expanded="false"
                   aria-controls="content-container-not-applicable-checks-section"
-                  ><span class="result-section-title--qv3MK"
+                  ><span class="result-section-title--RGFI5"
                     ><span class="screen-reader-only"
                       >Not applicable checks 45</span
-                    ><span class="title--neMma" aria-hidden="true"
+                    ><span class="title--WBYFE" aria-hidden="true"
                       >Not applicable checks</span
                     ><span
-                      class="outcome-chip-container--Wt0k4"
+                      class="outcome-chip-container--BT3j5"
                       aria-hidden="true"
                       ><span
                         class="outcome-chip outcome-chip-inapplicable"
@@ -4767,7 +4820,7 @@
                 id="content-container-not-applicable-checks-section"
                 class="collapsible-content"
                 aria-hidden="true"
-                ><div class="rule-details-group--U69fz"
+                ><div class="rule-details-group--Tb-LW"
                   ><div class="rule-detail"
                     ><div>
                       <span class="rule-details-id"
@@ -5935,7 +5988,7 @@
             var _loop = function (index) {
               var container = collapsibles.item(index);
               var button =
-                container === null || container === void 0
+                container == null
                   ? void 0
                   : container.querySelector(".collapsible-control");
               if (button == null) {
@@ -5944,7 +5997,7 @@
               button.addEventListener("click", function () {
                 var _a;
                 var content =
-                  (_a = button.parentElement) === null || _a === void 0
+                  (_a = button.parentElement) == null
                     ? void 0
                     : _a.nextElementSibling;
                 if (content == null) {

@@ -14,7 +14,7 @@ import {
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
-import * as styles from './start-over-menu-item.scss';
+import styles from './start-over-menu-item.scss';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

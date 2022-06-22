@@ -45,7 +45,7 @@ import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-
 import { TestView, TestViewDeps } from 'electron/views/results/test-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-import * as styles from './results-view.scss';
+import styles from './results-view.scss';
 
 export const resultsViewAutomationId = 'results-view';
 

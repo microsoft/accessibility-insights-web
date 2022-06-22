@@ -9,7 +9,7 @@ body {
     overflow-y: auto;
     height: fit-content; // required for the popup's window to resize properly when the details view is zoomed in/out
     background: $neutral-0;
-    font-family: $fontFamily;
+    font-family: $font-family;
 }
 
 .telemetry-permission-dialog-modal {
@@ -46,7 +46,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     }
 
     .ms-Dialog-title {
-        font-weight: $fontWeightSemiBold;
+        font-weight: $font-weight-semi-bold;
     }
 
     .ms-Checkbox-checkbox {

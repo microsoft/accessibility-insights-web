@@ -6,17 +6,19 @@
 .details-disabled-message {
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: $fontSizeM;
+    font-size: $font-size-m;
 }
 
 .issues-table {
     background-color: $neutral-2;
-    width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
+    width: calc(
+        100% - #{$fast-pass-right-panel-margin-right} - #{$fast-pass-right-panel-margin-left}
+    );
     display: flex;
     flex-direction: column;
-    padding-top: $fastPassRightPanelMarginTop;
-    padding-right: $fastPassRightPanelMarginRight;
-    padding-left: $fastPassRightPanelMarginLeft;
+    padding-top: $fast-pass-right-panel-margin-top;
+    padding-right: $fast-pass-right-panel-margin-right;
+    padding-left: $fast-pass-right-panel-margin-left;
 
     .issues-table-subtitle {
         color: $secondary-text;

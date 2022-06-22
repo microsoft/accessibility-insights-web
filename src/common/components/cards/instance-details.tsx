@@ -6,16 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import {
-    focused,
-    hiddenHighlightButton,
-    instanceDetailsCard,
-    instanceDetailsCardContainer,
-    interactive,
-    reportInstanceTable,
-    selected,
-} from 'reports/components/instance-details.scss';
-
+import styles from 'reports/components/instance-details.scss';
 import {
     CardRowDeps,
     PropertyConfiguration,
@@ -59,15 +50,15 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
     const instanceDetailsCardStyling = classNames({
-        [instanceDetailsCard]: true,
-        [selected]: isHighlightSupported && result.isSelected,
-        [focused]: isHighlightSupported && cardFocused,
-        [interactive]: isHighlightSupported,
+        [styles.instanceDetailsCard]: true,
+        [styles.selected]: isHighlightSupported && result.isSelected,
+        [styles.focused]: isHighlightSupported && cardFocused,
+        [styles.interactive]: isHighlightSupported,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
-        [instanceDetailsCardContainer]: true,
-        [selected]: isHighlightSupported && result.isSelected,
+        [styles.instanceDetailsCardContainer]: true,
+        [styles.selected]: isHighlightSupported && result.isSelected,
     });
 
     const toggleSelectHandler = (event: React.SyntheticEvent): void => {
@@ -93,7 +84,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         >
             <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
                 <div>
-                    <table className={reportInstanceTable}>
+                    <table className={styles.reportInstanceTable}>
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers, props)}
                             {renderCardRowsForPropertyBag(result.descriptors, props)}
@@ -104,7 +95,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         <button
                             ref={hiddenButton}
                             onClick={toggleSelectHandler}
-                            className={hiddenHighlightButton}
+                            className={styles.hiddenHighlightButton}
                             aria-label={`highlight ${
                                 result.identifiers && result.identifiers.identifier
                                     ? result.identifiers.identifier

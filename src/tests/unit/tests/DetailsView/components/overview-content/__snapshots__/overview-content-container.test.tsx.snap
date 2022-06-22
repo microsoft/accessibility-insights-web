@@ -16,6 +16,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         },
         "assessmentsProviderWithFeaturesEnabled": [Function],
         "detailsViewActionMessageCreator": Object {},
+        "detailsViewId": undefined,
         "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
         "urlParser": Object {},
       }
@@ -49,6 +50,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           },
           "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": Object {},
+          "detailsViewId": undefined,
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
           "urlParser": Object {},
         }

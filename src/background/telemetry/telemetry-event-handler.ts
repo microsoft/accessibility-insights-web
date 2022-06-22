@@ -28,6 +28,7 @@ export class TelemetryEventHandler {
 
         const flattenTelemetryInfo: DictionaryStringTo<string> =
             this.flattenTelemetryInfo(telemetryInfo);
+
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 

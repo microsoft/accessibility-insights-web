@@ -5,6 +5,7 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": undefined,
       "urlParser": [typemoq mock object],
     }
   }
@@ -40,6 +41,7 @@ exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
   deps={
     Object {
       "detailsViewActionMessageCreator": [typemoq mock object],
+      "detailsViewId": undefined,
       "urlParser": [typemoq mock object],
     }
   }

@@ -13,7 +13,7 @@ import { AndroidSetupStepContainer } from 'electron/views/device-connect-view/co
 import * as React from 'react';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
 import { AndroidSetupPageDeps } from './android-setup/android-setup-types';
-import * as styles from './device-connect-view-container.scss';
+import styles from './device-connect-view-container.scss';
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
     WindowTitleDeps &

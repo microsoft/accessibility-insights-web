@@ -25,6 +25,13 @@ describe('BrowserPermissionsTracker', () => {
         loggerMock = Mock.ofType<Logger>();
         browserAdapterMock = createBrowserAdapterMock();
 
+        interpreterMock
+            .setup(i => i.interpret(It.isAny()))
+            .returns(() => ({
+                messageHandled: true,
+                result: undefined,
+            }));
+
         testSubject = new BrowserPermissionsTracker(
             browserAdapterMock.object,
             interpreterMock.object,

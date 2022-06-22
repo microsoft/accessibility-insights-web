@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { Messages } from 'common/messages';
 
 export type DebugToolsTelemetryMessage = {
@@ -28,18 +28,24 @@ export class TelemetryListener {
 
     constructor(private readonly getDate: GetDate) {}
 
-    public readonly onTelemetryMessage = (telemetryMessage: any) => {
-        if (telemetryMessage.messageType !== Messages.DebugTools.Telemetry) {
-            return;
+    public readonly handleBrowserMessage = (browserMessage: any): BrowserMessageResponse => {
+        if (browserMessage.messageType === Messages.DebugTools.Telemetry) {
+            this.listeners.forEach(listener =>
+                listener(convertToDebugToolTelemetryMessage(browserMessage, this.getDate)),
+            );
+
+            return { messageHandled: true, result: Promise.resolve() };
         }
 
-        this.listeners.forEach(listener =>
-            listener(convertToDebugToolTelemetryMessage(telemetryMessage, this.getDate)),
-        );
+        return { messageHandled: false };
     };
 
     public addListener(listener: DebugToolsTelemetryMessageListener): void {
         this.listeners.push(listener);
+    }
+
+    public removeListener(listener: DebugToolsTelemetryMessageListener): void {
+        this.listeners = this.listeners.filter(l => l !== listener);
     }
 }
 

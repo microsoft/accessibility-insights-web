@@ -316,7 +316,7 @@ export class ActionCreator {
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         await this.detailsViewController
             .showDetailsView(tabId)
-            .catch(e => this.logger.error(e.message));
+            .catch(e => this.logger.error(e.message, e));
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
     };
 

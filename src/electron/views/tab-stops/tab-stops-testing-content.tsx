@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import * as React from 'react';
-import * as styles from './tab-stops-testing-content.scss';
+import styles from './tab-stops-testing-content.scss';
 
 export type TabStopsTestingContentDeps = {
     tabStopsActionCreator: TabStopsActionCreator;

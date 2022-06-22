@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { RecommendColor } from 'common/components/recommend-color';
 import * as React from 'react';
-import * as styles from './cards/fix-instruction-color-box.scss';
+import styles from './cards/fix-instruction-color-box.scss';
 
 type ColorMatch = {
     splitIndex: number;

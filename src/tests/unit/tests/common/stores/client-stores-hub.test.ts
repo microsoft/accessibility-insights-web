@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { clone, forEach, size } from 'lodash';
+import { StoreMock } from 'tests/unit/mock-helpers/store-mock';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStore } from '../../../../../common/base-store';
-import { BaseClientStoresHub } from '../../../../../common/stores/base-client-stores-hub';
-import { StoreMock } from '../../../mock-helpers/store-mock';
-
-describe('BaseClientStoresHubTest', () => {
+describe(ClientStoresHub, () => {
     let store1Mock: StoreMock<TestStoreData>;
     let store2Mock: StoreMock<TestStoreData>;
     let store3Mock: StoreMock<TestStoreData>;
@@ -139,8 +138,8 @@ describe('BaseClientStoresHubTest', () => {
         store3Mock.setupAddChangedListener();
     }
 
-    function createDefaultClientStoreHub(): BaseClientStoresHub<TestStoreData> {
-        return new BaseClientStoresHub([
+    function createDefaultClientStoreHub(): ClientStoresHub<TestStoreData> {
+        return new ClientStoresHub([
             store1Mock.getObject(),
             store2Mock.getObject(),
             store3Mock.getObject(),
@@ -202,8 +201,8 @@ describe('BaseClientStoresHubTest', () => {
 
     function buildClientStoresHub(
         stores: BaseStore<TestStoreData>[],
-    ): BaseClientStoresHub<TestStoreData> {
-        return new BaseClientStoresHub<TestStoreData>(stores);
+    ): ClientStoresHub<TestStoreData> {
+        return new ClientStoresHub<TestStoreData>(stores);
     }
 });
 

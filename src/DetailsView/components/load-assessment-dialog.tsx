@@ -9,13 +9,14 @@ import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
 } from 'DetailsView/components/change-assessment-dialog';
-import * as styles from 'DetailsView/components/load-assessment-dialog.scss';
+import styles from 'DetailsView/components/load-assessment-dialog.scss';
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type LoadAssessmentDialogDeps = {
     urlParser: UrlParser;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    detailsViewId: string;
 };
 
 export const loadAssessmentDialogLoadButtonAutomationId = 'load-assessment-dialog-load-button';
@@ -35,6 +36,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
             props.deps.detailsViewActionMessageCreator.loadAssessment(
                 props.loadedAssessmentData,
                 props.tabId,
+                props.deps.detailsViewId,
             );
             props.onClose();
         };

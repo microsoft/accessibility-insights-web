@@ -16,9 +16,9 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
+import styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
 import { AutoDetectedFailuresDialog } from 'DetailsView/components/auto-detected-failures-dialog';
-import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
+import requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
