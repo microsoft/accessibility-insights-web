@@ -40,7 +40,7 @@
 
     h2 {
         font-size: 21px;
-        font-weight: 700;
+        font-weight: bold;
         letter-spacing: -0.02em;
         line-height: 32px;
     }
@@ -50,19 +50,19 @@
     }
 
     h4 {
-        font-weight: 400;
+        font-weight: normal;
         font-size: 14px;
         margin-bottom: 4px;
     }
 
     h5 {
-        font-weight: 700;
+        font-weight: bold;
         font-size: 14px;
         margin-bottom: 4px;
     }
 
     a {
-        font-weight: 400;
+        font-weight: normal;
     }
 
     ol {
@@ -279,7 +279,7 @@
         th {
             background: $neutral-100;
             color: $neutral-0;
-            font-weight: 400;
+            font-weight: normal;
         }
 
         td {
@@ -326,7 +326,7 @@
         display: table-cell;
         width: 110px;
         text-align: center;
-        font-weight: 400;
+        font-weight: normal;
         padding: 4px;
         vertical-align: middle;
         border-style: dashed;

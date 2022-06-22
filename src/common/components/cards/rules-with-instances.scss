@@ -17,17 +17,17 @@
         }
 
         :global(.rule-details-id) {
-            font-weight: $font-weight-semi-bold;
+            font-weight: 600;
             color: $primary-text;
             word-break: break-all;
 
             a {
-                font-weight: $font-weight-semi-bold;
+                font-weight: 600;
                 color: $primary-text !important;
             }
 
             strong {
-                font-weight: $font-weight-semi-bold;
+                font-weight: 600;
             }
         }
 

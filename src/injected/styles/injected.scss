@@ -149,7 +149,7 @@
         margin-bottom: 8px !important;
         font-size: 12px !important;
         color: $negative-outcome !important;
-        font-weight: $font-weight-semi-bold !important;
+        font-weight: 600 !important;
     }
 
     .insights-dialog-main-override .file-issue-button-help {
@@ -157,14 +157,14 @@
         margin-bottom: 8px !important;
         font-size: 12px !important;
         color: $negative-outcome;
-        font-weight: $font-weight-semi-bold;
+        font-weight: 600;
     }
 
     .insights-dialog-main-override .copy-issue-details-button-help {
         margin-top: 4px !important;
         font-size: 12px !important;
         color: $negative-outcome !important;
-        font-weight: $font-weight-semi-bold !important;
+        font-weight: 600 !important;
     }
 
     .insights-dialog-main-override {
@@ -173,7 +173,7 @@
             padding-bottom: 0 !important;
             color: $primary-text !important;
             font-size: 21px !important;
-            font-weight: $font-weight-semi-bold !important;
+            font-weight: 600 !important;
             letter-spacing: -0.02em !important;
         }
 
@@ -182,7 +182,7 @@
             margin-bottom: 4px !important;
             color: $primary-text !important;
             font-size: 15px !important;
-            font-weight: $font-weight-semi-bold !important;
+            font-weight: 600 !important;
         }
 
         .insights-dialog-content {
@@ -207,7 +207,7 @@
                 margin-left: 4px !important;
                 margin-right: 4px !important;
                 line-height: 100% !important;
-                font-weight: $font-weight-semi-bold !important;
+                font-weight: 600 !important;
             }
 
             svg {

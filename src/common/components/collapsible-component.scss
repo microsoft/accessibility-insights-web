@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
-
 span.collapsible-title {
     padding-left: 0.5vw;
 }
@@ -17,11 +15,6 @@ span.collapsible-title {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    h2 {
-        font-weight: $normal-title-font-weight;
-        font-size: 17px;
-    }
 }
 
 .collapsible-content {

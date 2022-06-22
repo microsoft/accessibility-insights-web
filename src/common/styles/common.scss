@@ -17,7 +17,6 @@ $focus-ring-color: $neutral-100;
     }
 }
 
-$normal-title-font-weight: 300 !default;
 $pivot-item-left-border-width: 3px !default;
 $pivot-item-border-style: solid !default;
 $details-view-header-bar-height: 40px !default;
@@ -40,6 +39,6 @@ $fast-pass-right-panel-margin-top: 24px !default;
 }
 
 @mixin h3 {
-    font-weight: $font-weight-semi-bold;
+    font-weight: 600;
     font-size: 17px;
 }
