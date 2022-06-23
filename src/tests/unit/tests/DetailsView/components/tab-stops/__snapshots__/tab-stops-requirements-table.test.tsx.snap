@@ -39,8 +39,8 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
       Object {
         "className": "passFailColumnCell",
         "key": "result",
-        "maxWidth": 100,
-        "minWidth": 100,
+        "maxWidth": 124,
+        "minWidth": 124,
         "name": "Pass / Fail",
         "onRender": [Function],
       },

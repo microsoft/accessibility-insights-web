@@ -3,7 +3,10 @@
 
 import { CheckboxVisibility, DetailsList, IColumn } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
-import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    TabStopRequirementState,
+    TabStopRequirementStatuses,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
@@ -21,7 +24,7 @@ export type TabStopsRequirementsTableDeps = {
     tabStopsTestViewController: TabStopsTestViewController;
 };
 
-export const tabStopsRequirementsTableActionColumnWidthPx = 100;
+export const tabStopsRequirementsTableActionColumnWidthPx = 124;
 
 export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>(
     'TabStopsRequirementsTable',
@@ -49,7 +52,9 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                 onRender: item => {
                     return (
                         <TabStopsChoiceGroup
-                            status={props.requirementState[item.id].status}
+                            status={
+                                TabStopRequirementStatuses[props.requirementState[item.id].status]
+                            }
                             onUndoClicked={_ =>
                                 tabStopRequirementActionMessageCreator.resetStatusForRequirement(
                                     item.id,
