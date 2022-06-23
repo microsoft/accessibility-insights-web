@@ -195,7 +195,7 @@
         "electron": "14.0.0",
         "electron-log": "^4.4.7",
         "electron-updater": "^5.0.1",
-        "idb-keyval": "^6.1.0",
+        "idb-keyval": "^6.2.0",
         "lodash": "^4.17.21",
         "luxon": "^2.4.0",
         "react": "^16.14.0",
