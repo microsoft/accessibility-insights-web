@@ -68,6 +68,7 @@ IDEs/Editors like VSCode will run the TypeScript compiler in the background prov
     > IMPORTANT: Ensure that you are testing locally before pushing a change.
 
 -   Look for the ![Dev Logo](../src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
+
 -   (Optional) run `yarn react-devtools:setup && yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
 
 ### Testing
