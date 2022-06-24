@@ -3373,10 +3373,42 @@ app-builder-bin@4.0.0:
   resolved "https://registry.yarnpkg.com/app-builder-bin/-/app-builder-bin-4.0.0.tgz#1df8e654bd1395e4a319d82545c98667d7eed2f0"
   integrity sha512-xwdG0FJPQMe0M0UA4Tz0zEB8rBJTRA5a476ZawAqiBkMv16GRK5xpXThOjMaEOFnZ6zabejjG4J3da0SXG63KA==
 
-app-builder-lib@23.1.0, app-builder-lib@^23.1.0:
+app-builder-lib@23.1.0:
   version "23.1.0"
   resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-23.1.0.tgz#39bab8eb445d06ad9168eb2513c7f267923df2ba"
   integrity sha512-aZpKjBBLzyxtr4Cmbyi3dl8uRO8SI2PG2MYEKYRZL6pl7IsKP2hJkCYzlD6NjLJlRIAZcFPFjFbJliO74DFf7w==
+  dependencies:
+    "7zip-bin" "~5.1.1"
+    "@develar/schema-utils" "~2.6.5"
+    "@electron/universal" "1.2.1"
+    "@malept/flatpak-bundler" "^0.4.0"
+    async-exit-hook "^2.0.1"
+    bluebird-lst "^1.0.9"
+    builder-util "23.0.9"
+    builder-util-runtime "9.0.2"
+    chromium-pickle-js "^0.2.0"
+    debug "^4.3.4"
+    ejs "^3.1.7"
+    electron-osx-sign "^0.6.0"
+    electron-publish "23.0.9"
+    form-data "^4.0.0"
+    fs-extra "^10.1.0"
+    hosted-git-info "^4.1.0"
+    is-ci "^3.0.0"
+    isbinaryfile "^4.0.10"
+    js-yaml "^4.1.0"
+    lazy-val "^1.0.5"
+    minimatch "^3.1.2"
+    read-config-file "6.2.0"
+    sanitize-filename "^1.6.3"
+    semver "^7.3.7"
+    tar "^6.1.11"
+    temp-file "^3.4.0"
+
+app-builder-lib@^23.2.0:
+  version "23.2.0"
+  resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-23.2.0.tgz#ff83af3681f31409444facf191063310ffe348af"
+  integrity sha512-QsMYbtJLAMMc3BJkpMotfuA6Gi2RYi+Nq3Y6afkWLK0qo80dB26OLB9/LVE6943US5tqplKaTyax+kO1Y5LOoA==
   dependencies:
     "7zip-bin" "~5.1.1"
     "@develar/schema-utils" "~2.6.5"
