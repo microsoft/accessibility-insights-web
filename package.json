@@ -212,7 +212,9 @@
     "resolutions": {
         "@types/node": "^16.11.7",
         "ansi-regex": "^5.0.1",
-        "dot-prop": "^5.2.0",
+        "**/compare-func/dot-prop": "^5.2.0",
+        "got": "^11.8.5",
+        "jpeg-js": ">=0.4.4",
         "kind-of": "^6.0.3",
         "license-check-and-add/yargs": "^15.3.1",
         "minimist": "^1.2.3",
