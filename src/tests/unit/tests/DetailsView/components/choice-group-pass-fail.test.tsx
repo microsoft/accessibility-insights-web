@@ -76,6 +76,13 @@ describe('ChoiceGroupPassFail', () => {
         expect(labels.at(1).text()).toEqual('');
     });
 
+    test('verify undo button is present with selection', () => {
+        props.selectedKey = TabStopRequirementStatuses.pass;
+        props.secondaryControls = null;
+        const testSubject = mount(<ChoiceGroupPassFail {...props} />);
+        expect(testSubject.find(IconButton).exists()).toBeTruthy();
+    });
+
     test('verify component is correctly used with undo', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
