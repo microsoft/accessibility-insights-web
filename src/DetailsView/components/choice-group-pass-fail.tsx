@@ -40,8 +40,10 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
     };
 
     public render(): JSX.Element {
-        // Hide undo button for TabStopsChoiceGroups until selection
-        const showUndoButton = this.props.selectedKey !== TabStopRequirementStatuses.unknown;
+        // Show undo button when selectedKey is not unknown
+        const showUndoButton =
+            this.props.selectedKey !== TabStopRequirementStatuses.unknown &&
+            this.props.selectedKey !== ManualTestStatus.UNKNOWN;
 
         return (
             <div className={styles.choiceGroupContainer}>
