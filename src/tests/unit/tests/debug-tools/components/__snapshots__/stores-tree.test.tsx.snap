@@ -87,7 +87,9 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
         "mode": 2,
       }
     }
+    selectionClearedOnEscapePress={true}
     selectionMode={0}
+    toggleWithoutModifierPressed={false}
   >
     <StyledGroupedListBase
       compact={true}

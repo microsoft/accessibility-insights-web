@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChoiceGroupPassFail render 1`] = `
+<div
+  className="choiceGroupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionPass",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "key": "fail",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionFail",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="unknown"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      aria-label="add"
+      iconProps={
+        Object {
+          "iconName": "add",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
+<div
+  className="choiceGroupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionPass",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "key": "fail",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionFail",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="fail"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      ariaLabel="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      onClick={[Function]}
+    />
+    <CustomizedIconButton
+      aria-label="add"
+      iconProps={
+        Object {
+          "iconName": "add",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
+<div
+  className="choiceGroupContainer"
+>
+  <StyledChoiceGroup
+    componentRef={[Function]}
+    isLabelVisible={false}
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "ariaLabel": "Pass",
+          "key": "pass",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionPass",
+            "root": "radioButtonOption",
+          },
+          "text": "Pass",
+        },
+        Object {
+          "ariaLabel": "Fail",
+          "key": "fail",
+          "onRenderLabel": [Function],
+          "styles": Object {
+            "field": "radioButtonOptionField radioButtonOptionFail",
+            "root": "radioButtonOption",
+          },
+          "text": "Fail",
+        },
+      ]
+    }
+    selectedKey="pass"
+    styles={
+      Object {
+        "flexContainer": "radioButtonGroup",
+      }
+    }
+  />
+  <div
+    className="secondaryControlsWrapper"
+  >
+    <CustomizedIconButton
+      ariaLabel="undo"
+      iconProps={
+        Object {
+          "iconName": "undo",
+        }
+      }
+      onClick={[Function]}
+    />
+    <CustomizedIconButton
+      aria-label="add"
+      iconProps={
+        Object {
+          "iconName": "add",
+        }
+      }
+      noClick={[Function]}
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,87 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/common.scss';
+
+.choice-group-container {
+    display: flex;
+}
+
+.secondary-controls-wrapper {
+    margin-left: 4px;
+
+    @include ms-high-contrast-override {
+        :global(.ms-DetailsRow) & {
+            // Improve contrast when button is inside DetailsRow
+            button {
+                color: buttontext;
+                background-color: canvas;
+
+                &:hover {
+                    color: highlight;
+                    background-color: canvas;
+                }
+            }
+        }
+    }
+}
+
+// Create a horizontal ChoiceGroup
+// https://github.com/microsoft/fluentui/issues/21727
+.radio-button-group {
+    column-gap: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 32px; // Match undo button height to prevent layout shift
+}
+
+.radio-button-option {
+    margin-top: 0; // Remove margin-top to align ChoiceGroup with undo button
+
+    .radio-button-option-field {
+        min-width: 20px; // Prevents width from collapsing when the label is not visible
+    }
+
+    .radio-button-option-pass:global(.is-checked) {
+        &::before,
+        &::after {
+            border-color: $positive-outcome;
+        }
+    }
+
+    .radio-button-option-fail:global(.is-checked) {
+        &::before,
+        &::after {
+            border-color: $negative-outcome;
+        }
+    }
+
+    @include ms-high-contrast-override {
+        // Improve contrast when option is inside DetailsRow (it occasionally reverts back to white)
+        :global(.ms-DetailsRow) & {
+            .radio-button-option-field::before {
+                background-color: canvas;
+                border-color: buttontext;
+            }
+        }
+
+        // Set hover and checked state for high contrast mode
+        // See https://github.com/microsoft/accessibility-insights-web/issues/3435
+        .radio-button-option-field:global(.is-checked),
+        .radio-button-option-field:hover {
+            &::before,
+            &::after {
+                forced-color-adjust: none;
+                border-color: highlight !important;
+            }
+
+            &::before {
+                background-color: highlighttext;
+            }
+
+            &::after {
+                background-color: highlight;
+            }
+        }
+    }
+}
