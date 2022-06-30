@@ -14,6 +14,9 @@ Throughout most of the code and build commands, Accessibility Insights for Andro
 ### Prerequisites
 
 All the [prerequisites](./building-web.md#Prerequisites) for building Web are also required for Unified.
+
+**Additionally**, you must [install Rust](https://www.rust-lang.org/tools/install). Use the current stable version. If you are on Windows, you may need to install the [Visual Studio C++ Build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) when prompted to do so.
+
 Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below.
 
 ### Building

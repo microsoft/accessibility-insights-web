@@ -8,7 +8,6 @@ const sass = require('sass');
 const targets = require('./targets.config');
 
 module.exports = function (grunt) {
-    const pkgPath = path.resolve('./node_modules/.bin/pkg');
     const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
     const webpackPath = path.resolve('./node_modules/.bin/webpack');
 
@@ -22,11 +21,12 @@ module.exports = function (grunt) {
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
 
-    const mockAdbAppPath = path.resolve('./src/tests/miscellaneous/mock-adb/app');
-    const mockAdbBinSrcPath = path.join(mockAdbAppPath, 'bin.js');
-    const mockAdbBinFilename = process.platform === 'win32' ? 'adb.exe' : 'adb';
+    const mockAdbTargetPath = path.join('packages', 'mock-adb', 'target');
+    const mockAdbBinFilename = process.platform === 'win32' ? 'mock-adb.exe' : 'mock-adb';
+    const mockAdbBinPath = path.join(mockAdbTargetPath, 'release', mockAdbBinFilename);
+    const adbBinFilename = process.platform === 'win32' ? 'adb.exe' : 'adb';
     const mockAdbDropPath = path.join('drop', 'mock-adb');
-    const mockAdbBinOutPath = path.join(mockAdbDropPath, mockAdbBinFilename);
+    const mockAdbBinDropPath = path.join(mockAdbDropPath, adbBinFilename);
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
-            'mock-adb': mockAdbDropPath,
+            'mock-adb': [mockAdbTargetPath, mockAdbDropPath],
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
             scss: path.join('src', '**/*.scss.d.ts'),
@@ -165,6 +165,15 @@ module.exports = function (grunt) {
                     },
                 ],
             },
+            'package-mock-adb': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: mockAdbBinPath,
+                        dest: mockAdbBinDropPath,
+                    },
+                ],
+            },
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
@@ -174,7 +183,10 @@ module.exports = function (grunt) {
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
-            'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
+            'cargo-build-mock-adb': {
+                command: 'cargo build --release',
+                cwd: 'packages/mock-adb',
+            },
         },
         sass: {
             options: {
@@ -754,6 +766,11 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageUIDropPath}`);
     });
 
+    grunt.registerTask('package-mock-adb', function () {
+        grunt.task.run('exec:cargo-build-mock-adb');
+        grunt.task.run('copy:package-mock-adb');
+    });
+
     grunt.registerTask('extension-release-drops', function () {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
@@ -810,7 +827,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-unified', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:pkg-mock-adb',
+        'package-mock-adb',
         'exec:webpack-unified',
         'build-assets',
         'drop:unified-dev',
@@ -839,7 +856,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:pkg-mock-adb',
+        'package-mock-adb',
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',
