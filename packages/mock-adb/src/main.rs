@@ -62,15 +62,19 @@ fn main() -> Result<(), Box<dyn Error>> {
         Err(_) => default_config_path,
     };
 
-    let config_raw = fs::read_to_string(config_path.as_path()).expect("Unable to read config file");
-    let config: CommandConfig = serde_json::from_str(&config_raw)?;
+    let config_raw = fs::read_to_string(config_path.as_path())
+        .expect("Unable to read config file");
+    let config: CommandConfig = serde_json::from_str(&config_raw)
+        .expect("Unable to parse config file");
 
     // latestAdbContext.txt is a file which contains a relative file path
     let current_adb_context_path = current_exe_dir.join("latestAdbContext.txt");
-    let current_adb_context = PathBuf::from(fs::read_to_string(current_adb_context_path).expect("Unable to read ADB context file"));
+    let current_adb_context = PathBuf::from(fs::read_to_string(current_adb_context_path)
+        .expect("Unable to read ADB context file"));
     
     let output_logs_dir = current_exe_dir.join("logs").join(current_adb_context);
-    fs::create_dir_all(output_logs_dir.as_path()).expect("Unable to create output logs dir");
+    fs::create_dir_all(output_logs_dir.as_path())
+        .expect("Unable to create output logs dir");
 
     let adb_log_path = output_logs_dir.join("adb.log");
     let output_path = output_logs_dir.join("mock_adb_output.json");
@@ -102,14 +106,18 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut adb_log_file = fs::OpenOptions::new()
         .write(true)
         .append(true)
-        .open(adb_log_path)?;
+        .create(true)
+        .open(adb_log_path)
+        .expect("unable to open adb_log_file");
     writeln!(adb_log_file, "ADB {}", input_command)?;
 
     let result_raw = serde_json::to_string_pretty(&result)?;
     let mut output_file = fs::OpenOptions::new()
         .write(true)
         .append(true)
-        .open(output_path)?;
+        .create(true)
+        .open(output_path)
+        .expect("unable to open output_file");
     writeln!(output_file, "{}", result_raw)?;
 
     let output_config_path = output_logs_dir.join("mock_adb_config.json");
