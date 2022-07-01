@@ -79,6 +79,7 @@ export class CardKebabMenuButton extends React.Component<
                     ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                     menuIconProps={{
                         iconName: 'MoreActionsMenuIcon',
+                        className: styles.kebabMenuIcon,
                     }}
                     menuProps={{
                         className: styles.kebabMenu,

@@ -92,7 +92,9 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn test --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
+    # We set maxWorkers to 2 since GH Action VMs have 2 cores and by default Jest only uses 1.
+    # If this were to change in the future, the number here should change accordingly.
+    - run: yarn test --maxWorkers=2 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results

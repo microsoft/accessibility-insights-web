@@ -17,7 +17,7 @@ export class ExceptionTelemetryListener {
 
     public initialize(
         logger: Logger,
-        extWindow: Window = window,
+        extGlobalScope: typeof globalThis = globalThis,
         extConsole: Console = console,
     ): void {
         const sendExceptionTelemetry = this.sendExceptionTelemetry;
@@ -27,7 +27,7 @@ export class ExceptionTelemetryListener {
         let loggingHookIsActive = false;
 
         // Catch top level synchronous errors
-        extWindow.onerror = function (
+        extGlobalScope.onerror = function (
             message: string,
             source: string,
             lineno: number,
@@ -51,7 +51,7 @@ export class ExceptionTelemetryListener {
         };
 
         // Catch errors thrown in promises
-        extWindow.onunhandledrejection = function (event: PromiseRejectionEvent) {
+        extGlobalScope.onunhandledrejection = function (event: PromiseRejectionEvent) {
             if (windowRejectionHookIsActive) {
                 return;
             }

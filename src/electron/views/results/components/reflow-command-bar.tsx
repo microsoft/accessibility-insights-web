@@ -74,7 +74,14 @@ export class ReflowCommandBar extends React.Component<
             this.props.currentContentPageInfo.allowsExportReport &&
             this.props.scanMetadata !== null
         ) {
-            return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
+            return (
+                <ReportExportButton
+                    showReportExportDialog={this.showReportExportDialog}
+                    buttonRef={ref => {
+                        this.dropdownMenuButtonRef = ref;
+                    }}
+                />
+            );
         }
 
         return null;
