@@ -13,6 +13,7 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
+    public static readonly showAccessibleNames = 'showAccessibleNames';
 }
 
 export interface FeatureFlagDetail {
@@ -95,6 +96,14 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.showAccessibleNames,
+            defaultValue: false,
+            displayableName: 'Show accessible names',
+            displayableDescription: 'Displays the accessible names of user interface elements',
+            isPreviewFeature: false,
             forceDefault: false,
         },
     ];
