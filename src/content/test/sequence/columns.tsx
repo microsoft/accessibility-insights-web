@@ -31,26 +31,19 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             failText={
                 <p>
                     White space characters in a <Markup.Code>{'<pre>'}</Markup.Code> element are used to create the appearance of two
-                    columns. When read in DOM order, the content doesn't make sense: "We the People promote the general of the United
-                    Welfare, and States, in secure the Order…"
+                    columns. When read in DOM order, the content doesn't make sense: "Slaughterhouse-five who becomes 'unstuck is Kurt
+                    Vonnegut's in time' after he is…"
                 </p>
             }
             failExample={
                 <pre>
                     <CodeExample>
                         {`<pre>
-[We the People     promote the general
-of the United     Welfare, and
-States, in        secure the
-Order to form a   Blessings of
-more perfect      Liberty to
-Union,            ourselves and
-establish         our Posterity,
-Justice, insure   do ordain and
-domestic          establish this
-Tranquility,      Constitution
-provide for the   for the United
-common defense,   States of America.]
+[Slaughterhouse-five    who becomes 'unstuck
+is Kurt Vonnegut's      in time' after he is
+absurdist classic.      abducted by aliens
+It introduces us to     from the planet
+Billy Pilgrim, a man    Tralfamadore.]
 </pre>`}
                     </CodeExample>
                 </pre>
@@ -66,15 +59,11 @@ common defense,   States of America.]
             </style>
             ...
             <div class="columns">
-            [We the People of the United States,
-            in Order to form a more perfect Union,
-            establish Justice, insure domestic
-            Tranquility, provide for the common
-            defense, promote the general Welfare,
-            and secure the blessings of Liberty to
-            ourselves and our Posterity, do ordain
-            and establish this Constitution for
-            the United States of America.]
+            [Slaughterhouse-five is Kurt Vonnegut's
+            absurdist classic. It introduces us to
+            Billy Pilgrim, a man who becomes "unstuck
+            in time" after he is abducted by aliens
+            from the planet Tralfamadore.]
             </div>
             </body>
             </html>
