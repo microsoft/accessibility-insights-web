@@ -26,17 +26,17 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     thereby make it visually prominent.
                 </p>
             }
-            failExample={`<p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
+            failExample={`<p>Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.</p>
            [<blockquote>]
-           <a href="/wiki/Ralph_Waldo_Emerson" title="Ralph Waldo Emerson">Learn more about Ralph Waldo Emerson</a>
+           <a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut">Learn more about Kurt Vonnegut</a>
            [</blockquote>]`}
             passText={<p>Spacing around the link is achieved using the CSS margin property.</p>}
             passExample={`<style>
             [a {margin: 70px;}]
             </style>
             ...
-            <p>It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."</p>
-            <a href="/wiki/Ralph_Waldo_Emerson" title="Ralph Waldo Emerson">Learn more about Ralph Waldo Emerson</a>`}
+            <p>Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.</p>
+            <a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut">Learn more about Kurt Vonnegut</a>`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>

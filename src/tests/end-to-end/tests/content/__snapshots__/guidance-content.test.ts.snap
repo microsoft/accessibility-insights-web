@@ -29804,7 +29804,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
               <div
                 class="insights-code"
               >
-                &lt;p&gt;It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."&lt;/p&gt;
+                &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
                            
                 <span
@@ -29813,7 +29813,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                   &lt;blockquote&gt;
                 </span>
                 <br />
-                           &lt;a href="/wiki/Ralph_Waldo_Emerson" title="Ralph Waldo Emerson"&gt;Learn more about Ralph Waldo Emerson&lt;/a&gt;
+                           &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
                 <br />
                            
                 <span
@@ -29889,9 +29889,9 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                 <br />
                             ...
                 <br />
-                            &lt;p&gt;It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."&lt;/p&gt;
+                            &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
-                            &lt;a href="/wiki/Ralph_Waldo_Emerson" title="Ralph Waldo Emerson"&gt;Learn more about Ralph Waldo Emerson&lt;/a&gt;
+                            &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
               </div>
             </div>
           </div>
