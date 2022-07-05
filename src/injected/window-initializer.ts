@@ -35,6 +35,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { Assessments } from './../assessments/assessments';
+import { FocusTrapsKeydownHandler } from './analyzers/focus-traps-keydown-handler';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -158,10 +159,14 @@ export class WindowInitializer {
             htmlElementUtils,
             getUniqueSelector,
         );
+        const focusTrapsKeydownHandler = new FocusTrapsKeydownHandler(
+            tabStopRequirementEvaluator,
+            promiseFactory,
+        );
         const tabStopsOrchestrator = new TabStopRequirementOrchestrator(
             document,
             tabbableElementGetter,
-            this.windowUtils,
+            focusTrapsKeydownHandler,
             tabStopRequirementEvaluator,
             getUniqueSelector,
         );
