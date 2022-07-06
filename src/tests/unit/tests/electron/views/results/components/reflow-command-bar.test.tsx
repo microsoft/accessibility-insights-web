@@ -9,6 +9,7 @@ import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-int
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportComponent } from 'DetailsView/components/report-export-component';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
@@ -222,6 +223,26 @@ describe('ReflowCommandBar', () => {
             const buttonMock = Mock.ofType<IButton>();
             const commandBar = rendered.find(CommandBarButtonsMenu);
             const buttonRefCallback = commandBar.prop('buttonRef') as any;
+
+            const exportDialog = rendered.find(ReportExportComponent);
+            const onDialogDismissCallback = exportDialog.props()['afterDialogDismissed'];
+
+            buttonMock.setup(bm => bm.dismissMenu()).verifiable();
+            buttonMock.setup(bm => bm.focus()).verifiable();
+
+            buttonRefCallback(buttonMock.object);
+            onDialogDismissCallback();
+
+            buttonMock.verifyAll();
+        });
+
+        test('dropdown menu is dismissed and button focused when dialog is dismissed (isCommandBarCollapsed is not collapsed)', () => {
+            props.narrowModeStatus.isCommandBarCollapsed = false;
+            const rendered = shallow(<ReflowCommandBar {...props} />);
+            const buttonMock = Mock.ofType<IButton>();
+
+            const exportButton = rendered.find(ReportExportButton);
+            const buttonRefCallback = exportButton.prop('buttonRef') as any;
 
             const exportDialog = rendered.find(ReportExportComponent);
             const onDialogDismissCallback = exportDialog.props()['afterDialogDismissed'];

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
 import * as path from 'path';
 import { generateUID } from 'common/uid-generator';
-import * as makeDir from 'make-dir';
 
 function sanitizeFilename(s: string): string {
     return s.replace(/[^a-z0-9.-]+/gi, '_');
@@ -19,7 +19,8 @@ export async function prepareTestResultFilePath(
         '../../../../test-results/e2e',
         resultsSubdirectoryName,
     );
-    await makeDir(subdirectoryPath);
+
+    await fs.promises.mkdir(subdirectoryPath, { recursive: true });
     const fileName = `${sanitizeFilename(generateUID())}.${fileExtension}`;
     const filePath = path.join(subdirectoryPath, fileName);
     return filePath;

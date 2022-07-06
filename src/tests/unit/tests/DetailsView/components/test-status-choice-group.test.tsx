@@ -32,13 +32,13 @@ describe('TestStatusChoiceGroup', () => {
         };
     });
 
-    test('render: unknown (show undo button)', () => {
+    test('render: unknown (do not show undo button)', () => {
         const component = mount(<TestStatusChoiceGroup {...props} />);
         const choiceGroup = component.find(ChoiceGroupPassFail);
         expect(choiceGroup.props()).toMatchObject({
             selectedKey: ManualTestStatus.UNKNOWN,
         });
-        expect(component.find(IconButton).exists()).toBeTruthy();
+        expect(component.find(IconButton).exists()).toBeFalsy();
     });
 
     test('render: status is set to UNKNOWN', () => {
