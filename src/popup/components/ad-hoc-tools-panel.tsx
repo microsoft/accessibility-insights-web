@@ -30,7 +30,7 @@ export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', 
             <span key={`divider-${dividerIndex++}`} className={styles.divider}></span>
         );
 
-        const totalRows = 3;
+        const totalRows = 4;
 
         const result = flatMap(toggles, (toggle, index) => {
             if (toggleShouldNotHaveDivider(index, totalRows, toggles)) {

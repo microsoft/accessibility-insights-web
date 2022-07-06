@@ -13,41 +13,42 @@ import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 
-const { guidance } = content.landmarks;
-const landmarksTestKey = AdHocTestkeys.Landmarks;
+const { guidance } = content.headings;
+const accessiblenamesTestKey = AdHocTestkeys.AccessibleNames;
 
-const landmarkRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['unique-landmark'],
+const headingsRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['collect-headings'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
-    key: landmarksTestKey,
-    testType: VisualizationType.Landmarks,
+    key: accessiblenamesTestKey,
+    testType: VisualizationType.Headings,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
-export const LandmarksAdHocVisualization: VisualizationConfiguration = {
+export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     testViewType: 'AdhocStatic',
-    key: landmarksTestKey,
+    key: accessiblenamesTestKey,
     testMode: TestMode.Adhoc,
-    getStoreData: data => data.adhoc[landmarksTestKey],
-    enableTest: (data, _) => (data.adhoc[landmarksTestKey].enabled = true),
+    featureFlagToEnable: 'showAccessibleNames',
+    getStoreData: data => data.adhoc[accessiblenamesTestKey],
+    enableTest: data => (data.adhoc[accessiblenamesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
     displayableData: {
-        title: 'Landmarks',
-        enableMessage: 'Finding landmarks...',
-        toggleLabel: 'Show landmarks',
-        linkToDetailsViewText: 'How to test landmarks',
+        title: 'Accessible Names',
+        enableMessage: 'Calculating accessible names...',
+        toggleLabel: 'Show accessiblenames',
+        linkToDetailsViewText: 'How to test accessible names',
     },
-    chromeCommand: '02_toggle-landmarks',
+    chromeCommand: '07_toggle-accessibleNames',
     launchPanelDisplayOrder: 2,
-    adhocToolsPanelDisplayOrder: 5,
-    getAnalyzer: provider => provider.createRuleAnalyzer(landmarkRuleAnalyzerConfiguration),
-    getIdentifier: () => landmarksTestKey,
+    adhocToolsPanelDisplayOrder: 4,
+    getAnalyzer: provider => provider.createRuleAnalyzer(headingsRuleAnalyzerConfiguration),
+    getIdentifier: () => accessiblenamesTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No landmarks found' : null),
-    getDrawer: provider => provider.createLandmarksDrawer(),
+    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
+    getDrawer: provider => provider.createHeadingsDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,
