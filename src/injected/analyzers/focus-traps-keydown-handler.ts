@@ -25,20 +25,21 @@ export class FocusTrapsKeydownHandler {
         e: KeyboardEvent,
         dom: Document,
     ): Promise<AutomatedTabStopRequirementResult | null> => {
-        if (e.key !== 'Tab' || dom.activeElement === dom.body || this.lastFocusedElement == null) {
+        if (e.key !== 'Tab' || dom.activeElement === dom.body) {
             return null;
         }
 
         await this.promiseFactory.delay(null, this.keyboardTrapTimeout);
 
         const currentFocusedElement = dom.activeElement;
-        if (currentFocusedElement == null) {
-            return null;
+
+        let result: AutomatedTabStopRequirementResult | null = null;
+        if (currentFocusedElement != null && this.lastFocusedElement != null) {
+            result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
+                this.lastFocusedElement,
+                currentFocusedElement,
+            );
         }
-        const result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
-            this.lastFocusedElement,
-            currentFocusedElement,
-        );
         this.lastFocusedElement = currentFocusedElement;
 
         return result;

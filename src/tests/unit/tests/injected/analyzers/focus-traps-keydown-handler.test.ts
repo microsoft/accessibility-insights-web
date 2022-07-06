@@ -90,15 +90,18 @@ describe(FocusTrapsKeydownHandler, () => {
             expect(testSubject.lastFocusedElement).toBe(lastFocusedElementStub);
         });
 
-        it('Does nothing if there was no last focused element', async () => {
+        it('Returns null if there was no last focused element', async () => {
             testSubject.lastFocusedElement = null;
 
-            setupIgnoreKeydown();
+            evaluatorMock
+                .setup(e => e.getFocusOrderResult(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            delayMock.setup(d => d(It.isAny(), focusTrapTimeout)).verifiable(Times.once());
 
             const result = await testSubject.getResultOnKeydown(tabEvent, domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBeNull();
+            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
         });
 
         it('Returns null if no element is focused after delay', async () => {
@@ -112,7 +115,7 @@ describe(FocusTrapsKeydownHandler, () => {
             const result = await testSubject.getResultOnKeydown(tabEvent, domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBe(lastFocusedElementStub);
+            expect(testSubject.lastFocusedElement).toBeNull();
         });
 
         it('Returns result of getKeyboardTrapResults if an element is focused after delay', async () => {
