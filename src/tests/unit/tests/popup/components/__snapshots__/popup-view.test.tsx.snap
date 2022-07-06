@@ -22,7 +22,7 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
 "<Fragment>
-  <NewTabLink href=\\"https://go.microsoft.com/fwlink/?linkid=2082374\\" aria-label=\\"demo video\\" title=\\"watch the 3 minute video introduction\\" onClick={[Function: onClickTutorialLink]}>
+  <NewTabLink href=\\"https://go.microsoft.com/fwlink/?linkid=2082374\\" onClick={[Function: onClickTutorialLink]}>
     Watch 3-minute video introduction
   </NewTabLink>
    
