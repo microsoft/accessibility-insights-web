@@ -29,37 +29,36 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    A web page about U.S. presidents uses <Markup.Code>float:right</Markup.Code> to display an image of the home state of
-                    each president. The presidents are listed in chronological order. In the <Markup.Emphasis>visual</Markup.Emphasis>{' '}
-                    reading order, the content says, "George Washington was born on February 22, 1732, in Virginia. John Adams was born on
-                    October 30, 1735, in Massachusetts…" The DOM order is reversed, so people who use assistive technology will encounter
-                    the content in an incorrect order: "Virginia. George Washington was born on February 22, 1732 in Massachusetts. John
-                    Adams was born on October 30, 1735, in…"
+                    An online bookstore uses <Markup.Code>float:right</Markup.Code> to display an image of the author of each book. In the{' '}
+                    <Markup.Emphasis>visual</Markup.Emphasis> reading order, the content says, "Slaughterhouse-five was written by Kurt
+                    Vonnegut. A Game of Thrones was written by George RR Martin…" The DOM order is reversed, so people who use assistive
+                    technology will encounter the content in an incorrect order: "Kurt Vonnegut. Slaughterhouse-five was written by George
+                    RR Martin. A Game of Thrones was written by…"
                 </p>
             }
             failExample={`<style>
            [.right {float:right;}]
            </style>
            ...
-           <p><img class="right" source="virginia.jpg" alt="[Virginia.]">
-           [George Washington was born on February 22, 1732, in]</p>
-           <p><img class="right" source="massachusetts.jpg" alt= "[Massachusetts.]">
-           [John Adams was born on October 30, 1735, in]< /p>
+           <p><img class="right" source="Kurt_Vonnegut.jpg" alt="[Kurt Vonnegut.]">
+           [Slaughterhouse-five was written by]</p>
+           <p><img class="right" source="George_RR_Martin.jpg" alt= "[George RR Martin.]">
+           [A Game of Thrones was written by]</p>
            ...`}
             passText={
                 <p>
-                    The content is displayed in a layout table. The visual reading order matches the DOM order, so the president's name and
-                    birthdate always come first.
+                    The content is displayed in a layout table. The visual reading order matches the DOM order, so the author's name always
+                    come first.
                 </p>
             }
             passExample={`<table role="presentation">
             <tr>
-            <td>[George Washington was born on February 22, 1732, in]</td>
-            <td><img src="virginia.jpg" alt="[Virginia.]"</td>
+            <td>[Slaughterhouse-five was written by]</td>
+            <td><img src="Kurt_Vonnegut.jpg" alt="[Kurt Vonnegut.]"</td>
             </tr>
             <tr>
-            <td>[John Adams was born on October 30, 1735 in]</td>
-            <td><img src="massachusetts.jpg" alt="[Massachusetts.]"</td>
+            <td>[A Game of Thrones was written by]</td>
+            <td><img src="George_RR_Martin.jpg" alt="[George RR Martin.]"</td>
             </tr>
             ...`}
         />
