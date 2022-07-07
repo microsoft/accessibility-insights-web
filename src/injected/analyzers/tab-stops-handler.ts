@@ -6,10 +6,10 @@ import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-eva
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { FocusableElement } from 'tabbable';
 
-export class TabStopsStateManager {
-    protected visitedTabStops: Set<HTMLElement>;
-    protected latestVisitedTabStop: HTMLElement | null;
+export class TabStopsHandler {
     private tabbableTabStops: FocusableElement[];
+    private visitedTabStops: Set<HTMLElement>;
+    private latestVisitedTabStop: HTMLElement | null;
 
     constructor(
         private readonly tabStopsRequirementEvaluator: TabStopsRequirementEvaluator,

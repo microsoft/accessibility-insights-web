@@ -3,7 +3,7 @@
 
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
 import { FocusTrapsHandler } from 'injected/analyzers/focus-traps-handler';
-import { TabStopsStateManager } from 'injected/analyzers/tab-stops-state-manager';
+import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 
 export class TabStopRequirementOrchestrator
@@ -15,19 +15,19 @@ export class TabStopRequirementOrchestrator
 
     constructor(
         private readonly dom: Document,
-        private readonly tabStopsStateManager: TabStopsStateManager,
+        private readonly tabStopsHandler: TabStopsHandler,
         private readonly focusTrapsHandler: FocusTrapsHandler,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
     ) {}
 
     public start = async () => {
-        this.tabStopsStateManager.initialize();
+        this.tabStopsHandler.initialize();
         this.focusTrapsHandler.initialize();
 
         this.dom.addEventListener('keydown', this.onKeydown);
         this.dom.addEventListener('focusin', this.onFocusIn);
 
-        const tabbableFocusOrderResults = this.tabStopsStateManager.getTabbableFocusOrderResults();
+        const tabbableFocusOrderResults = this.tabStopsHandler.getTabbableFocusOrderResults();
         await Promise.all(tabbableFocusOrderResults.map(result => this.reportResults(result)));
     };
 
@@ -35,7 +35,7 @@ export class TabStopRequirementOrchestrator
         this.dom.removeEventListener('keydown', this.onKeydown);
         this.dom.removeEventListener('focusin', this.onFocusIn);
 
-        const keyboardNavigationResults = this.tabStopsStateManager.getKeyboardNavigationResults();
+        const keyboardNavigationResults = this.tabStopsHandler.getKeyboardNavigationResults();
         await Promise.all(keyboardNavigationResults.map(result => this.reportResults(result)));
     };
 
@@ -55,7 +55,7 @@ export class TabStopRequirementOrchestrator
     };
 
     private onFocusIn = async (focusEvent: FocusEvent) => {
-        const result = await this.tabStopsStateManager.handleNewTabStop(
+        const result = await this.tabStopsHandler.handleNewTabStop(
             focusEvent.target as HTMLElement,
         );
 

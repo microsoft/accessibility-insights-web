@@ -13,6 +13,7 @@ import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
@@ -163,11 +164,14 @@ export class WindowInitializer {
             tabStopRequirementEvaluator,
             promiseFactory,
         );
+        const tabStopsHandler = new TabStopsHandler(
+            tabStopRequirementEvaluator,
+            tabbableElementGetter,
+        );
         const tabStopsOrchestrator = new TabStopRequirementOrchestrator(
             document,
-            tabbableElementGetter,
+            tabStopsHandler,
             focusTrapsKeydownHandler,
-            tabStopRequirementEvaluator,
             getUniqueSelector,
         );
         this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
