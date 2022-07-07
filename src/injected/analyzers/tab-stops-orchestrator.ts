@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { WindowUtils } from 'common/window-utils';
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
+import { FocusTrapsKeydownHandler } from 'injected/analyzers/focus-traps-keydown-handler';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
@@ -22,7 +22,7 @@ export class TabStopRequirementOrchestrator
     constructor(
         private readonly dom: Document,
         private readonly tabbableElementGetter: TabbableElementGetter,
-        private readonly windowUtils: WindowUtils,
+        private readonly focusTrapsKeydownHandler: FocusTrapsKeydownHandler,
         private readonly tabStopsRequirementEvaluator: TabStopsRequirementEvaluator,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
     ) {}
@@ -31,6 +31,7 @@ export class TabStopRequirementOrchestrator
         this.tabbableTabStops = [];
         this.actualTabStops = new Set();
         this.latestVisitedTabStop = null;
+        this.focusTrapsKeydownHandler.reset();
     };
 
     public start = async () => {
@@ -98,25 +99,12 @@ export class TabStopRequirementOrchestrator
         await this.reportResults(result);
     };
 
-    private onKeydownForFocusTraps = (e: KeyboardEvent) => {
-        if (e.key !== 'Tab' || this.dom.activeElement === this.dom.body) {
+    private onKeydownForFocusTraps = async (e: KeyboardEvent) => {
+        const result = await this.focusTrapsKeydownHandler.getResultOnKeydown(e, this.dom);
+
+        if (result == null) {
             return;
         }
-
-        const oldElement = this.dom.activeElement;
-        this.windowUtils.setTimeout(async () => {
-            const newElement = this.dom.activeElement;
-            if (oldElement == null || newElement == null) {
-                return;
-            }
-            const result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
-                newElement,
-                oldElement,
-            );
-            if (result == null) {
-                return;
-            }
-            await this.reportResults(result);
-        }, TabStopRequirementOrchestrator.keyboardTrapTimeout);
+        await this.reportResults(result);
     };
 }
