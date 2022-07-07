@@ -35,7 +35,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { Assessments } from './../assessments/assessments';
-import { FocusTrapsKeydownHandler } from './analyzers/focus-traps-keydown-handler';
+import { FocusTrapsHandler } from './analyzers/focus-traps-handler';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -159,7 +159,7 @@ export class WindowInitializer {
             htmlElementUtils,
             getUniqueSelector,
         );
-        const focusTrapsKeydownHandler = new FocusTrapsKeydownHandler(
+        const focusTrapsKeydownHandler = new FocusTrapsHandler(
             tabStopRequirementEvaluator,
             promiseFactory,
         );

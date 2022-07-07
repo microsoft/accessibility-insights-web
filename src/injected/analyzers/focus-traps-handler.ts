@@ -5,10 +5,7 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 
-export class FocusTrapsKeydownHandler {
-    // TabStopsOrchestrator already stores latestVisitedTabStop,
-    // but that may be modified by other event listeners before
-    // this one runs, so we need to keep this state separate
+export class FocusTrapsHandler {
     protected lastFocusedElement: Element | null = null;
 
     constructor(
@@ -17,15 +14,14 @@ export class FocusTrapsKeydownHandler {
         private readonly keyboardTrapTimeout: number = 500,
     ) {}
 
-    public reset(): void {
+    public initialize(): void {
         this.lastFocusedElement = null;
     }
 
-    public getResultOnKeydown = async (
-        e: KeyboardEvent,
+    public handleTabPressed = async (
         dom: Document,
     ): Promise<AutomatedTabStopRequirementResult | null> => {
-        if (e.key !== 'Tab' || dom.activeElement === dom.body) {
+        if (dom.activeElement === dom.body) {
             return null;
         }
 

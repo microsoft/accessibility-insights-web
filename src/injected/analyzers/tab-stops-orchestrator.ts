@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
-import { FocusTrapsKeydownHandler } from 'injected/analyzers/focus-traps-keydown-handler';
+import { FocusTrapsHandler } from 'injected/analyzers/focus-traps-handler';
+import { TabStopsStateManager } from 'injected/analyzers/tab-stops-state-manager';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
-import { TabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
-import { TabbableElementGetter } from 'injected/tabbable-element-getter';
-import { FocusableElement } from 'tabbable';
 
 export class TabStopRequirementOrchestrator
     implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult>
@@ -15,46 +13,30 @@ export class TabStopRequirementOrchestrator
     public static readonly keyboardTrapTimeout: number = 500;
     private reportResults: (payload: AutomatedTabStopRequirementResult) => Promise<void>;
 
-    private tabbableTabStops: FocusableElement[];
-    private actualTabStops: Set<HTMLElement> = new Set();
-    private latestVisitedTabStop: HTMLElement | null = null;
-
     constructor(
         private readonly dom: Document,
-        private readonly tabbableElementGetter: TabbableElementGetter,
-        private readonly focusTrapsKeydownHandler: FocusTrapsKeydownHandler,
-        private readonly tabStopsRequirementEvaluator: TabStopsRequirementEvaluator,
+        private readonly tabStopsStateManager: TabStopsStateManager,
+        private readonly focusTrapsHandler: FocusTrapsHandler,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
     ) {}
 
-    private resetFields = () => {
-        this.tabbableTabStops = [];
-        this.actualTabStops = new Set();
-        this.latestVisitedTabStop = null;
-        this.focusTrapsKeydownHandler.reset();
-    };
-
     public start = async () => {
-        this.dom.addEventListener('keydown', this.onKeydownForFocusTraps);
-        this.dom.addEventListener('focusin', this.addNewTabStop);
+        this.tabStopsStateManager.initialize();
+        this.focusTrapsHandler.initialize();
 
-        this.tabbableTabStops = this.tabbableElementGetter.getRawElements();
-        const tabbableFocusOrderResults =
-            this.tabStopsRequirementEvaluator.getTabbableFocusOrderResults(this.tabbableTabStops);
+        this.dom.addEventListener('keydown', this.onKeydown);
+        this.dom.addEventListener('focusin', this.onFocusIn);
+
+        const tabbableFocusOrderResults = this.tabStopsStateManager.getTabbableFocusOrderResults();
         await Promise.all(tabbableFocusOrderResults.map(result => this.reportResults(result)));
     };
 
     public stop = async () => {
-        this.dom.removeEventListener('keydown', this.onKeydownForFocusTraps);
-        this.dom.removeEventListener('focusin', this.addNewTabStop);
+        this.dom.removeEventListener('keydown', this.onKeydown);
+        this.dom.removeEventListener('focusin', this.onFocusIn);
 
-        const keyboardNavigationResults =
-            this.tabStopsRequirementEvaluator.getKeyboardNavigationResults(
-                this.tabbableTabStops,
-                this.actualTabStops,
-            );
-        await Promise.all(keyboardNavigationResults.map(this.reportResults));
-        this.resetFields();
+        const keyboardNavigationResults = this.tabStopsStateManager.getKeyboardNavigationResults();
+        await Promise.all(keyboardNavigationResults.map(result => this.reportResults(result)));
     };
 
     public setResultCallback = (
@@ -72,26 +54,10 @@ export class TabStopRequirementOrchestrator
         return result;
     };
 
-    private addNewTabStop = async (focusEvent: FocusEvent) => {
-        const newTabStop = focusEvent.target as HTMLElement;
-
-        if (this.latestVisitedTabStop == null) {
-            this.actualTabStops.add(newTabStop);
-            this.latestVisitedTabStop = newTabStop;
-            return;
-        }
-
-        if (this.actualTabStops.has(newTabStop)) {
-            this.latestVisitedTabStop = newTabStop;
-            return;
-        }
-
-        this.actualTabStops.add(newTabStop);
-        const result = this.tabStopsRequirementEvaluator.getFocusOrderResult(
-            this.latestVisitedTabStop,
-            newTabStop,
+    private onFocusIn = async (focusEvent: FocusEvent) => {
+        const result = await this.tabStopsStateManager.handleNewTabStop(
+            focusEvent.target as HTMLElement,
         );
-        this.latestVisitedTabStop = newTabStop;
 
         if (result == null) {
             return;
@@ -99,8 +65,12 @@ export class TabStopRequirementOrchestrator
         await this.reportResults(result);
     };
 
-    private onKeydownForFocusTraps = async (e: KeyboardEvent) => {
-        const result = await this.focusTrapsKeydownHandler.getResultOnKeydown(e, this.dom);
+    private onKeydown = async (e: KeyboardEvent) => {
+        if (e.key !== 'Tab') {
+            return;
+        }
+
+        const result = await this.focusTrapsHandler.handleTabPressed(this.dom);
 
         if (result == null) {
             return;
