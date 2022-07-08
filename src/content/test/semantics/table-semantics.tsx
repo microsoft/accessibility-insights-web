@@ -81,19 +81,19 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             failExample={`[<table role="presentation">]
            <tr>
            <th>Park name</th>
-           <th>Location</th>
+           <th>City</th>
            </tr>
            <tr>
            <td>Bridle Trails State Park</td>
-           <td>Kirkland, WA</td>
+           <td>Kirkland</td>
            </tr>
            <tr>
            <td>Lake Sammamish State Park</td>
-           <td>Issaquah, WA</td>
+           <td>Issaquah</td>
            </tr>
            <tr>
            <td>Saltwater State Park</td>
-           <td>Des Moines, WA</td>
+           <td>Des Moines</td>
            </tr>
            </table>`}
             passText={
@@ -105,19 +105,19 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             passExample={`[<table>]
             <tr>
             <th>Park name</th>
-            <th>Location</th>
+            <th>City</th>
             </tr>
             <tr>
             <td>Bridle Trails State Park</td>
-            <td>Kirkland, WA</td>
+            <td>Kirkland</td>
             </tr>
             <tr>
             <td>Lake Sammamish State Park</td>
-            <td>Issaquah, WA</td>
+            <td>Issaquah</td>
             </tr>
             <tr>
             <td>Saltwater State Park</td>
-            <td>Des Moines, WA</td>
+            <td>Des Moines</td>
             </tr>
             </table>`}
         />

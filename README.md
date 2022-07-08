@@ -51,6 +51,7 @@ Please visit our [FAQ](https://accessibilityinsights.io/docs/en/web/reference/fa
 All contributions are welcome! To get started, please read through our [CONTRIBUTING](./CONTRIBUTING.md) guidelines for this project. After that, see:
 
 -   [Git branch setup](./docs/git-branch-setup.md)
+-   [Virus scanner exclusions](./docs/virus-scanner-exclusions.md)
 -   [Building Accessibility Insights for Web](./docs/building-web.md)
 -   [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)
 

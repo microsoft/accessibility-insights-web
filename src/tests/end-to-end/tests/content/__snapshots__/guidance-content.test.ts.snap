@@ -28447,7 +28447,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 >
                   &lt;td&gt;
                 </span>
-                Location
+                City
                 <span
                   class="highlight"
                 >
@@ -28460,7 +28460,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28468,7 +28468,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28476,7 +28476,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28565,7 +28565,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 >
                   &lt;th&gt;
                 </span>
-                Location
+                City
                 <span
                   class="highlight"
                 >
@@ -28578,7 +28578,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28586,7 +28586,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28594,7 +28594,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -29804,9 +29804,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
               <div
                 class="insights-code"
               >
-                &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
-                <br />
-                           destroyed the value of the previous currency.&lt;/p&gt;
+                &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
                            
                 <span
@@ -29815,7 +29813,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                   &lt;blockquote&gt;
                 </span>
                 <br />
-                           &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                           &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
                 <br />
                            
                 <span
@@ -29891,9 +29889,9 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                 <br />
                             ...
                 <br />
-                            &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.&lt;/p&gt;
+                            &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
-                            &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                            &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
               </div>
             </div>
           </div>
@@ -30196,7 +30194,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;th&gt;Park name&lt;/th&gt;
                 <br />
-                           &lt;th&gt;Location&lt;/th&gt;
+                           &lt;th&gt;City&lt;/th&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30204,7 +30202,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                           &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30212,7 +30210,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                           &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30220,7 +30218,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                           &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30296,7 +30294,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;th&gt;Park name&lt;/th&gt;
                 <br />
-                            &lt;th&gt;Location&lt;/th&gt;
+                            &lt;th&gt;City&lt;/th&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30304,7 +30302,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30312,7 +30310,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30320,7 +30318,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -31815,7 +31813,7 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
             >
               &lt;pre&gt;
             </span>
-             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People promote the general of the United Welfare, and States, in secure the Order…"
+             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "Slaughterhouse-five who becomes 'unstuck is Kurt Vonnegut's in time' after he is…"
           </p>
         </div>
         <div
@@ -31836,29 +31834,15 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
                   <span
                     class="highlight"
                   >
-                    We the People     promote the general
+                    Slaughterhouse-five    who becomes 'unstuck
                     <br />
-                    of the United     Welfare, and
+                    is Kurt Vonnegut's      in time' after he is
                     <br />
-                    States, in        secure the
+                    absurdist classic.      abducted by aliens
                     <br />
-                    Order to form a   Blessings of
+                    It introduces us to     from the planet
                     <br />
-                    more perfect      Liberty to
-                    <br />
-                    Union,            ourselves and
-                    <br />
-                    establish         our Posterity,
-                    <br />
-                    Justice, insure   do ordain and
-                    <br />
-                    domestic          establish this
-                    <br />
-                    Tranquility,      Constitution
-                    <br />
-                    provide for the   for the United
-                    <br />
-                    common defense,   States of America.
+                    Billy Pilgrim, a man    Tralfamadore.
                   </span>
                   <br />
                   &lt;/pre&gt;
@@ -31938,23 +31922,15 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
                 <span
                   class="highlight"
                 >
-                  We the People of the United States,
+                  Slaughterhouse-five is Kurt Vonnegut's
                   <br />
-                              in Order to form a more perfect Union,
+                              absurdist classic. It introduces us to
                   <br />
-                              establish Justice, insure domestic
+                              Billy Pilgrim, a man who becomes "unstuck
                   <br />
-                              Tranquility, provide for the common
+                              in time" after he is abducted by aliens
                   <br />
-                              defense, promote the general Welfare,
-                  <br />
-                              and secure the blessings of Liberty to
-                  <br />
-                              ourselves and our Posterity, do ordain
-                  <br />
-                              and establish this Constitution for
-                  <br />
-                              the United States of America.
+                              from the planet Tralfamadore.
                 </span>
                 <br />
                             &lt;/div&gt;
@@ -32141,17 +32117,17 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
             </h3>
           </div>
           <p>
-            A web page about U.S. presidents uses 
+            An online bookstore uses 
             <span
               class="insights-code"
             >
               float:right
             </span>
-             to display an image of the home state of each president. The presidents are listed in chronological order. In the 
+             to display an image of the author of each book. In the 
             <em>
               visual
             </em>
-             reading order, the content says, "George Washington was born on February 22, 1732, in Virginia. John Adams was born on October 30, 1735, in Massachusetts…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Virginia. George Washington was born on February 22, 1732 in Massachusetts. John Adams was born on October 30, 1735, in…"
+             reading order, the content says, "Slaughterhouse-five was written by Kurt Vonnegut. A Game of Thrones was written by George RR Martin…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Kurt Vonnegut. Slaughterhouse-five was written by George RR Martin. A Game of Thrones was written by…"
           </p>
         </div>
         <div
@@ -32179,11 +32155,11 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <br />
                            ...
                 <br />
-                           &lt;p&gt;&lt;img class="right" source="virginia.jpg" alt="
+                           &lt;p&gt;&lt;img class="right" source="Kurt_Vonnegut.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Virginia.
+                  Kurt Vonnegut.
                 </span>
                 "&gt;
                 <br />
@@ -32191,15 +32167,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  George Washington was born on February 22, 1732, in
+                  Slaughterhouse-five was written by
                 </span>
                 &lt;/p&gt;
                 <br />
-                           &lt;p&gt;&lt;img class="right" source="massachusetts.jpg" alt= "
+                           &lt;p&gt;&lt;img class="right" source="George_RR_Martin.jpg" alt= "
                 <span
                   class="highlight"
                 >
-                  Massachusetts.
+                  George RR Martin.
                 </span>
                 "&gt;
                 <br />
@@ -32207,9 +32183,9 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  John Adams was born on October 30, 1735, in
+                  A Game of Thrones was written by
                 </span>
-                &lt; /p&gt;
+                &lt;/p&gt;
                 <br />
                            ...
               </div>
@@ -32252,7 +32228,7 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
             </h3>
           </div>
           <p>
-            The content is displayed in a layout table. The visual reading order matches the DOM order, so the president's name and birthdate always come first.
+            The content is displayed in a layout table. The visual reading order matches the DOM order, so the author's name always come first.
           </p>
         </div>
         <div
@@ -32275,15 +32251,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  George Washington was born on February 22, 1732, in
+                  Slaughterhouse-five was written by
                 </span>
                 &lt;/td&gt;
                 <br />
-                            &lt;td&gt;&lt;img src="virginia.jpg" alt="
+                            &lt;td&gt;&lt;img src="Kurt_Vonnegut.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Virginia.
+                  Kurt Vonnegut.
                 </span>
                 "&lt;/td&gt;
                 <br />
@@ -32295,15 +32271,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  John Adams was born on October 30, 1735 in
+                  A Game of Thrones was written by
                 </span>
                 &lt;/td&gt;
                 <br />
-                            &lt;td&gt;&lt;img src="massachusetts.jpg" alt="
+                            &lt;td&gt;&lt;img src="George_RR_Martin.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Massachusetts.
+                  George RR Martin.
                 </span>
                 "&lt;/td&gt;
                 <br />
