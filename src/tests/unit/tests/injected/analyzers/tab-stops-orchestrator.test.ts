@@ -19,6 +19,7 @@ describe('TabStopRequirementOrchestrator', () => {
     let focusInCallback: (event: Event) => void | Promise<void>;
     let keydownCallback: (event: Event) => void | Promise<void>;
     let resultCount: number;
+    const focusedElement = { innerText: 'focused element' } as HTMLElement;
 
     let testSubject: TabStopRequirementOrchestrator;
 
@@ -87,15 +88,23 @@ describe('TabStopRequirementOrchestrator', () => {
         await testSubject.stop();
     });
 
-    test('start: onKeydownForFocusTraps tab event with a non-null result is reported', async () => {
+    test('start: focus event with a non-null result is reported', async () => {
+        await testOnFocusInWithResult(tabStopRequirementResultStub);
+    });
+
+    test('start: focus event with a null result is not reported', async () => {
+        await testOnFocusInWithResult(null);
+    });
+
+    test('start: onKeydown tab event with a non-null result is reported', async () => {
         await testOnkeydownForFocusTrapsWithResult(tabStopRequirementResultStub);
     });
 
-    test('start: onKeydownForFocusTraps tab event with a null result and is not reported', async () => {
+    test('start: onKeydown tab event with a null result and is not reported', async () => {
         await testOnkeydownForFocusTrapsWithResult(null);
     });
 
-    test('Does nothing if a key other than tab was pressed', async () => {
+    test('onKeydown Does nothing if a key other than tab was pressed', async () => {
         const eventStub = { key: 'Enter' } as KeyboardEvent;
 
         setupStartTabStopsOrchestrator();
@@ -105,6 +114,23 @@ describe('TabStopRequirementOrchestrator', () => {
         await testSubject.start();
         await keydownCallback(eventStub);
     });
+
+    async function testOnFocusInWithResult(result: AutomatedTabStopRequirementResult | null) {
+        const eventStub = {
+            target: focusedElement as EventTarget,
+        } as FocusEvent;
+
+        setupStartTabStopsOrchestrator();
+        tabStopsHandlerMock
+            .setup(t => t.handleNewTabStop(focusedElement))
+            .returns(() => Promise.resolve(result))
+            .verifiable();
+        reportResultsMock.setup(m => m(result)).verifiable(result ? Times.once() : Times.never());
+
+        testSubject.setResultCallback(reportResultsMock.object);
+        await testSubject.start();
+        await focusInCallback(eventStub);
+    }
 
     async function testOnkeydownForFocusTrapsWithResult(
         result: AutomatedTabStopRequirementResult | null,
