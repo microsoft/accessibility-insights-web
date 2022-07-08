@@ -1,3 +1,8 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+
 # mock-adb test integration
 
 This directory contains helpers to use mock-adb from within unified test cases.
