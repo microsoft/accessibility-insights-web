@@ -12,7 +12,7 @@
     -->
     <AssemblyName>adb</AssemblyName>
     <OutputType>Exe</OutputType>
-	  <UseCurrentRuntimeIdentifier>true</UseCurrentRuntimeIdentifier>
+    <UseCurrentRuntimeIdentifier>true</UseCurrentRuntimeIdentifier>
     <SelfContained>true</SelfContained>
 
     <!-- These are minor performance/size optimizations -->

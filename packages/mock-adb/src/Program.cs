@@ -14,7 +14,7 @@ string configPath = Environment.GetEnvironmentVariable("MOCK_ADB_CONFIG") ?? def
 if (!File.Exists(configPath))
 {
     Console.Error.WriteLine($"Could not find mock-adb config file at \"{configPath}\"");
-    Console.Error.WriteLine($"You can create one with \"yarn mock-adb\"");
+    Console.Error.WriteLine("You can create one with \"yarn mock-adb\"");
     Environment.Exit(1);
 }
 
