@@ -4,12 +4,14 @@ import { getRTL } from '@fluentui/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { RecommendColor } from 'common/components/recommend-color';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { TargetHelper } from 'common/target-helper';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Target } from 'scanner/iruleresults';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -67,7 +69,7 @@ export class DialogRenderer {
             const elementSelector: string = this.getElementSelector(data);
             const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> =
                 this.getFailedRules(data);
-            const target: string[] = this.getTarget(data);
+            const target: Target = this.getTarget(data);
             const dialogContainer: HTMLDivElement = this.appendDialogContainer();
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
@@ -151,12 +153,12 @@ export class DialogRenderer {
         return data.ruleResults;
     }
 
-    private getTarget(data: HtmlElementAxeResults): string[] {
+    private getTarget(data: HtmlElementAxeResults): Target {
         return data.target;
     }
 
     private getElementSelector(data: HtmlElementAxeResults): string {
-        return data.target.join(';');
+        return TargetHelper.getSelectorFromTarget(data.target);
     }
 
     private isInMainWindow(): boolean {

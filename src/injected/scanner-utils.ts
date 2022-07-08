@@ -4,7 +4,7 @@ import { GuidanceLink } from 'common/guidance-links';
 import { Logger } from 'common/logging/logger';
 import { CheckData } from 'injected/element-based-view-model-creator';
 import { scan as scanRunner } from 'scanner/exposed-apis';
-import { RuleResult, ScanResults } from 'scanner/iruleresults';
+import { RuleResult, ScanResults, Target } from 'scanner/iruleresults';
 import { ScanOptions } from 'scanner/scan-options';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -23,7 +23,7 @@ export type DecoratedAxeNodeResult = {
 export interface HtmlElementAxeResults {
     ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
     propertyBag?: any;
-    target: string[];
+    target: Target;
 }
 
 export class ScannerUtils {

@@ -1,26 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+
+import { TargetHelper } from 'common/target-helper';
+import { Target } from 'scanner/iruleresults';
+
 // Licensed under the MIT License.
 interface HTMLInstance {
     html: string;
 }
 
 interface SelectorInstance {
-    target: string[];
+    target: Target;
 }
 
 export type UniquelyIdentifiableInstances = HTMLInstance & SelectorInstance;
 
-export interface InstanceWithHtmlAndSelector {
+interface InstanceWithHtmlAndSelector {
     html: string;
-    target: string[];
+    target: Target;
 }
 
 export class InstanceIdentifierGenerator {
     public static generateSelectorIdentifier(instance: SelectorInstance): string {
-        return instance.target.join(';');
+        return TargetHelper.getSelectorFromTarget(instance.target);
     }
 
     public static defaultHtmlSelectorIdentifier(instance: InstanceWithHtmlAndSelector): string {
-        return instance.html + ',' + instance.target.join(';');
+        return instance.html + ',' + TargetHelper.getSelectorFromTarget(instance.target);
     }
 }

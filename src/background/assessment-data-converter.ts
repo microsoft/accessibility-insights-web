@@ -13,6 +13,7 @@ import { TabStopEvent } from 'common/types/tab-stop-event';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from 'injected/tab-order-property-bag';
 import { forOwn, isEmpty } from 'lodash';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
@@ -102,7 +103,7 @@ export class AssessmentDataConverter {
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): GeneratedAssessmentInstance {
-        const target: string[] = elementAxeResult.target;
+        const target: Target = elementAxeResult.target;
         let testStepResults = {};
         let html: string = null;
         let propertyBag = null;

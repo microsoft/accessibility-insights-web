@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TargetHelper } from 'common/target-helper';
 import { WindowUtils } from 'common/window-utils';
 import { BoundingRect } from '../bounding-rect';
 import { ClientUtils } from '../client-utils';
@@ -13,8 +14,7 @@ import { DrawerUtils } from './drawer-utils';
 import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 
 const getTargetElementsFromResult = (result: AxeResultsWithFrameLevel, dom: Document) => {
-    const elements = dom.querySelectorAll(result.target[result.targetIndex]);
-    return Array.from(elements);
+    return TargetHelper.getTargetElements(result.target, dom, result.targetIndex);
 };
 
 export class HighlightBoxDrawer extends BaseDrawer {

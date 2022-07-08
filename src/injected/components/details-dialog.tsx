@@ -18,6 +18,7 @@ import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { isEmpty, size } from 'lodash';
 import * as React from 'react';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
 import { CheckType } from '../../common/types/check-type';
@@ -41,7 +42,7 @@ export interface DetailsDialogProps {
     userConfigStore: BaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
-    target: string[];
+    target: Target;
     dialogHandler: DetailsDialogHandler;
     devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;

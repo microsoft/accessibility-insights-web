@@ -3,6 +3,7 @@
 import { LayerHost } from '@fluentui/react';
 import { getRTL } from '@fluentui/utilities';
 import * as React from 'react';
+import { Target } from 'scanner/iruleresults';
 
 import { BaseStore } from '../common/base-store';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -23,7 +24,7 @@ export interface LayeredDetailsDialogProps {
     userConfigStore: BaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
-    target: string[];
+    target: Target;
     dialogHandler: DetailsDialogHandler;
     devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
