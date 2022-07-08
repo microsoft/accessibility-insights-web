@@ -17,7 +17,7 @@ module.exports = {
 
         // TO BE CONFIGURED: Limit shorthand for margin, padding
         // Stretch goal: border-width, border-radius, border-color, border-style, grid-gap
-        // Example: 'declaration-property-max-values': { padding: 1 },
+        'declaration-property-max-values': { padding: 1 },
 
         // TO BE CONFIGURED: Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},
