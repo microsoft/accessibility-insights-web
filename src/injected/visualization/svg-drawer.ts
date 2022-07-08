@@ -96,9 +96,14 @@ export class SVGDrawer extends BaseDrawer {
             dom,
             newStateElement.target.length - 1,
         );
+        const selector = TargetHelper.getSelectorFromTargetElement(
+            newStateElement.target,
+            newStateElement.target.length - 1,
+        );
 
         return {
             element,
+            selector,
             tabOrder: newStateElement.propertyBag.tabOrder,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
             isFailure: newStateElement.isFailure,

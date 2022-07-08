@@ -9,6 +9,9 @@ export class TargetHelper {
         dom: Document,
         targetIndex,
     ) => {
+        if (!target || target.length < 1) {
+            return;
+        }
         const selectors = target[targetIndex];
         let elements: NodeListOf<Element>;
         if (typeof selectors === 'string') {
@@ -20,7 +23,6 @@ export class TargetHelper {
             }
             elements = shadowHost.shadowRoot.querySelectorAll(selectors[selectors.length - 1]);
         }
-
         return Array.from(elements);
     };
 
@@ -29,6 +31,9 @@ export class TargetHelper {
         dom: Document,
         targetIndex,
     ) => {
+        if (!target || target.length < 1) {
+            return;
+        }
         const selectors = target[targetIndex];
         if (typeof selectors === 'string') {
             return dom.querySelector(selectors);
@@ -42,6 +47,12 @@ export class TargetHelper {
     };
 
     public static getTargetFromSelector = (selector: string): Target => {
+        if (selector === '') {
+            return [];
+        }
+        if (!selector) {
+            return;
+        }
         const selectors: string[] = selector.split(';');
         const shadowDomSelectors = selectors.map(selectors => {
             var shadowDomSelectors = selectors.split(',');
@@ -55,11 +66,21 @@ export class TargetHelper {
     };
 
     public static getSelectorFromTarget = (target: Target): string => {
-        return target
-            .map((targets: string | string[]) =>
+        if (target) {
+            return target
+                .map((targets: string | string[]) =>
+                    typeof targets === 'string' ? targets : targets.join(','),
+                )
+                .join(';');
+        }
+    };
+
+    public static getSelectorFromTargetElement = (target: Target, targetIndex: number): string => {
+        if (target) {
+            return target.map((targets: string | string[]) =>
                 typeof targets === 'string' ? targets : targets.join(','),
-            )
-            .join(';');
+            )[targetIndex];
+        }
     };
 
     private static getShadowHost = (selectors: string[], dom: Document): Element => {
