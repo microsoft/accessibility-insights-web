@@ -12,6 +12,7 @@ import {
     AdhocTabStopsTestViewDeps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -62,6 +63,7 @@ export interface TestViewContainerProps {
     needsReviewCardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
+    narrowModeStatus: NarrowModeStatus;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

@@ -13,6 +13,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import styles from 'DetailsView/components/issues-table.scss';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialogDeps } from './export-dialog';
@@ -37,6 +38,7 @@ export interface IssuesTableProps {
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     visualizationStoreData: VisualizationStoreData;
+    narrowModeStatus: NarrowModeStatus;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -122,6 +124,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 shouldAlertFailuresCount={true}
                 cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
                 sectionHeadingLevel={2}
+                narrowModeStatus={this.props.narrowModeStatus}
             />
         );
     }

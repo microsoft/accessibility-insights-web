@@ -11,6 +11,7 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import * as React from 'react';
 
@@ -29,6 +30,7 @@ export type InstanceDetailsFooterProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(

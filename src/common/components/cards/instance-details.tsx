@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 import styles from 'reports/components/instance-details.scss';
@@ -34,6 +35,7 @@ export type InstanceDetailsProps = {
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
@@ -44,6 +46,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         rule,
         targetAppInfo,
         cardSelectionMessageCreator,
+        narrowModeStatus,
     } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
@@ -112,6 +115,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         userConfigurationStoreData={userConfigurationStoreData}
                         rule={rule}
                         targetAppInfo={targetAppInfo}
+                        narrowModeStatus={narrowModeStatus}
                     />
                 </div>
             </div>

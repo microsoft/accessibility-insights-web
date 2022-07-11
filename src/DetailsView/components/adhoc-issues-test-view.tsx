@@ -13,6 +13,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import styles from 'DetailsView/components/adhoc-issues-test-view.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
@@ -40,6 +41,7 @@ export type AdhocIssuesTestViewProps = {
     cardsViewData: CardsViewModel;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(

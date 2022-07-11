@@ -5,6 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
@@ -33,6 +34,7 @@ export type ResultSectionContentProps = {
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -47,6 +49,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             targetAppInfo,
             outcomeCounter,
             headingLevel,
+            narrowModeStatus,
         } = props;
         if (results.length === 0) {
             return null;
@@ -64,6 +67,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     outcomeCounter={outcomeCounter}
                     headingLevel={headingLevel}
                     cardSelectionMessageCreator={props.cardSelectionMessageCreator}
+                    narrowModeStatus={narrowModeStatus}
                 />
             </>
         );
