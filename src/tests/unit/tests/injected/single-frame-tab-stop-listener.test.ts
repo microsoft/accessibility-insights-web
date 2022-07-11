@@ -111,7 +111,7 @@ describe('SingleFrameTabStopListener', () => {
 
         getUniqueSelectorMock
             .setup(m => m(fakeEvent.target as HTMLElement))
-            .returns(_ => exampleTabStopEvent.target[0])
+            .returns(_ => exampleTabStopEvent.target[0] as string)
             .verifiable(Times.once());
 
         const reportResultMock = Mock.ofInstance(async (_: TabStopEvent) => {});

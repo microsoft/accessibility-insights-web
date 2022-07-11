@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-
+// Licensed under the MIT License.
 import { TargetHelper } from 'common/target-helper';
 import { Target } from 'scanner/iruleresults';
 
-// Licensed under the MIT License.
 interface HTMLInstance {
     html: string;
 }
@@ -21,7 +20,7 @@ interface InstanceWithHtmlAndSelector {
 
 export class InstanceIdentifierGenerator {
     public static generateSelectorIdentifier(instance: SelectorInstance): string {
-        return TargetHelper.getSelectorFromTarget(instance.target);
+        return TargetHelper.getSelectorFromTarget(instance.target)!;
     }
 
     public static defaultHtmlSelectorIdentifier(instance: InstanceWithHtmlAndSelector): string {

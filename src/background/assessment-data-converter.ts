@@ -142,7 +142,7 @@ export class AssessmentDataConverter {
         selector: string,
     ): GeneratedAssessmentInstance {
         let testStepResults = {};
-        const target: string[] = event.target;
+        const target: Target = event.target;
         const html: string = event.html;
         let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
 

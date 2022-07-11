@@ -13,12 +13,12 @@ export class TargetHelper {
             return;
         }
         const selectors = target[targetIndex];
-        let elements: NodeListOf<Element>;
+        let elements: NodeListOf<Element> | null;
         if (typeof selectors === 'string') {
             elements = dom.querySelectorAll(selectors);
         } else {
             const shadowHost = this.getShadowHost(selectors, dom);
-            if (!shadowHost) {
+            if (!shadowHost || !shadowHost.shadowRoot) {
                 return;
             }
             elements = shadowHost.shadowRoot.querySelectorAll(selectors[selectors.length - 1]);
@@ -39,14 +39,14 @@ export class TargetHelper {
             return dom.querySelector(selectors);
         } else {
             const shadowHost = this.getShadowHost(selectors, dom);
-            if (!shadowHost) {
+            if (!shadowHost || !shadowHost.shadowRoot) {
                 return;
             }
             return shadowHost.shadowRoot.querySelector(selectors[selectors.length - 1]);
         }
     };
 
-    public static getTargetFromSelector = (selector: string): Target => {
+    public static getTargetFromSelector = (selector: string): Target | undefined => {
         if (selector === '') {
             return [];
         }
@@ -55,8 +55,8 @@ export class TargetHelper {
         }
         const selectors: string[] = selector.split(';');
         const shadowDomSelectors = selectors.map(selectors => {
-            var shadowDomSelectors = selectors.split(',');
-            if (shadowDomSelectors.length == 1) {
+            const shadowDomSelectors = selectors.split(',');
+            if (shadowDomSelectors.length === 1) {
                 return shadowDomSelectors[0];
             } else {
                 return shadowDomSelectors;
@@ -65,7 +65,7 @@ export class TargetHelper {
         return shadowDomSelectors;
     };
 
-    public static getSelectorFromTarget = (target: Target): string => {
+    public static getSelectorFromTarget = (target: Target): string | undefined => {
         if (target) {
             return target
                 .map((targets: string | string[]) =>
@@ -75,7 +75,10 @@ export class TargetHelper {
         }
     };
 
-    public static getSelectorFromTargetElement = (target: Target, targetIndex: number): string => {
+    public static getSelectorFromTargetElement = (
+        target: Target,
+        targetIndex: number,
+    ): string | undefined => {
         if (target) {
             return target.map((targets: string | string[]) =>
                 typeof targets === 'string' ? targets : targets.join(','),
@@ -83,12 +86,12 @@ export class TargetHelper {
         }
     };
 
-    private static getShadowHost = (selectors: string[], dom: Document): Element => {
-        let shadowHost: Element;
+    private static getShadowHost = (selectors: string[], dom: Document): Element | null => {
+        let shadowHost: Element | null = null;
         for (let i = 0; i < selectors.length - 1; i++) {
             shadowHost = dom.querySelector(selectors[i]);
             if (shadowHost == null || shadowHost.shadowRoot == null) {
-                return;
+                return null;
             }
         }
         return shadowHost;

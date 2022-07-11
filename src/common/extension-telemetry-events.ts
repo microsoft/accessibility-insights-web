@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { Target } from 'scanner/iruleresults';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -184,7 +185,7 @@ export type ModifiedCommandsTelemetryData = {
 
 export type InspectTelemetryData = {
     frameUrl?: string;
-    target?: string[];
+    target?: Target;
 } & BaseTelemetryData;
 
 export type ScopingTelemetryData = {
