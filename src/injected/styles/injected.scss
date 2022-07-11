@@ -95,7 +95,9 @@
     }
 
     .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
-        padding: 0 19px 20px !important;
+        padding-top: 0 !important;
+        padding-right: 19px !important;
+        padding-bottom: 20px !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
@@ -288,7 +290,7 @@
         width: 0 !important;
         height: 0 !important;
         visibility: hidden !important;
-        padding: 0 0 0 0 !important;
+        padding: 0 !important;
         margin: 0 0 0 0 !important;
     }
 }
