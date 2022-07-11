@@ -134,6 +134,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <AdHocToolsPanel
                     backLinkHandler={this.openTogglesView}
                     diagnosticViewToggleFactory={this.props.diagnosticViewToggleFactory}
+                    featureFlagStoreData={this.props.storeState.featureFlagStoreData}
                 />
             </div>
         );
