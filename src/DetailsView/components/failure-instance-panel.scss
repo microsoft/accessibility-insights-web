@@ -14,22 +14,34 @@
 }
 
 .failure-instance-snippet-empty-body {
-    margin: 8px 0 24px 0;
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 24px;
+    margin-left: 0;
     color: $secondary-text;
 }
 
 .failure-instance-snippet-title {
-    margin: 24px 0 8px 0;
+    margin-top: 24px;
+    margin-right: 0;
+    margin-bottom: 8px;
+    margin-left: 0;
     color: $primary-text;
 }
 
 .failure-instance-selector-note {
     color: $secondary-text;
-    margin: 8px 0 8px 0;
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 8px;
+    margin-left: 0;
 }
 
 .failure-instance-snippet-filled-body {
-    margin: 8px 0 24px 0;
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 24px;
+    margin-left: 0;
     padding-top: 12px;
     padding-right: 16px;
     padding-bottom: 12px;
@@ -42,7 +54,10 @@
 }
 
 .failure-instance-snippet-error {
-    margin: 9px 0 50px 9px;
+    margin-top: 9px;
+    margin-right: 0;
+    margin-bottom: 50px;
+    margin-left: 9px;
     color: $secondary-text;
     display: flex;
     flex-direction: row;

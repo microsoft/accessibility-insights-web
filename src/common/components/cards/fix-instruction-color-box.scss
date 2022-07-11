@@ -7,7 +7,10 @@ span.fix-instruction-color-box {
     height: 14px;
     display: inline-block;
     vertical-align: -5%;
-    margin: 0 2px;
+    margin-top: 0;
+    margin-right: 2px;
+    margin-bottom: 0;
+    margin-left: 2px;
     border: 1px solid $always-black;
 }
 
