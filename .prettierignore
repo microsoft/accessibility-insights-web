@@ -38,7 +38,6 @@ obj/
 src/electron/resources/mit_license_en.txt
 src/electron/resources/mit_license.txt
 src/NOTICE.html
-src/tests/miscellaneous/mock-adb/bin/
 drop/
 extension/
 package/

@@ -19,7 +19,6 @@
         "./packages/*/bundle",
         "./packages/*/drop",
         "./src/assessments/color/test-steps/flashing-text-example.html",
-        "./src/tests/miscellaneous/mock-adb/bin",
         "./analysis",
         ".gitattribute",
         ".gitattributes",

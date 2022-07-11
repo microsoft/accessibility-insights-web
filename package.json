@@ -51,7 +51,7 @@
         "lint:fix": "eslint **/*.{js,ts,tsx} --quiet --fix",
         "lint:scss": "stylelint **/*.scss",
         "lint:scss:fix": "stylelint **/*.scss --fix",
-        "mock-adb": "node ./src/tests/miscellaneous/mock-adb/setup-mock-adb-command.js",
+        "mock-adb": "node ./src/tests/miscellaneous/setup-mock-adb/setup-mock-adb-command.js",
         "null:autoadd": "node ./tools/strict-null-checks/auto-add.js",
         "null:check": "tsc -p ./tsconfig.strictNullChecks.json",
         "null:find": "node ./tools/strict-null-checks/find.js",
