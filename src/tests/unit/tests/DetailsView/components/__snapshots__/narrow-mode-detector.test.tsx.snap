@@ -4,6 +4,7 @@ exports[`NarrowModeDetector render renders child component properly when narrow 
 <TestComponent
   narrowModeStatus={
     Object {
+      "isCardFooterCollapsed": false,
       "isCommandBarCollapsed": false,
       "isHeaderAndNavCollapsed": false,
       "isVirtualKeyboardCollapsed": false,
