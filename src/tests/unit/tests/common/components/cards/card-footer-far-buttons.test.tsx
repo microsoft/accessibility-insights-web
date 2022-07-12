@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, IContextualMenuItem } from '@fluentui/react';
+import { ActionButton, IButton, IContextualMenuItem } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import {
     CardFooterFarButtons,
@@ -22,6 +22,7 @@ import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { IssueFilingDialog } from 'DetailsView/components/issue-filing-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
@@ -304,6 +305,32 @@ describe(CardFooterFarButtons, () => {
             await simulateClickMenuItem(rendered, 'fileissue');
 
             expect(rendered.state().showNeedsSettingsContent).toBe(true);
+        });
+
+        it('expected button is focused when issue filing settings dialog is dismissed', async () => {
+            const buttonMock = Mock.ofType<IButton>();
+            buttonMock.setup(k => k.focus()).verifiable();
+
+            const rendered = shallow(
+                <CardFooterFarButtons
+                    {...defaultProps}
+                    deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
+                />,
+            );
+            const expectedFocusedButton = isCardFooterCollapsed
+                ? rendered.find(ActionButton)
+                : rendered.find('.fileissue');
+            const buttonRefCallback = expectedFocusedButton.prop('componentRef') as (
+                ref: IButton,
+            ) => void;
+            buttonRefCallback(buttonMock.object);
+
+            const issueFilingDialog = rendered.find(IssueFilingDialog);
+            const afterDialogDismissed = issueFilingDialog.prop('afterClosed');
+
+            afterDialogDismissed();
+
+            buttonMock.verifyAll();
         });
 
         function getMenuItemWithKey(

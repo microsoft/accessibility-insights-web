@@ -3,12 +3,12 @@
 exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
   <span>
-    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" />
+    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" componentRef={[Function: componentRef]} />
   </span>
   <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" />
+    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" componentRef={[undefined]} />
   </span>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -16,12 +16,12 @@ exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snaps
 exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snapshot with allCardInteractionsSupported and undefined aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
   <span>
-    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" />
+    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" componentRef={[Function: componentRef]} />
   </span>
   <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" />
+    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" componentRef={[undefined]} />
   </span>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -29,12 +29,12 @@ exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snaps
 exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snapshot with allCardInteractionsSupported: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
   <span>
-    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" />
+    <CustomizedActionButton onClick={[Function (anonymous)]} text=\\"File issue\\" iconProps={{...}} className=\\"fileissue\\" componentRef={[Function: componentRef]} />
   </span>
   <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" />
+    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" componentRef={[undefined]} />
   </span>
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -42,7 +42,7 @@ exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snaps
 exports[`CardFooterFarButtons with isCardFooterCollapsed=false renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
   <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" />
+    <CustomizedActionButton onClick={[Function: onClick]} text=\\"Copy failure details\\" iconProps={{...}} className=\\"copyfailuredetails\\" componentRef={[undefined]} />
   </span>
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
@@ -54,6 +54,7 @@ Object {
   "directionalHint": 6,
   "items": Array [
     Object {
+      "componentRef": [Function],
       "iconProps": Object {
         "iconName": "ladybugSolid",
       },
@@ -76,8 +77,8 @@ Object {
 
 exports[`CardFooterFarButtons with isCardFooterCollapsed=true renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
-  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"test-kebabmenuarialabel\\" menuIconProps={{...}} menuProps={{...}} />
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} className=\\"kebabMenuButton\\" ariaLabel=\\"test-kebabmenuarialabel\\" menuIconProps={{...}} menuProps={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -88,6 +89,7 @@ Object {
   "directionalHint": 6,
   "items": Array [
     Object {
+      "componentRef": [Function],
       "iconProps": Object {
         "iconName": "ladybugSolid",
       },
@@ -110,8 +112,8 @@ Object {
 
 exports[`CardFooterFarButtons with isCardFooterCollapsed=true renders per snapshot with allCardInteractionsSupported and undefined aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
-  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -122,6 +124,7 @@ Object {
   "directionalHint": 6,
   "items": Array [
     Object {
+      "componentRef": [Function],
       "iconProps": Object {
         "iconName": "ladybugSolid",
       },
@@ -144,8 +147,8 @@ Object {
 
 exports[`CardFooterFarButtons with isCardFooterCollapsed=true renders per snapshot with allCardInteractionsSupported: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
-  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
-  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} afterClosed={[Function: afterClosed]} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -170,7 +173,7 @@ Object {
 
 exports[`CardFooterFarButtons with isCardFooterCollapsed=true renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported: component snapshot 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
-  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;

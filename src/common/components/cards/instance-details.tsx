@@ -73,8 +73,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const cardHighlightingProperties = isHighlightSupported
         ? {
               onClick: (event: React.MouseEvent<any>): void => {
-                  // Don't move focus away from buttons within the card
-                  if (!(event.target instanceof HTMLButtonElement)) {
+                  if (!(event?.target instanceof HTMLButtonElement)) {
                       hiddenButton.current?.focus();
                       hiddenButton.current?.click();
                   }

@@ -87,6 +87,7 @@ describe('IssueFilingDialog', () => {
             selectedIssueFilingService: issueFilingServiceStub,
             selectedIssueData: selectedIssueDataStub,
             issueFilingServicePropertiesMap: issueFilingServicePropertiesMapStub,
+            afterClosed: () => null,
         };
 
         getSettingsFromStoreDataMock

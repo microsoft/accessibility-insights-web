@@ -18,7 +18,7 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import styles from 'reports/automated-checks-report.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -84,6 +84,21 @@ describe('InstanceDetails', () => {
 
         expect(hiddenButtonRefStub.current.focus).toHaveBeenCalled();
         expect(hiddenButtonRefStub.current.click).toHaveBeenCalled();
+    });
+
+    it('does not forward focus and click events when event was propagated from a button', () => {
+        (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
+        setupGetPropertyConfigByIdMock();
+
+        const wrapper = shallow(<InstanceDetails {...props} />);
+        const element = wrapper.find(`.${styles.instanceDetailsCard}`);
+        expect(element.length).toBe(1);
+
+        const clickTarget = mount(<button />).getDOMNode();
+        element.simulate('click', { target: clickTarget });
+
+        expect(hiddenButtonRefStub.current.focus).toHaveBeenCalledTimes(0);
+        expect(hiddenButtonRefStub.current.click).toHaveBeenCalledTimes(0);
     });
 
     it('dispatches the card selection message when hidden highlight button is clicked', () => {
