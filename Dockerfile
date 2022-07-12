@@ -14,11 +14,17 @@ USER root
 #
 # We pin nodejs 16.x instead of accepting Playwright's default for consistency with
 # our other build environments.
-RUN apt-get update ; apt-get install ca-certificates \
-    && apt-get update \
-    && apt-get install -y curl && \
+#
+# dotnet-sdk-6.0 is required to build mock-adb
+RUN apt-get update && \
+  apt-get install -y curl apt-transport-https && \
   curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+  curl -fsSL https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+  dpkg -i packages-microsoft-prod.deb && \
+  rm packages-microsoft-prod.deb && \
+  apt-get update && \
   apt-get install -y --allow-downgrades nodejs=16.* && \
+  apt-get install -y dotnet-sdk-6.0 && \
   rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g yarn@1.22.10
