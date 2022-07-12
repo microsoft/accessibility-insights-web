@@ -27,6 +27,7 @@ export interface IssueFilingDialogProps {
     selectedIssueData: CreateIssueDetailsTextData;
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev?: React.SyntheticEvent) => void;
+    afterClosed: () => void;
 }
 
 export type IssueFilingDialogDeps = {
@@ -60,7 +61,7 @@ export class IssueFilingDialog extends React.Component<
     }
 
     public render(): JSX.Element {
-        const { onClose, isOpen, deps } = this.props;
+        const { onClose, afterClosed, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
         const selectedIssueFilingServiceData =
             this.state.selectedIssueFilingService.getSettingsFromStoreData(
@@ -83,6 +84,7 @@ export class IssueFilingDialog extends React.Component<
                     isBlocking: false,
                     containerClassName: styles.insightsDialogMainOverride,
                     className: issueFilingDialogStyles.issueFilingDialog,
+                    onDismissed: afterClosed,
                 }}
                 onDismiss={onClose}
             >

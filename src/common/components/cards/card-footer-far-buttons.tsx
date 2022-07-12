@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, DirectionalHint, IContextualMenuItem } from '@fluentui/react';
+import {
+    ActionButton,
+    DirectionalHint,
+    IButton,
+    IButtonProps,
+    IContextualMenuItem,
+} from '@fluentui/react';
 import { registerIcons } from '@fluentui/react/lib/Styling';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -28,7 +34,7 @@ registerIcons({
     },
 });
 
-export type CardFooterMenuItemProps = Omit<IContextualMenuItem, 'key'>;
+export type CardFooterMenuItemProps = IContextualMenuItem & IButtonProps;
 
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
@@ -55,6 +61,8 @@ export class CardFooterFarButtons extends React.Component<
     CardFooterFarButtonsState
 > {
     private toastRef: React.RefObject<Toast>;
+    private fileIssueButtonRef: IButton | null;
+    private kebabButtonRef: IButton | null;
     constructor(props: CardFooterFarButtonsProps) {
         super(props);
         this.toastRef = React.createRef();
@@ -96,6 +104,7 @@ export class CardFooterFarButtons extends React.Component<
     public renderKebabButton(): JSX.Element {
         return (
             <ActionButton
+                componentRef={ref => (this.kebabButtonRef = ref)}
                 className={styles.kebabMenuButton}
                 ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                 menuIconProps={{
@@ -124,6 +133,7 @@ export class CardFooterFarButtons extends React.Component<
                             text={props.text}
                             iconProps={props.iconProps}
                             className={props.key}
+                            componentRef={props.componentRef}
                         />
                     </span>
                 ))}
@@ -141,9 +151,9 @@ export class CardFooterFarButtons extends React.Component<
         return <Toast ref={this.toastRef} deps={this.props.deps} />;
     }
 
-    private getMenuItems(): IContextualMenuItem[] {
+    private getMenuItems(): CardFooterMenuItemProps[] {
         const { cardInteractionSupport } = this.props.deps;
-        const items: IContextualMenuItem[] = [];
+        const items: CardFooterMenuItemProps[] = [];
 
         if (cardInteractionSupport.supportsIssueFiling) {
             items.push({
@@ -153,6 +163,7 @@ export class CardFooterFarButtons extends React.Component<
                     iconName: 'ladybugSolid',
                 },
                 onClick: this.fileIssue,
+                componentRef: ref => (this.fileIssueButtonRef = ref),
             });
         }
 
@@ -240,6 +251,13 @@ export class CardFooterFarButtons extends React.Component<
             selectedIssueFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
             issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
+            afterClosed: () => {
+                if (this.props.narrowModeStatus.isCardFooterCollapsed) {
+                    this.kebabButtonRef.focus();
+                } else {
+                    this.fileIssueButtonRef.focus();
+                }
+            },
         };
 
         return <IssueFilingDialog {...needsSettingsContentProps} />;

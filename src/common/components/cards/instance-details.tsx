@@ -72,9 +72,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const hiddenButton = React.useRef(null);
     const cardHighlightingProperties = isHighlightSupported
         ? {
-              onClick: (_: React.SyntheticEvent): void => {
-                  hiddenButton.current?.focus();
-                  hiddenButton.current?.click();
+              onClick: (event: React.MouseEvent<any>): void => {
+                  // Don't move focus away from buttons within the card
+                  if (!(event.target instanceof HTMLButtonElement)) {
+                      hiddenButton.current?.focus();
+                      hiddenButton.current?.click();
+                  }
               },
               tabIndex: -1,
           }
