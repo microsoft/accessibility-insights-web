@@ -25,14 +25,17 @@ export class FocusTrapsHandler {
             return null;
         }
 
+        const elementFocusedBeforeTab = this.lastFocusedElement;
+        this.lastFocusedElement = dom.activeElement;
+
         await this.promiseFactory.delay(null, this.keyboardTrapTimeout);
 
         const currentFocusedElement = dom.activeElement;
 
         let result: AutomatedTabStopRequirementResult | null = null;
-        if (currentFocusedElement != null && this.lastFocusedElement != null) {
+        if (currentFocusedElement != null && elementFocusedBeforeTab != null) {
             result = this.tabStopsRequirementEvaluator.getKeyboardTrapResults(
-                this.lastFocusedElement,
+                elementFocusedBeforeTab,
                 currentFocusedElement,
             );
         }

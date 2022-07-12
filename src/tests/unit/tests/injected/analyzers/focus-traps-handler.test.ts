@@ -127,6 +127,41 @@ describe(FocusTrapsHandler, () => {
             expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
         });
 
+        it('Tab press during delay does not create a false positive', async () => {
+            const expectedResult = {
+                selector: ['selector'],
+                html: 'html',
+            } as AutomatedTabStopRequirementResult;
+            const newActiveElement = { innerText: 'new active element' } as HTMLElement;
+            let isFirstDelay = true;
+
+            evaluatorMock
+                .setup(e => e.getKeyboardTrapResults(lastFocusedElementStub, newActiveElement))
+                .returns(() => expectedResult)
+                .verifiable(Times.once());
+            evaluatorMock
+                .setup(e => e.getKeyboardTrapResults(focusedElementStub, newActiveElement))
+                .returns(() => expectedResult)
+                .verifiable(Times.once());
+            delayMock
+                .setup(d => d(It.isAny(), focusTrapTimeout))
+                .returns(async () => {
+                    if (isFirstDelay) {
+                        setupDOM(newActiveElement);
+                        isFirstDelay = false;
+
+                        await testSubject.handleTabPressed(domMock.object);
+
+                        expect(testSubject.lastFocusedElement).toBe(newActiveElement);
+                    }
+                })
+                .verifiable(Times.exactly(2));
+
+            await testSubject.handleTabPressed(domMock.object);
+
+            expect(testSubject.lastFocusedElement).toBe(newActiveElement);
+        });
+
         function setupDOM(focusedElement: HTMLElement = focusedElementStub): void {
             domMock.reset();
             domMock.setup(d => d.body).returns(() => bodyElementStub);
