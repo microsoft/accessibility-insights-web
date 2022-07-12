@@ -3,6 +3,7 @@
 import { ActionButton, DirectionalHint, IContextualMenuItem } from '@fluentui/react';
 import { registerIcons } from '@fluentui/react/lib/Styling';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
@@ -27,6 +28,8 @@ registerIcons({
     },
 });
 
+export type CardFooterMenuItemProps = Omit<IContextualMenuItem, 'key'>;
+
 export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -35,23 +38,24 @@ export type CardKebabMenuButtonDeps = {
 } & IssueFilingButtonDeps &
     ToastDeps;
 
-export interface CardKebabMenuButtonState {
+export interface CardFooterFarButtonsState {
     showNeedsSettingsContent: boolean;
 }
 
-export interface CardKebabMenuButtonProps {
+export interface CardFooterFarButtonsProps {
     deps: CardKebabMenuButtonDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
+    narrowModeStatus: NarrowModeStatus;
 }
 
-export class CardKebabMenuButton extends React.Component<
-    CardKebabMenuButtonProps,
-    CardKebabMenuButtonState
+export class CardFooterFarButtons extends React.Component<
+    CardFooterFarButtonsProps,
+    CardFooterFarButtonsState
 > {
     private toastRef: React.RefObject<Toast>;
-    constructor(props: CardKebabMenuButtonProps) {
+    constructor(props: CardFooterFarButtonsProps) {
         super(props);
         this.toastRef = React.createRef();
         this.state = {
@@ -74,23 +78,56 @@ export class CardKebabMenuButton extends React.Component<
             // the dialog/toast involve to be considered as part of the button for the purposes of layout
             // calculation in this component's parent.
             <div onKeyDown={handleKeyDown}>
-                <ActionButton
-                    className={styles.kebabMenuButton}
-                    ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
-                    menuIconProps={{
-                        iconName: 'MoreActionsMenuIcon',
-                        className: styles.kebabMenuIcon,
-                    }}
-                    menuProps={{
-                        className: styles.kebabMenu,
-                        directionalHint: DirectionalHint.bottomRightEdge,
-                        shouldFocusOnMount: true,
-                        items: this.getMenuItems(),
-                    }}
-                />
+                {this.renderButtons()}
                 {this.renderIssueFilingSettingContent()}
                 {this.renderCopyFailureDetailsToast()}
             </div>
+        );
+    }
+
+    public renderButtons(): JSX.Element {
+        if (this.props.narrowModeStatus.isCardFooterCollapsed) {
+            return this.renderKebabButton();
+        } else {
+            return this.renderExpandedButtons();
+        }
+    }
+
+    public renderKebabButton(): JSX.Element {
+        return (
+            <ActionButton
+                className={styles.kebabMenuButton}
+                ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
+                menuIconProps={{
+                    iconName: 'MoreActionsMenuIcon',
+                    className: styles.kebabMenuIcon,
+                }}
+                menuProps={{
+                    className: styles.kebabMenu,
+                    directionalHint: DirectionalHint.bottomRightEdge,
+                    shouldFocusOnMount: true,
+                    items: this.getMenuItems(),
+                }}
+            />
+        );
+    }
+
+    public renderExpandedButtons(): JSX.Element {
+        const menuItems = this.getMenuItems();
+
+        return (
+            <>
+                {menuItems.map(props => (
+                    <span key={props.key}>
+                        <ActionButton
+                            onClick={props.onClick}
+                            text={props.text}
+                            iconProps={props.iconProps}
+                            className={props.key}
+                        />
+                    </span>
+                ))}
+            </>
         );
     }
 

@@ -15,8 +15,8 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import * as React from 'react';
 
+import { CardFooterFarButtons, CardKebabMenuButtonDeps } from './card-footer-far-buttons';
 import { CardInteractionSupport } from './card-interaction-support';
-import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 import styles from './instance-details-footer.scss';
 
 export type InstanceDetailsFooterDeps = {
@@ -36,7 +36,8 @@ export type InstanceDetailsFooterProps = {
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
     'InstanceDetailsFooter',
     props => {
-        const { deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
+        const { deps, userConfigurationStoreData, result, rule, targetAppInfo, narrowModeStatus } =
+            props;
         const { cardInteractionSupport } = deps;
 
         const supportsAnyActions =
@@ -58,11 +59,12 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
 
             const kebabMenuAriaLabel: string = `More Actions for failure instance ${result.identifiers.identifier} in rule ${rule.id}`;
             return (
-                <CardKebabMenuButton
+                <CardFooterFarButtons
                     deps={deps}
                     userConfigurationStoreData={userConfigurationStoreData}
                     issueDetailsData={issueDetailsData}
                     kebabMenuAriaLabel={kebabMenuAriaLabel}
+                    narrowModeStatus={narrowModeStatus}
                 />
             );
         };
