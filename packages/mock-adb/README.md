@@ -38,7 +38,7 @@ In the remote build, these logs are uploaded as artifacts if any end-to-end test
 
 ### Implementation
 
-`mock-adb` itself is written in .NET for performance reasons; the Unified tests invoke it hundreds of times, and writing it in Node.js creates ~2s of overhead per call on some of the lower-end dev machines our team tests against.
+Our team wrote `mock-adb` in .NET to improve performance and ultimately the reliability of Unified tests. Since the tests invoke `mock-adb` hundreds of times, we migrated from Node.js due to the high startup time involved to initialize the Node.js runtime. On dev machines with fewer resources, this resulted in ~2s of overhead per call and caused the tests to timeout.
 
 Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/main/src/tests/miscellaneous/setup-mock-adb/setup-mock-adb.js) to write the appropriate config/logging context to disk. `mock-adb` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
 
