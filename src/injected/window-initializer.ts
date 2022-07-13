@@ -13,6 +13,7 @@ import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
+import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
@@ -35,7 +36,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { Assessments } from './../assessments/assessments';
-import { FocusTrapsKeydownHandler } from './analyzers/focus-traps-keydown-handler';
+import { FocusTrapsHandler } from './analyzers/focus-traps-handler';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -159,15 +160,18 @@ export class WindowInitializer {
             htmlElementUtils,
             getUniqueSelector,
         );
-        const focusTrapsKeydownHandler = new FocusTrapsKeydownHandler(
+        const focusTrapsKeydownHandler = new FocusTrapsHandler(
             tabStopRequirementEvaluator,
             promiseFactory,
         );
+        const tabStopsHandler = new TabStopsHandler(
+            tabStopRequirementEvaluator,
+            tabbableElementGetter,
+        );
         const tabStopsOrchestrator = new TabStopRequirementOrchestrator(
             document,
-            tabbableElementGetter,
+            tabStopsHandler,
             focusTrapsKeydownHandler,
-            tabStopRequirementEvaluator,
             getUniqueSelector,
         );
         this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
