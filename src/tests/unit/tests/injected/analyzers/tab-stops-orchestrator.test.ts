@@ -51,6 +51,12 @@ describe('TabStopRequirementOrchestrator', () => {
         reportResultsMock.verifyAll();
     });
 
+    test('start() initializes handlers, registers event listeners, and reports focus order results', async () => {
+        setupStartTabStopsOrchestrator();
+
+        await testSubject.start();
+    });
+
     test('transformChildResultForParent', () => {
         const frameStub = {} as HTMLIFrameElement;
         const selectorStub = 'some selector';
@@ -73,7 +79,6 @@ describe('TabStopRequirementOrchestrator', () => {
         setupStartTabStopsOrchestrator();
         const keyboardNavigationResultsStub = getTabStopRequirementResultStubs();
 
-        testSubject.setResultCallback(reportResultsMock.object);
         await testSubject.start();
 
         domMock.setup(m => m.removeEventListener('focusin', focusInCallback)).verifiable();
@@ -110,7 +115,6 @@ describe('TabStopRequirementOrchestrator', () => {
         setupStartTabStopsOrchestrator();
         focusTrapsHandlerMock.setup(k => k.handleTabPressed(It.isAny())).verifiable(Times.never());
 
-        testSubject.setResultCallback(reportResultsMock.object);
         await testSubject.start();
         await keydownCallback(eventStub);
     });
@@ -127,7 +131,6 @@ describe('TabStopRequirementOrchestrator', () => {
             .verifiable();
         reportResultsMock.setup(m => m(result)).verifiable(result ? Times.once() : Times.never());
 
-        testSubject.setResultCallback(reportResultsMock.object);
         await testSubject.start();
         await focusInCallback(eventStub);
     }
@@ -146,7 +149,6 @@ describe('TabStopRequirementOrchestrator', () => {
             .verifiable();
         reportResultsMock.setup(m => m(result)).verifiable(result ? Times.once() : Times.never());
 
-        testSubject.setResultCallback(reportResultsMock.object);
         await testSubject.start();
         await keydownCallback(eventStub);
     }
@@ -158,20 +160,25 @@ describe('TabStopRequirementOrchestrator', () => {
             .setup(m => m.addEventListener('keydown', It.isAny()))
             .callback((_, callback) => {
                 keydownCallback = callback;
-            });
+            })
+            .verifiable();
         domMock
             .setup(m => m.addEventListener('focusin', It.isAny()))
             .callback((_, callback) => {
                 focusInCallback = callback;
-            });
+            })
+            .verifiable();
         prepareTabbableFocusOrderResults();
+
+        testSubject.setResultCallback(reportResultsMock.object);
     }
 
     function prepareTabbableFocusOrderResults() {
         const tabbableFocusOrderResults = getTabStopRequirementResultStubs();
         tabStopsHandlerMock
             .setup(t => t.getTabbableFocusOrderResults())
-            .returns(() => tabbableFocusOrderResults);
+            .returns(() => tabbableFocusOrderResults)
+            .verifiable();
         tabbableFocusOrderResults.forEach(result => {
             reportResultsMock.setup(m => m(result)).verifiable(Times.once());
         });

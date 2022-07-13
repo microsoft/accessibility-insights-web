@@ -133,6 +133,16 @@ describe(TabStopsHandler, () => {
         await testTabStopSequence([firstTabStop, currentTabStop], [null, resultStub]);
     });
 
+    it('getKeyboardNavigationResults() calls tabStopsRequirementEvaluator with expected arguments', () => {
+        requirementEvaluatorMock
+            .setup(r => r.getKeyboardNavigationResults(tabbableElementsStub, new Set()))
+            .returns(() => [resultStub])
+            .verifiable();
+
+        const results = testSubject.getKeyboardNavigationResults();
+        expect(results).toEqual([resultStub]);
+    });
+
     async function testTabStopSequence(
         tabStopSequence: HTMLElement[],
         expectedResults: (AutomatedTabStopRequirementResult | null)[],
