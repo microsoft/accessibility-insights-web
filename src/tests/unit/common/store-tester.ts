@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { Action } from 'common/flux/action';
-import { SyncAction } from 'common/flux/sync-action';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../common/base-store';
