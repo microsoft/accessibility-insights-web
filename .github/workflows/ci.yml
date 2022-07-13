@@ -193,6 +193,9 @@ jobs:
 
     - uses: github/codeql-action/init@v2
       timeout-minutes: 2
+    
+    - uses: github/codeql-action/autobuild@v2
+      timeout-minutes: 2
 
     - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
