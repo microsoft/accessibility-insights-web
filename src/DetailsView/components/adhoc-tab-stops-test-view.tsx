@@ -77,10 +77,8 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
 
         const howToTest: JSX.Element = (
             <ol>
-                <li>
-                    Locate the visual helper on the target page, it will highlight element in focus
-                    with an empty circle.
-                </li>
+                The visual helper for this requirement highlights the elements in the target page
+                that receive the input focus.
                 <li>
                     Use your keyboard to move input focus through all the interactive elements in
                     the page:
