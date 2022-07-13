@@ -27,8 +27,8 @@ describe(AsyncAction, () => {
 
         testObject.addListener(listenerMock.object);
 
-        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
-        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
+        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable(Times.once());
+        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable(Times.once());
 
         await testObject.invoke(testPayload);
     });
@@ -39,8 +39,8 @@ describe(AsyncAction, () => {
 
         testObject.addListener(listenerMock.object);
 
-        scopeMutexMock.setup(m => m.tryLockScope(scope)).verifiable();
-        scopeMutexMock.setup(m => m.unlockScope(scope)).verifiable();
+        scopeMutexMock.setup(m => m.tryLockScope(scope)).verifiable(Times.once());
+        scopeMutexMock.setup(m => m.unlockScope(scope)).verifiable(Times.once());
 
         await testObject.invoke(testPayload, scope);
     });
@@ -57,27 +57,65 @@ describe(AsyncAction, () => {
             testObject.addListener(mock.object);
         });
 
-        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
-        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
+        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable(Times.once());
+        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable(Times.once());
 
         await testObject.invoke(testPayload);
 
         listenerMocks.forEach(mock => mock.verifyAll());
     });
 
-    test('addListener and invoke when listener throws error', async () => {
+    test('invoke throws if a listener throws error', async () => {
         const testError = new Error('test error');
         listenerMock
             .setup(l => l(testPayload))
-            .returns(() => Promise.reject(testError))
+            .returns(async () => {
+                throw testError;
+            })
             .verifiable(Times.once());
 
         testObject.addListener(listenerMock.object);
 
-        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
-        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
+        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable(Times.once());
+        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable(Times.once());
 
         await expect(() => testObject.invoke(testPayload)).rejects.toThrow(testError);
+    });
+
+    test('invoke aggregates errors if multiple listeners throw', async () => {
+        const testErrors: Error[] = [];
+        const listenerMocks: IMock<(payload: TestPayload) => Promise<void>>[] = [
+            Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict),
+            Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict),
+        ];
+        listenerMocks.forEach(mock => {
+            const testError = new Error('test error');
+            testErrors.push(testError);
+            mock.setup(l => l(testPayload))
+                .returns(async () => {
+                    throw testError;
+                })
+                .verifiable(Times.once());
+            testObject.addListener(mock.object);
+        });
+
+        scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable(Times.once());
+        scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable(Times.once());
+
+        try {
+            await testObject.invoke(testPayload);
+            fail('Expected invoke to throw error');
+        } catch (e) {
+            expect(e).toBeInstanceOf(AggregateError);
+
+            listenerMocks.forEach(mock => mock.verifyAll());
+
+            const aggregateError = e as AggregateError;
+            expect(aggregateError.errors.length).toBe(testErrors.length);
+            testErrors.forEach(error => {
+                expect(aggregateError.errors).toContain(error);
+            });
+        }
     });
 });
 

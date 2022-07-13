@@ -14,9 +14,10 @@ export class AsyncAction<TPayload> implements Action<TPayload, Promise<void>> {
         this.scopeMutex.tryLockScope(scope);
 
         try {
-            await Promise.all(
+            const results = await Promise.allSettled(
                 this.listeners.map((listener: (payload: TPayload) => void) => listener(payload)),
             );
+            this.throwCombinedRejections(results);
         } finally {
             this.scopeMutex.unlockScope(scope);
         }
@@ -24,5 +25,20 @@ export class AsyncAction<TPayload> implements Action<TPayload, Promise<void>> {
 
     public addListener(listener: (payload: TPayload) => Promise<void>): void {
         this.listeners.push(listener);
+    }
+
+    private throwCombinedRejections(promiseResults: PromiseSettledResult<void>[]): void {
+        const rejectedResults = promiseResults.filter(
+            (r): r is PromiseRejectedResult => r.status === 'rejected',
+        );
+
+        if (rejectedResults.length === 1) {
+            throw rejectedResults[0].reason;
+        }
+
+        if (rejectedResults.length > 0) {
+            const rejectedReasons = rejectedResults.map(r => r.reason);
+            throw new AggregateError(rejectedReasons);
+        }
     }
 }
