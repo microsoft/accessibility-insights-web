@@ -318,7 +318,10 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
         height: 59px;
         background-color: $communication-tint-30;
         margin-top: 12px;
-        padding: 12px 14px 14px 14px;
+        padding-top: 12px;
+        padding-right: 14px;
+        padding-bottom: 14px;
+        padding-left: 14px;
     }
 
     .launch-pad-item-grid {

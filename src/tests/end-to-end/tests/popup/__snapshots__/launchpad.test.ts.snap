@@ -66,11 +66,9 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
         class="subtitle--{{CSS_MODULE_HASH}}"
       >
         <a
-          aria-label="demo video"
           class="ms-Link insights-link root-000"
           href="https://go.microsoft.com/fwlink/?linkid=2082374"
           target="_blank"
-          title="watch the 3 minute video introduction"
         >
           Watch 3-minute video introduction
         </a>

@@ -38,4 +38,8 @@ In the remote build, these logs are uploaded as artifacts if any end-to-end test
 
 ### Implementation
 
-The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/main/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
+Our team wrote `mock-adb` in .NET to improve performance and ultimately the reliability of Unified tests. Since the tests invoke `mock-adb` hundreds of times, we migrated from Node.js due to the high startup time involved to initialize the Node.js runtime. On dev machines with fewer resources, this resulted in ~2s of overhead per call and caused the tests to timeout.
+
+Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/main/src/tests/miscellaneous/setup-mock-adb/setup-mock-adb.js) to write the appropriate config/logging context to disk. `mock-adb` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
+
+`mock-adb` is normally built automatically as a step of `yarn build:unified`, but you can rebuild it individually with `yarn build:mock-adb`.

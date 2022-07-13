@@ -47,7 +47,10 @@
         -webkit-app-region: no-drag;
 
         > * {
-            padding: 6px 10px;
+            padding-top: 6px;
+            padding-right: 10px;
+            padding-bottom: 6px;
+            padding-left: 10px;
         }
     }
 

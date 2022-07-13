@@ -18,7 +18,7 @@ import {
     physicalDeviceName1,
     setupMockAdb,
     simulateReadContentError,
-} from '../../miscellaneous/mock-adb/setup-mock-adb';
+} from '../../miscellaneous/setup-mock-adb/setup-mock-adb';
 
 const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
 
