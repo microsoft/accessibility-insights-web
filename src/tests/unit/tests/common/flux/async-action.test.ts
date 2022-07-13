@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AsyncAction } from 'common/flux/async-action';
 import { ScopeMutex } from 'common/flux/scope-mutex';
-import { SyncAction } from 'common/flux/sync-action';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe(SyncAction, () => {
-    let listenerMock: IMock<(payload: TestPayload) => void>;
+describe(AsyncAction, () => {
+    let listenerMock: IMock<(payload: TestPayload) => Promise<void>>;
     const testPayload: TestPayload = { key: 'value' };
-    let testObject: SyncAction<TestPayload>;
+    let testObject: AsyncAction<TestPayload>;
     let scopeMutexMock: IMock<ScopeMutex>;
 
     beforeEach(() => {
-        listenerMock = Mock.ofInstance(payload => {}, MockBehavior.Strict);
+        listenerMock = Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict);
         scopeMutexMock = Mock.ofType<ScopeMutex>();
 
-        testObject = new SyncAction<TestPayload>(scopeMutexMock.object);
+        testObject = new AsyncAction<TestPayload>(scopeMutexMock.object);
     });
 
     afterEach(() => {
@@ -22,7 +22,7 @@ describe(SyncAction, () => {
         scopeMutexMock.verifyAll();
     });
 
-    test('addListener and invoke', () => {
+    test('addListener and invoke', async () => {
         listenerMock.setup(l => l(testPayload)).verifiable(Times.once());
 
         testObject.addListener(listenerMock.object);
@@ -30,10 +30,10 @@ describe(SyncAction, () => {
         scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
         scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
 
-        testObject.invoke(testPayload);
+        await testObject.invoke(testPayload);
     });
 
-    test('addListener and invoke with scope', () => {
+    test('addListener and invoke with scope', async () => {
         const scope = 'test_scope';
         listenerMock.setup(l => l(testPayload)).verifiable(Times.once());
 
@@ -42,14 +42,14 @@ describe(SyncAction, () => {
         scopeMutexMock.setup(m => m.tryLockScope(scope)).verifiable();
         scopeMutexMock.setup(m => m.unlockScope(scope)).verifiable();
 
-        testObject.invoke(testPayload, scope);
+        await testObject.invoke(testPayload, scope);
     });
 
-    test('invoke calls all registered listeners', () => {
-        const listenerMocks: IMock<(payload: TestPayload) => void>[] = [
-            Mock.ofInstance((payload: TestPayload) => {}, MockBehavior.Strict),
-            Mock.ofInstance((payload: TestPayload) => {}, MockBehavior.Strict),
-            Mock.ofInstance((payload: TestPayload) => {}, MockBehavior.Strict),
+    test('invoke calls all registered listeners', async () => {
+        const listenerMocks: IMock<(payload: TestPayload) => Promise<void>>[] = [
+            Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict),
+            Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict),
+            Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict),
         ];
 
         listenerMocks.forEach(mock => {
@@ -60,16 +60,16 @@ describe(SyncAction, () => {
         scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
         scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
 
-        testObject.invoke(testPayload);
+        await testObject.invoke(testPayload);
 
         listenerMocks.forEach(mock => mock.verifyAll());
     });
 
-    test('addListener and invoke when listener throws error', () => {
+    test('addListener and invoke when listener throws error', async () => {
         const testError = new Error('test error');
         listenerMock
             .setup(l => l(testPayload))
-            .throws(testError)
+            .returns(() => Promise.reject(testError))
             .verifiable(Times.once());
 
         testObject.addListener(listenerMock.object);
@@ -77,7 +77,7 @@ describe(SyncAction, () => {
         scopeMutexMock.setup(m => m.tryLockScope(undefined)).verifiable();
         scopeMutexMock.setup(m => m.unlockScope(undefined)).verifiable();
 
-        expect(() => testObject.invoke(testPayload)).toThrow(testError);
+        await expect(() => testObject.invoke(testPayload)).rejects.toThrow(testError);
     });
 });
 
