@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+
+import { SyncAction } from 'common/flux/sync-action';
 
 export interface GetCommandsPayload {
     commands: chrome.commands.Command[];
@@ -8,5 +9,5 @@ export interface GetCommandsPayload {
 }
 
 export class CommandActions {
-    public readonly getCommands = new Action<GetCommandsPayload>();
+    public readonly getCommands = new SyncAction<GetCommandsPayload>();
 }

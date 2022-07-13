@@ -13,7 +13,7 @@ import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -30,7 +30,7 @@ describe('CardSelectionActionCreator', () => {
             resultInstanceUid: 'test-instance-uuid',
             ruleId: 'test-rule-id',
         };
-        const toggleCardSelectionMock = createActionMock(payload);
+        const toggleCardSelectionMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleCardSelection',
             toggleCardSelectionMock.object,
@@ -60,7 +60,7 @@ describe('CardSelectionActionCreator', () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'test-rule-id',
         };
-        const ruleExpansionToggleMock = createActionMock(payload);
+        const ruleExpansionToggleMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleRuleExpandCollapse',
             ruleExpansionToggleMock.object,
@@ -88,7 +88,7 @@ describe('CardSelectionActionCreator', () => {
 
     test('onToggleVisualHelper', () => {
         const payloadStub: BaseActionPayload = {};
-        const toggleVisualHelperMock = createActionMock(null);
+        const toggleVisualHelperMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.CardSelection.ToggleVisualHelper,
@@ -113,7 +113,7 @@ describe('CardSelectionActionCreator', () => {
 
     test('onCollapseAllRules', () => {
         const payloadStub: BaseActionPayload = {};
-        const collapseAllRulesActionMock = createActionMock(null);
+        const collapseAllRulesActionMock = createSyncActionMock(null);
         const actionsMock = createActionsMock(
             'collapseAllRules',
             collapseAllRulesActionMock.object,
@@ -141,7 +141,7 @@ describe('CardSelectionActionCreator', () => {
 
     test('onExpandAllRules', () => {
         const payloadStub: BaseActionPayload = {};
-        const expandAllRulesActionMock = createActionMock(null);
+        const expandAllRulesActionMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.CardSelection.ExpandAllRules,

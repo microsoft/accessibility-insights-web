@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../common/base-store';
@@ -78,8 +79,8 @@ export class StoreTester<TStoreData, TActions> {
         return actionsMock;
     }
 
-    private createActionMock(): IMock<Action<unknown>> {
-        const actionMock = Mock.ofType(Action);
+    private createActionMock(): IMock<Action<unknown, unknown>> {
+        const actionMock = Mock.ofType<Action<unknown, unknown>>();
 
         actionMock
             .setup(a => a.addListener(It.is(param => param instanceof Function)))

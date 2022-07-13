@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { InspectMode } from '../inspect-modes';
 import { BaseActionPayload } from './action-payloads';
 
@@ -9,7 +9,7 @@ export interface InspectPayload extends BaseActionPayload {
 }
 
 export class InspectActions {
-    public readonly changeInspectMode = new Action<InspectPayload>();
-    public readonly getCurrentState = new Action<void>();
-    public readonly setHoveredOverSelector = new Action<string[]>();
+    public readonly changeInspectMode = new SyncAction<InspectPayload>();
+    public readonly getCurrentState = new SyncAction<void>();
+    public readonly setHoveredOverSelector = new SyncAction<string[]>();
 }

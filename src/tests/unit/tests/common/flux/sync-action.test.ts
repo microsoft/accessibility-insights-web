@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('ActionTest', () => {
+describe(SyncAction, () => {
     let listenerMock: IMock<(payload: TestPayload) => void>;
     const testPayload: TestPayload = { key: 'value' };
-    let testObject: Action<TestPayload>;
-    let nestedObject: Action<TestPayload>;
+    let testObject: SyncAction<TestPayload>;
+    let nestedObject: SyncAction<TestPayload>;
 
     beforeEach(() => {
         listenerMock = Mock.ofInstance(payload => {}, MockBehavior.Strict);
-        testObject = new Action<TestPayload>();
-        nestedObject = new Action<TestPayload>();
+        testObject = new SyncAction<TestPayload>();
+        nestedObject = new SyncAction<TestPayload>();
     });
 
     afterEach(() => {
