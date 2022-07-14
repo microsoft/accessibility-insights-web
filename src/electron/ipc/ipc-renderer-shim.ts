@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
 import {
     SetSizePayload,
@@ -67,10 +67,11 @@ export class IpcRendererShim {
 
     // Listen to these events to receive data sent TO renderer process
     public readonly fromBrowserWindowClose = new AsyncAction();
-    public readonly fromBrowserWindowMaximize = new Action<void>();
-    public readonly fromBrowserWindowUnmaximize = new Action<void>();
-    public readonly fromBrowserWindowEnterFullScreen = new Action<void>();
-    public readonly fromBrowserWindowWindowBoundsChanged = new Action<WindowBoundsChangedPayload>();
+    public readonly fromBrowserWindowMaximize = new SyncAction<void>();
+    public readonly fromBrowserWindowUnmaximize = new SyncAction<void>();
+    public readonly fromBrowserWindowEnterFullScreen = new SyncAction<void>();
+    public readonly fromBrowserWindowWindowBoundsChanged =
+        new SyncAction<WindowBoundsChangedPayload>();
 
     public getAppPath = async (): Promise<string> => {
         return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);

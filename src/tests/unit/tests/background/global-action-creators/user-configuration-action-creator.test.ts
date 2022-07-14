@@ -15,7 +15,7 @@ import { UserConfigurationActionCreator } from 'background/global-action-creator
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { IMock, Mock, Times } from 'typemoq';
 import * as TelemetryEvents from '../../../../../common/extension-telemetry-events';
-import { createActionMock } from './action-creator-test-helpers';
+import { createSyncActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -25,7 +25,7 @@ describe('UserConfigurationActionCreator', () => {
     });
 
     it('handles GetCurrentState message', () => {
-        const getCurrentStateMock = createActionMock<void>(undefined);
+        const getCurrentStateMock = createSyncActionMock<void>(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
@@ -40,7 +40,7 @@ describe('UserConfigurationActionCreator', () => {
     it('should SetTelemetryConfig message', () => {
         const setTelemetryState = true;
 
-        const setTelemetryStateMock = createActionMock(setTelemetryState);
+        const setTelemetryStateMock = createSyncActionMock(setTelemetryState);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
@@ -56,7 +56,7 @@ describe('UserConfigurationActionCreator', () => {
         const payload: SetHighContrastModePayload = {
             enableHighContrast: true,
         };
-        const setHighContrastConfigMock = createActionMock(payload);
+        const setHighContrastConfigMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setHighContrastMode',
             setHighContrastConfigMock.object,
@@ -75,7 +75,7 @@ describe('UserConfigurationActionCreator', () => {
         const payload: SetNativeHighContrastModePayload = {
             enableHighContrast: true,
         };
-        const setNativeHighContrastConfigMock = createActionMock(payload);
+        const setNativeHighContrastConfigMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setNativeHighContrastMode',
             setNativeHighContrastConfigMock.object,
@@ -94,7 +94,7 @@ describe('UserConfigurationActionCreator', () => {
         const payload: SetIssueFilingServicePayload = {
             issueFilingServiceName: 'none',
         };
-        const setBugServiceMock = createActionMock(payload);
+        const setBugServiceMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
@@ -112,7 +112,7 @@ describe('UserConfigurationActionCreator', () => {
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
-        const setIssueFilingServicePropertyMock = createActionMock(payload);
+        const setIssueFilingServicePropertyMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setIssueFilingServiceProperty',
             setIssueFilingServicePropertyMock.object,
@@ -132,7 +132,7 @@ describe('UserConfigurationActionCreator', () => {
             issueFilingServiceName: 'test bug service',
             issueFilingSettings: { name: 'issueFilingSettings' },
         };
-        const setIssueFilingSettings = createActionMock(payload);
+        const setIssueFilingSettings = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'saveIssueFilingSettings',
             setIssueFilingSettings.object,
@@ -150,7 +150,7 @@ describe('UserConfigurationActionCreator', () => {
     it('should SetAdbLocation Message', () => {
         const expectedAdbLocation = 'Somewhere over the rainbow';
 
-        const setAdbLocationConfigMock = createActionMock(
+        const setAdbLocationConfigMock = createSyncActionMock(
             expectedAdbLocation,
             'UserConfigurationActionCreator',
         );
@@ -171,7 +171,7 @@ describe('UserConfigurationActionCreator', () => {
             windowBounds: { x: 10, y: 20, height: 100, width: 150 },
         };
 
-        const saveWindowBoundsActionMock = createActionMock(payload);
+        const saveWindowBoundsActionMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'saveWindowBounds',
             saveWindowBoundsActionMock.object,
@@ -190,7 +190,7 @@ describe('UserConfigurationActionCreator', () => {
         const expectedDialogState = { enabled: false };
         const expectedPayload = expectedDialogState as BaseActionPayload;
 
-        const dialogStateConfigMock = createActionMock(expectedDialogState);
+        const dialogStateConfigMock = createSyncActionMock(expectedDialogState);
         const actionsMock = createActionsMock(
             'setAutoDetectedFailuresDialogState',
             dialogStateConfigMock.object,

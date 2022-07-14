@@ -9,7 +9,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock } from 'typemoq';
 
-import { createActionMock, createInterpreterMock } from './action-creator-test-helpers';
+import { createSyncActionMock, createInterpreterMock } from './action-creator-test-helpers';
 
 describe('PermissionsStateActionCreator', () => {
     let permissionsStateActionsMock: IMock<PermissionsStateActions>;
@@ -21,7 +21,7 @@ describe('PermissionsStateActionCreator', () => {
     it('handles getStoreState message', () => {
         const expectedMessage = getStoreStateMessage(StoreNames.PermissionsStateStore);
         const interpreterMock = createInterpreterMock(expectedMessage, null);
-        const getCurrentStateMock = createActionMock(undefined);
+        const getCurrentStateMock = createSyncActionMock(undefined);
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new PermissionsStateActionCreator(
             interpreterMock.object,
@@ -43,7 +43,7 @@ describe('PermissionsStateActionCreator', () => {
                 telemetry: {} as TelemetryData,
             };
             const interpreterMock = createInterpreterMock(expectedMessage, payload);
-            const setPermissionsStateMock = createActionMock(payload);
+            const setPermissionsStateMock = createSyncActionMock(payload);
             const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
             setupActionsMock('setPermissionsState', setPermissionsStateMock.object);
             const testSubject = new PermissionsStateActionCreator(

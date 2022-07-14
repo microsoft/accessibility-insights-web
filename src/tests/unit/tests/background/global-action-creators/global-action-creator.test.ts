@@ -12,6 +12,7 @@ import { GlobalActionCreator } from 'background/global-action-creators/global-ac
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
@@ -98,9 +99,9 @@ describe('GlobalActionCreatorTest', () => {
 
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
-    private commandActionMocksMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
@@ -193,7 +194,7 @@ class GlobalActionCreatorValidator {
     private setupActionWithInvokeParameter(
         actionName: string,
         expectedInvokeParam: any,
-        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMockMap: DictionaryStringTo<IMock<Action<any, any>>>,
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
@@ -204,12 +205,12 @@ class GlobalActionCreatorValidator {
 
     private getOrCreateAction(
         actionName: string,
-        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
-    ): IMock<Action<any>> {
+        actionsMockMap: DictionaryStringTo<IMock<Action<any, any>>>,
+    ): IMock<Action<any, any>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(Action);
+            action = Mock.ofType(SyncAction);
             actionsMockMap[actionName] = action;
         }
         return action;
@@ -218,7 +219,7 @@ class GlobalActionCreatorValidator {
     private setupAction(
         actionName: string,
         actionsContainerMock: IMock<any>,
-        actionsMapMock: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMapMock: DictionaryStringTo<IMock<Action<any, any>>>,
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMapMock);
 
@@ -282,7 +283,7 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.launchPanelActionsMockMap);
     }
 
-    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
+    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any, any>>>): void {
         for (const actionName in actionsMap) {
             if (actionsMap.hasOwnProperty(actionName)) {
                 actionsMap[actionName].verifyAll();

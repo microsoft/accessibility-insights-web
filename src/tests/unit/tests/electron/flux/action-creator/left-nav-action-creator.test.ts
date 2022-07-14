@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
@@ -26,13 +26,13 @@ describe('LeftNavActionCreator', () => {
     });
 
     it('itemSelected', () => {
-        const itemSelectedMock = Mock.ofType<Action<LeftNavItemKey>>();
+        const itemSelectedMock = Mock.ofType<SyncAction<LeftNavItemKey>>();
         leftNavActionsMock
             .setup(actions => actions.itemSelected)
             .returns(() => itemSelectedMock.object)
             .verifiable();
 
-        const navigateToNewCardsViewMock = Mock.ofType<Action<void>>();
+        const navigateToNewCardsViewMock = Mock.ofType<SyncAction<void>>();
         cardSelectionActionsMock
             .setup(actions => actions.navigateToNewCardsView)
             .returns(() => navigateToNewCardsViewMock.object)
@@ -52,7 +52,7 @@ describe('LeftNavActionCreator', () => {
     });
 
     it.each([[true], [false]])('setLeftNavVisible', testValue => {
-        const setLeftNavVisibleMock = Mock.ofType<Action<boolean>>();
+        const setLeftNavVisibleMock = Mock.ofType<SyncAction<boolean>>();
         leftNavActionsMock
             .setup(actions => actions.setLeftNavVisible)
             .returns(() => setLeftNavVisibleMock.object)
