@@ -7,7 +7,7 @@ import {
     getTestViewTitle,
     GetTestViewTitleProps,
 } from '../handlers/get-document-title';
-import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 import {
     GetLeftNavSelectedKeyProps,
     getOverviewKey,

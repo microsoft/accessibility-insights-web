@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DetailsViewStoreData } from '../../../common/types/store-data/details-view-store-data';
-import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from '../../../common/types/store-data/details-view-right-content-panel-type';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStoreData> {
