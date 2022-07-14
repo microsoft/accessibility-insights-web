@@ -4,12 +4,12 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
-import { ScopingInputTypes } from '../../../common/types/store-data/scoping-input-types';
 
 export class ScopingStore extends PersistentStore<ScopingStoreData> {
     private scopingActions: ScopingActions;

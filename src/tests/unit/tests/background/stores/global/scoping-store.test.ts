@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
-import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
     ScopingStoreData,
