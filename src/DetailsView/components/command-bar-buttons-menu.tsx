@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from '@fluentui/react';
+import {
+    CommandBarButton,
+    IButton,
+    IContextualMenuItem,
+    IRefObject,
+    TooltipHost,
+} from '@fluentui/react';
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
@@ -42,18 +49,19 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         });
 
         return (
-            <CommandBarButton
-                ariaLabel="More actions"
-                tooltipContent="More actions"
-                className={styles.commandBarButtonsMenu}
-                role="button"
-                menuIconProps={{
-                    iconName: 'More',
-                    className: styles.commandBarButtonsMenuButton,
-                }}
-                menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
-                componentRef={props.buttonRef}
-            />
+            <TooltipHost content="More actions" aria-label="More actions">
+                <CommandBarButton
+                    ariaLabel="More actions"
+                    className={styles.commandBarButtonsMenu}
+                    role="button"
+                    menuIconProps={{
+                        iconName: 'More',
+                        className: styles.commandBarButtonsMenuButton,
+                    }}
+                    menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
+                    componentRef={props.buttonRef}
+                />
+            </TooltipHost>
         );
     },
 );
