@@ -43,7 +43,8 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
 
         return (
             <CommandBarButton
-                ariaLabel="More items"
+                ariaLabel="More actions"
+                tooltipContent="More actions"
                 className={styles.commandBarButtonsMenu}
                 role="button"
                 menuIconProps={{

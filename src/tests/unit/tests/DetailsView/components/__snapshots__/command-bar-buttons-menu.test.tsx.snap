@@ -2,7 +2,7 @@
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 <CustomizedCommandBarButton
-  ariaLabel="More items"
+  ariaLabel="More actions"
   className="commandBarButtonsMenu"
   componentRef={Object {}}
   menuIconProps={
@@ -34,6 +34,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
     }
   }
   role="button"
+  tooltipContent="More actions"
 />
 `;
 
