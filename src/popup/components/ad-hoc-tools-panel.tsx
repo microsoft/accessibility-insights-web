@@ -24,7 +24,8 @@ const toggleShouldNotHaveDivider = (
 };
 
 export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', props => {
-    let addNewRow: boolean;
+    let newStyle: string = styles.noRowNeeded;
+
     const getTogglesWithDividers = () => {
         const toggles = props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
 
@@ -37,7 +38,7 @@ export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', 
         let totalRows = 3;
         if (props.featureFlagStoreData[FeatureFlags.showAccessibleNames]) {
             totalRows = 4;
-            addNewRow = true;
+            newStyle = styles.newRowNeeded;
         }
 
         const result = flatMap(toggles, (toggle, index) => {
@@ -60,9 +61,7 @@ export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', 
     return (
         <div className={css('main-section', styles.adHocToolsPanel)}>
             <main className={styles.adHocToolsGrid}>
-                <div className={addNewRow === true ? styles.newRowNeeded : styles.noRowNeeded}>
-                    {togglesWithDividers}
-                </div>
+                <div className={newStyle}>{togglesWithDividers}</div>
             </main>
             <div role="navigation" className={styles.adHocToolsPanelFooter}>
                 <Link

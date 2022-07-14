@@ -7,21 +7,19 @@ import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
-import { adhoc as content } from 'content/adhoc';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 
-const { guidance } = content.headings;
 const accessiblenamesTestKey = AdHocTestkeys.AccessibleNames;
 
-const headingsRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['collect-headings'],
+const accessibleNamesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['find-accessible-names'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
     key: accessiblenamesTestKey,
-    testType: VisualizationType.Headings,
+    testType: VisualizationType.AccessibleNames,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
@@ -38,18 +36,18 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     displayableData: {
         title: 'Accessible Names',
         enableMessage: 'Calculating accessible names...',
-        toggleLabel: 'Show accessiblenames',
+        toggleLabel: 'Show accessible names',
         linkToDetailsViewText: 'How to test accessible names',
     },
     chromeCommand: '07_toggle-accessibleNames',
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,
-    getAnalyzer: provider => provider.createRuleAnalyzer(headingsRuleAnalyzerConfiguration),
+    getAnalyzer: provider => provider.createRuleAnalyzer(accessibleNamesRuleAnalyzerConfiguration),
     getIdentifier: () => accessiblenamesTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
-    getDrawer: provider => provider.createHeadingsDrawer(),
+    getNotificationMessage: selectorMap =>
+        isEmpty(selectorMap) ? 'No elements with accessible names found' : null,
+    getDrawer: provider => provider.createNullDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    guidance,
 };
