@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectMode } from 'background/inspect-modes';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { Logger } from 'common/logging/logger';
 import { Messages } from '../common/messages';
 import { ContentScriptInjector } from './injector/content-script-injector';

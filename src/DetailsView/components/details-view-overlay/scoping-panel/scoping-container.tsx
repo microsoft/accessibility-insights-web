@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
-import { InspectMode } from 'background/inspect-modes';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { SelectorInputList } from 'common/components/selector-input-list';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';

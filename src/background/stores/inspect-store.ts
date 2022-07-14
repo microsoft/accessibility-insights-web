@@ -8,7 +8,7 @@ import { StoreNames } from '../../common/stores/store-names';
 import { InspectStoreData } from '../../common/types/store-data/inspect-store-data';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
-import { InspectMode } from '../inspect-modes';
+import { InspectMode } from '../../common/types/store-data/inspect-modes';
 
 export class InspectStore extends PersistentStore<InspectStoreData> {
     private inspectActions: InspectActions;

@@ -3,7 +3,7 @@
 
 import { InjectorController } from 'background/injector-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
-import { InspectMode } from 'background/inspect-modes';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { Interpreter } from 'background/interpreter';
 import { InspectStore } from 'background/stores/inspect-store';
 import { TabStore } from 'background/stores/tab-store';

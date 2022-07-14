@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
-import { InspectMode } from '../inspect-modes';
+import { InspectMode } from '../../common/types/store-data/inspect-modes';
 import { BaseActionPayload } from './action-payloads';
 
 export interface InspectPayload extends BaseActionPayload {

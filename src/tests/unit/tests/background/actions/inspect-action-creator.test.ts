@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { InspectActionCreator } from 'background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
-import { InspectMode } from 'background/inspect-modes';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
