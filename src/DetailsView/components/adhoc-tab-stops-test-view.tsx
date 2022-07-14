@@ -76,43 +76,47 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         );
 
         const howToTest: JSX.Element = (
-            <ol>
-                The visual helper for this requirement highlights the elements in the target page
-                that receive the input focus.
-                <li>
-                    Use your keyboard to move input focus through all the interactive elements in
-                    the page:
-                    <ol>
-                        <li>
-                            Use <Markup.Term>Tab</Markup.Term> and{' '}
-                            <Markup.Term>Shift+Tab</Markup.Term> to navigate between standalone
-                            controls.{' '}
-                        </li>
-                        <li>
-                            Use the arrow keys to navigate between the focusable elements within a
-                            composite control.
-                        </li>
-                    </ol>
-                </li>
-                <li>
-                    Record your results for each requirement:
-                    <ol>
-                        <li>
-                            If you find any failures, select <Markup.Term>Fail</Markup.Term>, then
-                            add them as failure instances.
-                        </li>
-                        <li>
-                            Select <Markup.Term>Pass</Markup.Term> if all instances meet the
-                            requirement.
-                        </li>
-                        <li>
-                            <Markup.Emphasis>
-                                Review any auto-discovered failures to be sure they are valid.
-                            </Markup.Emphasis>
-                        </li>
-                    </ol>
-                </li>
-            </ol>
+            <>
+                <p>
+                    The visual helper for this requirement highlights the elements in the target
+                    page that receive the input focus.
+                </p>
+                <ol>
+                    <li>
+                        Use your keyboard to move input focus through all the interactive elements
+                        in the page:
+                        <ol>
+                            <li>
+                                Use <Markup.Term>Tab</Markup.Term> and{' '}
+                                <Markup.Term>Shift+Tab</Markup.Term> to navigate between standalone
+                                controls.{' '}
+                            </li>
+                            <li>
+                                Use the arrow keys to navigate between the focusable elements within
+                                a composite control.
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        Record your results for each requirement:
+                        <ol>
+                            <li>
+                                If you find any failures, select <Markup.Term>Fail</Markup.Term>,
+                                then add them as failure instances.
+                            </li>
+                            <li>
+                                Select <Markup.Term>Pass</Markup.Term> if all instances meet the
+                                requirement.
+                            </li>
+                            <li>
+                                <Markup.Emphasis>
+                                    Review any auto-discovered failures to be sure they are valid.
+                                </Markup.Emphasis>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </>
         );
 
         const selectedTest = props.selectedTest;
