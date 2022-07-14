@@ -7,7 +7,6 @@ import {
     IRefObject,
     TooltipHost,
 } from '@fluentui/react';
-import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
