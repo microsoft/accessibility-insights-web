@@ -11,7 +11,6 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
     <tbody>
       <tr>
         <td
-          aria-hidden="true"
           className="icon"
         >
           <UrlIcon />
@@ -27,7 +26,6 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
       </tr>
       <tr>
         <td
-          aria-hidden="true"
           className="icon"
         >
           <DateIcon />
@@ -47,7 +45,6 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
       </tr>
       <tr>
         <td
-          aria-hidden="true"
           className="icon"
         >
           <CommentIcon />

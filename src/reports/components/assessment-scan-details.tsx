@@ -24,7 +24,7 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                 <table>
                     <tbody>
                         <tr>
-                            <td className="icon" aria-hidden="true">
+                            <td className="icon">
                                 <UrlIcon />
                             </td>
                             <td>
@@ -37,7 +37,7 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                             </td>
                         </tr>
                         <tr>
-                            <td className="icon" aria-hidden="true">
+                            <td className="icon">
                                 <DateIcon />
                             </td>
                             <td>
@@ -48,7 +48,7 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                             </td>
                         </tr>
                         <tr>
-                            <td className="icon" aria-hidden="true">
+                            <td className="icon">
                                 <CommentIcon />
                             </td>
                             <td className="assessment-scan-details-description">
