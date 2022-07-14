@@ -35,7 +35,7 @@ export type InstanceDetailsProps = {
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {

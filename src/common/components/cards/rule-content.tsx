@@ -19,7 +19,7 @@ export type RuleContentProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {

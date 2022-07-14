@@ -14,6 +14,7 @@ import {
     IssuesTableDeps,
     IssuesTableProps,
 } from 'DetailsView/components/issues-table';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -142,6 +143,7 @@ class TestPropsBuilder {
                 selectedFastPassDetailsView: this.testType,
             } as VisualizationStoreData,
             cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
+            narrowModeStatus: {} as NarrowModeStatus,
         };
     }
 }

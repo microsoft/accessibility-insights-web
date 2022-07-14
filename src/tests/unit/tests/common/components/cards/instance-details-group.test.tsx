@@ -9,6 +9,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { RecommendColor } from 'common/components/recommend-color';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -30,6 +31,7 @@ describe('InstanceDetailsGroup', () => {
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
+            narrowModeStatus: {} as NarrowModeStatus,
         };
 
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);

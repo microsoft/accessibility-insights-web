@@ -36,7 +36,7 @@ export type RulesWithInstancesProps = {
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';

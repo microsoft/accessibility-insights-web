@@ -34,7 +34,7 @@ export type ResultSectionContentProps = {
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(

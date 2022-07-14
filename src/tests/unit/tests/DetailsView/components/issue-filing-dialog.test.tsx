@@ -259,7 +259,7 @@ describe('IssueFilingDialog', () => {
                 ...props,
                 isOpen: isOpenVal,
                 ...additionalProperties,
-            } as IssueFilingDialogProps;
+            } as Pick<any, keyof IssueFilingDialogProps>;
             const differentServiceData = {
                 differentProperty: 'different_property',
             };

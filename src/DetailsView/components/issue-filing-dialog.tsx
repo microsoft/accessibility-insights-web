@@ -27,7 +27,7 @@ export interface IssueFilingDialogProps {
     selectedIssueData: CreateIssueDetailsTextData;
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev?: React.SyntheticEvent) => void;
-    afterClosed: () => void;
+    afterClosed?: () => void;
 }
 
 export type IssueFilingDialogDeps = {

@@ -28,7 +28,7 @@ export type InstanceDetailsGroupProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(

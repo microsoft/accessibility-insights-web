@@ -53,7 +53,7 @@ export interface CardFooterFarButtonsProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 }
 
 export class CardFooterFarButtons extends React.Component<
@@ -94,7 +94,7 @@ export class CardFooterFarButtons extends React.Component<
     }
 
     public renderButtons(): JSX.Element {
-        if (this.props.narrowModeStatus.isCardFooterCollapsed) {
+        if (this.props.narrowModeStatus?.isCardFooterCollapsed) {
             return this.renderKebabButton();
         } else {
             return this.renderExpandedButtons();
@@ -252,10 +252,10 @@ export class CardFooterFarButtons extends React.Component<
             onClose: this.closeNeedsSettingsContent,
             issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
             afterClosed: () => {
-                if (this.props.narrowModeStatus.isCardFooterCollapsed) {
-                    this.kebabButtonRef.focus();
+                if (this.props.narrowModeStatus?.isCardFooterCollapsed) {
+                    this.kebabButtonRef?.focus();
                 } else {
-                    this.fileIssueButtonRef.focus();
+                    this.fileIssueButtonRef?.focus();
                 }
             },
         };

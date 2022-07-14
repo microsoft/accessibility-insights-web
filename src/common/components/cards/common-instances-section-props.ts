@@ -17,5 +17,5 @@ export type CommonInstancesSectionProps = {
     shouldAlertFailuresCount?: boolean;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     sectionHeadingLevel: HeadingLevel;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };

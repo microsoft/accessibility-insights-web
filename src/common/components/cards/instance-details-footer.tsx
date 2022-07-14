@@ -30,7 +30,7 @@ export type InstanceDetailsFooterProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
-    narrowModeStatus: NarrowModeStatus;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
