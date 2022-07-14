@@ -29,56 +29,58 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
       />
       <CollapsibleComponent
         content={
-          <ol>
-            <li>
-              Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-            </li>
-            <li>
-              Use your keyboard to move input focus through all the interactive elements in the page:
-              <ol>
-                <li>
-                  Use 
-                  <Term>
-                    Tab
-                  </Term>
-                   and
-                   
-                  <Term>
-                    Shift+Tab
-                  </Term>
-                   to navigate between standalone controls.
-                   
-                </li>
-                <li>
-                  Use the arrow keys to navigate between the focusable elements within a composite control.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Record your results for each requirement:
-              <ol>
-                <li>
-                  If you find any failures, select 
-                  <Term>
-                    Fail
-                  </Term>
-                  , then add them as failure instances.
-                </li>
-                <li>
-                  Select 
-                  <Term>
-                    Pass
-                  </Term>
-                   if all instances meet the requirement.
-                </li>
-                <li>
-                  <Emphasis>
-                    Review any auto-discovered failures to be sure they are valid.
-                  </Emphasis>
-                </li>
-              </ol>
-            </li>
-          </ol>
+          <React.Fragment>
+            <p>
+              The visual helper for this requirement highlights the elements in the target page that receive the input focus.
+            </p>
+            <ol>
+              <li>
+                Use your keyboard to move input focus through all the interactive elements in the page:
+                <ol>
+                  <li>
+                    Use 
+                    <Term>
+                      Tab
+                    </Term>
+                     and
+                     
+                    <Term>
+                      Shift+Tab
+                    </Term>
+                     to navigate between standalone controls.
+                     
+                  </li>
+                  <li>
+                    Use the arrow keys to navigate between the focusable elements within a composite control.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Record your results for each requirement:
+                <ol>
+                  <li>
+                    If you find any failures, select 
+                    <Term>
+                      Fail
+                    </Term>
+                    , then add them as failure instances.
+                  </li>
+                  <li>
+                    Select 
+                    <Term>
+                      Pass
+                    </Term>
+                     if all instances meet the requirement.
+                  </li>
+                  <li>
+                    <Emphasis>
+                      Review any auto-discovered failures to be sure they are valid.
+                    </Emphasis>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </React.Fragment>
         }
         contentClassName="requirementInstructions"
         header={
@@ -163,56 +165,58 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       />
       <CollapsibleComponent
         content={
-          <ol>
-            <li>
-              Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-            </li>
-            <li>
-              Use your keyboard to move input focus through all the interactive elements in the page:
-              <ol>
-                <li>
-                  Use 
-                  <Term>
-                    Tab
-                  </Term>
-                   and
-                   
-                  <Term>
-                    Shift+Tab
-                  </Term>
-                   to navigate between standalone controls.
-                   
-                </li>
-                <li>
-                  Use the arrow keys to navigate between the focusable elements within a composite control.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Record your results for each requirement:
-              <ol>
-                <li>
-                  If you find any failures, select 
-                  <Term>
-                    Fail
-                  </Term>
-                  , then add them as failure instances.
-                </li>
-                <li>
-                  Select 
-                  <Term>
-                    Pass
-                  </Term>
-                   if all instances meet the requirement.
-                </li>
-                <li>
-                  <Emphasis>
-                    Review any auto-discovered failures to be sure they are valid.
-                  </Emphasis>
-                </li>
-              </ol>
-            </li>
-          </ol>
+          <React.Fragment>
+            <p>
+              The visual helper for this requirement highlights the elements in the target page that receive the input focus.
+            </p>
+            <ol>
+              <li>
+                Use your keyboard to move input focus through all the interactive elements in the page:
+                <ol>
+                  <li>
+                    Use 
+                    <Term>
+                      Tab
+                    </Term>
+                     and
+                     
+                    <Term>
+                      Shift+Tab
+                    </Term>
+                     to navigate between standalone controls.
+                     
+                  </li>
+                  <li>
+                    Use the arrow keys to navigate between the focusable elements within a composite control.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Record your results for each requirement:
+                <ol>
+                  <li>
+                    If you find any failures, select 
+                    <Term>
+                      Fail
+                    </Term>
+                    , then add them as failure instances.
+                  </li>
+                  <li>
+                    Select 
+                    <Term>
+                      Pass
+                    </Term>
+                     if all instances meet the requirement.
+                  </li>
+                  <li>
+                    <Emphasis>
+                      Review any auto-discovered failures to be sure they are valid.
+                    </Emphasis>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </React.Fragment>
         }
         contentClassName="requirementInstructions"
         header={
