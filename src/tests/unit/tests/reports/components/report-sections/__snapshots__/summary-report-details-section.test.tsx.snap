@@ -14,7 +14,6 @@ exports[`SummaryReportDetailsSection renders 1`] = `
       className="targetSite"
     >
       <span
-        aria-hidden="true"
         className="icon"
       >
         <UrlIcon />
@@ -37,7 +36,6 @@ exports[`SummaryReportDetailsSection renders 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <DateIcon />

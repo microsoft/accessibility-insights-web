@@ -12,7 +12,6 @@ exports[`makeDetailsSection renders with description:  1`] = `
   >
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <UrlIcon />
@@ -30,7 +29,6 @@ exports[`makeDetailsSection renders with description:  1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <DateIcon />
@@ -62,7 +60,6 @@ exports[`makeDetailsSection renders with description: description-text 1`] = `
   >
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <UrlIcon />
@@ -80,7 +77,6 @@ exports[`makeDetailsSection renders with description: description-text 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <DateIcon />
@@ -98,7 +94,6 @@ exports[`makeDetailsSection renders with description: description-text 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <CommentIcon />
@@ -130,7 +125,6 @@ exports[`makeDetailsSection renders with description: null 1`] = `
   >
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <UrlIcon />
@@ -148,7 +142,6 @@ exports[`makeDetailsSection renders with description: null 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <DateIcon />
@@ -180,7 +173,6 @@ exports[`makeDetailsSection renders with description: undefined 1`] = `
   >
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <UrlIcon />
@@ -198,7 +190,6 @@ exports[`makeDetailsSection renders with description: undefined 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
         className="icon"
       >
         <DateIcon />

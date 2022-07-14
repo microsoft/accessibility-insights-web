@@ -23,9 +23,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         ) =>
             icon ? (
                 <li key={label} className={className}>
-                    <span className={styles.icon} aria-hidden="true">
-                        {icon}
-                    </span>
+                    <span className={styles.icon}>{icon}</span>
                     <span className={styles.label}>{`${label} `}</span>
                     <span className={styles.text}>{content}</span>
                 </li>

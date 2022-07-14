@@ -6,7 +6,7 @@ import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
-} from 'tests/miscellaneous/mock-adb/generate-log-paths';
+} from 'tests/miscellaneous/setup-mock-adb/generate-log-paths';
 
 const readFile = util.promisify(fs.readFile);
 export class LogController {
