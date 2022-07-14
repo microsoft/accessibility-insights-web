@@ -155,6 +155,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                         cardsViewData={cardsViewData}
                                         contentPageInfo={contentPageInfo}
                                         tabStopsEnabled={this.props.tabStopsStoreData.focusTracking}
+                                        narrowModeStatus={this.props.narrowModeStatus}
                                     />
                                 </main>
                             </div>

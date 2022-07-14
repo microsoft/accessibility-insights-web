@@ -12,6 +12,7 @@ exports[`InstanceDetailsGroup renders 1`] = `
       deps={Object {}}
       getPropertyConfigById={[Function]}
       index={0}
+      narrowModeStatus={Object {}}
       result={
         Object {
           "descriptors": Object {

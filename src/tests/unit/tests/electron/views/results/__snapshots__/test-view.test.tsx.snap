@@ -17,6 +17,7 @@ exports[`TestView when status scan <Completed> 1`] = `
       }
     }
     deps={Object {}}
+    narrowModeStatus={Object {}}
     scanMetadata={
       Object {
         "timespan": Object {

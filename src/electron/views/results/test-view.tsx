@@ -7,6 +7,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { HeaderSection } from 'electron/views/results/components/header-section';
@@ -23,6 +24,7 @@ export type TestViewProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     contentPageInfo: ContentPageInfo;
     tabStopsEnabled: boolean;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const TestView = NamedFC<TestViewProps>('TestView', props => {
@@ -33,6 +35,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
         userConfigurationStoreData,
         deps,
         contentPageInfo,
+        narrowModeStatus,
     } = props;
 
     const { title, description } = contentPageInfo;
@@ -63,6 +66,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 tabStopsEnabled={props.tabStopsEnabled}
                 cardSelectionMessageCreator={deps.cardSelectionMessageCreator}
                 sectionHeadingLevel={2}
+                narrowModeStatus={narrowModeStatus}
             />
         </div>
     );

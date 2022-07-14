@@ -20,6 +20,6 @@ export const getNarrowModeThresholdsForUnified = (): NarrowModeThresholds => {
         collapseHeaderAndNavThreshold: 850,
         collapseCommandBarThreshold: 850,
         collapseVirtualKeyboardThreshold: 560,
-        collapseCardFooterThreshold: 800,
+        collapseCardFooterThreshold: 1100,
     };
 };

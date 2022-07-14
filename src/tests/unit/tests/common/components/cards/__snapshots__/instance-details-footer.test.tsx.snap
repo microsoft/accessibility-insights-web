@@ -12,7 +12,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
       Highlight visible
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton
+  <CardFooterFarButtons
     deps={
       Object {
         "cardInteractionSupport": Object {
@@ -42,7 +42,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
       Highlight visible
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton
+  <CardFooterFarButtons
     deps={
       Object {
         "cardInteractionSupport": Object {
@@ -87,7 +87,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
       Highlight hidden
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton
+  <CardFooterFarButtons
     deps={
       Object {
         "cardInteractionSupport": Object {
@@ -117,7 +117,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
       Highlight unavailable
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton
+  <CardFooterFarButtons
     deps={
       Object {
         "cardInteractionSupport": Object {
@@ -147,7 +147,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
       Highlight visible
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton
+  <CardFooterFarButtons
     deps={
       Object {
         "cardInteractionSupport": Object {

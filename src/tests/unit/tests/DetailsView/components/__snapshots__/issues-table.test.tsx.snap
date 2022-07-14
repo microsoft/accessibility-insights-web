@@ -71,6 +71,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           "reportGenerator": [typemoq mock object],
         }
       }
+      narrowModeStatus={Object {}}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
@@ -183,6 +184,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           "reportGenerator": [typemoq mock object],
         }
       }
+      narrowModeStatus={Object {}}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
