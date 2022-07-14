@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
 import {
     SetSizePayload,
     WindowBoundsChangedPayload,
 } from 'electron/flux/action/window-frame-actions-payloads';
-import { AsyncAction } from 'electron/ipc/async-action';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -57,7 +57,7 @@ export class IpcRendererShim {
     };
 
     private onClose = async (): Promise<void> => {
-        await this.fromBrowserWindowClose.invokeAsync();
+        await this.fromBrowserWindowClose.invoke(undefined);
         this.closeWindow();
     };
 
