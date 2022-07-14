@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
-import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';

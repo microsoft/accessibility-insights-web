@@ -9,7 +9,7 @@ import * as _ from 'lodash/index';
 import { StoreNames } from '../../../common/stores/store-names';
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
-import { ScopingInputTypes } from './../../scoping-input-types';
+import { ScopingInputTypes } from '../../../common/types/store-data/scoping-input-types';
 
 export class ScopingStore extends PersistentStore<ScopingStoreData> {
     private scopingActions: ScopingActions;

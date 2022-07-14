@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { BaseStore } from 'common/base-store';
 import { Logger } from 'common/logging/logger';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
