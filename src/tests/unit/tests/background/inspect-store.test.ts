@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
 import { TabActions } from 'background/actions/tab-actions';
-import { InspectMode } from 'background/inspect-modes';
 import { InspectStore } from 'background/stores/inspect-store';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { InspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../common/store-tester';

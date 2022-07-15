@@ -13,6 +13,7 @@ import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
+import { UrlParser } from 'common/url-parser';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -53,6 +54,7 @@ export class TabContextFactory {
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
         private readonly persistStoreData: boolean,
+        private readonly urlParser: UrlParser,
     ) {}
 
     public createTabContext(tabId: number): TabContext {
@@ -66,6 +68,7 @@ export class TabContextFactory {
             this.logger,
             tabId,
             this.persistStoreData,
+            this.urlParser,
         );
         const notificationCreator = new NotificationCreator(
             this.browserAdapter,

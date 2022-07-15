@@ -41,6 +41,7 @@ import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
@@ -210,6 +211,8 @@ async function initialize(): Promise<void> {
     await detailsViewController.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
+    const urlParser = new UrlParser();
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -225,6 +228,7 @@ async function initialize(): Promise<void> {
         persistedData,
         indexedDBInstance,
         true,
+        urlParser,
     );
 
     const targetPageController = new TargetPageController(

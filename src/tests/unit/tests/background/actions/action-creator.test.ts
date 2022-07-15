@@ -40,6 +40,7 @@ import {
     TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
@@ -908,16 +909,16 @@ describe('ActionCreatorTest', () => {
 
 class ActionCreatorValidator {
     private visualizationActionsContainerMock = Mock.ofType(VisualizationActions);
-    private visualizationActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private needsReviewCardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private unifiedScanResultActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private tabStopRequirementActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private visualizationActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private devToolsActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private needsReviewCardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private unifiedScanResultActionsMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private tabStopRequirementActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private visualizationScanResultActionsContainerMock = Mock.ofType(
         VisualizationScanResultActions,
     );
-    private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
 
     private tabStopRequirementActionsContainerMock = Mock.ofType(TabStopRequirementActions);
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
@@ -930,11 +931,11 @@ class ActionCreatorValidator {
         NeedsReviewCardSelectionActions,
     );
     private unifiedScanResultsActionsContainerMock = Mock.ofType(UnifiedScanResultActions);
-    private sidePanelActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-    private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private sidePanelActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private scopingActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
 
-    private inspectActionsMock: DictionaryStringTo<IMock<Action<any>>> = {};
+    private inspectActionsMock: DictionaryStringTo<IMock<Action<any, any>>> = {};
 
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
@@ -989,12 +990,12 @@ class ActionCreatorValidator {
     private setupActionWithInvokeParameter(
         actionName: string,
         expectedInvokeParam: any,
-        actionsMap: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMap: DictionaryStringTo<IMock<Action<any, any>>>,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(Action);
+            action = Mock.ofType(SyncAction);
             actionsMap[actionName] = action;
         }
 
@@ -1157,13 +1158,13 @@ class ActionCreatorValidator {
 
     private setupAction(
         actionName: string,
-        actionsMap: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMap: DictionaryStringTo<IMock<Action<any, any>>>,
         actionsContainerMock: IMock<any>,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(Action);
+            action = Mock.ofType(SyncAction);
             actionsMap[actionName] = action;
         }
 
@@ -1322,7 +1323,7 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.needsReviewCardSelectionActionsMocks);
     }
 
-    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
+    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any, any>>>): void {
         forOwn(actionsMap, action => {
             action.verifyAll();
         });

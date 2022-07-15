@@ -4,11 +4,11 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
+import { InspectStoreData } from 'common/types/store-data/inspect-store-data';
 import { StoreNames } from '../../common/stores/store-names';
-import { InspectStoreData } from '../../common/types/store-data/inspect-store-data';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
-import { InspectMode } from '../inspect-modes';
 
 export class InspectStore extends PersistentStore<InspectStoreData> {
     private inspectActions: InspectActions;
