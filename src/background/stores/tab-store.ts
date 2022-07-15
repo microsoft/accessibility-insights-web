@@ -23,7 +23,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
-        private readonly urlParser: UrlParser = new UrlParser(),
+        private readonly urlParser: UrlParser,
     ) {
         super(
             StoreNames.TabStore,

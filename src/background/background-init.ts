@@ -225,6 +225,8 @@ async function initialize(): Promise<void> {
     );
     await detailsViewController.initialize();
 
+    const urlParser = new UrlParser();
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -240,6 +242,7 @@ async function initialize(): Promise<void> {
         persistedData,
         indexedDBInstance,
         persistData,
+        urlParser,
     );
 
     const targetPageController = new TargetPageController(
