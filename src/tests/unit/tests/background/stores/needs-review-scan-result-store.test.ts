@@ -3,8 +3,8 @@
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';

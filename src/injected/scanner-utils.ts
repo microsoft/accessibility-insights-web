@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from 'common/guidance-links';
 import { Logger } from 'common/logging/logger';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { CheckData } from 'injected/element-based-view-model-creator';
 import { scan as scanRunner } from 'scanner/exposed-apis';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';

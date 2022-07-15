@@ -11,7 +11,7 @@ import {
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock, Times } from 'typemoq';
 import {

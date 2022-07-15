@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Message } from 'common/message';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
