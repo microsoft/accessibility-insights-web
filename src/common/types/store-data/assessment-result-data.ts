@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
+import { ScanIncompleteWarningId } from './scan-incomplete-warnings';
 
 export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
 export type RequirementName = string;

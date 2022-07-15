@@ -7,12 +7,11 @@ import {
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
 import {
-    HighlightState,
     InstanceDetailsFooter,
     InstanceDetailsFooterDeps,
     InstanceDetailsFooterProps,
 } from 'common/components/cards/instance-details-footer';
-import { CardResult } from 'common/types/store-data/card-view-model';
+import { CardResult, HighlightState } from 'common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import * as React from 'react';
