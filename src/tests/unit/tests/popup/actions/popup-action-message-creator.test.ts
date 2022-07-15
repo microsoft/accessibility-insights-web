@@ -14,7 +14,7 @@ import { Tab } from 'common/itab';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { WindowUtils } from 'common/window-utils';

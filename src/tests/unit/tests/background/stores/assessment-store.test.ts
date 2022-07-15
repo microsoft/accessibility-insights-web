@@ -28,7 +28,6 @@ import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import {
     ManualTestStatus,
     ManualTestStatusData,
@@ -43,6 +42,7 @@ import {
     PersistedTabInfo,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import {

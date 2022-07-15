@@ -11,7 +11,7 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
     TestsEnabledState,

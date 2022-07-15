@@ -8,9 +8,9 @@ import {
 } from 'common/extension-telemetry-events';
 import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import {

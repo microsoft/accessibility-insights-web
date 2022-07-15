@@ -44,7 +44,7 @@ import {
     ForNeedsReviewAnalyzerScanCallback,
     ForRuleAnalyzerScanCallback,
 } from './types/analyzer-telemetry-callbacks';
-import { DetailsViewPivotType } from './types/details-view-pivot-type';
+import { DetailsViewPivotType } from './types/store-data/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
 export type SupportedMouseEvent =
