@@ -11,8 +11,8 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import {
     PlatformData,
     ScreenshotData,

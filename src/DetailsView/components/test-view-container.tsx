@@ -4,7 +4,7 @@ import { FailedInstancesSection } from 'common/components/cards/failed-instances
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { IAnalyzerTelemetryCallback } from 'common/types/analyzer-telemetry-callbacks';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { TelemetryProcessor } from 'common/types/telemetry-processor';
 import { VisualizationType } from 'common/types/visualization-type';

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+// Note: These interfaces are transitively referenced by store data, so keep backwards compatibility
+// in mind when making changes.
+
 export interface AtfaBoundingRectangle {
     'Rect.bottom': number;
     'Rect.left': number;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
-import { GuidanceLink } from 'common/guidance-links';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { UUIDGenerator } from "common/uid-generator";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { GroupedResults, FailuresGroup, AxeRuleData, HowToFixData } from "reports/package/accessibilityInsightsReport";
