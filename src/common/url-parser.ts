@@ -26,7 +26,10 @@ export class UrlParser {
         return this.areUrlProtocolsEqual(urlAObj, urlBObj) && urlAObj.hostname === urlBObj.hostname;
     }
 
-    public areURLsSameOrigin(urlA: string, urlB: string): boolean {
+    public areURLsSameOrigin(
+        urlA: string | null | undefined,
+        urlB: string | null | undefined,
+    ): boolean {
         const urlAOrigin = this.tryParseOrigin(urlA);
         const urlBOrigin = this.tryParseOrigin(urlB);
 
@@ -49,7 +52,7 @@ export class UrlParser {
         return urlAObj.protocol === urlBObj.protocol;
     }
 
-    private tryParseUrl(url?: string): URL | null {
+    private tryParseUrl(url: string | null | undefined): URL | null {
         if (url == null) {
             return null;
         }
@@ -60,7 +63,7 @@ export class UrlParser {
         }
     }
 
-    private tryParseOrigin(url?: string): string | null {
+    private tryParseOrigin(url: string | null | undefined): string | null {
         const urlObj = this.tryParseUrl(url);
 
         // Yes, it really can be the string "null" for some browser/Node environments
