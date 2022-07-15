@@ -14,7 +14,7 @@ import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -32,7 +32,7 @@ describe('PopupActionCreator', () => {
             },
         };
 
-        const actionMock = createActionMock(payload.tab);
+        const actionMock = createSyncActionMock(payload.tab);
         const actionsMock = createTabActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = createInterpreterMock(Messages.Popup.Initialized, payload);
         const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();

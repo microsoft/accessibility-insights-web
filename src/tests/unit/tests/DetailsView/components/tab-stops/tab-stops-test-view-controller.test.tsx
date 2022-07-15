@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import {
     EditExistingFailureInstancePayload,
@@ -64,8 +64,8 @@ describe('TabStopsTestViewController', () => {
         return actionsMock;
     }
 
-    function createActionMock(): IMock<Action<unknown>> {
-        const actionMock = Mock.ofType(Action);
+    function createActionMock(): IMock<SyncAction<unknown>> {
+        const actionMock = Mock.ofType(SyncAction);
 
         actionMock
             .setup(a => a.addListener(It.is(param => param instanceof Function)))

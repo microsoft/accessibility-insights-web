@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 
 export class DevToolActions {
-    public readonly setDevToolState = new Action<boolean>();
-    public readonly setInspectElement = new Action<string[]>();
-    public readonly setFrameUrl = new Action<string>();
-    public readonly getCurrentState = new Action();
+    public readonly setDevToolState = new SyncAction<boolean>();
+    public readonly setInspectElement = new SyncAction<string[]>();
+    public readonly setFrameUrl = new SyncAction<string>();
+    public readonly getCurrentState = new SyncAction();
 }

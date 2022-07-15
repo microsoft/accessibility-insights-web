@@ -6,7 +6,7 @@ import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CHANGE_INSPECT_MODE } from 'common/extension-telemetry-events';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
@@ -14,7 +14,7 @@ import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -30,7 +30,7 @@ describe('InspectActionCreator', () => {
     });
 
     it('handles GetState message', () => {
-        const getCurrentStateMock = createActionMock(undefined);
+        const getCurrentStateMock = createSyncActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.InspectStore),
@@ -57,7 +57,7 @@ describe('InspectActionCreator', () => {
 
         const tabId: number = -1;
 
-        let changeInspectModeMock: IMock<Action<InspectPayload>>;
+        let changeInspectModeMock: IMock<SyncAction<InspectPayload>>;
         let actionsMock: IMock<InspectActions>;
         let interpreterMock: IMock<Interpreter>;
 
@@ -68,7 +68,7 @@ describe('InspectActionCreator', () => {
                 .setup(publisher => publisher.publishTelemetry(CHANGE_INSPECT_MODE, payload))
                 .verifiable(Times.once());
 
-            changeInspectModeMock = createActionMock(payload);
+            changeInspectModeMock = createSyncActionMock(payload);
             actionsMock = createActionsMock('changeInspectMode', changeInspectModeMock.object);
             interpreterMock = createInterpreterMock(
                 Messages.Inspect.ChangeInspectMode,

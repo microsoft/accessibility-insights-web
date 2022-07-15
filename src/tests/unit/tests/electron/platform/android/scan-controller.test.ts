@@ -4,7 +4,7 @@ import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads'
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import {
@@ -36,13 +36,13 @@ describe('ScanController', () => {
     let loggerMock: IMock<Logger>;
 
     let scanActionsMock: IMock<ScanActions>;
-    let scanStartedMock: IMock<Action<void>>;
-    let scanCompletedMock: IMock<Action<void>>;
-    let scanFailedMock: IMock<Action<void>>;
+    let scanStartedMock: IMock<SyncAction<void>>;
+    let scanCompletedMock: IMock<SyncAction<void>>;
+    let scanFailedMock: IMock<SyncAction<void>>;
 
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
-    let deviceConnectedMock: IMock<Action<void>>;
-    let deviceDisconnectedMock: IMock<Action<void>>;
+    let deviceConnectedMock: IMock<SyncAction<void>>;
+    let deviceDisconnectedMock: IMock<SyncAction<void>>;
 
     let unifiedScanResultActionsMock: IMock<UnifiedScanResultActions>;
     let unifiedResultsBuilderMock: IMock<UnifiedScanCompletedPayloadBuilder>;
@@ -54,15 +54,15 @@ describe('ScanController', () => {
         deviceCommunicatorMock = Mock.ofType<DeviceCommunicator>();
         scanActionsMock = Mock.ofType<ScanActions>();
 
-        scanStartedMock = Mock.ofType<Action<void>>();
+        scanStartedMock = Mock.ofType<SyncAction<void>>();
         scanStartedMock
             .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
             .callback(listener => listener());
-        scanCompletedMock = Mock.ofType<Action<void>>();
-        scanFailedMock = Mock.ofType<Action<void>>();
+        scanCompletedMock = Mock.ofType<SyncAction<void>>();
+        scanFailedMock = Mock.ofType<SyncAction<void>>();
 
-        deviceConnectedMock = Mock.ofType<Action<void>>();
-        deviceDisconnectedMock = Mock.ofType<Action<void>>();
+        deviceConnectedMock = Mock.ofType<SyncAction<void>>();
+        deviceDisconnectedMock = Mock.ofType<SyncAction<void>>();
         deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>();
         deviceConnectionActionsMock
             .setup(actions => actions.statusConnected)
@@ -177,7 +177,7 @@ describe('ScanController', () => {
             .setup(builder => builder(scanResults))
             .returns(() => unifiedPayload);
 
-        const unifiedScanCompletedMock = Mock.ofType<Action<UnifiedScanCompletedPayload>>();
+        const unifiedScanCompletedMock = Mock.ofType<SyncAction<UnifiedScanCompletedPayload>>();
         unifiedScanCompletedMock
             .setup(action => action.invoke(unifiedPayload))
             .verifiable(Times.once());

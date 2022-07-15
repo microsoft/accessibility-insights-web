@@ -10,7 +10,7 @@ import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -23,7 +23,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     it('handles DevToolOpened message', () => {
-        const setDevToolsStateMock = createActionMock(true);
+        const setDevToolsStateMock = createSyncActionMock(true);
         const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
         const interpreterMock = createInterpreterMock(Messages.DevTools.Opened, null, tabId);
 
@@ -39,7 +39,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     it('handles DevToolClosed message', () => {
-        const setDevToolsStateMock = createActionMock(false);
+        const setDevToolsStateMock = createSyncActionMock(false);
         const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
         const interpreterMock = createInterpreterMock(Messages.DevTools.Closed, undefined, tabId);
 
@@ -55,7 +55,7 @@ describe('DevToolsActionCreatorTest', () => {
     });
 
     it('handles GetState message', () => {
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.DevToolsStore),
@@ -79,7 +79,7 @@ describe('DevToolsActionCreatorTest', () => {
             frameUrl: 'frame-url',
         };
 
-        const setFrameUrlMock = createActionMock(payload.frameUrl);
+        const setFrameUrlMock = createSyncActionMock(payload.frameUrl);
         const actionsMock = createActionsMock('setFrameUrl', setFrameUrlMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.DevTools.InspectFrameUrl,
@@ -107,7 +107,7 @@ describe('DevToolsActionCreatorTest', () => {
             .setup(publisher => publisher.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload))
             .verifiable(Times.once());
 
-        const setInspectElementMock = createActionMock(payload.target);
+        const setInspectElementMock = createSyncActionMock(payload.target);
         const actionsMock = createActionsMock('setInspectElement', setInspectElementMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.DevTools.InspectElement,
