@@ -43,7 +43,7 @@ import {
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,

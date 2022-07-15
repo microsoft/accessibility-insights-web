@@ -4,19 +4,20 @@
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
     TabStopRequirementStatuses,
     VisualizationScanResultData,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { TabStopRequirementIds } from 'types/tab-stop-requirement-info';
@@ -33,6 +34,7 @@ import {
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
+
 export class VisualizationScanResultStore extends PersistentStore<VisualizationScanResultData> {
     constructor(
         private visualizationScanResultActions: VisualizationScanResultActions,

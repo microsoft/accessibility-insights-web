@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { LayerHost } from '@fluentui/react';
 import { getRTL } from '@fluentui/utilities';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 
 import { BaseStore } from '../common/base-store';
@@ -12,7 +13,6 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog, DetailsDialogDeps } from './components/details-dialog';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { DecoratedAxeNodeResult } from './scanner-utils';
 
 export type LayeredDetailsDialogDeps = DetailsDialogDeps & {
     getRTL: typeof getRTL;

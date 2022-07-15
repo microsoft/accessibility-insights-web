@@ -12,13 +12,13 @@ import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import {
     AssessmentScanData,
     ScanData,
     TestsEnabledState,
 } from 'common/types/store-data/visualization-store-data';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
     VisualizationInstanceProcessor,
     VisualizationInstanceProcessorCallback,
