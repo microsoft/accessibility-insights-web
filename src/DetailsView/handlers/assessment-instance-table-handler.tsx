@@ -4,13 +4,13 @@ import { IColumn } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';

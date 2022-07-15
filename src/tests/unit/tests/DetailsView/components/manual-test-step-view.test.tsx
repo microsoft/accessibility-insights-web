@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { CheckboxVisibility, ConstrainMode, DetailsList } from '@fluentui/react';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import { FailureInstancePanelControl } from 'DetailsView/components/failure-instance-panel-control';
 import {

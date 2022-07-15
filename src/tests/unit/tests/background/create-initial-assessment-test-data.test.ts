@@ -5,12 +5,14 @@ import {
     createInitialAssessmentTestData,
 } from 'background/create-initial-assessment-test-data';
 import { flatMap } from 'lodash';
-
-import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
 import {
     GeneratedAssessmentInstance,
     ManualTestStepResult,
 } from '../../../../common/types/store-data/assessment-result-data';
+import {
+    ManualTestStatus,
+    TestStepData,
+} from '../../../../common/types/store-data/manual-test-status';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('createInitialAssessmentTestData', () => {

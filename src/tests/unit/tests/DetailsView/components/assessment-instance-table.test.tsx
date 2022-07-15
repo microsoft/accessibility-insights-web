@@ -8,11 +8,11 @@ import {
     IMessageGenerator,
 } from 'assessments/assessment-default-message-generator';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     AssessmentResultType,
     GeneratedAssessmentInstance,

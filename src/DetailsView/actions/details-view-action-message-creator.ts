@@ -30,8 +30,8 @@ import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-ac
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';

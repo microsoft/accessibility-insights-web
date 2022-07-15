@@ -7,7 +7,6 @@ import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -16,6 +15,7 @@ import {
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
