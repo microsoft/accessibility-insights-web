@@ -52,14 +52,13 @@ export class GlobalActionCreator {
         );
     }
 
-    private onGetCommands = (payload, tabId: number): void => {
-        this.commandsAdapter.getCommands((commands: chrome.commands.Command[]) => {
-            const getCommandsPayload: GetCommandsPayload = {
-                commands: commands,
-                tabId: tabId,
-            };
-            this.commandActions.getCommands.invoke(getCommandsPayload);
-        });
+    private onGetCommands = async (_payload, tabId: number): Promise<void> => {
+        const commands = await this.commandsAdapter.getCommands();
+        const getCommandsPayload: GetCommandsPayload = {
+            commands: commands,
+            tabId: tabId,
+        };
+        await this.commandActions.getCommands.invoke(getCommandsPayload);
     };
 
     private onGetLaunchPanelState = (): void => {
