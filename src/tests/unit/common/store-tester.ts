@@ -79,7 +79,7 @@ export class StoreTester<TStoreData, TActions> {
     }
 
     private createActionMock(): IMock<Action<unknown, unknown>> {
-        const actionMock = Mock.ofType<Action<unknown, unknown>>();
+        const actionMock = Mock.ofType<Action<unknown, void | Promise<void>>>();
 
         actionMock
             .setup(a => a.addListener(It.is(param => param instanceof Function)))
