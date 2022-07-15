@@ -16,6 +16,7 @@ import { EventResponseFactory } from 'common/browser-adapters/event-response-fac
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { UrlParser } from 'common/url-parser';
 import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
