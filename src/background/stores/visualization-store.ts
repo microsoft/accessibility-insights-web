@@ -18,7 +18,6 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,
@@ -252,13 +251,13 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         this.emitChanged();
     };
 
-    private onInjectionCompleted = (): void => {
+    private onInjectionCompleted = async (): Promise<void> => {
         this.state.injectingRequested = false;
         this.state.injectingStarted = false;
         this.emitChanged();
     };
 
-    private onInjectionStarted = (): void => {
+    private onInjectionStarted = async (): Promise<void> => {
         if (this.state.injectingStarted) {
             return;
         }

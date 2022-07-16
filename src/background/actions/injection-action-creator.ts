@@ -21,7 +21,9 @@ export class InjectionActionCreator {
         );
     }
 
-    private injectionStarted = (): void => this.injectionActions.injectionStarted.invoke(null);
+    private injectionStarted = async (): Promise<void> =>
+        await this.injectionActions.injectionStarted.invoke(null);
 
-    private injectionCompleted = (): void => this.injectionActions.injectionCompleted.invoke(null);
+    private injectionCompleted = async (): Promise<void> =>
+        await this.injectionActions.injectionCompleted.invoke(null);
 }
