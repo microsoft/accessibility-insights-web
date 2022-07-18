@@ -60,7 +60,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     },
     chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,
-    adhocToolsPanelDisplayOrder: 6,
+    adhocToolsPanelDisplayOrder: 7,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
     getIdentifier: () => needsReviewTestKey,

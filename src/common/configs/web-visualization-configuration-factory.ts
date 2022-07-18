@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AccessibleNamesAdHocVisualization } from 'ad-hoc-visualizations/accessible-names/visualization';
 import { ColorAdHocVisualization } from 'ad-hoc-visualizations/color/visualization';
 import { HeadingsAdHocVisualization } from 'ad-hoc-visualizations/headings/visualization';
 import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
@@ -26,6 +27,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             [VisualizationType.Landmarks]: LandmarksAdHocVisualization,
             [VisualizationType.TabStops]: TabStopsAdHocVisualization,
             [VisualizationType.NeedsReview]: NeedsReviewAdHocVisualization,
+            [VisualizationType.AccessibleNames]: AccessibleNamesAdHocVisualization,
         };
     }
 
