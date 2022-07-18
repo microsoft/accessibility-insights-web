@@ -35,6 +35,7 @@ describe('IssueFilingSettings', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
         testIssueFilingServiceStub = {
             key: testKey,

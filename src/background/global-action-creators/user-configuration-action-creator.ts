@@ -5,6 +5,7 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -56,5 +57,9 @@ export class UserConfigurationActionCreator {
             TelemetryEvents.SET_AUTO_DETECTED_FAILURES_DIALOG_STATE,
             payload,
         );
+    };
+
+    public setSaveAssessmentDialogState = (payload: SaveAssessmentDialogStatePayload) => {
+        this.userConfigActions.setSaveAssessmentDialogState.invoke(payload);
     };
 }

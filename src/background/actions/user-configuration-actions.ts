@@ -3,6 +3,7 @@
 import { SyncAction } from 'common/flux/sync-action';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -23,4 +24,6 @@ export class UserConfigurationActions {
     public readonly saveWindowBounds = new SyncAction<SaveWindowBoundsPayload>();
     public readonly setAutoDetectedFailuresDialogState =
         new SyncAction<AutoDetectedFailuresDialogStatePayload>();
+    public readonly setSaveAssessmentDialogState =
+        new SyncAction<SaveAssessmentDialogStatePayload>();
 }

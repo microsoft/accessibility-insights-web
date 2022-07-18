@@ -46,6 +46,7 @@ describe('GetPersistedDataTest', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
         installationData = {
             id: 'test-id',

@@ -1537,7 +1537,7 @@ exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
         <StyledCheckboxBase
           label="Don't show again"
           onChange={[Function]}
-          value={true}
+          value={false}
         />
         <CustomizedPrimaryButton
           onClick={[Function]}

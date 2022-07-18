@@ -4,6 +4,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
@@ -17,6 +18,7 @@ describe('ShouldShowReportExportButton', () => {
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationConfigurationMock: IMock<VisualizationConfiguration>;
     let tabStoreData: TabStoreData;
+    let userConfigurationData: UserConfigurationStoreData;
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
@@ -30,6 +32,20 @@ describe('ShouldShowReportExportButton', () => {
             .setup(m => m.getConfiguration(selectedTest))
             .returns(() => visualizationConfigurationMock.object);
         tabStoreData = { isChanged: false } as TabStoreData;
+
+        userConfigurationData = {
+            isFirstTime: true,
+            enableTelemetry: false,
+            enableHighContrast: false,
+            lastSelectedHighContrast: false,
+            bugService: 'none',
+            bugServicePropertiesMap: {},
+            adbLocation: null,
+            lastWindowState: null,
+            lastWindowBounds: null,
+            showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
+        };
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -49,6 +65,7 @@ describe('ShouldShowReportExportButton', () => {
             scanMetadata: null,
             narrowModeStatus: null,
             tabStopRequirementData: null,
+            userConfigurationStoreData: userConfigurationData,
         } as DetailsViewCommandBarProps;
     }
 

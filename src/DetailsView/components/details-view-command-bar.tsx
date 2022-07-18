@@ -6,6 +6,7 @@ import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-toolt
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
@@ -91,6 +92,7 @@ export interface DetailsViewCommandBarProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
     tabStopRequirementData: TabStopRequirementState;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,

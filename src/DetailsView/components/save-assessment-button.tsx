@@ -3,25 +3,31 @@
 import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton, Stack } from '@fluentui/react';
 import { useBoolean } from '@fluentui/react-hooks';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export interface SaveAssessmentButtonDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    userConfigMessageCreator: UserConfigMessageCreator;
 }
 export interface SaveAssessmentButtonProps {
     download: string;
     href: string;
     deps: SaveAssessmentButtonDeps;
+    userConfigurationStoreData: UserConfigurationStoreData;
 }
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     'SaveAssessmentButton',
     props => {
         const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
-        const [showDialogAgain, { toggle: toggleShowDialogAgain }] = useBoolean(true);
+        const [showDialogAgain, { toggle: toggleShowDialogAgain }] = useBoolean(
+            props.userConfigurationStoreData.showSaveAssessmentDialog,
+        );
 
         function handleSaveAssessmentClick() {
             props.deps.detailsViewActionMessageCreator.saveAssessment;
@@ -29,6 +35,12 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
             if (showDialogAgain) {
                 toggleHideDialog();
             }
+        }
+
+        function handleDontShowAgainClick(ev?, checked?: boolean) {
+            if (checked === undefined) return;
+            toggleShowDialogAgain();
+            props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
         }
 
         return (
@@ -60,9 +72,9 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                     <DialogFooter>
                         <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
                             <Checkbox
-                                value={showDialogAgain}
+                                value={!showDialogAgain}
                                 label="Don't show again"
-                                onChange={toggleShowDialogAgain}
+                                onChange={handleDontShowAgainClick}
                             />
                             <PrimaryButton onClick={toggleHideDialog} text="Got it" />
                         </Stack>

@@ -289,6 +289,10 @@ export type AutoDetectedFailuresDialogStateTelemetryData = {
     enabled: boolean;
 };
 
+export type ShowAssessmentDialogStateTelemetryData = {
+    enabled: boolean;
+};
+
 export enum ErrorType {
     WindowError = 'WindowError',
     UnhandledRejection = 'UnhandledRejection',
@@ -332,4 +336,5 @@ export type TelemetryData =
     | SetAllUrlsPermissionTelemetryData
     | TabStopsAutomatedResultsTelemetryData
     | AutoDetectedFailuresDialogStateTelemetryData
+    | ShowAssessmentDialogStateTelemetryData
     | UnhandledErrorTelemetryData;

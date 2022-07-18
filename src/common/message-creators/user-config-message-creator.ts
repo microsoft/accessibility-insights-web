@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetAdbLocationPayload,
@@ -100,6 +101,18 @@ export class UserConfigMessageCreator {
         };
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetAutoDetectedFailuresDialogState,
+            payload,
+        });
+    }
+
+    public setSaveAssessmentDialogState(showDialog: boolean): void {
+        const telemetry = this.telemetryFactory.forSetShowAssessmentDialogState(showDialog);
+        const payload: SaveAssessmentDialogStatePayload = {
+            enabled: showDialog,
+            telemetry,
+        };
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetSaveAssessmentDialogState,
             payload,
         });
     }

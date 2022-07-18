@@ -255,3 +255,7 @@ export interface SaveWindowBoundsPayload extends BaseActionPayload {
 export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
     enabled: boolean;
 }
+
+export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
+}
