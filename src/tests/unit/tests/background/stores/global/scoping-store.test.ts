@@ -35,7 +35,6 @@ describe('ScopingStoreTest', () => {
         const finalState = getDefaultState();
 
         const storeTester = createStoreForScopingActions('getCurrentState');
-        await storeTester;
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
