@@ -25,7 +25,7 @@ describe('DebugToolsNavStore', () => {
             await storeTester.testListenerToNeverBeCalled(initialState, finalState);
         });
 
-        it('handles tool selected change', async() => {
+        it('handles tool selected change', async () => {
             const initialState = new DebugToolsNavStoreDataBuilder()
                 .with('selectedTool', 'telemetryViewer')
                 .build();
