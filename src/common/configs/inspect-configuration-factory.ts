@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectMode } from 'background/inspect-modes';
-import { ScopingInputTypes } from 'background/scoping-input-types';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';

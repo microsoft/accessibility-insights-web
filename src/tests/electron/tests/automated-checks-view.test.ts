@@ -5,7 +5,7 @@ import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
-import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
+import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/setup-mock-adb/setup-mock-adb';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;

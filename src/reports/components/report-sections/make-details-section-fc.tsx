@@ -33,9 +33,7 @@ export function makeDetailsSectionFC(
             contentClassName?: string,
         ) => (
             <li>
-                <span className="icon" aria-hidden="true">
-                    {icon}
-                </span>
+                <span className="icon">{icon}</span>
                 <span className="screen-reader-only">{label}</span>
                 <span className={css('text', contentClassName)}>{content}</span>
             </li>

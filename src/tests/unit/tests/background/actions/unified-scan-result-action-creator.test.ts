@@ -11,11 +11,11 @@ import {
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock, Times } from 'typemoq';
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -43,7 +43,7 @@ describe('UnifiedScanResultActionCreator', () => {
             telemetry,
         };
 
-        const scanCompletedMock = createActionMock(payload);
+        const scanCompletedMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('scanCompleted', scanCompletedMock.object);
         const interpreterMock = createInterpreterMock(Messages.UnifiedScan.ScanCompleted, payload);
 
@@ -70,7 +70,7 @@ describe('UnifiedScanResultActionCreator', () => {
     it('should handle GetState message', () => {
         const payload = null;
 
-        const getCurrentStateMock = createActionMock<null>(payload);
+        const getCurrentStateMock = createSyncActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.UnifiedScanResultStore),

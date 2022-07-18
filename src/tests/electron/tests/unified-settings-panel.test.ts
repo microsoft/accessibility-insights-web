@@ -7,7 +7,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import { CommonSelectors } from 'tests/end-to-end/common/element-identifiers/common-selectors';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
+import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/setup-mock-adb/setup-mock-adb';
 describe('AutomatedChecksView -> Settings Panel', () => {
     let app: AppController;
     let resultsView: ResultsViewController;

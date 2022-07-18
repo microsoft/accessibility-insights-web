@@ -225,8 +225,10 @@ export abstract class WebExtensionBrowserAdapter
         this.addListener('CommandsOnCommand', callback);
     }
 
-    public getCommands(callback: (commands: chrome.commands.Command[]) => void): void {
-        chrome.commands.getAll(callback);
+    public async getCommands(): Promise<chrome.commands.Command[]> {
+        return new Promise((resolve, reject) => {
+            chrome.commands.getAll(commands => resolve(commands));
+        });
     }
 
     public addListenerOnRuntimeMessage(callback: BrowserMessageHandler): void {

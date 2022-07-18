@@ -13,7 +13,7 @@ import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -30,7 +30,7 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
             resultInstanceUid: 'test-instance-uuid',
             ruleId: 'test-rule-id',
         };
-        const toggleNeedsReviewCardSelectionMock = createActionMock(payload);
+        const toggleNeedsReviewCardSelectionMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleCardSelection',
             toggleNeedsReviewCardSelectionMock.object,
@@ -60,7 +60,7 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'test-rule-id',
         };
-        const ruleExpansionToggleMock = createActionMock(payload);
+        const ruleExpansionToggleMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleRuleExpandCollapse',
             ruleExpansionToggleMock.object,
@@ -88,7 +88,7 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
 
     test('onToggleVisualHelper', () => {
         const payloadStub: BaseActionPayload = {};
-        const toggleVisualHelperMock = createActionMock(null);
+        const toggleVisualHelperMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.NeedsReviewCardSelection.ToggleVisualHelper,
@@ -113,7 +113,7 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
 
     test('onCollapseAllRules', () => {
         const payloadStub: BaseActionPayload = {};
-        const collapseAllRulesActionMock = createActionMock(null);
+        const collapseAllRulesActionMock = createSyncActionMock(null);
         const actionsMock = createActionsMock(
             'collapseAllRules',
             collapseAllRulesActionMock.object,
@@ -141,7 +141,7 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
 
     test('onExpandAllRules', () => {
         const payloadStub: BaseActionPayload = {};
-        const expandAllRulesActionMock = createActionMock(null);
+        const expandAllRulesActionMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.NeedsReviewCardSelection.ExpandAllRules,

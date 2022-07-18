@@ -42,7 +42,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     },
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
-    adhocToolsPanelDisplayOrder: 4,
+    adhocToolsPanelDisplayOrder: 5,
     getAnalyzer: provider => provider.createRuleAnalyzer(landmarkRuleAnalyzerConfiguration),
     getIdentifier: () => landmarksTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,

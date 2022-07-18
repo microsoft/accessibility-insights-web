@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from 'common/guidance-links';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import {
     AndroidScanResults,
     AxeRuleResultsData,

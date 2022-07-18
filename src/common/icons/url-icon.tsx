@@ -46,7 +46,15 @@ const d =
     '14.3568 11.1126 14.6172Z';
 
 export const UrlIcon = NamedFC('UrlIcon', () => (
-    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        width="17"
+        height="16"
+        viewBox="0 0 17 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-hidden="true"
+    >
         <path d={d} fill="#737373" />
     </svg>
 ));

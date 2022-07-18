@@ -11,6 +11,7 @@ import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import {
     TargetAppData,
     ToolData,
@@ -32,7 +33,6 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from 'DetailsView/components/details-view-switcher-nav';
-import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
 import {
     DetailsViewContainerDeps,

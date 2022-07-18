@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import {
@@ -7,7 +8,6 @@ import {
     getTestViewTitle,
     GetTestViewTitleProps,
 } from '../handlers/get-document-title';
-import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-content-panel-type';
 import {
     GetLeftNavSelectedKeyProps,
     getOverviewKey,

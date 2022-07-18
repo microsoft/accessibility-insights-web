@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingInputTypes } from './scoping-input-types';
 
 export type SingleElementSelector = string[];
 

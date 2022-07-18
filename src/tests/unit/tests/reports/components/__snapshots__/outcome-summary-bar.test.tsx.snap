@@ -17,11 +17,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="pass summary-bar-left-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CheckIconInverted />
-      </span>
+      <CheckIconInverted />
       42
     </span>
   </div>
@@ -35,11 +31,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="fail"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CrossIconInverted />
-      </span>
+      <CrossIconInverted />
       13
     </span>
   </div>
@@ -53,11 +45,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="incomplete summary-bar-right-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CircleIcon />
-      </span>
+      <CircleIcon />
       7
     </span>
   </div>
@@ -81,11 +69,7 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     <span
       className="pass summary-bar-left-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CheckIcon />
-      </span>
+      <CheckIcon />
       42
     </span>
   </div>
@@ -99,11 +83,7 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     <span
       className="fail"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CrossIcon />
-      </span>
+      <CrossIcon />
       13
     </span>
   </div>
@@ -117,11 +97,7 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     <span
       className="incomplete summary-bar-right-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CircleIcon />
-      </span>
+      <CircleIcon />
       7
     </span>
   </div>
@@ -145,11 +121,7 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="pass summary-bar-left-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CheckIcon />
-      </span>
+      <CheckIcon />
       42
       %
     </span>
@@ -164,11 +136,7 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="fail"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CrossIcon />
-      </span>
+      <CrossIcon />
       13
       %
     </span>
@@ -183,11 +151,7 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="incomplete summary-bar-right-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CircleIcon />
-      </span>
+      <CircleIcon />
       7
       %
     </span>
@@ -212,11 +176,7 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
     <span
       className="pass summary-bar-left-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CheckIcon />
-      </span>
+      <CheckIcon />
       42
       <span
         className="label"
@@ -235,11 +195,7 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
     <span
       className="fail"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CrossIcon />
-      </span>
+      <CrossIcon />
       13
       <span
         className="label"
@@ -258,11 +214,7 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
     <span
       className="incomplete summary-bar-right-edge"
     >
-      <span
-        aria-hidden="true"
-      >
-        <CircleIcon />
-      </span>
+      <CircleIcon />
       7
       <span
         className="label"

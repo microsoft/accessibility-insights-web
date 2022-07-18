@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceTag, guidanceTags } from 'common/guidance-links';
+import { GuidanceTag, guidanceTags } from 'common/types/store-data/guidance-links';
 
 export interface GuidelineMetadata {
     number: string;

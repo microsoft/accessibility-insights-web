@@ -7,7 +7,7 @@ import { IMock, Mock } from 'typemoq';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -15,7 +15,7 @@ describe('PathSnippetActionCreatorTest', () => {
     it('handles AddPathForValidation message', () => {
         const payload = 'test path';
 
-        const onAddPathMock = createActionMock(payload);
+        const onAddPathMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('onAddPath', onAddPathMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.PathSnippet.AddPathForValidation,
@@ -35,7 +35,7 @@ describe('PathSnippetActionCreatorTest', () => {
     it('handles AddCorrespondingSnippet message', () => {
         const payload = 'test snippet';
 
-        const onAddSnippetMock = createActionMock(payload);
+        const onAddSnippetMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('onAddSnippet', onAddSnippetMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.PathSnippet.AddCorrespondingSnippet,
@@ -53,7 +53,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles GetPathSnippetCurrentState message', () => {
-        const getCurrentStateMock = createActionMock(undefined);
+        const getCurrentStateMock = createSyncActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.PathSnippetStore),
@@ -71,7 +71,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles ClearPathSnippetData message', () => {
-        const onClearDataMock = createActionMock(undefined);
+        const onClearDataMock = createSyncActionMock(undefined);
         const actionsMock = createActionsMock('onClearData', onClearDataMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.PathSnippet.ClearPathSnippetData,

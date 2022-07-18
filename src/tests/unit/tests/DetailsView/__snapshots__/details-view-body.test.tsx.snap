@@ -213,6 +213,9 @@ exports[`DetailsViewBody render render 1`] = `
           "selectedFastPassDetailsView": 1,
           "tests": Object {
             "adhoc": Object {
+              "accessibleNames": Object {
+                "enabled": false,
+              },
               "color": Object {
                 "enabled": false,
               },
@@ -541,6 +544,9 @@ exports[`DetailsViewBody render render 1`] = `
             "selectedFastPassDetailsView": 1,
             "tests": Object {
               "adhoc": Object {
+                "accessibleNames": Object {
+                  "enabled": false,
+                },
                 "color": Object {
                   "enabled": false,
                 },
@@ -876,6 +882,9 @@ exports[`DetailsViewBody render render 1`] = `
                 "selectedFastPassDetailsView": 1,
                 "tests": Object {
                   "adhoc": Object {
+                    "accessibleNames": Object {
+                      "enabled": false,
+                    },
                     "color": Object {
                       "enabled": false,
                     },

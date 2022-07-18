@@ -12,7 +12,7 @@ export class AndroidBrowserCloseCleanupTasks {
     ) {}
 
     public addBrowserCloseListener(): void {
-        this.ipcRendererShim.fromBrowserWindowClose.addAsyncListener(this.executeCleanupTasks);
+        this.ipcRendererShim.fromBrowserWindowClose.addListener(this.executeCleanupTasks);
     }
 
     private executeCleanupTasks = async (): Promise<void> => {

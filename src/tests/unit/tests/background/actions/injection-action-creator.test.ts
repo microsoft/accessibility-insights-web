@@ -4,14 +4,14 @@ import { InjectionActionCreator } from 'background/actions/injection-action-crea
 import { InjectionActions } from 'background/actions/injection-actions';
 import { Messages } from 'common/messages';
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { IMock, Mock } from 'typemoq';
 
 describe('InjectionActionCreator', () => {
     it('handles InjectionStarted message', () => {
-        const injectionStartedMock = createActionMock(null);
+        const injectionStartedMock = createSyncActionMock(null);
         const actionsMock = createActionsMock('injectionStarted', injectionStartedMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.Visualizations.State.InjectionStarted,
@@ -26,7 +26,7 @@ describe('InjectionActionCreator', () => {
     });
 
     it('handles InjectionCompleted message', () => {
-        const injectionCompletedMock = createActionMock<void>(null);
+        const injectionCompletedMock = createSyncActionMock<void>(null);
         const actionsMock = createActionsMock('injectionCompleted', injectionCompletedMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.Visualizations.State.InjectionCompleted,

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
-import { GuidanceLink } from "common/guidance-links";
 import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
+import { GuidanceLink } from "common/types/store-data/guidance-links";
 import { UUIDGenerator } from "common/uid-generator";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
