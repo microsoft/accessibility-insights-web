@@ -3,6 +3,19 @@
 
 import { Target } from 'scanner/iruleresults';
 
+// This class deals with targets, which are returned from axe-core as an array of either strings or
+// or arrays of strings-- (string | string[])[]. The structure of the target can tell you several
+// things about the dom elements:
+//      - If the target is an array with one string, then that string is a css selector.
+//      - If the target is an array with multiple strings, then the first [length - 1] array
+//        elements point to nested iframes and the last element is a css selector in the nested
+//        iframes.
+//       -If the target is an array containing arrays of strings, then the dom element it points to
+//        is in the shadow dom. For each array, the first [length - 1] array elements point to DOM
+//        elements with a shadow DOM and the last array element is the final shadow DOM node.
+// At various places in axe-core or our code, these structures muse be serialized/ deserialized such
+// that they are in the form of ['element0';'element1'] or [['element0','element1']].
+
 export class TargetHelper {
     public static getTargetElements = (
         target: (string | string[])[],
@@ -79,10 +92,9 @@ export class TargetHelper {
         target: Target,
         targetIndex: number,
     ): string | undefined => {
-        if (target) {
-            return target.map((targets: string | string[]) =>
-                typeof targets === 'string' ? targets : targets.join(','),
-            )[targetIndex];
+        if (target && target[targetIndex]) {
+            const element = target[targetIndex];
+            return typeof element === 'string' ? element : element.join(',');
         }
     };
 
