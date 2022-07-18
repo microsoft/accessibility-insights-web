@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { Action, ActionListener } from 'common/flux/action';
 import { ScopeMutex } from 'common/flux/scope-mutex';
 
 export class SyncAction<TPayload> implements Action<TPayload, void> {
-    private listeners: ((payload: TPayload) => void)[] = [];
+    private listeners: ActionListener<TPayload, void>[] = [];
 
     constructor(private readonly scopeMutex: ScopeMutex = new ScopeMutex()) {}
 
@@ -12,7 +12,7 @@ export class SyncAction<TPayload> implements Action<TPayload, void> {
         this.scopeMutex.tryLockScope(scope);
 
         try {
-            this.listeners.forEach((listener: (payload: TPayload) => void) => {
+            this.listeners.forEach(listener => {
                 listener(payload);
             });
         } finally {
@@ -20,7 +20,7 @@ export class SyncAction<TPayload> implements Action<TPayload, void> {
         }
     }
 
-    public addListener(listener: (payload: TPayload) => void): void {
+    public addListener(listener: ActionListener<TPayload, void>): void {
         this.listeners.push(listener);
     }
 }

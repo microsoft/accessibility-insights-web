@@ -42,7 +42,7 @@ describe('CardSelectionStore Test', () => {
         result
         ${'fail'}
         ${'unknown'}
-    `('onScanCompleted', ({ result }) => {
+    `('onScanCompleted', async ({ result }) => {
         const initialState = getDefaultState();
 
         const payload: UnifiedScanCompletedPayload = {
@@ -75,9 +75,9 @@ describe('CardSelectionStore Test', () => {
             visualHelperEnabled: true,
         };
 
-        createStoreForUnifiedScanResultActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForUnifiedScanResultActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function getDefaultState(): CardSelectionStoreData {
@@ -133,29 +133,30 @@ describe('CardSelectionStore Test', () => {
         expectedState = cloneDeep(defaultState);
     });
 
-    test('ToggleRuleExpandCollapse expanded', () => {
+    test('ToggleRuleExpandCollapse expanded', async () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'sampleRuleId1',
         };
 
         expectedState.rules['sampleRuleId1'].isExpanded = true;
 
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreForCardSelectionActions(
+            'toggleRuleExpandCollapse',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onResetFocusedIdentifier', () => {
+    test('onResetFocusedIdentifier', async () => {
         const payload: BaseActionPayload = {};
 
         initialState.focusedResultUid = 'some uid';
 
-        createStoreForCardSelectionActions('resetFocusedIdentifier')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('resetFocusedIdentifier').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse collapsed', () => {
+    test('ToggleRuleExpandCollapse collapsed', async () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'sampleRuleId1',
         };
@@ -163,38 +164,42 @@ describe('CardSelectionStore Test', () => {
         initialState.rules['sampleRuleId1'].isExpanded = true;
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreForCardSelectionActions(
+            'toggleRuleExpandCollapse',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse invalid rule', () => {
+    test('ToggleRuleExpandCollapse invalid rule', async () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'invalid-rule-id',
         };
 
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester = createStoreForCardSelectionActions(
+            'toggleRuleExpandCollapse',
+        ).withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse no payload', () => {
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(null)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+    test('ToggleRuleExpandCollapse no payload', async () => {
+        const storeTester = createStoreForCardSelectionActions(
+            'toggleRuleExpandCollapse',
+        ).withActionParam(null);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse invalid payload', () => {
+    test('ToggleRuleExpandCollapse invalid payload', async () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: null,
         };
 
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester = createStoreForCardSelectionActions(
+            'toggleRuleExpandCollapse',
+        ).withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('toggleCardSelection selected', () => {
+    test('toggleCardSelection selected', async () => {
         const payload: CardSelectionPayload = {
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'sampleUid1',
@@ -204,12 +209,12 @@ describe('CardSelectionStore Test', () => {
         expectedState.focusedResultUid = 'sampleUid1';
         expectedState.visualHelperEnabled = true;
 
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('toggleCardSelection unselected', () => {
+    test('toggleCardSelection unselected', async () => {
         const payload: CardSelectionPayload = {
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'sampleUid1',
@@ -217,81 +222,75 @@ describe('CardSelectionStore Test', () => {
 
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('toggleCardSelection invalid rule', () => {
+    test('toggleCardSelection invalid rule', async () => {
         const payload: CardSelectionPayload = {
             ruleId: 'invalid-rule-id',
             resultInstanceUid: 'sampleUid1',
         };
 
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('toggleCardSelection invalid card', () => {
+    test('toggleCardSelection invalid card', async () => {
         const payload: CardSelectionPayload = {
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'invalid-uid',
         };
 
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('toggleCardSelection  no payload', () => {
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(null)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+    test('toggleCardSelection  no payload', async () => {
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(null);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse invalid payload', () => {
+    test('ToggleRuleExpandCollapse invalid payload', async () => {
         const payload: CardSelectionPayload = {} as CardSelectionPayload;
 
-        createStoreForCardSelectionActions('toggleCardSelection')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreForCardSelectionActions('toggleCardSelection').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
     describe('collapseAllRules', () => {
-        it('does nothing if rules is null', () => {
+        it('does nothing if rules is null', async () => {
             initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
-            createStoreForCardSelectionActions('collapseAllRules').testListenerToNeverBeCalled(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('collapseAllRules');
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
-        it('collapses all expanded rules', () => {
+        it('collapses all expanded rules', async () => {
             expandRuleSelectCards(initialState.rules['sampleRuleId1']);
             expandRuleSelectCards(initialState.rules['sampleRuleId2']);
 
-            createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('collapseAllRules');
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
     });
 
     describe('expandAllRules', () => {
-        it('does nothing if rules is null', () => {
+        it('does nothing if rules is null', async () => {
             initialState.rules = null;
             expectedState = cloneDeep(initialState);
 
-            createStoreForCardSelectionActions('expandAllRules').testListenerToNeverBeCalled(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('expandAllRules');
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
-        test('expands all collapsed rules', () => {
+        test('expands all collapsed rules', async () => {
             initialState.rules['sampleRuleId1'].isExpanded = true;
             initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
@@ -299,37 +298,31 @@ describe('CardSelectionStore Test', () => {
             expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
             expectedState.rules['sampleRuleId2'].isExpanded = true;
 
-            createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('expandAllRules');
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
     });
 
-    test('toggleVisualHelper on - no card selection or rule expansion changes', () => {
+    test('toggleVisualHelper on - no card selection or rule expansion changes', async () => {
         initialState.rules['sampleRuleId1'].isExpanded = true;
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
         expectedState = cloneDeep(initialState);
         expectedState.visualHelperEnabled = true;
 
-        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreForCardSelectionActions('toggleVisualHelper');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {
+    test('toggleVisualHelper off - cards deselected, no rule expansion changes', async () => {
         initialState.rules['sampleRuleId1'].isExpanded = true;
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
         initialState.visualHelperEnabled = true;
 
         expectedState.rules['sampleRuleId1'].isExpanded = true;
 
-        createStoreForCardSelectionActions('toggleVisualHelper').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreForCardSelectionActions('toggleVisualHelper');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     describe('navigateToNewCardsView', () => {
@@ -339,7 +332,7 @@ describe('CardSelectionStore Test', () => {
 
         it.each([null, {}])(
             'should reset the focused element and turn of visual helper when rules = %s',
-            rules => {
+            async rules => {
                 initialState.focusedResultUid = 'sampleUid1';
                 initialState.rules = rules;
                 initialState.visualHelperEnabled = true;
@@ -347,13 +340,12 @@ describe('CardSelectionStore Test', () => {
                 expectedState.rules = rules;
                 expectedState.visualHelperEnabled = false;
 
-                createStoreForCardSelectionActions(
-                    'navigateToNewCardsView',
-                ).testListenerToBeCalledOnce(initialState, expectedState);
+                const storeTester = createStoreForCardSelectionActions('navigateToNewCardsView');
+                await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
             },
         );
 
-        it('should keep all rules/cards/results but set them to collapsed/unselected', () => {
+        it('should keep all rules/cards/results but set them to collapsed/unselected', async () => {
             initialState.rules = {
                 sampleRuleId1: {
                     isExpanded: true,
@@ -387,44 +379,36 @@ describe('CardSelectionStore Test', () => {
                 },
             };
 
-            createStoreForCardSelectionActions('navigateToNewCardsView').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('navigateToNewCardsView');
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        it('should set the visualHelperToggle to enabled if there are any rules', () => {
+        it('should set the visualHelperToggle to enabled if there are any rules', async () => {
             initialState.visualHelperEnabled = false;
             expectedState.visualHelperEnabled = true;
 
-            createStoreForCardSelectionActions('navigateToNewCardsView').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('navigateToNewCardsView');
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        it('should set the visualHelperToggle to disabled if there are no rules', () => {
+        it('should set the visualHelperToggle to disabled if there are no rules', async () => {
             initialState.rules = {};
             initialState.visualHelperEnabled = true;
             expectedState.rules = {};
             expectedState.visualHelperEnabled = false;
 
-            createStoreForCardSelectionActions('navigateToNewCardsView').testListenerToBeCalledOnce(
-                initialState,
-                expectedState,
-            );
+            const storeTester = createStoreForCardSelectionActions('navigateToNewCardsView');
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
     });
 
-    test('reset data on tab URL change', () => {
+    test('reset data on tab URL change', async () => {
         initialState.rules = {};
         initialState.visualHelperEnabled = true;
         expectedState.rules = null;
         expectedState.visualHelperEnabled = false;
-        createStoreForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreForTabActions('existingTabUpdated');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
