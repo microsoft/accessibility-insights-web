@@ -6,7 +6,7 @@ import {
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
 import * as React from 'react';
-import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { BaseLeftNavLink } from '../base-left-nav';

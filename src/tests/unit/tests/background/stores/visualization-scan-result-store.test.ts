@@ -15,18 +15,18 @@ import { TabStopRequirementActions } from 'background/actions/tab-stop-requireme
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { IMock, Mock } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
+    HtmlElementAxeResults,
     TabbedElementData,
     TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';

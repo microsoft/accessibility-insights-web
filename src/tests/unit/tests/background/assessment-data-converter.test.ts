@@ -8,8 +8,11 @@ import {
     AssessmentInstancesMap,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { IMock, It, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 

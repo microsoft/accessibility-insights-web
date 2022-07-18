@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { CheckData } from 'injected/element-based-view-model-creator';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
+import {
+    CheckData,
+    DecoratedAxeNodeResult,
+    FormattedCheckResult,
+} from 'common/types/store-data/visualization-scan-result-data';
 
 export type GetDecoratedAxeNodeCallback = (
     unifiedResult: UnifiedResult,
