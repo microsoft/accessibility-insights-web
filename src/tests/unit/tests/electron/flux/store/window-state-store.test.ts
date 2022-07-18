@@ -22,7 +22,7 @@ describe('WindowStateStore', () => {
         expect(testSubject.getState()).toMatchSnapshot();
     });
 
-    it('changes route id from default to resultsView', () => {
+    it('changes route id from default to resultsView', async () => {
         const payload: RoutePayload = {
             routeId: 'resultsView',
         };
@@ -33,12 +33,12 @@ describe('WindowStateStore', () => {
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
 
-        createStoreTesterForWindowStateActions('setRoute')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForWindowStateActions('setRoute').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    it('does not emit a change when the route is not changing', () => {
+    it('does not emit a change when the route is not changing', async () => {
         const payload: RoutePayload = {
             routeId: 'deviceConnectView',
         };
@@ -49,12 +49,12 @@ describe('WindowStateStore', () => {
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
 
-        createStoreTesterForWindowStateActions('setRoute')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForWindowStateActions('setRoute').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    it('does not emit a change when the window state is not changing', () => {
+    it('does not emit a change when the window state is not changing', async () => {
         const payload: WindowStatePayload = {
             currentWindowState: 'customSize',
         };
@@ -65,12 +65,12 @@ describe('WindowStateStore', () => {
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
 
-        createStoreTesterForWindowStateActions('setWindowState')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForWindowStateActions('setWindowState').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    it('changes currentWindowState from default to maximized', () => {
+    it('changes currentWindowState from default to maximized', async () => {
         const payload: WindowStatePayload = {
             currentWindowState: 'maximized',
         };
@@ -81,9 +81,9 @@ describe('WindowStateStore', () => {
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
 
-        createStoreTesterForWindowStateActions('setWindowState')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForWindowStateActions('setWindowState').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForWindowStateActions(

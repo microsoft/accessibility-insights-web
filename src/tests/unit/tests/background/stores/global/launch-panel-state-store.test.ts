@@ -32,15 +32,13 @@ describe('LaunchPanelStateStoreTest', () => {
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.LaunchPanelStateStore]);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
 
         const expectedState = getDefaultState();
 
-        createStoreForLaunchPanelStateActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreForLaunchPanelStateActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('initialize, user data is not null', () => {
@@ -53,7 +51,7 @@ describe('LaunchPanelStateStoreTest', () => {
         expect(testObject.getState()).toEqual(expectedState);
     });
 
-    test('onSetLaunchPanelState: preserving state', () => {
+    test('onSetLaunchPanelState: preserving state', async () => {
         const initialState = getDefaultState();
 
         const payload = LaunchPanelType.AdhocToolsPanel;
@@ -69,9 +67,9 @@ describe('LaunchPanelStateStoreTest', () => {
             .setup(adapter => adapter.setUserData(It.isValue(expectedSetUserData)))
             .returns(() => Promise.resolve());
 
-        createStoreForLaunchPanelStateActions('setLaunchPanelType')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForLaunchPanelStateActions('setLaunchPanelType').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
 
         storageAdapterMock.verifyAll();
     });

@@ -42,7 +42,7 @@ describe('DeviceConnectionStore', () => {
             const targetAction = 'statusUnknown';
             const expectedStatus = DeviceConnectionStatus.Unknown;
 
-            it.each(initialStatuses)('with initial status <%s>', initialStatus => {
+            it.each(initialStatuses)('with initial status <%s>', async initialStatus => {
                 initialState.status = DeviceConnectionStatus[initialStatus];
 
                 const expectedState: DeviceConnectionStoreData = {
@@ -51,15 +51,11 @@ describe('DeviceConnectionStore', () => {
                 };
 
                 if (initialState.status === expectedStatus) {
-                    createStoreTesterForScanActions(targetAction).testListenerToNeverBeCalled(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
                 } else {
-                    createStoreTesterForScanActions(targetAction).testListenerToBeCalledOnce(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
                 }
             });
         });
@@ -70,7 +66,7 @@ describe('DeviceConnectionStore', () => {
             const targetAction = 'statusConnected';
             const expectedStatus = DeviceConnectionStatus.Connected;
 
-            it.each(initialStatuses)('with initial status <%s>', initialStatus => {
+            it.each(initialStatuses)('with initial status <%s>', async initialStatus => {
                 initialState.status = DeviceConnectionStatus[initialStatus];
 
                 const expectedState: DeviceConnectionStoreData = {
@@ -79,15 +75,11 @@ describe('DeviceConnectionStore', () => {
                 };
 
                 if (initialState.status === expectedStatus) {
-                    createStoreTesterForScanActions(targetAction).testListenerToNeverBeCalled(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
                 } else {
-                    createStoreTesterForScanActions(targetAction).testListenerToBeCalledOnce(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
                 }
             });
         });
@@ -98,7 +90,7 @@ describe('DeviceConnectionStore', () => {
             const targetAction = 'statusDisconnected';
             const expectedStatus = DeviceConnectionStatus.Disconnected;
 
-            it.each(initialStatuses)('with initial status <%s>', initialStatus => {
+            it.each(initialStatuses)('with initial status <%s>', async initialStatus => {
                 initialState.status = DeviceConnectionStatus[initialStatus];
 
                 const expectedState: DeviceConnectionStoreData = {
@@ -107,15 +99,11 @@ describe('DeviceConnectionStore', () => {
                 };
 
                 if (initialState.status === expectedStatus) {
-                    createStoreTesterForScanActions(targetAction).testListenerToNeverBeCalled(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
                 } else {
-                    createStoreTesterForScanActions(targetAction).testListenerToBeCalledOnce(
-                        initialState,
-                        expectedState,
-                    );
+                    const storeTester = createStoreTesterForScanActions(targetAction);
+                    await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
                 }
             });
         });

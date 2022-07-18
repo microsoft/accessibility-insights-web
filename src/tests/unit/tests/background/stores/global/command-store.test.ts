@@ -30,7 +30,7 @@ describe('CommandStoreTest', () => {
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.CommandStore]);
     });
 
-    test('on getCommands: no command modification', () => {
+    test('on getCommands: no command modification', async () => {
         const prototype = new CommandStore(null, null, null, null, null, null);
         const initialState: CommandStoreData = prototype.getDefaultState();
         const expectedState: CommandStoreData = prototype.getDefaultState();
@@ -40,12 +40,12 @@ describe('CommandStoreTest', () => {
             tabId: 1,
         };
 
-        createStoreTesterForCommandActions('getCommands')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForCommandActions('getCommands').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onGetCommands: modifying commands', () => {
+    test('onGetCommands: modifying commands', async () => {
         const initialCommand: chrome.commands.Command = {
             description: 'Toggle Headings',
             name: 'toggle-headings',
@@ -82,14 +82,14 @@ describe('CommandStoreTest', () => {
             .setup(tp => tp.publishTelemetry(SHORTCUT_MODIFIED, It.isValue(telemetryPayload)))
             .verifiable(Times.once());
 
-        createStoreTesterForCommandActions('getCommands')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForCommandActions('getCommands').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
 
         telemetryEventHandlerMock.verifyAll();
     });
 
-    test("handling weird case: amount of commands change on runtime (this should not happen but we're handling it anyway)", () => {
+    test("handling weird case: amount of commands change on runtime (this should not happen but we're handling it anyway)", async () => {
         const initialState: CommandStoreData = new CommandStore(
             null,
             null,
@@ -121,9 +121,9 @@ describe('CommandStoreTest', () => {
             tabId: tabId,
         };
 
-        createStoreTesterForCommandActions('getCommands')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForCommandActions('getCommands').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForCommandActions(
