@@ -174,11 +174,6 @@ export type ModifiedCommandsTelemetryData = {
     modifiedCommands: string;
 };
 
-export type InspectTelemetryData = {
-    frameUrl?: string;
-    target?: string[];
-} & BaseTelemetryData;
-
 export type ScopingTelemetryData = {
     inputType: string;
 } & BaseTelemetryData;
@@ -282,7 +277,6 @@ export type TelemetryData =
     | DetailsViewPivotSelectedTelemetryData
     | RequirementSelectTelemetryData
     | ModifiedCommandsTelemetryData
-    | InspectTelemetryData
     | AssessmentTelemetryData
     | ScopingTelemetryData
     | RequirementActionTelemetryData
