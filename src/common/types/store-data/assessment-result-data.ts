@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Target } from 'scanner/iruleresults';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { Tab } from '../../itab';
 import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
