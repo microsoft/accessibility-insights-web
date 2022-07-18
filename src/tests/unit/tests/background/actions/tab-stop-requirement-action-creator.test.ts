@@ -19,7 +19,7 @@ import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -38,7 +38,7 @@ describe('TabStopRequirementActionCreator', () => {
             status: 'pass',
         };
 
-        const updateTabStopRequirementStatusMock = createActionMock(payload);
+        const updateTabStopRequirementStatusMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(
             actionName,
@@ -74,7 +74,7 @@ describe('TabStopRequirementActionCreator', () => {
             requirementId: requirementId,
         };
 
-        const resetTabStopRequirementStatusMock = createActionMock(payload);
+        const resetTabStopRequirementStatusMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, resetTabStopRequirementStatusMock.object);
         const interpreterMock = createInterpreterMock(
@@ -109,7 +109,7 @@ describe('TabStopRequirementActionCreator', () => {
             description: 'testing',
         };
 
-        const addTabStopRequirementInstanceMock = createActionMock(payload);
+        const addTabStopRequirementInstanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, addTabStopRequirementInstanceMock.object);
         const interpreterMock = createInterpreterMock(
@@ -145,7 +145,7 @@ describe('TabStopRequirementActionCreator', () => {
             id: 'abc',
         };
 
-        const updateTabStopRequirementInstanceMock = createActionMock(payload);
+        const updateTabStopRequirementInstanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(
             actionName,
@@ -181,7 +181,7 @@ describe('TabStopRequirementActionCreator', () => {
             requirementId: requirementId,
         };
 
-        const onRequirementExpansionToggledMock = createActionMock(payload);
+        const onRequirementExpansionToggledMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onRequirementExpansionToggledMock.object);
         const interpreterMock = createInterpreterMock(
@@ -208,7 +208,7 @@ describe('TabStopRequirementActionCreator', () => {
             id: 'abc',
         };
 
-        const removeTabStopRequirementInstanceMock = createActionMock(payload);
+        const removeTabStopRequirementInstanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(
             actionName,
@@ -244,7 +244,7 @@ describe('TabStopRequirementActionCreator', () => {
             tabbingCompleted: true,
         };
 
-        const onTabbingCompletedMock = createActionMock(payload);
+        const onTabbingCompletedMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onTabbingCompletedMock.object);
         const interpreterMock = createInterpreterMock(
@@ -269,7 +269,7 @@ describe('TabStopRequirementActionCreator', () => {
             needToCollectTabbingResults: true,
         };
 
-        const onNeedToCollectTabbingResultsMock = createActionMock(payload);
+        const onNeedToCollectTabbingResultsMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onNeedToCollectTabbingResultsMock.object);
         const interpreterMock = createInterpreterMock(
@@ -295,7 +295,7 @@ describe('TabStopRequirementActionCreator', () => {
             telemetry: {} as TelemetryEvents.TelemetryData,
         };
 
-        const instanceMock = createActionMock(payload);
+        const instanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, instanceMock.object);
         const interpreterMock = createInterpreterMock(

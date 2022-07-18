@@ -37,7 +37,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
-import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
 

@@ -15,7 +15,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';

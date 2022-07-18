@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { WindowBoundsChangedPayload } from 'electron/flux/action/window-frame-actions-payloads';
@@ -32,10 +32,10 @@ describe(WindowFrameListener, () => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         windowStateStoreMock = Mock.ofType(WindowStateStore);
 
-        maximizeEvent = new Action<void>();
-        unmaximizeEvent = new Action<void>();
-        enterFullScreenEvent = new Action<void>();
-        windowBoundsChangedEvent = new Action<SaveWindowBoundsPayload>();
+        maximizeEvent = new SyncAction<void>();
+        unmaximizeEvent = new SyncAction<void>();
+        enterFullScreenEvent = new SyncAction<void>();
+        windowBoundsChangedEvent = new SyncAction<SaveWindowBoundsPayload>();
 
         testSubject = new WindowFrameListener(
             windowStateActionsCreatorMock.object,

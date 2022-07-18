@@ -7,7 +7,7 @@ import {
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from 'common/extension-telemetry-events';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 import {
@@ -27,20 +27,20 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 describe('TabStopsActionCreator', () => {
     let tabStopsActionsMock: IMock<TabStopsActions>;
     let testSubject: TabStopsActionCreator;
-    let actionMock: IMock<Action<void>>;
+    let actionMock: IMock<SyncAction<void>>;
     let deviceFocusControllerMock: IMock<DeviceFocusController>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let loggerMock: IMock<Logger>;
-    let statusDisconnectedMock: IMock<Action<void>>;
-    let statusConnectedMock: IMock<Action<void>>;
+    let statusDisconnectedMock: IMock<SyncAction<void>>;
+    let statusConnectedMock: IMock<SyncAction<void>>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let eventStub: React.SyntheticEvent;
     let telemetryStub: BaseTelemetryData;
 
     beforeEach(() => {
         tabStopsActionsMock = Mock.ofType<TabStopsActions>();
-        actionMock = Mock.ofType<Action<void>>();
+        actionMock = Mock.ofType<SyncAction<void>>();
         deviceFocusControllerMock = Mock.ofType<DeviceFocusController>(
             undefined,
             MockBehavior.Strict,
@@ -54,8 +54,8 @@ describe('TabStopsActionCreator', () => {
             MockBehavior.Strict,
         );
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
-        statusDisconnectedMock = Mock.ofType<Action<void>>();
-        statusConnectedMock = Mock.ofType<Action<void>>();
+        statusDisconnectedMock = Mock.ofType<SyncAction<void>>();
+        statusConnectedMock = Mock.ofType<SyncAction<void>>();
         telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {

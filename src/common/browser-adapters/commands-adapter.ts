@@ -2,5 +2,5 @@
 // Licensed under the MIT License.
 export type CommandsAdapter = {
     addCommandListener(callback: (command: string) => void): void;
-    getCommands(callback: (commands: chrome.commands.Command[]) => void): void;
+    getCommands(): Promise<chrome.commands.Command[]>;
 };

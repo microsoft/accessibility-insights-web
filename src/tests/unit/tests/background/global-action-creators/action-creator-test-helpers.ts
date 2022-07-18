@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-export const createActionMock = <Payload>(
+export const createSyncActionMock = <Payload>(
     payload: Payload,
     scope?: string,
-): IMock<Action<Payload>> => {
-    const actionMock = Mock.ofType<Action<Payload>>(Action);
+): IMock<SyncAction<Payload>> => {
+    const actionMock = Mock.ofType<SyncAction<Payload>>();
     if (scope) {
         actionMock.setup(action => action.invoke(payload, scope)).verifiable(Times.once());
     } else {

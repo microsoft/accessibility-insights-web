@@ -11,13 +11,13 @@ import {
     CONTENT_PANEL_OPENED,
     TelemetryEventSource,
 } from 'common/extension-telemetry-events';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, Times } from 'typemoq';
 import {
-    createActionMock,
+    createSyncActionMock,
     createInterpreterMock,
 } from '../global-action-creators/action-creator-test-helpers';
 
@@ -43,12 +43,12 @@ describe('ContentActionMessageCreator', () => {
 
         const tabId = -2;
 
-        let openContentPanelMock: IMock<Action<ContentPayload>>;
+        let openContentPanelMock: IMock<SyncAction<ContentPayload>>;
         let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
         let loggerMock: IMock<Logger>;
 
         beforeEach(() => {
-            openContentPanelMock = createActionMock(payload);
+            openContentPanelMock = createSyncActionMock(payload);
             actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
             interpreterMock = createInterpreterMock(
                 Messages.ContentPanel.OpenPanel,
@@ -113,7 +113,7 @@ describe('ContentActionMessageCreator', () => {
             },
         };
 
-        const closeContentPanelMock = createActionMock<void>(undefined);
+        const closeContentPanelMock = createSyncActionMock<void>(undefined);
         actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
         interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
 

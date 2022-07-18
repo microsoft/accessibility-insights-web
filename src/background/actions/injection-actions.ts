@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 
 export class InjectionActions {
-    public readonly injectionCompleted = new Action();
-    public readonly injectionStarted = new Action();
+    public readonly injectionCompleted = new SyncAction();
+    public readonly injectionStarted = new SyncAction();
 }

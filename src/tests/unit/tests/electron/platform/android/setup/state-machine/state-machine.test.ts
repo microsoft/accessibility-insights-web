@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
 import { StateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-steps';
 import { ExpectedCallType, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -9,9 +9,9 @@ import { ExpectedCallType, It, Mock, MockBehavior, Times } from 'typemoq';
 type MartiniStepId = 'gin' | 'vermouth' | 'olives';
 
 class MartiniActions {
-    public shake = new Action<void>();
-    public stir = new Action<void>();
-    public garnish = new Action<string>();
+    public shake = new SyncAction<void>();
+    public stir = new SyncAction<void>();
+    public garnish = new SyncAction<string>();
 }
 
 type MartiniSteps = StateMachineSteps<MartiniStepId, MartiniActions>;
