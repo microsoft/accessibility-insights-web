@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabActions } from 'background/actions/tab-actions';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';

@@ -79,6 +79,7 @@ export class SelectorMapHelper {
                 VisualizationType.TabStops,
                 VisualizationType.Color,
                 VisualizationType.NeedsReview,
+                VisualizationType.AccessibleNames,
             ],
             visualizationType,
         );

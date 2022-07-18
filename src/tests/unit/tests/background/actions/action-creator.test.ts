@@ -46,7 +46,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';

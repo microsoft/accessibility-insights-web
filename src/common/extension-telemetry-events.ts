@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
@@ -81,6 +81,7 @@ export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
 export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const SET_AUTO_DETECTED_FAILURES_DIALOG_STATE: string = 'setAutoDetectedFailuresDialogState';
 export const UNHANDLED_ERROR: string = 'unhandledError';
+export const ACCESSIBLENAMES_TOGGLE: string = 'accessibleNamesToggled';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';

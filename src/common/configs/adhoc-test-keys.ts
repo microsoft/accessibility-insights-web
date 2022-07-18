@@ -7,4 +7,5 @@ export const enum AdHocTestkeys {
     Landmarks = 'landmarks',
     TabStops = 'tabStops',
     NeedsReview = 'needsReview',
+    AccessibleNames = 'accessibleNames',
 }
