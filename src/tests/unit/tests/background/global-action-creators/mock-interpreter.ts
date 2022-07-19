@@ -25,14 +25,6 @@ export class MockInterpreter {
         return this.internalMock.object;
     }
 
-    public setupRegisterCallbackForMessage(messageType: string): void {
-        this.internalMock
-            .setup(interpreter =>
-                interpreter.registerTypeToPayloadCallback(messageType, It.isAny()),
-            )
-            .verifiable(Times.once());
-    }
-
     public simulateMessage(
         messageType: string,
         payload: unknown,
@@ -44,9 +36,5 @@ export class MockInterpreter {
         }
 
         return callback(payload, tabId);
-    }
-
-    public verifyAll(): void {
-        this.internalMock.verifyAll();
     }
 }
