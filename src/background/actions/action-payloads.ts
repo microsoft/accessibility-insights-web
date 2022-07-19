@@ -28,6 +28,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
+import { Target } from 'scanner/iruleresults';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface BaseActionPayload {
@@ -173,7 +174,7 @@ export interface SetLaunchPanelState extends BaseActionPayload {
 }
 
 export interface InspectElementPayload extends BaseActionPayload {
-    target: string[];
+    target: Target;
 }
 
 export interface InspectFrameUrlPayload extends BaseActionPayload {

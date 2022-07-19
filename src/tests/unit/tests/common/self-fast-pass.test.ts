@@ -187,7 +187,7 @@ describe('SelfFastPass', () => {
                         any: node.any,
                         none: node.none,
                         target: node.target,
-                        domElement: domElements[node.target[0]] as any,
+                        domElement: domElements[node.target[0] as string] as any,
                     } as LoggedNode;
                 }),
             });

@@ -17,7 +17,7 @@ declare interface AxeNodeResult {
     none: FormattedCheckResult[];
     all: FormattedCheckResult[];
     html: string;
-    target: string[]; // selector
+    target: (string | string[])[]; // selector
     failureSummary?: string;
     instanceId?: string;
     snippet?: string;

@@ -14,6 +14,7 @@ import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
@@ -69,7 +70,7 @@ export class AssessmentInstanceTableHandler {
         this.detailsViewActionMessageCreator.passUnmarkedInstances(test, step);
     }
 
-    public updateFocusedTarget(target: string[]): void {
+    public updateFocusedTarget(target: Target): void {
         this.detailsViewActionMessageCreator.updateFocusedInstanceTarget(target);
     }
 

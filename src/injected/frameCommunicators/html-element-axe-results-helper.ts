@@ -120,7 +120,10 @@ export class HtmlElementAxeResultsHelper {
                 elementResultsByFrame[''] = elementResultsByFrame[''] || [];
                 elementResultsByFrame[''].push(elementResult);
             } else if (targetLength > elementResult.targetIndex + 1) {
-                const frameSelector = elementResult.target[elementResult.targetIndex++];
+                let frameSelector = elementResult.target[elementResult.targetIndex++];
+                if (typeof frameSelector !== 'string') {
+                    frameSelector = frameSelector.join(',');
+                }
                 elementResultsByFrame[frameSelector] = elementResultsByFrame[frameSelector] || [];
                 elementResultsByFrame[frameSelector].push(elementResult);
             } else {

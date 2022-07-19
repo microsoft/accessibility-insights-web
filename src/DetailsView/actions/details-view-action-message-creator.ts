@@ -37,6 +37,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { Target } from 'scanner/iruleresults';
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
@@ -161,8 +162,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     };
 
-    public updateFocusedInstanceTarget(instanceTarget: string[]): void {
-        const payload: string[] = instanceTarget;
+    public updateFocusedInstanceTarget(instanceTarget: Target): void {
+        const payload: Target = instanceTarget;
         const message: Message = {
             messageType: messages.Issues.UpdateFocusedInstance,
             payload,

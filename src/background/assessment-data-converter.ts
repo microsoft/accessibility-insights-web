@@ -16,6 +16,7 @@ import {
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { forOwn, isEmpty } from 'lodash';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
@@ -105,7 +106,7 @@ export class AssessmentDataConverter {
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): GeneratedAssessmentInstance {
-        const target: string[] = elementAxeResult.target;
+        const target: Target = elementAxeResult.target;
         let testStepResults = {};
         let html: string = null;
         let propertyBag = null;
@@ -144,7 +145,7 @@ export class AssessmentDataConverter {
         selector: string,
     ): GeneratedAssessmentInstance {
         let testStepResults = {};
-        const target: string[] = event.target;
+        const target: Target = event.target;
         const html: string = event.html;
         let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
 
