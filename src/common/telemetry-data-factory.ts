@@ -4,7 +4,6 @@ import { TabStopRequirementState } from 'common/types/store-data/visualization-s
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
-import { Target } from 'scanner/iruleresults';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { DictionaryStringTo } from '../types/common-types';
 import {
@@ -19,7 +18,6 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
-    InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
@@ -246,10 +244,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: Target): InspectTelemetryData {
+    public forInspectElement(event: SupportedMouseEvent): BaseTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
-            target: target,
         };
     }
 

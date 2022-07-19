@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
-import { Target } from 'scanner/iruleresults';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -184,11 +183,6 @@ export type ModifiedCommandsTelemetryData = {
     modifiedCommands: string;
 };
 
-export type InspectTelemetryData = {
-    frameUrl?: string;
-    target?: Target;
-} & BaseTelemetryData;
-
 export type ScopingTelemetryData = {
     inputType: string;
 } & BaseTelemetryData;
@@ -318,7 +312,6 @@ export type TelemetryData =
     | DetailsViewPivotSelectedTelemetryData
     | RequirementSelectTelemetryData
     | ModifiedCommandsTelemetryData
-    | InspectTelemetryData
     | AssessmentTelemetryData
     | ScopingTelemetryData
     | RequirementActionTelemetryData

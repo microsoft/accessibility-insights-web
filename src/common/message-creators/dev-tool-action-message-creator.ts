@@ -17,7 +17,7 @@ export class DevToolActionMessageCreator {
     public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: Target): void {
         const payload: InspectElementPayload = {
             target: target,
-            telemetry: this.telemetryFactory.forInspectElement(event, target),
+            telemetry: this.telemetryFactory.forInspectElement(event),
         };
         const message: Message = {
             messageType: Messages.DevTools.InspectElement,
