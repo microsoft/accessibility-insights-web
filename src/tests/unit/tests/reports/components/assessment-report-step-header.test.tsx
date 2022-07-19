@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { RequirementHeaderReportModel, RequirementType } from 'reports/assessment-report-model';

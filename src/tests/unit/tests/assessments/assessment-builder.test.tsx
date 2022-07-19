@@ -13,7 +13,7 @@ import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { ManualTestStatus } from '../../../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../../../common/types/store-data/manual-test-status';
 import {
     AssessmentScanData,
     TestsEnabledState,

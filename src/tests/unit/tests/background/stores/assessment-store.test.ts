@@ -26,13 +26,7 @@ import { AssessmentStore } from 'background/stores/assessment-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
-import {
-    ManualTestStatus,
-    ManualTestStatusData,
-    TestStepData,
-} from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -43,6 +37,12 @@ import {
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { Tab } from 'common/types/store-data/itab';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+    TestStepData,
+} from 'common/types/store-data/manual-test-status';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import {

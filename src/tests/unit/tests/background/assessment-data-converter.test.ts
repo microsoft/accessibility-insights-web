@@ -3,11 +3,11 @@
 
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import {
     DecoratedAxeNodeResult,

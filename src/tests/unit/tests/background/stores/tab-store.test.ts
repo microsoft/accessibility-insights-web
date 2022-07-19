@@ -3,9 +3,9 @@
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { TabStore } from 'background/stores/tab-store';
+import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
 import { IMock, Mock } from 'typemoq';
-import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';

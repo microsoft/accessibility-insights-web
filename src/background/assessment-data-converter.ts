@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     GeneratedAssessmentInstance,
@@ -9,6 +8,7 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { PartialTabOrderPropertyBag } from 'common/types/store-data/tab-order-property-bag';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import {

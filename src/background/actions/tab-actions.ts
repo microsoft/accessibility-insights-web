@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { SyncAction } from 'common/flux/sync-action';
-import { Tab } from 'common/itab';
+import { Tab } from 'common/types/store-data/itab';
 
 export class TabActions {
     public readonly newTabCreated = new SyncAction<Tab>();

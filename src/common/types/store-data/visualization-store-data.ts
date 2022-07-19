@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { VisualizationType } from '../visualization-type';
+import { DetailsViewPivotType } from './details-view-pivot-type';
 
 export interface ScanData {
     enabled: boolean;

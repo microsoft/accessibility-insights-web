@@ -4,6 +4,7 @@ import { CompletedTestStepTelemetryCreator } from 'background/completed-test-ste
 import { Interpreter } from 'background/interpreter';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { TabStore } from 'background/stores/tab-store';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     CHANGE_OVERALL_REQUIREMENT_STATUS,
@@ -14,7 +15,6 @@ import {
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,

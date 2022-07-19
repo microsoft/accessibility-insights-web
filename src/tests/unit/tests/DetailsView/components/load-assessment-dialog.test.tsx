@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { Dialog } from '@fluentui/react';
-import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';

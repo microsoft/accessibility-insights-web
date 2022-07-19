@@ -5,7 +5,7 @@ import { css } from '@fluentui/utilities';
 import * as React from 'react';
 
 import { outcomeTypeSemanticsFromTestStatus } from 'reports/components/requirement-outcome-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../common/types/store-data/manual-test-status';
 
 export interface StatusIconProps {
     status: ManualTestStatus;
