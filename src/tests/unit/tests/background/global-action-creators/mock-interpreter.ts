@@ -3,7 +3,7 @@
 
 import { Interpreter } from 'background/interpreter';
 import { PayloadCallback } from 'common/message';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
 export class MockInterpreter {
