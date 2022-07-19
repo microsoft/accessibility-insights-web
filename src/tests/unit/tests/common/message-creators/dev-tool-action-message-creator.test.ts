@@ -27,7 +27,7 @@ describe('DevToolActionMessageCreatorTest', () => {
         const event = eventStubFactory.createKeypressEvent() as any;
         const target = ['$iframe1', 'div1'];
         const telemetryFactory = new TelemetryDataFactory();
-        const telemetry = telemetryFactory.forInspectElement(event, target);
+        const telemetry = telemetryFactory.forInspectElement(event);
         const expectedMessage = {
             messageType: Messages.DevTools.InspectElement,
             payload: {
