@@ -10,9 +10,9 @@ import {
     UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { cloneDeep } from 'lodash';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, Mock, MockBehavior } from 'typemoq';

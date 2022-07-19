@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { IMock, Mock } from 'typemoq';
 
@@ -8,7 +9,6 @@ import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-a
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';

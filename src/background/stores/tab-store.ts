@@ -7,6 +7,7 @@ import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UrlParser } from 'common/url-parser';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 
@@ -22,6 +23,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
+        private readonly urlParser: UrlParser,
     ) {
         super(
             StoreNames.TabStore,
@@ -87,7 +89,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
     };
 
     private onExistingTabUpdated = (payload: Tab): void => {
-        if (!this.originsMatch(payload.url, this.state.url)) {
+        if (!this.urlParser.areURLsSameOrigin(this.state.url, payload.url)) {
             this.state.isOriginChanged = true;
         }
         this.state.title = payload.title;
@@ -101,15 +103,5 @@ export class TabStore extends PersistentStore<TabStoreData> {
             this.state.isChanged = false;
             this.emitChanged();
         }
-    };
-
-    private originsMatch = (url1: string, url2: string): boolean => {
-        if (url1 == null && url2 == null) {
-            return true;
-        }
-        if (url1 != null && url2 != null) {
-            return new URL(url1).origin === new URL(url2).origin;
-        }
-        return false;
     };
 }

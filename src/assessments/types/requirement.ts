@@ -10,10 +10,10 @@ import {
     InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';

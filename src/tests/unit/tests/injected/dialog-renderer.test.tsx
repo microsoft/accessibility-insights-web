@@ -7,6 +7,10 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
+import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
@@ -33,7 +37,6 @@ import { DialogRenderer } from '../../../../injected/dialog-renderer';
 import { FrameMessenger } from '../../../../injected/frameCommunicators/frame-messenger';
 import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 import { MainWindowContext } from '../../../../injected/main-window-context';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { DictionaryStringTo } from '../../../../types/common-types';

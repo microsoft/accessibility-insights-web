@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
-import { InspectMode } from 'background/inspect-modes';
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { SelectorInputList } from 'common/components/selector-input-list';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import * as React from 'react';
 import styles from './scoping-container.scss';

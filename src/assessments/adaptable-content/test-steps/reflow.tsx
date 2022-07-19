@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
+import * as Markup from 'assessments/markup';
 import { Requirement } from 'assessments/types/requirement';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/reflow';
@@ -20,7 +21,17 @@ const reflowHowToTest: JSX.Element = (
             <li>
                 Use your system's display settings to set the display resolution to 1280 x 1024.
             </li>
-            <li>Use your browser's settings to set the target page's zoom to 400%.</li>
+            <li>
+                Use your browser's settings to set the target page's zoom to 400%.
+                <ul>
+                    <li>
+                        <Markup.Emphasis>
+                            Note: 320 x 256 is equivalent to a display resolution of 1280 x 1024 at
+                            a 400% zoom
+                        </Markup.Emphasis>
+                    </li>
+                </ul>
+            </li>
             <li>
                 Examine the target page to verify that all text content is available without
                 horizontal scrolling. Content can be displayed directly in the page, revealed via

@@ -9,9 +9,12 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
-import { PartialTabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { PartialTabOrderPropertyBag } from 'common/types/store-data/tab-order-property-bag';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { forOwn, isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';

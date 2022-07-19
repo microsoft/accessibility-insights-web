@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';

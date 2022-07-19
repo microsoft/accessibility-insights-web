@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { some } from 'lodash';
 
 export function doesResultHaveMainRole(result: DecoratedAxeNodeResult): boolean {

@@ -25,7 +25,7 @@ import {
 } from 'common/extension-telemetry-events';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';

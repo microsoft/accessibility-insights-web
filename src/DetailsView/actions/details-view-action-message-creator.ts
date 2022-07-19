@@ -29,15 +29,15 @@ import { Message } from 'common/message';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
-import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
 

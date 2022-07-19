@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { BaseActionPayload } from './action-payloads';
 
 export interface ScopingPayload extends BaseActionPayload {
@@ -9,7 +9,7 @@ export interface ScopingPayload extends BaseActionPayload {
 }
 
 export class ScopingActions {
-    public readonly addSelector = new Action<ScopingPayload>();
-    public readonly deleteSelector = new Action<ScopingPayload>();
-    public readonly getCurrentState = new Action<void>();
+    public readonly addSelector = new SyncAction<ScopingPayload>();
+    public readonly deleteSelector = new SyncAction<ScopingPayload>();
+    public readonly getCurrentState = new SyncAction<void>();
 }

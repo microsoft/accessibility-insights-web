@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HtmlElementAxeResults } from '../scanner-utils';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { Drawer, DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { SingleTargetFormatter } from './single-target-formatter';

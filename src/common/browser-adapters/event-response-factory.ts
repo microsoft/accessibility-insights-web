@@ -4,6 +4,7 @@ import {
     BrowserMessageResponse,
     HandledBrowserMessageResponse,
 } from 'common/browser-adapters/browser-message-handler';
+import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { isPromise } from 'common/promises/is-promise';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { partition } from 'lodash';
@@ -29,6 +30,9 @@ export class EventResponseFactory {
     public constructor(
         private readonly promiseFactory: PromiseFactory,
         private readonly isServiceWorker: boolean,
+        private readonly mergeAsyncResponses: (
+            promises: Promise<unknown>[],
+        ) => Promise<void> = mergePromiseResponses,
     ) {}
 
     public async applyEventTimeout<T>(
@@ -83,25 +87,5 @@ export class EventResponseFactory {
         }
 
         return this.mergeAsyncResponses(asyncResponses);
-    }
-
-    // We want behavior in between Promise.all and Promise.allSettled; we want to wait for every
-    // promise even if one errors immediately, like allSettled, but we also want to reject the
-    // wrapping promise if any of the inner ones fail (for error reporting purposes).
-    private async mergeAsyncResponses(asyncResponses: Promise<unknown>[]): Promise<void> {
-        const results = await Promise.allSettled(asyncResponses);
-
-        const rejectedResults = results.filter(
-            (r): r is PromiseRejectedResult => r.status === 'rejected',
-        );
-
-        if (rejectedResults.length === 1) {
-            throw rejectedResults[0].reason;
-        }
-
-        if (rejectedResults.length > 0) {
-            const rejectedReasons = rejectedResults.map(r => r.reason);
-            throw new AggregateError(rejectedReasons);
-        }
     }
 }

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
-import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { Messages } from '../../common/messages';
@@ -60,7 +60,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     },
     chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,
-    adhocToolsPanelDisplayOrder: 6,
+    adhocToolsPanelDisplayOrder: 7,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
     getIdentifier: () => needsReviewTestKey,

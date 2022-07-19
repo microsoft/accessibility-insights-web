@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { Mock, MockBehavior, Times } from 'typemoq';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { DictionaryStringTo } from 'types/common-types';
 
 describe('Issues -> getNotificationMessage', () => {

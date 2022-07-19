@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
 import { BoundingRect } from '../bounding-rect';
 import { ClientUtils } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
-import { HtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { BaseDrawer } from './base-drawer';
 import { DrawerInitData } from './drawer';

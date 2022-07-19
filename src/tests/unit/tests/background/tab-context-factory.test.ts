@@ -125,6 +125,7 @@ describe('TabContextFactoryTest', () => {
             persistedDataStub,
             mockDBInstance.object,
             true,
+            null,
         );
 
         const tabContext = testObject.createTabContext(tabId);
