@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';

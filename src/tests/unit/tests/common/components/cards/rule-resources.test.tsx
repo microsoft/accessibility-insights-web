@@ -6,7 +6,7 @@ import {
     RuleResourcesProps,
 } from 'common/components/cards/rule-resources';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { GuidanceLink } from 'common/guidance-links';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';

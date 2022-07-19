@@ -186,10 +186,10 @@ describe('UserConfigurationStoreTest', () => {
         expect(testSubject.getId()).toBe(StoreNames[StoreNames.UserConfigurationStore]);
     });
 
-    test('getCurrentState action', () => {
+    test('getCurrentState action', async () => {
         const storeTester = createStoreToTestAction('getCurrentState');
 
-        storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
+        await storeTester.testListenerToBeCalledOnce(initialStoreData, cloneDeep(initialStoreData));
     });
 
     describe('setTelemetryConfig action', () => {
@@ -201,7 +201,7 @@ describe('UserConfigurationStoreTest', () => {
             ${false}    | ${false}
         `(
             'sets enableTelemetry per payload and isFirstTime to false for initial state isFirstTime=$isFirstTime enableTelemetry=$enableTelemetry',
-            ({ isFirstTime, enableTelemetry }) => {
+            async ({ isFirstTime, enableTelemetry }) => {
                 const storeTester = createStoreToTestAction('setTelemetryState');
                 initialStoreData = {
                     enableTelemetry: enableTelemetry,
@@ -238,7 +238,7 @@ describe('UserConfigurationStoreTest', () => {
                     .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
-                storeTester
+                await storeTester
                     .withActionParam(enableTelemetry)
                     .withPostListenerMock(indexDbStrictMock)
                     .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
@@ -257,7 +257,7 @@ describe('UserConfigurationStoreTest', () => {
             ${false} | ${false}       | ${false}
         `(
             'sets both enableHighContrast and lastSelectedHighContrast per payload $payload from initialState $initialState',
-            ({ payload, initialEnabled, initialLastSelected }) => {
+            async ({ payload, initialEnabled, initialLastSelected }) => {
                 const storeTester = createStoreToTestAction('setHighContrastMode');
                 initialStoreData = {
                     enableTelemetry: false,
@@ -298,7 +298,7 @@ describe('UserConfigurationStoreTest', () => {
                     .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
-                storeTester
+                await storeTester
                     .withActionParam(setHighContrastData)
                     .withPostListenerMock(indexDbStrictMock)
                     .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
@@ -317,7 +317,7 @@ describe('UserConfigurationStoreTest', () => {
             ${false} | ${false}       | ${false}            | ${false}
         `(
             'sets enableHighContrast by merging initialLastSelected=$initialLastSelected, initialEanbled=$initialEnabled, payload=$payload into $expectedEnabled',
-            ({ payload, initialEnabled, initialLastSelected, expectedEnabled }) => {
+            async ({ payload, initialEnabled, initialLastSelected, expectedEnabled }) => {
                 const storeTester = createStoreToTestAction('setNativeHighContrastMode');
                 initialStoreData = {
                     enableTelemetry: false,
@@ -358,7 +358,7 @@ describe('UserConfigurationStoreTest', () => {
                     .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
-                storeTester
+                await storeTester
                     .withActionParam(setNativeHighContrastData)
                     .withPostListenerMock(indexDbStrictMock)
                     .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
@@ -368,7 +368,7 @@ describe('UserConfigurationStoreTest', () => {
 
     test.each(['none', 'userConfigurationStoreTestIssueFilingService'])(
         'setIssueFilingService action: %s',
-        (testIssueFilingService: string) => {
+        async (testIssueFilingService: string) => {
             const storeTester = createStoreToTestAction('setIssueFilingService');
             initialStoreData = {
                 isFirstTime: false,
@@ -400,7 +400,7 @@ describe('UserConfigurationStoreTest', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            storeTester
+            await storeTester
                 .withActionParam(setIssueFilingServiceData)
                 .withPostListenerMock(indexDbStrictMock)
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
@@ -415,7 +415,7 @@ describe('UserConfigurationStoreTest', () => {
         { 'test-service': { 'test-name': 'test-value' } },
     ])(
         'setIssueFilingServiceProperty with initial map state %p',
-        (initialMapState: IssueFilingServicePropertiesMap) => {
+        async (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {
                 isFirstTime: false,
@@ -449,14 +449,14 @@ describe('UserConfigurationStoreTest', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            storeTester
+            await storeTester
                 .withActionParam(setIssueFilingServicePropertyData)
                 .withPostListenerMock(indexDbStrictMock)
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
         },
     );
 
-    test('saveIssueFilingSettings', () => {
+    test('saveIssueFilingSettings', async () => {
         const storeTester = createStoreToTestAction('saveIssueFilingSettings');
         const serviceName = 'test service';
         const bugServiceProperties: IssueFilingServiceProperties = {
@@ -479,13 +479,13 @@ describe('UserConfigurationStoreTest', () => {
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
-        storeTester
+        await storeTester
             .withActionParam(payload)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    test('setAdbLocation', () => {
+    test('setAdbLocation', async () => {
         const storeTester = createStoreToTestAction('setAdbLocation');
         const adbLocation = 'adb-here';
         const expectedState: UserConfigurationStoreData = {
@@ -500,13 +500,13 @@ describe('UserConfigurationStoreTest', () => {
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
-        storeTester
+        await storeTester
             .withActionParam(adbLocation)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    test('setAutoDetectedFailuresDialogState', () => {
+    test('setAutoDetectedFailuresDialogState', async () => {
         const storeTester = createStoreToTestAction('setAutoDetectedFailuresDialogState');
         const showAutoDetectedFailuresDialog = false;
         const payload: AutoDetectedFailuresDialogStatePayload = {
@@ -524,7 +524,7 @@ describe('UserConfigurationStoreTest', () => {
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
-        storeTester
+        await storeTester
             .withActionParam(payload)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
@@ -532,7 +532,7 @@ describe('UserConfigurationStoreTest', () => {
 
     test.each(['normal', 'maximized', 'full-screen'])(
         'saveLastWindowBounds windowState:$windowState',
-        windowState => {
+        async windowState => {
             const expectBoundsSet: boolean = windowState === 'normal';
             const payload: SaveWindowBoundsPayload = {
                 windowState: windowState as WindowState,
@@ -567,7 +567,7 @@ describe('UserConfigurationStoreTest', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            storeTester
+            await storeTester
                 .withActionParam(payload)
                 .withPostListenerMock(indexDbStrictMock)
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);

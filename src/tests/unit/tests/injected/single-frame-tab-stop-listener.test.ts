@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { DateProvider } from 'common/date-provider';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';

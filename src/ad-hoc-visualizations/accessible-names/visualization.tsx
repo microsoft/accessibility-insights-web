@@ -7,48 +7,47 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
-import { adhoc as content } from 'content/adhoc';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 
-const { guidance } = content.headings;
-const headingsTestKey = AdHocTestkeys.Headings;
+const accessiblenamesTestKey = AdHocTestkeys.AccessibleNames;
 
-const headingsRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['collect-headings'],
+const accessibleNamesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['find-accessible-names'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
-    key: headingsTestKey,
-    testType: VisualizationType.Headings,
+    key: accessiblenamesTestKey,
+    testType: VisualizationType.AccessibleNames,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
-export const HeadingsAdHocVisualization: VisualizationConfiguration = {
+export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     testViewType: 'AdhocStatic',
-    key: headingsTestKey,
+    key: accessiblenamesTestKey,
     testMode: TestMode.Adhoc,
-    getStoreData: data => data.adhoc[headingsTestKey],
-    enableTest: data => (data.adhoc[headingsTestKey].enabled = true),
+    featureFlagToEnable: 'showAccessibleNames',
+    getStoreData: data => data.adhoc[accessiblenamesTestKey],
+    enableTest: data => (data.adhoc[accessiblenamesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
     displayableData: {
-        title: 'Headings',
-        enableMessage: 'Finding headings...',
-        toggleLabel: 'Show headings',
-        linkToDetailsViewText: 'How to test headings',
+        title: 'Accessible Names',
+        enableMessage: 'Calculating accessible names...',
+        toggleLabel: 'Show accessible names',
+        linkToDetailsViewText: 'How to test accessible names',
     },
-    chromeCommand: '03_toggle-headings',
-    launchPanelDisplayOrder: 3,
-    adhocToolsPanelDisplayOrder: 3,
-    getAnalyzer: provider => provider.createRuleAnalyzer(headingsRuleAnalyzerConfiguration),
-    getIdentifier: () => headingsTestKey,
+    chromeCommand: '07_toggle-accessibleNames',
+    launchPanelDisplayOrder: 2,
+    adhocToolsPanelDisplayOrder: 4,
+    getAnalyzer: provider => provider.createRuleAnalyzer(accessibleNamesRuleAnalyzerConfiguration),
+    getIdentifier: () => accessiblenamesTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
-    getDrawer: provider => provider.createHeadingsDrawer(),
+    getNotificationMessage: selectorMap =>
+        isEmpty(selectorMap) ? 'No elements with accessible names found' : null,
+    getDrawer: provider => provider.createNullDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    guidance,
 };

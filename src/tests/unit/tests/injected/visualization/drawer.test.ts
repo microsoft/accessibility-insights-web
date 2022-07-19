@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
 import { BoundingRect } from 'injected/bounding-rect';
 import { ClientUtils } from 'injected/client-utils';
 import { DialogRenderer } from 'injected/dialog-renderer';
-import { HtmlElementAxeResults } from 'injected/scanner-utils';
 import { ShadowUtils } from 'injected/shadow-utils';
 import { DrawerInitData } from 'injected/visualization/drawer';
 import { DrawerUtils } from 'injected/visualization/drawer-utils';

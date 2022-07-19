@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { CurrentPanel } from './current-panel';
+import { DetailsViewRightContentPanelType } from './details-view-right-content-panel-type';
 
 export interface DetailsViewStoreData {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;

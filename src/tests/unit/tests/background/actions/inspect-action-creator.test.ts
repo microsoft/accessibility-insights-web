@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { InspectActionCreator } from 'background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
-import { InspectMode } from 'background/inspect-modes';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -11,6 +10,7 @@ import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import {

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { Messages } from 'common/messages';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
@@ -43,7 +43,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     },
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,
-    adhocToolsPanelDisplayOrder: 5,
+    adhocToolsPanelDisplayOrder: 6,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
     getAnalyzer: provider => provider.createTabStopsAnalyzer(tabStopVisualizationConfiguration),

@@ -103,7 +103,7 @@ describe(IpcRendererShim, () => {
             ipcRendererMock
                 .setup(m => m.send(IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
-            testSubject.fromBrowserWindowClose.addAsyncListener(() => {
+            testSubject.fromBrowserWindowClose.addListener(() => {
                 callCount++;
                 return Promise.resolve();
             });

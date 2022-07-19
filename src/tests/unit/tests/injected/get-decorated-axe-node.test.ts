@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
-import { GuidanceLink } from 'common/guidance-links';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';

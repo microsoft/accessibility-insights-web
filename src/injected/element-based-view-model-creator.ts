@@ -11,13 +11,6 @@ import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { find } from 'lodash';
 
-export interface CheckData {
-    // tslint:disable-next-line: no-reserved-keywords
-    any?: FormattedCheckResult[];
-    none?: FormattedCheckResult[];
-    all?: FormattedCheckResult[];
-}
-
 export type GetElementBasedViewModelCallback = (
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,

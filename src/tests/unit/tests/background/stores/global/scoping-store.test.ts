@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
     ScopingStoreData,
@@ -30,17 +30,15 @@ describe('ScopingStoreTest', () => {
         });
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForScopingActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreForScopingActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on addSelector', () => {
+    test('on addSelector', async () => {
         const initialState = getDefaultState();
         const payload: ScopingPayload = {
             inputType: 'include',
@@ -49,12 +47,11 @@ describe('ScopingStoreTest', () => {
         const finalState = getDefaultState();
         finalState.selectors[ScopingInputTypes.include] = [payload.selector];
 
-        createStoreForScopingActions('addSelector')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForScopingActions('addSelector').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on addSelector prevent duplicate selector', () => {
+    test('on addSelector prevent duplicate selector', async () => {
         const payload: ScopingPayload = {
             inputType: 'include',
             selector: ['iframe', 'selector'],
@@ -64,12 +61,11 @@ describe('ScopingStoreTest', () => {
         const finalState = getDefaultState();
         finalState.selectors[ScopingInputTypes.include] = [payload.selector];
 
-        createStoreForScopingActions('addSelector')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester = createStoreForScopingActions('addSelector').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    test('on deleteSelector with an actual selector', () => {
+    test('on deleteSelector with an actual selector', async () => {
         const initialState = getDefaultState();
         const payload: ScopingPayload = {
             inputType: ScopingInputTypes.include,
@@ -78,12 +74,11 @@ describe('ScopingStoreTest', () => {
         initialState.selectors[ScopingInputTypes.include] = [payload.selector];
         const finalState = getDefaultState();
 
-        createStoreForScopingActions('deleteSelector')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForScopingActions('deleteSelector').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on deleteSelector prevent deletion of non-existent selector', () => {
+    test('on deleteSelector prevent deletion of non-existent selector', async () => {
         const initialState = getDefaultState();
         const actualSelector = ['iframe', 'selector'];
         const payload: ScopingPayload = {
@@ -94,9 +89,8 @@ describe('ScopingStoreTest', () => {
         const finalState = getDefaultState();
         finalState.selectors[ScopingInputTypes.include] = [actualSelector];
 
-        createStoreForScopingActions('deleteSelector')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester = createStoreForScopingActions('deleteSelector').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
     function getDefaultState(): ScopingStoreData {
