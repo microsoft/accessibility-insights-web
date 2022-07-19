@@ -5,9 +5,7 @@ exports[`FixInstructionPanelTests render all checks 1`] = `
   <div>
     Fix ALL of the following:
   </div>
-  <ul
-    className="insightsFixInstructionList"
-  >
+  <ul>
     <li>
       <React.Fragment>
         message
@@ -27,9 +25,7 @@ exports[`FixInstructionPanelTests render instruction only one check 1`] = `
   <div>
     Fix the following:
   </div>
-  <ul
-    className="insightsFixInstructionList"
-  >
+  <ul>
     <li>
       <React.Fragment>
         message
@@ -44,9 +40,7 @@ exports[`FixInstructionPanelTests render none checks 1`] = `
   <div>
     Fix ALL of the following:
   </div>
-  <ul
-    className="insightsFixInstructionList"
-  >
+  <ul>
     <li>
       <React.Fragment>
         message
