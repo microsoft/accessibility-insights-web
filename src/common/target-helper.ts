@@ -3,7 +3,7 @@
 
 import { Target } from 'scanner/iruleresults';
 
-// This class deals with targets, which are returned from axe-core as an array of either strings or
+// This class deals with targets, which are returned from axe-core as an array of either strings
 // or arrays of strings-- (string | string[])[]. The structure of the target can tell you several
 // things about the dom elements:
 //      - If the target is an array with one string, then that string is a css selector.
@@ -13,7 +13,7 @@ import { Target } from 'scanner/iruleresults';
 //       -If the target is an array containing arrays of strings, then the dom element it points to
 //        is in the shadow dom. For each array, the first [length - 1] array elements point to DOM
 //        elements with a shadow DOM and the last array element is the final shadow DOM node.
-// At various places in axe-core or our code, these structures muse be serialized/ deserialized such
+// At various places in axe-core or our code, these structures must be serialized/ deserialized such
 // that they are in the form of ['element0';'element1'] or [['element0','element1']].
 
 export class TargetHelper {
