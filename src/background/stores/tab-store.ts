@@ -3,9 +3,9 @@
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
+import { Tab } from 'common/types/store-data/itab';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UrlParser } from 'common/url-parser';
 import { TabActions } from '../actions/tab-actions';

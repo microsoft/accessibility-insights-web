@@ -24,8 +24,8 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { SyncAction } from 'common/flux/sync-action';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,

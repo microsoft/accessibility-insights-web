@@ -3,9 +3,9 @@
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { Tab } from '../../itab';
-import { ManualTestStatus, ManualTestStatusData } from '../manual-test-status';
 import { VisualizationType } from '../visualization-type';
+import { Tab } from './itab';
+import { ManualTestStatus, ManualTestStatusData } from './manual-test-status';
 
 export type TestStepInstance = UserCapturedInstance & GeneratedAssessmentInstance;
 export type RequirementName = string;

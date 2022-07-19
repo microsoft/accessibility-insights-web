@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,

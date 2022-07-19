@@ -33,18 +33,16 @@ describe('PermissionsStateStoreTest', () => {
         expect(testSubject.getDefaultState()).toMatchSnapshot();
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = createPermissionsState();
         const finalState = createPermissionsState();
 
-        createStoreTesterForPermissionsStateActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForPermissionsStateActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     describe('on setPermissionsState', () => {
-        test('updates state when it has changed', () => {
+        test('updates state when it has changed', async () => {
             const initialPermissionsValue = false;
             const finalPermissionsValue = true;
             const initialState = { hasAllUrlAndFilePermissions: initialPermissionsValue };
@@ -53,23 +51,27 @@ describe('PermissionsStateStoreTest', () => {
                 hasAllUrlAndFilePermissions: finalPermissionsValue,
             };
 
-            createStoreTesterForPermissionsStateActions('setPermissionsState')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, finalState);
+            const storeTester =
+                createStoreTesterForPermissionsStateActions('setPermissionsState').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
         });
 
         test.each([true, false])(
             'does not update state when there is no change',
-            hasPermissionsValue => {
+            async hasPermissionsValue => {
                 const initialState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
                 const finalState = { hasAllUrlAndFilePermissions: hasPermissionsValue };
                 const payload: SetAllUrlsPermissionStatePayload = {
                     hasAllUrlAndFilePermissions: hasPermissionsValue,
                 };
 
-                createStoreTesterForPermissionsStateActions('setPermissionsState')
-                    .withActionParam(payload)
-                    .testListenerToNeverBeCalled(initialState, finalState);
+                const storeTester =
+                    createStoreTesterForPermissionsStateActions(
+                        'setPermissionsState',
+                    ).withActionParam(payload);
+                await storeTester.testListenerToNeverBeCalled(initialState, finalState);
             },
         );
     });

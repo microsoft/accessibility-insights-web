@@ -18,8 +18,6 @@ import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 import styles from './instance-details-footer.scss';
 
-export type HighlightState = 'visible' | 'hidden' | 'unavailable';
-
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;
     unifiedResultToIssueFilingDataConverter: UnifiedResultToIssueFilingDataConverter;

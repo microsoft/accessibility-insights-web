@@ -4,7 +4,8 @@
 
 @mixin content-size {
     max-width: 960px;
-    margin: 0 auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 @mixin box-shadow {

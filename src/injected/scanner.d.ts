@@ -23,12 +23,6 @@ declare interface AxeNodeResult {
     snippet?: string;
 }
 
-declare interface FormattedCheckResult {
-    id: string;
-    message: string;
-    data: any;
-}
-
 declare interface LandmarkValue {
     selectors: string[];
     label: string[];

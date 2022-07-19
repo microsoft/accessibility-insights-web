@@ -3,6 +3,7 @@
 
 import { Assessment } from 'assessments/types/iassessment';
 import { ReportInstanceFields } from 'assessments/types/report-instance-field';
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/store-data/manual-test-status';
 import { flatten } from 'lodash';
 import {
     AssessmentDetailsReportModel,
@@ -13,10 +14,6 @@ import {
     RequirementReportModel,
     ScanDetailsReportModel,
 } from 'reports/assessment-report-model';
-import {
-    ManualTestStatus,
-    ManualTestStatusData,
-} from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,

@@ -13,13 +13,6 @@ import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-m
 import { find } from 'lodash';
 import { Target } from 'scanner/iruleresults';
 
-export interface CheckData {
-    // tslint:disable-next-line: no-reserved-keywords
-    any?: FormattedCheckResult[];
-    none?: FormattedCheckResult[];
-    all?: FormattedCheckResult[];
-}
-
 export type GetElementBasedViewModelCallback = (
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,

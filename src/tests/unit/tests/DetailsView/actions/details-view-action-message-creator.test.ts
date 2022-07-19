@@ -36,7 +36,7 @@ import {
     SupportedMouseEvent,
     TelemetryDataFactory,
 } from '../../../../../common/telemetry-data-factory';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../../../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { EventStubFactory } from '../../../common/event-stub-factory';

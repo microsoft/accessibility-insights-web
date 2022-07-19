@@ -33,17 +33,15 @@ describe('NeedsReviewScanResultStore Test', () => {
         expect(defaultState.platformInfo).toBeNull();
     });
 
-    test('onGetCurrentState', () => {
+    test('onGetCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForNeedsReviewScanResultActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreForNeedsReviewScanResultActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted', () => {
+    test('onScanCompleted', async () => {
         const initialState = getDefaultState();
         const targetAppInfo: TargetAppData = { name: 'app name' };
         const payload: UnifiedScanCompletedPayload = {
@@ -84,12 +82,12 @@ describe('NeedsReviewScanResultStore Test', () => {
             platformInfo: payload.platformInfo,
         };
 
-        createStoreForNeedsReviewScanResultActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreForNeedsReviewScanResultActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onExistingTabUpdated', () => {
+    test('onExistingTabUpdated', async () => {
         const initialState = {
             results: [
                 {
@@ -119,10 +117,8 @@ describe('NeedsReviewScanResultStore Test', () => {
 
         const expectedState = getDefaultState();
 
-        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabActions('existingTabUpdated');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function getDefaultState(): NeedsReviewScanResultStoreData {

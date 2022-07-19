@@ -6,6 +6,10 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { TargetHelper } from 'common/target-helper';
 import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
+import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
@@ -31,7 +35,6 @@ import {
     LayeredDetailsDialogDeps,
 } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
 
 export interface DetailsDialogWindowMessage {
     data: HtmlElementAxeResults;

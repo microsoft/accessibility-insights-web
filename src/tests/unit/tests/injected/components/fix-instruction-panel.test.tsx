@@ -7,6 +7,7 @@ import {
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
 import { CheckType } from 'common/types/check-type';
+import { FormattedCheckResult } from 'common/types/store-data/visualization-scan-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
