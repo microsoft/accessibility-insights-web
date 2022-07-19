@@ -7,20 +7,22 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryData } from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock } from 'typemoq';
 
-import { createSyncActionMock, createInterpreterMock } from './action-creator-test-helpers';
+import { createSyncActionMock } from './action-creator-test-helpers';
 
 describe('PermissionsStateActionCreator', () => {
     let permissionsStateActionsMock: IMock<PermissionsStateActions>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         permissionsStateActionsMock = Mock.ofType<PermissionsStateActions>();
+        interpreterMock = new MockInterpreter();
     });
 
-    it('handles getStoreState message', () => {
+    it('handles getStoreState message', async () => {
         const expectedMessage = getStoreStateMessage(StoreNames.PermissionsStateStore);
-        const interpreterMock = createInterpreterMock(expectedMessage, null);
         const getCurrentStateMock = createSyncActionMock(undefined);
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new PermissionsStateActionCreator(
@@ -31,18 +33,19 @@ describe('PermissionsStateActionCreator', () => {
 
         testSubject.registerCallbacks();
 
+        await interpreterMock.simulateMessage(expectedMessage, null);
+
         getCurrentStateMock.verifyAll();
     });
 
     it.each([true, false])(
         'handles SetPermissionsState message for payload %p',
-        (permissionState: boolean) => {
+        async (permissionState: boolean) => {
             const expectedMessage = Messages.PermissionsState.SetPermissionsState;
             const payload: SetAllUrlsPermissionStatePayload = {
                 hasAllUrlAndFilePermissions: permissionState,
                 telemetry: {} as TelemetryData,
             };
-            const interpreterMock = createInterpreterMock(expectedMessage, payload);
             const setPermissionsStateMock = createSyncActionMock(payload);
             const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
             setupActionsMock('setPermissionsState', setPermissionsStateMock.object);
@@ -53,6 +56,8 @@ describe('PermissionsStateActionCreator', () => {
             );
 
             testSubject.registerCallbacks();
+
+            await interpreterMock.simulateMessage(expectedMessage, payload);
 
             setPermissionsStateMock.verifyAll();
         },

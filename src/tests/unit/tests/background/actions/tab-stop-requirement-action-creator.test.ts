@@ -16,22 +16,22 @@ import { TabStopRequirementActions } from 'background/actions/tab-stop-requireme
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('TabStopRequirementActionCreator', () => {
     const requirementId = 'focus-indicator';
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        interpreterMock = new MockInterpreter();
     });
 
-    test('registerCallback for update tab stops requirement status', () => {
+    test('registerCallback for update tab stops requirement status', async () => {
         const actionName = 'updateTabStopsRequirementStatus';
         const payload: UpdateTabStopRequirementStatusPayload = {
             requirementId: requirementId,
@@ -44,10 +44,6 @@ describe('TabStopRequirementActionCreator', () => {
             actionName,
             updateTabStopRequirementStatusMock.object,
         );
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.UpdateTabStopsRequirementStatus,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -56,6 +52,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.UpdateTabStopsRequirementStatus,
+            payload,
+        );
 
         updateTabStopRequirementStatusMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -68,7 +69,7 @@ describe('TabStopRequirementActionCreator', () => {
         );
     });
 
-    test('registerCallback for reset tab stops requirement status', () => {
+    test('registerCallback for reset tab stops requirement status', async () => {
         const actionName = 'resetTabStopRequirementStatus';
         const payload: ResetTabStopRequirementStatusPayload = {
             requirementId: requirementId,
@@ -77,10 +78,6 @@ describe('TabStopRequirementActionCreator', () => {
         const resetTabStopRequirementStatusMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, resetTabStopRequirementStatusMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -89,6 +86,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
+            payload,
+        );
 
         resetTabStopRequirementStatusMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -101,7 +103,7 @@ describe('TabStopRequirementActionCreator', () => {
         );
     });
 
-    test('registerCallback for add tab stops requirement instance', () => {
+    test('registerCallback for add tab stops requirement instance', async () => {
         const actionName = 'addTabStopInstance';
 
         const payload: AddTabStopInstancePayload = {
@@ -112,10 +114,6 @@ describe('TabStopRequirementActionCreator', () => {
         const addTabStopRequirementInstanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, addTabStopRequirementInstanceMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.AddTabStopInstance,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -124,6 +122,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.AddTabStopInstance,
+            payload,
+        );
 
         addTabStopRequirementInstanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -136,7 +139,7 @@ describe('TabStopRequirementActionCreator', () => {
         );
     });
 
-    test('registerCallback for update tab stops requirement instance', () => {
+    test('registerCallback for update tab stops requirement instance', async () => {
         const actionName = 'updateTabStopInstance';
 
         const payload: UpdateTabStopInstancePayload = {
@@ -151,10 +154,6 @@ describe('TabStopRequirementActionCreator', () => {
             actionName,
             updateTabStopRequirementInstanceMock.object,
         );
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.UpdateTabStopInstance,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -163,6 +162,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.UpdateTabStopInstance,
+            payload,
+        );
 
         updateTabStopRequirementInstanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -175,7 +179,7 @@ describe('TabStopRequirementActionCreator', () => {
         );
     });
 
-    test('registerCallback for on requirement expansion toggled', () => {
+    test('registerCallback for on requirement expansion toggled', async () => {
         const actionName = 'toggleTabStopRequirementExpand';
         const payload: ToggleTabStopRequirementExpandPayload = {
             requirementId: requirementId,
@@ -184,10 +188,6 @@ describe('TabStopRequirementActionCreator', () => {
         const onRequirementExpansionToggledMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onRequirementExpansionToggledMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.RequirementExpansionToggled,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -197,10 +197,15 @@ describe('TabStopRequirementActionCreator', () => {
 
         testSubject.registerCallbacks();
 
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            payload,
+        );
+
         onRequirementExpansionToggledMock.verifyAll();
     });
 
-    test('registerCallback for remove tab stops requirement instance', () => {
+    test('registerCallback for remove tab stops requirement instance', async () => {
         const actionName = 'removeTabStopInstance';
 
         const payload: RemoveTabStopInstancePayload = {
@@ -214,10 +219,6 @@ describe('TabStopRequirementActionCreator', () => {
             actionName,
             removeTabStopRequirementInstanceMock.object,
         );
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.RemoveTabStopInstance,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -226,6 +227,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.RemoveTabStopInstance,
+            payload,
+        );
 
         removeTabStopRequirementInstanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -238,7 +244,7 @@ describe('TabStopRequirementActionCreator', () => {
         );
     });
 
-    test('registerCallback for on tabbing completed', () => {
+    test('registerCallback for on tabbing completed', async () => {
         const actionName = 'updateTabbingCompleted';
         const payload: UpdateTabbingCompletedPayload = {
             tabbingCompleted: true,
@@ -247,10 +253,6 @@ describe('TabStopRequirementActionCreator', () => {
         const onTabbingCompletedMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onTabbingCompletedMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.TabbingCompleted,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -260,10 +262,15 @@ describe('TabStopRequirementActionCreator', () => {
 
         testSubject.registerCallbacks();
 
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.TabbingCompleted,
+            payload,
+        );
+
         onTabbingCompletedMock.verifyAll();
     });
 
-    test('registerCallback for on need to collect tabbing results', () => {
+    test('registerCallback for on need to collect tabbing results', async () => {
         const actionName = 'updateNeedToCollectTabbingResults';
         const payload: UpdateNeedToCollectTabbingResultsPayload = {
             needToCollectTabbingResults: true,
@@ -272,10 +279,6 @@ describe('TabStopRequirementActionCreator', () => {
         const onNeedToCollectTabbingResultsMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, onNeedToCollectTabbingResultsMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -285,10 +288,15 @@ describe('TabStopRequirementActionCreator', () => {
 
         testSubject.registerCallbacks();
 
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.NeedToCollectTabbingResults,
+            payload,
+        );
+
         onNeedToCollectTabbingResultsMock.verifyAll();
     });
 
-    test('registerCallback for automated tabbing results completed', () => {
+    test('registerCallback for automated tabbing results completed', async () => {
         const actionName = 'automatedTabbingResultsCompleted';
 
         const payload: BaseActionPayload = {
@@ -298,10 +306,6 @@ describe('TabStopRequirementActionCreator', () => {
         const instanceMock = createSyncActionMock(payload);
 
         const actionsMock = createActionsMock(actionName, instanceMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.TabStops.AutomatedTabbingResultsCompleted,
-            payload,
-        );
 
         const testSubject = new TabStopRequirementActionCreator(
             interpreterMock.object,
@@ -310,6 +314,11 @@ describe('TabStopRequirementActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.AutomatedTabbingResultsCompleted,
+            payload,
+        );
 
         instanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
