@@ -1497,6 +1497,12 @@
                   "src/common/types/store-data"
                 ]
               }
+            },
+            {
+              "name": "isAction",
+              "parameters": {
+                "action": "opened"
+              }
             }
           ]
         },
