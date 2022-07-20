@@ -12,7 +12,7 @@ import {
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('SaveAssessmentButton', () => {
     let propsStub: SaveAssessmentButtonProps;
@@ -43,7 +43,6 @@ describe('SaveAssessmentButton', () => {
         let wrapper: ShallowWrapper;
 
         beforeEach(() => {
-            const eventStub = new EventStubFactory().createMouseClickEvent() as any;
             wrapper = shallow(<SaveAssessmentButton {...propsStub} />);
             wrapper.find(InsightsCommandButton).simulate('click', eventStub);
         });
@@ -64,22 +63,21 @@ describe('SaveAssessmentButton', () => {
         });
 
         it('box appears checked when "dont show again" box is clicked', () => {
-            userConfigMessageCreatorMock
-                .setup(ucmcm => ucmcm.setSaveAssessmentDialogState(false))
-                .verifiable(Times.once());
-
             wrapper.find(Checkbox).simulate('change', undefined, true);
 
             expect(wrapper.getElement()).toMatchSnapshot();
-            userConfigMessageCreatorMock.verifyAll();
+
+            userConfigMessageCreatorMock.verify(
+                x => x.setSaveAssessmentDialogState(false),
+                Times.atLeastOnce(),
+            );
         });
 
         it('should call saveAssessment on click', async () => {
-            detailsViewActionMessageCreatorMock
-                .setup(m => m.saveAssessment(It.isAny()))
-                .verifiable();
-
-            detailsViewActionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verify(
+                x => x.saveAssessment(eventStub),
+                Times.atLeastOnce(),
+            );
         });
     });
 
@@ -97,11 +95,10 @@ describe('SaveAssessmentButton', () => {
         });
 
         it('should call saveAssessment on click', async () => {
-            detailsViewActionMessageCreatorMock
-                .setup(m => m.saveAssessment(It.isAny()))
-                .verifiable();
-
-            detailsViewActionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verify(
+                x => x.saveAssessment(eventStub),
+                Times.atLeastOnce(),
+            );
         });
     });
 });

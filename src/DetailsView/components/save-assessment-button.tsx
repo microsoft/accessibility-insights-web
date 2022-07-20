@@ -23,32 +23,30 @@ export interface SaveAssessmentButtonProps {
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     'SaveAssessmentButton',
-    props => {
+    ({ userConfigurationStoreData, deps, download, href }) => {
         const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
         const [showDialogAgain, { toggle: toggleShowDialogAgain }] = useBoolean(
-            props.userConfigurationStoreData.showSaveAssessmentDialog,
+            userConfigurationStoreData.showSaveAssessmentDialog,
         );
 
-        function handleSaveAssessmentClick() {
-            props.deps.detailsViewActionMessageCreator.saveAssessment;
-
-            if (showDialogAgain) {
-                toggleHideDialog();
-            }
+        function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
+            deps.detailsViewActionMessageCreator.saveAssessment(event);
+            if (!showDialogAgain) return;
+            toggleHideDialog();
         }
 
-        function handleDontShowAgainClick(ev?, checked?: boolean) {
+        function handleDontShowAgainClick(event: React.MouseEvent<any>, checked?: boolean) {
             if (checked === undefined) return;
             toggleShowDialogAgain();
-            props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
+            deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
         }
 
         return (
             <>
                 <InsightsCommandButton
                     iconProps={{ iconName: 'Save' }}
-                    download={props.download}
-                    href={props.href}
+                    download={download}
+                    href={href}
                     onClick={handleSaveAssessmentClick}
                 >
                     Save assessment
