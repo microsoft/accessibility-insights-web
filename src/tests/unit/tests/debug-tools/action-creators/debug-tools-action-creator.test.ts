@@ -3,12 +3,12 @@
 import { Messages } from 'common/messages';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
-import { createInterpreterMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { Mock, Times } from 'typemoq';
 
 describe('DebugToolsActionCreator', () => {
-    it('handles Message.DebugTools.Open', () => {
-        const interpreterMock = createInterpreterMock(Messages.DebugTools.Open, undefined);
+    it('handles Message.DebugTools.Open', async () => {
+        const interpreterMock = new MockInterpreter();
         const debugToolsControllerMock = Mock.ofType<DebugToolsController>();
 
         const testSubject = new DebugToolsActionCreator(
@@ -17,6 +17,8 @@ describe('DebugToolsActionCreator', () => {
         );
 
         testSubject.registerCallback();
+
+        await interpreterMock.simulateMessage(Messages.DebugTools.Open, undefined);
 
         debugToolsControllerMock.verify(controller => controller.showDebugTools(), Times.once());
     });

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     InstanceIdToInstanceDataMap,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { isEmpty, size } from 'lodash';
 import * as React from 'react';
 import styles from './assessment-default-message-generator.scss';

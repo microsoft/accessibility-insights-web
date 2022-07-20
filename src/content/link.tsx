@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from 'common/guidance-links';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { guidelineMetadata } from './guideline-metadata';
 
 function linkTo(text: string, href: string): HyperlinkDefinition {

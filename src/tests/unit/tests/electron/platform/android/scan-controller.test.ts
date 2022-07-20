@@ -6,7 +6,7 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import {
     SCAN_COMPLETED,
     SCAN_FAILED,

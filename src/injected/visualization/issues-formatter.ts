@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import * as ReactDOM from 'react-dom';
 
@@ -10,7 +11,6 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DialogRenderer } from '../dialog-renderer';
-import { HtmlElementAxeResults } from '../scanner-utils';
 import { ShadowUtils } from '../shadow-utils';
 import { DrawerConfiguration, Formatter } from './formatter';
 import { HeadingStyleConfiguration } from './heading-formatter';

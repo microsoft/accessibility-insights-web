@@ -29,14 +29,15 @@ import { Message } from 'common/message';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { Target } from 'scanner/iruleresults';
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
@@ -161,8 +162,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     };
 
-    public updateFocusedInstanceTarget(instanceTarget: string[]): void {
-        const payload: string[] = instanceTarget;
+    public updateFocusedInstanceTarget(instanceTarget: Target): void {
+        const payload: Target = instanceTarget;
         const message: Message = {
             messageType: messages.Issues.UpdateFocusedInstance,
             payload,

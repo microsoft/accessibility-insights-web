@@ -8,10 +8,10 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { EnumHelper } from 'common/enum-helper';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { Tab } from 'common/types/store-data/itab';
 import {
     AssessmentScanData,
     TestsEnabledState,

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HtmlElementAxeResults } from '../scanner-utils';
+import { TargetHelper } from 'common/target-helper';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { Drawer, DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { SingleTargetFormatter } from './single-target-formatter';
@@ -52,8 +53,10 @@ export class SingleTargetDrawer implements Drawer {
             return null;
         }
 
-        return document.querySelector(
-            elementResults[0].target[elementResults[0].target.length - 1],
+        return TargetHelper.getTargetElement(
+            elementResults[0].target,
+            document,
+            elementResults[0].target.length - 1,
         ) as HTMLElement;
     }
 }

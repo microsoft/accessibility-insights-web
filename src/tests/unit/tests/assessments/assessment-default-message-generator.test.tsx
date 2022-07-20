@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import styles from 'assessments/assessment-default-message-generator.scss';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 

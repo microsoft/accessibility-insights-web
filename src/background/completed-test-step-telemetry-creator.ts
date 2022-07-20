@@ -3,12 +3,12 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/store-data/manual-test-status';
 import { cloneDeep, filter } from 'lodash';
 import * as TelemetryEvents from '../common/extension-telemetry-events';
 import { RequirementStatusTelemetryData } from '../common/extension-telemetry-events';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import { AssessmentData } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';

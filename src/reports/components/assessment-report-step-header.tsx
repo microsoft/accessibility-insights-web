@@ -5,7 +5,7 @@ import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NamedFC } from 'common/react/named-fc';
 import { LinkComponentType } from 'common/types/link-component-type';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
 
 import { RequirementHeaderReportModel } from '../assessment-report-model';

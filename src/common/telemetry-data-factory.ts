@@ -18,7 +18,6 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
-    InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
@@ -44,7 +43,7 @@ import {
     ForNeedsReviewAnalyzerScanCallback,
     ForRuleAnalyzerScanCallback,
 } from './types/analyzer-telemetry-callbacks';
-import { DetailsViewPivotType } from './types/details-view-pivot-type';
+import { DetailsViewPivotType } from './types/store-data/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
 export type SupportedMouseEvent =
@@ -245,10 +244,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
+    public forInspectElement(event: SupportedMouseEvent): BaseTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
-            target: target,
         };
     }
 

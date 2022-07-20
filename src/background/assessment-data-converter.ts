@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     GeneratedAssessmentInstance,
@@ -9,10 +8,15 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
-import { PartialTabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { PartialTabOrderPropertyBag } from 'common/types/store-data/tab-order-property-bag';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { forOwn, isEmpty } from 'lodash';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
@@ -102,7 +106,7 @@ export class AssessmentDataConverter {
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
     ): GeneratedAssessmentInstance {
-        const target: string[] = elementAxeResult.target;
+        const target: Target = elementAxeResult.target;
         let testStepResults = {};
         let html: string = null;
         let propertyBag = null;
@@ -141,7 +145,7 @@ export class AssessmentDataConverter {
         selector: string,
     ): GeneratedAssessmentInstance {
         let testStepResults = {};
-        const target: string[] = event.target;
+        const target: Target = event.target;
         const html: string = event.html;
         let propertyBag: PartialTabOrderPropertyBag = { timestamp: event.timestamp };
 

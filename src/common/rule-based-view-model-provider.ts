@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { includes } from 'lodash';
 
@@ -11,6 +10,7 @@ import {
     CardRuleResultsByStatus,
     CardRuleResultStatus,
     CardsViewModel,
+    HighlightState,
 } from './types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 

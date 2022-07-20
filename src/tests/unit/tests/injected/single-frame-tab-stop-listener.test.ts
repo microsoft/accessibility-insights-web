@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { DateProvider } from 'common/date-provider';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { getUniqueSelector } from 'scanner/axe-utils';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -111,7 +111,7 @@ describe('SingleFrameTabStopListener', () => {
 
         getUniqueSelectorMock
             .setup(m => m(fakeEvent.target as HTMLElement))
-            .returns(_ => exampleTabStopEvent.target[0])
+            .returns(_ => exampleTabStopEvent.target[0] as string)
             .verifiable(Times.once());
 
         const reportResultMock = Mock.ofInstance(async (_: TabStopEvent) => {});

@@ -17,17 +17,15 @@ describe('DevToolsStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DevToolsStore]);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
         const expectedState = getDefaultState();
 
-        createStoreTesterForDevToolsActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForDevToolsActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('on setDevToolState, isOpen value change', () => {
+    test('on setDevToolState, isOpen value change', async () => {
         const initialState = getDefaultState();
 
         const payload = true;
@@ -36,23 +34,23 @@ describe('DevToolsStoreTest', () => {
         expectedState.frameUrl = null;
         expectedState.inspectElement = null;
 
-        createStoreTesterForDevToolsActions('setDevToolState')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForDevToolsActions('setDevToolState').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('on setDevToolState, isOpen value is the same', () => {
+    test('on setDevToolState, isOpen value is the same', async () => {
         const initialState = getDefaultState();
         const expectedState = getDefaultState();
 
         const payload = false;
 
-        createStoreTesterForDevToolsActions('setDevToolState')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForDevToolsActions('setDevToolState').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('on setInspectElement', () => {
+    test('on setInspectElement', async () => {
         const initialState = getDefaultState();
 
         const payload = ['#frame1', '#elem1'];
@@ -62,12 +60,12 @@ describe('DevToolsStoreTest', () => {
         expectedState.frameUrl = null;
         expectedState.inspectElementRequestId = 1;
 
-        createStoreTesterForDevToolsActions('setInspectElement')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForDevToolsActions('setInspectElement').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('on setFrameUrl', () => {
+    test('on setFrameUrl', async () => {
         const initialState = getDefaultState();
 
         const payload = 'https://test-url';
@@ -75,9 +73,9 @@ describe('DevToolsStoreTest', () => {
         const expectedState = getDefaultState();
         expectedState.frameUrl = payload;
 
-        createStoreTesterForDevToolsActions('setFrameUrl')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForDevToolsActions('setFrameUrl').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function getDefaultState(): DevToolStoreData {

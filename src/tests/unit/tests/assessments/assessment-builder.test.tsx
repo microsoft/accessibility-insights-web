@@ -7,12 +7,13 @@ import { Requirement } from 'assessments/types/requirement';
 import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { ManualTestStatus } from '../../../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../../../common/types/store-data/manual-test-status';
 import {
     AssessmentScanData,
     TestsEnabledState,
@@ -20,7 +21,6 @@ import {
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 

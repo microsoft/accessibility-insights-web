@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
@@ -13,7 +14,6 @@ import {
     CommandBarDeps,
     CommandBarProps,
 } from '../../../../../injected/components/command-bar';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
