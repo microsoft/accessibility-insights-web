@@ -169,17 +169,20 @@ export class AssessmentActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onPassUnmarkedInstances = (payload: ToggleActionPayload, tabId: number): void => {
+    private onPassUnmarkedInstances = async (
+        payload: ToggleActionPayload,
+        tabId: number,
+    ): Promise<void> => {
         const eventName = TelemetryEvents.PASS_UNMARKED_INSTANCES;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
-        this.assessmentActions.passUnmarkedInstance.invoke(payload);
+        await this.assessmentActions.passUnmarkedInstance.invoke(payload);
     };
 
-    private onEditFailureInstance = (payload: EditFailureInstancePayload): void => {
+    private onEditFailureInstance = async (payload: EditFailureInstancePayload): Promise<void> => {
         const eventName = TelemetryEvents.EDIT_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.editFailureInstance.invoke(payload);
+        await this.assessmentActions.editFailureInstance.invoke(payload);
     };
 
     private onRemoveFailureInstance = async (
@@ -238,18 +241,20 @@ export class AssessmentActionCreator {
         await this.assessmentActions.changeInstanceStatus.invoke(payload);
     };
 
-    private onChangeAssessmentVisualizationState = (
+    private onChangeAssessmentVisualizationState = async (
         payload: ChangeInstanceSelectionPayload,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.changeAssessmentVisualizationState.invoke(payload);
+        await this.assessmentActions.changeAssessmentVisualizationState.invoke(payload);
     };
 
-    private onChangeVisualizationStateForAll = (payload: ChangeInstanceSelectionPayload): void => {
+    private onChangeVisualizationStateForAll = async (
+        payload: ChangeInstanceSelectionPayload,
+    ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.changeAssessmentVisualizationStateForAll.invoke(payload);
+        await this.assessmentActions.changeAssessmentVisualizationStateForAll.invoke(payload);
     };
 
     private onStartOverAssessment = (payload: ToggleActionPayload): void => {

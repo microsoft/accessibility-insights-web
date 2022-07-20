@@ -182,7 +182,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onPassUnmarkedInstances = (payload: AssessmentActionInstancePayload): void => {
+    private onPassUnmarkedInstances = async (
+        payload: AssessmentActionInstancePayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -206,7 +208,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onEditFailureInstance = (payload: EditFailureInstancePayload): void => {
+    private onEditFailureInstance = async (payload: EditFailureInstancePayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -269,9 +271,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeAssessmentVisualizationStateForAll = (
+    private onChangeAssessmentVisualizationStateForAll = async (
         payload: ChangeInstanceSelectionPayload,
-    ): void => {
+    ): Promise<void> => {
         const { test, requirement } = payload;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(
@@ -317,9 +319,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeAssessmentVisualizationState = (
+    private onChangeAssessmentVisualizationState = async (
         payload: ChangeInstanceSelectionPayload,
-    ): void => {
+    ): Promise<void> => {
         const { test, requirement } = payload;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);

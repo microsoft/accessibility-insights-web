@@ -33,12 +33,12 @@ export class AssessmentActions {
     public readonly addFailureInstance = new AsyncAction<AddFailureInstancePayload>();
     public readonly addResultDescription = new AsyncAction<AddResultDescriptionPayload>();
     public readonly removeFailureInstance = new AsyncAction<RemoveFailureInstancePayload>();
-    public readonly editFailureInstance = new SyncAction<EditFailureInstancePayload>();
-    public readonly passUnmarkedInstance = new SyncAction<ToggleActionPayload>();
+    public readonly editFailureInstance = new AsyncAction<EditFailureInstancePayload>();
+    public readonly passUnmarkedInstance = new AsyncAction<ToggleActionPayload>();
     public readonly changeAssessmentVisualizationState =
-        new SyncAction<ChangeInstanceSelectionPayload>();
+        new AsyncAction<ChangeInstanceSelectionPayload>();
     public readonly changeAssessmentVisualizationStateForAll =
-        new SyncAction<ChangeInstanceSelectionPayload>();
+        new AsyncAction<ChangeInstanceSelectionPayload>();
     public readonly undoInstanceStatusChange = new SyncAction<AssessmentActionInstancePayload>();
     public readonly undoRequirementStatusChange = new SyncAction<ChangeRequirementStatusPayload>();
     public readonly getCurrentState = new SyncAction<void>();

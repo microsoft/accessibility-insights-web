@@ -370,7 +370,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeInstanceSelectionPayload;
 
-        const changeAssessmentVisualizationStateMock = createSyncActionMock(payload);
+        const changeAssessmentVisualizationStateMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock(
             'changeAssessmentVisualizationState',
             changeAssessmentVisualizationStateMock.object,
@@ -403,7 +403,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeInstanceSelectionPayload;
 
-        const changeAssessmentVisualizationStateForAllMock = createSyncActionMock(payload);
+        const changeAssessmentVisualizationStateForAllMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock(
             'changeAssessmentVisualizationStateForAll',
             changeAssessmentVisualizationStateForAllMock.object,
