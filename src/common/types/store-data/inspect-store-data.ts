@@ -5,4 +5,5 @@ import { InspectMode } from './inspect-modes';
 export interface InspectStoreData {
     inspectMode: InspectMode;
     hoveredOverSelector: string[] | null;
+    temp: boolean;
 }
