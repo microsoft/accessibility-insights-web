@@ -182,30 +182,34 @@ export class AssessmentActionCreator {
         this.assessmentActions.editFailureInstance.invoke(payload);
     };
 
-    private onRemoveFailureInstance = (payload: RemoveFailureInstancePayload): void => {
+    private onRemoveFailureInstance = async (
+        payload: RemoveFailureInstancePayload,
+    ): Promise<void> => {
         const eventName = TelemetryEvents.REMOVE_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.removeFailureInstance.invoke(payload);
+        await this.assessmentActions.removeFailureInstance.invoke(payload);
     };
 
-    private onAddFailureInstance = (payload: AddFailureInstancePayload): void => {
+    private onAddFailureInstance = async (payload: AddFailureInstancePayload): Promise<void> => {
         const eventName = TelemetryEvents.ADD_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.addFailureInstance.invoke(payload);
+        await this.assessmentActions.addFailureInstance.invoke(payload);
     };
 
-    private onAddResultDescription = (payload: AddResultDescriptionPayload): void => {
-        this.assessmentActions.addResultDescription.invoke(payload);
+    private onAddResultDescription = async (
+        payload: AddResultDescriptionPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.addResultDescription.invoke(payload);
     };
 
-    private onChangeManualRequirementStatus = (
+    private onChangeManualRequirementStatus = async (
         payload: ChangeRequirementStatusPayload,
         tabId: number,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
-        this.assessmentActions.changeRequirementStatus.invoke(payload);
+        await this.assessmentActions.changeRequirementStatus.invoke(payload);
     };
 
     private onUndoChangeManualRequirementStatus = (
@@ -224,14 +228,14 @@ export class AssessmentActionCreator {
         this.assessmentActions.undoInstanceStatusChange.invoke(payload);
     };
 
-    private onChangeAssessmentInstanceStatus = (
+    private onChangeAssessmentInstanceStatus = async (
         payload: ChangeInstanceStatusPayload,
         tabId: number,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
-        this.assessmentActions.changeInstanceStatus.invoke(payload);
+        await this.assessmentActions.changeInstanceStatus.invoke(payload);
     };
 
     private onChangeAssessmentVisualizationState = (
@@ -268,21 +272,25 @@ export class AssessmentActionCreator {
         this.assessmentActions.getCurrentState.invoke(null);
     };
 
-    private onSelectTestRequirement = (payload: SelectTestSubviewPayload): void => {
-        this.assessmentActions.selectTestSubview.invoke(payload);
+    private onSelectTestRequirement = async (payload: SelectTestSubviewPayload): Promise<void> => {
+        await this.assessmentActions.selectTestSubview.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
     };
 
-    private onSelectNextTestRequirement = (payload: SelectTestSubviewPayload): void => {
-        this.assessmentActions.selectTestSubview.invoke(payload);
+    private onSelectNextTestRequirement = async (
+        payload: SelectTestSubviewPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.selectTestSubview.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.SELECT_NEXT_REQUIREMENT,
             payload,
         );
     };
 
-    private onSelectGettingStarted = (payload: SelectGettingStartedPayload): void => {
-        this.assessmentActions.selectTestSubview.invoke({
+    private onSelectGettingStarted = async (
+        payload: SelectGettingStartedPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.selectTestSubview.invoke({
             selectedTestSubview: gettingStartedSubview,
             ...payload,
         });
@@ -292,12 +300,12 @@ export class AssessmentActionCreator {
         );
     };
 
-    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
-        this.assessmentActions.expandTestNav.invoke(payload);
+    private onExpandTestNav = async (payload: ExpandTestNavPayload): Promise<void> => {
+        await this.assessmentActions.expandTestNav.invoke(payload);
     };
 
-    private onCollapseTestNav = (): void => {
-        this.assessmentActions.collapseTestNav.invoke(null);
+    private onCollapseTestNav = async (): Promise<void> => {
+        await this.assessmentActions.collapseTestNav.invoke(null);
     };
 
     private onScanUpdate = (payload: ScanUpdatePayload): void => {

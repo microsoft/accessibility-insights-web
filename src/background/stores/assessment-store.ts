@@ -226,7 +226,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onRemoveFailureInstance = (payload: RemoveFailureInstancePayload): void => {
+    private onRemoveFailureInstance = async (
+        payload: RemoveFailureInstancePayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -243,7 +245,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onAddFailureInstance = (payload: AddFailureInstancePayload): void => {
+    private onAddFailureInstance = async (payload: AddFailureInstancePayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -260,7 +262,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onAddResultDescription = (payload: AddResultDescriptionPayload): void => {
+    private onAddResultDescription = async (
+        payload: AddResultDescriptionPayload,
+    ): Promise<void> => {
         this.state.resultDescription = payload.description;
         this.emitChanged();
     };
@@ -286,7 +290,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeStepStatus = (payload: ChangeRequirementStatusPayload): void => {
+    private onChangeStepStatus = async (payload: ChangeRequirementStatusPayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -343,7 +347,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeInstanceStatus = (payload: ChangeInstanceStatusPayload): void => {
+    private onChangeInstanceStatus = async (
+        payload: ChangeInstanceStatusPayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -360,18 +366,18 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onSelectTestSubview = (payload: SelectTestSubviewPayload): void => {
+    private onSelectTestSubview = async (payload: SelectTestSubviewPayload): Promise<void> => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
         this.emitChanged();
     };
 
-    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+    private onExpandTestNav = async (payload: ExpandTestNavPayload): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = payload.selectedTest;
         this.emitChanged();
     };
 
-    private onCollapseTestNav = (): void => {
+    private onCollapseTestNav = async (): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = null;
         this.emitChanged();
     };

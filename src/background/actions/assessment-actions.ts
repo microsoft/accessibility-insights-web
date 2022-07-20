@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import {
     ScanBasePayload,
@@ -24,14 +25,14 @@ import {
 } from './action-payloads';
 
 export class AssessmentActions {
-    public readonly selectTestSubview = new SyncAction<SelectTestSubviewPayload>();
-    public readonly expandTestNav = new SyncAction<ExpandTestNavPayload>();
-    public readonly collapseTestNav = new SyncAction<null>();
-    public readonly changeInstanceStatus = new SyncAction<ChangeInstanceStatusPayload>();
-    public readonly changeRequirementStatus = new SyncAction<ChangeRequirementStatusPayload>();
-    public readonly addFailureInstance = new SyncAction<AddFailureInstancePayload>();
-    public readonly addResultDescription = new SyncAction<AddResultDescriptionPayload>();
-    public readonly removeFailureInstance = new SyncAction<RemoveFailureInstancePayload>();
+    public readonly selectTestSubview = new AsyncAction<SelectTestSubviewPayload>();
+    public readonly expandTestNav = new AsyncAction<ExpandTestNavPayload>();
+    public readonly collapseTestNav = new AsyncAction<null>();
+    public readonly changeInstanceStatus = new AsyncAction<ChangeInstanceStatusPayload>();
+    public readonly changeRequirementStatus = new AsyncAction<ChangeRequirementStatusPayload>();
+    public readonly addFailureInstance = new AsyncAction<AddFailureInstancePayload>();
+    public readonly addResultDescription = new AsyncAction<AddResultDescriptionPayload>();
+    public readonly removeFailureInstance = new AsyncAction<RemoveFailureInstancePayload>();
     public readonly editFailureInstance = new SyncAction<EditFailureInstancePayload>();
     public readonly passUnmarkedInstance = new SyncAction<ToggleActionPayload>();
     public readonly changeAssessmentVisualizationState =
