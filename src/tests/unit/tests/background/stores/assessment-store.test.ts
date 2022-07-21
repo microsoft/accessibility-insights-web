@@ -655,7 +655,7 @@ describe('AssessmentStore', () => {
             .callback((id, resolve) => resolve(tab));
 
         const storeTester =
-            createStoreTesterForAssessmentActions('LoadAssessment').withActionParam(payload);
+            createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 

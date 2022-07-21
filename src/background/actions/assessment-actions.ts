@@ -39,17 +39,18 @@ export class AssessmentActions {
         new AsyncAction<ChangeInstanceSelectionPayload>();
     public readonly changeAssessmentVisualizationStateForAll =
         new AsyncAction<ChangeInstanceSelectionPayload>();
-    public readonly undoInstanceStatusChange = new SyncAction<AssessmentActionInstancePayload>();
-    public readonly undoRequirementStatusChange = new SyncAction<ChangeRequirementStatusPayload>();
+    public readonly undoInstanceStatusChange = new AsyncAction<AssessmentActionInstancePayload>();
+    public readonly undoRequirementStatusChange = new AsyncAction<ChangeRequirementStatusPayload>();
+    // Leaving this sync for now until BaseStoreImpl.onGetCurrentState() can be converted to async
     public readonly getCurrentState = new SyncAction<void>();
-    public readonly scanCompleted = new SyncAction<ScanCompletedPayload<null>>();
-    public readonly resetData = new SyncAction<ToggleActionPayload>();
-    public readonly resetAllAssessmentsData = new SyncAction<number>();
-    public readonly scanUpdate = new SyncAction<ScanUpdatePayload>();
-    public readonly trackingCompleted = new SyncAction<ScanBasePayload>();
-    public readonly updateSelectedPivotChild = new SyncAction<UpdateSelectedDetailsViewPayload>();
-    public readonly updateTargetTabId = new SyncAction<number>();
-    public readonly continuePreviousAssessment = new SyncAction<number>();
-    public readonly LoadAssessment = new SyncAction<LoadAssessmentPayload>();
-    public readonly updateDetailsViewId = new SyncAction<OnDetailsViewInitializedPayload>();
+    public readonly scanCompleted = new AsyncAction<ScanCompletedPayload<null>>();
+    public readonly resetData = new AsyncAction<ToggleActionPayload>();
+    public readonly resetAllAssessmentsData = new AsyncAction<number>();
+    public readonly scanUpdate = new AsyncAction<ScanUpdatePayload>();
+    public readonly trackingCompleted = new AsyncAction<ScanBasePayload>();
+    public readonly updateSelectedPivotChild = new AsyncAction<UpdateSelectedDetailsViewPayload>();
+    public readonly updateTargetTabId = new AsyncAction<number>();
+    public readonly continuePreviousAssessment = new AsyncAction<number>();
+    public readonly loadAssessment = new AsyncAction<LoadAssessmentPayload>();
+    public readonly updateDetailsViewId = new AsyncAction<OnDetailsViewInitializedPayload>();
 }

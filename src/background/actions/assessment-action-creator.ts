@@ -152,16 +152,22 @@ export class AssessmentActionCreator {
         );
     }
 
-    private onContinuePreviousAssessment = (payload: BaseActionPayload, tabId: number): void => {
+    private onContinuePreviousAssessment = async (
+        payload: BaseActionPayload,
+        tabId: number,
+    ): Promise<void> => {
         const eventName = TelemetryEvents.CONTINUE_PREVIOUS_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.continuePreviousAssessment.invoke(tabId);
+        await this.assessmentActions.continuePreviousAssessment.invoke(tabId);
     };
 
-    private onLoadAssessment = (payload: LoadAssessmentPayload, tabId: number): void => {
+    private onLoadAssessment = async (
+        payload: LoadAssessmentPayload,
+        tabId: number,
+    ): Promise<void> => {
         const eventName = TelemetryEvents.LOAD_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.LoadAssessment.invoke(payload);
+        await this.assessmentActions.loadAssessment.invoke(payload);
     };
 
     private onSaveAssessment = (payload: BaseActionPayload): void => {
@@ -175,7 +181,7 @@ export class AssessmentActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.PASS_UNMARKED_INSTANCES;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.updateTargetTabId.invoke(tabId);
+        await this.assessmentActions.updateTargetTabId.invoke(tabId);
         await this.assessmentActions.passUnmarkedInstance.invoke(payload);
     };
 
@@ -211,24 +217,24 @@ export class AssessmentActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.updateTargetTabId.invoke(tabId);
+        await this.assessmentActions.updateTargetTabId.invoke(tabId);
         await this.assessmentActions.changeRequirementStatus.invoke(payload);
     };
 
-    private onUndoChangeManualRequirementStatus = (
+    private onUndoChangeManualRequirementStatus = async (
         payload: ChangeRequirementStatusPayload,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.undoRequirementStatusChange.invoke(payload);
+        await this.assessmentActions.undoRequirementStatusChange.invoke(payload);
     };
 
-    private onUndoAssessmentInstanceStatusChange = (
+    private onUndoAssessmentInstanceStatusChange = async (
         payload: AssessmentActionInstancePayload,
-    ): void => {
+    ): Promise<void> => {
         const eventName = TelemetryEvents.UNDO_TEST_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.undoInstanceStatusChange.invoke(payload);
+        await this.assessmentActions.undoInstanceStatusChange.invoke(payload);
     };
 
     private onChangeAssessmentInstanceStatus = async (
@@ -237,7 +243,7 @@ export class AssessmentActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.updateTargetTabId.invoke(tabId);
+        await this.assessmentActions.updateTargetTabId.invoke(tabId);
         await this.assessmentActions.changeInstanceStatus.invoke(payload);
     };
 
@@ -257,20 +263,23 @@ export class AssessmentActionCreator {
         await this.assessmentActions.changeAssessmentVisualizationStateForAll.invoke(payload);
     };
 
-    private onStartOverAssessment = (payload: ToggleActionPayload): void => {
-        this.assessmentActions.resetData.invoke(payload);
+    private onStartOverAssessment = async (payload: ToggleActionPayload): Promise<void> => {
+        await this.assessmentActions.resetData.invoke(payload);
     };
 
-    private onStartOverAllAssessments = (payload: ToggleActionPayload, tabId: number): void => {
-        this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
+    private onStartOverAllAssessments = async (
+        payload: ToggleActionPayload,
+        tabId: number,
+    ): Promise<void> => {
+        await this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
     };
 
-    private onAssessmentScanCompleted = (
+    private onAssessmentScanCompleted = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
-    ): void => {
-        this.assessmentActions.updateTargetTabId.invoke(tabId);
-        this.assessmentActions.scanCompleted.invoke(payload);
+    ): Promise<void> => {
+        await this.assessmentActions.updateTargetTabId.invoke(tabId);
+        await this.assessmentActions.scanCompleted.invoke(payload);
     };
 
     private onGetAssessmentCurrentState = (): void => {
@@ -313,23 +322,25 @@ export class AssessmentActionCreator {
         await this.assessmentActions.collapseTestNav.invoke(null);
     };
 
-    private onScanUpdate = (payload: ScanUpdatePayload): void => {
+    private onScanUpdate = async (payload: ScanUpdatePayload): Promise<void> => {
         const telemetryEventName = 'ScanUpdate' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        this.assessmentActions.scanUpdate.invoke(payload);
+        await this.assessmentActions.scanUpdate.invoke(payload);
     };
 
-    private onTrackingCompleted = (payload: ScanBasePayload): void => {
+    private onTrackingCompleted = async (payload: ScanBasePayload): Promise<void> => {
         const telemetryEventName = 'TrackingCompleted' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        this.assessmentActions.trackingCompleted.invoke(payload);
+        await this.assessmentActions.trackingCompleted.invoke(payload);
     };
 
-    private onPivotChildSelected = (payload: OnDetailsViewOpenPayload): void => {
-        this.assessmentActions.updateSelectedPivotChild.invoke(payload);
+    private onPivotChildSelected = async (payload: OnDetailsViewOpenPayload): Promise<void> => {
+        await this.assessmentActions.updateSelectedPivotChild.invoke(payload);
     };
 
-    private onDetailsViewInitialized = (payload: OnDetailsViewInitializedPayload): void => {
-        this.assessmentActions.updateDetailsViewId.invoke(payload);
+    private onDetailsViewInitialized = async (
+        payload: OnDetailsViewInitializedPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.updateDetailsViewId.invoke(payload);
     };
 }
