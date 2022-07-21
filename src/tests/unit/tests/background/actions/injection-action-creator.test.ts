@@ -5,7 +5,7 @@ import { InjectionActions } from 'background/actions/injection-actions';
 import { Messages } from 'common/messages';
 import { createAsyncActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe('InjectionActionCreator', () => {
     let interpreterMock: MockInterpreter;
@@ -24,7 +24,7 @@ describe('InjectionActionCreator', () => {
 
         await interpreterMock.simulateMessage(Messages.Visualizations.State.InjectionStarted, null);
 
-        injectionStartedMock.verify(m => m.invoke(null), Times.once());
+        injectionStartedMock.verifyAll();
     });
 
     it('handles InjectionCompleted message', async () => {
@@ -40,7 +40,7 @@ describe('InjectionActionCreator', () => {
             null,
         );
 
-        injectionCompletedMock.verify(m => m.invoke(null), Times.once());
+        injectionCompletedMock.verifyAll();
     });
 
     function createActionsMock<ActionName extends keyof InjectionActions>(
