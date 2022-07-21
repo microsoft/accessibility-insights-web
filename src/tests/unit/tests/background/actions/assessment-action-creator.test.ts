@@ -45,6 +45,7 @@ describe('AssessmentActionCreatorTest', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let interpreterMock: MockInterpreter;
 
+    const actionExecutingScope = 'AssessmentActionCreator';
     const AssessmentMessages = Messages.Assessment;
     const testTabId = -1;
     const telemetryOnlyPayload: BaseActionPayload = {
@@ -441,7 +442,7 @@ describe('AssessmentActionCreatorTest', () => {
             test: -1 as VisualizationType,
         };
 
-        const resetDataMock = createAsyncActionMock(payload);
+        const resetDataMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('resetData', resetDataMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -460,7 +461,7 @@ describe('AssessmentActionCreatorTest', () => {
     it('handles StartOverAllAssessments message', async () => {
         const payload = {};
 
-        const resetAllAssessmentsData = createAsyncActionMock(testTabId);
+        const resetAllAssessmentsData = createAsyncActionMock(testTabId, actionExecutingScope);
         const actionsMock = createActionsMock(
             'resetAllAssessmentsData',
             resetAllAssessmentsData.object,
@@ -488,8 +489,8 @@ describe('AssessmentActionCreatorTest', () => {
             key: 'test-key',
         } as ScanCompletedPayload<any>;
 
-        const updateTabIdActionMock = createAsyncActionMock(testTabId);
-        const scanCompleteMock = createAsyncActionMock(payload);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
+        const scanCompleteMock = createAsyncActionMock(payload, actionExecutingScope);
 
         setupAssessmentActionsMock('scanCompleted', scanCompleteMock);
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
@@ -706,7 +707,7 @@ describe('AssessmentActionCreatorTest', () => {
             pivotType: -1 as DetailsViewPivotType,
         } as OnDetailsViewOpenPayload;
 
-        const updateSelectedPivotChildMock = createAsyncActionMock(payload);
+        const updateSelectedPivotChildMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'updateSelectedPivotChild',
             updateSelectedPivotChildMock.object,

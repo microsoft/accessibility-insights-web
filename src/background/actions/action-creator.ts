@@ -34,6 +34,8 @@ import { InspectActions } from './inspect-actions';
 const visualizationMessages = Messages.Visualizations;
 
 export class ActionCreator {
+    private readonly executingScope = 'ActionCreator';
+
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
     private adHocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
@@ -191,7 +193,7 @@ export class ActionCreator {
     private onStartOver = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+        this.visualizationActions.disableVisualization.invoke(payload.test, this.executingScope);
     };
 
     private onCancelStartOver = (payload: BaseActionPayload): void => {
@@ -202,7 +204,7 @@ export class ActionCreator {
     private onStartOverAllAssessments = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableAssessmentVisualizations.invoke(null);
+        this.visualizationActions.disableAssessmentVisualizations.invoke(null, this.executingScope);
     };
 
     private onCancelStartOverAllAssessments = (payload: BaseActionPayload): void => {
@@ -220,7 +222,7 @@ export class ActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.scanCompleted.invoke(null);
+        this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
             payload.selectorMap,
             payload.key,
@@ -312,8 +314,8 @@ export class ActionCreator {
         payload: OnDetailsViewOpenPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures');
-        this.visualizationActions.updateSelectedPivotChild.invoke(payload);
+        this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures', this.executingScope);
+        this.visualizationActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
         await this.detailsViewController
             .showDetailsView(tabId)
             .catch(e => this.logger.error(e.message, e));

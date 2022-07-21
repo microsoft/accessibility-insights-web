@@ -35,6 +35,8 @@ import { AssessmentActions } from './assessment-actions';
 const AssessmentMessages = Messages.Assessment;
 
 export class AssessmentActionCreator {
+    private readonly executingScope = 'AssessmentActionCreator';
+
     constructor(
         private readonly interpreter: Interpreter,
         private readonly assessmentActions: AssessmentActions,
@@ -264,22 +266,22 @@ export class AssessmentActionCreator {
     };
 
     private onStartOverAssessment = async (payload: ToggleActionPayload): Promise<void> => {
-        await this.assessmentActions.resetData.invoke(payload);
+        await this.assessmentActions.resetData.invoke(payload, this.executingScope);
     };
 
     private onStartOverAllAssessments = async (
         payload: ToggleActionPayload,
         tabId: number,
     ): Promise<void> => {
-        await this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
+        await this.assessmentActions.resetAllAssessmentsData.invoke(tabId, this.executingScope);
     };
 
     private onAssessmentScanCompleted = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
     ): Promise<void> => {
-        await this.assessmentActions.updateTargetTabId.invoke(tabId);
-        await this.assessmentActions.scanCompleted.invoke(payload);
+        await this.assessmentActions.updateTargetTabId.invoke(tabId, this.executingScope);
+        await this.assessmentActions.scanCompleted.invoke(payload, this.executingScope);
     };
 
     private onGetAssessmentCurrentState = (): void => {
@@ -335,7 +337,7 @@ export class AssessmentActionCreator {
     };
 
     private onPivotChildSelected = async (payload: OnDetailsViewOpenPayload): Promise<void> => {
-        await this.assessmentActions.updateSelectedPivotChild.invoke(payload);
+        await this.assessmentActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
     };
 
     private onDetailsViewInitialized = async (
