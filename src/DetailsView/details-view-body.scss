@@ -55,6 +55,9 @@
         :global(.ms-MessageBar-icon) i {
             margin-left: 12px;
             color: $always-black;
+            @include ms-high-contrast-override {
+                color: inherit;
+            }
         }
 
         :global(.ms-MessageBar-text .insights-link) {
