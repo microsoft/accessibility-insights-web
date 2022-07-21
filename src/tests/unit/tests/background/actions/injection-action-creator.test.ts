@@ -3,7 +3,7 @@
 import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { Messages } from 'common/messages';
-import { createSyncActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock } from 'typemoq';
 
@@ -15,7 +15,7 @@ describe('InjectionActionCreator', () => {
     });
 
     it('handles InjectionStarted message', async () => {
-        const injectionStartedMock = createSyncActionMock(null);
+        const injectionStartedMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('injectionStarted', injectionStartedMock.object);
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
@@ -28,7 +28,7 @@ describe('InjectionActionCreator', () => {
     });
 
     it('handles InjectionCompleted message', async () => {
-        const injectionCompletedMock = createSyncActionMock<void>(null);
+        const injectionCompletedMock = createAsyncActionMock<void>(null);
         const actionsMock = createActionsMock('injectionCompleted', injectionCompletedMock.object);
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
