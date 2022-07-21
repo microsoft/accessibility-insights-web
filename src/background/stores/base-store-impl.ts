@@ -31,7 +31,7 @@ export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<T
         return this.state;
     }
 
-    protected onGetCurrentState(): void {
+    protected async onGetCurrentState(): Promise<void> {
         this.emitChanged();
     }
 }
