@@ -62,4 +62,20 @@ describe('Target Page visualization boxes', () => {
 
         expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
     });
+
+    test('visualization boxes are shown over nested shadow dom elements', async () => {
+        targetPage = await browser.newTargetPage({ testResourcePath: 'nested-shadow-doms.html' });
+
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+
+        await popupPage.enableToggleByAriaLabel('Automated checks');
+
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
+
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
+    });
 });
