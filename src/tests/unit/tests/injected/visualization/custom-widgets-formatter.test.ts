@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, It, Mock, Times } from 'typemoq';
+import { CustomWidgetsFormatter } from 'injected/visualization/custom-widgets-formatter';
+import { DrawerUtils } from 'injected/visualization/drawer-utils';
+import { It, Mock, Times } from 'typemoq';
 
-import { CustomWidgetsFormatter } from '../../../../../injected/visualization/custom-widgets-formatter';
-import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-
-describe('CustomWidgetsFormatterTests', () => {
-    test('getBoundingRect in config and correct when element is composite', () => {
+describe(CustomWidgetsFormatter, () => {
+    test('getBoundingRect for composite element delegates to getBoundingClientRectIncludingChildren', () => {
         testGetBoundingRect('combobox', true);
     });
 
-    test('getBoundingRect in config and correct when element is not composite', () => {
+    test('getBoundingRect for non-composite element delegates to getBoundingClientRect', () => {
         testGetBoundingRect('button', false);
     });
 
@@ -24,10 +23,8 @@ describe('CustomWidgetsFormatterTests', () => {
             getBoundingClientRect: getBoundingClientRectMock.object,
         } as HTMLElement;
 
-        const getBoundingClientRectIncludingChildrenMock = GlobalMock.ofInstance(
+        const getBoundingClientRectIncludingChildrenMock = Mock.ofInstance(
             DrawerUtils.getBoundingClientRectIncludingChildren,
-            'getBoundingClientRectIncludingChildren',
-            DrawerUtils,
         );
 
         const expectedRectStub = {} as DOMRect;
@@ -41,13 +38,12 @@ describe('CustomWidgetsFormatterTests', () => {
             .returns(r => expectedRectStub)
             .verifiable(expectedDefaultTimes);
 
-        const testSubject = new CustomWidgetsFormatter();
+        const testSubject = new CustomWidgetsFormatter(
+            getBoundingClientRectIncludingChildrenMock.object,
+        );
         const config = testSubject.getDrawerConfiguration(element, null);
         expect(config.getBoundingRect).toBeDefined();
-        let result = null;
-        GlobalScope.using(getBoundingClientRectIncludingChildrenMock).with(() => {
-            result = config.getBoundingRect(element);
-        });
+        const result = config.getBoundingRect(element);
         expect(result).toEqual(expectedRectStub);
         getBoundingClientRectMock.verifyAll();
         getBoundingClientRectIncludingChildrenMock.verifyAll();
