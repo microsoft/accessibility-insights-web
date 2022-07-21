@@ -2,31 +2,31 @@
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { RecommendColor } from 'common/components/recommend-color';
+import { HTMLElementUtils } from 'common/html-element-utils';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { getPlatform } from 'common/platform';
 import { TargetHelper } from 'common/target-helper';
 import {
     DecoratedAxeNodeResult,
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
+import { WindowUtils } from 'common/window-utils';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { createIssueDetailsBuilder } from 'issue-filing/common/create-issue-details-builder';
+import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
+import { AxeResultToIssueFilingDataConverter } from 'issue-filing/rule-result-to-issue-filing-data';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Target } from 'scanner/iruleresults';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
-import { NewTabLink } from '../common/components/new-tab-link';
-import { HTMLElementUtils } from '../common/html-element-utils';
-import { getPlatform } from '../common/platform';
-import { WindowUtils } from '../common/window-utils';
-import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
-import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
-import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
-import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
-import { DictionaryStringTo } from '../types/common-types';
+import { DictionaryStringTo } from 'types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { FrameMessenger } from './frameCommunicators/frame-messenger';
@@ -66,7 +66,7 @@ export class DialogRenderer {
 
     public render = async (data: HtmlElementAxeResults): Promise<CommandMessageResponse | null> => {
         if (this.isInMainWindow()) {
-            const mainWindowContext = MainWindowContext.getMainWindowContext();
+            const mainWindowContext = MainWindowContext.fromWindow(this.windowUtils.getWindow());
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
