@@ -2139,40 +2139,46 @@ describe('AssessmentStore', () => {
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    it.each([true, false])('onUpdateDetailsViewId', async includeStartData => {
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId: 'testId',
-        } as OnDetailsViewInitializedPayload;
-        const tabId = 1000;
-        const url = 'url';
-        const title = 'title';
+    it.each([true, false])(
+        'onUpdateDetailsViewId with includeStartData=%s',
+        async includeStartData => {
+            const payload: OnDetailsViewInitializedPayload = {
+                detailsViewId: 'testId',
+            } as OnDetailsViewInitializedPayload;
+            const tabId = 1000;
+            const url = 'url';
+            const title = 'title';
 
-        const initialDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
-        } else {
-            initialDataBuilder.withTargetTab(undefined, undefined, undefined, 'initialId');
-        }
-        const initialState = initialDataBuilder.build();
+            const initialDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            if (includeStartData) {
+                initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
+            }
+            const initialState = initialDataBuilder.build();
 
-        const finalDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
-        } else {
-            finalDataBuilder.withTargetTab(undefined, undefined, undefined, payload.detailsViewId);
-        }
-        const finalState = finalDataBuilder.build();
+            const finalDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            let finalState: AssessmentStoreData;
+            if (includeStartData) {
+                finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
+                finalState = finalDataBuilder.build();
+            } else {
+                finalState = finalDataBuilder.build();
+                // Set this manually so we don't have extra undefined fields
+                finalState.persistedTabInfo = { detailsViewId: payload.detailsViewId };
+            }
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('updateDetailsViewId').withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
-    });
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateDetailsViewId').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        },
+    );
 
     function setupDataGeneratorMock(
         persistedData: AssessmentStoreData,
