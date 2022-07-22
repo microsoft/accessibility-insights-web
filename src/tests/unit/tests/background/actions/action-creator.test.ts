@@ -40,6 +40,7 @@ import {
     TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
@@ -991,11 +992,16 @@ class ActionCreatorValidator {
         actionName: string,
         expectedInvokeParam: any,
         actionsMap: DictionaryStringTo<IMock<Action<any, any>>>,
+        asyncAction: boolean = false,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(SyncAction);
+            if (asyncAction) {
+                action = Mock.ofType(AsyncAction);
+            } else {
+                action = Mock.ofType(SyncAction);
+            }
             actionsMap[actionName] = action;
         }
 
@@ -1054,6 +1060,7 @@ class ActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.sidePanelActionMocks,
+            true,
         );
         return this;
     }
@@ -1160,11 +1167,16 @@ class ActionCreatorValidator {
         actionName: string,
         actionsMap: DictionaryStringTo<IMock<Action<any, any>>>,
         actionsContainerMock: IMock<any>,
+        asyncAction: boolean = false,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(SyncAction);
+            if (asyncAction) {
+                action = Mock.ofType(AsyncAction);
+            } else {
+                action = Mock.ofType(SyncAction);
+            }
             actionsMap[actionName] = action;
         }
 
@@ -1211,7 +1223,12 @@ class ActionCreatorValidator {
     public setupActionOnSidePanelActions(
         actionName: keyof SidePanelActions,
     ): ActionCreatorValidator {
-        this.setupAction(actionName, this.sidePanelActionMocks, this.sidePanelActionsContainerMock);
+        this.setupAction(
+            actionName,
+            this.sidePanelActionMocks,
+            this.sidePanelActionsContainerMock,
+            true,
+        );
         return this;
     }
 
