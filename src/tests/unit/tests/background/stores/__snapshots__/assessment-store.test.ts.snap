@@ -4,4 +4,6 @@ exports[`AssessmentStore onResetAllAssessmentsData 1`] = `"tab with Id 1000 not 
 
 exports[`AssessmentStore onResetAllAssessmentsData with persisted data 1`] = `"tab with Id 1000 not found"`;
 
-exports[`AssessmentStore onUpdateTargetTabId 1`] = `"tab with Id 1000 not found"`;
+exports[`AssessmentStore onUpdateTargetTabId with persisted tab={ tabId: 2000 } 1`] = `"tab with Id 1000 not found"`;
+
+exports[`AssessmentStore onUpdateTargetTabId with persisted tab=undefined 1`] = `"tab with Id 1000 not found"`;

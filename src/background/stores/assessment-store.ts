@@ -142,7 +142,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.state = this.initialAssessmentStoreDataGenerator.generateInitialState(
             payload.versionedAssessmentData.assessmentData,
         );
-        if (this.state.persistedTabInfo !== undefined) {
+        if (this.state.persistedTabInfo != null) {
             this.state.persistedTabInfo.detailsViewId = payload.detailsViewId;
         } else {
             this.state.persistedTabInfo = { detailsViewId: payload.detailsViewId };
