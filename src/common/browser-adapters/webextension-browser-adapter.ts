@@ -79,22 +79,6 @@ export abstract class WebExtensionBrowserAdapter
         return browser.tabs.query(query);
     }
 
-    public getTab(
-        tabId: number,
-        onResolve: (tab: chrome.tabs.Tab) => void,
-        onReject?: () => void,
-    ): void {
-        chrome.tabs.get(tabId, tab => {
-            if (tab) {
-                onResolve(tab);
-            } else {
-                if (onReject != null) {
-                    onReject();
-                }
-            }
-        });
-    }
-
     public async getTabAsync(tabId: number): Promise<chrome.tabs.Tab> {
         return new Promise((resolve, reject) => {
             chrome.tabs.get(tabId, tab => {
