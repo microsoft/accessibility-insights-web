@@ -25,15 +25,17 @@ export class TabActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.NewTabCreated, (payload: Tab) =>
-            this.tabActions.newTabCreated.invoke(payload),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.NewTabCreated,
+            async (payload: Tab) => await this.tabActions.newTabCreated.invoke(payload),
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.TabStore),
-            () => this.tabActions.getCurrentState.invoke(null),
+            async () => await this.tabActions.getCurrentState.invoke(null),
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Remove, () =>
-            this.tabActions.tabRemove.invoke(null),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.Remove,
+            async () => await this.tabActions.tabRemove.invoke(null),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.ExistingTabUpdated,
@@ -45,8 +47,8 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.VisibilityChange,
-            (payload: PageVisibilityChangeTabPayload) =>
-                this.tabActions.tabVisibilityChange.invoke(payload.hidden),
+            async (payload: PageVisibilityChangeTabPayload) =>
+                await this.tabActions.tabVisibilityChange.invoke(payload.hidden),
         );
     }
 
@@ -60,8 +62,8 @@ export class TabActionCreator {
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
     };
 
-    private onExistingTabUpdated = (payload: ExistingTabUpdatedPayload): void => {
-        this.tabActions.existingTabUpdated.invoke(payload);
+    private onExistingTabUpdated = async (payload: ExistingTabUpdatedPayload) => {
+        await this.tabActions.existingTabUpdated.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload);
     };
 }

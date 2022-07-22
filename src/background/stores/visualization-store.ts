@@ -11,7 +11,6 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { Tab } from 'common/types/store-data/itab';
 import {
     AssessmentScanData,
     TestsEnabledState,
@@ -154,7 +153,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         return isStateChanged;
     }
 
-    private onExistingTabUpdated = (payload: Tab): void => {
+    private onExistingTabUpdated = async (): Promise<void> => {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,

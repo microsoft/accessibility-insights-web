@@ -21,7 +21,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe(TabActionCreator, () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
@@ -44,7 +44,7 @@ describe(TabActionCreator, () => {
             telemetry: null,
         };
 
-        const actionMock = createSyncActionMock(payload);
+        const actionMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('newTabCreated', actionMock.object);
 
         const testSubject = new TabActionCreator(
@@ -67,7 +67,7 @@ describe(TabActionCreator, () => {
     });
 
     it('handles Tab.GetCurrent message', async () => {
-        const getCurrentStateMock = createSyncActionMock<void>(null);
+        const getCurrentStateMock = createAsyncActionMock<void>(null);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const testSubject = new TabActionCreator(
@@ -86,7 +86,7 @@ describe(TabActionCreator, () => {
     });
 
     it('handles Tab.Remove message', async () => {
-        const tabRemoveMock = createSyncActionMock<void>(null);
+        const tabRemoveMock = createAsyncActionMock<void>(null);
         const actionsMock = createActionsMock('tabRemove', tabRemoveMock.object);
 
         const testSubject = new TabActionCreator(
@@ -115,7 +115,7 @@ describe(TabActionCreator, () => {
             },
         };
 
-        const actionMock = createSyncActionMock(payload);
+        const actionMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('existingTabUpdated', actionMock.object);
 
         const testSubject = new TabActionCreator(
@@ -200,7 +200,7 @@ describe(TabActionCreator, () => {
             hidden: true,
         };
 
-        const tabVisibilityChangeMock = createSyncActionMock(payload.hidden);
+        const tabVisibilityChangeMock = createAsyncActionMock(payload.hidden);
         const actionsMock = createActionsMock(
             'tabVisibilityChange',
             tabVisibilityChangeMock.object,

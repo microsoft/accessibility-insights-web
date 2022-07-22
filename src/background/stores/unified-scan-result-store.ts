@@ -63,7 +63,7 @@ export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultSto
         this.emitChanged();
     };
 
-    private onResetStoreData = (): void => {
+    private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

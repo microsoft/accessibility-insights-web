@@ -63,7 +63,7 @@ export class InspectStore extends PersistentStore<InspectStoreData> {
         this.emitChanged();
     };
 
-    private onTabChange = (): void => {
+    private onTabChange = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

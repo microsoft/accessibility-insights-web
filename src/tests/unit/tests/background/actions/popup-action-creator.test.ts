@@ -13,8 +13,7 @@ import {
 import { Messages } from 'common/messages';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-
-import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PopupActionCreator', () => {
     it('handles Messages.Popup.Initialized', async () => {
@@ -30,7 +29,7 @@ describe('PopupActionCreator', () => {
             },
         };
 
-        const actionMock = createSyncActionMock(payload.tab);
+        const actionMock = createAsyncActionMock(payload.tab);
         const actionsMock = createTabActionsMock('newTabCreated', actionMock.object);
         const interpreterMock = new MockInterpreter();
 
