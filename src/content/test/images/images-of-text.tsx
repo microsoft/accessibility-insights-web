@@ -41,7 +41,7 @@ export const infoAndExamples = create(({ Markup }) => (
             }
             passText={<p>A submit button uses actual text and CSS styling to achieve the desired appearance.</p>}
             passExample={[
-                <Markup.CodeExample title="CSS">{`<style>
+                <Markup.CodeExample key="css" title="CSS">{`<style>
                 .button {
                 background-color: #4CAF50;
                 border: none;
@@ -54,7 +54,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 margin: 4px 2px;
                 }
                 </style>`}</Markup.CodeExample>,
-                <Markup.CodeExample title="HTML">{`<form action="/action_page.php">
+                <Markup.CodeExample key="html" title="HTML">{`<form action="/action_page.php">
                 <p id="username">User name: <input type="text" name="uname"></p>
                 <input [type="submit" class="button"]>
                 </form>`}</Markup.CodeExample>,
