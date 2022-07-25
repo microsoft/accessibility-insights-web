@@ -37,7 +37,6 @@ import {
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { Tab } from 'common/types/store-data/itab';
 import {
     ManualTestStatus,
     ManualTestStatusData,
@@ -50,7 +49,7 @@ import {
     ScanCompletedPayload,
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
-import { cloneDeep, isFunction } from 'lodash';
+import { cloneDeep } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -461,18 +460,14 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let rejectCb;
+        } as chrome.tabs.Tab;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, resolve, reject) => {
-                rejectCb = reject;
-                resolve(tab);
-            })
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => tab)
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(
@@ -495,8 +490,6 @@ describe('AssessmentStore', () => {
         const storeTester =
             createStoreTesterForAssessmentActions('resetAllAssessmentsData').withActionParam(tabId);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
-
-        expect(() => rejectCb()).toThrowErrorMatchingSnapshot();
     });
 
     test('onResetAllAssessmentsData with persisted data', async () => {
@@ -532,18 +525,14 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let rejectCb;
+        } as chrome.tabs.Tab;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, resolve, reject) => {
-                rejectCb = reject;
-                resolve(tab);
-            })
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => tab)
             .verifiable();
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -572,8 +561,6 @@ describe('AssessmentStore', () => {
             persisted,
         ).withActionParam(tabId);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
-
-        expect(() => rejectCb()).toThrowErrorMatchingSnapshot();
     });
 
     test('onContinuePreviousAssessment', async () => {
@@ -581,15 +568,13 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
+        } as chrome.tabs.Tab;
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-        browserMock
-            .setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction)))
-            .callback((id, resolve) => resolve(tab));
+        browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
 
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -611,52 +596,85 @@ describe('AssessmentStore', () => {
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onLoadAssessment', async () => {
+    describe('onLoadAssessment', () => {
         const oldTabId = 1;
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
         const detailsViewId = 'testId';
 
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
+        } as chrome.tabs.Tab;
 
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(oldTabId, null, null, 'oldId')
-            .build();
+        beforeEach(() => {
+            assessmentsProviderMock
+                .setup(apm => apm.all())
+                .returns(() => assessmentsProvider.all());
+            browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
+        });
 
-        const payload: LoadAssessmentPayload = {
-            tabId,
-            versionedAssessmentData: {
-                version: -1,
-                assessmentData: initialState,
-            },
-            detailsViewId,
-        };
+        test('with tab info', async () => {
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(oldTabId, null, null, 'oldId')
+                .build();
 
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(tabId, url, title, detailsViewId)
-            .build();
+            const payload: LoadAssessmentPayload = {
+                tabId,
+                versionedAssessmentData: {
+                    version: -1,
+                    assessmentData: initialState,
+                },
+                detailsViewId,
+            };
 
-        setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title, detailsViewId)
+                .build();
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-        browserMock
-            .setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction)))
-            .callback((id, resolve) => resolve(tab));
+            setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+            const storeTester =
+                createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
+
+        test('without tab info', async () => {
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            ).build();
+
+            const payload: LoadAssessmentPayload = {
+                tabId,
+                versionedAssessmentData: {
+                    version: -1,
+                    assessmentData: initialState,
+                },
+                detailsViewId,
+            };
+
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title, detailsViewId)
+                .build();
+
+            setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
     });
 
     test('onScanCompleted with an assisted requirement', async () => {
@@ -1142,59 +1160,56 @@ describe('AssessmentStore', () => {
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onUpdateTargetTabId', async () => {
+    describe('onUpdateTargetTabId', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let onReject;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                onReject = reject;
-                cb(tab);
-            })
-            .verifiable();
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(tabId, url, title)
-            .build();
+        } as chrome.tabs.Tab;
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
-        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
-        expect(() => onReject()).toThrowErrorMatchingSnapshot();
-    });
+        it.each([undefined, { tabId: 2000 }])('with persisted tab=%s', async persistedTab => {
+            const storeDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            if (persistedTab !== undefined) {
+                storeDataBuilder.withTargetTab(persistedTab.tabId, undefined, undefined, undefined);
+            }
+            const initialState = storeDataBuilder.build();
 
-    test('onUpdateTargetTabId: tab is null', async () => {
-        const tabId = 1000;
-        const tab: Tab = null;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .returns((id, cb) => cb(tab))
-            .verifiable();
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title)
+                .build();
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
-        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
+            browserMock
+                .setup(b => b.getTabAsync(tabId))
+                .returns(async () => tab)
+                .verifiable();
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
+
+        test('with no tab id change', async () => {
+            browserMock.setup(b => b.getTabAsync(It.isAny())).verifiable(Times.never());
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, undefined, undefined, undefined)
+                .build();
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
+            await storeTester.testListenerToNeverBeCalled(initialState, initialState);
+        });
     });
 
     test('on changeInstanceStatus, test step status updated', async () => {
@@ -2083,40 +2098,46 @@ describe('AssessmentStore', () => {
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    it.each([true, false])('onUpdateDetailsViewId', async includeStartData => {
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId: 'testId',
-        } as OnDetailsViewInitializedPayload;
-        const tabId = 1000;
-        const url = 'url';
-        const title = 'title';
+    it.each([true, false])(
+        'onUpdateDetailsViewId with includeStartData=%s',
+        async includeStartData => {
+            const payload: OnDetailsViewInitializedPayload = {
+                detailsViewId: 'testId',
+            } as OnDetailsViewInitializedPayload;
+            const tabId = 1000;
+            const url = 'url';
+            const title = 'title';
 
-        const initialDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
-        } else {
-            initialDataBuilder.withTargetTab(undefined, undefined, undefined, 'initialId');
-        }
-        const initialState = initialDataBuilder.build();
+            const initialDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            if (includeStartData) {
+                initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
+            }
+            const initialState = initialDataBuilder.build();
 
-        const finalDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
-        } else {
-            finalDataBuilder.withTargetTab(undefined, undefined, undefined, payload.detailsViewId);
-        }
-        const finalState = finalDataBuilder.build();
+            const finalDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            let finalState: AssessmentStoreData;
+            if (includeStartData) {
+                finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
+                finalState = finalDataBuilder.build();
+            } else {
+                finalState = finalDataBuilder.build();
+                // Set this manually so we don't have extra undefined fields
+                finalState.persistedTabInfo = { detailsViewId: payload.detailsViewId };
+            }
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('updateDetailsViewId').withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
-    });
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateDetailsViewId').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        },
+    );
 
     function setupDataGeneratorMock(
         persistedData: AssessmentStoreData,
