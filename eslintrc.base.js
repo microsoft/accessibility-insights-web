@@ -41,6 +41,21 @@ module.exports = {
                 },
             },
         ],
+
+        'no-restricted-imports': [
+            'error',
+            {
+                paths: [
+                    {
+                        name: 'typemoq',
+                        importNames: ['GlobalMock', 'GlobalScope'],
+                        message:
+                            'typemoq Global mocks are incompatible with recent versions of @swc/core, see swc-project/swc#5151',
+                    },
+                ],
+            },
+        ],
+
         'no-throw-literal': 'error',
         'react/no-access-state-in-setstate': 'error',
         'react/no-unused-state': 'error',

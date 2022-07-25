@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { withAxeSetup } from 'scanner/axe-utils';
 import { imageConfiguration } from 'scanner/custom-rules/image-rule';
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('imageRule', () => {
     describe('verify image rule configs', () => {
@@ -18,38 +18,26 @@ describe('imageRule', () => {
     });
 
     describe('verify matches', () => {
-        let fixture: HTMLElement;
-
-        beforeEach(() => {
-            fixture = document.createElement('div');
-            fixture.setAttribute('id', 'test-fixture');
-            document.body.appendChild(fixture);
-        });
-
-        afterEach(() => {
-            document.body.querySelector('#test-fixture').remove();
-        });
-
         it('should match img elements', () => {
             const node = document.createElement('img');
-            expect(imageConfiguration.rule.matches(node, null)).toBeTruthy();
+            expect(imageConfiguration.rule.matches(node, null)).toBe(true);
         });
 
         it('should match role=img elements', () => {
             const node = document.createElement('div');
             node.setAttribute('role', 'img');
 
-            expect(imageConfiguration.rule.matches(node, null)).toBeTruthy();
+            expect(imageConfiguration.rule.matches(node, null)).toBe(true);
         });
 
         it('should match svg elements', () => {
             const node = document.createElement('svg');
-            expect(imageConfiguration.rule.matches(node, null)).toBeTruthy();
+            expect(imageConfiguration.rule.matches(node, null)).toBe(true);
         });
 
         it('should match empty <i> elements', () => {
             const node = document.createElement('i');
-            expect(imageConfiguration.rule.matches(node, null)).toBeTruthy();
+            expect(imageConfiguration.rule.matches(node, null)).toBe(true);
         });
 
         it('should match css background image elements for non-empty <i> with background image', () => {
@@ -57,25 +45,14 @@ describe('imageRule', () => {
             node.innerHTML = 'some text';
             node.style.backgroundImage = 'image';
 
-            expect(imageConfiguration.rule.matches(node, null)).toBeTruthy();
+            expect(imageConfiguration.rule.matches(node, null)).toBe(true);
         });
 
-        it('should not match', () => {
-            const windowMock = GlobalMock.ofInstance(
-                window.getComputedStyle,
-                'getComputedStyle',
-                window,
-                MockBehavior.Strict,
-            );
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(() => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
-            let result;
+        it('should not match a <div> with no backgroundImage', () => {
             const node = document.createElement('div');
-            GlobalScope.using(windowMock).with(() => {
-                result = imageConfiguration.rule.matches(node, null);
-            });
-            expect(result).toBeFalsy();
+            node.style.backgroundImage = 'none';
+            const result = imageConfiguration.rule.matches(node, null);
+            expect(result).toBe(false);
         });
     });
 
@@ -100,7 +77,7 @@ describe('imageRule', () => {
 
             dataSetterMock.setup(d => d(It.isAny()));
             const result = getResultForCheck({ data: dataSetterMock.object }, element1);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it('should set accessibleName properly, coded as meaningful because no alt and with accessible name', () => {
@@ -119,7 +96,7 @@ describe('imageRule', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             const result = getResultForCheck({ data: dataSetterMock.object }, element1);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -138,7 +115,7 @@ describe('imageRule', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -157,7 +134,7 @@ describe('imageRule', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -176,7 +153,7 @@ describe('imageRule', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -195,7 +172,7 @@ describe('imageRule', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -212,7 +189,7 @@ describe('imageRule', () => {
             fixture.appendChild(node);
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -228,7 +205,7 @@ describe('imageRule', () => {
             fixture.appendChild(node);
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -245,7 +222,7 @@ describe('imageRule', () => {
             fixture.appendChild(node);
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });
 
@@ -262,7 +239,7 @@ describe('imageRule', () => {
             );
 
             const result = getResultForCheck({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         function getResultForCheck(data, node: Element): boolean {
