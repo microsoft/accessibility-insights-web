@@ -100,11 +100,13 @@ export class TargetHelper {
 
     private static getShadowHost = (selectors: string[], dom: Document): Element | null => {
         let shadowHost: Element | null = null;
+        let queryElement: ShadowRoot | Document = dom;
         for (let i = 0; i < selectors.length - 1; i++) {
-            shadowHost = dom.querySelector(selectors[i]);
+            shadowHost = queryElement.querySelector(selectors[i]);
             if (shadowHost == null || shadowHost.shadowRoot == null) {
                 return null;
             }
+            queryElement = shadowHost.shadowRoot;
         }
         return shadowHost;
     };

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { TargetHelper } from 'common/target-helper';
-import { forEach } from 'lodash';
 import { It, Mock, Times } from 'typemoq';
 
 describe(TargetHelper, () => {
@@ -65,12 +64,16 @@ describe(TargetHelper, () => {
     it.each(testScenarios)('getTargetElements', testScenario => {
         if (testScenario.expectedShadowDomElements && testScenario.expectedFinalTargetElement) {
             // Set up for element in the shadow dom
-            forEach(testScenario.expectedShadowDomElements, shadowDomElement => {
-                documentMock
-                    .setup(dm => dm.querySelector(shadowDomElement))
+            documentMock
+                .setup(dm => dm.querySelector(testScenario.expectedShadowDomElements[0]))
+                .returns(() => shadowRootElementStub)
+                .verifiable(Times.once());
+            for (let i = 1; i < testScenario.expectedShadowDomElements.length; i++) {
+                shadowRootMock
+                    .setup(dm => dm.querySelector(testScenario.expectedShadowDomElements[i]))
                     .returns(() => shadowRootElementStub)
                     .verifiable(Times.once());
-            });
+            }
 
             shadowRootMock
                 .setup(dm => dm.querySelectorAll(testScenario.expectedFinalTargetElement))
@@ -101,12 +104,16 @@ describe(TargetHelper, () => {
     it.each(testScenarios)('getTargetElement', testScenario => {
         if (testScenario.expectedShadowDomElements && testScenario.expectedFinalTargetElement) {
             // Set up for element in the shadow dom
-            forEach(testScenario.expectedShadowDomElements, shadowDomElement => {
-                documentMock
-                    .setup(dm => dm.querySelector(shadowDomElement))
+            documentMock
+                .setup(dm => dm.querySelector(testScenario.expectedShadowDomElements[0]))
+                .returns(() => shadowRootElementStub)
+                .verifiable(Times.once());
+            for (let i = 1; i < testScenario.expectedShadowDomElements.length; i++) {
+                shadowRootMock
+                    .setup(dm => dm.querySelector(testScenario.expectedShadowDomElements[i]))
                     .returns(() => shadowRootElementStub)
                     .verifiable(Times.once());
-            });
+            }
 
             shadowRootMock
                 .setup(dm => dm.querySelector(testScenario.expectedFinalTargetElement))

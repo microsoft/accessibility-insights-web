@@ -6,6 +6,7 @@ import {
     AssessmentActionInstancePayload,
     BaseActionPayload,
     ChangeInstanceSelectionPayload,
+    ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
@@ -15,13 +16,13 @@ import {
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
+    LoadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { SyncAction } from 'common/flux/sync-action';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
@@ -34,13 +35,17 @@ import {
 } from 'injected/analyzers/analyzer';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import {
+    createAsyncActionMock,
+    createSyncActionMock,
+} from '../global-action-creators/action-creator-test-helpers';
 
 describe('AssessmentActionCreatorTest', () => {
     let assessmentActionsMock: IMock<AssessmentActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let interpreterMock: MockInterpreter;
 
+    const actionExecutingScope = 'AssessmentActionCreator';
     const AssessmentMessages = Messages.Assessment;
     const testTabId = -1;
     const telemetryOnlyPayload: BaseActionPayload = {
@@ -57,8 +62,11 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles PassUnmarkedInstances message', async () => {
-        const updateTabIdActionMock = createSyncActionMock(testTabId);
-        const passUnmarkedInstanceActionMock = createSyncActionMock(telemetryOnlyPayload);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
+        const passUnmarkedInstanceActionMock = createAsyncActionMock(
+            telemetryOnlyPayload as ToggleActionPayload,
+            actionExecutingScope,
+        );
 
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('passUnmarkedInstance', passUnmarkedInstanceActionMock);
@@ -90,7 +98,10 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles ContinuePreviousAssessment message', async () => {
-        const continuePreviousAssessmentMock = createSyncActionMock(testTabId);
+        const continuePreviousAssessmentMock = createAsyncActionMock(
+            testTabId,
+            actionExecutingScope,
+        );
         const actionsMock = createActionsMock(
             'continuePreviousAssessment',
             continuePreviousAssessmentMock.object,
@@ -127,7 +138,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as EditFailureInstancePayload;
 
-        const editFailureInstanceMock = createSyncActionMock(payload);
+        const editFailureInstanceMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'editFailureInstance',
             editFailureInstanceMock.object,
@@ -160,7 +171,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as RemoveFailureInstancePayload;
 
-        const removeFailureInstanceMock = createSyncActionMock(payload);
+        const removeFailureInstanceMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'removeFailureInstance',
             removeFailureInstanceMock.object,
@@ -189,7 +200,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as AddFailureInstancePayload;
 
-        const addFailureInstanceMock = createSyncActionMock(payload);
+        const addFailureInstanceMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('addFailureInstance', addFailureInstanceMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -214,7 +225,7 @@ describe('AssessmentActionCreatorTest', () => {
             description: 'test-description',
         };
 
-        const addResultDescriptionMock = createSyncActionMock(payload);
+        const addResultDescriptionMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'addResultDescription',
             addResultDescriptionMock.object,
@@ -239,8 +250,8 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeRequirementStatusPayload;
 
-        const updateTabIdActionMock = createSyncActionMock(testTabId);
-        const changeRequirementStatusMock = createSyncActionMock(payload);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
+        const changeRequirementStatusMock = createAsyncActionMock(payload, actionExecutingScope);
 
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('changeRequirementStatus', changeRequirementStatusMock);
@@ -273,7 +284,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeRequirementStatusPayload;
 
-        const undoRequirementStatusChange = createSyncActionMock(payload);
+        const undoRequirementStatusChange = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'undoRequirementStatusChange',
             undoRequirementStatusChange.object,
@@ -307,7 +318,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as AssessmentActionInstancePayload;
 
-        const undoInstanceStatusChangeMock = createSyncActionMock(payload);
+        const undoInstanceStatusChangeMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'undoInstanceStatusChange',
             undoInstanceStatusChangeMock.object,
@@ -331,13 +342,13 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles ChangeAssessmentInstanceStatus message', async () => {
-        const payload: ChangeInstanceSelectionPayload = {
+        const payload: ChangeInstanceStatusPayload = {
             selector: 'test-selector',
             ...telemetryOnlyPayload,
-        } as ChangeInstanceSelectionPayload;
+        } as ChangeInstanceStatusPayload;
 
-        const updateTabIdActionMock = createSyncActionMock(testTabId);
-        const changeInstanceStatusMock = createSyncActionMock(payload);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
+        const changeInstanceStatusMock = createAsyncActionMock(payload, actionExecutingScope);
 
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('changeInstanceStatus', changeInstanceStatusMock);
@@ -366,7 +377,10 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeInstanceSelectionPayload;
 
-        const changeAssessmentVisualizationStateMock = createSyncActionMock(payload);
+        const changeAssessmentVisualizationStateMock = createAsyncActionMock(
+            payload,
+            actionExecutingScope,
+        );
         const actionsMock = createActionsMock(
             'changeAssessmentVisualizationState',
             changeAssessmentVisualizationStateMock.object,
@@ -399,7 +413,10 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ChangeInstanceSelectionPayload;
 
-        const changeAssessmentVisualizationStateForAllMock = createSyncActionMock(payload);
+        const changeAssessmentVisualizationStateForAllMock = createAsyncActionMock(
+            payload,
+            actionExecutingScope,
+        );
         const actionsMock = createActionsMock(
             'changeAssessmentVisualizationStateForAll',
             changeAssessmentVisualizationStateForAllMock.object,
@@ -435,7 +452,7 @@ describe('AssessmentActionCreatorTest', () => {
             test: -1 as VisualizationType,
         };
 
-        const resetDataMock = createSyncActionMock(payload);
+        const resetDataMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('resetData', resetDataMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -454,7 +471,7 @@ describe('AssessmentActionCreatorTest', () => {
     it('handles StartOverAllAssessments message', async () => {
         const payload = {};
 
-        const resetAllAssessmentsData = createSyncActionMock(testTabId);
+        const resetAllAssessmentsData = createAsyncActionMock(testTabId, actionExecutingScope);
         const actionsMock = createActionsMock(
             'resetAllAssessmentsData',
             resetAllAssessmentsData.object,
@@ -482,8 +499,8 @@ describe('AssessmentActionCreatorTest', () => {
             key: 'test-key',
         } as ScanCompletedPayload<any>;
 
-        const updateTabIdActionMock = createSyncActionMock(testTabId);
-        const scanCompleteMock = createSyncActionMock(payload);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
+        const scanCompleteMock = createAsyncActionMock(payload, actionExecutingScope);
 
         setupAssessmentActionsMock('scanCompleted', scanCompleteMock);
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
@@ -506,7 +523,7 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles GetCurrentState message', async () => {
-        const getCurrentStateMock = createSyncActionMock<void>(null);
+        const getCurrentStateMock = createSyncActionMock<void>(null, actionExecutingScope);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -531,7 +548,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as SelectTestSubviewPayload;
 
-        const selectRequirementMock = createSyncActionMock(payload);
+        const selectRequirementMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -557,7 +574,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as SelectTestSubviewPayload;
 
-        const selectNextRequirement = createSyncActionMock(payload);
+        const selectNextRequirement = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectNextRequirement.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -586,7 +603,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as SelectTestSubviewPayload;
 
-        const selectRequirementMock = createSyncActionMock(actionPayload);
+        const selectRequirementMock = createAsyncActionMock(actionPayload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -611,7 +628,7 @@ describe('AssessmentActionCreatorTest', () => {
             selectedTest: 1,
         } as ExpandTestNavPayload;
 
-        const expandTestNavMock = createSyncActionMock(payload);
+        const expandTestNavMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('expandTestNav', expandTestNavMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -628,7 +645,7 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles CollapseTestNav message', async () => {
-        const collapseTestNavMock = createSyncActionMock(null);
+        const collapseTestNavMock = createAsyncActionMock(null, actionExecutingScope);
         const actionsMock = createActionsMock('collapseTestNav', collapseTestNavMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -650,7 +667,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ScanUpdatePayload;
 
-        const scanUpdateMock = createSyncActionMock(payload);
+        const scanUpdateMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('scanUpdate', scanUpdateMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -675,7 +692,7 @@ describe('AssessmentActionCreatorTest', () => {
             ...telemetryOnlyPayload,
         } as ScanBasePayload;
 
-        const trackingCompletedMock = createSyncActionMock(payload);
+        const trackingCompletedMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('trackingCompleted', trackingCompletedMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -700,7 +717,7 @@ describe('AssessmentActionCreatorTest', () => {
             pivotType: -1 as DetailsViewPivotType,
         } as OnDetailsViewOpenPayload;
 
-        const updateSelectedPivotChildMock = createSyncActionMock(payload);
+        const updateSelectedPivotChildMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock(
             'updateSelectedPivotChild',
             updateSelectedPivotChildMock.object,
@@ -746,7 +763,7 @@ describe('AssessmentActionCreatorTest', () => {
             detailsViewId: 'testId',
         } as OnDetailsViewInitializedPayload;
 
-        const detailsViewInitMock = createSyncActionMock(payload);
+        const detailsViewInitMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('updateDetailsViewId', detailsViewInitMock.object);
 
         const testSubject = new AssessmentActionCreator(
@@ -765,9 +782,38 @@ describe('AssessmentActionCreatorTest', () => {
         detailsViewInitMock.verifyAll();
     });
 
-    function setupAssessmentActionsMock(
-        actionName: keyof AssessmentActions,
-        actionMock: IMock<SyncAction<any>>,
+    it('handles LoadAssessment message', async () => {
+        const payload = {
+            tabId: 1,
+            detailsViewId: 'testId',
+        } as LoadAssessmentPayload;
+
+        const loadAssessmentMock = createAsyncActionMock(payload, actionExecutingScope);
+        const actionsMock = createActionsMock('loadAssessment', loadAssessmentMock.object);
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            AssessmentMessages.LoadAssessment,
+            payload,
+            testTabId,
+        );
+
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(TelemetryEvents.LOAD_ASSESSMENT, payload),
+            Times.once(),
+        );
+    });
+
+    function setupAssessmentActionsMock<ActionName extends keyof AssessmentActions>(
+        actionName: ActionName,
+        actionMock: IMock<AssessmentActions[ActionName]>,
     ): void {
         assessmentActionsMock
             .setup(actions => actions[actionName])
