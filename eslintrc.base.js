@@ -71,7 +71,7 @@ module.exports = {
         'react/prop-types': 'off',
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
-        'react/jsx-key': 'off',
+        'react/jsx-key': 'error',
         'react/no-access-state-in-setstate': 'error',
         'react/no-unused-state': 'error',
         'react/no-direct-mutation-state': 'off',
