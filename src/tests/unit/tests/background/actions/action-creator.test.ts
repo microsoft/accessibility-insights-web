@@ -908,6 +908,8 @@ describe('ActionCreatorTest', () => {
 });
 
 class ActionCreatorValidator {
+    private readonly actionExecutingScope = 'ActionCreator';
+
     private visualizationActionsContainerMock = Mock.ofType(VisualizationActions);
     private visualizationActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private devToolsActionMocks: DictionaryStringTo<IMock<Action<any, any>>> = {};
@@ -999,7 +1001,9 @@ class ActionCreatorValidator {
             actionsMap[actionName] = action;
         }
 
-        action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
+        action
+            .setup(am => am.invoke(expectedInvokeParam, this.actionExecutingScope))
+            .verifiable(Times.once());
 
         return this;
     }
