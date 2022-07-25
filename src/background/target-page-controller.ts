@@ -71,13 +71,11 @@ export class TargetPageController {
         await this.sendTabVisibilityChangeAction(activeTabId, false);
 
         const tabs = await this.browserAdapter.tabsQuery({ windowId });
-        await Promise.all(
-            tabs.map(async tab => {
-                if (!tab.active) {
-                    await this.sendTabVisibilityChangeAction(tab.id, true);
-                }
-            }),
-        );
+        tabs.map(async tab => {
+            if (!tab.active) {
+                await this.sendTabVisibilityChangeAction(tab.id, true);
+            }
+        });
     }
 
     public async onWindowFocusChanged(): Promise<void> {
