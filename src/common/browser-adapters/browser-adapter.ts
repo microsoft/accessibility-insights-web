@@ -34,7 +34,6 @@ export interface BrowserAdapter {
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
     switchToTab(tabId: number): Promise<void>;
     updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab>;
-    getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
     getTabAsync(tabId: number): Promise<chrome.tabs.Tab>;
     updateWindow(
         windowId: number,

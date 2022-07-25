@@ -555,7 +555,6 @@
         "./src/tests/unit/tests/injected/visualization/drawer-utils-mock-builder.ts",
         "./src/tests/unit/tests/scanner/custom-rules-configuration-stub.ts",
         "./src/tests/unit/tests/scanner/helpers.ts",
-        "./src/tests/unit/tests/scanner/mock-axe-utils.ts",
         "./src/views/content/content-include.tsx",
         "./src/views/content/content-link.tsx",
         "./src/views/content/content-page.tsx",

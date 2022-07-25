@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
+import * as AxeUtils from 'scanner/axe-utils';
+import { cuesConfiguration, evaluateCues } from 'scanner/custom-rules/cues-rule';
+import { It, Mock, Times } from 'typemoq';
 
-import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { cuesConfiguration, evaluateCues } from '../../../../../scanner/custom-rules/cues-rule';
-import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
+import { testNativeWidgetConfiguration } from '../helpers';
 
 describe('cues rule', () => {
     describe('verify cues configs', () => {
@@ -14,14 +14,26 @@ describe('cues rule', () => {
     });
 
     describe('evaluate', () => {
+        let testButton: HTMLButtonElement;
+        let testButtonAccessibleName: string;
+        beforeEach(() => {
+            testButton = document.createElement('button');
+            testButtonAccessibleName = 'test-button-name';
+            testButton.setAttribute('aria-label', testButtonAccessibleName);
+            document.body.appendChild(testButton);
+        });
+        afterEach(() => {
+            document.body.removeChild(testButton);
+        });
+
         it('sets correct html cues and returns true', () => {
             const expectedData = {
                 element: 'button',
-                accessibleName: 'name',
+                accessibleName: testButtonAccessibleName,
                 htmlCues: {
-                    readonly: null,
-                    disabled: null,
-                    required: null,
+                    readonly: 'true',
+                    disabled: 'false',
+                    required: 'true',
                 },
                 ariaCues: {},
             };
@@ -32,7 +44,7 @@ describe('cues rule', () => {
         it('sets correct aria cues and returns true', () => {
             const expectedData = {
                 element: 'button',
-                accessibleName: 'name',
+                accessibleName: testButtonAccessibleName,
                 ariaCues: {
                     'aria-readonly': 'false',
                     'aria-disabled': 'false',
@@ -47,7 +59,7 @@ describe('cues rule', () => {
         it('maintains whitespace in aria cues and returns true', () => {
             const expectedData = {
                 element: 'button',
-                accessibleName: 'name',
+                accessibleName: testButtonAccessibleName,
                 ariaCues: {
                     'aria-readonly': '  ',
                     'aria-disabled': '  ',
@@ -59,10 +71,10 @@ describe('cues rule', () => {
             testCuesEvaluateWithData(expectedData, expectedData.ariaCues);
         });
 
-        it('treats empty values as null and returns true', () => {
+        it('treats empty aria values as null and returns true', () => {
             const expectedData = {
                 element: 'button',
-                accessibleName: 'name',
+                accessibleName: testButtonAccessibleName,
                 ariaCues: {
                     'aria-readonly': null,
                     'aria-disabled': null,
@@ -77,31 +89,43 @@ describe('cues rule', () => {
                 'aria-required': '',
             });
         });
+
+        it('treats empty html values as null and returns true', () => {
+            const expectedData = {
+                element: 'button',
+                accessibleName: testButtonAccessibleName,
+                ariaCues: {},
+                htmlCues: {
+                    readonly: null,
+                    disabled: null,
+                    required: null,
+                },
+            };
+
+            testCuesEvaluateWithData(expectedData, {
+                readonly: '',
+                disabled: '',
+                required: '',
+            });
+        });
+
+        function testCuesEvaluateWithData(expectedData, nodeAttrs): void {
+            for (const attrName in nodeAttrs) {
+                testButton.setAttribute(attrName, nodeAttrs[attrName]);
+            }
+
+            const dataSetterMock = Mock.ofInstance(data => {});
+            dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
+
+            const result = AxeUtils.withAxeSetup(() =>
+                cuesConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    testButton,
+                ),
+            );
+
+            expect(result).toBe(true);
+            dataSetterMock.verifyAll();
+        }
     });
 });
-
-function testCuesEvaluateWithData(expectedData, nodeData): void {
-    const nodeStub = createNodeStub(expectedData.element, nodeData);
-    const getAccessibleTextMock = GlobalMock.ofInstance(
-        AxeUtils.getAccessibleText,
-        'getAccessibleText',
-        AxeUtils,
-        MockBehavior.Strict,
-    );
-
-    const dataSetterMock = Mock.ofInstance(data => {});
-
-    dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-    getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.accessibleName);
-
-    let result;
-    GlobalScope.using(getAccessibleTextMock).with(() => {
-        result = cuesConfiguration.checks[0].evaluate.call(
-            { data: dataSetterMock.object },
-            nodeStub,
-        );
-    });
-
-    expect(result).toBe(true);
-    dataSetterMock.verifyAll();
-}

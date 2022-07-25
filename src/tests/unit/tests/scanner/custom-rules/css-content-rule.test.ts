@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
-import { GlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { cssContentConfiguration } from 'scanner/custom-rules/css-content-rule';
 
-import { cssContentConfiguration } from '../../../../../scanner/custom-rules/css-content-rule';
-
-describe('verify meaningful semantic configs', () => {
+describe('css-content rule', () => {
     it('should have correct props', () => {
         expect(cssContentConfiguration.rule.id).toBe('css-content');
         expect(cssContentConfiguration.rule.selector).toBe('body');
@@ -14,106 +12,71 @@ describe('verify meaningful semantic configs', () => {
         expect(cssContentConfiguration.checks[0].id).toBe('css-content');
         expect(cssContentConfiguration.checks[0].evaluate(null, null, null, null)).toBe(true);
     });
-});
 
-describe('verify matches', () => {
-    let divElementFixture: HTMLDivElement;
-    let headingElementFixture: HTMLHeadingElement;
+    describe('matches', () => {
+        let divElementFixture: HTMLDivElement;
+        let headingElementFixture: HTMLHeadingElement;
 
-    const getComputedStyleMock = GlobalMock.ofInstance(
-        window.getComputedStyle,
-        'getComputedStyle',
-        window,
-        MockBehavior.Strict,
-    );
-    const axeVisibilityMock = Mock.ofInstance(n => true, MockBehavior.Strict);
+        let originalGetComputedStyle: typeof window.getComputedStyle;
 
-    beforeEach(() => {
-        divElementFixture = document.createElement('div');
-        headingElementFixture = document.createElement('h1');
-        divElementFixture.appendChild(headingElementFixture);
+        beforeEach(() => {
+            divElementFixture = document.createElement('div');
+            headingElementFixture = document.createElement('h1');
+            divElementFixture.appendChild(headingElementFixture);
+            document.body.appendChild(divElementFixture);
 
-        getComputedStyleMock.reset();
-        axeVisibilityMock.reset();
+            // This is a workaround for JSDom not supporting getComputedStyle with pseudo elements.
+            // This should be replaced by adding equivalent actual styles to document.head once
+            // jsdom/jsdom#1928 is resolved.
+            originalGetComputedStyle = window.getComputedStyle;
+            window.getComputedStyle = (node, pseudo): CSSStyleDeclaration => {
+                if (pseudo === ':before' && node.classList.contains('with-before-content')) {
+                    return { content: 'content' } as CSSStyleDeclaration;
+                }
+                if (pseudo === ':after' && node.classList.contains('with-after-content')) {
+                    return { content: 'content' } as CSSStyleDeclaration;
+                }
+                if (pseudo === ':before' || pseudo === ':after') {
+                    // Browser behavior is to normalize to content: 'none' regardless of whether
+                    // there is no :before style or an empty :before style
+                    return { content: 'none' } as CSSStyleDeclaration;
+                }
+
+                return originalGetComputedStyle(node, pseudo);
+            };
+        });
+
+        afterEach(() => {
+            window.getComputedStyle = originalGetComputedStyle;
+            document.body.innerHTML = '';
+        });
+
+        it.each`
+            pseudoClass              | displayStyle | expectedResult
+            ${null}                  | ${null}      | ${false}
+            ${'with-before-empty'}   | ${null}      | ${false}
+            ${'with-after-empty'}    | ${null}      | ${false}
+            ${'with-before-content'} | ${'none'}    | ${false}
+            ${'with-after-content'}  | ${'none'}    | ${false}
+            ${'with-before-content'} | ${null}      | ${true}
+            ${'with-after-content'}  | ${null}      | ${true}
+        `(
+            'returns $expectedResult for element with pseudoClass=$pseudoClass, displayStyle=$displayStyle',
+            ({ pseudoClass, displayStyle, expectedResult }) => {
+                if (displayStyle != null) {
+                    headingElementFixture.style.display = displayStyle;
+                }
+
+                if (pseudoClass != null) {
+                    headingElementFixture.classList.add(pseudoClass);
+                }
+
+                const result = withAxeSetup(() =>
+                    cssContentConfiguration.rule.matches(divElementFixture, null),
+                );
+
+                expect(result).toBe(expectedResult);
+            },
+        );
     });
-
-    afterEach(() => {
-        axeVisibilityMock.verifyAll();
-        getComputedStyleMock.verifyAll();
-    });
-
-    const selectors = [':before', ':after'];
-
-    function checkIfSelectorIsValid(x): boolean {
-        return selectors.indexOf(x) !== -1;
-    }
-
-    const isElementVisible = [true, false];
-
-    test.each(isElementVisible)(
-        'element has pseudo selector but isVisible is toggled: %s',
-        isVisibleParam => {
-            axeVisibilityMock
-                .setup(isVisible => isVisible(headingElementFixture))
-                .returns(() => isVisibleParam)
-                .verifiable();
-
-            getComputedStyleMock
-                .setup(getComputedStyle =>
-                    getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)),
-                )
-                .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
-                .verifiable(Times.atLeastOnce());
-
-            withAxeCommonsMocked(
-                'dom',
-                {
-                    isVisible: axeVisibilityMock.object,
-                },
-                () => {
-                    const result = cssContentConfiguration.rule.matches(divElementFixture, null);
-                    expect(result).toBe(isVisibleParam);
-                },
-                [getComputedStyleMock],
-            );
-        },
-    );
-
-    const contentSwitchParameters = [
-        { pseudoSelectorContent: 'none', testExpectation: false },
-        { pseudoSelectorContent: 'non-none', testExpectation: true },
-    ];
-    test.each(contentSwitchParameters)(
-        'element isVisible but pseudo selector content is toggled: %p',
-        testCaseParameters => {
-            axeVisibilityMock
-                .setup(isVisible => isVisible(headingElementFixture))
-                .returns(() => true)
-                .verifiable();
-
-            getComputedStyleMock
-                .setup(getComputedStyle =>
-                    getComputedStyle(headingElementFixture, It.is(checkIfSelectorIsValid)),
-                )
-                .returns(
-                    style =>
-                        ({
-                            content: testCaseParameters.pseudoSelectorContent,
-                        } as CSSStyleDeclaration),
-                )
-                .verifiable(Times.atLeastOnce());
-
-            withAxeCommonsMocked(
-                'dom',
-                {
-                    isVisible: axeVisibilityMock.object,
-                },
-                () => {
-                    const result = cssContentConfiguration.rule.matches(divElementFixture, null);
-                    expect(result).toBe(testCaseParameters.testExpectation);
-                },
-                [getComputedStyleMock],
-            );
-        },
-    );
 });

@@ -24,8 +24,8 @@ describe(SummaryResultsTable.displayName, () => {
             },
         ];
         const rows = [
-            ['cell1', 'cell2', <div>cell3</div>],
-            ['cell4', 'cell5', <div>cell6</div>],
+            ['cell1', 'cell2', <div key="cell3">cell3</div>],
+            ['cell4', 'cell5', <div key="cell6">cell6</div>],
         ];
         const wrapped = shallow(
             <SummaryResultsTable columns={columns} rows={rows} id="table-id" />,

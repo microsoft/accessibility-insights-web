@@ -4,7 +4,7 @@ import path from 'path';
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { OSType } from 'electron/window-management/platform-info';
-import { GlobalMock, GlobalScope, It, Mock, MockBehavior } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('getElectronIconPath', () => {
     const fakeBase = 'base';
@@ -21,20 +21,18 @@ describe('getElectronIconPath', () => {
             .returns(_ => fakeBase)
             .verifiable();
 
-        const pathJoinMock = GlobalMock.ofInstance(path.join, 'join', path, MockBehavior.Strict);
-        pathJoinMock
-            .setup(j => j(It.isAnyString(), '..', fakeBase))
+        const pathMock = Mock.ofInstance(path);
+        pathMock
+            .setup(m => m.join(It.isAnyString(), '..', fakeBase))
             .returns(_ => fakeJoinedPath)
             .verifiable();
 
-        GlobalScope.using(pathJoinMock).with(() => {
-            const actual = getElectronIconPath(configMock.object, os);
-            const expected = `${fakeJoinedPath}${extension}`;
-            expect(actual).toEqual(expected);
-        });
+        const actual = getElectronIconPath(configMock.object, os, pathMock.object);
+        const expected = `${fakeJoinedPath}${extension}`;
+        expect(actual).toEqual(expected);
 
         configMock.verifyAll();
-        pathJoinMock.verifyAll();
+        pathMock.verifyAll();
     });
 
     it.each([
