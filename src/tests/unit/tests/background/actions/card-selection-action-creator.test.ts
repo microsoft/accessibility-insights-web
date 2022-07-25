@@ -13,10 +13,7 @@ import { Messages } from 'common/messages';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
-import {
-    createAsyncActionMock,
-    createSyncActionMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('CardSelectionActionCreator', () => {
     const tabId = -2;

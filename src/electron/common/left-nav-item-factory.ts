@@ -24,9 +24,9 @@ const createLeftNavItem = (
         key: config.key,
         displayName: config.contentPageInfo.title,
         featureFlag: config.featureFlag,
-        onSelect: () => {
-            actionCreator.itemSelected(config.key);
-            void tabStopsActionCreator.resetTabStopsToDefaultState();
+        onSelect: async () => {
+            await actionCreator.itemSelected(config.key);
+            await tabStopsActionCreator.resetTabStopsToDefaultState();
         },
     };
 };
