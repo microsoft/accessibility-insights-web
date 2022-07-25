@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanResults } from 'scanner/iruleresults';
+import { ScanResults, Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { AdHocTestkeys } from './adhoc-test-keys';
 import { GuidanceLink } from './guidance-links';
@@ -35,7 +35,7 @@ export type DecoratedAxeNodeResult = {
 export interface HtmlElementAxeResults {
     ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
     propertyBag?: any;
-    target: string[];
+    target: Target;
 }
 
 interface IssuesScanResultData {

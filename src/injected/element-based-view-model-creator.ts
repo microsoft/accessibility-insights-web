@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import { TargetHelper } from 'common/target-helper';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     UnifiedResult,
@@ -10,6 +11,7 @@ import {
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { find } from 'lodash';
+import { Target } from 'scanner/iruleresults';
 
 export type GetElementBasedViewModelCallback = (
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
@@ -69,8 +71,8 @@ export class ElementBasedViewModelCreator {
         return resultDictionary;
     };
 
-    private getTarget(unifiedResult: UnifiedResult): string[] {
-        return unifiedResult.identifiers['css-selector'].split(';');
+    private getTarget(unifiedResult: UnifiedResult): Target {
+        return TargetHelper.getTargetFromSelector(unifiedResult.identifiers['css-selector'])!;
     }
 
     private getIdentifier(unifiedResult: UnifiedResult): string {

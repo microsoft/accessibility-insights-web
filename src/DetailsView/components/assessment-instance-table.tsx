@@ -13,10 +13,9 @@ import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { has } from 'lodash';
 import * as React from 'react';
-
-import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,

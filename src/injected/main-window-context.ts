@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { BaseStore } from '../common/base-store';
-import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
-import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
-import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
-import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
-import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
@@ -76,14 +76,10 @@ export class MainWindowContext {
         );
     }
 
-    public static getMainWindowContext(): MainWindowContext {
-        return window.mainWindowContext;
-    }
-
-    public static getIfNotGiven(given: MainWindowContext): MainWindowContext {
-        if (given) {
-            return given;
+    public static fromWindow(windowObj: Window): MainWindowContext {
+        if (windowObj.mainWindowContext == null) {
+            throw new Error('No window.mainWindowContext found');
         }
-        return MainWindowContext.getMainWindowContext();
+        return windowObj.mainWindowContext;
     }
 }

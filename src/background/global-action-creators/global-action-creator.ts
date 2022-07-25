@@ -61,12 +61,12 @@ export class GlobalActionCreator {
         await this.commandActions.getCommands.invoke(getCommandsPayload);
     };
 
-    private onGetLaunchPanelState = (): void => {
-        this.launchPanelStateActions.getCurrentState.invoke(null);
+    private onGetLaunchPanelState = async (): Promise<void> => {
+        await this.launchPanelStateActions.getCurrentState.invoke(null);
     };
 
-    private onSetLaunchPanelState = (payload: SetLaunchPanelState): void => {
-        this.launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
+    private onSetLaunchPanelState = async (payload: SetLaunchPanelState): Promise<void> => {
+        await this.launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
     };
 
     private onSendTelemetry = (payload: PayloadWithEventName): void => {

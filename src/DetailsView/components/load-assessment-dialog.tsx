@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
+import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
 import {

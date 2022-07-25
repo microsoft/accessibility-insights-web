@@ -2,14 +2,18 @@
 
 exports[`TabStopsRequirementsWithInstances renders component instance count === 0 1`] = `
 <div>
-  <CollapsibleControlStub
-    headingLevel={3}
-    id="keyboard-navigation0keyboard-navigation 0 Failed test requirement description 1"
-  />
-  <CollapsibleControlStub
-    headingLevel={3}
-    id="keyboard-traps1keyboard-traps 0 Failed test requirement description 2"
-  />
+  <React.Fragment>
+    <CollapsibleControlStub
+      headingLevel={3}
+      id="keyboard-navigation0keyboard-navigation 0 Failed test requirement description 1"
+    />
+  </React.Fragment>
+  <React.Fragment>
+    <CollapsibleControlStub
+      headingLevel={3}
+      id="keyboard-traps1keyboard-traps 0 Failed test requirement description 2"
+    />
+  </React.Fragment>
 </div>
 `;
 
@@ -17,13 +21,17 @@ exports[`TabStopsRequirementsWithInstances renders empty div when instance count
 
 exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] = `
 <div>
-  <CollapsibleControlStub
-    headingLevel={3}
-    id="keyboard-navigation0keyboard-navigation 2 Failed test requirement description 1"
-  />
-  <CollapsibleControlStub
-    headingLevel={3}
-    id="keyboard-traps1keyboard-traps 2 Failed test requirement description 2"
-  />
+  <React.Fragment>
+    <CollapsibleControlStub
+      headingLevel={3}
+      id="keyboard-navigation0keyboard-navigation 2 Failed test requirement description 1"
+    />
+  </React.Fragment>
+  <React.Fragment>
+    <CollapsibleControlStub
+      headingLevel={3}
+      id="keyboard-traps1keyboard-traps 2 Failed test requirement description 2"
+    />
+  </React.Fragment>
 </div>
 `;

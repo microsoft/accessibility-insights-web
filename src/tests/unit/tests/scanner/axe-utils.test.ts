@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as AxeUtils from 'scanner/axe-utils';
-import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
 
 describe('AxeUtils', () => {
     describe('getMatchesFromRule', () => {
@@ -324,132 +323,78 @@ describe('AxeUtils', () => {
 
     describe('hasBackgoundImage', () => {
         let fixture: HTMLElement;
-        let windowMock: IGlobalMock<typeof window.getComputedStyle>;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            windowMock = GlobalMock.ofInstance(
-                window.getComputedStyle,
-                'getComputedStyle',
-                window,
-                MockBehavior.Strict,
-            );
         });
 
         afterEach(() => {
             document.body.querySelector('#test-fixture').remove();
         });
 
-        it('has bg image', () => {
+        it('returns true with background: some-value', () => {
             fixture.innerHTML = `
-                <img id="el1" alt="" />
+                <img id="el1" alt="" style="background: \\"some-value\\"" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(
-                    node => ({ getPropertyValue: property => 'some-value' } as CSSStyleDeclaration),
-                );
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
-            });
-            expect(result).toBeTruthy();
+            const result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
+            expect(result).toBe(true);
         });
 
-        it('has bg image', () => {
+        it('returns false with background: none', () => {
             fixture.innerHTML = `
-                <img id="el1" alt="" />
+                <img id="el1" alt="" style="background: none" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
-            });
-            expect(result).toBeFalsy();
+            const result = AxeUtils.hasBackgoundImage(element1 as HTMLElement);
+            expect(result).toBe(false);
         });
     });
 
     describe('getImageType', () => {
         let fixture: HTMLElement;
-        let windowMock: IGlobalMock<typeof window.getComputedStyle>;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            windowMock = GlobalMock.ofInstance(
-                window.getComputedStyle,
-                'getComputedStyle',
-                window,
-                MockBehavior.Strict,
-            );
         });
 
         afterEach(() => {
             document.body.querySelector('#test-fixture').remove();
         });
 
-        it('<img>', () => {
+        it('returns "<img>" for unstyled img elements', () => {
             fixture.innerHTML = `
-                <img id="el1"/>
+                <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.getImageType(element1 as HTMLElement);
-            });
+            const result = AxeUtils.getImageType(element1 as HTMLElement);
             expect(result).toEqual('<img>');
         });
 
-        it('icon fonts (empty <i> elements)', () => {
+        it('returns "icon fonts (empty <i> elements)" for empty i element', () => {
             fixture.innerHTML = `
                 <i id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.getImageType(element1 as HTMLElement);
-            });
+            const result = AxeUtils.getImageType(element1 as HTMLElement);
             expect(result).toEqual('icon fonts (empty <i> elements)');
         });
 
-        it('Role="img"', () => {
+        it('returns "Role="img"" for div with role="img"', () => {
             fixture.innerHTML = `
-                <div id="el1" role='img'/> <div>
+                <div id="el1" role="img" /><div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(node => ({ getPropertyValue: property => 'none' } as CSSStyleDeclaration));
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.getImageType(element1 as HTMLElement);
-            });
+            const result = AxeUtils.getImageType(element1 as HTMLElement);
             expect(result).toEqual('Role="img"');
         });
 
-        it('CSS background-image', () => {
+        it('returns "CSS background-image" for div with a background style', () => {
             fixture.innerHTML = `
-                <div id="el1"/> <div>
+                <div id="el1" style="background: \\"img-url\\"" /><div>
             `;
             const element1 = fixture.querySelector('#el1');
-            windowMock
-                .setup(m => m(It.isAny()))
-                .returns(
-                    node => ({ getPropertyValue: property => 'imgUrl' } as CSSStyleDeclaration),
-                );
-            let result;
-            GlobalScope.using(windowMock).with(() => {
-                result = AxeUtils.getImageType(element1 as HTMLElement);
-            });
+            const result = AxeUtils.getImageType(element1 as HTMLElement);
             expect(result).toEqual('CSS background-image');
         });
     });

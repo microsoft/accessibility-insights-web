@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
+import { HighlightState } from 'common/types/store-data/card-view-model';
 import {
     PlatformData,
     UnifiedResult,

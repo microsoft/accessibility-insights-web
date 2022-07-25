@@ -18,7 +18,6 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
-    InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
@@ -246,10 +245,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
+    public forInspectElement(event: SupportedMouseEvent): BaseTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
-            target: target,
         };
     }
 

@@ -6,12 +6,12 @@ import {
     TelemetryData,
     ToggleTelemetryData,
 } from 'common/extension-telemetry-events';
-import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { Tab } from 'common/types/store-data/itab';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import {
@@ -28,6 +28,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
+import { Target } from 'scanner/iruleresults';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface BaseActionPayload {
@@ -173,7 +174,7 @@ export interface SetLaunchPanelState extends BaseActionPayload {
 }
 
 export interface InspectElementPayload extends BaseActionPayload {
-    target: string[];
+    target: Target;
 }
 
 export interface InspectFrameUrlPayload extends BaseActionPayload {

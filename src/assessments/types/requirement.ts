@@ -3,13 +3,13 @@
 import { IColumn } from '@fluentui/react';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
     InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { Analyzer } from 'injected/analyzers/analyzer';
