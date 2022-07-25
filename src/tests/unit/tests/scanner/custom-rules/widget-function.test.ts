@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-//import { difference, map } from 'lodash';
 import { difference } from 'lodash';
 import { hasCustomWidgetMarkup, withAxeSetup } from 'scanner/axe-utils';
 import {
