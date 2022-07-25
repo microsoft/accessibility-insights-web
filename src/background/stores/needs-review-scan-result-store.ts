@@ -51,7 +51,7 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
-    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
         this.state.results = payload.scanResult;
         this.state.rules = payload.rules;
         this.state.toolInfo = payload.toolInfo;
