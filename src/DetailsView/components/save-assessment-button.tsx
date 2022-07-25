@@ -68,13 +68,23 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                         the Accessibility Insights Assessment command bar.
                     </div>
                     <DialogFooter>
-                        <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
-                            <Checkbox
-                                value={!showDialogAgain}
-                                label="Don't show again"
-                                onChange={handleDontShowAgainClick}
-                            />
-                            <PrimaryButton onClick={toggleHideDialog} text="Got it" />
+                        <Stack
+                            horizontal
+                            horizontalAlign="space-between"
+                            wrap
+                            verticalAlign="center"
+                            tokens={{ childrenGap: 6 }}
+                        >
+                            <Stack.Item grow disableShrink>
+                                <Checkbox
+                                    value={!showDialogAgain}
+                                    label="Don't show again"
+                                    onChange={handleDontShowAgainClick}
+                                />
+                            </Stack.Item>
+                            <Stack.Item grow>
+                                <PrimaryButton onClick={toggleHideDialog} text="Got it" />
+                            </Stack.Item>
                         </Stack>
                     </DialogFooter>
                 </Dialog>

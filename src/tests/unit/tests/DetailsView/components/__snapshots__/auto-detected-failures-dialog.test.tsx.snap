@@ -34,17 +34,32 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
     <Stack
       horizontal={true}
       horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
       verticalAlign="center"
+      wrap={true}
     >
-      <StyledCheckboxBase
-        checked={true}
-        label="Don't show again"
-        onChange={[Function]}
-      />
-      <CustomizedPrimaryButton
-        onClick={[Function]}
-        text="Got it"
-      />
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={true}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
     </Stack>
   </StyledDialogFooterBase>
 </Dialog>
@@ -86,17 +101,32 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
     <Stack
       horizontal={true}
       horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
       verticalAlign="center"
+      wrap={true}
     >
-      <StyledCheckboxBase
-        checked={false}
-        label="Don't show again"
-        onChange={[Function]}
-      />
-      <CustomizedPrimaryButton
-        onClick={[Function]}
-        text="Got it"
-      />
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
     </Stack>
   </StyledDialogFooterBase>
 </Dialog>
@@ -134,17 +164,32 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
     <Stack
       horizontal={true}
       horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
       verticalAlign="center"
+      wrap={true}
     >
-      <StyledCheckboxBase
-        checked={false}
-        label="Don't show again"
-        onChange={[Function]}
-      />
-      <CustomizedPrimaryButton
-        onClick={[Function]}
-        text="Got it"
-      />
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
     </Stack>
   </StyledDialogFooterBase>
 </Dialog>

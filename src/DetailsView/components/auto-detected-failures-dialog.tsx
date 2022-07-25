@@ -94,16 +94,26 @@ export class AutoDetectedFailuresDialog extends React.Component<
                     </ul>
                 </div>
                 <DialogFooter>
-                    <Stack horizontal horizontalAlign="space-between" verticalAlign="center">
-                        <Checkbox
-                            label={"Don't show again"}
-                            onChange={this.disableAutoDetectedFailuresDialog}
-                            checked={this.state.isDisableBoxChecked}
-                        />
-                        <PrimaryButton
-                            onClick={this.dismissAutoDetectedFailuresDialog}
-                            text={'Got it'}
-                        />
+                    <Stack
+                        horizontal
+                        horizontalAlign="space-between"
+                        wrap
+                        verticalAlign="center"
+                        tokens={{ childrenGap: 6 }}
+                    >
+                        <Stack.Item grow disableShrink>
+                            <Checkbox
+                                label={"Don't show again"}
+                                onChange={this.disableAutoDetectedFailuresDialog}
+                                checked={this.state.isDisableBoxChecked}
+                            />
+                        </Stack.Item>
+                        <Stack.Item grow>
+                            <PrimaryButton
+                                onClick={this.dismissAutoDetectedFailuresDialog}
+                                text={'Got it'}
+                            />
+                        </Stack.Item>
                     </Stack>
                 </DialogFooter>
             </Dialog>
