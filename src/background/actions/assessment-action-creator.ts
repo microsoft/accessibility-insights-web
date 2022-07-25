@@ -35,6 +35,13 @@ import { AssessmentActions } from './assessment-actions';
 const AssessmentMessages = Messages.Assessment;
 
 export class AssessmentActionCreator {
+    // This is to be used as the scope parameter to invoke().
+    // If a message has multiple callbacks registered, all invoke() calls
+    // inside those callbacks must pass a scope parameter. Those message
+    // callbacks will run concurrently, and our Flux classes don't allow
+    // multiple invoke() calls to run in the same scope at the same time.
+    // Passing our own scope will allow multiple actions to be invoked
+    // concurrently as long as there are no infinite loops.
     private readonly executingScope = 'AssessmentActionCreator';
 
     constructor(
