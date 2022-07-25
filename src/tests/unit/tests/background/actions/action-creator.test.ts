@@ -212,11 +212,7 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(
-                updateViewActionName,
-                actionCreatorPayload,
-                true,
-            )
+            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupShowDetailsView(tabId, Promise.resolve());
 
@@ -253,11 +249,7 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(
-                updateViewActionName,
-                actionCreatorPayload,
-                true,
-            )
+            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupShowDetailsView(tabId, Promise.resolve());
 
@@ -300,11 +292,7 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(
-                updateViewActionName,
-                actionCreatorPayload,
-                true,
-            )
+            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupActionOnVisualizationActions(enablingIssuesActionName)
             .setupVisualizationActionWithInvokeParameter(
                 enablingIssuesActionName,
@@ -350,11 +338,7 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
-            .setupVisualizationActionWithInvokeParameter(
-                updateViewActionName,
-                actionCreatorPayload,
-                true,
-            )
+            .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
             .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, tabId)
             .setupShowDetailsView(tabId, Promise.resolve());
 
@@ -527,13 +511,11 @@ describe('ActionCreatorTest', () => {
                 .setupVisualizationActionWithInvokeParameter(
                     updateViewActionName,
                     actionCreatorPayload,
-                    true,
                 )
                 .setupActionOnSidePanelActions(closeSidePanelActionName)
                 .setupSidePanelActionWithInvokeParameter(
                     closeSidePanelActionName,
                     'PreviewFeatures',
-                    true,
                 )
                 .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
                 .setupShowDetailsView(tabId, Promise.resolve());
@@ -559,13 +541,11 @@ describe('ActionCreatorTest', () => {
                 .setupVisualizationActionWithInvokeParameter(
                     updateViewActionName,
                     actionCreatorPayload,
-                    true,
                 )
                 .setupActionOnSidePanelActions(closeSidePanelActionName)
                 .setupSidePanelActionWithInvokeParameter(
                     closeSidePanelActionName,
                     'PreviewFeatures',
-                    true,
                 )
                 .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
                 .setupShowDetailsView(
@@ -672,7 +652,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Assessment.StartOverTest, [payload, tabId])
             .setupActionOnVisualizationActions(disableActionName)
-            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test, true)
+            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
             .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
@@ -712,7 +692,7 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(disableActionName)
-            .setupVisualizationActionWithInvokeParameter(disableActionName, null, true)
+            .setupVisualizationActionWithInvokeParameter(disableActionName, null)
             .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
         const actionCreator = validator.buildActionCreator();
 
@@ -1013,7 +993,6 @@ class ActionCreatorValidator {
         actionName: string,
         expectedInvokeParam: any,
         actionsMap: DictionaryStringTo<IMock<Action<any, any>>>,
-        invokeWithScope: boolean = false,
     ): ActionCreatorValidator {
         let action = actionsMap[actionName];
 
@@ -1022,13 +1001,9 @@ class ActionCreatorValidator {
             actionsMap[actionName] = action;
         }
 
-        if (invokeWithScope) {
-            action
-                .setup(am => am.invoke(expectedInvokeParam, this.actionExecutingScope))
-                .verifiable(Times.once());
-        } else {
-            action.setup(am => am.invoke(expectedInvokeParam)).verifiable(Times.once());
-        }
+        action
+            .setup(am => am.invoke(expectedInvokeParam, this.actionExecutingScope))
+            .verifiable(Times.once());
 
         return this;
     }
@@ -1036,13 +1011,11 @@ class ActionCreatorValidator {
     public setupVisualizationActionWithInvokeParameter(
         actionName: keyof VisualizationActions,
         expectedInvokeParam: any,
-        invokeWithScope: boolean = false,
     ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(
             actionName,
             expectedInvokeParam,
             this.visualizationActionMocks,
-            invokeWithScope,
         );
         return this;
     }
@@ -1080,13 +1053,11 @@ class ActionCreatorValidator {
     public setupSidePanelActionWithInvokeParameter(
         actionName: keyof SidePanelActions,
         expectedInvokeParam: any,
-        invokeWithScope: boolean = false,
     ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(
             actionName,
             expectedInvokeParam,
             this.sidePanelActionMocks,
-            invokeWithScope,
         );
         return this;
     }

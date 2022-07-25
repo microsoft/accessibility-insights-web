@@ -35,12 +35,8 @@ const visualizationMessages = Messages.Visualizations;
 
 export class ActionCreator {
     // This is to be used as the scope parameter to invoke().
-    // If a message has multiple callbacks registered, all invoke() calls
-    // inside those callbacks must pass a scope parameter. Those message
-    // callbacks will run concurrently, and our Flux classes don't allow
-    // multiple invoke() calls to run in the same scope at the same time.
-    // Passing our own scope will allow multiple actions to be invoked
-    // concurrently as long as there are no infinite loops.
+    // Some callbacks in this class are registered to messages with
+    // multiple callbacks (see the comment in src/common/flux/scope-mutex.ts)
     private readonly executingScope = 'ActionCreator';
 
     private visualizationActions: VisualizationActions;
@@ -180,21 +176,24 @@ export class ActionCreator {
     }
 
     private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
+        this.visualizationActions.enableVisualizationWithoutScan.invoke(
+            payload,
+            this.executingScope,
+        );
     };
 
     private onEnableVisualHelper = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.enableVisualization.invoke(payload);
+        this.visualizationActions.enableVisualization.invoke(payload, this.executingScope);
     };
 
     private onDisableVisualHelpersForTest = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+        this.visualizationActions.disableVisualization.invoke(payload.test, this.executingScope);
     };
 
     private onDisableVisualHelper = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+        this.visualizationActions.disableVisualization.invoke(payload.test, this.executingScope);
     };
 
     private onStartOver = (payload: ToggleActionPayload): void => {
@@ -220,7 +219,7 @@ export class ActionCreator {
     };
 
     private onDetailsViewClosed = (): void => {
-        this.visualizationActions.disableAssessmentVisualizations.invoke(null);
+        this.visualizationActions.disableAssessmentVisualizations.invoke(null, this.executingScope);
     };
 
     private onAssessmentScanCompleted = async (
@@ -240,7 +239,7 @@ export class ActionCreator {
     };
 
     private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
-        this.visualizationScanResultActions.addTabbedElement.invoke(payload);
+        this.visualizationScanResultActions.addTabbedElement.invoke(payload, this.executingScope);
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
@@ -251,11 +250,11 @@ export class ActionCreator {
     };
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
-        this.visualizationScanResultActions.disableTabStop.invoke(payload);
+        this.visualizationScanResultActions.disableTabStop.invoke(payload, this.executingScope);
     };
 
     private onUpdateFocusedInstance = (payload: string[]): void => {
-        this.visualizationActions.updateFocusedInstance.invoke(payload);
+        this.visualizationActions.updateFocusedInstance.invoke(payload, this.executingScope);
     };
 
     private onAdHocScanCompleted = async (
@@ -264,8 +263,8 @@ export class ActionCreator {
     ): Promise<void> => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        this.visualizationScanResultActions.scanCompleted.invoke(payload);
-        this.visualizationActions.scanCompleted.invoke(null);
+        this.visualizationScanResultActions.scanCompleted.invoke(payload, this.executingScope);
+        this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
             payload.selectorMap,
             payload.key,
@@ -276,9 +275,12 @@ export class ActionCreator {
     };
 
     private onScrollRequested = (): void => {
-        this.visualizationActions.scrollRequested.invoke(null);
-        this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
-        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(null);
+        this.visualizationActions.scrollRequested.invoke(null, this.executingScope);
+        this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
+        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
+            null,
+            this.executingScope,
+        );
     };
 
     private onDetailsViewOpen = async (
@@ -330,7 +332,7 @@ export class ActionCreator {
     };
 
     private onDetailsViewPivotSelected = (payload: OnDetailsViewPivotSelected): void => {
-        this.visualizationActions.updateSelectedPivot.invoke(payload);
+        this.visualizationActions.updateSelectedPivot.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED,
             payload,
@@ -342,28 +344,34 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
 
         if (payload.enabled) {
-            this.visualizationActions.enableVisualization.invoke(payload);
+            this.visualizationActions.enableVisualization.invoke(payload, this.executingScope);
         } else {
-            this.visualizationActions.disableVisualization.invoke(payload.test);
+            this.visualizationActions.disableVisualization.invoke(
+                payload.test,
+                this.executingScope,
+            );
         }
     };
 
     private onRescanVisualization = (payload: RescanVisualizationPayload) => {
-        this.visualizationActions.disableVisualization.invoke(payload.test);
-        this.visualizationActions.resetDataForVisualization.invoke(payload.test);
-        this.visualizationActions.enableVisualization.invoke(payload);
+        this.visualizationActions.disableVisualization.invoke(payload.test, this.executingScope);
+        this.visualizationActions.resetDataForVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
+        this.visualizationActions.enableVisualization.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
     private getVisualizationToggleCurrentState = (): void => {
-        this.visualizationActions.getCurrentState.invoke(null);
+        this.visualizationActions.getCurrentState.invoke(null, this.executingScope);
     };
 
     private getScanResultsCurrentState = (): void => {
-        this.visualizationScanResultActions.getCurrentState.invoke(null);
+        this.visualizationScanResultActions.getCurrentState.invoke(null, this.executingScope);
     };
 
     private onSetHoveredOverSelector = (payload: string[]): void => {
-        this.inspectActions.setHoveredOverSelector.invoke(payload);
+        this.inspectActions.setHoveredOverSelector.invoke(payload, this.executingScope);
     };
 }
