@@ -15,7 +15,6 @@ export class Interpreter {
 
     public interpret(message: InterpreterMessage): InterpreterResponse {
         if (this.messageToActionMapping[message.messageType]) {
-            console.log(message);
             return {
                 messageHandled: true,
                 result: this.messageToActionMapping[message.messageType](
