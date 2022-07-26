@@ -125,9 +125,9 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         this.emitChanged();
     };
 
-    private onSetSelectedDetailsViewRightContentPanel = (
+    private onSetSelectedDetailsViewRightContentPanel = async (
         view: DetailsViewRightContentPanelType,
-    ): void => {
+    ): Promise<void> => {
         this.state.detailsViewRightContentPanel = view;
         this.emitChanged();
     };
