@@ -40,7 +40,7 @@ export const NoMissingHeadings: Requirement = {
     howToTest: missingHeadingsHowToTest,
     isManual: true,
     ...content,
-    guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_1],
+    guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_6],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
