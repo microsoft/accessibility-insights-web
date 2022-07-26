@@ -11,9 +11,9 @@ export class LeftNavActionCreator {
         private readonly cardSelectionActions: CardSelectionActions,
     ) {}
 
-    public itemSelected = (itemKey: LeftNavItemKey) => {
+    public itemSelected = async (itemKey: LeftNavItemKey) => {
         this.leftNavActions.itemSelected.invoke(itemKey);
-        this.cardSelectionActions.navigateToNewCardsView.invoke(null);
+        await this.cardSelectionActions.navigateToNewCardsView.invoke(null);
     };
 
     public setLeftNavVisible = (value: boolean) =>

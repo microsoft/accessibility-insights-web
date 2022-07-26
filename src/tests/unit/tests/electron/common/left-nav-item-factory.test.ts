@@ -7,6 +7,7 @@ import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-cre
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { TestConfig } from 'electron/types/test-config';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { Mock, MockBehavior } from 'typemoq';
 
 describe('left nav item factory', () => {
@@ -55,7 +56,7 @@ describe('left nav item factory', () => {
         actionCreatorMock.verifyAll();
     });
 
-    it('calls action creator as expected', () => {
+    it('calls action creator as expected', async () => {
         const configs: TestConfig[] = [
             {
                 key: 'automated-checks',
@@ -80,6 +81,8 @@ describe('left nav item factory', () => {
         );
 
         leftNavItems[0].onSelect();
+
+        await flushSettledPromises();
 
         actionCreatorMock.verifyAll();
         tabStopsActionCreatorMock.verifyAll();

@@ -274,9 +274,9 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onScrollRequested = (): void => {
+    private onScrollRequested = async (): Promise<void> => {
         this.visualizationActions.scrollRequested.invoke(null, this.executingScope);
-        this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
+        await this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
         this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
             null,
             this.executingScope,
