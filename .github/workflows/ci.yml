@@ -203,7 +203,7 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.23.4-focal
+    container: mcr.microsoft.com/playwright:v1.24.0-focal
     strategy:
       fail-fast: false
       matrix:
