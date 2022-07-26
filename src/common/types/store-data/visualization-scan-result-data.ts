@@ -57,4 +57,5 @@ export interface VisualizationScanResultData {
     [AdHocTestkeys.Headings]: IssuesScanResultData;
     [AdHocTestkeys.Color]: IssuesScanResultData;
     [AdHocTestkeys.TabStops]: TabStopsScanResultData;
+    [AdHocTestkeys.AccessibleNames]: IssuesScanResultData;
 }

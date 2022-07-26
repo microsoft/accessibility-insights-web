@@ -71,6 +71,9 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
             case VisualizationType.Color:
                 this.data.color.fullAxeResultsMap = selectorMap;
                 break;
+            case VisualizationType.AccessibleNames:
+                this.data.accessibleNames.fullAxeResultsMap = selectorMap;
+                break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);
         }
@@ -101,6 +104,9 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
                 break;
             case VisualizationType.Color:
                 this.data.color.scanResult = result;
+                break;
+            case VisualizationType.AccessibleNames:
+                this.data.accessibleNames.scanResult = result;
                 break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);

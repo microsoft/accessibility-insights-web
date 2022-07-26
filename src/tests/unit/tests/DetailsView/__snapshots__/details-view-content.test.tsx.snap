@@ -188,6 +188,11 @@ exports[`DetailsViewContent render renders normally 1`] = `
     }
     visualizationScanResultData={
       Object {
+        "accessibleNames": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+        },
         "color": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
