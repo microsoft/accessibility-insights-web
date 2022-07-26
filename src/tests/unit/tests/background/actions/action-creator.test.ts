@@ -39,7 +39,6 @@ import {
     TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
-import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
@@ -1028,7 +1027,7 @@ class ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(SyncAction);
+            action = Mock.ofType<Action<any, any>>();
             actionsMap[actionName] = action;
         }
 
@@ -1199,7 +1198,7 @@ class ActionCreatorValidator {
         let action = actionsMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(SyncAction);
+            action = Mock.ofType<Action<any, any>>();
             actionsMap[actionName] = action;
         }
 

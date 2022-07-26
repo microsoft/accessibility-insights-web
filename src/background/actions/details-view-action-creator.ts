@@ -81,7 +81,7 @@ export class DetailsViewActionCreator {
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.openSidePanel.invoke(panel);
+        await this.sidePanelActions.openSidePanel.invoke(panel);
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
 
         const eventName = this.sidePanelToOpenPanelTelemetryEventName[panel];
@@ -94,8 +94,11 @@ export class DetailsViewActionCreator {
         Scoping: SCOPING_CLOSE,
     };
 
-    private onCloseSidePanel = (panel: SidePanel, payload: BaseActionPayload): void => {
-        this.sidePanelActions.closeSidePanel.invoke(panel);
+    private onCloseSidePanel = async (
+        panel: SidePanel,
+        payload: BaseActionPayload,
+    ): Promise<void> => {
+        await this.sidePanelActions.closeSidePanel.invoke(panel);
 
         const eventName = this.sidePanelToClosePanelTelemetryEventName[panel];
         this.telemetryEventHandler.publishTelemetry(eventName, payload);

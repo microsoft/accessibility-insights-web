@@ -323,7 +323,7 @@ export class ActionCreator {
         payload: OnDetailsViewOpenPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures', this.executingScope);
+        await this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures', this.executingScope);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
         await this.detailsViewController
             .showDetailsView(tabId)

@@ -83,7 +83,7 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         Scoping: 'isScopingOpen',
     };
 
-    private onOpenSidePanel = (sidePanel: SidePanel) => {
+    private onOpenSidePanel = async (sidePanel: SidePanel): Promise<void> => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
         this.onOpen(stateKey);
@@ -106,7 +106,7 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         this.emitChanged();
     };
 
-    private onCloseSidePanel = (sidePanel: SidePanel) => {
+    private onCloseSidePanel = async (sidePanel: SidePanel): Promise<void> => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
         this.onClose(stateKey);
