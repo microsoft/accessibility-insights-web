@@ -30,19 +30,19 @@ export class PathSnippetActionCreator {
         );
     }
 
-    private onAddPathForValidation = (payload: string): void => {
-        this.pathSnippetActions.onAddPath.invoke(payload);
+    private onAddPathForValidation = async (payload: string): Promise<void> => {
+        await this.pathSnippetActions.onAddPath.invoke(payload);
     };
 
-    private onAddCorrespondingSnippet = (payload: string): void => {
-        this.pathSnippetActions.onAddSnippet.invoke(payload);
+    private onAddCorrespondingSnippet = async (payload: string): Promise<void> => {
+        await this.pathSnippetActions.onAddSnippet.invoke(payload);
     };
 
-    private onGetPathSnippetCurrentState = (): void => {
-        this.pathSnippetActions.getCurrentState.invoke();
+    private onGetPathSnippetCurrentState = async (): Promise<void> => {
+        await this.pathSnippetActions.getCurrentState.invoke();
     };
 
-    private onClearPathSnippetData = (): void => {
-        this.pathSnippetActions.onClearData.invoke();
+    private onClearPathSnippetData = async (): Promise<void> => {
+        await this.pathSnippetActions.onClearData.invoke();
     };
 }
