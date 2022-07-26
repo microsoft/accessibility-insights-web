@@ -216,6 +216,7 @@
         "kind-of": "^6.0.3",
         "license-check-and-add/yargs": "^15.3.1",
         "minimist": "^1.2.3",
+        "moment": "^2.29.4",
         "nth-check": ">=2.0.1",
         "plist": ">=3.0.5",
         "tar": ">=6.1.9"
