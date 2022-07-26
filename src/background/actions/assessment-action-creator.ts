@@ -293,11 +293,14 @@ export class AssessmentActionCreator {
         tabId: number,
     ): Promise<void> => {
         await this.assessmentActions.updateTargetTabId.invoke(tabId, this.executingScope);
-        await this.assessmentActions.scanCompleted.invoke(payload, this.executingScope);
+        await this.assessmentActions.scanCompleted.invoke(
+            payload,
+            `${this.executingScope}-${payload.key}`,
+        );
     };
 
-    private onGetAssessmentCurrentState = (): void => {
-        this.assessmentActions.getCurrentState.invoke(null, this.executingScope);
+    private onGetAssessmentCurrentState = async (): Promise<void> => {
+        await this.assessmentActions.getCurrentState.invoke(null, this.executingScope);
     };
 
     private onSelectTestRequirement = async (payload: SelectTestSubviewPayload): Promise<void> => {
