@@ -56,7 +56,7 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
         return initialState;
     }
 
-    private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
+    private onSetFeatureFlags = async (payload: FeatureFlagPayload): Promise<void> => {
         this.state[payload.feature] = payload.enabled;
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.featureFlags]: this.state })
@@ -64,7 +64,7 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
         this.emitChanged();
     };
 
-    private onResetFeatureFlags = (): void => {
+    private onResetFeatureFlags = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

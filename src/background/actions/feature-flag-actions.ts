@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import { BaseActionPayload } from './action-payloads';
 
 export interface FeatureFlagPayload extends BaseActionPayload {
@@ -10,7 +10,7 @@ export interface FeatureFlagPayload extends BaseActionPayload {
 }
 
 export class FeatureFlagActions {
-    public readonly getCurrentState = new SyncAction<void>();
-    public readonly setFeatureFlag = new SyncAction<FeatureFlagPayload>();
-    public readonly resetFeatureFlags = new SyncAction<void>();
+    public readonly getCurrentState = new AsyncAction<void>();
+    public readonly setFeatureFlag = new AsyncAction<FeatureFlagPayload>();
+    public readonly resetFeatureFlags = new AsyncAction<void>();
 }
