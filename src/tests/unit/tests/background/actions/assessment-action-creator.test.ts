@@ -495,9 +495,10 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: ScanCompletedPayload<any> = {
             key: 'test-key',
         } as ScanCompletedPayload<any>;
+        const expectedScope = `${actionExecutingScope}-test-key`;
 
-        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
-        const scanCompleteMock = createAsyncActionMock(payload, `${actionExecutingScope}-test-key`);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, expectedScope);
+        const scanCompleteMock = createAsyncActionMock(payload, expectedScope);
 
         setupAssessmentActionsMock('scanCompleted', scanCompleteMock);
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);

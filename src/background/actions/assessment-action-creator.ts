@@ -292,11 +292,9 @@ export class AssessmentActionCreator {
         payload: ScanCompletedPayload<any>,
         tabId: number,
     ): Promise<void> => {
-        await this.assessmentActions.updateTargetTabId.invoke(tabId, this.executingScope);
-        await this.assessmentActions.scanCompleted.invoke(
-            payload,
-            `${this.executingScope}-${payload.key}`,
-        );
+        const scope = `${this.executingScope}-${payload.key}`;
+        await this.assessmentActions.updateTargetTabId.invoke(tabId, scope);
+        await this.assessmentActions.scanCompleted.invoke(payload, scope);
     };
 
     private onGetAssessmentCurrentState = async (): Promise<void> => {
