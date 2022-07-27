@@ -98,7 +98,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.emitChanged();
     };
 
-    private resetTabChange = (): void => {
+    private resetTabChange = async (): Promise<void> => {
         if (this.state.isChanged) {
             this.state.isChanged = false;
             this.emitChanged();
