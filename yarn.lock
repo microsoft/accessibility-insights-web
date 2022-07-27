@@ -3592,10 +3592,10 @@ app-builder-lib@^23.3.3:
     tar "^6.1.11"
     temp-file "^3.4.0"
 
-appium-adb@^9.9.0:
-  version "9.9.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.9.0.tgz#fe86114aac49d4797805ca09e92cec209a042348"
-  integrity sha512-HcrksymzMMd8v8UcbatrjqBL7B5uvNhsY2oH6JEGbz1DByZwbenSjRz8EhfDDqGb+WQVCAsyaDqx7PbqaqcxFg==
+appium-adb@^9.10.1:
+  version "9.10.1"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.10.1.tgz#fd91a913e19030132e41a2f031fde657d4a3bc9b"
+  integrity sha512-Pn4NVGCx+tk0qOpyowj0gVlIIeDdLnxTBKiOGxUB6F7yjnxsVHcJPiQsumpiQA8y9tOCT2dxvrPmzj8YuxgNxA==
   dependencies:
     "@appium/support" "^2.55.3"
     "@babel/runtime" "^7.0.0"
