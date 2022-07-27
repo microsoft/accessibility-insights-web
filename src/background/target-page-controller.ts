@@ -36,7 +36,7 @@ export class TargetPageController {
         const removedTabs = knownTabIds.filter(
             knownTab => !tabs.map(tab => tab.id).includes(knownTab),
         );
-        await Promise.all(removedTabs.map(removedTabId => this.onTargetTabRemoved(removedTabId)));
+        removedTabs.forEach(async removedTabId => await this.onTargetTabRemoved(removedTabId));
 
         const newTabs = tabs.filter(tab => {
             if (!knownTabIds.includes(tab.id)) {
@@ -47,7 +47,7 @@ export class TargetPageController {
             const tabUrl = this.knownTabs[tab.id];
             return tabUrl !== tab.url;
         });
-        await Promise.all(newTabs.map(tab => this.handleTabUrlUpdate(tab.id)));
+        newTabs.forEach(async tab => await this.handleTabUrlUpdate(tab.id));
     }
 
     public async onTabNavigated(
@@ -71,7 +71,7 @@ export class TargetPageController {
         await this.sendTabVisibilityChangeAction(activeTabId, false);
 
         const tabs = await this.browserAdapter.tabsQuery({ windowId });
-        tabs.map(async tab => {
+        tabs.forEach(async tab => {
             if (!tab.active) {
                 await this.sendTabVisibilityChangeAction(tab.id, true);
             }
