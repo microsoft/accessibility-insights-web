@@ -163,7 +163,7 @@
         "preprocess": "^3.2.0",
         "prettier": "^2.7.1",
         "regenerator-runtime": "^0.13.9",
-        "sass": "^1.53.0",
+        "sass": "^1.54.0",
         "sass-loader": "^13.0.2",
         "script-loader": "0.7.2",
         "serve-static": "^1.15.0",
