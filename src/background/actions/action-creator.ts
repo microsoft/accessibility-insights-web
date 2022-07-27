@@ -371,7 +371,7 @@ export class ActionCreator {
         this.visualizationScanResultActions.getCurrentState.invoke(null, this.executingScope);
     };
 
-    private onSetHoveredOverSelector = (payload: string[]): void => {
-        this.inspectActions.setHoveredOverSelector.invoke(payload, this.executingScope);
+    private onSetHoveredOverSelector = async (payload: string[]): Promise<void> => {
+        await this.inspectActions.setHoveredOverSelector.invoke(payload, this.executingScope);
     };
 }
