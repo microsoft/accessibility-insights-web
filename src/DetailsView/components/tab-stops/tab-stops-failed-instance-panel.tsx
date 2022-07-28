@@ -51,8 +51,8 @@ export const TabStopsFailedInstancePanel = NamedFC<TabStopsFailedInstancePanelPr
                     requirementId: failureInstanceState.selectedRequirementId!,
                 });
             },
-            onChange: (_, description) => {
-                deps.tabStopsTestViewController.updateDescription(description);
+            onChange: async (_, description) => {
+                await deps.tabStopsTestViewController.updateDescription(description);
             },
             onDismiss: tabStopsTestViewController.dismissPanel,
         };

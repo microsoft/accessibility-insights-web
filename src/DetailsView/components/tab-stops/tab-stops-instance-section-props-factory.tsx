@@ -38,12 +38,12 @@ export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectio
                 instanceId,
             );
         };
-        const onInstanceEditButtonClicked = (
+        const onInstanceEditButtonClicked = async (
             requirementId: TabStopRequirementId,
             instanceId: string,
             description: string,
         ) => {
-            deps.tabStopsTestViewController.editExistingFailureInstance({
+            await deps.tabStopsTestViewController.editExistingFailureInstance({
                 instanceId,
                 requirementId,
                 description,
