@@ -9,8 +9,8 @@ export class ScanActionCreator {
         private readonly deviceConnectionActions: DeviceConnectionActions,
     ) {}
 
-    public scan(): void {
+    public async scan(): Promise<void> {
         this.deviceConnectionActions.statusUnknown.invoke();
-        this.scanActions.scanStarted.invoke();
+        await this.scanActions.scanStarted.invoke();
     }
 }
