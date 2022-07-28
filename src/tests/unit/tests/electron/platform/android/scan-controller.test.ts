@@ -195,10 +195,10 @@ describe('ScanController', () => {
         await scanStartedListener();
 
         scanCompletedMock.verify(
-            scanCompleted => scanCompleted.invoke(null, actionExecutingScope),
+            scanCompleted => scanCompleted.invoke(undefined, actionExecutingScope),
             Times.once(),
         );
-        deviceConnectedMock.verify(m => m.invoke(null, actionExecutingScope), Times.once());
+        deviceConnectedMock.verify(m => m.invoke(undefined, actionExecutingScope), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
         deviceCommunicatorMock.verifyAll();
@@ -242,11 +242,11 @@ describe('ScanController', () => {
         await scanStartedListener();
 
         scanFailedMock.verify(
-            scanCompleted => scanCompleted.invoke(null, actionExecutingScope),
+            scanCompleted => scanCompleted.invoke(undefined, actionExecutingScope),
             Times.once(),
         );
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
-        deviceDisconnectedMock.verify(m => m.invoke(null, actionExecutingScope), Times.once());
+        deviceDisconnectedMock.verify(m => m.invoke(undefined, actionExecutingScope), Times.once());
         deviceCommunicatorMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });

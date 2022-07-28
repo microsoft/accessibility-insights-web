@@ -39,11 +39,11 @@ describe('ScanActionCreator', () => {
         await testSubject.scan();
 
         scanStartedMock.verify(
-            async scanStarted => scanStarted.invoke(null, actionExecutingScope),
+            async scanStarted => scanStarted.invoke(undefined, actionExecutingScope),
             Times.once(),
         );
         statusUnknown.verify(
-            statusUnknown => statusUnknown.invoke(null, actionExecutingScope),
+            statusUnknown => statusUnknown.invoke(undefined, actionExecutingScope),
             Times.once(),
         );
     });
