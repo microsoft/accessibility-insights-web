@@ -8,6 +8,7 @@ import { ScanActions } from 'electron/flux/action/scan-actions';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('ScanActionCreator', () => {
+    const actionExecutingScope = 'ScanActionCreator';
     let scanActionsMock: IMock<ScanActions>;
     let scanStartedMock: IMock<AsyncAction<void>>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
@@ -37,7 +38,13 @@ describe('ScanActionCreator', () => {
     it('scans', async () => {
         await testSubject.scan();
 
-        scanStartedMock.verify(scanStarted => scanStarted.invoke(), Times.once());
-        statusUnknown.verify(statusUnknown => statusUnknown.invoke(), Times.once());
+        scanStartedMock.verify(
+            async scanStarted => scanStarted.invoke(null, actionExecutingScope),
+            Times.once(),
+        );
+        statusUnknown.verify(
+            statusUnknown => statusUnknown.invoke(null, actionExecutingScope),
+            Times.once(),
+        );
     });
 });

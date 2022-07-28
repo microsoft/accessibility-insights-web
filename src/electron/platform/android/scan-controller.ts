@@ -25,6 +25,8 @@ import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/un
 import { isObject } from 'lodash';
 
 export class ScanController {
+    private readonly executingScope = 'ScanController';
+
     constructor(
         private readonly scanActions: ScanActions,
         private readonly unifiedScanResultAction: UnifiedScanResultActions,
@@ -77,9 +79,9 @@ export class ScanController {
 
         const payload = this.unifiedResultsBuilder(data);
 
-        await this.unifiedScanResultAction.scanCompleted.invoke(payload);
-        this.scanActions.scanCompleted.invoke();
-        this.deviceConnectionActions.statusConnected.invoke();
+        await this.unifiedScanResultAction.scanCompleted.invoke(payload, this.executingScope);
+        this.scanActions.scanCompleted.invoke(null, this.executingScope);
+        this.deviceConnectionActions.statusConnected.invoke(null, this.executingScope);
     }
 
     private buildAxeInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
@@ -132,8 +134,8 @@ export class ScanController {
             },
         });
 
-        this.scanActions.scanFailed.invoke();
-        this.deviceConnectionActions.statusDisconnected.invoke();
+        this.scanActions.scanFailed.invoke(null, this.executingScope);
+        this.deviceConnectionActions.statusDisconnected.invoke(null, this.executingScope);
     }
 
     private fetchScanResults = async (): Promise<AndroidScanResults> => {

@@ -24,6 +24,7 @@ import { androidScanResultExample } from 'tests/common/android-scan-result-examp
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {
+    const actionExecutingScope = 'ScanController';
     const expectedScanStartedTelemetry = {
         telemetry: {
             source: TelemetryEventSource.ElectronDeviceConnect,
@@ -181,7 +182,7 @@ describe('ScanController', () => {
 
         const unifiedScanCompletedMock = Mock.ofType<AsyncAction<UnifiedScanCompletedPayload>>();
         unifiedScanCompletedMock
-            .setup(action => action.invoke(unifiedPayload))
+            .setup(action => action.invoke(unifiedPayload, actionExecutingScope))
             .verifiable(Times.once());
 
         unifiedScanResultActionsMock
@@ -193,8 +194,11 @@ describe('ScanController', () => {
         expect(scanStartedListener).toBeDefined();
         await scanStartedListener();
 
-        scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(), Times.once());
-        deviceConnectedMock.verify(m => m.invoke(), Times.once());
+        scanCompletedMock.verify(
+            scanCompleted => scanCompleted.invoke(null, actionExecutingScope),
+            Times.once(),
+        );
+        deviceConnectedMock.verify(m => m.invoke(null, actionExecutingScope), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
         deviceCommunicatorMock.verifyAll();
@@ -237,9 +241,12 @@ describe('ScanController', () => {
         expect(scanStartedListener).toBeDefined();
         await scanStartedListener();
 
-        scanFailedMock.verify(scanCompleted => scanCompleted.invoke(), Times.once());
+        scanFailedMock.verify(
+            scanCompleted => scanCompleted.invoke(null, actionExecutingScope),
+            Times.once(),
+        );
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
-        deviceDisconnectedMock.verify(m => m.invoke(), Times.once());
+        deviceDisconnectedMock.verify(m => m.invoke(null, actionExecutingScope), Times.once());
         deviceCommunicatorMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
