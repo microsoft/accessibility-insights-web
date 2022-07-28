@@ -5,14 +5,14 @@ import { InspectActions, InspectPayload } from 'background/actions/inspect-actio
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CHANGE_INSPECT_MODE } from 'common/extension-telemetry-events';
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('InspectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -28,7 +28,7 @@ describe('InspectActionCreator', () => {
     });
 
     it('handles GetState message', async () => {
-        const getCurrentStateMock = createSyncActionMock(undefined);
+        const getCurrentStateMock = createAsyncActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const testSubject = new InspectActionCreator(
@@ -53,7 +53,7 @@ describe('InspectActionCreator', () => {
 
         const tabId: number = -1;
 
-        let changeInspectModeMock: IMock<SyncAction<InspectPayload>>;
+        let changeInspectModeMock: IMock<AsyncAction<InspectPayload>>;
         let actionsMock: IMock<InspectActions>;
 
         let testSubject: InspectActionCreator;
@@ -63,7 +63,7 @@ describe('InspectActionCreator', () => {
                 .setup(publisher => publisher.publishTelemetry(CHANGE_INSPECT_MODE, payload))
                 .verifiable(Times.once());
 
-            changeInspectModeMock = createSyncActionMock(payload);
+            changeInspectModeMock = createAsyncActionMock(payload);
             actionsMock = createActionsMock('changeInspectMode', changeInspectModeMock.object);
 
             testSubject = new InspectActionCreator(
