@@ -134,7 +134,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onResetDataForVisualization = (type: VisualizationType) => {
+    private onResetDataForVisualization = async (type: VisualizationType): Promise<void> => {
         const config = this.visualizationConfigurationFactory.getConfiguration(type);
         const testKey = config.key;
         if (this.state[testKey] == null) {
