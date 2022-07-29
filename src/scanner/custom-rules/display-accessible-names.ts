@@ -8,19 +8,12 @@ const accessibleNamesCheckId: string = 'display-accessible-names';
 export const accessibleNamesConfiguration: RuleConfiguration = {
     checks: [
         {
-            id: accessibleNamesCheckId, // unique name of rule
-            evaluate: evaluateAccessibleNames, // required for new checkIDs. String for function that implements check's functionality
+            id: accessibleNamesCheckId,
+            evaluate: evaluateAccessibleNames,
         },
     ],
-
-    /**
-     * Selector: Each element matching selector will be tested by the rule unless matches function says otherwise
-     * matches property returns a boolean indicating if an object should be tested
-     */
     rule: {
         id: accessibleNamesCheckId,
-
-        // the UI components we care about
         selector: createSelector(),
         enabled: false,
     },
@@ -68,12 +61,10 @@ function createSelector(): string {
     roles.forEach((role: string) => {
         selectors.push('[role=' + role + ']', role);
     });
-
     return selectors.join(',');
 }
 
 function evaluateAccessibleNames(node: HTMLElement): boolean {
-    //return true if check is passed. Otherwise false
     const accessibleName = AxeUtils.getAccessibleText(node);
     if (accessibleName) {
         this.data({ name: accessibleName });

@@ -27,7 +27,7 @@ describe('evaluateAccessibleNames', () => {
         const expectedData = {
             name: 'AccessibleName',
         };
-        const nodeStub = createNodeStub('button', { role: 'button' });
+        const nodeStub = createNodeStub('button', { name: expectedData.name });
 
         dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
         getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.name);
