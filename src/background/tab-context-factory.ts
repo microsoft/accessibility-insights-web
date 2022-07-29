@@ -115,6 +115,7 @@ export class TabContextFactory {
             this.browserAdapter,
             this.telemetryEventHandler,
             this.logger,
+            tabId,
         );
         const popupActionCreator = new PopupActionCreator(
             interpreter,

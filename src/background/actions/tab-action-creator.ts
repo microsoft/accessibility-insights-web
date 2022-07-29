@@ -22,8 +22,15 @@ export class TabActionCreator {
         private readonly browserAdapter: BrowserAdapter,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger,
+        private readonly tabId: number,
     ) {}
-    private readonly scopePrefix = 'TabActionCreator:';
+
+    /*
+        Tab actions are often invoked in multiple tabs at the same time (ex: one tab becomes active,
+        while another becomes in-active) but that is expected/desired. We include the tabId for the
+        scope to ensure the scope-mutex does not throw an error in those scenarios.
+    */
+    private readonly scope = `TabActionCreator:${this.tabId}`;
 
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(
@@ -36,8 +43,7 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.Remove,
-            async (_, tabId: number) =>
-                await this.tabActions.tabRemove.invoke(null, this.getScope(tabId)),
+            async (_, tabId: number) => await this.tabActions.tabRemove.invoke(null, this.scope),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.ExistingTabUpdated,
@@ -50,22 +56,10 @@ export class TabActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.VisibilityChange,
             async (payload: PageVisibilityChangeTabPayload, tabId) => {
-                await this.tabActions.tabVisibilityChange.invoke(
-                    payload.hidden,
-                    this.getScope(tabId),
-                );
+                await this.tabActions.tabVisibilityChange.invoke(payload.hidden, this.scope);
             },
         );
     }
-
-    /*
-        Tab actions are often invoked in multiple tabs at the same time (ex: one tab becomes active,
-        while another becomes in-active) but that is expected/desired. We include the tabId for the
-        scope to ensure the scope-mutex does not throw an error in those scenarios.
-    */
-    private getScope = (tabId: number) => {
-        return `${this.scopePrefix}${tabId}`;
-    };
 
     private onSwitchToTargetTab = async (
         payload: SwitchToTargetTabPayload,
