@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { accessibleNamesConfiguration } from 'scanner/custom-rules/accessible-names';
+import { accessibleNamesConfiguration } from 'scanner/custom-rules/display-accessible-names';
 import { headersAttributeRuleConfiguration } from 'scanner/custom-rules/headers-attribute-rule';
 import { autocompleteRuleConfiguration } from './custom-rules/autocomplete-rule';
 import { colorConfiguration } from './custom-rules/color-rule';
