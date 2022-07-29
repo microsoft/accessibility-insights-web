@@ -78,4 +78,20 @@ describe('Target Page visualization boxes', () => {
 
         expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
     });
+
+    test('visualization boxes are shown over elements with uncommon characters in selector', async () => {
+        targetPage = await browser.newTargetPage({ testResourcePath: 'uncommon-characters.html' });
+
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+
+        await popupPage.enableToggleByAriaLabel('Automated checks');
+
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
+
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
+    });
 });
