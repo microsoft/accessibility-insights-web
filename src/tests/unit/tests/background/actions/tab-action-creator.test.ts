@@ -86,7 +86,9 @@ describe(TabActionCreator, () => {
     });
 
     it('handles Tab.Remove message', async () => {
-        const tabRemoveMock = createAsyncActionMock<void>(null);
+        const tabIdStub = -1;
+        const expectedScope = 'TabActionCreator:-1';
+        const tabRemoveMock = createAsyncActionMock<void>(null, expectedScope);
         const actionsMock = createActionsMock('tabRemove', tabRemoveMock.object);
 
         const testSubject = new TabActionCreator(
@@ -99,7 +101,7 @@ describe(TabActionCreator, () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(Messages.Tab.Remove, null);
+        await interpreterMock.simulateMessage(Messages.Tab.Remove, null, tabIdStub);
 
         tabRemoveMock.verifyAll();
     });
@@ -196,11 +198,13 @@ describe(TabActionCreator, () => {
     });
 
     it('handles Tab.VisibilityChange message', async () => {
+        const tabIdStub = -1;
+        const expectedScope = 'TabActionCreator:-1';
         const payload: PageVisibilityChangeTabPayload = {
             hidden: true,
         };
 
-        const tabVisibilityChangeMock = createAsyncActionMock(payload.hidden);
+        const tabVisibilityChangeMock = createAsyncActionMock(payload.hidden, expectedScope);
         const actionsMock = createActionsMock(
             'tabVisibilityChange',
             tabVisibilityChangeMock.object,
@@ -216,7 +220,7 @@ describe(TabActionCreator, () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(Messages.Tab.VisibilityChange, payload);
+        await interpreterMock.simulateMessage(Messages.Tab.VisibilityChange, payload, tabIdStub);
 
         tabVisibilityChangeMock.verifyAll();
     });

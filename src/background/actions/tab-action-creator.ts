@@ -23,6 +23,7 @@ export class TabActionCreator {
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger,
     ) {}
+    private readonly scopePrefix = 'TabActionCreator:';
 
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(
@@ -35,7 +36,8 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.Remove,
-            async () => await this.tabActions.tabRemove.invoke(null),
+            async (_, tabId: number) =>
+                await this.tabActions.tabRemove.invoke(null, this.getScope(tabId)),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.ExistingTabUpdated,
@@ -47,10 +49,23 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.VisibilityChange,
-            async (payload: PageVisibilityChangeTabPayload) =>
-                await this.tabActions.tabVisibilityChange.invoke(payload.hidden),
+            async (payload: PageVisibilityChangeTabPayload, tabId) => {
+                await this.tabActions.tabVisibilityChange.invoke(
+                    payload.hidden,
+                    this.getScope(tabId),
+                );
+            },
         );
     }
+
+    /*
+        Tab actions are often invoked in multiple tabs at the same time (ex: one tab becomes active,
+        while another becomes in-active) but that is expected/desired. We include the tabId for the
+        scope to ensure the scope-mutex does not throw an error in those scenarios.
+    */
+    private getScope = (tabId: number) => {
+        return `${this.scopePrefix}${tabId}`;
+    };
 
     private onSwitchToTargetTab = async (
         payload: SwitchToTargetTabPayload,
