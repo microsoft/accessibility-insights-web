@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { GuidanceLink } from './guidance-links';
 import { ScanIncompleteWarningId } from './scan-incomplete-warnings';
@@ -86,6 +87,7 @@ export type StoredInstancePropertyBag = InstancePropertyBag;
 export type UnifiedIdentifiers = {
     identifier: string;
     conciseName: string;
+    target?: Target;
 } & InstancePropertyBag;
 
 export type UnifiedDescriptors = {

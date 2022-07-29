@@ -72,7 +72,9 @@ export class ElementBasedViewModelCreator {
     };
 
     private getTarget(unifiedResult: UnifiedResult): Target {
-        return TargetHelper.getTargetFromSelector(unifiedResult.identifiers['css-selector'])!;
+        return unifiedResult.identifiers.target
+            ? unifiedResult.identifiers.target
+            : TargetHelper.getTargetFromSelector(unifiedResult.identifiers['css-selector'])!;
     }
 
     private getIdentifier(unifiedResult: UnifiedResult): string {

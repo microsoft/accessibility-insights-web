@@ -209,4 +209,46 @@ describe('ElementBasedViewModelCreator', () => {
             testSubject.getElementBasedViewModel(scanResultStoreData, cardSelectionData),
         ).toEqual(expectedResult);
     });
+
+    test('getElementBasedViewModel: preserves target if present', () => {
+        const unifiedResult = cloneDeep(exampleUnifiedResult);
+        const expectedTarget = [['target1', 'target2']];
+        unifiedResult.identifiers.target = expectedTarget;
+        const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
+        const unifiedRules = [ruleStub];
+        const identifierStub = unifiedResult.identifiers['css-selector'];
+        const decoratedResultStub = {} as DecoratedAxeNodeResult;
+        const scanResultStoreData = {
+            results: [unifiedResult],
+            rules: unifiedRules,
+        } as UnifiedScanResultStoreData;
+        const cardSelectionViewData = {
+            resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
+        } as CardSelectionViewData;
+
+        getHighlightedResultInstanceIdsMock
+            .setup(mock =>
+                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
+            )
+            .returns(() => cardSelectionViewData);
+
+        getDecoratedAxeNodeCallbackMock
+            .setup(mock => mock(unifiedResult, ruleStub, identifierStub))
+            .returns(() => decoratedResultStub);
+
+        const expectedResult = {
+            [identifierStub]: {
+                isFailure: true,
+                isVisualizationEnabled: true,
+                target: expectedTarget,
+                ruleResults: {
+                    [ruleStub.id]: decoratedResultStub,
+                },
+            },
+        };
+
+        expect(
+            testSubject.getElementBasedViewModel(scanResultStoreData, cardSelectionData),
+        ).toEqual(expectedResult);
+    });
 });
