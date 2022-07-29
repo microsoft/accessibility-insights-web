@@ -24,6 +24,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     isSideNavOpen={false}
     narrowModeStatus={
       Object {
+        "isCardFooterCollapsed": false,
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
         "isVirtualKeyboardCollapsed": false,
@@ -81,6 +82,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     isSideNavOpen={false}
     narrowModeStatus={
       Object {
+        "isCardFooterCollapsed": false,
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
         "isVirtualKeyboardCollapsed": false,
