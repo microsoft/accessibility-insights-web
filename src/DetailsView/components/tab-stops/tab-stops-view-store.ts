@@ -41,7 +41,9 @@ export class TabStopsViewStore extends BaseStoreImpl<TabStopsViewStoreData> {
         this.tabStopsViewActions.dismissPanel.addListener(this.onDismissPanel);
     }
 
-    private onCreateNewFailureInstancePanel = (requirementId: TabStopRequirementId) => {
+    private onCreateNewFailureInstancePanel = async (
+        requirementId: TabStopRequirementId,
+    ): Promise<void> => {
         this.state.failureInstanceState = this.getDefaultState().failureInstanceState;
         this.state.failureInstanceState.isPanelOpen = true;
         this.state.failureInstanceState.selectedRequirementId = requirementId;
@@ -49,7 +51,9 @@ export class TabStopsViewStore extends BaseStoreImpl<TabStopsViewStoreData> {
         this.emitChanged();
     };
 
-    private onEditExistingFailureInstance = (payload: EditExistingFailureInstancePayload) => {
+    private onEditExistingFailureInstance = async (
+        payload: EditExistingFailureInstancePayload,
+    ): Promise<void> => {
         this.state.failureInstanceState.isPanelOpen = true;
         this.state.failureInstanceState.selectedRequirementId = payload.requirementId;
         this.state.failureInstanceState.selectedInstanceId = payload.instanceId;
@@ -58,12 +62,12 @@ export class TabStopsViewStore extends BaseStoreImpl<TabStopsViewStoreData> {
         this.emitChanged();
     };
 
-    private onDismissPanel = () => {
+    private onDismissPanel = async (): Promise<void> => {
         this.state.failureInstanceState.isPanelOpen = false;
         this.emitChanged();
     };
 
-    private onUpdateDescription = (description: string) => {
+    private onUpdateDescription = async (description: string): Promise<void> => {
         this.state.failureInstanceState.description = description;
         this.emitChanged();
     };

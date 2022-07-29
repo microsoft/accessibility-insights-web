@@ -66,8 +66,8 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                                     status,
                                 )
                             }
-                            onAddFailureInstanceClicked={_ =>
-                                deps.tabStopsTestViewController.createNewFailureInstancePanel(
+                            onAddFailureInstanceClicked={async _ =>
+                                await deps.tabStopsTestViewController.createNewFailureInstancePanel(
                                     item.id,
                                 )
                             }
