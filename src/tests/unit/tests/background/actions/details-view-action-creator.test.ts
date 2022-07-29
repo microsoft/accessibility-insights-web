@@ -24,10 +24,7 @@ import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    createAsyncActionMock,
-    createSyncActionMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('DetailsViewActionCreatorTest', () => {
     let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
@@ -169,7 +166,7 @@ describe('DetailsViewActionCreatorTest', () => {
     it('handles Visualization.DetailsView.SetDetailsViewRightContentPanel message', async () => {
         const payload: DetailsViewRightContentPanelType = 'Overview';
 
-        const setSelectedDetailsViewRightContentPanelMock = createSyncActionMock(payload);
+        const setSelectedDetailsViewRightContentPanelMock = createAsyncActionMock(payload);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'setSelectedDetailsViewRightContentPanel',
             setSelectedDetailsViewRightContentPanelMock.object,
@@ -194,7 +191,7 @@ describe('DetailsViewActionCreatorTest', () => {
     });
 
     it('handles Visualization.DetailsView.GetState message', async () => {
-        const getCurrentStateMock = createSyncActionMock<void>(null);
+        const getCurrentStateMock = createAsyncActionMock<void>(null);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'getCurrentState',
             getCurrentStateMock.object,

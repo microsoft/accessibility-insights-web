@@ -104,13 +104,13 @@ export class DetailsViewActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onSetDetailsViewRightContentPanel = (
+    private onSetDetailsViewRightContentPanel = async (
         payload: DetailsViewRightContentPanelType,
-    ): void => {
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
+    ): Promise<void> => {
+        await this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
     };
 
-    private onGetDetailsViewCurrentState = (): void => {
-        this.detailsViewActions.getCurrentState.invoke(null);
+    private onGetDetailsViewCurrentState = async (): Promise<void> => {
+        await this.detailsViewActions.getCurrentState.invoke(null);
     };
 }
