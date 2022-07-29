@@ -9,7 +9,7 @@ parameters:
 jobs:
     - job: ${{ parameters.signedArtifactName }}
       pool:
-          vmImage: macOS-10.15
+          vmImage: macOS-11
       steps:
           - template: ../../install-node-prerequisites.yaml
 
