@@ -253,7 +253,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onExistingTabUpdated = (): void => {
+    private onExistingTabUpdated = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

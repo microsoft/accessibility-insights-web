@@ -204,7 +204,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private onResetStoreData = (): void => {
+    private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };
