@@ -88,11 +88,13 @@
         "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:esbuild watch:webpack-unified",
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:esbuild watch:webpack-unified",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:esbuild",
+        "watch:build:web:mv3": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:esbuild:mv3",
         "watch:build:unified": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-unified",
         "watch:scss": "typed-scss-modules \"src/**/*.scss\" --watch",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
         "watch:esbuild": "node esbuild.js --watch",
+        "watch:esbuild:mv3": "node esbuild.js --watch --env dev-mv3",
         "watch:webpack-unified": "webpack --watch --config-name unified --color --progress"
     },
     "devDependencies": {
