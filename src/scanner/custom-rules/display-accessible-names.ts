@@ -16,6 +16,7 @@ export const accessibleNamesConfiguration: RuleConfiguration = {
         id: accessibleNamesCheckId,
         selector: createSelector(),
         enabled: false,
+        any: [accessibleNamesCheckId],
     },
 };
 
