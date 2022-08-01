@@ -45,8 +45,8 @@ export const DebugToolsNav = NamedFC<DebugToolsNavProps>(
                         ],
                     },
                 ]}
-                onLinkClick={(ev, item) =>
-                    deps.debugToolsNavActionCreator.onSelectTool(item.key as ToolsNavKey)
+                onLinkClick={async (ev, item) =>
+                    await deps.debugToolsNavActionCreator.onSelectTool(item.key as ToolsNavKey)
                 }
             />
         );

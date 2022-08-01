@@ -25,7 +25,7 @@ export class DebugToolsNavStore extends BaseStoreImpl<DebugToolsNavStoreData> {
     protected addActionListeners(): void {
         this.toolsNavActions.setSelectedTool.addListener(this.onSetSelectedTool);
     }
-    private onSetSelectedTool = (selectedTool: ToolsNavKey) => {
+    private onSetSelectedTool = async (selectedTool: ToolsNavKey): Promise<void> => {
         if (this.state.selectedTool === selectedTool) {
             return;
         }
