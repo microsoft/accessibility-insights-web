@@ -38,8 +38,8 @@ export class ScanController {
         private readonly deviceCommunicator: DeviceCommunicator,
     ) {}
 
-    public initialize(): void {
-        this.scanActions.scanStarted.addListener(this.onScanStarted);
+    public async initialize(): Promise<void> {
+        await this.scanActions.scanStarted.addListener(this.onScanStarted);
     }
 
     private onScanStarted = async () => {
@@ -55,7 +55,7 @@ export class ScanController {
         try {
             data = await this.fetchScanResults();
         } catch (e) {
-            this.scanFailed(scanStartedTime, e);
+            await this.scanFailed(scanStartedTime, e);
             return;
         }
         await this.scanCompleted(scanStartedTime, data);
@@ -80,7 +80,7 @@ export class ScanController {
         const payload = this.unifiedResultsBuilder(data);
 
         await this.unifiedScanResultAction.scanCompleted.invoke(payload, this.executingScope);
-        this.scanActions.scanCompleted.invoke(undefined, this.executingScope);
+        await this.scanActions.scanCompleted.invoke(undefined, this.executingScope);
         this.deviceConnectionActions.statusConnected.invoke(undefined, this.executingScope);
     }
 
@@ -121,7 +121,7 @@ export class ScanController {
         );
     }
 
-    private scanFailed(scanStartedTime: number, error: Error): void {
+    private async scanFailed(scanStartedTime: number, error: Error): Promise<void> {
         this.logger.error('scan failed: ', error);
 
         const scanCompletedTime = this.getCurrentDate().getTime();
@@ -134,7 +134,7 @@ export class ScanController {
             },
         });
 
-        this.scanActions.scanFailed.invoke(undefined, this.executingScope);
+        await this.scanActions.scanFailed.invoke(undefined, this.executingScope);
         this.deviceConnectionActions.statusDisconnected.invoke(undefined, this.executingScope);
     }
 

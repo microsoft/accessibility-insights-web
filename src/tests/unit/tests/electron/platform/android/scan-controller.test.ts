@@ -38,8 +38,8 @@ describe('ScanController', () => {
 
     let scanActionsMock: IMock<ScanActions>;
     let scanStartedMock: IMock<AsyncAction<void>>;
-    let scanCompletedMock: IMock<SyncAction<void>>;
-    let scanFailedMock: IMock<SyncAction<void>>;
+    let scanCompletedMock: IMock<AsyncAction<void>>;
+    let scanFailedMock: IMock<AsyncAction<void>>;
 
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let deviceConnectedMock: IMock<SyncAction<void>>;
@@ -56,8 +56,8 @@ describe('ScanController', () => {
         scanActionsMock = Mock.ofType<ScanActions>();
 
         scanStartedMock = Mock.ofType<AsyncAction<void>>();
-        scanCompletedMock = Mock.ofType<SyncAction<void>>();
-        scanFailedMock = Mock.ofType<SyncAction<void>>();
+        scanCompletedMock = Mock.ofType<AsyncAction<void>>();
+        scanFailedMock = Mock.ofType<AsyncAction<void>>();
 
         deviceConnectedMock = Mock.ofType<SyncAction<void>>();
         deviceDisconnectedMock = Mock.ofType<SyncAction<void>>();
@@ -189,7 +189,7 @@ describe('ScanController', () => {
             .setup(actions => actions.scanCompleted)
             .returns(() => unifiedScanCompletedMock.object);
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         expect(scanStartedListener).toBeDefined();
         await scanStartedListener();
@@ -236,7 +236,7 @@ describe('ScanController', () => {
             .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
             .callback(listener => (scanStartedListener = listener));
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         expect(scanStartedListener).toBeDefined();
         await scanStartedListener();

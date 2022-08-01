@@ -34,11 +34,11 @@ export class ScanStore extends BaseStoreImpl<ScanStoreData> {
         this.emitChanged();
     };
 
-    private onScanCompleted = () => this.onScanFinished(ScanStatus.Completed);
+    private onScanCompleted: () => Promise<void> = () => this.onScanFinished(ScanStatus.Completed);
 
-    private onScanFailed = () => this.onScanFinished(ScanStatus.Failed);
+    private onScanFailed: () => Promise<void> = () => this.onScanFinished(ScanStatus.Failed);
 
-    private onScanFinished(finalStatus: ScanStatus): void {
+    private async onScanFinished(finalStatus: ScanStatus): Promise<void> {
         if (this.state.status !== ScanStatus.Scanning) {
             return;
         }
