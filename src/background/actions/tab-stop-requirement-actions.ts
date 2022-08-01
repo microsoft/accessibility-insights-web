@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import {
     AddTabStopInstancePayload,
     BaseActionPayload,
@@ -16,18 +16,18 @@ import {
 } from './action-payloads';
 
 export class TabStopRequirementActions {
-    public readonly getCurrentState = new SyncAction();
+    public readonly getCurrentState = new AsyncAction();
     public readonly updateTabStopsRequirementStatus =
-        new SyncAction<UpdateTabStopRequirementStatusPayload>();
-    public readonly addTabStopInstance = new SyncAction<AddTabStopInstancePayload>();
-    public readonly updateTabStopInstance = new SyncAction<UpdateTabStopInstancePayload>();
-    public readonly removeTabStopInstance = new SyncAction<RemoveTabStopInstancePayload>();
+        new AsyncAction<UpdateTabStopRequirementStatusPayload>();
+    public readonly addTabStopInstance = new AsyncAction<AddTabStopInstancePayload>();
+    public readonly updateTabStopInstance = new AsyncAction<UpdateTabStopInstancePayload>();
+    public readonly removeTabStopInstance = new AsyncAction<RemoveTabStopInstancePayload>();
     public readonly resetTabStopRequirementStatus =
-        new SyncAction<ResetTabStopRequirementStatusPayload>();
+        new AsyncAction<ResetTabStopRequirementStatusPayload>();
     public readonly toggleTabStopRequirementExpand =
-        new SyncAction<ToggleTabStopRequirementExpandPayload>();
-    public readonly updateTabbingCompleted = new SyncAction<UpdateTabbingCompletedPayload>();
+        new AsyncAction<ToggleTabStopRequirementExpandPayload>();
+    public readonly updateTabbingCompleted = new AsyncAction<UpdateTabbingCompletedPayload>();
     public readonly updateNeedToCollectTabbingResults =
-        new SyncAction<UpdateNeedToCollectTabbingResultsPayload>();
-    public readonly automatedTabbingResultsCompleted = new SyncAction<BaseActionPayload>();
+        new AsyncAction<UpdateNeedToCollectTabbingResultsPayload>();
+    public readonly automatedTabbingResultsCompleted = new AsyncAction<BaseActionPayload>();
 }
