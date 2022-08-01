@@ -12,10 +12,10 @@ export class LeftNavActionCreator {
     ) {}
 
     public itemSelected = async (itemKey: LeftNavItemKey) => {
-        this.leftNavActions.itemSelected.invoke(itemKey);
+        await this.leftNavActions.itemSelected.invoke(itemKey);
         await this.cardSelectionActions.navigateToNewCardsView.invoke(null);
     };
 
-    public setLeftNavVisible = (value: boolean) =>
-        this.leftNavActions.setLeftNavVisible.invoke(value);
+    public setLeftNavVisible = async (value: boolean) =>
+        await this.leftNavActions.setLeftNavVisible.invoke(value);
 }

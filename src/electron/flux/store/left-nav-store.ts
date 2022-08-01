@@ -24,13 +24,13 @@ export class LeftNavStore extends BaseStoreImpl<LeftNavStoreData> {
         this.actions.setLeftNavVisible.addListener(this.onSetLeftNavVisible);
     }
 
-    private onItemSelected = (key: LeftNavItemKey): void => {
+    private onItemSelected = async (key: LeftNavItemKey): Promise<void> => {
         this.state.selectedKey = key;
         this.state.leftNavVisible = false;
         this.emitChanged();
     };
 
-    private onSetLeftNavVisible = (value: boolean): void => {
+    private onSetLeftNavVisible = async (value: boolean): Promise<void> => {
         this.state.leftNavVisible = value;
         this.emitChanged();
     };

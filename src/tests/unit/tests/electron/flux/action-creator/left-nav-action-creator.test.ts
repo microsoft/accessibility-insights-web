@@ -3,7 +3,6 @@
 
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { AsyncAction } from 'common/flux/async-action';
-import { SyncAction } from 'common/flux/sync-action';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
@@ -27,7 +26,7 @@ describe('LeftNavActionCreator', () => {
     });
 
     it('itemSelected', async () => {
-        const itemSelectedMock = Mock.ofType<SyncAction<LeftNavItemKey>>();
+        const itemSelectedMock = Mock.ofType<AsyncAction<LeftNavItemKey>>();
         leftNavActionsMock
             .setup(actions => actions.itemSelected)
             .returns(() => itemSelectedMock.object)
@@ -52,8 +51,8 @@ describe('LeftNavActionCreator', () => {
         cardSelectionActionsMock.verifyAll();
     });
 
-    it.each([[true], [false]])('setLeftNavVisible', testValue => {
-        const setLeftNavVisibleMock = Mock.ofType<SyncAction<boolean>>();
+    it.each([[true], [false]])('setLeftNavVisible', async testValue => {
+        const setLeftNavVisibleMock = Mock.ofType<AsyncAction<boolean>>();
         leftNavActionsMock
             .setup(actions => actions.setLeftNavVisible)
             .returns(() => setLeftNavVisibleMock.object)
@@ -61,7 +60,7 @@ describe('LeftNavActionCreator', () => {
 
         setLeftNavVisibleMock.setup(m => m.invoke(testValue)).verifiable();
 
-        actionCreator.setLeftNavVisible(testValue);
+        await actionCreator.setLeftNavVisible(testValue);
 
         setLeftNavVisibleMock.verifyAll();
         leftNavActionsMock.verifyAll();
