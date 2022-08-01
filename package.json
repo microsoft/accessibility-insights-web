@@ -101,7 +101,7 @@
         "7zip-bin": "^5.2.0",
         "@electron/get": "^1.14.1",
         "@esbuild-plugins/node-resolve": "^0.1.4",
-        "@swc/core": "^1.2.220",
+        "@swc/core": "^1.2.222",
         "@swc/jest": "^0.2.22",
         "@types/chrome": "0.0.193",
         "@types/enzyme": "^3.10.12",
