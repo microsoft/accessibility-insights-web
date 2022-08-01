@@ -12,7 +12,7 @@ export class ScanActionCreator {
     ) {}
 
     public async scan(): Promise<void> {
-        this.deviceConnectionActions.statusUnknown.invoke(undefined, this.executingScope);
+        await this.deviceConnectionActions.statusUnknown.invoke(undefined, this.executingScope);
         await this.scanActions.scanStarted.invoke(undefined, this.executingScope);
     }
 }

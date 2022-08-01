@@ -23,13 +23,14 @@ export class DeviceConnectionStore extends BaseStoreImpl<DeviceConnectionStoreDa
         this.deviceConnectionActions.statusDisconnected.addListener(this.onStatusDisconnected);
     }
 
-    private onStatusUnknown = () => this.updateStatus(DeviceConnectionStatus.Unknown);
+    private onStatusUnknown = async () => this.updateStatus(DeviceConnectionStatus.Unknown);
 
-    private onStatusConnected = () => this.updateStatus(DeviceConnectionStatus.Connected);
+    private onStatusConnected = async () => this.updateStatus(DeviceConnectionStatus.Connected);
 
-    private onStatusDisconnected = () => this.updateStatus(DeviceConnectionStatus.Disconnected);
+    private onStatusDisconnected = async () =>
+        this.updateStatus(DeviceConnectionStatus.Disconnected);
 
-    private updateStatus(newStatus: DeviceConnectionStatus): void {
+    private async updateStatus(newStatus: DeviceConnectionStatus): Promise<void> {
         if (this.state.status === newStatus) {
             return;
         }

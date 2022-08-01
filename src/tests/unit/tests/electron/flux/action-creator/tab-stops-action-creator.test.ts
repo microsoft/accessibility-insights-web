@@ -7,6 +7,7 @@ import {
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from 'common/extension-telemetry-events';
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -32,8 +33,8 @@ describe('TabStopsActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let loggerMock: IMock<Logger>;
-    let statusDisconnectedMock: IMock<SyncAction<void>>;
-    let statusConnectedMock: IMock<SyncAction<void>>;
+    let statusDisconnectedMock: IMock<AsyncAction<void>>;
+    let statusConnectedMock: IMock<AsyncAction<void>>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let eventStub: React.SyntheticEvent;
     let telemetryStub: BaseTelemetryData;
@@ -54,8 +55,8 @@ describe('TabStopsActionCreator', () => {
             MockBehavior.Strict,
         );
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
-        statusDisconnectedMock = Mock.ofType<SyncAction<void>>();
-        statusConnectedMock = Mock.ofType<SyncAction<void>>();
+        statusDisconnectedMock = Mock.ofType<AsyncAction<void>>();
+        statusConnectedMock = Mock.ofType<AsyncAction<void>>();
         telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {

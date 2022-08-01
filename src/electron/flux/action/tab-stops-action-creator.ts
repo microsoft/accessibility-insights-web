@@ -38,9 +38,9 @@ export class TabStopsActionCreator {
             });
             await this.deviceFocusController.enableFocusTracking();
             this.tabStopsActions.enableFocusTracking.invoke();
-            this.deviceConnectionActions.statusConnected.invoke();
+            await this.deviceConnectionActions.statusConnected.invoke();
         } catch (e) {
-            this.commandFailed(e);
+            await this.commandFailed(e);
         }
     };
 
@@ -55,9 +55,9 @@ export class TabStopsActionCreator {
             });
             await this.deviceFocusController.disableFocusTracking();
             this.tabStopsActions.disableFocusTracking.invoke();
-            this.deviceConnectionActions.statusConnected.invoke();
+            await this.deviceConnectionActions.statusConnected.invoke();
         } catch (e) {
-            this.commandFailed(e);
+            await this.commandFailed(e);
         }
     };
 
@@ -72,9 +72,9 @@ export class TabStopsActionCreator {
             });
             await this.deviceFocusController.resetFocusTracking();
             this.tabStopsActions.startOver.invoke();
-            this.deviceConnectionActions.statusConnected.invoke();
+            await this.deviceConnectionActions.statusConnected.invoke();
         } catch (e) {
-            this.commandFailed(e);
+            await this.commandFailed(e);
         }
     };
 
@@ -140,17 +140,17 @@ export class TabStopsActionCreator {
     private wrapActionWithErrorHandling = async (innerAction: Promise<void>) => {
         try {
             await innerAction;
-            this.commandSucceeded();
+            await this.commandSucceeded();
         } catch (error) {
-            this.commandFailed(error);
+            await this.commandFailed(error);
         }
     };
 
-    private commandSucceeded(): void {
-        this.deviceConnectionActions.statusConnected.invoke();
+    private async commandSucceeded(): Promise<void> {
+        await this.deviceConnectionActions.statusConnected.invoke();
     }
 
-    private commandFailed(error: Error): void {
+    private async commandFailed(error: Error): Promise<void> {
         this.logger.log('focus controller failure: ' + error);
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ERROR, {
             telemetry: {
@@ -158,6 +158,6 @@ export class TabStopsActionCreator {
                 triggeredBy: TriggeredByNotApplicable,
             },
         });
-        this.deviceConnectionActions.statusDisconnected.invoke();
+        await this.deviceConnectionActions.statusDisconnected.invoke();
     }
 }

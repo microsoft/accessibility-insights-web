@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AsyncAction } from 'common/flux/async-action';
-import { SyncAction } from 'common/flux/sync-action';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
@@ -12,7 +11,7 @@ describe('ScanActionCreator', () => {
     let scanActionsMock: IMock<ScanActions>;
     let scanStartedMock: IMock<AsyncAction<void>>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
-    let statusUnknown: IMock<SyncAction<void>>;
+    let statusUnknown: IMock<AsyncAction<void>>;
 
     let testSubject: ScanActionCreator;
 
@@ -23,7 +22,7 @@ describe('ScanActionCreator', () => {
         scanActionsMock.setup(actions => actions.scanStarted).returns(() => scanStartedMock.object);
 
         deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>();
-        statusUnknown = Mock.ofType<SyncAction<void>>();
+        statusUnknown = Mock.ofType<AsyncAction<void>>();
 
         deviceConnectionActionsMock
             .setup(actions => actions.statusUnknown)

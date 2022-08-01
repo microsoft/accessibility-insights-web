@@ -42,8 +42,8 @@ describe('ScanController', () => {
     let scanFailedMock: IMock<SyncAction<void>>;
 
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
-    let deviceConnectedMock: IMock<SyncAction<void>>;
-    let deviceDisconnectedMock: IMock<SyncAction<void>>;
+    let deviceConnectedMock: IMock<AsyncAction<void>>;
+    let deviceDisconnectedMock: IMock<AsyncAction<void>>;
 
     let unifiedScanResultActionsMock: IMock<UnifiedScanResultActions>;
     let unifiedResultsBuilderMock: IMock<UnifiedScanCompletedPayloadBuilder>;
@@ -59,8 +59,8 @@ describe('ScanController', () => {
         scanCompletedMock = Mock.ofType<SyncAction<void>>();
         scanFailedMock = Mock.ofType<SyncAction<void>>();
 
-        deviceConnectedMock = Mock.ofType<SyncAction<void>>();
-        deviceDisconnectedMock = Mock.ofType<SyncAction<void>>();
+        deviceConnectedMock = Mock.ofType<AsyncAction<void>>();
+        deviceDisconnectedMock = Mock.ofType<AsyncAction<void>>();
         deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>();
         deviceConnectionActionsMock
             .setup(actions => actions.statusConnected)
