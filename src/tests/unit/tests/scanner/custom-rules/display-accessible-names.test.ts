@@ -20,7 +20,7 @@ describe('evaluateAccessibleNames', () => {
             name: 'AccessibleName',
         };
 
-        document.body.innerHTML = `<div id="element"/>AccessibleName`;
+        document.body.innerHTML = `<div id="element"/>AccessibleName</div>`;
         const node = document.body.querySelector('#element');
         dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
 
