@@ -83,6 +83,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
             AdHocTestkeys.Headings,
             AdHocTestkeys.Color,
             AdHocTestkeys.NeedsReview,
+            AdHocTestkeys.AccessibleNames,
         ];
 
         keys.forEach(key => {

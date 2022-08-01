@@ -48,6 +48,7 @@ export class ActionCreator {
         [VisualizationType.Landmarks]: TelemetryEvents.LANDMARKS_TOGGLE,
         [VisualizationType.TabStops]: TelemetryEvents.TABSTOPS_TOGGLE,
         [VisualizationType.NeedsReview]: TelemetryEvents.NEEDS_REVIEW_TOGGLE,
+        [VisualizationType.AccessibleNames]: TelemetryEvents.ACCESSIBLENAMES_TOGGLE,
     };
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
