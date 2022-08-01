@@ -3,7 +3,7 @@
 import { ContextualMenuItemType, IconButton, IContextualMenuItem } from '@fluentui/react';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { NamedFC } from 'common/react/named-fc';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';

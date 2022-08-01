@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Message } from 'common/message';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';

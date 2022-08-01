@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IChoiceGroup, IChoiceGroupOption } from '@fluentui/react';
 import * as React from 'react';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../common/types/store-data/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ChoiceGroupPassFail } from './choice-group-pass-fail';
 

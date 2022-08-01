@@ -41,7 +41,7 @@ import {
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import {
     AssessmentLeftNav,

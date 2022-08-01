@@ -7,11 +7,12 @@ import {
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { Messages } from 'common/messages';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
+import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
 import { InstanceTableColumn } from '../types/instance-table-data';

@@ -3,8 +3,8 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
-import { Tab } from 'common/itab';
 import { InterpreterMessage, InterpreterResponse } from 'common/message';
+import { Tab } from 'common/types/store-data/itab';
 
 import { GlobalContext } from './global-context';
 import { PostMessageContentHandler } from './post-message-content-handler';

@@ -74,7 +74,7 @@ export class TargetPageController {
         await Promise.all(
             tabs.map(async tab => {
                 if (!tab.active) {
-                    await this.sendTabVisibilityChangeAction(tab.id, true);
+                    return this.sendTabVisibilityChangeAction(tab.id, true);
                 }
             }),
         );

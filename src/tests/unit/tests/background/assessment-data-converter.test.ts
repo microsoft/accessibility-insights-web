@@ -3,13 +3,16 @@
 
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { IMock, It, Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 

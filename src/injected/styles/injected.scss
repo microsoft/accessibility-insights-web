@@ -192,7 +192,10 @@
             font-size: 14px !important;
 
             ul {
-                margin: 8px 8px 0 8px !important;
+                margin-top: 8px !important;
+                margin-right: 8px !important;
+                margin-bottom: 0 !important;
+                margin-left: 8px !important;
                 padding-left: 8px !important;
             }
         }
@@ -291,6 +294,6 @@
         height: 0 !important;
         visibility: hidden !important;
         padding: 0 !important;
-        margin: 0 0 0 0 !important;
+        margin: 0 !important;
     }
 }

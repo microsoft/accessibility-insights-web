@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionListener } from 'common/flux/action';
 import { ScopeMutex } from 'common/flux/scope-mutex';
 import { SyncAction } from 'common/flux/sync-action';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(SyncAction, () => {
-    let listenerMock: IMock<(payload: TestPayload) => void>;
+    let listenerMock: IMock<ActionListener<TestPayload, void>>;
     const testPayload: TestPayload = { key: 'value' };
     let testObject: SyncAction<TestPayload>;
     let scopeMutexMock: IMock<ScopeMutex>;

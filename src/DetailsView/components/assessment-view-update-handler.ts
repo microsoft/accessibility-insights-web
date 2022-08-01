@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { Tab } from 'common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
+import { Tab } from 'common/types/store-data/itab';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { VisualizationType } from '../../common/types/visualization-type';
 

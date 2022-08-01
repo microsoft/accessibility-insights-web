@@ -7,8 +7,6 @@ import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -16,6 +14,8 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
@@ -111,52 +111,47 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.assessmentActions.continuePreviousAssessment.addListener(
             this.onContinuePreviousAssessment,
         );
-        this.assessmentActions.LoadAssessment.addListener(this.onLoadAssessment);
+        this.assessmentActions.loadAssessment.addListener(this.onLoadAssessment);
         this.assessmentActions.updateDetailsViewId.addListener(this.onUpdateDetailsViewId);
     }
 
-    private updateTargetTabWithId(tabId: number): void {
-        this.browserAdapter.getTab(
-            tabId,
-            tab => {
-                this.state.persistedTabInfo = {
-                    id: tab.id,
-                    url: tab.url,
-                    title: tab.title,
-                    detailsViewId: this.state.persistedTabInfo?.detailsViewId,
-                };
+    private async updateTargetTabWithId(tabId: number): Promise<void> {
+        const tab = await this.browserAdapter.getTabAsync(tabId);
+        this.state.persistedTabInfo = {
+            id: tab.id,
+            url: tab.url,
+            title: tab.title,
+            detailsViewId: this.state.persistedTabInfo?.detailsViewId,
+        };
 
-                this.emitChanged();
-            },
-            () => {
-                throw new Error(`tab with Id ${tabId} not found`);
-            },
-        );
+        this.emitChanged();
     }
 
-    private onContinuePreviousAssessment = (tabId: number): void => {
-        this.updateTargetTabWithId(tabId);
+    private onContinuePreviousAssessment = async (tabId: number): Promise<void> => {
+        await this.updateTargetTabWithId(tabId);
     };
 
-    private onLoadAssessment = (payload: LoadAssessmentPayload): void => {
+    private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
         this.state = this.initialAssessmentStoreDataGenerator.generateInitialState(
             payload.versionedAssessmentData.assessmentData,
         );
-        if (this.state.persistedTabInfo !== undefined) {
+        if (this.state.persistedTabInfo != null) {
             this.state.persistedTabInfo.detailsViewId = payload.detailsViewId;
         } else {
             this.state.persistedTabInfo = { detailsViewId: payload.detailsViewId };
         }
-        this.updateTargetTabWithId(payload.tabId);
+        await this.updateTargetTabWithId(payload.tabId);
     };
 
-    private onUpdateTargetTabId = (tabId: number): void => {
+    private onUpdateTargetTabId = async (tabId: number): Promise<void> => {
         if (this.state.persistedTabInfo == null || this.state.persistedTabInfo.id !== tabId) {
-            this.updateTargetTabWithId(tabId);
+            await this.updateTargetTabWithId(tabId);
         }
     };
 
-    private onUpdateSelectedTest = (payload: UpdateSelectedDetailsViewPayload): void => {
+    private onUpdateSelectedTest = async (
+        payload: UpdateSelectedDetailsViewPayload,
+    ): Promise<void> => {
         if (
             payload.pivotType === DetailsViewPivotType.assessment &&
             payload.detailsViewType != null
@@ -169,7 +164,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         }
     };
 
-    private onTrackingCompleted = (payload: ScanBasePayload): void => {
+    private onTrackingCompleted = async (payload: ScanBasePayload): Promise<void> => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -182,7 +177,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onPassUnmarkedInstances = (payload: AssessmentActionInstancePayload): void => {
+    private onPassUnmarkedInstances = async (
+        payload: AssessmentActionInstancePayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -206,7 +203,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onEditFailureInstance = (payload: EditFailureInstancePayload): void => {
+    private onEditFailureInstance = async (payload: EditFailureInstancePayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -226,7 +223,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onRemoveFailureInstance = (payload: RemoveFailureInstancePayload): void => {
+    private onRemoveFailureInstance = async (
+        payload: RemoveFailureInstancePayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -243,7 +242,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onAddFailureInstance = (payload: AddFailureInstancePayload): void => {
+    private onAddFailureInstance = async (payload: AddFailureInstancePayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -260,14 +259,16 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onAddResultDescription = (payload: AddResultDescriptionPayload): void => {
+    private onAddResultDescription = async (
+        payload: AddResultDescriptionPayload,
+    ): Promise<void> => {
         this.state.resultDescription = payload.description;
         this.emitChanged();
     };
 
-    private onChangeAssessmentVisualizationStateForAll = (
+    private onChangeAssessmentVisualizationStateForAll = async (
         payload: ChangeInstanceSelectionPayload,
-    ): void => {
+    ): Promise<void> => {
         const { test, requirement } = payload;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(
@@ -286,7 +287,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeStepStatus = (payload: ChangeRequirementStatusPayload): void => {
+    private onChangeStepStatus = async (payload: ChangeRequirementStatusPayload): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -301,7 +302,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onUndoStepStatusChange = (payload: ChangeRequirementStatusPayload): void => {
+    private onUndoStepStatusChange = async (
+        payload: ChangeRequirementStatusPayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -313,9 +316,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeAssessmentVisualizationState = (
+    private onChangeAssessmentVisualizationState = async (
         payload: ChangeInstanceSelectionPayload,
-    ): void => {
+    ): Promise<void> => {
         const { test, requirement } = payload;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
@@ -328,7 +331,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onUndoInstanceStatusChange = (payload: AssessmentActionInstancePayload): void => {
+    private onUndoInstanceStatusChange = async (
+        payload: AssessmentActionInstancePayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -343,7 +348,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onChangeInstanceStatus = (payload: ChangeInstanceStatusPayload): void => {
+    private onChangeInstanceStatus = async (
+        payload: ChangeInstanceStatusPayload,
+    ): Promise<void> => {
         const config = this.assessmentsProvider
             .forType(payload.test)
             .getVisualizationConfiguration();
@@ -360,23 +367,23 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onSelectTestSubview = (payload: SelectTestSubviewPayload): void => {
+    private onSelectTestSubview = async (payload: SelectTestSubviewPayload): Promise<void> => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
         this.emitChanged();
     };
 
-    private onExpandTestNav = (payload: ExpandTestNavPayload): void => {
+    private onExpandTestNav = async (payload: ExpandTestNavPayload): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = payload.selectedTest;
         this.emitChanged();
     };
 
-    private onCollapseTestNav = (): void => {
+    private onCollapseTestNav = async (): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = null;
         this.emitChanged();
     };
 
-    private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
+    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -399,7 +406,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onScanUpdate = (payload: ScanUpdatePayload): void => {
+    private onScanUpdate = async (payload: ScanUpdatePayload): Promise<void> => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -417,7 +424,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onResetData = (payload: ToggleActionPayload): void => {
+    private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: AssessmentData = config.getAssessmentData(
@@ -428,14 +435,16 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.emitChanged();
     };
 
-    private onResetAllAssessmentsData = (targetTabId: number): void => {
+    private onResetAllAssessmentsData = async (targetTabId: number): Promise<void> => {
         const detailsViewId = this.state.persistedTabInfo.detailsViewId;
         this.state = this.generateDefaultState(null);
         this.state.persistedTabInfo = { detailsViewId };
-        this.updateTargetTabWithId(targetTabId);
+        await this.updateTargetTabWithId(targetTabId);
     };
 
-    private onUpdateDetailsViewId = (payload: OnDetailsViewInitializedPayload): void => {
+    private onUpdateDetailsViewId = async (
+        payload: OnDetailsViewInitializedPayload,
+    ): Promise<void> => {
         if (!this.state.persistedTabInfo) {
             this.state.persistedTabInfo = { detailsViewId: payload.detailsViewId };
         } else {

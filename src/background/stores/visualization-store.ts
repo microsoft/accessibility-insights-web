@@ -8,17 +8,15 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { EnumHelper } from 'common/enum-helper';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
     TestsEnabledState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,
@@ -119,7 +117,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         return defaultValues;
     }
 
-    private onDisableVisualization = (test: VisualizationType): void => {
+    private onDisableVisualization = async (test: VisualizationType): Promise<void> => {
         if (this.toggleTestOff(test)) {
             this.emitChanged();
         }
@@ -155,7 +153,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         return isStateChanged;
     }
 
-    private onExistingTabUpdated = (payload: Tab): void => {
+    private onExistingTabUpdated = async (): Promise<void> => {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,
@@ -175,16 +173,18 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         });
     }
 
-    private onDisableAssessmentVisualizations = (): void => {
+    private onDisableAssessmentVisualizations = async (): Promise<void> => {
         this.disableAssessmentVisualizationsWithoutEmitting();
         this.emitChanged();
     };
 
-    private onEnableVisualization = (payload: ToggleActionPayload): void => {
+    private onEnableVisualization = async (payload: ToggleActionPayload): Promise<void> => {
         this.enableTest(payload, false);
     };
 
-    private onEnableVisualizationWithoutScan = (payload: ToggleActionPayload): void => {
+    private onEnableVisualizationWithoutScan = async (
+        payload: ToggleActionPayload,
+    ): Promise<void> => {
         this.enableTest(payload, true);
     };
 
@@ -211,7 +211,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         return config.testMode === TestMode.Assessments;
     }
 
-    private onUpdateSelectedPivot = (payload: UpdateSelectedPivot): void => {
+    private onUpdateSelectedPivot = async (payload: UpdateSelectedPivot): Promise<void> => {
         const pivot = payload.pivotKey;
 
         if (this.state.selectedDetailsViewPivot !== pivot) {
@@ -227,7 +227,9 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         });
     }
 
-    private onUpdateSelectedPivotChild = (payload: UpdateSelectedDetailsViewPayload): void => {
+    private onUpdateSelectedPivotChild = async (
+        payload: UpdateSelectedDetailsViewPayload,
+    ): Promise<void> => {
         const pivot = payload.pivotType;
         const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(payload);
         const pivotUpdated = this.updateSelectedPivot(pivot);
@@ -237,28 +239,28 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         }
     };
 
-    private onScanCompleted = (): void => {
+    private onScanCompleted = async (): Promise<void> => {
         this.state.scanning = null;
         this.emitChanged();
     };
 
-    private onScrollRequested = (): void => {
+    private onScrollRequested = async (): Promise<void> => {
         this.state.focusedTarget = null;
         this.emitChanged();
     };
 
-    private onUpdateFocusedInstance = (focusedInstanceTarget: string[]): void => {
+    private onUpdateFocusedInstance = async (focusedInstanceTarget: string[]): Promise<void> => {
         this.state.focusedTarget = focusedInstanceTarget;
         this.emitChanged();
     };
 
-    private onInjectionCompleted = (): void => {
+    private onInjectionCompleted = async (): Promise<void> => {
         this.state.injectingRequested = false;
         this.state.injectingStarted = false;
         this.emitChanged();
     };
 
-    private onInjectionStarted = (): void => {
+    private onInjectionStarted = async (): Promise<void> => {
         if (this.state.injectingStarted) {
             return;
         }

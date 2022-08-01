@@ -3,7 +3,7 @@
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
-import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../../common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
     VisualizationStoreData,

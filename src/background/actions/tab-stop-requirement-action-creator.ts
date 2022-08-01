@@ -71,68 +71,74 @@ export class TabStopRequirementActionCreator {
         );
     }
 
-    private onUpdateTabStopsRequirementStatus = (
+    private onUpdateTabStopsRequirementStatus = async (
         payload: UpdateTabStopRequirementStatusPayload,
-    ): void => {
-        this.tabStopRequirementActions.updateTabStopsRequirementStatus.invoke(payload);
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.updateTabStopsRequirementStatus.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
             payload,
         );
     };
 
-    private onResetTabStopsRequirementStatus = (
+    private onResetTabStopsRequirementStatus = async (
         payload: ResetTabStopRequirementStatusPayload,
-    ): void => {
-        this.tabStopRequirementActions.resetTabStopRequirementStatus.invoke(payload);
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.resetTabStopRequirementStatus.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.RESET_TABSTOPS_REQUIREMENT_STATUS,
             payload,
         );
     };
 
-    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.addTabStopInstance.invoke(payload);
+    private onAddTabStopInstance = async (payload: AddTabStopInstancePayload): Promise<void> => {
+        await this.tabStopRequirementActions.addTabStopInstance.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
         );
     };
 
-    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.updateTabStopInstance.invoke(payload);
+    private onUpdateTabStopInstance = async (
+        payload: UpdateTabStopInstancePayload,
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.updateTabStopInstance.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
         );
     };
 
-    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.removeTabStopInstance.invoke(payload);
+    private onRemoveTabStopInstance = async (
+        payload: RemoveTabStopInstancePayload,
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.removeTabStopInstance.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
         );
     };
 
-    private onRequirementExpansionToggled = (
+    private onRequirementExpansionToggled = async (
         payload: ToggleTabStopRequirementExpandPayload,
-    ): void => {
-        this.tabStopRequirementActions.toggleTabStopRequirementExpand.invoke(payload);
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.toggleTabStopRequirementExpand.invoke(payload);
     };
 
-    private onTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
-        this.tabStopRequirementActions.updateTabbingCompleted.invoke(payload);
+    private onTabbingCompleted = async (payload: UpdateTabbingCompletedPayload): Promise<void> => {
+        await this.tabStopRequirementActions.updateTabbingCompleted.invoke(payload);
     };
 
-    private onNeedToCollectTabbingResults = (
+    private onNeedToCollectTabbingResults = async (
         payload: UpdateNeedToCollectTabbingResultsPayload,
-    ): void => {
-        this.tabStopRequirementActions.updateNeedToCollectTabbingResults.invoke(payload);
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.updateNeedToCollectTabbingResults.invoke(payload);
     };
 
-    private onAutomatedTabbingResultsCompleted = (payload: BaseActionPayload): void => {
-        this.tabStopRequirementActions.automatedTabbingResultsCompleted.invoke(payload);
+    private onAutomatedTabbingResultsCompleted = async (
+        payload: BaseActionPayload,
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.automatedTabbingResultsCompleted.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.TABSTOPS_AUTOMATED_RESULTS,
             payload,

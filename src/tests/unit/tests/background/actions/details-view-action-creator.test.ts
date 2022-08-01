@@ -5,7 +5,6 @@ import { DetailsViewActionCreator } from 'background/actions/details-view-action
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
-import { Interpreter } from 'background/interpreter';
 import { SidePanel } from 'background/stores/side-panel';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
@@ -18,21 +17,19 @@ import {
     TelemetryEventSource,
     TriggeredBy,
 } from 'common/extension-telemetry-events';
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
-import { flushSettledPromises } from 'tests/common/flush-settled-promises';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('DetailsViewActionCreatorTest', () => {
     let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let interpreterMock: MockInterpreter;
 
     const defaultBasePayload: BaseActionPayload = {
         telemetry: {
@@ -44,6 +41,7 @@ describe('DetailsViewActionCreatorTest', () => {
     beforeEach(() => {
         detailsViewControllerMock = Mock.ofType<ExtensionDetailsViewController>();
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        interpreterMock = new MockInterpreter();
     });
 
     describe('handles open side panel message', () => {
@@ -54,10 +52,8 @@ describe('DetailsViewActionCreatorTest', () => {
             MockBehavior.Strict,
         );
 
-        let openSidePanelMock: IMock<SyncAction<SidePanel>>;
+        let openSidePanelMock: IMock<AsyncAction<SidePanel>>;
         let sidePanelActionsMock: IMock<SidePanelActions>;
-
-        let interpreterMock: IMock<Interpreter>;
 
         describe.each`
             messageFriendlyName                     | actualMessage                         | sidePanel            | telemetryEventName
@@ -66,12 +62,11 @@ describe('DetailsViewActionCreatorTest', () => {
             ${'Messages.Scoping.OpenPanel'}         | ${Messages.Scoping.OpenPanel}         | ${'Scoping'}         | ${SCOPING_OPEN}
         `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
             beforeEach(() => {
-                openSidePanelMock = createSyncActionMock<SidePanel>(sidePanel);
+                openSidePanelMock = createAsyncActionMock<SidePanel>(sidePanel);
                 sidePanelActionsMock = createSidePanelActionsMock(
                     'openSidePanel',
                     openSidePanelMock.object,
                 );
-                interpreterMock = createInterpreterMock(actualMessage, defaultBasePayload, tabId);
             });
 
             it('when showDetailsView succeed', async () => {
@@ -90,7 +85,7 @@ describe('DetailsViewActionCreatorTest', () => {
 
                 testObject.registerCallback();
 
-                await flushSettledPromises();
+                await interpreterMock.simulateMessage(actualMessage, defaultBasePayload, tabId);
 
                 openSidePanelMock.verifyAll();
                 detailsViewControllerMock.verifyAll();
@@ -121,7 +116,7 @@ describe('DetailsViewActionCreatorTest', () => {
 
                 testObject.registerCallback();
 
-                await flushSettledPromises();
+                await interpreterMock.simulateMessage(actualMessage, defaultBasePayload, tabId);
 
                 detailsViewControllerMock.verifyAll();
                 openSidePanelMock.verifyAll();
@@ -140,15 +135,13 @@ describe('DetailsViewActionCreatorTest', () => {
             ${'Messages.SettingsPanel.ClosePanel'}   | ${Messages.SettingsPanel.ClosePanel}   | ${'Settings'}        | ${SETTINGS_PANEL_CLOSE}
             ${'Messages.PreviewFeatures.ClosePanel'} | ${Messages.PreviewFeatures.ClosePanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_CLOSE}
             ${'Messages.Scoping.ClosePanel'}         | ${Messages.Scoping.ClosePanel}         | ${'Scoping'}         | ${SCOPING_CLOSE}
-        `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
-            const closeSidePanelMock = createSyncActionMock<SidePanel>(sidePanel);
+        `('$messageFriendlyName', async ({ actualMessage, sidePanel, telemetryEventName }) => {
+            const closeSidePanelMock = createAsyncActionMock<SidePanel>(sidePanel);
 
             const sidePanelActionsMock = createSidePanelActionsMock(
                 'closeSidePanel',
                 closeSidePanelMock.object,
             );
-
-            const interpreterMock = createInterpreterMock(actualMessage, defaultBasePayload);
 
             const testObject = new DetailsViewActionCreator(
                 interpreterMock.object,
@@ -160,6 +153,8 @@ describe('DetailsViewActionCreatorTest', () => {
 
             testObject.registerCallback();
 
+            await interpreterMock.simulateMessage(actualMessage, defaultBasePayload);
+
             closeSidePanelMock.verifyAll();
             telemetryEventHandlerMock.verify(
                 handler => handler.publishTelemetry(telemetryEventName, defaultBasePayload),
@@ -168,42 +163,39 @@ describe('DetailsViewActionCreatorTest', () => {
         });
     });
 
-    it('handles Visualization.DetailsView.SetDetailsViewRightContentPanel message', () => {
+    it('handles Visualization.DetailsView.SetDetailsViewRightContentPanel message', async () => {
         const payload: DetailsViewRightContentPanelType = 'Overview';
 
-        const setSelectedDetailsViewRightContentPanelMock = createSyncActionMock(payload);
+        const setSelectedDetailsViewRightContentPanelMock = createAsyncActionMock(payload);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'setSelectedDetailsViewRightContentPanel',
             setSelectedDetailsViewRightContentPanelMock.object,
         );
-        const interpreterMock = createInterpreterMock(
+
+        const testObject = new DetailsViewActionCreator(
+            interpreterMock.object,
+            detailsViewActionsMock.object,
+            null,
+            detailsViewControllerMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testObject.registerCallback();
+
+        await interpreterMock.simulateMessage(
             Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
             payload,
         );
 
-        const testObject = new DetailsViewActionCreator(
-            interpreterMock.object,
-            detailsViewActionsMock.object,
-            null,
-            detailsViewControllerMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testObject.registerCallback();
-
         setSelectedDetailsViewRightContentPanelMock.verifyAll();
     });
 
-    it('handles Visualization.DetailsView.GetState message', () => {
-        const getCurrentStateMock = createSyncActionMock<void>(null);
+    it('handles Visualization.DetailsView.GetState message', async () => {
+        const getCurrentStateMock = createAsyncActionMock<void>(null);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'getCurrentState',
             getCurrentStateMock.object,
         );
-        const interpreterMock = createInterpreterMock(
-            getStoreStateMessage(StoreNames.DetailsViewStore),
-            null,
-        );
 
         const testObject = new DetailsViewActionCreator(
             interpreterMock.object,
@@ -214,6 +206,11 @@ describe('DetailsViewActionCreatorTest', () => {
         );
 
         testObject.registerCallback();
+
+        await interpreterMock.simulateMessage(
+            getStoreStateMessage(StoreNames.DetailsViewStore),
+            null,
+        );
 
         getCurrentStateMock.verifyAll();
     });

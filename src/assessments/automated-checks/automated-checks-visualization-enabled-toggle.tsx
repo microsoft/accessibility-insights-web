@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     GeneratedAssessmentInstance,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { isEmpty } from 'lodash';
 

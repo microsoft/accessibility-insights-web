@@ -34,6 +34,11 @@ import { InspectActions } from './inspect-actions';
 const visualizationMessages = Messages.Visualizations;
 
 export class ActionCreator {
+    // This is to be used as the scope parameter to invoke().
+    // Some callbacks in this class are registered to messages with
+    // multiple callbacks (see the comment in src/common/flux/scope-mutex.ts)
+    private readonly executingScope = 'ActionCreator';
+
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
     private adHocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
@@ -171,28 +176,42 @@ export class ActionCreator {
         );
     }
 
-    private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
+    private onEnableVisualHelperWithoutScan = async (
+        payload: ToggleActionPayload,
+    ): Promise<void> => {
+        await this.visualizationActions.enableVisualizationWithoutScan.invoke(
+            payload,
+            this.executingScope,
+        );
     };
 
-    private onEnableVisualHelper = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.enableVisualization.invoke(payload);
+    private onEnableVisualHelper = async (payload: ToggleActionPayload): Promise<void> => {
+        await this.visualizationActions.enableVisualization.invoke(payload, this.executingScope);
     };
 
-    private onDisableVisualHelpersForTest = (payload: ToggleActionPayload): void => {
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+    private onDisableVisualHelpersForTest = async (payload: ToggleActionPayload): Promise<void> => {
+        await this.visualizationActions.disableVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
     };
 
-    private onDisableVisualHelper = (payload: ToggleActionPayload): void => {
+    private onDisableVisualHelper = async (payload: ToggleActionPayload): Promise<void> => {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+        await this.visualizationActions.disableVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
     };
 
-    private onStartOver = (payload: ToggleActionPayload): void => {
+    private onStartOver = async (payload: ToggleActionPayload): Promise<void> => {
         const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableVisualization.invoke(payload.test);
+        await this.visualizationActions.disableVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
     };
 
     private onCancelStartOver = (payload: BaseActionPayload): void => {
@@ -200,10 +219,13 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onStartOverAllAssessments = (payload: ToggleActionPayload): void => {
+    private onStartOverAllAssessments = async (payload: ToggleActionPayload): Promise<void> => {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.disableAssessmentVisualizations.invoke(null);
+        await this.visualizationActions.disableAssessmentVisualizations.invoke(
+            null,
+            this.executingScope,
+        );
     };
 
     private onCancelStartOverAllAssessments = (payload: BaseActionPayload): void => {
@@ -211,8 +233,11 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onDetailsViewClosed = (): void => {
-        this.visualizationActions.disableAssessmentVisualizations.invoke(null);
+    private onDetailsViewClosed = async (): Promise<void> => {
+        await this.visualizationActions.disableAssessmentVisualizations.invoke(
+            null,
+            this.executingScope,
+        );
     };
 
     private onAssessmentScanCompleted = async (
@@ -221,7 +246,7 @@ export class ActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.visualizationActions.scanCompleted.invoke(null);
+        await this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
             payload.selectorMap,
             payload.key,
@@ -231,8 +256,11 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
-        this.visualizationScanResultActions.addTabbedElement.invoke(payload);
+    private onTabbedElementAdded = async (payload: AddTabbedElementPayload): Promise<void> => {
+        await this.visualizationScanResultActions.addTabbedElement.invoke(
+            payload,
+            this.executingScope,
+        );
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
@@ -242,12 +270,15 @@ export class ActionCreator {
         );
     };
 
-    private onRecordingTerminated = (payload: BaseActionPayload): void => {
-        this.visualizationScanResultActions.disableTabStop.invoke(payload);
+    private onRecordingTerminated = async (payload: BaseActionPayload): Promise<void> => {
+        await this.visualizationScanResultActions.disableTabStop.invoke(
+            payload,
+            this.executingScope,
+        );
     };
 
-    private onUpdateFocusedInstance = (payload: string[]): void => {
-        this.visualizationActions.updateFocusedInstance.invoke(payload);
+    private onUpdateFocusedInstance = async (payload: string[]): Promise<void> => {
+        await this.visualizationActions.updateFocusedInstance.invoke(payload, this.executingScope);
     };
 
     private onAdHocScanCompleted = async (
@@ -256,8 +287,11 @@ export class ActionCreator {
     ): Promise<void> => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        this.visualizationScanResultActions.scanCompleted.invoke(payload);
-        this.visualizationActions.scanCompleted.invoke(null);
+        await this.visualizationScanResultActions.scanCompleted.invoke(
+            payload,
+            this.executingScope,
+        );
+        await this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
             payload.selectorMap,
             payload.key,
@@ -267,10 +301,13 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onScrollRequested = (): void => {
-        this.visualizationActions.scrollRequested.invoke(null);
-        this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
-        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(null);
+    private onScrollRequested = async (): Promise<void> => {
+        await this.visualizationActions.scrollRequested.invoke(null, this.executingScope);
+        await this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
+        await this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
+            null,
+            this.executingScope,
+        );
     };
 
     private onDetailsViewOpen = async (
@@ -278,7 +315,7 @@ export class ActionCreator {
         tabId: number,
     ): Promise<void> => {
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
-            this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
+            await this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
         }
 
         await this.onPivotChildSelected(payload, tabId);
@@ -293,10 +330,13 @@ export class ActionCreator {
         );
     }
 
-    private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
+    private async enableToggleOnDetailsViewOpen(
+        test: VisualizationType,
+        tabId: number,
+    ): Promise<void> {
         const payload: VisualizationTogglePayload =
             this.createVisualizationTogglePayloadWithNullTelemetry(test);
-        this.onVisualizationToggle(payload);
+        await this.onVisualizationToggle(payload);
     }
 
     private createVisualizationTogglePayloadWithNullTelemetry(
@@ -313,49 +353,66 @@ export class ActionCreator {
         payload: OnDetailsViewOpenPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures');
-        this.visualizationActions.updateSelectedPivotChild.invoke(payload);
+        await this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures', this.executingScope);
+        await this.visualizationActions.updateSelectedPivotChild.invoke(
+            payload,
+            this.executingScope,
+        );
         await this.detailsViewController
             .showDetailsView(tabId)
             .catch(e => this.logger.error(e.message, e));
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
     };
 
-    private onDetailsViewPivotSelected = (payload: OnDetailsViewPivotSelected): void => {
-        this.visualizationActions.updateSelectedPivot.invoke(payload);
+    private onDetailsViewPivotSelected = async (
+        payload: OnDetailsViewPivotSelected,
+    ): Promise<void> => {
+        await this.visualizationActions.updateSelectedPivot.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED,
             payload,
         );
     };
 
-    private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
+    private onVisualizationToggle = async (payload: VisualizationTogglePayload): Promise<void> => {
         const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
 
         if (payload.enabled) {
-            this.visualizationActions.enableVisualization.invoke(payload);
+            await this.visualizationActions.enableVisualization.invoke(
+                payload,
+                this.executingScope,
+            );
         } else {
-            this.visualizationActions.disableVisualization.invoke(payload.test);
+            await this.visualizationActions.disableVisualization.invoke(
+                payload.test,
+                this.executingScope,
+            );
         }
     };
 
-    private onRescanVisualization = (payload: RescanVisualizationPayload) => {
-        this.visualizationActions.disableVisualization.invoke(payload.test);
-        this.visualizationActions.resetDataForVisualization.invoke(payload.test);
-        this.visualizationActions.enableVisualization.invoke(payload);
+    private onRescanVisualization = async (payload: RescanVisualizationPayload) => {
+        await this.visualizationActions.disableVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
+        await this.visualizationActions.resetDataForVisualization.invoke(
+            payload.test,
+            this.executingScope,
+        );
+        await this.visualizationActions.enableVisualization.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
-    private getVisualizationToggleCurrentState = (): void => {
-        this.visualizationActions.getCurrentState.invoke(null);
+    private getVisualizationToggleCurrentState = async (): Promise<void> => {
+        await this.visualizationActions.getCurrentState.invoke(null, this.executingScope);
     };
 
-    private getScanResultsCurrentState = (): void => {
-        this.visualizationScanResultActions.getCurrentState.invoke(null);
+    private getScanResultsCurrentState = async (): Promise<void> => {
+        await this.visualizationScanResultActions.getCurrentState.invoke(null, this.executingScope);
     };
 
-    private onSetHoveredOverSelector = (payload: string[]): void => {
-        this.inspectActions.setHoveredOverSelector.invoke(payload);
+    private onSetHoveredOverSelector = async (payload: string[]): Promise<void> => {
+        await this.inspectActions.setHoveredOverSelector.invoke(payload, this.executingScope);
     };
 }

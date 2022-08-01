@@ -6,7 +6,10 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
-import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+} from '../../../common/types/store-data/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';
 import {

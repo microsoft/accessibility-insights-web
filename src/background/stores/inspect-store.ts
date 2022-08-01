@@ -52,18 +52,18 @@ export class InspectStore extends PersistentStore<InspectStoreData> {
         this.tabActions.existingTabUpdated.addListener(this.onTabChange);
     }
 
-    private onChangeInspectMode = (payload: InspectPayload): void => {
+    private onChangeInspectMode = async (payload: InspectPayload): Promise<void> => {
         this.state.inspectMode = payload.inspectMode;
         this.state.hoveredOverSelector = null;
         this.emitChanged();
     };
 
-    private onSetHoveredOverSelector = (payload: string[]): void => {
+    private onSetHoveredOverSelector = async (payload: string[]): Promise<void> => {
         this.state.hoveredOverSelector = payload;
         this.emitChanged();
     };
 
-    private onTabChange = (): void => {
+    private onTabChange = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentViewUpdateHandler,

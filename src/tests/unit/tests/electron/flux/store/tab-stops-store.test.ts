@@ -22,7 +22,7 @@ describe('TabStopsStore', () => {
         expect(store.getState()).toMatchSnapshot();
     });
 
-    it('onEnableFocusTracking', () => {
+    it('onEnableFocusTracking', async () => {
         const initialState: TabStopsStoreData = {
             focusTracking: false,
         };
@@ -30,13 +30,11 @@ describe('TabStopsStore', () => {
             focusTracking: true,
         };
 
-        CreateStoreTesterForTabStopsActions('enableFocusTracking').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabStopsActions('enableFocusTracking');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    it('onDisableFocusTracking', () => {
+    it('onDisableFocusTracking', async () => {
         const initialState: TabStopsStoreData = {
             focusTracking: true,
         };
@@ -44,13 +42,11 @@ describe('TabStopsStore', () => {
             focusTracking: false,
         };
 
-        CreateStoreTesterForTabStopsActions('disableFocusTracking').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabStopsActions('disableFocusTracking');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    it('onStartOver', () => {
+    it('onStartOver', async () => {
         const initialState: TabStopsStoreData = {
             focusTracking: true,
         };
@@ -58,13 +54,11 @@ describe('TabStopsStore', () => {
             focusTracking: false,
         };
 
-        CreateStoreTesterForTabStopsActions('startOver').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabStopsActions('startOver');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function CreateStoreTesterForTabStopsActions(
+    function createStoreTesterForTabStopsActions(
         actionName: keyof TabStopsActions,
     ): StoreTester<TabStopsStoreData, TabStopsActions> {
         const factory = (actions: TabStopsActions) => new TabStopsStore(actions);

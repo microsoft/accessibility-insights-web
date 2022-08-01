@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
@@ -17,7 +18,6 @@ import {
     AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
 import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';

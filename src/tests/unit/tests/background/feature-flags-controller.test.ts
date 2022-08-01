@@ -64,7 +64,7 @@ describe('FeatureFlagsControllerTest', () => {
         featureFlagStoreMock.verifyAll();
     });
 
-    test.each([true, false])('toggle feature flag to enabled: %s', (enabled: boolean) => {
+    test.each([true, false])('toggle feature flag to enabled: %s', async (enabled: boolean) => {
         const feature = FeatureFlags.logTelemetryToConsole;
         const storeDataStub: FeatureFlagStoreData = {
             [FeatureFlags[feature]]: enabled,
@@ -91,9 +91,12 @@ describe('FeatureFlagsControllerTest', () => {
             featureFlagStoreMock.object,
             interpreterMock.object,
         );
-        const storeState = enabled
-            ? testObject.enableFeature(feature)
-            : testObject.disableFeature(feature);
+        let storeState: FeatureFlagStoreData;
+        if (enabled) {
+            storeState = await testObject.enableFeature(feature);
+        } else {
+            storeState = await testObject.disableFeature(feature);
+        }
         expect(storeState).toEqual(storeDataStub);
         interpreterMock.verifyAll();
         featureFlagStoreMock.verifyAll();

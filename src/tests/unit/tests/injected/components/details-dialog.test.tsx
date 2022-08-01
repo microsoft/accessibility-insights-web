@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Dialog } from '@fluentui/react';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
@@ -11,7 +12,6 @@ import {
     DetailsDialogDeps,
     DetailsDialogProps,
 } from '../../../../../injected/components/details-dialog';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 

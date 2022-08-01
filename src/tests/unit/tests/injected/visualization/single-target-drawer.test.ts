@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';

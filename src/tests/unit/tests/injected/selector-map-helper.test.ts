@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
@@ -8,7 +9,6 @@ import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-m
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, Mock } from 'typemoq';
-import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,

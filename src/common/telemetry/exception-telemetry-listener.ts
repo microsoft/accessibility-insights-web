@@ -27,13 +27,7 @@ export class ExceptionTelemetryListener {
         let loggingHookIsActive = false;
 
         // Catch top level synchronous errors
-        extGlobalScope.onerror = function (
-            message: string,
-            source: string,
-            lineno: number,
-            colno: number,
-            error: Error | undefined = undefined,
-        ) {
+        extGlobalScope.addEventListener('error', function (event: ErrorEvent) {
             if (windowErrorHookIsActive) {
                 return;
             }
@@ -41,28 +35,34 @@ export class ExceptionTelemetryListener {
             try {
                 sendExceptionTelemetry(
                     TelemetryEvents.ErrorType.WindowError,
-                    message,
-                    error?.stack,
+                    event.message,
+                    event.error?.stack,
                 );
                 return false;
             } finally {
                 windowErrorHookIsActive = false;
             }
-        };
+        });
 
         // Catch errors thrown in promises
-        extGlobalScope.onunhandledrejection = function (event: PromiseRejectionEvent) {
-            if (windowRejectionHookIsActive) {
-                return;
-            }
-            windowRejectionHookIsActive = true;
-            try {
-                sendExceptionTelemetry(TelemetryEvents.ErrorType.UnhandledRejection, event.reason);
-                return false;
-            } finally {
-                windowRejectionHookIsActive = false;
-            }
-        };
+        extGlobalScope.addEventListener(
+            'unhandledrejection',
+            function (event: PromiseRejectionEvent) {
+                if (windowRejectionHookIsActive) {
+                    return;
+                }
+                windowRejectionHookIsActive = true;
+                try {
+                    sendExceptionTelemetry(
+                        TelemetryEvents.ErrorType.UnhandledRejection,
+                        event.reason,
+                    );
+                    return false;
+                } finally {
+                    windowRejectionHookIsActive = false;
+                }
+            },
+        );
 
         // Catch errors written to console.error
         const consoleError = extConsole.error;

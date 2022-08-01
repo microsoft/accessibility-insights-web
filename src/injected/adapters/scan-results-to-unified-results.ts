@@ -120,6 +120,7 @@ export class ConvertScanResultsToUnifiedResults {
                 identifier: cssSelector,
                 conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
                 'css-selector': cssSelector,
+                target: nodeResult.target,
             },
             descriptors: {
                 snippet: nodeResult.snippet || nodeResult.html,

@@ -38,7 +38,7 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
         this.launchPanelStateActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    private onSetLaunchPanelType = (panelType: LaunchPanelType): void => {
+    private onSetLaunchPanelType = async (panelType: LaunchPanelType): Promise<void> => {
         this.state.launchPanelType = panelType;
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType })

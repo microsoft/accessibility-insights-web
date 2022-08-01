@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
 
 import { InstanceReportModel, RequirementReportModel } from '../assessment-report-model';

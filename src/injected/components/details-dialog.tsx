@@ -16,13 +16,14 @@ import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-ac
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { isEmpty, size } from 'lodash';
 import * as React from 'react';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
 import { CheckType } from '../../common/types/check-type';
 import { DetailsDialogHandler } from '../details-dialog-handler';
-import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
 import {
@@ -41,7 +42,7 @@ export interface DetailsDialogProps {
     userConfigStore: BaseStore<UserConfigurationStoreData>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
-    target: string[];
+    target: Target;
     dialogHandler: DetailsDialogHandler;
     devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;

@@ -6,7 +6,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';

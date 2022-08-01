@@ -11,19 +11,21 @@ import { StoreTester } from 'tests/unit/common/store-tester';
 
 describe('DebugToolsNavStore', () => {
     describe('onSetSelectedTool', () => {
-        it('handles tool already selected', () => {
+        it('handles tool already selected', async () => {
             const initialState = new DebugToolsNavStoreDataBuilder().build();
 
             const alreadySelectedKey = initialState.selectedTool;
 
             const finalState = new DebugToolsNavStoreDataBuilder().build();
 
-            createStoreTesterForDebugToolsNavActions('setSelectedTool')
-                .withActionParam(alreadySelectedKey)
-                .testListenerToNeverBeCalled(initialState, finalState);
+            const storeTester =
+                createStoreTesterForDebugToolsNavActions('setSelectedTool').withActionParam(
+                    alreadySelectedKey,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, finalState);
         });
 
-        it('handles tool selected change', () => {
+        it('handles tool selected change', async () => {
             const initialState = new DebugToolsNavStoreDataBuilder()
                 .with('selectedTool', 'telemetryViewer')
                 .build();
@@ -34,9 +36,11 @@ describe('DebugToolsNavStore', () => {
                 .with('selectedTool', selectedKey)
                 .build();
 
-            createStoreTesterForDebugToolsNavActions('setSelectedTool')
-                .withActionParam(selectedKey)
-                .testListenerToBeCalledOnce(initialState, finalState);
+            const storeTester =
+                createStoreTesterForDebugToolsNavActions('setSelectedTool').withActionParam(
+                    selectedKey,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
         });
     });
 

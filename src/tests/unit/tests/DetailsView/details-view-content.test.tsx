@@ -8,9 +8,9 @@ import {
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import {
     TargetAppData,

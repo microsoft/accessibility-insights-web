@@ -3,9 +3,9 @@
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
+import { Tab } from 'common/types/store-data/itab';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UrlParser } from 'common/url-parser';
 import { TabActions } from '../actions/tab-actions';
@@ -65,7 +65,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.visualizationActions.updateSelectedPivot.addListener(this.resetTabChange);
     }
 
-    private onVisibilityChange = (hidden: boolean): void => {
+    private onVisibilityChange = async (hidden: boolean): Promise<void> => {
         if (this.state.isPageHidden === hidden) {
             return;
         }
@@ -73,7 +73,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.emitChanged();
     };
 
-    private onNewTabCreated = (payload: Tab): void => {
+    private onNewTabCreated = async (payload: Tab): Promise<void> => {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
@@ -83,12 +83,12 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.emitChanged();
     };
 
-    private onTabRemove = (): void => {
+    private onTabRemove = async (): Promise<void> => {
         this.state.isClosed = true;
         this.emitChanged();
     };
 
-    private onExistingTabUpdated = (payload: Tab): void => {
+    private onExistingTabUpdated = async (payload: Tab): Promise<void> => {
         if (!this.urlParser.areURLsSameOrigin(this.state.url, payload.url)) {
             this.state.isOriginChanged = true;
         }
@@ -98,7 +98,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.emitChanged();
     };
 
-    private resetTabChange = (): void => {
+    private resetTabChange = async (): Promise<void> => {
         if (this.state.isChanged) {
             this.state.isChanged = false;
             this.emitChanged();

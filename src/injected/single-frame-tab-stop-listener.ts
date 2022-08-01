@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { DateProvider } from 'common/date-provider';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
 
 export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopEvent> {

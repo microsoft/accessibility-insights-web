@@ -41,7 +41,24 @@ module.exports = {
                 },
             },
         ],
+
+        'no-restricted-imports': [
+            'error',
+            {
+                paths: [
+                    {
+                        name: 'typemoq',
+                        importNames: ['GlobalMock', 'GlobalScope'],
+                        message:
+                            'typemoq Global mocks are incompatible with recent versions of @swc/core, see swc-project/swc#5151',
+                    },
+                ],
+            },
+        ],
+
         'no-throw-literal': 'error',
+        'react/no-access-state-in-setstate': 'error',
+        'react/no-unused-state': 'error',
 
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
         '@typescript-eslint/no-explicit-any': 'off',
@@ -71,9 +88,6 @@ module.exports = {
         'react/prop-types': 'off',
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
-        'react/jsx-key': 'off',
-        'react/no-access-state-in-setstate': 'error',
-        'react/no-unused-state': 'error',
         'react/no-direct-mutation-state': 'off',
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',

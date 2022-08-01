@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as AxeUtils from 'scanner/axe-utils';
+import { withAxeSetup } from 'scanner/axe-utils';
 import { textAlternativeConfiguration } from 'scanner/custom-rules/text-alternative';
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('text alternative', () => {
     describe('verify text alternative configs', () => {
@@ -40,11 +40,11 @@ describe('text alternative', () => {
             `;
 
             const element1 = fixture.querySelector('#el1');
-            const result = AxeUtils.withAxeSetup(() =>
+            const result = withAxeSetup(() =>
                 textAlternativeConfiguration.rule.matches(element1, null),
             );
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
 
         it('should not match img elements with alt = "" ', () => {
@@ -55,11 +55,11 @@ describe('text alternative', () => {
             `;
 
             const element2 = fixture.querySelector('#el2');
-            const result = AxeUtils.withAxeSetup(() =>
+            const result = withAxeSetup(() =>
                 textAlternativeConfiguration.rule.matches(element2, null),
             );
 
-            expect(result).toBeFalsy();
+            expect(result).toBe(false);
         });
 
         it('should match img elements with space as alt', () => {
@@ -68,24 +68,17 @@ describe('text alternative', () => {
             `;
 
             const element = fixture.querySelector('#el1');
-            const result = AxeUtils.withAxeSetup(() =>
+            const result = withAxeSetup(() =>
                 textAlternativeConfiguration.rule.matches(element, null),
             );
 
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
     });
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
         let fixture: HTMLElement;
-
-        const getAccessibleDescriptionMock = GlobalMock.ofInstance(
-            AxeUtils.getAccessibleDescription,
-            'getAccessibleDescription',
-            AxeUtils,
-            MockBehavior.Strict,
-        );
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
@@ -101,18 +94,14 @@ describe('text alternative', () => {
                 <div id="el1" alt="hello"></div>
             `;
             const element1 = fixture.querySelector('#el1');
-            getAccessibleDescriptionMock.setup(getter => getter(It.isAny())).returns(() => '');
 
             dataSetterMock.setup(d => d(It.isAny()));
-            let result;
-            GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = AxeUtils.withAxeSetup(() =>
-                    textAlternativeConfiguration.checks[0].evaluate.call(
-                        { data: dataSetterMock.object },
-                        element1,
-                    ),
-                );
-            });
+            const result = withAxeSetup(() =>
+                textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                ),
+            );
             expect(result).toBe(true);
         });
 
@@ -125,8 +114,6 @@ describe('text alternative', () => {
 
             const element1 = fixture.querySelector('#el1');
 
-            getAccessibleDescriptionMock.setup(geter => geter(It.isAny())).returns(() => 'hello');
-
             const expectedData = {
                 imageType: '<img>',
                 accessibleName: 'accessibleName',
@@ -134,15 +121,12 @@ describe('text alternative', () => {
                 role: null,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
-            let result;
-            GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = AxeUtils.withAxeSetup(() =>
-                    textAlternativeConfiguration.checks[0].evaluate.call(
-                        { data: dataSetterMock.object },
-                        element1,
-                    ),
-                );
-            });
+            const result = withAxeSetup(() =>
+                textAlternativeConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    element1,
+                ),
+            );
             expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });

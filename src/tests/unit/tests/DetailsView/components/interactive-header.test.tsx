@@ -3,7 +3,7 @@
 import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     InteractiveHeader,
     InteractiveHeaderDeps,

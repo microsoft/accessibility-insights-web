@@ -1,44 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
-
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { HTMLElementUtils } from 'common/html-element-utils';
+import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import {
+    DecoratedAxeNodeResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
+import { WindowUtils } from 'common/window-utils';
+import { rootContainerId } from 'injected/constants';
+import { DetailsDialogHandler } from 'injected/details-dialog-handler';
+import { DialogRenderer } from 'injected/dialog-renderer';
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { LayeredDetailsDialogComponent } from 'injected/layered-details-dialog-component';
+import { MainWindowContext } from 'injected/main-window-context';
+import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as ReactDOM from 'react-dom';
-import {
-    GlobalMock,
-    GlobalScope,
-    IGlobalMock,
-    IMock,
-    It,
-    Mock,
-    MockBehavior,
-    Times,
-} from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
-import { IssueFilingActionMessageCreator } from '../../../../common/message-creators/issue-filing-action-message-creator';
-import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
-import { WindowUtils } from '../../../../common/window-utils';
-import { rootContainerId } from '../../../../injected/constants';
-import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
-import { DialogRenderer } from '../../../../injected/dialog-renderer';
-import { FrameMessenger } from '../../../../injected/frameCommunicators/frame-messenger';
-import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
-import { MainWindowContext } from '../../../../injected/main-window-context';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
-import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
-import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
-import { DictionaryStringTo } from '../../../../types/common-types';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
-describe('DialogRendererTests', () => {
+describe(DialogRenderer, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
@@ -49,6 +42,7 @@ describe('DialogRendererTests', () => {
     let getRTLMock: IMock<typeof getRTL>;
     let renderMock: IMock<typeof ReactDOM.render>;
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
+    let windowStub: Window;
 
     let addMessageListenerCallback = async (
         commandMessage: CommandMessage,
@@ -56,7 +50,6 @@ describe('DialogRendererTests', () => {
     ): Promise<CommandMessageResponse | null> => {
         return null;
     };
-    let getMainWindowContextMock: IGlobalMock<() => MainWindowContext>;
     let rootContainerMock: IMock<HTMLElement>;
 
     const toolData = {} as ToolData;
@@ -68,11 +61,6 @@ describe('DialogRendererTests', () => {
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
 
-        getMainWindowContextMock = GlobalMock.ofInstance(
-            MainWindowContext.getMainWindowContext,
-            'getMainWindowContext',
-            MainWindowContext,
-        );
         frameMessenger = Mock.ofType(FrameMessenger);
         domMock = Mock.ofInstance({
             createElement: selector => null,
@@ -109,9 +97,12 @@ describe('DialogRendererTests', () => {
             toolData,
             issueFilingServiceProviderMock.object,
         );
+
+        windowStub = { mainWindowContext } as Window;
+        windowUtilsMock.setup(m => m.getWindow()).returns(() => windowStub);
     });
 
-    test('test render if dialog already exists', () => {
+    test('test render if dialog already exists', async () => {
         const ruleId = 'ruleId';
         const nodeResult: DecoratedAxeNodeResult = {
             any: [],
@@ -137,20 +128,16 @@ describe('DialogRendererTests', () => {
         setupDomMockForMainWindow();
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
-        setUpGetMainWindowContextCalledOnce();
         const testObject = createDialogRenderer();
 
-        GlobalScope.using(getMainWindowContextMock).with(async () => {
-            expect(await testObject.render(testData)).toBeNull();
-        });
+        expect(await testObject.render(testData)).toBeNull();
 
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
-        getMainWindowContextMock.verifyAll();
     });
 
-    test('test render in main window', () => {
+    test('test render in main window', async () => {
         const ruleId = 'ruleId';
         const nodeResult: DecoratedAxeNodeResult = {
             any: [],
@@ -176,18 +163,13 @@ describe('DialogRendererTests', () => {
         setupDomMockForMainWindow();
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
-        setUpGetMainWindowContextCalledOnce();
 
         const testObject = createDialogRenderer();
-
-        GlobalScope.using(getMainWindowContextMock).with(async () => {
-            await testObject.render(testData);
-        });
+        await testObject.render(testData);
 
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
-        getMainWindowContextMock.verifyAll();
     });
 
     test('test render in iframe', async () => {
@@ -205,18 +187,14 @@ describe('DialogRendererTests', () => {
         setupRenderMockForNeverVisited();
 
         const testObject = createDialogRenderer();
-
-        GlobalScope.using(getMainWindowContextMock).with(async () => {
-            await testObject.render(testData);
-        });
+        await testObject.render(testData);
 
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
-        getMainWindowContextMock.verifyAll();
     });
 
-    test('test main window subsribe and processRequest', () => {
+    test('test main window subsribe and processRequest', async () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
@@ -232,18 +210,14 @@ describe('DialogRendererTests', () => {
         setupDomMockForMainWindow();
         setupWindowUtilsMockAndFrameCommunicatorInMainWindow();
         setupRenderMockForVerifiable();
-        setUpGetMainWindowContextCalledOnce();
 
         createDialogRenderer();
 
-        GlobalScope.using(getMainWindowContextMock).with(async () => {
-            await addMessageListenerCallback(commandMessage, undefined);
-        });
+        await addMessageListenerCallback(commandMessage, undefined);
 
         setupDomMockVerify();
         setupWindowUtilsMockAndFrameCommunicatorVerify();
         setupRenderMockVerify();
-        getMainWindowContextMock.verifyAll();
     });
 
     test('test for getInstanceSelector', () => {
@@ -259,13 +233,6 @@ describe('DialogRendererTests', () => {
         expect(result).toBe(testData.target.join(';'));
         setupWindowUtilsMockAndFrameCommunicatorVerify();
     });
-
-    function setUpGetMainWindowContextCalledOnce(): void {
-        getMainWindowContextMock
-            .setup(getter => getter())
-            .returns(() => mainWindowContext)
-            .verifiable(Times.once());
-    }
 
     function setupRenderMockForVerifiable(): void {
         renderMock
@@ -296,17 +263,10 @@ describe('DialogRendererTests', () => {
     }
 
     function setupWindowUtilsMockAndFrameCommunicatorInMainWindow(): void {
-        const win = 'this is main window';
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
             .returns(() => {
-                return win as any;
-            })
-            .verifiable(Times.atLeastOnce());
-        windowUtilsMock
-            .setup(wum => wum.getWindow())
-            .returns(() => {
-                return win as any;
+                return windowStub;
             })
             .verifiable(Times.atLeastOnce());
         windowUtilsMock.setup(wum => wum.getPlatform()).returns(() => 'Win32');
@@ -317,7 +277,7 @@ describe('DialogRendererTests', () => {
             })
             .verifiable(Times.once());
         frameMessenger
-            .setup(fm => fm.sendMessageToWindow(It.isAny(), win as any))
+            .setup(fm => fm.sendMessageToWindow(windowStub, It.isAny()))
             .verifiable(Times.never());
     }
 
@@ -329,21 +289,17 @@ describe('DialogRendererTests', () => {
     function setupWindowUtilsMockAndFrameCommunicatorInIframe(
         commandMessage: CommandMessage,
     ): void {
+        const topWindowStub = {
+            id: 'this is a different window than windowStub',
+        } as unknown as Window;
+
         windowUtilsMock
             .setup(wum => wum.getTopWindow())
-            .returns(() => {
-                return 'this is main window' as any;
-            })
-            .verifiable(Times.atLeastOnce());
-        windowUtilsMock
-            .setup(wum => wum.getWindow())
-            .returns(() => {
-                return 'this is iframe' as any;
-            })
+            .returns(() => topWindowStub)
             .verifiable(Times.atLeastOnce());
 
         frameMessenger
-            .setup(fm => fm.addMessageListener('this is main window' as any, It.isAny()))
+            .setup(fm => fm.addMessageListener(It.isValue(commandMessage.command), It.isAny()))
             .verifiable(Times.never());
 
         frameMessenger

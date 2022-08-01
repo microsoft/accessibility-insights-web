@@ -2,25 +2,25 @@
 // Licensed under the MIT License.
 import { PathSnippetActionCreator } from 'background/actions/path-snippet-action-creator';
 import { PathSnippetActions } from 'background/actions/path-snippet-actions';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock } from 'typemoq';
 
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PathSnippetActionCreatorTest', () => {
-    it('handles AddPathForValidation message', () => {
+    let interpreterMock: MockInterpreter;
+
+    beforeEach(() => {
+        interpreterMock = new MockInterpreter();
+    });
+
+    it('handles AddPathForValidation message', async () => {
         const payload = 'test path';
 
-        const onAddPathMock = createSyncActionMock(payload);
+        const onAddPathMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('onAddPath', onAddPathMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.PathSnippet.AddPathForValidation,
-            payload,
-        );
 
         const newTestObject = new PathSnippetActionCreator(
             interpreterMock.object,
@@ -28,20 +28,37 @@ describe('PathSnippetActionCreatorTest', () => {
         );
 
         newTestObject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.PathSnippet.AddPathForValidation, payload);
 
         onAddPathMock.verifyAll();
     });
 
-    it('handles AddCorrespondingSnippet message', () => {
+    it('handles AddCorrespondingSnippet message', async () => {
         const payload = 'test snippet';
 
-        const onAddSnippetMock = createSyncActionMock(payload);
+        const onAddSnippetMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('onAddSnippet', onAddSnippetMock.object);
-        const interpreterMock = createInterpreterMock(
+
+        const newTestObject = new PathSnippetActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+        );
+
+        newTestObject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
             Messages.PathSnippet.AddCorrespondingSnippet,
             payload,
         );
 
+        onAddSnippetMock.verifyAll();
+    });
+
+    it('handles GetPathSnippetCurrentState message', async () => {
+        const getCurrentStateMock = createAsyncActionMock(undefined);
+        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
+
         const newTestObject = new PathSnippetActionCreator(
             interpreterMock.object,
             actionsMock.object,
@@ -49,34 +66,17 @@ describe('PathSnippetActionCreatorTest', () => {
 
         newTestObject.registerCallbacks();
 
-        onAddSnippetMock.verifyAll();
-    });
-
-    it('handles GetPathSnippetCurrentState message', () => {
-        const getCurrentStateMock = createSyncActionMock(undefined);
-        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(
+        await interpreterMock.simulateMessage(
             getStoreStateMessage(StoreNames.PathSnippetStore),
             null,
         );
 
-        const newTestObject = new PathSnippetActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-        );
-
-        newTestObject.registerCallbacks();
-
         getCurrentStateMock.verifyAll();
     });
 
-    it('handles ClearPathSnippetData message', () => {
-        const onClearDataMock = createSyncActionMock(undefined);
+    it('handles ClearPathSnippetData message', async () => {
+        const onClearDataMock = createAsyncActionMock(undefined);
         const actionsMock = createActionsMock('onClearData', onClearDataMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.PathSnippet.ClearPathSnippetData,
-            null,
-        );
 
         const newTestObject = new PathSnippetActionCreator(
             interpreterMock.object,
@@ -84,6 +84,8 @@ describe('PathSnippetActionCreatorTest', () => {
         );
 
         newTestObject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.PathSnippet.ClearPathSnippetData, null);
 
         onClearDataMock.verifyAll();
     });

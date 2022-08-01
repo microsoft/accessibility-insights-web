@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { linkFunctionConfiguration } from '../../../../../scanner/custom-rules/link-function';
-
-const outerHTML = 'outerHTML';
-const parentOuterHTML = 'parentOuterHTML';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { linkFunctionConfiguration } from 'scanner/custom-rules/link-function';
+import { It, Mock, Times } from 'typemoq';
 
 describe('link function', () => {
+    afterEach(() => {
+        document.body.innerHTML = '';
+    });
+
     describe('verify link function configs', () => {
         it('should have correct props', () => {
             expect(linkFunctionConfiguration.rule.id).toBe('link-function');
@@ -25,21 +25,41 @@ describe('link function', () => {
     });
 
     describe('matches', () => {
-        it('matches elements with no href attribute', () => {
-            testMatches(null, false, true);
+        it('matches <a> elements with no href attribute', () => {
+            testMatches('a', null, null, true);
         });
-        it('matches elements with an empty href attribute', () => {
-            testMatches('', false, true);
+        it('matches <a> elements with an empty href attribute', () => {
+            testMatches('a', '', null, true);
         });
-        it('matches elements with an empty anchor tag as their href value', () => {
-            testMatches('#', false, true);
+        it('matches <a> elements with an empty anchor tag as their href value', () => {
+            testMatches('a', '#', null, true);
         });
-        it('matches elements that axe-core considers to have custom widget markup', () => {
-            testMatches('valid-href-value', true, true);
+        it('matches <div> elements with custom widget markup', () => {
+            testMatches('div', 'valid-href-value', 'link', true);
         });
-        it("does not match elements with meaningful href values that axe-core doesn't flag", () => {
-            testMatches('valid-href-value', false, false);
+        it('does not match <div> elements no custom widget markup, even with href', () => {
+            testMatches('div', 'valid-href-value', null, false);
         });
+
+        function testMatches(
+            tag: string,
+            href: string | null,
+            role: string | null,
+            expectedResult: boolean,
+        ): void {
+            const nodeStub = createStubElement(tag);
+            if (href != null) {
+                nodeStub.setAttribute('href', href);
+            }
+            if (role != null) {
+                nodeStub.setAttribute('role', role);
+            }
+
+            const result = withAxeSetup(() =>
+                linkFunctionConfiguration.rule.matches(nodeStub, null),
+            );
+            expect(result).toBe(expectedResult);
+        }
     });
 
     describe('verify decorateNode', () => {
@@ -64,134 +84,73 @@ describe('link function', () => {
     });
 
     describe('verify evaluate', () => {
-        const getPropertyValuesMock = GlobalMock.ofInstance(
-            AxeUtils.getPropertyValuesMatching,
-            'getPropertyValuesMatching',
-            AxeUtils,
-            MockBehavior.Strict,
-        );
-        const getAccessibleTextMock = GlobalMock.ofInstance(
-            AxeUtils.getAccessibleText,
-            'getAccessibleText',
-            AxeUtils,
-            MockBehavior.Strict,
-        );
         it('evaluates when both accessible-name and url are specified (node html as snippet)', () => {
-            testEvaluate(
-                'accessible-name',
-                'url',
-                true,
-                getPropertyValuesMock,
-                getAccessibleTextMock,
-                'self',
-            );
+            testEvaluate('accessible-name', 'url', 'self');
         });
         it('evaluates when url is unspecified (parent html as snippet)', () => {
-            testEvaluate(
-                'accessible-name',
-                null,
-                true,
-                getPropertyValuesMock,
-                getAccessibleTextMock,
-                'parent',
-            );
+            testEvaluate('accessible-name', null, 'parent');
         });
         it('evaluates when accessible-name is unspecified (parent html as snippet)', () => {
-            testEvaluate(null, 'url', true, getPropertyValuesMock, getAccessibleTextMock, 'parent');
+            testEvaluate(null, 'url', 'parent');
         });
-        it('evaluates when accessible-name is unspecified and no parent exists (node html as snippet)', () => {
-            testEvaluate(null, 'url', false, getPropertyValuesMock, getAccessibleTextMock, 'self');
-        });
-    });
-});
 
-function testEvaluate(
-    accessibleName: string,
-    url: string,
-    nodeHasParent: boolean,
-    getPropertyValuesMock: IGlobalMock<any>,
-    getAccessibleTextMock: IGlobalMock<any>,
-    expectedSnippet: 'parent' | 'self',
-): void {
-    const dataSetterMock = Mock.ofInstance(data => {});
+        function testEvaluate(
+            accessibleName: string | null,
+            url: string | null,
+            expectedSnippet: 'parent' | 'self',
+        ): void {
+            const dataSetterMock = Mock.ofInstance(data => {});
 
-    const expectedData = {
-        accessibleName: accessibleName,
-        ariaAttributes: {
-            'aria-property': 'value',
-        },
-        role: 'role',
-        tabIndex: 'tabindex',
-        url: url,
-        snippet: expectedSnippet === 'self' ? outerHTML : parentOuterHTML,
-    };
-    const nodeStub = getNodeStub(
-        expectedData.url,
-        expectedData.role,
-        expectedData.tabIndex,
-        nodeHasParent,
-    );
+            const expectedData = {
+                accessibleName: '',
+                ariaAttributes: {
+                    'aria-property': 'aria-property-value',
+                },
+                role: 'role',
+                tabIndex: 'tabindex',
+                url: url,
+            };
 
-    dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-    getPropertyValuesMock
-        .setup(m => m(It.isValue(nodeStub), It.isAny()))
-        .returns(v => expectedData.ariaAttributes);
-    getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.accessibleName);
-
-    let result;
-    GlobalScope.using(getPropertyValuesMock, getAccessibleTextMock).with(() => {
-        result = linkFunctionConfiguration.checks[0].evaluate.call(
-            { data: dataSetterMock.object },
-            nodeStub,
-        );
-    });
-    expect(result).toBe(true);
-    dataSetterMock.verifyAll();
-}
-
-function testMatches(
-    href: string,
-    expectedHasCustomWidgetMarkup: boolean,
-    expectedResult: boolean,
-): void {
-    const nodeStub = getNodeStub(href, null, null, true);
-    const hasCustomWidgetMarkupMock = GlobalMock.ofInstance(
-        AxeUtils.hasCustomWidgetMarkup,
-        'hasCustomWidgetMarkup',
-        AxeUtils,
-        MockBehavior.Strict,
-    );
-    hasCustomWidgetMarkupMock
-        .setup(m => m(It.isValue(nodeStub)))
-        .returns(v => expectedHasCustomWidgetMarkup);
-    let result;
-    GlobalScope.using(hasCustomWidgetMarkupMock).with(() => {
-        result = linkFunctionConfiguration.rule.matches(nodeStub, null);
-    });
-    expect(result).toBe(expectedResult);
-}
-
-function getNodeStub(
-    href: string,
-    role: string,
-    tabindex: string,
-    withParent: boolean,
-): HTMLElement {
-    return {
-        outerHTML: outerHTML,
-        parentElement: withParent
-            ? {
-                  outerHTML: parentOuterHTML,
-              }
-            : null,
-        getAttribute: attr => {
-            if (attr === 'href') {
-                return href;
-            } else if (attr === 'role') {
-                return role;
-            } else if (attr === 'tabindex') {
-                return tabindex;
+            const nodeStub = createStubElement('div');
+            if (url != null) {
+                nodeStub.setAttribute('href', url);
             }
-        },
-    } as HTMLElement;
-}
+            nodeStub.setAttribute('role', expectedData.role);
+            nodeStub.setAttribute('tabindex', expectedData.tabIndex);
+            nodeStub.setAttribute('aria-property', 'aria-property-value');
+
+            if (accessibleName != null) {
+                nodeStub.setAttribute('aria-label', accessibleName);
+
+                expectedData.accessibleName = accessibleName;
+                expectedData.ariaAttributes['aria-label'] = accessibleName;
+            }
+
+            dataSetterMock
+                .setup(m => m(It.isObjectWith(expectedData)))
+                .callback(data => {
+                    expect(data.snippet).toBe(
+                        expectedSnippet === 'self'
+                            ? nodeStub.outerHTML
+                            : nodeStub.parentElement.outerHTML,
+                    );
+                })
+                .verifiable(Times.once());
+
+            const result = withAxeSetup(() =>
+                linkFunctionConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    nodeStub,
+                ),
+            );
+            expect(result).toBe(true);
+            dataSetterMock.verifyAll();
+        }
+    });
+
+    function createStubElement(tag: string): HTMLElement {
+        const stub = document.createElement(tag);
+        document.body.appendChild(stub);
+        return stub;
+    }
+});

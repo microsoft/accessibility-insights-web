@@ -9,14 +9,16 @@ import {
 export class TabStopsTestViewController {
     constructor(private actions: TabStopsViewActions) {}
 
-    public createNewFailureInstancePanel: (payload: string) => void = payload =>
-        this.actions.createNewFailureInstancePanel.invoke(payload);
+    public createNewFailureInstancePanel: (payload: string) => Promise<void> = async payload =>
+        await this.actions.createNewFailureInstancePanel.invoke(payload);
 
-    public editExistingFailureInstance: (payload: EditExistingFailureInstancePayload) => void =
-        payload => this.actions.editExistingFailureInstance.invoke(payload);
+    public editExistingFailureInstance: (
+        payload: EditExistingFailureInstancePayload,
+    ) => Promise<void> = async payload =>
+        await this.actions.editExistingFailureInstance.invoke(payload);
 
-    public dismissPanel = () => this.actions.dismissPanel.invoke();
+    public dismissPanel: () => Promise<void> = async () => await this.actions.dismissPanel.invoke();
 
-    public updateDescription: (payload: string) => void = payload =>
-        this.actions.updateDescription.invoke(payload);
+    public updateDescription: (payload: string) => Promise<void> = async payload =>
+        await this.actions.updateDescription.invoke(payload);
 }
