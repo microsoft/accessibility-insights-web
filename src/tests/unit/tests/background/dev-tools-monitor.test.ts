@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { _ } from 'ajv';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { DevToolsMonitor } from 'background/dev-tools-monitor';
 import { Interpreter } from 'background/interpreter';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import { Messages } from 'common/messages';
 import {
     DelayCreator,
@@ -38,7 +37,7 @@ describe(DevToolsMonitor, () => {
     let promiseFactory: PromiseFactory;
     let interpreterMock: IMock<Interpreter>;
 
-    let setDevToolStateActionMock: IMock<SyncAction<boolean>>;
+    let setDevToolStateActionMock: IMock<AsyncAction<boolean>>;
     let onStateChanged: (status: boolean) => void;
 
     let testSubject: TestDevToolsMonitor;
@@ -53,7 +52,7 @@ describe(DevToolsMonitor, () => {
         } as PromiseFactory;
         interpreterMock = Mock.ofType<Interpreter>();
 
-        setDevToolStateActionMock = Mock.ofType<SyncAction<boolean>>();
+        setDevToolStateActionMock = Mock.ofType<AsyncAction<boolean>>();
         setDevToolStateActionMock
             .setup(s => s.addListener(It.isAny()))
             .returns(listener => (onStateChanged = listener))
