@@ -93,7 +93,7 @@ switch (argsObj.env) {
     case 'report':
         entryFiles = { report: `${src}/reports/package/reporter-factory.ts` };
         outdir = path.join(__dirname, 'packages/report/bundle');
-        format = 'esm';
+        format = 'cjs';
 
         // esbuild doesn't have an easy way to ignore node_modules for monorepos,
         // so this plugin is necessary (marks all node_modules as external).
