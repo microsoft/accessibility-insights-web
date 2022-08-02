@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+import {
+    FormattedCheckResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { DialogRenderer } from 'injected/dialog-renderer';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
-import { HtmlElementAxeResults } from 'injected/scanner-utils';
 import { DrawerConfiguration, Formatter } from 'injected/visualization/formatter';
 import { HeadingStyleConfiguration } from 'injected/visualization/heading-formatter';
 
@@ -21,15 +24,14 @@ export class AccessibleNamesFormatter implements Formatter {
     };
 
     // get the dat from the check results
-    public getData(nodes: FormattedCheckResult[]): AccessibleNameData {
+    public getData(nodes: FormattedCheckResult[]) {
         for (const check of nodes) {
-            if (check.id === 'display-accessible-names') {
-                //console.log(check.data.accessibleName);   // undefined??
-                //console.log(check.data);    // prints the data with name as a property
-                // console.log('accessiblename');
-                // console.log(check.data.name);
+            console.log(check);
+            if (check?.id === 'display-accessible-names') {
+                console.log('Access Name of node');
+                console.log(check.data.accessibleName);
                 return {
-                    accessibleName: check.data.name,
+                    accessibleName: check.data.accessibleName,
                 };
             }
         }
@@ -39,7 +41,6 @@ export class AccessibleNamesFormatter implements Formatter {
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'display-accessible-names') {
                 // console.log('InGetInfo');
-                // console.log(this.getData(data.ruleResults[idx].any));
                 return this.getData(data.ruleResults[idx].any); // returns something of the form {accessibleName: "Profile"}
             }
         }
@@ -51,9 +52,6 @@ export class AccessibleNamesFormatter implements Formatter {
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
         const accessName = this.formatText(this.getInfo(data)); // returns something of the form {accessibleName: "Profile"}
-        console.log('In getDrawer');
-        console.log(accessName.accessibleName);
-
         const config: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: AccessibleNamesFormatter.style.fontColor,
@@ -68,7 +66,7 @@ export class AccessibleNamesFormatter implements Formatter {
             outlineWidth: '3px',
             showVisualization: true,
         };
-        console.log(config);
+        //console.log(config);
         return config;
     }
 

@@ -75,8 +75,8 @@ function hasAccessibleName(element: any): boolean {
 
 function evaluateAccessibleNames(node: HTMLElement): boolean {
     const accessibleName = AxeUtils.getAccessibleText(node);
-    if (accessibleName) {
-        this.data({ name: accessibleName });
+    if (accessibleName != null) {
+        this.data({ accessibleName });
     }
     return true;
 }
