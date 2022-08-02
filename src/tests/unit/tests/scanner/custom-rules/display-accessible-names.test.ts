@@ -17,7 +17,7 @@ describe('evaluateAccessibleNames', () => {
     it('sets the correct data and returns true', () => {
         const dataSetterMock = Mock.ofInstance(data => {});
         const expectedData = {
-            name: 'AccessibleName',
+            accessibleName: 'AccessibleName',
         };
 
         document.body.innerHTML = `<div id="element"/>AccessibleName</div>`;
