@@ -24,8 +24,8 @@ export class RootContainerRenderer {
         private readonly deps: RootContainerRendererDeps,
     ) {}
 
-    public render(): void {
-        this.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
+    public async render(): Promise<void> {
+        await this.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
 
         const rootContainer = this.dom.querySelector('#root-container');
         this.renderer(

@@ -190,7 +190,7 @@ const logger = createDefaultLogger();
 getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
     ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
 })
-    .then((persistedData: Partial<PersistedData>) => {
+    .then(async (persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
         const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
@@ -562,8 +562,8 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const reportNameGenerator = new UnifiedReportNameGenerator();
 
-        const startTesting = () => {
-            windowStateActionCreator.setRoute({ routeId: 'resultsView' });
+        const startTesting = async () => {
+            await windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
 
         const usageLogger = new UsageLogger(storageAdapter, DateProvider.getCurrentDate, logger);
@@ -611,7 +611,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         window.featureFlagsController = featureFlagsController;
 
         const renderer = new RootContainerRenderer(ReactDOM.render, document, deps);
-        renderer.render();
+        await renderer.render();
 
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 

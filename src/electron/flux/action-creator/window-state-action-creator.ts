@@ -17,8 +17,8 @@ export class WindowStateActionCreator {
         private readonly userConfigurationStore: UserConfigurationStore,
     ) {}
 
-    public setRoute(payload: RoutePayload): void {
-        this.windowStateActions.setRoute.invoke(payload);
+    public async setRoute(payload: RoutePayload): Promise<void> {
+        await this.windowStateActions.setRoute.invoke(payload);
 
         if (payload.routeId === 'deviceConnectView') {
             this.windowFrameActionCreator.setWindowSize({ width: 600, height: 391 });
@@ -27,8 +27,8 @@ export class WindowStateActionCreator {
         }
     }
 
-    public setWindowState(payload: WindowStatePayload): void {
-        this.windowStateActions.setWindowState.invoke(payload);
+    public async setWindowState(payload: WindowStatePayload): Promise<void> {
+        await this.windowStateActions.setWindowState.invoke(payload);
     }
 
     private setWindowBoundsFromSavedWindowBounds(): void {

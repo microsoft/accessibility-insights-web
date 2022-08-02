@@ -240,8 +240,8 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.getConnectedDeviceName()}
-                onRedetectDevice={() =>
-                    this.props.deps.windowStateActionCreator.setRoute({
+                onRedetectDevice={async () =>
+                    await this.props.deps.windowStateActionCreator.setRoute({
                         routeId: 'deviceConnectView',
                     })
                 }

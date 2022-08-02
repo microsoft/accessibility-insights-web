@@ -15,7 +15,7 @@ import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('RootContainerRendererTest', () => {
-    test('render', () => {
+    test('render', async () => {
         const dom = document.createElement('div');
         const containerDiv = document.createElement('div');
         const documentManipulatorMock = Mock.ofType<DocumentManipulator>();
@@ -51,7 +51,7 @@ describe('RootContainerRendererTest', () => {
 
         const renderer = new RootContainerRenderer(renderMock.object, dom, deps);
 
-        renderer.render();
+        await renderer.render();
 
         renderMock.verifyAll();
         windowStateActionCreatorMock.verifyAll();

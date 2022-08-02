@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { Rectangle } from 'electron';
@@ -34,8 +35,8 @@ describe(WindowStateActionCreator, () => {
         );
     });
 
-    it('calling setRoute invokes setRoute action with given payload', () => {
-        const setRouteActionMock = Mock.ofType<SyncAction<RoutePayload>>();
+    it('calling setRoute invokes setRoute action with given payload', async () => {
+        const setRouteActionMock = Mock.ofType<AsyncAction<RoutePayload>>();
         const testPayload: RoutePayload = {
             routeId: 'resultsView',
         };
@@ -51,13 +52,13 @@ describe(WindowStateActionCreator, () => {
         userConfigurationStoreMock.setup(u => u.getState()).returns(() => userConfigStoreDataStub);
         windowFrameActionCreatorMock.setup(w => w.maximize());
 
-        testSubject.setRoute(testPayload);
+        await testSubject.setRoute(testPayload);
 
         setRouteActionMock.verifyAll();
     });
 
-    it('calling setRoute with deviceConnectView, invokes setWindowSize', () => {
-        const setRouteActionMock = Mock.ofType<SyncAction<RoutePayload>>();
+    it('calling setRoute with deviceConnectView, invokes setWindowSize', async () => {
+        const setRouteActionMock = Mock.ofType<AsyncAction<RoutePayload>>();
         const testPayload: RoutePayload = {
             routeId: 'deviceConnectView',
         };
@@ -71,14 +72,14 @@ describe(WindowStateActionCreator, () => {
             .returns(() => setRouteActionMock.object);
         setRouteActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
-        testSubject.setRoute(testPayload);
+        await testSubject.setRoute(testPayload);
 
         setRouteActionMock.verifyAll();
         windowFrameActionCreatorMock.verifyAll();
     });
 
-    it('calling setWindowState invokes setWindowState action', () => {
-        const setWindowStatePayload = Mock.ofType<SyncAction<WindowStatePayload>>();
+    it('calling setWindowState invokes setWindowState action', async () => {
+        const setWindowStatePayload = Mock.ofType<AsyncAction<WindowStatePayload>>();
         const testPayload: WindowStatePayload = {
             currentWindowState: 'maximized',
         };
@@ -88,7 +89,7 @@ describe(WindowStateActionCreator, () => {
             .returns(() => setWindowStatePayload.object);
         setWindowStatePayload.setup(s => s.invoke(testPayload)).verifiable(Times.once());
 
-        testSubject.setWindowState(testPayload);
+        await testSubject.setWindowState(testPayload);
 
         setWindowStatePayload.verifyAll();
         windowFrameActionCreatorMock.verifyAll();
@@ -112,8 +113,8 @@ describe(WindowStateActionCreator, () => {
 
         it.each(['normal', 'maximized', 'full-screen'])(
             'sets window size correctly if lastWindowBounds is specified and windowState is %s',
-            lastWindowState => {
-                setRouteNonDeviceViewCore(lastWindowState as WindowState, {
+            async lastWindowState => {
+                await setRouteNonDeviceViewCore(lastWindowState as WindowState, {
                     x: 150,
                     y: 200,
                     height: 400,
@@ -124,15 +125,15 @@ describe(WindowStateActionCreator, () => {
 
         it.each(['normal', 'maximized', 'full-screen'])(
             'sets window size correctly if lastWindowBounds is null and windowState is %s',
-            lastWindowState => {
-                setRouteNonDeviceViewCore(lastWindowState as WindowState, null);
+            async lastWindowState => {
+                await setRouteNonDeviceViewCore(lastWindowState as WindowState, null);
             },
         );
 
-        function setRouteNonDeviceViewCore(
+        async function setRouteNonDeviceViewCore(
             lastWindowState: WindowState,
             lastWindowBounds: Rectangle,
-        ): void {
+        ): Promise<void> {
             const userConfigStoreDataStub = {
                 lastWindowState: lastWindowState,
                 lastWindowBounds: lastWindowBounds,
@@ -168,7 +169,7 @@ describe(WindowStateActionCreator, () => {
                 })
                 .verifiable(shouldEnterFullScreen ? Times.once() : Times.never());
 
-            testSubject.setRoute(testPayload);
+            await testSubject.setRoute(testPayload);
 
             setRouteActionMock.verifyAll();
             windowFrameActionCreatorMock.verifyAll();

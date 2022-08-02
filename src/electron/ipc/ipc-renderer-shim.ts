@@ -44,16 +44,16 @@ export class IpcRendererShim {
         );
     }
 
-    private onMaximize = (): void => {
-        this.fromBrowserWindowMaximize.invoke(undefined, this.invokeScope);
+    private onMaximize = async (): Promise<void> => {
+        await this.fromBrowserWindowMaximize.invoke(undefined, this.invokeScope);
     };
 
-    private onEnterFullScreen = (): void => {
-        this.fromBrowserWindowEnterFullScreen.invoke(undefined, this.invokeScope);
+    private onEnterFullScreen = async (): Promise<void> => {
+        await this.fromBrowserWindowEnterFullScreen.invoke(undefined, this.invokeScope);
     };
 
-    private onUnmaximize = (): void => {
-        this.fromBrowserWindowUnmaximize.invoke(undefined, this.invokeScope);
+    private onUnmaximize = async (): Promise<void> => {
+        await this.fromBrowserWindowUnmaximize.invoke(undefined, this.invokeScope);
     };
 
     private onClose = async (): Promise<void> => {
@@ -67,9 +67,9 @@ export class IpcRendererShim {
 
     // Listen to these events to receive data sent TO renderer process
     public readonly fromBrowserWindowClose = new AsyncAction();
-    public readonly fromBrowserWindowMaximize = new SyncAction<void>();
-    public readonly fromBrowserWindowUnmaximize = new SyncAction<void>();
-    public readonly fromBrowserWindowEnterFullScreen = new SyncAction<void>();
+    public readonly fromBrowserWindowMaximize = new AsyncAction<void>();
+    public readonly fromBrowserWindowUnmaximize = new AsyncAction<void>();
+    public readonly fromBrowserWindowEnterFullScreen = new AsyncAction<void>();
     public readonly fromBrowserWindowWindowBoundsChanged =
         new SyncAction<WindowBoundsChangedPayload>();
 

@@ -25,7 +25,9 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
         this.windowStateActions.setWindowState.addListener(this.onSetWindowState);
     }
 
-    private onSetRoute = (payload: RoutePayload) => {
+    private onSetRoute: (payload: RoutePayload) => Promise<void> = async (
+        payload: RoutePayload,
+    ) => {
         if (this.state.routeId === payload.routeId) {
             return;
         }
@@ -33,7 +35,9 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
         this.emitChanged();
     };
 
-    private onSetWindowState = (payload: WindowStatePayload) => {
+    private onSetWindowState: (payload: WindowStatePayload) => Promise<void> = async (
+        payload: WindowStatePayload,
+    ) => {
         if (payload.currentWindowState === this.state.currentWindowState) {
             return;
         }

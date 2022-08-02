@@ -24,16 +24,16 @@ export class WindowFrameListener {
         );
     }
 
-    private onMaximize = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'maximized' });
+    private onMaximize = async (): Promise<void> => {
+        await this.windowStateActionsCreator.setWindowState({ currentWindowState: 'maximized' });
     };
 
-    private onEnterFullScreen = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'fullScreen' });
+    private onEnterFullScreen = async (): Promise<void> => {
+        await this.windowStateActionsCreator.setWindowState({ currentWindowState: 'fullScreen' });
     };
 
-    private onUnMaximize = (): void => {
-        this.windowStateActionsCreator.setWindowState({ currentWindowState: 'customSize' });
+    private onUnMaximize = async (): Promise<void> => {
+        await this.windowStateActionsCreator.setWindowState({ currentWindowState: 'customSize' });
     };
 
     private onWindowBoundsChanged = (payload: WindowBoundsChangedPayload): void => {

@@ -68,21 +68,27 @@ describe(IpcRendererShim, () => {
 
         it('invoke fromBrowserWindowEnterFullScreen on enterFullScreen message from browser', () => {
             let callCount = 0;
-            testSubject.fromBrowserWindowEnterFullScreen.addListener(() => callCount++);
+            testSubject.fromBrowserWindowEnterFullScreen.addListener(async () => {
+                callCount++;
+            });
             ipcHandlers[IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
         it('invoke fromBrowserWindowMaximize on maximize message from browser', () => {
             let callCount = 0;
-            testSubject.fromBrowserWindowMaximize.addListener(() => callCount++);
+            testSubject.fromBrowserWindowMaximize.addListener(async () => {
+                callCount++;
+            });
             ipcHandlers[IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
         it('invoke fromBrowserWindowUnmaximize on unmaximize message from browser', () => {
             let callCount = 0;
-            testSubject.fromBrowserWindowUnmaximize.addListener(() => callCount++);
+            testSubject.fromBrowserWindowUnmaximize.addListener(async () => {
+                callCount++;
+            });
             ipcHandlers[IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
