@@ -185,7 +185,7 @@
     },
     "dependencies": {
         "@fluentui/react": "^8.86.3",
-        "@microsoft/applicationinsights-web": "^2.8.5",
+        "@microsoft/applicationinsights-web": "^2.8.6",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.7",
