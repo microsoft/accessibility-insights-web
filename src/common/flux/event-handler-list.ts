@@ -33,9 +33,7 @@ export class EventHandlerList<TSender, TEventArgs, TReturn extends HandlerReturn
         }
 
         if (asyncResults.length > 1) {
-            return mergePromiseResponses(
-                asyncResults as unknown as Promise<void>[],
-            ) as unknown as TReturn;
+            return mergePromiseResponses(asyncResults as Promise<void>[]) as TReturn;
         }
 
         return undefined as TReturn;
