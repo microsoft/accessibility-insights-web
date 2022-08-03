@@ -29,7 +29,7 @@ export class EventHandlerList<TSender, TEventArgs, TReturn extends HandlerReturn
         const asyncResults = results.filter(isPromise);
 
         if (asyncResults.length === 1) {
-            return asyncResults[0] as TReturn;
+            return asyncResults[0];
         }
 
         if (asyncResults.length > 1) {
