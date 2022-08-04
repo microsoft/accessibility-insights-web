@@ -2,20 +2,20 @@
 
 exports[`SaveAssessmentDialogSettings renders with enabled = false 1`] = `
 <GenericToggle
-  description="Show save assessment dialog."
+  description="Show the save assessment dialog."
   enabled={false}
   id="enable-save-assessment-dialog"
-  name="Enable save assessment dialog"
+  name="Enable the save assessment dialog"
   onClick={[Function]}
 />
 `;
 
 exports[`SaveAssessmentDialogSettings renders with enabled = true 1`] = `
 <GenericToggle
-  description="Show save assessment dialog."
+  description="Show the save assessment dialog."
   enabled={true}
   id="enable-save-assessment-dialog"
-  name="Enable save assessment dialog"
+  name="Enable the save assessment dialog"
   onClick={[Function]}
 />
 `;

@@ -7,25 +7,17 @@ import * as React from 'react';
 import { GenericToggle } from '../../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
-const SaveAssessmentDialogTitle = 'Enable save assessment dialog';
-const SaveAssessmentDialogDescription = 'Show save assessment dialog.';
-
 export const SaveAssessmentDialogSettings = NamedFC<SettingsProps>(
     'SaveAssessmentDialog',
     props => {
-        const {
-            deps: { userConfigMessageCreator },
-            userConfigurationStoreState: { showSaveAssessmentDialog },
-        } = props;
-
         return (
             <GenericToggle
-                enabled={showSaveAssessmentDialog}
+                enabled={props.userConfigurationStoreState.showSaveAssessmentDialog}
                 id="enable-save-assessment-dialog"
-                name={SaveAssessmentDialogTitle}
-                description={SaveAssessmentDialogDescription}
+                name="Enable the save assessment dialog"
+                description="Show the save assessment dialog."
                 onClick={(id, state) =>
-                    userConfigMessageCreator.setSaveAssessmentDialogState(state)
+                    props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(state)
                 }
             />
         );

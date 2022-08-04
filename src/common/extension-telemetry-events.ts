@@ -80,6 +80,7 @@ export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
 export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const SET_AUTO_DETECTED_FAILURES_DIALOG_STATE: string = 'setAutoDetectedFailuresDialogState';
+export const SET_SAVE_ASSESSMENT_DIALOG_STATE: string = 'setSaveAssessmentDialogState';
 export const UNHANDLED_ERROR: string = 'unhandledError';
 export const ACCESSIBLENAMES_TOGGLE: string = 'accessibleNamesToggled';
 

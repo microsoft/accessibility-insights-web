@@ -12,6 +12,7 @@ import {
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { ShowAssessmentDialogStateTelemetryData } from 'common/extension-telemetry-events';
 import { WindowState } from 'electron/flux/types/window-state';
 import { cloneDeep } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -515,6 +516,30 @@ describe('UserConfigurationStoreTest', () => {
         const expectedState: UserConfigurationStoreData = {
             ...initialStoreData,
             showAutoDetectedFailuresDialog,
+        };
+
+        indexDbStrictMock
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
+
+        await storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test('setSaveAssessmentDialogState', async () => {
+        const storeTester = createStoreToTestAction('setSaveAssessmentDialogState');
+        const showSaveAssessmentDialog = false;
+        const payload: ShowAssessmentDialogStateTelemetryData = {
+            enabled: showSaveAssessmentDialog,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            showSaveAssessmentDialog,
         };
 
         indexDbStrictMock

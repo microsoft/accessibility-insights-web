@@ -67,5 +67,9 @@ export class UserConfigurationActionCreator {
         payload: SaveAssessmentDialogStatePayload,
     ): Promise<void> => {
         await this.userConfigActions.setSaveAssessmentDialogState.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.SET_SAVE_ASSESSMENT_DIALOG_STATE,
+            payload,
+        );
     };
 }
