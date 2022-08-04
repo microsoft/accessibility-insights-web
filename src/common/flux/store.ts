@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { EventHandlerList } from './event-handler-list';
+import { EventHandlerList, HandlerReturnType } from './event-handler-list';
 
-export class Store {
-    private changedHandlers = new EventHandlerList<this, unknown>();
+export class Store<TReturn extends HandlerReturnType = void> {
+    private changedHandlers = new EventHandlerList<this, unknown, TReturn>();
 
-    public addChangedListener(handler: (store: this, args?: unknown) => void): void {
+    public addChangedListener(handler: (store: this, args?: unknown) => TReturn): void {
         this.changedHandlers.subscribe(handler);
     }
 
-    public removeChangedListener(handler: (store: this, args?: unknown) => void): void {
+    public removeChangedListener(handler: (store: this, args?: unknown) => TReturn): void {
         this.changedHandlers.unsubscribe(handler);
     }
 
-    protected emitChanged(): void {
-        this.changedHandlers.invokeHandlers(this);
+    protected emitChanged(): TReturn {
+        return this.changedHandlers.invokeHandlers(this);
     }
 }

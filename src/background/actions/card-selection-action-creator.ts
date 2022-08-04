@@ -47,38 +47,38 @@ export class CardSelectionActionCreator {
         );
     }
 
-    private onGetCurrentState = (): void => {
-        this.cardSelectionActions.getCurrentState.invoke(null);
+    private onGetCurrentState = async (): Promise<void> => {
+        await this.cardSelectionActions.getCurrentState.invoke(null);
     };
 
-    private onCardSelectionToggle = (payload: CardSelectionPayload): void => {
-        this.cardSelectionActions.toggleCardSelection.invoke(payload);
+    private onCardSelectionToggle = async (payload: CardSelectionPayload): Promise<void> => {
+        await this.cardSelectionActions.toggleCardSelection.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.CARD_SELECTION_TOGGLED,
             payload,
         );
     };
 
-    private onRuleExpansionToggle = (payload: RuleExpandCollapsePayload): void => {
-        this.cardSelectionActions.toggleRuleExpandCollapse.invoke(payload);
+    private onRuleExpansionToggle = async (payload: RuleExpandCollapsePayload): Promise<void> => {
+        await this.cardSelectionActions.toggleRuleExpandCollapse.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.RULE_EXPANSION_TOGGLED,
             payload,
         );
     };
 
-    private onToggleVisualHelper = (payload: BaseActionPayload): void => {
-        this.cardSelectionActions.toggleVisualHelper.invoke(null);
+    private onToggleVisualHelper = async (payload: BaseActionPayload): Promise<void> => {
+        await this.cardSelectionActions.toggleVisualHelper.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 
-    private onCollapseAllRules = (payload: BaseActionPayload): void => {
-        this.cardSelectionActions.collapseAllRules.invoke(null);
+    private onCollapseAllRules = async (payload: BaseActionPayload): Promise<void> => {
+        await this.cardSelectionActions.collapseAllRules.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_COLLAPSED, payload);
     };
 
-    private onExpandAllRules = (payload: BaseActionPayload): void => {
-        this.cardSelectionActions.expandAllRules.invoke(null);
+    private onExpandAllRules = async (payload: BaseActionPayload): Promise<void> => {
+        await this.cardSelectionActions.expandAllRules.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
     };
 }

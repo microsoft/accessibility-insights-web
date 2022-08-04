@@ -1,70 +1,110 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { EventHandlerList } from '../../../../../common/flux/event-handler-list';
 import { FunctionPPR } from '../../../../../types/common-types';
 
 describe('HandlerTest', () => {
-    let testObject: EventHandlerList<any, any>;
-    let firstHandlerMock: IMock<FunctionPPR<any, any, any>>;
-    let secondHandlerMock: IMock<FunctionPPR<any, any, any>>;
-    const senderStub = { id: 'the-sender' };
-    const argsStub = { arg: 'value' };
+    describe('SyncCallbacks', () => {
+        let testObject: EventHandlerList<any, any, void>;
+        let firstSyncHandlerMock: IMock<FunctionPPR<any, any, void>>;
+        let secondSyncHandlerMock: IMock<FunctionPPR<any, any, void>>;
+        const senderStub = { id: 'the-sender' };
+        const argsStub = { arg: 'value' };
 
-    beforeEach(() => {
-        firstHandlerMock = Mock.ofInstance((sender, args) => null);
-        secondHandlerMock = Mock.ofInstance((sender, args) => null);
+        beforeEach(() => {
+            firstSyncHandlerMock = Mock.ofInstance((sender, args) => null);
+            secondSyncHandlerMock = Mock.ofInstance((sender, args) => null);
 
-        testObject = new EventHandlerList();
+            testObject = new EventHandlerList();
+        });
+
+        test('invokeHandlers, no handlers', () => {
+            testObject.invokeHandlers(senderStub, argsStub);
+        });
+
+        test('subscribe and invokeHandlers (2 sync handlers)', () => {
+            firstSyncHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+
+            secondSyncHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+
+            testObject.subscribe(firstSyncHandlerMock.object);
+            testObject.subscribe(secondSyncHandlerMock.object);
+
+            const result = testObject.invokeHandlers(senderStub, argsStub);
+            expect(result).toBeUndefined();
+
+            firstSyncHandlerMock.verifyAll();
+            secondSyncHandlerMock.verifyAll();
+        });
+
+        test('unsuscribe', () => {
+            firstSyncHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+
+            testObject.subscribe(firstSyncHandlerMock.object);
+
+            let result = testObject.invokeHandlers(senderStub, argsStub);
+            expect(result).toBeUndefined();
+
+            firstSyncHandlerMock.verifyAll();
+
+            firstSyncHandlerMock.reset();
+
+            firstSyncHandlerMock.setup(hm => hm(It.isAny(), It.isAny())).verifiable(Times.never());
+
+            testObject.unsubscribe(firstSyncHandlerMock.object);
+
+            result = testObject.invokeHandlers(senderStub, argsStub);
+            expect(result).toBeUndefined();
+
+            firstSyncHandlerMock.verifyAll();
+        });
+
+        test('unsuscribe, null handler', () => {
+            firstSyncHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+
+            testObject.subscribe(firstSyncHandlerMock.object);
+            testObject.unsubscribe(null);
+
+            const result = testObject.invokeHandlers(senderStub, argsStub);
+            expect(result).toBeUndefined();
+
+            firstSyncHandlerMock.verifyAll();
+        });
     });
+    describe('AsyncCallbacks', () => {
+        let testObject: EventHandlerList<any, any, Promise<void>>;
+        let firstAsyncHandlerMock: IMock<FunctionPPR<any, any, Promise<void>>>;
+        let secondAsyncHandlerMock: IMock<FunctionPPR<any, any, Promise<void>>>;
+        const senderStub = { id: 'the-sender' };
+        const argsStub = { arg: 'value' };
 
-    test('invokeHandlers, no handlers', () => {
-        testObject.invokeHandlers(senderStub, argsStub);
-    });
+        beforeEach(() => {
+            firstAsyncHandlerMock = Mock.ofInstance((sender, args) => Promise.resolve());
+            secondAsyncHandlerMock = Mock.ofInstance((sender, args) => Promise.resolve());
 
-    test('subscribe and invokeHandlers (2 handlers)', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+            testObject = new EventHandlerList();
+        });
 
-        secondHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
+        test('subscribe and invokeHandlers (2 async handlers)', async () => {
+            firstAsyncHandlerMock
+                .setup(hm => hm(senderStub, argsStub))
+                .returns(hm => Promise.resolve())
+                .verifiable(Times.once());
 
-        testObject.subscribe(firstHandlerMock.object);
-        testObject.subscribe(secondHandlerMock.object);
+            secondAsyncHandlerMock
+                .setup(hm => hm(senderStub, argsStub))
+                .returns(hm => Promise.resolve())
+                .verifiable(Times.once());
 
-        testObject.invokeHandlers(senderStub, argsStub);
+            testObject.subscribe(firstAsyncHandlerMock.object);
+            testObject.subscribe(secondAsyncHandlerMock.object);
 
-        firstHandlerMock.verifyAll();
-        secondHandlerMock.verifyAll();
-    });
+            const result = testObject.invokeHandlers(senderStub, argsStub);
+            await expect(result).resolves.toBeUndefined();
 
-    test('unsuscribe', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
-
-        testObject.subscribe(firstHandlerMock.object);
-
-        testObject.invokeHandlers(senderStub, argsStub);
-
-        firstHandlerMock.verifyAll();
-
-        firstHandlerMock.reset();
-
-        firstHandlerMock.setup(hm => hm(It.isAny(), It.isAny())).verifiable(Times.never());
-
-        testObject.unsubscribe(firstHandlerMock.object);
-
-        testObject.invokeHandlers(senderStub, argsStub);
-
-        firstHandlerMock.verifyAll();
-    });
-
-    test('unsuscribe, null handler', () => {
-        firstHandlerMock.setup(hm => hm(senderStub, argsStub)).verifiable(Times.once());
-
-        testObject.subscribe(firstHandlerMock.object);
-        testObject.unsubscribe(null);
-
-        testObject.invokeHandlers(senderStub, argsStub);
-
-        firstHandlerMock.verifyAll();
+            firstAsyncHandlerMock.verifyAll();
+            secondAsyncHandlerMock.verifyAll();
+        });
     });
 });

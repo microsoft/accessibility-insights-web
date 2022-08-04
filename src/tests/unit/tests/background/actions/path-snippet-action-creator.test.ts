@@ -7,7 +7,7 @@ import { IMock, Mock } from 'typemoq';
 
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PathSnippetActionCreatorTest', () => {
     let interpreterMock: MockInterpreter;
@@ -19,7 +19,7 @@ describe('PathSnippetActionCreatorTest', () => {
     it('handles AddPathForValidation message', async () => {
         const payload = 'test path';
 
-        const onAddPathMock = createSyncActionMock(payload);
+        const onAddPathMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('onAddPath', onAddPathMock.object);
 
         const newTestObject = new PathSnippetActionCreator(
@@ -37,7 +37,7 @@ describe('PathSnippetActionCreatorTest', () => {
     it('handles AddCorrespondingSnippet message', async () => {
         const payload = 'test snippet';
 
-        const onAddSnippetMock = createSyncActionMock(payload);
+        const onAddSnippetMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('onAddSnippet', onAddSnippetMock.object);
 
         const newTestObject = new PathSnippetActionCreator(
@@ -56,7 +56,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles GetPathSnippetCurrentState message', async () => {
-        const getCurrentStateMock = createSyncActionMock(undefined);
+        const getCurrentStateMock = createAsyncActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const newTestObject = new PathSnippetActionCreator(
@@ -75,7 +75,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles ClearPathSnippetData message', async () => {
-        const onClearDataMock = createSyncActionMock(undefined);
+        const onClearDataMock = createAsyncActionMock(undefined);
         const actionsMock = createActionsMock('onClearData', onClearDataMock.object);
 
         const newTestObject = new PathSnippetActionCreator(

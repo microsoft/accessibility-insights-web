@@ -83,6 +83,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
             AdHocTestkeys.Headings,
             AdHocTestkeys.Color,
             AdHocTestkeys.NeedsReview,
+            AdHocTestkeys.AccessibleNames,
         ];
 
         keys.forEach(key => {
@@ -129,12 +130,12 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
-    private onTabStopsDisabled = (): void => {
+    private onTabStopsDisabled = async (): Promise<void> => {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
     };
 
-    private onResetDataForVisualization = (type: VisualizationType) => {
+    private onResetDataForVisualization = async (type: VisualizationType): Promise<void> => {
         const config = this.visualizationConfigurationFactory.getConfiguration(type);
         const testKey = config.key;
         if (this.state[testKey] == null) {
@@ -145,7 +146,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onAddTabbedElement = (payload: AddTabbedElementPayload): void => {
+    private onAddTabbedElement = async (payload: AddTabbedElementPayload): Promise<void> => {
         if (!this.state.tabStops.tabbedElements) {
             this.state.tabStops.tabbedElements = [];
         }
@@ -183,9 +184,9 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onUpdateTabStopRequirementStatus = (
+    private onUpdateTabStopRequirementStatus = async (
         payload: UpdateTabStopRequirementStatusPayload,
-    ): void => {
+    ): Promise<void> => {
         const { requirementId, status } = payload;
         this.state.tabStops.requirements[requirementId].status = status;
         if (status === 'pass') {
@@ -194,16 +195,16 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onResetTabStopRequirementStatus = (
+    private onResetTabStopRequirementStatus = async (
         payload: ResetTabStopRequirementStatusPayload,
-    ): void => {
+    ): Promise<void> => {
         const { requirementId } = payload;
         this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
         this.state.tabStops.requirements[requirementId].instances = [];
         this.emitChanged();
     };
 
-    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
+    private onAddTabStopInstance = async (payload: AddTabStopInstancePayload): Promise<void> => {
         const { requirementId, description, selector, html } = payload;
         this.state.tabStops.requirements[requirementId].status = 'fail';
         this.state.tabStops.requirements[requirementId].instances.push({
@@ -215,7 +216,9 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
+    private onUpdateTabStopInstance = async (
+        payload: UpdateTabStopInstancePayload,
+    ): Promise<void> => {
         const { requirementId, id, description } = payload;
         this.state.tabStops.requirements[requirementId].instances.find(
             instance => instance.id === id,
@@ -223,7 +226,9 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
+    private onRemoveTabStopInstance = async (
+        payload: RemoveTabStopInstancePayload,
+    ): Promise<void> => {
         const { requirementId, id } = payload;
         const newInstances = this.state.tabStops.requirements[requirementId].instances.filter(
             instance => instance.id !== id,
@@ -232,16 +237,16 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onToggleTabStopRequirementExpandCollapse = (
+    private onToggleTabStopRequirementExpandCollapse = async (
         payload: ToggleTabStopRequirementExpandPayload,
-    ): void => {
+    ): Promise<void> => {
         const { requirementId } = payload;
         const requirement = this.state.tabStops.requirements[requirementId];
         requirement.isExpanded = !requirement.isExpanded;
         this.emitChanged();
     };
 
-    private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
+    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);
@@ -253,7 +258,7 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         this.emitChanged();
     };
 
-    private onExistingTabUpdated = (): void => {
+    private onExistingTabUpdated = async (): Promise<void> => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };
@@ -274,14 +279,16 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
         return selectedRows;
     }
 
-    private onUpdateTabbingCompleted = (payload: UpdateTabbingCompletedPayload): void => {
+    private onUpdateTabbingCompleted = async (
+        payload: UpdateTabbingCompletedPayload,
+    ): Promise<void> => {
         this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
         this.emitChanged();
     };
 
-    private onUpdateNeedToCollectTabbingResults = (
+    private onUpdateNeedToCollectTabbingResults = async (
         payload: UpdateNeedToCollectTabbingResultsPayload,
-    ): void => {
+    ): Promise<void> => {
         this.state.tabStops.needToCollectTabbingResults = payload.needToCollectTabbingResults;
         this.emitChanged();
     };

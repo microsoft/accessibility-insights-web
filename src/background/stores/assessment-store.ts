@@ -115,44 +115,37 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         this.assessmentActions.updateDetailsViewId.addListener(this.onUpdateDetailsViewId);
     }
 
-    private updateTargetTabWithId(tabId: number): void {
-        this.browserAdapter.getTab(
-            tabId,
-            tab => {
-                this.state.persistedTabInfo = {
-                    id: tab.id,
-                    url: tab.url,
-                    title: tab.title,
-                    detailsViewId: this.state.persistedTabInfo?.detailsViewId,
-                };
+    private async updateTargetTabWithId(tabId: number): Promise<void> {
+        const tab = await this.browserAdapter.getTabAsync(tabId);
+        this.state.persistedTabInfo = {
+            id: tab.id,
+            url: tab.url,
+            title: tab.title,
+            detailsViewId: this.state.persistedTabInfo?.detailsViewId,
+        };
 
-                this.emitChanged();
-            },
-            () => {
-                throw new Error(`tab with Id ${tabId} not found`);
-            },
-        );
+        this.emitChanged();
     }
 
     private onContinuePreviousAssessment = async (tabId: number): Promise<void> => {
-        this.updateTargetTabWithId(tabId);
+        await this.updateTargetTabWithId(tabId);
     };
 
     private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
         this.state = this.initialAssessmentStoreDataGenerator.generateInitialState(
             payload.versionedAssessmentData.assessmentData,
         );
-        if (this.state.persistedTabInfo !== undefined) {
+        if (this.state.persistedTabInfo != null) {
             this.state.persistedTabInfo.detailsViewId = payload.detailsViewId;
         } else {
             this.state.persistedTabInfo = { detailsViewId: payload.detailsViewId };
         }
-        this.updateTargetTabWithId(payload.tabId);
+        await this.updateTargetTabWithId(payload.tabId);
     };
 
     private onUpdateTargetTabId = async (tabId: number): Promise<void> => {
         if (this.state.persistedTabInfo == null || this.state.persistedTabInfo.id !== tabId) {
-            this.updateTargetTabWithId(tabId);
+            await this.updateTargetTabWithId(tabId);
         }
     };
 
@@ -446,7 +439,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         const detailsViewId = this.state.persistedTabInfo.detailsViewId;
         this.state = this.generateDefaultState(null);
         this.state.persistedTabInfo = { detailsViewId };
-        this.updateTargetTabWithId(targetTabId);
+        await this.updateTargetTabWithId(targetTabId);
     };
 
     private onUpdateDetailsViewId = async (

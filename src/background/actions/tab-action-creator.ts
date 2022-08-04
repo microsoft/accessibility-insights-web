@@ -22,18 +22,28 @@ export class TabActionCreator {
         private readonly browserAdapter: BrowserAdapter,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly logger: Logger,
+        private readonly tabId: number,
     ) {}
 
+    /*
+        Tab actions are often invoked in multiple tabs at the same time (ex: one tab becomes active,
+        while another becomes in-active) but that is expected/desired. We include the tabId for the
+        scope to ensure the scope-mutex does not throw an error in those scenarios.
+    */
+    private readonly scope = `TabActionCreator:${this.tabId}`;
+
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.NewTabCreated, (payload: Tab) =>
-            this.tabActions.newTabCreated.invoke(payload),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.NewTabCreated,
+            async (payload: Tab) => await this.tabActions.newTabCreated.invoke(payload),
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.TabStore),
-            () => this.tabActions.getCurrentState.invoke(null),
+            async () => await this.tabActions.getCurrentState.invoke(null),
         );
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Remove, () =>
-            this.tabActions.tabRemove.invoke(null),
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Tab.Remove,
+            async (_, tabId: number) => await this.tabActions.tabRemove.invoke(null, this.scope),
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.ExistingTabUpdated,
@@ -45,8 +55,9 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Tab.VisibilityChange,
-            (payload: PageVisibilityChangeTabPayload) =>
-                this.tabActions.tabVisibilityChange.invoke(payload.hidden),
+            async (payload: PageVisibilityChangeTabPayload, tabId) => {
+                await this.tabActions.tabVisibilityChange.invoke(payload.hidden, this.scope);
+            },
         );
     }
 
@@ -60,8 +71,8 @@ export class TabActionCreator {
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
     };
 
-    private onExistingTabUpdated = (payload: ExistingTabUpdatedPayload): void => {
-        this.tabActions.existingTabUpdated.invoke(payload);
+    private onExistingTabUpdated = async (payload: ExistingTabUpdatedPayload) => {
+        await this.tabActions.existingTabUpdated.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(EXISTING_TAB_URL_UPDATED, payload);
     };
 }

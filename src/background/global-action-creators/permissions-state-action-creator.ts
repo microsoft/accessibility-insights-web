@@ -26,12 +26,14 @@ export class PermissionsStateActionCreator {
         );
     }
 
-    private onGetCurrentState = (): void => {
-        this.permissionsStateActions.getCurrentState.invoke();
+    private onGetCurrentState = async (): Promise<void> => {
+        await this.permissionsStateActions.getCurrentState.invoke();
     };
 
-    private onSetPermissionsState = (payload: SetAllUrlsPermissionStatePayload): void => {
-        this.permissionsStateActions.setPermissionsState.invoke(payload);
+    private onSetPermissionsState = async (
+        payload: SetAllUrlsPermissionStatePayload,
+    ): Promise<void> => {
+        await this.permissionsStateActions.setPermissionsState.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(ALL_URLS_PERMISSION_UPDATED, payload);
     };
 }

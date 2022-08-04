@@ -31,13 +31,13 @@ export class ContentActionCreator {
     }
 
     private onOpenContentPanel = async (payload: ContentPayload, tabId: number): Promise<void> => {
-        this.contentActions.openContentPanel.invoke(payload);
+        await this.contentActions.openContentPanel.invoke(payload);
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_OPENED, payload);
     };
 
-    private onCloseContentPanel = (payload: BaseActionPayload): void => {
-        this.contentActions.closeContentPanel.invoke();
+    private onCloseContentPanel = async (payload: BaseActionPayload): Promise<void> => {
+        await this.contentActions.closeContentPanel.invoke();
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_CLOSED, payload);
     };
 }

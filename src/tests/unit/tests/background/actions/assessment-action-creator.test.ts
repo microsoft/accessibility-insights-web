@@ -35,10 +35,7 @@ import {
 } from 'injected/analyzers/analyzer';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    createAsyncActionMock,
-    createSyncActionMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('AssessmentActionCreatorTest', () => {
     let assessmentActionsMock: IMock<AssessmentActions>;
@@ -498,9 +495,10 @@ describe('AssessmentActionCreatorTest', () => {
         const payload: ScanCompletedPayload<any> = {
             key: 'test-key',
         } as ScanCompletedPayload<any>;
+        const expectedScope = `${actionExecutingScope}-test-key`;
 
-        const updateTabIdActionMock = createAsyncActionMock(testTabId, actionExecutingScope);
-        const scanCompleteMock = createAsyncActionMock(payload, actionExecutingScope);
+        const updateTabIdActionMock = createAsyncActionMock(testTabId, expectedScope);
+        const scanCompleteMock = createAsyncActionMock(payload, expectedScope);
 
         setupAssessmentActionsMock('scanCompleted', scanCompleteMock);
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
@@ -523,7 +521,7 @@ describe('AssessmentActionCreatorTest', () => {
     });
 
     it('handles GetCurrentState message', async () => {
-        const getCurrentStateMock = createSyncActionMock<void>(null, actionExecutingScope);
+        const getCurrentStateMock = createAsyncActionMock<void>(null, actionExecutingScope);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const testSubject = new AssessmentActionCreator(

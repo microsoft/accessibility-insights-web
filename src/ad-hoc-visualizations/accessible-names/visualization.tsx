@@ -15,7 +15,7 @@ import { isEmpty } from 'lodash';
 const accessiblenamesTestKey = AdHocTestkeys.AccessibleNames;
 
 const accessibleNamesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['find-accessible-names'],
+    rules: ['display-accessible-names'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
     key: accessiblenamesTestKey,

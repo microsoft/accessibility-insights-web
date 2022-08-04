@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AsyncAction } from 'common/flux/async-action';
-import { SyncAction } from 'common/flux/sync-action';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
@@ -41,8 +40,7 @@ export class AssessmentActions {
         new AsyncAction<ChangeInstanceSelectionPayload>();
     public readonly undoInstanceStatusChange = new AsyncAction<AssessmentActionInstancePayload>();
     public readonly undoRequirementStatusChange = new AsyncAction<ChangeRequirementStatusPayload>();
-    // Leaving this sync for now until BaseStoreImpl.onGetCurrentState() can be converted to async
-    public readonly getCurrentState = new SyncAction<void>();
+    public readonly getCurrentState = new AsyncAction<void>();
     public readonly scanCompleted = new AsyncAction<ScanCompletedPayload<null>>();
     public readonly resetData = new AsyncAction<ToggleActionPayload>();
     public readonly resetAllAssessmentsData = new AsyncAction<number>();

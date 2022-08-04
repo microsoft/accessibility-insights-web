@@ -50,7 +50,7 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
         this.devToolActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    private onDevToolStatusChanged = (status: boolean): void => {
+    private onDevToolStatusChanged = async (status: boolean): Promise<void> => {
         if (this.state.isOpen !== status) {
             this.state.isOpen = status;
             this.state.frameUrl = null;
@@ -59,7 +59,7 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
         }
     };
 
-    private onInspectElement = (target: string[]): void => {
+    private onInspectElement = async (target: string[]): Promise<void> => {
         this.state.inspectElement = target;
         this.state.frameUrl = null;
         // we're only using this to make sure the store proxy emits the change when the user inspects the same element twice
@@ -67,7 +67,7 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
         this.emitChanged();
     };
 
-    private onSetFrameUrl = (frameUrl: string): void => {
+    private onSetFrameUrl = async (frameUrl: string): Promise<void> => {
         this.state.frameUrl = frameUrl;
         this.emitChanged();
     };

@@ -118,6 +118,9 @@ export class SelectorMapHelper {
                     visualizationScanResultData.tabStops,
                 );
                 break;
+            case VisualizationType.AccessibleNames:
+                selectorMap = visualizationScanResultData.accessibleNames.fullAxeResultsMap;
+                break;
             default:
                 selectorMap = visualizationScanResultData.color.fullAxeResultsMap;
                 break;
