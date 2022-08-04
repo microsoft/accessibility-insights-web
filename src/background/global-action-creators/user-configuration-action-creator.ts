@@ -63,7 +63,9 @@ export class UserConfigurationActionCreator {
         );
     };
 
-    public setSaveAssessmentDialogState = (payload: SaveAssessmentDialogStatePayload) => {
-        this.userConfigActions.setSaveAssessmentDialogState.invoke(payload);
+    public setSaveAssessmentDialogState = async (
+        payload: SaveAssessmentDialogStatePayload,
+    ): Promise<void> => {
+        await this.userConfigActions.setSaveAssessmentDialogState.invoke(payload);
     };
 }

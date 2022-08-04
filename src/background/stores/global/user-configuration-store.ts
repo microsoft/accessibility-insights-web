@@ -165,7 +165,9 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.emitChanged();
     };
 
-    private onSetSaveAssessmentDialogState = (payload: SaveAssessmentDialogStatePayload): void => {
+    private onSetSaveAssessmentDialogState = async (
+        payload: SaveAssessmentDialogStatePayload,
+    ): Promise<void> => {
         this.state.showSaveAssessmentDialog = payload.enabled;
         this.emitChanged();
     };
