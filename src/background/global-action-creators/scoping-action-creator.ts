@@ -26,15 +26,15 @@ export class ScopingActionCreator {
         );
     }
 
-    private onGetScopingState = async (): Promise<void> => {
-        await this.scopingActions.getCurrentState.invoke();
+    private onGetScopingState = (): void => {
+        this.scopingActions.getCurrentState.invoke();
     };
 
-    private onAddSelector = async (payload: ScopingPayload): Promise<void> => {
-        await this.scopingActions.addSelector.invoke(payload);
+    private onAddSelector = (payload: ScopingPayload): void => {
+        this.scopingActions.addSelector.invoke(payload);
     };
 
-    private onDeleteSelector = async (payload: ScopingPayload): Promise<void> => {
-        await this.scopingActions.deleteSelector.invoke(payload);
+    private onDeleteSelector = (payload: ScopingPayload): void => {
+        this.scopingActions.deleteSelector.invoke(payload);
     };
 }
