@@ -10,12 +10,12 @@ import {
     CONTENT_PANEL_OPENED,
     TelemetryEventSource,
 } from 'common/extension-telemetry-events';
-import { AsyncAction } from 'common/flux/async-action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('ContentActionMessageCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -39,12 +39,12 @@ describe('ContentActionMessageCreator', () => {
 
         const tabId = -2;
 
-        let openContentPanelMock: IMock<AsyncAction<ContentPayload>>;
+        let openContentPanelMock: IMock<SyncAction<ContentPayload>>;
         let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
         let loggerMock: IMock<Logger>;
 
         beforeEach(() => {
-            openContentPanelMock = createAsyncActionMock(payload);
+            openContentPanelMock = createSyncActionMock(payload);
             actionsMock = createActionsMock('openContentPanel', openContentPanelMock.object);
             interpreterMock = new MockInterpreter();
 
@@ -104,7 +104,7 @@ describe('ContentActionMessageCreator', () => {
             },
         };
 
-        const closeContentPanelMock = createAsyncActionMock<void>(undefined);
+        const closeContentPanelMock = createSyncActionMock<void>(undefined);
         actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
 
         testSubject = new ContentActionCreator(
