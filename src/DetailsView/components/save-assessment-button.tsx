@@ -24,20 +24,17 @@ export interface SaveAssessmentButtonProps {
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     'SaveAssessmentButton',
     props => {
-        const [hideDialog, { toggle: toggleHideDialog }] = useBoolean(true);
-        const [showDialogAgain, { toggle: toggleShowDialogAgain }] = useBoolean(
-            props.userConfigurationStoreData.showSaveAssessmentDialog,
-        );
+        const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
 
         function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
             props.deps.detailsViewActionMessageCreator.saveAssessment(event);
-            if (!showDialogAgain) return;
-            toggleHideDialog();
+            if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
+                showDialog();
+            }
         }
 
         function handleDontShowAgainClick(event: React.MouseEvent<any>, checked?: boolean) {
             if (checked === undefined) return;
-            toggleShowDialogAgain();
             props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
         }
 
@@ -52,8 +49,8 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                     Save assessment
                 </InsightsCommandButton>
                 <Dialog
-                    hidden={hideDialog}
-                    onDismiss={toggleHideDialog}
+                    hidden={dialogHidden}
+                    onDismiss={hideDialog}
                     dialogContentProps={{
                         type: DialogType.normal,
                         title: 'Assessment saved',
@@ -77,13 +74,15 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                         >
                             <Stack.Item grow disableShrink>
                                 <Checkbox
-                                    value={!showDialogAgain}
+                                    value={
+                                        !props.userConfigurationStoreData.showSaveAssessmentDialog
+                                    }
                                     label="Don't show again"
                                     onChange={handleDontShowAgainClick}
                                 />
                             </Stack.Item>
                             <Stack.Item grow>
-                                <PrimaryButton onClick={toggleHideDialog} text="Got it" />
+                                <PrimaryButton onClick={hideDialog} text="Got it" />
                             </Stack.Item>
                         </Stack>
                     </DialogFooter>

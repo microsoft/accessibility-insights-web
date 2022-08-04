@@ -133,7 +133,7 @@ exports[`SaveAssessmentButton on dialog enabled box appears checked when "dont s
           <StyledCheckboxBase
             label="Don't show again"
             onChange={[Function]}
-            value={true}
+            value={false}
           />
         </StackItem>
         <StackItem
