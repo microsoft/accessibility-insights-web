@@ -67,8 +67,6 @@ function createSelector(): string {
 
 function evaluateAccessibleNames(node: HTMLElement): boolean {
     const accessibleName = AxeUtils.getAccessibleText(node);
-    if (accessibleName != null) {
-        this.data({ accessibleName });
-    }
+    this.data({ accessibleName });
     return true;
 }

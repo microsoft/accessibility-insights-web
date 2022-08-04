@@ -8,8 +8,6 @@ import { DialogRenderer } from 'injected/dialog-renderer';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration, Formatter } from 'injected/visualization/formatter';
 import { HeadingStyleConfiguration } from 'injected/visualization/heading-formatter';
-
-// Licensed under the MIT License.
 interface DisplayAccessibleNameData {
     accessibleName: string;
 }
@@ -51,7 +49,7 @@ export class AccessibleNamesFormatter implements Formatter {
             textBoxConfig: {
                 fontColor: AccessibleNamesFormatter.style.fontColor,
                 background: AccessibleNamesFormatter.style.borderColor,
-                text: accessibleNameToDisplay.accessibleName,
+                text: accessibleNameToDisplay?.accessibleName,
                 fontWeight: '400',
                 fontSize: '10px',
                 outline: '3px dashed',
@@ -65,16 +63,20 @@ export class AccessibleNamesFormatter implements Formatter {
     }
 
     private formatText(accessibleNameData: DisplayAccessibleNameData): DisplayAccessibleNameData {
-        const ElmtAccessibleName = accessibleNameData.accessibleName;
+        const ElmtAccessibleName = accessibleNameData?.accessibleName;
         let nameToDisplay;
         const allowedNameMaxLength = 40;
-        if (ElmtAccessibleName != null && ElmtAccessibleName.length <= allowedNameMaxLength) {
-            nameToDisplay = ElmtAccessibleName;
-        } else if (ElmtAccessibleName.length > allowedNameMaxLength) {
-            nameToDisplay = `${ElmtAccessibleName.substring(0, allowedNameMaxLength)}...`;
+        if (ElmtAccessibleName === undefined) {
+            nameToDisplay = undefined;
+        } else {
+            if (ElmtAccessibleName.length <= allowedNameMaxLength) {
+                nameToDisplay = ElmtAccessibleName;
+            } else if (ElmtAccessibleName.length > allowedNameMaxLength) {
+                nameToDisplay = `${ElmtAccessibleName.substring(0, allowedNameMaxLength)}...`;
+            }
+            return {
+                accessibleName: nameToDisplay,
+            };
         }
-        return {
-            accessibleName: nameToDisplay,
-        };
     }
 }
