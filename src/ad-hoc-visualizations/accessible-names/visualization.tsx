@@ -47,7 +47,7 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap =>
         isEmpty(selectorMap) ? 'No elements with accessible names found' : null,
-    getDrawer: provider => provider.createNullDrawer(),
+    getDrawer: provider => provider.createAccessibleNamesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
 };
