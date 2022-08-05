@@ -17,14 +17,14 @@ import {
     TelemetryEventSource,
     TriggeredBy,
 } from 'common/extension-telemetry-events';
-import { AsyncAction } from 'common/flux/async-action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('DetailsViewActionCreatorTest', () => {
     let detailsViewControllerMock: IMock<ExtensionDetailsViewController>;
@@ -52,7 +52,7 @@ describe('DetailsViewActionCreatorTest', () => {
             MockBehavior.Strict,
         );
 
-        let openSidePanelMock: IMock<AsyncAction<SidePanel>>;
+        let openSidePanelMock: IMock<SyncAction<SidePanel>>;
         let sidePanelActionsMock: IMock<SidePanelActions>;
 
         describe.each`
@@ -62,7 +62,7 @@ describe('DetailsViewActionCreatorTest', () => {
             ${'Messages.Scoping.OpenPanel'}         | ${Messages.Scoping.OpenPanel}         | ${'Scoping'}         | ${SCOPING_OPEN}
         `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
             beforeEach(() => {
-                openSidePanelMock = createAsyncActionMock<SidePanel>(sidePanel);
+                openSidePanelMock = createSyncActionMock<SidePanel>(sidePanel);
                 sidePanelActionsMock = createSidePanelActionsMock(
                     'openSidePanel',
                     openSidePanelMock.object,
@@ -136,7 +136,7 @@ describe('DetailsViewActionCreatorTest', () => {
             ${'Messages.PreviewFeatures.ClosePanel'} | ${Messages.PreviewFeatures.ClosePanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_CLOSE}
             ${'Messages.Scoping.ClosePanel'}         | ${Messages.Scoping.ClosePanel}         | ${'Scoping'}         | ${SCOPING_CLOSE}
         `('$messageFriendlyName', async ({ actualMessage, sidePanel, telemetryEventName }) => {
-            const closeSidePanelMock = createAsyncActionMock<SidePanel>(sidePanel);
+            const closeSidePanelMock = createSyncActionMock<SidePanel>(sidePanel);
 
             const sidePanelActionsMock = createSidePanelActionsMock(
                 'closeSidePanel',
@@ -166,7 +166,7 @@ describe('DetailsViewActionCreatorTest', () => {
     it('handles Visualization.DetailsView.SetDetailsViewRightContentPanel message', async () => {
         const payload: DetailsViewRightContentPanelType = 'Overview';
 
-        const setSelectedDetailsViewRightContentPanelMock = createAsyncActionMock(payload);
+        const setSelectedDetailsViewRightContentPanelMock = createSyncActionMock(payload);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'setSelectedDetailsViewRightContentPanel',
             setSelectedDetailsViewRightContentPanelMock.object,
@@ -191,7 +191,7 @@ describe('DetailsViewActionCreatorTest', () => {
     });
 
     it('handles Visualization.DetailsView.GetState message', async () => {
-        const getCurrentStateMock = createAsyncActionMock<void>(null);
+        const getCurrentStateMock = createSyncActionMock<void>(null);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'getCurrentState',
             getCurrentStateMock.object,

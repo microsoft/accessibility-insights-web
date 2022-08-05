@@ -83,16 +83,16 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         Scoping: 'isScopingOpen',
     };
 
-    private onOpenSidePanel = async (sidePanel: SidePanel): Promise<void> => {
+    private onOpenSidePanel = (sidePanel: SidePanel): void => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
-        await this.onOpen(stateKey);
+        this.onOpen(stateKey);
     };
 
-    private onOpen = async (
+    private onOpen = (
         flagName: keyof CurrentPanel,
         mutator?: (data: DetailsViewStoreData) => void,
-    ): Promise<void> => {
+    ): void => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -106,16 +106,16 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         this.emitChanged();
     };
 
-    private onCloseSidePanel = async (sidePanel: SidePanel): Promise<void> => {
+    private onCloseSidePanel = (sidePanel: SidePanel): void => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
-        await this.onClose(stateKey);
+        this.onClose(stateKey);
     };
 
-    private onClose = async (
+    private onClose = (
         flagName: keyof CurrentPanel,
         mutator?: (data: DetailsViewStoreData) => void,
-    ): Promise<void> => {
+    ): void => {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
@@ -125,9 +125,9 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         this.emitChanged();
     };
 
-    private onSetSelectedDetailsViewRightContentPanel = async (
+    private onSetSelectedDetailsViewRightContentPanel = (
         view: DetailsViewRightContentPanelType,
-    ): Promise<void> => {
+    ): void => {
         this.state.detailsViewRightContentPanel = view;
         this.emitChanged();
     };
