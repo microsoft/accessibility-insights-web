@@ -74,9 +74,9 @@ export class AccessibleNamesFormatter implements Formatter {
             } else if (ElmtAccessibleName.length > allowedNameMaxLength) {
                 nameToDisplay = `${ElmtAccessibleName.substring(0, allowedNameMaxLength)}...`;
             }
-            return {
-                accessibleName: nameToDisplay,
-            };
         }
+        return {
+            accessibleName: nameToDisplay,
+        };
     }
 }
