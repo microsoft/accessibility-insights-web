@@ -10,8 +10,6 @@ import { TabStore } from './stores/tab-store';
 import { VisualizationStore } from './stores/visualization-store';
 
 export class InjectorController {
-    private static readonly injectionStartedWaitTime = 10;
-
     private oldInspectType = InspectMode.off;
 
     constructor(
@@ -20,7 +18,6 @@ export class InjectorController {
         private readonly interpreter: Interpreter,
         private readonly tabStore: TabStore,
         private readonly inspectStore: InspectStore,
-        private readonly setTimeout: (handler: Function, timeout: number) => number,
         private readonly logger: Logger,
     ) {}
 
@@ -29,7 +26,7 @@ export class InjectorController {
         this.inspectStore.addChangedListener(this.inject);
     }
 
-    private inject = (): void => {
+    private inject = async (): Promise<void> => {
         const tabId: number = this.tabStore.getState().id;
         const inspectStoreState = this.inspectStore.getState();
         const visualizationStoreState = this.visualizationStore.getState();
@@ -42,22 +39,18 @@ export class InjectorController {
             inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
 
         if (isInjectingRequested && !visualizationStoreState.injectingStarted) {
-            this.setTimeout(() => {
-                this.interpreter.interpret({
-                    messageType: Messages.Visualizations.State.InjectionStarted,
-                    tabId: tabId,
-                });
-            }, InjectorController.injectionStartedWaitTime);
+            this.interpreter.interpret({
+                messageType: Messages.Visualizations.State.InjectionStarted,
+                tabId: tabId,
+            });
 
             this.injector
                 .injectScripts(tabId)
                 .then(async () => {
-                    const response = this.interpreter.interpret({
+                    await this.interpreter.interpret({
                         messageType: Messages.Visualizations.State.InjectionCompleted,
                         tabId: tabId,
-                    });
-
-                    await response.result;
+                    }).result;
                 })
                 .catch(this.logger.error);
         }
