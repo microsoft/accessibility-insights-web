@@ -9,7 +9,7 @@ import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
 
-export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
+export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData, Promise<void>> {
     constructor(
         private readonly featureFlagActions: FeatureFlagActions,
         private readonly storageAdapter: StorageAdapter,

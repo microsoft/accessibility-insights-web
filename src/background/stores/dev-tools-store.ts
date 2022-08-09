@@ -8,7 +8,7 @@ import { StoreNames } from '../../common/stores/store-names';
 import { DevToolStoreData } from '../../common/types/store-data/dev-tool-store-data';
 import { DevToolActions } from '../actions/dev-tools-actions';
 
-export class DevToolStore extends PersistentStore<DevToolStoreData> {
+export class DevToolStore extends PersistentStore<DevToolStoreData, Promise<void>> {
     private devToolActions: DevToolActions;
 
     constructor(

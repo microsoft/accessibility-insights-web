@@ -8,7 +8,7 @@ import { StoreNames } from '../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { PathSnippetActions } from '../actions/path-snippet-actions';
 
-export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
+export class PathSnippetStore extends PersistentStore<PathSnippetStoreData, Promise<void>> {
     constructor(
         private readonly pathSnippetActions: PathSnippetActions,
         persistedState: PathSnippetStoreData,

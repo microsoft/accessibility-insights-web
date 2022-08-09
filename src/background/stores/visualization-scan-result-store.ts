@@ -35,7 +35,10 @@ import {
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 
-export class VisualizationScanResultStore extends PersistentStore<VisualizationScanResultData> {
+export class VisualizationScanResultStore extends PersistentStore<
+    VisualizationScanResultData,
+    Promise<void>
+> {
     constructor(
         private visualizationScanResultActions: VisualizationScanResultActions,
         private tabActions: TabActions,

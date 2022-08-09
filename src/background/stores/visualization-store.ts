@@ -26,7 +26,7 @@ import {
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 
-export class VisualizationStore extends PersistentStore<VisualizationStoreData> {
+export class VisualizationStore extends PersistentStore<VisualizationStoreData, Promise<void>> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
     private injectionActions: InjectionActions;
