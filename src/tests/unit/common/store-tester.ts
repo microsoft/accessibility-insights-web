@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { Action, ActionListener } from 'common/flux/action';
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../common/base-store';
@@ -18,7 +19,7 @@ export class StoreTester<TStoreData, TActions> {
     constructor(
         actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
-        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData, HandlerReturnType>,
     ) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;

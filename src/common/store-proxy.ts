@@ -17,10 +17,10 @@ export class StoreProxy<TState> extends Store<Promise<void>> implements BaseStor
         this.messageHub.registerStoreUpdateListener(storeId, this.onChange);
     }
 
-    private onChange = (message: StoreUpdateMessage<TState>): void => {
+    private onChange = async (message: StoreUpdateMessage<TState>): Promise<void> => {
         if (!isEqual(this.state, message.payload)) {
             this.state = message.payload;
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 

@@ -52,11 +52,11 @@ export class PathSnippetStore extends PersistentStore<PathSnippetStoreData, Prom
         payload: string,
     ): Promise<void> => {
         this.state[property] = payload;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onClearState = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

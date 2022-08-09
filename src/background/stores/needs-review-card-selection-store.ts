@@ -109,7 +109,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             this.deselectAllCardsInRule(rule);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private toggleCardSelection = async (payload: CardSelectionPayload): Promise<void> => {
@@ -131,7 +131,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             this.state.focusedResultUid = payload.resultInstanceUid;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private collapseAllRules = async (): Promise<void> => {
@@ -144,7 +144,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             this.deselectAllCardsInRule(rule);
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private expandAllRules = async (): Promise<void> => {
@@ -156,7 +156,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             rule.isExpanded = true;
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private toggleVisualHelper = async (): Promise<void> => {
@@ -166,7 +166,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             this.deselectAllCards();
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
@@ -194,12 +194,12 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
 
         this.state.visualHelperEnabled = true;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetFocusedIdentifier = async (): Promise<void> => {
         this.state.focusedResultUid = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onNavigateToNewCardsView = async (): Promise<void> => {
@@ -213,11 +213,11 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<
             }
         }
         this.state.visualHelperEnabled = !isEmpty(this.state.rules);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

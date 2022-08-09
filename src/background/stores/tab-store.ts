@@ -70,7 +70,7 @@ export class TabStore extends PersistentStore<TabStoreData, Promise<void>> {
             return;
         }
         this.state.isPageHidden = hidden;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onNewTabCreated = async (payload: Tab): Promise<void> => {
@@ -80,12 +80,12 @@ export class TabStore extends PersistentStore<TabStoreData, Promise<void>> {
         this.state.isClosed = false;
         this.state.isChanged = false;
         this.state.isOriginChanged = false;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onTabRemove = async (): Promise<void> => {
         this.state.isClosed = true;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onExistingTabUpdated = async (payload: Tab): Promise<void> => {
@@ -95,13 +95,13 @@ export class TabStore extends PersistentStore<TabStoreData, Promise<void>> {
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private resetTabChange = async (): Promise<void> => {
         if (this.state.isChanged) {
             this.state.isChanged = false;
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 }

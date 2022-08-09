@@ -61,11 +61,11 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData, Promis
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.featureFlags]: this.state })
             .catch(console.error);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetFeatureFlags = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

@@ -135,7 +135,7 @@ export class VisualizationScanResultStore extends PersistentStore<
 
     private onTabStopsDisabled = async (): Promise<void> => {
         this.state.tabStops.tabbedElements = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetDataForVisualization = async (type: VisualizationType): Promise<void> => {
@@ -146,7 +146,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         }
 
         this.state[testKey] = this.getDefaultState()[testKey];
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onAddTabbedElement = async (payload: AddTabbedElementPayload): Promise<void> => {
@@ -184,7 +184,7 @@ export class VisualizationScanResultStore extends PersistentStore<
             },
         );
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUpdateTabStopRequirementStatus = async (
@@ -195,7 +195,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         if (status === 'pass') {
             this.state.tabStops.requirements[requirementId].instances = [];
         }
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetTabStopRequirementStatus = async (
@@ -204,7 +204,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         const { requirementId } = payload;
         this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
         this.state.tabStops.requirements[requirementId].instances = [];
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onAddTabStopInstance = async (payload: AddTabStopInstancePayload): Promise<void> => {
@@ -216,7 +216,7 @@ export class VisualizationScanResultStore extends PersistentStore<
             selector,
             html,
         });
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUpdateTabStopInstance = async (
@@ -226,7 +226,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         this.state.tabStops.requirements[requirementId].instances.find(
             instance => instance.id === id,
         ).description = description;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onRemoveTabStopInstance = async (
@@ -237,7 +237,7 @@ export class VisualizationScanResultStore extends PersistentStore<
             instance => instance.id !== id,
         );
         this.state.tabStops.requirements[requirementId].instances = newInstances;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onToggleTabStopRequirementExpandCollapse = async (
@@ -246,7 +246,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         const { requirementId } = payload;
         const requirement = this.state.tabStops.requirements[requirementId];
         requirement.isExpanded = !requirement.isExpanded;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
@@ -258,12 +258,12 @@ export class VisualizationScanResultStore extends PersistentStore<
         this.state[payload.key].fullAxeResultsMap = selectorMap;
         this.state[payload.key].scanResult = result;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onExistingTabUpdated = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private getRowToRuleResultMap(
@@ -286,13 +286,13 @@ export class VisualizationScanResultStore extends PersistentStore<
         payload: UpdateTabbingCompletedPayload,
     ): Promise<void> => {
         this.state.tabStops.tabbingCompleted = payload.tabbingCompleted;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUpdateNeedToCollectTabbingResults = async (
         payload: UpdateNeedToCollectTabbingResultsPayload,
     ): Promise<void> => {
         this.state.tabStops.needToCollectTabbingResults = payload.needToCollectTabbingResults;
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

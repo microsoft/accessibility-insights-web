@@ -43,6 +43,6 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData, Promis
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType })
             .catch(console.error);
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

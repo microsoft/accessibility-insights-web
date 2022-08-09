@@ -4,6 +4,7 @@ import { PersistedData } from 'background/get-persisted-data';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
@@ -177,7 +178,7 @@ export class TabContextStoreHub implements StoreHub {
         this.needsReviewCardSelectionStore.initialize();
     }
 
-    public getAllStores(): PersistentStore<any>[] {
+    public getAllStores(): PersistentStore<any, HandlerReturnType>[] {
         return [
             this.tabStore,
             this.visualizationStore,
