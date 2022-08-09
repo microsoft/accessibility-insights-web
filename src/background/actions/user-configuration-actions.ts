@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AsyncAction } from 'common/flux/async-action';
+import { SyncAction } from 'common/flux/sync-action';
 import {
     AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
@@ -11,16 +11,16 @@ import {
 } from './action-payloads';
 
 export class UserConfigurationActions {
-    public readonly setAdbLocation = new AsyncAction<string>();
-    public readonly setTelemetryState = new AsyncAction<boolean>();
-    public readonly getCurrentState = new AsyncAction<void>();
-    public readonly setHighContrastMode = new AsyncAction<SetHighContrastModePayload>();
-    public readonly setNativeHighContrastMode = new AsyncAction<SetHighContrastModePayload>();
-    public readonly setIssueFilingService = new AsyncAction<SetIssueFilingServicePayload>();
+    public readonly setAdbLocation = new SyncAction<string>();
+    public readonly setTelemetryState = new SyncAction<boolean>();
+    public readonly getCurrentState = new SyncAction<void>();
+    public readonly setHighContrastMode = new SyncAction<SetHighContrastModePayload>();
+    public readonly setNativeHighContrastMode = new SyncAction<SetHighContrastModePayload>();
+    public readonly setIssueFilingService = new SyncAction<SetIssueFilingServicePayload>();
     public readonly setIssueFilingServiceProperty =
-        new AsyncAction<SetIssueFilingServicePropertyPayload>();
-    public readonly saveIssueFilingSettings = new AsyncAction<SaveIssueFilingSettingsPayload>();
-    public readonly saveWindowBounds = new AsyncAction<SaveWindowBoundsPayload>();
+        new SyncAction<SetIssueFilingServicePropertyPayload>();
+    public readonly saveIssueFilingSettings = new SyncAction<SaveIssueFilingSettingsPayload>();
+    public readonly saveWindowBounds = new SyncAction<SaveWindowBoundsPayload>();
     public readonly setAutoDetectedFailuresDialogState =
-        new AsyncAction<AutoDetectedFailuresDialogStatePayload>();
+        new SyncAction<AutoDetectedFailuresDialogStatePayload>();
 }

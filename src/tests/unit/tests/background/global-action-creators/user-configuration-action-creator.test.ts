@@ -15,7 +15,7 @@ import { UserConfigurationActionCreator } from 'background/global-action-creator
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { IMock, Mock, Times } from 'typemoq';
 import * as TelemetryEvents from '../../../../../common/extension-telemetry-events';
-import { createAsyncActionMock } from './action-creator-test-helpers';
+import { createSyncActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -24,39 +24,39 @@ describe('UserConfigurationActionCreator', () => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    it('handles GetCurrentState message', async () => {
-        const getCurrentStateMock = createAsyncActionMock<void>(undefined);
+    it('handles GetCurrentState message', () => {
+        const getCurrentStateMock = createSyncActionMock<void>(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.getUserConfigurationState();
+        testSubject.getUserConfigurationState();
 
         getCurrentStateMock.verifyAll();
     });
 
-    it('should SetTelemetryConfig message', async () => {
+    it('should SetTelemetryConfig message', () => {
         const setTelemetryState = true;
 
-        const setTelemetryStateMock = createAsyncActionMock(setTelemetryState);
+        const setTelemetryStateMock = createSyncActionMock(setTelemetryState);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setTelemetryState(setTelemetryState);
+        testSubject.setTelemetryState(setTelemetryState);
 
         setTelemetryStateMock.verifyAll();
     });
 
-    it('should SetHighContrastConfig message', async () => {
+    it('should SetHighContrastConfig message', () => {
         const payload: SetHighContrastModePayload = {
             enableHighContrast: true,
         };
-        const setHighContrastConfigMock = createAsyncActionMock(payload);
+        const setHighContrastConfigMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setHighContrastMode',
             setHighContrastConfigMock.object,
@@ -66,16 +66,16 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setHighContrastMode(payload);
+        testSubject.setHighContrastMode(payload);
 
         setHighContrastConfigMock.verifyAll();
     });
 
-    it('should SetHighContrastConfig message', async () => {
+    it('should SetHighContrastConfig message', () => {
         const payload: SetNativeHighContrastModePayload = {
             enableHighContrast: true,
         };
-        const setNativeHighContrastConfigMock = createAsyncActionMock(payload);
+        const setNativeHighContrastConfigMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setNativeHighContrastMode',
             setNativeHighContrastConfigMock.object,
@@ -85,34 +85,34 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setNativeHighContrastMode(payload);
+        testSubject.setNativeHighContrastMode(payload);
 
         setNativeHighContrastConfigMock.verifyAll();
     });
 
-    it('should SetBugService message', async () => {
+    it('should SetBugService message', () => {
         const payload: SetIssueFilingServicePayload = {
             issueFilingServiceName: 'none',
         };
-        const setBugServiceMock = createAsyncActionMock(payload);
+        const setBugServiceMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
         const testSubject = new UserConfigurationActionCreator(
             actionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setIssueFilingService(payload);
+        testSubject.setIssueFilingService(payload);
 
         setBugServiceMock.verifyAll();
     });
 
-    it('should SetBugServiceProperty message', async () => {
+    it('should SetBugServiceProperty message', () => {
         const payload: SetIssueFilingServicePropertyPayload = {
             issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
-        const setIssueFilingServicePropertyMock = createAsyncActionMock(payload);
+        const setIssueFilingServicePropertyMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'setIssueFilingServiceProperty',
             setIssueFilingServicePropertyMock.object,
@@ -122,17 +122,17 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setIssueFilingServiceProperty(payload);
+        testSubject.setIssueFilingServiceProperty(payload);
 
         setIssueFilingServicePropertyMock.verifyAll();
     });
 
-    it('should SaveIssueFilingSettings message', async () => {
+    it('should SaveIssueFilingSettings message', () => {
         const payload: SaveIssueFilingSettingsPayload = {
             issueFilingServiceName: 'test bug service',
             issueFilingSettings: { name: 'issueFilingSettings' },
         };
-        const setIssueFilingSettings = createAsyncActionMock(payload);
+        const setIssueFilingSettings = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'saveIssueFilingSettings',
             setIssueFilingSettings.object,
@@ -142,15 +142,15 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.saveIssueFilingSettings(payload);
+        testSubject.saveIssueFilingSettings(payload);
 
         setIssueFilingSettings.verifyAll();
     });
 
-    it('should SetAdbLocation Message', async () => {
+    it('should SetAdbLocation Message', () => {
         const expectedAdbLocation = 'Somewhere over the rainbow';
 
-        const setAdbLocationConfigMock = createAsyncActionMock(
+        const setAdbLocationConfigMock = createSyncActionMock(
             expectedAdbLocation,
             'UserConfigurationActionCreator',
         );
@@ -160,18 +160,18 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setAdbLocation(expectedAdbLocation);
+        testSubject.setAdbLocation(expectedAdbLocation);
 
         setAdbLocationConfigMock.verifyAll();
     });
 
-    it('should SaveWindowBounds message', async () => {
+    it('should SaveWindowBounds message', () => {
         const payload: SaveWindowBoundsPayload = {
             windowState: 'normal',
             windowBounds: { x: 10, y: 20, height: 100, width: 150 },
         };
 
-        const saveWindowBoundsActionMock = createAsyncActionMock(payload);
+        const saveWindowBoundsActionMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock(
             'saveWindowBounds',
             saveWindowBoundsActionMock.object,
@@ -181,16 +181,16 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.saveWindowBounds(payload);
+        testSubject.saveWindowBounds(payload);
 
         saveWindowBoundsActionMock.verifyAll();
     });
 
-    it('should SetAutoDetectedFailuresDialogState Message', async () => {
+    it('should SetAutoDetectedFailuresDialogState Message', () => {
         const expectedDialogState = { enabled: false };
         const expectedPayload = expectedDialogState as BaseActionPayload;
 
-        const dialogStateConfigMock = createAsyncActionMock(expectedDialogState);
+        const dialogStateConfigMock = createSyncActionMock(expectedDialogState);
         const actionsMock = createActionsMock(
             'setAutoDetectedFailuresDialogState',
             dialogStateConfigMock.object,
@@ -200,7 +200,7 @@ describe('UserConfigurationActionCreator', () => {
             telemetryEventHandlerMock.object,
         );
 
-        await testSubject.setAutoDetectedFailuresDialogState(expectedDialogState);
+        testSubject.setAutoDetectedFailuresDialogState(expectedDialogState);
 
         dialogStateConfigMock.verifyAll();
         telemetryEventHandlerMock.verify(
