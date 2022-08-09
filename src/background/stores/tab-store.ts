@@ -11,7 +11,7 @@ import { UrlParser } from 'common/url-parser';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 
-export class TabStore extends PersistentStore<TabStoreData> {
+export class TabStore extends PersistentStore<TabStoreData, Promise<void>> {
     private tabActions: TabActions;
     private visualizationActions: VisualizationActions;
 

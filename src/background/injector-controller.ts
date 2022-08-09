@@ -29,7 +29,7 @@ export class InjectorController {
         this.inspectStore.addChangedListener(this.inject);
     }
 
-    private inject = (): void => {
+    private inject = async (): Promise<void> => {
         const tabId: number = this.tabStore.getState().id;
         const inspectStoreState = this.inspectStore.getState();
         const visualizationStoreState = this.visualizationStore.getState();

@@ -17,7 +17,10 @@ import {
     UnifiedScanCompletedPayload,
 } from '../actions/action-payloads';
 
-export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCardSelectionStoreData> {
+export class NeedsReviewCardSelectionStore extends PersistentStore<
+    NeedsReviewCardSelectionStoreData,
+    Promise<void>
+> {
     constructor(
         private readonly needsReviewCardSelectionActions: NeedsReviewCardSelectionActions,
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,

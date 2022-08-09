@@ -19,7 +19,7 @@ import {
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 
-export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> {
+export class CardSelectionStore extends PersistentStore<CardSelectionStoreData, Promise<void>> {
     constructor(
         private readonly cardSelectionActions: CardSelectionActions,
         private readonly unifiedScanResultActions: UnifiedScanResultActions,
