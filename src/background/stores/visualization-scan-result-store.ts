@@ -133,7 +133,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
-    private onTabStopsDisabled = async (): Promise<void> => {
+    private onTabStopsDisabled = (): void => {
         this.state.tabStops.tabbedElements = null;
         await this.emitChanged();
     };
@@ -149,7 +149,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         await this.emitChanged();
     };
 
-    private onAddTabbedElement = async (payload: AddTabbedElementPayload): Promise<void> => {
+    private onAddTabbedElement = (payload: AddTabbedElementPayload): void => {
         if (!this.state.tabStops.tabbedElements) {
             this.state.tabStops.tabbedElements = [];
         }
@@ -249,7 +249,7 @@ export class VisualizationScanResultStore extends PersistentStore<
         await this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
+    private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);
