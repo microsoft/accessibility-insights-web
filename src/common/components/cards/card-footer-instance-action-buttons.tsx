@@ -31,7 +31,7 @@ registerIcons({
     },
 });
 
-export type CardFooterFarButtonsDeps = {
+export type CardFooterInstanceActionButtonsDeps = {
     cardInteractionSupport: CardInteractionSupport;
     cardFooterMenuItemsBuilder: CardFooterMenuItemsBuilder;
     issueFilingServiceProvider: IssueFilingServiceProvider;
@@ -39,26 +39,26 @@ export type CardFooterFarButtonsDeps = {
     ToastDeps &
     CardFooterMenuItemsDeps;
 
-export interface CardFooterFarButtonsState {
+export interface CardFooterInstanceActionButtonsState {
     showNeedsSettingsContent: boolean;
 }
 
-export interface CardFooterFarButtonsProps {
-    deps: CardFooterFarButtonsDeps;
+export interface CardFooterInstanceActionButtonsProps {
+    deps: CardFooterInstanceActionButtonsDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;
 }
 
-export class CardFooterFarButtons extends React.Component<
-    CardFooterFarButtonsProps,
-    CardFooterFarButtonsState
+export class CardFooterInstanceActionButtons extends React.Component<
+    CardFooterInstanceActionButtonsProps,
+    CardFooterInstanceActionButtonsState
 > {
     private toastRef: React.RefObject<Toast>;
     private fileIssueButtonRef: IButton | null;
     private kebabButtonRef: IButton | null;
-    constructor(props: CardFooterFarButtonsProps) {
+    constructor(props: CardFooterInstanceActionButtonsProps) {
         super(props);
         this.toastRef = React.createRef();
         this.state = {

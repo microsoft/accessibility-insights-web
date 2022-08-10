@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { ActionButton, IButton } from '@fluentui/react';
 import {
-    CardFooterFarButtons,
-    CardFooterFarButtonsDeps,
-    CardFooterFarButtonsProps,
-} from 'common/components/cards/card-footer-far-buttons';
+    CardFooterInstanceActionButtons,
+    CardFooterInstanceActionButtonsDeps,
+    CardFooterInstanceActionButtonsProps,
+} from 'common/components/cards/card-footer-instance-action-buttons';
 import {
     CardFooterMenuItem,
     CardFooterMenuItemsBuilder,
@@ -27,9 +27,9 @@ import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-describe(CardFooterFarButtons, () => {
-    let defaultProps: CardFooterFarButtonsProps;
-    let defaultDeps: CardFooterFarButtonsDeps;
+describe(CardFooterInstanceActionButtons, () => {
+    let defaultProps: CardFooterInstanceActionButtonsProps;
+    let defaultDeps: CardFooterInstanceActionButtonsDeps;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let testIssueFilingServiceStub: IssueFilingService;
@@ -113,13 +113,13 @@ describe(CardFooterFarButtons, () => {
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             cardInteractionSupport: allCardInteractionsSupported,
             cardFooterMenuItemsBuilder: menuItemsBuilderMock.object,
-        } as CardFooterFarButtonsDeps;
+        } as CardFooterInstanceActionButtonsDeps;
 
         defaultProps = {
             deps: defaultDeps,
             userConfigurationStoreData,
             issueDetailsData,
-        } as CardFooterFarButtonsProps;
+        } as CardFooterInstanceActionButtonsProps;
     });
 
     afterEach(() => {
@@ -129,7 +129,7 @@ describe(CardFooterFarButtons, () => {
     it('renders as null with no menu items', () => {
         setupGetMenuItems([], defaultProps);
 
-        const rendered = shallow(<CardFooterFarButtons {...defaultProps} />);
+        const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
 
         expect(rendered.getElement()).toBeNull();
     });
@@ -142,13 +142,13 @@ describe(CardFooterFarButtons, () => {
         it('renders per snapshot with allCardInteractionsSupported', () => {
             setupGetMenuItems(menuItems, defaultProps);
 
-            const rendered = shallow(<CardFooterFarButtons {...defaultProps} />);
+            const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
 
             verifySnapshots(rendered);
         });
 
         it('renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported', () => {
-            const newProps: CardFooterFarButtonsProps = {
+            const newProps: CardFooterInstanceActionButtonsProps = {
                 ...defaultProps,
                 deps: {
                     ...defaultDeps,
@@ -158,7 +158,7 @@ describe(CardFooterFarButtons, () => {
 
             setupGetMenuItems(menuItems, newProps);
 
-            const rendered = shallow(<CardFooterFarButtons {...newProps} />);
+            const rendered = shallow(<CardFooterInstanceActionButtons {...newProps} />);
 
             verifySnapshots(rendered);
         });
@@ -184,7 +184,7 @@ describe(CardFooterFarButtons, () => {
             };
             setupGetMenuItems(menuItems, newProps);
 
-            const rendered = shallow(<CardFooterFarButtons {...newProps} />);
+            const rendered = shallow(<CardFooterInstanceActionButtons {...newProps} />);
 
             expect(rendered.debug()).toMatchSnapshot('component snapshot');
             expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(
@@ -201,7 +201,7 @@ describe(CardFooterFarButtons, () => {
         setupGetMenuItems(menuItems, defaultProps);
 
         const rendered = shallow(
-            <CardFooterFarButtons
+            <CardFooterInstanceActionButtons
                 {...defaultProps}
                 deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
             />,
@@ -238,7 +238,7 @@ describe(CardFooterFarButtons, () => {
             });
 
         const rendered = shallow(
-            <CardFooterFarButtons
+            <CardFooterInstanceActionButtons
                 {...defaultProps}
                 deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
             />,
@@ -256,7 +256,7 @@ describe(CardFooterFarButtons, () => {
 
     function setupGetMenuItems(
         menuItems: CardFooterMenuItem[],
-        expectedProps: CardFooterFarButtonsProps,
+        expectedProps: CardFooterInstanceActionButtonsProps,
     ): void {
         menuItemsBuilderMock
             .setup(m =>
