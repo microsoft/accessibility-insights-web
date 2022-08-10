@@ -22,36 +22,40 @@ export class UserConfigurationActionCreator {
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
-    public getUserConfigurationState = (): void => this.userConfigActions.getCurrentState.invoke();
+    public getUserConfigurationState = async (): Promise<void> =>
+        await this.userConfigActions.getCurrentState.invoke();
 
-    public setTelemetryState = (enableTelemetry: boolean): void =>
-        this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
+    public setTelemetryState = async (enableTelemetry: boolean): Promise<void> =>
+        await this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
 
-    public setHighContrastMode = (payload: SetHighContrastModePayload): void =>
-        this.userConfigActions.setHighContrastMode.invoke(payload);
+    public setHighContrastMode = async (payload: SetHighContrastModePayload): Promise<void> =>
+        await this.userConfigActions.setHighContrastMode.invoke(payload);
 
-    public setNativeHighContrastMode = (payload: SetNativeHighContrastModePayload): void =>
-        this.userConfigActions.setNativeHighContrastMode.invoke(payload);
+    public setNativeHighContrastMode = async (
+        payload: SetNativeHighContrastModePayload,
+    ): Promise<void> => await this.userConfigActions.setNativeHighContrastMode.invoke(payload);
 
-    public setIssueFilingService = (payload: SetIssueFilingServicePayload): void =>
-        this.userConfigActions.setIssueFilingService.invoke(payload);
+    public setIssueFilingService = async (payload: SetIssueFilingServicePayload): Promise<void> =>
+        await this.userConfigActions.setIssueFilingService.invoke(payload);
 
-    public setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void =>
-        this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
+    public setIssueFilingServiceProperty = async (
+        payload: SetIssueFilingServicePropertyPayload,
+    ): Promise<void> => await this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
 
-    public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload): void =>
-        this.userConfigActions.saveIssueFilingSettings.invoke(payload);
+    public saveIssueFilingSettings = async (
+        payload: SaveIssueFilingSettingsPayload,
+    ): Promise<void> => await this.userConfigActions.saveIssueFilingSettings.invoke(payload);
 
-    public setAdbLocation = (adbLocation: string): void =>
-        this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
+    public setAdbLocation = async (adbLocation: string): Promise<void> =>
+        await this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
 
-    public saveWindowBounds = (payload: SaveWindowBoundsPayload): void =>
-        this.userConfigActions.saveWindowBounds.invoke(payload);
+    public saveWindowBounds = async (payload: SaveWindowBoundsPayload): Promise<void> =>
+        await this.userConfigActions.saveWindowBounds.invoke(payload);
 
-    public setAutoDetectedFailuresDialogState = (
+    public setAutoDetectedFailuresDialogState = async (
         payload: AutoDetectedFailuresDialogStatePayload,
-    ): void => {
-        this.userConfigActions.setAutoDetectedFailuresDialogState.invoke(payload);
+    ): Promise<void> => {
+        await this.userConfigActions.setAutoDetectedFailuresDialogState.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.SET_AUTO_DETECTED_FAILURES_DIALOG_STATE,
             payload,
