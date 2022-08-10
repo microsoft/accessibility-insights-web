@@ -257,10 +257,7 @@ export class ActionCreator {
     };
 
     private onTabbedElementAdded = async (payload: AddTabbedElementPayload): Promise<void> => {
-        await this.visualizationScanResultActions.addTabbedElement.invoke(
-            payload,
-            this.executingScope,
-        );
+        this.visualizationScanResultActions.addTabbedElement.invoke(payload, this.executingScope);
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
@@ -271,10 +268,7 @@ export class ActionCreator {
     };
 
     private onRecordingTerminated = async (payload: BaseActionPayload): Promise<void> => {
-        await this.visualizationScanResultActions.disableTabStop.invoke(
-            payload,
-            this.executingScope,
-        );
+        this.visualizationScanResultActions.disableTabStop.invoke(payload, this.executingScope);
     };
 
     private onUpdateFocusedInstance = async (payload: string[]): Promise<void> => {
@@ -287,10 +281,7 @@ export class ActionCreator {
     ): Promise<void> => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        await this.visualizationScanResultActions.scanCompleted.invoke(
-            payload,
-            this.executingScope,
-        );
+        this.visualizationScanResultActions.scanCompleted.invoke(payload, this.executingScope);
         await this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
             payload.selectorMap,
@@ -303,7 +294,7 @@ export class ActionCreator {
 
     private onScrollRequested = async (): Promise<void> => {
         await this.visualizationActions.scrollRequested.invoke(null, this.executingScope);
-        await this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
+        this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
         await this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
             null,
             this.executingScope,
@@ -409,7 +400,7 @@ export class ActionCreator {
     };
 
     private getScanResultsCurrentState = async (): Promise<void> => {
-        await this.visualizationScanResultActions.getCurrentState.invoke(null, this.executingScope);
+        this.visualizationScanResultActions.getCurrentState.invoke(null, this.executingScope);
     };
 
     private onSetHoveredOverSelector = async (payload: string[]): Promise<void> => {

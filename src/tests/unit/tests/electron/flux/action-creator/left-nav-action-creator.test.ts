@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
-import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
@@ -33,7 +32,7 @@ describe('LeftNavActionCreator', () => {
             .returns(() => itemSelectedMock.object)
             .verifiable();
 
-        const navigateToNewCardsViewMock = Mock.ofType<AsyncAction<void>>();
+        const navigateToNewCardsViewMock = Mock.ofType<SyncAction<void>>();
         cardSelectionActionsMock
             .setup(actions => actions.navigateToNewCardsView)
             .returns(() => navigateToNewCardsViewMock.object)
