@@ -164,7 +164,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
+    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state = this.getDefaultState();
         this.state.rules = {};
 

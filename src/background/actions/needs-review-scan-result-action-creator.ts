@@ -28,13 +28,13 @@ export class NeedsReviewScanResultActionCreator {
         );
     }
 
-    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
-        await this.needsReviewScanResultActions.scanCompleted.invoke(payload);
+    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+        this.needsReviewScanResultActions.scanCompleted.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(SCAN_INCOMPLETE_WARNINGS, payload);
         this.notificationCreator.createNotification(payload.notificationText);
     };
 
-    private onGetScanCurrentState = async (): Promise<void> => {
-        await this.needsReviewScanResultActions.getCurrentState.invoke(null);
+    private onGetScanCurrentState = (): void => {
+        this.needsReviewScanResultActions.getCurrentState.invoke(null);
     };
 }
