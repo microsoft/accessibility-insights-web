@@ -42,7 +42,7 @@ export class ScanController {
         this.scanActions.scanStarted.addListener(this.onScanStarted);
     }
 
-    private onScanStarted = async () => {
+    private onScanStarted = () => {
         this.telemetryEventHandler.publishTelemetry(SCAN_STARTED, {
             telemetry: {
                 source: TelemetryEventSource.ElectronDeviceConnect,
@@ -51,17 +51,12 @@ export class ScanController {
 
         const scanStartedTime = this.getCurrentDate().getTime();
 
-        let data: AndroidScanResults;
-        try {
-            data = await this.fetchScanResults();
-        } catch (e) {
-            this.scanFailed(scanStartedTime, e);
-            return;
-        }
-        await this.scanCompleted(scanStartedTime, data);
+        this.fetchScanResults()
+            .then(this.scanCompleted.bind(this, scanStartedTime))
+            .catch(this.scanFailed.bind(this, scanStartedTime));
     };
 
-    private async scanCompleted(scanStartedTime: number, data: AndroidScanResults): Promise<void> {
+    private scanCompleted(scanStartedTime: number, data: AndroidScanResults): void {
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;
@@ -79,7 +74,7 @@ export class ScanController {
 
         const payload = this.unifiedResultsBuilder(data);
 
-        await this.unifiedScanResultAction.scanCompleted.invoke(payload, this.executingScope);
+        this.unifiedScanResultAction.scanCompleted.invoke(payload, this.executingScope);
         this.scanActions.scanCompleted.invoke(undefined, this.executingScope);
         this.deviceConnectionActions.statusConnected.invoke(undefined, this.executingScope);
     }

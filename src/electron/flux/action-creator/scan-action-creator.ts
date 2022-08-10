@@ -11,8 +11,8 @@ export class ScanActionCreator {
         private readonly deviceConnectionActions: DeviceConnectionActions,
     ) {}
 
-    public async scan(): Promise<void> {
+    public scan(): void {
         this.deviceConnectionActions.statusUnknown.invoke(undefined, this.executingScope);
-        await this.scanActions.scanStarted.invoke(undefined, this.executingScope);
+        this.scanActions.scanStarted.invoke(undefined, this.executingScope);
     }
 }

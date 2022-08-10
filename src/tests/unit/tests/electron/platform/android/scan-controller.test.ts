@@ -4,7 +4,6 @@ import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads'
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
@@ -21,6 +20,7 @@ import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { androidScanResultExample } from 'tests/common/android-scan-result-example';
+import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {
@@ -37,7 +37,7 @@ describe('ScanController', () => {
     let loggerMock: IMock<Logger>;
 
     let scanActionsMock: IMock<ScanActions>;
-    let scanStartedMock: IMock<AsyncAction<void>>;
+    let scanStartedMock: IMock<SyncAction<void>>;
     let scanCompletedMock: IMock<SyncAction<void>>;
     let scanFailedMock: IMock<SyncAction<void>>;
 
@@ -55,7 +55,7 @@ describe('ScanController', () => {
         deviceCommunicatorMock = Mock.ofType<DeviceCommunicator>();
         scanActionsMock = Mock.ofType<ScanActions>();
 
-        scanStartedMock = Mock.ofType<AsyncAction<void>>();
+        scanStartedMock = Mock.ofType<SyncAction<void>>();
         scanCompletedMock = Mock.ofType<SyncAction<void>>();
         scanFailedMock = Mock.ofType<SyncAction<void>>();
 
@@ -175,12 +175,12 @@ describe('ScanController', () => {
             .setup(builder => builder(scanResults))
             .returns(() => unifiedPayload);
 
-        let scanStartedListener: () => Promise<void>;
+        let scanStartedListener: () => void;
         scanStartedMock
             .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
             .callback(listener => (scanStartedListener = listener));
 
-        const unifiedScanCompletedMock = Mock.ofType<AsyncAction<UnifiedScanCompletedPayload>>();
+        const unifiedScanCompletedMock = Mock.ofType<SyncAction<UnifiedScanCompletedPayload>>();
         unifiedScanCompletedMock
             .setup(action => action.invoke(unifiedPayload, actionExecutingScope))
             .verifiable(Times.once());
@@ -192,7 +192,8 @@ describe('ScanController', () => {
         testSubject.initialize();
 
         expect(scanStartedListener).toBeDefined();
-        await scanStartedListener();
+        scanStartedListener();
+        await flushSettledPromises();
 
         scanCompletedMock.verify(
             scanCompleted => scanCompleted.invoke(undefined, actionExecutingScope),
@@ -231,7 +232,7 @@ describe('ScanController', () => {
             )
             .verifiable(Times.once(), ExpectedCallType.InSequence);
 
-        let scanStartedListener: () => Promise<void>;
+        let scanStartedListener: () => void;
         scanStartedMock
             .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
             .callback(listener => (scanStartedListener = listener));
@@ -239,7 +240,8 @@ describe('ScanController', () => {
         testSubject.initialize();
 
         expect(scanStartedListener).toBeDefined();
-        await scanStartedListener();
+        scanStartedListener();
+        await flushSettledPromises();
 
         scanFailedMock.verify(
             scanCompleted => scanCompleted.invoke(undefined, actionExecutingScope),

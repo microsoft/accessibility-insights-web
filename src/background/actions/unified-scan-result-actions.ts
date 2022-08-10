@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AsyncAction } from 'common/flux/async-action';
+import { SyncAction } from 'common/flux/sync-action';
 import { UnifiedScanCompletedPayload } from './action-payloads';
 
 export class UnifiedScanResultActions {
-    public readonly scanCompleted = new AsyncAction<UnifiedScanCompletedPayload>();
-    public readonly getCurrentState = new AsyncAction();
+    public readonly scanCompleted = new SyncAction<UnifiedScanCompletedPayload>();
+    public readonly getCurrentState = new SyncAction();
 }

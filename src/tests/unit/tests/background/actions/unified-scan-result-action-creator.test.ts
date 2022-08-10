@@ -15,7 +15,7 @@ import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
+import { createSyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('UnifiedScanResultActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -43,7 +43,7 @@ describe('UnifiedScanResultActionCreator', () => {
             telemetry,
         };
 
-        const scanCompletedMock = createAsyncActionMock(payload);
+        const scanCompletedMock = createSyncActionMock(payload);
         const actionsMock = createActionsMock('scanCompleted', scanCompletedMock.object);
 
         const testSubject = new UnifiedScanResultActionCreator(
@@ -71,7 +71,7 @@ describe('UnifiedScanResultActionCreator', () => {
     it('should handle GetState message', async () => {
         const payload = null;
 
-        const getCurrentStateMock = createAsyncActionMock<null>(payload);
+        const getCurrentStateMock = createSyncActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
         const testSubject = new UnifiedScanResultActionCreator(
