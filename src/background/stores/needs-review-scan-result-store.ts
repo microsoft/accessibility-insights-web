@@ -10,10 +10,7 @@ import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-re
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 
-export class NeedsReviewScanResultStore extends PersistentStore<
-    NeedsReviewScanResultStoreData,
-    Promise<void>
-> {
+export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanResultStoreData> {
     constructor(
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
         private readonly tabActions: TabActions,

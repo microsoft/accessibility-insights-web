@@ -11,14 +11,14 @@ export class AndroidSetupStartListener {
         private readonly androidSetupActionCreator: AndroidSetupActionCreator,
     ) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
         this.userConfigStore.addChangedListener(this.storeChanged);
         this.androidSetupStore.addChangedListener(this.storeChanged);
 
-        this.storeChanged();
+        await this.storeChanged();
     }
 
-    private storeChanged = () => {
+    private storeChanged = async () => {
         const stepId = this.androidSetupStore.getState().currentStepId;
         const telemetryDecisionMade = !this.userConfigStore.getState().isFirstTime;
 

@@ -10,10 +10,7 @@ import { UnifiedScanResultStoreData } from '../../common/types/store-data/unifie
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 
-export class UnifiedScanResultStore extends PersistentStore<
-    UnifiedScanResultStoreData,
-    Promise<void>
-> {
+export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultStoreData> {
     constructor(
         private readonly unifiedScanResultActions: UnifiedScanResultActions,
         private readonly tabActions: TabActions,

@@ -47,7 +47,7 @@ import {
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
 
-export class AssessmentStore extends PersistentStore<AssessmentStoreData, Promise<void>> {
+export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
     constructor(
         private readonly browserAdapter: BrowserAdapter,
         private readonly assessmentActions: AssessmentActions,

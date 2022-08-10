@@ -156,7 +156,7 @@ async function initialize(): Promise<void> {
         globalContext.stores.userConfigurationStore,
         telemetryEventHandler,
     );
-    telemetryStateListener.initialize();
+    await telemetryStateListener.initialize();
 
     const tabContextManager = new TabContextManager();
 

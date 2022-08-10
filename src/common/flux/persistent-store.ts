@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
-import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 
-export abstract class PersistentStore<
-    TState,
-    TReturn extends HandlerReturnType = void,
-> extends BaseStoreImpl<TState, TReturn> {
+export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Promise<void>> {
     constructor(
         storeName: StoreNames,
         protected readonly persistedState: TState,
@@ -51,13 +47,13 @@ export abstract class PersistentStore<
         }
     }
 
-    protected emitChanged(): TReturn {
+    protected async emitChanged(): Promise<void> {
         const storeData = this.getState();
 
         if (this.idbInstance && this.logger && this.persistStoreData) {
-            this.persistData(storeData).catch(this.logger.error);
+            await this.persistData(storeData);
         }
 
-        return super.emitChanged();
+        await super.emitChanged();
     }
 }

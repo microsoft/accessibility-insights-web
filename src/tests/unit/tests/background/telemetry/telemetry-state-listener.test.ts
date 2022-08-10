@@ -38,21 +38,21 @@ describe('TelemetryStateListenerTest', () => {
         expect(changeListeners.length).toBe(0);
     });
 
-    it('addChangedListener & update telemetry state on initialize', () => {
+    it('addChangedListener & update telemetry state on initialize', async () => {
         userConfigState = {} as any;
 
         setupDisableTelemetry();
 
-        testSubject.initialize();
+        await testSubject.initialize();
 
         expect(changeListeners.length).toBe(1);
         telemetryEventHandlerStrictMock.verifyAll();
     });
 
     describe('verify state change listener', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             setupDisableTelemetry();
-            testSubject.initialize();
+            await testSubject.initialize();
             telemetryEventHandlerStrictMock.reset();
         });
 
@@ -89,7 +89,7 @@ describe('TelemetryStateListenerTest', () => {
         });
     });
 
-    function setupChangeListener(store: IMock<BaseStoreImpl<any>>): void {
+    function setupChangeListener(store: IMock<BaseStoreImpl<any, Promise<void>>>): void {
         store
             .setup(f => f.addChangedListener(It.isAny()))
             .callback(cb => {

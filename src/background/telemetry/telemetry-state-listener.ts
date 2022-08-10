@@ -9,12 +9,12 @@ export class TelemetryStateListener {
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
         this.userConfigStore.addChangedListener(this.onStateChanged);
-        this.onStateChanged();
+        await this.onStateChanged();
     }
 
-    private onStateChanged = (): void => {
+    private onStateChanged = async (): Promise<void> => {
         if (this.userConfigStore.getState().enableTelemetry) {
             this.telemetryEventHandler.enableTelemetry();
         } else {

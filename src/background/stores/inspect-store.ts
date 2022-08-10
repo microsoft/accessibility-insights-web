@@ -10,7 +10,7 @@ import { StoreNames } from '../../common/stores/store-names';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
 import { TabActions } from '../actions/tab-actions';
 
-export class InspectStore extends PersistentStore<InspectStoreData, Promise<void>> {
+export class InspectStore extends PersistentStore<InspectStoreData> {
     private inspectActions: InspectActions;
     private tabActions: TabActions;
 

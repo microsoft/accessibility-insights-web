@@ -15,8 +15,8 @@ describe('AndroidSetupStartListener', () => {
         ${'detect-adb'}    | ${false}  | ${false}
     `(
         'sends ready-to-start? ($shouldSend) when in $step and isFirstTime $firstTime',
-        ({ step, firstTime, shouldSend }) => {
-            testWhetherReadyToStartFired(
+        async ({ step, firstTime, shouldSend }) => {
+            await testWhetherReadyToStartFired(
                 {
                     stepId: step,
                     isFirstTimeTelemetry: firstTime,
@@ -28,8 +28,8 @@ describe('AndroidSetupStartListener', () => {
         },
     );
 
-    it('sends ready-to-start when initial state is not ready but changed state is', () => {
-        testWhetherReadyToStartFired(
+    it('sends ready-to-start when initial state is not ready but changed state is', async () => {
+        await testWhetherReadyToStartFired(
             {
                 stepId: 'wait-to-start',
                 isFirstTimeTelemetry: true,
@@ -43,8 +43,8 @@ describe('AndroidSetupStartListener', () => {
         );
     });
 
-    it('does not send ready-to-start twice (because listeners are removed)', () => {
-        testWhetherReadyToStartFired(
+    it('does not send ready-to-start twice (because listeners are removed)', async () => {
+        await testWhetherReadyToStartFired(
             {
                 stepId: 'wait-to-start',
                 isFirstTimeTelemetry: true,
@@ -58,12 +58,12 @@ describe('AndroidSetupStartListener', () => {
         );
     });
 
-    function testWhetherReadyToStartFired(
+    async function testWhetherReadyToStartFired(
         initialState: ReadyToStartState,
         changedState: ReadyToStartState,
         expectReadyToStartInitially: boolean,
         expectReadyToStartAfterwards: boolean,
-    ): void {
+    ): Promise<void> {
         const androidSetupStoreMock = Mock.ofType(AndroidSetupStore, MockBehavior.Strict);
         const userConfigStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
         const androidSetupActionCreatorMock = Mock.ofType(
@@ -97,7 +97,7 @@ describe('AndroidSetupStartListener', () => {
             );
         }
 
-        testListener.initialize();
+        await testListener.initialize();
 
         if (changedState !== null) {
             setupStoreStates(androidSetupStoreMock, userConfigStoreMock, changedState);
