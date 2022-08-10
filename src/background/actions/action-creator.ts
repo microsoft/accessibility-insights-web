@@ -295,7 +295,7 @@ export class ActionCreator {
     private onScrollRequested = async (): Promise<void> => {
         await this.visualizationActions.scrollRequested.invoke(null, this.executingScope);
         this.cardSelectionActions.resetFocusedIdentifier.invoke(null, this.executingScope);
-        await this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
+        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(
             null,
             this.executingScope,
         );
