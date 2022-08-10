@@ -99,7 +99,7 @@
     },
     "devDependencies": {
         "7zip-bin": "^5.2.0",
-        "@electron/get": "^1.14.1",
+        "@electron/get": "^2.0.0",
         "@esbuild-plugins/node-resolve": "^0.1.4",
         "@swc/core": "^1.2.224",
         "@swc/jest": "^0.2.22",
