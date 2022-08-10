@@ -81,9 +81,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         });
     };
 
-    private toggleRuleExpandCollapse = async (
-        payload: RuleExpandCollapsePayload,
-    ): Promise<void> => {
+    private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
         if (!payload || !this.state.rules?.[payload.ruleId]) {
             return;
         }
@@ -99,7 +97,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private toggleCardSelection = async (payload: CardSelectionPayload): Promise<void> => {
+    private toggleCardSelection = (payload: CardSelectionPayload): void => {
         if (
             !payload ||
             !this.state.rules?.[payload.ruleId] ||
@@ -121,7 +119,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private collapseAllRules = async (): Promise<void> => {
+    private collapseAllRules = (): void => {
         if (!this.state.rules) {
             return;
         }
@@ -134,7 +132,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private expandAllRules = async (): Promise<void> => {
+    private expandAllRules = (): void => {
         if (!this.state.rules) {
             return;
         }
@@ -146,7 +144,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private toggleVisualHelper = async (): Promise<void> => {
+    private toggleVisualHelper = (): void => {
         this.state.visualHelperEnabled = !this.state.visualHelperEnabled;
 
         if (!this.state.visualHelperEnabled) {
@@ -184,12 +182,12 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         this.emitChanged();
     };
 
-    private onResetFocusedIdentifier = async (): Promise<void> => {
+    private onResetFocusedIdentifier = (): void => {
         this.state.focusedResultUid = null;
         this.emitChanged();
     };
 
-    private onNavigateToNewCardsView = async (): Promise<void> => {
+    private onNavigateToNewCardsView = (): void => {
         this.state.focusedResultUid = null;
 
         if (this.state.rules) {
