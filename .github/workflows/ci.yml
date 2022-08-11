@@ -185,6 +185,12 @@ jobs:
     - run: yarn null:check
       timeout-minutes: 5
 
+    - name: check null autoadd
+      - run: yarn null:autoadd
+        timeout-minutes: 5
+      - run: node verify-clean-strict-null-checks.js
+        timeout-minutes: 1
+
   codeql:
     runs-on: ubuntu-20.04
     steps:
