@@ -103,7 +103,7 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
             mutator(this.state);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onCloseSidePanel = async (sidePanel: SidePanel): Promise<void> => {
@@ -122,13 +122,13 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
             mutator(this.state);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetSelectedDetailsViewRightContentPanel = async (
         view: DetailsViewRightContentPanelType,
     ): Promise<void> => {
         this.state.detailsViewRightContentPanel = view;
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

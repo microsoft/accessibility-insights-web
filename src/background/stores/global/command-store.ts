@@ -65,7 +65,7 @@ export class CommandStore extends PersistentStore<CommandStoreData> {
         }
 
         this.state.commands = payload.commands;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private getModifiedCommands(

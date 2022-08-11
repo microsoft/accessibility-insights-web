@@ -31,7 +31,7 @@ describe('GlobalContextFactoryTest', () => {
 
     let toolData: ToolData;
     let userDataStub: LocalStorageData;
-    let idbInstance: IndexedDBAPI;
+    let mockDBInstance: IMock<IndexedDBAPI>;
     let persistedDataStub: PersistedData;
 
     beforeAll(() => {
@@ -52,7 +52,10 @@ describe('GlobalContextFactoryTest', () => {
         userDataStub = {};
         toolData = {} as ToolData;
         persistedDataStub = {} as PersistedData;
-        idbInstance = {} as IndexedDBAPI;
+        mockDBInstance = Mock.ofType<IndexedDBAPI>();
+        mockDBInstance
+            .setup(mdb => mdb.setItem(It.isAny(), It.isAny()))
+            .returns(_ => Promise.resolve(true));
     });
 
     it('createContext', async () => {
@@ -62,7 +65,7 @@ describe('GlobalContextFactoryTest', () => {
             userDataStub,
             CreateTestAssessmentProvider(),
             telemetryDataFactoryMock.object,
-            idbInstance,
+            mockDBInstance.object,
             persistedDataStub,
             issueFilingServiceProviderMock.object,
             toolData,
