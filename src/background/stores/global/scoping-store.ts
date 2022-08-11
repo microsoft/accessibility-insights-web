@@ -54,7 +54,7 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         this.scopingActions.deleteSelector.addListener(this.onDeleteSelector);
     }
 
-    private onAddSelector = (payload: ScopingPayload): void => {
+    private onAddSelector = async (payload: ScopingPayload): Promise<void> => {
         let shouldUpdate: boolean = true;
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
@@ -68,7 +68,7 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         }
     };
 
-    private onDeleteSelector = (payload: ScopingPayload): void => {
+    private onDeleteSelector = async (payload: ScopingPayload): Promise<void> => {
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
                 this.state.selectors[payload.inputType].splice(key, 1);

@@ -8,7 +8,7 @@ import { IMock, It, Mock } from 'typemoq';
 
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { createSyncActionMock } from './action-creator-test-helpers';
+import { createAsyncActionMock } from './action-creator-test-helpers';
 
 describe('ScopingActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -28,7 +28,7 @@ describe('ScopingActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createSyncActionMock(undefined);
+        const getCurrentStateMock = createAsyncActionMock(undefined);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
@@ -47,7 +47,7 @@ describe('ScopingActionCreator', () => {
 
         setupInterpreterMock(expectedMessage, payload);
 
-        const addSelectorMock = createSyncActionMock(payload);
+        const addSelectorMock = createAsyncActionMock(payload);
 
         setupActionsMock('addSelector', addSelectorMock.object);
 
@@ -66,7 +66,7 @@ describe('ScopingActionCreator', () => {
 
         setupInterpreterMock(expectedMessage, payload);
 
-        const deleteSelectorMock = createSyncActionMock(payload);
+        const deleteSelectorMock = createAsyncActionMock(payload);
 
         setupActionsMock('deleteSelector', deleteSelectorMock.object);
 
