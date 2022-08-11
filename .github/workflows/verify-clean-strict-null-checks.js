@@ -109,8 +109,8 @@ To ensure these files are included:
     1) Pull this branch
     2) Run "yarn null:autoadd"
     3) Commit and push the resulting change to tsconfig.strictNullChecks.json
-    
-Diff of the unexpected change:
+
+Diff of the necessary change:
 
 ${gitDiffResult.toString()}
     `);
