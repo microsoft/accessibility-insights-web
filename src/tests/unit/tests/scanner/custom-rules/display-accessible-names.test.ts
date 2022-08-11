@@ -33,4 +33,39 @@ describe('evaluateAccessibleNames', () => {
         expect(checkResultData).toBe(true);
         dataSetterMock.verifyAll();
     });
+
+    it('should not match because element role is none', () => {
+        document.body.innerHTML = `<h1 role="none">heading</h1>`;
+        const node = document.querySelector(`h1`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
+    });
+
+    it('should not match because hidden element accesible name is empty', () => {
+        document.body.innerHTML = `<button role="button" aria-hidden=true>Click this</button>`;
+        const node = document.querySelector(`button`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
+    });
+
+    it('should not match because element does not have role attribute', () => {
+        document.body.innerHTML = `<div>Some text</div>`;
+        const node = document.querySelector(`div`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
+    });
+
+    it('should not match because element does not have role attribute', () => {
+        document.body.innerHTML = `<span>Some text</span>`;
+        const node = document.querySelector(`span`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
+    });
+
+    it('should not match because element has accessible name and accurate role', () => {
+        document.body.innerHTML = `<div role="button" aria-labelled-by="click">Some text</div>`;
+        const node = document.querySelector(`div`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(true);
+    });
 });
