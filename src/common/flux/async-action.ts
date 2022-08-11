@@ -17,14 +17,15 @@ export class AsyncAction<TPayload> implements Action<TPayload, Promise<void>> {
     ) {}
 
     public async invoke(payload: TPayload, scope?: string): Promise<void> {
-        let promiseResult: Promise<void>;
         this.scopeMutex.tryLockScope(scope);
 
         try {
-            promiseResult = this.mergePromises(this.listeners.map(listener => listener(payload)));
+            const promiseResult = this.mergePromises(
+                this.listeners.map(listener => listener(payload)),
+            );
+            return promiseResult;
         } finally {
             this.scopeMutex.unlockScope(scope);
-            return promiseResult;
         }
     }
 

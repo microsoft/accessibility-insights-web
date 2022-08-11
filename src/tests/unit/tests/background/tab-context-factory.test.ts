@@ -60,7 +60,7 @@ describe('TabContextFactoryTest', () => {
         persistedDataStub = {} as PersistedData;
     });
 
-    it('createInterpreter', () => {
+    it('createInterpreter', async () => {
         const tabId = 5;
         const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
             null,
@@ -144,10 +144,11 @@ describe('TabContextFactoryTest', () => {
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
-        tabContext.interpreter.interpret({
+        const result = tabContext.interpreter.interpret({
             messageType: getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             tabId: null,
         });
+        await result.result;
 
         broadcastMock.verifyAll();
         expect(tabContext).toBeInstanceOf(TabContext);
