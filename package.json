@@ -174,7 +174,7 @@
         "stylelint": "^14.10.0",
         "stylelint-config-prettier-scss": "^0.0.1",
         "stylelint-config-standard-scss": "^5.0.0",
-        "terser-webpack-plugin": "^5.3.3",
+        "terser-webpack-plugin": "^5.3.4",
         "ts-loader": "^9.3.1",
         "typed-scss-modules": "^6.5.0",
         "typemoq": "^2.1.0",
