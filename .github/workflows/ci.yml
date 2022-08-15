@@ -186,7 +186,7 @@ jobs:
       timeout-minutes: 5
 
     - name: verify null:autoadd finds no changes
-      run: yarn null:autoadd && node verify-unchanged-strict-null-checks.js
+      run: yarn null:autoadd && node .github/workflows/verify-unchanged-strict-null-checks.js
       timeout-minutes: 6
 
   codeql:
