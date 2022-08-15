@@ -34,7 +34,7 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
     displayableData: {
-        title: 'Accessible Names',
+        title: 'Accessible names',
         enableMessage: 'Calculating accessible names...',
         toggleLabel: 'Show accessible names',
         linkToDetailsViewText: 'How to test accessible names',
@@ -47,7 +47,7 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap =>
         isEmpty(selectorMap) ? 'No elements with accessible names found' : null,
-    getDrawer: provider => provider.createNullDrawer(),
+    getDrawer: provider => provider.createAccessibleNamesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
 };
