@@ -6,7 +6,7 @@ export const guidance = create(({ Markup, Link }) => (
     <React.Fragment>
         <GuidanceTitle name={'Accessible names'} />
 
-        <h2>Why accessible names matter</h2>
+        <h2>Why Accessible names matter</h2>
 
         <p>
             The Accessible name is a short label that provides information about the purpose of a user interface element. Without it, people

@@ -1,5 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Guidance Content pages adhoc/accessibleNames/guidance matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Accessible names
+      </h1>
+      <h2>
+        Why accessible names matter
+      </h2>
+      <p>
+        The Accessible name is a short label that provides information about the purpose of a user interface element. Without it, people that use Assistive Technologies (AT) would have difficulty understanding the purpose of an element and interacting with it.
+      </p>
+      <p>
+        For more information about Accessible names and their computation, please check out 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria/#terms"
+          target="_blank"
+        >
+          ARIA 1.1 Important Terms Section
+        </a>
+        .
+      </p>
+      <h2>
+        About Accessible names visualization
+      </h2>
+      <p>
+        The visualization in Accessibility Insights for Web enable developers to see accessibility markup that’s normally invisible. The 
+        <strong>
+          Accessible names
+        </strong>
+         visualization highlights elements that have accessible names and, when possible, shows the accessible name. It does not highlight elements with empty, or no accessible names.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              If a widget has visible label, make sure they are programmatically related to it. 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+               
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
+            </h3>
+            <ul>
+              <li>
+                A widget's visible label should be included in its accessible name.
+              </li>
+            </ul>
+            <h3>
+              Use the widget's accessible name and/or accessible description to identify the expected input. 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 3.3.2
+              </a>
+            </h3>
+            <ul>
+              <li>
+                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages adhoc/color/guidance matches the snapshot 1`] = `
 <DocumentFragment>
   <div
