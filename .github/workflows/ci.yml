@@ -185,6 +185,10 @@ jobs:
     - run: yarn null:check
       timeout-minutes: 5
 
+    - name: verify null:autoadd finds no changes
+      run: yarn null:autoadd && node .github/workflows/verify-unchanged-strict-null-checks.js
+      timeout-minutes: 6
+
   codeql:
     runs-on: ubuntu-20.04
     steps:
