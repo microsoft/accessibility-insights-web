@@ -59,7 +59,7 @@ export class PopupActionMessageCreator {
 
     public openDetailsView(
         event: SupportedMouseEvent,
-        viewType: VisualizationType,
+        viewType: VisualizationType | null,
         source: TelemetryEventSource,
         pivotType: DetailsViewPivotType,
     ): void {
