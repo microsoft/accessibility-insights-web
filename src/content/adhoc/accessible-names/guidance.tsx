@@ -13,7 +13,7 @@ export const guidance = create(({ Markup, Link }) => (
             that use Assistive Technologies (AT) would have difficulty understanding the purpose of an element and interacting with it.
         </p>
         <p>
-            For more information about Accessible names and their computation, please check out <Link.accessileNameComputation />.
+            For more information about Accessible names and their computation, please check out <Link.accessibleNameComputation />.
         </p>
 
         <h2>About Accessible names visualization</h2>
@@ -27,16 +27,15 @@ export const guidance = create(({ Markup, Link }) => (
         <Markup.Columns>
             <Markup.Do>
                 <h3>
-                    If a widget has visible label, make sure they are programmatically related to it.{' '}
-                    <Link.WCAG21UnderstandingInfoAndRelationships /> <Link.WCAG21UnderstandingLabelInName />
+                    If a widget has visible label, make sure they are programmatically related to it. <Link.WCAG_1_3_1 />{' '}
+                    <Link.WCAG_2_5_3 />
                 </h3>
 
                 <ul>
                     <li>A widget's visible label should be included in its accessible name.</li>
                 </ul>
                 <h3>
-                    Use the widget's accessible name and/or accessible description to identify the expected input.{' '}
-                    <Link.WCAG21UnderstandingLabelsOrInstructions />
+                    Use the widget's accessible name and/or accessible description to identify the expected input. <Link.WCAG_3_3_2 />
                 </h3>
 
                 <ul>

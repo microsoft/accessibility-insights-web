@@ -78,7 +78,7 @@ export const link = {
         'WAI-ARIA Authoring Practices 1.1: Landmark Regions',
         'https://www.w3.org/TR/wai-aria-practices-1.1/#aria_landmark',
     ),
-    accessileNameComputation: linkTo('ARIA 1.1 Important Terms Section', 'https://www.w3.org/TR/wai-aria/#terms'),
+    accessibleNameComputation: linkTo('ARIA 1.1 Important Terms Section', 'https://www.w3.org/TR/wai-aria/#terms'),
     Keyboard: linkTo('WebAIM: Keyboard Accessibility', 'https://aka.ms/webaim/keyboard-accessibility'),
     InteroperabilityWithAT: linkTo(
         'Section 508 - 502.2.2',
@@ -93,9 +93,6 @@ export const link = {
         'Understanding Success Criterion 1.4.1: Use of Color',
         'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
     ),
-    WCAG21UnderstandingInfoAndRelationships: linkTo('WCAG 1.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships'),
-    WCAG21UnderstandingLabelInName: linkTo('WCAG 2.5.3', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name'),
-    WCAG21UnderstandingLabelsOrInstructions: linkTo('WCAG 3.3.2', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name'),
     WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded: linkTo(
         'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
         'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',

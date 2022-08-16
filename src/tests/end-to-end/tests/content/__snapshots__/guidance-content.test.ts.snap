@@ -15,7 +15,7 @@ exports[`Guidance Content pages adhoc/accessibleNames/guidance matches the snaps
         Accessible names
       </h1>
       <h2>
-        Why accessible names matter
+        Why Accessible names matter
       </h2>
       <p>
         The Accessible name is a short label that provides information about the purpose of a user interface element. Without it, people that use Assistive Technologies (AT) would have difficulty understanding the purpose of an element and interacting with it.
@@ -110,7 +110,7 @@ exports[`Guidance Content pages adhoc/accessibleNames/guidance matches the snaps
               Use the widget's accessible name and/or accessible description to identify the expected input. 
               <a
                 class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
                 target="_blank"
               >
                 WCAG 3.3.2
