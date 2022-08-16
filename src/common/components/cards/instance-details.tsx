@@ -66,7 +66,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
     };
 
-    const hiddenButton = React.useRef(null);
+    const hiddenButton = React.useRef<HTMLButtonElement>(null);
     const cardHighlightingProperties = isHighlightSupported
         ? {
               onClick: (_: React.SyntheticEvent): void => {
@@ -124,7 +124,7 @@ const renderCardRowsForPropertyBag = (
     props: InstanceDetailsProps,
 ) => {
     let propertyIndex = 0;
-    const cardRows = [];
+    const cardRows: JSX.Element[] = [];
     forOwn(propertyBag, (propertyData, propertyName) => {
         const propertyConfig = props.deps.getPropertyConfigById(propertyName);
         if (!isEmpty(propertyConfig)) {
