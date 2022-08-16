@@ -39,10 +39,10 @@ export class InjectorController {
             inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
 
         if (isInjectingRequested && !visualizationStoreState.injectingStarted) {
-            this.interpreter.interpret({
+            await this.interpreter.interpret({
                 messageType: Messages.Visualizations.State.InjectionStarted,
                 tabId: tabId,
-            });
+            }).result;
 
             this.injector
                 .injectScripts(tabId)

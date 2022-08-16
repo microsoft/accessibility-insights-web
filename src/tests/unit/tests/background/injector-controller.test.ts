@@ -179,6 +179,7 @@ class InjectorControllerValidator {
                     }),
                 ),
             )
+            .returns(() => ({ messageHandled: true, result: undefined }))
             .verifiable(Times.exactly(numTimes));
 
         return this;
