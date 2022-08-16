@@ -40,11 +40,17 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
             this.pendingTabbedElements.push(tabEvent);
             this.debouncedProcessTabEvents();
         };
-        await this.tabStopListenerRunner.start();
+
+        // Floating the promises from these two start() commands is a temporary patch
+        // for an issue where tab stops hangs if either call throws a timeout exception.
+        // Adding a try/catch would still cause the extension to hang for the 30-second
+        // frame messaging timeout.
+        // For more info, see https://github.com/microsoft/accessibility-insights-web/issues/5931
+        void this.tabStopListenerRunner.start();
 
         this.tabStopsDoneAnalyzingTracker.reset();
         if (this.tabStopsRequirementResultProcessor) {
-            await this.tabStopsRequirementResultProcessor.start();
+            void this.tabStopsRequirementResultProcessor.start();
         }
 
         return this.emptyResults;
