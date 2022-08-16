@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
+import { PromiseFactory, TimeoutCreator, TimeoutError } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AllFrameRunner } from 'injected/all-frame-runner';
@@ -13,6 +15,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
+import { RecordingLogger } from 'tests/unit/common/recording-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TabStopsAnalyzer', () => {
@@ -27,6 +30,9 @@ describe('TabStopsAnalyzer', () => {
     let debounceFaker: DebounceFaker<() => void>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
+    let timeoutMock: IMock<TimeoutCreator>;
+    let promiseFactoryStub: PromiseFactory;
+    const timeoutMilliseconds = 500;
 
     const tabEventStub1: TabStopEvent = {
         target: ['selector1'],
@@ -67,16 +73,12 @@ describe('TabStopsAnalyzer', () => {
             .setup(idm => idm.detectScanIncompleteWarnings())
             .returns(() => []);
 
-        testSubject = new TabStopsAnalyzer(
-            configStub,
-            tabStopsListenerMock.object,
-            sendMessageMock.object,
-            scanIncompleteWarningDetectorMock.object,
-            failTestOnErrorLogger,
-            tabStopsDoneAnalyzingTrackerMock.object,
-            tabStopsRequirementResultProcessorMock.object,
-            debounceFaker.debounce,
-        );
+        timeoutMock = Mock.ofType<TimeoutCreator>();
+        promiseFactoryStub = {
+            timeout: timeoutMock.object,
+        } as PromiseFactory;
+
+        testSubject = createTabStopsAnalyzerWithLogger(failTestOnErrorLogger);
         visualizationTypeStub = -1 as VisualizationType;
 
         emptyScanCompleteMessage = {
@@ -108,12 +110,10 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             tabStopsDoneAnalyzingTrackerMock.setup(m => m.reset()).verifiable(Times.once());
             setupSendMessageMock(emptyScanCompleteMessage);
+            setupTimeoutWithSuccess();
         });
 
         it('emits an empty ScanCompleted message immediately on startup', async () => {
-            setupTabStopsListenerForStartTabStops();
-            setupSendMessageMock(emptyScanCompleteMessage);
-
             testSubject.analyze();
             await flushSettledPromises();
 
@@ -179,6 +179,7 @@ describe('TabStopsAnalyzer', () => {
                 failTestOnErrorLogger,
                 tabStopsDoneAnalyzingTrackerMock.object,
                 null,
+                promiseFactoryStub,
                 debounceFaker.debounce,
             );
 
@@ -210,7 +211,6 @@ describe('TabStopsAnalyzer', () => {
                 },
             };
 
-            setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
             await flushSettledPromises();
@@ -229,12 +229,11 @@ describe('TabStopsAnalyzer', () => {
         });
 
         it('emits a ScanTerminated message and stops emitting ScanUpdated messages after teardown() is invoked', async () => {
-            setupTabStopsListenerForStartTabStops();
-            setupSendMessageMock(emptyScanCompleteMessage);
             testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsListenerMock.setup(tslm => tslm.stop()).verifiable(Times.once());
+            tabStopsRequirementResultProcessorMock.setup(t => t.stop()).verifiable(Times.once());
 
             setupSendMessageMock({
                 messageType: configStub.analyzerTerminatedMessageType,
@@ -242,7 +241,6 @@ describe('TabStopsAnalyzer', () => {
             });
 
             await testSubject.teardown();
-            await flushSettledPromises();
             verifyAll();
 
             simulateTabEvent(tabEventStub1); // no corresponding setupSendMessageMock
@@ -251,10 +249,102 @@ describe('TabStopsAnalyzer', () => {
         });
     });
 
+    describe('error handling', () => {
+        let recordingLogger: RecordingLogger;
+        const nonTimeoutError = new Error('Not a timeout error');
+        const timeoutError = new TimeoutError('Timeout error');
+
+        beforeEach(() => {
+            recordingLogger = new RecordingLogger();
+            testSubject = createTabStopsAnalyzerWithLogger(recordingLogger);
+        });
+
+        it('throws if TabStopsListener.start() throws non-timeout error', async () => {
+            tabStopsListenerMock
+                .setup(tslm => tslm.start())
+                .returns(async () => {
+                    throw nonTimeoutError;
+                })
+                .verifiable(Times.once());
+            tabStopsRequirementResultProcessorMock.setup(m => m.start()).verifiable(Times.never());
+            tabStopsDoneAnalyzingTrackerMock.setup(t => t.reset()).verifiable(Times.never());
+            setupTimeoutWithSuccess();
+            sendMessageMock.setup(sm => sm(It.isAny())).verifiable(Times.never());
+
+            testSubject.analyze();
+            await flushSettledPromises();
+
+            expect(recordingLogger.errorMessages).toHaveLength(1);
+            expect(recordingLogger.errorMessages[0]).toBe(nonTimeoutError);
+
+            verifyAll();
+        });
+
+        it('throws if tabStopsRequirementResultProcessorMock.start() throws non-timeout error', async () => {
+            setupTabStopsListenerForStartTabStops();
+            tabStopsRequirementResultProcessorMock
+                .setup(m => m.start())
+                .returns(async () => {
+                    throw nonTimeoutError;
+                })
+                .verifiable(Times.once());
+            tabStopsDoneAnalyzingTrackerMock.setup(t => t.reset()).verifiable(Times.once());
+            setupTimeoutWithSuccess();
+            sendMessageMock.setup(sm => sm(It.isAny())).verifiable(Times.never());
+
+            testSubject.analyze();
+            await flushSettledPromises();
+
+            expect(recordingLogger.errorMessages).toHaveLength(1);
+            expect(recordingLogger.errorMessages[0]).toBe(nonTimeoutError);
+
+            verifyAll();
+        });
+
+        it('logs TimeoutErrors and continues execution', async () => {
+            timeoutMock
+                .setup(t => t(It.isAny(), timeoutMilliseconds))
+                .throws(timeoutError)
+                .verifiable(Times.exactly(2));
+
+            setupTabStopsListenerForStartTabStops();
+            tabStopsRequirementResultProcessorMock.setup(m => m.start()).verifiable(Times.once());
+            tabStopsDoneAnalyzingTrackerMock.setup(t => t.reset()).verifiable(Times.once());
+
+            setupSendMessageMock(emptyScanCompleteMessage);
+
+            testSubject.analyze();
+            await flushSettledPromises();
+
+            expect(recordingLogger.errorMessages).toHaveLength(2);
+            expect(recordingLogger.errorMessages).toEqual([
+                'Timeout of 500 ms exceeded while attempting to start tabStopListenerRunner. Tab stops analyzer will attempt to continue.',
+                'Timeout of 500 ms exceeded while attempting to start tabStopsRequirementResultProcessor. Tab stops analyzer will attempt to continue.',
+            ]);
+
+            verifyAll();
+        });
+    });
+
+    function createTabStopsAnalyzerWithLogger(logger: Logger): TabStopsAnalyzer {
+        return new TabStopsAnalyzer(
+            configStub,
+            tabStopsListenerMock.object,
+            sendMessageMock.object,
+            scanIncompleteWarningDetectorMock.object,
+            logger,
+            tabStopsDoneAnalyzingTrackerMock.object,
+            tabStopsRequirementResultProcessorMock.object,
+            promiseFactoryStub,
+            debounceFaker.debounce,
+        );
+    }
+
     function verifyAll(): void {
         tabStopsDoneAnalyzingTrackerMock.verifyAll();
         tabStopsListenerMock.verifyAll();
         sendMessageMock.verifyAll();
+        timeoutMock.verifyAll();
     }
 
     function setupTabStopsListenerForStartTabStops(): void {
@@ -270,5 +360,12 @@ describe('TabStopsAnalyzer', () => {
             .setup(smm => smm(It.isValue(message)))
             .callback(callback)
             .verifiable();
+    }
+
+    function setupTimeoutWithSuccess(): void {
+        timeoutMock
+            .setup(t => t(It.isAny(), timeoutMilliseconds))
+            .returns(async (promise, _) => await promise)
+            .verifiable(Times.atLeastOnce());
     }
 });
