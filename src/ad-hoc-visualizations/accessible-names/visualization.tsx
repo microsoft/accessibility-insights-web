@@ -7,11 +7,13 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
+import { adhoc as content } from 'content/adhoc';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 
+const { guidance } = content.accessibleNames;
 const accessiblenamesTestKey = AdHocTestkeys.AccessibleNames;
 
 const accessibleNamesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
@@ -34,7 +36,7 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
     displayableData: {
-        title: 'Accessible Names',
+        title: 'Accessible names',
         enableMessage: 'Calculating accessible names...',
         toggleLabel: 'Show accessible names',
         linkToDetailsViewText: 'How to test accessible names',
@@ -50,4 +52,5 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createAccessibleNamesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
+    guidance,
 };

@@ -43,7 +43,6 @@ describe('TabContextFactoryTest', () => {
     let mockLogger: IMock<Logger>;
     let mockUsageLogger: IMock<UsageLogger>;
     let mockNotificationCreator: IMock<NotificationCreator>;
-    let mockSetTimeout: IMock<(handler: Function, timeout: number) => number>;
     let mockDBInstance: IMock<IndexedDBAPI>;
     let mockBroadcasterFactory: IMock<BrowserMessageBroadcasterFactory>;
     let persistedDataStub: PersistedData;
@@ -54,7 +53,6 @@ describe('TabContextFactoryTest', () => {
         mockUsageLogger = Mock.ofType<UsageLogger>();
         mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
         mockNotificationCreator = Mock.ofType<NotificationCreator>();
-        mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
         mockBroadcasterFactory = Mock.ofType<BrowserMessageBroadcasterFactory>();
         persistedDataStub = {} as PersistedData;
@@ -121,7 +119,6 @@ describe('TabContextFactoryTest', () => {
             promiseFactoryMock.object,
             mockLogger.object,
             mockUsageLogger.object,
-            mockSetTimeout.object,
             persistedDataStub,
             mockDBInstance.object,
             true,

@@ -224,7 +224,6 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        globalThis.setTimeout.bind(this),
         persistedData,
         indexedDBInstance,
         true,

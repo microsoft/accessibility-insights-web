@@ -17,7 +17,6 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlParser } from 'common/url-parser';
-import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { DateProvider } from '../common/date-provider';
@@ -76,8 +75,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         deprecatedStorageDataKeys,
     );
-
-    const windowUtils = new WindowUtils();
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
@@ -239,7 +236,6 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
         persistData,
