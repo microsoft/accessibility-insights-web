@@ -11,7 +11,6 @@ import { Messages } from 'common/messages';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
-import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -23,7 +22,7 @@ describe('InjectorControllerTest', () => {
         validator = new InjectorControllerValidator();
     });
 
-    test('initialize: inject occurs', async () => {
+    test('initialize: injectingRequested is true = inject occurs', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
             .with('injectingRequested', true)
             .build();
@@ -32,20 +31,12 @@ describe('InjectorControllerTest', () => {
             .setupTabStore({ id: tabId })
             .setupVizStoreGetState(visualizationData)
             .setupInspectStore({ inspectMode: InspectMode.off })
-            .setupInjectScriptsCall(tabId, 2)
-            .setupTimeoutHandler(2);
+            .setupInjectScriptsCall(tabId, 1);
 
         validator.buildInjectorController().initialize();
-        validator.verifyAll();
-
-        validator.resetVerify();
-        validator.setupVerifyInjectionStartedActionCalled(tabId, 2);
-        validator.invokeWindowTimeoutHandler();
-        validator.invokeWindowTimeoutHandler();
-        validator.verifyAll();
-
-        validator.resetVerify();
-        validator.setupVerifyInjectionCompletedActionCalled(tabId, 2);
+        validator.setupVerifyInjectionStartedActionCalled(tabId);
+        await validator.visualizationInjectCallback();
+        validator.setupVerifyInjectionCompletedActionCalled(tabId);
         await validator.invokeInjectedPromise();
         validator.verifyAll();
     });
@@ -57,49 +48,45 @@ describe('InjectorControllerTest', () => {
             .setupTabStore({ id: tabId })
             .setupVizStoreGetState(visualizationData)
             .setupInspectStore({ inspectMode: InspectMode.scopingAddInclude })
-            .setupInjectScriptsCall(tabId, 1)
-            .setupTimeoutHandler(1);
+            .setupInjectScriptsCall(tabId, 1);
 
         validator.buildInjectorController().initialize();
-        validator.verifyAll();
-
-        validator.resetVerify();
         validator.setupVerifyInjectionStartedActionCalled(tabId);
-        validator.invokeWindowTimeoutHandler();
-        validator.verifyAll();
-
-        validator.resetVerify();
+        await validator.inspectInjectCallback();
         validator.setupVerifyInjectionCompletedActionCalled(tabId);
         await validator.invokeInjectedPromise();
         validator.verifyAll();
     });
 
-    test("inject doesn't occur when inspect mode changed to off", async () => {
+    test("inject doesn't occur when inspect mode is unchanged", async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
             .with('injectingRequested', false)
             .build();
 
+        // Inject once to setup internal state.
         validator
             .setupTabStore({ id: tabId })
             .setupVizStoreGetState(visualizationData)
-            .setupInspectStore({ inspectMode: InspectMode.scopingAddInclude })
+            .setupInspectStore({ inspectMode: InspectMode.scopingAddExclude })
             .setupVerifyInjectionCompletedActionCalled(tabId)
             .setupInjectScriptsCall(tabId, 1)
-            .setupTimeoutHandler(2);
-
+            .setupVerifyInjectionStartedActionCalled(tabId);
         validator.buildInjectorController().initialize();
-        validator.resetVerify();
-        validator.setupVerifyInjectionStartedActionCalled(tabId);
-        validator.invokeWindowTimeoutHandler();
-        validator.verifyAll();
-
-        validator.resetVerify();
-        validator.setupVerifyInjectionCompletedActionCalled(tabId);
+        await validator.inspectInjectCallback();
         await validator.invokeInjectedPromise();
+        validator.verifyAll();
+        validator.resetVerify();
+
+        validator
+            .setupTabStore({ id: tabId })
+            .setupVizStoreGetState(visualizationData)
+            .setupInspectStore({ inspectMode: InspectMode.scopingAddExclude })
+            .setupInjectScriptsCall(tabId, 0);
+        await validator.inspectInjectCallback();
         validator.verifyAll();
     });
 
-    test('initialize: already injecting => no inject', () => {
+    test('initialize: already injecting => no inject', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
             .with('injectingRequested', true)
             .with('injectingStarted', true)
@@ -111,14 +98,13 @@ describe('InjectorControllerTest', () => {
             .setupVizStoreGetState(visualizationData);
 
         validator.buildInjectorController().initialize();
-
+        await validator.inspectInjectCallback();
         validator.verifyAll();
     });
 
-    test('initialize: injectingInProgress is false => no inject', () => {
+    test('initialize: injectingRequested is false and inspect mode is off => no inject', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
             .with('injectingRequested', false)
-            .with('injectingStarted', true)
             .build();
 
         validator
@@ -127,6 +113,7 @@ describe('InjectorControllerTest', () => {
             .setupVizStoreGetState(visualizationData);
 
         validator.buildInjectorController().initialize();
+        await validator.inspectInjectCallback();
         validator.verifyAll();
     });
 });
@@ -139,9 +126,8 @@ class InjectorControllerValidator {
     private mockTabStore = Mock.ofType(TabStore, MockBehavior.Strict);
     private injectedScriptsDeferred: Promise<void>;
     private injectedScriptsDeferredResolver: () => void;
-
-    private mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
-    private setTimeoutHandler: Function;
+    public visualizationInjectCallback: () => Promise<void>;
+    public inspectInjectCallback: () => Promise<void>;
 
     public buildInjectorController(): InjectorController {
         this.mockVisualizationStore
@@ -153,7 +139,7 @@ class InjectorControllerValidator {
                 ),
             )
             .callback(inject => {
-                inject();
+                this.visualizationInjectCallback = inject;
             })
             .verifiable();
 
@@ -166,7 +152,7 @@ class InjectorControllerValidator {
                 ),
             )
             .callback(inject => {
-                inject();
+                this.inspectInjectCallback = inject;
             })
             .verifiable();
 
@@ -176,20 +162,8 @@ class InjectorControllerValidator {
             this.mockInterpreter.object,
             this.mockTabStore.object,
             this.mockInspectStore.object,
-            this.mockSetTimeout.object,
             failTestOnErrorLogger,
         );
-    }
-
-    public setupTimeoutHandler(times: number): InjectorControllerValidator {
-        this.mockSetTimeout
-            .setup(x => x(itIsFunction, It.isAnyNumber()))
-            .callback(handler => {
-                this.setTimeoutHandler = handler;
-            })
-            .verifiable(Times.exactly(times));
-
-        return this;
     }
 
     public setupVerifyInjectionStartedActionCalled(
@@ -205,6 +179,7 @@ class InjectorControllerValidator {
                     }),
                 ),
             )
+            .returns(() => ({ messageHandled: true, result: undefined }))
             .verifiable(Times.exactly(numTimes));
 
         return this;
@@ -227,10 +202,6 @@ class InjectorControllerValidator {
             .verifiable(Times.exactly(numTimes));
 
         return this;
-    }
-
-    public invokeWindowTimeoutHandler(): void {
-        this.setTimeoutHandler();
     }
 
     public setupInspectStore(returnState): InjectorControllerValidator {
@@ -292,7 +263,6 @@ class InjectorControllerValidator {
         this.mockTabStore.verifyAll();
         this.mockInjector.verifyAll();
         this.mockInterpreter.verifyAll();
-        this.mockSetTimeout.verifyAll();
     }
 
     public resetVerify(): void {
@@ -301,6 +271,5 @@ class InjectorControllerValidator {
         this.mockTabStore.reset();
         this.mockInjector.reset();
         this.mockInterpreter.reset();
-        this.mockSetTimeout.reset();
     }
 }
