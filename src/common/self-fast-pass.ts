@@ -78,7 +78,7 @@ class SelfFastPassAnalyzer implements Analyzer {
 
 class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
     constructor(private readonly deps: SelfFastPassAnalyzerDeps) {
-        super(null, null, null, null, null, null, null, null, null, null, null, null, null);
+        super(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     public override createRuleAnalyzerUnifiedScanForNeedsReview(
