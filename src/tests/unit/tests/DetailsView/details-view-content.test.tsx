@@ -233,6 +233,7 @@ describe(DetailsViewContent.displayName, () => {
                         isHeaderAndNavCollapsed: false,
                         isCommandBarCollapsed: false,
                         isVirtualKeyboardCollapsed: false,
+                        isCardFooterCollapsed: false,
                     }}
                     isSideNavOpen={false}
                     setSideNavOpen={() => {}}

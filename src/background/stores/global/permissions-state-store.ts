@@ -40,7 +40,9 @@ export class PermissionsStateStore extends PersistentStore<PermissionsStateStore
         this.permissionsStateActions.setPermissionsState.addListener(this.onSetPermissionsState);
     }
 
-    private onSetPermissionsState = (payload: SetAllUrlsPermissionStatePayload): void => {
+    private onSetPermissionsState = async (
+        payload: SetAllUrlsPermissionStatePayload,
+    ): Promise<void> => {
         if (this.state.hasAllUrlAndFilePermissions !== payload.hasAllUrlAndFilePermissions) {
             this.state.hasAllUrlAndFilePermissions = payload.hasAllUrlAndFilePermissions;
             this.emitChanged();

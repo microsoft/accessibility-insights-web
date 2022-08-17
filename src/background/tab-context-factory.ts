@@ -50,7 +50,6 @@ export class TabContextFactory {
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
         private readonly usageLogger: UsageLogger,
-        private readonly setTimeout: (handler: Function, timeout: number) => number,
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
         private readonly persistStoreData: boolean,
@@ -178,7 +177,6 @@ export class TabContextFactory {
             interpreter,
             storeHub.tabStore,
             storeHub.inspectStore,
-            this.setTimeout,
             this.logger,
         );
 
