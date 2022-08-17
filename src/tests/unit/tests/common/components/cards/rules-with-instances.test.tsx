@@ -31,13 +31,13 @@ describe('RulesWithInstances', () => {
             collapsibleControl: (props: CollapsibleComponentCardsProps) => (
                 <CollapsibleControlStub {...props} />
             ),
+            fixInstructionProcessor: fixInstructionProcessorMock.object
         } as RulesWithInstancesDeps;
         const outcomeCounterStub = () => 5;
 
         const wrapped = shallow(
             <RulesWithInstances
                 deps={depsStub}
-                fixInstructionProcessor={fixInstructionProcessorMock.object}
                 outcomeType={'pass'}
                 rules={rules}
                 userConfigurationStoreData={null}
