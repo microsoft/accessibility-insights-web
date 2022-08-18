@@ -6,6 +6,7 @@ import { CardSelectionActions } from 'background/actions/card-selection-actions'
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { DialogActions } from 'background/actions/dialog-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabActions } from 'background/actions/tab-actions';
@@ -172,6 +173,7 @@ const contentActions = new ContentActions(); // not really used but needed by De
 const featureFlagActions = new FeatureFlagActions();
 const leftNavActions = new LeftNavActions();
 const tabStopsActions = new TabStopsActions();
+const dialogActions = new DialogActions();
 
 const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 ipcRendererShim.initialize();
@@ -282,6 +284,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             contentActions,
             detailsViewActions,
             sidePanelActions,
+            dialogActions,
             null,
             indexedDBInstance,
             logger,

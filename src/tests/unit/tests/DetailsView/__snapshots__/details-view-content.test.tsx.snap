@@ -66,6 +66,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "contentTitle": "",
         "currentPanel": Object {
           "isContentOpen": false,
+          "isIssueFilingSettingsOpen": false,
           "isPreviewFeaturesOpen": false,
           "isScopingOpen": false,
           "isSettingsOpen": false,
@@ -410,6 +411,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "contentTitle": "",
         "currentPanel": Object {
           "isContentOpen": false,
+          "isIssueFilingSettingsOpen": false,
           "isPreviewFeaturesOpen": false,
           "isScopingOpen": false,
           "isSettingsOpen": false,
