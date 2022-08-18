@@ -167,7 +167,7 @@ async function initialize(): Promise<void> {
         globalContext.stores.userConfigurationStore,
         telemetryEventHandler,
     );
-    await telemetryStateListener.initialize();
+    telemetryStateListener.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
 

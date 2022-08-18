@@ -11,21 +11,21 @@ export class AndroidSetupStartListener {
         private readonly androidSetupActionCreator: AndroidSetupActionCreator,
     ) {}
 
-    public async initialize(): Promise<void> {
-        this.userConfigStore.addChangedListener(this.storeChanged);
+    public initialize(): void {
+        this.userConfigStore.addChangedListener(async () => this.storeChanged());
         this.androidSetupStore.addChangedListener(this.storeChanged);
 
-        await this.storeChanged();
+        this.storeChanged();
     }
 
-    private storeChanged = async () => {
+    private storeChanged = () => {
         const stepId = this.androidSetupStore.getState().currentStepId;
         const telemetryDecisionMade = !this.userConfigStore.getState().isFirstTime;
 
         if (telemetryDecisionMade && stepId === 'wait-to-start') {
             this.androidSetupActionCreator.readyToStart();
 
-            this.userConfigStore.removeChangedListener(this.storeChanged);
+            this.userConfigStore.removeChangedListener(async () => this.storeChanged());
             this.androidSetupStore.removeChangedListener(this.storeChanged);
         }
     };

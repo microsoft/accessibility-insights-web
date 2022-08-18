@@ -190,7 +190,7 @@ const logger = createDefaultLogger();
 getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
     ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
 })
-    .then(async (persistedData: Partial<PersistedData>) => {
+    .then((persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
         const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
@@ -347,7 +347,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             userConfigurationStore,
             telemetryEventHandler,
         );
-        await telemetryStateListener.initialize();
+        telemetryStateListener.initialize();
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
@@ -509,7 +509,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             androidSetupStore,
             androidSetupActionCreator,
         );
-        await androidSetupStartListener.initialize();
+        androidSetupStartListener.initialize();
 
         const navigatorUtils = new NavigatorUtils(window.navigator, logger);
 

@@ -38,21 +38,21 @@ describe('TelemetryStateListenerTest', () => {
         expect(changeListeners.length).toBe(0);
     });
 
-    it('addChangedListener & update telemetry state on initialize', async () => {
+    it('addChangedListener & update telemetry state on initialize', () => {
         userConfigState = {} as any;
 
         setupDisableTelemetry();
 
-        await testSubject.initialize();
+        testSubject.initialize();
 
         expect(changeListeners.length).toBe(1);
         telemetryEventHandlerStrictMock.verifyAll();
     });
 
     describe('verify state change listener', () => {
-        beforeEach(async () => {
+        beforeEach(() => {
             setupDisableTelemetry();
-            await testSubject.initialize();
+            testSubject.initialize();
             telemetryEventHandlerStrictMock.reset();
         });
 
