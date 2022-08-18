@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { DialogActions } from 'background/actions/dialog-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
@@ -11,7 +12,17 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null, null, null, null, null, true);
+        const testObject = new DetailsViewStore(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            true,
+        );
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
@@ -129,6 +140,32 @@ describe('DetailsViewStoreTest', () => {
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
+    test('onOpenIssueFilingSettingsDialog', async () => {
+        const initialState = new DetailsViewStoreDataBuilder()
+            .withIssueFilingSettingsDialogOpen(false)
+            .build();
+
+        const expectedState = new DetailsViewStoreDataBuilder()
+            .withIssueFilingSettingsDialogOpen(true)
+            .build();
+
+        const storeTester = createStoreTesterForDialogActions('openIssueFilingSettingsDialog');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onCloseIssueFilingSettingsDialog', async () => {
+        const initialState = new DetailsViewStoreDataBuilder()
+            .withIssueFilingSettingsDialogOpen(true)
+            .build();
+
+        const expectedState = new DetailsViewStoreDataBuilder()
+            .withIssueFilingSettingsDialogOpen(false)
+            .build();
+
+        const storeTester = createStoreTesterForDialogActions('closeIssueFilingSettingsDialog');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function createStoreTesterForContentActions(
         actionName: keyof ContentActions,
     ): StoreTester<DetailsViewStoreData, ContentActions> {
@@ -137,6 +174,7 @@ describe('DetailsViewStoreTest', () => {
                 actions,
                 new DetailsViewActions(),
                 new SidePanelActions(),
+                new DialogActions(),
                 null,
                 null,
                 null,
@@ -155,6 +193,7 @@ describe('DetailsViewStoreTest', () => {
                 new ContentActions(),
                 actions,
                 new SidePanelActions(),
+                new DialogActions(),
                 null,
                 null,
                 null,
@@ -173,6 +212,7 @@ describe('DetailsViewStoreTest', () => {
                 new ContentActions(),
                 new DetailsViewActions(),
                 actions,
+                new DialogActions(),
                 null,
                 null,
                 null,
@@ -181,5 +221,22 @@ describe('DetailsViewStoreTest', () => {
             );
 
         return new StoreTester(SidePanelActions, actionName, factory);
+    }
+
+    function createStoreTesterForDialogActions(actionName: keyof DialogActions) {
+        const factory = (actions: DialogActions) =>
+            new DetailsViewStore(
+                new ContentActions(),
+                new DetailsViewActions(),
+                new SidePanelActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
+
+        return new StoreTester(DialogActions, actionName, factory);
     }
 });

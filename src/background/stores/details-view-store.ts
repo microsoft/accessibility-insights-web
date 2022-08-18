@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DialogActions } from 'background/actions/dialog-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { SidePanel } from 'background/stores/side-panel';
@@ -22,6 +23,7 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         private contentActions: ContentActions,
         private detailsViewActions: DetailsViewActions,
         private sidePanelActions: SidePanelActions,
+        private dialogActions: DialogActions,
         persistedState: DetailsViewStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
@@ -47,6 +49,7 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
                 isScopingOpen: false,
                 isContentOpen: false,
                 isSettingsOpen: false,
+                isIssueFilingSettingsOpen: false,
             },
             detailsViewRightContentPanel: 'Overview',
         };
@@ -75,6 +78,13 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
 
         this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
         this.sidePanelActions.closeSidePanel.addListener(this.onCloseSidePanel);
+
+        this.dialogActions.openIssueFilingSettingsDialog.addListener(() =>
+            this.onOpen('isIssueFilingSettingsOpen'),
+        );
+        this.dialogActions.closeIssueFilingSettingsDialog.addListener(() =>
+            this.onClose('isIssueFilingSettingsOpen'),
+        );
     }
 
     private sidePanelToStateKey: SidePanelToStoreKey = {

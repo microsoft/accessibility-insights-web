@@ -142,6 +142,11 @@ export const Messages = {
         OpenPanel: `${messagePrefix}/contentPanel/openPanel`,
     },
 
+    Dialog: {
+        openIssueFilingSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/open`,
+        closeIssueFilingSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/close`,
+    },
+
     SettingsPanel: {
         ClosePanel: `${messagePrefix}/settingsPanel/closePanel`,
         OpenPanel: `${messagePrefix}/settingsPanel/openPanel`,

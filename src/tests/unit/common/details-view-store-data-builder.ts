@@ -52,4 +52,9 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
         this.data.currentPanel.isSettingsOpen = isSettingsOpen;
         return this;
     }
+
+    public withIssueFilingSettingsDialogOpen(isIssueFilingSettingsOpen: boolean) {
+        this.data.currentPanel.isIssueFilingSettingsOpen = isIssueFilingSettingsOpen;
+        return this;
+    }
 }
