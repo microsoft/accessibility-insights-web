@@ -28,8 +28,6 @@ export type CardFooterMenuItemsProps = {
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
     deps: CardFooterMenuItemsDeps;
-    openNeedsSettingsContent: () => void;
-    closeNeedsSettingsContent: () => void;
 };
 
 export type CardFooterMenuItemsDeps = {
@@ -76,14 +74,13 @@ export class CardFooterMenuItemsBuilder {
     }
 
     private fileIssue = (props: CardFooterMenuItemsProps, event: React.MouseEvent<any>): void => {
+        const { issueDetailsData, userConfigurationStoreData, deps } = props;
         const {
-            issueDetailsData,
-            userConfigurationStoreData,
-            deps,
-            closeNeedsSettingsContent,
-            openNeedsSettingsContent,
-        } = props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator, toolData } = deps;
+            issueFilingServiceProvider,
+            issueFilingActionMessageCreator,
+            toolData,
+            detailsViewActionMessageCreator,
+        } = deps;
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,
@@ -102,9 +99,9 @@ export class CardFooterMenuItemsBuilder {
                 issueDetailsData,
                 toolData,
             );
-            closeNeedsSettingsContent();
+            detailsViewActionMessageCreator.closeIssueFilingSettingsDialog();
         } else {
-            openNeedsSettingsContent();
+            detailsViewActionMessageCreator.openIssueFilingSettingsDialog();
         }
     };
 

@@ -737,4 +737,16 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             this.telemetryFactory.forLeftNavPanelExpanded(event),
         );
     };
+
+    public openIssueFilingSettingsDialog = () => {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Dialog.openIssueFilingSettingsDialog,
+        });
+    };
+
+    public closeIssueFilingSettingsDialog = () => {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Dialog.closeIssueFilingSettingsDialog,
+        });
+    };
 }

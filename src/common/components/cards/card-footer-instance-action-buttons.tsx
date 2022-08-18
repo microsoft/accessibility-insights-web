@@ -8,6 +8,8 @@ import {
     CardFooterMenuItemsDeps,
 } from 'common/components/cards/card-footer-menu-items-builder';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
@@ -35,13 +37,10 @@ export type CardFooterInstanceActionButtonsDeps = {
     cardInteractionSupport: CardInteractionSupport;
     cardFooterMenuItemsBuilder: CardFooterMenuItemsBuilder;
     issueFilingServiceProvider: IssueFilingServiceProvider;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & IssueFilingButtonDeps &
     ToastDeps &
     CardFooterMenuItemsDeps;
-
-export interface CardFooterInstanceActionButtonsState {
-    showNeedsSettingsContent: boolean;
-}
 
 export interface CardFooterInstanceActionButtonsProps {
     deps: CardFooterInstanceActionButtonsDeps;
@@ -49,21 +48,16 @@ export interface CardFooterInstanceActionButtonsProps {
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;
+    detailsViewStoreData: DetailsViewStoreData;
 }
 
-export class CardFooterInstanceActionButtons extends React.Component<
-    CardFooterInstanceActionButtonsProps,
-    CardFooterInstanceActionButtonsState
-> {
+export class CardFooterInstanceActionButtons extends React.Component<CardFooterInstanceActionButtonsProps> {
     private toastRef: React.RefObject<Toast>;
     private fileIssueButtonRef: IButton | null;
     private kebabButtonRef: IButton | null;
     constructor(props: CardFooterInstanceActionButtonsProps) {
         super(props);
         this.toastRef = React.createRef();
-        this.state = {
-            showNeedsSettingsContent: false,
-        };
     }
 
     public render(): JSX.Element | null {
@@ -145,16 +139,19 @@ export class CardFooterInstanceActionButtons extends React.Component<
     private getMenuItems(): CardFooterMenuItem[] {
         return this.props.deps.cardFooterMenuItemsBuilder.getCardFooterMenuItems({
             ...this.props,
-            closeNeedsSettingsContent: this.closeNeedsSettingsContent,
-            openNeedsSettingsContent: this.openNeedsSettingsContent,
             toastRef: this.toastRef,
             fileIssueButtonRef: ref => (this.fileIssueButtonRef = ref),
         });
     }
 
     public renderIssueFilingSettingContent(): JSX.Element | null {
-        const { deps, userConfigurationStoreData, issueDetailsData } = this.props;
-        const { issueFilingServiceProvider, cardInteractionSupport } = deps;
+        const { deps, userConfigurationStoreData, issueDetailsData, detailsViewStoreData } =
+            this.props;
+        const {
+            issueFilingServiceProvider,
+            cardInteractionSupport,
+            detailsViewActionMessageCreator,
+        } = deps;
 
         if (!cardInteractionSupport.supportsIssueFiling) {
             return null;
@@ -169,11 +166,11 @@ export class CardFooterInstanceActionButtons extends React.Component<
             );
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
-            isOpen: this.state.showNeedsSettingsContent,
+            isOpen: detailsViewStoreData.currentPanel.isIssueFilingSettingsOpen,
             selectedIssueFilingService,
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,
-            onClose: this.closeNeedsSettingsContent,
+            onClose: detailsViewActionMessageCreator.closeIssueFilingSettingsDialog,
             issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
             afterClosed: this.focusButtonAfterDialogClosed,
         };
@@ -187,13 +184,5 @@ export class CardFooterInstanceActionButtons extends React.Component<
         } else {
             this.fileIssueButtonRef?.focus();
         }
-    };
-
-    private closeNeedsSettingsContent = (): void => {
-        this.setState({ showNeedsSettingsContent: false });
-    };
-
-    private openNeedsSettingsContent = (): void => {
-        this.setState({ showNeedsSettingsContent: true });
     };
 }

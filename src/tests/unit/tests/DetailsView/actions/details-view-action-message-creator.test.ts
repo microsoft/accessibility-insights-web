@@ -1311,6 +1311,28 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verifyAll();
     });
 
+    test('openIssueFilingSettingsDialog', () => {
+        const expectedMessage = {
+            messageType: Messages.Dialog.openIssueFilingSettingsDialog,
+        };
+        dispatcherMock.setup(d => d.dispatchMessage(expectedMessage)).verifiable();
+
+        testSubject.openIssueFilingSettingsDialog();
+
+        dispatcherMock.verifyAll();
+    });
+
+    test('closeIssueFilingSettingsDialog', () => {
+        const expectedMessage = {
+            messageType: Messages.Dialog.closeIssueFilingSettingsDialog,
+        };
+        dispatcherMock.setup(d => d.dispatchMessage(expectedMessage)).verifiable();
+
+        testSubject.closeIssueFilingSettingsDialog();
+
+        dispatcherMock.verifyAll();
+    });
+
     function setupTelemetryFactory(
         methodName: keyof TelemetryDataFactory,
         telemetry: any,
