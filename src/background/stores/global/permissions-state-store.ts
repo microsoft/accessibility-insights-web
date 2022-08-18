@@ -45,7 +45,7 @@ export class PermissionsStateStore extends PersistentStore<PermissionsStateStore
     ): Promise<void> => {
         if (this.state.hasAllUrlAndFilePermissions !== payload.hasAllUrlAndFilePermissions) {
             this.state.hasAllUrlAndFilePermissions = payload.hasAllUrlAndFilePermissions;
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 }

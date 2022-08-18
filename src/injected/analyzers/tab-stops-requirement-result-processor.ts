@@ -21,7 +21,7 @@ export class TabStopsRequirementResultProcessor {
     public start = async (): Promise<void> => {
         const state = this.visualizationResultsStore.getState();
 
-        if (!this.isStopped || !state.tabStops.needToCollectTabbingResults) {
+        if (!this.isStopped || !state?.tabStops?.needToCollectTabbingResults) {
             return;
         }
 

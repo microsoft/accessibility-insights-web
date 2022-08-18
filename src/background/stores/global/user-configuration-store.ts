@@ -85,19 +85,19 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
 
     private onSetAdbLocation = async (location: string): Promise<void> => {
         this.state.adbLocation = location;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetTelemetryState = async (enableTelemetry: boolean): Promise<void> => {
         this.state.isFirstTime = false;
         this.state.enableTelemetry = enableTelemetry;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetHighContrastMode = async (payload: SetHighContrastModePayload): Promise<void> => {
         this.state.enableHighContrast = payload.enableHighContrast;
         this.state.lastSelectedHighContrast = payload.enableHighContrast;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetNativeHighContrastMode = async (
@@ -106,14 +106,14 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.state.enableHighContrast = payload.enableHighContrast
             ? true
             : this.state.lastSelectedHighContrast;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetIssueFilingService = async (
         payload: SetIssueFilingServicePayload,
     ): Promise<void> => {
         this.state.bugService = payload.issueFilingServiceName;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetIssueFilingServiceProperty = async (
@@ -129,7 +129,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] =
             payload.propertyValue;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSaveIssueSettings = async (
@@ -138,7 +138,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSaveLastWindowBounds = async (payload: SaveWindowBoundsPayload): Promise<void> => {
@@ -149,7 +149,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             this.state.lastWindowBounds = payload.windowBounds;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSetAutoDetectedFailuresDialogState = async (
@@ -157,6 +157,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
     ): Promise<void> => {
         this.state.showAutoDetectedFailuresDialog = payload.enabled;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

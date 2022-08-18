@@ -64,16 +64,17 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         });
         if (shouldUpdate) {
             this.state.selectors[payload.inputType].push(payload.selector);
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
     private onDeleteSelector = async (payload: ScopingPayload): Promise<void> => {
-        _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
+        const promises = Object.keys(this.state.selectors[payload.inputType]).map(async key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
                 this.state.selectors[payload.inputType].splice(key, 1);
-                this.emitChanged();
+                await this.emitChanged();
             }
         });
+        await Promise.all(promises);
     };
 }

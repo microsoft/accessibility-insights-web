@@ -40,7 +40,7 @@ export class CompletedTestStepTelemetryCreator {
         this.store.addChangedListener(this.onAssessmentChange);
     }
 
-    private onAssessmentChange = (): void => {
+    private onAssessmentChange = async (): Promise<void> => {
         this.provider
             .all()
             .some(assessment => this.sendTelemetryIfNewCompletedTestStep(assessment));

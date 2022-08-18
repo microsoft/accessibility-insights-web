@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { BaseStore } from '../../common/base-store';
 import { Store } from '../../common/flux/store';
 import { StoreNames } from '../../common/stores/store-names';
 
-export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<TState> {
+export abstract class BaseStoreImpl<TState, TReturn extends HandlerReturnType = void>
+    extends Store<TReturn>
+    implements BaseStore<TState>
+{
     private storeName: StoreNames;
     protected state: TState;
 
@@ -31,7 +35,7 @@ export abstract class BaseStoreImpl<TState> extends Store implements BaseStore<T
         return this.state;
     }
 
-    protected async onGetCurrentState(): Promise<void> {
-        this.emitChanged();
+    protected onGetCurrentState(): TReturn {
+        return this.emitChanged();
     }
 }

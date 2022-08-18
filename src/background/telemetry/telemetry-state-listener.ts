@@ -10,7 +10,7 @@ export class TelemetryStateListener {
     ) {}
 
     public initialize(): void {
-        this.userConfigStore.addChangedListener(this.onStateChanged);
+        this.userConfigStore.addChangedListener(async () => this.onStateChanged());
         this.onStateChanged();
     }
 

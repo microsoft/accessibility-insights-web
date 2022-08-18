@@ -3,6 +3,7 @@
 
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { IMock, It, Times } from 'typemoq';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
@@ -13,7 +14,7 @@ export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TSt
     constructor(
         actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
-        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData, HandlerReturnType>,
         indexDbMock: any,
     ) {
         super(actions, actionName, storeFactory);

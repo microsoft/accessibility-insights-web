@@ -71,7 +71,9 @@ describe(StoreUpdateMessageHub, () => {
         const expectedMessage = getStoreStateMessage(StoreNames.FeatureFlagStore);
         mockDispatcher.setup(m => m.dispatchType(expectedMessage)).verifiable(Times.once());
 
-        testSubject.registerStoreUpdateListener(StoreNames[StoreNames.FeatureFlagStore], () => {});
+        testSubject.registerStoreUpdateListener(StoreNames[StoreNames.FeatureFlagStore], () =>
+            Promise.resolve(),
+        );
 
         mockDispatcher.verifyAll();
     });

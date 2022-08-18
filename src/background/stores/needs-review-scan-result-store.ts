@@ -60,11 +60,11 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }
