@@ -18,10 +18,10 @@ describe('ShouldShowReportExportButton', () => {
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationConfigurationMock: IMock<VisualizationConfiguration>;
     let tabStoreData: TabStoreData;
-    let userConfigurationData: UserConfigurationStoreData;
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
+    const userConfigurationStoreData = {} as UserConfigurationStoreData;
 
     const selectedTest = -1 as VisualizationType;
 
@@ -32,20 +32,6 @@ describe('ShouldShowReportExportButton', () => {
             .setup(m => m.getConfiguration(selectedTest))
             .returns(() => visualizationConfigurationMock.object);
         tabStoreData = { isChanged: false } as TabStoreData;
-
-        userConfigurationData = {
-            isFirstTime: true,
-            enableTelemetry: false,
-            enableHighContrast: false,
-            lastSelectedHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-            adbLocation: null,
-            lastWindowState: null,
-            lastWindowBounds: null,
-            showAutoDetectedFailuresDialog: true,
-            showSaveAssessmentDialog: true,
-        };
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -65,7 +51,7 @@ describe('ShouldShowReportExportButton', () => {
             scanMetadata: null,
             narrowModeStatus: null,
             tabStopRequirementData: null,
-            userConfigurationStoreData: userConfigurationData,
+            userConfigurationStoreData,
         } as DetailsViewCommandBarProps;
     }
 
