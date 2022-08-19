@@ -169,6 +169,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         payload: SaveAssessmentDialogStatePayload,
     ): Promise<void> => {
         this.state.showSaveAssessmentDialog = payload.enabled;
-        this.emitChanged();
+        await this.emitChanged();
     };
 }
