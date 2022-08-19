@@ -155,7 +155,8 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
             if (result !== undefined) {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
-                // how long their response takes to process) or void/undefined.
+                // how long their response takes to process) or void/undefined (to indicate
+                // that the response has already been processed synchronously)
                 this.logger.error(
                     `Unexpected sync ApplicationListener for browser ${eventType} event: `,
                     listener,
