@@ -16,17 +16,17 @@ import { AnalyzerProvider } from './analyzers/analyzer-provider';
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private analyzers: DictionaryStringTo<Analyzer>;
-    private visualizationstore: BaseStore<VisualizationStoreData>;
-    private scopingStore: BaseStore<ScopingStoreData>;
-    private featureFlagStore: BaseStore<FeatureFlagStoreData>;
+    private visualizationstore: BaseStore<VisualizationStoreData, Promise<void>>;
+    private scopingStore: BaseStore<ScopingStoreData, Promise<void>>;
+    private featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        visualizationstore: BaseStore<VisualizationStoreData>,
-        featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        scopingStore: BaseStore<ScopingStoreData>,
+        visualizationstore: BaseStore<VisualizationStoreData, Promise<void>>,
+        featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>,
+        scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
@@ -45,9 +45,9 @@ export class AnalyzerController {
 
     public listenToStore(): void {
         this.initializeAnalyzers();
-        this.visualizationstore.addChangedListener(this.onChangedState);
-        this.featureFlagStore.addChangedListener(this.onChangedState);
-        this.scopingStore.addChangedListener(this.onChangedState);
+        this.visualizationstore.addChangedListener(async () => this.onChangedState());
+        this.featureFlagStore.addChangedListener(async () => this.onChangedState());
+        this.scopingStore.addChangedListener(async () => this.onChangedState());
         this.onChangedState();
     }
 

@@ -41,7 +41,7 @@ describe(ClientStoresHub, () => {
     });
 
     test('removeChangedListenerFromAllStores', () => {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => Promise.resolve(), MockBehavior.Strict);
         setupRemoveChangedListeners(1);
         const testObject = createDefaultClientStoreHub();
 
@@ -51,7 +51,7 @@ describe(ClientStoresHub, () => {
     });
 
     test('removeChangedListenerFromAllStores (no stores)', () => {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+        const listenerMock = Mock.ofInstance(() => Promise.resolve(), MockBehavior.Strict);
         setupRemoveChangedListeners(0);
         const testObject = createDefaultClientStoreHub();
         testObject.stores = null;
@@ -77,11 +77,14 @@ describe(ClientStoresHub, () => {
     test('hasStores with stores being null (several scenarios)', () => {
         const constructorArgs = getConstructorArgsForHasStoresReturningFalse();
 
-        forEach(constructorArgs, (args: BaseStore<TestStoreData>[], index: number) => {
-            const testObject = buildClientStoresHub(args);
+        forEach(
+            constructorArgs,
+            (args: BaseStore<TestStoreData, Promise<void>>[], index: number) => {
+                const testObject = buildClientStoresHub(args);
 
-            expect(testObject.hasStores()).toBe(false);
-        });
+                expect(testObject.hasStores()).toBe(false);
+            },
+        );
     });
 
     test('hasStoreData: all stores has data', () => {
@@ -125,8 +128,8 @@ describe(ClientStoresHub, () => {
         expect(testObject.getAllStoreData()).toMatchObject(expected);
     });
 
-    function createListenerMock(times: Times): IMock<() => void> {
-        const listenerMock = Mock.ofInstance(() => {}, MockBehavior.Strict);
+    function createListenerMock(times: Times): IMock<() => Promise<void>> {
+        const listenerMock = Mock.ofInstance(() => Promise.resolve(), MockBehavior.Strict);
         listenerMock.setup(l => l()).verifiable(times);
 
         return listenerMock;
@@ -164,8 +167,11 @@ describe(ClientStoresHub, () => {
         store3Mock.verifyAll();
     }
 
-    function getConstructorArgsForHasStoresReturningFalse(): BaseStore<TestStoreData>[][] {
-        const argsPrototype: BaseStore<TestStoreData>[] = [
+    function getConstructorArgsForHasStoresReturningFalse(): BaseStore<
+        TestStoreData,
+        Promise<void>
+    >[][] {
+        const argsPrototype: BaseStore<TestStoreData, Promise<void>>[] = [
             store1Mock.getObject(),
             store2Mock.getObject(),
             store3Mock.getObject(),
@@ -173,7 +179,7 @@ describe(ClientStoresHub, () => {
 
         const argsLength = size(argsPrototype);
 
-        const result: BaseStore<TestStoreData>[][] = [];
+        const result: BaseStore<TestStoreData, Promise<void>>[][] = [];
 
         const falseReturningCombination = Math.pow(2, argsLength) - 1; // last combination will have all the stores
 
@@ -182,7 +188,7 @@ describe(ClientStoresHub, () => {
             combinationIndex < falseReturningCombination;
             combinationIndex++
         ) {
-            const combinationArgs: BaseStore<any>[] = clone(argsPrototype);
+            const combinationArgs: BaseStore<any, Promise<void>>[] = clone(argsPrototype);
 
             for (let bitmaskPow = 0; bitmaskPow < argsLength; bitmaskPow++) {
                 const bitmask = Math.pow(2, bitmaskPow);
@@ -200,7 +206,7 @@ describe(ClientStoresHub, () => {
     }
 
     function buildClientStoresHub(
-        stores: BaseStore<TestStoreData>[],
+        stores: BaseStore<TestStoreData, Promise<void>>[],
     ): ClientStoresHub<TestStoreData> {
         return new ClientStoresHub<TestStoreData>(stores);
     }

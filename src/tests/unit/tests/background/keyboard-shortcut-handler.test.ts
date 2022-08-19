@@ -34,7 +34,7 @@ describe('KeyboardShortcutHandler', () => {
     let commandsAdapterMock: IMock<CommandsAdapter>;
     let urlValidatorMock: IMock<UrlValidator>;
     let tabContextManagerMock: IMock<TabContextManager>;
-    let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
+    let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData, Promise<void>>>;
     let loggerMock: IMock<Logger>;
     let usageLoggerMock: IMock<UsageLogger>;
 

@@ -6,7 +6,10 @@ import { BaseStore } from './base-store';
 import { Store } from './flux/store';
 import { StoreUpdateMessage } from './types/store-update-message';
 
-export class StoreProxy<TState> extends Store<Promise<void>> implements BaseStore<TState> {
+export class StoreProxy<TState>
+    extends Store<Promise<void>>
+    implements BaseStore<TState, Promise<void>>
+{
     private state: TState;
 
     constructor(

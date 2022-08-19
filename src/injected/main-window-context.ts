@@ -12,8 +12,8 @@ import { TargetPageActionMessageCreator } from './target-page-action-message-cre
 
 export class MainWindowContext {
     public constructor(
-        private devToolStore: BaseStore<DevToolStoreData>,
-        private userConfigStore: BaseStore<UserConfigurationStoreData>,
+        private devToolStore: BaseStore<DevToolStoreData, Promise<void>>,
+        private userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
@@ -22,11 +22,11 @@ export class MainWindowContext {
         private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
-    public getDevToolStore(): BaseStore<DevToolStoreData> {
+    public getDevToolStore(): BaseStore<DevToolStoreData, Promise<void>> {
         return this.devToolStore;
     }
 
-    public getUserConfigStore(): BaseStore<UserConfigurationStoreData> {
+    public getUserConfigStore(): BaseStore<UserConfigurationStoreData, Promise<void>> {
         return this.userConfigStore;
     }
 
@@ -55,8 +55,8 @@ export class MainWindowContext {
     }
 
     public static initialize(
-        devToolStore: BaseStore<DevToolStoreData>,
-        userConfigStore: BaseStore<UserConfigurationStoreData>,
+        devToolStore: BaseStore<DevToolStoreData, Promise<void>>,
+        userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
         issueFilingActionMessageCreator: IssueFilingActionMessageCreator,

@@ -38,32 +38,33 @@ describe(TabContextManager, () => {
     });
 
     describe('addTabContextIfNotExists', () => {
-        it('Adds new tab context to map', () => {
+        it('Adds new tab context to map', async () => {
+            const tabContextStub = {} as TabContext;
             tabContextFactoryMock
                 .setup(t => t.createTabContext(tabId))
-                .returns(() => tabContextMock.object);
+                .returns(() => Promise.resolve(tabContextStub))
+                .verifiable(Times.once());
+            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
-            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
-
-            expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
+            expect(tabToContextMap[tabId]).toBe(tabContextStub);
         });
 
-        it('Does not recreate tab context if already exists', () => {
+        it('Does not recreate tab context if already exists', async () => {
             tabToContextMap[tabId] = tabContextMock.object;
 
             tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
 
-            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
             expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
         });
 
-        it('Does not overwrite tab context if tab context is undefined', () => {
+        it('Does not overwrite tab context if tab context is undefined', async () => {
             tabToContextMap[tabId] = undefined;
 
             tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
 
-            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
             expect(tabToContextMap[tabId]).toBeUndefined();
         });
