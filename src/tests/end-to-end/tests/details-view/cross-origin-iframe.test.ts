@@ -9,7 +9,10 @@ import {
 } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
-import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
+import {
+    DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+    DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+} from '../../common/timeouts';
 
 describe('scanning', () => {
     let browser: Browser;
@@ -26,6 +29,11 @@ describe('scanning', () => {
         });
 
         it('does not get results from inside cross-origin iframes', async () => {
+            await fastPassAutomatedChecks.waitForSelector(
+                fastPassAutomatedChecksSelectors.ruleDetail,
+                { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+            );
+
             const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(
                 fastPassAutomatedChecksSelectors.ruleDetail,
             );
@@ -59,6 +67,11 @@ describe('scanning', () => {
         });
 
         it('does find results from inside cross-origin iframes', async () => {
+            await fastPassAutomatedChecks.waitForSelector(
+                fastPassAutomatedChecksSelectors.ruleDetail,
+                { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS },
+            );
+
             const ruleDetails = await fastPassAutomatedChecks.getSelectorElements(
                 fastPassAutomatedChecksSelectors.ruleDetail,
             );

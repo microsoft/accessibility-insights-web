@@ -55,6 +55,7 @@ describe('Automated TabStops Results', () => {
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.failedInstancesContent);
 
             const ruleDetails = await detailsViewPage.getSelectorElements(
                 tabStopsSelectors.failedInstancesContent,
@@ -76,6 +77,7 @@ describe('Automated TabStops Results', () => {
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.failedInstancesContent);
 
             const ruleDetails = await detailsViewPage.getSelectorElements(
                 tabStopsSelectors.failedInstancesContent,
@@ -104,6 +106,7 @@ describe('Automated TabStops Results', () => {
 
             await detailsViewPage.waitForSelector(tabStopsSelectors.automatedChecksResultSection);
             await detailsViewPage.clickSelector(tabStopsSelectors.failedInstancesExpandButton);
+            await detailsViewPage.waitForSelector(tabStopsSelectors.failedInstancesContent);
 
             const ruleDetails = await detailsViewPage.getSelectorElements(
                 tabStopsSelectors.failedInstancesContent,

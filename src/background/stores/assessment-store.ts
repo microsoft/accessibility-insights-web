@@ -124,7 +124,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             detailsViewId: this.state.persistedTabInfo?.detailsViewId,
         };
 
-        this.emitChanged();
+        await this.emitChanged();
     }
 
     private onContinuePreviousAssessment = async (tabId: number): Promise<void> => {
@@ -160,7 +160,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             this.state.assessmentNavState.selectedTestSubview = this.getDefaultTestStepForTest(
                 payload.detailsViewType,
             );
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
@@ -174,7 +174,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             step,
         );
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onPassUnmarkedInstances = async (
@@ -200,7 +200,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         });
 
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onEditFailureInstance = async (payload: EditFailureInstancePayload): Promise<void> => {
@@ -220,7 +220,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             instanceToEdit.selector = payload.instanceData.path;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onRemoveFailureInstance = async (
@@ -239,7 +239,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
 
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onAddFailureInstance = async (payload: AddFailureInstancePayload): Promise<void> => {
@@ -256,14 +256,14 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         assessmentData.manualTestStepResultMap[payload.requirement].instances.push(newInstance);
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onAddResultDescription = async (
         payload: AddResultDescriptionPayload,
     ): Promise<void> => {
         this.state.resultDescription = payload.description;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onChangeAssessmentVisualizationStateForAll = async (
@@ -284,7 +284,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             }
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onChangeStepStatus = async (payload: ChangeRequirementStatusPayload): Promise<void> => {
@@ -299,7 +299,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         }
 
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUndoStepStatusChange = async (
@@ -313,7 +313,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             ManualTestStatus.UNKNOWN;
         assessmentData.manualTestStepResultMap[payload.requirement].instances = [];
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onChangeAssessmentVisualizationState = async (
@@ -328,7 +328,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         stepResult.isVisualizationEnabled =
             stepResult.isVisualizationSupported && payload.isVisualizationEnabled;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUndoInstanceStatusChange = async (
@@ -345,7 +345,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         stepResult.status = stepResult.originalStatus;
         stepResult.originalStatus = null;
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onChangeInstanceStatus = async (
@@ -364,23 +364,23 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         }
         stepResult.status = payload.status;
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onSelectTestSubview = async (payload: SelectTestSubviewPayload): Promise<void> => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onExpandTestNav = async (payload: ExpandTestNavPayload): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = payload.selectedTest;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onCollapseTestNav = async (): Promise<void> => {
         this.state.assessmentNavState.expandedTestType = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
@@ -403,7 +403,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         assessmentData.testStepStatus[step].isStepScanned = true;
         assessmentData.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScanUpdate = async (payload: ScanUpdatePayload): Promise<void> => {
@@ -421,7 +421,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
@@ -432,7 +432,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         );
         this.state.assessments[test.key] = defaultTestStatus;
         this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetAllAssessmentsData = async (targetTabId: number): Promise<void> => {
@@ -450,7 +450,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         } else {
             this.state.persistedTabInfo.detailsViewId = payload.detailsViewId;
         }
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private getDefaultTestStepForTest(testType: VisualizationType): string {

@@ -119,7 +119,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
     private onDisableVisualization = async (test: VisualizationType): Promise<void> => {
         if (this.toggleTestOff(test)) {
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
@@ -160,7 +160,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
             selectedAdhocDetailsView: this.state.selectedAdhocDetailsView,
             selectedDetailsViewPivot: this.state.selectedDetailsViewPivot,
         };
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
@@ -175,20 +175,20 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
     private onDisableAssessmentVisualizations = async (): Promise<void> => {
         this.disableAssessmentVisualizationsWithoutEmitting();
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onEnableVisualization = async (payload: ToggleActionPayload): Promise<void> => {
-        this.enableTest(payload, false);
+        await this.enableTest(payload, false);
     };
 
     private onEnableVisualizationWithoutScan = async (
         payload: ToggleActionPayload,
     ): Promise<void> => {
-        this.enableTest(payload, true);
+        await this.enableTest(payload, true);
     };
 
-    private enableTest(payload: ToggleActionPayload, skipScanning: boolean): void {
+    private async enableTest(payload: ToggleActionPayload, skipScanning: boolean): Promise<void> {
         if (this.state.scanning != null) {
             // do not change state if currently scanning, not even the toggle
             return;
@@ -204,7 +204,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
         this.state.injectingRequested = true;
         configuration.enableTest(this.state.tests, payload);
-        this.emitChanged();
+        await this.emitChanged();
     }
 
     private isAssessment(config: VisualizationConfiguration): boolean {
@@ -217,7 +217,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         if (this.state.selectedDetailsViewPivot !== pivot) {
             this.state.selectedDetailsViewPivot = pivot;
             this.disableAllTests();
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
@@ -235,29 +235,29 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         const pivotUpdated = this.updateSelectedPivot(pivot);
         if (pivotChildUpdated || pivotUpdated) {
             this.disableAllTests();
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
     private onScanCompleted = async (): Promise<void> => {
         this.state.scanning = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScrollRequested = async (): Promise<void> => {
         this.state.focusedTarget = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onUpdateFocusedInstance = async (focusedInstanceTarget: string[]): Promise<void> => {
         this.state.focusedTarget = focusedInstanceTarget;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onInjectionCompleted = async (): Promise<void> => {
         this.state.injectingRequested = false;
         this.state.injectingStarted = false;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onInjectionStarted = async (): Promise<void> => {
@@ -267,7 +267,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
         this.state.injectingRequested = true;
         this.state.injectingStarted = true;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private updateSelectedPivotChildUnderPivot(payload: UpdateSelectedDetailsViewPayload): boolean {

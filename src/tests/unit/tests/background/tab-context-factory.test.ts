@@ -43,7 +43,6 @@ describe('TabContextFactoryTest', () => {
     let mockLogger: IMock<Logger>;
     let mockUsageLogger: IMock<UsageLogger>;
     let mockNotificationCreator: IMock<NotificationCreator>;
-    let mockSetTimeout: IMock<(handler: Function, timeout: number) => number>;
     let mockDBInstance: IMock<IndexedDBAPI>;
     let mockBroadcasterFactory: IMock<BrowserMessageBroadcasterFactory>;
     let persistedDataStub: PersistedData;
@@ -54,13 +53,12 @@ describe('TabContextFactoryTest', () => {
         mockUsageLogger = Mock.ofType<UsageLogger>();
         mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
         mockNotificationCreator = Mock.ofType<NotificationCreator>();
-        mockSetTimeout = Mock.ofType<(handler: Function, timeout: number) => number>();
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
         mockBroadcasterFactory = Mock.ofType<BrowserMessageBroadcasterFactory>();
         persistedDataStub = {} as PersistedData;
     });
 
-    it('createInterpreter', () => {
+    it('createInterpreter', async () => {
         const tabId = 5;
         const broadcastMock = Mock.ofType<(message: Object) => Promise<void>>(
             null,
@@ -121,7 +119,6 @@ describe('TabContextFactoryTest', () => {
             promiseFactoryMock.object,
             mockLogger.object,
             mockUsageLogger.object,
-            mockSetTimeout.object,
             persistedDataStub,
             mockDBInstance.object,
             true,
@@ -144,10 +141,11 @@ describe('TabContextFactoryTest', () => {
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
-        tabContext.interpreter.interpret({
+        const result = tabContext.interpreter.interpret({
             messageType: getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             tabId: null,
         });
+        await result.result;
 
         broadcastMock.verifyAll();
         expect(tabContext).toBeInstanceOf(TabContext);

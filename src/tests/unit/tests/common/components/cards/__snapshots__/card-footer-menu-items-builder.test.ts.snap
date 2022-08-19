@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFiling=false supportsCopyFailureDetails=false 1`] = `Array []`;
+
+exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFiling=false supportsCopyFailureDetails=true 1`] = `
+Array [
+  Object {
+    "iconProps": Object {
+      "iconName": "copy",
+    },
+    "key": "copyfailuredetails",
+    "onClick": [Function],
+    "text": "Copy failure details",
+  },
+]
+`;
+
+exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFiling=true supportsCopyFailureDetails=false 1`] = `
+Array [
+  Object {
+    "componentRef": [Function],
+    "iconProps": Object {
+      "iconName": "ladybugSolid",
+    },
+    "key": "fileissue",
+    "onClick": [Function],
+    "text": "File issue",
+  },
+]
+`;
+
+exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFiling=true supportsCopyFailureDetails=true 1`] = `
+Array [
+  Object {
+    "componentRef": [Function],
+    "iconProps": Object {
+      "iconName": "ladybugSolid",
+    },
+    "key": "fileissue",
+    "onClick": [Function],
+    "text": "File issue",
+  },
+  Object {
+    "iconProps": Object {
+      "iconName": "copy",
+    },
+    "key": "copyfailuredetails",
+    "onClick": [Function],
+    "text": "Copy failure details",
+  },
+]
+`;

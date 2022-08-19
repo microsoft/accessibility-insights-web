@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { PromiseFactory } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
@@ -41,6 +42,7 @@ describe('AnalyzerProviderTests', () => {
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
+    const promiseFactoryStub = {} as PromiseFactory;
 
     beforeEach(() => {
         typeStub = -1;
@@ -74,6 +76,7 @@ describe('AnalyzerProviderTests', () => {
             sendNeedsReviewResultsMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
+            promiseFactoryStub,
         );
     });
 

@@ -106,7 +106,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.deselectAllCardsInRule(rule);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private toggleCardSelection = async (payload: CardSelectionPayload): Promise<void> => {
@@ -128,7 +128,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.state.focusedResultUid = payload.resultInstanceUid;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private collapseAllRules = async (): Promise<void> => {
@@ -141,7 +141,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.deselectAllCardsInRule(rule);
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private expandAllRules = async (): Promise<void> => {
@@ -153,7 +153,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             rule.isExpanded = true;
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private toggleVisualHelper = async (): Promise<void> => {
@@ -163,7 +163,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.deselectAllCards();
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
@@ -191,12 +191,12 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
 
         this.state.visualHelperEnabled = true;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetFocusedIdentifier = async (): Promise<void> => {
         this.state.focusedResultUid = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onNavigateToNewCardsView = async (): Promise<void> => {
@@ -210,11 +210,11 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             }
         }
         this.state.visualHelperEnabled = !isEmpty(this.state.rules);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

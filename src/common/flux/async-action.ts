@@ -20,7 +20,10 @@ export class AsyncAction<TPayload> implements Action<TPayload, Promise<void>> {
         this.scopeMutex.tryLockScope(scope);
 
         try {
-            await this.mergePromises(this.listeners.map(listener => listener(payload)));
+            const promiseResult = this.mergePromises(
+                this.listeners.map(listener => listener(payload)),
+            );
+            return promiseResult;
         } finally {
             this.scopeMutex.unlockScope(scope);
         }

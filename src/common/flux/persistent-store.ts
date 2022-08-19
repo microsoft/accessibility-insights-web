@@ -5,7 +5,7 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 
-export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
+export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Promise<void>> {
     constructor(
         storeName: StoreNames,
         protected readonly persistedState: TState,
@@ -47,13 +47,13 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState> {
         }
     }
 
-    protected emitChanged(): void {
+    protected async emitChanged(): Promise<void> {
         const storeData = this.getState();
 
         if (this.idbInstance && this.logger && this.persistStoreData) {
-            this.persistData(storeData).catch(this.logger.error);
+            await this.persistData(storeData);
         }
 
-        super.emitChanged();
+        await super.emitChanged();
     }
 }

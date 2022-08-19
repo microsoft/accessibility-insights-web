@@ -6,7 +6,7 @@ import { BaseStore } from './base-store';
 import { Store } from './flux/store';
 import { StoreUpdateMessage } from './types/store-update-message';
 
-export class StoreProxy<TState> extends Store implements BaseStore<TState> {
+export class StoreProxy<TState> extends Store<Promise<void>> implements BaseStore<TState> {
     private state: TState;
 
     constructor(
@@ -17,10 +17,10 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
         this.messageHub.registerStoreUpdateListener(storeId, this.onChange);
     }
 
-    private onChange = (message: StoreUpdateMessage<TState>): void => {
+    private onChange = async (message: StoreUpdateMessage<TState>): Promise<void> => {
         if (!isEqual(this.state, message.payload)) {
             this.state = message.payload;
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
