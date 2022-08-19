@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Checkbox, Dialog, PrimaryButton } from '@fluentui/react';
+import { Dialog, PrimaryButton } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -47,26 +47,29 @@ describe('SaveAssessmentButton', () => {
             wrapper.find(InsightsCommandButton).simulate('click', eventStub);
         });
 
-        it('renders when dialog is enabled', () => {
+        it('snapshot of dialog', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('is dismissed when "got it" button is clicked', () => {
+        it('dialog is visible', () => {
+            expect(wrapper.find(Dialog).props().hidden).toEqual(false);
+        });
+
+        it('dialog is hidden (dismissed) when "got it" button is clicked', () => {
             wrapper.find(PrimaryButton).simulate('click');
-
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
         });
 
-        it('is dismissed when onDismiss is called', () => {
+        it('dialog is hidden (dismissed) when onDismiss is called', () => {
             wrapper.find(Dialog).prop('onDismiss')();
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
         });
 
         it('box appears checked when "dont show again" box is clicked', () => {
-            wrapper.find(Checkbox).simulate('change', undefined, true);
+            const checkbox = wrapper.find('StyledCheckboxBase');
+            checkbox.simulate('change', null, true);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-
+            expect(checkbox.props().value).toEqual(false);
             userConfigMessageCreatorMock.verify(
                 x => x.setSaveAssessmentDialogState(false),
                 Times.atLeastOnce(),
@@ -90,8 +93,8 @@ describe('SaveAssessmentButton', () => {
             wrapper.find(InsightsCommandButton).simulate('click', eventStub);
         });
 
-        it('saves assessment without dialog', () => {
-            expect(wrapper.getElement()).toMatchSnapshot();
+        it('saves assessment without dialog (dialog is hidden)', () => {
+            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
         });
 
         it('should call saveAssessment on click', async () => {
