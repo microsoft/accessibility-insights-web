@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentDialogSettings renders with enabled = false 1`] = `
+exports[`SaveAssessmentDialog renders with enabled = false 1`] = `
 <GenericToggle
   description="Show the save assessment dialog."
   enabled={false}
@@ -10,7 +10,7 @@ exports[`SaveAssessmentDialogSettings renders with enabled = false 1`] = `
 />
 `;
 
-exports[`SaveAssessmentDialogSettings renders with enabled = true 1`] = `
+exports[`SaveAssessmentDialog renders with enabled = true 1`] = `
 <GenericToggle
   description="Show the save assessment dialog."
   enabled={true}

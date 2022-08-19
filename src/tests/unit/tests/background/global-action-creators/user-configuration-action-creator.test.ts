@@ -213,7 +213,7 @@ describe('UserConfigurationActionCreator', () => {
         );
     });
 
-    it('should SetSaveAssessmentDialogState Message', async () => {
+    it('should publish telemetry and invoke the corresponding action in response to SetSaveAssessmentDialogState message', async () => {
         const expectedDialogState = { enabled: false };
         const expectedPayload = expectedDialogState as BaseActionPayload;
 

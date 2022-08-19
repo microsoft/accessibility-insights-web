@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { Toggle } from '@fluentui/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -14,7 +12,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
-describe('SaveAssessmentDialogSettings', () => {
+describe('SaveAssessmentDialog', () => {
     const enableStates = [true, false];
 
     describe('renders', () => {
