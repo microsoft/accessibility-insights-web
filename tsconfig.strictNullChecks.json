@@ -574,6 +574,7 @@
     ],
     "include": [
         "src/DetailsView/actions/**/*",
+        "src/DetailsView/components/details-view-overlay/settings-panel/**/*",
         "src/Devtools/**/*",
         "src/ad-hoc-visualizations/calculated-tab-stops/**/*",
         "src/assessments/common/**/*",
