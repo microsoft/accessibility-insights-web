@@ -20,7 +20,6 @@ import {
 // It is responsible for acting as a mediator between browser-level events and application-level listeners:
 //   * registering a handleEvent listener per eventType to respond to all browser-level events by:
 //      * ensuring a response is sent to the browser within 4 minutes to prevent the 5-minute watchdog timeout
-//      * delaying potential fire-and-forget responses for 2 minutes to give potential promises time to finish
 //      * deferring any events without an associated application-level listener until one is registered
 //   * registering application-level listeners to be called inside the handleEvent listener
 //
@@ -153,22 +152,18 @@ export class BackgroundBrowserEventManager implements BrowserEventManager {
             })}]`;
             return await this.eventResponseFactory.applyEventTimeout(result, timeoutErrorContext);
         } else {
-            if (result === undefined) {
-                // It is possible that this is the result of a fire and forget listener
-                // wrap promise resolution in 2-minute timeout to ensure it completes during service worker lifetime
-                return await this.eventResponseFactory.applyFireAndForgetDelay(result);
-            } else {
+            if (result !== undefined) {
                 // This indicates a bug in an ApplicationListener; they should always either
                 // return a Promise (to indicate that they are responsible for understanding
                 // how long their response takes to process) or void/undefined (to indicate
-                // that they are "fire and forget", and should trigger the above delay case).
+                // that the response has already been processed synchronously)
                 this.logger.error(
                     `Unexpected sync ApplicationListener for browser ${eventType} event: `,
                     listener,
                     eventArgs,
                 );
-                return result;
             }
+            return result;
         }
     }
 

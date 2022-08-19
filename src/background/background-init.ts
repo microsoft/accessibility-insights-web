@@ -61,7 +61,7 @@ async function initialize(): Promise<void> {
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
 
-    const eventResponseFactory = new EventResponseFactory(promiseFactory, false);
+    const eventResponseFactory = new EventResponseFactory(promiseFactory);
     const browserEventManager = new BackgroundBrowserEventManager(
         promiseFactory,
         eventResponseFactory,
