@@ -116,6 +116,7 @@ describe('CardKebabMenuButtonTest', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
 
         issueFilingServiceProviderMock

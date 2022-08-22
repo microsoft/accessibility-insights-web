@@ -186,6 +186,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "lastWindowBounds": null,
         "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
+        "showSaveAssessmentDialog": true,
       }
     }
     visualizationScanResultData={
@@ -445,6 +446,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "lastWindowBounds": null,
         "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
+        "showSaveAssessmentDialog": true,
       }
     }
   />

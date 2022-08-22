@@ -50,4 +50,8 @@ export const registerUserConfigurationMessageCallback = (
         Messages.UserConfig.SetAutoDetectedFailuresDialogState,
         userConfigurationActionCreator.setAutoDetectedFailuresDialogState,
     );
+    interpreter.registerTypeToPayloadCallback(
+        Messages.UserConfig.SetSaveAssessmentDialogState,
+        userConfigurationActionCreator.setSaveAssessmentDialogState,
+    );
 };

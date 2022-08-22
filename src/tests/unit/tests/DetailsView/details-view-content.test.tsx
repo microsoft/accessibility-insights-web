@@ -163,6 +163,7 @@ describe(DetailsViewContent.displayName, () => {
                 lastWindowState: null,
                 lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
+                showSaveAssessmentDialog: true,
             };
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {

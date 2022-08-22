@@ -213,6 +213,33 @@ describe('UserConfigurationActionCreator', () => {
         );
     });
 
+    it('should publish telemetry and invoke the corresponding action in response to SetSaveAssessmentDialogState message', async () => {
+        const expectedDialogState = { enabled: false };
+        const expectedPayload = expectedDialogState as BaseActionPayload;
+
+        const dialogStateConfigMock = createAsyncActionMock(expectedDialogState);
+        const actionsMock = createActionsMock(
+            'setSaveAssessmentDialogState',
+            dialogStateConfigMock.object,
+        );
+        const testSubject = new UserConfigurationActionCreator(
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        await testSubject.setSaveAssessmentDialogState(expectedDialogState);
+
+        dialogStateConfigMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(
+                    TelemetryEvents.SET_SAVE_ASSESSMENT_DIALOG_STATE,
+                    expectedPayload,
+                ),
+            Times.once(),
+        );
+    });
+
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(
         actionName: ActionName,
         action: UserConfigurationActions[ActionName],

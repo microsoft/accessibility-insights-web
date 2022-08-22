@@ -8,6 +8,7 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -30,6 +31,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         lastWindowBounds: null,
         lastWindowState: null,
         showAutoDetectedFailuresDialog: true,
+        showSaveAssessmentDialog: true,
     };
 
     constructor(
@@ -80,6 +82,9 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.userConfigActions.saveWindowBounds.addListener(this.onSaveLastWindowBounds);
         this.userConfigActions.setAutoDetectedFailuresDialogState.addListener(
             this.onSetAutoDetectedFailuresDialogState,
+        );
+        this.userConfigActions.setSaveAssessmentDialogState.addListener(
+            this.onSetSaveAssessmentDialogState,
         );
     }
 
@@ -157,6 +162,13 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
     ): Promise<void> => {
         this.state.showAutoDetectedFailuresDialog = payload.enabled;
 
+        await this.emitChanged();
+    };
+
+    private onSetSaveAssessmentDialogState = async (
+        payload: SaveAssessmentDialogStatePayload,
+    ): Promise<void> => {
+        this.state.showSaveAssessmentDialog = payload.enabled;
         await this.emitChanged();
     };
 }

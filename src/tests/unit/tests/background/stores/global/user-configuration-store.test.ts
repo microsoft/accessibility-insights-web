@@ -12,6 +12,7 @@ import {
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { ShowAssessmentDialogStateTelemetryData } from 'common/extension-telemetry-events';
 import { WindowState } from 'electron/flux/types/window-state';
 import { cloneDeep } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -43,6 +44,7 @@ describe('UserConfigurationStoreTest', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -55,6 +57,7 @@ describe('UserConfigurationStoreTest', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -103,6 +106,7 @@ describe('UserConfigurationStoreTest', () => {
             enableHighContrast: true,
             adbLocation: 'test',
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
         const expected: UserConfigurationStoreData = {
             bugService: 'none',
@@ -211,6 +215,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -224,6 +229,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 indexDbStrictMock
@@ -265,6 +271,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -282,6 +289,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 indexDbStrictMock
@@ -323,6 +331,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -340,6 +349,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
 
                 indexDbStrictMock
@@ -372,6 +382,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastWindowState: null,
                 lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
+                showSaveAssessmentDialog: true,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -418,6 +429,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastWindowState: null,
                 lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
+                showSaveAssessmentDialog: true,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
@@ -519,6 +531,30 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
+    test('setSaveAssessmentDialogState', async () => {
+        const storeTester = createStoreToTestAction('setSaveAssessmentDialogState');
+        const showSaveAssessmentDialog = false;
+        const payload: ShowAssessmentDialogStateTelemetryData = {
+            enabled: showSaveAssessmentDialog,
+        };
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            showSaveAssessmentDialog,
+        };
+
+        indexDbStrictMock
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
+
+        await storeTester
+            .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
     test.each(['normal', 'maximized', 'full-screen'])(
         'saveLastWindowBounds windowState:$windowState',
         async windowState => {
@@ -540,6 +576,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastWindowState: null,
                 lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
+                showSaveAssessmentDialog: true,
             };
 
             const expectedState: UserConfigurationStoreData = {

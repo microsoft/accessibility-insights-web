@@ -83,6 +83,7 @@ describe('PopupView', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
 
         beforeEach(() => {

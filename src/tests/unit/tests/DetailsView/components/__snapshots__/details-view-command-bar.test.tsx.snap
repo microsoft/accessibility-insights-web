@@ -1490,18 +1490,78 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 `;
 
 exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
-<InsightsCommandButton
-  download="download"
-  href="url"
-  iconProps={
-    Object {
-      "iconName": "Save",
+<React.Fragment>
+  <InsightsCommandButton
+    download="download"
+    href="url"
+    iconProps={
+      Object {
+        "iconName": "Save",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Save assessment
-</InsightsCommandButton>
+    onClick={[Function]}
+  >
+    Save assessment
+  </InsightsCommandButton>
+  <Dialog
+    dialogContentProps={
+      Object {
+        "title": "Assessment saved",
+        "type": 0,
+      }
+    }
+    hidden={true}
+    modalProps={
+      Object {
+        "containerClassName": "insightsDialogMainOverride",
+        "isBlocking": false,
+      }
+    }
+    onDismiss={[Function]}
+  >
+    <div
+      className="dialogBody"
+    >
+      To load this assessment, use the 
+      <strong>
+        Load assessment
+      </strong>
+       button in the Accessibility Insights Assessment command bar.
+    </div>
+    <StyledDialogFooterBase>
+      <Stack
+        horizontal={true}
+        horizontalAlign="space-between"
+        tokens={
+          Object {
+            "childrenGap": 6,
+          }
+        }
+        verticalAlign="center"
+        wrap={true}
+      >
+        <StackItem
+          disableShrink={true}
+          grow={true}
+        >
+          <StyledCheckboxBase
+            label="Don't show again"
+            onChange={[Function]}
+            value={false}
+          />
+        </StackItem>
+        <StackItem
+          grow={true}
+        >
+          <CustomizedPrimaryButton
+            onClick={[Function]}
+            text="Got it"
+          />
+        </StackItem>
+      </Stack>
+    </StyledDialogFooterBase>
+  </Dialog>
+</React.Fragment>
 `;
 
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
