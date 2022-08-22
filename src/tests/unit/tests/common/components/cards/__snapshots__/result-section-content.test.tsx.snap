@@ -2,9 +2,65 @@
 
 exports[`ResultSectionContent does not render, no rules 1`] = `null`;
 
+exports[`ResultSectionContent renders without modifier buttons without cardSelectionMessageCreator, with some rules 1`] = `
+<React.Fragment>
+  <RulesWithInstances
+    deps={
+      Object {
+        "cardsVisualizationModifierButtons": [Function],
+      }
+    }
+    outcomeType="pass"
+    rules={
+      Array [
+        Object {
+          "description": "sample-description",
+          "guidance": Array [
+            Object {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": Array [
+            Object {
+              "descriptors": Object {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": Object {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": Object {
+                "how-to-fix-web": Object {
+                  "all": Array [],
+                  "any": Array [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": Array [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ]
+    }
+  />
+</React.Fragment>
+`;
+
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <React.Fragment>
   <test
+    cardSelectionMessageCreator={Object {}}
     deps={
       Object {
         "cardsVisualizationModifierButtons": [Function],
@@ -55,6 +111,7 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
     }
   />
   <RulesWithInstances
+    cardSelectionMessageCreator={Object {}}
     deps={
       Object {
         "cardsVisualizationModifierButtons": [Function],
