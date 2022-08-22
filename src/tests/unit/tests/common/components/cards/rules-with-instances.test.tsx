@@ -31,7 +31,7 @@ describe('RulesWithInstances', () => {
             collapsibleControl: (props: CollapsibleComponentCardsProps) => (
                 <CollapsibleControlStub {...props} />
             ),
-            fixInstructionProcessor: fixInstructionProcessorMock.object
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
         } as RulesWithInstancesDeps;
         const outcomeCounterStub = () => 5;
 
