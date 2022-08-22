@@ -72,7 +72,7 @@ export class AnalyzerController {
         const analyzer = this.getAnalyzerByIdentifier(id);
         analyzer.analyze();
 
-        this.shadowInitializer.initialize();
+        void this.shadowInitializer.initialize();
     };
 
     private initializeAnalyzers(): void {
