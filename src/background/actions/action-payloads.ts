@@ -90,7 +90,7 @@ export interface ChangeInstanceSelectionPayload extends AssessmentActionInstance
 }
 
 export interface UpdateSelectedDetailsViewPayload extends BaseActionPayload {
-    detailsViewType: VisualizationType;
+    detailsViewType: VisualizationType | null;
     pivotType: DetailsViewPivotType;
 }
 

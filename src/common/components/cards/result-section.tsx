@@ -17,7 +17,7 @@ export type ResultSectionDeps = ResultSectionContentDeps;
 
 export type ResultSectionProps = Omit<ResultSectionContentProps, 'headingLevel'> &
     Omit<ResultSectionTitleProps, 'titleSize'> & {
-        containerClassName: string;
+        containerClassName?: string;
         deps: ResultSectionDeps;
         sectionHeadingLevel: HeadingLevel;
     };

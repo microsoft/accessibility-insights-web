@@ -15,9 +15,9 @@ exports[`RulesWithInstances renders 1`] = `
         deps={
           Object {
             "collapsibleControl": [Function],
+            "fixInstructionProcessor": [typemoq mock object],
           }
         }
-        fixInstructionProcessor={[typemoq mock object]}
         rule={
           Object {
             "description": "sample-description",
@@ -69,6 +69,7 @@ exports[`RulesWithInstances renders 1`] = `
     deps={
       Object {
         "collapsibleControl": [Function],
+        "fixInstructionProcessor": [typemoq mock object],
       }
     }
     header={
