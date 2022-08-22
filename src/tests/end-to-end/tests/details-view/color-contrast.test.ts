@@ -42,6 +42,9 @@ describe('Color Contrast Violations', () => {
         await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection, {
             timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
         });
+        await detailsViewPage.waitForSelector(fastPassAutomatedChecksSelectors.ruleDetail, {
+            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+        });
 
         const ruleDetails = await detailsViewPage.getSelectorElements(
             fastPassAutomatedChecksSelectors.ruleDetail,
