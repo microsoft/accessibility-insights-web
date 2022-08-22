@@ -65,11 +65,12 @@ describe('SaveAssessmentButton', () => {
             expect(wrapper.find(Dialog).props().hidden).toEqual(true);
         });
 
-        it('box appears checked when "dont show again" box is clicked', () => {
+        it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
+            // The "Don't show again" checkbox logic is inverted
             const checkbox = wrapper.find('StyledCheckboxBase');
+            // Check "Don't show again" = true
             checkbox.simulate('change', null, true);
-
-            expect(checkbox.props().value).toEqual(false);
+            // showSaveAssessmentDialog = false ("Enable the dialog" = false)
             userConfigMessageCreatorMock.verify(
                 x => x.setSaveAssessmentDialogState(false),
                 Times.atLeastOnce(),
