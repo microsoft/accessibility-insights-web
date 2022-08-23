@@ -4,7 +4,7 @@ parameters:
     jobNameSuffix: ''
     windowsImage: 'windows-2019'
     macImage: 'macOS-11'
-    linuxImage: 'ubuntu-18.04'
+    linuxImage: 'ubuntu-20.04'
 
 jobs:
     - job: 'build_all_windows${{ parameters.jobNameSuffix }}'
