@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -31,6 +32,7 @@ export class AnalyzerController {
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
+        private readonly shadowInitializer: ShadowInitializer,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
@@ -65,8 +67,12 @@ export class AnalyzerController {
     };
 
     protected startScan = (id: string): void => {
+        this.shadowInitializer.removeExistingShadowHost();
+
         const analyzer = this.getAnalyzerByIdentifier(id);
         analyzer.analyze();
+
+        void this.shadowInitializer.initialize();
     };
 
     private initializeAnalyzers(): void {
