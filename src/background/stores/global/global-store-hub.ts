@@ -109,7 +109,7 @@ export class GlobalStoreHub implements StoreHub {
         this.permissionsStateStore.initialize();
     }
 
-    public getAllStores(): BaseStore<any>[] {
+    public getAllStores(): BaseStore<any, Promise<void>>[] {
         return [
             this.commandStore,
             this.featureFlagStore,

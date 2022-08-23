@@ -137,7 +137,7 @@ export class GlobalContextFactory {
             globalStoreHub,
             logger,
         );
-        dispatcher.initialize();
+        await dispatcher.initialize();
 
         const assessmentChangeHandler = new CompletedTestStepTelemetryCreator(
             globalStoreHub.assessmentStore,

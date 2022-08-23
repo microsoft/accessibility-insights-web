@@ -8,9 +8,13 @@ import { TabToContextMap } from './tab-context';
 export class TabContextManager {
     constructor(private readonly targetPageTabIdToContextMap: TabToContextMap = {}) {}
 
-    public addTabContextIfNotExists(tabId: number, tabContextFactory: TabContextFactory): void {
+    public async addTabContextIfNotExists(
+        tabId: number,
+        tabContextFactory: TabContextFactory,
+    ): Promise<void> {
         if (!(tabId in this.targetPageTabIdToContextMap)) {
-            this.targetPageTabIdToContextMap[tabId] = tabContextFactory.createTabContext(tabId);
+            const tabContext = await tabContextFactory.createTabContext(tabId);
+            this.targetPageTabIdToContextMap[tabId] = tabContext;
         }
     }
 

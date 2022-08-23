@@ -29,7 +29,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
+    let scopingStoreMock: IMock<BaseStore<ScopingStoreData, Promise<void>>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
