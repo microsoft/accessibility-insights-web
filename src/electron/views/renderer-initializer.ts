@@ -334,7 +334,8 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const telemetryClient = getTelemetryClient(applicationTelemetryDataFactory, [
             consoleTelemetryClient,
         ]);
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+        const telemetryEventHandler = new TelemetryEventHandler();
+        telemetryEventHandler.initialize(telemetryClient);
 
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             userConfigActions,
