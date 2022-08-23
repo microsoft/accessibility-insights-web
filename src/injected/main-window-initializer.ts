@@ -344,6 +344,7 @@ export class MainWindowInitializer extends WindowInitializer {
             analyzerProvider,
             analyzerStateUpdateHandler,
             Assessments,
+            this.shadowInitializer,
         );
 
         this.analyzerController.listenToStore();

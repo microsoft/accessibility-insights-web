@@ -5,6 +5,7 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -58,6 +59,16 @@ export class UserConfigurationActionCreator {
         await this.userConfigActions.setAutoDetectedFailuresDialogState.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.SET_AUTO_DETECTED_FAILURES_DIALOG_STATE,
+            payload,
+        );
+    };
+
+    public setSaveAssessmentDialogState = async (
+        payload: SaveAssessmentDialogStatePayload,
+    ): Promise<void> => {
+        await this.userConfigActions.setSaveAssessmentDialogState.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.SET_SAVE_ASSESSMENT_DIALOG_STATE,
             payload,
         );
     };

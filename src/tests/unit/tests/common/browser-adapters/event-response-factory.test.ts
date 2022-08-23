@@ -13,34 +13,11 @@ describe(EventResponseFactory, () => {
         timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
     });
 
-    describe('applyFireAndForgetDelay', () => {
-        it('applies a 30 second delay for service workers', async () => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
-
-            const result = testSubject.applyFireAndForgetDelay('original');
-
-            await expect(result).resolves.toBe('original');
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
-        });
-
-        it('does not apply any delay outside of service workers', async () => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, false);
-
-            const result = testSubject.applyFireAndForgetDelay('original');
-
-            await expect(result).resolves.toBe('original');
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-        });
-    });
-
     describe('applyEventTimeout', () => {
         it.each([true, false])(
             'applies a 60 second timeout when isServiceWorker=%p',
             async isServiceWorker => {
-                testSubject = new EventResponseFactory(
-                    timeSimulatingPromiseFactory,
-                    isServiceWorker,
-                );
+                testSubject = new EventResponseFactory(timeSimulatingPromiseFactory);
 
                 const slowPromise = timeSimulatingPromiseFactory.externalResolutionPromise();
                 const result = testSubject.applyEventTimeout(slowPromise.promise, 'error context');
@@ -55,7 +32,7 @@ describe(EventResponseFactory, () => {
 
     describe('mergeBrowserMessageResponses', () => {
         beforeEach(() => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
+            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory);
         });
 
         it('returns messageHandled false if no interpreter handled the message', () => {
@@ -97,7 +74,6 @@ describe(EventResponseFactory, () => {
 
             testSubject = new EventResponseFactory(
                 timeSimulatingPromiseFactory,
-                true,
                 mergeAsyncResponsesMock.object,
             );
         });
@@ -137,7 +113,7 @@ describe(EventResponseFactory, () => {
             await mergedPromise;
         });
 
-        it('injects one fire and forget delay among the async promises for mixed input types', async () => {
+        it('returns wrapped combined promise for mixed input types', async () => {
             const asyncInputs = [
                 timeSimulatingPromiseFactory.delay(undefined, 1),
                 timeSimulatingPromiseFactory.delay(undefined, 2),
@@ -151,7 +127,7 @@ describe(EventResponseFactory, () => {
 
             await testSubject.mergeRawBrowserMessageResponses(inputs);
 
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
+            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
         });
     });
 });

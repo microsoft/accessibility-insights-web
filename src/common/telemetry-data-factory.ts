@@ -30,6 +30,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    ShowAssessmentDialogStateTelemetryData,
     TabStopAutomatedFailuresInstanceCount,
     TabStopRequirementInstanceCount,
     TabStopsAutomatedResultsTelemetryData,
@@ -204,12 +205,12 @@ export class TelemetryDataFactory {
 
     public forOpenDetailsView(
         event: SupportedMouseEvent,
-        visualizationType: VisualizationType,
+        visualizationType: VisualizationType | null,
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            selectedTest: VisualizationType[visualizationType],
+            selectedTest: visualizationType == null ? null : VisualizationType[visualizationType],
         };
     }
 
@@ -502,6 +503,18 @@ export class TelemetryDataFactory {
     public forSetAutoDetectedFailuresDialogState(
         enabled: boolean,
     ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
+        };
+    }
+
+    public forSetShowAssessmentDialogState(
+        enabled: boolean,
+    ): ShowAssessmentDialogStateTelemetryData | undefined {
         if (enabled === undefined) {
             return undefined;
         }

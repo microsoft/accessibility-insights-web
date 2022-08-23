@@ -103,6 +103,7 @@ describe('KeyboardShortcutHandler', () => {
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
+                    showSaveAssessmentDialog: true,
                 };
             });
 

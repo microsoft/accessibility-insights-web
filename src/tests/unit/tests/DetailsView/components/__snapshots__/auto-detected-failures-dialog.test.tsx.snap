@@ -31,15 +31,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={true}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={true}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;
@@ -77,15 +98,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={false}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;
@@ -119,15 +161,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={false}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        Object {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;

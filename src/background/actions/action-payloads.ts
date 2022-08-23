@@ -90,7 +90,7 @@ export interface ChangeInstanceSelectionPayload extends AssessmentActionInstance
 }
 
 export interface UpdateSelectedDetailsViewPayload extends BaseActionPayload {
-    detailsViewType: VisualizationType;
+    detailsViewType: VisualizationType | null;
     pivotType: DetailsViewPivotType;
 }
 
@@ -254,5 +254,9 @@ export interface SaveWindowBoundsPayload extends BaseActionPayload {
 }
 
 export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
+}
+
+export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
     enabled: boolean;
 }

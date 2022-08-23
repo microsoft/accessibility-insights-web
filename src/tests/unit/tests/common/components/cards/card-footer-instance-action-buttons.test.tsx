@@ -103,6 +103,7 @@ describe(CardFooterInstanceActionButtons, () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
 
         issueFilingServiceProviderMock

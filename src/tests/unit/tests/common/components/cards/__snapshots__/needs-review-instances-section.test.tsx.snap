@@ -7,7 +7,6 @@ exports[`NeedsReviewInstancesSection renders null results 1`] = `null`;
 exports[`NeedsReviewInstancesSection renders with alerting off 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
   deps={Object {}}
   outcomeCounter={[Function]}
   outcomeType="review"
@@ -27,7 +26,6 @@ exports[`NeedsReviewInstancesSection renders with alerting off 1`] = `
 exports[`NeedsReviewInstancesSection renders with alerting on 1`] = `
 <ResultSection
   badgeCount={0}
-  containerClassName={null}
   deps={Object {}}
   outcomeCounter={[Function]}
   outcomeType="review"
@@ -47,7 +45,6 @@ exports[`NeedsReviewInstancesSection renders with alerting on 1`] = `
 exports[`NeedsReviewInstancesSection renders with unknowns 1`] = `
 <ResultSection
   badgeCount={2}
-  containerClassName={null}
   deps={Object {}}
   outcomeCounter={[Function]}
   outcomeType="review"

@@ -4,6 +4,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileNameBuilder } from 'common/filename-builder';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     SaveAssessmentButton,
     SaveAssessmentButtonDeps,
@@ -22,6 +23,7 @@ export type SaveAssessmentButtonFactoryProps = {
     deps: SaveAssessmentButtonFactoryDeps;
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryProps): JSX.Element {
