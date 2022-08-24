@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { accessibleNamesConfiguration } from 'scanner/custom-rules/display-accessible-names';
 import { headersAttributeRuleConfiguration } from 'scanner/custom-rules/headers-attribute-rule';
+import { labelInNameConfiguration } from 'scanner/custom-rules/label-in-name';
 import { autocompleteRuleConfiguration } from './custom-rules/autocomplete-rule';
 import { colorConfiguration } from './custom-rules/color-rule';
 import { cssContentConfiguration } from './custom-rules/css-content-rule';
@@ -32,6 +33,7 @@ export const configuration: RuleConfiguration[] = [
     textContrastConfiguration,
     linkPurposeConfiguration,
     linkFunctionConfiguration,
+    labelInNameConfiguration,
     frameTitleConfiguration,
     pageConfiguration,
     widgetFunctionConfiguration,

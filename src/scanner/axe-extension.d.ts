@@ -16,6 +16,9 @@ declare module 'axe-core/axe' {
         };
         text: {
             accessibleText: Function;
+            isHumanInterpretable: Function;
+            sanitize: Function;
+            subtreeText: Function;
         };
     };
 
