@@ -8,7 +8,11 @@ import { BaseActionPayload } from '../actions/action-payloads';
 import { TelemetryClient } from './telemetry-client';
 
 export class TelemetryEventHandler {
-    constructor(private readonly telemetryClient: TelemetryClient) {}
+    private telemetryClient: TelemetryClient;
+
+    public initialize(telemetryClient: TelemetryClient): void {
+        this.telemetryClient = telemetryClient;
+    }
 
     public enableTelemetry(): void {
         this.telemetryClient.enableTelemetry();

@@ -125,7 +125,8 @@ describe('TelemetryEventHandlerTest', () => {
     }
 
     function createAndEnableTelemetryEventHandler(): TelemetryEventHandler {
-        const telemetryEventHandler = new TelemetryEventHandler(telemetryClientStrictMock.object);
+        const telemetryEventHandler = new TelemetryEventHandler();
+        telemetryEventHandler.initialize(telemetryClientStrictMock.object);
         telemetryClientStrictMock.setup(ai => ai.enableTelemetry()).verifiable(Times.once());
 
         telemetryEventHandler.enableTelemetry();
