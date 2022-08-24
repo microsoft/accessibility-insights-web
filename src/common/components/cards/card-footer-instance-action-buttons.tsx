@@ -7,12 +7,12 @@ import {
     CardFooterMenuItemsBuilder,
     CardFooterMenuItemsDeps,
 } from 'common/components/cards/card-footer-menu-items-builder';
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
-import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
+import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
@@ -37,7 +37,7 @@ export type CardFooterInstanceActionButtonsDeps = {
     cardInteractionSupport: CardInteractionSupport;
     cardFooterMenuItemsBuilder: CardFooterMenuItemsBuilder;
     issueFilingServiceProvider: IssueFilingServiceProvider;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    cardsViewController: CardsViewController;
 } & IssueFilingButtonDeps &
     ToastDeps &
     CardFooterMenuItemsDeps;
@@ -48,7 +48,7 @@ export interface CardFooterInstanceActionButtonsProps {
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;
-    detailsViewStoreData: DetailsViewStoreData;
+    cardsViewStoreData: CardsViewStoreData;
 }
 
 export class CardFooterInstanceActionButtons extends React.Component<CardFooterInstanceActionButtonsProps> {
@@ -145,13 +145,9 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
     }
 
     public renderIssueFilingSettingContent(): JSX.Element | null {
-        const { deps, userConfigurationStoreData, issueDetailsData, detailsViewStoreData } =
+        const { deps, userConfigurationStoreData, issueDetailsData, cardsViewStoreData } =
             this.props;
-        const {
-            issueFilingServiceProvider,
-            cardInteractionSupport,
-            detailsViewActionMessageCreator,
-        } = deps;
+        const { issueFilingServiceProvider, cardInteractionSupport, cardsViewController } = deps;
 
         if (!cardInteractionSupport.supportsIssueFiling) {
             return null;
@@ -166,11 +162,11 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
             );
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
-            isOpen: detailsViewStoreData.currentPanel.isIssueFilingSettingsOpen,
+            isOpen: cardsViewStoreData.isIssueFilingSettingsDialogOpen,
             selectedIssueFilingService,
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,
-            onClose: detailsViewActionMessageCreator.closeIssueFilingSettingsDialog,
+            onClose: cardsViewController.closeIssueFilingSettingsDialog,
             issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
             afterClosed: this.focusButtonAfterDialogClosed,
         };

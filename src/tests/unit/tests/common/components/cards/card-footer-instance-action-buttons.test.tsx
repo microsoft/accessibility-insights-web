@@ -15,18 +15,18 @@ import {
     allCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
-import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { guidanceTags } from 'common/types/store-data/guidance-links';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from 'DetailsView/components/issue-filing-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
+import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(CardFooterInstanceActionButtons, () => {
@@ -37,8 +37,8 @@ describe(CardFooterInstanceActionButtons, () => {
     let testIssueFilingServiceStub: IssueFilingService;
     let issueDetailsData: CreateIssueDetailsTextData;
     let menuItemsBuilderMock: IMock<CardFooterMenuItemsBuilder>;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let detailsViewStoreData: DetailsViewStoreData;
+    let cardsViewControllerMock: IMock<CardsViewController>;
+    let cardsViewStoreData: CardsViewStoreData;
     const testKey: string = 'test';
 
     const menuItems: CardFooterMenuItem[] = [
@@ -93,7 +93,7 @@ describe(CardFooterInstanceActionButtons, () => {
         };
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         menuItemsBuilderMock = Mock.ofType<CardFooterMenuItemsBuilder>();
-        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        cardsViewControllerMock = Mock.ofType<CardsViewController>();
 
         userConfigurationStoreData = {
             bugService: testKey,
@@ -111,11 +111,9 @@ describe(CardFooterInstanceActionButtons, () => {
             showSaveAssessmentDialog: true,
         };
 
-        detailsViewStoreData = {
-            currentPanel: {
-                isIssueFilingSettingsOpen: false,
-            },
-        } as DetailsViewStoreData;
+        cardsViewStoreData = {
+            isIssueFilingSettingsDialogOpen: false,
+        };
 
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey('test'))
@@ -125,14 +123,14 @@ describe(CardFooterInstanceActionButtons, () => {
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             cardInteractionSupport: allCardInteractionsSupported,
             cardFooterMenuItemsBuilder: menuItemsBuilderMock.object,
-            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            cardsViewController: cardsViewControllerMock.object,
         } as CardFooterInstanceActionButtonsDeps;
 
         defaultProps = {
             deps: defaultDeps,
             userConfigurationStoreData,
             issueDetailsData,
-            detailsViewStoreData: detailsViewStoreData,
+            cardsViewStoreData: cardsViewStoreData,
         } as CardFooterInstanceActionButtonsProps;
     });
 

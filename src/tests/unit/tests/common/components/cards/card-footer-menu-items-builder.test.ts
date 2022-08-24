@@ -9,6 +9,7 @@ import {
     CardFooterMenuItemsProps,
 } from 'common/components/cards/card-footer-menu-items-builder';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -53,6 +54,7 @@ describe(CardFooterMenuItemsBuilder, () => {
     let toastMock: IMock<Toast>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let cardsViewControllerMock: IMock<CardsViewController>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueDetailsTextGeneratorMock: IMock<IssueDetailsTextGenerator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
@@ -65,6 +67,7 @@ describe(CardFooterMenuItemsBuilder, () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Strict,
         );
+        cardsViewControllerMock = Mock.ofType<CardsViewController>();
         issueFilingServiceProviderMock = Mock.ofType<IssueFilingServiceProvider>();
         issueDetailsTextGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
@@ -79,6 +82,7 @@ describe(CardFooterMenuItemsBuilder, () => {
             toolData,
             issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            cardsViewController: cardsViewControllerMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
             navigatorUtils: navigatorUtilsMock.object,
@@ -155,8 +159,8 @@ describe(CardFooterMenuItemsBuilder, () => {
                 .setup(i => i.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.never());
 
-            detailsViewActionMessageCreatorMock
-                .setup(d => d.openIssueFilingSettingsDialog())
+            cardsViewControllerMock
+                .setup(c => c.openIssueFilingSettingsDialog())
                 .verifiable(Times.once());
 
             const fileIssueMenuItem = getFileIssueMenuItem();
@@ -180,8 +184,8 @@ describe(CardFooterMenuItemsBuilder, () => {
                 )
                 .verifiable(Times.once());
 
-            detailsViewActionMessageCreatorMock
-                .setup(d => d.closeIssueFilingSettingsDialog())
+            cardsViewControllerMock
+                .setup(c => c.closeIssueFilingSettingsDialog())
                 .verifiable(Times.once());
 
             const fileIssueMenuItem = getFileIssueMenuItem();

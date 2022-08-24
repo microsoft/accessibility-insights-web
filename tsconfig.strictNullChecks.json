@@ -113,8 +113,6 @@
         "./src/background/actions/details-view-actions.ts",
         "./src/background/actions/dev-tools-action-creator.ts",
         "./src/background/actions/dev-tools-actions.ts",
-        "./src/background/actions/dialog-action-creator.ts",
-        "./src/background/actions/dialog-actions.ts",
         "./src/background/actions/feature-flag-actions.ts",
         "./src/background/actions/global-action-hub.ts",
         "./src/background/actions/injection-action-creator.ts",

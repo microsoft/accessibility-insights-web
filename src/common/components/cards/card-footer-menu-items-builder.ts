@@ -10,6 +10,7 @@ import {
 } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -38,6 +39,7 @@ export type CardFooterMenuItemsDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     navigatorUtils: NavigatorUtils;
+    cardsViewController: CardsViewController;
 };
 
 export class CardFooterMenuItemsBuilder {
@@ -79,7 +81,7 @@ export class CardFooterMenuItemsBuilder {
             issueFilingServiceProvider,
             issueFilingActionMessageCreator,
             toolData,
-            detailsViewActionMessageCreator,
+            cardsViewController,
         } = deps;
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
@@ -99,9 +101,9 @@ export class CardFooterMenuItemsBuilder {
                 issueDetailsData,
                 toolData,
             );
-            detailsViewActionMessageCreator.closeIssueFilingSettingsDialog();
+            cardsViewController.closeIssueFilingSettingsDialog();
         } else {
-            detailsViewActionMessageCreator.openIssueFilingSettingsDialog();
+            cardsViewController.openIssueFilingSettingsDialog();
         }
     };
 
