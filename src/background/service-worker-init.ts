@@ -266,7 +266,12 @@ async function initializeAsync(): Promise<void> {
     globalThis.insightsUserConfiguration = globalContext.userConfigurationController;
 }
 
-initializeSync();
+try {
+    initializeSync();
+    console.log('Sync background initialization completed successfully');
+} catch (e) {
+    console.error('Sync background initialization failed: ', e);
+}
 initializeAsync()
-    .then(() => console.log('Background initialization completed successfully'))
-    .catch((e: Error) => console.error('Background initialization failed: ', e));
+    .then(() => console.log('Async background initialization completed successfully'))
+    .catch((e: Error) => console.error('Async background initialization failed: ', e));
