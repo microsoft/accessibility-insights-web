@@ -161,8 +161,6 @@ export const Messages = {
 
     IssueFiling: {
         FileIssue: `${messagePrefix}/issueFiling/file`,
-        openSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/open`,
-        closeSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/close`,
     },
 
     PathSnippet: {
