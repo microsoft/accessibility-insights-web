@@ -22,30 +22,34 @@ import { Requirement } from '../../types/requirement';
 import { LinksTestStep } from './test-steps';
 
 const LabelNameDescription: JSX.Element = (
-    <span>
-        A link's accessible name must contain its visible text label. 
-    </span>
+    <span>A link's accessible name must contain its visible text label.</span>
 );
 
 const LabelNameHowToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights links that have visible text on the target page. 
+            The visual helper for this requirement highlights links that have visible text on the
+            target page.
         </p>
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                In the target page, examine each highlighted link to identify its visible text label. 
+                In the target page, examine each highlighted link to identify its visible text
+                label.
             </li>
             <li>
-                Compare each link's text visible label to its accessible name (displayed in the <Markup.Term>Instances</Markup.Term> list below).  
+                Compare each link's text visible label to its accessible name (displayed in the{' '}
+                <Markup.Term>Instances</Markup.Term> list below).
             </li>
             <li>
-                Verify that: 
+                Verify that:
                 <ol>
-                    <li>The accessible name is an exact match of the visible text label, or</li> 
+                    <li>The accessible name is an exact match of the visible text label, or</li>
 
-                    <li>The accessible name <Markup.Emphasis>contains</Markup.Emphasis> an exact match of the visible text label, or</li>
+                    <li>
+                        The accessible name <Markup.Emphasis>contains</Markup.Emphasis> an exact
+                        match of the visible text label, or
+                    </li>
 
                     <li>The link does not have a visible text label. </li>
                 </ol>
