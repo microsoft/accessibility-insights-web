@@ -29,4 +29,5 @@ export enum StoreNames {
     TabStopsViewStore,
     NeedsReviewScanResultStore,
     NeedsReviewCardSelectionStore,
+    CardsViewStore,
 }
