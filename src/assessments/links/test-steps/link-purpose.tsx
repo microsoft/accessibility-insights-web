@@ -78,8 +78,8 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkPurposePropertyBag>
         defaultValue: NoValue,
     },
     {
-        propertyName: 'accessibleDescription',
-        displayName: 'Accessible description',
+        propertyName: 'visibleText',
+        displayName: 'Visible text',
         defaultValue: NoValue,
     },
     {
@@ -108,10 +108,10 @@ export const LinkPurpose: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['link-purpose'],
+                rules: ['label-in-name'],
                 key: LinksTestStep.linkPurpose,
                 testType: VisualizationType.LinksAssessment,
-                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

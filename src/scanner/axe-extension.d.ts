@@ -22,10 +22,12 @@ declare module 'axe-core/axe' {
         };
     };
 
+    const VirtualNode: any;
+
     interface Utils {
         toArray: Function;
         matchesSelector: Function;
-
+        getNodeFromTree: Function;
         // this must be surrounded by axe.setup and axe.teardown calls
         getSelector: (element: HTMLElement) => string;
     }

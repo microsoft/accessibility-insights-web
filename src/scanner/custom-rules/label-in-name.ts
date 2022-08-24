@@ -14,7 +14,7 @@ export const labelInNameConfiguration: RuleConfiguration = {
     ],
     rule: {
         id: labelInNameCheckId,
-        selector: 'a, [role="link"]',
+        selector: 'a[aria-label], a[aria-labelledby]',
         enabled: false,
         any: [labelInNameCheckId],
         matches: labelInNameMatches,
