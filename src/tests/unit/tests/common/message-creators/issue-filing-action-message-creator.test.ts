@@ -7,6 +7,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import {
     BaseTelemetryData,
     FILE_ISSUE_CLICK,
+    SettingsOpenSourceItem,
     TelemetryEventSource,
     TriggeredBy,
 } from '../../../../../common/extension-telemetry-events';
@@ -52,29 +53,29 @@ describe('IssueFilingActionMessageCreator', () => {
         );
     });
 
-    // it('dispatches message for openSettingsPanel', () => {
-    //     const telemetry = { ...telemetryStub, sourceItem: 'sourceItem' as SettingsOpenSourceItem };
-    //     telemetryFactoryMock
-    //         .setup(factory =>
-    //             factory.forSettingsPanelOpen(eventStub, source, 'fileIssueSettingsPrompt'),
-    //         )
-    //         .returns(() => telemetry);
+    it('dispatches message for openSettingsPanel', () => {
+        const telemetry = { ...telemetryStub, sourceItem: 'sourceItem' as SettingsOpenSourceItem };
+        telemetryFactoryMock
+            .setup(factory =>
+                factory.forSettingsPanelOpen(eventStub, source, 'fileIssueSettingsPrompt'),
+            )
+            .returns(() => telemetry);
 
-    //     dispatcherMock
-    //         .setup(dispatcher =>
-    //             dispatcher.dispatchMessage({
-    //                 messageType: Messages.SettingsPanel.OpenPanel,
-    //                 payload: {
-    //                     telemetry,
-    //                 },
-    //             }),
-    //         )
-    //         .verifiable(Times.once());
+        dispatcherMock
+            .setup(dispatcher =>
+                dispatcher.dispatchMessage({
+                    messageType: Messages.SettingsPanel.OpenPanel,
+                    payload: {
+                        telemetry,
+                    },
+                }),
+            )
+            .verifiable(Times.once());
 
-    //     testSubject.openSettingsPanel(eventStub);
+        testSubject.openSettingsPanel(eventStub);
 
-    //     dispatcherMock.verifyAll();
-    // });
+        dispatcherMock.verifyAll();
+    });
 
     it('dispatches message for trackFileIssueClick', () => {
         const testService: string = 'test file issue service';
