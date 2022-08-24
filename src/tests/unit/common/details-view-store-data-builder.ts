@@ -17,7 +17,6 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
             null!,
             null!,
             null!,
-            null!,
         ).getDefaultState();
     }
 
@@ -51,11 +50,6 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
 
     public withSettingPanelState(isSettingsOpen: boolean): DetailsViewStoreDataBuilder {
         this.data.currentPanel.isSettingsOpen = isSettingsOpen;
-        return this;
-    }
-
-    public withIssueFilingSettingsDialogOpen(isIssueFilingSettingsOpen: boolean) {
-        this.data.currentPanel.isIssueFilingSettingsOpen = isIssueFilingSettingsOpen;
         return this;
     }
 }

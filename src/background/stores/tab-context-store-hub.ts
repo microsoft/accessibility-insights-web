@@ -101,7 +101,6 @@ export class TabContextStoreHub implements StoreHub {
             actionHub.contentActions,
             actionHub.detailsViewActions,
             actionHub.sidePanelActions,
-            actionHub.dialogActions,
             persistedTabData?.detailsViewStoreData,
             indexedDBInstance,
             logger,

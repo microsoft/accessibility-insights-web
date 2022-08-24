@@ -4,7 +4,6 @@ import { ActionHub } from 'background/actions/action-hub';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
-import { DialogActions } from 'background/actions/dialog-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
@@ -44,5 +43,4 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.sidePanelActions).toBeInstanceOf(SidePanelActions);
     expect(hub.needsReviewScanResultActions).toBeInstanceOf(NeedsReviewScanResultActions);
     expect(hub.needsReviewCardSelectionActions).toBeInstanceOf(NeedsReviewCardSelectionActions);
-    expect(hub.dialogActions).toBeInstanceOf(DialogActions);
 }

@@ -142,11 +142,6 @@ export const Messages = {
         OpenPanel: `${messagePrefix}/contentPanel/openPanel`,
     },
 
-    Dialog: {
-        openIssueFilingSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/open`,
-        closeIssueFilingSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/close`,
-    },
-
     SettingsPanel: {
         ClosePanel: `${messagePrefix}/settingsPanel/closePanel`,
         OpenPanel: `${messagePrefix}/settingsPanel/openPanel`,
@@ -166,6 +161,8 @@ export const Messages = {
 
     IssueFiling: {
         FileIssue: `${messagePrefix}/issueFiling/file`,
+        openSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/open`,
+        closeSettingsDialog: `${messagePrefix}/dialog/issueFilingSettings/close`,
     },
 
     PathSnippet: {

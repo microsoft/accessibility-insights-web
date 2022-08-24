@@ -5,5 +5,4 @@ export interface CurrentPanel {
     isScopingOpen: boolean;
     isContentOpen: boolean;
     isSettingsOpen: boolean;
-    isIssueFilingSettingsOpen: boolean;
 }
