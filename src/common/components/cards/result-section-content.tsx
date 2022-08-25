@@ -32,7 +32,7 @@ export type ResultSectionContentProps = {
     allCardsCollapsed: boolean;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -47,13 +47,19 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             targetAppInfo,
             outcomeCounter,
             headingLevel,
+            cardSelectionMessageCreator,
         } = props;
         if (results.length === 0) {
             return null;
         }
         return (
             <>
-                <deps.cardsVisualizationModifierButtons {...props} />
+                {cardSelectionMessageCreator !== undefined && (
+                    <deps.cardsVisualizationModifierButtons
+                        {...props}
+                        cardSelectionMessageCreator={cardSelectionMessageCreator!}
+                    />
+                )}
                 <RulesWithInstances
                     deps={deps}
                     rules={results}
@@ -63,7 +69,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     targetAppInfo={targetAppInfo}
                     outcomeCounter={outcomeCounter}
                     headingLevel={headingLevel}
-                    cardSelectionMessageCreator={props.cardSelectionMessageCreator}
+                    cardSelectionMessageCreator={cardSelectionMessageCreator}
                 />
             </>
         );

@@ -5,7 +5,10 @@ import {
     detailsViewSelectors,
     fastPassAutomatedChecksSelectors,
 } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
+import {
+    DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+    DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+} from 'tests/end-to-end/common/timeouts';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { TargetPage } from '../../common/page-controllers/target-page';
@@ -41,6 +44,10 @@ describe('Color Contrast Violations', () => {
         await detailsViewPage.clickSelector(fastPassAutomatedChecksSelectors.startOverButton);
         await detailsViewPage.waitForSelector(detailsViewSelectors.automatedChecksResultSection, {
             timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+        });
+
+        await detailsViewPage.waitForSelector(fastPassAutomatedChecksSelectors.ruleDetail, {
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
         });
 
         const ruleDetails = await detailsViewPage.getSelectorElements(

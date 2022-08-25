@@ -56,7 +56,7 @@ export class TabContextFactory {
         private readonly urlParser: UrlParser,
     ) {}
 
-    public createTabContext(tabId: number): TabContext {
+    public async createTabContext(tabId: number): Promise<TabContext> {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(
@@ -200,7 +200,7 @@ export class TabContextFactory {
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
-        dispatcher.initialize();
+        await dispatcher.initialize();
 
         const devToolsMonitor = new DevToolsMonitor(
             tabId,

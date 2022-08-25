@@ -39,12 +39,12 @@ export type DetailsDialogDeps = {
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
-    userConfigStore: BaseStore<UserConfigurationStoreData>;
+    userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
     target: Target;
     dialogHandler: DetailsDialogHandler;
-    devToolStore: BaseStore<DevToolStoreData>;
+    devToolStore: BaseStore<DevToolStoreData, Promise<void>>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     devToolsShortcut: string;
 }

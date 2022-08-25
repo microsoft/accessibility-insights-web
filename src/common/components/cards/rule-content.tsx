@@ -17,7 +17,7 @@ export type RuleContentProps = {
     rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {

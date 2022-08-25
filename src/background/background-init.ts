@@ -125,7 +125,8 @@ async function initialize(): Promise<void> {
 
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
-    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+    const telemetryEventHandler = new TelemetryEventHandler();
+    telemetryEventHandler.initialize(telemetryClient);
 
     const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new SendingExceptionTelemetryListener(

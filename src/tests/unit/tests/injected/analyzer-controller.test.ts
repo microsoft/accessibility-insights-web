@@ -5,6 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { ShadowInitializer } from 'injected/shadow-initializer';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
@@ -28,7 +29,7 @@ import { VisualizationStoreDataBuilder } from '../../common/visualization-store-
 
 describe('AnalyzerControllerTests', () => {
     let visualizationStoreMock: IMock<VisualizationStore>;
-    let scopingStoreMock: IMock<BaseStore<ScopingStoreData>>;
+    let scopingStoreMock: IMock<BaseStore<ScopingStoreData, Promise<void>>>;
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
@@ -45,6 +46,7 @@ describe('AnalyzerControllerTests', () => {
     let analyzerMock: IMock<Analyzer>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
     let assessmentsMock: IMock<AssessmentsProvider>;
+    let shadowInitializerMock: IMock<ShadowInitializer>;
     let testObject: AnalyzerController;
     let teardown: (id: string) => void;
     let startScan: (id: string) => void;
@@ -71,6 +73,7 @@ describe('AnalyzerControllerTests', () => {
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
+        shadowInitializerMock = Mock.ofType<ShadowInitializer>();
 
         visualizationStoreMock.setup(sm => sm.getState()).returns(() => visualizationStoreState);
 
@@ -114,6 +117,7 @@ describe('AnalyzerControllerTests', () => {
             analyzerProviderStrictMock.object,
             analyzerStateUpdateHandlerStrictMock.object,
             assessmentsMock.object,
+            shadowInitializerMock.object,
         );
     });
 
@@ -122,6 +126,7 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreStoreMock.verifyAll();
         scopingStoreMock.verifyAll();
         analyzerProviderStrictMock.verifyAll();
+        shadowInitializerMock.verifyAll();
         featureFlagStoreState = {};
     });
 
@@ -176,6 +181,9 @@ describe('AnalyzerControllerTests', () => {
         getAnalyzerMock.reset();
         setupAnalyzeCall();
         setupGetAnalyzerMockNeverCalled();
+
+        shadowInitializerMock.setup(m => m.removeExistingShadowHost()).verifiable(Times.once());
+        shadowInitializerMock.setup(m => m.initialize()).verifiable(Times.once());
 
         startScan(identifier);
 

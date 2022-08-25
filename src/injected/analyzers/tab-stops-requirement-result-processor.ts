@@ -15,7 +15,10 @@ export class TabStopsRequirementResultProcessor {
     constructor(
         private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
-        private readonly visualizationResultsStore: BaseStore<VisualizationScanResultData>,
+        private readonly visualizationResultsStore: BaseStore<
+            VisualizationScanResultData,
+            Promise<void>
+        >,
     ) {}
 
     public start = async (): Promise<void> => {

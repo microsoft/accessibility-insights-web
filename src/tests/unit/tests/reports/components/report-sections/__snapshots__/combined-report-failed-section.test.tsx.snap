@@ -6,7 +6,7 @@ exports[`CombinedReportFailedSection renders 1`] = `
     <CombinedResultSectionTitle outcomeCount={1} outcomeType=\\"fail\\" title=\\"Failed rules\\" />
   </div>
   <div id=\\"collapsible-content\\">
-    <ResultSectionContent deps={{...}} outcomeType=\\"fail\\" targetAppInfo={[undefined]} results={{...}} visualHelperEnabled={true} allCardsCollapsed={true} userConfigurationStoreData={{...}} outcomeCounter={[Function: countByIdentifierUrls]} headingLevel={4} cardSelectionMessageCreator={{...}} />
+    <ResultSectionContent deps={{...}} outcomeType=\\"fail\\" targetAppInfo={[undefined]} results={{...}} visualHelperEnabled={true} allCardsCollapsed={true} userConfigurationStoreData={{...}} outcomeCounter={[Function: countByIdentifierUrls]} headingLevel={4} />
   </div>
 </div>"
 `;
