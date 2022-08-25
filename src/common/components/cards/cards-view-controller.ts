@@ -6,11 +6,11 @@ import { CardsViewActions } from 'common/components/cards/cards-view-actions';
 export class CardsViewController {
     public constructor(private readonly cardsViewActions: CardsViewActions) {}
 
-    public openIssueFilingSettingsDialog(): void {
+    public readonly openIssueFilingSettingsDialog = (): void => {
         this.cardsViewActions.openIssueFilingSettingsDialog.invoke(null);
-    }
+    };
 
-    public closeIssueFilingSettingsDialog(): void {
+    public readonly closeIssueFilingSettingsDialog = (): void => {
         this.cardsViewActions.closeIssueFilingSettingsDialog.invoke(null);
-    }
+    };
 }
