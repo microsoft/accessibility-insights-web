@@ -4,7 +4,7 @@ import { Browser } from 'tests/end-to-end/common/browser';
 import { launchBrowser } from 'tests/end-to-end/common/browser-factory';
 import { CommonSelectors } from 'tests/end-to-end/common/element-identifiers/common-selectors';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { DetailsViewPage } from 'tests/end-to-end/common/page-controllers/details-view-page';
 import { TargetPage } from 'tests/end-to-end/common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from 'tests/end-to-end/common/scan-for-accessibility-issues';
@@ -13,13 +13,13 @@ describe('Details View -> Settings Panel', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundPage;
+    let backgroundPage: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage);
-        backgroundPage = await browser.backgroundPage();
+        backgroundPage = await browser.background();
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.openSettingsPanel();
     });
