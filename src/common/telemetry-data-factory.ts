@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import {
+    AssessmentData,
+    AssessmentStoreData,
+} from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import { filter } from 'lodash';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
@@ -192,6 +200,7 @@ export class TelemetryDataFactory {
         requirement: string,
         passed: boolean,
         numInstances: number,
+        stepExtraData?: any,
     ): RequirementStatusTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
@@ -200,6 +209,7 @@ export class TelemetryDataFactory {
             selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
+            stepExtraData,
         };
     }
 
@@ -522,5 +532,44 @@ export class TelemetryDataFactory {
         return {
             enabled,
         };
+    }
+
+    public forCompletedTestStep(
+        assessment: Assessment,
+        storeData: AssessmentStoreData,
+        step: Requirement,
+    ): RequirementStatusTelemetryData {
+        const assessmentData = assessment
+            .getVisualizationConfiguration()
+            .getAssessmentData(storeData);
+        const numInstances = this.getNumInstances(step, assessmentData);
+        const newStatus = storeData.assessments[assessment.key].testStepStatus;
+        return this.forRequirementStatus(
+            assessment.visualizationType,
+            step.key,
+            newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
+            numInstances,
+            step.getCompletedStepExtraTelemetryData
+                ? step.getCompletedStepExtraTelemetryData(assessment, storeData)
+                : undefined,
+        );
+    }
+
+    private getNumInstances(step: Requirement, assessmentData: AssessmentData): number {
+        let numInstances = 0;
+        if (!step.isManual) {
+            numInstances = filter(
+                Object.keys(assessmentData.generatedAssessmentInstancesMap),
+                key => {
+                    return (
+                        step.key in
+                        assessmentData.generatedAssessmentInstancesMap[key].testStepResults
+                    );
+                },
+            ).length;
+        } else if (step.key in assessmentData.manualTestStepResultMap) {
+            numInstances = assessmentData.manualTestStepResultMap[step.key].instances.length;
+        }
+        return numInstances;
     }
 }
