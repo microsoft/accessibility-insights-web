@@ -48,7 +48,7 @@ export interface CardFooterInstanceActionButtonsProps {
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;
-    cardsViewStoreData: CardsViewStoreData;
+    cardsViewStoreData?: CardsViewStoreData;
 }
 
 export class CardFooterInstanceActionButtons extends React.Component<CardFooterInstanceActionButtonsProps> {
@@ -162,7 +162,7 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
             );
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
-            isOpen: cardsViewStoreData.isIssueFilingSettingsDialogOpen,
+            isOpen: cardsViewStoreData?.isIssueFilingSettingsDialogOpen,
             selectedIssueFilingService,
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,

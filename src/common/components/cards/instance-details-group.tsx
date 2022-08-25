@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
@@ -27,6 +29,8 @@ export type InstanceDetailsGroupProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
+    narrowModeStatus?: NarrowModeStatus;
+    cardsViewStoreData?: CardsViewStoreData;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -38,6 +42,8 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             userConfigurationStoreData,
             targetAppInfo,
             cardSelectionMessageCreator,
+            narrowModeStatus,
+            cardsViewStoreData,
         } = props;
         const { nodes } = rule;
         const unifiedRule: UnifiedRule = {
@@ -64,6 +70,8 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             rule={unifiedRule}
                             targetAppInfo={targetAppInfo}
                             cardSelectionMessageCreator={cardSelectionMessageCreator}
+                            narrowModeStatus={narrowModeStatus}
+                            cardsViewStoreData={cardsViewStoreData}
                         />
                     </li>
                 ))}
