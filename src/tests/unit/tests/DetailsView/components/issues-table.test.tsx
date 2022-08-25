@@ -115,7 +115,7 @@ describe('IssuesTableTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('With card interaction support and null CardViewStoreData', () => {
+    it('With issue filing support and null CardViewStoreData', () => {
         cardInteractionSupport.supportsIssueFiling = true;
         const props = new TestPropsBuilder()
             .setDeps(deps)
@@ -128,7 +128,7 @@ describe('IssuesTableTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('With card interaction support and issue filing dialog closed', () => {
+    it('With issue filing support and issue filing dialog closed', () => {
         cardInteractionSupport.supportsIssueFiling = true;
         const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(true).build();
 
@@ -137,7 +137,7 @@ describe('IssuesTableTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('With card interaction support and issue filing dialog open', () => {
+    it('With issue filing support and issue filing dialog open', () => {
         const issueDetailsData = {
             snippet: 'snippet',
         } as CreateIssueDetailsTextData;
