@@ -60,36 +60,32 @@ export class Browser {
 
     public async background(): Promise<BackgroundContext> {
         if (this.MANIFEST_VERSION?.includes('mv3')) {
-            return this.serviceWorker();
-        } else {
-            return this.background();
-        }
-    }
+            if (this.memoizedServiceWorker) {
+                return this.memoizedServiceWorker;
+            }
 
-    public async backgroundPage(): Promise<BackgroundPage> {
-        if (this.memoizedBackgroundPage) {
+            const ourServiceWorkerPage = await this.waitForServiceWorkerMatching(
+                hasServiceWorkerUrl,
+            );
+
+            this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
+
+            return this.memoizedServiceWorker;
+        } else {
+            if (this.memoizedBackgroundPage) {
+                return this.memoizedBackgroundPage;
+            }
+
+            const ourBackgroundPage = await this.waitForBackgroundPageMatching(
+                hasBackgroundPageUrl,
+            );
+
+            this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
+                onPageCrash: this.onPageCrash,
+            });
+
             return this.memoizedBackgroundPage;
         }
-
-        const ourBackgroundPage = await this.waitForBackgroundPageMatching(hasBackgroundPageUrl);
-
-        this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
-            onPageCrash: this.onPageCrash,
-        });
-
-        return this.memoizedBackgroundPage;
-    }
-
-    public async serviceWorker(): Promise<ServiceWorker> {
-        if (this.memoizedServiceWorker) {
-            return this.memoizedServiceWorker;
-        }
-
-        const ourServiceWorkerPage = await this.waitForServiceWorkerMatching(hasServiceWorkerUrl);
-
-        this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
-
-        return this.memoizedServiceWorker;
     }
 
     public async newPage(url: string): Promise<Page> {
