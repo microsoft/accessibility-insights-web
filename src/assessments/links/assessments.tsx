@@ -5,7 +5,7 @@ import { test as content } from 'content/test';
 import * as React from 'react';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
-import { LabelName } from './test-steps/label-in-name';
+import { LabelInName } from './test-steps/label-in-name';
 import { LinkFunction } from './test-steps/link-function';
 import { LinkPurpose } from './test-steps/link-purpose';
 
@@ -47,6 +47,6 @@ export const LinksAssessment = AssessmentBuilder.Assisted({
     gettingStarted: LinksAssessmentGettingStarted,
     guidance,
     visualizationType: VisualizationType.LinksAssessment,
-    requirements: [LinkFunction, LinkPurpose, LabelName],
+    requirements: [LinkFunction, LinkPurpose, LabelInName],
     storeDataKey: 'linksAssessment',
 });

@@ -3,5 +3,5 @@
 export const enum LinksTestStep {
     linkFunction = 'linkFunction',
     linkPurpose = 'linkPurpose',
-    labelName = 'labelName',
+    labelInName = 'labelInName',
 }

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { LabelNamePropertyBag } from 'common/types/property-bag/label-in-name-property-bag';
+import { LabelInNamePropertyBag } from 'common/types/property-bag/label-in-name-property-bag';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
-import * as content from 'content/test/links/link-function';
+import * as content from 'content/test/links/label-in-name';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
@@ -21,11 +21,11 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { LinksTestStep } from './test-steps';
 
-const LabelNameDescription: JSX.Element = (
+const LabelInNameDescription: JSX.Element = (
     <span>A link's accessible name must contain its visible text label.</span>
 );
 
-const LabelNameHowToTest: JSX.Element = (
+const LabelInNameHowToTest: JSX.Element = (
     <div>
         <p>
             The visual helper for this requirement highlights links that have visible text on the
@@ -59,7 +59,7 @@ const LabelNameHowToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<LabelNamePropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<LabelInNamePropertyBag>[] = [
     {
         propertyName: 'accessibleName',
         displayName: 'Accessible name',
@@ -72,11 +72,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LabelNamePropertyBag>[]
     },
 ];
 
-export const LabelName: Requirement = {
-    key: LinksTestStep.labelName,
-    name: 'Label in Name',
-    description: LabelNameDescription,
-    howToTest: LabelNameHowToTest,
+export const LabelInName: Requirement = {
+    key: LinksTestStep.labelInName,
+    name: 'Label in name',
+    description: LabelInNameDescription,
+    howToTest: LabelInNameHowToTest,
     isManual: false,
     ...content,
     guidanceLinks: [link.WCAG_2_5_3],
@@ -85,7 +85,7 @@ export const LabelName: Requirement = {
             key: 'link-info',
             name: 'Link info',
             onRender:
-                PropertyBagColumnRendererFactory.getRenderer<LabelNamePropertyBag>(
+                PropertyBagColumnRendererFactory.getRenderer<LabelInNamePropertyBag>(
                     propertyBagConfig,
                 ),
         },
@@ -94,8 +94,8 @@ export const LabelName: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['link-function'],
-                key: LinksTestStep.labelName,
+                rules: ['link-purpose'],
+                key: LinksTestStep.labelInName,
                 testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
             }),
