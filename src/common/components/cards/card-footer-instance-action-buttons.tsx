@@ -162,7 +162,7 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
             );
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
-            isOpen: cardsViewStoreData?.isIssueFilingSettingsDialogOpen,
+            isOpen: cardsViewStoreData?.isIssueFilingSettingsDialogOpen ?? false,
             selectedIssueFilingService,
             selectedIssueData: issueDetailsData,
             selectedIssueFilingServiceData,

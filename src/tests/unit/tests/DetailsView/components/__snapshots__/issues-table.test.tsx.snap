@@ -64,6 +64,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           "visualHelperEnabled": true,
         }
       }
+      cardsViewStoreData={Object {}}
       deps={
         {
           "detailsViewActionMessageCreator": [typemoq mock object],
@@ -71,6 +72,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
           "reportGenerator": [typemoq mock object],
         }
       }
+      narrowModeStatus={Object {}}
       scanMetadata={
         {
           "targetAppInfo": {
@@ -176,6 +178,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           "visualHelperEnabled": true,
         }
       }
+      cardsViewStoreData={Object {}}
       deps={
         {
           "detailsViewActionMessageCreator": [typemoq mock object],
@@ -183,6 +186,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           "reportGenerator": [typemoq mock object],
         }
       }
+      narrowModeStatus={Object {}}
       scanMetadata={
         {
           "targetAppInfo": {

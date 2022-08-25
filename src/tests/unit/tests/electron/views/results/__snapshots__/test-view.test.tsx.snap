@@ -16,7 +16,9 @@ exports[`TestView when status scan <Completed> 1`] = `
         "visualHelperEnabled": true,
       }
     }
+    cardsViewStoreData={{}}
     deps={{}}
+    narrowModeStatus={{}}
     scanMetadata={
       {
         "timespan": {
