@@ -18,6 +18,8 @@ import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
 
+import { setTimeout } from 'timers/promises';
+
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private memoizedServiceWorker: ServiceWorker;
@@ -189,6 +191,12 @@ export class Browser {
 
     private async getActivePageTabId(): Promise<number> {
         const backgroundPage = await this.background();
+
+        // Check chrome.tabs is initialized
+        while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
+            await setTimeout(50);
+        }
+
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs =>
