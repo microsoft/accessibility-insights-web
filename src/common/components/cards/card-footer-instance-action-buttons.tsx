@@ -14,8 +14,8 @@ import * as React from 'react';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { Toast, ToastDeps } from '../toast';
+import styles from './card-footer-instance-action-buttons.scss';
 import { CardInteractionSupport } from './card-interaction-support';
-import styles from './card-kebab-menu-button.scss';
 
 registerIcons({
     icons: {
