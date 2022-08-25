@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import classNames from 'classnames';
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
@@ -37,7 +36,6 @@ export type InstanceDetailsProps = {
     rule: UnifiedRule;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
-    cardsViewStoreData?: CardsViewStoreData;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
@@ -49,7 +47,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         targetAppInfo,
         cardSelectionMessageCreator,
         narrowModeStatus,
-        cardsViewStoreData,
     } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
@@ -75,9 +72,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const hiddenButton = React.useRef<HTMLButtonElement>(null);
     const cardHighlightingProperties = isHighlightSupported
         ? {
-              onClick: (_: React.SyntheticEvent): void => {
-                  hiddenButton.current?.focus();
-                  hiddenButton.current?.click();
+              onClick: (event: React.SyntheticEvent): void => {
+                  console.log(event?.target);
+                  if (!(event?.target instanceof HTMLButtonElement)) {
+                      hiddenButton.current?.focus();
+                      hiddenButton.current?.click();
+                  }
               },
               tabIndex: -1,
           }
@@ -119,7 +119,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         rule={rule}
                         targetAppInfo={targetAppInfo}
                         narrowModeStatus={narrowModeStatus}
-                        cardsViewStoreData={cardsViewStoreData}
                     />
                 </div>
             </div>

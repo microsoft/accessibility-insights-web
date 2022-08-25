@@ -5,7 +5,6 @@ import {
     CardFooterInstanceActionButtons,
     CardFooterInstanceActionButtonsDeps,
 } from 'common/components/cards/card-footer-instance-action-buttons';
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import {
     HighlightHiddenIcon,
     HighlightUnavailableIcon,
@@ -35,21 +34,13 @@ export type InstanceDetailsFooterProps = {
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
     narrowModeStatus?: NarrowModeStatus;
-    cardsViewStoreData?: CardsViewStoreData;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
     'InstanceDetailsFooter',
     props => {
-        const {
-            deps,
-            userConfigurationStoreData,
-            result,
-            rule,
-            targetAppInfo,
-            cardsViewStoreData,
-            narrowModeStatus,
-        } = props;
+        const { deps, userConfigurationStoreData, result, rule, targetAppInfo, narrowModeStatus } =
+            props;
         const { cardInteractionSupport } = deps;
 
         const supportsAnyActions =
@@ -76,7 +67,6 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
                     userConfigurationStoreData={userConfigurationStoreData}
                     issueDetailsData={issueDetailsData}
                     kebabMenuAriaLabel={kebabMenuAriaLabel}
-                    cardsViewStoreData={cardsViewStoreData}
                     narrowModeStatus={narrowModeStatus}
                 />
             );

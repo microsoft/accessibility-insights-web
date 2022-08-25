@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
@@ -36,7 +35,6 @@ export type ResultSectionContentProps = {
     headingLevel: number;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
-    cardsViewStoreData?: CardsViewStoreData;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -53,7 +51,6 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             headingLevel,
             cardSelectionMessageCreator,
             narrowModeStatus,
-            cardsViewStoreData,
         } = props;
         if (results.length === 0) {
             return null;
@@ -77,7 +74,6 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     headingLevel={headingLevel}
                     cardSelectionMessageCreator={cardSelectionMessageCreator}
                     narrowModeStatus={narrowModeStatus}
-                    cardsViewStoreData={cardsViewStoreData}
                 />
             </>
         );

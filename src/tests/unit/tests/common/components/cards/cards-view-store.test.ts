@@ -5,6 +5,7 @@ import { CardsViewActions } from 'common/components/cards/cards-view-actions';
 import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { StoreNames } from 'common/stores/store-names';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 
 describe(CardsViewStore, () => {
@@ -27,19 +28,51 @@ describe(CardsViewStore, () => {
     });
 
     test('on openIssueFilingSettingsDialog', async () => {
+        const onDialogDismissedCallback = () => null;
+        const selectedIssueData = { snippet: 'test snippet' } as CreateIssueDetailsTextData;
+
         const initialState = getDefaultState();
+
         const finalState = getDefaultState();
         finalState.isIssueFilingSettingsDialogOpen = true;
+        finalState.onIssueFilingSettingsClosedCallback = onDialogDismissedCallback;
+        finalState.selectedIssueData = selectedIssueData;
 
         const storeTester = createStoreForCardsViewActions(
             'openIssueFilingSettingsDialog',
-        ).withActionParam(null);
+        ).withActionParam({
+            onDialogDismissedCallback,
+            selectedIssueData,
+        });
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on closeIssueFilingSettingsDialog', async () => {
+    test('on closeIssueFilingSettingsDialog with callback defined', async () => {
+        const onDismissDialogCallback = jest.fn();
+        const selectedIssueData = { snippet: 'test snippet' } as CreateIssueDetailsTextData;
+
         const initialState = getDefaultState();
         initialState.isIssueFilingSettingsDialogOpen = true;
+        initialState.onIssueFilingSettingsClosedCallback = onDismissDialogCallback;
+        initialState.selectedIssueData = selectedIssueData;
+
+        const finalState = getDefaultState();
+
+        const storeTester = createStoreForCardsViewActions(
+            'closeIssueFilingSettingsDialog',
+        ).withActionParam(null);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+
+        expect(onDismissDialogCallback).toBeCalledTimes(1);
+    });
+
+    test('on closeIssueFilingSettingsDialog with callback undefined', async () => {
+        const selectedIssueData = { snippet: 'test snippet' } as CreateIssueDetailsTextData;
+
+        const initialState = getDefaultState();
+        initialState.isIssueFilingSettingsDialogOpen = true;
+        initialState.selectedIssueData = selectedIssueData;
+
         const finalState = getDefaultState();
 
         const storeTester = createStoreForCardsViewActions(

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -14,7 +13,6 @@ export type CommonInstancesSectionProps = {
     deps: CommonInstancesSectionDeps;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
-    cardsViewStoreData?: CardsViewStoreData;
     scanMetadata: ScanMetadata;
     shouldAlertFailuresCount?: boolean;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;

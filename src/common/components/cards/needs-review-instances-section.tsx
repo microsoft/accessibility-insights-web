@@ -18,7 +18,6 @@ export const NeedsReviewInstancesSection = NamedFC<CommonInstancesSectionProps>(
         cardSelectionMessageCreator,
         sectionHeadingLevel,
         narrowModeStatus,
-        cardsViewStoreData,
     }) => {
         if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
@@ -44,7 +43,6 @@ export const NeedsReviewInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 sectionHeadingLevel={sectionHeadingLevel}
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
                 narrowModeStatus={narrowModeStatus}
-                cardsViewStoreData={cardsViewStoreData}
             />
         );
     },
