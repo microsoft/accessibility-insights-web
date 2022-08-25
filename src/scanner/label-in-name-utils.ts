@@ -17,33 +17,24 @@ const { sanitize, isHumanInterpretable, subtreeText } = axe.commons.text;
 
 export function labelInNameMatches(node: HTMLElement, virtualNode: any) {
     const accessibleName = (node.getAttribute('aria-label') || node.getAttribute('aria-labelledby')) ? AxeUtils.getAccessibleText(node) : '';
-    if (accessibleName === '' || !isHumanInterpretable(accessibleName)) {
+    if (accessibleName === '' || !isHumanInterpretable(accessibleName.toLowerCase())) {
         return false;
     }
     const visibleText = getVisibleText(virtualNode);
-    if (visibleText === '' || !isHumanInterpretable(visibleText)) {
+    if (visibleText === '' || !isHumanInterpretable(visibleText.toLowerCase())) {
         return false;
     }
-    console.log(visibleText);
     return true;
 }
 
 export function getLabelInNameData(node: HTMLElement, virtualNode: any) {
-    console.log(node, virtualNode)
     const visibleText = getVisibleText(virtualNode);
     const accessibleName = sanitize(AxeUtils.getAccessibleText(node));
     const url = node.getAttribute('href');
     const labelInName = accessibleName.toLowerCase().includes(visibleText.toLowerCase());
-    console.log(visibleText, accessibleName, url, labelInName)
     return { visibleText, accessibleName, url, labelInName };
 }
 
-export function getVirtualNode(node: HTMLElement) {
-    const virtualNode = AxeUtils.withAxeSetup(() =>
-        axe.utils.getNodeFromTree(node),
-    );
-    return virtualNode;
-}
 
 function getVisibleText(virtualNode: any): string {
     const visibleTextSubtreeOptions = {
@@ -54,4 +45,9 @@ function getVisibleText(virtualNode: any): string {
     const containedText = subtreeText(virtualNode, visibleTextSubtreeOptions);
     const sanitizedText = axe.commons.text.sanitize(containedText);
     return sanitizedText;
+}
+
+//this is needed to test the above functions
+export function getVirtualNode(node: HTMLElement) {
+    return axe.utils.getNodeFromTree(node)
 }

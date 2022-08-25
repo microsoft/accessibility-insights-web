@@ -23,11 +23,14 @@ describe('label-in-name check', () => {
 describe('label-in-name check', () => {
     const linkId = 'my-link';
     const labelId = 'link-label';
-    const linkWithoutAccessibleName = `<a id="${linkId}" href="www.example.com">Example</a>`;
-    const linkWithLabel = `<a id="${linkId}" href="www.example.com" aria-label="Example">Example</a>`;
-    const linkWithLabelMismatch = `<a id="${linkId}" href="www.example.com" aria-label="Something Else">Example</a>`;
-    const linkWithLabelledBy = `<span id="${labelId}">Example</span><a id="${linkId}" href="www.example.com" aria-labelledby="${labelId}">Example</a>`;
-    const linkWithLabelledByMismatch = `<span id="${labelId}">Something Else</span><a id="${linkId}" href="www.example.com" aria-labelledby="${labelId}">Example</a>`;
+    const url = 'https://www.example.com';
+    const displayedText = 'Example';
+    const mismatchAccessibleName = 'Something Else';
+    const linkWithoutAccessibleName = `<a id="${linkId}" href="${url}">${displayedText}</a>`;
+    const linkWithLabel = `<a id="${linkId}" href="${url}" aria-label="${displayedText}">${displayedText}</a>`;
+    const linkWithLabelMismatch = `<a id="${linkId}" href="${url}" aria-label="${mismatchAccessibleName}">${displayedText}</a>`;
+    const linkWithLabelledBy = `<span id="${labelId}">${displayedText}</span><a id="${linkId}" href="${url}" aria-labelledby="${labelId}">${displayedText}</a>`;
+    const linkWithLabelledByMismatch = `<span id="${labelId}">${mismatchAccessibleName}</span><a id="${linkId}" href="${url}" aria-labelledby="${labelId}">${displayedText}</a>`;
     const nonLinkElement = `<span id="${linkId}">Hello</span>`;
     beforeEach(() => {
         context._data = null;
@@ -66,36 +69,33 @@ describe('label-in-name check', () => {
     `(`returns $isMatch for $element`, ({ isMatch, markdown }) => {
         fixture.innerHTML = markdown;
         const node: HTMLElement = fixture.querySelector(`#${linkId}`);
-        const virtualNode = getVirtualNode(node);
+        const virtualNode = withAxeSetup(() => getVirtualNode(node));
         const matches = withAxeSetup(() =>
             labelInNameConfiguration.rule.matches(node, virtualNode),
         );
 
-        if (isMatch) {
-            expect(matches).toBeTruthy();
-        } else {
-            expect(matches).toBeFalsy();
-        }
+        expect(matches).toBe(isMatch);
     });
 
     it.each`
-        element                            | expectedResult | markdown                      | accessibleName      | visibleText
-        ${'plain link'}                    | ${true}        | ${linkWithoutAccessibleName}  | ${'Example'}        | ${'Example'}
-        ${'link with label'}               | ${true}        | ${linkWithLabel}              | ${'Example'}        | ${'Example'}
-        ${'link with label mismatch'}      | ${false}       | ${linkWithLabelMismatch}      | ${'Something Else'} | ${'Example'}
-        ${'link with labelledby'}          | ${true}        | ${linkWithLabelledBy}         | ${'Example'}        | ${'Example'}
-        ${'link with labelledby mismatch'} | ${false}       | ${linkWithLabelledByMismatch} | ${'Something Else'} | ${'Example'}
-        ${'non link element'}              | ${true}       | ${nonLinkElement}             | ${'Hello'}          | ${'Hello'}
+        element                            | expectedResult | href    | markdown                      | accessibleName            | visibleText
+        ${'plain link'}                    | ${true}        | ${url}  | ${linkWithoutAccessibleName}  | ${displayedText}          | ${displayedText}
+        ${'link with label'}               | ${true}        | ${url}  | ${linkWithLabel}              | ${displayedText}          | ${displayedText}
+        ${'link with label mismatch'}      | ${false}       | ${url}  | ${linkWithLabelMismatch}      | ${mismatchAccessibleName} | ${displayedText}
+        ${'link with labelledby'}          | ${true}        | ${url}  | ${linkWithLabelledBy}         | ${displayedText}          | ${displayedText}
+        ${'link with labelledby mismatch'} | ${false}       | ${url}  | ${linkWithLabelledByMismatch} | ${mismatchAccessibleName} | ${displayedText}
+        ${'non link element'}              | ${true}        | ${null} | ${nonLinkElement}             | ${'Hello'}                | ${'Hello'}
     `(
         `creates the expected data object for $element`,
-        ({ expectedResult, markdown, accessibleName, visibleText }) => {
+        ({ markdown, expectedResult, href, accessibleName, visibleText }) => {
             fixture.innerHTML = markdown;
             const node: HTMLElement = fixture.querySelector(`#${linkId}`);
-            const virtualNode = getVirtualNode(node);
+            const virtualNode = withAxeSetup(() => getVirtualNode(node));
 
             const result = withAxeSetup(() =>
                 labelInNameConfiguration.checks[0].evaluate.call(context, node, null, virtualNode),
             );
+            expect(context._data.url).toEqual(href);
             expect(context._data.accessibleName).toEqual(accessibleName);
             expect(context._data.visibleText).toEqual(visibleText);
             expect(context._data.labelInName).toEqual(expectedResult);
