@@ -48,6 +48,13 @@ describe('evaluateAccessibleNames', () => {
         expect(result).toBe(false);
     });
 
+    it('should not match because it has no attributes', () => {
+        document.body.innerHTML = `<blockquote>Text in quotes</blockquote>`;
+        const node = document.querySelector(`blockquote`);
+        const result = withAxeSetup(() => accessibleNamesConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
+    });
+
     it('should match because element has accessible name and accurate role', () => {
         document.body.innerHTML = `<div role="button" aria-labelled-by="click">Some text</div>`;
         const node = document.querySelector(`div`);
