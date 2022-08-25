@@ -38,6 +38,24 @@ describe('ResultSectionContent', () => {
             },
             results: someRules,
             outcomeType: 'pass',
+            cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
+        } as ResultSectionContentProps;
+
+        const wrapper = shallow(<ResultSectionContent {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders without modifier buttons without cardSelectionMessageCreator, with some rules', () => {
+        const cardsVisualizationModifierButtonsStub: Readonly<CardsVisualizationModifierButtons> =
+            NamedFC<CardsVisualizationModifierButtonsProps>('test', _ => null);
+
+        const props = {
+            deps: {
+                cardsVisualizationModifierButtons: cardsVisualizationModifierButtonsStub,
+            },
+            results: someRules,
+            outcomeType: 'pass',
         } as ResultSectionContentProps;
 
         const wrapper = shallow(<ResultSectionContent {...props} />);
