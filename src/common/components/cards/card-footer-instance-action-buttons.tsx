@@ -7,12 +7,12 @@ import {
     CardFooterMenuItemsBuilder,
     CardFooterMenuItemsDeps,
 } from 'common/components/cards/card-footer-menu-items-builder';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
-import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';

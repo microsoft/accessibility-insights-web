@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { TestView, TestViewDeps, TestViewProps } from 'electron/views/results/test-view';
@@ -54,6 +56,8 @@ describe('TestView', () => {
             scanStatus: ScanStatus[scanStatusName],
             contentPageInfo: contentPageInfo,
             tabStopsEnabled: true,
+            narrowModeStatus: {} as NarrowModeStatus,
+            cardsViewStoreData: {} as CardsViewStoreData,
         };
 
         const testSubject = shallow(<TestView {...props} />);

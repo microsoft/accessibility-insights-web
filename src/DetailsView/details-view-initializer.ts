@@ -13,6 +13,10 @@ import { createToolData } from 'common/application-properties-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { CardFooterMenuItemsBuilder } from 'common/components/cards/card-footer-menu-items-builder';
+import { CardsViewActions } from 'common/components/cards/cards-view-actions';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
+import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -241,6 +245,11 @@ if (tabId != null) {
             const tabStopsViewStore = new TabStopsViewStore(tabStopsViewActions);
             tabStopsViewStore.initialize();
 
+            const cardsViewActions = new CardsViewActions();
+            const cardsViewStore = new CardsViewStore(cardsViewActions);
+            cardsViewStore.initialize();
+            const cardsViewController = new CardsViewController(cardsViewActions);
+
             const storesHub = new ClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -257,6 +266,7 @@ if (tabId != null) {
                 scopingStore,
                 userConfigStore,
                 tabStopsViewStore,
+                cardsViewStore,
             ]);
 
             const telemetrySanitizer = new ExceptionTelemetrySanitizer(
@@ -490,6 +500,8 @@ if (tabId != null) {
                 loadAssessmentDataValidator,
             );
 
+            const cardFooterMenuItemsBuilder = new CardFooterMenuItemsBuilder();
+
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
@@ -578,6 +590,8 @@ if (tabId != null) {
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
                 getNextHeadingLevel: GetNextHeadingLevel,
                 detailsViewId,
+                cardsViewController,
+                cardFooterMenuItemsBuilder,
             };
 
             const renderer = new DetailsViewRenderer(

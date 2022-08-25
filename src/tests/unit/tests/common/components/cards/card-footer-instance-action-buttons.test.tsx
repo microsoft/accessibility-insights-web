@@ -15,6 +15,7 @@ import {
     allCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
@@ -26,7 +27,6 @@ import { shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
-import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(CardFooterInstanceActionButtons, () => {

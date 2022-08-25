@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { DateProvider } from 'common/date-provider';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -14,6 +15,7 @@ import {
     IssuesTableDeps,
     IssuesTableProps,
 } from 'DetailsView/components/issues-table';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -142,6 +144,8 @@ class TestPropsBuilder {
                 selectedFastPassDetailsView: this.testType,
             } as VisualizationStoreData,
             cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
+            cardsViewStoreData: {} as CardsViewStoreData,
+            narrowModeStatus: {} as NarrowModeStatus,
         };
     }
 }

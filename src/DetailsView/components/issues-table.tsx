@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import {
     CommonInstancesSectionDeps,
     CommonInstancesSectionProps,
@@ -13,6 +14,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import styles from 'DetailsView/components/issues-table.scss';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialogDeps } from './export-dialog';
@@ -37,6 +39,8 @@ export interface IssuesTableProps {
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     visualizationStoreData: VisualizationStoreData;
+    narrowModeStatus: NarrowModeStatus;
+    cardsViewStoreData: CardsViewStoreData;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -122,6 +126,8 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 shouldAlertFailuresCount={true}
                 cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
                 sectionHeadingLevel={2}
+                narrowModeStatus={this.props.narrowModeStatus}
+                cardsViewStoreData={this.props.cardsViewStoreData}
             />
         );
     }
