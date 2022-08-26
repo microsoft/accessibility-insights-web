@@ -32,6 +32,18 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 }
 
+%common-control-chevron {
+    display: inline-block;
+    border-right: 1px solid $secondary-text;
+    border-bottom: 1px solid $secondary-text;
+    min-width: 7px;
+    width: 7px;
+    height: 7px;
+    content: '';
+    transform-origin: 50% 50%;
+    transition: transform 0.1s linear 0s;
+}
+
 .summary-section {
     @include box-shadow;
 
@@ -63,26 +75,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         transform: $property;
     }
 
-    &:not(.collapsible-rule-details-group) {
-        .collapsible-control {
-            padding-left: 2px;
-            padding-right: 16px;
-            position: relative;
-        }
-    }
-
-    %common-control-chevron {
-        display: inline-block;
-        border-right: 1px solid $secondary-text;
-        border-bottom: 1px solid $secondary-text;
-        min-width: 7px;
-        width: 7px;
-        height: 7px;
-        content: '';
-        transform-origin: 50% 50%;
-        transition: transform 0.1s linear 0s;
-    }
-
     .collapsible-control {
         font-family: 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont,
             Roboto, 'Helvetica Neue', Helvetica, Ubuntu, Arial, sans-serif, 'Apple Color Emoji',
@@ -96,6 +88,14 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
         &:hover {
             background-color: $neutral-alpha-4;
+        }
+    }
+
+    &:not(.collapsible-rule-details-group) {
+        .collapsible-control {
+            padding-left: 2px;
+            padding-right: 16px;
+            position: relative;
         }
     }
 

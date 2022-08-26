@@ -1,25 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/common.scss';
 @import '../../../../common/styles/fonts.scss';
 @import './window-title-const.scss';
-
-:global(.is-mac-os) .window-title {
-    height: $mac-title-height;
-
-    .title-container {
-        padding-left: 60px;
-    }
-
-    .header-text {
-        line-height: 18px;
-        font-size: 12px;
-    }
-
-    :global(.header-icon) {
-        height: 12px;
-    }
-}
 
 .window-title {
     flex-grow: 0;
@@ -32,9 +16,16 @@
     -webkit-app-region: drag;
     -webkit-user-select: none;
 
+    @include is-mac-os {
+        height: $mac-title-height;
+    }
+
     .title-container {
         display: flex;
         align-items: center;
+        @include is-mac-os {
+            padding-left: 60px;
+        }
 
         > * {
             padding-left: 10px;
@@ -61,10 +52,17 @@
         font-weight: $font-weight-semi-bold;
         line-height: 19.3px;
         margin: 0;
+        @include is-mac-os {
+            line-height: 18px;
+            font-size: 12px;
+        }
     }
 
     :global(.header-icon) {
         height: 17px;
+        @include is-mac-os {
+            height: 12px;
+        }
     }
 
     button {
