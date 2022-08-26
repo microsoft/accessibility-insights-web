@@ -34,8 +34,8 @@ export function getLabelInNameData(node: HTMLElement, virtualNode: any) {
     const visibleText = getVisibleText(virtualNode);
     const accessibleName = sanitize(AxeUtils.getAccessibleText(node));
     const url = node.getAttribute('href');
-    const labelInName = accessibleName.toLowerCase().includes(visibleText.toLowerCase());
-    return { visibleText, accessibleName, url, labelInName };
+    const labelContainsVisibleText = accessibleName.toLowerCase().includes(visibleText.toLowerCase());
+    return { visibleText, accessibleName, url, labelInName: labelContainsVisibleText };
 }
 
 function getVisibleText(virtualNode: any): string {
@@ -45,7 +45,7 @@ function getVisibleText(virtualNode: any): string {
         ...AxeUtils.getOptionsFromCheck('label-content-name-mismatch'),
     };
     const containedText = subtreeText(virtualNode, visibleTextSubtreeOptions);
-    const sanitizedText = axe.commons.text.sanitize(containedText);
+    const sanitizedText = sanitize(containedText);
     return sanitizedText;
 }
 
