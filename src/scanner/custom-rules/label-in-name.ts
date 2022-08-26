@@ -29,6 +29,5 @@ function evaluateLabelInName(
 ): boolean {
     const data = getLabelInNameData(node, virtualNode);
     this.data(data);
-    // TODO: add telemetry
     return true;
 }
