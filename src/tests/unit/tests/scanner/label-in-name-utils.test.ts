@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as LabelInNameUtils from 'scanner/label-in-name-utils';
 import * as AxeUtils from 'scanner/axe-utils';
+import * as LabelInNameUtils from 'scanner/label-in-name-utils';
 import { getVirtualNode } from 'scanner/label-in-name-utils';
 
 describe('LabelInNameUtils', () => {
@@ -20,6 +20,9 @@ describe('LabelInNameUtils', () => {
 
     describe('getVirtualNode', () => {
         let testSubject: HTMLElement;
+        beforeAll(() => {
+            mockCanvasContext();
+        });
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
@@ -56,7 +59,6 @@ describe('LabelInNameUtils', () => {
             ${'link with labelledby mismatch'} | ${true}  | ${linkWithLabelledByMismatch}
             ${'non link element'}              | ${false} | ${nonLinkElement}
         `(`returns matches $isMatch for $element`, ({ isMatch, markdown }) => {
-
             fixture.innerHTML = markdown;
             const node: HTMLElement = fixture.querySelector(`#${linkId}`);
             const virtualNode = AxeUtils.withAxeSetup(() => getVirtualNode(node));
@@ -64,18 +66,21 @@ describe('LabelInNameUtils', () => {
                 LabelInNameUtils.labelInNameMatches(node, virtualNode),
             );
 
-            expect(matches).toBe(isMatch)
-    });
+            expect(matches).toBe(isMatch);
+        });
 
-        it.each(['', 'x', 'i', 'X', '>', '!', '❤️'])('does not match if visible text is missing or if visible text is detected to be symbolic: %s', visibleText => {
-            fixture.innerHTML = `<a id="${linkId}" href=${url} aria-label="${mismatchAccessibleName}">${visibleText}</a>`;
-            const node: HTMLElement = fixture.querySelector(`#${linkId}`);
-            const virtualNode = AxeUtils.withAxeSetup(() => getVirtualNode(node));
-            const matches = AxeUtils.withAxeSetup(() =>
-                LabelInNameUtils.labelInNameMatches(node, virtualNode),
-            );
-            expect(matches).toBe(false);
-        })
+        it.each(['', 'x', 'i', 'X', '>', '!', '❤️'])(
+            'does not match if visible text is missing or if visible text is detected to be symbolic: %s',
+            visibleText => {
+                fixture.innerHTML = `<a id="${linkId}" href=${url} aria-label="${mismatchAccessibleName}">${visibleText}</a>`;
+                const node: HTMLElement = fixture.querySelector(`#${linkId}`);
+                const virtualNode = AxeUtils.withAxeSetup(() => getVirtualNode(node));
+                const matches = AxeUtils.withAxeSetup(() =>
+                    LabelInNameUtils.labelInNameMatches(node, virtualNode),
+                );
+                expect(matches).toBe(false);
+            },
+        );
     });
 
     describe('getLabelInNameData', () => {
@@ -88,13 +93,13 @@ describe('LabelInNameUtils', () => {
         });
 
         it.each`
-            element                            | expectedResult | href    | markdown                      | accessibleName      | visibleText
-            ${'plain link'}                    | ${true}        | ${url} | ${linkWithoutAccessibleName}  | ${displayedText}        | ${displayedText}
-            ${'link with label'}               | ${true}        | ${url} | ${linkWithLabel}              | ${displayedText}        | ${displayedText}
-            ${'link with label mismatch'}      | ${false}       | ${url} | ${linkWithLabelMismatch}      | ${mismatchAccessibleName} | ${displayedText}
-            ${'link with labelledby'}          | ${true}        | ${url} | ${linkWithLabelledBy}         | ${displayedText}        | ${displayedText}
-            ${'link with labelledby mismatch'} | ${false}       | ${url} | ${linkWithLabelledByMismatch} | ${mismatchAccessibleName} | ${displayedText}
-            ${'non link element'}              | ${true}        | ${null} | ${nonLinkElement}             | ${'Hello'}          | ${'Hello'}
+            element                            | expectedResult | href    | markdown                      | accessibleName            | visibleText
+            ${'plain link'}                    | ${true}        | ${url}  | ${linkWithoutAccessibleName}  | ${displayedText}          | ${displayedText}
+            ${'link with label'}               | ${true}        | ${url}  | ${linkWithLabel}              | ${displayedText}          | ${displayedText}
+            ${'link with label mismatch'}      | ${false}       | ${url}  | ${linkWithLabelMismatch}      | ${mismatchAccessibleName} | ${displayedText}
+            ${'link with labelledby'}          | ${true}        | ${url}  | ${linkWithLabelledBy}         | ${displayedText}          | ${displayedText}
+            ${'link with labelledby mismatch'} | ${false}       | ${url}  | ${linkWithLabelledByMismatch} | ${mismatchAccessibleName} | ${displayedText}
+            ${'non link element'}              | ${true}        | ${null} | ${nonLinkElement}             | ${'Hello'}                | ${'Hello'}
         `(
             `returns the expected data for $element`,
             ({ markdown, expectedResult, href, accessibleName, visibleText }) => {
@@ -113,11 +118,33 @@ describe('LabelInNameUtils', () => {
         );
     });
 
-    function createTestFixture(id: string, content: string): HTMLDivElement {
-        const testFixture: HTMLDivElement = document.createElement('div');
+    function createTestFixture(id: string, content: string): HTMLCanvasElement {
+        const testFixture: HTMLCanvasElement = document.createElement('canvas');
         testFixture.setAttribute('id', id);
         document.body.appendChild(testFixture);
         testFixture.innerHTML = content;
         return testFixture;
+    }
+
+    function mockCanvasContext() {
+        // This is a workaround to allow us to get visibleText from a virtualNode without having
+        // to install the canvas npm package. Checking for visibleText involves checking for
+        // icon ligature, which uses canvas context to determine if a special font is used. jsdom does
+        // not include canvas and causes an error if its methods are called in tests.
+        HTMLCanvasElement.prototype.getContext = (contextId: string, options?: any): any => {
+            const data = new Uint8ClampedArray(8);
+            data.set([500], 1); // data must be nonzero for at least one pixel
+            return {
+                canvas: {} as HTMLCanvasElement,
+                measureText: (text: string) => {
+                    return { width: 10 };
+                },
+                getImageData: (sx, sy, sw, sh, settings?) => {
+                    return { data };
+                },
+                clearRect: (x, y, w, h) => null,
+                fillText: (text, x, y, maxWidth?) => null,
+            } as CanvasRenderingContext2D;
+        };
     }
 });

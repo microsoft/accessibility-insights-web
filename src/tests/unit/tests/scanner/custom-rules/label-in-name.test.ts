@@ -32,6 +32,11 @@ describe('label-in-name check', () => {
     const linkWithLabelledBy = `<span id="${labelId}">${displayedText}</span><a id="${linkId}" href="${url}" aria-labelledby="${labelId}">${displayedText}</a>`;
     const linkWithLabelledByMismatch = `<span id="${labelId}">${mismatchAccessibleName}</span><a id="${linkId}" href="${url}" aria-labelledby="${labelId}">${displayedText}</a>`;
     const nonLinkElement = `<span id="${linkId}">Hello</span>`;
+
+    beforeAll(() => {
+        mockCanvasContext();
+    });
+
     beforeEach(() => {
         context._data = null;
     });
@@ -111,4 +116,26 @@ function createTestFixture(id: string, content: string): HTMLDivElement {
     document.body.appendChild(testFixture);
     testFixture.innerHTML = content;
     return testFixture;
+}
+
+function mockCanvasContext() {
+    // This is a workaround to allow us to get visibleText from a virtualNode without having
+    // to install the canvas npm package. Checking for visibleText involves checking for
+    // icon ligature, which uses canvas context to determine if a special font is used. jsdom does
+    // not include canvas and causes an error if its methods are called in tests.
+    HTMLCanvasElement.prototype.getContext = (contextId: string, options?: any): any => {
+        const data = new Uint8ClampedArray(8);
+        data.set([500], 1); // data must be nonzero for at least one pixel
+        return {
+            canvas: {} as HTMLCanvasElement,
+            measureText: (text: string) => {
+                return { width: 10 };
+            },
+            getImageData: (sx, sy, sw, sh, settings?) => {
+                return { data };
+            },
+            clearRect: (x, y, w, h) => null,
+            fillText: (text, x, y, maxWidth?) => null,
+        } as CanvasRenderingContext2D;
+    };
 }

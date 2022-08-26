@@ -16,7 +16,10 @@ import * as AxeUtils from './axe-utils';
 const { sanitize, isHumanInterpretable, subtreeText } = axe.commons.text;
 
 export function labelInNameMatches(node: HTMLElement, virtualNode: any) {
-    const accessibleName = (node.getAttribute('aria-label') || node.getAttribute('aria-labelledby')) ? AxeUtils.getAccessibleText(node) : '';
+    const accessibleName =
+        node.getAttribute('aria-label') || node.getAttribute('aria-labelledby')
+            ? AxeUtils.getAccessibleText(node)
+            : '';
     if (accessibleName === '' || !isHumanInterpretable(accessibleName.toLowerCase())) {
         return false;
     }
@@ -35,7 +38,6 @@ export function getLabelInNameData(node: HTMLElement, virtualNode: any) {
     return { visibleText, accessibleName, url, labelInName };
 }
 
-
 function getVisibleText(virtualNode: any): string {
     const visibleTextSubtreeOptions = {
         subtreeDescendant: true,
@@ -49,5 +51,5 @@ function getVisibleText(virtualNode: any): string {
 
 //this is needed to test the above functions
 export function getVirtualNode(node: HTMLElement) {
-    return axe.utils.getNodeFromTree(node)
+    return axe.utils.getNodeFromTree(node);
 }
