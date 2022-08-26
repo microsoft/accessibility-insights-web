@@ -9,6 +9,7 @@ import {
     CardFooterMenuItemsProps,
 } from 'common/components/cards/card-footer-menu-items-builder';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -24,7 +25,7 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import React from 'react';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(CardFooterMenuItemsBuilder, () => {
     let props: CardFooterMenuItemsProps;
@@ -53,25 +54,24 @@ describe(CardFooterMenuItemsBuilder, () => {
     let toastMock: IMock<Toast>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let cardsViewControllerMock: IMock<CardsViewController>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueDetailsTextGeneratorMock: IMock<IssueDetailsTextGenerator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
-
-    let openNeedsSettingsContentMock: IMock<() => void>;
-    let closeNeedsSettingsContentMock: IMock<() => void>;
 
     let testSubject: CardFooterMenuItemsBuilder;
 
     beforeEach(() => {
         issueFilingActionMessageCreatorMock = Mock.ofType<IssueFilingActionMessageCreator>();
-        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        detailsViewActionMessageCreatorMock = Mock.ofType(
+            DetailsViewActionMessageCreator,
+            MockBehavior.Strict,
+        );
+        cardsViewControllerMock = Mock.ofType<CardsViewController>();
         issueFilingServiceProviderMock = Mock.ofType<IssueFilingServiceProvider>();
         issueDetailsTextGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         toastMock = Mock.ofType<Toast>();
-
-        openNeedsSettingsContentMock = Mock.ofInstance(() => null);
-        closeNeedsSettingsContentMock = Mock.ofInstance(() => null);
 
         const toastRef = {
             current: toastMock.object,
@@ -82,6 +82,7 @@ describe(CardFooterMenuItemsBuilder, () => {
             toolData,
             issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            cardsViewController: cardsViewControllerMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             issueDetailsTextGenerator: issueDetailsTextGeneratorMock.object,
             navigatorUtils: navigatorUtilsMock.object,
@@ -93,8 +94,6 @@ describe(CardFooterMenuItemsBuilder, () => {
             issueDetailsData,
             userConfigurationStoreData,
             deps,
-            openNeedsSettingsContent: openNeedsSettingsContentMock.object,
-            closeNeedsSettingsContent: closeNeedsSettingsContentMock.object,
         };
 
         testSubject = new CardFooterMenuItemsBuilder();
@@ -102,8 +101,6 @@ describe(CardFooterMenuItemsBuilder, () => {
 
     afterEach(() => {
         issueFilingActionMessageCreatorMock.verifyAll();
-        openNeedsSettingsContentMock.verifyAll();
-        closeNeedsSettingsContentMock.verifyAll();
         issueDetailsTextGeneratorMock.verifyAll();
         detailsViewActionMessageCreatorMock.verifyAll();
         navigatorUtilsMock.verifyAll();
@@ -162,8 +159,9 @@ describe(CardFooterMenuItemsBuilder, () => {
                 .setup(i => i.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.never());
 
-            openNeedsSettingsContentMock.setup(o => o()).verifiable(Times.once());
-            closeNeedsSettingsContentMock.setup(c => c()).verifiable(Times.never());
+            cardsViewControllerMock
+                .setup(c => c.openIssueFilingSettingsDialog())
+                .verifiable(Times.once());
 
             const fileIssueMenuItem = getFileIssueMenuItem();
             fileIssueMenuItem.onClick();
@@ -186,8 +184,9 @@ describe(CardFooterMenuItemsBuilder, () => {
                 )
                 .verifiable(Times.once());
 
-            openNeedsSettingsContentMock.setup(o => o()).verifiable(Times.never());
-            closeNeedsSettingsContentMock.setup(c => c()).verifiable(Times.once());
+            cardsViewControllerMock
+                .setup(c => c.closeIssueFilingSettingsDialog())
+                .verifiable(Times.once());
 
             const fileIssueMenuItem = getFileIssueMenuItem();
             fileIssueMenuItem.onClick(clickEvent);

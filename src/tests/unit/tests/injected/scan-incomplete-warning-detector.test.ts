@@ -9,10 +9,11 @@ import { IMock, Mock } from 'typemoq';
 describe('ScanIncompleteWarningDetector', () => {
     let testSubject: ScanIncompleteWarningDetector;
     let iframeDetectorMock: IMock<IframeDetector>;
-    let permissionsStateStoreMock: IMock<BaseStore<PermissionsStateStoreData>>;
+    let permissionsStateStoreMock: IMock<BaseStore<PermissionsStateStoreData, Promise<void>>>;
 
     beforeEach(() => {
-        permissionsStateStoreMock = Mock.ofType<BaseStore<PermissionsStateStoreData>>();
+        permissionsStateStoreMock =
+            Mock.ofType<BaseStore<PermissionsStateStoreData, Promise<void>>>();
         iframeDetectorMock = Mock.ofType<IframeDetector>();
         testSubject = new ScanIncompleteWarningDetector(
             iframeDetectorMock.object,

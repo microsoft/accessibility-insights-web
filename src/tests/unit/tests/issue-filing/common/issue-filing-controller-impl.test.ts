@@ -49,7 +49,7 @@ describe('IssueFilingControllerImpl', () => {
             .setup(provider => provider.forKey(serviceKey))
             .returns(() => issueFilingServiceMock.object);
 
-        const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
+        const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData, Promise<void>>>();
         storeMock.setup(store => store.getState()).returns(() => serviceConfig);
 
         const testSubject = new IssueFilingControllerImpl(

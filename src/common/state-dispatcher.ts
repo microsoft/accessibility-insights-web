@@ -12,19 +12,24 @@ export class StateDispatcher {
         private readonly logger: Logger,
     ) {}
 
-    public initialize(): void {
-        this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
+    public async initialize(): Promise<void> {
+        const promises = this.stores
+            .getAllStores()
+            .map(store => this.addDispatchListenerToStore(store));
+        await Promise.all(promises);
     }
 
-    private addDispatchListenerToStore(store: BaseStore<any>): void {
+    private async addDispatchListenerToStore(store: BaseStore<any, Promise<void>>): Promise<void> {
         const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(store);
         store.addChangedListener(dispatchStateUpdateDelegate);
-        dispatchStateUpdateDelegate();
+        await dispatchStateUpdateDelegate();
     }
 
-    private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
-        return () => {
-            this.broadcastMessage({
+    private getDispatchStateUpdateEvent = (
+        store: BaseStore<any, Promise<void>>,
+    ): (() => Promise<void>) => {
+        return async () => {
+            await this.broadcastMessage({
                 storeId: store.getId(),
                 messageType: storeUpdateMessageType,
                 storeType: this.stores.getStoreType(),

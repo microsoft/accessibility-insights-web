@@ -6,7 +6,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {
-    private store: IMock<BaseStore<TStoreState>> = Mock.ofType(DevToolStore as any);
+    private store: IMock<BaseStore<TStoreState, Promise<void>>> = Mock.ofType(DevToolStore as any);
 
     private listeners: Function[] = [];
     public setupGetId(id: string, times: number = 1): StoreMock<TStoreState> {
@@ -55,7 +55,7 @@ export class StoreMock<TStoreState> {
         return this;
     }
 
-    public getObject(): BaseStore<TStoreState> {
+    public getObject(): BaseStore<TStoreState, Promise<void>> {
         return this.store.object;
     }
 

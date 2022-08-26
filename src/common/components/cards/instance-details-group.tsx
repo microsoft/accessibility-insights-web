@@ -26,7 +26,7 @@ export type InstanceDetailsGroupProps = {
     rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(

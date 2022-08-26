@@ -20,7 +20,10 @@ export class IssueFilingControllerImpl implements IssueFilingController {
     constructor(
         private readonly openIssueLink: OpenIssueLink,
         private readonly provider: IssueFilingServiceProvider,
-        private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
+        private readonly userConfigurationStore: BaseStore<
+            UserConfigurationStoreData,
+            Promise<void>
+        >,
     ) {}
 
     public fileIssue = (

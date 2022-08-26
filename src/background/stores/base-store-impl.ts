@@ -7,7 +7,7 @@ import { StoreNames } from '../../common/stores/store-names';
 
 export abstract class BaseStoreImpl<TState, TReturn extends HandlerReturnType = void>
     extends Store<TReturn>
-    implements BaseStore<TState>
+    implements BaseStore<TState, TReturn>
 {
     private storeName: StoreNames;
     protected state: TState;

@@ -9,13 +9,13 @@ import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data
 
 export class InspectHandler {
     constructor(
-        private readonly devToolsStore: BaseStore<DevToolStoreData>,
+        private readonly devToolsStore: BaseStore<DevToolStoreData, Promise<void>>,
         private readonly browserAdapter: BrowserAdapter,
         private readonly targetPageInspector: TargetPageInspector,
     ) {}
 
     public async initialize(): Promise<void> {
-        this.devToolsStore.addChangedListener(() => {
+        this.devToolsStore.addChangedListener(async () => {
             const state = this.devToolsStore.getState();
 
             if (

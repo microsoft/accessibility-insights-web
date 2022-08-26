@@ -109,7 +109,10 @@ describe('GlobalStoreHubTest', () => {
         mocks.forEach(mock => mock.verifyAll());
     }
 
-    function verifyStoreExists(stores: Array<BaseStore<any>>, storeType): BaseStore<StoreType> {
+    function verifyStoreExists(
+        stores: Array<BaseStore<any, Promise<void>>>,
+        storeType,
+    ): BaseStore<StoreType, Promise<void>> {
         const matchingStores = stores.filter(s => s instanceof storeType);
         expect(matchingStores.length).toBe(1);
         return matchingStores[0];

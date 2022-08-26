@@ -7,7 +7,7 @@ import { FrameUrlFinder } from './frame-url-finder';
 
 export class FrameUrlController {
     constructor(
-        private readonly devToolStore: BaseStore<DevToolStoreData>,
+        private readonly devToolStore: BaseStore<DevToolStoreData, Promise<void>>,
         private readonly devToolActionMessageCreator: DevToolActionMessageCreator,
         private readonly frameUrlFinder: FrameUrlFinder,
     ) {}

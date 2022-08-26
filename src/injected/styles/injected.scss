@@ -122,7 +122,7 @@
 
         svg path {
             fill: $neutral-100 !important;
-            fill-opacity: 0.9 !important;
+            fill-opacity: 90% !important;
 
             @media screen and (forced-colors: active) {
                 fill: inherit !important;
