@@ -33,6 +33,7 @@ import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { getIssueFilingDialogProps } from 'common/components/get-issue-filing-dialog-props';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
@@ -314,6 +315,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const cardsViewActions = new CardsViewActions();
         const cardsViewController = new CardsViewController(cardsViewActions);
         const cardsViewStore = new CardsViewStore(cardsViewActions);
+        cardsViewStore.initialize();
 
         const storesHub = new ClientStoresHub<RootContainerState>([
             userConfigurationStore,
@@ -558,6 +560,7 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getNextHeadingLevel: GetNextHeadingLevel,
             cardsViewController: cardsViewController,
             cardFooterMenuItemsBuilder: cardFooterMenuItemsBuilder,
+            issueFilingDialogPropsFactory: getIssueFilingDialogProps,
         };
 
         const documentManipulator = new DocumentManipulator(document);

@@ -5,17 +5,14 @@ import {
     CommonInstancesSectionDeps,
     CommonInstancesSectionProps,
 } from 'common/components/cards/common-instances-section-props';
+import { IssueFilingDialogPropsFactory } from 'common/components/get-issue-filing-dialog-props';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
-import { IssueFilingNeedsSettingsContentProps } from 'common/types/issue-filing-needs-setting-content';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import {
-    IssueFilingServiceProperties,
-    UserConfigurationStoreData,
-} from 'common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import {
     IssueFilingDialog,
@@ -23,7 +20,6 @@ import {
 } from 'DetailsView/components/issue-filing-dialog';
 import styles from 'DetailsView/components/issues-table.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialogDeps } from './export-dialog';
@@ -33,6 +29,7 @@ export type IssuesTableDeps = CommonInstancesSectionDeps &
     ExportDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
         reportGenerator: ReportGenerator;
+        issueFilingDialogPropsFactory: IssueFilingDialogPropsFactory;
     };
 
 export interface IssuesTableProps {
@@ -151,30 +148,19 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     public renderIssueFilingSettingContent(): JSX.Element | null {
         const { deps, userConfigurationStoreData, cardsViewStoreData } = this.props;
-        const { issueFilingServiceProvider, cardInteractionSupport, cardsViewController } = deps;
+        const { cardInteractionSupport, cardsViewController, issueFilingDialogPropsFactory } = deps;
 
         if (!cardInteractionSupport.supportsIssueFiling) {
             return null;
         }
 
-        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(
-            userConfigurationStoreData.bugService,
-        );
-        const selectedIssueFilingServiceData: IssueFilingServiceProperties =
-            selectedIssueFilingService.getSettingsFromStoreData(
-                userConfigurationStoreData.bugServicePropertiesMap,
-            );
-        const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
+        const dialogProps = issueFilingDialogPropsFactory(
+            userConfigurationStoreData,
+            cardsViewStoreData,
+            cardsViewController,
             deps,
-            isOpen: cardsViewStoreData?.isIssueFilingSettingsDialogOpen ?? false,
-            selectedIssueFilingService,
-            selectedIssueData: cardsViewStoreData?.selectedIssueData,
-            selectedIssueFilingServiceData,
-            onClose: cardsViewController.closeIssueFilingSettingsDialog,
-            issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
-            afterClosed: cardsViewStoreData?.onIssueFilingSettingsClosedCallback,
-        };
+        );
 
-        return <IssueFilingDialog {...needsSettingsContentProps} />;
+        return <IssueFilingDialog {...dialogProps} />;
     }
 }

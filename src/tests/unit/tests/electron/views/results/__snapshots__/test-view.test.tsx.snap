@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestView when status scan <Completed> 1`] = `
+exports[`TestView when status scan <Completed> and supportsIssueFiling=false 1`] = `
 <div>
   <HeaderSection
     description={
@@ -16,8 +16,20 @@ exports[`TestView when status scan <Completed> 1`] = `
         "visualHelperEnabled": true,
       }
     }
-    cardsViewStoreData={{}}
-    deps={{}}
+    cardsViewStoreData={
+      {
+        "isIssueFilingSettingsDialogOpen": false,
+      }
+    }
+    deps={
+      {
+        "cardInteractionSupport": {
+          "supportsIssueFiling": false,
+        },
+        "cardsViewController": [typemoq mock object],
+        "issueFilingDialogPropsFactory": [Function],
+      }
+    }
     narrowModeStatus={{}}
     scanMetadata={
       {
@@ -34,6 +46,59 @@ exports[`TestView when status scan <Completed> 1`] = `
         "isFirstTime": false,
       }
     }
+  />
+</div>
+`;
+
+exports[`TestView when status scan <Completed> and supportsIssueFiling=true 1`] = `
+<div>
+  <HeaderSection
+    description={
+      <p>
+        some description
+      </p>
+    }
+    title="some title"
+  />
+  <stubInstancesSectionComponent
+    cardsViewData={
+      {
+        "visualHelperEnabled": true,
+      }
+    }
+    cardsViewStoreData={
+      {
+        "isIssueFilingSettingsDialogOpen": false,
+      }
+    }
+    deps={
+      {
+        "cardInteractionSupport": {
+          "supportsIssueFiling": true,
+        },
+        "cardsViewController": [typemoq mock object],
+        "issueFilingDialogPropsFactory": [Function],
+      }
+    }
+    narrowModeStatus={{}}
+    scanMetadata={
+      {
+        "timespan": {
+          "scanComplete": 1900-02-02T03:04:00.000Z,
+        },
+      }
+    }
+    sectionHeadingLevel={2}
+    shouldAlertFailuresCount={true}
+    tabStopsEnabled={true}
+    userConfigurationStoreData={
+      {
+        "isFirstTime": false,
+      }
+    }
+  />
+  <IssueFilingDialog
+    isOpen={false}
   />
 </div>
 `;

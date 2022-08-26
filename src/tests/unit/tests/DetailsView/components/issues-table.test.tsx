@@ -2,17 +2,14 @@
 // Licensed under the MIT License.
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
+import { IssueFilingDialogPropsFactory } from 'common/components/get-issue-filing-dialog-props';
 import { DateProvider } from 'common/date-provider';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { IssueFilingNeedsSettingsContentProps } from 'common/types/issue-filing-needs-setting-content';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import {
-    IssueFilingServicePropertiesMap,
-    UserConfigurationStoreData,
-} from 'common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -24,24 +21,21 @@ import {
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-
-const issueFilingKey = 'testkey';
 
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
-    let testIssueFilingServiceStub: IssueFilingService;
     const cardsViewController = {
         closeIssueFilingSettingsDialog: () => null,
     } as CardsViewController;
     let cardInteractionSupport: CardInteractionSupport;
+    let issueFilingDialogPropsFactoryMock: IMock<IssueFilingDialogPropsFactory>;
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -50,12 +44,7 @@ describe('IssuesTableTest', () => {
         cardInteractionSupport = {
             supportsIssueFiling: false,
         } as CardInteractionSupport;
-        testIssueFilingServiceStub = {
-            getSettingsFromStoreData: data => data[issueFilingKey],
-        } as IssueFilingService;
-        issueFilingServiceProviderMock
-            .setup(bp => bp.forKey(issueFilingKey))
-            .returns(() => testIssueFilingServiceStub);
+        issueFilingDialogPropsFactoryMock = Mock.ofInstance(() => null);
 
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
@@ -64,6 +53,7 @@ describe('IssuesTableTest', () => {
             cardsViewController: cardsViewController,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             cardInteractionSupport: cardInteractionSupport,
+            issueFilingDialogPropsFactory: issueFilingDialogPropsFactoryMock.object,
         } as IssuesTableDeps;
     });
 
@@ -83,7 +73,7 @@ describe('IssuesTableTest', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    test('automated checks disabled', () => {
+    it('automated checks disabled', () => {
         const issuesEnabled = false;
 
         const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(issuesEnabled).build();
@@ -115,43 +105,24 @@ describe('IssuesTableTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('With issue filing support and null CardViewStoreData', () => {
-        cardInteractionSupport.supportsIssueFiling = true;
-        const props = new TestPropsBuilder()
-            .setDeps(deps)
-            .setCardsViewStoreData(null)
-            .setIssuesEnabled(true)
-            .build();
-
-        const wrapper = shallow(<IssuesTable {...props} />);
-
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('With issue filing support and issue filing dialog closed', () => {
+    it('With issue filing support', () => {
         cardInteractionSupport.supportsIssueFiling = true;
         const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(true).build();
-
-        const wrapper = shallow(<IssuesTable {...props} />);
-
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('With issue filing support and issue filing dialog open', () => {
-        const issueDetailsData = {
-            snippet: 'snippet',
-        } as CreateIssueDetailsTextData;
-        const cardsViewStoreData = {
-            isIssueFilingSettingsDialogOpen: true,
-            onIssueFilingSettingsDialogDismissed: () => null,
-            selectedIssueData: issueDetailsData,
-        };
-        cardInteractionSupport.supportsIssueFiling = true;
-        const props = new TestPropsBuilder()
-            .setDeps(deps)
-            .setCardsViewStoreData(cardsViewStoreData)
-            .setIssuesEnabled(true)
-            .build();
+        issueFilingDialogPropsFactoryMock
+            .setup(i =>
+                i(
+                    props.userConfigurationStoreData,
+                    props.cardsViewStoreData,
+                    props.deps.cardsViewController,
+                    props.deps,
+                ),
+            )
+            .returns(
+                () =>
+                    ({
+                        isOpen: false,
+                    } as IssueFilingNeedsSettingsContentProps),
+            );
 
         const wrapper = shallow(<IssuesTable {...props} />);
 
@@ -168,9 +139,6 @@ class TestPropsBuilder {
     private featureFlags = {};
     private deps: IssuesTableDeps;
     private testType: VisualizationType = -1;
-    private cardsViewStoreData: CardsViewStoreData = {
-        isIssueFilingSettingsDialogOpen: false,
-    };
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -192,11 +160,6 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setCardsViewStoreData(data: CardsViewStoreData): TestPropsBuilder {
-        this.cardsViewStoreData = data;
-        return this;
-    }
-
     public build(): IssuesTableProps {
         return {
             deps: this.deps,
@@ -214,12 +177,7 @@ class TestPropsBuilder {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
-            userConfigurationStoreData: {
-                bugService: issueFilingKey,
-                bugServicePropertiesMap: {
-                    [issueFilingKey]: {},
-                } as IssueFilingServicePropertiesMap,
-            } as UserConfigurationStoreData,
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
             instancesSection: NamedFC<CommonInstancesSectionProps>(
                 'SomeInstancesSection',
                 _ => null,
@@ -228,7 +186,9 @@ class TestPropsBuilder {
                 selectedFastPassDetailsView: this.testType,
             } as VisualizationStoreData,
             cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
-            cardsViewStoreData: this.cardsViewStoreData,
+            cardsViewStoreData: {
+                isIssueFilingSettingsDialogOpen: false,
+            },
             narrowModeStatus: {} as NarrowModeStatus,
         };
     }

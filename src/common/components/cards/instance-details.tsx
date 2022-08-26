@@ -73,7 +73,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const cardHighlightingProperties = isHighlightSupported
         ? {
               onClick: (event: React.SyntheticEvent): void => {
-                  console.log(event?.target);
                   if (!(event?.target instanceof HTMLButtonElement)) {
                       hiddenButton.current?.focus();
                       hiddenButton.current?.click();

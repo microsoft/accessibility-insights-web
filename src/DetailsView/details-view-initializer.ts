@@ -18,6 +18,7 @@ import { CardsViewActions } from 'common/components/cards/cards-view-actions';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { getIssueFilingDialogProps } from 'common/components/get-issue-filing-dialog-props';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
@@ -592,6 +593,7 @@ if (tabId != null) {
                 detailsViewId,
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
+                issueFilingDialogPropsFactory: getIssueFilingDialogProps,
             };
 
             const renderer = new DetailsViewRenderer(
