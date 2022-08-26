@@ -78,6 +78,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LinkPurposePropertyBag>
         defaultValue: NoValue,
     },
     {
+        propertyName: 'accessibleDescription',
+        displayName: 'Accessible description',
+        defaultValue: NoValue,
+    },
+    {
         propertyName: 'url',
         displayName: 'URL',
         defaultValue: NoValue,

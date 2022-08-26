@@ -34,7 +34,9 @@ export function getLabelInNameData(node: HTMLElement, virtualNode: any) {
     const visibleText = getVisibleText(virtualNode);
     const accessibleName = sanitize(AxeUtils.getAccessibleText(node));
     const url = node.getAttribute('href');
-    const labelContainsVisibleText = accessibleName.toLowerCase().includes(visibleText.toLowerCase());
+    const labelContainsVisibleText = accessibleName
+        .toLowerCase()
+        .includes(visibleText.toLowerCase());
     return { visibleText, accessibleName, url, labelInName: labelContainsVisibleText };
 }
 
