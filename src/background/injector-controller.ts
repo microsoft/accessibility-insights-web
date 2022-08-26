@@ -44,15 +44,15 @@ export class InjectorController {
                 tabId: tabId,
             }).result;
 
-            await this.injector
-                .injectScripts(tabId)
-                .then(async () => {
-                    await this.interpreter.interpret({
-                        messageType: Messages.Visualizations.State.InjectionCompleted,
-                        tabId: tabId,
-                    }).result;
-                })
-                .catch(this.logger.error);
+            try {
+                await this.injector.injectScripts(tabId);
+                await this.interpreter.interpret({
+                    messageType: Messages.Visualizations.State.InjectionCompleted,
+                    tabId: tabId,
+                }).result;
+            } catch (e) {
+                this.logger.error(e);
+            }
         }
 
         this.oldInspectType = inspectStoreState.inspectMode;

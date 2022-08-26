@@ -35,9 +35,8 @@ describe('InjectorControllerTest', () => {
 
         validator.buildInjectorController().initialize();
         validator.setupVerifyInjectionStartedActionCalled(tabId);
-        await validator.visualizationInjectCallback();
         validator.setupVerifyInjectionCompletedActionCalled(tabId);
-        await validator.invokeInjectedPromise();
+        await validator.visualizationInjectCallback();
         validator.verifyAll();
     });
 
@@ -52,9 +51,8 @@ describe('InjectorControllerTest', () => {
 
         validator.buildInjectorController().initialize();
         validator.setupVerifyInjectionStartedActionCalled(tabId);
-        await validator.inspectInjectCallback();
         validator.setupVerifyInjectionCompletedActionCalled(tabId);
-        await validator.invokeInjectedPromise();
+        await validator.inspectInjectCallback();
         validator.verifyAll();
     });
 
@@ -73,7 +71,6 @@ describe('InjectorControllerTest', () => {
             .setupVerifyInjectionStartedActionCalled(tabId);
         validator.buildInjectorController().initialize();
         await validator.inspectInjectCallback();
-        await validator.invokeInjectedPromise();
         validator.verifyAll();
         validator.resetVerify();
 
@@ -124,8 +121,6 @@ class InjectorControllerValidator {
     private mockInterpreter = Mock.ofType(Interpreter, MockBehavior.Strict);
     private mockInspectStore = Mock.ofType(InspectStore, MockBehavior.Strict);
     private mockTabStore = Mock.ofType(TabStore, MockBehavior.Strict);
-    private injectedScriptsDeferred: Promise<void>;
-    private injectedScriptsDeferredResolver: () => void;
     public visualizationInjectCallback: () => Promise<void>;
     public inspectInjectCallback: () => Promise<void>;
 
@@ -241,20 +236,12 @@ class InjectorControllerValidator {
         calledWithTabId: number,
         numTimes: number,
     ): InjectorControllerValidator {
-        this.injectedScriptsDeferred = new Promise(resolve => {
-            this.injectedScriptsDeferredResolver = resolve;
-        });
         this.mockInjector
             .setup(injector => injector.injectScripts(calledWithTabId))
-            .returns(() => this.injectedScriptsDeferred)
+            .returns(() => Promise.resolve())
             .verifiable(Times.exactly(numTimes));
 
         return this;
-    }
-
-    public async invokeInjectedPromise(): Promise<void> {
-        this.injectedScriptsDeferredResolver();
-        return await this.injectedScriptsDeferred;
     }
 
     public verifyAll(): void {
