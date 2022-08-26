@@ -155,13 +155,6 @@
         color: var(--neutral-100);
       }
 
-      .high-contrast-theme .insights-link:hover {
-        text-decoration: underline;
-      }
-      .high-contrast-theme .is-selected .status-icon {
-        color: var(--black) !important;
-      }
-
       .insights-link {
         color: var(--link) !important;
         text-decoration: none;
@@ -174,6 +167,13 @@
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
+      }
+
+      .high-contrast-theme .insights-link:hover {
+        text-decoration: underline;
+      }
+      .high-contrast-theme .is-selected .status-icon {
+        color: var(--black) !important;
       }
 
       .insights-code {
@@ -643,9 +643,6 @@
         font-size: 17px;
         line-height: 24px;
       }
-      .scan-details-section ul :first-child li {
-        padding-top: 16px;
-      }
       .scan-details-section li {
         display: inline-block;
         padding-top: 12px;
@@ -654,6 +651,9 @@
         padding-right: 12px;
         position: relative;
         top: 3px;
+      }
+      .scan-details-section ul :first-child li {
+        padding-top: 16px;
       }
       .scan-details-section .text {
         word-break: break-all;
@@ -770,6 +770,20 @@
           display: none;
         }
       }
+      .collapsible-container .collapsible-control[aria-expanded="true"]::before,
+      .collapsible-container
+        .collapsible-control[aria-expanded="false"]::before {
+        display: inline-block;
+        border-right: 1px solid var(--secondary-text);
+        border-bottom: 1px solid var(--secondary-text);
+        min-width: 7px;
+        width: 7px;
+        height: 7px;
+        content: "";
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+      }
+
       .summary-section {
         box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0 1.6px 3.6px rgba(0, 0, 0, 0.132);
@@ -791,25 +805,6 @@
         margin-left: 16px;
       }
 
-      .collapsible-container:not(.collapsible-rule-details-group)
-        .collapsible-control {
-        padding-left: 2px;
-        padding-right: 16px;
-        position: relative;
-      }
-      .collapsible-container .collapsible-control[aria-expanded="true"]::before,
-      .collapsible-container
-        .collapsible-control[aria-expanded="false"]::before {
-        display: inline-block;
-        border-right: 1px solid var(--secondary-text);
-        border-bottom: 1px solid var(--secondary-text);
-        min-width: 7px;
-        width: 7px;
-        height: 7px;
-        content: "";
-        transform-origin: 50% 50%;
-        transition: transform 0.1s linear 0s;
-      }
       .collapsible-container .collapsible-control {
         font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system,
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
@@ -823,6 +818,12 @@
       }
       .collapsible-container .collapsible-control:hover {
         background-color: var(--neutral-alpha-4);
+      }
+      .collapsible-container:not(.collapsible-rule-details-group)
+        .collapsible-control {
+        padding-left: 2px;
+        padding-right: 16px;
+        position: relative;
       }
       .collapsible-container
         .collapsible-control[aria-expanded="false"]::before {
@@ -962,18 +963,18 @@
       }
 
       /* css-modules:src/common/components/cards/rich-resolution-content */
-      .multi-line-text-no-bullet--AUXXt {
-        padding-left: 0;
-        list-style: none;
-      }
-      .multi-line-text-no-bullet--AUXXt li:not(:last-child) {
-        margin-bottom: 4px;
-      }
       .multi-line-text-yes-bullet--TXyX- {
         padding-left: 16px;
       }
       .multi-line-text-yes-bullet--TXyX- li {
         list-style-type: disc;
+        margin-bottom: 4px;
+      }
+      .multi-line-text-no-bullet--AUXXt {
+        padding-left: 0;
+        list-style: none;
+      }
+      .multi-line-text-no-bullet--AUXXt li:not(:last-child) {
         margin-bottom: 4px;
       }
       .combination-lists--boK5y {
@@ -1078,6 +1079,14 @@
       }
 
       /* css-modules:src/common/components/cards/card-kebab-menu-button */
+      .kebab-menu-icon--RzpyN {
+        flex-grow: 1;
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu-icon--RzpyN {
+          color: buttontext;
+        }
+      }
       .kebab-menu-button--e-7v- {
         margin-right: 8px;
         width: 32px;
@@ -1093,14 +1102,6 @@
         .kebab-menu-button--e-7v-.is-expanded .kebab-menu-icon--RzpyN,
         .kebab-menu-button--e-7v-:hover .kebab-menu-icon--RzpyN {
           color: highlight;
-        }
-      }
-      .kebab-menu-icon--RzpyN {
-        flex-grow: 1;
-      }
-      @media screen and (forced-colors: active) {
-        .kebab-menu-icon--RzpyN {
-          color: buttontext;
         }
       }
       @media screen and (forced-colors: active) {
