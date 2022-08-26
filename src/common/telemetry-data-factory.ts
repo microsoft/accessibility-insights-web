@@ -200,7 +200,7 @@ export class TelemetryDataFactory {
         requirement: string,
         passed: boolean,
         numInstances: number,
-        completedStepDetails?: any,
+        stepDetails?: any,
     ): RequirementStatusTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
@@ -209,7 +209,7 @@ export class TelemetryDataFactory {
             selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
-            completedStepDetails,
+            stepDetails,
         };
     }
 
