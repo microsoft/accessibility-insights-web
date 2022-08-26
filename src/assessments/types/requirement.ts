@@ -58,7 +58,7 @@ export interface Requirement {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
-    getCompletedStepExtraTelemetryData?: (
+    getCompletedStepDetailsForTelemetry?: (
         assessment: Assessment,
         storeData: AssessmentStoreData,
     ) => any;

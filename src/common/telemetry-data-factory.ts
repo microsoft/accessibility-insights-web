@@ -200,7 +200,7 @@ export class TelemetryDataFactory {
         requirement: string,
         passed: boolean,
         numInstances: number,
-        stepExtraData?: any,
+        completedStepDetails?: any,
     ): RequirementStatusTelemetryData {
         return {
             triggeredBy: TriggeredByNotApplicable,
@@ -209,7 +209,7 @@ export class TelemetryDataFactory {
             selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
-            stepExtraData,
+            completedStepDetails,
         };
     }
 
@@ -549,8 +549,8 @@ export class TelemetryDataFactory {
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,
-            step.getCompletedStepExtraTelemetryData
-                ? step.getCompletedStepExtraTelemetryData(assessment, storeData)
+            step.getCompletedStepDetailsForTelemetry
+                ? step.getCompletedStepDetailsForTelemetry(assessment, storeData)
                 : undefined,
         );
     }
