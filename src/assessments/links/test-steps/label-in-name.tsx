@@ -94,7 +94,7 @@ export const LabelInName: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['link-purpose'],
+                rules: ['link-purpose'], //will be updated with custom label in name rule
                 key: LinksTestStep.labelInName,
                 testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
