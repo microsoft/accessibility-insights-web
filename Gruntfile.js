@@ -471,7 +471,7 @@ module.exports = function (grunt) {
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                host_permissions: ['*://*/*'],
+                host_permissions: ['<all_urls>'],
                 web_accessible_resources: [
                     {
                         resources: [

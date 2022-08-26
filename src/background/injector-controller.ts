@@ -44,7 +44,7 @@ export class InjectorController {
                 tabId: tabId,
             }).result;
 
-            this.injector
+            await this.injector
                 .injectScripts(tabId)
                 .then(async () => {
                     await this.interpreter.interpret({
