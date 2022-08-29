@@ -9,13 +9,11 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
       featureFlagData={null}
     />
   }
-  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": false,
     }
   }
-  navMenu={null}
 />
 `;
 
@@ -28,7 +26,6 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
       featureFlagData={null}
     />
   }
-  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": true,
@@ -65,13 +62,11 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
       }
     />
   }
-  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": false,
     }
   }
-  navMenu={null}
 />
 `;
 

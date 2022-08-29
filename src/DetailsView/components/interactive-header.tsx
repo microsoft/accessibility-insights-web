@@ -34,7 +34,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const isNavCollapsed = props.narrowModeStatus.isHeaderAndNavCollapsed;
     const getNavMenu = () => {
         if (isNavCollapsed === false) {
-            return null;
+            return;
         }
 
         return (
@@ -53,7 +53,6 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     return (
         <Header
             deps={props.deps}
-            items={null}
             farItems={getFarItems()}
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}
