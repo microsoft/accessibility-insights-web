@@ -34,9 +34,9 @@ const getSelectorLastPart = (selector: string): string => {
 };
 
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => {
-    const guidanceLinkTextTags = data.rule.guidance.map(link => link.text.toUpperCase());
+    const guidanceLinkTextTags = data.rule.guidance ? data.rule.guidance.map(link => link.text.toUpperCase()) : [];
     const tagsFromGuidanceLinkTags: string[] = [];
-    data.rule.guidance.map(link =>
+    data.rule.guidance?.map(link =>
         link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : [],
     );
     return guidanceLinkTextTags.concat(tagsFromGuidanceLinkTags);

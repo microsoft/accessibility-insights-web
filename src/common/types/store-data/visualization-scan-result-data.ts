@@ -28,7 +28,7 @@ export type DecoratedAxeNodeResult = {
     html?: string;
     help?: string;
     id?: string;
-    guidanceLinks: GuidanceLink[];
+    guidanceLinks?: GuidanceLink[];
     helpUrl?: string;
 } & CheckData;
 
