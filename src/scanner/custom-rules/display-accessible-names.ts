@@ -33,7 +33,7 @@ function hasAccessibleName(node: HTMLElement): boolean {
     if (axe.utils.matchesSelector(node, nameProhibitedSelectors)) {
         return false;
     }
-    // overwriting axe-cores accessible name value as their calculation tends to return the contents of these elements
+    // overwriting axe-core's accessible name value as their calculation tends to return the contents of these elements
     if (
         axe.utils.matchesSelector(node, nativeElements) &&
         node.hasAttribute('aria-label') === false &&
@@ -51,8 +51,6 @@ function hasAccessibleName(node: HTMLElement): boolean {
 
 function evaluateAccessibleNames(node: HTMLElement): boolean {
     const accessibleName = AxeUtils.getAccessibleText(node);
-    console.log(node);
-    console.log(accessibleName);
     this.data({ accessibleName });
     return true;
 }
