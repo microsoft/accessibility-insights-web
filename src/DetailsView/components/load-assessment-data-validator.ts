@@ -6,6 +6,8 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
+import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider.js';
+import validateAssessmentJson from './validate-assessment-json.js';
 
 export type AjvValidationReturnData = {
     dataIsValid: boolean;
@@ -21,70 +23,27 @@ export class LoadAssessmentDataValidator {
     public uploadedDataIsValid(
         parsedAssessmentData: VersionedAssessmentData,
     ): AjvValidationReturnData {
-        const validateFunction = this.ajv.compile(this.getAssessmentSchema());
-        const valid = validateFunction(parsedAssessmentData);
-        return { dataIsValid: valid, errors: validateFunction.errors } as AjvValidationReturnData;
-    }
+        let dataIsValid: boolean;
+        let errors: ErrorObject[] | null;
 
-    private getAssessmentSchema() {
-        let schema = this.getAssessmentSchemaBase();
-        const assessments = this.getAssessments();
-
-        assessments.forEach(assessment => {
-            schema = this.setAssessmentBaseProperties(schema, assessment.key);
-
-            assessment.requirements.forEach(requirement => {
-                schema = this.setRequirementBaseProperties(schema, requirement.key, assessment.key);
-            });
-        });
-
-        schema = this.setDeprecatedRequirementProperties(schema);
-
-        return schema;
-    }
-
-    private setDeprecatedRequirementProperties(schema: any) {
-        const deprecatedRequirements = [
-            { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id' },
-            { assessmentKey: 'automated-checks', requirementKey: 'scrollable-region-focusable' },
-        ];
-        deprecatedRequirements.forEach(requirement => {
-            if (
-                schema.properties.assessmentData.properties.assessments.properties[
-                    requirement.assessmentKey
-                ] === undefined
-            ) {
-                schema = this.setAssessmentBaseProperties(schema, requirement.assessmentKey);
-            }
-
-            schema = this.setRequirementBaseProperties(
-                schema,
-                requirement.requirementKey,
-                requirement.assessmentKey,
+        if (validateAssessmentJson) {
+            // We must generate the validation function on build for the mv3 extension since we no
+            // longer have 'unsafe-eval' in our CSP headers, which ajv requires to compile a schema.
+            dataIsValid = validateAssessmentJson(parsedAssessmentData);
+            errors = validateAssessmentJson.errors;
+        } else {
+            const assessments = this.getAssessments();
+            const validateFunction = this.ajv.compile(
+                LoadAssessmentDataSchemaProvider.getAssessmentSchema(assessments),
             );
-        });
-        return schema;
-    }
+            dataIsValid = validateFunction(parsedAssessmentData);
+            errors = validateFunction.errors;
+        }
 
-    private setAssessmentBaseProperties(schema: any, assessmentKey: string) {
-        const assessments = schema.properties.assessmentData.properties.assessments.properties;
-        assessments[assessmentKey] = this.getBaseAssessmentObject();
-        return schema;
-    }
-
-    private setRequirementBaseProperties(
-        schema: any,
-        requirementKey: string,
-        assessmentKey: string,
-    ) {
-        const assessments = schema.properties.assessmentData.properties.assessments.properties;
-
-        assessments[assessmentKey].properties.manualTestStepResultMap.properties[requirementKey] =
-            this.getBaseManualTestStepResultMapObject();
-
-        assessments[assessmentKey].properties.testStepStatus.properties[requirementKey] =
-            this.getBaseTestStepStatus();
-        return schema;
+        return {
+            dataIsValid,
+            errors,
+        } as AjvValidationReturnData;
     }
 
     private getAssessments(): readonly Readonly<Assessment>[] {
@@ -93,138 +52,5 @@ export class LoadAssessmentDataValidator {
             this.featureFlagStoreData,
         );
         return filteredProvider.all();
-    }
-
-    private getBaseTestStepStatus() {
-        return {
-            type: 'object',
-            properties: {
-                stepFinalResult: {
-                    type: 'integer',
-                },
-                isStepScanned: {
-                    type: 'boolean',
-                },
-            },
-            required: ['stepFinalResult', 'isStepScanned'],
-            additionalProperties: false,
-        };
-    }
-
-    private getBaseManualTestStepResultMapObject() {
-        return {
-            type: 'object',
-            properties: {
-                status: {
-                    type: 'integer',
-                },
-                id: {
-                    type: 'string',
-                },
-                instances: {
-                    type: 'array',
-                    items: {},
-                },
-            },
-            required: ['status', 'id', 'instances'],
-            additionalProperties: false,
-        };
-    }
-
-    private getBaseAssessmentObject() {
-        return {
-            type: 'object',
-            properties: {
-                fullAxeResultsMap: { type: ['object', 'null'] },
-                generatedAssessmentInstancesMap: {
-                    type: ['object', 'null'],
-                },
-                manualTestStepResultMap: {
-                    type: ['object', 'null'],
-                    properties: {},
-                    additionalProperties: false,
-                },
-                testStepStatus: {
-                    type: ['object', 'null'],
-                    properties: {},
-                    additionalProperties: false,
-                },
-                scanIncompleteWarnings: {
-                    type: 'array',
-                },
-            },
-            additionalProperties: false,
-        };
-    }
-
-    private getAssessmentSchemaBase() {
-        return {
-            type: 'object',
-            properties: {
-                version: {
-                    type: 'integer',
-                },
-                assessmentData: {
-                    type: 'object',
-                    properties: {
-                        persistedTabInfo: {
-                            type: 'object',
-                            properties: {
-                                id: {
-                                    type: 'integer',
-                                },
-                                url: {
-                                    type: 'string',
-                                },
-                                title: {
-                                    type: 'string',
-                                },
-                                detailsViewId: {
-                                    type: 'string',
-                                },
-                                // This field is depreciated and no longer used, but included for
-                                // the sake of backwards compatibility
-                                appRefreshed: {
-                                    type: 'boolean',
-                                },
-                            },
-                            additionalProperties: false,
-                        },
-                        assessmentNavState: {
-                            type: 'object',
-                            properties: {
-                                selectedTestType: {
-                                    type: 'integer',
-                                },
-                                selectedTestSubview: {
-                                    type: 'string',
-                                },
-                                expandedTestType: {
-                                    type: ['integer', 'null'],
-                                },
-                            },
-                            additionalProperties: false,
-                        },
-                        assessments: {
-                            type: 'object',
-                            properties: {},
-                            additionalProperties: false,
-                        },
-                        resultDescription: {
-                            type: 'string',
-                        },
-                    },
-                    required: [
-                        'persistedTabInfo',
-                        'assessmentNavState',
-                        'assessments',
-                        'resultDescription',
-                    ],
-                    additionalProperties: false,
-                },
-            },
-            required: ['version', 'assessmentData'],
-            additionalProperties: false,
-        };
     }
 }

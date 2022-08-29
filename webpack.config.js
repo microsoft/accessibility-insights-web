@@ -135,5 +135,24 @@ const packageUIConfig = {
     target: 'node',
 };
 
+const PackageValidatorConfig = {
+    ...commonConfig,
+    entry: {
+        validator: [path.resolve(__dirname, 'src/packages/assessment-validator/index.ts')],
+    },
+    externals: [nodeExternals()],
+    name: 'package-validator',
+    mode: 'development',
+    devtool: false,
+    output: {
+        path: path.join(__dirname, 'packages/validator/bundle'),
+        filename: '[name].bundle.js',
+        pathinfo: false,
+        library: '[name]',
+        libraryTarget: 'umd',
+    },
+    target: 'node',
+};
+
 // For just one config, use "webpack --config-name unified", "webpack --config-name package-ui", etc
-module.exports = [unifiedConfig, packageUIConfig];
+module.exports = [unifiedConfig, packageUIConfig, PackageValidatorConfig];

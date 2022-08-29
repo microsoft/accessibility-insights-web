@@ -21,6 +21,10 @@ module.exports = function (grunt) {
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
 
+    const packageValidatorPath = path.join('packages', 'validator');
+    const packageValidatorBundlePath = path.join(packageValidatorPath, 'bundle');
+    const packageValidatorDropPath = path.join(packageValidatorPath, 'drop');
+
     const mockAdbObjPath = path.join('packages', 'mock-adb', 'obj');
     const mockAdbBinPath = path.join('packages', 'mock-adb', 'bin');
     const mockAdbDropPath = path.join('drop', 'mock-adb');
@@ -45,6 +49,7 @@ module.exports = function (grunt) {
             'mock-adb': [mockAdbObjPath, mockAdbBinPath, mockAdbDropPath],
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
+            'package-validator': packageValidatorDropPath,
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
@@ -162,6 +167,15 @@ module.exports = function (grunt) {
                     },
                 ],
             },
+            'package-validator': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: path.join(packageValidatorBundlePath, 'validator.bundle.js'),
+                        dest: path.join(packageValidatorDropPath, 'index.js'),
+                    },
+                ],
+            },
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
@@ -170,6 +184,8 @@ module.exports = function (grunt) {
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
+            'webpack-package-validator': `"${webpackPath}" --config-name package-validator`,
+            'generate-validator': `node ${packageValidatorDropPath}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'dotnet-publish-mock-adb': {
                 command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
@@ -754,6 +770,16 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageUIDropPath}`);
     });
 
+    grunt.registerTask('package-validator', function () {
+        const mustExistPath = path.join(packageValidatorBundlePath, 'validator.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('clean:package-validator');
+        grunt.task.run('copy:package-validator');
+        console.log(`package is in ${packageValidatorDropPath}`);
+    });
+
     grunt.registerTask('build-mock-adb', function () {
         grunt.task.run('exec:dotnet-publish-mock-adb');
     });
@@ -800,6 +826,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev-mv3', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-dev-mv3',
         'build-assets',
         'drop:dev-mv3',
@@ -839,6 +867,13 @@ module.exports = function (grunt) {
         'exec:webpack-package-ui',
         'build-assets',
         'package-ui',
+    ]);
+    grunt.registerTask('build-package-validator', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-package-validator',
+        'build-assets',
+        'package-validator',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',
