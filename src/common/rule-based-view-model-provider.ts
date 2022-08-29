@@ -18,13 +18,13 @@ export type GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-) => CardsViewModel;
+) => (CardsViewModel | null);
 
 export const getCardViewData: GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-): CardsViewModel => {
+): (CardsViewModel | null) => {
     if (results == null || rules == null || cardSelectionViewData == null) {
         return null;
     }
@@ -37,7 +37,7 @@ export const getCardViewData: GetCardViewData = (
         const isInstanceDisplayed = result.status === 'fail' || result.status === 'unknown';
         let ruleResult = getExistingRuleFromResults(result.ruleId, ruleResults);
 
-        if (!ruleResult) {
+        if (ruleResult == null) {
             const rule = getUnifiedRule(result.ruleId, rules);
             if (!rule) {
                 continue;
@@ -77,7 +77,7 @@ export const getCardViewData: GetCardViewData = (
 const getExistingRuleFromResults = (
     ruleId: string,
     ruleResults: CardRuleResult[],
-): CardRuleResult => {
+): CardRuleResult | null => {
     const ruleResultIndex: number = getRuleResultIndex(ruleId, ruleResults);
 
     return ruleResultIndex !== -1 ? ruleResults[ruleResultIndex] : null;
@@ -132,7 +132,7 @@ const createCardResult = (
     };
 };
 
-const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule =>
+const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule | undefined =>
     rules.find(rule => rule.id === id);
 
 const getRuleResultIndex = (ruleId: string, ruleResults: CardRuleResult[]): number =>
