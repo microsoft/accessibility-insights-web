@@ -37,7 +37,7 @@ export function getLabelInNameData(node: HTMLElement, virtualNode: any) {
     const labelContainsVisibleText = accessibleName
         .toLowerCase()
         .includes(visibleText.toLowerCase());
-    return { visibleText, accessibleName, url, labelInName: labelContainsVisibleText };
+    return { visibleText, accessibleName, url, labelContainsVisibleText };
 }
 
 function getVisibleText(virtualNode: any): string {

@@ -103,7 +103,7 @@ describe('label-in-name check', () => {
             expect(context._data.url).toEqual(href);
             expect(context._data.accessibleName).toEqual(accessibleName);
             expect(context._data.visibleText).toEqual(visibleText);
-            expect(context._data.labelInName).toEqual(expectedResult);
+            expect(context._data.labelContainsVisibleText).toEqual(expectedResult);
 
             expect(result).toBeTruthy(); // always returns true
         },

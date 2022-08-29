@@ -113,7 +113,7 @@ describe('LabelInNameUtils', () => {
                 expect(result.url).toEqual(href);
                 expect(result.accessibleName).toEqual(accessibleName);
                 expect(result.visibleText).toEqual(visibleText);
-                expect(result.labelInName).toEqual(expectedResult);
+                expect(result.labelContainsVisibleText).toEqual(expectedResult);
             },
         );
     });
