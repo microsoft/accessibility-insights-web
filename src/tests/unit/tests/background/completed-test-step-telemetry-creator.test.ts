@@ -51,10 +51,8 @@ function testBeforeAfterAssessmentData(
     interpreterMock.setup(m => m.interpret(It.isValue(expectedMessage))).verifiable(expectedTimes);
 
     telemetryFactoryMock
-        .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-        .returns((viz, step, passed, instances) =>
-            getMockTelemetryData(viz, step, passed, instances),
-        )
+        .setup(m => m.forCompletedTestStep(It.isAny(), It.isAny(), It.isAny()))
+        .returns((assessment, storeData, step) => expectedTelemetry)
         .verifiable(Times.atLeastOnce());
 
     let callback;
@@ -249,10 +247,8 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         tabStoreMock.setup(m => m.getState()).returns(() => tabStoreData);
 
         telemetryFactoryMock
-            .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .returns((viz, step, passed, instances) =>
-                getMockTelemetryData(viz, step, passed, instances),
-            )
+            .setup(m => m.forCompletedTestStep(It.isAny(), It.isAny(), It.isAny()))
+            .returns((assessment, storeData, step) => expectedTelemetry)
             .verifiable();
 
         assessmentStoreMock
