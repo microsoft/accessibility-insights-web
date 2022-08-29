@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
-import { createActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import { createSyncActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(AndroidSetupActionCreator, () => {
@@ -17,7 +17,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes cancel action on cancel', () => {
-        const actionMock = Mock.ofType<Action<void>>();
+        const actionMock = Mock.ofType<SyncAction<void>>();
         androidSetupActionsMock.setup(actions => actions.cancel).returns(() => actionMock.object);
         actionMock.setup(s => s.invoke()).verifiable(Times.once());
 
@@ -26,7 +26,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes next action on rescan', () => {
-        const actionMock = Mock.ofType<Action<void>>();
+        const actionMock = Mock.ofType<SyncAction<void>>();
         androidSetupActionsMock.setup(actions => actions.next).returns(() => actionMock.object);
         actionMock.setup(s => s.invoke()).verifiable(Times.once());
 
@@ -35,7 +35,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes rescan action on rescan', () => {
-        const actionMock = Mock.ofType<Action<void>>();
+        const actionMock = Mock.ofType<SyncAction<void>>();
         androidSetupActionsMock.setup(actions => actions.rescan).returns(() => actionMock.object);
         actionMock.setup(s => s.invoke()).verifiable(Times.once());
 
@@ -50,7 +50,7 @@ describe(AndroidSetupActionCreator, () => {
             isEmulator: true,
         };
 
-        const actionMock = Mock.ofType<Action<DeviceInfo>>();
+        const actionMock = Mock.ofType<SyncAction<DeviceInfo>>();
         androidSetupActionsMock
             .setup(actions => actions.setSelectedDevice)
             .returns(() => actionMock.object);
@@ -61,7 +61,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes saveAdbPath action on saveAdbPath', () => {
-        const actionMock = Mock.ofType<Action<string>>();
+        const actionMock = Mock.ofType<SyncAction<string>>();
         androidSetupActionsMock
             .setup(actions => actions.saveAdbPath)
             .returns(() => actionMock.object);
@@ -72,7 +72,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes readyToStart action on readyToStart', () => {
-        const readyToStartMock = createActionMock<void>(undefined, 'AndroidSetupActionCreator');
+        const readyToStartMock = createSyncActionMock<void>(undefined, 'AndroidSetupActionCreator');
         androidSetupActionsMock
             .setup(actions => actions.readyToStart)
             .returns(() => readyToStartMock.object);

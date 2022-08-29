@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Logger } from '../../../../common/logging/logger';
-import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import {
     DecoratedAxeNodeResult,
     HtmlElementAxeResults,
-    ScannerUtils,
-} from '../../../../injected/scanner-utils';
+} from 'common/types/store-data/visualization-scan-result-data';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Logger } from '../../../../common/logging/logger';
+import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
+import { ScannerUtils } from '../../../../injected/scanner-utils';
 import { scan } from '../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../scanner/scan-options';

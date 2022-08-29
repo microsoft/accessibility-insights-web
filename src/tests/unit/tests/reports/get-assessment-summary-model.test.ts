@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { ManualTestStatus, TestStepData } from 'common/types/manual-test-status';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus, TestStepData } from 'common/types/store-data/manual-test-status';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentStatusData,

@@ -47,13 +47,16 @@ export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
         this.pathSnippetActions.onClearData.addListener(this.onClearState);
     }
 
-    private onChangeProperty = (property: keyof PathSnippetStoreData, payload: string): void => {
+    private onChangeProperty = async (
+        property: keyof PathSnippetStoreData,
+        payload: string,
+    ): Promise<void> => {
         this.state[property] = payload;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onClearState = () => {
+    private onClearState = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

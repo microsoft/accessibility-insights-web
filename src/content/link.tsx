@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from 'common/guidance-links';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { guidelineMetadata } from './guideline-metadata';
 
 function linkTo(text: string, href: string): HyperlinkDefinition {
@@ -78,6 +78,7 @@ export const link = {
         'WAI-ARIA Authoring Practices 1.1: Landmark Regions',
         'https://www.w3.org/TR/wai-aria-practices-1.1/#aria_landmark',
     ),
+    accessibleNameComputation: linkTo('ARIA 1.1 Important Terms Section', 'https://www.w3.org/TR/wai-aria/#terms'),
     Keyboard: linkTo('WebAIM: Keyboard Accessibility', 'https://aka.ms/webaim/keyboard-accessibility'),
     InteroperabilityWithAT: linkTo(
         'Section 508 - 502.2.2',

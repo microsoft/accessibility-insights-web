@@ -7,7 +7,7 @@ import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
-import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
+import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/setup-mock-adb/setup-mock-adb';
 
 describe('NeedsReviewView', () => {
     let app: AppController;

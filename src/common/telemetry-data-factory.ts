@@ -18,7 +18,6 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
-    InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
@@ -31,6 +30,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    ShowAssessmentDialogStateTelemetryData,
     TabStopAutomatedFailuresInstanceCount,
     TabStopRequirementInstanceCount,
     TabStopsAutomatedResultsTelemetryData,
@@ -44,7 +44,7 @@ import {
     ForNeedsReviewAnalyzerScanCallback,
     ForRuleAnalyzerScanCallback,
 } from './types/analyzer-telemetry-callbacks';
-import { DetailsViewPivotType } from './types/details-view-pivot-type';
+import { DetailsViewPivotType } from './types/store-data/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
 export type SupportedMouseEvent =
@@ -205,12 +205,12 @@ export class TelemetryDataFactory {
 
     public forOpenDetailsView(
         event: SupportedMouseEvent,
-        visualizationType: VisualizationType,
+        visualizationType: VisualizationType | null,
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            selectedTest: VisualizationType[visualizationType],
+            selectedTest: visualizationType == null ? null : VisualizationType[visualizationType],
         };
     }
 
@@ -245,10 +245,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
+    public forInspectElement(event: SupportedMouseEvent): BaseTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
-            target: target,
         };
     }
 
@@ -504,6 +503,18 @@ export class TelemetryDataFactory {
     public forSetAutoDetectedFailuresDialogState(
         enabled: boolean,
     ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
+        };
+    }
+
+    public forSetShowAssessmentDialogState(
+        enabled: boolean,
+    ): ShowAssessmentDialogStateTelemetryData | undefined {
         if (enabled === undefined) {
             return undefined;
         }

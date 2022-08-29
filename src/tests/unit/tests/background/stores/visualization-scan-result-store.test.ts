@@ -15,18 +15,18 @@ import { TabStopRequirementActions } from 'background/actions/tab-stop-requireme
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { IMock, Mock } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
+    HtmlElementAxeResults,
     TabbedElementData,
     TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -52,16 +52,14 @@ describe('VisualizationScanResultStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.VisualizationScanResultStore]);
     });
 
-    test('onGetCurrentState', () => {
+    test('onGetCurrentState', async () => {
         const actionName = 'getCurrentState';
 
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
         const finalState = new VisualizationScanResultStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationScanResultActions(actionName).testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForVisualizationScanResultActions(actionName);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function getTabbedElementDataStub() {
@@ -76,7 +74,7 @@ describe('VisualizationScanResultStoreTest', () => {
         ];
     }
 
-    test('onTabStopDisabled', () => {
+    test('onTabStopDisabled', async () => {
         const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
@@ -87,12 +85,11 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopsTabbedElements(null)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions(
-            'disableTabStop',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForVisualizationScanResultActions('disableTabStop');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onRescanVisualization: for test that has state', () => {
+    test('onRescanVisualization: for test that has state', async () => {
         const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = AdHocTestkeys.TabStops;
         const visualizationTypeStub = -2;
@@ -110,12 +107,13 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('resetDataForVisualization')
-            .withActionParam(visualizationTypeStub)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForVisualizationActions(
+            'resetDataForVisualization',
+        ).withActionParam(visualizationTypeStub);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onRescanVisualizationv: for test that does not have state', () => {
+    test('onRescanVisualizationv: for test that does not have state', async () => {
         const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = 'some test key';
         const visualizationTypeStub = -2;
@@ -131,12 +129,13 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('resetDataForVisualization')
-            .withActionParam(visualizationTypeStub)
-            .testListenerToNeverBeCalled(initialState, initialState);
+        const storeTester = createStoreTesterForVisualizationActions(
+            'resetDataForVisualization',
+        ).withActionParam(visualizationTypeStub);
+        await storeTester.testListenerToNeverBeCalled(initialState, initialState);
     });
 
-    test('onScanCompleted', () => {
+    test('onScanCompleted', async () => {
         const visualizationType = VisualizationType.Issues;
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
@@ -252,12 +251,14 @@ describe('VisualizationScanResultStoreTest', () => {
             key: 'issues',
         };
 
-        createStoreTesterForVisualizationScanResultActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForVisualizationScanResultActions('scanCompleted').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onAddTabbedElement: first element', () => {
+    test('onAddTabbedElement: first element', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const payload: AddTabbedElementPayload = {
@@ -284,12 +285,14 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopsTabbedElements(tabbedElements)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('addTabbedElement')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForVisualizationScanResultActions('addTabbedElement').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onAddTabbedElement: ensure correct tab order', () => {
+    test('onAddTabbedElement: ensure correct tab order', async () => {
         const initialTabbedElements: TabbedElementData[] = [
             {
                 timestamp: 10,
@@ -340,12 +343,14 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopsTabbedElements(expectedTabbedElements)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('addTabbedElement')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForVisualizationScanResultActions('addTabbedElement').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onExistingTabUpdated', () => {
+    test('onExistingTabUpdated', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withScanResult(VisualizationType.Headings, [])
             .withTabStopsTabbedElements([])
@@ -353,13 +358,11 @@ describe('VisualizationScanResultStoreTest', () => {
 
         const expectedState = new VisualizationScanResultStoreDataBuilder().build();
 
-        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabActions('existingTabUpdated');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateTabStopRequirementStatus updates status and removes instances', () => {
+    test('onUpdateTabStopRequirementStatus updates status and removes instances', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
         initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
         initialState.tabStops.requirements['keyboard-navigation'].instances = [
@@ -383,12 +386,13 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForTabStopRequirementActions('updateTabStopsRequirementStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForTabStopRequirementActions(
+            'updateTabStopsRequirementStatus',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onResetTabStopRequirementStatus resets status and removes instances', () => {
+    test('onResetTabStopRequirementStatus resets status and removes instances', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
         initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
         initialState.tabStops.requirements['keyboard-navigation'].instances = [
@@ -411,9 +415,10 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForTabStopRequirementActions('resetTabStopRequirementStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForTabStopRequirementActions(
+            'resetTabStopRequirementStatus',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     describe('onAddTabStopInstance', () => {
@@ -446,14 +451,16 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
         expectedState.tabStops.requirements[payload.requirementId].status = 'fail';
 
-        test('adds tab stop failure instance', () => {
-            createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
+        test('adds tab stop failure instance', async () => {
+            const storeTester =
+                createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
     });
 
-    test('onUpdateTabStopInstance', () => {
+    test('onUpdateTabStopInstance', async () => {
         const payload: UpdateTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             id: 'xyz',
@@ -483,12 +490,14 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onRemoveTabStopInstance', () => {
+    test('onRemoveTabStopInstance', async () => {
         const payload: RemoveTabStopInstancePayload = {
             requirementId: 'keyboard-navigation',
             id: 'abc',
@@ -516,12 +525,14 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateTabbingCompleted', () => {
+    test('onUpdateTabbingCompleted', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
@@ -532,12 +543,14 @@ describe('VisualizationScanResultStoreTest', () => {
             tabbingCompleted: true,
         };
 
-        createStoreTesterForTabStopRequirementActions('updateTabbingCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForTabStopRequirementActions('updateTabbingCompleted').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onUpdateNeedToCollectTabbingResults', () => {
+    test('onUpdateNeedToCollectTabbingResults', async () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
@@ -548,9 +561,10 @@ describe('VisualizationScanResultStoreTest', () => {
             needToCollectTabbingResults: true,
         };
 
-        createStoreTesterForTabStopRequirementActions('updateNeedToCollectTabbingResults')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForTabStopRequirementActions(
+            'updateNeedToCollectTabbingResults',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForVisualizationScanResultActions(

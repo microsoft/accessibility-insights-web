@@ -3,6 +3,7 @@
 
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { IMock, It, Times } from 'typemoq';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
@@ -13,17 +14,20 @@ export class AssessmentStoreTester<TStoreData, TActions> extends StoreTester<TSt
     constructor(
         actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
-        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData, HandlerReturnType>,
         indexDbMock: any,
     ) {
         super(actions, actionName, storeFactory);
         this.indexDbMock = indexDbMock;
     }
 
-    public testListenerToBeCalledOnce(initial: TStoreData, expected: TStoreData): void {
+    public async testListenerToBeCalledOnce(
+        initial: TStoreData,
+        expected: TStoreData,
+    ): Promise<void> {
         this.indexDbMock
             .setup(idm => idm.setItem(IndexedDBDataKeys.assessmentStore, It.isValue(expected)))
             .verifiable(Times.once());
-        super.testListenerToBeCalledOnce(initial, expected);
+        await super.testListenerToBeCalledOnce(initial, expected);
     }
 }

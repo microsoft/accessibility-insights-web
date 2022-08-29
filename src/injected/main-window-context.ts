@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { DevToolStoreData } from 'common/types/store-data/dev-tool-store-data';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { BaseStore } from '../common/base-store';
-import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
-import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
-import { DevToolStoreData } from '../common/types/store-data/dev-tool-store-data';
-import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
-import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
     public constructor(
-        private devToolStore: BaseStore<DevToolStoreData>,
-        private userConfigStore: BaseStore<UserConfigurationStoreData>,
+        private devToolStore: BaseStore<DevToolStoreData, Promise<void>>,
+        private userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
@@ -22,11 +22,11 @@ export class MainWindowContext {
         private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
-    public getDevToolStore(): BaseStore<DevToolStoreData> {
+    public getDevToolStore(): BaseStore<DevToolStoreData, Promise<void>> {
         return this.devToolStore;
     }
 
-    public getUserConfigStore(): BaseStore<UserConfigurationStoreData> {
+    public getUserConfigStore(): BaseStore<UserConfigurationStoreData, Promise<void>> {
         return this.userConfigStore;
     }
 
@@ -55,8 +55,8 @@ export class MainWindowContext {
     }
 
     public static initialize(
-        devToolStore: BaseStore<DevToolStoreData>,
-        userConfigStore: BaseStore<UserConfigurationStoreData>,
+        devToolStore: BaseStore<DevToolStoreData, Promise<void>>,
+        userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
         issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
@@ -76,14 +76,10 @@ export class MainWindowContext {
         );
     }
 
-    public static getMainWindowContext(): MainWindowContext {
-        return window.mainWindowContext;
-    }
-
-    public static getIfNotGiven(given: MainWindowContext): MainWindowContext {
-        if (given) {
-            return given;
+    public static fromWindow(windowObj: Window): MainWindowContext {
+        if (windowObj.mainWindowContext == null) {
+            throw new Error('No window.mainWindowContext found');
         }
-        return MainWindowContext.getMainWindowContext();
+        return windowObj.mainWindowContext;
     }
 }

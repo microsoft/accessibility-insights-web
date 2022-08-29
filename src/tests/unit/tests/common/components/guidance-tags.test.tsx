@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { GuidanceTags, GuidanceTagsProps } from 'common/components/guidance-tags';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { GuidanceLink } from 'common/guidance-links';
+import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';

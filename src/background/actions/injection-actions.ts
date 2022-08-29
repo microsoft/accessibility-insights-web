@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { AsyncAction } from 'common/flux/async-action';
 
 export class InjectionActions {
-    public readonly injectionCompleted = new Action();
-    public readonly injectionStarted = new Action();
+    public readonly injectionCompleted = new AsyncAction();
+    public readonly injectionStarted = new AsyncAction();
 }

@@ -17,9 +17,6 @@ describe('Target Page visualization boxes', () => {
             suppressFirstTimeDialog: true,
             addExtraPermissionsToManifest: 'fake-activeTab',
         });
-        targetPage = await browser.newTargetPage();
-        popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.gotoAdhocPanel();
     });
 
     afterEach(async () => {
@@ -31,6 +28,10 @@ describe('Target Page visualization boxes', () => {
     it.each(adhocTools)(
         'for adhoc tool "%s" should pass accessibility validation',
         async adhocTool => {
+            targetPage = await browser.newTargetPage();
+            popupPage = await browser.newPopupPage(targetPage);
+            await popupPage.gotoAdhocPanel();
+
             await popupPage.enableToggleByAriaLabel(adhocTool);
 
             await targetPage.waitForSelectorInShadowRoot(
@@ -45,4 +46,52 @@ describe('Target Page visualization boxes', () => {
             expect(results).toHaveLength(0);
         },
     );
+
+    test('visualization boxes are shown over shadow dom elements', async () => {
+        targetPage = await browser.newTargetPage({ testResourcePath: 'shadow-doms.html' });
+
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+
+        await popupPage.enableToggleByAriaLabel('Automated checks');
+
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
+
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
+    });
+
+    test('visualization boxes are shown over nested shadow dom elements', async () => {
+        targetPage = await browser.newTargetPage({ testResourcePath: 'nested-shadow-doms.html' });
+
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+
+        await popupPage.enableToggleByAriaLabel('Automated checks');
+
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
+
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
+    });
+
+    test('visualization boxes are shown over elements with uncommon characters in selector', async () => {
+        targetPage = await browser.newTargetPage({ testResourcePath: 'uncommon-characters.html' });
+
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+
+        await popupPage.enableToggleByAriaLabel('Automated checks');
+
+        await targetPage.waitForSelectorInShadowRoot(
+            TargetPageInjectedComponentSelectors.insightsVisualizationContainer,
+            { state: 'attached' },
+        );
+
+        expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
+    });
 });

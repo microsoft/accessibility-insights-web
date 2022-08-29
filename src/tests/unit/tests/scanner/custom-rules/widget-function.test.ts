@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { difference, map } from 'lodash';
-import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import * as AxeUtils from '../../../../../scanner/axe-utils';
+import { difference } from 'lodash';
+import { hasCustomWidgetMarkup, withAxeSetup } from 'scanner/axe-utils';
 import {
     evaluateWidgetFunction,
     widgetFunctionConfiguration,
-} from '../../../../../scanner/custom-rules/widget-function';
-import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
+} from 'scanner/custom-rules/widget-function';
+import { It, Mock, Times } from 'typemoq';
+import { testNativeWidgetConfiguration } from '../helpers';
 
 declare let axe;
 
@@ -19,152 +18,120 @@ describe('widget function', () => {
                 'widget-function',
                 'widget-function-collector',
                 evaluateWidgetFunction,
-                AxeUtils.hasCustomWidgetMarkup,
+                hasCustomWidgetMarkup,
             );
         });
     });
 
     describe('evaluate', () => {
-        it('sets correct data and returns true', () => {
-            const getAttributesMock = GlobalMock.ofInstance(
-                AxeUtils.getAttributes,
-                'getAttributes',
-                AxeUtils,
-                MockBehavior.Strict,
-            );
-            const getAccessibleTextMock = GlobalMock.ofInstance(
-                AxeUtils.getAccessibleText,
-                'getAccessibleText',
-                AxeUtils,
-                MockBehavior.Strict,
-            );
+        afterEach(() => {
+            document.body.innerHTML = '';
+        });
 
+        it('sets correct data and returns true', () => {
             const dataSetterMock = Mock.ofInstance(data => {});
             const expectedData = {
                 element: 'button',
                 accessibleName: 'name',
                 role: 'role',
                 ariaAttributes: {
-                    'aria-property': 'value',
+                    'aria-valuetext': 'valuetext',
                 },
                 tabIndex: 'tabindex',
             };
 
-            const nodeStub = createNodeStub(expectedData.element, {
-                role: expectedData.role,
-                tabindex: expectedData.tabIndex,
-                'aria-property': 'value',
-            });
+            document.body.innerHTML = `
+                <button id="element-under-test" role="role" tabindex="tabindex" aria-valuetext="valuetext">name</button>
+            `;
+            const node = document.body.querySelector('#element-under-test');
 
             dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-            getAttributesMock
-                .setup(m => m(It.isValue(nodeStub), It.isAny()))
-                .returns(v => expectedData.ariaAttributes);
-            getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.accessibleName);
 
-            let result;
-            GlobalScope.using(getAttributesMock, getAccessibleTextMock).with(() => {
-                result = widgetFunctionConfiguration.checks[0].evaluate.call(
+            const result = withAxeSetup(() =>
+                widgetFunctionConfiguration.checks[0].evaluate.call(
                     { data: dataSetterMock.object },
-                    nodeStub,
-                );
-            });
+                    node,
+                ),
+            );
+
             expect(result).toBe(true);
+            dataSetterMock.verifyAll();
+        });
+
+        const applicableAriaAttributes = [
+            'aria-autocomplete',
+            'aria-checked',
+            'aria-expanded',
+            'aria-level',
+            'aria-modal',
+            'aria-multiline',
+            'aria-multiselectable',
+            'aria-orientation',
+            'aria-placeholder',
+            'aria-pressed',
+            'aria-readonly',
+            'aria-required',
+            'aria-selected',
+            'aria-sort',
+            'aria-valuemax',
+            'aria-valuemin',
+            'aria-valuenow',
+            'aria-valuetext',
+        ];
+
+        it.each(applicableAriaAttributes)('extracts attribute %s', attribute => {
+            const dataSetterMock = Mock.ofInstance(data => {});
+            const expectedData = {
+                ariaAttributes: {
+                    [attribute]: 'value',
+                },
+            };
+
+            document.body.innerHTML = `
+                <button id="element-under-test" role="custom" ${attribute}="value">name</button>
+            `;
+            const node = document.body.querySelector('#element-under-test');
+
+            dataSetterMock.setup(m => m(It.isObjectWith(expectedData))).verifiable(Times.once());
+
+            withAxeSetup(() =>
+                widgetFunctionConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    node,
+                ),
+            );
+
+            dataSetterMock.verifyAll();
+        });
+
+        const allAriaAttributes = Object.getOwnPropertyNames(
+            axe.commons.aria.lookupTable.attributes,
+        );
+        const overlappingHTMLAttributes = allAriaAttributes.map(s => s.replace('aria-', ''));
+        const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
+        const nonapplicableAttributes = difference(allAttributes, applicableAriaAttributes);
+
+        it.each(nonapplicableAttributes)('does not extract attribute %s', attribute => {
+            const dataSetterMock = Mock.ofInstance(data => {});
+            const expectedData = {
+                ariaAttributes: {},
+            };
+
+            document.body.innerHTML = `
+                <button id="element-under-test" role="custom" ${attribute}="value">name</button>
+            `;
+            const node = document.body.querySelector('#element-under-test');
+
+            dataSetterMock.setup(m => m(It.isObjectWith(expectedData))).verifiable(Times.once());
+
+            withAxeSetup(() =>
+                widgetFunctionConfiguration.checks[0].evaluate.call(
+                    { data: dataSetterMock.object },
+                    node,
+                ),
+            );
+
             dataSetterMock.verifyAll();
         });
     });
 });
-
-describe('verify widget function data', () => {
-    const getAccessibleTextMock = GlobalMock.ofInstance(
-        AxeUtils.getAccessibleText,
-        'getAccessibleText',
-        AxeUtils,
-        MockBehavior.Loose,
-    );
-
-    const fixture = createTestFixture('test_fixture', '');
-
-    const allAriaAttributes = Object.getOwnPropertyNames(axe.commons.aria.lookupTable.attributes);
-    const overlappingHTMLAttributes = map(allAriaAttributes, s => s.replace('aria-', ''));
-    const allAttributes = allAriaAttributes.concat(overlappingHTMLAttributes);
-    const expectedAttributes = [
-        'aria-autocomplete',
-        'aria-checked',
-        'aria-expanded',
-        'aria-level',
-        'aria-modal',
-        'aria-multiline',
-        'aria-multiselectable',
-        'aria-orientation',
-        'aria-placeholder',
-        'aria-pressed',
-        'aria-readonly',
-        'aria-required',
-        'aria-selected',
-        'aria-sort',
-        'aria-valuemax',
-        'aria-valuemin',
-        'aria-valuenow',
-        'aria-valuetext',
-    ];
-    const unexpectedAttributes = difference(allAttributes, expectedAttributes);
-
-    const context = {
-        _data: null,
-        data: function (d): void {
-            // tslint:disable-next-line:no-invalid-this
-            this._data = d;
-        },
-    };
-
-    beforeEach(() => {
-        context._data = null;
-    });
-
-    expectedAttributes.forEach((attribute: string) => {
-        it('expects attribute ' + attribute, () => {
-            fixture.innerHTML =
-                `
-        <div id="myElement"
-        ` +
-                attribute +
-                `="value" />
-        `;
-
-            const node = fixture.querySelector('#myElement');
-
-            GlobalScope.using(getAccessibleTextMock).with(() => {
-                widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
-            });
-            expect(context._data.ariaAttributes[attribute]).toEqual('value');
-        });
-    }); // for expected attributes
-
-    unexpectedAttributes.forEach((attribute: string) => {
-        it('does not expect attribute ' + attribute, () => {
-            fixture.innerHTML =
-                `
-        <div id="myElement"
-        ` +
-                attribute +
-                `="value" />
-        `;
-
-            const node = fixture.querySelector('#myElement');
-
-            GlobalScope.using(getAccessibleTextMock).with(() => {
-                widgetFunctionConfiguration.checks[0].evaluate.call(context, node);
-            });
-            expect(context._data.ariaAttributes[attribute]).toBeUndefined();
-        });
-    }); // for unexpected attributes
-});
-
-function createTestFixture(id: string, content: string): HTMLDivElement {
-    const testFixture: HTMLDivElement = document.createElement('div');
-    testFixture.setAttribute('id', id);
-    document.body.appendChild(testFixture);
-    testFixture.innerHTML = content;
-    return testFixture;
-}

@@ -98,4 +98,38 @@ describe('UrlParserTest', () => {
             expect(testSubject.areURLsEqual(urlA, urlB)).toEqual(false);
         });
     });
+
+    describe('areURLsSameOrigin', () => {
+        it.each`
+            urlA                     | urlB
+            ${'http://foo/bar'}      | ${'http://foo/bar'}
+            ${'http://foo/bar'}      | ${'http://foo/baz'}
+            ${'https://foo/bar'}     | ${'https://foo/baz'}
+            ${'https://foo:123/bar'} | ${'https://foo:123/baz'}
+            ${null}                  | ${null}
+            ${undefined}             | ${undefined}
+            ${'same invalid url!'}   | ${'same invalid url!'}
+        `('returns true for same-origin urls $urlA and $urlB', ({ urlA, urlB }) => {
+            expect(testSubject.areURLsSameOrigin(urlA, urlB)).toBe(true);
+        });
+
+        it.each`
+            urlA                            | urlB
+            ${'http://foo/bar'}             | ${'http://bar/bar'}
+            ${'http://foo/bar'}             | ${'https://foo/bar'}
+            ${'http://foo/bar'}             | ${'https://foo/baz'}
+            ${'https://foo:123/'}           | ${'https://foo:456/'}
+            ${'file:///any/file'}           | ${'file:///any/other-file'}
+            ${'strange-protocol://foo'}     | ${'strange-protocol://bar'}
+            ${'strange-protocol://foo/bar'} | ${'strange-protocol://foo/baz'}
+            ${'https://foo:123/bar'}        | ${'http://foo:123/baz'}
+            ${null}                         | ${undefined}
+            ${null}                         | ${'invalid url!'}
+            ${null}                         | ${'http://foo'}
+            ${'invalid url!'}               | ${'http://foo'}
+            ${'invalid url!'}               | ${'different invalid url!'}
+        `('returns false for different-origin urls $urlA and $urlB', ({ urlA, urlB }) => {
+            expect(testSubject.areURLsSameOrigin(urlA, urlB)).toBe(false);
+        });
+    });
 });

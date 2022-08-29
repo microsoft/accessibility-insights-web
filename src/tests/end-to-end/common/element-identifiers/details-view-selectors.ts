@@ -65,8 +65,8 @@ export const detailsViewSelectors = {
 
 export const navMenuSelectors = {
     commandBarMenuButtonSelectors: {
-        collapsed: 'button[aria-label="More items"][aria-expanded=false]',
-        expanded: 'button[aria-label="More items"][aria-expanded=true]',
+        collapsed: 'button[aria-label="More actions"][aria-expanded=false]',
+        expanded: 'button[aria-label="More actions"][aria-expanded=true]',
     },
 
     hamburgerMenuButtonSelectors: {

@@ -82,7 +82,9 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     }
                     const CollapsibleComponent = deps.collapsibleControl(collapsibleComponentProps);
 
-                    return CollapsibleComponent;
+                    return (
+                        <React.Fragment key={requirement.id}>{CollapsibleComponent}</React.Fragment>
+                    );
                 })}
             </div>
         );

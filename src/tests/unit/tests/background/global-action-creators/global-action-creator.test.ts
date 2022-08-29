@@ -12,6 +12,7 @@ import { GlobalActionCreator } from 'background/global-action-creators/global-ac
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from 'common/flux/action';
+import { PayloadCallback } from 'common/message';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
@@ -20,7 +21,7 @@ import { StoreNames } from '../../../../../common/stores/store-names';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('GlobalActionCreatorTest', () => {
-    test('onGetCommands', () => {
+    test('onGetCommands', async () => {
         const tabId = 100;
         const commands: chrome.commands.Command[] = [
             {
@@ -38,59 +39,64 @@ describe('GlobalActionCreatorTest', () => {
         };
 
         const actionName = 'getCommands';
-        const args = [payload, tabId];
         const builder = new GlobalActionCreatorValidator()
             .setupGetCommandsFromAdapter(commands)
-            .setupRegistrationCallback(getCommandStoreState, args)
+            .setupRegisterCallbacks()
             .setupCommandActionWithInvokeParameter(actionName, invokeParameter)
             .setupActionOnCommandActions(actionName);
 
         const actionCreator = builder.buildActionCreator();
         actionCreator.registerCallbacks();
 
+        await builder.simulateMessage(getCommandStoreState, payload, tabId);
+
         builder.verifyAll();
     });
 
-    test('registerCallback for on get launch panel state', () => {
+    test('registerCallback for on get launch panel state', async () => {
         const actionName = 'getCurrentState';
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(getStoreStateMessage(StoreNames.LaunchPanelStateStore))
+            .setupRegisterCallbacks()
             .setupActionOnLaunchPanelActions(actionName)
             .setupLaunchPanelActionWithInvokeParameter(actionName, null);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
 
+        await validator.simulateMessage(getStoreStateMessage(StoreNames.LaunchPanelStateStore));
+
         validator.verifyAll();
     });
 
-    test('registerCallback for on set launch panel state', () => {
+    test('registerCallback for on set launch panel state', async () => {
         const actionName = 'setLaunchPanelType';
         const payload: SetLaunchPanelState = {
             launchPanelType: LaunchPanelType.AdhocToolsPanel,
         };
-        const args = [payload];
 
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.LaunchPanel.Set, args)
+            .setupRegisterCallbacks()
             .setupActionOnLaunchPanelActions(actionName)
             .setupLaunchPanelActionWithInvokeParameter(actionName, payload.launchPanelType);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
 
+        await validator.simulateMessage(Messages.LaunchPanel.Set, payload);
+
         validator.verifyAll();
     });
 
-    test('registerCallback for on onSendTelemetry', () => {
+    test('registerCallback for on onSendTelemetry', async () => {
         const payload = { eventName: 'launch-panel/open', telemetry: {} };
-        const args = [payload, 1];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Telemetry.Send, args)
+            .setupRegisterCallbacks()
             .setupTelemetrySend('launch-panel/open');
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(Messages.Telemetry.Send, payload, 1);
 
         validator.verifyAll();
     });
@@ -98,9 +104,10 @@ describe('GlobalActionCreatorTest', () => {
 
 class GlobalActionCreatorValidator {
     public testSubject: GlobalActionCreator;
-    private commandActionMocksMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
+    private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
@@ -152,7 +159,7 @@ class GlobalActionCreatorValidator {
     public setupGetCommandsFromAdapter(
         commands: chrome.commands.Command[],
     ): GlobalActionCreatorValidator {
-        this.commandsAdapterMock.setup(x => x.getCommands(It.isAny())).callback(cb => cb(commands));
+        this.commandsAdapterMock.setup(x => x.getCommands()).returns(async () => commands);
 
         return this;
     }
@@ -193,7 +200,7 @@ class GlobalActionCreatorValidator {
     private setupActionWithInvokeParameter(
         actionName: string,
         expectedInvokeParam: any,
-        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMockMap: DictionaryStringTo<IMock<Action<unknown, void | Promise<void>>>>,
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
@@ -204,12 +211,12 @@ class GlobalActionCreatorValidator {
 
     private getOrCreateAction(
         actionName: string,
-        actionsMockMap: DictionaryStringTo<IMock<Action<any>>>,
-    ): IMock<Action<any>> {
+        actionsMockMap: DictionaryStringTo<IMock<Action<unknown, void | Promise<void>>>>,
+    ): IMock<Action<unknown, void | Promise<void>>> {
         let action = actionsMockMap[actionName];
 
         if (action == null) {
-            action = Mock.ofType(Action);
+            action = Mock.ofType<Action<unknown, void | Promise<void>>>();
             actionsMockMap[actionName] = action;
         }
         return action;
@@ -218,9 +225,9 @@ class GlobalActionCreatorValidator {
     private setupAction(
         actionName: string,
         actionsContainerMock: IMock<any>,
-        actionsMapMock: DictionaryStringTo<IMock<Action<any>>>,
+        actionsMockMap: DictionaryStringTo<IMock<Action<unknown, void | Promise<void>>>>,
     ): GlobalActionCreatorValidator {
-        const action = this.getOrCreateAction(actionName, actionsMapMock);
+        const action = this.getOrCreateAction(actionName, actionsMockMap);
 
         actionsContainerMock
             .setup(vam => vam[actionName])
@@ -231,21 +238,25 @@ class GlobalActionCreatorValidator {
         return this;
     }
 
-    public setupRegistrationCallback(
-        expectedType: string,
-        callbackParams?: any[],
-    ): GlobalActionCreatorValidator {
+    public setupRegisterCallbacks(): GlobalActionCreatorValidator {
         this.interpreterMock
-            .setup(x => x.registerTypeToPayloadCallback(It.isValue(expectedType), It.isAny()))
-            .callback((messageType, callback) => {
-                if (callbackParams) {
-                    callback(...callbackParams);
-                } else {
-                    callback();
-                }
+            .setup(x => x.registerTypeToPayloadCallback(It.isAny(), It.isAny()))
+            .callback(async (messageType, callback: PayloadCallback<any>) => {
+                this.registeredCallbacksMap[messageType] = callback;
             });
 
         return this;
+    }
+
+    public async simulateMessage(
+        messageType: string,
+        payload?: any,
+        tabId?: number,
+    ): Promise<void> {
+        const callback = this.registeredCallbacksMap[messageType];
+        expect(callback).toBeDefined();
+
+        await callback(payload, tabId);
     }
 
     public setupTelemetrySend(eventName: string): GlobalActionCreatorValidator {
@@ -282,7 +293,9 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.launchPanelActionsMockMap);
     }
 
-    private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
+    private verifyAllActions(
+        actionsMap: DictionaryStringTo<IMock<Action<unknown, void | Promise<void>>>>,
+    ): void {
         for (const actionName in actionsMap) {
             if (actionsMap.hasOwnProperty(actionName)) {
                 actionsMap[actionName].verifyAll();

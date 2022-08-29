@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+// Note: These interfaces are transitively referenced by store data, so keep backwards compatibility
+// in mind when making changes.
+
 export interface AxeRule {
     id: string;
     nodes: AxeNodeResult[];
@@ -9,12 +13,14 @@ export interface AxeRule {
     tags?: string[];
 }
 
+export type Target = (string | string[])[];
+
 export interface AxeNodeResult {
     any: FormattedCheckResult[];
     none: FormattedCheckResult[];
     all: FormattedCheckResult[];
     html: string;
-    target: string[]; // selector
+    target: Target; // selector
     failureSummary?: string;
     instanceId?: string;
     snippet?: string;

@@ -7,13 +7,28 @@
     padding-right: 8px;
     padding-left: 8px;
 
-    .ad-hoc-tools-grid {
+    %grid {
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: auto auto;
-        grid-template-rows: auto 1px auto 1px auto;
         grid-column-gap: 30px;
         grid-row-gap: 14px;
+    }
+
+    .ad-hoc-tools-grid {
+        @extend %grid;
+
+        .new-row-needed {
+            @extend %grid;
+
+            grid-template-rows: auto 1px auto 1px auto 1px auto;
+        }
+
+        .no-row-needed {
+            @extend %grid;
+
+            grid-template-rows: auto 1px auto 1px auto;
+        }
     }
 
     .divider {

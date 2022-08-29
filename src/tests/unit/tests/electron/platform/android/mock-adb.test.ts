@@ -13,7 +13,7 @@ import {
     simulateServiceLacksPermissions,
     simulateServiceNotInstalled,
     simulateInputKeyeventError,
-} from 'tests/miscellaneous/mock-adb/setup-mock-adb';
+} from 'tests/miscellaneous/setup-mock-adb/setup-mock-adb';
 
 describe('mock-adb tests match snapshots after normalizing path', () => {
     const definedConfigs = Object.getOwnPropertyNames(commonAdbConfigs);

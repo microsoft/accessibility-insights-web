@@ -5,7 +5,7 @@ import * as path from 'path';
 
 const mockAdbStandardResultPath = path.join(
     __dirname,
-    '../miscellaneous/mock-adb/assets/result.json',
+    '../miscellaneous/setup-mock-adb/assets/result.json',
 );
 export const androidScanResultExample = JSON.parse(
     fs.readFileSync(mockAdbStandardResultPath, { encoding: 'utf-8' }),

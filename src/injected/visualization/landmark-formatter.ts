@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    FormattedCheckResult,
+    HtmlElementAxeResults,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { DialogRenderer } from '../dialog-renderer';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
-import { HtmlElementAxeResults } from '../scanner-utils';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 import { HeadingStyleConfiguration } from './heading-formatter';

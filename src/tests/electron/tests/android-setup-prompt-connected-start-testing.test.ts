@@ -17,7 +17,7 @@ import {
     delayAllCommands,
     physicalDeviceName1,
     setupMockAdb,
-} from '../../miscellaneous/mock-adb/setup-mock-adb';
+} from '../../miscellaneous/setup-mock-adb/setup-mock-adb';
 
 const [cancelId, startTestingId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
 const expectedRunningApp = 'com.google.android.apps.messaging';

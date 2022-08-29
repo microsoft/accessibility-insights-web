@@ -12,6 +12,8 @@ export const CheckIcon = NamedFC('CheckIcon', () => (
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-hidden="true"
         >
             <circle cx="8" cy="8" r="8" fill="#228722" />
             <path
@@ -32,6 +34,8 @@ export const CheckIconInverted = NamedFC('CheckIconInverted', () => (
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-hidden="true"
         >
             <path
                 fillRule="evenodd"

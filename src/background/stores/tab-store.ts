@@ -3,10 +3,11 @@
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
+import { Tab } from 'common/types/store-data/itab';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UrlParser } from 'common/url-parser';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 
@@ -22,6 +23,7 @@ export class TabStore extends PersistentStore<TabStoreData> {
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
+        private readonly urlParser: UrlParser,
     ) {
         super(
             StoreNames.TabStore,
@@ -63,53 +65,43 @@ export class TabStore extends PersistentStore<TabStoreData> {
         this.visualizationActions.updateSelectedPivot.addListener(this.resetTabChange);
     }
 
-    private onVisibilityChange = (hidden: boolean): void => {
+    private onVisibilityChange = async (hidden: boolean): Promise<void> => {
         if (this.state.isPageHidden === hidden) {
             return;
         }
         this.state.isPageHidden = hidden;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onNewTabCreated = (payload: Tab): void => {
+    private onNewTabCreated = async (payload: Tab): Promise<void> => {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isClosed = false;
         this.state.isChanged = false;
         this.state.isOriginChanged = false;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onTabRemove = (): void => {
+    private onTabRemove = async (): Promise<void> => {
         this.state.isClosed = true;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onExistingTabUpdated = (payload: Tab): void => {
-        if (!this.originsMatch(payload.url, this.state.url)) {
+    private onExistingTabUpdated = async (payload: Tab): Promise<void> => {
+        if (!this.urlParser.areURLsSameOrigin(this.state.url, payload.url)) {
             this.state.isOriginChanged = true;
         }
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private resetTabChange = (): void => {
+    private resetTabChange = async (): Promise<void> => {
         if (this.state.isChanged) {
             this.state.isChanged = false;
-            this.emitChanged();
+            await this.emitChanged();
         }
-    };
-
-    private originsMatch = (url1: string, url2: string): boolean => {
-        if (url1 == null && url2 == null) {
-            return true;
-        }
-        if (url1 != null && url2 != null) {
-            return new URL(url1).origin === new URL(url2).origin;
-        }
-        return false;
     };
 }

@@ -60,6 +60,7 @@ describe('ReflowCommandBar', () => {
             isHeaderAndNavCollapsed: false,
             isCommandBarCollapsed: false,
             isVirtualKeyboardCollapsed: false,
+            isCardFooterCollapsed: false,
         };
         scanDateStub = new Date(0);
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);

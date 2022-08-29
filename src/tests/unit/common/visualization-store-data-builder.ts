@@ -3,7 +3,7 @@
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
-import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../../common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
     VisualizationStoreData,
@@ -100,6 +100,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             case VisualizationType.NeedsReview:
                 this.data.tests.adhoc.needsReview.enabled = true;
                 break;
+            case VisualizationType.AccessibleNames:
+                this.data.tests.adhoc.accessibleNames.enabled = true;
+                break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);
         }
@@ -129,6 +132,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
                 break;
             case VisualizationType.NeedsReview:
                 this.data.tests.adhoc.needsReview.enabled = false;
+                break;
+            case VisualizationType.AccessibleNames:
+                this.data.tests.adhoc.accessibleNames.enabled = false;
                 break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import {
     EditExistingFailureInstancePayload,
@@ -13,12 +13,12 @@ describe('TabStopsTestViewController', () => {
     let testSubject: TabStopsTestViewController;
     let tabStopActionsMock: IMock<TabStopsViewActions>;
 
-    test('createNewFailureInstancePanel', () => {
+    test('createNewFailureInstancePanel', async () => {
         const payload = 'some string';
         tabStopActionsMock = createActionsMock('createNewFailureInstancePanel');
         testSubject = new TabStopsTestViewController(tabStopActionsMock.object);
 
-        testSubject.createNewFailureInstancePanel(payload);
+        await testSubject.createNewFailureInstancePanel(payload);
 
         tabStopActionsMock.verify(
             m => m.createNewFailureInstancePanel.invoke(payload),
@@ -26,31 +26,31 @@ describe('TabStopsTestViewController', () => {
         );
     });
 
-    test('updateDescription', () => {
+    test('updateDescription', async () => {
         const payload = 'some string';
         tabStopActionsMock = createActionsMock('updateDescription');
         testSubject = new TabStopsTestViewController(tabStopActionsMock.object);
 
-        testSubject.updateDescription(payload);
+        await testSubject.updateDescription(payload);
 
         tabStopActionsMock.verify(m => m.updateDescription.invoke(payload), Times.once());
     });
 
-    test('dismissPanel', () => {
+    test('dismissPanel', async () => {
         tabStopActionsMock = createActionsMock('dismissPanel');
         testSubject = new TabStopsTestViewController(tabStopActionsMock.object);
 
-        testSubject.dismissPanel();
+        await testSubject.dismissPanel();
 
         tabStopActionsMock.verify(m => m.dismissPanel.invoke(), Times.once());
     });
 
-    test('editExistingFailureInstance', () => {
+    test('editExistingFailureInstance', async () => {
         const payload = {} as EditExistingFailureInstancePayload;
         tabStopActionsMock = createActionsMock('editExistingFailureInstance');
         testSubject = new TabStopsTestViewController(tabStopActionsMock.object);
 
-        testSubject.editExistingFailureInstance(payload);
+        await testSubject.editExistingFailureInstance(payload);
 
         tabStopActionsMock.verify(m => m.editExistingFailureInstance.invoke(payload), Times.once());
     });
@@ -64,8 +64,8 @@ describe('TabStopsTestViewController', () => {
         return actionsMock;
     }
 
-    function createActionMock(): IMock<Action<unknown>> {
-        const actionMock = Mock.ofType(Action);
+    function createActionMock(): IMock<SyncAction<unknown>> {
+        const actionMock = Mock.ofType(SyncAction);
 
         actionMock
             .setup(a => a.addListener(It.is(param => param instanceof Function)))

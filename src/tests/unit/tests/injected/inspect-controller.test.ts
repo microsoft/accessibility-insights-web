@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectMode } from 'background/inspect-modes';
 import { InspectStore } from 'background/stores/inspect-store';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     ConfigurationKey,

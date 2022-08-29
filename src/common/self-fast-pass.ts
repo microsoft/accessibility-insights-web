@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
 import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-review/visualization';
+import { FormattedCheckResult } from 'common/types/store-data/visualization-scan-result-data';
 import { Analyzer, RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from '../injected/scanner-utils';
@@ -77,7 +78,7 @@ class SelfFastPassAnalyzer implements Analyzer {
 
 class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
     constructor(private readonly deps: SelfFastPassAnalyzerDeps) {
-        super(null, null, null, null, null, null, null, null, null, null, null, null, null);
+        super(null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     }
 
     public override createRuleAnalyzerUnifiedScanForNeedsReview(

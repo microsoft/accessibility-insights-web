@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { doesResultHaveMainRole } from 'assessments/landmarks/does-result-have-main-role';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
+import {
+    DecoratedAxeNodeResult,
+    FormattedCheckResult,
+} from 'common/types/store-data/visualization-scan-result-data';
 
 describe('doesResultHaveMainRole', () => {
     it('returns false for results with no check results', () => {

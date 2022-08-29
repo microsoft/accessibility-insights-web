@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MessageBar, MessageBarType } from '@fluentui/react';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanIncompleteWarningMessageBarDeps,

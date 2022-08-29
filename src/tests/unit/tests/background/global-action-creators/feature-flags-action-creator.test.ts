@@ -9,7 +9,7 @@ import { IMock, It, Mock } from 'typemoq';
 
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { createActionMock } from './action-creator-test-helpers';
+import { createAsyncActionMock } from './action-creator-test-helpers';
 
 describe('FeatureFlagsActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -35,7 +35,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createActionMock(undefined);
+        const getCurrentStateMock = createAsyncActionMock(undefined);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
@@ -54,7 +54,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage, payload);
 
-        const setFeatureFlagMock = createActionMock(payload);
+        const setFeatureFlagMock = createAsyncActionMock(payload);
 
         setupActionsMock('setFeatureFlag', setFeatureFlagMock.object);
 
@@ -68,7 +68,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const resetFeatureFlagMock = createActionMock(undefined);
+        const resetFeatureFlagMock = createAsyncActionMock(undefined);
 
         setupActionsMock('resetFeatureFlags', resetFeatureFlagMock.object);
 

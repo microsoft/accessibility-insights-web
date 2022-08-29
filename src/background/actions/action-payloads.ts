@@ -6,13 +6,14 @@ import {
     TelemetryData,
     ToggleTelemetryData,
 } from 'common/extension-telemetry-events';
-import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
-import { ManualTestStatus } from 'common/types/manual-test-status';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { Tab } from 'common/types/store-data/itab';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import {
     PlatformData,
     ScreenshotData,
@@ -23,11 +24,11 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
 import { TabStopRequirementStatus } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
+import { Target } from 'scanner/iruleresults';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface BaseActionPayload {
@@ -89,7 +90,7 @@ export interface ChangeInstanceSelectionPayload extends AssessmentActionInstance
 }
 
 export interface UpdateSelectedDetailsViewPayload extends BaseActionPayload {
-    detailsViewType: VisualizationType;
+    detailsViewType: VisualizationType | null;
     pivotType: DetailsViewPivotType;
 }
 
@@ -173,7 +174,7 @@ export interface SetLaunchPanelState extends BaseActionPayload {
 }
 
 export interface InspectElementPayload extends BaseActionPayload {
-    target: string[];
+    target: Target;
 }
 
 export interface InspectFrameUrlPayload extends BaseActionPayload {
@@ -253,5 +254,9 @@ export interface SaveWindowBoundsPayload extends BaseActionPayload {
 }
 
 export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
+    enabled: boolean;
+}
+
+export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
     enabled: boolean;
 }

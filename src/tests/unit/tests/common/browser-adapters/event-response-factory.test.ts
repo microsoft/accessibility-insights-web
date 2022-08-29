@@ -3,6 +3,7 @@
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
 import { TimeoutError } from 'common/promises/promise-factory';
 import { TimeSimulatingPromiseFactory } from 'tests/unit/common/time-simulating-promise-factory';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 describe(EventResponseFactory, () => {
     let timeSimulatingPromiseFactory: TimeSimulatingPromiseFactory;
@@ -12,34 +13,11 @@ describe(EventResponseFactory, () => {
         timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
     });
 
-    describe('applyFireAndForgetDelay', () => {
-        it('applies a 30 second delay for service workers', async () => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
-
-            const result = testSubject.applyFireAndForgetDelay('original');
-
-            await expect(result).resolves.toBe('original');
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
-        });
-
-        it('does not apply any delay outside of service workers', async () => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, false);
-
-            const result = testSubject.applyFireAndForgetDelay('original');
-
-            await expect(result).resolves.toBe('original');
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-        });
-    });
-
     describe('applyEventTimeout', () => {
         it.each([true, false])(
             'applies a 60 second timeout when isServiceWorker=%p',
             async isServiceWorker => {
-                testSubject = new EventResponseFactory(
-                    timeSimulatingPromiseFactory,
-                    isServiceWorker,
-                );
+                testSubject = new EventResponseFactory(timeSimulatingPromiseFactory);
 
                 const slowPromise = timeSimulatingPromiseFactory.externalResolutionPromise();
                 const result = testSubject.applyEventTimeout(slowPromise.promise, 'error context');
@@ -54,7 +32,7 @@ describe(EventResponseFactory, () => {
 
     describe('mergeBrowserMessageResponses', () => {
         beforeEach(() => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
+            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory);
         });
 
         it('returns messageHandled false if no interpreter handled the message', () => {
@@ -89,8 +67,19 @@ describe(EventResponseFactory, () => {
     });
 
     describe('mergeRawBrowserMessageResponses', () => {
+        let mergeAsyncResponsesMock: IMock<(promises: Promise<unknown>[]) => Promise<void>>;
+
         beforeEach(() => {
-            testSubject = new EventResponseFactory(timeSimulatingPromiseFactory, true);
+            mergeAsyncResponsesMock = Mock.ofInstance(_ => Promise.resolve(), MockBehavior.Strict);
+
+            testSubject = new EventResponseFactory(
+                timeSimulatingPromiseFactory,
+                mergeAsyncResponsesMock.object,
+            );
+        });
+
+        afterEach(() => {
+            mergeAsyncResponsesMock.verifyAll();
         });
 
         it('returns void if all inputs are void', async () => {
@@ -104,62 +93,41 @@ describe(EventResponseFactory, () => {
             expect(testSubject.mergeRawBrowserMessageResponses([input])).toBe(input);
         });
 
-        it('awaits all input promises concurrently if all inputs are async and successful', async () => {
+        it('returns wrapped combined promise for multiple async responses', async () => {
             const inputs = [
                 timeSimulatingPromiseFactory.delay(undefined, 2),
                 timeSimulatingPromiseFactory.delay(undefined, 5),
                 timeSimulatingPromiseFactory.delay(undefined, 3),
             ];
+            const mergedPromise = Promise.resolve();
 
-            await testSubject.mergeRawBrowserMessageResponses(inputs);
+            mergeAsyncResponsesMock
+                .setup(m => m(inputs))
+                .returns(() => mergedPromise)
+                .verifiable();
 
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(5);
+            const result = testSubject.mergeRawBrowserMessageResponses(inputs);
+
+            expect(result).toBe(mergedPromise);
+
+            await mergedPromise;
         });
 
-        it('awaits all input promises and rejects without wrapping if a single input rejects', async () => {
-            const error = new Error('only-error');
-            const inputs = [
-                timeSimulatingPromiseFactory.delay(undefined, 1),
-                Promise.reject(error),
-                timeSimulatingPromiseFactory.delay(undefined, 2),
-            ];
-
-            await expect(testSubject.mergeRawBrowserMessageResponses(inputs)).rejects.toThrowError(
-                error,
-            );
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
-        });
-
-        it('awaits all input promises and aggregates errors if all inputs are async', async () => {
-            const errors = [new Error('1'), new Error('2')];
-            const inputs = [
-                timeSimulatingPromiseFactory.delay(undefined, 1),
-                Promise.reject(errors[0]),
-                timeSimulatingPromiseFactory.delay(undefined, 2),
-                Promise.reject(errors[1]),
-            ];
-
-            try {
-                await testSubject.mergeRawBrowserMessageResponses(inputs);
-                fail('should have thrown');
-            } catch (e) {
-                expect(e).toBeInstanceOf(AggregateError);
-                expect(e.errors).toEqual(errors);
-            }
-
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
-        });
-
-        it('injects one fire and forget delay among the async promises for mixed input types', async () => {
+        it('returns wrapped combined promise for mixed input types', async () => {
             const asyncInputs = [
                 timeSimulatingPromiseFactory.delay(undefined, 1),
                 timeSimulatingPromiseFactory.delay(undefined, 2),
             ];
             const inputs = [undefined, ...asyncInputs, undefined];
+            mergeAsyncResponsesMock
+                .setup(m => m(It.isAny()))
+                .returns(async promises => {
+                    await Promise.all(promises);
+                });
 
             await testSubject.mergeRawBrowserMessageResponses(inputs);
 
-            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
+            expect(timeSimulatingPromiseFactory.elapsedTime).toBe(2);
         });
     });
 });

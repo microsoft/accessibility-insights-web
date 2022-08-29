@@ -3,39 +3,42 @@
 import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { Messages } from 'common/messages';
-import {
-    createActionMock,
-    createInterpreterMock,
-} from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock } from 'typemoq';
 
 describe('InjectionActionCreator', () => {
-    it('handles InjectionStarted message', () => {
-        const injectionStartedMock = createActionMock(null);
+    let interpreterMock: MockInterpreter;
+
+    beforeEach(() => {
+        interpreterMock = new MockInterpreter();
+    });
+
+    it('handles InjectionStarted message', async () => {
+        const injectionStartedMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('injectionStarted', injectionStartedMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.State.InjectionStarted,
-            null,
-        );
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.Visualizations.State.InjectionStarted, null);
 
         injectionStartedMock.verifyAll();
     });
 
-    it('handles InjectionCompleted message', () => {
-        const injectionCompletedMock = createActionMock<void>(null);
+    it('handles InjectionCompleted message', async () => {
+        const injectionCompletedMock = createAsyncActionMock<void>(null);
         const actionsMock = createActionsMock('injectionCompleted', injectionCompletedMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.State.InjectionCompleted,
-            null,
-        );
 
         const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.State.InjectionCompleted,
+            null,
+        );
 
         injectionCompletedMock.verifyAll();
     });

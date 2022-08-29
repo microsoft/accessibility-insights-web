@@ -143,6 +143,11 @@ exports[`DetailsViewBody render render 1`] = `
       visualizationConfigurationFactory={Object {}}
       visualizationScanResultData={
         Object {
+          "accessibleNames": Object {
+            "fullAxeResultsMap": null,
+            "fullIdToRuleResultMap": null,
+            "scanResult": null,
+          },
           "color": Object {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
@@ -213,6 +218,9 @@ exports[`DetailsViewBody render render 1`] = `
           "selectedFastPassDetailsView": 1,
           "tests": Object {
             "adhoc": Object {
+              "accessibleNames": Object {
+                "enabled": false,
+              },
               "color": Object {
                 "enabled": false,
               },
@@ -471,6 +479,11 @@ exports[`DetailsViewBody render render 1`] = `
         visualizationConfigurationFactory={Object {}}
         visualizationScanResultData={
           Object {
+            "accessibleNames": Object {
+              "fullAxeResultsMap": null,
+              "fullIdToRuleResultMap": null,
+              "scanResult": null,
+            },
             "color": Object {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
@@ -541,6 +554,9 @@ exports[`DetailsViewBody render render 1`] = `
             "selectedFastPassDetailsView": 1,
             "tests": Object {
               "adhoc": Object {
+                "accessibleNames": Object {
+                  "enabled": false,
+                },
                 "color": Object {
                   "enabled": false,
                 },
@@ -806,6 +822,11 @@ exports[`DetailsViewBody render render 1`] = `
             visualizationConfigurationFactory={Object {}}
             visualizationScanResultData={
               Object {
+                "accessibleNames": Object {
+                  "fullAxeResultsMap": null,
+                  "fullIdToRuleResultMap": null,
+                  "scanResult": null,
+                },
                 "color": Object {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
@@ -876,6 +897,9 @@ exports[`DetailsViewBody render render 1`] = `
                 "selectedFastPassDetailsView": 1,
                 "tests": Object {
                   "adhoc": Object {
+                    "accessibleNames": Object {
+                      "enabled": false,
+                    },
                     "color": Object {
                       "enabled": false,
                     },

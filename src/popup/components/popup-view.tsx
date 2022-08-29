@@ -62,6 +62,8 @@ export interface PopupViewControllerState {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
+const demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374';
+
 export class PopupView extends React.Component<PopupViewProps> {
     private handler: PopupViewControllerHandler;
     private openTogglesView: () => void;
@@ -134,6 +136,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                 <AdHocToolsPanel
                     backLinkHandler={this.openTogglesView}
                     diagnosticViewToggleFactory={this.props.diagnosticViewToggleFactory}
+                    featureFlagStoreData={this.props.storeState.featureFlagStoreData}
                 />
             </div>
         );
@@ -158,12 +161,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                     title={this.props.title}
                     subtitle={
                         <>
-                            <NewTabLink
-                                href={LaunchPad.demoLink}
-                                aria-label="demo video"
-                                title="watch the 3 minute video introduction"
-                                onClick={onClickTutorialLink}
-                            >
+                            <NewTabLink href={demoLink} onClick={onClickTutorialLink}>
                                 Watch 3-minute video introduction
                             </NewTabLink>{' '}
                         </>

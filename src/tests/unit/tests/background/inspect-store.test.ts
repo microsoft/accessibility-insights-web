@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
 import { TabActions } from 'background/actions/tab-actions';
-import { InspectMode } from 'background/inspect-modes';
 import { InspectStore } from 'background/stores/inspect-store';
+import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { InspectStoreData } from '../../../../common/types/store-data/inspect-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../common/store-tester';
@@ -24,17 +24,15 @@ describe('InspectStoreTest', () => {
         expect(defaultState.inspectMode).toEqual(InspectMode.off);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForInspectActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreForInspectActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeMode', () => {
+    test('on changeMode', async () => {
         const initialState = getDefaultState();
         const payload: InspectPayload = {
             inspectMode: InspectMode.scopingAddInclude,
@@ -42,29 +40,28 @@ describe('InspectStoreTest', () => {
 
         const finalState = getDefaultState();
         finalState.inspectMode = payload.inspectMode;
-        createStoreForInspectActions('changeInspectMode')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreForInspectActions('changeInspectMode').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on setHoveredOverSelector', () => {
+    test('on setHoveredOverSelector', async () => {
         const initialState = getDefaultState();
         const payload: string[] = ['some selector'];
         const finalState = getDefaultState();
         finalState.hoveredOverSelector = payload;
-        createStoreForInspectActions('setHoveredOverSelector')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreForInspectActions('setHoveredOverSelector').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on existingTabUpdated', () => {
+    test('on existingTabUpdated', async () => {
         const initialState = getDefaultState();
         initialState.hoveredOverSelector = ['some selector'];
         initialState.inspectMode = InspectMode.scopingAddInclude;
         const finalState = getDefaultState();
-        createStoreForTabActions('existingTabUpdated')
-            .withActionParam(null)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForTabActions('existingTabUpdated').withActionParam(null);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function getDefaultState(): InspectStoreData {

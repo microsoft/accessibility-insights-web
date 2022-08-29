@@ -16,7 +16,7 @@ import { EventResponseFactory } from 'common/browser-adapters/event-response-fac
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
-import { WindowUtils } from 'common/window-utils';
+import { UrlParser } from 'common/url-parser';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { DateProvider } from '../common/date-provider';
@@ -61,7 +61,7 @@ async function initialize(): Promise<void> {
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
 
-    const eventResponseFactory = new EventResponseFactory(promiseFactory, false);
+    const eventResponseFactory = new EventResponseFactory(promiseFactory);
     const browserEventManager = new BackgroundBrowserEventManager(
         promiseFactory,
         eventResponseFactory,
@@ -75,8 +75,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         deprecatedStorageDataKeys,
     );
-
-    const windowUtils = new WindowUtils();
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
@@ -127,7 +125,8 @@ async function initialize(): Promise<void> {
 
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
-    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+    const telemetryEventHandler = new TelemetryEventHandler();
+    telemetryEventHandler.initialize(telemetryClient);
 
     const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
@@ -225,6 +224,8 @@ async function initialize(): Promise<void> {
     );
     await detailsViewController.initialize();
 
+    const urlParser = new UrlParser();
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -236,10 +237,10 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
         persistData,
+        urlParser,
     );
 
     const targetPageController = new TargetPageController(

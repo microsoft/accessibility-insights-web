@@ -10,8 +10,9 @@ on:
     - cron: '0 19 * * 0'
 
 env:
-  # Keep this in sync with /pipeline/install-node-prerequisites.yaml
+  # Keep these in sync with /pipeline/install-node-prerequisites.yaml
   NODE_VERSION: 16.14.2
+  DOTNET_SDK_VERSION: 6.0.301
 
 jobs:
   build:
@@ -19,6 +20,10 @@ jobs:
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-dotnet@v2
+      with: { dotnet-version: "${{ env.DOTNET_SDK_VERSION }}" }
       timeout-minutes: 2
 
     - uses: actions/setup-node@v2
@@ -180,22 +185,29 @@ jobs:
     - run: yarn null:check
       timeout-minutes: 5
 
+    - name: verify null:autoadd finds no changes
+      run: yarn null:autoadd && node .github/workflows/verify-unchanged-strict-null-checks.js
+      timeout-minutes: 6
+
   codeql:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
 
-    - uses: github/codeql-action/init@v1
+    - uses: github/codeql-action/init@v2
+      timeout-minutes: 2
+    
+    - uses: github/codeql-action/autobuild@v2
       timeout-minutes: 2
 
-    - uses: github/codeql-action/analyze@v1
+    - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
 
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.22.2-focal
+    container: mcr.microsoft.com/playwright:v1.24.0-focal
     strategy:
       fail-fast: false
       matrix:
@@ -262,6 +274,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-dotnet@v2
+      with: { dotnet-version: "${{ env.DOTNET_SDK_VERSION }}" }
       timeout-minutes: 2
 
     - uses: actions/setup-node@v2

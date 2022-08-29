@@ -4,12 +4,12 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
 import { ScopingStoreData } from '../../../common/types/store-data/scoping-store-data';
 import { ScopingActions, ScopingPayload } from './../../actions/scoping-actions';
-import { ScopingInputTypes } from './../../scoping-input-types';
 
 export class ScopingStore extends PersistentStore<ScopingStoreData> {
     private scopingActions: ScopingActions;
@@ -54,7 +54,7 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         this.scopingActions.deleteSelector.addListener(this.onDeleteSelector);
     }
 
-    private onAddSelector = (payload: ScopingPayload): void => {
+    private onAddSelector = async (payload: ScopingPayload): Promise<void> => {
         let shouldUpdate: boolean = true;
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
@@ -64,16 +64,17 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         });
         if (shouldUpdate) {
             this.state.selectors[payload.inputType].push(payload.selector);
-            this.emitChanged();
+            await this.emitChanged();
         }
     };
 
-    private onDeleteSelector = (payload: ScopingPayload): void => {
-        _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
+    private onDeleteSelector = async (payload: ScopingPayload): Promise<void> => {
+        const promises = Object.keys(this.state.selectors[payload.inputType]).map(async key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
                 this.state.selectors[payload.inputType].splice(key, 1);
-                this.emitChanged();
+                await this.emitChanged();
             }
         });
+        await Promise.all(promises);
     };
 }

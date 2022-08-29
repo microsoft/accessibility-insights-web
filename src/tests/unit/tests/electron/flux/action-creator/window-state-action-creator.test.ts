@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { Rectangle } from 'electron';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
@@ -35,7 +35,7 @@ describe(WindowStateActionCreator, () => {
     });
 
     it('calling setRoute invokes setRoute action with given payload', () => {
-        const setRouteActionMock = Mock.ofType<Action<RoutePayload>>();
+        const setRouteActionMock = Mock.ofType<SyncAction<RoutePayload>>();
         const testPayload: RoutePayload = {
             routeId: 'resultsView',
         };
@@ -57,7 +57,7 @@ describe(WindowStateActionCreator, () => {
     });
 
     it('calling setRoute with deviceConnectView, invokes setWindowSize', () => {
-        const setRouteActionMock = Mock.ofType<Action<RoutePayload>>();
+        const setRouteActionMock = Mock.ofType<SyncAction<RoutePayload>>();
         const testPayload: RoutePayload = {
             routeId: 'deviceConnectView',
         };
@@ -78,7 +78,7 @@ describe(WindowStateActionCreator, () => {
     });
 
     it('calling setWindowState invokes setWindowState action', () => {
-        const setWindowStatePayload = Mock.ofType<Action<WindowStatePayload>>();
+        const setWindowStatePayload = Mock.ofType<SyncAction<WindowStatePayload>>();
         const testPayload: WindowStatePayload = {
             currentWindowState: 'maximized',
         };
@@ -102,7 +102,7 @@ describe(WindowStateActionCreator, () => {
         let setRouteActionMock;
 
         beforeEach(() => {
-            setRouteActionMock = Mock.ofType<Action<RoutePayload>>();
+            setRouteActionMock = Mock.ofType<SyncAction<RoutePayload>>();
             setRouteActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
             windowStateActionsMock
                 .setup(actions => actions.setRoute)

@@ -44,10 +44,11 @@ $outcome-count-border-size: 1.5px;
     height: $outcome-chip-icon-size;
     color: $primary-text;
     border-radius: 0 8px 8px 0;
-    margin: 0 4px 0 4px;
+    margin-right: 4px;
+    margin-bottom: -3px;
+    margin-left: 4px;
     display: inline-flex;
     align-items: center;
-    margin-bottom: -3px;
 
     .icon {
         border-radius: 50%;
@@ -60,7 +61,8 @@ $outcome-count-border-size: 1.5px;
         line-height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
         font-size: 11px;
         border-radius: 0 8px 8px 0;
-        padding: 0 6px 0 10px;
+        padding-right: 6px;
+        padding-left: 10px;
         font-weight: 700;
         margin-left: -8px;
         height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);

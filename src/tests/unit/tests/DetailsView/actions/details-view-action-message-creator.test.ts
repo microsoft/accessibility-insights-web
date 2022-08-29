@@ -8,6 +8,7 @@ import {
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
@@ -35,10 +36,9 @@ import {
     SupportedMouseEvent,
     TelemetryDataFactory,
 } from '../../../../../common/telemetry-data-factory';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from '../../../../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsViewRightContentPanelType } from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('DetailsViewActionMessageCreatorTest', () => {

@@ -17,9 +17,9 @@ import { DiagnosticViewToggle, DiagnosticViewToggleDeps } from './diagnostic-vie
 export class DiagnosticViewToggleFactory {
     private visualizationTypes: VisualizationType[];
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private visualizationStore: BaseStore<VisualizationStoreData>;
-    private featureFlagsStore: BaseStore<FeatureFlagStoreData>;
-    private commandStore: BaseStore<CommandStoreData>;
+    private visualizationStore: BaseStore<VisualizationStoreData, Promise<void>>;
+    private featureFlagsStore: BaseStore<FeatureFlagStoreData, Promise<void>>;
+    private commandStore: BaseStore<CommandStoreData, Promise<void>>;
     private actionMessageCreator: PopupActionMessageCreator;
     private clickHandler: DiagnosticViewClickHandler;
     private dom: Document;
@@ -29,9 +29,9 @@ export class DiagnosticViewToggleFactory {
         dom: Document,
         visualizationTypes: VisualizationType[],
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        visualizationStore: BaseStore<VisualizationStoreData>,
-        featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        commandStore: BaseStore<CommandStoreData>,
+        visualizationStore: BaseStore<VisualizationStoreData, Promise<void>>,
+        featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>,
+        commandStore: BaseStore<CommandStoreData, Promise<void>>,
         actionMessageCreator: PopupActionMessageCreator,
         clickHandler: DiagnosticViewClickHandler,
     ) {

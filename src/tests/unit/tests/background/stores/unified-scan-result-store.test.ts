@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabActions } from 'background/actions/tab-actions';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
@@ -33,17 +33,15 @@ describe('UnifiedScanResultStore Test', () => {
         expect(defaultState.platformInfo).toBeNull();
     });
 
-    test('onGetCurrentState', () => {
+    test('onGetCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreTesterForUnifiedScanResultActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForUnifiedScanResultActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted', () => {
+    test('onScanCompleted', async () => {
         const initialState = getDefaultState();
         const targetAppInfo: TargetAppData = { name: 'app name' };
         const payload: UnifiedScanCompletedPayload = {
@@ -84,12 +82,12 @@ describe('UnifiedScanResultStore Test', () => {
             platformInfo: payload.platformInfo,
         };
 
-        createStoreTesterForUnifiedScanResultActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForUnifiedScanResultActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onExistingTabUpdated', () => {
+    test('onExistingTabUpdated', async () => {
         const initialState = {
             results: [
                 {
@@ -119,10 +117,8 @@ describe('UnifiedScanResultStore Test', () => {
 
         const expectedState = getDefaultState();
 
-        createStoreTesterForTabActions('existingTabUpdated').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabActions('existingTabUpdated');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function getDefaultState(): UnifiedScanResultStoreData {

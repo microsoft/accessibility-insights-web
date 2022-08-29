@@ -1,40 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
-<CustomizedCommandBarButton
-  ariaLabel="More items"
-  className="commandBarButtonsMenu"
-  componentRef={Object {}}
-  menuIconProps={
-    Object {
-      "className": "commandBarButtonsMenuButton",
-      "iconName": "More",
+<StyledTooltipHostBase
+  aria-label="More actions"
+  content="More actions"
+>
+  <CustomizedCommandBarButton
+    ariaLabel="More actions"
+    className="commandBarButtonsMenu"
+    componentRef={Object {}}
+    menuIconProps={
+      Object {
+        "className": "commandBarButtonsMenuButton",
+        "iconName": "More",
+      }
     }
-  }
-  menuProps={
-    Object {
-      "className": "commandBarButtonsSubmenu",
-      "items": Array [
-        Object {
-          "key": "export report",
-          "onRender": [Function],
-        },
-        Object {
-          "key": "save assessment",
-          "onRender": [Function],
-        },
-        Object {
-          "key": "load assessment",
-          "onRender": [Function],
-        },
-        Object {
-          "key": "start over",
-        },
-      ],
+    menuProps={
+      Object {
+        "className": "commandBarButtonsSubmenu",
+        "items": Array [
+          Object {
+            "key": "export report",
+            "onRender": [Function],
+          },
+          Object {
+            "key": "save assessment",
+            "onRender": [Function],
+          },
+          Object {
+            "key": "load assessment",
+            "onRender": [Function],
+          },
+          Object {
+            "key": "start over",
+          },
+        ],
+      }
     }
-  }
-  role="button"
-/>
+    role="button"
+  />
+</StyledTooltipHostBase>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons,: render export report menuitem 1`] = `

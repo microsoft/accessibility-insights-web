@@ -86,7 +86,7 @@ describe('AndroidSetupStore', () => {
         stateMachineMock.verifyAll();
     });
 
-    it('ensure step transition function results in store update', () => {
+    it('ensure step transition function results in store update', async () => {
         const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
         const expectedData: AndroidSetupStoreData = { currentStepId: 'prompt-choose-device' };
 
@@ -106,7 +106,7 @@ describe('AndroidSetupStore', () => {
             .verifiable(Times.once());
 
         const storeTester = createAndroidSetupStoreTester('cancel', stateMachineFactoryMock.object);
-        storeTester.testListenerToBeCalledOnce(initialData, expectedData);
+        await storeTester.testListenerToBeCalledOnce(initialData, expectedData);
 
         stateMachineFactoryMock.verifyAll();
         stateMachineMock.verifyAll();

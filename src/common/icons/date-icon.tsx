@@ -24,7 +24,15 @@ const d =
     '8.125V3.625H7.69853V9.25H12.1985V8.125H8.82353Z';
 
 export const DateIcon = NamedFC('DateIcon', () => (
-    <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        width="17"
+        height="16"
+        viewBox="0 0 17 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-hidden="true"
+    >
         <path d={d} fill="#737373" />
     </svg>
 ));

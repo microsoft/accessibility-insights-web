@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 
 export class TabStopsActions {
-    public readonly enableFocusTracking = new Action<void>();
-    public readonly disableFocusTracking = new Action<void>();
-    public readonly startOver = new Action<void>();
+    public readonly enableFocusTracking = new SyncAction<void>();
+    public readonly disableFocusTracking = new SyncAction<void>();
+    public readonly startOver = new SyncAction<void>();
 }

@@ -79,22 +79,6 @@ export abstract class WebExtensionBrowserAdapter
         return browser.tabs.query(query);
     }
 
-    public getTab(
-        tabId: number,
-        onResolve: (tab: chrome.tabs.Tab) => void,
-        onReject?: () => void,
-    ): void {
-        chrome.tabs.get(tabId, tab => {
-            if (tab) {
-                onResolve(tab);
-            } else {
-                if (onReject != null) {
-                    onReject();
-                }
-            }
-        });
-    }
-
     public async getTabAsync(tabId: number): Promise<chrome.tabs.Tab> {
         return new Promise((resolve, reject) => {
             chrome.tabs.get(tabId, tab => {
@@ -225,8 +209,10 @@ export abstract class WebExtensionBrowserAdapter
         this.addListener('CommandsOnCommand', callback);
     }
 
-    public getCommands(callback: (commands: chrome.commands.Command[]) => void): void {
-        chrome.commands.getAll(callback);
+    public async getCommands(): Promise<chrome.commands.Command[]> {
+        return new Promise((resolve, reject) => {
+            chrome.commands.getAll(commands => resolve(commands));
+        });
     }
 
     public addListenerOnRuntimeMessage(callback: BrowserMessageHandler): void {

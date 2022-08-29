@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IButton, IOverflowSetItemProps, RefObject } from '@fluentui/react';
+import { CommandBarButton, IButton, IOverflowSetItemProps, RefObject } from '@fluentui/react';
 import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
@@ -44,7 +44,8 @@ describe('CommandBarButtonsMenu', () => {
         setupStartOverMenuItem();
 
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const renderedProps = wrapper.getElement().props;
+        const commandBarButtonElement = wrapper.find(CommandBarButton);
+        const renderedProps = commandBarButtonElement.getElement().props;
         const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
 
         expect(overflowItems).toBeDefined();

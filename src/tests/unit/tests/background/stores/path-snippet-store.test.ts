@@ -24,48 +24,44 @@ describe('PathSnippetStoreTest', () => {
         expect(defaultState.snippet).toEqual(null);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreForPathSnippetActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreForPathSnippetActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on addPath', () => {
+    test('on addPath', async () => {
         const initialState = getDefaultState();
         const payload = 'new path';
         const finalState = getDefaultState();
         finalState.path = payload;
 
-        createStoreForPathSnippetActions('onAddPath')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForPathSnippetActions('onAddPath').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on addSnippet', () => {
+    test('on addSnippet', async () => {
         const initialState = getDefaultState();
         const payload = 'new snippet';
         const finalState = getDefaultState();
         finalState.snippet = payload;
 
-        createStoreForPathSnippetActions('onAddSnippet')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreForPathSnippetActions('onAddSnippet').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on clearState', () => {
+    test('on clearState', async () => {
         const initialState = {
             path: 'test path',
             snippet: 'test snippet',
         };
         const finalState = getDefaultState();
 
-        createStoreForPathSnippetActions('onClearData')
-            .withActionParam(null)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForPathSnippetActions('onClearData').withActionParam(null);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function getDefaultState(): PathSnippetStoreData {

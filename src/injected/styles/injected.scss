@@ -95,7 +95,9 @@
     }
 
     .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
-        padding: 0 19px 20px !important;
+        padding-top: 0 !important;
+        padding-right: 19px !important;
+        padding-bottom: 20px !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
@@ -120,7 +122,7 @@
 
         svg path {
             fill: $neutral-100 !important;
-            fill-opacity: 0.9 !important;
+            fill-opacity: 90% !important;
 
             @media screen and (forced-colors: active) {
                 fill: inherit !important;
@@ -190,7 +192,10 @@
             font-size: 14px !important;
 
             ul {
-                margin: 8px 8px 0 8px !important;
+                margin-top: 8px !important;
+                margin-right: 8px !important;
+                margin-bottom: 0 !important;
+                margin-left: 8px !important;
                 padding-left: 8px !important;
             }
         }
@@ -288,7 +293,7 @@
         width: 0 !important;
         height: 0 !important;
         visibility: hidden !important;
-        padding: 0 0 0 0 !important;
-        margin: 0 0 0 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 }

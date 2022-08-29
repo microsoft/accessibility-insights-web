@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { AsyncAction } from 'common/flux/async-action';
 import { CardSelectionPayload, RuleExpandCollapsePayload } from './action-payloads';
 
 export class CardSelectionActions {
-    public readonly getCurrentState = new Action();
-    public readonly navigateToNewCardsView = new Action();
-    public readonly toggleRuleExpandCollapse = new Action<RuleExpandCollapsePayload>();
-    public readonly toggleCardSelection = new Action<CardSelectionPayload>();
-    public readonly collapseAllRules = new Action();
-    public readonly expandAllRules = new Action();
-    public readonly toggleVisualHelper = new Action();
-    public readonly resetFocusedIdentifier = new Action();
+    public readonly getCurrentState = new AsyncAction();
+    public readonly navigateToNewCardsView = new AsyncAction();
+    public readonly toggleRuleExpandCollapse = new AsyncAction<RuleExpandCollapsePayload>();
+    public readonly toggleCardSelection = new AsyncAction<CardSelectionPayload>();
+    public readonly collapseAllRules = new AsyncAction();
+    public readonly expandAllRules = new AsyncAction();
+    public readonly toggleVisualHelper = new AsyncAction();
+    public readonly resetFocusedIdentifier = new AsyncAction();
 }

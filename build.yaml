@@ -13,8 +13,8 @@ trigger:
 
 variables:
     windowsImage: 'windows-2019'
-    macImage: 'macOS-10.15'
-    linuxImage: 'ubuntu-18.04'
+    macImage: 'macOS-11'
+    linuxImage: 'ubuntu-20.04'
 
 jobs:
     - job: 'unit_tests_and_lints'

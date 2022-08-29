@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { BaseStore } from 'common/base-store';
 import { Logger } from 'common/logging/logger';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from 'common/types/analyzer-telemetry-callbacks';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { ScanResults } from 'scanner/iruleresults';
@@ -25,7 +25,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
         protected scanner: ScannerUtils,
-        protected scopingStore: BaseStore<ScopingStoreData>,
+        protected scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,

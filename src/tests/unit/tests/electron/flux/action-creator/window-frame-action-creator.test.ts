@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Action } from 'common/flux/action';
+import { SyncAction } from 'common/flux/sync-action';
 import { Rectangle } from 'electron';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
@@ -18,7 +18,7 @@ describe(WindowFrameActionCreator, () => {
     });
 
     it('calling setWindowSize invokes setWindowSize action with given payload', () => {
-        const setRouteActionMock = Mock.ofType<Action<SetSizePayload>>();
+        const setRouteActionMock = Mock.ofType<SyncAction<SetSizePayload>>();
         const testPayload: SetSizePayload = {
             height: 1,
             width: 2,
@@ -34,7 +34,7 @@ describe(WindowFrameActionCreator, () => {
     });
 
     it('calling maximize invokes maximize action', () => {
-        const maximizeActionMock = Mock.ofType<Action<void>>();
+        const maximizeActionMock = Mock.ofType<SyncAction<void>>();
 
         windowFrameActionsMock
             .setup(actions => actions.maximize)
@@ -47,7 +47,7 @@ describe(WindowFrameActionCreator, () => {
     });
 
     it('calling minimize invokes minimize action', () => {
-        const minimizeActionMock = Mock.ofType<Action<void>>();
+        const minimizeActionMock = Mock.ofType<SyncAction<void>>();
 
         windowFrameActionsMock
             .setup(actions => actions.minimize)
@@ -60,7 +60,7 @@ describe(WindowFrameActionCreator, () => {
     });
 
     it('calling maximize invokes restore action', () => {
-        const restoreActionMock = Mock.ofType<Action<void>>();
+        const restoreActionMock = Mock.ofType<SyncAction<void>>();
 
         windowFrameActionsMock
             .setup(actions => actions.restore)
@@ -73,7 +73,7 @@ describe(WindowFrameActionCreator, () => {
     });
 
     it('calling close invokes close action', () => {
-        const closeActionMock = Mock.ofType<Action<void>>();
+        const closeActionMock = Mock.ofType<SyncAction<void>>();
 
         windowFrameActionsMock
             .setup(actions => actions.close)
@@ -92,7 +92,7 @@ describe(WindowFrameActionCreator, () => {
             height: 78,
             width: 89,
         };
-        const setWindowBoundsActionMock = Mock.ofType<Action<Rectangle>>();
+        const setWindowBoundsActionMock = Mock.ofType<SyncAction<Rectangle>>();
 
         windowFrameActionsMock
             .setup(actions => actions.setWindowBounds)

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEqual } from 'lodash';
 import { clone, isFunction } from 'lodash';
@@ -18,7 +19,7 @@ import {
     BatchedRuleAnalyzer,
     IResultRuleFilter,
 } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
+import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../../types/common-types';

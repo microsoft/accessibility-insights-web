@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { InspectElementPayload, InspectFrameUrlPayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { Target } from 'scanner/iruleresults';
 
 import { Message } from '../message';
 import { Messages } from '../messages';
@@ -13,10 +14,10 @@ export class DevToolActionMessageCreator {
         protected readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
-    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]): void {
+    public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: Target): void {
         const payload: InspectElementPayload = {
             target: target,
-            telemetry: this.telemetryFactory.forInspectElement(event, target),
+            telemetry: this.telemetryFactory.forInspectElement(event),
         };
         const message: Message = {
             messageType: Messages.DevTools.InspectElement,

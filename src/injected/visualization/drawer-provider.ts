@@ -14,6 +14,7 @@ import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { ShadowUtils } from '../shadow-utils';
+import { AccessibleNamesFormatter } from './accessible-names-formatter';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
@@ -94,6 +95,11 @@ export class DrawerProvider {
     public createLandmarksDrawer(): Drawer {
         const formatter = new LandmarkFormatter();
         return this.createDrawer('insights-landmark', formatter);
+    }
+
+    public createAccessibleNamesDrawer(): Drawer {
+        const formatter = new AccessibleNamesFormatter();
+        return this.createDrawer('insights-accessible-name', formatter);
     }
 
     public createIssuesDrawer(): Drawer {

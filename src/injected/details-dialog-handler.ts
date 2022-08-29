@@ -6,8 +6,8 @@ import { WindowUtils } from '../common/window-utils';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
-    private onDevToolChangedHandler: () => void;
-    private onUserConfigChangedHandler: () => void;
+    private onDevToolChangedHandler: () => Promise<void>;
+    private onUserConfigChangedHandler: () => Promise<void>;
 
     constructor(private htmlElementUtils: HTMLElementUtils, private windowUtils: WindowUtils) {}
 
@@ -128,13 +128,13 @@ export class DetailsDialogHandler {
             return;
         }
 
-        this.onDevToolChangedHandler = () => {
+        this.onDevToolChangedHandler = async () => {
             this.onDevToolChanged(dialog);
         };
         dialog.props.devToolStore.addChangedListener(this.onDevToolChangedHandler);
         this.onDevToolChanged(dialog);
 
-        this.onUserConfigChangedHandler = () => {
+        this.onUserConfigChangedHandler = async () => {
             this.onUserConfigChanged(dialog);
         };
         dialog.props.userConfigStore.addChangedListener(this.onUserConfigChangedHandler);

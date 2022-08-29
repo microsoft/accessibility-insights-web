@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { onBaseLeftNavItemRender } from 'DetailsView/components/base-left-nav';
 import {
     AssessmentLeftNavLink,

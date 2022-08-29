@@ -4,6 +4,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
@@ -20,6 +21,7 @@ describe('ShouldShowReportExportButton', () => {
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
+    const userConfigurationStoreData = {} as UserConfigurationStoreData;
 
     const selectedTest = -1 as VisualizationType;
 
@@ -49,6 +51,7 @@ describe('ShouldShowReportExportButton', () => {
             scanMetadata: null,
             narrowModeStatus: null,
             tabStopRequirementData: null,
+            userConfigurationStoreData,
         } as DetailsViewCommandBarProps;
     }
 

@@ -9,6 +9,7 @@ export type NarrowModeStatus = {
     isHeaderAndNavCollapsed: boolean;
     isCommandBarCollapsed: boolean;
     isVirtualKeyboardCollapsed: boolean;
+    isCardFooterCollapsed: boolean;
 };
 
 export type NarrowModeDetectorDeps = {
@@ -45,6 +46,9 @@ export function getNarrowModeComponentWrapper<P>(
             isVirtualKeyboardCollapsed:
                 isNarrowModeEnabled &&
                 isNarrowerThan(narrowModeThresholds.collapseVirtualKeyboardThreshold),
+            isCardFooterCollapsed:
+                isNarrowModeEnabled &&
+                isNarrowerThan(narrowModeThresholds.collapseCardFooterThreshold),
         };
         return <props.Component {...childrenProps} narrowModeStatus={narrowModeStatus} />;
     };

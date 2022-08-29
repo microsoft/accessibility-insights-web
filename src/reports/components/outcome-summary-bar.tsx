@@ -71,7 +71,7 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={getClassNames(outcomeType, index)}>
-                            <span aria-hidden="true">{outcomeIcon}</span>
+                            {outcomeIcon}
                             {count}
                             {countSuffix}
                             {getTextLabel(outcomeType)}

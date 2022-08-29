@@ -11,24 +11,24 @@ import {
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-import {
-    createActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('NeedsReviewScanResultActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let notificationCreatorMock: IMock<NotificationCreator>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         notificationCreatorMock = Mock.ofType<NotificationCreator>();
+        interpreterMock = new MockInterpreter();
     });
 
-    it('should handle ScanCompleted message', () => {
+    it('should handle ScanCompleted message', async () => {
         const scanIncompleteWarnings = ['test-warning-id' as ScanIncompleteWarningId];
         const telemetry = {
             scanIncompleteWarnings,
@@ -43,12 +43,8 @@ describe('NeedsReviewScanResultActionCreator', () => {
             telemetry,
         };
 
-        const scanCompletedMock = createActionMock(payload);
+        const scanCompletedMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('scanCompleted', scanCompletedMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewScan.ScanCompleted,
-            payload,
-        );
 
         const testSubject = new NeedsReviewScanResultActionCreator(
             interpreterMock.object,
@@ -58,6 +54,8 @@ describe('NeedsReviewScanResultActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.NeedsReviewScan.ScanCompleted, payload);
 
         scanCompletedMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -70,15 +68,11 @@ describe('NeedsReviewScanResultActionCreator', () => {
         );
     });
 
-    it('should handle GetState message', () => {
+    it('should handle GetState message', async () => {
         const payload = null;
 
-        const getCurrentStateMock = createActionMock<null>(payload);
+        const getCurrentStateMock = createAsyncActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(
-            getStoreStateMessage(StoreNames.NeedsReviewScanResultStore),
-            payload,
-        );
 
         const testSubject = new NeedsReviewScanResultActionCreator(
             interpreterMock.object,
@@ -88,6 +82,11 @@ describe('NeedsReviewScanResultActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            getStoreStateMessage(StoreNames.NeedsReviewScanResultStore),
+            payload,
+        );
 
         getCurrentStateMock.verifyAll();
     });

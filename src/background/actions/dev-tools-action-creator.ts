@@ -3,7 +3,6 @@
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { InspectElementPayload, InspectFrameUrlPayload } from './action-payloads';
@@ -39,22 +38,23 @@ export class DevToolsActionCreator {
         );
     }
 
-    private onDevToolOpened = (): void => {
-        this.devToolActions.setDevToolState.invoke(true);
+    private onDevToolOpened = async (): Promise<void> => {
+        await this.devToolActions.setDevToolState.invoke(true);
     };
 
-    private onDevToolClosed = (): void => {
-        this.devToolActions.setDevToolState.invoke(false);
+    private onDevToolClosed = async (): Promise<void> => {
+        await this.devToolActions.setDevToolState.invoke(false);
     };
 
-    private onDevToolInspectElement = (payload: InspectElementPayload): void => {
-        this.devToolActions.setInspectElement.invoke(payload.target);
+    private onDevToolInspectElement = async (payload: InspectElementPayload): Promise<void> => {
+        await this.devToolActions.setInspectElement.invoke(payload.target);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload);
     };
 
-    private onDevToolInspectFrameUrl = (payload: InspectFrameUrlPayload): void => {
-        this.devToolActions.setFrameUrl.invoke(payload.frameUrl);
+    private onDevToolInspectFrameUrl = async (payload: InspectFrameUrlPayload): Promise<void> => {
+        await this.devToolActions.setFrameUrl.invoke(payload.frameUrl);
     };
 
-    private onDevToolGetCurrentState = (): void => this.devToolActions.getCurrentState.invoke(null);
+    private onDevToolGetCurrentState = async (): Promise<void> =>
+        await this.devToolActions.getCurrentState.invoke(null);
 }

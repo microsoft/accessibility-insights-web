@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';

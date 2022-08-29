@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 
 describe('autoPassIfNoResults', () => {
     it('returns UNKNOWN for instance data with a result', () => {

@@ -50,7 +50,7 @@ export class CommandStore extends PersistentStore<CommandStoreData> {
         this.commandActions.getCommands.addListener(this.onGetCommands);
     }
 
-    private onGetCommands = (payload: GetCommandsPayload): void => {
+    private onGetCommands = async (payload: GetCommandsPayload): Promise<void> => {
         const modifiedCommands: chrome.commands.Command[] = this.getModifiedCommands(
             payload.commands,
         );
@@ -65,7 +65,7 @@ export class CommandStore extends PersistentStore<CommandStoreData> {
         }
 
         this.state.commands = payload.commands;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
     private getModifiedCommands(

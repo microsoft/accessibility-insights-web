@@ -55,6 +55,9 @@
         },
         "06_toggle-needsReview": {
             "description": "Toggle Needs review"
+        },
+        "07_toggle-accessibleNames": {
+            "description": "Toggle Accessible names"
         }
     }
 }

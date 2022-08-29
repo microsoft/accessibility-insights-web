@@ -26,18 +26,17 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     thereby make it visually prominent.
                 </p>
             }
-            failExample={`<p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
-           destroyed the value of the previous currency.</p>
+            failExample={`<p>Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.</p>
            [<blockquote>]
-           <a href="/wiki/German_Rentenmark" title="German Rentenmark">Learn more about the Rentenmark</a>
+           <a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut">Learn more about Kurt Vonnegut</a>
            [</blockquote>]`}
             passText={<p>Spacing around the link is achieved using the CSS margin property.</p>}
             passExample={`<style>
             [a {margin: 70px;}]
             </style>
             ...
-            <p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.</p>
-            <a href="/wiki/German_Rentenmark" title="German Rentenmark">Learn more about the Rentenmark</a>`}
+            <p>Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.</p>
+            <a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut">Learn more about Kurt Vonnegut</a>`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>

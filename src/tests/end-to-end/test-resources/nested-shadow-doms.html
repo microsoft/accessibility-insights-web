@@ -1,0 +1,40 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Page with Shadow DOMs</title>
+        <style>
+            .shadow-container {
+                height: 50px;
+                width: 100%;
+                border: 1px solid black;
+            }
+        </style>
+        <script>
+            function addShadowContent(id) {
+                const grandparentContainer = document.getElementById(id);
+                const grandparentShadowRoot = grandparentContainer.attachShadow({ mode: 'open' });
+                grandparentShadowRoot.innerHTML =
+                    '<div id="parent-shadow-container" class="shadow-container"></div>';
+
+                const parentContainer =
+                    grandparentShadowRoot.getElementById('parent-shadow-container');
+                const parentShadowRoot = parentContainer.attachShadow({ mode: 'open' });
+                parentShadowRoot.innerHTML = '<p style="color: #ccc">low-contrast text</p>';
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                addShadowContent('grandparent-shadow-container');
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>Page with nested Shadow DOMs</h1>
+        <div id="grandparent-shadow-container" class="shadow-container"></div>
+    </body>
+</html>

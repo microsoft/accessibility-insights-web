@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
-import { ScopingInputTypes } from 'background/scoping-input-types';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
@@ -21,6 +20,7 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { It, Mock, MockBehavior } from 'typemoq';
 import { PermissionsStateStore } from '../../../../background/stores/global/permissions-state-store';

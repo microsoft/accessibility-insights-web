@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
-import { Tab } from 'common/itab';
+import { AsyncAction } from 'common/flux/async-action';
+import { Tab } from 'common/types/store-data/itab';
 
 export class TabActions {
-    public readonly newTabCreated = new Action<Tab>();
-    public readonly getCurrentState = new Action();
-    public readonly injectedScripts = new Action();
-    public readonly tabRemove = new Action();
-    public readonly existingTabUpdated = new Action<Tab>();
-    public readonly tabVisibilityChange = new Action<boolean>();
+    public readonly newTabCreated = new AsyncAction<Tab>();
+    public readonly getCurrentState = new AsyncAction();
+    public readonly tabRemove = new AsyncAction();
+    public readonly existingTabUpdated = new AsyncAction<Tab>();
+    public readonly tabVisibilityChange = new AsyncAction<boolean>();
 }

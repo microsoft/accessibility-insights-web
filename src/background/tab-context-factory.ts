@@ -13,6 +13,7 @@ import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
+import { UrlParser } from 'common/url-parser';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -49,13 +50,13 @@ export class TabContextFactory {
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
         private readonly usageLogger: UsageLogger,
-        private readonly setTimeout: (handler: Function, timeout: number) => number,
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
         private readonly persistStoreData: boolean,
+        private readonly urlParser: UrlParser,
     ) {}
 
-    public createTabContext(tabId: number): TabContext {
+    public async createTabContext(tabId: number): Promise<TabContext> {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(
@@ -66,6 +67,7 @@ export class TabContextFactory {
             this.logger,
             tabId,
             this.persistStoreData,
+            this.urlParser,
         );
         const notificationCreator = new NotificationCreator(
             this.browserAdapter,
@@ -112,6 +114,7 @@ export class TabContextFactory {
             this.browserAdapter,
             this.telemetryEventHandler,
             this.logger,
+            tabId,
         );
         const popupActionCreator = new PopupActionCreator(
             interpreter,
@@ -174,7 +177,6 @@ export class TabContextFactory {
             interpreter,
             storeHub.tabStore,
             storeHub.inspectStore,
-            this.setTimeout,
             this.logger,
         );
 
@@ -198,7 +200,7 @@ export class TabContextFactory {
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
-        dispatcher.initialize();
+        await dispatcher.initialize();
 
         const devToolsMonitor = new DevToolsMonitor(
             tabId,

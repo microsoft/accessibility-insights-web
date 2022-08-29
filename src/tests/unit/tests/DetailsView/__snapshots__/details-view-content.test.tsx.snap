@@ -24,6 +24,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     isSideNavOpen={false}
     narrowModeStatus={
       Object {
+        "isCardFooterCollapsed": false,
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
         "isVirtualKeyboardCollapsed": false,
@@ -81,6 +82,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     isSideNavOpen={false}
     narrowModeStatus={
       Object {
+        "isCardFooterCollapsed": false,
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
         "isVirtualKeyboardCollapsed": false,
@@ -184,10 +186,16 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "lastWindowBounds": null,
         "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
+        "showSaveAssessmentDialog": true,
       }
     }
     visualizationScanResultData={
       Object {
+        "accessibleNames": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+        },
         "color": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
@@ -258,6 +266,9 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "selectedFastPassDetailsView": 1,
         "tests": Object {
           "adhoc": Object {
+            "accessibleNames": Object {
+              "enabled": false,
+            },
             "color": Object {
               "enabled": false,
             },
@@ -435,6 +446,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "lastWindowBounds": null,
         "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
+        "showSaveAssessmentDialog": true,
       }
     }
   />

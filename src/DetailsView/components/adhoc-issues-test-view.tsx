@@ -3,9 +3,9 @@
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';

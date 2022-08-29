@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { AxeInfo } from '../../common/axe-info';
 import { ExternalLink, ExternalLinkDeps } from '../../common/components/external-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
@@ -28,8 +27,6 @@ export interface LaunchPadRowConfiguration {
 }
 
 export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
-    public static demoLink: string = 'https://go.microsoft.com/fwlink/?linkid=2082374';
-
     constructor(props: LaunchPadProps) {
         super(props);
     }

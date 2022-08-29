@@ -11,9 +11,11 @@
 /extension/
 /package/
 
+bin/
 bundle/
 dist/
 drop/
+obj/
 test-results/
 analysis/
 *.scss.d.ts

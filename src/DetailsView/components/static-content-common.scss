@@ -34,12 +34,18 @@
     :global {
         .ms-Toggle-label {
             float: left;
-            margin: 5px 8px 5px 8px;
+            margin-top: 5px;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            margin-left: 8px;
             color: $neutral-100;
         }
 
         .ms-Toggle-innerContainer {
-            margin: 10px 0 10px 0;
+            margin-top: 10px;
+            margin-right: 0;
+            margin-bottom: 10px;
+            margin-left: 0;
         }
     }
 }

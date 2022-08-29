@@ -11,15 +11,12 @@ import {
     TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-
-import {
-    createActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PopupActionCreator', () => {
-    it('handles Messages.Popup.Initialized', () => {
+    it('handles Messages.Popup.Initialized', async () => {
         const payload: PopupInitializedPayload = {
             telemetry: {
                 triggeredBy: 'test' as TriggeredBy,
@@ -32,9 +29,10 @@ describe('PopupActionCreator', () => {
             },
         };
 
-        const actionMock = createActionMock(payload.tab);
+        const actionMock = createAsyncActionMock(payload.tab);
         const actionsMock = createTabActionsMock('newTabCreated', actionMock.object);
-        const interpreterMock = createInterpreterMock(Messages.Popup.Initialized, payload);
+        const interpreterMock = new MockInterpreter();
+
         const telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         const usageLoggerMock = Mock.ofType<UsageLogger>();
 
@@ -46,6 +44,8 @@ describe('PopupActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.Popup.Initialized, payload);
 
         actionMock.verifyAll();
         telemetryEventHandlerMock.verify(

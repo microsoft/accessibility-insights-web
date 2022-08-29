@@ -4,7 +4,7 @@ exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] =
 "<Fragment>
   <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
     <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} />
+    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} featureFlagStoreData={{...}} />
   </div>
   <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
 </Fragment>"
@@ -22,7 +22,7 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
 "<Fragment>
-  <NewTabLink href=\\"https://go.microsoft.com/fwlink/?linkid=2082374\\" aria-label=\\"demo video\\" title=\\"watch the 3 minute video introduction\\" onClick={[Function: onClickTutorialLink]}>
+  <NewTabLink href=\\"https://go.microsoft.com/fwlink/?linkid=2082374\\" onClick={[Function: onClickTutorialLink]}>
     Watch 3-minute video introduction
   </NewTabLink>
    
@@ -33,7 +33,7 @@ exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
 "<Fragment>
   <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
     <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} />
+    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} featureFlagStoreData={{...}} />
   </div>
   <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
 </Fragment>"

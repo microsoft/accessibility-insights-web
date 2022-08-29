@@ -16,7 +16,7 @@ import {
     delayAllCommands,
     setupMockAdb,
     simulateNoDevicesConnected,
-} from '../../miscellaneous/mock-adb/setup-mock-adb';
+} from '../../miscellaneous/setup-mock-adb/setup-mock-adb';
 
 const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
 

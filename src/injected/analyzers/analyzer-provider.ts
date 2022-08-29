@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { PromiseFactory } from 'common/promises/promise-factory';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
@@ -26,7 +27,7 @@ export class AnalyzerProvider {
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
-        private readonly scopingStore: BaseStore<ScopingStoreData>,
+        private readonly scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
         private readonly telemetryDataFactory: TelemetryDataFactory,
@@ -36,6 +37,7 @@ export class AnalyzerProvider {
         private readonly sendNeedsReviewResults: PostResolveCallback,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly logger: Logger,
+        private readonly promiseFactory: PromiseFactory,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -114,6 +116,7 @@ export class AnalyzerProvider {
             this.logger,
             this.tabStopsDoneAnalyzingTracker,
             null,
+            this.promiseFactory,
         );
     }
 
@@ -126,6 +129,7 @@ export class AnalyzerProvider {
             this.logger,
             this.tabStopsDoneAnalyzingTracker,
             this.tabStopsRequirementResultProcessor,
+            this.promiseFactory,
         );
     }
 

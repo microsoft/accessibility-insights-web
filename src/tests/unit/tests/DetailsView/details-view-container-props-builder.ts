@@ -19,14 +19,14 @@ import { DictionaryStringTo } from 'types/common-types';
 import { StoreMocks } from './store-mocks';
 
 export class DetailsViewContainerPropsBuilder {
-    private visualizationStore: BaseStore<VisualizationStoreData>;
-    private assessmentStore: BaseStore<AssessmentStoreData>;
-    private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
-    private unifiedScanResultStore: BaseStore<UnifiedScanResultStoreData>;
-    private tabStore: BaseStore<TabStoreData>;
-    private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
-    private scopingStateStore: BaseStore<ScopingStoreData>;
-    private detailsViewStore: BaseStore<DetailsViewStoreData>;
+    private visualizationStore: BaseStore<VisualizationStoreData, Promise<void>>;
+    private assessmentStore: BaseStore<AssessmentStoreData, Promise<void>>;
+    private visualizationScanResultStore: BaseStore<VisualizationScanResultData, Promise<void>>;
+    private unifiedScanResultStore: BaseStore<UnifiedScanResultStoreData, Promise<void>>;
+    private tabStore: BaseStore<TabStoreData, Promise<void>>;
+    private featureFlagStore: BaseStore<DictionaryStringTo<boolean>, Promise<void>>;
+    private scopingStateStore: BaseStore<ScopingStoreData, Promise<void>>;
+    private detailsViewStore: BaseStore<DetailsViewStoreData, Promise<void>>;
     private storesHub: ClientStoresHub<any>;
     constructor(private deps: DetailsViewContainerDeps) {}
 

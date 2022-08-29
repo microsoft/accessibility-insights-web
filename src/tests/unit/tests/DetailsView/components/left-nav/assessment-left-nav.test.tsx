@@ -8,7 +8,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     ManualTestStatus,
     ManualTestStatusData,
-} from '../../../../../../common/types/manual-test-status';
+} from '../../../../../../common/types/store-data/manual-test-status';
 import {
     AssessmentLeftNav,
     AssessmentLeftNavDeps,

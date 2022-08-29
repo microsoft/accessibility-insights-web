@@ -6,7 +6,7 @@ import { ElementFinderByPath, ElementFinderByPathMessage } from './element-finde
 
 export class PathSnippetController {
     constructor(
-        private readonly pathSnippetStore: BaseStore<PathSnippetStoreData>,
+        private readonly pathSnippetStore: BaseStore<PathSnippetStoreData, Promise<void>>,
         private readonly elementFinderByPath: ElementFinderByPath,
         private readonly addCorrespondingSnippet: (snippet: string) => void,
     ) {}

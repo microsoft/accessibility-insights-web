@@ -29,16 +29,16 @@ export class FeatureFlagsActionCreator {
         );
     }
 
-    private onGetFeatureFlags = (): void => {
-        this.featureFlagActions.getCurrentState.invoke();
+    private onGetFeatureFlags = async (): Promise<void> => {
+        await this.featureFlagActions.getCurrentState.invoke();
     };
 
-    private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
+    private onSetFeatureFlags = async (payload: FeatureFlagPayload): Promise<void> => {
         this.telemetryEventHandler.publishTelemetry(PREVIEW_FEATURES_TOGGLE, payload);
-        this.featureFlagActions.setFeatureFlag.invoke(payload);
+        await this.featureFlagActions.setFeatureFlag.invoke(payload);
     };
 
-    private onResetFeatureFlags = (): void => {
-        this.featureFlagActions.resetFeatureFlags.invoke();
+    private onResetFeatureFlags = async (): Promise<void> => {
+        await this.featureFlagActions.resetFeatureFlags.invoke();
     };
 }

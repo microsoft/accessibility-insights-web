@@ -14,6 +14,9 @@ Throughout most of the code and build commands, Accessibility Insights for Andro
 ### Prerequisites
 
 All the [prerequisites](./building-web.md#Prerequisites) for building Web are also required for Unified.
+
+**Additionally**, you must [install the .NET 6.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0). Use the current LTS version. You can test whether you already have this installed by running `dotnet --list-sdks`.
+
 Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below.
 
 ### Building
@@ -35,7 +38,7 @@ Most of the functionality of Unified relies on connecting to a device running th
 
 #### Using a mock device
 
-See guidance [here](../src/tests/miscellaneous/mock-adb/README.md).
+We use a test tool called `mock-adb` to enable testing against mock devices. See the [`mock-adb` README](../packages/mock-adb/README.md) for details.
 
 #### Connecting to a real device/emulator
 

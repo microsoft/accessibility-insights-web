@@ -4,13 +4,15 @@ import { DeviceConnectionActions } from 'electron/flux/action/device-connection-
 import { ScanActions } from 'electron/flux/action/scan-actions';
 
 export class ScanActionCreator {
+    private executingScope = 'ScanActionCreator';
+
     constructor(
         private readonly scanActions: ScanActions,
         private readonly deviceConnectionActions: DeviceConnectionActions,
     ) {}
 
-    public scan(): void {
-        this.deviceConnectionActions.statusUnknown.invoke();
-        this.scanActions.scanStarted.invoke();
+    public async scan(): Promise<void> {
+        this.deviceConnectionActions.statusUnknown.invoke(undefined, this.executingScope);
+        await this.scanActions.scanStarted.invoke(undefined, this.executingScope);
     }
 }

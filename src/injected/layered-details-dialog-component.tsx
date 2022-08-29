@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { LayerHost } from '@fluentui/react';
 import { getRTL } from '@fluentui/utilities';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
+import { Target } from 'scanner/iruleresults';
 
 import { BaseStore } from '../common/base-store';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
@@ -12,7 +14,6 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog, DetailsDialogDeps } from './components/details-dialog';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { DecoratedAxeNodeResult } from './scanner-utils';
 
 export type LayeredDetailsDialogDeps = DetailsDialogDeps & {
     getRTL: typeof getRTL;
@@ -20,12 +21,12 @@ export type LayeredDetailsDialogDeps = DetailsDialogDeps & {
 
 export interface LayeredDetailsDialogProps {
     deps: LayeredDetailsDialogDeps;
-    userConfigStore: BaseStore<UserConfigurationStoreData>;
+    userConfigStore: BaseStore<UserConfigurationStoreData, Promise<void>>;
     elementSelector: string;
     failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
-    target: string[];
+    target: Target;
     dialogHandler: DetailsDialogHandler;
-    devToolStore: BaseStore<DevToolStoreData>;
+    devToolStore: BaseStore<DevToolStoreData, Promise<void>>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
     devToolsShortcut: string;
 }

@@ -14,23 +14,30 @@
 }
 
 .failure-instance-snippet-empty-body {
-    margin: 8px 0 24px 0;
+    margin-top: 8px;
+    margin-bottom: 24px;
     color: $secondary-text;
 }
 
 .failure-instance-snippet-title {
-    margin: 24px 0 8px 0;
+    margin-top: 24px;
+    margin-bottom: 8px;
     color: $primary-text;
 }
 
 .failure-instance-selector-note {
     color: $secondary-text;
-    margin: 8px 0 8px 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .failure-instance-snippet-filled-body {
-    margin: 8px 0 24px 0;
-    padding: 12px 16px 12px 16px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    padding-top: 12px;
+    padding-right: 16px;
+    padding-bottom: 12px;
+    padding-left: 16px;
     max-height: 200px;
     color: $primary-text;
     background-color: $neutral-4;
@@ -39,7 +46,9 @@
 }
 
 .failure-instance-snippet-error {
-    margin: 9px 0 50px 9px;
+    margin-top: 9px;
+    margin-bottom: 50px;
+    margin-left: 9px;
     color: $secondary-text;
     display: flex;
     flex-direction: row;
@@ -47,7 +56,10 @@
 
 .failure-instance-snippet-error-icon {
     color: $negative-outcome;
-    padding: 3px 8px;
+    padding-top: 3px;
+    padding-right: 8px;
+    padding-bottom: 3px;
+    padding-left: 8px;
 }
 
 .edit-button {

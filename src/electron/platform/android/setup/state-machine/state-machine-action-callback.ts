@@ -9,7 +9,7 @@ import { Action } from 'common/flux/action';
 // how the indexer type on the class can't be infered.
 // https://github.com/microsoft/TypeScript/issues/15300
 export type ActionBag<ActionT> = {
-    [key in keyof ActionT]: Action<unknown>;
+    [key in keyof ActionT]: Action<unknown, void | Promise<void>>;
 };
 
 // This type represents a callback of form `(payload: PayloadT) => void`, where PayloadT matches

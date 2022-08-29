@@ -12,10 +12,10 @@ import { GetDetailsSwitcherNavConfiguration } from './components/details-view-sw
 
 export class DocumentTitleUpdater {
     constructor(
-        private readonly tabStore: BaseStore<TabStoreData>,
-        private readonly detailsViewStore: BaseStore<DetailsViewStoreData>,
-        private readonly visualizationStore: BaseStore<VisualizationStoreData>,
-        private readonly assessmentStore: BaseStore<AssessmentStoreData>,
+        private readonly tabStore: BaseStore<TabStoreData, Promise<void>>,
+        private readonly detailsViewStore: BaseStore<DetailsViewStoreData, Promise<void>>,
+        private readonly visualizationStore: BaseStore<VisualizationStoreData, Promise<void>>,
+        private readonly assessmentStore: BaseStore<AssessmentStoreData, Promise<void>>,
         private readonly getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
         private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -29,7 +29,7 @@ export class DocumentTitleUpdater {
         this.assessmentStore.addChangedListener(this.onStoreChange);
     }
 
-    private onStoreChange = (): void => {
+    private onStoreChange = async (): Promise<void> => {
         const documentTitle = this.getDocumentTitle();
         const defaultTitle = title;
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
@@ -10,7 +11,6 @@ import { GetElementBasedViewModelCallback } from 'injected/element-based-view-mo
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { includes } from 'lodash';
-import { ManualTestStatus } from '../common/types/manual-test-status';
 import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -79,6 +79,7 @@ export class SelectorMapHelper {
                 VisualizationType.TabStops,
                 VisualizationType.Color,
                 VisualizationType.NeedsReview,
+                VisualizationType.AccessibleNames,
             ],
             visualizationType,
         );
@@ -116,6 +117,9 @@ export class SelectorMapHelper {
                 selectorMap = this.getVisualizationInstancesForTabStops(
                     visualizationScanResultData.tabStops,
                 );
+                break;
+            case VisualizationType.AccessibleNames:
+                selectorMap = visualizationScanResultData.accessibleNames.fullAxeResultsMap;
                 break;
             default:
                 selectorMap = visualizationScanResultData.color.fullAxeResultsMap;

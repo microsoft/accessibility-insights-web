@@ -4,13 +4,13 @@ import { every, lowerFirst } from 'lodash';
 import { BaseStore } from '../base-store';
 
 export class ClientStoresHub<T> {
-    public stores: BaseStore<any>[];
+    public stores: BaseStore<any, Promise<void>>[];
 
-    constructor(stores: BaseStore<any>[]) {
+    constructor(stores: BaseStore<any, Promise<void>>[]) {
         this.stores = stores;
     }
 
-    public addChangedListenerToAllStores(listener: () => void): void {
+    public addChangedListenerToAllStores(listener: () => Promise<void>): void {
         if (!this.stores) {
             return;
         }
@@ -20,7 +20,7 @@ export class ClientStoresHub<T> {
         });
     }
 
-    public removeChangedListenerFromAllStores(listener: () => void): void {
+    public removeChangedListenerFromAllStores(listener: () => Promise<void>): void {
         if (!this.stores) {
             return;
         }

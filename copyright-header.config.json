@@ -19,12 +19,12 @@
         "./packages/*/bundle",
         "./packages/*/drop",
         "./src/assessments/color/test-steps/flashing-text-example.html",
-        "./src/tests/miscellaneous/mock-adb/bin",
         "./analysis",
         ".gitattribute",
         ".gitattributes",
         ".ignoredRevs",
         "**/*.a11ywebassessment",
+        "**/*.csproj",
         "**/.DS_Store",
         "**/*.icns",
         "**/*.scss.d.ts",
@@ -32,8 +32,11 @@
         "**/*.snap.html",
         "**/*.svg",
         "**/*.mp3",
+        "**/.vs",
+        "**/bin",
         "**/bundle",
         "**/drop",
+        "**/obj",
         "**/test-results",
         "**/yarn.lock",
         "Dockerfile",
@@ -50,7 +53,7 @@
             "prepend": "<!--",
             "append": "-->"
         },
-        "ts|tsx|d.ts|js|scss|css": {
+        "ts|tsx|d.ts|js|scss|css|cs": {
             "eachLine": {
                 "prepend": "// "
             }

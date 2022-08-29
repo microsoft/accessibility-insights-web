@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+import { AsyncAction } from 'common/flux/async-action';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -11,16 +12,18 @@ import {
 } from './action-payloads';
 
 export class UserConfigurationActions {
-    public readonly setAdbLocation = new Action<string>();
-    public readonly setTelemetryState = new Action<boolean>();
-    public readonly getCurrentState = new Action<void>();
-    public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
-    public readonly setNativeHighContrastMode = new Action<SetHighContrastModePayload>();
-    public readonly setIssueFilingService = new Action<SetIssueFilingServicePayload>();
+    public readonly setAdbLocation = new AsyncAction<string>();
+    public readonly setTelemetryState = new AsyncAction<boolean>();
+    public readonly getCurrentState = new AsyncAction<void>();
+    public readonly setHighContrastMode = new AsyncAction<SetHighContrastModePayload>();
+    public readonly setNativeHighContrastMode = new AsyncAction<SetHighContrastModePayload>();
+    public readonly setIssueFilingService = new AsyncAction<SetIssueFilingServicePayload>();
     public readonly setIssueFilingServiceProperty =
-        new Action<SetIssueFilingServicePropertyPayload>();
-    public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
-    public readonly saveWindowBounds = new Action<SaveWindowBoundsPayload>();
+        new AsyncAction<SetIssueFilingServicePropertyPayload>();
+    public readonly saveIssueFilingSettings = new AsyncAction<SaveIssueFilingSettingsPayload>();
+    public readonly saveWindowBounds = new AsyncAction<SaveWindowBoundsPayload>();
     public readonly setAutoDetectedFailuresDialogState =
-        new Action<AutoDetectedFailuresDialogStatePayload>();
+        new AsyncAction<AutoDetectedFailuresDialogStatePayload>();
+    public readonly setSaveAssessmentDialogState =
+        new AsyncAction<SaveAssessmentDialogStatePayload>();
 }

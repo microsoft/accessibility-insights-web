@@ -3,6 +3,9 @@
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
 
+// Note: These interfaces are transitively referenced by store data, so keep backwards compatibility
+// in mind when making changes.
+
 export interface RuleResultsData {
     ruleId: string;
     status: string;

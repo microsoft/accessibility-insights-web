@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from 'common/flux/action';
+
+import { AsyncAction } from 'common/flux/async-action';
 
 export class PathSnippetActions {
-    public readonly getCurrentState = new Action<void>();
-    public readonly onAddPath = new Action<string>();
-    public readonly onAddSnippet = new Action<string>();
-    public readonly onClearData = new Action<void>();
+    public readonly getCurrentState = new AsyncAction<void>();
+    public readonly onAddPath = new AsyncAction<string>();
+    public readonly onAddSnippet = new AsyncAction<string>();
+    public readonly onClearData = new AsyncAction<void>();
 }

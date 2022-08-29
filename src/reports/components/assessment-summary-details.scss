@@ -25,7 +25,10 @@
             .test-summary {
                 display: flex;
                 width: 98%;
-                padding: 12px 10px;
+                padding-top: 12px;
+                padding-right: 10px;
+                padding-bottom: 12px;
+                padding-left: 10px;
                 justify-content: space-between;
                 border-bottom: $neutral-alpha-8 solid 1px;
             }

@@ -8,7 +8,10 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 16px;
-    padding: 14px 20px;
+    padding-top: 14px;
+    padding-right: 20px;
+    padding-bottom: 14px;
+    padding-left: 20px;
     background-color: $neutral-0;
     box-shadow: 0 0.3px 0.9px rgb(0 0 0 / 10.8%), 0 1.6px 3.6px rgb(0 0 0 / 13.2%);
     border-radius: 4px;
@@ -22,6 +25,7 @@
     }
 
     .rule-details-id {
-        padding: 12px 0;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 }

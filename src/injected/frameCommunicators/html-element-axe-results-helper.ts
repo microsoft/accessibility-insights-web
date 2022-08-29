@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { TabbedItemType } from 'injected/visualization/tabbed-item';
 import { forOwn } from 'lodash';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
-import { HtmlElementAxeResults } from '../scanner-utils';
 
 export interface HTMLIFrameResult {
     frame: HTMLIFrameElement | null;
@@ -120,7 +120,10 @@ export class HtmlElementAxeResultsHelper {
                 elementResultsByFrame[''] = elementResultsByFrame[''] || [];
                 elementResultsByFrame[''].push(elementResult);
             } else if (targetLength > elementResult.targetIndex + 1) {
-                const frameSelector = elementResult.target[elementResult.targetIndex++];
+                let frameSelector = elementResult.target[elementResult.targetIndex++];
+                if (typeof frameSelector !== 'string') {
+                    frameSelector = frameSelector.join(',');
+                }
                 elementResultsByFrame[frameSelector] = elementResultsByFrame[frameSelector] || [];
                 elementResultsByFrame[frameSelector].push(elementResult);
             } else {

@@ -31,7 +31,6 @@ export const NeedsReviewInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 deps={deps}
                 title="Instances to review"
                 results={cardsViewData.cards.unknown}
-                containerClassName={null}
                 outcomeType="review"
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}

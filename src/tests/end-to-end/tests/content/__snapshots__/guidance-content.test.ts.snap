@@ -1,5 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Guidance Content pages adhoc/accessibleNames/guidance matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Accessible names
+      </h1>
+      <h2>
+        Why Accessible names matter
+      </h2>
+      <p>
+        The Accessible name is a short label that provides information about the purpose of a user interface element. Without it, people that use Assistive Technologies (AT) would have difficulty understanding the purpose of an element and interacting with it.
+      </p>
+      <p>
+        For more information about Accessible names and their computation, please check out 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria/#terms"
+          target="_blank"
+        >
+          ARIA 1.1 Important Terms Section
+        </a>
+        .
+      </p>
+      <h2>
+        About Accessible names visualization
+      </h2>
+      <p>
+        The visualization in Accessibility Insights for Web enable developers to see accessibility markup that’s normally invisible. The 
+        <strong>
+          Accessible names
+        </strong>
+         visualization highlights elements that have accessible names and, when possible, shows the accessible name. It does not highlight elements with empty, or no accessible names.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              If a widget has visible label, make sure they are programmatically related to it. 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+               
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
+            </h3>
+            <ul>
+              <li>
+                A widget's visible label should be included in its accessible name.
+              </li>
+            </ul>
+            <h3>
+              Use the widget's accessible name and/or accessible description to identify the expected input. 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+                target="_blank"
+              >
+                WCAG 3.3.2
+              </a>
+            </h3>
+            <ul>
+              <li>
+                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages adhoc/color/guidance matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -53,8 +185,10 @@ exports[`Guidance Content pages adhoc/color/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -100,8 +234,10 @@ exports[`Guidance Content pages adhoc/color/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -235,8 +371,10 @@ exports[`Guidance Content pages adhoc/headings/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -375,8 +513,10 @@ exports[`Guidance Content pages adhoc/headings/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -524,8 +664,10 @@ exports[`Guidance Content pages adhoc/landmarks/guidance matches the snapshot 1`
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -713,8 +855,10 @@ exports[`Guidance Content pages adhoc/landmarks/guidance matches the snapshot 1`
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -830,8 +974,10 @@ exports[`Guidance Content pages adhoc/tabstops/extraGuidance matches the snapsho
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -919,8 +1065,10 @@ exports[`Guidance Content pages adhoc/tabstops/extraGuidance matches the snapsho
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1136,8 +1284,10 @@ exports[`Guidance Content pages adhoc/tabstops/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1225,8 +1375,10 @@ exports[`Guidance Content pages adhoc/tabstops/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1436,8 +1588,10 @@ exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples m
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1535,8 +1689,10 @@ exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples m
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1776,8 +1932,10 @@ exports[`Guidance Content pages test/adaptableContent/guidance matches the snaps
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -1922,8 +2080,10 @@ exports[`Guidance Content pages test/adaptableContent/guidance matches the snaps
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2469,8 +2629,10 @@ exports[`Guidance Content pages test/adaptableContent/hoverFocusContent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2506,8 +2668,10 @@ exports[`Guidance Content pages test/adaptableContent/hoverFocusContent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2625,8 +2789,10 @@ exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2668,8 +2834,10 @@ exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2806,8 +2974,10 @@ exports[`Guidance Content pages test/adaptableContent/reflow/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -2843,8 +3013,10 @@ exports[`Guidance Content pages test/adaptableContent/reflow/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3039,8 +3211,10 @@ exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3126,8 +3300,10 @@ exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3401,8 +3577,10 @@ exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3495,8 +3673,10 @@ exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3691,8 +3871,10 @@ exports[`Guidance Content pages test/audioVideoOnly/audioOnlyEquivalent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3726,8 +3908,10 @@ exports[`Guidance Content pages test/audioVideoOnly/audioOnlyEquivalent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -3832,8 +4016,10 @@ exports[`Guidance Content pages test/audioVideoOnly/guidance matches the snapsho
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4004,8 +4190,10 @@ exports[`Guidance Content pages test/audioVideoOnly/videoOnlyEquivalent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4039,8 +4227,10 @@ exports[`Guidance Content pages test/audioVideoOnly/videoOnlyEquivalent/infoAndE
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4211,8 +4401,10 @@ exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4248,8 +4440,10 @@ exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4396,8 +4590,10 @@ exports[`Guidance Content pages test/contrast/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4470,8 +4666,10 @@ exports[`Guidance Content pages test/contrast/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4703,8 +4901,10 @@ exports[`Guidance Content pages test/contrast/stateChanges/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4740,8 +4940,10 @@ exports[`Guidance Content pages test/contrast/stateChanges/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4895,8 +5097,10 @@ exports[`Guidance Content pages test/contrast/uiComponents/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -4932,8 +5136,10 @@ exports[`Guidance Content pages test/contrast/uiComponents/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5136,8 +5342,10 @@ exports[`Guidance Content pages test/customWidgets/cues/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5202,8 +5410,10 @@ exports[`Guidance Content pages test/customWidgets/cues/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5439,8 +5649,10 @@ exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5504,8 +5716,10 @@ exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5673,8 +5887,10 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5739,8 +5955,10 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -5959,8 +6177,10 @@ exports[`Guidance Content pages test/customWidgets/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -6112,8 +6332,10 @@ exports[`Guidance Content pages test/customWidgets/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -6731,8 +6953,10 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -6800,8 +7024,10 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7031,8 +7257,10 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7076,8 +7304,10 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7274,8 +7504,10 @@ exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExam
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7341,8 +7573,10 @@ exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExam
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7627,8 +7861,10 @@ exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7664,8 +7900,10 @@ exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7902,8 +8140,10 @@ exports[`Guidance Content pages test/errors/errorPrevention/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -7939,8 +8179,10 @@ exports[`Guidance Content pages test/errors/errorPrevention/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -8145,8 +8387,10 @@ exports[`Guidance Content pages test/errors/errorSuggestion/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -8205,8 +8449,10 @@ exports[`Guidance Content pages test/errors/errorSuggestion/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -8476,8 +8722,10 @@ exports[`Guidance Content pages test/errors/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -8650,8 +8898,10 @@ exports[`Guidance Content pages test/errors/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9207,8 +9457,10 @@ exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9288,8 +9540,10 @@ exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9593,8 +9847,10 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9630,8 +9886,10 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9798,8 +10056,10 @@ exports[`Guidance Content pages test/focus/focusOrder/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -9843,8 +10103,10 @@ exports[`Guidance Content pages test/focus/focusOrder/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10035,8 +10297,10 @@ exports[`Guidance Content pages test/focus/guidance matches the snapshot 1`] = `
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10141,8 +10405,10 @@ exports[`Guidance Content pages test/focus/guidance matches the snapshot 1`] = `
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10435,8 +10701,10 @@ exports[`Guidance Content pages test/focus/modalDialogs/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10472,8 +10740,10 @@ exports[`Guidance Content pages test/focus/modalDialogs/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10645,8 +10915,10 @@ exports[`Guidance Content pages test/focus/revealingContent/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10682,8 +10954,10 @@ exports[`Guidance Content pages test/focus/revealingContent/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10854,8 +11128,10 @@ exports[`Guidance Content pages test/focus/visibleFocus/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -10914,8 +11190,10 @@ exports[`Guidance Content pages test/focus/visibleFocus/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11105,8 +11383,10 @@ exports[`Guidance Content pages test/headings/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11310,8 +11590,10 @@ exports[`Guidance Content pages test/headings/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11576,8 +11858,10 @@ exports[`Guidance Content pages test/headings/headingFunction/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11642,8 +11926,10 @@ exports[`Guidance Content pages test/headings/headingFunction/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11811,8 +12097,10 @@ exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -11887,8 +12175,10 @@ exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12059,8 +12349,10 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12118,8 +12410,10 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12302,8 +12596,10 @@ exports[`Guidance Content pages test/images/captchas/infoAndExamples matches the
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12339,8 +12635,10 @@ exports[`Guidance Content pages test/images/captchas/infoAndExamples matches the
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12473,8 +12771,10 @@ exports[`Guidance Content pages test/images/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -12694,8 +12994,10 @@ exports[`Guidance Content pages test/images/guidance matches the snapshot 1`] = 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -13408,8 +13710,10 @@ exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -13474,8 +13778,10 @@ exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -13751,8 +14057,10 @@ exports[`Guidance Content pages test/images/imagesOfText/infoAndExamples matches
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -13824,8 +14132,10 @@ exports[`Guidance Content pages test/images/imagesOfText/infoAndExamples matches
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14180,8 +14490,10 @@ exports[`Guidance Content pages test/images/textAlternative/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14217,8 +14529,10 @@ exports[`Guidance Content pages test/images/textAlternative/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14472,8 +14786,10 @@ exports[`Guidance Content pages test/keyboard/characterKeyShortcuts/infoAndExamp
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14509,8 +14825,10 @@ exports[`Guidance Content pages test/keyboard/characterKeyShortcuts/infoAndExamp
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14635,8 +14953,10 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -14752,8 +15072,10 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15312,8 +15634,10 @@ exports[`Guidance Content pages test/keyboard/keyboardNavigation/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15388,8 +15712,10 @@ exports[`Guidance Content pages test/keyboard/keyboardNavigation/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15658,8 +15984,10 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15730,8 +16058,10 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15897,8 +16227,10 @@ exports[`Guidance Content pages test/keyboard/noKeystrokeTimings/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -15934,8 +16266,10 @@ exports[`Guidance Content pages test/keyboard/noKeystrokeTimings/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16035,8 +16369,10 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16072,8 +16408,10 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16237,8 +16575,10 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16305,8 +16645,10 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16529,8 +16871,10 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -16905,8 +17249,10 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17098,8 +17444,10 @@ exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17165,8 +17513,10 @@ exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17339,8 +17689,10 @@ exports[`Guidance Content pages test/landmarks/noRepeatingContent/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17416,8 +17768,10 @@ exports[`Guidance Content pages test/landmarks/noRepeatingContent/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17601,8 +17955,10 @@ exports[`Guidance Content pages test/landmarks/primaryContent/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17672,8 +18028,10 @@ exports[`Guidance Content pages test/landmarks/primaryContent/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -17848,8 +18206,10 @@ exports[`Guidance Content pages test/language/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18172,8 +18532,10 @@ exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18238,8 +18600,10 @@ exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18394,8 +18758,10 @@ exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18466,8 +18832,10 @@ exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18640,8 +19008,10 @@ exports[`Guidance Content pages test/language/textDirection/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18720,8 +19090,10 @@ exports[`Guidance Content pages test/language/textDirection/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -18879,8 +19251,10 @@ exports[`Guidance Content pages test/links/guidance matches the snapshot 1`] = `
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19251,8 +19625,10 @@ exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19321,8 +19697,10 @@ exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19532,8 +19910,10 @@ exports[`Guidance Content pages test/links/linkPurpose/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19606,8 +19986,10 @@ exports[`Guidance Content pages test/links/linkPurpose/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19853,8 +20235,10 @@ exports[`Guidance Content pages test/liveMultimedia/captions/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -19890,8 +20274,10 @@ exports[`Guidance Content pages test/liveMultimedia/captions/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20009,8 +20395,10 @@ exports[`Guidance Content pages test/liveMultimedia/guidance matches the snapsho
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20170,8 +20558,10 @@ exports[`Guidance Content pages test/multimedia/audioDescription/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20207,8 +20597,10 @@ exports[`Guidance Content pages test/multimedia/audioDescription/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20413,8 +20805,10 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20450,8 +20844,10 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20588,8 +20984,10 @@ exports[`Guidance Content pages test/multimedia/guidance matches the snapshot 1`
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20723,8 +21121,10 @@ exports[`Guidance Content pages test/multimedia/guidance matches the snapshot 1`
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20937,8 +21337,10 @@ exports[`Guidance Content pages test/multimedia/noConflict/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -20974,8 +21376,10 @@ exports[`Guidance Content pages test/multimedia/noConflict/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21141,8 +21545,10 @@ exports[`Guidance Content pages test/multimedia/noObstruction/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21178,8 +21584,10 @@ exports[`Guidance Content pages test/multimedia/noObstruction/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21310,8 +21718,10 @@ exports[`Guidance Content pages test/multimedia/synchronization/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21353,8 +21763,10 @@ exports[`Guidance Content pages test/multimedia/synchronization/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21534,8 +21946,10 @@ exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21623,8 +22037,10 @@ exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21851,8 +22267,10 @@ exports[`Guidance Content pages test/nativeWidgets/cues/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -21912,8 +22330,10 @@ exports[`Guidance Content pages test/nativeWidgets/cues/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -22091,8 +22511,10 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -22161,8 +22583,10 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -22377,8 +22801,10 @@ exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -22532,8 +22958,10 @@ exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -22979,8 +23407,10 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23040,8 +23470,10 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23344,8 +23776,10 @@ exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23381,8 +23815,10 @@ exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExample
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23570,8 +24006,10 @@ exports[`Guidance Content pages test/page/frameTitles/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23640,8 +24078,10 @@ exports[`Guidance Content pages test/page/frameTitles/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23775,8 +24215,10 @@ exports[`Guidance Content pages test/page/generalNavigation/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23812,8 +24254,10 @@ exports[`Guidance Content pages test/page/generalNavigation/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -23949,8 +24393,10 @@ exports[`Guidance Content pages test/page/guidance matches the snapshot 1`] = `
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -24224,8 +24670,10 @@ exports[`Guidance Content pages test/page/pageTitle/infoAndExamples matches the 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -24299,8 +24747,10 @@ exports[`Guidance Content pages test/page/pageTitle/infoAndExamples matches the 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -24477,8 +24927,10 @@ exports[`Guidance Content pages test/parsing/guidance matches the snapshot 1`] =
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25035,8 +25487,10 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25084,8 +25538,10 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25270,8 +25726,10 @@ exports[`Guidance Content pages test/pointerMotion/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25331,8 +25789,10 @@ exports[`Guidance Content pages test/pointerMotion/guidance matches the snapshot
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25495,8 +25955,10 @@ exports[`Guidance Content pages test/pointerMotion/motionOperation/infoAndExampl
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25532,8 +25994,10 @@ exports[`Guidance Content pages test/pointerMotion/motionOperation/infoAndExampl
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25648,8 +26112,10 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25685,8 +26151,10 @@ exports[`Guidance Content pages test/pointerMotion/pointerCancellation/infoAndEx
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25782,8 +26250,10 @@ exports[`Guidance Content pages test/pointerMotion/pointerGestures/infoAndExampl
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -25819,8 +26289,10 @@ exports[`Guidance Content pages test/pointerMotion/pointerGestures/infoAndExampl
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26032,8 +26504,10 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks/infoAndExamp
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26094,8 +26568,10 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks/infoAndExamp
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26314,8 +26790,10 @@ exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26391,8 +26869,10 @@ exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26556,8 +27036,10 @@ exports[`Guidance Content pages test/repetitiveContent/consistentNavigation/info
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26647,8 +27129,10 @@ exports[`Guidance Content pages test/repetitiveContent/consistentNavigation/info
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -26800,8 +27284,10 @@ exports[`Guidance Content pages test/repetitiveContent/guidance matches the snap
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27182,8 +27668,10 @@ exports[`Guidance Content pages test/semantics/cssContent/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27257,8 +27745,10 @@ exports[`Guidance Content pages test/semantics/cssContent/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27411,8 +27901,10 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27477,8 +27969,10 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27638,8 +28132,10 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -27799,8 +28295,10 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28385,8 +28883,10 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28447,7 +28947,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 >
                   &lt;td&gt;
                 </span>
-                Location
+                City
                 <span
                   class="highlight"
                 >
@@ -28460,7 +28960,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28468,7 +28968,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28476,7 +28976,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28495,8 +28995,10 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28565,7 +29067,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 >
                   &lt;th&gt;
                 </span>
-                Location
+                City
                 <span
                   class="highlight"
                 >
@@ -28578,7 +29080,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28586,7 +29088,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28594,7 +29096,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -28781,8 +29283,10 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -28891,8 +29395,10 @@ exports[`Guidance Content pages test/semantics/headersAttribute/infoAndExamples 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29120,8 +29626,10 @@ exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29180,8 +29688,10 @@ exports[`Guidance Content pages test/semantics/letterSpacing/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29431,8 +29941,10 @@ exports[`Guidance Content pages test/semantics/lists/infoAndExamples matches the
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29527,8 +30039,10 @@ exports[`Guidance Content pages test/semantics/lists/infoAndExamples matches the
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29759,8 +30273,10 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29804,9 +30320,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
               <div
                 class="insights-code"
               >
-                &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
-                <br />
-                           destroyed the value of the previous currency.&lt;/p&gt;
+                &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
                            
                 <span
@@ -29815,7 +30329,7 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                   &lt;blockquote&gt;
                 </span>
                 <br />
-                           &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                           &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
                 <br />
                            
                 <span
@@ -29837,8 +30351,10 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29891,9 +30407,9 @@ exports[`Guidance Content pages test/semantics/quotes/infoAndExamples matches th
                 <br />
                             ...
                 <br />
-                            &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.&lt;/p&gt;
+                            &lt;p&gt;Kurt Vonnegut was the author of Slaughterhouse-five and The Sirens of Titan.&lt;/p&gt;
                 <br />
-                            &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                            &lt;a href="/wiki/Kurt_Vonnegut" title="Kurt Vonnegut"&gt;Learn more about Kurt Vonnegut&lt;/a&gt;
               </div>
             </div>
           </div>
@@ -30147,8 +30663,10 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30196,7 +30714,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;th&gt;Park name&lt;/th&gt;
                 <br />
-                           &lt;th&gt;Location&lt;/th&gt;
+                           &lt;th&gt;City&lt;/th&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30204,7 +30722,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                           &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30212,7 +30730,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                           &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30220,7 +30738,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                           &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                           &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                            &lt;/tr&gt;
                 <br />
@@ -30239,8 +30757,10 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30296,7 +30816,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;th&gt;Park name&lt;/th&gt;
                 <br />
-                            &lt;th&gt;Location&lt;/th&gt;
+                            &lt;th&gt;City&lt;/th&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30304,7 +30824,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                            &lt;td&gt;Kirkland&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30312,7 +30832,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                            &lt;td&gt;Issaquah&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30320,7 +30840,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
                 <br />
                             &lt;td&gt;Saltwater State Park&lt;/td&gt;
                 <br />
-                            &lt;td&gt;Des Moines, WA&lt;/td&gt;
+                            &lt;td&gt;Des Moines&lt;/td&gt;
                 <br />
                             &lt;/tr&gt;
                 <br />
@@ -30467,8 +30987,10 @@ exports[`Guidance Content pages test/sensory/auditoryCues/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30504,8 +31026,10 @@ exports[`Guidance Content pages test/sensory/auditoryCues/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30617,8 +31141,10 @@ exports[`Guidance Content pages test/sensory/flashing/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30654,8 +31180,10 @@ exports[`Guidance Content pages test/sensory/flashing/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30770,8 +31298,10 @@ exports[`Guidance Content pages test/sensory/guidance matches the snapshot 1`] =
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -30833,8 +31363,10 @@ exports[`Guidance Content pages test/sensory/guidance matches the snapshot 1`] =
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31204,8 +31736,10 @@ exports[`Guidance Content pages test/sensory/instructions/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31285,8 +31819,10 @@ exports[`Guidance Content pages test/sensory/instructions/infoAndExamples matche
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31473,8 +32009,10 @@ exports[`Guidance Content pages test/sensory/useOfColor/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31551,8 +32089,10 @@ exports[`Guidance Content pages test/sensory/useOfColor/infoAndExamples matches 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31785,8 +32325,10 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31815,7 +32357,7 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
             >
               &lt;pre&gt;
             </span>
-             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People promote the general of the United Welfare, and States, in secure the Order…"
+             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "Slaughterhouse-five who becomes 'unstuck is Kurt Vonnegut's in time' after he is…"
           </p>
         </div>
         <div
@@ -31836,29 +32378,15 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
                   <span
                     class="highlight"
                   >
-                    We the People     promote the general
+                    Slaughterhouse-five    who becomes 'unstuck
                     <br />
-                    of the United     Welfare, and
+                    is Kurt Vonnegut's      in time' after he is
                     <br />
-                    States, in        secure the
+                    absurdist classic.      abducted by aliens
                     <br />
-                    Order to form a   Blessings of
+                    It introduces us to     from the planet
                     <br />
-                    more perfect      Liberty to
-                    <br />
-                    Union,            ourselves and
-                    <br />
-                    establish         our Posterity,
-                    <br />
-                    Justice, insure   do ordain and
-                    <br />
-                    domestic          establish this
-                    <br />
-                    Tranquility,      Constitution
-                    <br />
-                    provide for the   for the United
-                    <br />
-                    common defense,   States of America.
+                    Billy Pilgrim, a man    Tralfamadore.
                   </span>
                   <br />
                   &lt;/pre&gt;
@@ -31877,8 +32405,10 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31938,23 +32468,15 @@ exports[`Guidance Content pages test/sequence/columns/infoAndExamples matches th
                 <span
                   class="highlight"
                 >
-                  We the People of the United States,
+                  Slaughterhouse-five is Kurt Vonnegut's
                   <br />
-                              in Order to form a more perfect Union,
+                              absurdist classic. It introduces us to
                   <br />
-                              establish Justice, insure domestic
+                              Billy Pilgrim, a man who becomes "unstuck
                   <br />
-                              Tranquility, provide for the common
+                              in time" after he is abducted by aliens
                   <br />
-                              defense, promote the general Welfare,
-                  <br />
-                              and secure the blessings of Liberty to
-                  <br />
-                              ourselves and our Posterity, do ordain
-                  <br />
-                              and establish this Constitution for
-                  <br />
-                              the United States of America.
+                              from the planet Tralfamadore.
                 </span>
                 <br />
                             &lt;/div&gt;
@@ -32117,8 +32639,10 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32141,17 +32665,17 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
             </h3>
           </div>
           <p>
-            A web page about U.S. presidents uses 
+            An online bookstore uses 
             <span
               class="insights-code"
             >
               float:right
             </span>
-             to display an image of the home state of each president. The presidents are listed in chronological order. In the 
+             to display an image of the author of each book. In the 
             <em>
               visual
             </em>
-             reading order, the content says, "George Washington was born on February 22, 1732, in Virginia. John Adams was born on October 30, 1735, in Massachusetts…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Virginia. George Washington was born on February 22, 1732 in Massachusetts. John Adams was born on October 30, 1735, in…"
+             reading order, the content says, "Slaughterhouse-five was written by Kurt Vonnegut. A Game of Thrones was written by George RR Martin…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Kurt Vonnegut. Slaughterhouse-five was written by George RR Martin. A Game of Thrones was written by…"
           </p>
         </div>
         <div
@@ -32179,11 +32703,11 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <br />
                            ...
                 <br />
-                           &lt;p&gt;&lt;img class="right" source="virginia.jpg" alt="
+                           &lt;p&gt;&lt;img class="right" source="Kurt_Vonnegut.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Virginia.
+                  Kurt Vonnegut.
                 </span>
                 "&gt;
                 <br />
@@ -32191,15 +32715,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  George Washington was born on February 22, 1732, in
+                  Slaughterhouse-five was written by
                 </span>
                 &lt;/p&gt;
                 <br />
-                           &lt;p&gt;&lt;img class="right" source="massachusetts.jpg" alt= "
+                           &lt;p&gt;&lt;img class="right" source="George_RR_Martin.jpg" alt= "
                 <span
                   class="highlight"
                 >
-                  Massachusetts.
+                  George RR Martin.
                 </span>
                 "&gt;
                 <br />
@@ -32207,9 +32731,9 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  John Adams was born on October 30, 1735, in
+                  A Game of Thrones was written by
                 </span>
-                &lt; /p&gt;
+                &lt;/p&gt;
                 <br />
                            ...
               </div>
@@ -32226,8 +32750,10 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32252,7 +32778,7 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
             </h3>
           </div>
           <p>
-            The content is displayed in a layout table. The visual reading order matches the DOM order, so the president's name and birthdate always come first.
+            The content is displayed in a layout table. The visual reading order matches the DOM order, so the author's name always come first.
           </p>
         </div>
         <div
@@ -32275,15 +32801,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  George Washington was born on February 22, 1732, in
+                  Slaughterhouse-five was written by
                 </span>
                 &lt;/td&gt;
                 <br />
-                            &lt;td&gt;&lt;img src="virginia.jpg" alt="
+                            &lt;td&gt;&lt;img src="Kurt_Vonnegut.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Virginia.
+                  Kurt Vonnegut.
                 </span>
                 "&lt;/td&gt;
                 <br />
@@ -32295,15 +32821,15 @@ exports[`Guidance Content pages test/sequence/cssPositioning/infoAndExamples mat
                 <span
                   class="highlight"
                 >
-                  John Adams was born on October 30, 1735 in
+                  A Game of Thrones was written by
                 </span>
                 &lt;/td&gt;
                 <br />
-                            &lt;td&gt;&lt;img src="massachusetts.jpg" alt="
+                            &lt;td&gt;&lt;img src="George_RR_Martin.jpg" alt="
                 <span
                   class="highlight"
                 >
-                  Massachusetts.
+                  George RR Martin.
                 </span>
                 "&lt;/td&gt;
                 <br />
@@ -32418,8 +32944,10 @@ exports[`Guidance Content pages test/sequence/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32504,8 +33032,10 @@ exports[`Guidance Content pages test/sequence/guidance matches the snapshot 1`] 
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32667,8 +33197,10 @@ exports[`Guidance Content pages test/sequence/layoutTables/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32755,8 +33287,10 @@ exports[`Guidance Content pages test/sequence/layoutTables/infoAndExamples match
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32945,8 +33479,10 @@ exports[`Guidance Content pages test/timedEvents/audioControl/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -32982,8 +33518,10 @@ exports[`Guidance Content pages test/timedEvents/audioControl/infoAndExamples ma
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33135,8 +33673,10 @@ exports[`Guidance Content pages test/timedEvents/autoUpdatingContent/infoAndExam
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33172,8 +33712,10 @@ exports[`Guidance Content pages test/timedEvents/autoUpdatingContent/infoAndExam
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33283,8 +33825,10 @@ exports[`Guidance Content pages test/timedEvents/guidance matches the snapshot 1
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33407,8 +33951,10 @@ exports[`Guidance Content pages test/timedEvents/guidance matches the snapshot 1
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33780,8 +34326,10 @@ exports[`Guidance Content pages test/timedEvents/movingContent/infoAndExamples m
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -33817,8 +34365,10 @@ exports[`Guidance Content pages test/timedEvents/movingContent/infoAndExamples m
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -34064,8 +34614,10 @@ exports[`Guidance Content pages test/timedEvents/timeLimits/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"
@@ -34101,8 +34653,10 @@ exports[`Guidance Content pages test/timedEvents/timeLimits/infoAndExamples matc
               class="check-container"
             >
               <svg
+                aria-hidden="true"
                 fill="none"
                 height="16"
+                role="img"
                 viewBox="0 0 16 16"
                 width="16"
                 xmlns="http://www.w3.org/2000/svg"

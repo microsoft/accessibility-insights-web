@@ -12,7 +12,7 @@ export class AndroidSetupStartListener {
     ) {}
 
     public initialize(): void {
-        this.userConfigStore.addChangedListener(this.storeChanged);
+        this.userConfigStore.addChangedListener(async () => this.storeChanged());
         this.androidSetupStore.addChangedListener(this.storeChanged);
 
         this.storeChanged();
@@ -25,7 +25,7 @@ export class AndroidSetupStartListener {
         if (telemetryDecisionMade && stepId === 'wait-to-start') {
             this.androidSetupActionCreator.readyToStart();
 
-            this.userConfigStore.removeChangedListener(this.storeChanged);
+            this.userConfigStore.removeChangedListener(async () => this.storeChanged());
             this.androidSetupStore.removeChangedListener(this.storeChanged);
         }
     };

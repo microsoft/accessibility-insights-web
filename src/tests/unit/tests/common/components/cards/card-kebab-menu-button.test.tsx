@@ -13,11 +13,11 @@ import {
     CardKebabMenuButtonProps,
 } from 'common/components/cards/card-kebab-menu-button';
 import { Toast } from 'common/components/toast';
-import { guidanceTags } from 'common/guidance-links';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { guidanceTags } from 'common/types/store-data/guidance-links';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
@@ -116,6 +116,7 @@ describe('CardKebabMenuButtonTest', () => {
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
+            showSaveAssessmentDialog: true,
         };
 
         issueFilingServiceProviderMock

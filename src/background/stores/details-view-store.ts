@@ -8,8 +8,8 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { CurrentPanel } from 'common/types/store-data/current-panel';
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
-import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ContentActions } from '../actions/content-actions';
 import { DetailsViewActions } from '../actions/details-view-actions';
 
@@ -83,16 +83,16 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         Scoping: 'isScopingOpen',
     };
 
-    private onOpenSidePanel = (sidePanel: SidePanel) => {
+    private onOpenSidePanel = async (sidePanel: SidePanel): Promise<void> => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
-        this.onOpen(stateKey);
+        await this.onOpen(stateKey);
     };
 
-    private onOpen = (
+    private onOpen = async (
         flagName: keyof CurrentPanel,
         mutator?: (data: DetailsViewStoreData) => void,
-    ): void => {
+    ): Promise<void> => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -103,32 +103,32 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
             mutator(this.state);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onCloseSidePanel = (sidePanel: SidePanel) => {
+    private onCloseSidePanel = async (sidePanel: SidePanel): Promise<void> => {
         const stateKey = this.sidePanelToStateKey[sidePanel];
 
-        this.onClose(stateKey);
+        await this.onClose(stateKey);
     };
 
-    private onClose = (
+    private onClose = async (
         flagName: keyof CurrentPanel,
         mutator?: (data: DetailsViewStoreData) => void,
-    ): void => {
+    ): Promise<void> => {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
             mutator(this.state);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetSelectedDetailsViewRightContentPanel = (
+    private onSetSelectedDetailsViewRightContentPanel = async (
         view: DetailsViewRightContentPanelType,
-    ): void => {
+    ): Promise<void> => {
         this.state.detailsViewRightContentPanel = view;
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

@@ -83,8 +83,8 @@ export type ResultsViewProps = {
 };
 
 export class ResultsView extends React.Component<ResultsViewProps> {
-    public componentDidMount(): void {
-        this.props.deps.scanActionCreator.scan();
+    public async componentDidMount(): Promise<void> {
+        await this.props.deps.scanActionCreator.scan();
     }
 
     public render(): JSX.Element {

@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { linkPurposeConfiguration } from '../../../../../scanner/custom-rules/link-purpose';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { linkPurposeConfiguration } from 'scanner/custom-rules/link-purpose';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('link purpose', () => {
     describe('verify link purpose configs', () => {
@@ -24,49 +23,42 @@ describe('link purpose', () => {
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
-        const getAccessibleTextMock = GlobalMock.ofInstance(
-            AxeUtils.getAccessibleText,
-            'getAccessibleText',
-            AxeUtils,
-            MockBehavior.Strict,
-        );
-        const getAccessibleDescriptionMock = GlobalMock.ofInstance(
-            AxeUtils.getAccessibleDescription,
-            'getAccessibleDescription',
-            AxeUtils,
-            MockBehavior.Strict,
-        );
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
-            getAccessibleTextMock.setup(m => m(It.isAny())).returns(_ => 'accessible-text');
-            getAccessibleDescriptionMock
-                .setup(m => m(It.isAny()))
-                .returns(_ => 'accessible-description');
         });
 
-        it('get the right data', () => {
+        afterEach(() => {
+            document.body.innerHTML = '';
+        });
+
+        it('gets the right data', () => {
+            const accessibleName = 'accessible name';
+            const accessibleDescription = 'accessible description';
             const url = 'some-url';
-            const nodeStub = {
-                getAttribute: attr => url,
-            } as HTMLElement;
+
+            document.body.innerHTML = `
+                <a id="node-under-test" href="${url}" aria-describedby="description">${accessibleName}</a>
+                <div id="description">${accessibleDescription}</div>
+            `;
+
+            const nodeUnderTest = document.body.querySelector('#node-under-test');
 
             const expectedData = {
                 element: 'link',
-                accessibleName: 'accessible-text',
-                accessibleDescription: 'accessible-description',
+                accessibleName,
+                accessibleDescription,
                 url,
             };
 
             dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
 
-            let result;
-            GlobalScope.using(getAccessibleTextMock, getAccessibleDescriptionMock).with(() => {
-                result = linkPurposeConfiguration.checks[0].evaluate.call(
+            const result = withAxeSetup(() =>
+                linkPurposeConfiguration.checks[0].evaluate.call(
                     { data: dataSetterMock.object },
-                    nodeStub,
-                );
-            });
+                    nodeUnderTest,
+                ),
+            );
             expect(result).toBe(true);
             dataSetterMock.verifyAll();
         });

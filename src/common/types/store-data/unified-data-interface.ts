@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from 'common/guidance-links';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
+import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
-import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
+import { GuidanceLink } from './guidance-links';
+import { ScanIncompleteWarningId } from './scan-incomplete-warnings';
 
 // this is similar to `TestEngine` interface from axe-core
 export interface ScanEngineProperties {
@@ -86,6 +87,7 @@ export type StoredInstancePropertyBag = InstancePropertyBag;
 export type UnifiedIdentifiers = {
     identifier: string;
     conciseName: string;
+    target?: Target;
 } & InstancePropertyBag;
 
 export type UnifiedDescriptors = {

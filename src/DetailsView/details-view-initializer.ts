@@ -32,6 +32,7 @@ import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { Tab } from 'common/types/store-data/itab';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { generateUID } from 'common/uid-generator';
@@ -91,7 +92,6 @@ import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { Tab } from '../common/itab';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';

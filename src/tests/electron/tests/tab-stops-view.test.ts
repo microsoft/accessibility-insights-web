@@ -16,7 +16,7 @@ import {
     commonAdbConfigs,
     mockAdbFolder,
     setupMockAdb,
-} from 'tests/miscellaneous/mock-adb/setup-mock-adb';
+} from 'tests/miscellaneous/setup-mock-adb/setup-mock-adb';
 
 describe('TabStopsView', () => {
     let app: AppController;

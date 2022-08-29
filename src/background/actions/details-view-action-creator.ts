@@ -15,7 +15,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
+import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
@@ -81,7 +81,7 @@ export class DetailsViewActionCreator {
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        this.sidePanelActions.openSidePanel.invoke(panel);
+        await this.sidePanelActions.openSidePanel.invoke(panel);
         await this.detailsViewController.showDetailsView(tabId).catch(this.logger.error);
 
         const eventName = this.sidePanelToOpenPanelTelemetryEventName[panel];
@@ -94,20 +94,23 @@ export class DetailsViewActionCreator {
         Scoping: SCOPING_CLOSE,
     };
 
-    private onCloseSidePanel = (panel: SidePanel, payload: BaseActionPayload): void => {
-        this.sidePanelActions.closeSidePanel.invoke(panel);
+    private onCloseSidePanel = async (
+        panel: SidePanel,
+        payload: BaseActionPayload,
+    ): Promise<void> => {
+        await this.sidePanelActions.closeSidePanel.invoke(panel);
 
         const eventName = this.sidePanelToClosePanelTelemetryEventName[panel];
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onSetDetailsViewRightContentPanel = (
+    private onSetDetailsViewRightContentPanel = async (
         payload: DetailsViewRightContentPanelType,
-    ): void => {
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
+    ): Promise<void> => {
+        await this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
     };
 
-    private onGetDetailsViewCurrentState = (): void => {
-        this.detailsViewActions.getCurrentState.invoke(null);
+    private onGetDetailsViewCurrentState = async (): Promise<void> => {
+        await this.detailsViewActions.getCurrentState.invoke(null);
     };
 }

@@ -9,7 +9,7 @@ import {
     delayAllCommands,
     setupMockAdb,
     simulateServiceNotInstalled,
-} from '../../miscellaneous/mock-adb/setup-mock-adb';
+} from '../../miscellaneous/setup-mock-adb/setup-mock-adb';
 
 describe('Android setup - detect-service', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];

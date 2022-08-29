@@ -3,13 +3,20 @@
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { TabStore } from 'background/stores/tab-store';
-import { Tab } from '../../../../../common/itab';
+import { Tab } from 'common/types/store-data/itab';
+import { UrlParser } from 'common/url-parser';
+import { IMock, Mock } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { TabStoreDataBuilder } from '../../../common/tab-store-data-builder';
 
 describe('TabStoreTest', () => {
+    let mockUrlParser: IMock<UrlParser>;
+    beforeEach(() => {
+        mockUrlParser = Mock.ofType<UrlParser>();
+    });
+
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(TabStore);
         expect(testObject).toBeDefined();
@@ -20,7 +27,7 @@ describe('TabStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.TabStore]);
     });
 
-    test('onNewTabCreated with empty initial state', () => {
+    test('onNewTabCreated with empty initial state', async () => {
         const initialState = new TabStoreDataBuilder().build();
 
         const payload: Tab = {
@@ -37,27 +44,30 @@ describe('TabStoreTest', () => {
             .with('isChanged', false)
             .build();
 
-        createStoreTesterForTabActions('newTabCreated')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForTabActions('newTabCreated').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test.each`
-        payloadUrl                               | differentId | originalIsClosed | originalIsChanged
-        ${'https://original-host/original-path'} | ${true}     | ${false}         | ${false}
-        ${'https://original-host/original-path'} | ${false}    | ${false}         | ${false}
-        ${'https://original-host/new-path'}      | ${false}    | ${false}         | ${false}
-        ${'https://new-host/new-path'}           | ${false}    | ${false}         | ${false}
-        ${'https://original-host/original-path'} | ${false}    | ${false}         | ${true}
-        ${'https://original-host/original-path'} | ${false}    | ${true}          | ${true}
+        differentOrigin | differentId | originalIsClosed | originalIsChanged
+        ${false}        | ${true}     | ${false}         | ${false}
+        ${false}        | ${false}    | ${false}         | ${false}
+        ${true}         | ${false}    | ${false}         | ${false}
+        ${false}        | ${false}    | ${false}         | ${true}
+        ${false}        | ${false}    | ${true}          | ${true}
     `(
-        'onNewTabCreated for differentId=$differentId, payloadUrl=$payloadUrl re-initializes from scratch ' +
+        'onNewTabCreated for differentOrigin=$differentOrigin, differentId=$differentId, re-initializes from scratch ' +
             'regardless of existing initial state isClosed=$originalIsClosed, isChanged=$originalIsChanged',
-        ({ payloadUrl, differentId, originalIsClosed, originalIsChanged }) => {
+        async ({ differentOrigin, differentId, originalIsClosed, originalIsChanged }) => {
             const originalId = 1;
+            const originalUrl = 'https://original-host/original-path';
+            const newUrl = differentOrigin
+                ? 'https://new-host/new-path'
+                : 'https://original-host/new-path';
             const initialState = new TabStoreDataBuilder()
                 .with('id', originalId)
-                .with('url', 'https://original-host/original-path')
+                .with('url', originalUrl)
                 .with('title', 'title 1')
                 .with('isClosed', originalIsClosed)
                 .with('isChanged', originalIsChanged)
@@ -66,8 +76,12 @@ describe('TabStoreTest', () => {
             const payload: Tab = {
                 id: differentId ? originalId + 1 : originalId,
                 title: 'test-title',
-                url: payloadUrl,
+                url: newUrl,
             };
+
+            mockUrlParser
+                .setup(m => m.areURLsSameOrigin(originalUrl, newUrl))
+                .returns(() => !differentOrigin);
 
             const expectedState: TabStoreData = new TabStoreDataBuilder()
                 .with('id', payload.id)
@@ -77,56 +91,58 @@ describe('TabStoreTest', () => {
                 .with('isChanged', false)
                 .build();
 
-            createStoreTesterForTabActions('newTabCreated')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
+            const storeTester =
+                createStoreTesterForTabActions('newTabCreated').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         },
     );
 
-    test('onGetCurrentState', () => {
+    test('onGetCurrentState', async () => {
         const initialState = new TabStoreDataBuilder().build();
         const expectedState = new TabStoreDataBuilder().build();
 
-        createStoreTesterForTabActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onTabRemove', () => {
+    test('onTabRemove', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
         const expectedState: TabStoreData = new TabStoreDataBuilder()
             .with('isClosed', true)
             .build();
 
-        createStoreTesterForTabActions('tabRemove').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForTabActions('tabRemove');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test.each`
-        payloadUrl                               | initialIsOriginChanged | expectedIsOriginChanged
-        ${'https://original-host/original-path'} | ${false}               | ${false}
-        ${'https://original-host/new-path'}      | ${false}               | ${false}
-        ${'https://new-host/new-path'}           | ${false}               | ${true}
-        ${'https://original-host/original-path'} | ${true}                | ${true}
-        ${'https://original-host/new-path'}      | ${true}                | ${true}
-        ${'https://new-host/new-path'}           | ${true}                | ${true}
+        differentOrigin | initialIsOriginChanged | expectedIsOriginChanged
+        ${false}        | ${false}               | ${false}
+        ${true}         | ${false}               | ${true}
+        ${false}        | ${true}                | ${true}
+        ${true}         | ${true}                | ${true}
     `(
-        'onExistingTabUpdated from isOriginChanged=$initialIsOriginChanged with payload url $payloadUrl should result in isOriginChanged=$expectedIsOriginChanged',
-        ({ payloadUrl, initialIsOriginChanged, expectedIsOriginChanged }) => {
+        'onExistingTabUpdated from isOriginChanged=$initialIsOriginChanged with differentOrigin=$differentOrigin should result in isOriginChanged=$expectedIsOriginChanged',
+        async ({ differentOrigin, initialIsOriginChanged, expectedIsOriginChanged }) => {
+            const originalUrl = 'https://original-host/original-path';
+            const newUrl = differentOrigin
+                ? 'https://new-host/new-path'
+                : 'https://original-host/new-path';
             const initialState: TabStoreData = new TabStoreDataBuilder()
-                .with('url', 'https://original-host/original-path')
+                .with('url', originalUrl)
                 .with('title', 'title 1')
                 .with('isOriginChanged', initialIsOriginChanged)
                 .build();
 
             const payload: Tab = {
                 title: 'title 2',
-                url: payloadUrl,
+                url: newUrl,
             };
+
+            mockUrlParser
+                .setup(m => m.areURLsSameOrigin(originalUrl, newUrl))
+                .returns(() => !differentOrigin);
 
             const expectedState: TabStoreData = new TabStoreDataBuilder()
                 .with('url', payload.url)
@@ -135,13 +151,13 @@ describe('TabStoreTest', () => {
                 .with('isOriginChanged', expectedIsOriginChanged)
                 .build();
 
-            createStoreTesterForTabActions('existingTabUpdated')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
+            const storeTester =
+                createStoreTesterForTabActions('existingTabUpdated').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         },
     );
 
-    test('onVisibilityChange, hidden is true', () => {
+    test('onVisibilityChange, hidden is true', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
         const payload = true;
@@ -149,96 +165,95 @@ describe('TabStoreTest', () => {
             .with('isPageHidden', payload)
             .build();
 
-        createStoreTesterForTabActions('tabVisibilityChange')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForTabActions('tabVisibilityChange').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onVisibilityChange, hidden is false', () => {
+    test('onVisibilityChange, hidden is false', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
         const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
         const payload = false;
 
-        createStoreTesterForTabActions('tabVisibilityChange')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester =
+            createStoreTesterForTabActions('tabVisibilityChange').withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    test('onEnableVisualization, state.isChanged is true', () => {
+    test('onEnableVisualization, state.isChanged is true', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder()
             .with('isChanged', true)
             .build();
 
         const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions('enableVisualization').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForVisualizationActions('enableVisualization');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on enableVisualization, state.isChanged is false', () => {
+    test('on enableVisualization, state.isChanged is false', async () => {
         const initialState = new TabStoreDataBuilder().build();
 
         const finalState = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions('enableVisualization').testListenerToNeverBeCalled(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForVisualizationActions('enableVisualization');
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    test('on updateSelectedPivotChild, state.isChanged is true', () => {
+    test('on updateSelectedPivotChild, state.isChanged is true', async () => {
         const initialState = new TabStoreDataBuilder().with('isChanged', true).build();
 
         const finalState = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions(
-            'updateSelectedPivotChild',
-        ).testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForVisualizationActions('updateSelectedPivotChild');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on updateSelectedPivotChild, state.isChanged is false', () => {
+    test('on updateSelectedPivotChild, state.isChanged is false', async () => {
         const initialState = new TabStoreDataBuilder().build();
 
         const finalState = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions(
-            'updateSelectedPivotChild',
-        ).testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester = createStoreTesterForVisualizationActions('updateSelectedPivotChild');
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
-    test('on updateSelectedPivot, state.isChanged is true', () => {
+    test('on updateSelectedPivot, state.isChanged is true', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder()
             .with('isChanged', true)
             .build();
 
         const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions('updateSelectedPivot').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForVisualizationActions('updateSelectedPivot');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on updateSelectedPivot, state.isChange is false', () => {
+    test('on updateSelectedPivot, state.isChange is false', async () => {
         const initialState: TabStoreData = new TabStoreDataBuilder().build();
 
         const finalState: TabStoreData = new TabStoreDataBuilder().build();
 
-        createStoreTesterForVisualizationActions('updateSelectedPivot').testListenerToNeverBeCalled(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForVisualizationActions('updateSelectedPivot');
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
     });
 
     function createStoreTesterForTabActions(
         actionName: keyof TabActions,
     ): StoreTester<TabStoreData, TabActions> {
         const factory = (actions: TabActions) =>
-            new TabStore(actions, new VisualizationActions(), null, null, null, null, true);
+            new TabStore(
+                actions,
+                new VisualizationActions(),
+                null,
+                null,
+                null,
+                null,
+                true,
+                mockUrlParser.object,
+            );
         return new StoreTester(TabActions, actionName, factory);
     }
 
@@ -246,7 +261,16 @@ describe('TabStoreTest', () => {
         actionName: keyof VisualizationActions,
     ): StoreTester<TabStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) =>
-            new TabStore(new TabActions(), actions, null, null, null, null, true);
+            new TabStore(
+                new TabActions(),
+                actions,
+                null,
+                null,
+                null,
+                null,
+                true,
+                mockUrlParser.object,
+            );
         return new StoreTester(VisualizationActions, actionName, factory);
     }
 });

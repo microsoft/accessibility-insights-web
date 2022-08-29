@@ -30,17 +30,20 @@ import { AxeInfo } from 'common/axe-info';
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
+import { WebExtensionBrowserAdapter } from 'common/browser-adapters/webextension-browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DateProvider } from 'common/date-provider';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from 'common/indexedDB/indexedDB';
 import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { createDefaultPromiseFactory, PromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
 import { title, toolName } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
@@ -48,18 +51,35 @@ import UAParser from 'ua-parser-js';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
-async function initialize(): Promise<void> {
+let logger: Logger;
+let promiseFactory: PromiseFactory;
+let eventResponseFactory: EventResponseFactory;
+let browserEventManager: BackgroundBrowserEventManager;
+let browserAdapter: WebExtensionBrowserAdapter;
+let telemetryEventHandler: TelemetryEventHandler;
+
+function initializeSync(): void {
     const userAgentParser = new UAParser(globalThis.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
-    const logger = createDefaultLogger();
-    const promiseFactory = createDefaultPromiseFactory();
-    const eventResponseFactory = new EventResponseFactory(promiseFactory, true);
-    const browserEventManager = new BackgroundBrowserEventManager(
+    logger = createDefaultLogger();
+    promiseFactory = createDefaultPromiseFactory();
+    eventResponseFactory = new EventResponseFactory(promiseFactory);
+    browserEventManager = new BackgroundBrowserEventManager(
         promiseFactory,
         eventResponseFactory,
         logger,
     );
-    const browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+    browserAdapter = browserAdapterFactory.makeFromUserAgent(browserEventManager);
+
+    telemetryEventHandler = new TelemetryEventHandler();
+
+    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
+        telemetryEventHandler,
+        TelemetryEventSource.Background,
+        telemetrySanitizer,
+    );
+    exceptionTelemetryListener.initialize(logger);
 
     // It is important that the browser listeners gets preregistered *before* any "await" statement.
     //
@@ -67,7 +87,9 @@ async function initialize(): Promise<void> {
     // the browser may decide that the worker is "done" as soon as the synchronous part of initialization finishes
     // and tear down the worker before we tell it which events to wake us back up for.
     browserEventManager.preregisterBrowserListeners(browserAdapter.allSupportedEvents());
+}
 
+async function initializeAsync(): Promise<void> {
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
         browserAdapter,
@@ -77,7 +99,7 @@ async function initialize(): Promise<void> {
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
-    // // These can run concurrently, both because they are read-only and because they use different types of underlying storage
+    // These can run concurrently, both because they are read-only and because they use different types of underlying storage
     const persistedDataPromise = getAllPersistedData(indexedDBInstance);
     const userDataPromise = browserAdapter.getUserData(storageDataKeys); // localStorage
     const persistedData = await persistedDataPromise; //indexedDB
@@ -109,18 +131,9 @@ async function initialize(): Promise<void> {
         consoleTelemetryClient,
         debugToolsTelemetryClient,
     ]);
+    telemetryEventHandler.initialize(telemetryClient);
 
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
-
-    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
-
-    const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
-    const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
-        telemetryEventHandler,
-        TelemetryEventSource.Background,
-        telemetrySanitizer,
-    );
-    exceptionTelemetryListener.initialize(logger);
 
     const browserSpec = new NavigatorUtils(navigator, logger).getBrowserSpec();
 
@@ -210,6 +223,8 @@ async function initialize(): Promise<void> {
     await detailsViewController.initialize();
 
     const messageBroadcasterFactory = new BrowserMessageBroadcasterFactory(browserAdapter, logger);
+    const urlParser = new UrlParser();
+
     const tabContextFactory = new TabContextFactory(
         visualizationConfigurationFactory,
         telemetryEventHandler,
@@ -221,10 +236,10 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        globalThis.setTimeout.bind(this),
         persistedData,
         indexedDBInstance,
         true,
+        urlParser,
     );
 
     const targetPageController = new TargetPageController(
@@ -251,6 +266,12 @@ async function initialize(): Promise<void> {
     globalThis.insightsUserConfiguration = globalContext.userConfigurationController;
 }
 
-initialize()
-    .then(() => console.log('Background initialization completed successfully'))
-    .catch((e: Error) => console.error('Background initialization failed: ', e));
+try {
+    initializeSync();
+    console.log('Sync background initialization completed successfully');
+} catch (e) {
+    console.error('Sync background initialization failed: ', e);
+}
+initializeAsync()
+    .then(() => console.log('Async background initialization completed successfully'))
+    .catch((e: Error) => console.error('Async background initialization failed: ', e));

@@ -12,6 +12,8 @@ export const CrossIcon = NamedFC('CrossIcon', () => (
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-hidden="true"
         >
             <circle cx="8" cy="8" r="8" fill="#E81123" />
             <path
@@ -30,6 +32,8 @@ export const CrossIconInverted = NamedFC('CrossIconInverted', () => (
             viewBox="0 0 16 16"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-hidden="true"
         >
             <path
                 fillRule="evenodd"

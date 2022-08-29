@@ -1,0 +1,1535 @@
+{
+  "version": "1.0",
+  "tasks": [
+    {
+      "taskType": "trigger",
+      "capabilityId": "AutoMerge",
+      "subCapability": "AutoMerge",
+      "version": "1.0",
+      "config": {
+        "taskName": "auto-merge",
+        "label": "pr: auto-merge",
+        "minMinutesOpen": "1",
+        "mergeType": "squash",
+        "deleteBranches": true,
+        "requireAllStatuses": true
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "operator": "or",
+              "operands": [
+                {
+                  "name": "isAction",
+                  "parameters": {
+                    "action": "opened"
+                  }
+                },
+                {
+                  "name": "isAction",
+                  "parameters": {
+                    "action": "reopened"
+                  }
+                }
+              ]
+            },
+            {
+              "operator": "not",
+              "operands": [
+                {
+                  "name": "hasLabel",
+                  "parameters": {
+                    "label": "task"
+                  }
+                }
+              ]
+            },
+            {
+              "operator": "not",
+              "operands": [
+                {
+                  "name": "isAssignedToSomeone",
+                  "parameters": {}
+                }
+              ]
+            }
+          ]
+        },
+        "taskName": "Add \"status: new\" tag and assign to DRI any non-task issues that are created or re-opened.",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: new"
+            }
+          },
+          {
+            "name": "assignToIcmUserGroup",
+            "parameters": {
+              "teamName": "Accessibility Insights",
+              "user": "pownkel",
+              "groupId": "5e616a3ac57fbf2ab87e1a53",
+              "assignmentTarget": "Primary"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "isAction",
+              "parameters": {
+                "action": "opened"
+              }
+            },
+            {
+              "name": "hasLabel",
+              "parameters": {
+                "label": "task"
+              }
+            }
+          ]
+        },
+        "taskName": "Add \"status: new\" tag to tasks when a user creates the issue.",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: new"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            }
+          ]
+        },
+        "taskName": "Add instructions and remove \"status: new\" tag when an issue requires author feedback.",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: new"
+            }
+          },
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "The team requires additional author feedback; please review their replies and update this issue accordingly. Thank you for contributing to Accessibility Insights!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "scheduled",
+      "capabilityId": "ScheduledSearch",
+      "subCapability": "ScheduledSearch",
+      "version": "1.1",
+      "config": {
+        "frequency": [
+          {
+            "weekDay": 0,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 1,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 2,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 3,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 4,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 5,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 6,
+            "hours": [
+              1,
+              4,
+              7,
+              10,
+              13,
+              16,
+              19,
+              22
+            ],
+            "timezoneOffset": -8
+          }
+        ],
+        "taskName": "Add \"status: no recent activity\" tag if an open issue requires author feedback and there's been no activity for 4 days.",
+        "searchTerms": [
+          {
+            "name": "isOpen",
+            "parameters": {}
+          },
+          {
+            "name": "isIssue",
+            "parameters": {}
+          },
+          {
+            "name": "noActivitySince",
+            "parameters": {
+              "days": 4
+            }
+          },
+          {
+            "name": "noLabel",
+            "parameters": {
+              "label": "status: no recent activity"
+            }
+          },
+          {
+            "name": "hasLabel",
+            "parameters": {
+              "label": "status: needs author feedback"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: no recent activity"
+            }
+          },
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This issue has been automatically marked as stale because it is marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**. Thank you for contributing to Accessibility Insights!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "scheduled",
+      "capabilityId": "ScheduledSearch",
+      "subCapability": "ScheduledSearch",
+      "version": "1.1",
+      "config": {
+        "taskName": "Close stale issues",
+        "frequency": [
+          {
+            "weekDay": 0,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 1,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 2,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 3,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 4,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 5,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          },
+          {
+            "weekDay": 6,
+            "hours": [
+              0,
+              3,
+              6,
+              9,
+              12,
+              15,
+              18,
+              21
+            ],
+            "timezoneOffset": -8
+          }
+        ],
+        "searchTerms": [
+          {
+            "name": "isOpen",
+            "parameters": {}
+          },
+          {
+            "name": "isIssue",
+            "parameters": {}
+          },
+          {
+            "name": "hasLabel",
+            "parameters": {
+              "label": "status: no recent activity"
+            }
+          },
+          {
+            "name": "noActivitySince",
+            "parameters": {
+              "days": 3
+            }
+          }
+        ],
+        "actions": [
+          {
+            "name": "closeIssue",
+            "parameters": {}
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "isActivitySender",
+              "parameters": {
+                "user": {
+                  "type": "author"
+                }
+              }
+            },
+            {
+              "name": "hasLabel",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "operator": "not",
+              "operands": [
+                {
+                  "name": "isAction",
+                  "parameters": {
+                    "action": "closed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "taskName": "Remove \"status: needs author feedback\" tag and add \"status: needs attention\" tag when there's been activity by the author.",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: needs attention"
+            }
+          },
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: needs author feedback"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            }
+          ]
+        },
+        "taskName": "Reassign to PM when a user adds \"status: ready for triage\" tag",
+        "actions": [
+          {
+            "name": "assignToUser",
+            "parameters": {
+              "teamName": "Accessibility Insights",
+              "user": "ferBonnin"
+            }
+          },
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This issue has been marked as ready for team triage; we will triage it in our weekly review and update the issue. Thank you for contributing to Accessibility Insights!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            }
+          ]
+        },
+        "taskName": "Provide instructions when team triage adds \"status: needs investigation\" tag",
+        "actions": [
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This issue requires additional investigation by the Accessibility Insights team. When the issue is ready to be triaged again, we will update the issue with the investigation result and add \"status: ready for triage\". Thank you for contributing to Accessibility Insights!"
+            }
+          },
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: ready for triage"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "good first issue"
+              }
+            }
+          ]
+        },
+        "taskName": "Add \"help wanted\" tags to issues tagged as \"good first issues\"",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "help wanted"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Close issues that are triaged as out of scope",
+        "actions": [
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This issue has been marked as being beyond the support scope of Accessibility Insights. It will now be closed automatically for house-keeping purposes. "
+            }
+          },
+          {
+            "name": "closeIssue",
+            "parameters": {}
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: new\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: new"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: needs author feedback\" when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: needs author feedback"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: needs attention\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: needs attention"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: needs investigation\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: needs investigation"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: blocked\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: blocked"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: ready for triage\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: ready for triage"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: ready for work\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: ready for work"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "hasLabel",
+              "parameters": {
+                "label": "task"
+              }
+            },
+            {
+              "name": "isAction",
+              "parameters": {
+                "action": "closed"
+              }
+            }
+          ]
+        },
+        "taskName": "Add \"status: resolved\" tag when a user closes a task",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: resolved"
+            }
+          },
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: active"
+            }
+          },
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: new"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: resolved"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: active\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: active"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssuesOnlyResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issues",
+          "project_card"
+        ],
+        "conditions": {
+          "operator": "or",
+          "operands": [
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: new"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs attention"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: needs investigation"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: blocked"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for triage"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: ready for work"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "status: active"
+              }
+            },
+            {
+              "name": "labelAdded",
+              "parameters": {
+                "label": "resolution: out of scope"
+              }
+            }
+          ]
+        },
+        "taskName": "Clean \"status: resolved\" tag when certain tags are added",
+        "actions": [
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: resolved"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "IssueCommentResponder",
+      "version": "1.0",
+      "config": {
+        "eventType": "issue",
+        "eventNames": [
+          "issue_comment"
+        ],
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "isActivitySender",
+              "parameters": {
+                "user": {
+                  "type": "author"
+                }
+              }
+            },
+            {
+              "name": "hasLabel",
+              "parameters": {
+                "label": "status: needs author feedback"
+              }
+            }
+          ]
+        },
+        "taskName": "Remove \"status: needs author feedback\" tag and add \"status: needs attention\" tag when the author comments on an issue.",
+        "actions": [
+          {
+            "name": "addLabel",
+            "parameters": {
+              "label": "status: needs attention"
+            }
+          },
+          {
+            "name": "removeLabel",
+            "parameters": {
+              "label": "status: needs author feedback"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "PullRequestResponder",
+      "version": "1.0",
+      "config": {
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "prModifiesFiles",
+              "parameters": {
+                "pathFilters": [
+                  "src/common/types/store-data"
+                ]
+              }
+            },
+            {
+              "name": "isAction",
+              "parameters": {
+                "action": "opened"
+              }
+            }
+          ]
+        },
+        "eventType": "pull_request",
+        "eventNames": [
+          "pull_request",
+          "issues",
+          "project_card"
+        ],
+        "taskName": "Add \"Consider backwards compatibility\" comment to PRs that touch the store-data directory.",
+        "actions": [
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This PR modifies store data, which is persisted between runs of the web extension. Please consider backwards compatibility when modifying these data types."
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "userGroups": [
+    {
+      "_id": "5e616a3ac57fbf2ab87e1a53",
+      "groupType": "ICM",
+      "name": "Accessibility Insights DRI",
+      "onCallTeamId": 57436
+    }
+  ]
+}
