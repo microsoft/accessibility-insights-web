@@ -54,7 +54,7 @@ describe('AdHocToolsPanelTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('adhoc tools panel with accessible names feature flag enabled', () => {
+    test('adhoc tools panel with accessible names feature', () => {
         const featureFlagStoreData: FeatureFlagStoreData = {};
         featureFlagStoreData[flagName] = true;
         diagnosticViewToggleFactoryMock
@@ -72,29 +72,6 @@ describe('AdHocToolsPanelTest', () => {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
             featureFlagStoreData: featureFlagStoreData,
-        };
-
-        const wrapper = shallow(<AdHocToolsPanel {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    test('adhoc tools panel with accessible names feature flag disabled', () => {
-        const featureFlagStoreData: FeatureFlagStoreData = {};
-        featureFlagStoreData[flagName] = false;
-        diagnosticViewToggleFactoryMock
-            .setup(factory => factory.createTogglesForAdHocToolsPanel())
-            .returns(() => [
-                <div key="first">first</div>,
-                <div key="second">second</div>,
-                <div key="third">third</div>,
-                <div key="fourth">fourth</div>,
-                <div key="fifth">fifth</div>,
-                <div key="sixth">sixth</div>,
-            ]);
-        const props: AdHocToolsPanelProps = {
-            backLinkHandler: null,
-            diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
-            featureFlagStoreData: {},
         };
 
         const wrapper = shallow(<AdHocToolsPanel {...props} />);

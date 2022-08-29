@@ -29,7 +29,6 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     testViewType: 'AdhocStatic',
     key: accessiblenamesTestKey,
     testMode: TestMode.Adhoc,
-    featureFlagToEnable: 'showAccessibleNames',
     getStoreData: data => data.adhoc[accessiblenamesTestKey],
     enableTest: data => (data.adhoc[accessiblenamesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
