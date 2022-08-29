@@ -44,7 +44,7 @@ describe('BaseAnalyzer', () => {
             payload: {
                 key: configStub.key,
                 selectorMap: resultsStub,
-                scanResult: null,
+                scanResult: undefined,
                 testType: typeStub,
                 scanIncompleteWarnings,
             },
