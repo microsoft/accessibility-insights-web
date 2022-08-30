@@ -71,21 +71,19 @@ export class Browser {
             this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
 
             return this.memoizedServiceWorker;
-        } else {
-            if (this.memoizedBackgroundPage) {
-                return this.memoizedBackgroundPage;
-            }
+        }
 
-            const ourBackgroundPage = await this.waitForBackgroundPageMatching(
-                hasBackgroundPageUrl,
-            );
-
-            this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
-                onPageCrash: this.onPageCrash,
-            });
-
+        if (this.memoizedBackgroundPage) {
             return this.memoizedBackgroundPage;
         }
+
+        const ourBackgroundPage = await this.waitForBackgroundPageMatching(hasBackgroundPageUrl);
+
+        this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
+            onPageCrash: this.onPageCrash,
+        });
+
+        return this.memoizedBackgroundPage;
     }
 
     public async newPage(url: string): Promise<Page> {
