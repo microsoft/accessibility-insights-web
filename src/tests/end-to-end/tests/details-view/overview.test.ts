@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
@@ -13,14 +13,14 @@ describe('Details View -> Overview Page', () => {
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
     let loadAssessmentCount: number = 0;
-    let backgroundPage: BackgroundPage;
+    let backgroundPage: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         overviewPage = await openOverviewPage(browser, targetPage);
-        backgroundPage = await browser.backgroundPage();
+        backgroundPage = await browser.background();
     });
 
     afterAll(async () => {
