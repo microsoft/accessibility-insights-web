@@ -7,33 +7,29 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
   <main
     className="adHocToolsGrid"
   >
-    <div
-      className="noRowNeeded"
-    >
-      <div>
-        first
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        second
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        third
-      </div>
-      <div>
-        fourth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        fifth
-      </div>
+    <div>
+      first
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      second
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      third
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      fourth
+    </div>
+    <div>
+      fifth
     </div>
   </main>
   <div
@@ -62,39 +58,35 @@ exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches 
   <main
     className="adHocToolsGrid"
   >
-    <div
-      className="noRowNeeded"
-    >
-      <div>
-        first
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        second
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        third
-      </div>
-      <div>
-        fourth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        fifth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        sixth
-      </div>
+    <div>
+      first
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      second
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      third
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      fourth
+    </div>
+    <div>
+      fifth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      sixth
     </div>
   </main>
   <div
@@ -116,113 +108,48 @@ exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches 
 </div>
 `;
 
-exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature flag disabled 1`] = `
+exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature 1`] = `
 <div
   className="main-section adHocToolsPanel"
 >
   <main
     className="adHocToolsGrid"
   >
-    <div
-      className="noRowNeeded"
-    >
-      <div>
-        first
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        second
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        third
-      </div>
-      <div>
-        fourth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        fifth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        sixth
-      </div>
+    <div>
+      first
     </div>
-  </main>
-  <div
-    className="adHocToolsPanelFooter"
-    role="navigation"
-  >
-    <StyledLinkBase
-      className="link"
-      id="back-to-launchpad-link"
-      onClick={null}
-    >
-      <Memo(Icon)
-        className="backToLaunchPadIcon"
-        iconName="back"
-      />
-      Back to launch pad
-    </StyledLinkBase>
-  </div>
-</div>
-`;
-
-exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature flag enabled 1`] = `
-<div
-  className="main-section adHocToolsPanel"
->
-  <main
-    className="adHocToolsGrid"
-  >
-    <div
-      className="newRowNeeded"
-    >
-      <div>
-        first
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        second
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        third
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        fourth
-      </div>
-      <div>
-        fifth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        sixth
-      </div>
-      <span
-        className="divider"
-      />
-      <div>
-        seventh
-      </div>
+    <span
+      className="divider"
+    />
+    <div>
+      second
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      third
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      fourth
+    </div>
+    <div>
+      fifth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      sixth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      seventh
     </div>
   </main>
   <div
