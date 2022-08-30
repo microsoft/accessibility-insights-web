@@ -4888,10 +4888,10 @@ copy-to-clipboard@^3.3.1:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.24.1:
-  version "3.24.1"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.24.1.tgz#97630b52506c6431c5719f6b0fa58d7a61fde3b0"
-  integrity sha512-R7jSagXabROPSXGIylnFWE8xy8PTmAR15WDRsAYyg6B9BmJ3EHHybkJn9w4MoJAMN31jYNQ12OroOPDLHl5vjg==
+core-js-bundle@^3.25.0:
+  version "3.25.0"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.25.0.tgz#eb8b6c9ec6f6ed24069b043ea5b7391cc3ec49d3"
+  integrity sha512-EoZtOQP0maMya2fZSEIbV7gFf4BRheGVrzH2h0O/4M9xzX6H05z7C9bvvfsFs5PI0WJ6vk3FRM6XyYJ7gkxiqQ==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -10708,10 +10708,10 @@ postcss-modules-values@^4.0.0:
   dependencies:
     icss-utils "^5.0.0"
 
-postcss-modules@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/postcss-modules/-/postcss-modules-4.3.1.tgz#517c06c09eab07d133ae0effca2c510abba18048"
-  integrity sha512-ItUhSUxBBdNamkT3KzIZwYNNRFKmkJrofvC2nWab3CPKhYBQ1f27XXh1PAPE27Psx58jeelPsxWB/+og+KEH0Q==
+postcss-modules@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-modules/-/postcss-modules-5.0.0.tgz#4a02bc58ecaa7394f8e9a34b7e21cb6c725f15df"
+  integrity sha512-rGvpTDOM3//3Ysn3Xtvhzaj8ab984wKCpP02TEF559tLbUjNay3RQDpPxb7BREmfBtJm3/1WbQOZ7fSXwYLZ/w==
   dependencies:
     generic-names "^4.0.0"
     icss-replace-symbols "^1.1.0"
@@ -11814,10 +11814,10 @@ signal-exit@^3.0.7:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.7.tgz#a9a1767f8af84155114eaabd73f99273c8f59ad9"
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
-simple-git@^3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.12.0.tgz#12fa8e762d8d9629fb1c72a0e2b4e6ae5b1f11e8"
-  integrity sha512-cy1RSRFHGZSrlYa3MnUuNVOXLUdifEZD2X8+AZjg8mKCdRvtCFSga6acq5N2g0ggb8lH3jBi369MrFZ+Y6sfsA==
+simple-git@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-3.13.0.tgz#36589e201c28cecaca6f3a898e7257c6610e8588"
+  integrity sha512-VYrs3joeHvWGcN3K135RpGpPjm4AHYeOrclwew6LlfHgq6ozQYIW2yMnmjf4PCgVOuSYCbXkdUjyiFawuJz8MA==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
     "@kwsites/promise-deferred" "^1.1.1"
