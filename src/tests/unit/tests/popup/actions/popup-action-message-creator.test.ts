@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
-
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -85,7 +84,7 @@ describe('PopupActionMessageCreatorTest', () => {
         );
     });
 
-    test('openDetailsView', () => {
+    test('openDetailsView', async () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.fastPass;
 
@@ -112,7 +111,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(
+        await testSubject.openDetailsView(
             stubKeypressEvent,
             VisualizationType.Headings,
             testSource,
@@ -120,7 +119,7 @@ describe('PopupActionMessageCreatorTest', () => {
         );
 
         actionMessageDispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            dispatcher => dispatcher.asyncDispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
         );
         mockWindowUtils.verifyAll();
