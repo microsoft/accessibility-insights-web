@@ -41,6 +41,7 @@ import { textContent } from 'content/strings/text-content';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -478,6 +479,7 @@ if (tabId != null) {
                 ajv,
                 Assessments,
                 featureFlagStore.getState() as FeatureFlagStoreData,
+                new LoadAssessmentDataSchemaProvider(),
             );
 
             const loadAssessmentHelper = new LoadAssessmentHelper(

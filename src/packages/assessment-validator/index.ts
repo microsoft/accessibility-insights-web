@@ -16,7 +16,8 @@ const validatorFilePath = path.join(
 const generateValidator = () => {
     console.log('Generating schema...');
     const assessments = Assessments.all();
-    const schema = LoadAssessmentDataSchemaProvider.getAssessmentSchema(assessments);
+    const loadAssessmentDataSchemaProvider = new LoadAssessmentDataSchemaProvider();
+    const schema = loadAssessmentDataSchemaProvider.getAssessmentSchema(assessments);
 
     console.log('Generating validator...');
     const ajv = new Ajv({ code: { source: true } });

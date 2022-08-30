@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Assessment } from 'assessments/types/iassessment';
+
 export class LoadAssessmentDataSchemaProvider {
-    public static getAssessmentSchema(assessments) {
+    public getAssessmentSchema(assessments: readonly Readonly<Assessment>[]): any {
         let schema = this.getAssessmentSchemaBase();
 
         assessments.forEach(assessment => {
@@ -18,7 +20,7 @@ export class LoadAssessmentDataSchemaProvider {
         return schema;
     }
 
-    private static setDeprecatedRequirementProperties(schema: any) {
+    private setDeprecatedRequirementProperties(schema: any) {
         const deprecatedRequirements = [
             { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id' },
             { assessmentKey: 'automated-checks', requirementKey: 'scrollable-region-focusable' },
@@ -41,13 +43,13 @@ export class LoadAssessmentDataSchemaProvider {
         return schema;
     }
 
-    private static setAssessmentBaseProperties(schema: any, assessmentKey: string) {
+    private setAssessmentBaseProperties(schema: any, assessmentKey: string) {
         const assessments = schema.properties.assessmentData.properties.assessments.properties;
         assessments[assessmentKey] = this.getBaseAssessmentObject();
         return schema;
     }
 
-    private static setRequirementBaseProperties(
+    private setRequirementBaseProperties(
         schema: any,
         requirementKey: string,
         assessmentKey: string,
@@ -62,7 +64,7 @@ export class LoadAssessmentDataSchemaProvider {
         return schema;
     }
 
-    private static getBaseTestStepStatus() {
+    private getBaseTestStepStatus() {
         return {
             type: 'object',
             properties: {
@@ -78,7 +80,7 @@ export class LoadAssessmentDataSchemaProvider {
         };
     }
 
-    private static getBaseManualTestStepResultMapObject() {
+    private getBaseManualTestStepResultMapObject() {
         return {
             type: 'object',
             properties: {
@@ -98,7 +100,7 @@ export class LoadAssessmentDataSchemaProvider {
         };
     }
 
-    private static getBaseAssessmentObject() {
+    private getBaseAssessmentObject() {
         return {
             type: 'object',
             properties: {
@@ -124,7 +126,7 @@ export class LoadAssessmentDataSchemaProvider {
         };
     }
 
-    private static getAssessmentSchemaBase() {
+    private getAssessmentSchemaBase() {
         return {
             type: 'object',
             properties: {
