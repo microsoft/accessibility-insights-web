@@ -12,6 +12,8 @@ import {
     originalManifestCopyPath,
 } from 'tests/end-to-end/common/extension-paths';
 import { ManifestInstance } from 'tests/end-to-end/common/manifest-instance';
+import { ManifestV2Instance } from 'tests/end-to-end/common/mv2-manifest-instance';
+import { ManifestV3Instance } from 'tests/end-to-end/common/mv3-manifest-instance';
 import { testResourceServerConfigs } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
@@ -33,12 +35,27 @@ export interface ExtensionOptions {
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
     const browserInstanceId = generateUID();
 
-    const originalManifestContent: chrome.runtime.ManifestV2 = await ManifestInstance.parse(
-        originalManifestCopyPath,
-    );
-    const manifestCopy = createManifestWithPermissions(
+    const manifestV3 = process.env.WEB_E2E_TARGET?.includes('mv3');
+    let manifestInstance: ManifestInstance;
+    let onCloseCallback: () => Promise<void>;
+    if (manifestV3) {
+        const originalManifestContent = await ManifestV3Instance.parse(originalManifestCopyPath);
+        manifestInstance = new ManifestV3Instance(originalManifestContent);
+
+        onCloseCallback = async () => {
+            await new ManifestV3Instance(originalManifestContent).writeTo(manifestPath);
+        };
+    } else {
+        const originalManifestContent = await ManifestV2Instance.parse(originalManifestCopyPath);
+        manifestInstance = new ManifestV2Instance(originalManifestContent);
+        onCloseCallback = async () => {
+            await new ManifestV2Instance(originalManifestContent).writeTo(manifestPath);
+        };
+    }
+
+    const manifestCopy = AddExtraManifestPermissions(
         extensionOptions.addExtraPermissionsToManifest,
-        originalManifestContent,
+        manifestInstance,
     );
 
     // only unpacked extension paths are supported
@@ -53,9 +70,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     // simplify the initial migration from Puppeteer to Playwright.
     const playwrightContext = await launchNewBrowserContext(userDataDir, extensionPath);
 
-    const browser = new Browser(browserInstanceId, playwrightContext, async () => {
-        await new ManifestInstance(originalManifestContent).writeTo(manifestPath);
-    });
+    const browser = new Browser(browserInstanceId, playwrightContext, manifestV3, onCloseCallback);
 
     const backgroundPage = await browser.background();
     if (extensionOptions.suppressFirstTimeDialog) {
@@ -76,12 +91,10 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-const createManifestWithPermissions = (
+const AddExtraManifestPermissions = (
     permissions: ExtraPermissions,
-    manifestContent: chrome.runtime.ManifestV2,
+    manifestInstance: ManifestInstance,
 ): ManifestInstance => {
-    const manifestInstance = new ManifestInstance(manifestContent);
-
     switch (permissions) {
         case 'fake-activeTab':
             // we need to add localhost origin permission in order to fake activeTab

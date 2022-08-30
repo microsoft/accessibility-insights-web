@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { setTimeout } from 'timers/promises';
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
 import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
@@ -18,18 +19,16 @@ import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
 
-import { setTimeout } from 'timers/promises';
-
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private memoizedServiceWorker: ServiceWorker;
     private pages: Array<Page> = [];
     private underlyingBrowserContext: Playwright.BrowserContext | null;
-    private readonly MANIFEST_VERSION = process.env.WEB_E2E_TARGET;
 
     constructor(
         private readonly browserInstanceId: string,
         underlyingBrowserContext: Playwright.BrowserContext,
+        private readonly manifestV3: boolean,
         private readonly onClose?: () => Promise<void>,
     ) {
         this.underlyingBrowserContext = underlyingBrowserContext;
@@ -61,7 +60,7 @@ export class Browser {
     }
 
     public async background(): Promise<BackgroundContext> {
-        if (this.MANIFEST_VERSION?.includes('mv3')) {
+        if (this.manifestV3) {
             if (this.memoizedServiceWorker) {
                 return this.memoizedServiceWorker;
             }
