@@ -16,5 +16,134 @@ Licensed under the MIT License.
         <button>Submit</button>
         <p>This is just a paragraph. It should not have an Accessible name</p>
         <h4 aria-hidden="true">Heading has empty accessible name</h4>
+        <h1>Files</h1>
+        <ul>
+            <li>
+                <a id="file_row1" href="./files/Documentation.pdf">Documentation.pdf</a>
+                <span
+                    role="button"
+                    tabindex="0"
+                    id="del_row1"
+                    aria-label="Delete"
+                    aria-labelledby="del_row1 file_row1"
+                ></span>
+            </li>
+            <li>A list</li>
+        </ul>
+        <table>
+            <p>This is not from author, so won't be highlighted</p>
+        </table>
+        <fieldset>
+            <p>No highlight</p>
+        </fieldset>
+        <nav aria-label="navigation">Navigation with aria-label</nav>
+        <nav>Navigation should not he highlighted</nav>
+        <meter aria-label="highlight meter">Some text</meter>
+        <meter>60%</meter>
+        <div role="meter" aria-valuemax="10" , aria-valuemin="10" aria-valuenow="10">A meter</div>
+        <div role="region">A section</div>
+        <option>Thius should be option's accessible name</option>
+        <input type="radio" aria-label="A radio element" />
+        <hr aria-label="A separtor element" />
+        <table>
+            <!-- Typical example of subTree text -->
+            <tr>
+                <th>Day</th>
+                <th>Miles</th>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td aria-label="In miles">10</td>
+            </tr>
+        </table>
+        <table title="Highlight table">
+            <tr title="Workout stats">
+                <th>Day</th>
+                <th>Miles</th>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>30</td>
+            </tr>
+        </table>
+        <table>
+            <!-- Typical example of subTree text -->
+            <tr>
+                <th>Day</th>
+                <th>Miles</th>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td aria-label="In miles">10</td>
+            </tr>
+        </table>
+        <table title="Highlight table">
+            <tr aria-label="Workout stats 2">
+                <th>Day</th>
+                <th>Miles</th>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>30</td>
+            </tr>
+        </table>
+        <dfn>This is the term element</dfn>
+        <article>Article element</article>
+        <blockquote>Some blockquote text</blockquote>
+        <textarea aria-label="myText">Some text in a text area</textarea>
+        <textarea>Some text in a text area</textarea>
+        <h2>The premiere show starts at <time>21:00</time> today.</h2>
+        <div role="table" aria-labelledby="name" aria-describedby="desc">
+            <div role="caption">
+                <div id="name">Contest Entrants</div>
+                <div id="desc">
+                    This table shows the total number of entrants (500) the contest accepted over
+                    the past four weeks.
+                </div>
+            </div>
+            <code>Let x = 10</code>
+        </div>
+        <label for="tag_combo">Tag</label>
+        <input
+            type="text"
+            id="tag_combo"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-haspopup="listbox"
+            aria-expanded="true"
+            aria-controls="popup_listbox"
+            aria-activedescendant="selected_option"
+        />
+        <ul role="listbox" id="popup_listbox">
+            <li role="option">Zebra</li>
+            <li role="option" id="selected_option">Zoom</li>
+        </ul>
+        <select>
+            Select this
+        </select>
+        <figure aria-label="A figure">Some text in a figure</figure>
+        <figure>Some second text in a figure</figure>
+        <form aria-label="form">Some text in form</form>
+        <h3>New Tests</h3>
+        <fieldset>Text in a field text</fieldset>
+        <fieldset aria-label="Some text">Text in a field text with aria-label</fieldset>
+        <ul title="My list">
+            An unordered list. Highlight
+        </ul>
+        <ul>
+            An unordered second list. No highlight
+        </ul>
+        <ol title="My second list">
+            An ordered list. Highlight
+        </ol>
+        <ol>
+            An ordered second list. No highlight
+        </ol>
+        <ol>
+            <li aria-label="orange">orange</li>
+            <li>
+                <span>mango</span>
+            </li>
+        </ol>
     </body>
 </html>
