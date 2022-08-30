@@ -14,9 +14,9 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe(LoadAssessmentDataValidator, () => {
     let testSubject: LoadAssessmentDataValidator;
-    let featureFlagStoreDataStub = {} as FeatureFlagStoreData;
+    const featureFlagStoreDataStub = {} as FeatureFlagStoreData;
     let assessmentsStub;
-    let schemaStub = {};
+    const schemaStub = {};
     let validJson: VersionedAssessmentData;
     let invalidJson: any;
     let ajvMock: IMock<Ajv>;
