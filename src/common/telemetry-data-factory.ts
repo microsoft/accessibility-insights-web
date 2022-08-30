@@ -202,15 +202,20 @@ export class TelemetryDataFactory {
         numInstances: number,
         stepDetails?: any,
     ): RequirementStatusTelemetryData {
-        return {
+        const telemetry = {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[visualizationType],
             selectedRequirement: requirement,
             passed: passed,
             numInstances: numInstances,
-            stepDetails,
         };
+
+        if (stepDetails) {
+            telemetry['stepDetails'] = stepDetails;
+        }
+
+        return telemetry;
     }
 
     public forOpenDetailsView(
