@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { PayloadWithEventName } from 'background/actions/action-payloads';
 import { Logger } from 'common/logging/logger';
-
 import { TelemetryData } from '../extension-telemetry-events';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
@@ -19,6 +18,16 @@ export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
         const interpreterMessage = this.decorateWithTabId(message);
 
         this.postMessageDelegate(interpreterMessage).catch(this.logger.error);
+    }
+
+    public async asyncDispatchMessage(message: Message): Promise<void> {
+        const interpreterMessage = this.decorateWithTabId(message);
+
+        try {
+            await this.postMessageDelegate(interpreterMessage);
+        } catch (e) {
+            this.logger.error(e);
+        }
     }
 
     public dispatchType(messageType: string): void {

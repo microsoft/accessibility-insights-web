@@ -9,9 +9,8 @@ import { ActionMessageDispatcher } from 'common/message-creators/types/dispatche
 import { Tab } from 'common/types/store-data/itab';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import * as React from 'react';
-
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { Messages } from '../../common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../common/types/store-data/details-view-pivot-type';
@@ -57,19 +56,19 @@ export class PopupActionMessageCreator {
         });
     }
 
-    public openDetailsView(
+    public async openDetailsView(
         event: SupportedMouseEvent,
         viewType: VisualizationType | null,
         source: TelemetryEventSource,
         pivotType: DetailsViewPivotType,
-    ): void {
+    ): Promise<void> {
         const payload: OnDetailsViewOpenPayload = {
             telemetry: this.telemetryFactory.forOpenDetailsView(event, viewType, source),
             detailsViewType: viewType,
             pivotType: pivotType,
         };
 
-        this.dispatcher.dispatchMessage({
+        await this.dispatcher.asyncDispatchMessage({
             messageType: visualizationMessages.DetailsView.Open,
             payload: payload,
         });

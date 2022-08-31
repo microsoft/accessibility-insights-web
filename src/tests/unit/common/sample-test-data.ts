@@ -13,4 +13,5 @@ export const ShortcutCommandsTestData: chrome.commands.Command[] = [
     { description: 'Toggle Tab stops', name: '04_toggle-tabStops', shortcut: '' },
     { description: 'Toggle Color', name: '05_toggle-color', shortcut: '' },
     { description: 'Toggle Needs review', name: '06_toggle-needsReview', shortcut: '' },
+    { description: 'Toggle Accessible names', name: '07_toggle-accessibleNames', shortcut: '' },
 ];

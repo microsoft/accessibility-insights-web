@@ -57,7 +57,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
         await new ManifestInstance(originalManifestContent).writeTo(manifestPath);
     });
 
-    const backgroundPage = await browser.backgroundPage();
+    const backgroundPage = await browser.background();
     if (extensionOptions.suppressFirstTimeDialog) {
         await backgroundPage.setTelemetryState(false);
     }
