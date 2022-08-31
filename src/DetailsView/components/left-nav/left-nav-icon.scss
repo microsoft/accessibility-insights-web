@@ -3,15 +3,6 @@
 
 @import '../../../common/styles/common.scss';
 
-:global(.ms-Nav-compositeLink.is-selected),
-li :global(.is-expanded) {
-    .index-circle {
-        color: $neutral-0;
-        background: $index-circle-background;
-        border-color: $neutral-0;
-    }
-}
-
 .index-circle {
     display: inline-block;
     border-radius: 50%;
@@ -23,4 +14,11 @@ li :global(.is-expanded) {
     color: $secondary-text;
     background: $neutral-0;
     text-align: center;
+
+    li :global(.is-expanded) &,
+    :global(.ms-Nav-compositeLink.is-selected) & {
+        color: $neutral-0;
+        background: $index-circle-background;
+        border-color: $neutral-0;
+    }
 }
