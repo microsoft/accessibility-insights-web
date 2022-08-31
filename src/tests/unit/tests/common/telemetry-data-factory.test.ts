@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Assessment } from 'assessments/types/iassessment';
-import { Requirement } from 'assessments/types/requirement';
-import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -27,16 +24,10 @@ import {
 } from 'common/extension-telemetry-events';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
-import {
-    AssessmentData,
-    AssessmentStoreData,
-} from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
-import { Mock, MockBehavior, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { EventStubFactory } from './../../common/event-stub-factory';
 
@@ -805,199 +796,5 @@ describe('TelemetryDataFactoryTest', () => {
     test('forSetAutoDetectedFailuresDialogState when undefined', () => {
         const result = testObject.forSetAutoDetectedFailuresDialogState(undefined);
         expect(result).toBeUndefined();
-    });
-
-    describe('forCompletedTestStep', () => {
-        function testForCompletedSetup(step: Requirement, expectedTelemetry) {
-            const assessmentMock = Mock.ofType<Assessment>(undefined, MockBehavior.Strict);
-            const configMock = Mock.ofType<AssessmentVisualizationConfiguration>(
-                undefined,
-                MockBehavior.Strict,
-            );
-            const assessmentStoreData = getAssessmentStoreData();
-            const assessmentData = assessmentStoreData.assessments['assessment-1'];
-
-            assessmentMock
-                .setup(m => m.getVisualizationConfiguration())
-                .returns(() => configMock.object)
-                .verifiable(Times.once());
-            assessmentMock
-                .setup(m => m.key)
-                .returns(() => 'assessment-1')
-                .verifiable(Times.once());
-            assessmentMock
-                .setup(m => m.visualizationType)
-                .returns(() => VisualizationType.LinksAssessment)
-                .verifiable(Times.once());
-            configMock
-                .setup(m => m.getAssessmentData(assessmentStoreData))
-                .returns(storeData => assessmentData)
-                .verifiable(Times.once());
-
-            const telemetry = testObject.forCompletedTestStep(
-                assessmentMock.object,
-                assessmentStoreData,
-                step,
-            );
-
-            expect(telemetry).toStrictEqual(expectedTelemetry);
-            assessmentMock.verifyAll();
-            configMock.verifyAll();
-            assessmentMock.verifyAll();
-        }
-
-        test('automated checks return 2 failed instances', () => {
-            const step = {
-                isManual: false,
-                key: 'assessment-1-step-1',
-            } as Requirement;
-            const expectedTelemetry = {
-                numInstances: 2,
-                passed: false,
-                selectedRequirement: 'assessment-1-step-1',
-                selectedTest: 'LinksAssessment',
-                source: 6,
-                triggeredBy: 'N/A',
-            };
-            testForCompletedSetup(step, expectedTelemetry);
-        });
-
-        test('automated checks return 1 passed instance', () => {
-            const step = {
-                isManual: false,
-                key: 'assessment-1-step-2',
-            } as Requirement;
-            const expectedTelemetry = {
-                numInstances: 1,
-                passed: true,
-                selectedRequirement: 'assessment-1-step-2',
-                selectedTest: 'LinksAssessment',
-                source: 6,
-                triggeredBy: 'N/A',
-            };
-            testForCompletedSetup(step, expectedTelemetry);
-        });
-
-        test('manual checks return 2 passed instances', () => {
-            const step = {
-                isManual: true,
-                key: 'assessment-1-step-3',
-            } as Requirement;
-            const expectedTelemetry = {
-                numInstances: 2,
-                passed: true,
-                selectedRequirement: 'assessment-1-step-3',
-                selectedTest: 'LinksAssessment',
-                source: 6,
-                triggeredBy: 'N/A',
-            };
-            testForCompletedSetup(step, expectedTelemetry);
-        });
-
-        test('stepDetails are included if provided', () => {
-            const step = {
-                isManual: false,
-                key: 'assessment-1-step-1',
-                getCompletedStepDetailsForTelemetry: (_, __) => {
-                    return {
-                        skyColor: 'blue',
-                        cloudCount: 2,
-                    };
-                },
-            } as Requirement;
-            const expectedTelemetry = {
-                numInstances: 2,
-                passed: false,
-                selectedRequirement: 'assessment-1-step-1',
-                selectedTest: 'LinksAssessment',
-                source: 6,
-                stepDetails: {
-                    skyColor: 'blue',
-                    cloudCount: 2,
-                },
-                triggeredBy: 'N/A',
-            };
-            testForCompletedSetup(step, expectedTelemetry);
-        });
-
-        function getAssessmentStoreData(): AssessmentStoreData {
-            const assessments: { [key: string]: AssessmentData } = {
-                'assessment-1': {
-                    fullAxeResultsMap: null,
-                    testStepStatus: {
-                        'assessment-1-step-1': {
-                            stepFinalResult: ManualTestStatus.UNKNOWN,
-                            isStepScanned: false,
-                        },
-                        'assessment-1-step-2': {
-                            stepFinalResult: ManualTestStatus.PASS,
-                            isStepScanned: false,
-                        },
-                        'assessment-1-step-3': {
-                            stepFinalResult: ManualTestStatus.PASS,
-                            isStepScanned: false,
-                        },
-                    },
-                    generatedAssessmentInstancesMap: {
-                        h1: {
-                            testStepResults: {
-                                'assessment-1-step-1': {
-                                    id: 'id',
-                                    status: ManualTestStatus.UNKNOWN,
-                                    isCapturedByUser: false,
-                                    failureSummary: '',
-                                    isVisualizationEnabled: true,
-                                    isVisible: true,
-                                },
-                                'assessment-1-step-2': {
-                                    id: 'id',
-                                    status: ManualTestStatus.UNKNOWN,
-                                    isCapturedByUser: false,
-                                    failureSummary: '',
-                                    isVisualizationEnabled: true,
-                                    isVisible: true,
-                                },
-                            },
-                            target: [],
-                            html: '',
-                        },
-                        h2: {
-                            testStepResults: {
-                                'assessment-1-step-1': {
-                                    id: 'id',
-                                    status: ManualTestStatus.UNKNOWN,
-                                    isCapturedByUser: false,
-                                    failureSummary: '',
-                                    isVisualizationEnabled: true,
-                                    isVisible: true,
-                                },
-                            },
-                            target: [],
-                            html: '',
-                        },
-                    },
-                    manualTestStepResultMap: {
-                        'assessment-1-step-3': {
-                            instances: [
-                                {
-                                    id: '',
-                                    description: '',
-                                },
-                                {
-                                    id: '',
-                                    description: '',
-                                },
-                            ],
-                            status: ManualTestStatus.UNKNOWN,
-                            id: '',
-                        },
-                    },
-                },
-            };
-            const assessmentStoreMockData = {
-                assessments,
-            } as AssessmentStoreData;
-            return assessmentStoreMockData;
-        }
     });
 });
