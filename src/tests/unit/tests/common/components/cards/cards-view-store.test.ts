@@ -47,7 +47,7 @@ describe(CardsViewStore, () => {
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on closeIssueFilingSettingsDialog with callback defined', async () => {
+    test('on closeIssueFilingSettingsDialog', async () => {
         const onDismissDialogCallback = jest.fn();
         const selectedIssueData = { snippet: 'test snippet' } as CreateIssueDetailsTextData;
 
@@ -56,29 +56,20 @@ describe(CardsViewStore, () => {
         initialState.onIssueFilingSettingsClosedCallback = onDismissDialogCallback;
         initialState.selectedIssueData = selectedIssueData;
 
-        const finalState = getDefaultState();
+        const finalState = {
+            ...initialState,
+            isIssueFilingSettingsDialogOpen: false,
+        };
 
         const storeTester = createStoreForCardsViewActions(
             'closeIssueFilingSettingsDialog',
         ).withActionParam(null);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
 
-        expect(onDismissDialogCallback).toBeCalledTimes(1);
-    });
-
-    test('on closeIssueFilingSettingsDialog with callback undefined', async () => {
-        const selectedIssueData = { snippet: 'test snippet' } as CreateIssueDetailsTextData;
-
-        const initialState = getDefaultState();
-        initialState.isIssueFilingSettingsDialogOpen = true;
-        initialState.selectedIssueData = selectedIssueData;
-
-        const finalState = getDefaultState();
-
-        const storeTester = createStoreForCardsViewActions(
-            'closeIssueFilingSettingsDialog',
-        ).withActionParam(null);
-        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        // The UI needs to update before the callback is called, so it cannot
+        // be called from the store. Instead, it's passed as a prop to the
+        // fluentui dialog component, which calls it at the appropriate time.
+        expect(onDismissDialogCallback).toBeCalledTimes(0);
     });
 
     function getDefaultState(): CardsViewStoreData {

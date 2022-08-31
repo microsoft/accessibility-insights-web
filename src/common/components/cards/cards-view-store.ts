@@ -43,13 +43,6 @@ export class CardsViewStore extends BaseStoreImpl<CardsViewStoreData> {
 
     private closeIssueFilingSettingsDialog = (): void => {
         this.state.isIssueFilingSettingsDialogOpen = false;
-        this.state.selectedIssueData = undefined;
-
-        const callback = this.state.onIssueFilingSettingsClosedCallback;
-        if (callback) {
-            callback();
-            this.state.onIssueFilingSettingsClosedCallback = undefined;
-        }
 
         this.emitChanged();
     };
