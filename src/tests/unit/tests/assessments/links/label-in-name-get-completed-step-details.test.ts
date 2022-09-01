@@ -2,37 +2,35 @@
 // Licensed under the MIT License.
 
 import { labelInNameGetCompletedStepDetails } from 'assessments/links/test-steps/label-in-name-get-completed-step-details';
-import { Assessment } from 'assessments/types/iassessment';
 import {
     AssessmentData,
-    AssessmentStoreData,
     InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 
 describe('labelInNameGetCompletedStepDetails', () => {
     test('with only expected passes', () => {
-        createAndValidateData(2, 0, 0, 0, 0, 2);
+        createAndValidateData(2, 0, 0, 0, 0);
     });
 
     test('with only expected failures', () => {
-        createAndValidateData(0, 2, 0, 0, 0, 2);
+        createAndValidateData(0, 2, 0, 0, 0);
     });
 
     test('with only unexpected passes', () => {
-        createAndValidateData(0, 0, 2, 0, 0, 2);
+        createAndValidateData(0, 0, 2, 0, 0);
     });
 
     test('with only unexpected failures', () => {
-        createAndValidateData(0, 0, 0, 2, 0, 2);
+        createAndValidateData(0, 0, 0, 2, 0);
     });
 
     test('with only unknowns', () => {
-        createAndValidateData(0, 0, 0, 0, 2, 2);
+        createAndValidateData(0, 0, 0, 0, 2);
     });
 
     test('with a mix of all results', () => {
-        createAndValidateData(3, 5, 7, 11, 13, 39);
+        createAndValidateData(3, 5, 7, 11, 13);
     });
 
     function createAndValidateData(
@@ -41,10 +39,8 @@ describe('labelInNameGetCompletedStepDetails', () => {
         unexpectedPasses: number,
         unexpectedFailures: number,
         unknowns: number,
-        total: number,
     ) {
         const output = labelInNameGetCompletedStepDetails(
-            getAssessment(),
             getAssessmentStoreData(
                 expectedPasses,
                 expectedFailures,
@@ -59,14 +55,7 @@ describe('labelInNameGetCompletedStepDetails', () => {
             expectedFailures,
             unexpectedPasses,
             unexpectedFailures,
-            unknowns,
-            total,
         });
-    }
-    function getAssessment(): Assessment {
-        return {
-            key: 'linksAssessment',
-        } as Assessment;
     }
 
     function getAssessmentStoreData(
@@ -75,7 +64,7 @@ describe('labelInNameGetCompletedStepDetails', () => {
         unexpectedPasses: number,
         unexpectedFailures: number,
         unknowns: number,
-    ): AssessmentStoreData {
+    ): AssessmentData {
         const generatedAssessmentInstancesMap = generateAssessmentInstancesMap(
             expectedPasses,
             expectedFailures,
@@ -83,28 +72,16 @@ describe('labelInNameGetCompletedStepDetails', () => {
             unexpectedFailures,
             unknowns,
         );
-        const assessments: { [key: string]: AssessmentData } = {
-            linksAssessment: {
-                fullAxeResultsMap: null,
-                testStepStatus: {
-                    labelInName: {
-                        stepFinalResult: ManualTestStatus.FAIL,
-                        isStepScanned: false,
-                    },
+        return {
+            fullAxeResultsMap: null,
+            testStepStatus: {
+                labelInName: {
+                    stepFinalResult: ManualTestStatus.FAIL,
+                    isStepScanned: false,
                 },
-                generatedAssessmentInstancesMap,
             },
+            generatedAssessmentInstancesMap,
         };
-        const assessmentStoreMockData = {
-            assessments,
-            assessmentNavState: null,
-            persistedTabInfo: {
-                id: 1,
-                url: 'url',
-                title: 'title',
-            },
-        } as AssessmentStoreData;
-        return assessmentStoreMockData;
     }
 
     function generateAssessmentInstancesMap(

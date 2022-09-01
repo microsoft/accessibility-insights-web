@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Assessment } from 'assessments/types/iassessment';
+import { LinksTestStep } from 'assessments/links/test-steps/test-steps';
 import {
-    AssessmentStoreData,
+    AssessmentData,
     GeneratedAssessmentInstance,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
@@ -15,21 +15,19 @@ const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolea
     return labelContainsVisibleText === true;
 };
 
-export const labelInNameGetCompletedStepDetails = (
-    assessment: Assessment,
-    storeData: AssessmentStoreData,
-) => {
-    const key = assessment.key;
-    const root = storeData.assessments[key];
+export const labelInNameGetCompletedStepDetails = (assessmentData: AssessmentData) => {
     let expectedPasses = 0;
     let expectedFailures = 0;
     let unexpectedPasses = 0;
     let unexpectedFailures = 0;
-    let unknowns = 0;
-    forEach(Object.keys(root.generatedAssessmentInstancesMap), key => {
-        const instance: GeneratedAssessmentInstance = root.generatedAssessmentInstancesMap[key];
-        const testStepResult: TestStepResult = instance.testStepResults['labelInName'];
-        const status = testStepResult ? testStepResult.status : ManualTestStatus.UNKNOWN;
+    forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
+        const instance: GeneratedAssessmentInstance =
+            assessmentData.generatedAssessmentInstancesMap[key];
+        const testStepResult: TestStepResult = instance.testStepResults[LinksTestStep.labelInName];
+        if (!testStepResult) {
+            return;
+        }
+        const status = testStepResult.status;
         switch (status) {
             case ManualTestStatus.PASS:
                 if (labelContainsVisibleText(instance)) {
@@ -45,9 +43,6 @@ export const labelInNameGetCompletedStepDetails = (
                     unexpectedFailures++;
                 }
                 break;
-            default:
-                unknowns++;
-                break;
         }
     });
 
@@ -56,7 +51,5 @@ export const labelInNameGetCompletedStepDetails = (
         expectedFailures,
         unexpectedPasses,
         unexpectedFailures,
-        unknowns,
-        total: expectedPasses + expectedFailures + unexpectedPasses + unexpectedFailures + unknowns,
     };
 };
