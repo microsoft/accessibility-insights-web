@@ -31,6 +31,7 @@ const devWebExtensionOutdir = path.join(__dirname, 'extension/devBundle');
 const devWebExtensionM3Outdir = path.join(__dirname, 'extension/devMv3Bundle');
 
 const prodWebExtensionOutDir = path.join(__dirname, 'extension/prodBundle');
+const prodWebExtensionM3OutDir = path.join(__dirname, 'extension/prodMV3Bundle');
 
 function isReactDevtoolsInstalled() {
     try {
@@ -79,6 +80,15 @@ switch (argsObj.env) {
         minify = true;
         sourcemap = false;
         outdir = prodWebExtensionOutDir;
+        break;
+
+    case 'prod-mv3':
+        minify = true;
+        sourcemap = false;
+        outdir = prodWebExtensionM3OutDir;
+        define = {
+            global: 'globalThis',
+        };
         break;
 
     case 'dev-mv3':
