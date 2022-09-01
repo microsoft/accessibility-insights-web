@@ -10,14 +10,6 @@ import {
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { forEach } from 'lodash';
 
-const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolean | undefined => {
-    const labelContainsVisibleText = instance.propertyBag['labelContainsVisibleText'];
-    if (labelContainsVisibleText === undefined) {
-        return undefined;
-    }
-    return labelContainsVisibleText === true;
-};
-
 export const labelInNameGetCompletedRequirementDetails = (assessmentData: AssessmentData) => {
     let expectedPasses = 0;
     let expectedFailures = 0;
@@ -30,14 +22,14 @@ export const labelInNameGetCompletedRequirementDetails = (assessmentData: Assess
         if (!testStepResult) {
             return;
         }
-        const status = testStepResult.status;
-        const expectedPass = labelContainsVisibleText(instance);
+        const labelContainsVisibleText = instance.propertyBag['labelContainsVisibleText'];
 
-        if (expectedPass === undefined) {
+        if (labelContainsVisibleText === undefined) {
             return;
         }
 
-        if (expectedPass) {
+        const status = testStepResult.status;
+        if (labelContainsVisibleText) {
             expectedPasses++;
             if (status === ManualTestStatus.PASS) {
                 confirmedPasses++;
