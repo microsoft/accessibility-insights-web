@@ -22,7 +22,9 @@ function getImportsForFile(parentFilePath, srcRoot) {
         .map(importedFile => importedFile.fileName)
         .filter(fileName => !/\.scss$/.test(fileName)) // remove css imports
         .filter(fileName => /\//.test(fileName)) // remove node modules (the import must contain '/')
-        .filter(fileName => !/^(@fluentui|lodash|react-dom|axe-core|@microsoft)\//.test(fileName)) // remove node module usages with slashes in name
+        .filter(
+            fileName => !/^(@fluentui|lodash|react-dom|axe-core|@microsoft|ajv)\//.test(fileName),
+        ) // remove node module usages with slashes in name
         .map(fileName => {
             if (/(^\.\/)|(^\.\.\/)/.test(fileName)) {
                 return path.join(path.dirname(parentFilePath), fileName);
