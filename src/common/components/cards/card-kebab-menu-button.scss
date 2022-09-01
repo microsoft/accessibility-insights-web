@@ -2,6 +2,13 @@
 // Licensed under the MIT License.
 @import '../../styles/colors.scss';
 
+.kebab-menu-icon {
+    flex-grow: 1; // Center the custom SVG
+    @media screen and (forced-colors: active) {
+        color: buttontext;
+    }
+}
+
 .kebab-menu-button {
     margin-right: 8px;
 
@@ -23,13 +30,6 @@
         @media screen and (forced-colors: active) {
             color: highlight;
         }
-    }
-}
-
-.kebab-menu-icon {
-    flex-grow: 1; // Center the custom SVG
-    @media screen and (forced-colors: active) {
-        color: buttontext;
     }
 }
 

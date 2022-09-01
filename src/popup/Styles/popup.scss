@@ -154,6 +154,11 @@ html {
     font-size: 16px;
 }
 
+#popup-container .ms-Link {
+    color: $communication-primary;
+    font-weight: 600;
+}
+
 #popup-container .main-section {
     margin-left: 14px;
     margin-right: 14px;
@@ -273,17 +278,10 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
     margin-bottom: 20px;
 }
 
-#popup-container {
-    .ms-Link {
-        color: $communication-primary;
-        font-weight: 600;
-    }
-
-    .launch-pad-title {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: -4px;
-    }
+#popup-container .launch-pad-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: -4px;
 }
 
 #popup-container #new-launch-pad {

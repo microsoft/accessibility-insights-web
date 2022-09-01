@@ -6,6 +6,10 @@
 .left-nav-panel-host {
     top: $default-title-height;
 
+    @include is-mac-os {
+        top: $mac-title-height;
+    }
+
     .left-nav-panel {
         :global(.ms-Panel-main) {
             width: calc(#{$details-view-left-nav-width} + #{$details-view-left-nav-border-width});
@@ -24,11 +28,5 @@
         .nav-menu {
             color: $primary-text;
         }
-    }
-}
-
-:global(.is-mac-os) {
-    .left-nav-panel-host {
-        top: $mac-title-height;
     }
 }
