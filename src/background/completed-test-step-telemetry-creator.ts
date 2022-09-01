@@ -90,7 +90,7 @@ export class CompletedTestStepTelemetryCreator {
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,
-            this.getStepDetails(assessmentData, step),
+            this.getRequirementDetails(assessmentData, step),
         );
     }
 
@@ -112,8 +112,8 @@ export class CompletedTestStepTelemetryCreator {
         return numInstances;
     }
 
-    private getStepDetails(assessmentData: AssessmentData, step: Requirement): any {
-        const detailProvider = step.getCompletedStepDetailsForTelemetry;
+    private getRequirementDetails(assessmentData: AssessmentData, step: Requirement): any {
+        const detailProvider = step.getCompletedRequirementDetailsForTelemetry;
 
         return detailProvider ? detailProvider(assessmentData) : undefined;
     }

@@ -19,7 +19,7 @@ import { PropertyBagColumnRendererFactory } from '../../common/property-bag-colu
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
-import { labelInNameGetCompletedStepDetails } from './label-in-name-get-completed-step-details';
+import { labelInNameGetCompletedRequirementDetails } from './label-in-name-get-completed-step-details';
 import { LinksTestStep } from './test-steps';
 
 const LabelInNameDescription: JSX.Element = (
@@ -108,5 +108,5 @@ export const LabelInName: Requirement = {
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getCompletedStepDetailsForTelemetry: labelInNameGetCompletedStepDetails,
+    getCompletedRequirementDetailsForTelemetry: labelInNameGetCompletedRequirementDetails,
 };

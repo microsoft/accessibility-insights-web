@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { labelInNameGetCompletedStepDetails } from 'assessments/links/test-steps/label-in-name-get-completed-step-details';
+import { labelInNameGetCompletedRequirementDetails } from 'assessments/links/test-steps/label-in-name-get-completed-step-details';
 import {
     AssessmentData,
     InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 
-describe('labelInNameGetCompletedStepDetails', () => {
+describe('labelInNameGetCompletedRequirementDetails', () => {
     test('with only expected passes', () => {
         createAndValidateData(2, 0, 0, 0, 0);
     });
@@ -40,7 +40,7 @@ describe('labelInNameGetCompletedStepDetails', () => {
         unexpectedFailures: number,
         unknowns: number,
     ) {
-        const output = labelInNameGetCompletedStepDetails(
+        const output = labelInNameGetCompletedRequirementDetails(
             getAssessmentStoreData(
                 expectedPasses,
                 expectedFailures,

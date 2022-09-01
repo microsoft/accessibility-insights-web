@@ -192,7 +192,7 @@ export class TelemetryDataFactory {
         requirement: string,
         passed: boolean,
         numInstances: number,
-        stepDetails?: any,
+        requirementDetails?: any,
     ): RequirementStatusTelemetryData {
         const telemetry = {
             triggeredBy: TriggeredByNotApplicable,
@@ -203,8 +203,8 @@ export class TelemetryDataFactory {
             numInstances: numInstances,
         };
 
-        if (stepDetails) {
-            telemetry['stepDetails'] = stepDetails;
+        if (requirementDetails) {
+            telemetry['requirementDetails'] = requirementDetails;
         }
 
         return telemetry;

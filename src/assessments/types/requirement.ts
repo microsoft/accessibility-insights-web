@@ -57,7 +57,7 @@ export interface Requirement {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
-    getCompletedStepDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
+    getCompletedRequirementDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
 }
 
 export type VisualHelperToggleConfigDeps = {

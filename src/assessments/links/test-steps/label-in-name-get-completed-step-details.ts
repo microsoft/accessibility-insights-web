@@ -15,7 +15,7 @@ const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolea
     return labelContainsVisibleText === true;
 };
 
-export const labelInNameGetCompletedStepDetails = (assessmentData: AssessmentData) => {
+export const labelInNameGetCompletedRequirementDetails = (assessmentData: AssessmentData) => {
     let expectedPasses = 0;
     let expectedFailures = 0;
     let unexpectedPasses = 0;
