@@ -155,7 +155,14 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'anotherTest', true, ManualTestStatus.PASS, count, false);
+        addInstances(
+            instanceDataMap,
+            'anotherRequirement',
+            true,
+            ManualTestStatus.PASS,
+            count,
+            false,
+        );
     }
 
     function addInstances(
