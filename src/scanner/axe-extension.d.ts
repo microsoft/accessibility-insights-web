@@ -16,13 +16,18 @@ declare module 'axe-core/axe' {
         };
         text: {
             accessibleText: Function;
+            isHumanInterpretable: Function;
+            sanitize: Function;
+            subtreeText: Function;
         };
     };
+
+    const VirtualNode: any;
 
     interface Utils {
         toArray: Function;
         matchesSelector: Function;
-
+        getNodeFromTree: Function;
         // this must be surrounded by axe.setup and axe.teardown calls
         getSelector: (element: HTMLElement) => string;
     }
