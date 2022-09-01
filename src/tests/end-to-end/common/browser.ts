@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { setTimeout } from 'timers/promises';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
 import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
@@ -10,6 +11,7 @@ import {
     hasServiceWorkerUrl,
     ServiceWorker,
 } from 'tests/end-to-end/common/page-controllers/service-worker';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
 import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
@@ -18,8 +20,6 @@ import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/deta
 import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
