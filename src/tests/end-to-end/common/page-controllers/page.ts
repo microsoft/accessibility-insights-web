@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
 import { serializeError } from 'tests/common/serialize-error';
-import {
-    PageFunction,
-    WaitForSelectorOptions,
-} from 'tests/end-to-end/common/playwright-option-types';
+import { Context } from 'tests/end-to-end/common/page-controllers/context';
+import { WaitForSelectorOptions } from 'tests/end-to-end/common/playwright-option-types';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { screenshotOnError } from '../screenshot-on-error';
@@ -18,14 +15,14 @@ import {
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
 
-const promiseFactory = createDefaultPromiseFactory();
-
 export type PageOptions = {
     onPageCrash?: () => void;
 };
 
-export class Page {
+export class Page extends Context {
     constructor(protected readonly underlyingPage: Playwright.Page, options?: PageOptions) {
+        super(underlyingPage);
+
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(
                 `Playwright.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
@@ -91,14 +88,6 @@ export class Page {
             return;
         }
         await this.screenshotOnError(async () => await this.underlyingPage.close());
-    }
-
-    public async evaluate<R, Arg>(fn: PageFunction<Arg, R>, arg: Arg): Promise<R> {
-        const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
-        // We don't wrap this in screenshotOnError because Playwright serializes evaluate() and
-        // screenshot() such that screenshot() will always time out if evaluate is still running.
-        const evalPromise = this.underlyingPage.evaluate<R, Arg>(fn, arg);
-        return await promiseFactory.timeout(evalPromise, timeout);
     }
 
     public async waitForSelector(

@@ -43,3 +43,9 @@ $fast-pass-right-panel-margin-top: 24px !default;
     font-weight: $font-weight-semi-bold;
     font-size: 17px;
 }
+
+@mixin is-mac-os {
+    :global(.is-mac-os) & {
+        @content;
+    }
+}
