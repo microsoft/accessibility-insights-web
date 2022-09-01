@@ -18,13 +18,13 @@ export type GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-) => (CardsViewModel | null);
+) => CardsViewModel | null;
 
 export const getCardViewData: GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-): (CardsViewModel | null) => {
+): CardsViewModel | null => {
     if (results == null || rules == null || cardSelectionViewData == null) {
         return null;
     }

@@ -34,12 +34,12 @@ export const createIssueDetailsBuilderForUnified = (
             : [];
 
         const ruleDetailsSection = () => {
-            const { description, url, id }= data.rule;
-            if(description && url && id ){
+            const { description, url, id } = data.rule;
+            if (description && url && id) {
                 return `${snippet(description)} (${link(url, id)})`;
             }
             return '';
-        }
+        };
 
         const lines = [
             sectionHeader('Issue'),
