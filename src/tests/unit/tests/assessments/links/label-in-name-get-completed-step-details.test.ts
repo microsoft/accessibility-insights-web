@@ -124,45 +124,45 @@ describe('labelInNameGetCompletedStepDetails', () => {
         return generatedAssessmentInstancesMap;
     }
     function addExpectedPassInstances(instanceDataMap: InstanceIdToInstanceDataMap, count: number) {
-        addInstances(instanceDataMap, 'expectedPass', 'View ', ManualTestStatus.PASS, count);
+        addInstances(instanceDataMap, 'expectedPass', true, ManualTestStatus.PASS, count);
     }
 
     function addExpectedFailureInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'expectedFailure', 'Foo ', ManualTestStatus.FAIL, count);
+        addInstances(instanceDataMap, 'expectedFailure', false, ManualTestStatus.FAIL, count);
     }
 
     function addUnexpectedPassInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'unexpectedPass', 'Foo ', ManualTestStatus.PASS, count);
+        addInstances(instanceDataMap, 'unexpectedPass', false, ManualTestStatus.PASS, count);
     }
 
     function addUnexpectedFailureInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'unexpectedFailure', 'View ', ManualTestStatus.FAIL, count);
+        addInstances(instanceDataMap, 'unexpectedFailure', true, ManualTestStatus.FAIL, count);
     }
 
     function addUnknownFailureInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'unknown', 'Unknown ', ManualTestStatus.UNKNOWN, count);
+        addInstances(instanceDataMap, 'unknown', false, ManualTestStatus.UNKNOWN, count);
     }
 
     function addInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         prefix: string,
-        accessibleName: string,
+        labelContainsVisibleText: boolean,
         status: ManualTestStatus,
         count: number,
     ) {
-        const propertyBag = { accessibleName };
+        const propertyBag = { labelContainsVisibleText };
         for (let item: number = 0; item < count; item++) {
             instanceDataMap[prefix + item] = {
                 testStepResults: {

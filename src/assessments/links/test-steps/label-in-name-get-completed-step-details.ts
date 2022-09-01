@@ -10,10 +10,9 @@ import {
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { forEach } from 'lodash';
 
-const labelIsInName = (instance: GeneratedAssessmentInstance): boolean => {
-    // TODO: Replace this placeholder with final code
-    const accessibleName: string = instance.propertyBag['accessibleName'];
-    return accessibleName && accessibleName.includes('View ');
+const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolean => {
+    const labelContainsVisibleText = instance.propertyBag['labelContainsVisibleText'];
+    return labelContainsVisibleText === true;
 };
 
 export const labelInNameGetCompletedStepDetails = (
@@ -33,14 +32,14 @@ export const labelInNameGetCompletedStepDetails = (
         const status = testStepResult ? testStepResult.status : ManualTestStatus.UNKNOWN;
         switch (status) {
             case ManualTestStatus.PASS:
-                if (labelIsInName(instance)) {
+                if (labelContainsVisibleText(instance)) {
                     expectedPasses++;
                 } else {
                     unexpectedPasses++;
                 }
                 break;
             case ManualTestStatus.FAIL:
-                if (!labelIsInName(instance)) {
+                if (!labelContainsVisibleText(instance)) {
                     expectedFailures++;
                 } else {
                     unexpectedFailures++;
