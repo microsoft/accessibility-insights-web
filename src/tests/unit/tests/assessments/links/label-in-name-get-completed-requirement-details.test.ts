@@ -46,7 +46,7 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
         instancesFromAnotherTest: number,
     ) {
         const output = labelInNameGetCompletedRequirementDetails(
-            getAssessmentStoreData(
+            getAssessmentTestData(
                 confirmedPasses,
                 confirmedFailures,
                 expectedFailuresMarkedAsPass,
@@ -64,7 +64,7 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
         });
     }
 
-    function getAssessmentStoreData(
+    function getAssessmentTestData(
         confirmedPasses: number,
         confirmedFailures: number,
         expectedFailuresMarkedAsPass: number,
@@ -112,7 +112,10 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
             expectedPassesMarkedAsFailures,
         );
         addInstancesWithNoSignal(generatedAssessmentInstancesMap, unknowns);
-        addInstancesFromAnotherTest(generatedAssessmentInstancesMap, instancesFromAnotherTest);
+        addInstancesFromAnotherRequirement(
+            generatedAssessmentInstancesMap,
+            instancesFromAnotherTest,
+        );
 
         return generatedAssessmentInstancesMap;
     }
@@ -148,7 +151,7 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
         addInstances(instanceDataMap, 'unknown', undefined, ManualTestStatus.UNKNOWN, count);
     }
 
-    function addInstancesFromAnotherTest(
+    function addInstancesFromAnotherRequirement(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
