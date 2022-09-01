@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { labelInNameGetCompletedRequirementDetails } from 'assessments/links/test-steps/label-in-name-get-completed-step-details';
+import { labelInNameGetCompletedRequirementDetails } from 'assessments/links/test-steps/label-in-name-get-completed-requirement-details';
 import {
     AssessmentData,
     InstanceIdToInstanceDataMap,
