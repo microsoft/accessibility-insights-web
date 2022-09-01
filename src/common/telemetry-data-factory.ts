@@ -396,10 +396,10 @@ export class TelemetryDataFactory {
         testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.passes,
+            analyzerResult.originalResult?.passes,
         );
         const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.violations,
+            analyzerResult.originalResult?.violations,
         );
         const telemetry: IssuesAnalyzerScanTelemetryData = {
             ...this.forTestScan(
@@ -422,13 +422,13 @@ export class TelemetryDataFactory {
         testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.passes,
+            analyzerResult.originalResult?.passes,
         );
         const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.violations,
+            analyzerResult.originalResult?.violations,
         );
         const incompleteRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.incomplete,
+            analyzerResult.originalResult?.incomplete,
         );
         const telemetry: NeedsReviewAnalyzerScanTelemetryData = {
             ...this.forTestScan(
@@ -464,9 +464,11 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]): DictionaryStringTo<number> {
+    private generateTelemetryRuleResult(
+        axeRule: AxeRule[] | undefined,
+    ): DictionaryStringTo<number> {
         const ruleResults: DictionaryStringTo<number> = {};
-        axeRule.forEach(element => {
+        axeRule?.forEach(element => {
             const key: string = element.id;
             if (key != null) {
                 ruleResults[key] = element.nodes.length;

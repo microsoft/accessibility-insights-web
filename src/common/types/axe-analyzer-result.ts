@@ -6,7 +6,7 @@ import { DictionaryStringTo } from 'types/common-types';
 
 export interface AxeAnalyzerResult {
     results: DictionaryStringTo<any>;
-    originalResult: ScanResults;
+    originalResult?: ScanResults;
     include?: SingleElementSelector[];
     exclude?: SingleElementSelector[];
 }

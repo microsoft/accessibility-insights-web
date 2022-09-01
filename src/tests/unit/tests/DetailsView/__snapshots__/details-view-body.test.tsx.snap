@@ -131,13 +131,10 @@ exports[`DetailsViewBody render render 1`] = `
       }
       tabStoreData={
         Object {
-          "id": null,
           "isChanged": false,
           "isClosed": false,
           "isOriginChanged": false,
           "isPageHidden": false,
-          "title": null,
-          "url": null,
         }
       }
       visualizationConfigurationFactory={Object {}}
@@ -467,13 +464,10 @@ exports[`DetailsViewBody render render 1`] = `
         }
         tabStoreData={
           Object {
-            "id": null,
             "isChanged": false,
             "isClosed": false,
             "isOriginChanged": false,
             "isPageHidden": false,
-            "title": null,
-            "url": null,
           }
         }
         visualizationConfigurationFactory={Object {}}
@@ -810,13 +804,10 @@ exports[`DetailsViewBody render render 1`] = `
             }
             tabStoreData={
               Object {
-                "id": null,
                 "isChanged": false,
                 "isClosed": false,
                 "isOriginChanged": false,
                 "isPageHidden": false,
-                "title": null,
-                "url": null,
               }
             }
             visualizationConfigurationFactory={Object {}}
