@@ -66,6 +66,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LabelInNamePropertyBag>
         defaultValue: NoValue,
     },
     {
+        propertyName: 'visibleText',
+        displayName: 'Visible text',
+        defaultValue: NoValue,
+    },
+    {
         propertyName: 'url',
         displayName: 'URL',
         defaultValue: NoValue,
@@ -94,7 +99,7 @@ export const LabelInName: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['link-purpose'], //will be updated with custom label in name rule
+                rules: ['label-in-name'],
                 key: LinksTestStep.labelInName,
                 testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
