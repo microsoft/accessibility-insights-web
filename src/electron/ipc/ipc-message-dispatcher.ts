@@ -16,7 +16,9 @@ export class IpcMessageDispatcher implements ActionMessageDispatcher {
             sink(IPC_MESSAGE_CHANNEL_NAME, message);
         }
     }
-
+    public asyncDispatchMessage(message: Message): Promise<void> {
+        throw new Error('Method not implemented (not yet required for any main process events).');
+    }
     public dispatchType(messageType: string): void {
         throw new Error('Method not implemented (not yet required for any main process events).');
     }

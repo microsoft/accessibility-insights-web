@@ -483,11 +483,18 @@ module.exports = function (grunt) {
                         40: config.options.icon48,
                     },
                 },
-                permissions: ['notifications', 'scripting', 'storage', 'tabs', 'webNavigation'],
+                permissions: [
+                    'notifications',
+                    'scripting',
+                    'storage',
+                    'tabs',
+                    'webNavigation',
+                    'activeTab',
+                ],
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                host_permissions: ['*://*/*'],
+                optional_host_permissions: ['<all_urls>'],
                 web_accessible_resources: [
                     {
                         resources: [

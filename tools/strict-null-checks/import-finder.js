@@ -23,7 +23,10 @@ function getImportsForFile(parentFilePath, srcRoot) {
         .filter(fileName => !/\.scss$/.test(fileName)) // remove css imports
         .filter(fileName => /\//.test(fileName)) // remove node modules (the import must contain '/')
         .filter(
-            fileName => !/^(@fluentui|lodash|react-dom|axe-core|@microsoft|ajv)\//.test(fileName),
+            
+            fileName =>
+                !/^(@fluentui|lodash|react-dom|axe-core|@microsoft|timers|ajv)\//.test(fileName),
+        ,
         ) // remove node module usages with slashes in name
         .map(fileName => {
             if (/(^\.\/)|(^\.\.\/)/.test(fileName)) {

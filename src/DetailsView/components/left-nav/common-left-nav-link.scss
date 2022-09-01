@@ -4,10 +4,6 @@
 @import '../../../common/styles/colors.scss';
 @import '../../../common/styles/common.scss';
 
-:global(.is-selected) .left-nav-link-container {
-    color: $always-black;
-}
-
 .left-nav-link-container {
     margin-left: 10px;
     color: $primary-text;
@@ -16,6 +12,10 @@
     justify-content: flex-start;
     min-height: 44px;
     align-items: center;
+
+    :global(.is-selected) & {
+        color: $always-black;
+    }
 
     .link-icon {
         font-size: 24px;
