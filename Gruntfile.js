@@ -184,7 +184,7 @@ module.exports = function (grunt) {
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'webpack-package-validator': `"${webpackPath}" --config-name package-validator`,
+            'esbuild-package-validator': `node esbuild.js --env validator`,
             'generate-validator': `node ${packageValidatorDropPath}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'dotnet-publish-mock-adb': {
@@ -876,10 +876,7 @@ module.exports = function (grunt) {
         'package-ui',
     ]);
     grunt.registerTask('build-package-validator', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'exec:webpack-package-validator',
-        'build-assets',
+        'exec:esbuild-package-validator',
         'package-validator',
     ]);
     grunt.registerTask('build-all', [

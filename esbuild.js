@@ -113,6 +113,28 @@ switch (argsObj.env) {
         );
         break;
 
+    case 'validator':
+        entryFiles = {
+            validator: `${src}/packages/assessment-validator/index.ts`,
+        };
+        outdir = path.join(__dirname, 'packages/validator/bundle');
+        platform = 'node';
+
+        plugins.push(
+            NodeResolve.NodeResolvePlugin({
+                extensions: ['.ts', '.tsx', '.js'],
+                onResolved: resolved => {
+                    if (resolved.includes('node_modules')) {
+                        return {
+                            external: true,
+                        };
+                    }
+                    return resolved;
+                },
+            }),
+        );
+        break;
+
     // dev web extension
     default:
         checkToAddReactDevTools(entryFiles);
