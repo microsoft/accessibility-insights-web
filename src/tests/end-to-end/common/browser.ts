@@ -18,12 +18,15 @@ import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/deta
 import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private memoizedServiceWorker: ServiceWorker;
     private pages: Array<Page> = [];
     private underlyingBrowserContext: Playwright.BrowserContext | null;
+    private readonly promiseFactory = createDefaultPromiseFactory();
 
     constructor(
         private readonly browserInstanceId: string,
@@ -192,9 +195,12 @@ export class Browser {
         const backgroundPage = await this.background();
 
         // Check chrome.tabs is initialized
-        while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
-            await setTimeout(50);
-        }
+        const checkTabsInit = async () => {
+            while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
+                await setTimeout(50);
+            }
+        };
+        await this.promiseFactory.timeout(checkTabsInit(), DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS);
 
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
