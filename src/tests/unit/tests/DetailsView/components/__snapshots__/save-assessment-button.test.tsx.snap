@@ -6,7 +6,7 @@ exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
     download="download"
     href="url"
     iconProps={
-      Object {
+      {
         "iconName": "Save",
       }
     }
@@ -16,14 +16,14 @@ exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
   </InsightsCommandButton>
   <Dialog
     dialogContentProps={
-      Object {
+      {
         "title": "Assessment saved",
         "type": 0,
       }
     }
     hidden={false}
     modalProps={
-      Object {
+      {
         "containerClassName": "insightsDialogMainOverride",
         "isBlocking": false,
       }
@@ -44,7 +44,7 @@ exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
         horizontal={true}
         horizontalAlign="space-between"
         tokens={
-          Object {
+          {
             "childrenGap": 6,
           }
         }

@@ -6,8 +6,8 @@ exports[`IssueFilingChoiceGroupTest render 1`] = `
   className="issue-filing-choice-group"
   onChange={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": "test bug service key",
         "text": "test bug service name",
       },

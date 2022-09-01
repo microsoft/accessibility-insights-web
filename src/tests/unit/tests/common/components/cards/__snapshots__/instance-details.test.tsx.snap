@@ -30,8 +30,8 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
       />
       <InstanceDetailsFooter
         deps={
-          Object {
-            "cardInteractionSupport": Object {
+          {
+            "cardInteractionSupport": {
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
@@ -40,15 +40,15 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
           }
         }
         result={
-          Object {
-            "descriptors": Object {},
-            "identifiers": Object {
+          {
+            "descriptors": {},
+            "identifiers": {
               "conciseName": "test-concise-name",
               "identifier": "test-id",
               "this-property-does-not-have-config": "some value",
             },
             "isSelected": true,
-            "resolution": Object {},
+            "resolution": {},
             "ruleId": "image-alt",
             "status": "fail",
             "uid": "some-guid-here",
@@ -90,8 +90,8 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
       />
       <InstanceDetailsFooter
         deps={
-          Object {
-            "cardInteractionSupport": Object {
+          {
+            "cardInteractionSupport": {
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
@@ -100,15 +100,15 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
           }
         }
         result={
-          Object {
-            "descriptors": Object {},
-            "identifiers": Object {
+          {
+            "descriptors": {},
+            "identifiers": {
               "conciseName": "test-concise-name",
               "identifier": "test-id",
               "this-property-does-not-have-config": "some value",
             },
             "isSelected": false,
-            "resolution": Object {},
+            "resolution": {},
             "ruleId": "image-alt",
             "status": "fail",
             "uid": "some-guid-here",
@@ -138,8 +138,8 @@ exports[`InstanceDetails renders 1`] = `
           <React.Fragment>
             <css-selector
               deps={
-                Object {
-                  "cardInteractionSupport": Object {
+                {
+                  "cardInteractionSupport": {
                     "supportsCopyFailureDetails": true,
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
@@ -154,8 +154,8 @@ exports[`InstanceDetails renders 1`] = `
           <React.Fragment>
             <snippet
               deps={
-                Object {
-                  "cardInteractionSupport": Object {
+                {
+                  "cardInteractionSupport": {
                     "supportsCopyFailureDetails": true,
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
@@ -170,8 +170,8 @@ exports[`InstanceDetails renders 1`] = `
           <React.Fragment>
             <how-to-fix-web
               deps={
-                Object {
-                  "cardInteractionSupport": Object {
+                {
+                  "cardInteractionSupport": {
                     "supportsCopyFailureDetails": true,
                     "supportsHighlighting": true,
                     "supportsIssueFiling": true,
@@ -181,14 +181,14 @@ exports[`InstanceDetails renders 1`] = `
               }
               index={22}
               propertyData={
-                Object {
-                  "all": Array [],
-                  "any": Array [
+                {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
                 }
               }
             />
@@ -204,8 +204,8 @@ exports[`InstanceDetails renders 1`] = `
       />
       <InstanceDetailsFooter
         deps={
-          Object {
-            "cardInteractionSupport": Object {
+          {
+            "cardInteractionSupport": {
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
@@ -214,24 +214,24 @@ exports[`InstanceDetails renders 1`] = `
           }
         }
         result={
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "this is a sample snippet",
             },
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": "body img",
               "css-selector": "body img",
               "identifier": "body img",
             },
-            "resolution": Object {
-              "how-to-fix-web": Object {
-                "all": Array [],
-                "any": Array [
+            "resolution": {
+              "how-to-fix-web": {
+                "all": [],
+                "any": [
                   "Element does not have an alt attribute",
                   "aria-label attribute does not exist or is empty",
                   "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                 ],
-                "none": Array [],
+                "none": [],
               },
               "howToFixSummary": "sample how to fix summary",
             },
@@ -275,8 +275,8 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
       />
       <InstanceDetailsFooter
         deps={
-          Object {
-            "cardInteractionSupport": Object {
+          {
+            "cardInteractionSupport": {
               "supportsCopyFailureDetails": true,
               "supportsHighlighting": true,
               "supportsIssueFiling": true,
@@ -285,14 +285,14 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
           }
         }
         result={
-          Object {
-            "descriptors": Object {},
-            "identifiers": Object {
+          {
+            "descriptors": {},
+            "identifiers": {
               "conciseName": "test-concise-name",
               "identifier": "test-id",
               "this-property-does-not-have-config": "some value",
             },
-            "resolution": Object {},
+            "resolution": {},
             "ruleId": "image-alt",
             "status": "fail",
             "uid": "some-guid-here",

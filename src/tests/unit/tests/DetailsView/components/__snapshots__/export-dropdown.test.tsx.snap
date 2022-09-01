@@ -6,7 +6,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
     ariaLabel="export options menu"
     data-automation-id="report-export-dropdown"
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -16,20 +16,20 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
   <ContextualMenu
     id="report-export-dropdown-menu"
     items={
-      Array [
-        Object {
+      [
+        {
           "download": "A file name",
           "href": "a file url",
           "key": "html",
           "onClick": [Function],
         },
-        Object {
+        {
           "download": "json file name",
           "href": undefined,
           "key": "json",
           "onClick": [Function],
         },
-        Object {
+        {
           "download": undefined,
           "href": undefined,
           "key": "codepen",
@@ -49,7 +49,7 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
     ariaLabel="export options menu"
     data-automation-id="report-export-dropdown"
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -59,14 +59,14 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
   <ContextualMenu
     id="report-export-dropdown-menu"
     items={
-      Array [
-        Object {
+      [
+        {
           "download": "A file name",
           "href": "a file url",
           "key": "html",
           "onClick": [Function],
         },
-        Object {
+        {
           "download": undefined,
           "href": undefined,
           "key": "codepen",
@@ -86,7 +86,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
     ariaLabel="export options menu"
     data-automation-id="report-export-dropdown"
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -96,8 +96,8 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
   <ContextualMenu
     id="report-export-dropdown-menu"
     items={
-      Array [
-        Object {
+      [
+        {
           "download": "A file name",
           "href": "a file url",
           "key": "html",
@@ -117,7 +117,7 @@ exports[`ExportDropdown renders without menu items 1`] = `
     ariaLabel="export options menu"
     data-automation-id="report-export-dropdown"
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -133,7 +133,7 @@ exports[`ExportDropdown should dismiss the contextMenu 1`] = `
     ariaLabel="export options menu"
     data-automation-id="report-export-dropdown"
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }

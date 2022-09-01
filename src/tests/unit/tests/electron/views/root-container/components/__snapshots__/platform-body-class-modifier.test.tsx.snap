@@ -3,12 +3,12 @@
 exports[`PlatformInfo Renders per snapshot for mac 1`] = `
 <BodyClassModifier
   classNames={
-    Array [
+    [
       "is-mac-os",
     ]
   }
   deps={
-    Object {
+    {
       "documentManipulator": [typemoq mock object],
       "platformInfo": [typemoq mock object],
     }

@@ -5,7 +5,7 @@ exports[`TelemetrySettings renders with enabled = false 1`] = `
   description={
     <EnableTelemetrySettingDescription
       deps={
-        Object {
+        {
           "LinkComponent": [Function],
         }
       }
@@ -23,7 +23,7 @@ exports[`TelemetrySettings renders with enabled = true 1`] = `
   description={
     <EnableTelemetrySettingDescription
       deps={
-        Object {
+        {
           "LinkComponent": [Function],
         }
       }

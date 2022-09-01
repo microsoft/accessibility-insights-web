@@ -9,7 +9,7 @@ exports[`ScreenshotContainer renders per snapshot with highlight boxes 1`] = `
   />
   <HighlightBox
     viewModel={
-      Object {
+      {
         "height": "height-1",
         "label": null,
         "left": "left-1",
@@ -21,7 +21,7 @@ exports[`ScreenshotContainer renders per snapshot with highlight boxes 1`] = `
   />
   <HighlightBox
     viewModel={
-      Object {
+      {
         "height": "height-2",
         "label": "!",
         "left": "left-2",

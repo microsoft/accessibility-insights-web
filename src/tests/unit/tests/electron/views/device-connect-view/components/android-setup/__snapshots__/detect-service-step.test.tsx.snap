@@ -3,7 +3,7 @@
 exports[`DetectServiceStep renders 1`] = `
 <AndroidSetupSpinnerStep
   deps={
-    Object {
+    {
       "LinkComponent": [Function],
     }
   }

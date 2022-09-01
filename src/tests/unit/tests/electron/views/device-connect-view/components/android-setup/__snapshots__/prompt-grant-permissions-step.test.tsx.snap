@@ -4,7 +4,7 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
 <AndroidSetupStepLayout
   headerText="Grant permissions on your device"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -17,7 +17,7 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -35,7 +35,7 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
@@ -54,7 +54,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
 <AndroidSetupStepLayout
   headerText="Grant permissions on your device"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -67,7 +67,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -85,7 +85,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,

@@ -3,14 +3,14 @@
 exports[`StoresTree renders each row properly 1`] = `
 <StyledDetailsRowBase
   columns={
-    Array [
-      Object {
+    [
+      {
         "fieldName": "key",
         "key": "key",
         "minWidth": 300,
         "name": "property",
       },
-      Object {
+      {
         "fieldName": "value",
         "key": "value",
         "minWidth": 300,
@@ -22,7 +22,7 @@ exports[`StoresTree renders each row properly 1`] = `
   compact={true}
   groupNestingDepth={0}
   item={
-    Object {
+    {
       "key": "value",
     }
   }
@@ -33,16 +33,16 @@ exports[`StoresTree renders each row properly 1`] = `
       "_canSelectItem": [Function],
       "_changeEventSuppressionCount": 0,
       "_exemptedCount": 0,
-      "_exemptedIndices": Object {},
+      "_exemptedIndices": {},
       "_getKey": [Function],
       "_isModal": false,
-      "_items": Array [],
-      "_keyToIndexMap": Object {},
+      "_items": [],
+      "_keyToIndexMap": {},
       "_onItemsChanged": undefined,
       "_onSelectionChanged": undefined,
       "_selectedItems": null,
       "_unselectableCount": 0,
-      "_unselectableIndices": Object {},
+      "_unselectableIndices": {},
       "count": 0,
       "mode": 2,
     }
@@ -51,7 +51,7 @@ exports[`StoresTree renders each row properly 1`] = `
 />
 `;
 
-exports[`StoresTree renders the value column properly 1`] = `"{\\"first\\":1,\\"second\\":\\"2\\",\\"third\\":true,\\"fourth\\":[4],\\"fifth\\":{\\"sixth\\":\\"6\\"}}"`;
+exports[`StoresTree renders the value column properly 1`] = `"{"first":1,"second":"2","third":true,"fourth":[4],"fifth":{"sixth":"6"}}"`;
 
 exports[`StoresTree renders with no data from the state 1`] = `
 <StyledSpinnerBase
@@ -73,16 +73,16 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
         "_canSelectItem": [Function],
         "_changeEventSuppressionCount": 0,
         "_exemptedCount": 0,
-        "_exemptedIndices": Object {},
+        "_exemptedIndices": {},
         "_getKey": [Function],
         "_isModal": false,
-        "_items": Array [],
-        "_keyToIndexMap": Object {},
+        "_items": [],
+        "_keyToIndexMap": {},
         "_onItemsChanged": undefined,
         "_onSelectionChanged": undefined,
         "_selectedItems": null,
         "_unselectableCount": 0,
-        "_unselectableIndices": Object {},
+        "_unselectableIndices": {},
         "count": 0,
         "mode": 2,
       }
@@ -94,14 +94,14 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
     <StyledGroupedListBase
       compact={true}
       groups={
-        Array [
-          Object {
+        [
+          {
             "count": 2,
             "key": "userConfigurationStoreData",
             "name": "userConfigurationStoreData",
             "startIndex": 0,
           },
-          Object {
+          {
             "count": 1,
             "key": "permissionsStateStoreData",
             "name": "permissionsStateStoreData",
@@ -110,16 +110,16 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
         ]
       }
       items={
-        Array [
-          Object {
+        [
+          {
             "key": "enableTelemetry",
             "value": true,
           },
-          Object {
+          {
             "key": "isFirstTime",
             "value": false,
           },
-          Object {
+          {
             "key": "hasAllUrlAndFilePermissions",
             "value": true,
           },
@@ -132,16 +132,16 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
           "_canSelectItem": [Function],
           "_changeEventSuppressionCount": 0,
           "_exemptedCount": 0,
-          "_exemptedIndices": Object {},
+          "_exemptedIndices": {},
           "_getKey": [Function],
           "_isModal": false,
-          "_items": Array [],
-          "_keyToIndexMap": Object {},
+          "_items": [],
+          "_keyToIndexMap": {},
           "_onItemsChanged": undefined,
           "_onSelectionChanged": undefined,
           "_selectedItems": null,
           "_unselectableCount": 0,
-          "_unselectableIndices": Object {},
+          "_unselectableIndices": {},
           "count": 0,
           "mode": 2,
         }

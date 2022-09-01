@@ -6,21 +6,21 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
 >
   <DetectTestComponent
     androidSetupStoreData={
-      Object {
+      {
         "currentStepId": "detect-adb",
       }
     }
     deps={
-      Object {
+      {
         "LinkComponent": [Function],
-        "androidSetupStepComponentProvider": Object {
+        "androidSetupStepComponentProvider": {
           "detect-adb": [Function],
           "prompt-locate-adb": [Function],
         },
       }
     }
     userConfigurationStoreData={
-      Object {
+      {
         "adbLocation": null,
       }
     }

@@ -12,14 +12,14 @@ exports[`Head renders 1`] = `
   </title>
   <style
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "<<CSS:../reports/automated-checks-report.css>>",
       }
     }
   />
   <style
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "some style sheet",
       }
     }
@@ -30,7 +30,7 @@ exports[`Head renders 1`] = `
 exports[`ReporterHead renders 1`] = `
 <Head
   bundledStyles={
-    Object {
+    {
       "styleSheet": "<<CSS:../../packages/report/bundle/report.css>>",
     }
   }
@@ -42,7 +42,7 @@ exports[`ReporterHead renders 1`] = `
 exports[`WebReportHead renders 1`] = `
 <Head
   bundledStyles={
-    Object {
+    {
       "styleSheet": "<<CSS:detailsView.css>>",
     }
   }

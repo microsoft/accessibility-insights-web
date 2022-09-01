@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ScanResultsToUnifiesRules calls each specified converter in turn and concatenates results 1`] = `
-Array [
-  Object {
+[
+  {
     "placeholder": 0,
   },
-  Object {
+  {
     "placeholder": 1,
   },
-  Object {
+  {
     "placeholder": 2,
   },
 ]

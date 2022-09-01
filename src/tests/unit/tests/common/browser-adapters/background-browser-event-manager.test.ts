@@ -156,7 +156,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[deferred browser event: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         let appListenerFired = false;
@@ -189,7 +189,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[deferred browser event: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
@@ -218,7 +218,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[browser event listener: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[browser event listener: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak

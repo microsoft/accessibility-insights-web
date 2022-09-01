@@ -201,7 +201,7 @@ describe(AxeFrameMessenger, () => {
             await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
                 ]
             `);
@@ -238,7 +238,7 @@ describe(AxeFrameMessenger, () => {
             await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
                 ]
             `);
@@ -290,7 +290,7 @@ describe(AxeFrameMessenger, () => {
             await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "An axe-core error occurred while processing a result from a child frame.",
                 ]
             `);
@@ -308,7 +308,7 @@ describe(AxeFrameMessenger, () => {
             await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "Received unexpected axe-core message from a non-parent window",
                 ]
             `);
@@ -336,7 +336,7 @@ describe(AxeFrameMessenger, () => {
             await flushSettledPromises();
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.",
                 ]
             `);
@@ -358,7 +358,7 @@ describe(AxeFrameMessenger, () => {
             );
 
             expect(logger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "AxeFrameMessenger does not support replies-to-replies, but a topicHandler provided a replyHandler in a response callback.",
                 ]
             `);

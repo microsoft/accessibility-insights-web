@@ -18,10 +18,10 @@ exports[`TabStopsFailedInstanceSection does renders when no results are failing 
     />
   </HeadingElementForLevel>
   <TabStopsRequirementsWithInstances
-    deps={Object {}}
+    deps={{}}
     getCollapsibleComponentPropsWithInstance={[Function]}
     headingLevel={3}
-    results={Array []}
+    results={[]}
   />
 </div>
 `;
@@ -42,16 +42,16 @@ exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
     />
   </HeadingElementForLevel>
   <TabStopsRequirementsWithInstances
-    deps={Object {}}
+    deps={{}}
     getCollapsibleComponentPropsWithInstance={[Function]}
     headingLevel={3}
     results={
-      Array [
-        Object {
+      [
+        {
           "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
           "id": "keyboard-navigation",
-          "instances": Array [
-            Object {
+          "instances": [
+            {
               "description": "test desc 1",
               "id": "test-id-1",
             },
@@ -59,11 +59,11 @@ exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
           "isExpanded": false,
           "name": "Keyboard navigation",
         },
-        Object {
+        {
           "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
           "id": "keyboard-traps",
-          "instances": Array [
-            Object {
+          "instances": [
+            {
               "description": "test desc 2",
               "id": "test-id-2",
             },

@@ -4,7 +4,7 @@ exports[`ContentPanelButton renders from content 1`] = `
 <CustomizedActionButton
   ariaLabel="info and examples"
   iconProps={
-    Object {
+    {
       "iconName": "iconName",
     }
   }
@@ -18,7 +18,7 @@ exports[`ContentPanelButton renders from path 1`] = `
 <CustomizedActionButton
   ariaLabel="info and examples"
   iconProps={
-    Object {
+    {
       "iconName": "iconName",
     }
   }

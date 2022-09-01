@@ -1,41 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CombinedResultsToCardsModelConverter with a mixture of url specifications 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "failed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
             "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-1",
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violation-1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violation-2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "new",
                     "url": "https://example.com/failed-rule-1/violation-3",
                   },
@@ -43,7 +43,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-1",
               "howToFixSummary": "Violation 1 of rule failed-rule-1",
             },
@@ -55,70 +55,70 @@ Object {
         "url": "url for failed-rule-1 with default url https://example.com/rules/failed-rule-1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "inapplicable-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
             "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "passed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
             "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for passed-rule-1 with default url https://example.com/rules/passed-rule-1",
       },
     ],
-    "unknown": Array [],
+    "unknown": [],
   },
   "visualHelperEnabled": false,
 }
 `;
 
 exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "failed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
             "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-1",
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
@@ -126,7 +126,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-1",
               "howToFixSummary": "Violation 1 of rule failed-rule-1",
             },
@@ -134,26 +134,26 @@ Object {
             "status": "fail",
             "uid": "test uid",
           },
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-2",
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "new",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
@@ -161,7 +161,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 2 of rule failed-rule-1",
               "howToFixSummary": "Violation 2 of rule failed-rule-1",
             },
@@ -172,29 +172,29 @@ Object {
         ],
         "url": "url for failed-rule-1 with default url https://example.com/rules/failed-rule-1",
       },
-      Object {
+      {
         "description": "failed-rule-2 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-2-specific-tag",
             "text": "guidance for common-tag-failed-rule-2-specific-tag",
           },
         ],
         "id": "failed-rule-2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-2-selector-1",
               "css-selector": ".failed-rule-2-selector-1",
               "identifier": ".failed-rule-2-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-2/only-violation",
                   },
@@ -202,7 +202,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-2",
               "howToFixSummary": "Violation 1 of rule failed-rule-2",
             },
@@ -210,26 +210,26 @@ Object {
             "status": "fail",
             "uid": "test uid",
           },
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-2-selector-2",
               "css-selector": ".failed-rule-2-selector-2",
               "identifier": ".failed-rule-2-selector-2",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-2/violations/2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "new",
                     "url": "https://example.com/failed-rule-2/violations/3",
                   },
@@ -237,7 +237,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 2 of rule failed-rule-2",
               "howToFixSummary": "Violation 2 of rule failed-rule-2",
             },
@@ -249,70 +249,70 @@ Object {
         "url": "url for failed-rule-2 with default url https://example.com/rules/failed-rule-2",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "inapplicable-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
             "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "passed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
             "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for passed-rule-1 with default url https://example.com/rules/passed-rule-1",
       },
     ],
-    "unknown": Array [],
+    "unknown": [],
   },
   "visualHelperEnabled": false,
 }
 `;
 
 exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "failed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
             "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-1",
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
@@ -320,7 +320,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-1",
               "howToFixSummary": "Violation 1 of rule failed-rule-1",
             },
@@ -328,26 +328,26 @@ Object {
             "status": "fail",
             "uid": "test uid",
           },
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-2",
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
@@ -355,7 +355,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 2 of rule failed-rule-1",
               "howToFixSummary": "Violation 2 of rule failed-rule-1",
             },
@@ -366,29 +366,29 @@ Object {
         ],
         "url": "url for failed-rule-1 with default url https://example.com/rules/failed-rule-1",
       },
-      Object {
+      {
         "description": "failed-rule-2 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-2-specific-tag",
             "text": "guidance for common-tag-failed-rule-2-specific-tag",
           },
         ],
         "id": "failed-rule-2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-2-selector-1",
               "css-selector": ".failed-rule-2-selector-1",
               "identifier": ".failed-rule-2-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/only-violation",
                   },
@@ -396,7 +396,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-2",
               "howToFixSummary": "Violation 1 of rule failed-rule-2",
             },
@@ -404,26 +404,26 @@ Object {
             "status": "fail",
             "uid": "test uid",
           },
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-2-selector-2",
               "css-selector": ".failed-rule-2-selector-2",
               "identifier": ".failed-rule-2-selector-2",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/3",
                   },
@@ -431,7 +431,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 2 of rule failed-rule-2",
               "howToFixSummary": "Violation 2 of rule failed-rule-2",
             },
@@ -443,137 +443,137 @@ Object {
         "url": "url for failed-rule-2 with default url https://example.com/rules/failed-rule-2",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "inapplicable-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
             "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "passed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
             "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for passed-rule-1 with default url https://example.com/rules/passed-rule-1",
       },
     ],
-    "unknown": Array [],
+    "unknown": [],
   },
   "visualHelperEnabled": false,
 }
 `;
 
 exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [],
-    "inapplicable": Array [
-      Object {
+  "cards": {
+    "fail": [],
+    "inapplicable": [
+      {
         "description": "inapplicable-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
             "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
-      Object {
+      {
         "description": "inapplicable-rule-2 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-inapplicable-rule-2-specific-tag",
             "text": "guidance for common-tag-inapplicable-rule-2-specific-tag",
           },
         ],
         "id": "inapplicable-rule-2",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for inapplicable-rule-2 with default url https://example.com/rules/inapplicable-rule-2",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "passed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
             "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for passed-rule-1 with default url https://example.com/rules/passed-rule-1",
       },
-      Object {
+      {
         "description": "passed-rule-2 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-passed-rule-2-specific-tag",
             "text": "guidance for common-tag-passed-rule-2-specific-tag",
           },
         ],
         "id": "passed-rule-2",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "url": "url for passed-rule-2 with default url https://example.com/rules/passed-rule-2",
       },
     ],
-    "unknown": Array [],
+    "unknown": [],
   },
   "visualHelperEnabled": false,
 }
 `;
 
 exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rules 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "failed-rule-1 description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
             "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-1",
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
@@ -581,7 +581,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 1 of rule failed-rule-1",
               "howToFixSummary": "Violation 1 of rule failed-rule-1",
             },
@@ -589,26 +589,26 @@ Object {
             "status": "fail",
             "uid": "test uid",
           },
-          Object {
-            "descriptors": Object {
+          {
+            "descriptors": {
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": ".failed-rule-1-selector-2",
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
-              "urls": Object {
-                "urlInfos": Array [
-                  Object {
+              "urls": {
+                "urlInfos": [
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
-                  Object {
+                  {
                     "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
@@ -616,7 +616,7 @@ Object {
               },
             },
             "isSelected": false,
-            "resolution": Object {
+            "resolution": {
               "how-to-fix": "fix Violation 2 of rule failed-rule-1",
               "howToFixSummary": "Violation 2 of rule failed-rule-1",
             },
@@ -628,9 +628,9 @@ Object {
         "url": "url for failed-rule-1 with default url https://example.com/rules/failed-rule-1",
       },
     ],
-    "inapplicable": Array [],
-    "pass": Array [],
-    "unknown": Array [],
+    "inapplicable": [],
+    "pass": [],
+    "unknown": [],
   },
   "visualHelperEnabled": false,
 }

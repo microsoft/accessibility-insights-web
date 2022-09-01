@@ -11,7 +11,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
     <ResultSectionTitle
       containerClassName="result-section-class-name"
       deps={
-        Object {
+        {
           "getNextHeadingLevel": [Function],
         }
       }
@@ -23,7 +23,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
   <ResultSectionContent
     containerClassName="result-section-class-name"
     deps={
-      Object {
+      {
         "getNextHeadingLevel": [Function],
       }
     }
@@ -45,7 +45,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
     <ResultSectionTitle
       containerClassName="result-section-class-name"
       deps={
-        Object {
+        {
           "getNextHeadingLevel": [Function],
         }
       }
@@ -57,7 +57,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
   <ResultSectionContent
     containerClassName="result-section-class-name"
     deps={
-      Object {
+      {
         "getNextHeadingLevel": [Function],
       }
     }
@@ -79,7 +79,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
     <ResultSectionTitle
       containerClassName="result-section-class-name"
       deps={
-        Object {
+        {
           "getNextHeadingLevel": [Function],
         }
       }
@@ -90,7 +90,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
   <ResultSectionContent
     containerClassName="result-section-class-name"
     deps={
-      Object {
+      {
         "getNextHeadingLevel": [Function],
       }
     }

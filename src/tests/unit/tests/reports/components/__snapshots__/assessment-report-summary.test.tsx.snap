@@ -9,7 +9,7 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
         "incomplete",
         "fail",
@@ -23,7 +23,7 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
     Test details
   </h3>
   <AssessmentSummaryDetails
-    testSummaries={Array []}
+    testSummaries={[]}
   />
 </div>
 `;

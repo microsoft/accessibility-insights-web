@@ -8,14 +8,14 @@ exports[`FailedInstancesSection renders with alerting off 1`] = `
 <ResultSection
   badgeCount={0}
   containerClassName="failedInstancesContainer"
-  deps={Object {}}
+  deps={{}}
   outcomeCounter={[Function]}
   outcomeType="fail"
-  results={Array []}
+  results={[]}
   sectionHeadingLevel={2}
   shouldAlertFailuresCount={false}
   targetAppInfo={
-    Object {
+    {
       "name": "page title",
       "url": "page url",
     }
@@ -28,14 +28,14 @@ exports[`FailedInstancesSection renders with alerting on 1`] = `
 <ResultSection
   badgeCount={0}
   containerClassName="failedInstancesContainer"
-  deps={Object {}}
+  deps={{}}
   outcomeCounter={[Function]}
   outcomeType="fail"
-  results={Array []}
+  results={[]}
   sectionHeadingLevel={2}
   shouldAlertFailuresCount={true}
   targetAppInfo={
-    Object {
+    {
       "name": "page title",
       "url": "page url",
     }
@@ -48,39 +48,39 @@ exports[`FailedInstancesSection renders with failures 1`] = `
 <ResultSection
   badgeCount={2}
   containerClassName="failedInstancesContainer"
-  deps={Object {}}
+  deps={{}}
   outcomeCounter={[Function]}
   outcomeType="fail"
   results={
-    Array [
-      Object {
+    [
+      {
         "description": "sample-description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "sample-guidance-href",
             "text": "sample-guidance-text",
           },
         ],
         "id": "some-rule",
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "this is a sample snippet",
             },
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": "body img",
               "css-selector": "body img",
               "identifier": "body img",
             },
-            "resolution": Object {
-              "how-to-fix-web": Object {
-                "all": Array [],
-                "any": Array [
+            "resolution": {
+              "how-to-fix-web": {
+                "all": [],
+                "any": [
                   "Element does not have an alt attribute",
                   "aria-label attribute does not exist or is empty",
                   "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                 ],
-                "none": Array [],
+                "none": [],
               },
               "howToFixSummary": "sample how to fix summary",
             },
@@ -91,34 +91,34 @@ exports[`FailedInstancesSection renders with failures 1`] = `
         ],
         "url": "sample-url",
       },
-      Object {
+      {
         "description": "sample-description",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "sample-guidance-href",
             "text": "sample-guidance-text",
           },
         ],
         "id": "some-rule",
-        "nodes": Array [
-          Object {
-            "descriptors": Object {
+        "nodes": [
+          {
+            "descriptors": {
               "snippet": "this is a sample snippet",
             },
-            "identifiers": Object {
+            "identifiers": {
               "conciseName": "body img",
               "css-selector": "body img",
               "identifier": "body img",
             },
-            "resolution": Object {
-              "how-to-fix-web": Object {
-                "all": Array [],
-                "any": Array [
+            "resolution": {
+              "how-to-fix-web": {
+                "all": [],
+                "any": [
                   "Element does not have an alt attribute",
                   "aria-label attribute does not exist or is empty",
                   "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                 ],
-                "none": Array [],
+                "none": [],
               },
               "howToFixSummary": "sample how to fix summary",
             },
@@ -133,7 +133,7 @@ exports[`FailedInstancesSection renders with failures 1`] = `
   }
   sectionHeadingLevel={2}
   targetAppInfo={
-    Object {
+    {
       "name": "page title",
       "url": "page url",
     }

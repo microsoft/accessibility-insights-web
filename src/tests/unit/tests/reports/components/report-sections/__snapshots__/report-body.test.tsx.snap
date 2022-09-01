@@ -4,38 +4,38 @@ exports[`ReportBody renders 1`] = `
 <body-section>
   <header-section
     cardsViewData={
-      Object {
+      {
         "allCardsCollapsed": true,
-        "cards": Object {
-          "fail": Array [
-            Object {
+        "cards": {
+          "fail": [
+            {
               "description": "sample-description",
-              "guidance": Array [
-                Object {
+              "guidance": [
+                {
                   "href": "sample-guidance-href",
                   "text": "sample-guidance-text",
                 },
               ],
               "id": "some-rule",
-              "nodes": Array [
-                Object {
-                  "descriptors": Object {
+              "nodes": [
+                {
+                  "descriptors": {
                     "snippet": "this is a sample snippet",
                   },
-                  "identifiers": Object {
+                  "identifiers": {
                     "conciseName": "body img",
                     "css-selector": "body img",
                     "identifier": "body img",
                   },
-                  "resolution": Object {
-                    "how-to-fix-web": Object {
-                      "all": Array [],
-                      "any": Array [
+                  "resolution": {
+                    "how-to-fix-web": {
+                      "all": [],
+                      "any": [
                         "Element does not have an alt attribute",
                         "aria-label attribute does not exist or is empty",
                         "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                       ],
-                      "none": Array [],
+                      "none": [],
                     },
                     "howToFixSummary": "sample how to fix summary",
                   },
@@ -47,14 +47,14 @@ exports[`ReportBody renders 1`] = `
               "url": "sample-url",
             },
           ],
-          "inapplicable": Array [],
-          "pass": Array [],
-          "unknown": Array [],
+          "inapplicable": [],
+          "pass": [],
+          "unknown": [],
         },
         "visualHelperEnabled": true,
       }
     }
-    deps={Object {}}
+    deps={{}}
     description="test description"
     fixInstructionProcessor={[typemoq mock object]}
     getCollapsibleScript={[Function]}
@@ -63,20 +63,20 @@ exports[`ReportBody renders 1`] = `
     pageUrl="url:target-page"
     recommendColor={[typemoq mock object]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "app",
         },
-        "timespan": Object {
+        "timespan": {
           "scanComplete": 1900-02-02T03:00:00.000Z,
         },
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -84,18 +84,18 @@ exports[`ReportBody renders 1`] = `
       }
     }
     scanResult={
-      Object {
-        "inapplicable": Array [],
-        "incomplete": Array [],
-        "passes": Array [],
+      {
+        "inapplicable": [],
+        "incomplete": [],
+        "passes": [],
         "targetPageTitle": "page-title",
         "targetPageUrl": "url:target-page",
         "timestamp": "today",
-        "violations": Array [],
+        "violations": [],
       }
     }
     sectionFactory={
-      Object {
+      {
         "BodySection": [Function],
         "ContentContainer": [Function],
         "DetailsSection": [Function],
@@ -108,7 +108,7 @@ exports[`ReportBody renders 1`] = `
         "ResultsContainer": [Function],
         "SummarySection": [Function],
         "TitleSection": [Function],
-        "resultSectionsOrder": Array [
+        "resultSectionsOrder": [
           "failed",
           "passed",
           "notApplicable",
@@ -118,19 +118,19 @@ exports[`ReportBody renders 1`] = `
     sectionHeadingLevel={3}
     shouldAlertFailuresCount={false}
     targetAppInfo={
-      Object {
+      {
         "name": "app",
       }
     }
     toUtcString={[Function]}
     toolData={
-      Object {
-        "applicationProperties": Object {
+      {
+        "applicationProperties": {
           "environmentName": "environmentName",
           "name": "app-name",
           "version": "app-version",
         },
-        "scanEngineProperties": Object {
+        "scanEngineProperties": {
           "name": "engine-name",
           "version": "engine-version",
         },
@@ -142,38 +142,38 @@ exports[`ReportBody renders 1`] = `
     <title-section />
     <details-section
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -185,14 +185,14 @@ exports[`ReportBody renders 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
-      deps={Object {}}
+      deps={{}}
       description="test description"
       fixInstructionProcessor={[typemoq mock object]}
       getCollapsibleScript={[Function]}
@@ -201,20 +201,20 @@ exports[`ReportBody renders 1`] = `
       pageUrl="url:target-page"
       recommendColor={[typemoq mock object]}
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
-          "timespan": Object {
+          "timespan": {
             "scanComplete": 1900-02-02T03:00:00.000Z,
           },
-          "toolData": Object {
-            "applicationProperties": Object {
+          "toolData": {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -222,18 +222,18 @@ exports[`ReportBody renders 1`] = `
         }
       }
       scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
+        {
+          "inapplicable": [],
+          "incomplete": [],
+          "passes": [],
           "targetPageTitle": "page-title",
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
-          "violations": Array [],
+          "violations": [],
         }
       }
       sectionFactory={
-        Object {
+        {
           "BodySection": [Function],
           "ContentContainer": [Function],
           "DetailsSection": [Function],
@@ -246,7 +246,7 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
-          "resultSectionsOrder": Array [
+          "resultSectionsOrder": [
             "failed",
             "passed",
             "notApplicable",
@@ -256,19 +256,19 @@ exports[`ReportBody renders 1`] = `
       sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
-        Object {
+        {
           "name": "app",
         }
       }
       toUtcString={[Function]}
       toolData={
-        Object {
-          "applicationProperties": Object {
+        {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -278,38 +278,38 @@ exports[`ReportBody renders 1`] = `
     />
     <summary-section
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -321,14 +321,14 @@ exports[`ReportBody renders 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
-      deps={Object {}}
+      deps={{}}
       description="test description"
       fixInstructionProcessor={[typemoq mock object]}
       getCollapsibleScript={[Function]}
@@ -337,20 +337,20 @@ exports[`ReportBody renders 1`] = `
       pageUrl="url:target-page"
       recommendColor={[typemoq mock object]}
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
-          "timespan": Object {
+          "timespan": {
             "scanComplete": 1900-02-02T03:00:00.000Z,
           },
-          "toolData": Object {
-            "applicationProperties": Object {
+          "toolData": {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -358,18 +358,18 @@ exports[`ReportBody renders 1`] = `
         }
       }
       scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
+        {
+          "inapplicable": [],
+          "incomplete": [],
+          "passes": [],
           "targetPageTitle": "page-title",
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
-          "violations": Array [],
+          "violations": [],
         }
       }
       sectionFactory={
-        Object {
+        {
           "BodySection": [Function],
           "ContentContainer": [Function],
           "DetailsSection": [Function],
@@ -382,7 +382,7 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
-          "resultSectionsOrder": Array [
+          "resultSectionsOrder": [
             "failed",
             "passed",
             "notApplicable",
@@ -392,19 +392,19 @@ exports[`ReportBody renders 1`] = `
       sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
-        Object {
+        {
           "name": "app",
         }
       }
       toUtcString={[Function]}
       toolData={
-        Object {
-          "applicationProperties": Object {
+        {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -414,38 +414,38 @@ exports[`ReportBody renders 1`] = `
     />
     <result-section
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -457,14 +457,14 @@ exports[`ReportBody renders 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
-      deps={Object {}}
+      deps={{}}
       description="test description"
       fixInstructionProcessor={[typemoq mock object]}
       getCollapsibleScript={[Function]}
@@ -473,20 +473,20 @@ exports[`ReportBody renders 1`] = `
       pageUrl="url:target-page"
       recommendColor={[typemoq mock object]}
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
-          "timespan": Object {
+          "timespan": {
             "scanComplete": 1900-02-02T03:00:00.000Z,
           },
-          "toolData": Object {
-            "applicationProperties": Object {
+          "toolData": {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -494,18 +494,18 @@ exports[`ReportBody renders 1`] = `
         }
       }
       scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
+        {
+          "inapplicable": [],
+          "incomplete": [],
+          "passes": [],
           "targetPageTitle": "page-title",
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
-          "violations": Array [],
+          "violations": [],
         }
       }
       sectionFactory={
-        Object {
+        {
           "BodySection": [Function],
           "ContentContainer": [Function],
           "DetailsSection": [Function],
@@ -518,7 +518,7 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
-          "resultSectionsOrder": Array [
+          "resultSectionsOrder": [
             "failed",
             "passed",
             "notApplicable",
@@ -528,19 +528,19 @@ exports[`ReportBody renders 1`] = `
       sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
-        Object {
+        {
           "name": "app",
         }
       }
       toUtcString={[Function]}
       toolData={
-        Object {
-          "applicationProperties": Object {
+        {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -550,38 +550,38 @@ exports[`ReportBody renders 1`] = `
     >
       <failed-instances-section
         cardsViewData={
-          Object {
+          {
             "allCardsCollapsed": true,
-            "cards": Object {
-              "fail": Array [
-                Object {
+            "cards": {
+              "fail": [
+                {
                   "description": "sample-description",
-                  "guidance": Array [
-                    Object {
+                  "guidance": [
+                    {
                       "href": "sample-guidance-href",
                       "text": "sample-guidance-text",
                     },
                   ],
                   "id": "some-rule",
-                  "nodes": Array [
-                    Object {
-                      "descriptors": Object {
+                  "nodes": [
+                    {
+                      "descriptors": {
                         "snippet": "this is a sample snippet",
                       },
-                      "identifiers": Object {
+                      "identifiers": {
                         "conciseName": "body img",
                         "css-selector": "body img",
                         "identifier": "body img",
                       },
-                      "resolution": Object {
-                        "how-to-fix-web": Object {
-                          "all": Array [],
-                          "any": Array [
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
                             "Element does not have an alt attribute",
                             "aria-label attribute does not exist or is empty",
                             "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                           ],
-                          "none": Array [],
+                          "none": [],
                         },
                         "howToFixSummary": "sample how to fix summary",
                       },
@@ -593,14 +593,14 @@ exports[`ReportBody renders 1`] = `
                   "url": "sample-url",
                 },
               ],
-              "inapplicable": Array [],
-              "pass": Array [],
-              "unknown": Array [],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
             },
             "visualHelperEnabled": true,
           }
         }
-        deps={Object {}}
+        deps={{}}
         description="test description"
         fixInstructionProcessor={[typemoq mock object]}
         getCollapsibleScript={[Function]}
@@ -609,20 +609,20 @@ exports[`ReportBody renders 1`] = `
         pageUrl="url:target-page"
         recommendColor={[typemoq mock object]}
         scanMetadata={
-          Object {
-            "targetAppInfo": Object {
+          {
+            "targetAppInfo": {
               "name": "app",
             },
-            "timespan": Object {
+            "timespan": {
               "scanComplete": 1900-02-02T03:00:00.000Z,
             },
-            "toolData": Object {
-              "applicationProperties": Object {
+            "toolData": {
+              "applicationProperties": {
                 "environmentName": "environmentName",
                 "name": "app-name",
                 "version": "app-version",
               },
-              "scanEngineProperties": Object {
+              "scanEngineProperties": {
                 "name": "engine-name",
                 "version": "engine-version",
               },
@@ -630,18 +630,18 @@ exports[`ReportBody renders 1`] = `
           }
         }
         scanResult={
-          Object {
-            "inapplicable": Array [],
-            "incomplete": Array [],
-            "passes": Array [],
+          {
+            "inapplicable": [],
+            "incomplete": [],
+            "passes": [],
             "targetPageTitle": "page-title",
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
-            "violations": Array [],
+            "violations": [],
           }
         }
         sectionFactory={
-          Object {
+          {
             "BodySection": [Function],
             "ContentContainer": [Function],
             "DetailsSection": [Function],
@@ -654,7 +654,7 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
-            "resultSectionsOrder": Array [
+            "resultSectionsOrder": [
               "failed",
               "passed",
               "notApplicable",
@@ -664,19 +664,19 @@ exports[`ReportBody renders 1`] = `
         sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
-          Object {
+          {
             "name": "app",
           }
         }
         toUtcString={[Function]}
         toolData={
-          Object {
-            "applicationProperties": Object {
+          {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -686,38 +686,38 @@ exports[`ReportBody renders 1`] = `
       />
       <passed-checks-section
         cardsViewData={
-          Object {
+          {
             "allCardsCollapsed": true,
-            "cards": Object {
-              "fail": Array [
-                Object {
+            "cards": {
+              "fail": [
+                {
                   "description": "sample-description",
-                  "guidance": Array [
-                    Object {
+                  "guidance": [
+                    {
                       "href": "sample-guidance-href",
                       "text": "sample-guidance-text",
                     },
                   ],
                   "id": "some-rule",
-                  "nodes": Array [
-                    Object {
-                      "descriptors": Object {
+                  "nodes": [
+                    {
+                      "descriptors": {
                         "snippet": "this is a sample snippet",
                       },
-                      "identifiers": Object {
+                      "identifiers": {
                         "conciseName": "body img",
                         "css-selector": "body img",
                         "identifier": "body img",
                       },
-                      "resolution": Object {
-                        "how-to-fix-web": Object {
-                          "all": Array [],
-                          "any": Array [
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
                             "Element does not have an alt attribute",
                             "aria-label attribute does not exist or is empty",
                             "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                           ],
-                          "none": Array [],
+                          "none": [],
                         },
                         "howToFixSummary": "sample how to fix summary",
                       },
@@ -729,14 +729,14 @@ exports[`ReportBody renders 1`] = `
                   "url": "sample-url",
                 },
               ],
-              "inapplicable": Array [],
-              "pass": Array [],
-              "unknown": Array [],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
             },
             "visualHelperEnabled": true,
           }
         }
-        deps={Object {}}
+        deps={{}}
         description="test description"
         fixInstructionProcessor={[typemoq mock object]}
         getCollapsibleScript={[Function]}
@@ -745,20 +745,20 @@ exports[`ReportBody renders 1`] = `
         pageUrl="url:target-page"
         recommendColor={[typemoq mock object]}
         scanMetadata={
-          Object {
-            "targetAppInfo": Object {
+          {
+            "targetAppInfo": {
               "name": "app",
             },
-            "timespan": Object {
+            "timespan": {
               "scanComplete": 1900-02-02T03:00:00.000Z,
             },
-            "toolData": Object {
-              "applicationProperties": Object {
+            "toolData": {
+              "applicationProperties": {
                 "environmentName": "environmentName",
                 "name": "app-name",
                 "version": "app-version",
               },
-              "scanEngineProperties": Object {
+              "scanEngineProperties": {
                 "name": "engine-name",
                 "version": "engine-version",
               },
@@ -766,18 +766,18 @@ exports[`ReportBody renders 1`] = `
           }
         }
         scanResult={
-          Object {
-            "inapplicable": Array [],
-            "incomplete": Array [],
-            "passes": Array [],
+          {
+            "inapplicable": [],
+            "incomplete": [],
+            "passes": [],
             "targetPageTitle": "page-title",
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
-            "violations": Array [],
+            "violations": [],
           }
         }
         sectionFactory={
-          Object {
+          {
             "BodySection": [Function],
             "ContentContainer": [Function],
             "DetailsSection": [Function],
@@ -790,7 +790,7 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
-            "resultSectionsOrder": Array [
+            "resultSectionsOrder": [
               "failed",
               "passed",
               "notApplicable",
@@ -800,19 +800,19 @@ exports[`ReportBody renders 1`] = `
         sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
-          Object {
+          {
             "name": "app",
           }
         }
         toUtcString={[Function]}
         toolData={
-          Object {
-            "applicationProperties": Object {
+          {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -822,38 +822,38 @@ exports[`ReportBody renders 1`] = `
       />
       <not-applicable-checks-section
         cardsViewData={
-          Object {
+          {
             "allCardsCollapsed": true,
-            "cards": Object {
-              "fail": Array [
-                Object {
+            "cards": {
+              "fail": [
+                {
                   "description": "sample-description",
-                  "guidance": Array [
-                    Object {
+                  "guidance": [
+                    {
                       "href": "sample-guidance-href",
                       "text": "sample-guidance-text",
                     },
                   ],
                   "id": "some-rule",
-                  "nodes": Array [
-                    Object {
-                      "descriptors": Object {
+                  "nodes": [
+                    {
+                      "descriptors": {
                         "snippet": "this is a sample snippet",
                       },
-                      "identifiers": Object {
+                      "identifiers": {
                         "conciseName": "body img",
                         "css-selector": "body img",
                         "identifier": "body img",
                       },
-                      "resolution": Object {
-                        "how-to-fix-web": Object {
-                          "all": Array [],
-                          "any": Array [
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
                             "Element does not have an alt attribute",
                             "aria-label attribute does not exist or is empty",
                             "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                           ],
-                          "none": Array [],
+                          "none": [],
                         },
                         "howToFixSummary": "sample how to fix summary",
                       },
@@ -865,14 +865,14 @@ exports[`ReportBody renders 1`] = `
                   "url": "sample-url",
                 },
               ],
-              "inapplicable": Array [],
-              "pass": Array [],
-              "unknown": Array [],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
             },
             "visualHelperEnabled": true,
           }
         }
-        deps={Object {}}
+        deps={{}}
         description="test description"
         fixInstructionProcessor={[typemoq mock object]}
         getCollapsibleScript={[Function]}
@@ -881,20 +881,20 @@ exports[`ReportBody renders 1`] = `
         pageUrl="url:target-page"
         recommendColor={[typemoq mock object]}
         scanMetadata={
-          Object {
-            "targetAppInfo": Object {
+          {
+            "targetAppInfo": {
               "name": "app",
             },
-            "timespan": Object {
+            "timespan": {
               "scanComplete": 1900-02-02T03:00:00.000Z,
             },
-            "toolData": Object {
-              "applicationProperties": Object {
+            "toolData": {
+              "applicationProperties": {
                 "environmentName": "environmentName",
                 "name": "app-name",
                 "version": "app-version",
               },
-              "scanEngineProperties": Object {
+              "scanEngineProperties": {
                 "name": "engine-name",
                 "version": "engine-version",
               },
@@ -902,18 +902,18 @@ exports[`ReportBody renders 1`] = `
           }
         }
         scanResult={
-          Object {
-            "inapplicable": Array [],
-            "incomplete": Array [],
-            "passes": Array [],
+          {
+            "inapplicable": [],
+            "incomplete": [],
+            "passes": [],
             "targetPageTitle": "page-title",
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
-            "violations": Array [],
+            "violations": [],
           }
         }
         sectionFactory={
-          Object {
+          {
             "BodySection": [Function],
             "ContentContainer": [Function],
             "DetailsSection": [Function],
@@ -926,7 +926,7 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
-            "resultSectionsOrder": Array [
+            "resultSectionsOrder": [
               "failed",
               "passed",
               "notApplicable",
@@ -936,19 +936,19 @@ exports[`ReportBody renders 1`] = `
         sectionHeadingLevel={3}
         shouldAlertFailuresCount={false}
         targetAppInfo={
-          Object {
+          {
             "name": "app",
           }
         }
         toUtcString={[Function]}
         toolData={
-          Object {
-            "applicationProperties": Object {
+          {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -961,38 +961,38 @@ exports[`ReportBody renders 1`] = `
   <footer-section>
     <footer-text
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -1004,14 +1004,14 @@ exports[`ReportBody renders 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
-      deps={Object {}}
+      deps={{}}
       description="test description"
       fixInstructionProcessor={[typemoq mock object]}
       getCollapsibleScript={[Function]}
@@ -1020,20 +1020,20 @@ exports[`ReportBody renders 1`] = `
       pageUrl="url:target-page"
       recommendColor={[typemoq mock object]}
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
-          "timespan": Object {
+          "timespan": {
             "scanComplete": 1900-02-02T03:00:00.000Z,
           },
-          "toolData": Object {
-            "applicationProperties": Object {
+          "toolData": {
+            "applicationProperties": {
               "environmentName": "environmentName",
               "name": "app-name",
               "version": "app-version",
             },
-            "scanEngineProperties": Object {
+            "scanEngineProperties": {
               "name": "engine-name",
               "version": "engine-version",
             },
@@ -1041,18 +1041,18 @@ exports[`ReportBody renders 1`] = `
         }
       }
       scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
+        {
+          "inapplicable": [],
+          "incomplete": [],
+          "passes": [],
           "targetPageTitle": "page-title",
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
-          "violations": Array [],
+          "violations": [],
         }
       }
       sectionFactory={
-        Object {
+        {
           "BodySection": [Function],
           "ContentContainer": [Function],
           "DetailsSection": [Function],
@@ -1065,7 +1065,7 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
-          "resultSectionsOrder": Array [
+          "resultSectionsOrder": [
             "failed",
             "passed",
             "notApplicable",
@@ -1075,19 +1075,19 @@ exports[`ReportBody renders 1`] = `
       sectionHeadingLevel={3}
       shouldAlertFailuresCount={false}
       targetAppInfo={
-        Object {
+        {
           "name": "app",
         }
       }
       toUtcString={[Function]}
       toolData={
-        Object {
-          "applicationProperties": Object {
+        {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },

@@ -7,16 +7,16 @@ exports[`NotScannedUrlsSection renders 1`] = `
   content={
     <UrlErrorsTable
       errors={
-        Array [
-          Object {},
-          Object {},
-          Object {},
+        [
+          {},
+          {},
+          {},
         ]
       }
       id="not-scanned-urls-table"
     />
   }
-  deps={Object {}}
+  deps={{}}
   outcomeType="unscannable"
   title="Not scanned URLs"
 />

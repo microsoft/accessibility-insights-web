@@ -7,12 +7,12 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": "pass",
         "text": "Pass",
       },
-      Object {
+      {
         "key": "fail",
         "text": "Fail",
       },
@@ -23,7 +23,7 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
       ariaLabel="add failure instance"
       data-automation-id="addTabStopsFailureInstance"
       iconProps={
-        Object {
+        {
           "iconName": "add",
         }
       }
@@ -41,12 +41,12 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": "pass",
         "text": "Pass",
       },
-      Object {
+      {
         "key": "fail",
         "text": "Fail",
       },
@@ -64,12 +64,12 @@ exports[`TabStopsChoiceGroup render with unknown status 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": "pass",
         "text": "Pass",
       },
-      Object {
+      {
         "key": "fail",
         "text": "Fail",
       },

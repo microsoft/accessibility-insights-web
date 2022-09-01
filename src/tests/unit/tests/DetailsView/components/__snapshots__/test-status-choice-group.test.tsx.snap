@@ -6,12 +6,12 @@ exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": 0,
         "text": "Pass",
       },
-      Object {
+      {
         "key": 2,
         "text": "Fail",
       },
@@ -27,12 +27,12 @@ exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": 0,
         "text": "Pass",
       },
-      Object {
+      {
         "key": 2,
         "text": "Fail",
       },
@@ -48,12 +48,12 @@ exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
   onChange={[Function]}
   onUndoClickedPassThrough={[Function]}
   options={
-    Array [
-      Object {
+    [
+      {
         "key": 0,
         "text": "Pass",
       },
-      Object {
+      {
         "key": 2,
         "text": "Fail",
       },

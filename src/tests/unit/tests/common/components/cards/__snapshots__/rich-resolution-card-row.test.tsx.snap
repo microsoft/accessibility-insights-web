@@ -6,7 +6,7 @@ exports[`RichResolutionCardRow renders with labelType=check 1`] = `
     <RichResolutionContent
       contentId="content-id"
       contentVariables={
-        Object {
+        {
           "content-var-key": "content-var-value",
         }
       }
@@ -25,7 +25,7 @@ exports[`RichResolutionCardRow renders with labelType=fix 1`] = `
     <RichResolutionContent
       contentId="content-id"
       contentVariables={
-        Object {
+        {
           "content-var-key": "content-var-value",
         }
       }

@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InitialAssessmentStoreDataGenerator.generateInitialState generates the pinned default state from assessmentsProvider data when no persistedData is provided 1`] = `
-Object {
-  "assessmentNavState": Object {
+{
+  "assessmentNavState": {
     "expandedTestType": undefined,
     "selectedTestSubview": "assessment-1-step-1",
     "selectedTestType": -1,
   },
-  "assessments": Object {
-    "assessment-1": Object {},
-    "assessment-2": Object {},
+  "assessments": {
+    "assessment-1": {},
+    "assessment-2": {},
   },
   "persistedTabInfo": null,
   "resultDescription": "",

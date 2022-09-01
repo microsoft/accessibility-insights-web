@@ -4,13 +4,13 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
 <AndroidSetupStepLayout
   headerText="Choose which device to use"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Close",
     }
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": false,
       "onClick": [Function],
       "text": "Next",
@@ -38,23 +38,23 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
       compact={true}
       isHeaderVisible={false}
       items={
-        Array [
-          Object {
-            "deviceInfo": Object {
+        [
+          {
+            "deviceInfo": {
               "friendlyName": "Phone 1",
               "id": "1",
               "isEmulator": true,
             },
           },
-          Object {
-            "deviceInfo": Object {
+          {
+            "deviceInfo": {
               "friendlyName": "Phone 2",
               "id": "2",
               "isEmulator": false,
             },
           },
-          Object {
-            "deviceInfo": Object {
+          {
+            "deviceInfo": {
               "friendlyName": "Phone 3",
               "id": "3",
               "isEmulator": true,
@@ -70,36 +70,36 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
           "_canSelectItem": [Function],
           "_changeEventSuppressionCount": 0,
           "_exemptedCount": 1,
-          "_exemptedIndices": Object {
+          "_exemptedIndices": {
             "0": true,
           },
           "_getKey": [Function],
           "_hasChanged": false,
           "_isModal": false,
-          "_items": Array [
-            Object {
-              "deviceInfo": Object {
+          "_items": [
+            {
+              "deviceInfo": {
                 "friendlyName": "Phone 1",
                 "id": "1",
                 "isEmulator": true,
               },
             },
-            Object {
-              "deviceInfo": Object {
+            {
+              "deviceInfo": {
                 "friendlyName": "Phone 2",
                 "id": "2",
                 "isEmulator": false,
               },
             },
-            Object {
-              "deviceInfo": Object {
+            {
+              "deviceInfo": {
                 "friendlyName": "Phone 3",
                 "id": "3",
                 "isEmulator": true,
               },
             },
           ],
-          "_keyToIndexMap": Object {
+          "_keyToIndexMap": {
             "1": 0,
             "2": 1,
             "3": 2,
@@ -108,7 +108,7 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
           "_onSelectionChanged": [Function],
           "_selectedItems": null,
           "_unselectableCount": 0,
-          "_unselectableIndices": Object {
+          "_unselectableIndices": {
             "0": false,
             "1": false,
             "2": false,

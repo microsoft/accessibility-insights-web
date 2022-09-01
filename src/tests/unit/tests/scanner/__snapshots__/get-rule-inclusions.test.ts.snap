@@ -1,341 +1,341 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
-Object {
-  "accesskeys": Object {
+{
+  "accesskeys": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "area-alt": Object {
+  "area-alt": {
     "status": "included",
   },
-  "aria-allowed-attr": Object {
+  "aria-allowed-attr": {
     "status": "included",
   },
-  "aria-allowed-role": Object {
+  "aria-allowed-role": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "aria-command-name": Object {
+  "aria-command-name": {
     "status": "included",
   },
-  "aria-dialog-name": Object {
+  "aria-dialog-name": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "aria-hidden-body": Object {
+  "aria-hidden-body": {
     "status": "included",
   },
-  "aria-hidden-focus": Object {
+  "aria-hidden-focus": {
     "status": "included",
   },
-  "aria-input-field-name": Object {
+  "aria-input-field-name": {
     "status": "included",
   },
-  "aria-meter-name": Object {
+  "aria-meter-name": {
     "status": "included",
   },
-  "aria-progressbar-name": Object {
+  "aria-progressbar-name": {
     "status": "included",
   },
-  "aria-required-attr": Object {
+  "aria-required-attr": {
     "status": "included",
   },
-  "aria-required-children": Object {
+  "aria-required-children": {
     "status": "included",
   },
-  "aria-required-parent": Object {
+  "aria-required-parent": {
     "status": "included",
   },
-  "aria-roledescription": Object {
+  "aria-roledescription": {
     "status": "included",
   },
-  "aria-roles": Object {
+  "aria-roles": {
     "status": "included",
   },
-  "aria-text": Object {
+  "aria-text": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "aria-toggle-field-name": Object {
+  "aria-toggle-field-name": {
     "status": "included",
   },
-  "aria-tooltip-name": Object {
+  "aria-tooltip-name": {
     "status": "included",
   },
-  "aria-treeitem-name": Object {
+  "aria-treeitem-name": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "aria-valid-attr": Object {
+  "aria-valid-attr": {
     "status": "included",
   },
-  "aria-valid-attr-value": Object {
+  "aria-valid-attr-value": {
     "status": "included",
   },
-  "audio-caption": Object {
+  "audio-caption": {
     "reason": "for parity with video-caption, which axe-core includes by default",
     "status": "included",
   },
-  "autocomplete-valid": Object {
+  "autocomplete-valid": {
     "status": "included",
   },
-  "avoid-inline-spacing": Object {
+  "avoid-inline-spacing": {
     "status": "included",
   },
-  "blink": Object {
+  "blink": {
     "status": "included",
   },
-  "button-name": Object {
+  "button-name": {
     "status": "included",
   },
-  "bypass": Object {
+  "bypass": {
     "status": "included",
   },
-  "color-contrast": Object {
+  "color-contrast": {
     "status": "included",
   },
-  "color-contrast-enhanced": Object {
+  "color-contrast-enhanced": {
     "reason": "disabled in axe config",
     "status": "excluded",
   },
-  "css-orientation-lock": Object {
+  "css-orientation-lock": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "definition-list": Object {
+  "definition-list": {
     "status": "included",
   },
-  "dlitem": Object {
+  "dlitem": {
     "status": "included",
   },
-  "document-title": Object {
+  "document-title": {
     "status": "included",
   },
-  "duplicate-id": Object {
+  "duplicate-id": {
     "reason": "Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.",
     "status": "excluded",
   },
-  "duplicate-id-active": Object {
+  "duplicate-id-active": {
     "status": "included",
   },
-  "duplicate-id-aria": Object {
+  "duplicate-id-aria": {
     "status": "included",
   },
-  "empty-heading": Object {
+  "empty-heading": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "empty-table-header": Object {
+  "empty-table-header": {
     "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
   },
-  "focus-order-semantics": Object {
+  "focus-order-semantics": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "form-field-multiple-labels": Object {
+  "form-field-multiple-labels": {
     "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
   },
-  "frame-focusable-content": Object {
+  "frame-focusable-content": {
     "status": "included",
   },
-  "frame-tested": Object {
+  "frame-tested": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "frame-title": Object {
+  "frame-title": {
     "status": "included",
   },
-  "frame-title-unique": Object {
+  "frame-title-unique": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "heading-order": Object {
+  "heading-order": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "hidden-content": Object {
+  "hidden-content": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "html-has-lang": Object {
+  "html-has-lang": {
     "status": "included",
   },
-  "html-lang-valid": Object {
+  "html-lang-valid": {
     "status": "included",
   },
-  "html-xml-lang-mismatch": Object {
+  "html-xml-lang-mismatch": {
     "status": "included",
   },
-  "identical-links-same-purpose": Object {
+  "identical-links-same-purpose": {
     "reason": "rule is tagged wcag2aaa",
     "status": "excluded",
   },
-  "image-alt": Object {
+  "image-alt": {
     "status": "included",
   },
-  "image-redundant-alt": Object {
+  "image-redundant-alt": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "input-button-name": Object {
+  "input-button-name": {
     "status": "included",
   },
-  "input-image-alt": Object {
+  "input-image-alt": {
     "status": "included",
   },
-  "label": Object {
+  "label": {
     "status": "included",
   },
-  "label-content-name-mismatch": Object {
+  "label-content-name-mismatch": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "label-title-only": Object {
+  "label-title-only": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-banner-is-top-level": Object {
+  "landmark-banner-is-top-level": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-complementary-is-top-level": Object {
+  "landmark-complementary-is-top-level": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-contentinfo-is-top-level": Object {
+  "landmark-contentinfo-is-top-level": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-main-is-top-level": Object {
+  "landmark-main-is-top-level": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-no-duplicate-banner": Object {
+  "landmark-no-duplicate-banner": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-no-duplicate-contentinfo": Object {
+  "landmark-no-duplicate-contentinfo": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-no-duplicate-main": Object {
+  "landmark-no-duplicate-main": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-one-main": Object {
+  "landmark-one-main": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "landmark-unique": Object {
+  "landmark-unique": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "link-in-text-block": Object {
+  "link-in-text-block": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "link-name": Object {
+  "link-name": {
     "status": "included",
   },
-  "list": Object {
+  "list": {
     "status": "included",
   },
-  "listitem": Object {
+  "listitem": {
     "status": "included",
   },
-  "marquee": Object {
+  "marquee": {
     "status": "included",
   },
-  "meta-refresh": Object {
+  "meta-refresh": {
     "status": "included",
   },
-  "meta-viewport": Object {
+  "meta-viewport": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "meta-viewport-large": Object {
+  "meta-viewport-large": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "nested-interactive": Object {
+  "nested-interactive": {
     "status": "included",
   },
-  "no-autoplay-audio": Object {
+  "no-autoplay-audio": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "object-alt": Object {
+  "object-alt": {
     "status": "included",
   },
-  "p-as-heading": Object {
+  "p-as-heading": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "page-has-heading-one": Object {
+  "page-has-heading-one": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "presentation-role-conflict": Object {
+  "presentation-role-conflict": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "region": Object {
+  "region": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "role-img-alt": Object {
+  "role-img-alt": {
     "status": "included",
   },
-  "scope-attr-valid": Object {
+  "scope-attr-valid": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "scrollable-region-focusable": Object {
+  "scrollable-region-focusable": {
     "reason": "only reports to needs-review results due to potential false-positives",
     "status": "excluded",
   },
-  "select-name": Object {
+  "select-name": {
     "status": "included",
   },
-  "server-side-image-map": Object {
+  "server-side-image-map": {
     "status": "included",
   },
-  "skip-link": Object {
+  "skip-link": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "svg-img-alt": Object {
+  "svg-img-alt": {
     "status": "included",
   },
-  "tabindex": Object {
+  "tabindex": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "table-duplicate-name": Object {
+  "table-duplicate-name": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "table-fake-caption": Object {
+  "table-fake-caption": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "td-has-header": Object {
+  "td-has-header": {
     "reason": "rule is tagged experimental",
     "status": "excluded",
   },
-  "td-headers-attr": Object {
+  "td-headers-attr": {
     "status": "included",
   },
-  "th-has-data-cells": Object {
+  "th-has-data-cells": {
     "status": "included",
   },
-  "valid-lang": Object {
+  "valid-lang": {
     "status": "included",
   },
-  "video-caption": Object {
+  "video-caption": {
     "status": "included",
   },
 }

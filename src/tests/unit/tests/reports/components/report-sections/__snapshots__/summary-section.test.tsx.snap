@@ -2,9 +2,9 @@
 
 exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection with all outcome types 1`] = `
 <BaseSummarySection
-  cardsViewData={Object {}}
+  cardsViewData={{}}
   outcomeTypesShown={
-    Array [
+    [
       "fail",
       "pass",
       "inapplicable",
@@ -22,13 +22,13 @@ exports[`SummarySection BaseSummarySection: failure only 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 3,
         "inapplicable": 0,
         "incomplete": 0,
@@ -49,13 +49,13 @@ exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 3,
         "inapplicable": 3,
         "incomplete": 0,
@@ -76,13 +76,13 @@ exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] =
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 3,
         "inapplicable": 3,
         "incomplete": 0,
@@ -103,13 +103,13 @@ exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 3,
         "inapplicable": 0,
         "incomplete": 0,
@@ -130,13 +130,13 @@ exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 0,
         "inapplicable": 3,
         "incomplete": 0,
@@ -157,13 +157,13 @@ exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 0,
         "inapplicable": 3,
         "incomplete": 0,
@@ -184,13 +184,13 @@ exports[`SummarySection BaseSummarySection: passes only 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "pass",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 0,
         "inapplicable": 0,
         "incomplete": 0,
@@ -204,9 +204,9 @@ exports[`SummarySection BaseSummarySection: passes only 1`] = `
 
 exports[`SummarySection PassFailSummarySection renders BaseSummarySection with only pass and failed outcome types 1`] = `
 <BaseSummarySection
-  cardsViewData={Object {}}
+  cardsViewData={{}}
   outcomeTypesShown={
-    Array [
+    [
       "fail",
       "pass",
     ]

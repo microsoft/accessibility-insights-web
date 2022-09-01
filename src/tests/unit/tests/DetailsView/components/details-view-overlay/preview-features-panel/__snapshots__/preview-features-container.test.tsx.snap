@@ -11,19 +11,19 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
   </div>
   <PreviewFeaturesToggleList
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     displayedFeatureFlags={
-      Array [
-        Object {
+      [
+        {
           "displayableDescription": "test description 1",
           "displayableName": "test name 1",
           "enabled": true,
           "id": "test-id-1",
         },
-        Object {
+        {
           "displayableDescription": "test description 2",
           "displayableName": "test name 2",
           "enabled": false,

@@ -7,7 +7,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
   <div>
     <RequirementViewTitle
       deps={
-        Object {
+        {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "assessmentsProvider": [typemoq mock object],
         }
@@ -32,36 +32,36 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       />
       <RequirementTableSection
         assessmentInstanceTableHandler={
-          Object {
+          {
             "changeRequirementStatus": null,
           }
         }
         assessmentNavState={
-          Object {
+          {
             "selectedTestSubview": "test-requirement-name",
             "selectedTestType": 0,
           }
         }
         assessmentsProvider={[typemoq mock object]}
         featureFlagStoreData={
-          Object {
+          {
             "some feature flag": true,
           }
         }
-        instancesMap={Object {}}
+        instancesMap={{}}
         isRequirementScanned={true}
         manualRequirementResultMap={
-          Object {
+          {
             "some manual test step result id": null,
           }
         }
         pathSnippetStoreData={
-          Object {
+          {
             "path": null,
           }
         }
         requirement={
-          Object {
+          {
             "description": <div>
               test-description
             </div>,
@@ -84,13 +84,13 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       className="nextRequirementButton"
       currentTest={0}
       deps={
-        Object {
+        {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "assessmentsProvider": [typemoq mock object],
         }
       }
       nextRequirement={
-        Object {
+        {
           "key": "other-requirement-key",
         }
       }

@@ -8,7 +8,7 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
     aria-expanded={true}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -36,7 +36,7 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
     aria-expanded={true}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -64,7 +64,7 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
     aria-expanded={true}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -92,7 +92,7 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
     aria-expanded={true}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -120,7 +120,7 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1
     aria-expanded={false}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronRight",
       }
     }
@@ -141,7 +141,7 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`
     aria-expanded={true}
     className="collapsible"
     iconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }

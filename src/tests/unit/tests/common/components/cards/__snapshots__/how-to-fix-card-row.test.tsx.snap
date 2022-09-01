@@ -9,20 +9,20 @@ exports[`HowToFixWebCardRow renders 1`] = `
       <FixInstructionPanel
         checkType={0}
         checks={
-          Array [
-            Object {
+          [
+            {
               "message": "some all message",
             },
-            Object {
+            {
               "message": "some none message",
             },
           ]
         }
         deps={
-          Object {
-            "LinkComponent": Object {},
+          {
+            "LinkComponent": {},
             "fixInstructionProcessor": [typemoq mock object],
-            "recommendColor": Object {},
+            "recommendColor": {},
           }
         }
         renderTitleElement={[Function]}
@@ -30,17 +30,17 @@ exports[`HowToFixWebCardRow renders 1`] = `
       <FixInstructionPanel
         checkType={1}
         checks={
-          Array [
-            Object {
+          [
+            {
               "message": "some any message",
             },
           ]
         }
         deps={
-          Object {
-            "LinkComponent": Object {},
+          {
+            "LinkComponent": {},
             "fixInstructionProcessor": [typemoq mock object],
-            "recommendColor": Object {},
+            "recommendColor": {},
           }
         }
         renderTitleElement={[Function]}

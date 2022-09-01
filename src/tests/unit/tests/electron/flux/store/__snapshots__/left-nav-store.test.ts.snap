@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LeftNavStore returns default state 1`] = `
-Object {
+{
   "leftNavVisible": false,
   "selectedKey": "automated-checks",
 }

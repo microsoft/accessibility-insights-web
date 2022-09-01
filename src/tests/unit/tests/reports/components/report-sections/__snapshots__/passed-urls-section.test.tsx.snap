@@ -8,14 +8,14 @@ exports[`PassedUrlsSection renders 1`] = `
     <UrlScanResultsTable
       id="passed-urls-table"
       results={
-        Array [
-          Object {},
-          Object {},
+        [
+          {},
+          {},
         ]
       }
     />
   }
-  deps={Object {}}
+  deps={{}}
   outcomeType="pass"
   title="Passed URLs"
 />

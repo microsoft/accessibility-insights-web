@@ -18,14 +18,14 @@ describe('ToolDataDelegate', () => {
         const result = testSubject(scanResultsMock.object);
 
         expect(result).toMatchInlineSnapshot(`
-            Object {
-              "applicationProperties": Object {
+            {
+              "applicationProperties": {
                 "environmentName": undefined,
                 "name": "Accessibility Insights for Android",
                 "resolution": undefined,
                 "version": "test-version",
               },
-              "scanEngineProperties": Object {
+              "scanEngineProperties": {
                 "name": "axe-android",
                 "version": "test-axe-version",
               },

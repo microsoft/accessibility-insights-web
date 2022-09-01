@@ -4,7 +4,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation not
 <AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Close",
     }
@@ -17,7 +17,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation not
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": [Function],
       "text": "Next",
@@ -26,7 +26,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation not
 >
   <FolderPicker
     deps={
-      Object {
+      {
         "LinkComponent": [Function],
       }
     }
@@ -41,7 +41,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation set
 <AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Close",
     }
@@ -54,7 +54,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation set
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": false,
       "onClick": [Function],
       "text": "Next",
@@ -63,7 +63,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation set
 >
   <FolderPicker
     deps={
-      Object {
+      {
         "LinkComponent": [Function],
       }
     }

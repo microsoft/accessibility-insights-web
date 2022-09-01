@@ -6,39 +6,39 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
 >
   <React.Fragment>
     <ScanIncompleteWarning
-      deps={Object {}}
+      deps={{}}
       test={-1}
-      warningConfiguration={Object {}}
-      warnings={Array []}
+      warningConfiguration={{}}
+      warnings={[]}
     />
     <DetailsListIssuesView
       clickHandlerFactory={[typemoq mock object]}
       configuration={
-        Object {
-          "displayableData": Object {
+        {
+          "displayableData": {
             "title": "test title",
           },
           "getStoreData": [Function],
         }
       }
-      deps={Object {}}
+      deps={{}}
       instancesSection={[Function]}
-      scanIncompleteWarnings={Array []}
+      scanIncompleteWarnings={[]}
       selectedTest={-1}
       switcherNavConfiguration={
-        Object {
-          "warningConfiguration": Object {},
+        {
+          "warningConfiguration": {},
         }
       }
       tabStoreData={
-        Object {
+        {
           "isChanged": false,
         }
       }
       visualizationStoreData={
-        Object {
+        {
           "scanning": "test-scanning",
-          "tests": Object {},
+          "tests": {},
         }
       }
     />
@@ -52,7 +52,7 @@ exports[`AdhocIssuesTestView should return target page changed view as tab is ch
 >
   <TargetPageChangedView
     displayableData={
-      Object {
+      {
         "title": "test title",
       }
     }

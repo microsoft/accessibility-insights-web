@@ -5,14 +5,14 @@ exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialo
 exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -35,7 +35,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
       horizontal={true}
       horizontalAlign="space-between"
       tokens={
-        Object {
+        {
           "childrenGap": 6,
         }
       }
@@ -72,14 +72,14 @@ exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismis
 exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -102,7 +102,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
       horizontal={true}
       horizontalAlign="space-between"
       tokens={
-        Object {
+        {
           "childrenGap": 6,
         }
       }
@@ -135,14 +135,14 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -165,7 +165,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
       horizontal={true}
       horizontalAlign="space-between"
       tokens={
-        Object {
+        {
           "childrenGap": 6,
         }
       }

@@ -5,7 +5,7 @@ exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "subText": "Please select a valid *.a11ywebassessment file",
       "title": "Oops! Accessibility Insights can’t open this file.",
       "type": 0,
@@ -13,7 +13,7 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "invalidLoadAssessmentDialog",
       "isBlocking": false,
       "onDismissed": [Function],

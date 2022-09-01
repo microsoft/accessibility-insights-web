@@ -6,7 +6,7 @@ exports[`PrivacyStatementPopupText renders 1`] = `
    
   <PrivacyStatementText
     deps={
-      Object {
+      {
         "LinkComponent": [Function],
       }
     }

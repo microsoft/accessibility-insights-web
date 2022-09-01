@@ -3,7 +3,7 @@
 exports[`NavLinkRenderer renderAssessmentTestLink render index icon when status is unknown 1`] = `
 <TestViewLeftNavLink
   link={
-    Object {
+    {
       "status": 1,
     }
   }
@@ -16,7 +16,7 @@ exports[`NavLinkRenderer renderAssessmentTestLink render index icon when status 
 exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 1`] = `
 <TestViewLeftNavLink
   link={
-    Object {
+    {
       "status": 0,
     }
   }
@@ -28,7 +28,7 @@ exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 2
 <LeftNavStatusIcon
   className="linkIcon"
   item={
-    Object {
+    {
       "status": 0,
     }
   }
@@ -40,7 +40,7 @@ exports[`NavLinkRenderer renderGettingStartedLink renders 1`] = `<GettingStarted
 exports[`NavLinkRenderer renderOverviewLink renders 1`] = `
 <OverviewLeftNavLink
   link={
-    Object {
+    {
       "title": "some link",
     }
   }
@@ -50,7 +50,7 @@ exports[`NavLinkRenderer renderOverviewLink renders 1`] = `
 exports[`NavLinkRenderer renderRequirementLink render displayed index when status is unknown 1`] = `
 <TestViewLeftNavLink
   link={
-    Object {
+    {
       "displayedIndex": "some displayed index",
       "status": 1,
     }
@@ -68,7 +68,7 @@ exports[`NavLinkRenderer renderRequirementLink render displayed index when statu
 exports[`NavLinkRenderer renderRequirementLink render status icon with link 1`] = `
 <TestViewLeftNavLink
   link={
-    Object {
+    {
       "status": 0,
     }
   }
@@ -80,7 +80,7 @@ exports[`NavLinkRenderer renderRequirementLink render status icon with link 2`] 
 <LeftNavStatusIcon
   className="requirementStatusIcon"
   item={
-    Object {
+    {
       "status": 0,
     }
   }
@@ -90,7 +90,7 @@ exports[`NavLinkRenderer renderRequirementLink render status icon with link 2`] 
 exports[`NavLinkRenderer renderVisualizationLink renders 1`] = `
 <TestViewLeftNavLink
   link={
-    Object {
+    {
       "title": "some link",
     }
   }
@@ -101,7 +101,7 @@ exports[`NavLinkRenderer renderVisualizationLink renders 1`] = `
 exports[`NavLinkRenderer renderVisualizationLink renders 2`] = `
 <LeftNavIndexIcon
   item={
-    Object {
+    {
       "title": "some link",
     }
   }

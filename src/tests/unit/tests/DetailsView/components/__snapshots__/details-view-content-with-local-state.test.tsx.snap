@@ -5,11 +5,11 @@ exports[`DetailsViewContentWithLocalState render 1`] = `
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
+      {
         "isSideNavOpen": false,
         "setSideNavOpen": [Function],
-        "storeState": Object {
-          "featureFlagStoreData": Object {},
+        "storeState": {
+          "featureFlagStoreData": {},
         },
       }
     }

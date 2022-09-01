@@ -34,7 +34,7 @@ exports[`FullRuleHeader guidance links and the containing parenthesis are not re
         rule description
       </span>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={null}
       />
     </div>
@@ -79,12 +79,12 @@ exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -94,14 +94,14 @@ exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
@@ -142,12 +142,12 @@ exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -157,14 +157,14 @@ exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
@@ -205,12 +205,12 @@ exports[`FullRuleHeader renders, outcomeType = incomplete 1`] = `
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -220,14 +220,14 @@ exports[`FullRuleHeader renders, outcomeType = incomplete 1`] = `
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
@@ -268,12 +268,12 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -283,14 +283,14 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
@@ -331,12 +331,12 @@ exports[`FullRuleHeader renders, outcomeType = review 1`] = `
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -346,14 +346,14 @@ exports[`FullRuleHeader renders, outcomeType = review 1`] = `
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
@@ -398,12 +398,12 @@ exports[`FullRuleHeader ruleId is displayed as text when there is no url provide
         (
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "url://guidance-01.link",
                 "text": "guidance-01",
               },
-              Object {
+              {
                 "href": "url://guidance-02.link",
                 "text": "guidance-02",
               },
@@ -413,14 +413,14 @@ exports[`FullRuleHeader ruleId is displayed as text when there is no url provide
         )
       </React.Fragment>
       <GuidanceTags
-        deps={Object {}}
+        deps={{}}
         links={
-          Array [
-            Object {
+          [
+            {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
             },
-            Object {
+            {
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },

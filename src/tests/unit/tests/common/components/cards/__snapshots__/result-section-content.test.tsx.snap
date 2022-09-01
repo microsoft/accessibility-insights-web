@@ -6,41 +6,41 @@ exports[`ResultSectionContent renders without modifier buttons without cardSelec
 <React.Fragment>
   <RulesWithInstances
     deps={
-      Object {
+      {
         "cardsVisualizationModifierButtons": [Function],
       }
     }
     outcomeType="pass"
     rules={
-      Array [
-        Object {
+      [
+        {
           "description": "sample-description",
-          "guidance": Array [
-            Object {
+          "guidance": [
+            {
               "href": "sample-guidance-href",
               "text": "sample-guidance-text",
             },
           ],
           "id": "some-rule",
-          "nodes": Array [
-            Object {
-              "descriptors": Object {
+          "nodes": [
+            {
+              "descriptors": {
                 "snippet": "this is a sample snippet",
               },
-              "identifiers": Object {
+              "identifiers": {
                 "conciseName": "body img",
                 "css-selector": "body img",
                 "identifier": "body img",
               },
-              "resolution": Object {
-                "how-to-fix-web": Object {
-                  "all": Array [],
-                  "any": Array [
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
                 },
                 "howToFixSummary": "sample how to fix summary",
               },
@@ -60,43 +60,43 @@ exports[`ResultSectionContent renders without modifier buttons without cardSelec
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <React.Fragment>
   <test
-    cardSelectionMessageCreator={Object {}}
+    cardSelectionMessageCreator={{}}
     deps={
-      Object {
+      {
         "cardsVisualizationModifierButtons": [Function],
       }
     }
     outcomeType="pass"
     results={
-      Array [
-        Object {
+      [
+        {
           "description": "sample-description",
-          "guidance": Array [
-            Object {
+          "guidance": [
+            {
               "href": "sample-guidance-href",
               "text": "sample-guidance-text",
             },
           ],
           "id": "some-rule",
-          "nodes": Array [
-            Object {
-              "descriptors": Object {
+          "nodes": [
+            {
+              "descriptors": {
                 "snippet": "this is a sample snippet",
               },
-              "identifiers": Object {
+              "identifiers": {
                 "conciseName": "body img",
                 "css-selector": "body img",
                 "identifier": "body img",
               },
-              "resolution": Object {
-                "how-to-fix-web": Object {
-                  "all": Array [],
-                  "any": Array [
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
                 },
                 "howToFixSummary": "sample how to fix summary",
               },
@@ -111,43 +111,43 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
     }
   />
   <RulesWithInstances
-    cardSelectionMessageCreator={Object {}}
+    cardSelectionMessageCreator={{}}
     deps={
-      Object {
+      {
         "cardsVisualizationModifierButtons": [Function],
       }
     }
     outcomeType="pass"
     rules={
-      Array [
-        Object {
+      [
+        {
           "description": "sample-description",
-          "guidance": Array [
-            Object {
+          "guidance": [
+            {
               "href": "sample-guidance-href",
               "text": "sample-guidance-text",
             },
           ],
           "id": "some-rule",
-          "nodes": Array [
-            Object {
-              "descriptors": Object {
+          "nodes": [
+            {
+              "descriptors": {
                 "snippet": "this is a sample snippet",
               },
-              "identifiers": Object {
+              "identifiers": {
                 "conciseName": "body img",
                 "css-selector": "body img",
                 "identifier": "body img",
               },
-              "resolution": Object {
-                "how-to-fix-web": Object {
-                  "all": Array [],
-                  "any": Array [
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
                 },
                 "howToFixSummary": "sample how to fix summary",
               },

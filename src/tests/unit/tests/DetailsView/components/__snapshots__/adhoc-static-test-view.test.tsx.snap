@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocStaticTestView render handles content & guidance 1`] = `"<StaticContentDetailsView deps=\\"stub-deps\\" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content=\\"stub-content\\" guidance=\\"stub-guidance\\" stepsText=\\"Step 0 of 3\\" />"`;
+exports[`AdhocStaticTestView render handles content & guidance 1`] = `"<StaticContentDetailsView deps="stub-deps" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title="test title" toggleLabel="test toggle label" content="stub-content" guidance="stub-guidance" stepsText="Step 0 of 3" />"`;
 
-exports[`AdhocStaticTestView render handles content & no guidance 1`] = `"<StaticContentDetailsView deps=\\"stub-deps\\" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content=\\"stub-content\\" guidance={[undefined]} stepsText=\\"Step 0 of 3\\" />"`;
+exports[`AdhocStaticTestView render handles content & no guidance 1`] = `"<StaticContentDetailsView deps="stub-deps" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title="test title" toggleLabel="test toggle label" content="stub-content" guidance={[undefined]} stepsText="Step 0 of 3" />"`;
 
-exports[`AdhocStaticTestView render handles no content & guidance 1`] = `"<StaticContentDetailsView deps=\\"stub-deps\\" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance=\\"stub-guidance\\" stepsText=\\"Step 0 of 3\\" />"`;
+exports[`AdhocStaticTestView render handles no content & guidance 1`] = `"<StaticContentDetailsView deps="stub-deps" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title="test title" toggleLabel="test toggle label" content={[undefined]} guidance="stub-guidance" stepsText="Step 0 of 3" />"`;
 
-exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `"<StaticContentDetailsView deps=\\"stub-deps\\" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} stepsText=\\"Step 0 of 3\\" />"`;
+exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `"<StaticContentDetailsView deps="stub-deps" visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title="test title" toggleLabel="test toggle label" content={[undefined]} guidance={[undefined]} stepsText="Step 0 of 3" />"`;
 
 exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} detailsViewActionMessageCreator={[Function (anonymous)]} />"`;
