@@ -9,68 +9,76 @@ import {
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 
 describe('labelInNameGetCompletedRequirementDetails', () => {
-    test('with only expected passes', () => {
-        createAndValidateData(2, 0, 0, 0, 0);
+    test('with only confirmed passes', () => {
+        createAndValidateData(2, 0, 0, 0, 0, 0);
     });
 
-    test('with only expected failures', () => {
-        createAndValidateData(0, 2, 0, 0, 0);
+    test('with only confirmed failures', () => {
+        createAndValidateData(0, 2, 0, 0, 0, 0);
     });
 
-    test('with only unexpected passes', () => {
-        createAndValidateData(0, 0, 2, 0, 0);
+    test('with only failures marked as pass', () => {
+        createAndValidateData(0, 0, 2, 0, 0, 0);
     });
 
-    test('with only unexpected failures', () => {
-        createAndValidateData(0, 0, 0, 2, 0);
+    test('with only passes marked as failure', () => {
+        createAndValidateData(0, 0, 0, 2, 0, 0);
     });
 
     test('with only unknowns', () => {
-        createAndValidateData(0, 0, 0, 0, 2);
+        createAndValidateData(0, 0, 0, 0, 2, 0);
+    });
+
+    test('with only instances from other tests', () => {
+        createAndValidateData(0, 0, 0, 0, 0, 2);
     });
 
     test('with a mix of all results', () => {
-        createAndValidateData(3, 5, 7, 11, 13);
+        createAndValidateData(3, 5, 7, 11, 13, 17);
     });
 
     function createAndValidateData(
-        expectedPasses: number,
-        expectedFailures: number,
-        unexpectedPasses: number,
-        unexpectedFailures: number,
+        confirmedPasses: number,
+        confirmedFailures: number,
+        expectedFailuresMarkedAsPass: number,
+        expectedPassesMarkedAsFailures: number,
         unknowns: number,
+        instancesFromAnotherTest: number,
     ) {
         const output = labelInNameGetCompletedRequirementDetails(
             getAssessmentStoreData(
-                expectedPasses,
-                expectedFailures,
-                unexpectedPasses,
-                unexpectedFailures,
+                confirmedPasses,
+                confirmedFailures,
+                expectedFailuresMarkedAsPass,
+                expectedPassesMarkedAsFailures,
                 unknowns,
+                instancesFromAnotherTest,
             ),
         );
 
         expect(output).toStrictEqual({
-            expectedPasses,
-            expectedFailures,
-            unexpectedPasses,
-            unexpectedFailures,
+            confirmedPasses: confirmedPasses,
+            confirmedFailures: confirmedFailures,
+            expectedPasses: confirmedPasses + expectedPassesMarkedAsFailures,
+            expectedFailures: confirmedFailures + expectedFailuresMarkedAsPass,
         });
     }
 
     function getAssessmentStoreData(
-        expectedPasses: number,
-        expectedFailures: number,
-        unexpectedPasses: number,
-        unexpectedFailures: number,
+        confirmedPasses: number,
+        confirmedFailures: number,
+        expectedFailuresMarkedAsPass: number,
+        expectedPassesMarkedAsFailures: number,
         unknowns: number,
+        instancesFromAnotherTest: number,
     ): AssessmentData {
         const generatedAssessmentInstancesMap = generateAssessmentInstancesMap(
-            expectedPasses,
-            expectedFailures,
-            unexpectedPasses,
-            unexpectedFailures,
+            confirmedPasses,
+            confirmedFailures,
+            expectedFailuresMarkedAsPass,
+            expectedPassesMarkedAsFailures,
             unknowns,
+            instancesFromAnotherTest,
         );
         return {
             fullAxeResultsMap: null,
@@ -85,77 +93,94 @@ describe('labelInNameGetCompletedRequirementDetails', () => {
     }
 
     function generateAssessmentInstancesMap(
-        expectedPasses: number,
-        expectedFailures: number,
-        unexpectedPasses: number,
-        unexpectedFailures: number,
+        confirmedPasses: number,
+        confirmedFailures: number,
+        expectedFailuresMarkedAsPass: number,
+        expectedPassesMarkedAsFailures: number,
         unknowns: number,
+        instancesFromAnotherTest: number,
     ) {
         const generatedAssessmentInstancesMap: InstanceIdToInstanceDataMap = {};
-        addExpectedPassInstances(generatedAssessmentInstancesMap, expectedPasses);
-        addExpectedFailureInstances(generatedAssessmentInstancesMap, expectedFailures);
-        addUnexpectedPassInstances(generatedAssessmentInstancesMap, unexpectedPasses);
-        addUnexpectedFailureInstances(generatedAssessmentInstancesMap, unexpectedFailures);
-        addUnknownFailureInstances(generatedAssessmentInstancesMap, unknowns);
+        addConfirmedPassInstances(generatedAssessmentInstancesMap, confirmedPasses);
+        addConfirmedFailureInstances(generatedAssessmentInstancesMap, confirmedFailures);
+        addUnexpectedFailureInstancesMarkedAsPass(
+            generatedAssessmentInstancesMap,
+            expectedFailuresMarkedAsPass,
+        );
+        addUnexpectedPassInstancesMarkedAsFailure(
+            generatedAssessmentInstancesMap,
+            expectedPassesMarkedAsFailures,
+        );
+        addInstancesWithNoSignal(generatedAssessmentInstancesMap, unknowns);
+        addInstancesFromAnotherTest(generatedAssessmentInstancesMap, instancesFromAnotherTest);
 
         return generatedAssessmentInstancesMap;
     }
-    function addExpectedPassInstances(instanceDataMap: InstanceIdToInstanceDataMap, count: number) {
+    function addConfirmedPassInstances(
+        instanceDataMap: InstanceIdToInstanceDataMap,
+        count: number,
+    ) {
         addInstances(instanceDataMap, 'expectedPass', true, ManualTestStatus.PASS, count);
     }
 
-    function addExpectedFailureInstances(
+    function addConfirmedFailureInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
         addInstances(instanceDataMap, 'expectedFailure', false, ManualTestStatus.FAIL, count);
     }
 
-    function addUnexpectedPassInstances(
+    function addUnexpectedFailureInstancesMarkedAsPass(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
         addInstances(instanceDataMap, 'unexpectedPass', false, ManualTestStatus.PASS, count);
     }
 
-    function addUnexpectedFailureInstances(
+    function addUnexpectedPassInstancesMarkedAsFailure(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
         addInstances(instanceDataMap, 'unexpectedFailure', true, ManualTestStatus.FAIL, count);
     }
 
-    function addUnknownFailureInstances(
+    function addInstancesWithNoSignal(instanceDataMap: InstanceIdToInstanceDataMap, count: number) {
+        addInstances(instanceDataMap, 'unknown', undefined, ManualTestStatus.UNKNOWN, count);
+    }
+
+    function addInstancesFromAnotherTest(
         instanceDataMap: InstanceIdToInstanceDataMap,
         count: number,
     ) {
-        addInstances(instanceDataMap, 'unknown', false, ManualTestStatus.UNKNOWN, count);
+        addInstances(instanceDataMap, 'anotherTest', true, ManualTestStatus.PASS, count, false);
     }
 
     function addInstances(
         instanceDataMap: InstanceIdToInstanceDataMap,
         prefix: string,
-        labelContainsVisibleText: boolean,
+        labelContainsVisibleText: boolean | undefined,
         status: ManualTestStatus,
         count: number,
+        testStepResultsMatchRequirement: boolean = true,
     ) {
         const propertyBag = { labelContainsVisibleText };
+        const requirementName = testStepResultsMatchRequirement ? 'labelInName' : 'notOurTest';
         for (let item: number = 0; item < count; item++) {
-            instanceDataMap[prefix + item] = {
-                testStepResults: {
-                    labelInName: {
-                        id: 'id',
-                        status,
-                        isCapturedByUser: false,
-                        failureSummary: '',
-                        isVisualizationEnabled: true,
-                        isVisible: true,
-                    },
-                },
+            const itemData = {
+                testStepResults: {},
                 propertyBag,
                 target: [],
                 html: '',
             };
+            itemData.testStepResults[requirementName] = {
+                id: 'id',
+                status,
+                isCapturedByUser: false,
+                failureSummary: '',
+                isVisualizationEnabled: true,
+                isVisible: true,
+            };
+            instanceDataMap[prefix + item] = itemData;
         }
     }
 });

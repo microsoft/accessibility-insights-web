@@ -10,16 +10,19 @@ import {
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { forEach } from 'lodash';
 
-const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolean => {
+const labelContainsVisibleText = (instance: GeneratedAssessmentInstance): boolean | undefined => {
     const labelContainsVisibleText = instance.propertyBag['labelContainsVisibleText'];
+    if (labelContainsVisibleText === undefined) {
+        return undefined;
+    }
     return labelContainsVisibleText === true;
 };
 
 export const labelInNameGetCompletedRequirementDetails = (assessmentData: AssessmentData) => {
     let expectedPasses = 0;
     let expectedFailures = 0;
-    let unexpectedPasses = 0;
-    let unexpectedFailures = 0;
+    let confirmedPasses = 0;
+    let confirmedFailures = 0;
     forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
         const instance: GeneratedAssessmentInstance =
             assessmentData.generatedAssessmentInstancesMap[key];
@@ -28,28 +31,29 @@ export const labelInNameGetCompletedRequirementDetails = (assessmentData: Assess
             return;
         }
         const status = testStepResult.status;
-        switch (status) {
-            case ManualTestStatus.PASS:
-                if (labelContainsVisibleText(instance)) {
-                    expectedPasses++;
-                } else {
-                    unexpectedPasses++;
-                }
-                break;
-            case ManualTestStatus.FAIL:
-                if (!labelContainsVisibleText(instance)) {
-                    expectedFailures++;
-                } else {
-                    unexpectedFailures++;
-                }
-                break;
+        const expectedPass = labelContainsVisibleText(instance);
+
+        if (expectedPass === undefined) {
+            return;
+        }
+
+        if (expectedPass) {
+            expectedPasses++;
+            if (status === ManualTestStatus.PASS) {
+                confirmedPasses++;
+            }
+        } else {
+            expectedFailures++;
+            if (status === ManualTestStatus.FAIL) {
+                confirmedFailures++;
+            }
         }
     });
 
     return {
+        confirmedPasses,
+        confirmedFailures,
         expectedPasses,
         expectedFailures,
-        unexpectedPasses,
-        unexpectedFailures,
     };
 };
