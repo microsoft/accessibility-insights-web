@@ -62,9 +62,9 @@ export type ScanMetadata = {
 
 export interface UnifiedRule {
     id: string;
-    description: string;
-    url: string;
-    guidance: GuidanceLink[];
+    description?: string;
+    url?: string;
+    guidance?: GuidanceLink[];
 }
 
 export interface UnifiedScanResultStoreData {

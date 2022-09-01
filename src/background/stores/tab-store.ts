@@ -40,9 +40,6 @@ export class TabStore extends PersistentStore<TabStoreData> {
 
     public getDefaultState(): TabStoreData {
         const defaultValues: TabStoreData = {
-            url: null,
-            title: null,
-            id: null,
             isClosed: false,
             isChanged: false,
             isPageHidden: false,

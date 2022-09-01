@@ -33,7 +33,7 @@ export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryPro
 
     const currentDate = props.deps.getCurrentDate();
     const fileDate = props.deps.fileNameBuilder.getDateSegment(currentDate);
-    const targetPageTitle = props.tabStoreData.title;
+    const targetPageTitle = props.tabStoreData.title || '';
     const fileTitle = props.deps.fileNameBuilder.getTitleSegment(targetPageTitle);
     const fileName = `SavedAssessment_${fileDate}_${fileTitle}.a11ywebassessment`;
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');
