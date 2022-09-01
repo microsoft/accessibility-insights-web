@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -16,21 +17,22 @@ import { AnalyzerProvider } from './analyzers/analyzer-provider';
 export class AnalyzerController {
     private analyzerProvider: AnalyzerProvider;
     private analyzers: DictionaryStringTo<Analyzer>;
-    private visualizationstore: BaseStore<VisualizationStoreData>;
-    private scopingStore: BaseStore<ScopingStoreData>;
-    private featureFlagStore: BaseStore<FeatureFlagStoreData>;
+    private visualizationstore: BaseStore<VisualizationStoreData, Promise<void>>;
+    private scopingStore: BaseStore<ScopingStoreData, Promise<void>>;
+    private featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
-        visualizationstore: BaseStore<VisualizationStoreData>,
-        featureFlagStore: BaseStore<FeatureFlagStoreData>,
-        scopingStore: BaseStore<ScopingStoreData>,
+        visualizationstore: BaseStore<VisualizationStoreData, Promise<void>>,
+        featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>,
+        scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
+        private readonly shadowInitializer: ShadowInitializer,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
@@ -45,9 +47,9 @@ export class AnalyzerController {
 
     public listenToStore(): void {
         this.initializeAnalyzers();
-        this.visualizationstore.addChangedListener(this.onChangedState);
-        this.featureFlagStore.addChangedListener(this.onChangedState);
-        this.scopingStore.addChangedListener(this.onChangedState);
+        this.visualizationstore.addChangedListener(async () => this.onChangedState());
+        this.featureFlagStore.addChangedListener(async () => this.onChangedState());
+        this.scopingStore.addChangedListener(async () => this.onChangedState());
         this.onChangedState();
     }
 
@@ -65,8 +67,12 @@ export class AnalyzerController {
     };
 
     protected startScan = (id: string): void => {
+        this.shadowInitializer.removeExistingShadowHost();
+
         const analyzer = this.getAnalyzerByIdentifier(id);
         analyzer.analyze();
+
+        void this.shadowInitializer.initialize();
     };
 
     private initializeAnalyzers(): void {

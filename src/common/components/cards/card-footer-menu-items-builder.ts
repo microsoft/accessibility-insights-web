@@ -10,6 +10,7 @@ import {
 } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { Toast } from 'common/components/toast';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
@@ -28,8 +29,6 @@ export type CardFooterMenuItemsProps = {
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
     deps: CardFooterMenuItemsDeps;
-    openNeedsSettingsContent: () => void;
-    closeNeedsSettingsContent: () => void;
 };
 
 export type CardFooterMenuItemsDeps = {
@@ -40,6 +39,7 @@ export type CardFooterMenuItemsDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     navigatorUtils: NavigatorUtils;
+    cardsViewController: CardsViewController;
 };
 
 export class CardFooterMenuItemsBuilder {
@@ -76,14 +76,13 @@ export class CardFooterMenuItemsBuilder {
     }
 
     private fileIssue = (props: CardFooterMenuItemsProps, event: React.MouseEvent<any>): void => {
+        const { issueDetailsData, userConfigurationStoreData, deps } = props;
         const {
-            issueDetailsData,
-            userConfigurationStoreData,
-            deps,
-            closeNeedsSettingsContent,
-            openNeedsSettingsContent,
-        } = props;
-        const { issueFilingServiceProvider, issueFilingActionMessageCreator, toolData } = deps;
+            issueFilingServiceProvider,
+            issueFilingActionMessageCreator,
+            toolData,
+            cardsViewController,
+        } = deps;
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,
@@ -102,9 +101,9 @@ export class CardFooterMenuItemsBuilder {
                 issueDetailsData,
                 toolData,
             );
-            closeNeedsSettingsContent();
+            cardsViewController.closeIssueFilingSettingsDialog();
         } else {
-            openNeedsSettingsContent();
+            cardsViewController.openIssueFilingSettingsDialog();
         }
     };
 

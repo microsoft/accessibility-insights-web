@@ -13,7 +13,7 @@ export class InspectController {
     private currentMode: InspectMode;
 
     constructor(
-        private readonly inspectStore: BaseStore<InspectStoreData>,
+        private readonly inspectStore: BaseStore<InspectStoreData, Promise<void>>,
         private readonly scopingListener: ScopingListener,
         private readonly changeInspectMode: (
             event: React.MouseEvent<HTMLElement> | MouseEvent,
@@ -24,7 +24,7 @@ export class InspectController {
     ) {}
 
     public listenToStore(): void {
-        this.inspectStore.addChangedListener(this.onChangedState);
+        this.inspectStore.addChangedListener(async () => this.onChangedState());
         this.onChangedState();
     }
 

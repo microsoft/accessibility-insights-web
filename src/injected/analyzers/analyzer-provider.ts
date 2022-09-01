@@ -27,7 +27,7 @@ export class AnalyzerProvider {
         private readonly tabStopsListener: AllFrameRunner<TabStopEvent>,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
         private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
-        private readonly scopingStore: BaseStore<ScopingStoreData>,
+        private readonly scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         private readonly sendMessageDelegate: (message) => void,
         private readonly scanner: ScannerUtils,
         private readonly telemetryDataFactory: TelemetryDataFactory,
