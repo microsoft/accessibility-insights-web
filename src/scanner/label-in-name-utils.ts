@@ -1,15 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-/*
- * This file contains code adapted from axe-core (https://github.com/dequelabs/axe-core)
- * which is distributed under the Mozilla Public License, v. 2.0.
- *
- * This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. You can obtain a copy of this license at http://mozilla.org/MPL/2.0/.
- *
- * */
-
 import axe from 'axe-core';
 import * as AxeUtils from './axe-utils';
 
