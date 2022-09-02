@@ -34,6 +34,7 @@
         "build:package:report": "lerna --scope accessibility-insights-report run build",
         "build:package:ui": "lerna --scope accessibility-insights-ui run build",
         "build:prod": "grunt build-prod",
+        "build:prod:mv3": "grunt build-prod-mv3",
         "change-log": "node ./tools/get-change-log-for-release.js",
         "clean": "grunt clean:*",
         "clean:mock-adb": "grunt clean:mock-adb",
@@ -185,7 +186,7 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "@fluentui/react": "^8.88.0",
+        "@fluentui/react": "^8.94.0",
         "@microsoft/applicationinsights-web": "^2.8.6",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
