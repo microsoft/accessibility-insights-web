@@ -52,6 +52,25 @@ function checkToAddReactDevTools(givenEntryFiles) {
     }
 }
 
+function ignoreNodeModules(givenPlugins) {
+    // esbuild doesn't have an easy way to ignore node_modules for monorepos,
+    // so this plugin is necessary (marks all node_modules as external).
+    // Thread: https://github.com/evanw/esbuild/issues/619
+    givenPlugins.push(
+        NodeResolve.NodeResolvePlugin({
+            extensions: ['.ts', '.tsx', '.js'],
+            onResolved: resolved => {
+                if (resolved.includes('node_modules')) {
+                    return {
+                        external: true,
+                    };
+                }
+                return resolved;
+            },
+        }),
+    );
+}
+
 // Default behavior; builds dev extension.
 let entryFiles = webExtensionEntryFiles;
 let outdir = devWebExtensionOutdir;
@@ -95,22 +114,8 @@ switch (argsObj.env) {
         outdir = path.join(__dirname, 'packages/report/bundle');
         format = 'cjs';
 
-        // esbuild doesn't have an easy way to ignore node_modules for monorepos,
-        // so this plugin is necessary (marks all node_modules as external).
-        // Thread: https://github.com/evanw/esbuild/issues/619
-        plugins.push(
-            NodeResolve.NodeResolvePlugin({
-                extensions: ['.ts', '.tsx', '.js'],
-                onResolved: resolved => {
-                    if (resolved.includes('node_modules')) {
-                        return {
-                            external: true,
-                        };
-                    }
-                    return resolved;
-                },
-            }),
-        );
+        ignoreNodeModules(plugins);
+
         break;
 
     case 'validator':
@@ -120,19 +125,8 @@ switch (argsObj.env) {
         outdir = path.join(__dirname, 'packages/validator/bundle');
         platform = 'node';
 
-        plugins.push(
-            NodeResolve.NodeResolvePlugin({
-                extensions: ['.ts', '.tsx', '.js'],
-                onResolved: resolved => {
-                    if (resolved.includes('node_modules')) {
-                        return {
-                            external: true,
-                        };
-                    }
-                    return resolved;
-                },
-            }),
-        );
+        ignoreNodeModules(plugins);
+
         break;
 
     // dev web extension
