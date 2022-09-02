@@ -7,7 +7,7 @@ exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
   className="leftNavHamburgerButton some-class"
   data-automation-id="left-nav-hamburger-button"
   iconProps={
-    Object {
+    {
       "iconName": "GlobalNavButton",
     }
   }

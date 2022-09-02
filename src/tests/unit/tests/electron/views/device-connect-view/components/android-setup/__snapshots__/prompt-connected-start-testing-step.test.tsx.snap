@@ -4,7 +4,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
 <AndroidSetupStepLayout
   headerText="Connected and ready to go!"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -17,7 +17,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": false,
       "onClick": [Function],
       "text": "Start testing",
@@ -28,7 +28,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
     className="deviceDescription"
     currentApplication="super-cool app"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
@@ -47,7 +47,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
 <AndroidSetupStepLayout
   headerText="Connected and ready to go!"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -60,7 +60,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": false,
       "onClick": [Function],
       "text": "Start testing",
@@ -71,7 +71,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
     className="deviceDescription"
     currentApplication="super-cool app"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,

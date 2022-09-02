@@ -15,7 +15,7 @@ exports[`DiagnosticViewToggleTest renders details view link when the test does n
     <VisualizationToggle
       checked={false}
       componentRef={
-        Object {
+        {
           "current": null,
         }
       }
@@ -62,7 +62,7 @@ exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
   </div>
   <div>
     <ContentLink
-      deps={Object {}}
+      deps={{}}
       linkText="How to test headings"
       reference={[Function]}
     />
@@ -90,7 +90,7 @@ exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
     <VisualizationToggle
       checked={false}
       componentRef={
-        Object {
+        {
           "current": null,
         }
       }
@@ -103,7 +103,7 @@ exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
   </div>
   <div>
     <ContentLink
-      deps={Object {}}
+      deps={{}}
       linkText="How to test headings"
       reference={[Function]}
     />
@@ -131,7 +131,7 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
     <VisualizationToggle
       checked={false}
       componentRef={
-        Object {
+        {
           "current": null,
         }
       }
@@ -144,7 +144,7 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
   </div>
   <div>
     <ContentLink
-      deps={Object {}}
+      deps={{}}
       linkText="How to test headings"
       reference={[Function]}
     />

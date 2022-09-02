@@ -3,18 +3,18 @@
 exports[`DetailsViewContainer render content render once; should call details view opened 1`] = `
 <DetailsViewContentWithLocalState
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "storesHub": [typemoq mock object],
     }
   }
   storeState={
-    Object {
-      "tabStoreData": Object {
+    {
+      "tabStoreData": {
         "isClosed": false,
         "isOriginChanged": false,
       },
-      "visualizationStoreData": Object {
+      "visualizationStoreData": {
         "selectedDetailsViewPivot": -1,
       },
     }
@@ -27,14 +27,14 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
-        "deps": Object {
+      {
+        "deps": {
           "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
-      Object {
+      {
         "storesHub": [typemoq mock object],
       }
     }
@@ -49,14 +49,14 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
-        "deps": Object {
+      {
+        "deps": {
           "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
-      Object {
+      {
         "storesHub": [typemoq mock object],
       }
     }
@@ -71,14 +71,14 @@ exports[`DetailsViewContainer render content shows NoContentAvailable when targe
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
-        "deps": Object {
+      {
+        "deps": {
           "storesHub": [typemoq mock object],
         },
       }
     }
     deps={
-      Object {
+      {
         "storesHub": [typemoq mock object],
       }
     }

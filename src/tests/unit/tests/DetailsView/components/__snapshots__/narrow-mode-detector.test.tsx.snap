@@ -3,7 +3,7 @@
 exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: All narrow mode status values should be false 1`] = `
 <TestComponent
   narrowModeStatus={
-    Object {
+    {
       "isCardFooterCollapsed": false,
       "isCommandBarCollapsed": false,
       "isHeaderAndNavCollapsed": false,

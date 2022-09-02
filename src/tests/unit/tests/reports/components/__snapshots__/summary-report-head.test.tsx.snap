@@ -11,14 +11,14 @@ exports[`SummaryReportHead renders 1`] = `
   </title>
   <style
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "<<CSS:../reports/automated-checks-report.css>>",
       }
     }
   />
   <style
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "<<CSS:../../packages/report/bundle/report.css>>",
       }
     }

@@ -16,7 +16,7 @@ exports[`ResultsContainer renders 1`] = `
   </div>
   <script
     dangerouslySetInnerHTML={
-      Object {
+      {
         "__html": "test script",
       }
     }

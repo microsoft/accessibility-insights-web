@@ -6,7 +6,7 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
     data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
     disabled={false}
     iconProps={
-      Object {
+      {
         "iconName": "skypeCheck",
       }
     }
@@ -18,8 +18,8 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
     ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
     checkboxVisibility={2}
     columns={
-      Array [
-        Object {
+      [
+        {
           "fieldName": "fieldName",
           "key": "col1",
           "minWidth": 0,
@@ -29,11 +29,11 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
     }
     constrainMode={1}
     items={
-      Array [
-        Object {
-          "instance": Object {
-            "testStepResults": Object {
-              "step": Object {
+      [
+        {
+          "instance": {
+            "testStepResults": {
+              "step": {
                 "status": 1,
               },
             },
@@ -56,8 +56,8 @@ exports[`AssessmentInstanceTable with instances renders per snapshot with "none"
     ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
     checkboxVisibility={2}
     columns={
-      Array [
-        Object {
+      [
+        {
           "fieldName": "fieldName",
           "key": "col1",
           "minWidth": 0,
@@ -67,11 +67,11 @@ exports[`AssessmentInstanceTable with instances renders per snapshot with "none"
     }
     constrainMode={1}
     items={
-      Array [
-        Object {
-          "instance": Object {
-            "testStepResults": Object {
-              "step": Object {
+      [
+        {
+          "instance": {
+            "testStepResults": {
+              "step": {
                 "status": 1,
               },
             },

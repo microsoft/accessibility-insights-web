@@ -3,7 +3,7 @@
 exports[`DeviceDisconnectedPopup renders 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "title": <div
         className="titleContainer"
@@ -21,7 +21,7 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
   hidden={false}
   minWidth={416}
   modalProps={
-    Object {
+    {
       "className": "deviceDisconnectedPopup",
       "isBlocking": true,
     }

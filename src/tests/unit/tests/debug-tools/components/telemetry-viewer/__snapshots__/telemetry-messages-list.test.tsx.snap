@@ -27,8 +27,8 @@ exports[`TelemetryMessagesList custom renderers onRenderTimestamp (from the colu
 exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
 <StyledWithViewportComponent
   columns={
-    Array [
-      Object {
+    [
+      {
         "fieldName": "timestamp",
         "isResizable": true,
         "key": "date",
@@ -37,7 +37,7 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
         "name": "date & time",
         "onRender": [Function],
       },
-      Object {
+      {
         "fieldName": "name",
         "isResizable": true,
         "key": "eventName",
@@ -45,7 +45,7 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
         "minWidth": 100,
         "name": "event name",
       },
-      Object {
+      {
         "fieldName": "source",
         "isResizable": true,
         "key": "source",
@@ -53,7 +53,7 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
         "minWidth": 100,
         "name": "source",
       },
-      Object {
+      {
         "fieldName": "triggeredBy",
         "isResizable": true,
         "key": "triggeredBy",
@@ -61,7 +61,7 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
         "minWidth": 100,
         "name": "triggeredBy",
       },
-      Object {
+      {
         "fieldName": "customProperties",
         "isResizable": true,
         "key": "customProperties",
@@ -72,12 +72,12 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
     ]
   }
   items={
-    Array [
-      Object {
+    [
+      {
         "applicationBuild": "test-app-build",
         "applicationName": "test-app-name",
         "applicationVersion": "test-app-version",
-        "customProperties": Object {
+        "customProperties": {
           "key1": "value1",
           "key2": "value2",
         },

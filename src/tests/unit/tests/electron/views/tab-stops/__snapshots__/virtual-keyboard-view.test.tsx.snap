@@ -14,12 +14,12 @@ exports[`VirtualKeyboardView renders 1`] = `
   </div>
   <VirtualKeyboardButtons
     deps={
-      Object {
-        "tabStopsActionCreator": Object {},
+      {
+        "tabStopsActionCreator": {},
       }
     }
     narrowModeStatus={
-      Object {
+      {
         "isVirtualKeyboardCollapsed": true,
       }
     }

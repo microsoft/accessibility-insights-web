@@ -4,7 +4,7 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
 <AndroidSetupStepLayout
   headerText="Connect to your Android device"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Close",
     }
@@ -17,7 +17,7 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",

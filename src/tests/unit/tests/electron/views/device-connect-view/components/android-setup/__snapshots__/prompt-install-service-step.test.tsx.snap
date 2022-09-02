@@ -4,13 +4,13 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
 <AndroidSetupStepLayout
   headerText="Let us install the latest version on your device"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -23,7 +23,7 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
@@ -42,13 +42,13 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
 <AndroidSetupStepLayout
   headerText="Let us install the latest version on your device"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -61,7 +61,7 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,

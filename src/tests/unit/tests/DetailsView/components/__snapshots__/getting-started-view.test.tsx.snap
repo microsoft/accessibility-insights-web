@@ -6,9 +6,9 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
 >
   <div>
     <HeadingWithContentLink
-      deps={Object {}}
+      deps={{}}
       guidance={
-        Object {
+        {
           "pageTitle": "some page title",
         }
       }
@@ -28,9 +28,9 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
   <NextRequirementButton
     className="nextRequirementButton"
     currentTest={-1}
-    deps={Object {}}
+    deps={{}}
     nextRequirement={
-      Object {
+      {
         "key": "expectedNextRequirement",
       }
     }

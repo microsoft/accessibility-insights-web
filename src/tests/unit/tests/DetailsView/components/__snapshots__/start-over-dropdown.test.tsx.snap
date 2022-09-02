@@ -2,7 +2,7 @@
 
 exports[`StartOverDropdownTest render 1`] = `
 "<div>
-  <InsightsCommandButton iconProps={{...}} text=\\"Start over\\" ariaLabel=\\"start over menu\\" onClick={[Function (anonymous)]} menuIconProps={{...}} componentRef={{...}} />
+  <InsightsCommandButton iconProps={{...}} text="Start over" ariaLabel="start over menu" onClick={[Function (anonymous)]} menuIconProps={{...}} componentRef={{...}} />
 </div>"
 `;
 
@@ -10,14 +10,14 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
 <div>
   <InsightsCommandButton
     ariaLabel="start over menu"
-    componentRef={Object {}}
+    componentRef={{}}
     iconProps={
-      Object {
+      {
         "iconName": "Refresh",
       }
     }
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -27,13 +27,13 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
   <ContextualMenu
     directionalHint={7}
     items={
-      Array [
-        Object {
+      [
+        {
           "key": "assessment",
           "name": "Start over Assessment",
           "onClick": [Function],
         },
-        Object {
+        {
           "key": "test",
           "name": "Start over test name",
           "onClick": [Function],
@@ -50,14 +50,14 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
 <div>
   <InsightsCommandButton
     ariaLabel="start over menu"
-    componentRef={Object {}}
+    componentRef={{}}
     iconProps={
-      Object {
+      {
         "iconName": "Refresh",
       }
     }
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronDown",
       }
     }
@@ -67,8 +67,8 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
   <ContextualMenu
     directionalHint={7}
     items={
-      Array [
-        Object {
+      [
+        {
           "key": "assessment",
           "name": "Start over Assessment",
           "onClick": [Function],
@@ -85,14 +85,14 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 <div>
   <InsightsCommandButton
     ariaLabel="start over menu"
-    componentRef={Object {}}
+    componentRef={{}}
     iconProps={
-      Object {
+      {
         "iconName": "Refresh",
       }
     }
     menuIconProps={
-      Object {
+      {
         "iconName": "ChevronRight",
       }
     }
@@ -102,13 +102,13 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
   <ContextualMenu
     directionalHint={8}
     items={
-      Array [
-        Object {
+      [
+        {
           "key": "assessment",
           "name": "Start over Assessment",
           "onClick": [Function],
         },
-        Object {
+        {
           "key": "test",
           "name": "Start over test name",
           "onClick": [Function],

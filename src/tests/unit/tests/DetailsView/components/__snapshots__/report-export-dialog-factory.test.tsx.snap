@@ -4,7 +4,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
 <ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],
@@ -14,7 +14,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   }
   dismissExportDialog={[Function]}
   exportResultsClickedTelemetry={[Function]}
-  featureFlagStoreData={Object {}}
+  featureFlagStoreData={{}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
@@ -22,16 +22,16 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="Assessment"
   reportExportServices={
-    Array [
-      Object {
+    [
+      {
         "generateMenuItem": null,
         "key": "html",
       },
-      Object {
+      {
         "generateMenuItem": null,
         "key": "json",
       },
-      Object {
+      {
         "generateMenuItem": null,
         "key": "codepen",
       },
@@ -46,7 +46,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
 <ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],
@@ -56,7 +56,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   }
   dismissExportDialog={[Function]}
   exportResultsClickedTelemetry={[Function]}
-  featureFlagStoreData={Object {}}
+  featureFlagStoreData={{}}
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
@@ -64,12 +64,12 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="FastPass"
   reportExportServices={
-    Array [
-      Object {
+    [
+      {
         "generateMenuItem": null,
         "key": "html",
       },
-      Object {
+      {
         "generateMenuItem": null,
         "key": "codepen",
       },

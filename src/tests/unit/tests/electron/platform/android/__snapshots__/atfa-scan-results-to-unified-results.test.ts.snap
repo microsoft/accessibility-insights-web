@@ -1,111 +1,111 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AtfaScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
+exports[`AtfaScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `[]`;
 
 exports[`AtfaScanResultsToUnifiedResults ScanResults with contentDescription and text fields specified directly and via Span 1`] = `
-Array [
-  Object {
-    "descriptors": Object {
+[
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": "contentDescription (direct)",
       "text": null,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": "contentDescription (via Span)",
       "text": null,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": null,
       "text": "text (direct)",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": null,
       "text": "text (via Span)",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": "contentDescription (direct)",
       "text": "text (via Span)",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass1",
       "contentDescription": "contentDescription (direct)",
       "text": "text (direct)",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
@@ -115,13 +115,13 @@ Array [
 ]
 `;
 
-exports[`AtfaScanResultsToUnifiedResults ScanResults with no CheckResults returns empty output 1`] = `Array []`;
+exports[`AtfaScanResultsToUnifiedResults ScanResults with no CheckResults returns empty output 1`] = `[]`;
 
 exports[`AtfaScanResultsToUnifiedResults ScanResults with skipped, info, warnings, errors, view IDs, and excluded results 1`] = `
-Array [
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+[
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 300,
         "left": 100,
         "right": 200,
@@ -131,20 +131,20 @@ Array [
       "contentDescription": "id1",
       "text": "id2",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 300,
         "left": 100,
         "right": 200,
@@ -154,29 +154,29 @@ Array [
       "contentDescription": "id1",
       "text": "id2",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass1",
       "identifier": "accessible name #1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": "viewClass2",
       "contentDescription": "id3",
       "text": "id4",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "viewClass2",
       "identifier": "accessible name #2",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",

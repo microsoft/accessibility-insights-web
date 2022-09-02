@@ -4,7 +4,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with device 1`] = `
 <AndroidSetupStepLayout
   headerText="Establishing connection failed"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -17,7 +17,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with device 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -30,7 +30,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with device 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
@@ -49,7 +49,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with emulator 1`] = `
 <AndroidSetupStepLayout
   headerText="Establishing connection failed"
   leftFooterButtonProps={
-    Object {
+    {
       "onClick": [Function],
       "text": "Cancel",
     }
@@ -62,7 +62,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with emulator 1`] = `
     </LinkComponent>
   }
   rightFooterButtonProps={
-    Object {
+    {
       "disabled": true,
       "onClick": undefined,
       "text": "Next",
@@ -75,7 +75,7 @@ exports[`PromptEstablishingConnectionFailedStep renders with emulator 1`] = `
   <DeviceDescription
     className="deviceDescription"
     deviceInfo={
-      Object {
+      {
         "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,

@@ -5,17 +5,17 @@ exports[`NoContentAvailableView renders 1`] = `
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
-        "deps": Object {
-          "textContent": Object {
+      {
+        "deps": {
+          "textContent": {
             "applicationTitle": "test-application-title",
           },
         },
       }
     }
     deps={
-      Object {
-        "textContent": Object {
+      {
+        "textContent": {
           "applicationTitle": "test-application-title",
         },
       }

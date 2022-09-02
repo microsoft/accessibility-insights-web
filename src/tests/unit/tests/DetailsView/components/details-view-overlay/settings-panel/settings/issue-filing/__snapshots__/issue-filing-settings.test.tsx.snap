@@ -9,7 +9,7 @@ exports[`IssueFilingSettings renders 1`] = `
   </h3>
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingServiceProvider": [typemoq mock object],
         "userConfigMessageCreator": [typemoq mock object],
       }
@@ -17,7 +17,7 @@ exports[`IssueFilingSettings renders 1`] = `
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "buildStoreData": [Function],
         "displayName": "TEST",
         "fileIssue": [Function],

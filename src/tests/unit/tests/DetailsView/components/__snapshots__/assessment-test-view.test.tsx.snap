@@ -4,27 +4,27 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
 <React.Fragment>
   <ScanIncompleteWarning
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
     test={-1}
-    warningConfiguration={Object {}}
+    warningConfiguration={{}}
   />
   <TargetChangeDialog
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
     newTab={
-      Object {
+      {
         "id": -2,
         "title": "test title",
         "url": "test url",
@@ -32,13 +32,13 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     }
   />
   <GettingStartedView
-    assessment={Object {}}
+    assessment={{}}
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
   />
@@ -49,27 +49,27 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
 <React.Fragment>
   <ScanIncompleteWarning
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
     test={-1}
-    warningConfiguration={Object {}}
+    warningConfiguration={{}}
   />
   <TargetChangeDialog
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
     newTab={
-      Object {
+      {
         "id": -2,
         "title": "test title",
         "url": "test url",
@@ -77,32 +77,32 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     }
   />
   <RequirementView
-    assessmentData={Object {}}
-    assessmentInstanceTableHandler={Object {}}
+    assessmentData={{}}
+    assessmentInstanceTableHandler={{}}
     assessmentNavState={
-      Object {
+      {
         "selectedTestSubview": "step",
         "selectedTestType": -1,
       }
     }
     currentTarget={
-      Object {
+      {
         "id": -2,
         "title": "test title",
         "url": "test url",
       }
     }
     deps={
-      Object {
-        "assessmentsProvider": Object {
+      {
+        "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
       }
     }
-    featureFlagStoreData={Object {}}
+    featureFlagStoreData={{}}
     isRequirementEnabled={false}
-    pathSnippetStoreData={Object {}}
+    pathSnippetStoreData={{}}
     scanningInProgress={true}
   />
 </React.Fragment>

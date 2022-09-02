@@ -3,11 +3,11 @@
 exports[`TitleBar renders 1`] = `
 <WindowTitle
   actionableIcons={
-    Array [
+    [
       <CustomizedActionButton
         ariaHidden={true}
         iconProps={
-          Object {
+          {
             "iconName": "chromeMinimize",
           }
         }
@@ -22,7 +22,7 @@ exports[`TitleBar renders 1`] = `
       <CustomizedActionButton
         ariaHidden={true}
         iconProps={
-          Object {
+          {
             "iconName": "cancel",
           }
         }
@@ -34,7 +34,7 @@ exports[`TitleBar renders 1`] = `
   }
   className="titleBar"
   deps={
-    Object {
+    {
       "platformInfo": [typemoq mock object],
       "storesHub": [typemoq mock object],
       "windowFrameActionCreator": [typemoq mock object],
@@ -43,7 +43,7 @@ exports[`TitleBar renders 1`] = `
   headerTextClassName="headerText"
   pageTitle="test page title"
   windowStateStoreData={
-    Object {
+    {
       "currentWindowState": "maximized",
       "routeId": "resultsView",
     }
@@ -51,7 +51,7 @@ exports[`TitleBar renders 1`] = `
 >
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
-      Object {
+      {
         "platformInfo": [typemoq mock object],
         "storesHub": [typemoq mock object],
         "windowFrameActionCreator": [typemoq mock object],

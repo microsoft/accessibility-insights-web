@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switcher props dropdown has correct options 1`] = `
-Array [
-  Object {
-    "data": Object {
+[
+  {
+    "data": {
       "icon": "Rocket",
     },
     "key": 0,
     "text": "FastPass",
     "title": "FastPass",
   },
-  Object {
-    "data": Object {
+  {
+    "data": {
       "icon": "testBeakerSolid",
     },
     "key": 2,
@@ -22,8 +22,8 @@ Array [
 `;
 
 exports[`Switcher renders Switcher itself matches snapshot 1`] = `
-"<div className=\\"leftNavSwitcher\\" role=\\"region\\" aria-label=\\"activity\\">
-  <Dropdown className=\\"leftNavSwitcherDropdown\\" ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
+"<div className="leftNavSwitcher" role="region" aria-label="activity">
+  <Dropdown className="leftNavSwitcherDropdown" ariaLabel="select activity" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
 </div>"
 `;
 

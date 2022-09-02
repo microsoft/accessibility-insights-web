@@ -4,7 +4,7 @@ exports[`AutomatedChecksHeaderSection renders 1`] = `
 <HeaderSection
   headerText="Accessibility Insights for Web"
   targetAppInfo={
-    Object {
+    {
       "name": "page-title",
       "url": "url://page",
     }

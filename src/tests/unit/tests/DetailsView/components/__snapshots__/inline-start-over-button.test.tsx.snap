@@ -5,7 +5,7 @@ exports[`InlineStartOverButton renders 1`] = `
   className="inlineStartOverButton"
   data-automation-id="inline-start-over-button"
   iconProps={
-    Object {
+    {
       "iconName": "Refresh",
     }
   }

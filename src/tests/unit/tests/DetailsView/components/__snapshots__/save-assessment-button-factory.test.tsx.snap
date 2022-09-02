@@ -3,33 +3,33 @@
 exports[`SaveAssessmentButtonFactory getSaveButtonForAssessment renders save assessment button 1`] = `
 <SaveAssessmentButton
   assessmentStoreData={
-    Object {
-      "assessments": Object {
-        "assessment-1": Object {
+    {
+      "assessments": {
+        "assessment-1": {
           "fullAxeResultsMap": null,
           "generatedAssessmentInstancesMap": null,
-          "manualTestStepResultMap": Object {
-            "assessment-1-step-1": Object {
+          "manualTestStepResultMap": {
+            "assessment-1-step-1": {
               "id": "assessment-1-step-1",
-              "instances": Array [],
+              "instances": [],
               "status": 2,
             },
-            "removed-step": Object {
+            "removed-step": {
               "id": "123",
-              "instances": Array [],
+              "instances": [],
               "status": 2,
             },
           },
-          "testStepStatus": Object {},
+          "testStepStatus": {},
         },
       },
-      "persistedTabInfo": Object {
+      "persistedTabInfo": {
         "title": "SavedAssessment123",
       },
     }
   }
   deps={
-    Object {
+    {
       "assessmentDataFormatter": [typemoq mock object],
       "fileNameBuilder": [typemoq mock object],
       "fileURLProvider": [typemoq mock object],
@@ -39,7 +39,7 @@ exports[`SaveAssessmentButtonFactory getSaveButtonForAssessment renders save ass
   download="SavedAssessment_date_title.a11ywebassessment"
   href="fileURL"
   tabStoreData={
-    Object {
+    {
       "title": "title",
     }
   }

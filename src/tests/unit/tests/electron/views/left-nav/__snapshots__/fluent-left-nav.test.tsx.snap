@@ -2,8 +2,8 @@
 
 exports[`FluentLeftNav render left nav by itself 1`] = `
 <LeftNav
-  deps={Object {}}
-  featureFlagStoreData={Object {}}
+  deps={{}}
+  featureFlagStoreData={{}}
   selectedKey="automated-checks"
 />
 `;
@@ -15,7 +15,7 @@ exports[`FluentLeftNav render left nav inside panel 1`] = `
   innerPanelAutomationId="fluent-left-nav"
   isOpen={true}
   layerProps={
-    Object {
+    {
       "className": "leftNavPanelHost",
     }
   }
@@ -34,8 +34,8 @@ exports[`FluentLeftNav render left nav inside panel 1`] = `
     />
   </div>
   <LeftNav
-    deps={Object {}}
-    featureFlagStoreData={Object {}}
+    deps={{}}
+    featureFlagStoreData={{}}
     selectedKey="automated-checks"
   />
 </GenericPanel>

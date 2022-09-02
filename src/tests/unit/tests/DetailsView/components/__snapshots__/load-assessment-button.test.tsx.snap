@@ -4,7 +4,7 @@ exports[`LoadAssessmentButton should render per the snapshot 1`] = `
 <InsightsCommandButton
   data-automation-id="load-assessment-button"
   iconProps={
-    Object {
+    {
       "iconName": "FabricOpenFolderHorizontal",
     }
   }

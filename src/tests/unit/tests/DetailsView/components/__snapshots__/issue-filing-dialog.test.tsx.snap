@@ -3,7 +3,7 @@
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -12,7 +12,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   }
   hidden={true}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -23,16 +23,16 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -43,14 +43,14 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "someServiceData": null,
       }
     }
@@ -70,7 +70,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -79,7 +79,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   }
   hidden={true}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -90,16 +90,16 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -110,14 +110,14 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "differentProperty": "different_property",
       }
     }
@@ -137,7 +137,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -146,7 +146,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -157,16 +157,16 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -177,14 +177,14 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "differentProperty": "different_property",
       }
     }
@@ -204,7 +204,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -213,7 +213,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -224,16 +224,16 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -244,14 +244,14 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "differentProperty": "different_property",
       }
     }
@@ -271,7 +271,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -280,7 +280,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -291,16 +291,16 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -311,14 +311,14 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "someServiceData": null,
       }
     }
@@ -338,7 +338,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -347,7 +347,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -358,16 +358,16 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -378,14 +378,14 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "someServiceData": null,
       }
     }
@@ -405,7 +405,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -414,7 +414,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -425,16 +425,16 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -445,14 +445,14 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "someServiceData": null,
         "some_property": "some_value",
       }
@@ -473,7 +473,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -482,7 +482,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -493,16 +493,16 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -513,14 +513,14 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "gitHub",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "some_property": "some_value",
       }
     }
@@ -540,7 +540,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "subText": "This configuration can be changed again in settings.",
       "title": "Specify issue filing location",
@@ -549,7 +549,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
@@ -560,16 +560,16 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
 >
   <IssueFilingSettingsContainer
     deps={
-      Object {
+      {
         "issueFilingActionMessageCreator": [typemoq mock object],
         "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": Object {
-          "applicationProperties": Object {
+        "toolData": {
+          "applicationProperties": {
             "environmentName": "environmentName",
             "name": "app-name",
             "version": "app-version",
           },
-          "scanEngineProperties": Object {
+          "scanEngineProperties": {
             "name": "engine-name",
             "version": "engine-version",
           },
@@ -580,14 +580,14 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
         "key": "different_service",
       }
     }
     selectedIssueFilingServiceData={
-      Object {
+      {
         "differentProperty": "different_property",
       }
     }

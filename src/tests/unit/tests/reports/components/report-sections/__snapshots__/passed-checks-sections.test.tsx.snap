@@ -4,15 +4,15 @@ exports[`PassedChecksSection renders 1`] = `
 <CollapsibleResultSection
   badgeCount={3}
   cardRuleResults={
-    Array [
-      Object {},
-      Object {},
-      Object {},
+    [
+      {},
+      {},
+      {},
     ]
   }
   containerClassName="result-section"
   containerId="passed-checks-section"
-  deps={Object {}}
+  deps={{}}
   headingLevel={3}
   outcomeType="pass"
   title="Passed checks"
@@ -22,10 +22,10 @@ exports[`PassedChecksSection renders 1`] = `
 exports[`PassedChecksSection renders when card data is missing 1`] = `
 <CollapsibleResultSection
   badgeCount={0}
-  cardRuleResults={Array []}
+  cardRuleResults={[]}
   containerClassName="result-section"
   containerId="passed-checks-section"
-  deps={Object {}}
+  deps={{}}
   headingLevel={3}
   outcomeType="pass"
   title="Passed checks"

@@ -11,60 +11,60 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
         <CustomizedIconButton
           ariaLabel="open debug tools"
           iconProps={
-            Object {
+            {
               "iconName": "Cat",
             }
           }
         />
       }
       featureFlag="debugTools"
-      featureFlagStoreData={Object {}}
+      featureFlagStoreData={{}}
     />
     <GearOptionsButtonComponent
       deps={
-        Object {
-          "dropdownClickHandler": Object {},
-          "launchPanelHeaderClickHandler": Object {},
-          "popupActionMessageCreator": Object {},
+        {
+          "dropdownClickHandler": {},
+          "launchPanelHeaderClickHandler": {},
+          "popupActionMessageCreator": {},
         }
       }
-      featureFlagData={Object {}}
+      featureFlagData={{}}
     />
     <HamburgerMenuButton
       deps={
-        Object {
-          "dropdownClickHandler": Object {},
-          "launchPanelHeaderClickHandler": Object {},
-          "popupActionMessageCreator": Object {},
+        {
+          "dropdownClickHandler": {},
+          "launchPanelHeaderClickHandler": {},
+          "popupActionMessageCreator": {},
         }
       }
       header={
         LaunchPanelHeader {
-          "context": Object {},
-          "props": Object {
-            "deps": Object {
-              "dropdownClickHandler": Object {},
-              "launchPanelHeaderClickHandler": Object {},
-              "popupActionMessageCreator": Object {},
+          "context": {},
+          "props": {
+            "deps": {
+              "dropdownClickHandler": {},
+              "launchPanelHeaderClickHandler": {},
+              "popupActionMessageCreator": {},
             },
-            "dropdownClickHandler": Object {},
-            "featureFlags": Object {},
+            "dropdownClickHandler": {},
+            "featureFlags": {},
             "openAdhocToolsPanel": [Function],
-            "openFeedbackDialog": Object {},
-            "openGettingStartedDialog": Object {},
-            "popupWindow": Object {},
+            "openFeedbackDialog": {},
+            "openGettingStartedDialog": {},
+            "popupWindow": {},
             "subtitle": "test subtitle",
             "title": "test title",
           },
-          "refs": Object {},
+          "refs": {},
           "setState": [Function],
-          "state": Object {},
+          "state": {},
           "updater": Updater {
-            "_callbacks": Array [],
+            "_callbacks": [],
             "_renderer": ReactShallowRenderer {
-              "_context": Object {},
+              "_context": {},
               "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": Object {
+              "_dispatcher": {
                 "readContext": [Function],
                 "useCallback": [Function],
                 "useContext": [Function],
@@ -82,18 +82,18 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
               },
               "_element": <LaunchPanelHeader
                 deps={
-                  Object {
-                    "dropdownClickHandler": Object {},
-                    "launchPanelHeaderClickHandler": Object {},
-                    "popupActionMessageCreator": Object {},
+                  {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
                   }
                 }
-                dropdownClickHandler={Object {}}
-                featureFlags={Object {}}
+                dropdownClickHandler={{}}
+                featureFlags={{}}
                 openAdhocToolsPanel={[Function]}
-                openFeedbackDialog={Object {}}
-                openGettingStartedDialog={Object {}}
-                popupWindow={Object {}}
+                openFeedbackDialog={{}}
+                openGettingStartedDialog={{}}
+                popupWindow={{}}
                 subtitle="test subtitle"
                 title="test title"
               />,
@@ -114,35 +114,35 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
                       <CustomizedIconButton
                         ariaLabel="open debug tools"
                         iconProps={
-                          Object {
+                          {
                             "iconName": "Cat",
                           }
                         }
                       />
                     }
                     featureFlag="debugTools"
-                    featureFlagStoreData={Object {}}
+                    featureFlagStoreData={{}}
                   />
                   <GearOptionsButtonComponent
                     deps={
-                      Object {
-                        "dropdownClickHandler": Object {},
-                        "launchPanelHeaderClickHandler": Object {},
-                        "popupActionMessageCreator": Object {},
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
                       }
                     }
-                    featureFlagData={Object {}}
+                    featureFlagData={{}}
                   />
                   <HamburgerMenuButton
                     deps={
-                      Object {
-                        "dropdownClickHandler": Object {},
-                        "launchPanelHeaderClickHandler": Object {},
-                        "popupActionMessageCreator": Object {},
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
                       }
                     }
                     header={[Circular]}
-                    popupWindow={Object {}}
+                    popupWindow={{}}
                   />
                 </React.Fragment>
               </Header>,
@@ -153,7 +153,7 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
           },
         }
       }
-      popupWindow={Object {}}
+      popupWindow={{}}
     />
   </React.Fragment>
 </Header>

@@ -3,19 +3,19 @@
 exports[`FastPassLeftNav renders visualization based left nav with appropriate params 1`] = `
 <VisualizationBasedLeftNav
   deps={
-    Object {
-      "navLinkHandler": Object {
+    {
+      "navLinkHandler": {
         "onFastPassTestClick": [Function],
       },
     }
   }
-  featureFlagStoreData={Object {}}
+  featureFlagStoreData={{}}
   onLinkClick={[Function]}
   onRightPanelContentSwitch={[Function]}
   selectedKey="some string"
   setNavComponentRef={[Function]}
   visualizations={
-    Array [
+    [
       1,
       3,
       29,

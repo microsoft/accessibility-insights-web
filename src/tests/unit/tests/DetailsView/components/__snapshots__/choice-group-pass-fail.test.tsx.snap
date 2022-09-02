@@ -9,22 +9,22 @@ exports[`ChoiceGroupPassFail render 1`] = `
     isLabelVisible={false}
     onChange={[Function]}
     options={
-      Array [
-        Object {
+      [
+        {
           "ariaLabel": "Pass",
           "key": "pass",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionPass",
             "root": "radioButtonOption",
           },
           "text": "Pass",
         },
-        Object {
+        {
           "ariaLabel": "Fail",
           "key": "fail",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionFail",
             "root": "radioButtonOption",
           },
@@ -34,7 +34,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
     }
     selectedKey="unknown"
     styles={
-      Object {
+      {
         "flexContainer": "radioButtonGroup",
       }
     }
@@ -45,7 +45,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
     <CustomizedIconButton
       aria-label="add"
       iconProps={
-        Object {
+        {
           "iconName": "add",
         }
       }
@@ -64,22 +64,22 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     isLabelVisible={false}
     onChange={[Function]}
     options={
-      Array [
-        Object {
+      [
+        {
           "ariaLabel": "Pass",
           "key": "pass",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionPass",
             "root": "radioButtonOption",
           },
           "text": "Pass",
         },
-        Object {
+        {
           "ariaLabel": "Fail",
           "key": "fail",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionFail",
             "root": "radioButtonOption",
           },
@@ -89,7 +89,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     }
     selectedKey="fail"
     styles={
-      Object {
+      {
         "flexContainer": "radioButtonGroup",
       }
     }
@@ -100,7 +100,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     <CustomizedIconButton
       ariaLabel="undo"
       iconProps={
-        Object {
+        {
           "iconName": "undo",
         }
       }
@@ -109,7 +109,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     <CustomizedIconButton
       aria-label="add"
       iconProps={
-        Object {
+        {
           "iconName": "add",
         }
       }
@@ -128,22 +128,22 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     isLabelVisible={false}
     onChange={[Function]}
     options={
-      Array [
-        Object {
+      [
+        {
           "ariaLabel": "Pass",
           "key": "pass",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionPass",
             "root": "radioButtonOption",
           },
           "text": "Pass",
         },
-        Object {
+        {
           "ariaLabel": "Fail",
           "key": "fail",
           "onRenderLabel": [Function],
-          "styles": Object {
+          "styles": {
             "field": "radioButtonOptionField radioButtonOptionFail",
             "root": "radioButtonOption",
           },
@@ -153,7 +153,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     }
     selectedKey="pass"
     styles={
-      Object {
+      {
         "flexContainer": "radioButtonGroup",
       }
     }
@@ -164,7 +164,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     <CustomizedIconButton
       ariaLabel="undo"
       iconProps={
-        Object {
+        {
           "iconName": "undo",
         }
       }
@@ -173,7 +173,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     <CustomizedIconButton
       aria-label="add"
       iconProps={
-        Object {
+        {
           "iconName": "add",
         }
       }

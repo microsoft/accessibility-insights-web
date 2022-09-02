@@ -1,14 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AxeScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `[]`;
 
-exports[`AxeScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `[]`;
 
 exports[`AxeScanResultsToUnifiedResults ScanResults with passes, failures, view IDs, and excluded results 1`] = `
-Array [
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+[
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 800,
         "left": 10,
         "right": 600,
@@ -18,38 +18,38 @@ Array [
       "contentDescription": "myDescription1",
       "text": "myText1",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "myClass1",
       "identifier": "myClass1",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": null,
       "className": "myClass3",
       "contentDescription": null,
       "text": null,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "myClass3",
       "identifier": "myClass3",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 300,
         "left": 10,
         "right": 500,
@@ -59,20 +59,20 @@ Array [
       "contentDescription": "myDescription4",
       "text": "myText4",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "myClass4",
       "identifier": "myClass4",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
     "status": "pass",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 50,
         "left": 20,
         "right": 35,
@@ -82,20 +82,20 @@ Array [
       "contentDescription": null,
       "text": null,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "myClass2",
       "identifier": "myClass2",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #4",
     },
     "ruleId": "My Rule #4",
     "status": "pass",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
+  {
+    "descriptors": {
+      "boundingRectangle": {
         "bottom": 50,
         "left": 20,
         "right": 35,
@@ -105,29 +105,29 @@ Array [
       "contentDescription": null,
       "text": null,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "myClass2",
       "identifier": "myClass2",
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #3",
     },
     "ruleId": "My Rule #3",
     "status": "pass",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "boundingRectangle": undefined,
       "className": undefined,
       "contentDescription": undefined,
       "text": undefined,
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": undefined,
       "identifier": undefined,
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",

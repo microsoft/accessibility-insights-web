@@ -4,7 +4,7 @@ exports[`ReporterHeaderSection renders 1`] = `
 <HeaderSection
   headerText="Accessibility Insights"
   targetAppInfo={
-    Object {
+    {
       "name": "page-title",
       "url": "url://page",
     }

@@ -3,7 +3,7 @@
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
       "title": "We need your help",
       "type": 0,
@@ -11,7 +11,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "className": "telemetry-permission-dialog-modal",
       "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
       "isBlocking": true,
@@ -23,7 +23,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
   >
     <TelemetryNotice
       deps={
-        Object {
+        {
           "LinkComponent": [Function],
         }
       }
@@ -40,7 +40,7 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
     />
     <PrivacyStatementPopupText
       deps={
-        Object {
+        {
           "LinkComponent": [Function],
         }
       }
