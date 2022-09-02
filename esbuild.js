@@ -31,7 +31,7 @@ const devWebExtensionOutdir = path.join(__dirname, 'extension/devBundle');
 const devWebExtensionM3Outdir = path.join(__dirname, 'extension/devMv3Bundle');
 
 const prodWebExtensionOutDir = path.join(__dirname, 'extension/prodBundle');
-const prodWebExtensionM3OutDir = path.join(__dirname, 'extension/prodMV3Bundle');
+const prodWebExtensionM3OutDir = path.join(__dirname, 'extension/prodMv3Bundle');
 
 function isReactDevtoolsInstalled() {
     try {
