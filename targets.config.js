@@ -113,6 +113,20 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
+    'insider-mv3': {
+        release: true,
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.insider,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web - Insider (M3)',
+                telemetryBuildName: 'InsiderMV3',
+            },
+        },
+        bundleFolder: 'prodMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
+    },
     production: {
         release: true,
         config: {
@@ -124,6 +138,20 @@ module.exports = {
         },
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
+    },
+    'production-mv3': {
+        release: true,
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.production,
+                manifestVersion: 3,
+                fullName: 'Accessibility Insights for Web (M3)',
+                telemetryBuildName: 'ProductionMV3',
+            },
+        },
+        bundleFolder: 'prodMv3Bundle',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     'unified-dev': {
         config: {
