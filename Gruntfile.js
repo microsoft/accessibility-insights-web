@@ -780,7 +780,7 @@ module.exports = function (grunt) {
     grunt.registerTask('package-validator', function () {
         const mustExistPath = path.join(packageValidatorBundlePath, 'validator.bundle.js');
 
-        mustExist(mustExistPath, 'Have you run webpack?');
+        mustExist(mustExistPath, 'Have you run esbuild?');
 
         grunt.task.run('clean:package-validator');
         grunt.task.run('copy:package-validator');

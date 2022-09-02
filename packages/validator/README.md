@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 # accessibility-insights-assessment-validator
 
-This library produces a tool that generates a AJV JSON validator for the accessibility insights assessment data schema.
+This library produces a tool that generates an AJV JSON validator for the Accessibility Insights assessment data schema.
 
 ## Contributing
 

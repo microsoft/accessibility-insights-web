@@ -27,7 +27,7 @@ export class LoadAssessmentDataSchemaProvider {
         ];
         deprecatedRequirements.forEach(requirement => {
             if (
-                schema.properties.assessmentData.properties.assessments.properties[
+                this.getAssessments(schema)[
                     requirement.assessmentKey
                 ] === undefined
             ) {
@@ -44,7 +44,7 @@ export class LoadAssessmentDataSchemaProvider {
     }
 
     private setAssessmentBaseProperties(schema: any, assessmentKey: string) {
-        const assessments = schema.properties.assessmentData.properties.assessments.properties;
+        const assessments = this.getAssessments(schema);
         assessments[assessmentKey] = this.getBaseAssessmentObject();
         return schema;
     }
@@ -54,7 +54,7 @@ export class LoadAssessmentDataSchemaProvider {
         requirementKey: string,
         assessmentKey: string,
     ) {
-        const assessments = schema.properties.assessmentData.properties.assessments.properties;
+        const assessments = this.getAssessments(schema);
 
         assessments[assessmentKey].properties.manualTestStepResultMap.properties[requirementKey] =
             this.getBaseManualTestStepResultMapObject();
@@ -62,6 +62,10 @@ export class LoadAssessmentDataSchemaProvider {
         assessments[assessmentKey].properties.testStepStatus.properties[requirementKey] =
             this.getBaseTestStepStatus();
         return schema;
+    }
+
+    private getAssessments(schema: any) {
+        return schema.properties.assessmentData.properties.assessments.properties;
     }
 
     private getBaseTestStepStatus() {
