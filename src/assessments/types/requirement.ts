@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IColumn } from '@fluentui/react';
-import { Assessment } from 'assessments/types/iassessment';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
+    AssessmentData,
     AssessmentNavState,
-    AssessmentStoreData,
     GeneratedAssessmentInstance,
     InstanceIdToInstanceDataMap,
 } from 'common/types/store-data/assessment-result-data';
@@ -58,10 +57,7 @@ export interface Requirement {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
-    getCompletedStepDetailsForTelemetry?: (
-        assessment: Assessment,
-        storeData: AssessmentStoreData,
-    ) => any;
+    getCompletedRequirementDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
 }
 
 export type VisualHelperToggleConfigDeps = {
