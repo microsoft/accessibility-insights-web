@@ -26,11 +26,7 @@ export class LoadAssessmentDataSchemaProvider {
             { assessmentKey: 'automated-checks', requirementKey: 'scrollable-region-focusable' },
         ];
         deprecatedRequirements.forEach(requirement => {
-            if (
-                this.getAssessments(schema)[
-                    requirement.assessmentKey
-                ] === undefined
-            ) {
+            if (this.getAssessments(schema)[requirement.assessmentKey] === undefined) {
                 schema = this.setAssessmentBaseProperties(schema, requirement.assessmentKey);
             }
 
