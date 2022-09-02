@@ -9,9 +9,9 @@ export type CardRuleResultStatus = InstanceResultStatus | 'inapplicable';
 export interface CardRuleResult {
     id: string;
     nodes: CardResult[];
-    description: string;
-    url: string;
-    guidance: GuidanceLink[];
+    description?: string;
+    url?: string;
+    guidance?: GuidanceLink[];
     isExpanded: boolean;
 }
 export type CardRuleResultsByStatus = {

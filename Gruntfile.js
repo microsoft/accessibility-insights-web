@@ -53,6 +53,7 @@ module.exports = function (grunt) {
                 'exec:esbuild-dev-mv3',
                 'exec:webpack-unified',
                 'exec:esbuild-prod',
+                'exec:esbuild-prod-mv3',
             ],
         },
         copy: {
@@ -167,6 +168,7 @@ module.exports = function (grunt) {
             'esbuild-dev': `node esbuild.js`,
             'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
+            'esbuild-prod-mv3': `node esbuild.js --env prod-mv3`,
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
@@ -467,11 +469,18 @@ module.exports = function (grunt) {
                         40: config.options.icon48,
                     },
                 },
-                permissions: ['notifications', 'scripting', 'storage', 'tabs', 'webNavigation'],
+                permissions: [
+                    'notifications',
+                    'scripting',
+                    'storage',
+                    'tabs',
+                    'webNavigation',
+                    'activeTab',
+                ],
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                host_permissions: ['*://*/*'],
+                optional_host_permissions: ['<all_urls>'],
                 web_accessible_resources: [
                     {
                         resources: [
@@ -810,6 +819,13 @@ module.exports = function (grunt) {
         'exec:esbuild-prod',
         'build-assets',
         'drop:production',
+    ]);
+    grunt.registerTask('build-prod-mv3', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:esbuild-prod-mv3',
+        'build-assets',
+        'drop:production-mv3',
     ]);
     grunt.registerTask('build-unified', [
         'clean:intermediates',

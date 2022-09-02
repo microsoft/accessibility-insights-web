@@ -5,9 +5,9 @@ import { GuidanceLink } from 'common/types/store-data/guidance-links';
 export interface CreateIssueDetailsTextData {
     rule: {
         id: string;
-        description: string;
-        url: string;
-        guidance: GuidanceLink[];
+        description?: string;
+        url?: string;
+        guidance?: GuidanceLink[];
     };
     targetApp: {
         name?: string;

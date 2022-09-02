@@ -86,9 +86,9 @@ describe('TabStopsAnalyzer', () => {
             payload: {
                 key: configStub.key,
                 selectorMap: {},
-                scanResult: null,
                 testType: visualizationTypeStub,
                 scanIncompleteWarnings: [],
+                scanResult: undefined,
             },
         };
     });

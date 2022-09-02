@@ -13,7 +13,7 @@ export const ruleDetailAutomationId = 'rule-detail';
 export type MinimalRuleHeaderProps = {
     rule: {
         id: string;
-        description: string;
+        description?: string;
         nodes: any[];
     };
     outcomeType: InstanceOutcomeType;

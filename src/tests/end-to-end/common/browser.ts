@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { setTimeout } from 'timers/promises';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
 import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
@@ -9,6 +11,7 @@ import {
     hasServiceWorkerUrl,
     ServiceWorker,
 } from 'tests/end-to-end/common/page-controllers/service-worker';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
 import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
@@ -23,11 +26,12 @@ export class Browser {
     private memoizedServiceWorker: ServiceWorker;
     private pages: Array<Page> = [];
     private underlyingBrowserContext: Playwright.BrowserContext | null;
-    private readonly MANIFEST_VERSION = process.env.WEB_E2E_TARGET;
+    private readonly promiseFactory = createDefaultPromiseFactory();
 
     constructor(
         private readonly browserInstanceId: string,
         underlyingBrowserContext: Playwright.BrowserContext,
+        private readonly manifestV3: boolean,
         private readonly onClose?: () => Promise<void>,
     ) {
         this.underlyingBrowserContext = underlyingBrowserContext;
@@ -59,7 +63,7 @@ export class Browser {
     }
 
     public async background(): Promise<BackgroundContext> {
-        if (this.MANIFEST_VERSION?.includes('mv3')) {
+        if (this.manifestV3) {
             if (this.memoizedServiceWorker) {
                 return this.memoizedServiceWorker;
             }
@@ -189,6 +193,15 @@ export class Browser {
 
     private async getActivePageTabId(): Promise<number> {
         const backgroundPage = await this.background();
+
+        // Check chrome.tabs is initialized
+        const checkTabsInit = async () => {
+            while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
+                await setTimeout(50);
+            }
+        };
+        await this.promiseFactory.timeout(checkTabsInit(), DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS);
+
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs =>

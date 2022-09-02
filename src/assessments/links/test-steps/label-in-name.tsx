@@ -19,6 +19,7 @@ import { PropertyBagColumnRendererFactory } from '../../common/property-bag-colu
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
+import { labelInNameGetCompletedRequirementDetails } from './label-in-name-get-completed-requirement-details';
 import { LinksTestStep } from './test-steps';
 
 const LabelInNameDescription: JSX.Element = (
@@ -66,6 +67,11 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<LabelInNamePropertyBag>
         defaultValue: NoValue,
     },
     {
+        propertyName: 'visibleText',
+        displayName: 'Visible text',
+        defaultValue: NoValue,
+    },
+    {
         propertyName: 'url',
         displayName: 'URL',
         defaultValue: NoValue,
@@ -94,7 +100,7 @@ export const LabelInName: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['link-purpose'], //will be updated with custom label in name rule
+                rules: ['label-in-name'],
                 key: LinksTestStep.labelInName,
                 testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
@@ -102,4 +108,5 @@ export const LabelInName: Requirement = {
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getCompletedRequirementDetailsForTelemetry: labelInNameGetCompletedRequirementDetails,
 };
