@@ -27,6 +27,7 @@ function testBeforeAfterAssessmentData(
     expectedTimes: Times,
     before: AssessmentStoreData,
     after: AssessmentStoreData,
+    requirementDetails?: any,
 ): void {
     const assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
     const assessmentProvider = CreateTestAssessmentProvider();
@@ -51,9 +52,11 @@ function testBeforeAfterAssessmentData(
     interpreterMock.setup(m => m.interpret(It.isValue(expectedMessage))).verifiable(expectedTimes);
 
     telemetryFactoryMock
-        .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-        .returns((viz, step, passed, instances) =>
-            getMockTelemetryData(viz, step, passed, instances),
+        .setup(m =>
+            m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()),
+        )
+        .returns((viz, step, passed, instances, _) =>
+            getMockTelemetryData(viz, step, passed, instances, requirementDetails),
         )
         .verifiable(Times.atLeastOnce());
 
@@ -174,6 +177,34 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         testBeforeAfterAssessmentData(expectedTelemetry, Times.once(), before, after);
     });
 
+    test('initialize: onAssessmentChange, requirementDetails are sent when specified in step', () => {
+        const before = getMockAssessmentStoreDataUnknowns();
+        const after = getMockAssessmentStoreDataUnknowns();
+        after.assessments['assessment-1'].testStepStatus['assessment-1-step-1'].stepFinalResult =
+            ManualTestStatus.PASS;
+        after.assessments['assessment-1'].testStepStatus['assessment-1-step-2'].stepFinalResult =
+            ManualTestStatus.PASS;
+
+        const requirementDetails = {
+            skyColor: 'blue',
+            cloudCount: 2,
+        };
+        const expectedTelemetry = getMockTelemetryData(
+            -1,
+            'assessment-1-step-1',
+            true,
+            1,
+            requirementDetails,
+        );
+        testBeforeAfterAssessmentData(
+            expectedTelemetry,
+            Times.once(),
+            before,
+            after,
+            requirementDetails,
+        );
+    });
+
     test('initialize: onAssessmentChange, no telemetry sent because all test steps have UNKNOWN status', () => {
         const assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
         const assessmentProvider = CreateTestAssessmentProvider();
@@ -249,9 +280,11 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         tabStoreMock.setup(m => m.getState()).returns(() => tabStoreData);
 
         telemetryFactoryMock
-            .setup(m => m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
-            .returns((viz, step, passed, instances) =>
-                getMockTelemetryData(viz, step, passed, instances),
+            .setup(m =>
+                m.forRequirementStatus(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()),
+            )
+            .returns((viz, step, passed, instances, requirementDetails) =>
+                getMockTelemetryData(viz, step, passed, instances, requirementDetails),
             )
             .verifiable();
 
@@ -286,8 +319,9 @@ function getMockTelemetryData(
     requirement: string,
     passed: boolean,
     instances: number,
+    requirementDetails?: any,
 ): RequirementStatusTelemetryData {
-    return {
+    const telemetry = {
         selectedRequirement: requirement,
         selectedTest: test.toString(),
         passed: passed,
@@ -295,6 +329,12 @@ function getMockTelemetryData(
         source: TelemetryEventSource.DetailsView,
         triggeredBy: TriggeredByNotApplicable,
     };
+
+    if (requirementDetails) {
+        telemetry['requirementDetails'] = requirementDetails;
+    }
+
+    return telemetry;
 }
 
 function getMockAssessmentStoreDataUnknowns(): AssessmentStoreData {

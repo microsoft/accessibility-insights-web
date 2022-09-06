@@ -10,8 +10,8 @@ exports[`OverviewHelpSection help text is shown properly 1`] = `
     Help
   </h3>
   <HelpLinks
-    deps={Object {}}
-    linkInformation={Array []}
+    deps={{}}
+    linkInformation={[]}
   />
 </section>
 `;

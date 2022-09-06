@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expected 1`] = `
-Object {
-  "deps": Object {
+{
+  "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
   "getCollapsibleComponentPropsWithInstance": [Function],
   "headingLevel": 3,
-  "results": Array [
-    Object {
+  "results": [
+    {
       "description": "test requirement description 1",
       "id": "keyboard-navigation",
-      "instances": Array [
-        Object {
+      "instances": [
+        {
           "description": "test desc 1",
           "id": "test-id-1",
         },
-        Object {
+        {
           "description": "test desc 2",
           "id": "test-id-2",
         },
@@ -25,11 +25,11 @@ Object {
       "isExpanded": false,
       "name": "test requirement name 1",
     },
-    Object {
+    {
       "description": "test requirement description 2",
       "id": "keyboard-traps",
-      "instances": Array [
-        Object {
+      "instances": [
+        {
           "description": "test desc 3",
           "id": "test-id-3",
         },
@@ -38,10 +38,10 @@ Object {
       "name": "test requirement name 2",
     },
   ],
-  "tabStopRequirementState": Object {
-    "keyboard-navigation": Object {
-      "instances": Array [
-        Object {
+  "tabStopRequirementState": {
+    "keyboard-navigation": {
+      "instances": [
+        {
           "description": "test desc 1",
           "id": "test-id-1",
         },
@@ -49,9 +49,9 @@ Object {
       "isExpanded": false,
       "status": "fail",
     },
-    "keyboard-traps": Object {
-      "instances": Array [
-        Object {
+    "keyboard-traps": {
+      "instances": [
+        {
           "description": "test desc 2",
           "id": "test-id-2",
         },
@@ -64,18 +64,18 @@ Object {
 `;
 
 exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expected 2`] = `
-Object {
+{
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
   "content": <TabStopsRequirementInstancesCollapsibleContent
     instances={
-      Array [
-        Object {
+      [
+        {
           "description": "test desc 1",
           "id": "test-id-1",
         },
-        Object {
+        {
           "description": "test desc 2",
           "id": "test-id-2",
         },
@@ -85,27 +85,27 @@ Object {
     onRemoveButtonClicked={[Function]}
     requirementId="keyboard-navigation"
   />,
-  "deps": Object {
+  "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
-      Object {
+      {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={
-      Object {
+      {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
-        "instances": Array [
-          Object {
+        "instances": [
+          {
             "description": "test desc 1",
             "id": "test-id-1",
           },
-          Object {
+          {
             "description": "test desc 2",
             "id": "test-id-2",
           },
@@ -124,24 +124,24 @@ Object {
 `;
 
 exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expected 1`] = `
-Object {
-  "deps": Object {
+{
+  "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
   "getCollapsibleComponentPropsWithInstance": [Function],
   "getCollapsibleComponentPropsWithoutInstance": [Function],
   "headingLevel": 3,
-  "results": Array [
-    Object {
+  "results": [
+    {
       "description": "test requirement description 1",
       "id": "keyboard-navigation",
-      "instances": Array [
-        Object {
+      "instances": [
+        {
           "description": "test desc 1",
           "id": "test-id-1",
         },
-        Object {
+        {
           "description": "test desc 2",
           "id": "test-id-2",
         },
@@ -149,11 +149,11 @@ Object {
       "isExpanded": false,
       "name": "test requirement name 1",
     },
-    Object {
+    {
       "description": "test requirement description 2",
       "id": "keyboard-traps",
-      "instances": Array [
-        Object {
+      "instances": [
+        {
           "description": "test desc 3",
           "id": "test-id-3",
         },
@@ -162,10 +162,10 @@ Object {
       "name": "test requirement name 2",
     },
   ],
-  "tabStopRequirementState": Object {
-    "keyboard-navigation": Object {
-      "instances": Array [
-        Object {
+  "tabStopRequirementState": {
+    "keyboard-navigation": {
+      "instances": [
+        {
           "description": "test desc 1",
           "id": "test-id-1",
         },
@@ -173,9 +173,9 @@ Object {
       "isExpanded": false,
       "status": "fail",
     },
-    "keyboard-traps": Object {
-      "instances": Array [
-        Object {
+    "keyboard-traps": {
+      "instances": [
+        {
           "description": "test desc 2",
           "id": "test-id-2",
         },
@@ -188,20 +188,20 @@ Object {
 `;
 
 exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expected 2`] = `
-Object {
+{
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
   "content": <TabStopsReportInstanceList
     instances={
-      Array [
-        Object {
-          "props": Array [
-            Object {
+      [
+        {
+          "props": [
+            {
               "key": "Comment",
               "value": "test desc 1",
             },
-            Object {
+            {
               "key": "Comment",
               "value": "test desc 2",
             },
@@ -211,27 +211,27 @@ Object {
     }
     requirementId="keyboard-navigation"
   />,
-  "deps": Object {
+  "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
-      Object {
+      {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={
-      Object {
+      {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
-        "instances": Array [
-          Object {
+        "instances": [
+          {
             "description": "test desc 1",
             "id": "test-id-1",
           },
-          Object {
+          {
             "description": "test desc 2",
             "id": "test-id-2",
           },
@@ -250,7 +250,7 @@ Object {
 `;
 
 exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expected 3`] = `
-Object {
+{
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
@@ -259,27 +259,27 @@ Object {
   >
     This requirement has failed but no comment has been added
   </span>,
-  "deps": Object {
+  "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
   "header": <TabStopsMinimalRequirementHeader
     deps={
-      Object {
+      {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
       }
     }
     requirement={
-      Object {
+      {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
-        "instances": Array [
-          Object {
+        "instances": [
+          {
             "description": "test desc 1",
             "id": "test-id-1",
           },
-          Object {
+          {
             "description": "test desc 2",
             "id": "test-id-2",
           },

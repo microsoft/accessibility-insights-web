@@ -7,7 +7,7 @@ exports[`AssessmentInstanceSelectedButton render when element is not selected an
   className="instanceVisibilityButton testInstanceSelectedHiddenButton"
   disabled={true}
   iconProps={
-    Object {
+    {
       "className": "",
       "iconName": "hide2",
     }
@@ -24,7 +24,7 @@ exports[`AssessmentInstanceSelectedButton render when element is not selected an
   className="instanceVisibilityButton"
   disabled={false}
   iconProps={
-    Object {
+    {
       "className": "",
       "iconName": "checkBox",
     }
@@ -41,7 +41,7 @@ exports[`AssessmentInstanceSelectedButton render when element is selected and vi
   className="instanceVisibilityButton"
   disabled={false}
   iconProps={
-    Object {
+    {
       "className": "testInstanceSelected testInstanceSelectedVisible",
       "iconName": "view",
     }
@@ -58,7 +58,7 @@ exports[`AssessmentInstanceSelectedButton render when element is selected but hi
   className="instanceVisibilityButton testInstanceSelectedHiddenButton"
   disabled={true}
   iconProps={
-    Object {
+    {
       "className": "testInstanceSelected testInstanceSelectedHidden",
       "iconName": "hide2",
     }

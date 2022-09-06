@@ -3,7 +3,7 @@
 exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": undefined,
       "urlParser": [typemoq mock object],
@@ -22,7 +22,7 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "id": 111,
       "title": "test title",
       "url": "https://www.test.com",
@@ -39,7 +39,7 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
 exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": undefined,
       "urlParser": [typemoq mock object],
@@ -58,7 +58,7 @@ exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "id": 111,
       "title": "test title",
       "url": "https://www.test.com",

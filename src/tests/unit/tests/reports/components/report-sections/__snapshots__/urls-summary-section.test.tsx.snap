@@ -17,7 +17,7 @@ exports[`UrlsSummarySection renders 1`] = `
   </React.Fragment>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "fail",
         "unscannable",
         "pass",
@@ -25,7 +25,7 @@ exports[`UrlsSummarySection renders 1`] = `
     }
     iconStyleInverted={true}
     outcomeStats={
-      Object {
+      {
         "fail": 2,
         "pass": 1,
         "unscannable": 3,

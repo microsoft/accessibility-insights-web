@@ -3,7 +3,7 @@
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
@@ -16,7 +16,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
        
       <StyledTooltipHostBase
         calloutProps={
-          Object {
+          {
             "gapSpace": 0,
           }
         }
@@ -43,7 +43,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "detailsViewId": "differentDetailsViewId",
       "id": 456,
     }
@@ -59,7 +59,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
@@ -72,7 +72,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
        
       <StyledTooltipHostBase
         calloutProps={
-          Object {
+          {
             "gapSpace": 0,
           }
         }
@@ -99,7 +99,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "detailsViewId": "differentDetailsViewId",
       "id": 111,
       "title": "test title 1",
@@ -117,7 +117,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
@@ -130,7 +130,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
        
       <StyledTooltipHostBase
         calloutProps={
-          Object {
+          {
             "gapSpace": 0,
           }
         }
@@ -157,7 +157,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",
@@ -175,7 +175,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
@@ -188,7 +188,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
        
       <StyledTooltipHostBase
         calloutProps={
-          Object {
+          {
             "gapSpace": 0,
           }
         }
@@ -215,7 +215,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",
@@ -233,7 +233,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
 <ChangeAssessmentDialog
   deps={
-    Object {
+    {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
       "urlParser": [typemoq mock object],
@@ -246,7 +246,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
        
       <StyledTooltipHostBase
         calloutProps={
-          Object {
+          {
             "gapSpace": 0,
           }
         }
@@ -273,7 +273,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
   prevTab={
-    Object {
+    {
       "detailsViewId": "detailsViewId",
       "id": 111,
       "title": "test title 1",

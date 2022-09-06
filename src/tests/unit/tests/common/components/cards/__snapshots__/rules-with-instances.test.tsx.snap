@@ -13,40 +13,40 @@ exports[`RulesWithInstances renders 1`] = `
       <RuleContent
         cardSelectionMessageCreator={[typemoq mock object]}
         deps={
-          Object {
+          {
             "collapsibleControl": [Function],
             "fixInstructionProcessor": [typemoq mock object],
           }
         }
         rule={
-          Object {
+          {
             "description": "sample-description",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "sample-guidance-href",
                 "text": "sample-guidance-text",
               },
             ],
             "id": "some-rule",
-            "nodes": Array [
-              Object {
-                "descriptors": Object {
+            "nodes": [
+              {
+                "descriptors": {
                   "snippet": "this is a sample snippet",
                 },
-                "identifiers": Object {
+                "identifiers": {
                   "conciseName": "body img",
                   "css-selector": "body img",
                   "identifier": "body img",
                 },
-                "resolution": Object {
-                  "how-to-fix-web": Object {
-                    "all": Array [],
-                    "any": Array [
+                "resolution": {
+                  "how-to-fix-web": {
+                    "all": [],
+                    "any": [
                       "Element does not have an alt attribute",
                       "aria-label attribute does not exist or is empty",
                       "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                     ],
-                    "none": Array [],
+                    "none": [],
                   },
                   "howToFixSummary": "sample how to fix summary",
                 },
@@ -59,7 +59,7 @@ exports[`RulesWithInstances renders 1`] = `
           }
         }
         targetAppInfo={
-          Object {
+          {
             "name": "app",
           }
         }
@@ -67,7 +67,7 @@ exports[`RulesWithInstances renders 1`] = `
       />
     }
     deps={
-      Object {
+      {
         "collapsibleControl": [Function],
         "fixInstructionProcessor": [typemoq mock object],
       }
@@ -77,34 +77,34 @@ exports[`RulesWithInstances renders 1`] = `
         outcomeCounter={[Function]}
         outcomeType="pass"
         rule={
-          Object {
+          {
             "description": "sample-description",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "sample-guidance-href",
                 "text": "sample-guidance-text",
               },
             ],
             "id": "some-rule",
-            "nodes": Array [
-              Object {
-                "descriptors": Object {
+            "nodes": [
+              {
+                "descriptors": {
                   "snippet": "this is a sample snippet",
                 },
-                "identifiers": Object {
+                "identifiers": {
                   "conciseName": "body img",
                   "css-selector": "body img",
                   "identifier": "body img",
                 },
-                "resolution": Object {
-                  "how-to-fix-web": Object {
-                    "all": Array [],
-                    "any": Array [
+                "resolution": {
+                  "how-to-fix-web": {
+                    "all": [],
+                    "any": [
                       "Element does not have an alt attribute",
                       "aria-label attribute does not exist or is empty",
                       "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                     ],
-                    "none": Array [],
+                    "none": [],
                   },
                   "howToFixSummary": "sample how to fix summary",
                 },

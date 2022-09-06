@@ -7,7 +7,7 @@ exports[`LayeredDetailsDialogComponent renders per snapshot 1`] = `
 >
   <DetailsDialog
     deps={
-      Object {
+      {
         "getRTL": [Function],
       }
     }

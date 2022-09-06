@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
-"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
-  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
-    <span id=\\"switch-to-target\\">
+"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
+  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
+    <span id="switch-to-target">
       Target page: 
     </span>
-    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-      <span className=\\"targetPageTitle\\">
+    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
+      <span className="targetPageTitle">
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
@@ -15,7 +15,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
   <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} renderSaveAssessmentButton={[Function (anonymous)]} renderLoadAssessmentButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
   <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="none" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
@@ -67,8 +67,8 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -77,40 +77,40 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -119,8 +119,8 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -129,20 +129,20 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -150,21 +150,21 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -172,7 +172,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -181,8 +181,8 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -191,40 +191,40 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -279,8 +279,8 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -289,40 +289,40 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -331,8 +331,8 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -341,20 +341,20 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -362,21 +362,21 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -384,7 +384,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -393,8 +393,8 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -403,40 +403,40 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -485,8 +485,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -495,40 +495,40 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -537,8 +537,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -547,20 +547,20 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -568,21 +568,21 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -590,7 +590,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -599,8 +599,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -609,40 +609,40 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -691,8 +691,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -701,40 +701,40 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={true}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -743,8 +743,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -753,20 +753,20 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -774,21 +774,21 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -796,7 +796,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -805,8 +805,8 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -815,40 +815,40 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -862,7 +862,7 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
 <InsightsCommandButton
   data-automation-id="load-assessment-button"
   iconProps={
-    Object {
+    {
       "iconName": "FabricOpenFolderHorizontal",
     }
   }
@@ -910,8 +910,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -920,40 +920,40 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -962,8 +962,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -972,20 +972,20 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -993,21 +993,21 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -1015,7 +1015,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1024,8 +1024,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1034,40 +1034,40 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1116,8 +1116,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1126,40 +1126,40 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1168,8 +1168,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1178,20 +1178,20 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={true}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -1199,21 +1199,21 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -1221,7 +1221,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1230,8 +1230,8 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1240,40 +1240,40 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1322,8 +1322,8 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1332,40 +1332,40 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1374,8 +1374,8 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1384,20 +1384,20 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -1405,21 +1405,21 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -1427,7 +1427,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1436,8 +1436,8 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1446,40 +1446,40 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1495,7 +1495,7 @@ exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
     download="download"
     href="url"
     iconProps={
-      Object {
+      {
         "iconName": "Save",
       }
     }
@@ -1505,14 +1505,14 @@ exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
   </InsightsCommandButton>
   <Dialog
     dialogContentProps={
-      Object {
+      {
         "title": "Assessment saved",
         "type": 0,
       }
     }
     hidden={true}
     modalProps={
-      Object {
+      {
         "containerClassName": "insightsDialogMainOverride",
         "isBlocking": false,
       }
@@ -1533,7 +1533,7 @@ exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
         horizontal={true}
         horizontalAlign="space-between"
         tokens={
-          Object {
+          {
             "childrenGap": 6,
           }
         }
@@ -1565,44 +1565,44 @@ exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
 `;
 
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
-"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
-  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
-    <span id=\\"switch-to-target\\">
+"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
+  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
+    <span id="switch-to-target">
       Target page: 
     </span>
-    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-      <span className=\\"targetPageTitle\\">
+    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
+      <span className="targetPageTitle">
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <div className=\\"detailsViewCommandButtons\\">
+  <div className="detailsViewCommandButtons">
     <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   </div>
   <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
   <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="assessment" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
 exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
-"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
-  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
-    <span id=\\"switch-to-target\\">
+"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
+  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
+    <span id="switch-to-target">
       Target page: 
     </span>
-    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-      <span className=\\"targetPageTitle\\">
+    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
+      <span className="targetPageTitle">
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <div className=\\"detailsViewCommandButtons\\">
+  <div className="detailsViewCommandButtons">
     <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   </div>
   <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
   <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="test" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
@@ -1647,8 +1647,8 @@ exports[`DetailsViewCommandBar renders without export button and without start o
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1657,40 +1657,40 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1699,8 +1699,8 @@ exports[`DetailsViewCommandBar renders without export button and without start o
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1709,20 +1709,20 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -1730,21 +1730,21 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -1752,7 +1752,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1761,8 +1761,8 @@ exports[`DetailsViewCommandBar renders without export button and without start o
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1771,40 +1771,40 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1858,8 +1858,8 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   </div>
   <InvalidLoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1868,40 +1868,40 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1910,8 +1910,8 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   />
   <LoadAssessmentDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1920,20 +1920,20 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     isOpen={false}
     loadedAssessmentData={null}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     onClose={[Function]}
     prevTab={
-      Object {
+      {
         "detailsViewId": undefined,
         "id": 5,
         "isClosed": false,
@@ -1941,21 +1941,21 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
@@ -1963,7 +1963,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     }
     tabId={5}
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
@@ -1972,8 +1972,8 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   />
   <StartOverDialog
     assessmentStoreData={
-      Object {
-        "persistedTabInfo": Object {
+      {
+        "persistedTabInfo": {
           "detailsViewId": undefined,
           "id": 5,
           "isClosed": false,
@@ -1982,40 +1982,40 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       }
     }
     deps={
-      Object {
+      {
         "detailsViewActionMessageCreator": [typemoq mock object],
       }
     }
     dialogState="none"
     dismissDialog={[Function]}
     narrowModeStatus={
-      Object {
+      {
         "isCommandBarCollapsed": false,
       }
     }
     scanMetadata={
-      Object {
-        "targetAppInfo": Object {
+      {
+        "targetAppInfo": {
           "name": "command-bar-test-tab-title",
           "url": "command-bar-test-url",
         },
       }
     }
     switcherNavConfiguration={
-      Object {
+      {
         "CommandBar": [Function],
         "LeftNav": [Function],
         "LoadAssessmentButton": [Function],
         "ReportExportDialogFactory": [Function],
         "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": Object {
+        "StartOverComponentFactory": {
           "getStartOverComponent": [Function],
         },
         "shouldShowReportExportButton": [Function],
       }
     }
     tabStoreData={
-      Object {
+      {
         "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",

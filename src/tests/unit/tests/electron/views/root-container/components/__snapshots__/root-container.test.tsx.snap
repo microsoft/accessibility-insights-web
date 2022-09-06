@@ -3,32 +3,32 @@
 exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
 <DeviceConnectViewContainer
   cardSelectionStoreData={
-    Object {
-      "rules": Object {},
+    {
+      "rules": {},
     }
   }
   deps={
-    Object {
+    {
       "storesHub": [typemoq mock object],
     }
   }
   scanStoreData={
-    Object {
+    {
       "status": 2,
     }
   }
   unifiedScanResultStoreData={
-    Object {
-      "rules": Array [],
+    {
+      "rules": [],
     }
   }
   userConfigurationStoreData={
-    Object {
+    {
       "isFirstTime": false,
     }
   }
   windowStateStoreData={
-    Object {
+    {
       "currentWindowState": "customSize",
       "routeId": "deviceConnectView",
     }
@@ -40,30 +40,30 @@ exports[`RootContainer renders with routeId = resultsView 1`] = `
 <NarrowModeDetector
   Component={[Function]}
   childrenProps={
-    Object {
-      "cardSelectionStoreData": Object {
-        "rules": Object {},
+    {
+      "cardSelectionStoreData": {
+        "rules": {},
       },
-      "deps": Object {
+      "deps": {
         "storesHub": [typemoq mock object],
       },
-      "scanStoreData": Object {
+      "scanStoreData": {
         "status": 2,
       },
-      "unifiedScanResultStoreData": Object {
-        "rules": Array [],
+      "unifiedScanResultStoreData": {
+        "rules": [],
       },
-      "userConfigurationStoreData": Object {
+      "userConfigurationStoreData": {
         "isFirstTime": false,
       },
-      "windowStateStoreData": Object {
+      "windowStateStoreData": {
         "currentWindowState": "customSize",
         "routeId": "resultsView",
       },
     }
   }
   deps={
-    Object {
+    {
       "storesHub": [typemoq mock object],
     }
   }

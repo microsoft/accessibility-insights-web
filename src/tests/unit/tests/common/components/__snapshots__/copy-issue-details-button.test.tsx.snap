@@ -3,9 +3,9 @@
 exports[`CopyIssueDetailsButtonTest render 1`] = `
 "<Fragment>
   <Toast deps={{...}} timeoutLength={6000} />
-  <CustomizedDefaultButton className=\\"copy-issue-details-button\\" onClick={[Function (anonymous)]}>
+  <CustomizedDefaultButton className="copy-issue-details-button" onClick={[Function (anonymous)]}>
     <CopyIcon />
-    <div className=\\"ms-Button-label\\">
+    <div className="ms-Button-label">
       Copy failure details
     </div>
   </CustomizedDefaultButton>

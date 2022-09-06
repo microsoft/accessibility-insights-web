@@ -4,14 +4,14 @@ exports[`RuleContent renders 1`] = `
 <React.Fragment>
   <RuleResources
     rule={
-      Object {
+      {
         "id": "test-id",
       }
     }
   />
   <InstanceDetailsGroup
     rule={
-      Object {
+      {
         "id": "test-id",
       }
     }

@@ -9,7 +9,7 @@ exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
   innerPanelAutomationId="settings-panel"
   isOpen={false}
   layerProps={
-    Object {
+    {
       "className": undefined,
     }
   }
@@ -17,60 +17,60 @@ exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
 >
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
 </GenericPanel>
 `;
@@ -84,7 +84,7 @@ exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
   innerPanelAutomationId="settings-panel"
   isOpen={true}
   layerProps={
-    Object {
+    {
       "className": undefined,
     }
   }
@@ -92,60 +92,60 @@ exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
 >
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
 </GenericPanel>
 `;
@@ -158,7 +158,7 @@ exports[`SettingsPanelTest render - with custom layer class name 1`] = `
   headerText="Settings"
   innerPanelAutomationId="settings-panel"
   layerProps={
-    Object {
+    {
       "className": "test-layer-class-name",
     }
   }
@@ -166,60 +166,60 @@ exports[`SettingsPanelTest render - with custom layer class name 1`] = `
 >
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
   <TestSettings
     deps={
-      Object {
-        "detailsViewActionMessageCreator": Object {
+      {
+        "detailsViewActionMessageCreator": {
           "closeSettingsPanel": [Function],
         },
-        "settingsProvider": Object {
+        "settingsProvider": {
           "all": [Function],
         },
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     featureFlagData={
-      Object {
+      {
         "test-flag": false,
       }
     }
-    userConfigurationStoreState={Object {}}
+    userConfigurationStoreState={{}}
   />
 </GenericPanel>
 `;

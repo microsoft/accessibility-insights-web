@@ -4,6 +4,7 @@ import { IColumn } from '@fluentui/react';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
+    AssessmentData,
     AssessmentNavState,
     GeneratedAssessmentInstance,
     InstanceIdToInstanceDataMap,
@@ -56,6 +57,7 @@ export interface Requirement {
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
+    getCompletedRequirementDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
 }
 
 export type VisualHelperToggleConfigDeps = {

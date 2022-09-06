@@ -5,27 +5,27 @@ exports[`GearMenuButton renders proper button with scoping enabled = false 1`] =
   ariaLabel="manage settings"
   className="gearMenuButton"
   iconProps={
-    Object {
+    {
       "iconName": "Gear",
     }
   }
   menuProps={
-    Object {
-      "calloutProps": Object {
+    {
+      "calloutProps": {
         "className": "gearMenuButtonCallout",
       },
-      "items": Array [
-        Object {
-          "iconProps": Object {
+      "items": [
+        {
+          "iconProps": {
             "iconName": "gear",
           },
           "key": "settings",
           "name": "Settings",
           "onClick": [Function],
         },
-        Object {
+        {
           "className": "preview-features-drop-down-button",
-          "iconProps": Object {
+          "iconProps": {
             "iconName": "giftboxOpen",
           },
           "key": "preview-features",
@@ -44,35 +44,35 @@ exports[`GearMenuButton renders proper button with scoping enabled = true 1`] = 
   ariaLabel="manage settings"
   className="gearMenuButton"
   iconProps={
-    Object {
+    {
       "iconName": "Gear",
     }
   }
   menuProps={
-    Object {
-      "calloutProps": Object {
+    {
+      "calloutProps": {
         "className": "gearMenuButtonCallout",
       },
-      "items": Array [
-        Object {
-          "iconProps": Object {
+      "items": [
+        {
+          "iconProps": {
             "iconName": "gear",
           },
           "key": "settings",
           "name": "Settings",
           "onClick": [Function],
         },
-        Object {
+        {
           "className": "preview-features-drop-down-button",
-          "iconProps": Object {
+          "iconProps": {
             "iconName": "giftboxOpen",
           },
           "key": "preview-features",
           "name": "Preview features",
           "onClick": [Function],
         },
-        Object {
-          "iconProps": Object {
+        {
+          "iconProps": {
             "iconName": "scopeTemplate",
           },
           "key": "scoping-feature",

@@ -4,8 +4,8 @@ exports[`IssueFilingSettingsContainerTest render 1`] = `
 <React.Fragment>
   <IssueFilingChoiceGroup
     issueFilingServices={
-      Array [
-        Object {
+      [
+        {
           "displayName": "TEST",
           "key": "test",
           "settingsForm": [Function],
@@ -14,7 +14,7 @@ exports[`IssueFilingSettingsContainerTest render 1`] = `
     }
     onSelectedServiceChange={[Function]}
     selectedIssueFilingService={
-      Object {
+      {
         "displayName": "TEST",
         "key": "test",
         "settingsForm": [Function],
@@ -23,14 +23,14 @@ exports[`IssueFilingSettingsContainerTest render 1`] = `
   />
   <settingsForm
     deps={
-      Object {
+      {
         "issueFilingServiceProvider": [typemoq mock object],
-        "userConfigMessageCreator": Object {},
+        "userConfigMessageCreator": {},
       }
     }
     onPropertyUpdateCallback={[Function]}
     settings={
-      Object {
+      {
         "repository": "none",
       }
     }

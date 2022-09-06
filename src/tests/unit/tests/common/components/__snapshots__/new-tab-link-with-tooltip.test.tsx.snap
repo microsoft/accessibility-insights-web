@@ -3,8 +3,8 @@
 exports[`NewTabLinkWithTooltip handles children 1`] = `
 <StyledTooltipHostBase
   calloutProps={
-    Object {
-      "styles": Object {
+    {
+      "styles": {
         "beak": "insightsTooltip",
         "root": "insightsTooltip",
       },
@@ -12,7 +12,7 @@ exports[`NewTabLinkWithTooltip handles children 1`] = `
   }
   content="tooltip text"
   styles={
-    Object {
+    {
       "root": "insightsTooltipHost",
     }
   }
@@ -29,15 +29,15 @@ exports[`NewTabLinkWithTooltip handles children 1`] = `
 exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
-    Object {
-      "styles": Object {
+    {
+      "styles": {
         "beak": "insightsTooltip",
         "root": "insightsTooltip",
       },
     }
   }
   styles={
-    Object {
+    {
       "root": "insightsTooltipHost",
     }
   }
@@ -52,8 +52,8 @@ exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
 exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
-    Object {
-      "styles": Object {
+    {
+      "styles": {
         "beak": "insightsTooltip",
         "root": "insightsTooltip",
       },
@@ -61,7 +61,7 @@ exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
   }
   content="tooltip text"
   styles={
-    Object {
+    {
       "root": "insightsTooltipHost",
     }
   }

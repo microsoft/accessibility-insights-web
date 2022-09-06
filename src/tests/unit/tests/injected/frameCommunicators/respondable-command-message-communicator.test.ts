@@ -409,10 +409,10 @@ describe('RespondableCommandMessageCommunicator', () => {
                 );
 
                 expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
-                                    Array [
-                                      "Received a response for command command1 after it timed out",
-                                    ]
-                            `);
+                    [
+                      "Received a response for command command1 after it timed out",
+                    ]
+                `);
             });
         });
 
@@ -629,7 +629,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             senderLogger.verifyNoErrors();
 
             expect(receiverLogger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "Error at command1 listener callback: from listener",
                 ]
             `);
@@ -670,7 +670,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             receiverLogger.verifyNoErrors();
 
             expect(senderLogger.errorMessages).toMatchInlineSnapshot(`
-                Array [
+                [
                   "Error at unique_id response callback: from replyHandler",
                 ]
             `);

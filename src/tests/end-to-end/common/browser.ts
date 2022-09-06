@@ -1,9 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { setTimeout } from 'timers/promises';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { HtmlReportPage } from 'tests/end-to-end/common/page-controllers/html-report-page';
 import { NestedIframeTargetPage } from 'tests/end-to-end/common/page-controllers/nested-iframe-target-page';
+import {
+    hasServiceWorkerUrl,
+    ServiceWorker,
+} from 'tests/end-to-end/common/page-controllers/service-worker';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
 import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
@@ -12,14 +20,18 @@ import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/deta
 import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
+
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
+    private memoizedServiceWorker: ServiceWorker;
     private pages: Array<Page> = [];
     private underlyingBrowserContext: Playwright.BrowserContext | null;
+    private readonly promiseFactory = createDefaultPromiseFactory();
 
     constructor(
         private readonly browserInstanceId: string,
         underlyingBrowserContext: Playwright.BrowserContext,
+        private readonly manifestV3: boolean,
         private readonly onClose?: () => Promise<void>,
     ) {
         this.underlyingBrowserContext = underlyingBrowserContext;
@@ -50,7 +62,21 @@ export class Browser {
         this.underlyingBrowserContext = null;
     }
 
-    public async backgroundPage(): Promise<BackgroundPage> {
+    public async background(): Promise<BackgroundContext> {
+        if (this.manifestV3) {
+            if (this.memoizedServiceWorker) {
+                return this.memoizedServiceWorker;
+            }
+
+            const ourServiceWorkerPage = await this.waitForServiceWorkerMatching(
+                hasServiceWorkerUrl,
+            );
+
+            this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
+
+            return this.memoizedServiceWorker;
+        }
+
         if (this.memoizedBackgroundPage) {
             return this.memoizedBackgroundPage;
         }
@@ -161,12 +187,21 @@ export class Browser {
     }
 
     public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
-        const backgroundPage = await this.backgroundPage();
+        const backgroundPage = await this.background();
         await backgroundPage.setHighContrastMode(highContrastMode);
     }
 
     private async getActivePageTabId(): Promise<number> {
-        const backgroundPage = await this.backgroundPage();
+        const backgroundPage = await this.background();
+
+        // Check chrome.tabs is initialized
+        const checkTabsInit = async () => {
+            while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
+                await setTimeout(50);
+            }
+        };
+        await this.promiseFactory.timeout(checkTabsInit(), DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS);
+
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs =>
@@ -189,7 +224,7 @@ export class Browser {
 
         const allBackgroundPages = context.backgroundPages();
 
-        const existingMatches = allBackgroundPages.filter(hasBackgroundPageUrl);
+        const existingMatches = allBackgroundPages.filter(predicate);
         if (existingMatches.length > 0) {
             return existingMatches[0];
         }
@@ -202,6 +237,33 @@ export class Browser {
                 }
             };
             context.on('backgroundpage', onNewPage);
+        });
+    }
+
+    private async waitForServiceWorkerMatching(
+        predicate: (candidate: Playwright.Page) => boolean,
+    ): Promise<Playwright.Worker> {
+        const apiSupported = (this.underlyingBrowserContext as any).serviceWorkers != null;
+        if (!apiSupported) {
+            throw new Error("Don't know how to query for serviceWorkers() in non-Chromium");
+        }
+        const context = this.underlyingBrowserContext as ChromiumBrowserContext;
+
+        const allServiceWorkers = context.serviceWorkers();
+
+        const existingMatches = allServiceWorkers.filter(predicate);
+        if (existingMatches.length > 0) {
+            return existingMatches[0];
+        }
+
+        return await new Promise(resolve => {
+            const onNewPage = async newPage => {
+                if (predicate(newPage)) {
+                    context.off('serviceworker', onNewPage);
+                    resolve(newPage);
+                }
+            };
+            context.on('serviceworker', onNewPage);
         });
     }
 
@@ -225,7 +287,7 @@ export class Browser {
     }
 
     private async getExtensionUrl(relativePath: string): Promise<string> {
-        const backgroundPage = await this.backgroundPage();
+        const backgroundPage = await this.background();
         const pageUrl = backgroundPage.url();
 
         // pageUrl.origin would be correct here, but it doesn't get populated correctly in all node.js versions we build

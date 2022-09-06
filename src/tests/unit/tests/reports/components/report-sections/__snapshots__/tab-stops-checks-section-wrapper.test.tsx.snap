@@ -3,83 +3,83 @@
 exports[`TabStopChecksSectionWrapper renders 1`] = `
 <test
   cardsViewData={
-    Object {
+    {
       "allCardsCollapsed": true,
-      "cards": Object {
-        "fail": Array [
-          Object {
+      "cards": {
+        "fail": [
+          {
             "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
-                "tags": Array [],
+                "tags": [],
                 "text": "WCAG 2.1.2",
               },
             ],
             "id": "Keyboard traps",
             "isExpanded": false,
-            "nodes": Array [],
+            "nodes": [],
             "url": "",
           },
         ],
-        "inapplicable": Array [],
-        "pass": Array [
-          Object {
+        "inapplicable": [],
+        "pass": [
+          {
             "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
-                "tags": Array [],
+                "tags": [],
                 "text": "WCAG 2.1.1",
               },
             ],
             "id": "Keyboard navigation",
             "isExpanded": false,
-            "nodes": Array [],
+            "nodes": [],
             "url": "",
           },
-          Object {
+          {
             "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
-                "tags": Array [],
+                "tags": [],
                 "text": "WCAG 2.4.3",
               },
             ],
             "id": "Tab order",
             "isExpanded": false,
-            "nodes": Array [],
+            "nodes": [],
             "url": "",
           },
         ],
-        "unknown": Array [
-          Object {
+        "unknown": [
+          {
             "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
-                "tags": Array [],
+                "tags": [],
                 "text": "WCAG 2.4.7",
               },
             ],
             "id": "Focus indicator",
             "isExpanded": false,
-            "nodes": Array [],
+            "nodes": [],
             "url": "",
           },
-          Object {
+          {
             "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
-            "guidance": Array [
-              Object {
+            "guidance": [
+              {
                 "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
-                "tags": Array [],
+                "tags": [],
                 "text": "WCAG 2.3.1",
               },
             ],
             "id": "Input focus",
             "isExpanded": false,
-            "nodes": Array [],
+            "nodes": [],
             "url": "",
           },
         ],
@@ -88,33 +88,33 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
     }
   }
   checksSection={[Function]}
-  deps={Object {}}
-  featureFlagStoreData={Object {}}
+  deps={{}}
+  featureFlagStoreData={{}}
   sectionHeadingLevel={3}
   tabStops={
-    Object {
-      "focus-indicator": Object {
-        "instances": Array [],
+    {
+      "focus-indicator": {
+        "instances": [],
         "isExpanded": false,
         "status": "unknown",
       },
-      "input-focus": Object {
-        "instances": Array [],
+      "input-focus": {
+        "instances": [],
         "isExpanded": false,
         "status": "unknown",
       },
-      "keyboard-navigation": Object {
-        "instances": Array [],
+      "keyboard-navigation": {
+        "instances": [],
         "isExpanded": false,
         "status": "pass",
       },
-      "keyboard-traps": Object {
-        "instances": Array [],
+      "keyboard-traps": {
+        "instances": [],
         "isExpanded": false,
         "status": "fail",
       },
-      "tab-order": Object {
-        "instances": Array [],
+      "tab-order": {
+        "instances": [],
         "isExpanded": false,
         "status": "pass",
       },

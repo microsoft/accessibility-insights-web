@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PermissionsStateStoreTest getDefaultState returns expected default store state 1`] = `
-Object {
+{
   "hasAllUrlAndFilePermissions": false,
 }
 `;

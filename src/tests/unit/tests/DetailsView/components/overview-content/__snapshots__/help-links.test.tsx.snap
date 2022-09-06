@@ -6,7 +6,7 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
     className="helpLink"
   >
     <ExternalLink
-      deps={Object {}}
+      deps={{}}
       href="https://www.test1.com"
     >
       test1
@@ -16,7 +16,7 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
     className="helpLink"
   >
     <ExternalLink
-      deps={Object {}}
+      deps={{}}
       href="https://www.test2.com"
     >
       test2
@@ -26,7 +26,7 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
     className="helpLink"
   >
     <ExternalLink
-      deps={Object {}}
+      deps={{}}
       href="https://www.test3.com"
     >
       test3

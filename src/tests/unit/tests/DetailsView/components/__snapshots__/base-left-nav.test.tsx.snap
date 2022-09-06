@@ -5,10 +5,10 @@ exports[`BaseLeftNav should render 1`] = `
   className="detailsViewTestNavArea"
   componentRef={[Function]}
   groups={
-    Array [
-      Object {
-        "links": Array [
-          Object {},
+    [
+      {
+        "links": [
+          {},
         ],
       },
     ]
@@ -16,7 +16,7 @@ exports[`BaseLeftNav should render 1`] = `
   linkAs={[Function]}
   selectedKey="some key"
   styles={
-    Object {
+    {
       "chevronButton": "hidden",
     }
   }

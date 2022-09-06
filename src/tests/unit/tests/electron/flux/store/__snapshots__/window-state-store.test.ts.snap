@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`WindowStateStore returns device connect as the default state 1`] = `
-Object {
+{
   "currentWindowState": "customSize",
   "routeId": "deviceConnectView",
 }

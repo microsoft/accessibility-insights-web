@@ -9,14 +9,14 @@ exports[`FastPassReportSummary renders per the snapshot 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "fail",
         "incomplete",
         "pass",
       ]
     }
     outcomeStats={
-      Object {
+      {
         "fail": 3,
         "incomplete": 0,
         "pass": 1,
@@ -35,14 +35,14 @@ exports[`FastPassReportSummary renders when automated checks are null 1`] = `
   </h2>
   <OutcomeSummaryBar
     allOutcomeTypes={
-      Array [
+      [
         "fail",
         "incomplete",
         "pass",
       ]
     }
     outcomeStats={
-      Object {
+      {
         "fail": 2,
         "incomplete": 0,
         "pass": 1,

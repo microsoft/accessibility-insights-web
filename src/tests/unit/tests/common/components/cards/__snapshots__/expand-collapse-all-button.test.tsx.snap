@@ -5,7 +5,7 @@ exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed fal
   aria-expanded={true}
   className="expandCollapseAllButton"
   iconProps={
-    Object {
+    {
       "iconName": "ChevronDown",
     }
   }
@@ -21,7 +21,7 @@ exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed tru
   aria-label="Expand all rules to show failed instances."
   className="expandCollapseAllButton"
   iconProps={
-    Object {
+    {
       "iconName": "ChevronRight",
     }
   }

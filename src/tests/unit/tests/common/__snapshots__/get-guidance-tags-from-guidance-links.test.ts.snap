@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GetGuidanceTagsFromGuidanceLinks handles a valid list with 1 link 1`] = `
-Array [
-  Object {
+[
+  {
     "displayText": "guidanceLinks-tags-displayText-1",
     "id": "guidanceLinks-tags-id-1",
   },
@@ -10,12 +10,12 @@ Array [
 `;
 
 exports[`GetGuidanceTagsFromGuidanceLinks handles a valid list with 2 links 1`] = `
-Array [
-  Object {
+[
+  {
     "displayText": "guidanceLinks-tags-displayText-1",
     "id": "guidanceLinks-tags-id-1",
   },
-  Object {
+  {
     "displayText": "guidanceLinks-tags-displayText-2",
     "id": "guidanceLinks-tags-id-2",
   },

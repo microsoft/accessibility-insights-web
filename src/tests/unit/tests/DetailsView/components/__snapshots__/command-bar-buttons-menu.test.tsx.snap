@@ -8,30 +8,30 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
   <CustomizedCommandBarButton
     ariaLabel="More actions"
     className="commandBarButtonsMenu"
-    componentRef={Object {}}
+    componentRef={{}}
     menuIconProps={
-      Object {
+      {
         "className": "commandBarButtonsMenuButton",
         "iconName": "More",
       }
     }
     menuProps={
-      Object {
+      {
         "className": "commandBarButtonsSubmenu",
-        "items": Array [
-          Object {
+        "items": [
+          {
             "key": "export report",
             "onRender": [Function],
           },
-          Object {
+          {
             "key": "save assessment",
             "onRender": [Function],
           },
-          Object {
+          {
             "key": "load assessment",
             "onRender": [Function],
           },
-          Object {
+          {
             "key": "start over",
           },
         ],

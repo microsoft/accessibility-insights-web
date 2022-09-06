@@ -4,8 +4,8 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
 <StyledWithViewportComponent
   checkboxVisibility={2}
   columns={
-    Array [
-      Object {
+    [
+      {
         "columnActionsMode": 0,
         "fieldName": "description",
         "isResizable": true,
@@ -14,7 +14,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
         "name": "Failure description",
         "onRender": [Function],
       },
-      Object {
+      {
         "columnActionsMode": 0,
         "fieldName": "instanceActionButtons",
         "isIconOnly": true,
@@ -29,8 +29,8 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
   }
   constrainMode={1}
   items={
-    Array [
-      Object {
+    [
+      {
         "description": "test-description",
         "id": "test-instance-id",
       },

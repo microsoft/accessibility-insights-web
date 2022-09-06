@@ -90,6 +90,7 @@ export class CompletedTestStepTelemetryCreator {
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,
+            this.getRequirementDetails(assessmentData, step),
         );
     }
 
@@ -109,6 +110,12 @@ export class CompletedTestStepTelemetryCreator {
             numInstances = assessmentData.manualTestStepResultMap[step.key].instances.length;
         }
         return numInstances;
+    }
+
+    private getRequirementDetails(assessmentData: AssessmentData, step: Requirement): any {
+        const detailProvider = step.getCompletedRequirementDetailsForTelemetry;
+
+        return detailProvider ? detailProvider(assessmentData) : undefined;
     }
 
     private updateOldTestStatusState(): void {

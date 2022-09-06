@@ -9,60 +9,60 @@ exports[`DetailsViewBody render render 1`] = `
   >
     <FluentSideNav
       assessmentStoreData={
-        Object {
-          "assessmentNavState": Object {
+        {
+          "assessmentNavState": {
             "selectedTestSubview": "sample test step",
           },
-          "assessments": Object {
-            "assessment": Object {
-              "fullAxeResultsMap": Object {},
-              "generatedAssessmentInstancesMap": Object {},
-              "manualTestStepResultMap": Object {},
-              "testStepStatus": Object {
-                "step-1": Object {
+          "assessments": {
+            "assessment": {
+              "fullAxeResultsMap": {},
+              "generatedAssessmentInstancesMap": {},
+              "manualTestStepResultMap": {},
+              "testStepStatus": {
+                "step-1": {
                   "isStepScanned": false,
                   "stepFinalResult": 1,
                 },
               },
             },
           },
-          "persistedTabInfo": Object {},
+          "persistedTabInfo": {},
           "resultDescription": "",
         }
       }
       automatedChecksCardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -74,40 +74,40 @@ exports[`DetailsViewBody render render 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
-      clickHandlerFactory={Object {}}
+      clickHandlerFactory={{}}
       deps={
-        Object {
-          "detailsViewActionMessageCreator": Object {},
+        {
+          "detailsViewActionMessageCreator": {},
         }
       }
       detailsViewStoreData={
-        Object {
+        {
           "detailsViewRightContentPanel": "Overview",
         }
       }
-      featureFlagStoreData={Object {}}
+      featureFlagStoreData={{}}
       isSideNavOpen={false}
       narrowModeStatus={
-        Object {
+        {
           "isHeaderAndNavCollapsed": false,
         }
       }
       onRightPanelContentSwitch={[Function]}
       rightPanelConfiguration={
-        Object {
+        {
           "RightPanel": [Function],
         }
       }
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "name",
             "url": "url",
           },
@@ -117,87 +117,84 @@ exports[`DetailsViewBody render render 1`] = `
       selectedTest={-1}
       setSideNavOpen={[Function]}
       switcherNavConfiguration={
-        Object {
+        {
           "CommandBar": [Function],
           "LeftNav": [Function],
           "ReportExportDialogFactory": [Function],
-          "StartOverComponentFactory": Object {},
+          "StartOverComponentFactory": {},
         }
       }
       tabStopsViewStoreData={
-        Object {
-          "failureInstanceState": Object {},
+        {
+          "failureInstanceState": {},
         }
       }
       tabStoreData={
-        Object {
-          "id": null,
+        {
           "isChanged": false,
           "isClosed": false,
           "isOriginChanged": false,
           "isPageHidden": false,
-          "title": null,
-          "url": null,
         }
       }
-      visualizationConfigurationFactory={Object {}}
+      visualizationConfigurationFactory={{}}
       visualizationScanResultData={
-        Object {
-          "accessibleNames": Object {
+        {
+          "accessibleNames": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "color": Object {
+          "color": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "headings": Object {
+          "headings": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "issues": Object {
+          "issues": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "landmarks": Object {
+          "landmarks": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "needsReview": Object {
+          "needsReview": {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
           },
-          "tabStops": Object {
+          "tabStops": {
             "needToCollectTabbingResults": true,
-            "requirements": Object {
-              "focus-indicator": Object {
-                "instances": Array [],
+            "requirements": {
+              "focus-indicator": {
+                "instances": [],
                 "isExpanded": false,
                 "status": "unknown",
               },
-              "input-focus": Object {
-                "instances": Array [],
+              "input-focus": {
+                "instances": [],
                 "isExpanded": false,
                 "status": "unknown",
               },
-              "keyboard-navigation": Object {
-                "instances": Array [],
+              "keyboard-navigation": {
+                "instances": [],
                 "isExpanded": false,
                 "status": "unknown",
               },
-              "keyboard-traps": Object {
-                "instances": Array [],
+              "keyboard-traps": {
+                "instances": [],
                 "isExpanded": false,
                 "status": "unknown",
               },
-              "tab-order": Object {
-                "instances": Array [],
+              "tab-order": {
+                "instances": [],
                 "isExpanded": false,
                 "status": "unknown",
               },
@@ -208,7 +205,7 @@ exports[`DetailsViewBody render render 1`] = `
         }
       }
       visualizationStoreData={
-        Object {
+        {
           "focusedTarget": null,
           "injectingRequested": false,
           "injectingStarted": false,
@@ -216,126 +213,126 @@ exports[`DetailsViewBody render render 1`] = `
           "selectedAdhocDetailsView": 1,
           "selectedDetailsViewPivot": 0,
           "selectedFastPassDetailsView": 1,
-          "tests": Object {
-            "adhoc": Object {
-              "accessibleNames": Object {
+          "tests": {
+            "adhoc": {
+              "accessibleNames": {
                 "enabled": false,
               },
-              "color": Object {
+              "color": {
                 "enabled": false,
               },
-              "headings": Object {
+              "headings": {
                 "enabled": false,
               },
-              "issues": Object {
+              "issues": {
                 "enabled": false,
               },
-              "landmarks": Object {
+              "landmarks": {
                 "enabled": false,
               },
-              "needsReview": Object {
+              "needsReview": {
                 "enabled": false,
               },
-              "tabStops": Object {
+              "tabStops": {
                 "enabled": false,
               },
             },
-            "assessments": Object {
-              "adaptableContentAssessment": Object {
+            "assessments": {
+              "adaptableContentAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "audioVideoOnlyAssessment": Object {
+              "audioVideoOnlyAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "automatedChecks": Object {
+              "automatedChecks": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "colorSensoryAssessment": Object {
+              "colorSensoryAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "contrastAssessment": Object {
+              "contrastAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "customWidgetsAssessment": Object {
+              "customWidgetsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "errorsAssessment": Object {
+              "errorsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "headingsAssessment": Object {
+              "headingsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "imageAssessment": Object {
+              "imageAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "keyboardInteractionAssessment": Object {
+              "keyboardInteractionAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "landmarksAssessment": Object {
+              "landmarksAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "languageAssessment": Object {
+              "languageAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "linksAssessment": Object {
+              "linksAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "liveMultimediaAssessment": Object {
+              "liveMultimediaAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "nativeWidgetsAssessment": Object {
+              "nativeWidgetsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "pageAssessment": Object {
+              "pageAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "parsingAssessment": Object {
+              "parsingAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "pointerMotionAssessment": Object {
+              "pointerMotionAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "prerecordedMultimediaAssessment": Object {
+              "prerecordedMultimediaAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "repetitiveContentAssessment": Object {
+              "repetitiveContentAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "semanticsAssessment": Object {
+              "semanticsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "sequenceAssessment": Object {
+              "sequenceAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "timedEventsAssessment": Object {
+              "timedEventsAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
-              "visibleFocusOrderAssessment": Object {
+              "visibleFocusOrderAssessment": {
                 "enabled": false,
-                "stepStatus": Object {},
+                "stepStatus": {},
               },
             },
           },
@@ -347,60 +344,60 @@ exports[`DetailsViewBody render render 1`] = `
     >
       <test
         assessmentStoreData={
-          Object {
-            "assessmentNavState": Object {
+          {
+            "assessmentNavState": {
               "selectedTestSubview": "sample test step",
             },
-            "assessments": Object {
-              "assessment": Object {
-                "fullAxeResultsMap": Object {},
-                "generatedAssessmentInstancesMap": Object {},
-                "manualTestStepResultMap": Object {},
-                "testStepStatus": Object {
-                  "step-1": Object {
+            "assessments": {
+              "assessment": {
+                "fullAxeResultsMap": {},
+                "generatedAssessmentInstancesMap": {},
+                "manualTestStepResultMap": {},
+                "testStepStatus": {
+                  "step-1": {
                     "isStepScanned": false,
                     "stepFinalResult": 1,
                   },
                 },
               },
             },
-            "persistedTabInfo": Object {},
+            "persistedTabInfo": {},
             "resultDescription": "",
           }
         }
         automatedChecksCardsViewData={
-          Object {
+          {
             "allCardsCollapsed": true,
-            "cards": Object {
-              "fail": Array [
-                Object {
+            "cards": {
+              "fail": [
+                {
                   "description": "sample-description",
-                  "guidance": Array [
-                    Object {
+                  "guidance": [
+                    {
                       "href": "sample-guidance-href",
                       "text": "sample-guidance-text",
                     },
                   ],
                   "id": "some-rule",
-                  "nodes": Array [
-                    Object {
-                      "descriptors": Object {
+                  "nodes": [
+                    {
+                      "descriptors": {
                         "snippet": "this is a sample snippet",
                       },
-                      "identifiers": Object {
+                      "identifiers": {
                         "conciseName": "body img",
                         "css-selector": "body img",
                         "identifier": "body img",
                       },
-                      "resolution": Object {
-                        "how-to-fix-web": Object {
-                          "all": Array [],
-                          "any": Array [
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
                             "Element does not have an alt attribute",
                             "aria-label attribute does not exist or is empty",
                             "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                           ],
-                          "none": Array [],
+                          "none": [],
                         },
                         "howToFixSummary": "sample how to fix summary",
                       },
@@ -412,39 +409,39 @@ exports[`DetailsViewBody render render 1`] = `
                   "url": "sample-url",
                 },
               ],
-              "inapplicable": Array [],
-              "pass": Array [],
-              "unknown": Array [],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
             },
             "visualHelperEnabled": true,
           }
         }
-        clickHandlerFactory={Object {}}
+        clickHandlerFactory={{}}
         deps={
-          Object {
-            "detailsViewActionMessageCreator": Object {},
+          {
+            "detailsViewActionMessageCreator": {},
           }
         }
         detailsViewStoreData={
-          Object {
+          {
             "detailsViewRightContentPanel": "Overview",
           }
         }
-        featureFlagStoreData={Object {}}
+        featureFlagStoreData={{}}
         isSideNavOpen={false}
         narrowModeStatus={
-          Object {
+          {
             "isHeaderAndNavCollapsed": false,
           }
         }
         rightPanelConfiguration={
-          Object {
+          {
             "RightPanel": [Function],
           }
         }
         scanMetadata={
-          Object {
-            "targetAppInfo": Object {
+          {
+            "targetAppInfo": {
               "name": "name",
               "url": "url",
             },
@@ -453,87 +450,84 @@ exports[`DetailsViewBody render render 1`] = `
         selectedTest={-1}
         setSideNavOpen={[Function]}
         switcherNavConfiguration={
-          Object {
+          {
             "CommandBar": [Function],
             "LeftNav": [Function],
             "ReportExportDialogFactory": [Function],
-            "StartOverComponentFactory": Object {},
+            "StartOverComponentFactory": {},
           }
         }
         tabStopsViewStoreData={
-          Object {
-            "failureInstanceState": Object {},
+          {
+            "failureInstanceState": {},
           }
         }
         tabStoreData={
-          Object {
-            "id": null,
+          {
             "isChanged": false,
             "isClosed": false,
             "isOriginChanged": false,
             "isPageHidden": false,
-            "title": null,
-            "url": null,
           }
         }
-        visualizationConfigurationFactory={Object {}}
+        visualizationConfigurationFactory={{}}
         visualizationScanResultData={
-          Object {
-            "accessibleNames": Object {
+          {
+            "accessibleNames": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "color": Object {
+            "color": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "headings": Object {
+            "headings": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "issues": Object {
+            "issues": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "landmarks": Object {
+            "landmarks": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "needsReview": Object {
+            "needsReview": {
               "fullAxeResultsMap": null,
               "fullIdToRuleResultMap": null,
               "scanResult": null,
             },
-            "tabStops": Object {
+            "tabStops": {
               "needToCollectTabbingResults": true,
-              "requirements": Object {
-                "focus-indicator": Object {
-                  "instances": Array [],
+              "requirements": {
+                "focus-indicator": {
+                  "instances": [],
                   "isExpanded": false,
                   "status": "unknown",
                 },
-                "input-focus": Object {
-                  "instances": Array [],
+                "input-focus": {
+                  "instances": [],
                   "isExpanded": false,
                   "status": "unknown",
                 },
-                "keyboard-navigation": Object {
-                  "instances": Array [],
+                "keyboard-navigation": {
+                  "instances": [],
                   "isExpanded": false,
                   "status": "unknown",
                 },
-                "keyboard-traps": Object {
-                  "instances": Array [],
+                "keyboard-traps": {
+                  "instances": [],
                   "isExpanded": false,
                   "status": "unknown",
                 },
-                "tab-order": Object {
-                  "instances": Array [],
+                "tab-order": {
+                  "instances": [],
                   "isExpanded": false,
                   "status": "unknown",
                 },
@@ -544,7 +538,7 @@ exports[`DetailsViewBody render render 1`] = `
           }
         }
         visualizationStoreData={
-          Object {
+          {
             "focusedTarget": null,
             "injectingRequested": false,
             "injectingStarted": false,
@@ -552,126 +546,126 @@ exports[`DetailsViewBody render render 1`] = `
             "selectedAdhocDetailsView": 1,
             "selectedDetailsViewPivot": 0,
             "selectedFastPassDetailsView": 1,
-            "tests": Object {
-              "adhoc": Object {
-                "accessibleNames": Object {
+            "tests": {
+              "adhoc": {
+                "accessibleNames": {
                   "enabled": false,
                 },
-                "color": Object {
+                "color": {
                   "enabled": false,
                 },
-                "headings": Object {
+                "headings": {
                   "enabled": false,
                 },
-                "issues": Object {
+                "issues": {
                   "enabled": false,
                 },
-                "landmarks": Object {
+                "landmarks": {
                   "enabled": false,
                 },
-                "needsReview": Object {
+                "needsReview": {
                   "enabled": false,
                 },
-                "tabStops": Object {
+                "tabStops": {
                   "enabled": false,
                 },
               },
-              "assessments": Object {
-                "adaptableContentAssessment": Object {
+              "assessments": {
+                "adaptableContentAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "audioVideoOnlyAssessment": Object {
+                "audioVideoOnlyAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "automatedChecks": Object {
+                "automatedChecks": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "colorSensoryAssessment": Object {
+                "colorSensoryAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "contrastAssessment": Object {
+                "contrastAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "customWidgetsAssessment": Object {
+                "customWidgetsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "errorsAssessment": Object {
+                "errorsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "headingsAssessment": Object {
+                "headingsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "imageAssessment": Object {
+                "imageAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "keyboardInteractionAssessment": Object {
+                "keyboardInteractionAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "landmarksAssessment": Object {
+                "landmarksAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "languageAssessment": Object {
+                "languageAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "linksAssessment": Object {
+                "linksAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "liveMultimediaAssessment": Object {
+                "liveMultimediaAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "nativeWidgetsAssessment": Object {
+                "nativeWidgetsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "pageAssessment": Object {
+                "pageAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "parsingAssessment": Object {
+                "parsingAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "pointerMotionAssessment": Object {
+                "pointerMotionAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "prerecordedMultimediaAssessment": Object {
+                "prerecordedMultimediaAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "repetitiveContentAssessment": Object {
+                "repetitiveContentAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "semanticsAssessment": Object {
+                "semanticsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "sequenceAssessment": Object {
+                "sequenceAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "timedEventsAssessment": Object {
+                "timedEventsAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
-                "visibleFocusOrderAssessment": Object {
+                "visibleFocusOrderAssessment": {
                   "enabled": false,
-                  "stepStatus": Object {},
+                  "stepStatus": {},
                 },
               },
             },
@@ -690,60 +684,60 @@ exports[`DetailsViewBody render render 1`] = `
         >
           <test
             assessmentStoreData={
-              Object {
-                "assessmentNavState": Object {
+              {
+                "assessmentNavState": {
                   "selectedTestSubview": "sample test step",
                 },
-                "assessments": Object {
-                  "assessment": Object {
-                    "fullAxeResultsMap": Object {},
-                    "generatedAssessmentInstancesMap": Object {},
-                    "manualTestStepResultMap": Object {},
-                    "testStepStatus": Object {
-                      "step-1": Object {
+                "assessments": {
+                  "assessment": {
+                    "fullAxeResultsMap": {},
+                    "generatedAssessmentInstancesMap": {},
+                    "manualTestStepResultMap": {},
+                    "testStepStatus": {
+                      "step-1": {
                         "isStepScanned": false,
                         "stepFinalResult": 1,
                       },
                     },
                   },
                 },
-                "persistedTabInfo": Object {},
+                "persistedTabInfo": {},
                 "resultDescription": "",
               }
             }
             automatedChecksCardsViewData={
-              Object {
+              {
                 "allCardsCollapsed": true,
-                "cards": Object {
-                  "fail": Array [
-                    Object {
+                "cards": {
+                  "fail": [
+                    {
                       "description": "sample-description",
-                      "guidance": Array [
-                        Object {
+                      "guidance": [
+                        {
                           "href": "sample-guidance-href",
                           "text": "sample-guidance-text",
                         },
                       ],
                       "id": "some-rule",
-                      "nodes": Array [
-                        Object {
-                          "descriptors": Object {
+                      "nodes": [
+                        {
+                          "descriptors": {
                             "snippet": "this is a sample snippet",
                           },
-                          "identifiers": Object {
+                          "identifiers": {
                             "conciseName": "body img",
                             "css-selector": "body img",
                             "identifier": "body img",
                           },
-                          "resolution": Object {
-                            "how-to-fix-web": Object {
-                              "all": Array [],
-                              "any": Array [
+                          "resolution": {
+                            "how-to-fix-web": {
+                              "all": [],
+                              "any": [
                                 "Element does not have an alt attribute",
                                 "aria-label attribute does not exist or is empty",
                                 "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                               ],
-                              "none": Array [],
+                              "none": [],
                             },
                             "howToFixSummary": "sample how to fix summary",
                           },
@@ -755,39 +749,39 @@ exports[`DetailsViewBody render render 1`] = `
                       "url": "sample-url",
                     },
                   ],
-                  "inapplicable": Array [],
-                  "pass": Array [],
-                  "unknown": Array [],
+                  "inapplicable": [],
+                  "pass": [],
+                  "unknown": [],
                 },
                 "visualHelperEnabled": true,
               }
             }
-            clickHandlerFactory={Object {}}
+            clickHandlerFactory={{}}
             deps={
-              Object {
-                "detailsViewActionMessageCreator": Object {},
+              {
+                "detailsViewActionMessageCreator": {},
               }
             }
             detailsViewStoreData={
-              Object {
+              {
                 "detailsViewRightContentPanel": "Overview",
               }
             }
-            featureFlagStoreData={Object {}}
+            featureFlagStoreData={{}}
             isSideNavOpen={false}
             narrowModeStatus={
-              Object {
+              {
                 "isHeaderAndNavCollapsed": false,
               }
             }
             rightPanelConfiguration={
-              Object {
+              {
                 "RightPanel": [Function],
               }
             }
             scanMetadata={
-              Object {
-                "targetAppInfo": Object {
+              {
+                "targetAppInfo": {
                   "name": "name",
                   "url": "url",
                 },
@@ -796,87 +790,84 @@ exports[`DetailsViewBody render render 1`] = `
             selectedTest={-1}
             setSideNavOpen={[Function]}
             switcherNavConfiguration={
-              Object {
+              {
                 "CommandBar": [Function],
                 "LeftNav": [Function],
                 "ReportExportDialogFactory": [Function],
-                "StartOverComponentFactory": Object {},
+                "StartOverComponentFactory": {},
               }
             }
             tabStopsViewStoreData={
-              Object {
-                "failureInstanceState": Object {},
+              {
+                "failureInstanceState": {},
               }
             }
             tabStoreData={
-              Object {
-                "id": null,
+              {
                 "isChanged": false,
                 "isClosed": false,
                 "isOriginChanged": false,
                 "isPageHidden": false,
-                "title": null,
-                "url": null,
               }
             }
-            visualizationConfigurationFactory={Object {}}
+            visualizationConfigurationFactory={{}}
             visualizationScanResultData={
-              Object {
-                "accessibleNames": Object {
+              {
+                "accessibleNames": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "color": Object {
+                "color": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "headings": Object {
+                "headings": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "issues": Object {
+                "issues": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "landmarks": Object {
+                "landmarks": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "needsReview": Object {
+                "needsReview": {
                   "fullAxeResultsMap": null,
                   "fullIdToRuleResultMap": null,
                   "scanResult": null,
                 },
-                "tabStops": Object {
+                "tabStops": {
                   "needToCollectTabbingResults": true,
-                  "requirements": Object {
-                    "focus-indicator": Object {
-                      "instances": Array [],
+                  "requirements": {
+                    "focus-indicator": {
+                      "instances": [],
                       "isExpanded": false,
                       "status": "unknown",
                     },
-                    "input-focus": Object {
-                      "instances": Array [],
+                    "input-focus": {
+                      "instances": [],
                       "isExpanded": false,
                       "status": "unknown",
                     },
-                    "keyboard-navigation": Object {
-                      "instances": Array [],
+                    "keyboard-navigation": {
+                      "instances": [],
                       "isExpanded": false,
                       "status": "unknown",
                     },
-                    "keyboard-traps": Object {
-                      "instances": Array [],
+                    "keyboard-traps": {
+                      "instances": [],
                       "isExpanded": false,
                       "status": "unknown",
                     },
-                    "tab-order": Object {
-                      "instances": Array [],
+                    "tab-order": {
+                      "instances": [],
                       "isExpanded": false,
                       "status": "unknown",
                     },
@@ -887,7 +878,7 @@ exports[`DetailsViewBody render render 1`] = `
               }
             }
             visualizationStoreData={
-              Object {
+              {
                 "focusedTarget": null,
                 "injectingRequested": false,
                 "injectingStarted": false,
@@ -895,126 +886,126 @@ exports[`DetailsViewBody render render 1`] = `
                 "selectedAdhocDetailsView": 1,
                 "selectedDetailsViewPivot": 0,
                 "selectedFastPassDetailsView": 1,
-                "tests": Object {
-                  "adhoc": Object {
-                    "accessibleNames": Object {
+                "tests": {
+                  "adhoc": {
+                    "accessibleNames": {
                       "enabled": false,
                     },
-                    "color": Object {
+                    "color": {
                       "enabled": false,
                     },
-                    "headings": Object {
+                    "headings": {
                       "enabled": false,
                     },
-                    "issues": Object {
+                    "issues": {
                       "enabled": false,
                     },
-                    "landmarks": Object {
+                    "landmarks": {
                       "enabled": false,
                     },
-                    "needsReview": Object {
+                    "needsReview": {
                       "enabled": false,
                     },
-                    "tabStops": Object {
+                    "tabStops": {
                       "enabled": false,
                     },
                   },
-                  "assessments": Object {
-                    "adaptableContentAssessment": Object {
+                  "assessments": {
+                    "adaptableContentAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "audioVideoOnlyAssessment": Object {
+                    "audioVideoOnlyAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "automatedChecks": Object {
+                    "automatedChecks": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "colorSensoryAssessment": Object {
+                    "colorSensoryAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "contrastAssessment": Object {
+                    "contrastAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "customWidgetsAssessment": Object {
+                    "customWidgetsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "errorsAssessment": Object {
+                    "errorsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "headingsAssessment": Object {
+                    "headingsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "imageAssessment": Object {
+                    "imageAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "keyboardInteractionAssessment": Object {
+                    "keyboardInteractionAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "landmarksAssessment": Object {
+                    "landmarksAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "languageAssessment": Object {
+                    "languageAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "linksAssessment": Object {
+                    "linksAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "liveMultimediaAssessment": Object {
+                    "liveMultimediaAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "nativeWidgetsAssessment": Object {
+                    "nativeWidgetsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "pageAssessment": Object {
+                    "pageAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "parsingAssessment": Object {
+                    "parsingAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "pointerMotionAssessment": Object {
+                    "pointerMotionAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "prerecordedMultimediaAssessment": Object {
+                    "prerecordedMultimediaAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "repetitiveContentAssessment": Object {
+                    "repetitiveContentAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "semanticsAssessment": Object {
+                    "semanticsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "sequenceAssessment": Object {
+                    "sequenceAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "timedEventsAssessment": Object {
+                    "timedEventsAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
-                    "visibleFocusOrderAssessment": Object {
+                    "visibleFocusOrderAssessment": {
                       "enabled": false,
-                      "stepStatus": Object {},
+                      "stepStatus": {},
                     },
                   },
                 },

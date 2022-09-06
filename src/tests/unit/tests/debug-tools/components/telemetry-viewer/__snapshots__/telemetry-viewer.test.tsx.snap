@@ -16,13 +16,13 @@ exports[`TelemetryViewer renders when there is at least one telemetry message 1`
   />
   <TelemetryMessagesList
     deps={
-      Object {
+      {
         "telemetryListener": [typemoq mock object],
       }
     }
     items={
-      Array [
-        Object {
+      [
+        {
           "applicationBuild": "test-application-build",
           "applicationName": "test-application-name",
           "applicationVersion": "test-application-version",

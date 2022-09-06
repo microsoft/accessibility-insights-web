@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -31,35 +31,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -74,19 +74,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -96,7 +96,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -117,22 +117,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 2`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -147,35 +147,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -190,19 +190,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -212,7 +212,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -233,22 +233,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -263,35 +263,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -306,19 +306,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -328,7 +328,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -349,22 +349,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 2`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -379,35 +379,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -422,19 +422,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -444,7 +444,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -465,22 +465,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -495,35 +495,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -538,19 +538,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -560,7 +560,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -581,22 +581,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 2`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -611,35 +611,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -654,19 +654,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -676,7 +676,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -697,22 +697,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -727,35 +727,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -770,19 +770,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -792,7 +792,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -813,22 +813,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 2`] = `
-Object {
+{
   "allCardsCollapsed": true,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -843,35 +843,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -886,19 +886,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -908,7 +908,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -929,22 +929,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -959,35 +959,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1002,19 +1002,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1024,7 +1024,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1045,22 +1045,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 2`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1075,35 +1075,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1118,19 +1118,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1140,7 +1140,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1161,22 +1161,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1191,35 +1191,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1234,19 +1234,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1256,7 +1256,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1277,22 +1277,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 2`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1307,35 +1307,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1350,19 +1350,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1372,7 +1372,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1393,22 +1393,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1423,35 +1423,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1466,19 +1466,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1488,7 +1488,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1509,22 +1509,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 2`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1539,35 +1539,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1582,19 +1582,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1604,7 +1604,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1625,22 +1625,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1655,35 +1655,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1698,19 +1698,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1720,7 +1720,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1741,22 +1741,22 @@ Object {
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 2`] = `
-Object {
+{
   "allCardsCollapsed": false,
-  "cards": Object {
-    "fail": Array [
-      Object {
+  "cards": {
+    "fail": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": true,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1771,35 +1771,35 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "inapplicable": Array [
-      Object {
+    "inapplicable": [
+      {
         "description": "stub_description_rule3",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule3",
             "text": "stub_guidance_text_rule3",
           },
         ],
         "id": "rule3",
         "isExpanded": false,
-        "nodes": Array [],
+        "nodes": [],
         "status": "inapplicable",
         "url": "stub_url_rule3",
       },
     ],
-    "pass": Array [
-      Object {
+    "pass": [
+      {
         "description": "stub_description_rule1",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule1",
             "text": "stub_guidance_text_rule1",
           },
         ],
         "id": "rule1",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1814,19 +1814,19 @@ Object {
         "url": "stub_url_rule1",
       },
     ],
-    "unknown": Array [
-      Object {
+    "unknown": [
+      {
         "description": "stub_description_rule2",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "stub_guidance_href_rule2",
             "text": "stub_guidance_text_rule2",
           },
         ],
         "id": "rule2",
         "isExpanded": false,
-        "nodes": Array [
-          Object {
+        "nodes": [
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,
@@ -1836,7 +1836,7 @@ Object {
             "status": "unknown",
             "uid": "stub_uid",
           },
-          Object {
+          {
             "descriptors": null,
             "highlightStatus": "visible",
             "identifiers": null,

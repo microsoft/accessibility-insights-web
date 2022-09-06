@@ -7,6 +7,15 @@
     border-radius: 2px;
 }
 
+.switcher-dropdown-option {
+    display: flex;
+    flex-direction: row;
+
+    i {
+        margin-right: 8px;
+    }
+}
+
 // The two layers of class selector and the explicit enumeration of the states are both
 // required to beat the specificity of office fabric styles
 .left-nav-switcher .left-nav-switcher-dropdown {
@@ -46,14 +55,5 @@
 
         outline: 1px $neutral-alpha-90 solid;
         outline-offset: -5px;
-    }
-}
-
-.switcher-dropdown-option {
-    display: flex;
-    flex-direction: row;
-
-    i {
-        margin-right: 8px;
     }
 }

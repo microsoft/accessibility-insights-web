@@ -18,10 +18,10 @@ exports[`LeftNav render 1`] = `
   </div>
   <BaseLeftNav
     links={
-      Array [
-        Object {
+      [
+        {
           "forceAnchor": true,
-          "iconProps": Object {
+          "iconProps": {
             "className": "hidden",
           },
           "index": 1,
@@ -31,9 +31,9 @@ exports[`LeftNav render 1`] = `
           "onRenderNavLink": [Function],
           "url": "",
         },
-        Object {
+        {
           "forceAnchor": true,
-          "iconProps": Object {
+          "iconProps": {
             "className": "hidden",
           },
           "index": 2,

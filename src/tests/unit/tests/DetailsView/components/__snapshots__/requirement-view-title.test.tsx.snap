@@ -6,10 +6,10 @@ exports[`RequirementViewTitleTest renders with content from props 1`] = `
 >
   test-requirement-name
   <GuidanceTags
-    deps={Object {}}
+    deps={{}}
     links={
-      Array [
-        Object {
+      [
+        {
           "href": "test-guidance-href",
           "text": "test-guidance-text",
         },
@@ -18,10 +18,10 @@ exports[`RequirementViewTitleTest renders with content from props 1`] = `
   />
   <ContentPanelButton
     contentTitle="test-requirement-name"
-    deps={Object {}}
+    deps={{}}
     iconName="info"
     reference={
-      Object {
+      {
         "pageTitle": "test-page-title",
       }
     }

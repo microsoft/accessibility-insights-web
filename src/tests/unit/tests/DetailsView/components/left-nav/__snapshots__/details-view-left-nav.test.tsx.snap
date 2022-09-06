@@ -6,26 +6,26 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
 >
   <Switcher
     deps={
-      Object {
-        "assessmentsProvider": Object {},
+      {
+        "assessmentsProvider": {},
         "assessmentsProviderWithFeaturesEnabled": [Function],
       }
     }
   />
   <test
     assessmentsData={
-      Object {
-        "x": Object {},
+      {
+        "x": {},
       }
     }
-    assessmentsProvider={Object {}}
+    assessmentsProvider={{}}
     deps={
-      Object {
-        "assessmentsProvider": Object {},
+      {
+        "assessmentsProvider": {},
         "assessmentsProviderWithFeaturesEnabled": [Function],
       }
     }
-    featureFlagStoreData={Object {}}
+    featureFlagStoreData={{}}
     selectedKey="some key"
     setNavComponentRef={[Function]}
   />

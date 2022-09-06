@@ -1,88 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResults to Unified Results Test automaticChecksConversion works fine when there is no data in scanresults 1`] = `Array []`;
+exports[`ScanResults to Unified Results Test automaticChecksConversion works fine when there is no data in scanresults 1`] = `[]`;
 
 exports[`ScanResults to Unified Results Test automaticChecksConversion works with filled up passes and failures value in scan results 1`] = `
-Array [
-  Object {
-    "descriptors": Object {
+[
+  {
+    "descriptors": {
       "snippet": "html1",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id1",
       "css-selector": "target1;id1",
       "identifier": "target1;id1",
-      "target": Array [
+      "target": [
         "target1",
         "id1",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 1",
-      "test fix resolution": Object {},
+      "test fix resolution": {},
     },
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html2",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id2",
       "css-selector": "target2;id2",
       "identifier": "target2;id2",
-      "target": Array [
+      "target": [
         "target2",
         "id2",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 2",
-      "test fix resolution": Object {},
+      "test fix resolution": {},
     },
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html3",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id3",
       "css-selector": "target3;id3",
       "identifier": "target3;id3",
-      "target": Array [
+      "target": [
         "target3",
         "id3",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 3",
-      "test fix resolution": Object {},
+      "test fix resolution": {},
     },
     "ruleId": "id2",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html-pass",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "passTarget2",
       "css-selector": "passTarget1;passTarget2",
       "identifier": "passTarget1;passTarget2",
-      "target": Array [
+      "target": [
         "passTarget1",
         "passTarget2",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": undefined,
-      "test fix resolution": Object {},
+      "test fix resolution": {},
     },
     "ruleId": "test",
     "status": "pass",
@@ -91,88 +91,88 @@ Array [
 ]
 `;
 
-exports[`ScanResults to Unified Results Test needsReviewConversion works fine when there is no data in scanresults 1`] = `Array []`;
+exports[`ScanResults to Unified Results Test needsReviewConversion works fine when there is no data in scanresults 1`] = `[]`;
 
 exports[`ScanResults to Unified Results Test needsReviewConversion works with filled up passes, failures and incomplete values in scan results 1`] = `
-Array [
-  Object {
-    "descriptors": Object {
+[
+  {
+    "descriptors": {
       "snippet": "html-incomplete",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "incompleteTarget1",
       "css-selector": "incompleteTarget1",
       "identifier": "incompleteTarget1",
-      "target": Array [
+      "target": [
         "incompleteTarget1",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": undefined,
-      "test check resolution": Object {},
+      "test check resolution": {},
     },
     "ruleId": "test2",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html1",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id1",
       "css-selector": "target1;id1",
       "identifier": "target1;id1",
-      "target": Array [
+      "target": [
         "target1",
         "id1",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 1",
-      "test check resolution": Object {},
+      "test check resolution": {},
     },
     "ruleId": "id1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html2",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id2",
       "css-selector": "target2;id2",
       "identifier": "target2;id2",
-      "target": Array [
+      "target": [
         "target2",
         "id2",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 2",
-      "test check resolution": Object {},
+      "test check resolution": {},
     },
     "ruleId": "id1",
     "status": "unknown",
     "uid": "gguid-mock-stub",
   },
-  Object {
-    "descriptors": Object {
+  {
+    "descriptors": {
       "snippet": "html3",
     },
-    "identifiers": Object {
+    "identifiers": {
       "conciseName": "id3",
       "css-selector": "target3;id3",
       "identifier": "target3;id3",
-      "target": Array [
+      "target": [
         "target3",
         "id3",
       ],
     },
-    "resolution": Object {
+    "resolution": {
       "howToFixSummary": "how to fix 3",
-      "test check resolution": Object {},
+      "test check resolution": {},
     },
     "ruleId": "id2",
     "status": "unknown",

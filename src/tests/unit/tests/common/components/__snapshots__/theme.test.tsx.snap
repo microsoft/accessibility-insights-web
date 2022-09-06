@@ -3,12 +3,12 @@
 exports[`ThemeInner is high contrast mode enabled: false 1`] = `
 <BodyClassModifier
   classNames={
-    Array [
+    [
       "theme-switcher",
     ]
   }
   deps={
-    Object {
+    {
       "documentManipulator": [typemoq mock object],
       "loadTheme": [MockFunction],
       "storeActionMessageCreator": null,
@@ -21,13 +21,13 @@ exports[`ThemeInner is high contrast mode enabled: false 1`] = `
 exports[`ThemeInner is high contrast mode enabled: true 1`] = `
 <BodyClassModifier
   classNames={
-    Array [
+    [
       "theme-switcher",
       "high-contrast-theme",
     ]
   }
   deps={
-    Object {
+    {
       "documentManipulator": [typemoq mock object],
       "loadTheme": [MockFunction],
       "storeActionMessageCreator": null,

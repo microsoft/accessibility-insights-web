@@ -9,13 +9,11 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
       featureFlagData={null}
     />
   }
-  items={null}
   narrowModeStatus={
-    Object {
+    {
       "isHeaderAndNavCollapsed": false,
     }
   }
-  navMenu={null}
 />
 `;
 
@@ -28,9 +26,8 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
       featureFlagData={null}
     />
   }
-  items={null}
   narrowModeStatus={
-    Object {
+    {
       "isHeaderAndNavCollapsed": true,
     }
   }
@@ -47,43 +44,41 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
 exports[`InteractiveHeader render: tabClosed equals false 1`] = `
 <Header
   deps={
-    Object {
-      "dropdownClickHandler": Object {},
+    {
+      "dropdownClickHandler": {},
     }
   }
   farItems={
     <GearOptionsButtonComponent
       deps={
-        Object {
-          "dropdownClickHandler": Object {},
+        {
+          "dropdownClickHandler": {},
         }
       }
       featureFlagData={
-        Object {
+        {
           "test-flag": true,
         }
       }
     />
   }
-  items={null}
   narrowModeStatus={
-    Object {
+    {
       "isHeaderAndNavCollapsed": false,
     }
   }
-  navMenu={null}
 />
 `;
 
 exports[`InteractiveHeader render: tabClosed equals true 1`] = `
 <Header
   deps={
-    Object {
-      "dropdownClickHandler": Object {},
+    {
+      "dropdownClickHandler": {},
     }
   }
   narrowModeStatus={
-    Object {
+    {
       "isHeaderAndNavCollapsed": false,
     }
   }

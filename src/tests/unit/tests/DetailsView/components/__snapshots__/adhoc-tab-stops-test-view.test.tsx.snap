@@ -113,7 +113,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         <TabStopsFailedInstancePanel
           deps="stub-deps"
           failureInstanceState={
-            Object {
+            {
               "actionType": "CREATE",
             }
           }
@@ -126,8 +126,8 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           deps="stub-deps"
           userConfigurationStoreData="stub-user-configuration-store-data"
           visualizationScanResultData={
-            Object {
-              "tabStops": Object {},
+            {
+              "tabStops": {},
             }
           }
         />
@@ -249,7 +249,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         <TabStopsFailedInstancePanel
           deps="stub-deps"
           failureInstanceState={
-            Object {
+            {
               "actionType": "CREATE",
             }
           }
@@ -262,8 +262,8 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           deps="stub-deps"
           userConfigurationStoreData="stub-user-configuration-store-data"
           visualizationScanResultData={
-            Object {
-              "tabStops": Object {},
+            {
+              "tabStops": {},
             }
           }
         />
@@ -277,7 +277,7 @@ exports[`AdhocTabStopsTestView render should return target page changed view as 
 <TargetPageChangedView
   detailsViewActionMessageCreator={[Function]}
   displayableData={
-    Object {
+    {
       "title": "test title",
       "toggleLabel": "test toggle label",
     }

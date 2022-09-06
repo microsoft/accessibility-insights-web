@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GuidanceLinksTest linkComponentType is defined as ElectronExternalLink 1`] = `
-"<span className=\\"guidance-links\\">
-  <ElectronExternalLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+"<span className="guidance-links">
+  <ElectronExternalLink href="https://url1" onClick={[Function: onClick]}>
     TEXT1
   </ElectronExternalLink>
 </span>"
@@ -11,44 +11,44 @@ exports[`GuidanceLinksTest linkComponentType is defined as ElectronExternalLink 
 exports[`GuidanceLinksTest links is empty 1`] = `""`;
 
 exports[`GuidanceLinksTest links is not null and correct with best practice and regular links (excludes BEST PRACTICE) 1`] = `
-"<span className=\\"className\\">
-  <ElectronExternalLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+"<span className="className">
+  <ElectronExternalLink href="https://url1" onClick={[Function: onClick]}>
     TEXT1
   </ElectronExternalLink>
   <span>
     , 
   </span>
-  <ElectronExternalLink href=\\"https://url2\\" onClick={[Function: onClick]}>
+  <ElectronExternalLink href="https://url2" onClick={[Function: onClick]}>
     TEXT2
   </ElectronExternalLink>
 </span>"
 `;
 
 exports[`GuidanceLinksTest links is not null and correct with one best practice link 1`] = `
-"<span className=\\"className\\">
-  <ElectronExternalLink href=\\"\\" onClick={[Function: onClick]}>
+"<span className="className">
+  <ElectronExternalLink href="" onClick={[Function: onClick]}>
     BEST PRACTICE
   </ElectronExternalLink>
 </span>"
 `;
 
 exports[`GuidanceLinksTest links is not null and correct with one regular link 1`] = `
-"<span className=\\"className\\">
-  <ElectronExternalLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+"<span className="className">
+  <ElectronExternalLink href="https://url1" onClick={[Function: onClick]}>
     TEXT1
   </ElectronExternalLink>
 </span>"
 `;
 
 exports[`GuidanceLinksTest links is not null and correct with two regular links 1`] = `
-"<span className=\\"className\\">
-  <ElectronExternalLink href=\\"https://url1\\" onClick={[Function: onClick]}>
+"<span className="className">
+  <ElectronExternalLink href="https://url1" onClick={[Function: onClick]}>
     TEXT1
   </ElectronExternalLink>
   <span>
     , 
   </span>
-  <ElectronExternalLink href=\\"https://url2\\" onClick={[Function: onClick]}>
+  <ElectronExternalLink href="https://url2" onClick={[Function: onClick]}>
     TEXT2
   </ElectronExternalLink>
 </span>"
