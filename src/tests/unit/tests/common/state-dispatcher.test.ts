@@ -55,7 +55,7 @@ describe('StateDispatcherTest', () => {
             storeHubStrictMock.object,
             loggerMock.object,
         );
-        await stateDispatcher.initialize();
+        stateDispatcher.initialize();
 
         storeMock.verifyAll();
         broadcastMock.verifyAll();
@@ -100,7 +100,7 @@ describe('StateDispatcherTest', () => {
             storeHubMock.object,
             loggerMock.object,
         );
-        await stateDispatcher.initialize();
+        stateDispatcher.initialize();
 
         broadcastMock.reset();
         broadcastMock
@@ -154,7 +154,7 @@ describe('StateDispatcherTest', () => {
             storeHubMock.object,
             loggerMock.object,
         );
-        await stateDispatcher.initialize();
+        stateDispatcher.initialize();
 
         broadcastMock.reset();
         broadcastMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
