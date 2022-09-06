@@ -41,7 +41,8 @@
         "**/yarn.lock",
         "Dockerfile",
         ".eslintignore",
-        "**/*.plist"
+        "**/*.plist",
+        "./src/DetailsView/components/validate-assessment-json.js"
     ],
     "licenseFormats": {
         "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {
