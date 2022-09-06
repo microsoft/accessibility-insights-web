@@ -125,7 +125,7 @@ describe('TabContextFactoryTest', () => {
             null,
         );
 
-        const tabContext = await testObject.createTabContext(tabId);
+        const tabContext = testObject.createTabContext(tabId);
 
         broadcastMock.verifyAll();
         broadcastMock.reset();
