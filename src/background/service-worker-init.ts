@@ -267,6 +267,13 @@ async function initializeAsync(): Promise<void> {
 }
 
 try {
+    importScripts('../insights.config.js');
+    console.log('Set insights configuration successfully');
+} catch (e) {
+    console.error('Failed to set up configuration: ', e);
+}
+
+try {
     initializeSync();
     console.log('Sync background initialization completed successfully');
 } catch (e) {
