@@ -90,7 +90,7 @@ module.exports = function (grunt) {
 
         const copyrightHeader =
             '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
-        const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
+        const configJS = `${copyrightHeader}globalThis.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
 
