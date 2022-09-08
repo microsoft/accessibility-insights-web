@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@fluentui/utilities';
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { TabbableElementsHelper } from '../../../../../common/tabbable-elements-helper';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
@@ -292,6 +292,16 @@ describe('CenterPositionCalculatorTest', () => {
 
         drawerUtilsMock.verifyAll();
         windowUtilsMock.verifyAll();
+    });
+
+    test('getElementCenterPosition: handles null element', () => {
+        const drawerUtilsMock = Mock.ofType(DrawerUtils, MockBehavior.Strict);
+
+        const centerPositionCalculator = createCenterPositionCalculator(drawerUtilsMock.object);
+
+        expect(centerPositionCalculator.getElementCenterPosition(null)).toBeNull();
+
+        drawerUtilsMock.verifyAll();
     });
 
     function setupDefaultWindowUtilsMock(): void {
