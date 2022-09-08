@@ -173,6 +173,38 @@ describe('AssessmentViewTest', () => {
 
             detailsViewActionMessageCreatorMock.verifyAll();
         });
+
+        test('enable because assessment data has been updated', () => {
+            selectedRequirementIsEnabled = true;
+            const prevProps = buildProps();
+            const props = buildProps();
+
+            prevProps.assessmentData.fullAxeResultsMap = {};
+
+            detailsViewActionMessageCreatorMock
+                .setup(a =>
+                    a.enableVisualHelper(firstAssessment.visualizationType, stepName, true, false),
+                )
+                .verifiable(Times.once());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('do not enable because assessment data has not been updated', () => {
+            selectedRequirementIsEnabled = true;
+            const prevProps = buildProps();
+            const props = buildProps();
+
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.enableVisualHelper(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
     });
 
     describe('onUnmount', () => {
