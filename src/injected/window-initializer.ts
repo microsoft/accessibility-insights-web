@@ -24,7 +24,7 @@ import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-liste
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
-import { getUniqueSelector } from 'scanner/axe-utils';
+import { getAllUniqueSelectors, getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
 import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -159,6 +159,7 @@ export class WindowInitializer {
         const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtils,
             getUniqueSelector,
+            getAllUniqueSelectors,
         );
         const focusTrapsKeydownHandler = new FocusTrapsHandler(
             tabStopRequirementEvaluator,

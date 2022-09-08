@@ -4,13 +4,13 @@
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
-import { getUniqueSelector } from 'scanner/axe-utils';
-import { FocusableElement } from 'tabbable';
+import { getAllUniqueSelectors, getUniqueSelector } from 'scanner/axe-utils';
 import { IMock, It, Mock } from 'typemoq';
 
 describe('TabStopsRequirementEvaluator', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let generateSelectorMock: IMock<typeof getUniqueSelector>;
+    let generateAllSelectorsMock: IMock<typeof getAllUniqueSelectors>;
     let testSubject: DefaultTabStopsRequirementEvaluator;
 
     const tabStopElement1: HTMLElement = { tagName: 'element1', outerHTML: 'html1' } as HTMLElement;
@@ -19,18 +19,20 @@ describe('TabStopsRequirementEvaluator', () => {
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         generateSelectorMock = Mock.ofType<typeof getUniqueSelector>();
+        generateAllSelectorsMock = Mock.ofType<typeof getAllUniqueSelectors>();
+        generateAllSelectorsMock
+            .setup(m => m(It.isAny()))
+            .returns(elementArray => elementArray.map(e => e.tagName));
         generateSelectorMock.setup(m => m(It.isAny())).returns(element => element.tagName);
         testSubject = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtilsMock.object,
             generateSelectorMock.object,
+            generateAllSelectorsMock.object,
         );
     });
 
     test('addKeyboardNavigationResults returns violations', () => {
-        const tabbableTabStops = [
-            tabStopElement1 as FocusableElement,
-            tabStopElement2 as FocusableElement,
-        ];
+        const tabbableTabStops = [tabStopElement1, tabStopElement2];
         const incorrectTabStops = new Set<HTMLElement>([tabStopElement2]);
         const expectedResult: AutomatedTabStopRequirementResult = {
             description: '[Automatically detected, needs review] Unreachable element: element1.',
@@ -48,10 +50,7 @@ describe('TabStopsRequirementEvaluator', () => {
     });
 
     test('addKeyboardNavigationResults returns empty set with no violations', () => {
-        const tabbableTabStops = [
-            tabStopElement1 as FocusableElement,
-            tabStopElement2 as FocusableElement,
-        ];
+        const tabbableTabStops = [tabStopElement1, tabStopElement2];
         const correctTabStops = new Set<HTMLElement>([tabStopElement1, tabStopElement2]);
         expect(testSubject.getKeyboardNavigationResults(tabbableTabStops, correctTabStops)).toEqual(
             [],
