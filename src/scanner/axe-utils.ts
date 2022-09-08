@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-
 import { DictionaryStringTo } from '../types/common-types';
 
 export type ImageCodedAs = 'Decorative' | 'Meaningful';
@@ -133,4 +132,9 @@ export function withAxeSetup(operation: Function, rootElement?: HTMLElement) {
 // This will throw if called concurrently with an axe-core scan
 export function getUniqueSelector(element: HTMLElement): string {
     return withAxeSetup(() => axe.utils.getSelector(element));
+}
+
+// This will throw if called concurrently with an axe-core scan
+export function getAllUniqueSelectors(elements: HTMLElement[]): string[] {
+    return withAxeSetup(() => elements.map(element => axe.utils.getSelector(element)));
 }
