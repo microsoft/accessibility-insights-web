@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { HTMLElementUtils } from 'common/html-element-utils';
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { WindowUtils } from 'common/window-utils';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
@@ -35,6 +36,7 @@ runner calls topWindowCallback(payload)
 */
 export class AllFrameRunner<T> {
     public topWindowCallback: (result: T) => void;
+    private framesToMessage: HTMLIFrameElement[];
 
     constructor(
         private readonly frameMessenger: FrameMessenger,
@@ -43,6 +45,7 @@ export class AllFrameRunner<T> {
         private readonly listener: AllFrameRunnerTarget<T>,
         private readonly startCommand = `insights.startFrameRunner-${listener.commandSuffix}`,
         private readonly stopCommand = `insights.stopFrameRunner-${listener.commandSuffix}`,
+        private readonly pingCommand = `insights.pingFrame-${listener.commandSuffix}`,
         private readonly onResultFromChildFrameCommand = `insights.resultFromChild-${listener.commandSuffix}`,
     ) {}
 
@@ -59,6 +62,10 @@ export class AllFrameRunner<T> {
             this.onResultFromChildFrameCommand,
             this.onResultFromChildFrame,
         );
+        this.frameMessenger.addMessageListener(this.pingCommand, async () => {
+            await this.findRespondableFrames();
+            return null;
+        });
 
         this.listener.setResultCallback(async payload => {
             await this.reportResultsThroughFrames(payload);
@@ -73,7 +80,9 @@ export class AllFrameRunner<T> {
 
     public stop = async () => {
         const stopPromise = this.listener.stop();
+        console.log('Sending stop command to frames');
         await this.sendCommandToFrames(this.stopCommand);
+        console.log('Stopping listener');
         await stopPromise;
     };
 
@@ -91,12 +100,18 @@ export class AllFrameRunner<T> {
     };
 
     private sendCommandToFrames = async (command: string) => {
-        const iframes = this.getAllFrames();
-        for (let i = 0; i < iframes.length; i++) {
-            await this.frameMessenger.sendMessageToFrame(iframes[i], {
-                command,
-            });
+        this.framesToMessage = this.framesToMessage ?? (await this.findRespondableFrames());
+
+        const promises = [];
+        for (let i = 0; i < this.framesToMessage.length; i++) {
+            promises.push(
+                this.frameMessenger.sendMessageToFrame(this.framesToMessage[i], {
+                    command,
+                }),
+            );
         }
+
+        await Promise.all(promises);
     };
 
     private onResultFromChildFrame = async (
@@ -141,5 +156,38 @@ export class AllFrameRunner<T> {
         return this.htmlElementUtils.getAllElementsByTagName(
             'iframe',
         ) as HTMLCollectionOf<HTMLIFrameElement>;
+    }
+
+    private async findRespondableFrames(): Promise<HTMLIFrameElement[]> {
+        const allFrames = this.getAllFrames();
+        const promiseFactory = createDefaultPromiseFactory();
+
+        const promises = [];
+        for (let i = 0; i < allFrames.length; i++) {
+            promises.push(
+                promiseFactory.timeout(
+                    this.frameMessenger.sendMessageToFrame(allFrames[i], {
+                        command: this.pingCommand,
+                    }),
+                    500,
+                ),
+            );
+        }
+
+        if (promises.length === 0) {
+            return [];
+        }
+
+        const results = await Promise.allSettled(promises);
+        const respondableFrames = [];
+        results.forEach((result, index) => {
+            if (result.status === 'fulfilled') {
+                respondableFrames.push(allFrames[index]);
+            } else {
+                console.error(result.reason);
+            }
+        });
+
+        return respondableFrames;
     }
 }

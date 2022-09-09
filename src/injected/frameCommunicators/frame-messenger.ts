@@ -48,7 +48,7 @@ export class FrameMessenger {
             throw new Error('Target frame does not have a contentWindow');
         }
 
-        return await this.sendMessageToWindow(contentWindow, message);
+        return this.sendMessageToWindow(contentWindow, message);
     }
 
     // Use this to send a message to window.parent or window.top.
@@ -57,7 +57,7 @@ export class FrameMessenger {
         targetWindow: Window,
         message: CommandMessage,
     ): Promise<CommandMessageResponse> {
-        return await this.respondableCommandMessageCommunicator.sendPromiseCommandMessage(
+        return this.respondableCommandMessageCommunicator.sendPromiseCommandMessage(
             targetWindow,
             message,
         );

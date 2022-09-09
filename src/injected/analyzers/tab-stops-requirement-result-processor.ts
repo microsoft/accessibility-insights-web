@@ -51,11 +51,15 @@ export class TabStopsRequirementResultProcessor {
             return;
         }
 
+        console.log('Stopping runner');
         await this.tabStopRequirementRunner.stop();
+        console.log('runner stopped');
         this.tabStopRequirementActionMessageCreator.automatedTabbingResultsCompleted(
             this.seenTabStopRequirementResults,
         );
+        console.log('Completed results sent');
         this.tabStopRequirementActionMessageCreator.updateNeedToCollectTabbingResults(false);
+        console.log('needToUpdateResults updated');
 
         this.visualizationResultsStore.removeChangedListener(this.onStateChange);
 
