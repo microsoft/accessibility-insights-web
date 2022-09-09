@@ -6,16 +6,16 @@ import { Logger } from 'common/logging/logger';
 import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { PromiseFactory, TimeoutCreator, TimeoutError } from 'common/promises/promise-factory';
 import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messenger';
-import { SingleFrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
     PromiseWindowCommandMessageListener,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(AllFrameMessenger, () => {
-    let frameMessengerMock: IMock<SingleFrameMessenger>;
+    let singleFrameMessengerMock: IMock<SingleFrameMessenger>;
     let htmlUtilsMock: IMock<HTMLElementUtils>;
     let loggerMock: IMock<Logger>;
     let mergePromisesMock: IMock<typeof mergePromiseResponses>;
@@ -29,7 +29,7 @@ describe(AllFrameMessenger, () => {
     let testSubject: AllFrameMessenger;
 
     beforeEach(() => {
-        frameMessengerMock = Mock.ofType<SingleFrameMessenger>();
+        singleFrameMessengerMock = Mock.ofType<SingleFrameMessenger>();
         htmlUtilsMock = Mock.ofType<HTMLElementUtils>();
         loggerMock = Mock.ofType<Logger>();
         mergePromisesMock = Mock.ofInstance(() => null);
@@ -40,7 +40,7 @@ describe(AllFrameMessenger, () => {
         } as PromiseFactory;
 
         testSubject = new AllFrameMessenger(
-            frameMessengerMock.object,
+            singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,
             loggerMock.object,
@@ -51,7 +51,7 @@ describe(AllFrameMessenger, () => {
     });
 
     afterEach(() => {
-        frameMessengerMock.verifyAll();
+        singleFrameMessengerMock.verifyAll();
         htmlUtilsMock.verifyAll();
         loggerMock.verifyAll();
         mergePromisesMock.verifyAll();
@@ -60,7 +60,9 @@ describe(AllFrameMessenger, () => {
 
     test('addMessageListener', () => {
         const listener = () => null;
-        frameMessengerMock.setup(f => f.addMessageListener(testCommand, listener)).verifiable();
+        singleFrameMessengerMock
+            .setup(f => f.addMessageListener(testCommand, listener))
+            .verifiable();
 
         testSubject.addMessageListener(testCommand, listener);
     });
@@ -70,17 +72,19 @@ describe(AllFrameMessenger, () => {
         const message: CommandMessage = {
             command: testCommand,
         };
-        frameMessengerMock.setup(f => f.sendMessageToWindow(targetWindow, message));
+        singleFrameMessengerMock.setup(f => f.sendMessageToWindow(targetWindow, message));
 
         await testSubject.sendMessageToWindow(targetWindow, message);
     });
 
     test('constructor registers ping listener', async () => {
-        frameMessengerMock.reset();
-        frameMessengerMock.setup(f => f.addMessageListener(pingCommand, It.isAny())).verifiable();
+        singleFrameMessengerMock.reset();
+        singleFrameMessengerMock
+            .setup(f => f.addMessageListener(pingCommand, It.isAny()))
+            .verifiable();
 
         testSubject = new AllFrameMessenger(
-            frameMessengerMock.object,
+            singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,
             loggerMock.object,
@@ -92,8 +96,8 @@ describe(AllFrameMessenger, () => {
 
     test('Ping listener sends ping to all child frames', async () => {
         let pingListener: PromiseWindowCommandMessageListener;
-        frameMessengerMock.reset();
-        frameMessengerMock
+        singleFrameMessengerMock.reset();
+        singleFrameMessengerMock
             .setup(f => f.addMessageListener(pingCommand, It.isAny()))
             .returns((command, listener) => {
                 pingListener = listener;
@@ -101,7 +105,7 @@ describe(AllFrameMessenger, () => {
             .verifiable();
 
         testSubject = new AllFrameMessenger(
-            frameMessengerMock.object,
+            singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,
             loggerMock.object,
@@ -144,7 +148,7 @@ describe(AllFrameMessenger, () => {
                 .verifiable(Times.exactly(iframeStubs.length));
 
             iframeStubs.forEach(frame => {
-                frameMessengerMock
+                singleFrameMessengerMock
                     .setup(m =>
                         m.sendMessageToFrame(frame, {
                             command: pingCommand,
@@ -179,7 +183,7 @@ describe(AllFrameMessenger, () => {
         test('with all initial pings succeeded', async () => {
             setupPingFramesSuccessfully();
             iframeStubs.forEach(iframe => {
-                frameMessengerMock
+                singleFrameMessengerMock
                     .setup(f => f.sendMessageToFrame(iframe, { command: testCommand }))
                     .verifiable(Times.once());
             });
@@ -196,10 +200,10 @@ describe(AllFrameMessenger, () => {
 
         test('skips frames if ping fails', async () => {
             setupPingFramesWithOneTimeout(iframeStubs[0]);
-            frameMessengerMock
+            singleFrameMessengerMock
                 .setup(f => f.sendMessageToFrame(iframeStubs[1], { command: testCommand }))
                 .verifiable(Times.once());
-            frameMessengerMock
+            singleFrameMessengerMock
                 .setup(f => f.sendMessageToFrame(iframeStubs[0], { command: testCommand }))
                 .verifiable(Times.never());
             mergePromisesMock
@@ -228,7 +232,7 @@ describe(AllFrameMessenger, () => {
             .verifiable(Times.exactly(iframeStubs.length));
 
         iframeStubs.forEach(frame => {
-            frameMessengerMock
+            singleFrameMessengerMock
                 .setup(m =>
                     m.sendMessageToFrame(frame, {
                         command: pingCommand,
@@ -259,7 +263,7 @@ describe(AllFrameMessenger, () => {
             .verifiable(Times.exactly(iframeStubs.length));
 
         iframeStubs.forEach(frame => {
-            frameMessengerMock
+            singleFrameMessengerMock
                 .setup(m =>
                     m.sendMessageToFrame(frame, {
                         command: pingCommand,

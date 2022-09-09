@@ -18,7 +18,7 @@ import { WindowUtils } from 'common/window-utils';
 import { rootContainerId } from 'injected/constants';
 import { DetailsDialogHandler } from 'injected/details-dialog-handler';
 import { DialogRenderer } from 'injected/dialog-renderer';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -35,7 +35,7 @@ describe(DialogRenderer, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
-    let frameMessenger: IMock<FrameMessenger>;
+    let frameMessenger: IMock<SingleFrameMessenger>;
     let mainWindowContext: MainWindowContext;
     let browserAdapter: IMock<BrowserAdapter>;
     let domMock: IMock<Document>;
@@ -61,7 +61,7 @@ describe(DialogRenderer, () => {
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
 
-        frameMessenger = Mock.ofType(FrameMessenger);
+        frameMessenger = Mock.ofType(SingleFrameMessenger);
         domMock = Mock.ofInstance({
             createElement: selector => null,
             body: {

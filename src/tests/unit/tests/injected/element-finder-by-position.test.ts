@@ -6,7 +6,7 @@ import {
     ElementFinderByPosition,
     ElementFinderByPositionMessage,
 } from 'injected/element-finder-by-position';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -23,14 +23,14 @@ class TestableElementFinder extends ElementFinderByPosition {
 }
 describe('ElementFinderByPositionTest', () => {
     let testSubject: TestableElementFinder;
-    let frameMessengerMock: IMock<FrameMessenger>;
+    let frameMessengerMock: IMock<SingleFrameMessenger>;
     let clientUtilsMock: IMock<ClientUtils>;
     let getUniqueSelectorMock: IMock<(element: HTMLElement) => string>;
     let elementsFromPointMock: IMock<(x: number, y: number) => Element[]>;
     let domStub: Document;
 
     beforeEach(() => {
-        frameMessengerMock = Mock.ofType(FrameMessenger);
+        frameMessengerMock = Mock.ofType(SingleFrameMessenger);
         clientUtilsMock = Mock.ofType(ClientUtils);
         getUniqueSelectorMock = Mock.ofInstance(e => null);
         elementsFromPointMock = Mock.ofInstance((x: number, y: number) => {

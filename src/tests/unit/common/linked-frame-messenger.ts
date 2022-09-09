@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -12,7 +12,7 @@ import { DictionaryStringTo } from 'types/common-types';
 // instances of a test subject communicate with one another. Use createLinkedPair to create
 // two messenger instances, and use the provided "window" and "frameElement" properties in other
 // mocks/test inputs to cause the test subjects to target messages to the other listener.
-export class LinkedFrameMessenger extends FrameMessenger {
+export class LinkedFrameMessenger extends SingleFrameMessenger {
     public static createLinkedPair(): [LinkedFrameMessenger, LinkedFrameMessenger] {
         const first = new LinkedFrameMessenger();
         const second = new LinkedFrameMessenger();

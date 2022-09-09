@@ -3,7 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import * as ReactDOM from 'react-dom';
 
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -19,7 +19,7 @@ export class IssuesFormatter implements Formatter {
     private dialogRenderer: DialogRenderer;
 
     constructor(
-        frameMessenger: FrameMessenger,
+        frameMessenger: SingleFrameMessenger,
         htmlElementUtils: HTMLElementUtils,
         windowUtils: WindowUtils,
         navigatorUtils: NavigatorUtils,

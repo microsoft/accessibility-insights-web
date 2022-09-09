@@ -20,8 +20,8 @@ import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messeng
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
-import { SingleFrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';

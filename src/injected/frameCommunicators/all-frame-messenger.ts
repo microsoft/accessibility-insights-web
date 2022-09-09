@@ -5,12 +5,12 @@ import { HTMLElementUtils } from 'common/html-element-utils';
 import { Logger } from 'common/logging/logger';
 import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { PromiseFactory, TimeoutError } from 'common/promises/promise-factory';
-import { SingleFrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
     PromiseWindowCommandMessageListener,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 
 // This class provides functionality for messaging all frames in a page that can
 // respond, to handle cases where an iframe fails to load or does not have the
@@ -22,7 +22,7 @@ export class AllFrameMessenger {
     private responsiveFrames: HTMLIFrameElement[] | null = null;
 
     constructor(
-        private readonly frameMessenger: SingleFrameMessenger,
+        private readonly singleFrameMessenger: SingleFrameMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
@@ -42,14 +42,14 @@ export class AllFrameMessenger {
         command: string,
         listener: PromiseWindowCommandMessageListener,
     ): void {
-        this.frameMessenger.addMessageListener(command, listener);
+        this.singleFrameMessenger.addMessageListener(command, listener);
     }
 
     public async sendMessageToWindow(
         targetWindow: Window,
         message: CommandMessage,
     ): Promise<CommandMessageResponse> {
-        return this.frameMessenger.sendMessageToWindow(targetWindow, message);
+        return this.singleFrameMessenger.sendMessageToWindow(targetWindow, message);
     }
 
     public async initialize(): Promise<void> {
@@ -64,7 +64,7 @@ export class AllFrameMessenger {
         const promises = [];
         for (let i = 0; i < this.responsiveFrames.length; i++) {
             promises.push(
-                this.frameMessenger.sendMessageToFrame(this.responsiveFrames[i], {
+                this.singleFrameMessenger.sendMessageToFrame(this.responsiveFrames[i], {
                     command,
                 }),
             );
@@ -87,7 +87,7 @@ export class AllFrameMessenger {
         for (let i = 0; i < allIFrameElements.length; i++) {
             promises.push(
                 this.promiseFactory.timeout(
-                    this.frameMessenger.sendMessageToFrame(allIFrameElements[i], {
+                    this.singleFrameMessenger.sendMessageToFrame(allIFrameElements[i], {
                         command: this.pingCommand,
                     }),
                     this.pingTimeoutMilliseconds,

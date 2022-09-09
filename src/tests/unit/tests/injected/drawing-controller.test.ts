@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -69,12 +69,12 @@ class VisualizationWindowMessageStubBuilder {
 }
 
 describe('DrawingControllerTest', () => {
-    let frameMessengerMock: IMock<FrameMessenger>;
+    let frameMessengerMock: IMock<SingleFrameMessenger>;
     let axeResultsHelperMock: IMock<HtmlElementAxeResultsHelper>;
     let hTMLElementUtils: IMock<HTMLElementUtils>;
 
     beforeEach(() => {
-        frameMessengerMock = Mock.ofType(FrameMessenger);
+        frameMessengerMock = Mock.ofType(SingleFrameMessenger);
         axeResultsHelperMock = Mock.ofType(HtmlElementAxeResultsHelper);
         hTMLElementUtils = Mock.ofType(HTMLElementUtils);
     });
