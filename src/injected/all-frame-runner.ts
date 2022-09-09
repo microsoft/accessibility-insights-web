@@ -2,9 +2,8 @@
 // Licensed under the MIT License.
 
 import { HTMLElementUtils } from 'common/html-element-utils';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { WindowUtils } from 'common/window-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -36,36 +35,30 @@ runner calls topWindowCallback(payload)
 */
 export class AllFrameRunner<T> {
     public topWindowCallback: (result: T) => void;
-    private framesToMessage: HTMLIFrameElement[];
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly allFramesMessenger: AllFrameMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly listener: AllFrameRunnerTarget<T>,
         private readonly startCommand = `insights.startFrameRunner-${listener.commandSuffix}`,
         private readonly stopCommand = `insights.stopFrameRunner-${listener.commandSuffix}`,
-        private readonly pingCommand = `insights.pingFrame-${listener.commandSuffix}`,
         private readonly onResultFromChildFrameCommand = `insights.resultFromChild-${listener.commandSuffix}`,
     ) {}
 
     public initialize() {
-        this.frameMessenger.addMessageListener(this.startCommand, async () => {
+        this.allFramesMessenger.addMessageListener(this.startCommand, async () => {
             await this.start();
             return null;
         });
-        this.frameMessenger.addMessageListener(this.stopCommand, async () => {
+        this.allFramesMessenger.addMessageListener(this.stopCommand, async () => {
             await this.stop();
             return null;
         });
-        this.frameMessenger.addMessageListener(
+        this.allFramesMessenger.addMessageListener(
             this.onResultFromChildFrameCommand,
             this.onResultFromChildFrame,
         );
-        this.frameMessenger.addMessageListener(this.pingCommand, async () => {
-            await this.findRespondableFrames();
-            return null;
-        });
 
         this.listener.setResultCallback(async payload => {
             await this.reportResultsThroughFrames(payload);
@@ -73,16 +66,15 @@ export class AllFrameRunner<T> {
     }
 
     public start = async () => {
+        await this.allFramesMessenger.initialize();
         const startPromise = this.listener.start();
-        await this.sendCommandToFrames(this.startCommand);
+        await this.allFramesMessenger.sendCommandToFrames(this.startCommand);
         await startPromise;
     };
 
     public stop = async () => {
         const stopPromise = this.listener.stop();
-        console.log('Sending stop command to frames');
-        await this.sendCommandToFrames(this.stopCommand);
-        console.log('Stopping listener');
+        await this.allFramesMessenger.sendCommandToFrames(this.stopCommand);
         await stopPromise;
     };
 
@@ -97,21 +89,6 @@ export class AllFrameRunner<T> {
         } else {
             return await this.sendResultsToParent(payload);
         }
-    };
-
-    private sendCommandToFrames = async (command: string) => {
-        this.framesToMessage = this.framesToMessage ?? (await this.findRespondableFrames());
-
-        const promises = [];
-        for (let i = 0; i < this.framesToMessage.length; i++) {
-            promises.push(
-                this.frameMessenger.sendMessageToFrame(this.framesToMessage[i], {
-                    command,
-                }),
-            );
-        }
-
-        await Promise.all(promises);
     };
 
     private onResultFromChildFrame = async (
@@ -137,7 +114,10 @@ export class AllFrameRunner<T> {
             command: this.onResultFromChildFrameCommand,
             payload,
         };
-        return this.frameMessenger.sendMessageToWindow(this.windowUtils.getParentWindow(), message);
+        return this.allFramesMessenger.sendMessageToWindow(
+            this.windowUtils.getParentWindow(),
+            message,
+        );
     };
 
     private getFrameElementForWindow(win: Window): HTMLIFrameElement | null {
@@ -156,38 +136,5 @@ export class AllFrameRunner<T> {
         return this.htmlElementUtils.getAllElementsByTagName(
             'iframe',
         ) as HTMLCollectionOf<HTMLIFrameElement>;
-    }
-
-    private async findRespondableFrames(): Promise<HTMLIFrameElement[]> {
-        const allFrames = this.getAllFrames();
-        const promiseFactory = createDefaultPromiseFactory();
-
-        const promises = [];
-        for (let i = 0; i < allFrames.length; i++) {
-            promises.push(
-                promiseFactory.timeout(
-                    this.frameMessenger.sendMessageToFrame(allFrames[i], {
-                        command: this.pingCommand,
-                    }),
-                    500,
-                ),
-            );
-        }
-
-        if (promises.length === 0) {
-            return [];
-        }
-
-        const results = await Promise.allSettled(promises);
-        const respondableFrames = [];
-        results.forEach((result, index) => {
-            if (result.status === 'fulfilled') {
-                respondableFrames.push(allFrames[index]);
-            } else {
-                console.error(result.reason);
-            }
-        });
-
-        return respondableFrames;
     }
 }
