@@ -153,7 +153,6 @@ export class RespondableCommandMessageCommunicator {
         await this.sendCallbackCommandMessage(target, commandMessage, responseCallback, 'single');
 
         try {
-            console.log('sending frame message with timeout');
             return await this.promiseFactory.timeout(
                 pendingResponsePromise,
                 RespondableCommandMessageCommunicator.promiseResponseTimeoutMilliseconds,
