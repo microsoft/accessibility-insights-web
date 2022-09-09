@@ -6,11 +6,11 @@ import {
     ElementFinderByPosition,
     ElementFinderByPositionMessage,
 } from 'injected/element-finder-by-position';
-import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 

@@ -18,11 +18,11 @@ import { WindowUtils } from 'common/window-utils';
 import { rootContainerId } from 'injected/constants';
 import { DetailsDialogHandler } from 'injected/details-dialog-handler';
 import { DialogRenderer } from 'injected/dialog-renderer';
-import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { LayeredDetailsDialogComponent } from 'injected/layered-details-dialog-component';
 import { MainWindowContext } from 'injected/main-window-context';
 import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';

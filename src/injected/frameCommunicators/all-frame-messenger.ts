@@ -61,15 +61,11 @@ export class AllFrameMessenger {
             throw new Error('AllFrameMessenger is not initialized.');
         }
 
-        const promises = [];
-        for (let i = 0; i < this.responsiveFrames.length; i++) {
-            promises.push(
-                this.singleFrameMessenger.sendMessageToFrame(this.responsiveFrames[i], {
-                    command,
-                }),
-            );
-        }
-
+        const promises: Promise<unknown>[] = this.responsiveFrames.map(frame =>
+            this.singleFrameMessenger.sendMessageToFrame(frame, {
+                command,
+            }),
+        );
         await this.mergePromises(promises);
     }
 
@@ -83,7 +79,7 @@ export class AllFrameMessenger {
             return;
         }
 
-        const promises = [];
+        const promises: Promise<unknown>[] = [];
         for (let i = 0; i < allIFrameElements.length; i++) {
             promises.push(
                 this.promiseFactory.timeout(
@@ -101,7 +97,7 @@ export class AllFrameMessenger {
 
         results.forEach((result, index) => {
             if (result.status === 'fulfilled') {
-                this.responsiveFrames.push(allIFrameElements[index]);
+                this.responsiveFrames!.push(allIFrameElements[index]);
             } else {
                 allFramesSucceeded = false;
                 const error = (result as PromiseRejectedResult).reason;

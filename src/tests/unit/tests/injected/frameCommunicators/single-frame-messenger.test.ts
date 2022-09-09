@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { CommandMessage } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { LinkedRespondableCommunicator } from 'tests/unit/common/linked-respondable-communicator';
 
 // These tests simulate two FrameMessagers in different browser contexts communicating with one
