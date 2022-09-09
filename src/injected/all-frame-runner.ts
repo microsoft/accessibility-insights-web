@@ -3,7 +3,7 @@
 
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { WindowUtils } from 'common/window-utils';
-import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -37,7 +37,7 @@ export class AllFrameRunner<T> {
     public topWindowCallback: (result: T) => void;
 
     constructor(
-        private readonly allFramesMessenger: AllFrameMessenger,
+        private readonly allFramesMessenger: AllFramesMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly listener: AllFrameRunnerTarget<T>,

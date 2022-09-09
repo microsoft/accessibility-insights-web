@@ -18,7 +18,7 @@ import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-m
 // On initialize(), we ping every frame and store a list of the frames that
 // respond within 500ms. sendCommandToFrames only messages the frames that
 // responded to the initial ping.
-export class AllFrameMessenger {
+export class AllFramesMessenger {
     private responsiveFrames: HTMLIFrameElement[] | null = null;
 
     constructor(
@@ -58,7 +58,7 @@ export class AllFrameMessenger {
 
     public async sendCommandToFrames(command: string): Promise<void> {
         if (this.responsiveFrames == null) {
-            throw new Error('AllFrameMessenger is not initialized.');
+            throw new Error('AllFramesMessenger is not initialized.');
         }
 
         const promises: Promise<unknown>[] = this.responsiveFrames.map(frame =>

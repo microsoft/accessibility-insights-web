@@ -5,7 +5,7 @@ import { HTMLElementUtils } from 'common/html-element-utils';
 import { Logger } from 'common/logging/logger';
 import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { PromiseFactory, TimeoutCreator, TimeoutError } from 'common/promises/promise-factory';
-import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -14,7 +14,7 @@ import {
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-describe(AllFrameMessenger, () => {
+describe(AllFramesMessenger, () => {
     let singleFrameMessengerMock: IMock<SingleFrameMessenger>;
     let htmlUtilsMock: IMock<HTMLElementUtils>;
     let loggerMock: IMock<Logger>;
@@ -26,7 +26,7 @@ describe(AllFrameMessenger, () => {
     const pingTimeout = 10;
     const testCommand = 'test command';
 
-    let testSubject: AllFrameMessenger;
+    let testSubject: AllFramesMessenger;
 
     beforeEach(() => {
         singleFrameMessengerMock = Mock.ofType<SingleFrameMessenger>();
@@ -39,7 +39,7 @@ describe(AllFrameMessenger, () => {
             timeout: timeoutMock.object,
         } as PromiseFactory;
 
-        testSubject = new AllFrameMessenger(
+        testSubject = new AllFramesMessenger(
             singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,
@@ -83,7 +83,7 @@ describe(AllFrameMessenger, () => {
             .setup(f => f.addMessageListener(pingCommand, It.isAny()))
             .verifiable();
 
-        testSubject = new AllFrameMessenger(
+        testSubject = new AllFramesMessenger(
             singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,
@@ -104,7 +104,7 @@ describe(AllFrameMessenger, () => {
             })
             .verifiable();
 
-        testSubject = new AllFrameMessenger(
+        testSubject = new AllFramesMessenger(
             singleFrameMessengerMock.object,
             htmlUtilsMock.object,
             promiseFactoryStub,

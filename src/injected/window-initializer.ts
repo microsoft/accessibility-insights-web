@@ -16,7 +16,7 @@ import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
-import { AllFrameMessenger } from 'injected/frameCommunicators/all-frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
@@ -74,7 +74,7 @@ export class WindowInitializer {
     protected clientUtils: ClientUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
     protected frameMessenger: SingleFrameMessenger;
-    protected allFramesMessenger: AllFrameMessenger;
+    protected allFramesMessenger: AllFramesMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
     protected actionMessageDispatcher: RemoteActionMessageDispatcher;
@@ -145,7 +145,7 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
-        this.allFramesMessenger = new AllFrameMessenger(
+        this.allFramesMessenger = new AllFramesMessenger(
             this.frameMessenger,
             htmlElementUtils,
             promiseFactory,
