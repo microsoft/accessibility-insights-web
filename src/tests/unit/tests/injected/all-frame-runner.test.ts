@@ -25,7 +25,7 @@ describe('AllFrameRunnerTests', () => {
     };
 
     const unitTestListenerMock = Mock.ofInstance(unitTestListener, MockBehavior.Strict);
-    const allFrameMessengerMock = Mock.ofType(AllFrameMessenger, MockBehavior.Strict);
+    const allFrameMessengerMock = Mock.ofType<AllFrameMessenger>(undefined, MockBehavior.Strict);
     const htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
     const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
@@ -109,6 +109,7 @@ describe('AllFrameRunnerTests', () => {
         );
 
         unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
+        allFrameMessengerMock.setup(m => m.initialize()).verifiable(Times.once());
         allFrameMessengerMock
             .setup(m => m.sendCommandToFrames((frameRunner as any).startCommand))
             .verifiable(Times.once());
@@ -138,6 +139,7 @@ describe('AllFrameRunnerTests', () => {
         const { commandId, commandFunc } =
             captureFrameMessengerCallbacks(unitTestListenerMock).start;
 
+        allFrameMessengerMock.setup(m => m.initialize()).verifiable(Times.once());
         allFrameMessengerMock.setup(m => m.sendCommandToFrames(commandId)).verifiable(Times.once());
 
         expect(await commandFunc(null, null)).toBeNull();

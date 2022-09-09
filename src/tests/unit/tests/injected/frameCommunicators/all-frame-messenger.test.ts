@@ -216,6 +216,33 @@ describe(AllFrameMessenger, () => {
             await testSubject.initialize();
             await testSubject.sendCommandToFrames(testCommand);
         });
+
+        test('only messages frames that responded to most recent ping', async () => {
+            setupPingFramesSuccessfully();
+
+            await testSubject.initialize();
+
+            htmlUtilsMock.reset();
+            timeoutMock.reset();
+            singleFrameMessengerMock.reset();
+
+            setupPingFramesWithOneTimeout(iframeStubs[0]);
+            singleFrameMessengerMock
+                .setup(f => f.sendMessageToFrame(iframeStubs[1], { command: testCommand }))
+                .verifiable(Times.once());
+            singleFrameMessengerMock
+                .setup(f => f.sendMessageToFrame(iframeStubs[0], { command: testCommand }))
+                .verifiable(Times.never());
+            mergePromisesMock
+                .setup(m => m(It.isAny()))
+                .returns(async promises => {
+                    await Promise.all(promises);
+                })
+                .verifiable();
+
+            await testSubject.initialize();
+            await testSubject.sendCommandToFrames(testCommand);
+        });
     });
 
     function setupPingFramesSuccessfully(): void {
