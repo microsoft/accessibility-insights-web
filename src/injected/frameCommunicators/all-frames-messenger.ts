@@ -79,39 +79,38 @@ export class AllFramesMessenger {
             return;
         }
 
-        const promises: Promise<unknown>[] = [];
-        for (let i = 0; i < allIFrameElements.length; i++) {
-            promises.push(
-                this.promiseFactory.timeout(
-                    this.singleFrameMessenger.sendMessageToFrame(allIFrameElements[i], {
-                        command: this.pingCommand,
-                    }),
-                    this.pingTimeoutMilliseconds,
-                ),
-            );
-        }
+        const promises: Promise<unknown>[] = Object.entries(allIFrameElements).map(([key, value]) =>
+            this.promiseFactory.timeout(
+                this.singleFrameMessenger.sendMessageToFrame(value, {
+                    command: this.pingCommand,
+                }),
+                this.pingTimeoutMilliseconds,
+            ),
+        );
 
         const results = await Promise.allSettled(promises);
         this.responsiveFrames = [];
-        let allFramesSucceeded = true;
+        const timeoutErrors: TimeoutError[] = [];
 
         results.forEach((result, index) => {
             if (result.status === 'fulfilled') {
                 this.responsiveFrames!.push(allIFrameElements[index]);
             } else {
-                allFramesSucceeded = false;
                 const error = (result as PromiseRejectedResult).reason;
-                // We expect timeout errors if the frame message fails to send.
-                // Throw if the error is anything else.
-                if (!(error instanceof TimeoutError)) {
+                if (error instanceof TimeoutError) {
+                    timeoutErrors.push(error);
+                } else {
+                    // We expect timeout errors if the frame message fails to send.
+                    // Throw if the error is anything else.
                     throw error;
                 }
             }
         });
 
-        if (!allFramesSucceeded) {
+        if (timeoutErrors.length > 0) {
             this.logger.error(
                 `Some iframes could not be reached within ${this.pingTimeoutMilliseconds} milliseconds. Those frames will be ignored.`,
+                timeoutErrors,
             );
         }
     }

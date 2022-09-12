@@ -306,6 +306,6 @@ describe(AllFramesMessenger, () => {
                 .verifiable(Times.once());
         });
 
-        loggerMock.setup(l => l.error(It.isAny())).verifiable();
+        loggerMock.setup(l => l.error(It.isAny(), It.isAny())).verifiable();
     }
 });
