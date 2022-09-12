@@ -67,7 +67,7 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
 
         const stats: Partial<OutcomeStats> = {
             fail: totalfailedAutomatedChecks + totalFailedTabInstancesCount,
-            incomplete: incompleteAutomatedChecks + totalIncompleteTabCount, //incomplete automated checks to be added in 1906107
+            incomplete: incompleteAutomatedChecks + totalIncompleteTabCount,
             pass: passedAutomatedChecks + totalPassedTabCount,
         };
 
