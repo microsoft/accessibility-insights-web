@@ -3,7 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 
 import { NavigatorUtils } from 'common/navigator-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { getCellAndHeaderElementsFromResult } from 'injected/visualization/get-cell-and-header-elements';
 import { TableHeadersAttributeFormatter } from 'injected/visualization/table-headers-formatter';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -46,7 +46,7 @@ export class DrawerProvider {
         private readonly drawerUtils: DrawerUtils,
         private readonly clientUtils: ClientUtils,
         private readonly dom: Document,
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,

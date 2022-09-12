@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { CommandMessage } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { LinkedRespondableCommunicator } from 'tests/unit/common/linked-respondable-communicator';
 
 // These tests simulate two FrameMessagers in different browser contexts communicating with one
 // another. frameMessenger1 and frameMessenger2 are initialized with LinkedRespondableCommunicators
 // that are pre-linked to one another in association with stubs window1 and window2.
-describe('FrameMessenger', () => {
+describe(SingleFrameMessenger, () => {
     let window1: Window;
     let window2: Window;
     let unlinkedWindow: Window;
-    let frameMessenger1: FrameMessenger;
-    let frameMessenger2: FrameMessenger;
+    let frameMessenger1: SingleFrameMessenger;
+    let frameMessenger2: SingleFrameMessenger;
     let underlyingCommunicator1: LinkedRespondableCommunicator;
     let underlyingCommunicator2: LinkedRespondableCommunicator;
     const irrelevantMessage: CommandMessage = {
@@ -24,9 +24,9 @@ describe('FrameMessenger', () => {
         [underlyingCommunicator1, underlyingCommunicator2] =
             LinkedRespondableCommunicator.createLinkedMockPair();
         window1 = underlyingCommunicator1.window;
-        frameMessenger1 = new FrameMessenger(underlyingCommunicator1);
+        frameMessenger1 = new SingleFrameMessenger(underlyingCommunicator1);
         window2 = underlyingCommunicator2.window;
-        frameMessenger2 = new FrameMessenger(underlyingCommunicator2);
+        frameMessenger2 = new SingleFrameMessenger(underlyingCommunicator2);
         unlinkedWindow = {} as Window;
     });
 

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -15,11 +15,11 @@ import {
 } from '../../../../injected/frameCommunicators/scrolling-controller';
 
 describe('ScrollingControllerTest', () => {
-    let frameMessengerMock: IMock<FrameMessenger>;
+    let frameMessengerMock: IMock<SingleFrameMessenger>;
     let HTMLElementUtilsMock: IMock<HTMLElementUtils>;
 
     beforeEach(() => {
-        frameMessengerMock = Mock.ofType(FrameMessenger);
+        frameMessengerMock = Mock.ofType(SingleFrameMessenger);
         HTMLElementUtilsMock = Mock.ofType(HTMLElementUtils);
     });
 

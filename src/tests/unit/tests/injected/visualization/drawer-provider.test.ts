@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { IMock, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
@@ -25,7 +25,7 @@ describe('DrawerProviderTests', () => {
     let drawerUtils: IMock<DrawerUtils>;
     let clientUtils: IMock<ClientUtils>;
     let domStub: Document;
-    let frameMessenger: IMock<FrameMessenger>;
+    let frameMessenger: IMock<SingleFrameMessenger>;
     const browserAdapter = Mock.ofType<BrowserAdapter>();
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
 
@@ -38,7 +38,7 @@ describe('DrawerProviderTests', () => {
         clientUtils = Mock.ofType(ClientUtils);
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
         domStub = {} as Document;
-        frameMessenger = Mock.ofType(FrameMessenger);
+        frameMessenger = Mock.ofType(SingleFrameMessenger);
         const getRTLMock = Mock.ofInstance(() => null);
 
         testObject = new DrawerProvider(
