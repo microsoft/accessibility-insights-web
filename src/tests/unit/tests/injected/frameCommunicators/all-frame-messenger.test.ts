@@ -21,10 +21,19 @@ describe(AllFramesMessenger, () => {
     let mergePromisesMock: IMock<typeof mergePromiseResponses>;
     let timeoutMock: IMock<TimeoutCreator>;
     let promiseFactoryStub: PromiseFactory;
-    const iframeStubs = [{ id: 'iframe1' }, { id: 'iframe2' }] as HTMLIFrameElement[];
+    const iframeStubs = [
+        { id: 'iframe1' },
+        { id: 'iframe2' },
+        { id: 'iframe3' },
+    ] as HTMLIFrameElement[];
     const pingCommand = 'ping command';
     const pingTimeout = 10;
     const testCommand = 'test command';
+    const pingResponse = {
+        payload: {
+            status: 'ready',
+        },
+    };
 
     let testSubject: AllFramesMessenger;
 
@@ -123,13 +132,13 @@ describe(AllFramesMessenger, () => {
         test('pings all frames', async () => {
             setupPingFramesSuccessfully();
 
-            await testSubject.initialize();
+            await testSubject.initializeAllFrames();
         });
 
         test('handles ping timeout', async () => {
             setupPingFramesWithOneTimeout(iframeStubs[0]);
 
-            await testSubject.initialize();
+            await testSubject.initializeAllFrames();
         });
 
         test('throws if a non-timeout error is thrown', async () => {
@@ -142,9 +151,7 @@ describe(AllFramesMessenger, () => {
 
             timeoutMock
                 .setup(t => t(It.isAny(), pingTimeout))
-                .returns(async (promise, timeout) => {
-                    await promise;
-                })
+                .returns(async (promise, timeout) => promise)
                 .verifiable(Times.exactly(iframeStubs.length));
 
             iframeStubs.forEach(frame => {
@@ -160,13 +167,38 @@ describe(AllFramesMessenger, () => {
                     .verifiable(Times.once());
             });
 
-            await expect(testSubject.initialize()).rejects.toThrow(testError);
+            await expect(testSubject.initializeAllFrames()).rejects.toThrow();
+        });
+
+        test('throws if ping returns an unexpected response', async () => {
+            htmlUtilsMock
+                .setup(m => m.getAllElementsByTagName('iframe'))
+                .returns(() => iframeStubs as any)
+                .verifiable(Times.once());
+
+            timeoutMock
+                .setup(t => t(It.isAny(), pingTimeout))
+                .returns(async (promise, timeout) => promise)
+                .verifiable(Times.exactly(iframeStubs.length));
+
+            iframeStubs.forEach(frame => {
+                singleFrameMessengerMock
+                    .setup(m =>
+                        m.sendMessageToFrame(frame, {
+                            command: pingCommand,
+                        }),
+                    )
+                    .returns(async () => ({ payload: 'some unexpected payload' }))
+                    .verifiable(Times.once());
+            });
+
+            await expect(testSubject.initializeAllFrames()).rejects.toThrow();
         });
     });
 
-    describe('sendCommandToFrames', () => {
+    describe('sendCommandToAllFrames', () => {
         test('throws if not initialized', async () => {
-            await expect(testSubject.sendCommandToFrames(testCommand)).rejects.toThrow();
+            await expect(testSubject.sendCommandToAllFrames(testCommand)).rejects.toThrow();
         });
 
         test('with no child iframes', async () => {
@@ -176,36 +208,34 @@ describe(AllFramesMessenger, () => {
                 .verifiable(Times.once());
             mergePromisesMock.setup(m => m([])).returns(() => Promise.resolve());
 
-            await testSubject.initialize();
-            await testSubject.sendCommandToFrames(testCommand);
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToAllFrames(testCommand);
         });
 
-        test('with all initial pings succeeded', async () => {
-            setupPingFramesSuccessfully();
-            iframeStubs.forEach(iframe => {
-                singleFrameMessengerMock
-                    .setup(f => f.sendMessageToFrame(iframe, { command: testCommand }))
-                    .verifiable(Times.once());
-            });
-            mergePromisesMock
-                .setup(m => m(It.isAny()))
-                .returns(async promises => {
-                    await Promise.all(promises);
-                })
-                .verifiable();
+        test.each([undefined, {}])(
+            'with all initial pings succeeded and payload=%s',
+            async payload => {
+                setupPingFramesSuccessfully();
+                iframeStubs.forEach(iframe => setupSendTestCommandToFrame(iframe, payload));
+                mergePromisesMock
+                    .setup(m => m(It.isAny()))
+                    .returns(async promises => {
+                        await Promise.all(promises);
+                    })
+                    .verifiable();
 
-            await testSubject.initialize();
-            await testSubject.sendCommandToFrames(testCommand);
-        });
+                await testSubject.initializeAllFrames();
+                await testSubject.sendCommandToAllFrames(testCommand, payload);
+            },
+        );
 
         test('skips frames if ping fails', async () => {
             setupPingFramesWithOneTimeout(iframeStubs[0]);
-            singleFrameMessengerMock
-                .setup(f => f.sendMessageToFrame(iframeStubs[1], { command: testCommand }))
-                .verifiable(Times.once());
-            singleFrameMessengerMock
-                .setup(f => f.sendMessageToFrame(iframeStubs[0], { command: testCommand }))
-                .verifiable(Times.never());
+
+            setupNeverSendTestCommandToFrame(iframeStubs[0]);
+            setupSendTestCommandToFrame(iframeStubs[1]);
+            setupSendTestCommandToFrame(iframeStubs[2]);
+
             mergePromisesMock
                 .setup(m => m(It.isAny()))
                 .returns(async promises => {
@@ -213,26 +243,25 @@ describe(AllFramesMessenger, () => {
                 })
                 .verifiable();
 
-            await testSubject.initialize();
-            await testSubject.sendCommandToFrames(testCommand);
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToAllFrames(testCommand);
         });
 
         test('only messages frames that responded to most recent ping', async () => {
             setupPingFramesSuccessfully();
 
-            await testSubject.initialize();
+            await testSubject.initializeAllFrames();
 
             htmlUtilsMock.reset();
             timeoutMock.reset();
             singleFrameMessengerMock.reset();
 
             setupPingFramesWithOneTimeout(iframeStubs[0]);
-            singleFrameMessengerMock
-                .setup(f => f.sendMessageToFrame(iframeStubs[1], { command: testCommand }))
-                .verifiable(Times.once());
-            singleFrameMessengerMock
-                .setup(f => f.sendMessageToFrame(iframeStubs[0], { command: testCommand }))
-                .verifiable(Times.never());
+
+            setupNeverSendTestCommandToFrame(iframeStubs[0]);
+            setupSendTestCommandToFrame(iframeStubs[1]);
+            setupSendTestCommandToFrame(iframeStubs[2]);
+
             mergePromisesMock
                 .setup(m => m(It.isAny()))
                 .returns(async promises => {
@@ -240,8 +269,74 @@ describe(AllFramesMessenger, () => {
                 })
                 .verifiable();
 
-            await testSubject.initialize();
-            await testSubject.sendCommandToFrames(testCommand);
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToAllFrames(testCommand);
+        });
+    });
+
+    describe('sendCommandToMultipleFrames', () => {
+        test('throws if not initialized', async () => {
+            await expect(
+                testSubject.sendCommandToMultipleFrames(testCommand, iframeStubs),
+            ).rejects.toThrow();
+        });
+
+        test('with empty iframe list', async () => {
+            setupPingFramesSuccessfully();
+
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToMultipleFrames(testCommand, []);
+        });
+
+        test('Skips frames that did not respond to ping', async () => {
+            setupPingFramesWithOneTimeout(iframeStubs[0]);
+
+            setupNeverSendTestCommandToFrame(iframeStubs[0]);
+            setupSendTestCommandToFrame(iframeStubs[1]);
+            setupSendTestCommandToFrame(iframeStubs[2]);
+
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToMultipleFrames(testCommand, iframeStubs);
+        });
+
+        test('Only messages frames in list', async () => {
+            setupPingFramesSuccessfully();
+
+            setupSendTestCommandToFrame(iframeStubs[0]);
+            setupNeverSendTestCommandToFrame(iframeStubs[1]);
+            setupNeverSendTestCommandToFrame(iframeStubs[2]);
+
+            mergePromisesMock
+                .setup(m => m(It.isAny()))
+                .returns(async promises => {
+                    await Promise.all(promises);
+                })
+                .verifiable();
+
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToMultipleFrames(testCommand, [iframeStubs[0]]);
+        });
+
+        test('with payload', async () => {
+            const payload = { value: 'test payload' };
+            const getPayloadMock = jest.fn(() => payload);
+
+            setupPingFramesSuccessfully();
+            iframeStubs.forEach(iframe => setupSendTestCommandToFrame(iframe, payload));
+
+            mergePromisesMock
+                .setup(m => m(It.isAny()))
+                .returns(async promises => {
+                    await Promise.all(promises);
+                })
+                .verifiable();
+
+            await testSubject.initializeAllFrames();
+            await testSubject.sendCommandToMultipleFrames(testCommand, iframeStubs, getPayloadMock);
+
+            expect(getPayloadMock).toHaveBeenCalledWith(iframeStubs[0], 0);
+            expect(getPayloadMock).toHaveBeenCalledWith(iframeStubs[1], 1);
+            expect(getPayloadMock).toHaveBeenCalledWith(iframeStubs[2], 2);
         });
     });
 
@@ -253,9 +348,7 @@ describe(AllFramesMessenger, () => {
 
         timeoutMock
             .setup(t => t(It.isAny(), pingTimeout))
-            .returns(async (promise, timeout) => {
-                await promise;
-            })
+            .returns((promise, timeout) => promise)
             .verifiable(Times.exactly(iframeStubs.length));
 
         iframeStubs.forEach(frame => {
@@ -265,6 +358,7 @@ describe(AllFramesMessenger, () => {
                         command: pingCommand,
                     }),
                 )
+                .returns(async () => pingResponse)
                 .verifiable(Times.once());
         });
     }
@@ -284,7 +378,7 @@ describe(AllFramesMessenger, () => {
                 if (promise === timeoutPromise) {
                     throw new TimeoutError('test timeout');
                 } else {
-                    await promise;
+                    return promise;
                 }
             })
             .verifiable(Times.exactly(iframeStubs.length));
@@ -300,12 +394,34 @@ describe(AllFramesMessenger, () => {
                     if (frame.id === timeoutFrame.id) {
                         return timeoutPromise;
                     } else {
-                        return Promise.resolve({ payload: null });
+                        return Promise.resolve(pingResponse);
                     }
                 })
                 .verifiable(Times.once());
         });
 
         loggerMock.setup(l => l.error(It.isAny(), It.isAny())).verifiable();
+    }
+
+    function setupSendTestCommandToFrame(iframe: HTMLIFrameElement, payload?: any): void {
+        singleFrameMessengerMock
+            .setup(m =>
+                m.sendMessageToFrame(iframe, {
+                    command: testCommand,
+                    payload,
+                }),
+            )
+            .verifiable(Times.once());
+    }
+
+    function setupNeverSendTestCommandToFrame(iframe: HTMLIFrameElement, payload?: any): void {
+        singleFrameMessengerMock
+            .setup(m =>
+                m.sendMessageToFrame(iframe, {
+                    command: testCommand,
+                    payload,
+                }),
+            )
+            .verifiable(Times.never());
     }
 });
