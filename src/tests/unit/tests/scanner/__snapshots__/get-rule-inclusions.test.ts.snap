@@ -13,8 +13,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "aria-allowed-role": {
-    "reason": "rule is tagged best-practice",
-    "status": "excluded",
+    "status": "included",
   },
   "aria-command-name": {
     "status": "included",
@@ -279,8 +278,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "excluded",
   },
   "presentation-role-conflict": {
-    "reason": "rule is tagged best-practice",
-    "status": "excluded",
+    "status": "included",
   },
   "region": {
     "reason": "rule is tagged best-practice",

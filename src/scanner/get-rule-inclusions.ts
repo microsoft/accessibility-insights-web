@@ -28,6 +28,12 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'excluded',
         reason: 'only reports to needs-review results due to potential false-positives',
     },
+    'aria-allowed-role': {
+        status: 'included',
+    },
+    'presentation-role-conflict': {
+        status: 'included',
+    },
 };
 
 export const getRuleInclusions = (

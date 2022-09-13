@@ -318,6 +318,15 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'web/p-as-heading': {
+                return (
+                    <span>
+                        Inspect the element using the Accessibility pane in the browser Developer
+                        tools and verify that the element’s accessible name contains its visible
+                        text.
+                    </span>
+                );
+            }
             default: {
                 throw new Error(
                     `Cannot render RichResolutionContent with unrecognized contentId ${contentId}`,
