@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { CommandMessage } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 
 import { HTMLElementUtils } from './../../common/html-element-utils';
 
@@ -12,9 +12,9 @@ export interface ScrollingWindowMessage {
 export class ScrollingController {
     public static readonly triggerScrollingCommand = 'insights.scroll';
     private htmlElementUtils: HTMLElementUtils;
-    private frameMessenger: FrameMessenger;
+    private frameMessenger: SingleFrameMessenger;
 
-    constructor(frameMessenger: FrameMessenger, htmlElementUtils: HTMLElementUtils) {
+    constructor(frameMessenger: SingleFrameMessenger, htmlElementUtils: HTMLElementUtils) {
         this.frameMessenger = frameMessenger;
         this.htmlElementUtils = htmlElementUtils;
     }

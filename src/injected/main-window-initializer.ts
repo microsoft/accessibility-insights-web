@@ -6,7 +6,6 @@ import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -314,8 +313,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationScanResultStoreProxy,
         );
 
-        const promiseFactory = createDefaultPromiseFactory();
-
         const analyzerProvider = new AnalyzerProvider(
             this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
@@ -330,7 +327,6 @@ export class MainWindowInitializer extends WindowInitializer {
             unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
             logger,
-            promiseFactory,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(

@@ -7,20 +7,20 @@ import {
     PromiseWindowCommandMessageListener,
 } from './respondable-command-message-communicator';
 
-// FrameMessenger is responsible for sending messages between different target page frames.
+// SingleFrameMessenger is responsible for sending messages between different target page frames.
 //
-// Generally, a component in one frame of the target page will use a FrameMessenger to communicate
+// Generally, a component in one frame of the target page will use a SingleFrameMessenger to communicate
 // with other instances of the same component in different frames. For example, a highlight box
 // drawer that needs to be able to draw something in a nested iframe might:
 //   * Register a "draw" command listener in every target page frame, and have that listener accept
 //     a payload containing a selector to draw at
-//   * If the selector is for a child iframe (eg, "#frame; #child-element"), use FrameMessenger to
+//   * If the selector is for a child iframe (eg, "#frame; #child-element"), use SingleFrameMessenger to
 //     send a "draw #child-element" message to that child iframe element
 //
-// FrameMessenger should *only* be used for messages that need to be targeted to a *specific* frame
+// SingleFrameMessenger should *only* be used for messages that need to be targeted to a *specific* frame
 // or window. For messages that are not so specifically targetted, prefer using the more common flux
 // data flow instead.
-export class FrameMessenger {
+export class SingleFrameMessenger {
     constructor(
         private readonly respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator,
     ) {}
@@ -48,7 +48,7 @@ export class FrameMessenger {
             throw new Error('Target frame does not have a contentWindow');
         }
 
-        return await this.sendMessageToWindow(contentWindow, message);
+        return this.sendMessageToWindow(contentWindow, message);
     }
 
     // Use this to send a message to window.parent or window.top.
@@ -57,7 +57,7 @@ export class FrameMessenger {
         targetWindow: Window,
         message: CommandMessage,
     ): Promise<CommandMessageResponse> {
-        return await this.respondableCommandMessageCommunicator.sendPromiseCommandMessage(
+        return this.respondableCommandMessageCommunicator.sendPromiseCommandMessage(
             targetWindow,
             message,
         );

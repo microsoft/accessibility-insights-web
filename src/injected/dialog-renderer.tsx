@@ -29,7 +29,7 @@ import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FrameMessenger } from './frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from './frameCommunicators/single-frame-messenger';
 import {
     LayeredDetailsDialogComponent,
     LayeredDetailsDialogDeps,
@@ -48,7 +48,7 @@ export class DialogRenderer {
     constructor(
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly navigatorUtils: NavigatorUtils,

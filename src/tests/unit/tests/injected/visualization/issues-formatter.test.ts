@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { IMock, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
@@ -20,7 +20,7 @@ describe('IssuesFormatterTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;
-        const frameMessenger: IMock<FrameMessenger> = Mock.ofType(FrameMessenger);
+        const frameMessenger: IMock<SingleFrameMessenger> = Mock.ofType<SingleFrameMessenger>();
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(NavigatorUtils);

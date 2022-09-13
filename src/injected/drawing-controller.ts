@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { forOwn } from 'lodash';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -32,7 +32,7 @@ export class DrawingController {
     private featureFlagStoreData: FeatureFlagStoreData;
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly axeResultsHelper: HtmlElementAxeResultsHelper,
         private readonly htmlElementUtils: HTMLElementUtils,
     ) {}

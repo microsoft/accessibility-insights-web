@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { PromiseFactory } from 'common/promises/promise-factory';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
@@ -37,7 +36,6 @@ export class AnalyzerProvider {
         private readonly sendNeedsReviewResults: PostResolveCallback,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly logger: Logger,
-        private readonly promiseFactory: PromiseFactory,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -116,7 +114,6 @@ export class AnalyzerProvider {
             this.logger,
             this.tabStopsDoneAnalyzingTracker,
             null,
-            this.promiseFactory,
         );
     }
 
@@ -129,7 +126,6 @@ export class AnalyzerProvider {
             this.logger,
             this.tabStopsDoneAnalyzingTracker,
             this.tabStopsRequirementResultProcessor,
-            this.promiseFactory,
         );
     }
 
