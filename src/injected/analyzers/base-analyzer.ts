@@ -25,7 +25,7 @@ export class BaseAnalyzer implements Analyzer {
 
     public analyze(): void {
         const results = this.getResults();
-        results.then(this.onResolve).catch(e => this.logger.error(e));
+        results.then(this.onResolve).catch(this.logger.error);
     }
 
     public teardown(): void {}
