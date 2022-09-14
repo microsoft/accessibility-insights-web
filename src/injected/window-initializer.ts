@@ -208,9 +208,8 @@ export class WindowInitializer {
             new DetailsDialogHandler(htmlElementUtils, this.windowUtils),
         );
         this.drawingController = new DrawingController(
-            this.frameMessenger,
+            this.allFramesMessenger,
             new HtmlElementAxeResultsHelper(htmlElementUtils, logger),
-            htmlElementUtils,
         );
         this.scrollingController = new ScrollingController(this.frameMessenger, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(

@@ -66,15 +66,17 @@ export class AllFrameRunner<T> {
     }
 
     public start = async () => {
-        await this.allFramesMessenger.initialize();
+        if (this.windowUtils.isTopWindow()) {
+            await this.allFramesMessenger.initializeAllFrames();
+        }
         const startPromise = this.listener.start();
-        await this.allFramesMessenger.sendCommandToFrames(this.startCommand);
+        await this.allFramesMessenger.sendCommandToAllFrames(this.startCommand);
         await startPromise;
     };
 
     public stop = async () => {
         const stopPromise = this.listener.stop();
-        await this.allFramesMessenger.sendCommandToFrames(this.stopCommand);
+        await this.allFramesMessenger.sendCommandToAllFrames(this.stopCommand);
         await stopPromise;
     };
 

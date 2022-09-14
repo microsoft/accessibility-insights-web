@@ -100,24 +100,36 @@ describe(AllFrameRunner, () => {
         });
     });
 
-    test('public start: calls start in current frame & sends start command to other frames', async () => {
-        const frameRunner = getFrameRunnerInstance(
-            allFramesMessengerMock,
-            htmlElementUtilsMock,
-            windowUtilsMock,
-            unitTestListenerMock,
-        );
+    test.each([true, false])(
+        'public start: calls start in current frame & sends start command to other frames with isTopWindow=%s',
+        async isTopWindow => {
+            windowUtilsMock
+                .setup(m => m.isTopWindow())
+                .returns(() => isTopWindow)
+                .verifiable(Times.once());
 
-        unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
-        allFramesMessengerMock.setup(m => m.initialize()).verifiable(Times.once());
-        allFramesMessengerMock
-            .setup(m => m.sendCommandToFrames((frameRunner as any).startCommand))
-            .verifiable(Times.once());
+            const frameRunner = getFrameRunnerInstance(
+                allFramesMessengerMock,
+                htmlElementUtilsMock,
+                windowUtilsMock,
+                unitTestListenerMock,
+            );
 
-        await frameRunner.start();
-    });
+            unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
 
-    test('public stop: calls stop in current frame & sends stop command to other frames', async () => {
+            const expectedInitializedCallTimes = isTopWindow ? Times.once() : Times.never();
+            allFramesMessengerMock
+                .setup(m => m.initializeAllFrames())
+                .verifiable(expectedInitializedCallTimes);
+            allFramesMessengerMock
+                .setup(m => m.sendCommandToAllFrames((frameRunner as any).startCommand))
+                .verifiable(Times.once());
+
+            await frameRunner.start();
+        },
+    );
+
+    test('public stop: calls stop in current frame & sends stop command to other frames with', async () => {
         const frameRunner = getFrameRunnerInstance(
             allFramesMessengerMock,
             htmlElementUtilsMock,
@@ -127,21 +139,24 @@ describe(AllFrameRunner, () => {
 
         unitTestListenerMock.setup(m => m.stop()).verifiable(Times.once());
         allFramesMessengerMock
-            .setup(m => m.sendCommandToFrames((frameRunner as any).stopCommand))
+            .setup(m => m.sendCommandToAllFrames((frameRunner as any).stopCommand))
             .verifiable(Times.once());
 
         await frameRunner.stop();
     });
 
     test('child frames return null when sent start message', async () => {
+        windowUtilsMock
+            .setup(m => m.isTopWindow())
+            .returns(() => false)
+            .verifiable(Times.once());
         unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
 
         const { commandId, commandFunc } =
             captureFrameMessengerCallbacks(unitTestListenerMock).start;
 
-        allFramesMessengerMock.setup(m => m.initialize()).verifiable(Times.once());
         allFramesMessengerMock
-            .setup(m => m.sendCommandToFrames(commandId))
+            .setup(m => m.sendCommandToAllFrames(commandId))
             .verifiable(Times.once());
 
         expect(await commandFunc(null, null)).toBeNull();
@@ -154,7 +169,7 @@ describe(AllFrameRunner, () => {
             captureFrameMessengerCallbacks(unitTestListenerMock).stop;
 
         allFramesMessengerMock
-            .setup(m => m.sendCommandToFrames(commandId))
+            .setup(m => m.sendCommandToAllFrames(commandId))
             .verifiable(Times.once());
 
         expect(await commandFunc(null, null)).toBeNull();

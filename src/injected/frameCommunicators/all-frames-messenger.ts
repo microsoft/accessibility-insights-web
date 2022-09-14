@@ -11,6 +11,7 @@ import {
     PromiseWindowCommandMessageListener,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
+import { isEqual } from 'lodash';
 
 // This class provides functionality for messaging all frames in a page that can
 // respond, to handle cases where an iframe fails to load or does not have the
@@ -20,6 +21,11 @@ import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-m
 // responded to the initial ping.
 export class AllFramesMessenger {
     private responsiveFrames: HTMLIFrameElement[] | null = null;
+    private readonly pingResponse: CommandMessageResponse = {
+        payload: {
+            status: 'ready',
+        },
+    };
 
     constructor(
         private readonly singleFrameMessenger: SingleFrameMessenger,
@@ -34,7 +40,7 @@ export class AllFramesMessenger {
     ) {
         this.addMessageListener(this.pingCommand, async () => {
             await this.findResponsiveFrames();
-            return null;
+            return this.pingResponse;
         });
     }
 
@@ -52,21 +58,44 @@ export class AllFramesMessenger {
         return this.singleFrameMessenger.sendMessageToWindow(targetWindow, message);
     }
 
-    public async initialize(): Promise<void> {
+    public async initializeAllFrames(): Promise<void> {
         await this.findResponsiveFrames();
     }
 
-    public async sendCommandToFrames(command: string): Promise<void> {
-        if (this.responsiveFrames == null) {
-            throw new Error('AllFramesMessenger is not initialized.');
-        }
+    public async sendCommandToAllFrames(command: string, payload?: any): Promise<void> {
+        this.validateInitialized();
 
-        const promises: Promise<unknown>[] = this.responsiveFrames.map(frame =>
+        const promises: Promise<unknown>[] = this.responsiveFrames!.map(frame =>
             this.singleFrameMessenger.sendMessageToFrame(frame, {
                 command,
+                payload,
             }),
         );
         await this.mergePromises(promises);
+    }
+
+    public async sendCommandToMultipleFrames(
+        command: string,
+        frames: HTMLIFrameElement[],
+        getPayload?: (frame: HTMLIFrameElement, index: number) => any,
+    ): Promise<void> {
+        this.validateInitialized();
+
+        const promises: Promise<unknown>[] = frames.map(async (frame, index) => {
+            if (this.responsiveFrames!.includes(frame)) {
+                await this.singleFrameMessenger.sendMessageToFrame(frame, {
+                    command,
+                    payload: getPayload?.(frame, index),
+                });
+            }
+        });
+        await this.mergePromises(promises);
+    }
+
+    private validateInitialized(): void {
+        if (this.responsiveFrames == null) {
+            throw new Error('AllFramesMessenger is not initialized.');
+        }
     }
 
     private async findResponsiveFrames(): Promise<void> {
@@ -79,7 +108,15 @@ export class AllFramesMessenger {
             return;
         }
 
-        const promises: Promise<unknown>[] = Object.entries(allIFrameElements).map(([key, value]) =>
+        const pingResults = await this.pingFramesAndGetResults(allIFrameElements);
+
+        this.processPingResults(pingResults, allIFrameElements);
+    }
+
+    private pingFramesAndGetResults(
+        iframes: HTMLCollectionOf<HTMLIFrameElement>,
+    ): Promise<PromiseSettledResult<unknown>[]> {
+        const promises: Promise<unknown>[] = Object.entries(iframes).map(([_key, value]) =>
             this.promiseFactory.timeout(
                 this.singleFrameMessenger.sendMessageToFrame(value, {
                     command: this.pingCommand,
@@ -88,30 +125,48 @@ export class AllFramesMessenger {
             ),
         );
 
-        const results = await Promise.allSettled(promises);
+        return Promise.allSettled(promises);
+    }
+
+    private processPingResults(
+        pingResults: PromiseSettledResult<unknown>[],
+        allIFrameElements: HTMLCollectionOf<HTMLIFrameElement>,
+    ): void {
         this.responsiveFrames = [];
         const timeoutErrors: TimeoutError[] = [];
+        const unexpectedErrors: Error[] = [];
 
-        results.forEach((result, index) => {
+        pingResults.forEach((result, index) => {
             if (result.status === 'fulfilled') {
-                this.responsiveFrames!.push(allIFrameElements[index]);
+                const response = (result as PromiseFulfilledResult<CommandMessageResponse>).value;
+                if (isEqual(response, this.pingResponse)) {
+                    this.responsiveFrames!.push(allIFrameElements[index]);
+                } else {
+                    const error = new Error(
+                        `Recieved unexpected value for ping response: ${JSON.stringify(response)}`,
+                    );
+                    unexpectedErrors.push(error);
+                }
             } else {
                 const error = (result as PromiseRejectedResult).reason;
                 if (error instanceof TimeoutError) {
                     timeoutErrors.push(error);
                 } else {
-                    // We expect timeout errors if the frame message fails to send.
-                    // Throw if the error is anything else.
-                    throw error;
+                    unexpectedErrors.push(error);
                 }
             }
         });
 
+        // Timeouts are expected to happen occasionally, so we log and continue execution
         if (timeoutErrors.length > 0) {
             this.logger.error(
                 `Some iframes could not be reached within ${this.pingTimeoutMilliseconds} milliseconds. Those frames will be ignored.`,
                 timeoutErrors,
             );
+        }
+
+        if (unexpectedErrors.length > 0) {
+            throw new AggregateError(unexpectedErrors);
         }
     }
 }

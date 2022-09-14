@@ -8,7 +8,10 @@ import { DrawingInitiator } from 'injected/drawing-initiator';
 import { IsVisualizationEnabledCallback } from 'injected/is-visualization-enabled';
 import { SelectorMapHelper } from 'injected/selector-map-helper';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
-import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
+import {
+    IsVisualizationNewlyEnabledCallback,
+    TargetPageVisualizationUpdater,
+} from 'injected/target-page-visualization-updater';
 import {
     TestStepVisualizationState,
     VisualizationNeedsUpdateCallback,
@@ -21,6 +24,7 @@ describe('TargetPageVisualizationUpdater', () => {
     let drawingInitiatorMock: IMock<DrawingInitiator>;
     let isVisualizationEnabledMock: IMock<IsVisualizationEnabledCallback>;
     let visualizationNeedsUpdateMock: IMock<VisualizationNeedsUpdateCallback>;
+    let isVisualizationNewlyEnabledMock: IMock<IsVisualizationNewlyEnabledCallback>;
     let configMock: IMock<VisualizationConfiguration>;
     let testSubject: TargetPageVisualizationUpdater;
 
@@ -40,6 +44,7 @@ describe('TargetPageVisualizationUpdater', () => {
         drawingInitiatorMock = Mock.ofType<DrawingInitiator>();
         isVisualizationEnabledMock = Mock.ofType<IsVisualizationEnabledCallback>();
         visualizationNeedsUpdateMock = Mock.ofType<VisualizationNeedsUpdateCallback>();
+        isVisualizationNewlyEnabledMock = Mock.ofType<IsVisualizationNewlyEnabledCallback>();
         configMock = Mock.ofType<VisualizationConfiguration>();
 
         selectorMapStub = {};
@@ -86,6 +91,7 @@ describe('TargetPageVisualizationUpdater', () => {
             drawingInitiatorMock.object,
             isVisualizationEnabledMock.object,
             visualizationNeedsUpdateMock.object,
+            isVisualizationNewlyEnabledMock.object,
         );
     });
 
@@ -98,7 +104,7 @@ describe('TargetPageVisualizationUpdater', () => {
             .verifiable(Times.never());
         drawingInitiatorMock
             .setup(dim =>
-                dim.enableVisualization(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()),
+                dim.updateVisualization(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()),
             )
             .verifiable(Times.never());
 
@@ -113,6 +119,7 @@ describe('TargetPageVisualizationUpdater', () => {
     test('visualization needs to be enabled', async () => {
         expectedNewState.enabled = isVisualizationEnabledResult = true;
         setupVisualizationNeedsUpdateMock(true);
+        setupIsVisualizationNewlyEnabledMock(true);
 
         const visualizationInstanceProcessorStub = () => null;
         configMock
@@ -121,6 +128,35 @@ describe('TargetPageVisualizationUpdater', () => {
         drawingInitiatorMock
             .setup(dim =>
                 dim.enableVisualization(
+                    visualizationTypeStub,
+                    storeDataStub.featureFlagStoreData,
+                    It.isValue(selectorMapStub),
+                    configIdStub,
+                    visualizationInstanceProcessorStub,
+                ),
+            )
+            .verifiable();
+
+        await testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
+
+        drawingInitiatorMock.verifyAll();
+        visualizationNeedsUpdateMock.verifyAll();
+
+        await verifyPreviousState(expectedNewState);
+    });
+
+    test('visualization needs to be updated', async () => {
+        expectedNewState.enabled = isVisualizationEnabledResult = true;
+        setupVisualizationNeedsUpdateMock(true);
+        setupIsVisualizationNewlyEnabledMock(false);
+
+        const visualizationInstanceProcessorStub = () => null;
+        configMock
+            .setup(cm => cm.visualizationInstanceProcessor(stepKeyStub))
+            .returns(() => visualizationInstanceProcessorStub);
+        drawingInitiatorMock
+            .setup(dim =>
+                dim.updateVisualization(
                     visualizationTypeStub,
                     storeDataStub.featureFlagStoreData,
                     It.isValue(selectorMapStub),
@@ -164,6 +200,12 @@ describe('TargetPageVisualizationUpdater', () => {
         visualizationNeedsUpdateMock
             .setup(vnum => vnum(expectedNewState, expectedPreviousState))
             .returns(() => needsUpdate);
+    }
+
+    function setupIsVisualizationNewlyEnabledMock(isNewlyEnabled: boolean): void {
+        isVisualizationNewlyEnabledMock
+            .setup(f => f(expectedNewState, expectedPreviousState))
+            .returns(() => isNewlyEnabled);
     }
 
     async function verifyPreviousState(
