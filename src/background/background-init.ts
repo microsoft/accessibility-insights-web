@@ -195,21 +195,6 @@ async function initialize(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
-
-    const messageDistributor = new BackgroundMessageDistributor(
-        globalContext,
-        tabContextManager,
-        postMessageContentHandler,
-        browserAdapter,
-        eventResponseFactory,
-    );
-    messageDistributor.initialize();
-
     const targetTabController = new TargetTabController(
         browserAdapter,
         visualizationConfigurationFactory,
@@ -261,6 +246,21 @@ async function initialize(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
+
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
+    const messageDistributor = new BackgroundMessageDistributor(
+        globalContext,
+        tabContextManager,
+        postMessageContentHandler,
+        browserAdapter,
+        eventResponseFactory,
+    );
+    messageDistributor.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;
