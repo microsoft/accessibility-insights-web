@@ -258,6 +258,8 @@ async function initializeAsync(): Promise<void> {
         browserAdapter,
         eventResponseFactory,
     );
+    // This should happen as late as possible so we don't try to distribute messages
+    // before all stores and actions have finished initializing
     messageDistributor.initialize();
 
     await cleanKeysFromStoragePromise;
