@@ -398,6 +398,12 @@ exports[`RichResolutionContent renders static content with id=web/link-in-text-b
 </ul>
 `;
 
+exports[`RichResolutionContent renders static content with id=web/p-as-heading 1`] = `
+<span>
+  Inspect the element using the Accessibility pane in the browser Developer tools and verify that the element’s accessible name contains its visible text.
+</span>
+`;
+
 exports[`RichResolutionContent renders static content with id=web/scrollable-region-focusable 1`] = `
 <span>
   Examine the element and ensure that, if there is scrollable content, the elements are accessible by keyboard.
