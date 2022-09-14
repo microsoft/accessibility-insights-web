@@ -25,6 +25,15 @@ export type UpdateVisualization = (
     step: string,
     storeData: TargetPageStoreData,
 ) => Promise<void>;
+
+export type IsVisualizationNewlyEnabledCallback = (
+    oldState: TestStepVisualizationState | undefined,
+    newState: TestStepVisualizationState,
+) => boolean;
+
+const isVisualizationNewlyEnabled: IsVisualizationNewlyEnabledCallback = (newState, oldState) =>
+    newState.enabled && oldState?.enabled;
+
 export class TargetPageVisualizationUpdater {
     private previousVisualizationStates: TestStepVisualizationStateMap = {};
 
@@ -34,6 +43,7 @@ export class TargetPageVisualizationUpdater {
         private drawingInitiator: DrawingInitiator,
         private isVisualizationEnabled: IsVisualizationEnabledCallback,
         private visualizationNeedsUpdate: VisualizationNeedsUpdateCallback,
+        private isNewlyEnabled: IsVisualizationNewlyEnabledCallback = isVisualizationNewlyEnabled,
     ) {}
 
     public updateVisualization: UpdateVisualization = async (
@@ -52,6 +62,7 @@ export class TargetPageVisualizationUpdater {
             stepKey,
             storeData,
         );
+        const newlyEnabled = this.isNewlyEnabled(newState, oldState);
 
         if (!this.visualizationNeedsUpdate(newState, oldState)) {
             return;
@@ -60,13 +71,23 @@ export class TargetPageVisualizationUpdater {
         this.updatePreviousVisualizationState(visualizationType, configId, newState);
 
         if (newState.enabled) {
-            await this.drawingInitiator.enableVisualization(
-                visualizationType,
-                storeData.featureFlagStoreData,
-                cloneDeep(newState.selectorMap),
-                configId,
-                configuration.visualizationInstanceProcessor(stepKey),
-            );
+            if (newlyEnabled) {
+                await this.drawingInitiator.enableVisualization(
+                    visualizationType,
+                    storeData.featureFlagStoreData,
+                    cloneDeep(newState.selectorMap),
+                    configId,
+                    configuration.visualizationInstanceProcessor(stepKey),
+                );
+            } else {
+                await this.drawingInitiator.updateVisualization(
+                    visualizationType,
+                    storeData.featureFlagStoreData,
+                    cloneDeep(newState.selectorMap),
+                    configId,
+                    configuration.visualizationInstanceProcessor(stepKey),
+                );
+            }
         } else {
             await this.drawingInitiator.disableVisualization(
                 visualizationType,

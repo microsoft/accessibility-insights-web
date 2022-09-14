@@ -124,10 +124,10 @@ describe('Target Page window.postMessage behavior', () => {
 
         // Smoke test to ensure we're successfully recording at all.
         //
-        // For each of [axe.ping, axe.start-scan, insights.draw], there
+        // For each of [axe.ping, axe.start-scan, insights.ping, insights.draw], there
         // should be a request-response pair (2 messages) for each of the top-child and
-        // child-grandchild relationships, ie, 3 * 2 * 2 = 12.
-        expect(recordedMessages.length).toBe(12);
+        // child-grandchild relationships, ie, 4 * 2 * 2 = 16.
+        expect(recordedMessages.length).toBe(16);
 
         // The important test (that no messages contain HTML snippets)
         const mayContainHtmlSnippet = (msg: NestedIframeWindowMessageRecord) =>
