@@ -65,7 +65,7 @@ export class AllFramesMessenger {
     public async sendCommandToAllFrames(command: string, payload?: any): Promise<void> {
         this.validateInitialized();
 
-        const promises: Promise<unknown>[] = this.responsiveFrames.map(frame =>
+        const promises: Promise<unknown>[] = this.responsiveFrames!.map(frame =>
             this.singleFrameMessenger.sendMessageToFrame(frame, {
                 command,
                 payload,
@@ -81,9 +81,9 @@ export class AllFramesMessenger {
     ): Promise<void> {
         this.validateInitialized();
 
-        const promises: Promise<unknown>[] = frames.map((frame, index) => {
-            if (this.responsiveFrames.includes(frame)) {
-                return this.singleFrameMessenger.sendMessageToFrame(frame, {
+        const promises: Promise<unknown>[] = frames.map(async (frame, index) => {
+            if (this.responsiveFrames!.includes(frame)) {
+                await this.singleFrameMessenger.sendMessageToFrame(frame, {
                     command,
                     payload: getPayload?.(frame, index),
                 });
@@ -157,6 +157,7 @@ export class AllFramesMessenger {
             }
         });
 
+        // Timeouts are expected to happen occasionally, so we log and continue execution
         if (timeoutErrors.length > 0) {
             this.logger.error(
                 `Some iframes could not be reached within ${this.pingTimeoutMilliseconds} milliseconds. Those frames will be ignored.`,
@@ -164,8 +165,6 @@ export class AllFramesMessenger {
             );
         }
 
-        // Timeouts are expected to happen occasionally.
-        // If any other errors occur, throw an exception.
         if (unexpectedErrors.length > 0) {
             throw new AggregateError(unexpectedErrors);
         }

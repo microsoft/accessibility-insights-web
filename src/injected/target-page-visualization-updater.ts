@@ -32,7 +32,7 @@ export type IsVisualizationNewlyEnabledCallback = (
 ) => boolean;
 
 const isVisualizationNewlyEnabled: IsVisualizationNewlyEnabledCallback = (newState, oldState) =>
-    newState.enabled && oldState?.enabled;
+    newState.enabled && !oldState?.enabled;
 
 export class TargetPageVisualizationUpdater {
     private previousVisualizationStates: TestStepVisualizationStateMap = {};
