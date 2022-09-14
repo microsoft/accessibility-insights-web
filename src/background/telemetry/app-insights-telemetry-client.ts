@@ -54,7 +54,9 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
         this.initialized = true;
 
         this.applicationInsights.loadAppInsights();
-        this.applicationInsights.context.telemetryTrace.name = '';
+        if (this.applicationInsights.context.telemetryTrace) {
+            this.applicationInsights.context.telemetryTrace.name = '';
+        }
         this.applicationInsights.addTelemetryInitializer((telemetryItem: ITelemetryItem) => {
             const originalBaseData = telemetryItem?.baseData ?? {};
             telemetryItem.baseData = {
