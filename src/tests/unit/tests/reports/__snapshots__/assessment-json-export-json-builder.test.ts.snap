@@ -2,1268 +2,1268 @@
 
 exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
 "{
-  \\"url\\": \\"https://www.washington.edu/accesscomputing/AU/before.html\\",
-  \\"title\\": \\"Accessible University Demo Site - Inaccessible Version\\",
-  \\"date\\": \\"time\\",
-  \\"comment\\": \\"test user comment\\",
-  \\"version\\": \\"2.28.0\\",
-  \\"results\\": [
+  "url": "https://www.washington.edu/accesscomputing/AU/before.html",
+  "title": "Accessible University Demo Site - Inaccessible Version",
+  "date": "time",
+  "comment": "test user comment",
+  "version": "2.28.0",
+  "results": [
     {
-      \\"wcagNumber\\": \\"1.1.1\\",
-      \\"wcagName\\": \\"Non-text Content\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "1.1.1",
+      "wcagName": "Non-text Content",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"image-alt\\",
-          \\"requirementDescription\\": \\"Images must have alternate text\\",
-          \\"instances\\": [
+          "requirementKey": "image-alt",
+          "requirementDescription": "Images must have alternate text",
+          "instances": [
             {
-              \\"path\\": \\"#logo\\",
-              \\"snippet\\": \\"<img id=\\\\\\"logo\\\\\\" src=\\\\\\"images/au123456789.gif\\\\\\" width=\\\\\\"441\\\\\\" height=\\\\\\"90\\\\\\">\\"
+              "path": "#logo",
+              "snippet": "<img id=\\"logo\\" src=\\"images/au123456789.gif\\" width=\\"441\\" height=\\"90\\">"
             },
             {
-              \\"path\\": \\"img[src$=\\\\\\"slide1\\\\\\\\.jpg\\\\\\"]\\",
-              \\"snippet\\": \\"<img src=\\\\\\"images/slide1.jpg\\\\\\">\\"
+              "path": "img[src$=\\"slide1\\\\.jpg\\"]",
+              "snippet": "<img src=\\"images/slide1.jpg\\">"
             },
             {
-              \\"path\\": \\"img[src$=\\\\\\"arrow-left\\\\\\\\.png\\\\\\"]\\",
-              \\"snippet\\": \\"<img src=\\\\\\"images/arrow-left.png\\\\\\">\\"
+              "path": "img[src$=\\"arrow-left\\\\.png\\"]",
+              "snippet": "<img src=\\"images/arrow-left.png\\">"
             },
             {
-              \\"path\\": \\"img[src$=\\\\\\"arrow-right\\\\\\\\.png\\\\\\"]\\",
-              \\"snippet\\": \\"<img src=\\\\\\"images/arrow-right.png\\\\\\">\\"
+              "path": "img[src$=\\"arrow-right\\\\.png\\"]",
+              "snippet": "<img src=\\"images/arrow-right.png\\">"
             },
             {
-              \\"path\\": \\"img[src$=\\\\\\"captcha\\\\\\\\.png\\\\\\"]\\",
-              \\"snippet\\": \\"<img src=\\\\\\"images/captcha.png\\\\\\">\\"
+              "path": "img[src$=\\"captcha\\\\.png\\"]",
+              "snippet": "<img src=\\"images/captcha.png\\">"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"area-alt\\",
-          \\"requirementDescription\\": \\"Active <area> elements must have alternate text\\"
+          "requirementKey": "area-alt",
+          "requirementDescription": "Active <area> elements must have alternate text"
         },
         {
-          \\"requirementKey\\": \\"aria-meter-name\\",
-          \\"requirementDescription\\": \\"ARIA meter nodes must have an accessible name\\"
+          "requirementKey": "aria-meter-name",
+          "requirementDescription": "ARIA meter nodes must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"aria-progressbar-name\\",
-          \\"requirementDescription\\": \\"ARIA progressbar nodes must have an accessible name\\"
+          "requirementKey": "aria-progressbar-name",
+          "requirementDescription": "ARIA progressbar nodes must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"input-image-alt\\",
-          \\"requirementDescription\\": \\"Image buttons must have alternate text\\"
+          "requirementKey": "input-image-alt",
+          "requirementDescription": "Image buttons must have alternate text"
         },
         {
-          \\"requirementKey\\": \\"object-alt\\",
-          \\"requirementDescription\\": \\"<object> elements must have alternate text\\"
+          "requirementKey": "object-alt",
+          "requirementDescription": "<object> elements must have alternate text"
         },
         {
-          \\"requirementKey\\": \\"role-img-alt\\",
-          \\"requirementDescription\\": \\"[role='img'] elements have an alternative text\\"
+          "requirementKey": "role-img-alt",
+          "requirementDescription": "[role='img'] elements have an alternative text"
         },
         {
-          \\"requirementKey\\": \\"svg-img-alt\\",
-          \\"requirementDescription\\": \\"svg elements with an img role have an alternative text\\"
+          "requirementKey": "svg-img-alt",
+          "requirementDescription": "svg elements with an img role have an alternative text"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"imageFunction\\",
-          \\"requirementDescription\\": \\"Every image must be coded as either meaningful or decorative\\"
+          "requirementKey": "imageFunction",
+          "requirementDescription": "Every image must be coded as either meaningful or decorative"
         },
         {
-          \\"requirementKey\\": \\"textAlternative\\",
-          \\"requirementDescription\\": \\"A meaningful image must have a text alternative that serves the equivalent purpose\\"
+          "requirementKey": "textAlternative",
+          "requirementDescription": "A meaningful image must have a text alternative that serves the equivalent purpose"
         },
         {
-          \\"requirementKey\\": \\"captcha\\",
-          \\"requirementDescription\\": \\"If a CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing\\"
+          "requirementKey": "captcha",
+          "requirementDescription": "If a CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing"
         },
         {
-          \\"requirementKey\\": \\"auditoryCues\\",
-          \\"requirementDescription\\": \\"Auditory cues must be accompanied by visual cues\\"
+          "requirementKey": "auditoryCues",
+          "requirementDescription": "Auditory cues must be accompanied by visual cues"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.2.1\\",
-      \\"wcagName\\": \\"Audio-only and Video-only (Prerecorded)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "1.2.1",
+      "wcagName": "Audio-only and Video-only (Prerecorded)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"audio-caption\\",
-          \\"requirementDescription\\": \\"<audio> elements must have a captions track\\"
+          "requirementKey": "audio-caption",
+          "requirementDescription": "<audio> elements must have a captions track"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"audioOnlyEquivalent\\",
-          \\"requirementDescription\\": \\"Pre-recorded audio-only content must be accompanied by an equivalent text alternative\\"
+          "requirementKey": "audioOnlyEquivalent",
+          "requirementDescription": "Pre-recorded audio-only content must be accompanied by an equivalent text alternative"
         },
         {
-          \\"requirementKey\\": \\"videoOnlyEquivalent\\",
-          \\"requirementDescription\\": \\"Pre-recorded video-only content must be accompanied by an equivalent text or audio alternative\\"
+          "requirementKey": "videoOnlyEquivalent",
+          "requirementDescription": "Pre-recorded video-only content must be accompanied by an equivalent text or audio alternative"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.2.2\\",
-      \\"wcagName\\": \\"Captions (Prerecorded)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "1.2.2",
+      "wcagName": "Captions (Prerecorded)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"video-caption\\",
-          \\"requirementDescription\\": \\"<video> elements must have captions\\"
+          "requirementKey": "video-caption",
+          "requirementDescription": "<video> elements must have captions"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"captions\\",
-          \\"requirementDescription\\": \\"Pre-recorded multimedia content must have captions\\"
+          "requirementKey": "captions",
+          "requirementDescription": "Pre-recorded multimedia content must have captions"
         },
         {
-          \\"requirementKey\\": \\"noObstruction\\",
-          \\"requirementDescription\\": \\"Captions must not obscure or obstruct relevant information in the video\\"
+          "requirementKey": "noObstruction",
+          "requirementDescription": "Captions must not obscure or obstruct relevant information in the video"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.2.3\\",
-      \\"wcagName\\": \\"Audio Description or Media Alternative (Prerecorded)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.2.3",
+      "wcagName": "Audio Description or Media Alternative (Prerecorded)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"audioDescription\\",
-          \\"requirementDescription\\": \\"Pre-recorded video with audio must have an audio description\\"
+          "requirementKey": "audioDescription",
+          "requirementDescription": "Pre-recorded video with audio must have an audio description"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.2.4\\",
-      \\"wcagName\\": \\"Captions (Live)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.2.4",
+      "wcagName": "Captions (Live)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"liveCaptions\\",
-          \\"requirementDescription\\": \\"Captions must be provided for live (streaming) video with audio\\"
+          "requirementKey": "liveCaptions",
+          "requirementDescription": "Captions must be provided for live (streaming) video with audio"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.2.5\\",
-      \\"wcagName\\": \\"Audio Description (Prerecorded)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.2.5",
+      "wcagName": "Audio Description (Prerecorded)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"audioDescription\\",
-          \\"requirementDescription\\": \\"Pre-recorded video with audio must have an audio description\\"
+          "requirementKey": "audioDescription",
+          "requirementDescription": "Pre-recorded video with audio must have an audio description"
         },
         {
-          \\"requirementKey\\": \\"synchronization\\",
-          \\"requirementDescription\\": \\"An audio description must be synchronized with the video content\\"
+          "requirementKey": "synchronization",
+          "requirementDescription": "An audio description must be synchronized with the video content"
         },
         {
-          \\"requirementKey\\": \\"noConflict\\",
-          \\"requirementDescription\\": \\"An audio description must not conflict with audible information in the sound track\\"
+          "requirementKey": "noConflict",
+          "requirementDescription": "An audio description must not conflict with audible information in the sound track"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.3.1\\",
-      \\"wcagName\\": \\"Info and Relationships\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "1.3.1",
+      "wcagName": "Info and Relationships",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"label\\",
-          \\"requirementDescription\\": \\"Form elements must have labels\\",
-          \\"instances\\": [
+          "requirementKey": "label",
+          "requirementDescription": "Form elements must have labels",
+          "instances": [
             {
-              \\"path\\": \\"input[name=\\\\\\"name\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"name\\\\\\" style=\\\\\\"background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;\\\\\\">\\"
+              "path": "input[name=\\"name\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"name\\" style=\\"background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"email\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"email\\\\\\">\\"
+              "path": "input[name=\\"email\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"email\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"city\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"city\\\\\\">\\"
+              "path": "input[name=\\"city\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"city\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"state\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"state\\\\\\">\\"
+              "path": "input[name=\\"state\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"state\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"zip\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"zip\\\\\\">\\"
+              "path": "input[name=\\"zip\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"zip\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"country\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"country\\\\\\">\\"
+              "path": "input[name=\\"country\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"country\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_cs\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_cs\\\\\\">\\"
+              "path": "input[name=\\"major_cs\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_cs\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_eng\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_eng\\\\\\">\\"
+              "path": "input[name=\\"major_eng\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_eng\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_econ\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_econ\\\\\\">\\"
+              "path": "input[name=\\"major_econ\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_econ\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_phy\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_phy\\\\\\">\\"
+              "path": "input[name=\\"major_phy\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_phy\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_psy\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_psy\\\\\\">\\"
+              "path": "input[name=\\"major_psy\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_psy\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_sp\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_sp\\\\\\">\\"
+              "path": "input[name=\\"major_sp\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_sp\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"captcha\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"captcha\\\\\\">\\"
+              "path": "input[name=\\"captcha\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"captcha\\">"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"aria-hidden-focus\\",
-          \\"requirementDescription\\": \\"ARIA hidden element must not contain focusable elements\\"
+          "requirementKey": "aria-hidden-focus",
+          "requirementDescription": "ARIA hidden element must not contain focusable elements"
         },
         {
-          \\"requirementKey\\": \\"aria-required-children\\",
-          \\"requirementDescription\\": \\"Certain ARIA roles must contain particular children\\"
+          "requirementKey": "aria-required-children",
+          "requirementDescription": "Certain ARIA roles must contain particular children"
         },
         {
-          \\"requirementKey\\": \\"aria-required-parent\\",
-          \\"requirementDescription\\": \\"Certain ARIA roles must be contained by particular parents\\"
+          "requirementKey": "aria-required-parent",
+          "requirementDescription": "Certain ARIA roles must be contained by particular parents"
         },
         {
-          \\"requirementKey\\": \\"definition-list\\",
-          \\"requirementDescription\\": \\"<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements\\"
+          "requirementKey": "definition-list",
+          "requirementDescription": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements"
         },
         {
-          \\"requirementKey\\": \\"dlitem\\",
-          \\"requirementDescription\\": \\"<dt> and <dd> elements must be contained by a <dl>\\"
+          "requirementKey": "dlitem",
+          "requirementDescription": "<dt> and <dd> elements must be contained by a <dl>"
         },
         {
-          \\"requirementKey\\": \\"list\\",
-          \\"requirementDescription\\": \\"<ul> and <ol> must only directly contain <li>, <script> or <template> elements\\"
+          "requirementKey": "list",
+          "requirementDescription": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements"
         },
         {
-          \\"requirementKey\\": \\"listitem\\",
-          \\"requirementDescription\\": \\"<li> elements must be contained in a <ul> or <ol>\\"
+          "requirementKey": "listitem",
+          "requirementDescription": "<li> elements must be contained in a <ul> or <ol>"
         },
         {
-          \\"requirementKey\\": \\"select-name\\",
-          \\"requirementDescription\\": \\"Select element must have an accessible name\\"
+          "requirementKey": "select-name",
+          "requirementDescription": "Select element must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"td-headers-attr\\",
-          \\"requirementDescription\\": \\"All cells in a table element that use the headers attribute must only refer to other cells of that same table\\"
+          "requirementKey": "td-headers-attr",
+          "requirementDescription": "All cells in a table element that use the headers attribute must only refer to other cells of that same table"
         },
         {
-          \\"requirementKey\\": \\"th-has-data-cells\\",
-          \\"requirementDescription\\": \\"All th elements and elements with role=columnheader/rowheader must have data cells they describe\\"
+          "requirementKey": "th-has-data-cells",
+          "requirementDescription": "All th elements and elements with role=columnheader/rowheader must have data cells they describe"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"landmark-roles\\",
-          \\"requirementDescription\\": \\"A landmark region must have the role that best describes its content\\"
+          "requirementKey": "landmark-roles",
+          "requirementDescription": "A landmark region must have the role that best describes its content"
         },
         {
-          \\"requirementKey\\": \\"primary-content\\",
-          \\"requirementDescription\\": \\"The main landmark must contain all of the page's primary content\\"
+          "requirementKey": "primary-content",
+          "requirementDescription": "The main landmark must contain all of the page's primary content"
         },
         {
-          \\"requirementKey\\": \\"no-repeating-content\\",
-          \\"requirementDescription\\": \\"The main landmark must not contain any blocks of content that repeat across pages\\"
+          "requirementKey": "no-repeating-content",
+          "requirementDescription": "The main landmark must not contain any blocks of content that repeat across pages"
         },
         {
-          \\"requirementKey\\": \\"headingFunction\\",
-          \\"requirementDescription\\": \\"An element coded as a heading must function as a heading\\"
+          "requirementKey": "headingFunction",
+          "requirementDescription": "An element coded as a heading must function as a heading"
         },
         {
-          \\"requirementKey\\": \\"missingHeadings\\",
-          \\"requirementDescription\\": \\"Text that looks like a heading must be coded as a heading\\"
+          "requirementKey": "missingHeadings",
+          "requirementDescription": "Text that looks like a heading must be coded as a heading"
         },
         {
-          \\"requirementKey\\": \\"headingLevel\\",
-          \\"requirementDescription\\": \\"A heading's programmatic level must match the level that's presented visually\\"
+          "requirementKey": "headingLevel",
+          "requirementDescription": "A heading's programmatic level must match the level that's presented visually"
         },
         {
-          \\"requirementKey\\": \\"nativeInstructions\\",
-          \\"requirementDescription\\": \\"If a native widget has a visible label or instructions, they must be programmatically determinable\\"
+          "requirementKey": "nativeInstructions",
+          "requirementDescription": "If a native widget has a visible label or instructions, they must be programmatically determinable"
         },
         {
-          \\"requirementKey\\": \\"nativeCues\\",
-          \\"requirementDescription\\": \\"If a native widget adopts certain interactive states, it must provide appropriate cues\\"
+          "requirementKey": "nativeCues",
+          "requirementDescription": "If a native widget adopts certain interactive states, it must provide appropriate cues"
         },
         {
-          \\"requirementKey\\": \\"customWidgetsInstructions\\",
-          \\"requirementDescription\\": \\"If a custom widget has a visible label or instructions, they must be programmatically determinable\\"
+          "requirementKey": "customWidgetsInstructions",
+          "requirementDescription": "If a custom widget has a visible label or instructions, they must be programmatically determinable"
         },
         {
-          \\"requirementKey\\": \\"customWidgetsCues\\",
-          \\"requirementDescription\\": \\"If a custom widget adopts certain interactive states, it must communicate those states programmatically\\"
+          "requirementKey": "customWidgetsCues",
+          "requirementDescription": "If a custom widget adopts certain interactive states, it must communicate those states programmatically"
         },
         {
-          \\"requirementKey\\": \\"columns\\",
-          \\"requirementDescription\\": \\"Content presented in multi-column format must support a correct reading sequence\\"
+          "requirementKey": "columns",
+          "requirementDescription": "Content presented in multi-column format must support a correct reading sequence"
         },
         {
-          \\"requirementKey\\": \\"cssContent\\",
-          \\"requirementDescription\\": \\"Meaningful content must not be implemented using only CSS :before or :after\\"
+          "requirementKey": "cssContent",
+          "requirementDescription": "Meaningful content must not be implemented using only CSS :before or :after"
         },
         {
-          \\"requirementKey\\": \\"tableSemantics\\",
-          \\"requirementDescription\\": \\"A undefined element must be coded correctly as a data table or a layout table\\"
+          "requirementKey": "tableSemantics",
+          "requirementDescription": "A undefined element must be coded correctly as a data table or a layout table"
         },
         {
-          \\"requirementKey\\": \\"headers\\",
-          \\"requirementDescription\\": \\"Coded headers must be used correctly\\"
+          "requirementKey": "headers",
+          "requirementDescription": "Coded headers must be used correctly"
         },
         {
-          \\"requirementKey\\": \\"headersAttribute\\",
-          \\"requirementDescription\\": \\"The headers attribute of a undefined element must reference the correct undefined element(s)\\"
+          "requirementKey": "headersAttribute",
+          "requirementDescription": "The headers attribute of a undefined element must reference the correct undefined element(s)"
         },
         {
-          \\"requirementKey\\": \\"lists\\",
-          \\"requirementDescription\\": \\"Lists must be contained within semantically correct containers\\"
+          "requirementKey": "lists",
+          "requirementDescription": "Lists must be contained within semantically correct containers"
         },
         {
-          \\"requirementKey\\": \\"emphasis\\",
-          \\"requirementDescription\\": \\"Words and phrases that are visually emphasized must be contained within semantically correct containers\\"
+          "requirementKey": "emphasis",
+          "requirementDescription": "Words and phrases that are visually emphasized must be contained within semantically correct containers"
         },
         {
-          \\"requirementKey\\": \\"quotes\\",
-          \\"requirementDescription\\": \\"The undefined element must not be used to style non-quote text\\"
+          "requirementKey": "quotes",
+          "requirementDescription": "The undefined element must not be used to style non-quote text"
         },
         {
-          \\"requirementKey\\": \\"letterSpacing\\",
-          \\"requirementDescription\\": \\"Spacing characters must not be used to increase the space between letters in a word\\"
+          "requirementKey": "letterSpacing",
+          "requirementDescription": "Spacing characters must not be used to increase the space between letters in a word"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.3.2\\",
-      \\"wcagName\\": \\"Meaningful Sequence\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.3.2",
+      "wcagName": "Meaningful Sequence",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"textDirection\\",
-          \\"requirementDescription\\": \\"If a page or a passage uses a script that is read right-to-left, it must have the correct text direction\\"
+          "requirementKey": "textDirection",
+          "requirementDescription": "If a page or a passage uses a script that is read right-to-left, it must have the correct text direction"
         },
         {
-          \\"requirementKey\\": \\"cssPositioning\\",
-          \\"requirementDescription\\": \\"Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled\\"
+          "requirementKey": "cssPositioning",
+          "requirementDescription": "Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled"
         },
         {
-          \\"requirementKey\\": \\"layoutTables\\",
-          \\"requirementDescription\\": \\"The content in an HTML layout table must make sense when the table is linearized\\"
+          "requirementKey": "layoutTables",
+          "requirementDescription": "The content in an HTML layout table must make sense when the table is linearized"
         },
         {
-          \\"requirementKey\\": \\"columns\\",
-          \\"requirementDescription\\": \\"Content presented in multi-column format must support a correct reading sequence\\"
+          "requirementKey": "columns",
+          "requirementDescription": "Content presented in multi-column format must support a correct reading sequence"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.3.3\\",
-      \\"wcagName\\": \\"Sensory Characteristics\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.3.3",
+      "wcagName": "Sensory Characteristics",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"sensoryCharacteristics\\",
-          \\"requirementDescription\\": \\"Instructions must not rely solely on color or other sensory characteristics\\"
+          "requirementKey": "sensoryCharacteristics",
+          "requirementDescription": "Instructions must not rely solely on color or other sensory characteristics"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.3.4\\",
-      \\"wcagName\\": \\"Orientation\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.3.4",
+      "wcagName": "Orientation",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"orientation\\",
-          \\"requirementDescription\\": \\"Web content must not be locked to a particular screen orientation\\"
+          "requirementKey": "orientation",
+          "requirementDescription": "Web content must not be locked to a particular screen orientation"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.3.5\\",
-      \\"wcagName\\": \\"Identify Input Purpose\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "1.3.5",
+      "wcagName": "Identify Input Purpose",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"autocomplete-valid\\",
-          \\"requirementDescription\\": \\"autocomplete attribute must be used correctly\\"
+          "requirementKey": "autocomplete-valid",
+          "requirementDescription": "autocomplete attribute must be used correctly"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"nativeAutocomplete\\",
-          \\"requirementDescription\\": \\"Text fields that serve certain purposes must have the correct HTML5 autocomplete attribute\\"
+          "requirementKey": "nativeAutocomplete",
+          "requirementDescription": "Text fields that serve certain purposes must have the correct HTML5 autocomplete attribute"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.1\\",
-      \\"wcagName\\": \\"Use of Color\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.1",
+      "wcagName": "Use of Color",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"useOfColor\\",
-          \\"requirementDescription\\": \\"Color must not be used as the only visual means for conveying meaning\\"
+          "requirementKey": "useOfColor",
+          "requirementDescription": "Color must not be used as the only visual means for conveying meaning"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.10\\",
-      \\"wcagName\\": \\"Reflow\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.10",
+      "wcagName": "Reflow",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"reflow\\",
-          \\"requirementDescription\\": \\"Content must be visible without having to scroll in two dimensions\\"
+          "requirementKey": "reflow",
+          "requirementDescription": "Content must be visible without having to scroll in two dimensions"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.11\\",
-      \\"wcagName\\": \\"Non-text Contrast\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.11",
+      "wcagName": "Non-text Contrast",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"ui-components\\",
-          \\"requirementDescription\\": \\"Visual information used to identify active user interface components and their states must have sufficient contrast\\"
+          "requirementKey": "ui-components",
+          "requirementDescription": "Visual information used to identify active user interface components and their states must have sufficient contrast"
         },
         {
-          \\"requirementKey\\": \\"state-changes\\",
-          \\"requirementDescription\\": \\"Any visual information that indicates a component's state must have sufficient contrast\\"
+          "requirementKey": "state-changes",
+          "requirementDescription": "Any visual information that indicates a component's state must have sufficient contrast"
         },
         {
-          \\"requirementKey\\": \\"graphics\\",
-          \\"requirementDescription\\": \\"Graphics must have sufficient contrast\\"
+          "requirementKey": "graphics",
+          "requirementDescription": "Graphics must have sufficient contrast"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.12\\",
-      \\"wcagName\\": \\"Text Spacing\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "1.4.12",
+      "wcagName": "Text Spacing",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"avoid-inline-spacing\\",
-          \\"requirementDescription\\": \\"Inline text spacing must be adjustable with custom stylesheets\\"
+          "requirementKey": "avoid-inline-spacing",
+          "requirementDescription": "Inline text spacing must be adjustable with custom stylesheets"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"textSpacing\\",
-          \\"requirementDescription\\": \\"Users must be able to adjust text spacing with no loss of content or functionality\\"
+          "requirementKey": "textSpacing",
+          "requirementDescription": "Users must be able to adjust text spacing with no loss of content or functionality"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.13\\",
-      \\"wcagName\\": \\"Content on Hover or Focus\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.13",
+      "wcagName": "Content on Hover or Focus",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"hoverFocusContent\\",
-          \\"requirementDescription\\": \\"Content that appears on focus or hover must be dismissible, hoverable, and persistent\\"
+          "requirementKey": "hoverFocusContent",
+          "requirementDescription": "Content that appears on focus or hover must be dismissible, hoverable, and persistent"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.2\\",
-      \\"wcagName\\": \\"Audio Control\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.2",
+      "wcagName": "Audio Control",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"audio-control\\",
-          \\"requirementDescription\\": \\"If audio content plays automatically for longer than three seconds, users must be able to pause or mute it\\"
+          "requirementKey": "audio-control",
+          "requirementDescription": "If audio content plays automatically for longer than three seconds, users must be able to pause or mute it"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.3\\",
-      \\"wcagName\\": \\"Contrast (Minimum)\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "1.4.3",
+      "wcagName": "Contrast (Minimum)",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"color-contrast\\",
-          \\"requirementDescription\\": \\"Elements must have sufficient color contrast\\",
-          \\"instances\\": [
+          "requirementKey": "color-contrast",
+          "requirementDescription": "Elements must have sufficient color contrast",
+          "instances": [
             {
-              \\"path\\": \\"li:nth-child(1) > a[href=\\\\\\"\\\\\\\\#\\\\\\"]\\",
-              \\"snippet\\": \\"<a href=\\\\\\"#\\\\\\">About</a>\\"
+              "path": "li:nth-child(1) > a[href=\\"\\\\#\\"]",
+              "snippet": "<a href=\\"#\\">About</a>"
             },
             {
-              \\"path\\": \\"li:nth-child(2) > a[href=\\\\\\"\\\\\\\\#\\\\\\"]\\",
-              \\"snippet\\": \\"<a href=\\\\\\"#\\\\\\">Academics</a>\\"
+              "path": "li:nth-child(2) > a[href=\\"\\\\#\\"]",
+              "snippet": "<a href=\\"#\\">Academics</a>"
             },
             {
-              \\"path\\": \\"li:nth-child(3) > a[href=\\\\\\"\\\\\\\\#\\\\\\"]\\",
-              \\"snippet\\": \\"<a href=\\\\\\"#\\\\\\">Admissions</a>\\"
+              "path": "li:nth-child(3) > a[href=\\"\\\\#\\"]",
+              "snippet": "<a href=\\"#\\">Admissions</a>"
             },
             {
-              \\"path\\": \\"li:nth-child(4) > a[href=\\\\\\"\\\\\\\\#\\\\\\"]\\",
-              \\"snippet\\": \\"<a href=\\\\\\"#\\\\\\">Visitors</a>\\"
+              "path": "li:nth-child(4) > a[href=\\"\\\\#\\"]",
+              "snippet": "<a href=\\"#\\">Visitors</a>"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"contrast\\",
-          \\"requirementDescription\\": \\"Text elements must have sufficient contrast\\"
+          "requirementKey": "contrast",
+          "requirementDescription": "Text elements must have sufficient contrast"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.4\\",
-      \\"wcagName\\": \\"Resize text\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.4",
+      "wcagName": "Resize text",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"resizeText\\",
-          \\"requirementDescription\\": \\"Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality\\"
+          "requirementKey": "resizeText",
+          "requirementDescription": "Users must be able to resize text, without using assistive technology, up to 200% with no loss of content or functionality"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"1.4.5\\",
-      \\"wcagName\\": \\"Images of Text\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "1.4.5",
+      "wcagName": "Images of Text",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"imageOfText\\",
-          \\"requirementDescription\\": \\"Images of text are allowed only where a specific appearance is required (e.g., logotypes)\\"
+          "requirementKey": "imageOfText",
+          "requirementDescription": "Images of text are allowed only where a specific appearance is required (e.g., logotypes)"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.1.1\\",
-      \\"wcagName\\": \\"Keyboard\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "2.1.1",
+      "wcagName": "Keyboard",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"keyboard-navigation\\",
-          \\"requirementDescription\\": \\"Users must be able to navigate to all interactive interface components using a keyboard\\",
-          \\"instances\\": [
+          "requirementKey": "keyboard-navigation",
+          "requirementDescription": "Users must be able to navigate to all interactive interface components using a keyboard",
+          "instances": [
             {
-              \\"comment\\": \\"This is a test comment\\"
+              "comment": "This is a test comment"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"frame-focusable-content\\",
-          \\"requirementDescription\\": \\"Frames with focusable content must not have tabindex=-1\\"
+          "requirementKey": "frame-focusable-content",
+          "requirementDescription": "Frames with focusable content must not have tabindex=-1"
         },
         {
-          \\"requirementKey\\": \\"server-side-image-map\\",
-          \\"requirementDescription\\": \\"Server-side image maps must not be used\\"
+          "requirementKey": "server-side-image-map",
+          "requirementDescription": "Server-side image maps must not be used"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"on-keystroke-timing\\",
-          \\"requirementDescription\\": \\"Components must not require specific timings for individual keystrokes\\"
+          "requirementKey": "on-keystroke-timing",
+          "requirementDescription": "Components must not require specific timings for individual keystrokes"
         },
         {
-          \\"requirementKey\\": \\"keyboardInteraction\\",
-          \\"requirementDescription\\": \\"A custom widget must support the keyboard interaction specified by its design pattern\\"
+          "requirementKey": "keyboardInteraction",
+          "requirementDescription": "A custom widget must support the keyboard interaction specified by its design pattern"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.1.2\\",
-      \\"wcagName\\": \\"No Keyboard Trap\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.1.2",
+      "wcagName": "No Keyboard Trap",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"no-keyboard-traps\\",
-          \\"requirementDescription\\": \\"Users must be able to navigate away from all components using a keyboard\\"
+          "requirementKey": "no-keyboard-traps",
+          "requirementDescription": "Users must be able to navigate away from all components using a keyboard"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.1.4\\",
-      \\"wcagName\\": \\"Character Key Shortcuts\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.1.4",
+      "wcagName": "Character Key Shortcuts",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"character-key-shortcuts\\",
-          \\"requirementDescription\\": \\"Users must be able to turn off or remap character key shortcuts\\"
+          "requirementKey": "character-key-shortcuts",
+          "requirementDescription": "Users must be able to turn off or remap character key shortcuts"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.2.1\\",
-      \\"wcagName\\": \\"Timing Adjustable\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "2.2.1",
+      "wcagName": "Timing Adjustable",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"meta-refresh\\",
-          \\"requirementDescription\\": \\"Timed refresh must not exist\\"
+          "requirementKey": "meta-refresh",
+          "requirementDescription": "Timed refresh must not exist"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"time-limits\\",
-          \\"requirementDescription\\": \\"If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit\\"
+          "requirementKey": "time-limits",
+          "requirementDescription": "If a time limit is set by the content, the user must be able to turn off, adjust, or extend the time limit"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.2.2\\",
-      \\"wcagName\\": \\"Pause, Stop, Hide\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "2.2.2",
+      "wcagName": "Pause, Stop, Hide",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"blink\\",
-          \\"requirementDescription\\": \\"<blink> elements are deprecated and must not be used\\"
+          "requirementKey": "blink",
+          "requirementDescription": "<blink> elements are deprecated and must not be used"
         },
         {
-          \\"requirementKey\\": \\"marquee\\",
-          \\"requirementDescription\\": \\"<marquee> elements are deprecated and must not be used\\"
+          "requirementKey": "marquee",
+          "requirementDescription": "<marquee> elements are deprecated and must not be used"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"moving-content\\",
-          \\"requirementDescription\\": \\"If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it\\"
+          "requirementKey": "moving-content",
+          "requirementDescription": "If content moves, blinks, or scrolls automatically for more than five seconds, users must be able to pause, stop, or hide it"
         },
         {
-          \\"requirementKey\\": \\"auto-updating-content\\",
-          \\"requirementDescription\\": \\"If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates\\"
+          "requirementKey": "auto-updating-content",
+          "requirementDescription": "If content updates automatically, users must be able to pause, stop, hide, or control frequency of the updates"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.3.1\\",
-      \\"wcagName\\": \\"Three Flashes or Below Threshold\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.3.1",
+      "wcagName": "Three Flashes or Below Threshold",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"flashing\\",
-          \\"requirementDescription\\": \\"Web pages must not have content that flashes more than three times per second\\"
+          "requirementKey": "flashing",
+          "requirementDescription": "Web pages must not have content that flashes more than three times per second"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.1\\",
-      \\"wcagName\\": \\"Bypass Blocks\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "2.4.1",
+      "wcagName": "Bypass Blocks",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"bypass\\",
-          \\"requirementDescription\\": \\"Page must have means to bypass repeated blocks\\"
+          "requirementKey": "bypass",
+          "requirementDescription": "Page must have means to bypass repeated blocks"
         },
         {
-          \\"requirementKey\\": \\"frame-title\\",
-          \\"requirementDescription\\": \\"Frames must have an accessible name\\"
+          "requirementKey": "frame-title",
+          "requirementDescription": "Frames must have an accessible name"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"primary-content\\",
-          \\"requirementDescription\\": \\"The main landmark must contain all of the page's primary content\\"
+          "requirementKey": "primary-content",
+          "requirementDescription": "The main landmark must contain all of the page's primary content"
         },
         {
-          \\"requirementKey\\": \\"no-repeating-content\\",
-          \\"requirementDescription\\": \\"The main landmark must not contain any blocks of content that repeat across pages\\"
+          "requirementKey": "no-repeating-content",
+          "requirementDescription": "The main landmark must not contain any blocks of content that repeat across pages"
         },
         {
-          \\"requirementKey\\": \\"missingHeadings\\",
-          \\"requirementDescription\\": \\"Text that looks like a heading must be coded as a heading\\"
+          "requirementKey": "missingHeadings",
+          "requirementDescription": "Text that looks like a heading must be coded as a heading"
         },
         {
-          \\"requirementKey\\": \\"bypassBlocks\\",
-          \\"requirementDescription\\": \\"A page must provide a keyboard-accessible method to bypass repetitive content\\"
+          "requirementKey": "bypassBlocks",
+          "requirementDescription": "A page must provide a keyboard-accessible method to bypass repetitive content"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.2\\",
-      \\"wcagName\\": \\"Page Titled\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "2.4.2",
+      "wcagName": "Page Titled",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"document-title\\",
-          \\"requirementDescription\\": \\"Documents must have <title> element to aid in navigation\\"
+          "requirementKey": "document-title",
+          "requirementDescription": "Documents must have <title> element to aid in navigation"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"pageTitle\\",
-          \\"requirementDescription\\": \\"A web page must have a title that describes its topic or purpose\\"
+          "requirementKey": "pageTitle",
+          "requirementDescription": "A web page must have a title that describes its topic or purpose"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.3\\",
-      \\"wcagName\\": \\"Focus Order\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.4.3",
+      "wcagName": "Focus Order",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"revealing-content\\",
-          \\"requirementDescription\\": \\"Activating a component that reveals hidden content must move input focus into the revealed content\\"
+          "requirementKey": "revealing-content",
+          "requirementDescription": "Activating a component that reveals hidden content must move input focus into the revealed content"
         },
         {
-          \\"requirementKey\\": \\"modal-dialogs\\",
-          \\"requirementDescription\\": \\"Users must not be able to Tab away from a modal dialog without explicitly dismissing it\\"
+          "requirementKey": "modal-dialogs",
+          "requirementDescription": "Users must not be able to Tab away from a modal dialog without explicitly dismissing it"
         },
         {
-          \\"requirementKey\\": \\"closing-content\\",
-          \\"requirementDescription\\": \\"Closing revealed content must return input focus to the component that revealed it\\"
+          "requirementKey": "closing-content",
+          "requirementDescription": "Closing revealed content must return input focus to the component that revealed it"
         },
         {
-          \\"requirementKey\\": \\"focus-order\\",
-          \\"requirementDescription\\": \\"Components must receive focus in an order that preserves meaning and operability\\"
+          "requirementKey": "focus-order",
+          "requirementDescription": "Components must receive focus in an order that preserves meaning and operability"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.4\\",
-      \\"wcagName\\": \\"Link Purpose (In Context)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "2.4.4",
+      "wcagName": "Link Purpose (In Context)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"area-alt\\",
-          \\"requirementDescription\\": \\"Active <area> elements must have alternate text\\"
+          "requirementKey": "area-alt",
+          "requirementDescription": "Active <area> elements must have alternate text"
         },
         {
-          \\"requirementKey\\": \\"link-name\\",
-          \\"requirementDescription\\": \\"Links must have discernible text\\"
+          "requirementKey": "link-name",
+          "requirementDescription": "Links must have discernible text"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"linkPurpose\\",
-          \\"requirementDescription\\": \\"The purpose of a link must be described by its link text alone, or by the link text together with preceding page context\\"
+          "requirementKey": "linkPurpose",
+          "requirementDescription": "The purpose of a link must be described by its link text alone, or by the link text together with preceding page context"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.5\\",
-      \\"wcagName\\": \\"Multiple Ways\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.4.5",
+      "wcagName": "Multiple Ways",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"generalNavigation\\",
-          \\"requirementDescription\\": \\"Users must have multiple ways to navigate to a page\\"
+          "requirementKey": "generalNavigation",
+          "requirementDescription": "Users must have multiple ways to navigate to a page"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.6\\",
-      \\"wcagName\\": \\"Headings and Labels\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.4.6",
+      "wcagName": "Headings and Labels",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"headingFunction\\",
-          \\"requirementDescription\\": \\"An element coded as a heading must function as a heading\\"
+          "requirementKey": "headingFunction",
+          "requirementDescription": "An element coded as a heading must function as a heading"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.4.7\\",
-      \\"wcagName\\": \\"Focus Visible\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.4.7",
+      "wcagName": "Focus Visible",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"visible-focus\\",
-          \\"requirementDescription\\": \\"Components must provide a visible indication when they have the input focus\\"
+          "requirementKey": "visible-focus",
+          "requirementDescription": "Components must provide a visible indication when they have the input focus"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.5.1\\",
-      \\"wcagName\\": \\"Pointer Gestures\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.5.1",
+      "wcagName": "Pointer Gestures",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"pointer-gestures\\",
-          \\"requirementDescription\\": \\"Functions must be operable without requiring multipoint or path-based gestures\\"
+          "requirementKey": "pointer-gestures",
+          "requirementDescription": "Functions must be operable without requiring multipoint or path-based gestures"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.5.2\\",
-      \\"wcagName\\": \\"Pointer Cancellation\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.5.2",
+      "wcagName": "Pointer Cancellation",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"pointer-cancellation\\",
-          \\"requirementDescription\\": \\"Users must be able to cancel functions that can be operated using a single pointer\\"
+          "requirementKey": "pointer-cancellation",
+          "requirementDescription": "Users must be able to cancel functions that can be operated using a single pointer"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.5.3\\",
-      \\"wcagName\\": \\"Label in Name\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.5.3",
+      "wcagName": "Label in Name",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"nativeInstructions\\",
-          \\"requirementDescription\\": \\"If a native widget has a visible label or instructions, they must be programmatically determinable\\"
+          "requirementKey": "nativeInstructions",
+          "requirementDescription": "If a native widget has a visible label or instructions, they must be programmatically determinable"
         },
         {
-          \\"requirementKey\\": \\"customWidgetsInstructions\\",
-          \\"requirementDescription\\": \\"If a custom widget has a visible label or instructions, they must be programmatically determinable\\"
+          "requirementKey": "customWidgetsInstructions",
+          "requirementDescription": "If a custom widget has a visible label or instructions, they must be programmatically determinable"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"2.5.4\\",
-      \\"wcagName\\": \\"Motion Actuation\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "2.5.4",
+      "wcagName": "Motion Actuation",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"motion-operation\\",
-          \\"requirementDescription\\": \\"If a function can be operated through motion, it must also be operable through user interface components\\"
+          "requirementKey": "motion-operation",
+          "requirementDescription": "If a function can be operated through motion, it must also be operable through user interface components"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.1.1\\",
-      \\"wcagName\\": \\"Language of Page\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "3.1.1",
+      "wcagName": "Language of Page",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"html-has-lang\\",
-          \\"requirementDescription\\": \\"<html> element must have a lang attribute\\",
-          \\"instances\\": [
+          "requirementKey": "html-has-lang",
+          "requirementDescription": "<html> element must have a lang attribute",
+          "instances": [
             {
-              \\"path\\": \\"html\\",
-              \\"snippet\\": \\"<html>\\"
+              "path": "html",
+              "snippet": "<html>"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"html-lang-valid\\",
-          \\"requirementDescription\\": \\"<html> element must have a valid value for the lang attribute\\"
+          "requirementKey": "html-lang-valid",
+          "requirementDescription": "<html> element must have a valid value for the lang attribute"
         },
         {
-          \\"requirementKey\\": \\"html-xml-lang-mismatch\\",
-          \\"requirementDescription\\": \\"HTML elements with lang and xml:lang must have the same base language\\"
+          "requirementKey": "html-xml-lang-mismatch",
+          "requirementDescription": "HTML elements with lang and xml:lang must have the same base language"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"languageOfPage\\",
-          \\"requirementDescription\\": \\"A page must have the correct default language\\"
+          "requirementKey": "languageOfPage",
+          "requirementDescription": "A page must have the correct default language"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.1.2\\",
-      \\"wcagName\\": \\"Language of Parts\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "3.1.2",
+      "wcagName": "Language of Parts",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"valid-lang\\",
-          \\"requirementDescription\\": \\"lang attribute must have a valid value\\"
+          "requirementKey": "valid-lang",
+          "requirementDescription": "lang attribute must have a valid value"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"languageOfParts\\",
-          \\"requirementDescription\\": \\"If the language of a passage differs from the default language of the page, the passage must have its own language attribute\\"
+          "requirementKey": "languageOfParts",
+          "requirementDescription": "If the language of a passage differs from the default language of the page, the passage must have its own language attribute"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.2.1\\",
-      \\"wcagName\\": \\"On Focus\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.2.1",
+      "wcagName": "On Focus",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"on-focus\\",
-          \\"requirementDescription\\": \\"Navigating to a component must not trigger any unexpected change of context\\"
+          "requirementKey": "on-focus",
+          "requirementDescription": "Navigating to a component must not trigger any unexpected change of context"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.2.2\\",
-      \\"wcagName\\": \\"On Input\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.2.2",
+      "wcagName": "On Input",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"on-input\\",
-          \\"requirementDescription\\": \\"Changing a component's settings must not trigger any unexpected change of context\\"
+          "requirementKey": "on-input",
+          "requirementDescription": "Changing a component's settings must not trigger any unexpected change of context"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.2.3\\",
-      \\"wcagName\\": \\"Consistent Navigation\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.2.3",
+      "wcagName": "Consistent Navigation",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"consistentNavigation\\",
-          \\"requirementDescription\\": \\"Navigational mechanisms that appear on multiple pages must be presented in the same relative order\\"
+          "requirementKey": "consistentNavigation",
+          "requirementDescription": "Navigational mechanisms that appear on multiple pages must be presented in the same relative order"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.2.4\\",
-      \\"wcagName\\": \\"Consistent Identification\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.2.4",
+      "wcagName": "Consistent Identification",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"consistentIdentification\\",
-          \\"requirementDescription\\": \\"Functional components that appear on multiple pages must be identified consistently\\"
+          "requirementKey": "consistentIdentification",
+          "requirementDescription": "Functional components that appear on multiple pages must be identified consistently"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.3.1\\",
-      \\"wcagName\\": \\"Error Identification\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.3.1",
+      "wcagName": "Error Identification",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"errorIdentification\\",
-          \\"requirementDescription\\": \\"If an input error is automatically detected, the item in error must be identified, and the error described, in text\\"
+          "requirementKey": "errorIdentification",
+          "requirementDescription": "If an input error is automatically detected, the item in error must be identified, and the error described, in text"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.3.2\\",
-      \\"wcagName\\": \\"Labels or Instructions\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.3.2",
+      "wcagName": "Labels or Instructions",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"nativeLabel\\",
-          \\"requirementDescription\\": \\"A native widget must have a label and/or instructions that identify the expected input\\"
+          "requirementKey": "nativeLabel",
+          "requirementDescription": "A native widget must have a label and/or instructions that identify the expected input"
         },
         {
-          \\"requirementKey\\": \\"customWidgetsLabel\\",
-          \\"requirementDescription\\": \\"A custom widget must have a label and/or instructions that identify the expected input\\"
+          "requirementKey": "customWidgetsLabel",
+          "requirementDescription": "A custom widget must have a label and/or instructions that identify the expected input"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.3.3\\",
-      \\"wcagName\\": \\"Error Suggestion\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.3.3",
+      "wcagName": "Error Suggestion",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"errorSuggestion\\",
-          \\"requirementDescription\\": \\"If an input error is automatically detected, guidance for correcting the error must be provided\\"
+          "requirementKey": "errorSuggestion",
+          "requirementDescription": "If an input error is automatically detected, guidance for correcting the error must be provided"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"3.3.4\\",
-      \\"wcagName\\": \\"Error Prevention (Legal, Financial, Data)\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "3.3.4",
+      "wcagName": "Error Prevention (Legal, Financial, Data)",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"errorPrevention\\",
-          \\"requirementDescription\\": \\"If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission\\"
+          "requirementKey": "errorPrevention",
+          "requirementDescription": "If submitting data might have serious consequences, users must be able to correct the data input before finalizing a submission"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"4.1.1\\",
-      \\"wcagName\\": \\"Parsing\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [
+      "wcagNumber": "4.1.1",
+      "wcagName": "Parsing",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"duplicate-id-active\\",
-          \\"requirementDescription\\": \\"IDs of active elements must be unique\\"
+          "requirementKey": "duplicate-id-active",
+          "requirementDescription": "IDs of active elements must be unique"
         },
         {
-          \\"requirementKey\\": \\"duplicate-id-aria\\",
-          \\"requirementDescription\\": \\"IDs used in ARIA and labels must be unique\\"
+          "requirementKey": "duplicate-id-aria",
+          "requirementDescription": "IDs used in ARIA and labels must be unique"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"parsing\\",
-          \\"requirementDescription\\": \\"Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their specifications\\"
+          "requirementKey": "parsing",
+          "requirementDescription": "Elements must have complete start and end tags, must not contain duplicate attributes, and must be nested according to their specifications"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"4.1.2\\",
-      \\"wcagName\\": \\"Name, Role, Value\\",
-      \\"status\\": \\"fail\\",
-      \\"requirementsFailed\\": [
+      "wcagNumber": "4.1.2",
+      "wcagName": "Name, Role, Value",
+      "status": "fail",
+      "requirementsFailed": [
         {
-          \\"requirementKey\\": \\"label\\",
-          \\"requirementDescription\\": \\"Form elements must have labels\\",
-          \\"instances\\": [
+          "requirementKey": "label",
+          "requirementDescription": "Form elements must have labels",
+          "instances": [
             {
-              \\"path\\": \\"input[name=\\\\\\"name\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"name\\\\\\" style=\\\\\\"background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;\\\\\\">\\"
+              "path": "input[name=\\"name\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"name\\" style=\\"background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"email\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"email\\\\\\">\\"
+              "path": "input[name=\\"email\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"email\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"city\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"city\\\\\\">\\"
+              "path": "input[name=\\"city\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"city\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"state\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"state\\\\\\">\\"
+              "path": "input[name=\\"state\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"state\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"zip\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"zip\\\\\\">\\"
+              "path": "input[name=\\"zip\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"zip\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"country\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"country\\\\\\">\\"
+              "path": "input[name=\\"country\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"country\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_cs\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_cs\\\\\\">\\"
+              "path": "input[name=\\"major_cs\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_cs\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_eng\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_eng\\\\\\">\\"
+              "path": "input[name=\\"major_eng\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_eng\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_econ\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_econ\\\\\\">\\"
+              "path": "input[name=\\"major_econ\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_econ\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_phy\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_phy\\\\\\">\\"
+              "path": "input[name=\\"major_phy\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_phy\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_psy\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_psy\\\\\\">\\"
+              "path": "input[name=\\"major_psy\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_psy\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"major_sp\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"checkbox\\\\\\" name=\\\\\\"major_sp\\\\\\">\\"
+              "path": "input[name=\\"major_sp\\"]",
+              "snippet": "<input type=\\"checkbox\\" name=\\"major_sp\\">"
             },
             {
-              \\"path\\": \\"input[name=\\\\\\"captcha\\\\\\"]\\",
-              \\"snippet\\": \\"<input type=\\\\\\"text\\\\\\" name=\\\\\\"captcha\\\\\\">\\"
+              "path": "input[name=\\"captcha\\"]",
+              "snippet": "<input type=\\"text\\" name=\\"captcha\\">"
             }
           ]
         }
       ],
-      \\"requirementsPassed\\": [
+      "requirementsPassed": [
         {
-          \\"requirementKey\\": \\"area-alt\\",
-          \\"requirementDescription\\": \\"Active <area> elements must have alternate text\\"
+          "requirementKey": "area-alt",
+          "requirementDescription": "Active <area> elements must have alternate text"
         },
         {
-          \\"requirementKey\\": \\"aria-allowed-attr\\",
-          \\"requirementDescription\\": \\"Elements must only use allowed ARIA attributes\\"
+          "requirementKey": "aria-allowed-attr",
+          "requirementDescription": "Elements must only use allowed ARIA attributes"
         },
         {
-          \\"requirementKey\\": \\"aria-command-name\\",
-          \\"requirementDescription\\": \\"ARIA commands must have an accessible name\\"
+          "requirementKey": "aria-command-name",
+          "requirementDescription": "ARIA commands must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"aria-hidden-body\\",
-          \\"requirementDescription\\": \\"aria-hidden='true' must not be present on the document body\\"
+          "requirementKey": "aria-hidden-body",
+          "requirementDescription": "aria-hidden='true' must not be present on the document body"
         },
         {
-          \\"requirementKey\\": \\"aria-hidden-focus\\",
-          \\"requirementDescription\\": \\"ARIA hidden element must not contain focusable elements\\"
+          "requirementKey": "aria-hidden-focus",
+          "requirementDescription": "ARIA hidden element must not contain focusable elements"
         },
         {
-          \\"requirementKey\\": \\"aria-input-field-name\\",
-          \\"requirementDescription\\": \\"ARIA input fields must have an accessible name\\"
+          "requirementKey": "aria-input-field-name",
+          "requirementDescription": "ARIA input fields must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"aria-required-attr\\",
-          \\"requirementDescription\\": \\"Required ARIA attributes must be provided\\"
+          "requirementKey": "aria-required-attr",
+          "requirementDescription": "Required ARIA attributes must be provided"
         },
         {
-          \\"requirementKey\\": \\"aria-roledescription\\",
-          \\"requirementDescription\\": \\"Use aria-roledescription on elements with a semantic role\\"
+          "requirementKey": "aria-roledescription",
+          "requirementDescription": "Use aria-roledescription on elements with a semantic role"
         },
         {
-          \\"requirementKey\\": \\"aria-roles\\",
-          \\"requirementDescription\\": \\"ARIA roles used must conform to valid values\\"
+          "requirementKey": "aria-roles",
+          "requirementDescription": "ARIA roles used must conform to valid values"
         },
         {
-          \\"requirementKey\\": \\"aria-toggle-field-name\\",
-          \\"requirementDescription\\": \\"ARIA toggle fields have an accessible name\\"
+          "requirementKey": "aria-toggle-field-name",
+          "requirementDescription": "ARIA toggle fields have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"aria-tooltip-name\\",
-          \\"requirementDescription\\": \\"ARIA tooltip nodes must have an accessible name\\"
+          "requirementKey": "aria-tooltip-name",
+          "requirementDescription": "ARIA tooltip nodes must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"aria-valid-attr-value\\",
-          \\"requirementDescription\\": \\"ARIA attributes must conform to valid values\\"
+          "requirementKey": "aria-valid-attr-value",
+          "requirementDescription": "ARIA attributes must conform to valid values"
         },
         {
-          \\"requirementKey\\": \\"aria-valid-attr\\",
-          \\"requirementDescription\\": \\"ARIA attributes must conform to valid names\\"
+          "requirementKey": "aria-valid-attr",
+          "requirementDescription": "ARIA attributes must conform to valid names"
         },
         {
-          \\"requirementKey\\": \\"button-name\\",
-          \\"requirementDescription\\": \\"Buttons must have discernible text\\"
+          "requirementKey": "button-name",
+          "requirementDescription": "Buttons must have discernible text"
         },
         {
-          \\"requirementKey\\": \\"frame-title\\",
-          \\"requirementDescription\\": \\"Frames must have an accessible name\\"
+          "requirementKey": "frame-title",
+          "requirementDescription": "Frames must have an accessible name"
         },
         {
-          \\"requirementKey\\": \\"input-button-name\\",
-          \\"requirementDescription\\": \\"Input buttons must have discernible text\\"
+          "requirementKey": "input-button-name",
+          "requirementDescription": "Input buttons must have discernible text"
         },
         {
-          \\"requirementKey\\": \\"link-name\\",
-          \\"requirementDescription\\": \\"Links must have discernible text\\"
+          "requirementKey": "link-name",
+          "requirementDescription": "Links must have discernible text"
         },
         {
-          \\"requirementKey\\": \\"nested-interactive\\",
-          \\"requirementDescription\\": \\"Ensure interactive controls are not nested\\"
+          "requirementKey": "nested-interactive",
+          "requirementDescription": "Ensure interactive controls are not nested"
         },
         {
-          \\"requirementKey\\": \\"select-name\\",
-          \\"requirementDescription\\": \\"Select element must have an accessible name\\"
+          "requirementKey": "select-name",
+          "requirementDescription": "Select element must have an accessible name"
         }
       ],
-      \\"requirementsIncomplete\\": [
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"linkFunction\\",
-          \\"requirementDescription\\": \\"If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role\\"
+          "requirementKey": "linkFunction",
+          "requirementDescription": "If an anchor element functions as a custom widget, it must have the appropriate ARIA widget role"
         },
         {
-          \\"requirementKey\\": \\"widgetFunction\\",
-          \\"requirementDescription\\": \\"If a native widget functions as a custom widget, it must have the appropriate ARIA widget role\\"
+          "requirementKey": "widgetFunction",
+          "requirementDescription": "If a native widget functions as a custom widget, it must have the appropriate ARIA widget role"
         },
         {
-          \\"requirementKey\\": \\"nativeCues\\",
-          \\"requirementDescription\\": \\"If a native widget adopts certain interactive states, it must provide appropriate cues\\"
+          "requirementKey": "nativeCues",
+          "requirementDescription": "If a native widget adopts certain interactive states, it must provide appropriate cues"
         },
         {
-          \\"requirementKey\\": \\"designPattern\\",
-          \\"requirementDescription\\": \\"A custom widget must have the appropriate ARIA widget role for its design pattern\\"
+          "requirementKey": "designPattern",
+          "requirementDescription": "A custom widget must have the appropriate ARIA widget role for its design pattern"
         },
         {
-          \\"requirementKey\\": \\"roleStateProperty\\",
-          \\"requirementDescription\\": \\"A custom widget must support the ARIA roles, states, and properties specified by its design pattern\\"
+          "requirementKey": "roleStateProperty",
+          "requirementDescription": "A custom widget must support the ARIA roles, states, and properties specified by its design pattern"
         },
         {
-          \\"requirementKey\\": \\"customWidgetsCues\\",
-          \\"requirementDescription\\": \\"If a custom widget adopts certain interactive states, it must communicate those states programmatically\\"
+          "requirementKey": "customWidgetsCues",
+          "requirementDescription": "If a custom widget adopts certain interactive states, it must communicate those states programmatically"
         },
         {
-          \\"requirementKey\\": \\"frameTitle\\",
-          \\"requirementDescription\\": \\"A frame or iframe must have a title that describes its content\\"
+          "requirementKey": "frameTitle",
+          "requirementDescription": "A frame or iframe must have a title that describes its content"
         }
       ]
     },
     {
-      \\"wcagNumber\\": \\"4.1.3\\",
-      \\"wcagName\\": \\"Status Messages\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
-      \\"requirementsPassed\\": [],
-      \\"requirementsIncomplete\\": [
+      "wcagNumber": "4.1.3",
+      "wcagName": "Status Messages",
+      "status": "incomplete",
+      "requirementsFailed": [],
+      "requirementsPassed": [],
+      "requirementsIncomplete": [
         {
-          \\"requirementKey\\": \\"statusMessages\\",
-          \\"requirementDescription\\": \\"Status messages must be programmatically determinable without receiving focus\\"
+          "requirementKey": "statusMessages",
+          "requirementDescription": "Status messages must be programmatically determinable without receiving focus"
         }
       ]
     }

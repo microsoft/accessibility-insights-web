@@ -6,7 +6,6 @@
       "capabilityId": "AutoMerge",
       "subCapability": "AutoMerge",
       "version": "1.0",
-      "id": "RfPZCISzx",
       "config": {
         "taskName": "auto-merge",
         "label": "pr: auto-merge",
@@ -87,8 +86,7 @@
             }
           }
         ]
-      },
-      "id": "ufrqbnPjX"
+      }
     },
     {
       "taskType": "trigger",
@@ -127,8 +125,7 @@
             }
           }
         ]
-      },
-      "id": "UbhUGPMbmI"
+      }
     },
     {
       "taskType": "trigger",
@@ -167,8 +164,7 @@
             }
           }
         ]
-      },
-      "id": "UEWVFBgLHE"
+      }
     },
     {
       "taskType": "scheduled",
@@ -319,8 +315,7 @@
             }
           }
         ]
-      },
-      "id": "oPnIN6E8nA"
+      }
     },
     {
       "taskType": "scheduled",
@@ -457,8 +452,7 @@
             "parameters": {}
           }
         ]
-      },
-      "id": "tEaoFqMBkZ"
+      }
     },
     {
       "taskType": "trigger",
@@ -516,8 +510,7 @@
             }
           }
         ]
-      },
-      "id": "lUJBflYiGB"
+      }
     },
     {
       "taskType": "trigger",
@@ -557,8 +550,7 @@
             }
           }
         ]
-      },
-      "id": "i2ymRcC1LJ"
+      }
     },
     {
       "taskType": "trigger",
@@ -597,8 +589,7 @@
             }
           }
         ]
-      },
-      "id": "Q7y3KaRyzn"
+      }
     },
     {
       "taskType": "trigger",
@@ -631,8 +622,7 @@
             }
           }
         ]
-      },
-      "id": "u95DkLaBnS"
+      }
     },
     {
       "taskType": "trigger",
@@ -669,8 +659,7 @@
             "parameters": {}
           }
         ]
-      },
-      "id": "oHyxh0XZR6"
+      }
     },
     {
       "taskType": "trigger",
@@ -751,8 +740,7 @@
             }
           }
         ]
-      },
-      "id": "XbVzcxlyko"
+      }
     },
     {
       "taskType": "trigger",
@@ -833,8 +821,7 @@
             }
           }
         ]
-      },
-      "id": "D_dn-CoZ73"
+      }
     },
     {
       "taskType": "trigger",
@@ -915,8 +902,7 @@
             }
           }
         ]
-      },
-      "id": "xJZmBKkaYi"
+      }
     },
     {
       "taskType": "trigger",
@@ -997,8 +983,7 @@
             }
           }
         ]
-      },
-      "id": "k4R7Gchz4g"
+      }
     },
     {
       "taskType": "trigger",
@@ -1079,8 +1064,7 @@
             }
           }
         ]
-      },
-      "id": "czc_RY8dZP"
+      }
     },
     {
       "taskType": "trigger",
@@ -1161,8 +1145,7 @@
             }
           }
         ]
-      },
-      "id": "dmUKPDuEoh"
+      }
     },
     {
       "taskType": "trigger",
@@ -1243,8 +1226,7 @@
             }
           }
         ]
-      },
-      "id": "5_uFFDS_FAi"
+      }
     },
     {
       "taskType": "trigger",
@@ -1295,8 +1277,7 @@
             }
           }
         ]
-      },
-      "id": "0QBiUeCHBK2"
+      }
     },
     {
       "taskType": "trigger",
@@ -1377,8 +1358,7 @@
             }
           }
         ]
-      },
-      "id": "cHEAU6EUm3_"
+      }
     },
     {
       "taskType": "trigger",
@@ -1453,8 +1433,7 @@
             }
           }
         ]
-      },
-      "id": "QQnTSiVAx90"
+      }
     },
     {
       "taskType": "trigger",
@@ -1500,8 +1479,49 @@
             }
           }
         ]
-      },
-      "id": "KmHZhNNSe"
+      }
+    },
+    {
+      "taskType": "trigger",
+      "capabilityId": "IssueResponder",
+      "subCapability": "PullRequestResponder",
+      "version": "1.0",
+      "config": {
+        "conditions": {
+          "operator": "and",
+          "operands": [
+            {
+              "name": "prModifiesFiles",
+              "parameters": {
+                "pathFilters": [
+                  "src/common/types/store-data"
+                ]
+              }
+            },
+            {
+              "name": "isAction",
+              "parameters": {
+                "action": "opened"
+              }
+            }
+          ]
+        },
+        "eventType": "pull_request",
+        "eventNames": [
+          "pull_request",
+          "issues",
+          "project_card"
+        ],
+        "taskName": "Add \"Consider backwards compatibility\" comment to PRs that touch the store-data directory.",
+        "actions": [
+          {
+            "name": "addReply",
+            "parameters": {
+              "comment": "This PR modifies store data, which is persisted between runs of the web extension. Please consider backwards compatibility when modifying these data types."
+            }
+          }
+        ]
+      }
     }
   ],
   "userGroups": [
@@ -1509,11 +1529,7 @@
       "_id": "5e616a3ac57fbf2ab87e1a53",
       "groupType": "ICM",
       "name": "Accessibility Insights DRI",
-      "onCallTeamId": 57436,
-      "modifiedBy": {
-        "upn": "ferbonn@microsoft.com",
-        "timestamp": "2020-03-05T21:08:10.407Z"
-      }
+      "onCallTeamId": 57436
     }
   ]
 }

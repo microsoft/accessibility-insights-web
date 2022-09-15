@@ -4,13 +4,13 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
-import { Tab } from 'common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { Tab } from 'common/types/store-data/itab';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {

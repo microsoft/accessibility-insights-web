@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     BaseTelemetryData,
     TelemetryEventSource,
@@ -60,9 +59,50 @@ describe('RemoteActionMessageDispatcher', () => {
                 null,
                 loggerMock.object,
             );
-
             testObject.dispatchMessage(message);
+            loggerMock.verify(m => m.error(expectedError), Times.once());
+        });
+    });
 
+    describe('asyncDispatchMessage', () => {
+        const message: Message = {
+            messageType: 'test-message-type',
+        };
+
+        it('handles numeric tabId', async () => {
+            const tabId = -1;
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                tabId,
+                loggerMock.object,
+            );
+
+            await testObject.asyncDispatchMessage(message);
+
+            postMessageMock.verify(post => post(It.isValue({ ...message, tabId })), Times.once());
+        });
+
+        it('handles null tabId', async () => {
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                null,
+                loggerMock.object,
+            );
+            await testObject.asyncDispatchMessage(message);
+
+            postMessageMock.verify(post => post(It.isValue(message)), Times.once());
+        });
+
+        it('propagates errors from postMessage to logger.error', async () => {
+            const expectedError = 'expected error';
+            postMessageMock.reset();
+            postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+            const testObject = new RemoteActionMessageDispatcher(
+                postMessageMock.object,
+                null,
+                loggerMock.object,
+            );
+            await testObject.asyncDispatchMessage(message);
             loggerMock.verify(m => m.error(expectedError), Times.once());
         });
     });

@@ -3,13 +3,13 @@
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false} 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
-      "styles": Object {
+      "styles": {
         "title": "insights-dialog-title",
       },
-      "topButtonsProps": Array [
-        Object {
+      "topButtonsProps": [
+        {
           "ariaLabel": "Close",
           "onClick": [Function],
           "onRenderIcon": [Function],
@@ -20,10 +20,10 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
-      "layerProps": Object {
+      "layerProps": {
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -64,8 +64,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       <div>
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -87,13 +87,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
     <CommandBar
       currentRuleIndex={0}
       deps={
-        Object {
-          "browserAdapter": Object {
+        {
+          "browserAdapter": {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
           "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
+          "targetPageActionMessageCreator": {
             "copyIssueDetailsClicked": [Function],
           },
           "windowUtils": null,
@@ -101,13 +101,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       }
       devToolsShortcut="shortcut"
       failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
+        {
+          "ruleId": {
+            "all": [],
+            "any": [],
             "failureSummary": "failureSummary",
-            "guidanceLinks": Array [
-              Object {
+            "guidanceLinks": [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -116,7 +116,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
             "helpUrl": "help-relative",
             "html": "html",
             "id": "id1",
-            "none": Array [],
+            "none": [],
             "ruleId": "ruleId",
             "selector": "selector",
             "status": false,
@@ -134,15 +134,15 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
     >
       <FixInstructionPanel
         checkType={0}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -152,15 +152,15 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       />
       <FixInstructionPanel
         checkType={1}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -174,7 +174,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": Object {},
+          "context": {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
@@ -184,22 +184,22 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
           "onLayoutDidMount": [Function],
-          "props": Object {
-            "deps": Object {
-              "browserAdapter": Object {
+          "props": {
+            "deps": {
+              "browserAdapter": {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
               "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
+              "targetPageActionMessageCreator": {
                 "copyIssueDetailsClicked": [Function],
               },
               "windowUtils": null,
             },
-            "devToolActionMessageCreator": Object {},
-            "devToolStore": Object {},
+            "devToolActionMessageCreator": {},
+            "devToolStore": {},
             "devToolsShortcut": "shortcut",
-            "dialogHandler": Object {
+            "dialogHandler": {
               "componentDidMount": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
@@ -211,13 +211,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
-            "failedRules": Object {
-              "ruleId": Object {
-                "all": Array [],
-                "any": Array [],
+            "failedRules": {
+              "ruleId": {
+                "all": [],
+                "any": [],
                 "failureSummary": "failureSummary",
-                "guidanceLinks": Array [
-                  Object {
+                "guidanceLinks": [
+                  {
                     "href": "http://example.com",
                     "text": "Guidance Link",
                   },
@@ -226,21 +226,21 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 "helpUrl": "help-relative",
                 "html": "html",
                 "id": "id1",
-                "none": Array [],
+                "none": [],
                 "ruleId": "ruleId",
                 "selector": "selector",
                 "status": false,
               },
             },
-            "target": Array [],
-            "userConfigStore": Object {
+            "target": [],
+            "userConfigStore": {
               "getState": [Function],
             },
           },
-          "refs": Object {},
+          "refs": {},
           "setState": [Function],
           "shouldShowInsecureOriginPageMessage": [Function],
-          "state": Object {
+          "state": {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
@@ -249,11 +249,11 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
-            "_callbacks": Array [],
+            "_callbacks": [],
             "_renderer": ReactShallowRenderer {
-              "_context": Object {},
+              "_context": {},
               "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": Object {
+              "_dispatcher": {
                 "readContext": [Function],
                 "useCallback": [Function],
                 "useContext": [Function],
@@ -271,23 +271,23 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
               },
               "_element": <DetailsDialog
                 deps={
-                  Object {
-                    "browserAdapter": Object {
+                  {
+                    "browserAdapter": {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
                     "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
+                    "targetPageActionMessageCreator": {
                       "copyIssueDetailsClicked": [Function],
                     },
                     "windowUtils": null,
                   }
                 }
-                devToolActionMessageCreator={Object {}}
-                devToolStore={Object {}}
+                devToolActionMessageCreator={{}}
+                devToolStore={{}}
                 devToolsShortcut="shortcut"
                 dialogHandler={
-                  Object {
+                  {
                     "componentDidMount": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
@@ -301,13 +301,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 }
                 elementSelector="ruleId"
                 failedRules={
-                  Object {
-                    "ruleId": Object {
-                      "all": Array [],
-                      "any": Array [],
+                  {
+                    "ruleId": {
+                      "all": [],
+                      "any": [],
                       "failureSummary": "failureSummary",
-                      "guidanceLinks": Array [
-                        Object {
+                      "guidanceLinks": [
+                        {
                           "href": "http://example.com",
                           "text": "Guidance Link",
                         },
@@ -316,16 +316,16 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                       "helpUrl": "help-relative",
                       "html": "html",
                       "id": "id1",
-                      "none": Array [],
+                      "none": [],
                       "ruleId": "ruleId",
                       "selector": "selector",
                       "status": false,
                     },
                   }
                 }
-                target={Array []}
+                target={[]}
                 userConfigStore={
-                  Object {
+                  {
                     "getState": [Function],
                   }
                 }
@@ -339,13 +339,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
               "_renderPhaseUpdates": null,
               "_rendered": <Dialog
                 dialogContentProps={
-                  Object {
+                  {
                     "showCloseButton": false,
-                    "styles": Object {
+                    "styles": {
                       "title": "insights-dialog-title",
                     },
-                    "topButtonsProps": Array [
-                      Object {
+                    "topButtonsProps": [
+                      {
                         "ariaLabel": "Close",
                         "onClick": [Function],
                         "onRenderIcon": [Function],
@@ -356,10 +356,10 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 }
                 hidden={false}
                 modalProps={
-                  Object {
+                  {
                     "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
-                    "layerProps": Object {
+                    "layerProps": {
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
@@ -400,8 +400,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     <div>
                       <GuidanceLinks
                         links={
-                          Array [
-                            Object {
+                          [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -423,13 +423,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
-                      Object {
-                        "browserAdapter": Object {
+                      {
+                        "browserAdapter": {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
                         "issueFilingActionMessageCreator": null,
-                        "targetPageActionMessageCreator": Object {
+                        "targetPageActionMessageCreator": {
                           "copyIssueDetailsClicked": [Function],
                         },
                         "windowUtils": null,
@@ -437,13 +437,13 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     }
                     devToolsShortcut="shortcut"
                     failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
+                      {
+                        "ruleId": {
+                          "all": [],
+                          "any": [],
                           "failureSummary": "failureSummary",
-                          "guidanceLinks": Array [
-                            Object {
+                          "guidanceLinks": [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -452,7 +452,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                           "helpUrl": "help-relative",
                           "html": "html",
                           "id": "id1",
-                          "none": Array [],
+                          "none": [],
                           "ruleId": "ruleId",
                           "selector": "selector",
                           "status": false,
@@ -470,15 +470,15 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                   >
                     <FixInstructionPanel
                       checkType={0}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -488,15 +488,15 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     />
                     <FixInstructionPanel
                       checkType={1}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -508,7 +508,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                   <IssueDetailsNavigationControls
                     container={[Circular]}
                     dialogHandler={
-                      Object {
+                      {
                         "componentDidMount": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
@@ -532,7 +532,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         }
       }
       dialogHandler={
-        Object {
+        {
           "componentDidMount": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
@@ -553,7 +553,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
 
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify initial state 1`] = `
-Object {
+{
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
@@ -566,13 +566,13 @@ Object {
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
-      "styles": Object {
+      "styles": {
         "title": "insights-dialog-title",
       },
-      "topButtonsProps": Array [
-        Object {
+      "topButtonsProps": [
+        {
           "ariaLabel": "Close",
           "onClick": [Function],
           "onRenderIcon": [Function],
@@ -583,10 +583,10 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
-      "layerProps": Object {
+      "layerProps": {
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -627,8 +627,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
       <div>
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -650,13 +650,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
     <CommandBar
       currentRuleIndex={0}
       deps={
-        Object {
-          "browserAdapter": Object {
+        {
+          "browserAdapter": {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
           "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
+          "targetPageActionMessageCreator": {
             "copyIssueDetailsClicked": [Function],
           },
           "windowUtils": null,
@@ -664,13 +664,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
       }
       devToolsShortcut="shortcut"
       failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
+        {
+          "ruleId": {
+            "all": [],
+            "any": [],
             "failureSummary": "failureSummary",
-            "guidanceLinks": Array [
-              Object {
+            "guidanceLinks": [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -679,7 +679,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
             "helpUrl": "http://extension/help1",
             "html": "html",
             "id": "id1",
-            "none": Array [],
+            "none": [],
             "ruleId": "ruleId",
             "selector": "selector",
             "status": false,
@@ -697,15 +697,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
     >
       <FixInstructionPanel
         checkType={0}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -715,15 +715,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
       />
       <FixInstructionPanel
         checkType={1}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -737,7 +737,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": Object {},
+          "context": {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
@@ -747,22 +747,22 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
           "onLayoutDidMount": [Function],
-          "props": Object {
-            "deps": Object {
-              "browserAdapter": Object {
+          "props": {
+            "deps": {
+              "browserAdapter": {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
               "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
+              "targetPageActionMessageCreator": {
                 "copyIssueDetailsClicked": [Function],
               },
               "windowUtils": null,
             },
-            "devToolActionMessageCreator": Object {},
-            "devToolStore": Object {},
+            "devToolActionMessageCreator": {},
+            "devToolStore": {},
             "devToolsShortcut": "shortcut",
-            "dialogHandler": Object {
+            "dialogHandler": {
               "componentDidMount": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
@@ -774,13 +774,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
-            "failedRules": Object {
-              "ruleId": Object {
-                "all": Array [],
-                "any": Array [],
+            "failedRules": {
+              "ruleId": {
+                "all": [],
+                "any": [],
                 "failureSummary": "failureSummary",
-                "guidanceLinks": Array [
-                  Object {
+                "guidanceLinks": [
+                  {
                     "href": "http://example.com",
                     "text": "Guidance Link",
                   },
@@ -789,21 +789,21 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                 "helpUrl": "http://extension/help1",
                 "html": "html",
                 "id": "id1",
-                "none": Array [],
+                "none": [],
                 "ruleId": "ruleId",
                 "selector": "selector",
                 "status": false,
               },
             },
-            "target": Array [],
-            "userConfigStore": Object {
+            "target": [],
+            "userConfigStore": {
               "getState": [Function],
             },
           },
-          "refs": Object {},
+          "refs": {},
           "setState": [Function],
           "shouldShowInsecureOriginPageMessage": [Function],
-          "state": Object {
+          "state": {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
@@ -812,11 +812,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
-            "_callbacks": Array [],
+            "_callbacks": [],
             "_renderer": ReactShallowRenderer {
-              "_context": Object {},
+              "_context": {},
               "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": Object {
+              "_dispatcher": {
                 "readContext": [Function],
                 "useCallback": [Function],
                 "useContext": [Function],
@@ -834,23 +834,23 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
               },
               "_element": <DetailsDialog
                 deps={
-                  Object {
-                    "browserAdapter": Object {
+                  {
+                    "browserAdapter": {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
                     "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
+                    "targetPageActionMessageCreator": {
                       "copyIssueDetailsClicked": [Function],
                     },
                     "windowUtils": null,
                   }
                 }
-                devToolActionMessageCreator={Object {}}
-                devToolStore={Object {}}
+                devToolActionMessageCreator={{}}
+                devToolStore={{}}
                 devToolsShortcut="shortcut"
                 dialogHandler={
-                  Object {
+                  {
                     "componentDidMount": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
@@ -864,13 +864,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                 }
                 elementSelector="ruleId"
                 failedRules={
-                  Object {
-                    "ruleId": Object {
-                      "all": Array [],
-                      "any": Array [],
+                  {
+                    "ruleId": {
+                      "all": [],
+                      "any": [],
                       "failureSummary": "failureSummary",
-                      "guidanceLinks": Array [
-                        Object {
+                      "guidanceLinks": [
+                        {
                           "href": "http://example.com",
                           "text": "Guidance Link",
                         },
@@ -879,16 +879,16 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                       "helpUrl": "http://extension/help1",
                       "html": "html",
                       "id": "id1",
-                      "none": Array [],
+                      "none": [],
                       "ruleId": "ruleId",
                       "selector": "selector",
                       "status": false,
                     },
                   }
                 }
-                target={Array []}
+                target={[]}
                 userConfigStore={
-                  Object {
+                  {
                     "getState": [Function],
                   }
                 }
@@ -902,13 +902,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
               "_renderPhaseUpdates": null,
               "_rendered": <Dialog
                 dialogContentProps={
-                  Object {
+                  {
                     "showCloseButton": false,
-                    "styles": Object {
+                    "styles": {
                       "title": "insights-dialog-title",
                     },
-                    "topButtonsProps": Array [
-                      Object {
+                    "topButtonsProps": [
+                      {
                         "ariaLabel": "Close",
                         "onClick": [Function],
                         "onRenderIcon": [Function],
@@ -919,10 +919,10 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                 }
                 hidden={false}
                 modalProps={
-                  Object {
+                  {
                     "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
-                    "layerProps": Object {
+                    "layerProps": {
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
@@ -963,8 +963,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     <div>
                       <GuidanceLinks
                         links={
-                          Array [
-                            Object {
+                          [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -986,13 +986,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
-                      Object {
-                        "browserAdapter": Object {
+                      {
+                        "browserAdapter": {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
                         "issueFilingActionMessageCreator": null,
-                        "targetPageActionMessageCreator": Object {
+                        "targetPageActionMessageCreator": {
                           "copyIssueDetailsClicked": [Function],
                         },
                         "windowUtils": null,
@@ -1000,13 +1000,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     }
                     devToolsShortcut="shortcut"
                     failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
+                      {
+                        "ruleId": {
+                          "all": [],
+                          "any": [],
                           "failureSummary": "failureSummary",
-                          "guidanceLinks": Array [
-                            Object {
+                          "guidanceLinks": [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -1015,7 +1015,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                           "helpUrl": "http://extension/help1",
                           "html": "html",
                           "id": "id1",
-                          "none": Array [],
+                          "none": [],
                           "ruleId": "ruleId",
                           "selector": "selector",
                           "status": false,
@@ -1033,15 +1033,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                   >
                     <FixInstructionPanel
                       checkType={0}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -1051,15 +1051,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     />
                     <FixInstructionPanel
                       checkType={1}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -1071,7 +1071,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                   <IssueDetailsNavigationControls
                     container={[Circular]}
                     dialogHandler={
-                      Object {
+                      {
                         "componentDidMount": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
@@ -1095,7 +1095,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
         }
       }
       dialogHandler={
-        Object {
+        {
           "componentDidMount": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
@@ -1116,7 +1116,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify initial state 1`] = `
-Object {
+{
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
@@ -1129,13 +1129,13 @@ Object {
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "showCloseButton": false,
-      "styles": Object {
+      "styles": {
         "title": "insights-dialog-title",
       },
-      "topButtonsProps": Array [
-        Object {
+      "topButtonsProps": [
+        {
           "ariaLabel": "Close",
           "onClick": [Function],
           "onRenderIcon": [Function],
@@ -1146,10 +1146,10 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
-      "layerProps": Object {
+      "layerProps": {
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -1190,8 +1190,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
       <div>
         <GuidanceLinks
           links={
-            Array [
-              Object {
+            [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -1213,13 +1213,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
     <CommandBar
       currentRuleIndex={0}
       deps={
-        Object {
-          "browserAdapter": Object {
+        {
+          "browserAdapter": {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
           "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
+          "targetPageActionMessageCreator": {
             "copyIssueDetailsClicked": [Function],
           },
           "windowUtils": null,
@@ -1227,13 +1227,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
       }
       devToolsShortcut="shortcut"
       failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
+        {
+          "ruleId": {
+            "all": [],
+            "any": [],
             "failureSummary": "failureSummary",
-            "guidanceLinks": Array [
-              Object {
+            "guidanceLinks": [
+              {
                 "href": "http://example.com",
                 "text": "Guidance Link",
               },
@@ -1242,7 +1242,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
             "helpUrl": "http://extension/help1",
             "html": "html",
             "id": "id1",
-            "none": Array [],
+            "none": [],
             "ruleId": "ruleId",
             "selector": "selector",
             "status": false,
@@ -1260,15 +1260,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
     >
       <FixInstructionPanel
         checkType={0}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -1278,15 +1278,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
       />
       <FixInstructionPanel
         checkType={1}
-        checks={Array []}
+        checks={[]}
         deps={
-          Object {
-            "browserAdapter": Object {
+          {
+            "browserAdapter": {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
             "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
+            "targetPageActionMessageCreator": {
               "copyIssueDetailsClicked": [Function],
             },
             "windowUtils": null,
@@ -1300,7 +1300,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": Object {},
+          "context": {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
@@ -1310,22 +1310,22 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
           "onLayoutDidMount": [Function],
-          "props": Object {
-            "deps": Object {
-              "browserAdapter": Object {
+          "props": {
+            "deps": {
+              "browserAdapter": {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
               "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
+              "targetPageActionMessageCreator": {
                 "copyIssueDetailsClicked": [Function],
               },
               "windowUtils": null,
             },
-            "devToolActionMessageCreator": Object {},
-            "devToolStore": Object {},
+            "devToolActionMessageCreator": {},
+            "devToolStore": {},
             "devToolsShortcut": "shortcut",
-            "dialogHandler": Object {
+            "dialogHandler": {
               "componentDidMount": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
@@ -1337,13 +1337,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
-            "failedRules": Object {
-              "ruleId": Object {
-                "all": Array [],
-                "any": Array [],
+            "failedRules": {
+              "ruleId": {
+                "all": [],
+                "any": [],
                 "failureSummary": "failureSummary",
-                "guidanceLinks": Array [
-                  Object {
+                "guidanceLinks": [
+                  {
                     "href": "http://example.com",
                     "text": "Guidance Link",
                   },
@@ -1352,21 +1352,21 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                 "helpUrl": "http://extension/help1",
                 "html": "html",
                 "id": "id1",
-                "none": Array [],
+                "none": [],
                 "ruleId": "ruleId",
                 "selector": "selector",
                 "status": false,
               },
             },
-            "target": Array [],
-            "userConfigStore": Object {
+            "target": [],
+            "userConfigStore": {
               "getState": [Function],
             },
           },
-          "refs": Object {},
+          "refs": {},
           "setState": [Function],
           "shouldShowInsecureOriginPageMessage": [Function],
-          "state": Object {
+          "state": {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
@@ -1375,11 +1375,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
-            "_callbacks": Array [],
+            "_callbacks": [],
             "_renderer": ReactShallowRenderer {
-              "_context": Object {},
+              "_context": {},
               "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": Object {
+              "_dispatcher": {
                 "readContext": [Function],
                 "useCallback": [Function],
                 "useContext": [Function],
@@ -1397,23 +1397,23 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
               },
               "_element": <DetailsDialog
                 deps={
-                  Object {
-                    "browserAdapter": Object {
+                  {
+                    "browserAdapter": {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
                     "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
+                    "targetPageActionMessageCreator": {
                       "copyIssueDetailsClicked": [Function],
                     },
                     "windowUtils": null,
                   }
                 }
-                devToolActionMessageCreator={Object {}}
-                devToolStore={Object {}}
+                devToolActionMessageCreator={{}}
+                devToolStore={{}}
                 devToolsShortcut="shortcut"
                 dialogHandler={
-                  Object {
+                  {
                     "componentDidMount": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
@@ -1427,13 +1427,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                 }
                 elementSelector="ruleId"
                 failedRules={
-                  Object {
-                    "ruleId": Object {
-                      "all": Array [],
-                      "any": Array [],
+                  {
+                    "ruleId": {
+                      "all": [],
+                      "any": [],
                       "failureSummary": "failureSummary",
-                      "guidanceLinks": Array [
-                        Object {
+                      "guidanceLinks": [
+                        {
                           "href": "http://example.com",
                           "text": "Guidance Link",
                         },
@@ -1442,16 +1442,16 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                       "helpUrl": "http://extension/help1",
                       "html": "html",
                       "id": "id1",
-                      "none": Array [],
+                      "none": [],
                       "ruleId": "ruleId",
                       "selector": "selector",
                       "status": false,
                     },
                   }
                 }
-                target={Array []}
+                target={[]}
                 userConfigStore={
-                  Object {
+                  {
                     "getState": [Function],
                   }
                 }
@@ -1465,13 +1465,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
               "_renderPhaseUpdates": null,
               "_rendered": <Dialog
                 dialogContentProps={
-                  Object {
+                  {
                     "showCloseButton": false,
-                    "styles": Object {
+                    "styles": {
                       "title": "insights-dialog-title",
                     },
-                    "topButtonsProps": Array [
-                      Object {
+                    "topButtonsProps": [
+                      {
                         "ariaLabel": "Close",
                         "onClick": [Function],
                         "onRenderIcon": [Function],
@@ -1482,10 +1482,10 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                 }
                 hidden={false}
                 modalProps={
-                  Object {
+                  {
                     "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
-                    "layerProps": Object {
+                    "layerProps": {
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
@@ -1526,8 +1526,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     <div>
                       <GuidanceLinks
                         links={
-                          Array [
-                            Object {
+                          [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -1549,13 +1549,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                   <CommandBar
                     currentRuleIndex={0}
                     deps={
-                      Object {
-                        "browserAdapter": Object {
+                      {
+                        "browserAdapter": {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
                         "issueFilingActionMessageCreator": null,
-                        "targetPageActionMessageCreator": Object {
+                        "targetPageActionMessageCreator": {
                           "copyIssueDetailsClicked": [Function],
                         },
                         "windowUtils": null,
@@ -1563,13 +1563,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     }
                     devToolsShortcut="shortcut"
                     failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
+                      {
+                        "ruleId": {
+                          "all": [],
+                          "any": [],
                           "failureSummary": "failureSummary",
-                          "guidanceLinks": Array [
-                            Object {
+                          "guidanceLinks": [
+                            {
                               "href": "http://example.com",
                               "text": "Guidance Link",
                             },
@@ -1578,7 +1578,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                           "helpUrl": "http://extension/help1",
                           "html": "html",
                           "id": "id1",
-                          "none": Array [],
+                          "none": [],
                           "ruleId": "ruleId",
                           "selector": "selector",
                           "status": false,
@@ -1596,15 +1596,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                   >
                     <FixInstructionPanel
                       checkType={0}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -1614,15 +1614,15 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     />
                     <FixInstructionPanel
                       checkType={1}
-                      checks={Array []}
+                      checks={[]}
                       deps={
-                        Object {
-                          "browserAdapter": Object {
+                        {
+                          "browserAdapter": {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
                           "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
+                          "targetPageActionMessageCreator": {
                             "copyIssueDetailsClicked": [Function],
                           },
                           "windowUtils": null,
@@ -1634,7 +1634,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                   <IssueDetailsNavigationControls
                     container={[Circular]}
                     dialogHandler={
-                      Object {
+                      {
                         "componentDidMount": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
@@ -1658,7 +1658,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
         }
       }
       dialogHandler={
-        Object {
+        {
           "componentDidMount": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
@@ -1679,7 +1679,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `<CancelIcon />`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify initial state 1`] = `
-Object {
+{
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,

@@ -13,22 +13,22 @@ import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('UnifiedScanResultActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let notificationCreatorMock: IMock<NotificationCreator>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         notificationCreatorMock = Mock.ofType<NotificationCreator>();
+        interpreterMock = new MockInterpreter();
     });
 
-    it('should handle ScanCompleted message', () => {
+    it('should handle ScanCompleted message', async () => {
         const scanIncompleteWarnings = ['test-warning-id' as ScanIncompleteWarningId];
         const telemetry = {
             scanIncompleteWarnings,
@@ -43,9 +43,8 @@ describe('UnifiedScanResultActionCreator', () => {
             telemetry,
         };
 
-        const scanCompletedMock = createSyncActionMock(payload);
+        const scanCompletedMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock('scanCompleted', scanCompletedMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UnifiedScan.ScanCompleted, payload);
 
         const testSubject = new UnifiedScanResultActionCreator(
             interpreterMock.object,
@@ -55,6 +54,8 @@ describe('UnifiedScanResultActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.UnifiedScan.ScanCompleted, payload);
 
         scanCompletedMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -67,15 +68,11 @@ describe('UnifiedScanResultActionCreator', () => {
         );
     });
 
-    it('should handle GetState message', () => {
+    it('should handle GetState message', async () => {
         const payload = null;
 
-        const getCurrentStateMock = createSyncActionMock<null>(payload);
+        const getCurrentStateMock = createAsyncActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(
-            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
-            payload,
-        );
 
         const testSubject = new UnifiedScanResultActionCreator(
             interpreterMock.object,
@@ -85,6 +82,11 @@ describe('UnifiedScanResultActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
+            payload,
+        );
 
         getCurrentStateMock.verifyAll();
     });

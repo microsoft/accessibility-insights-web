@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { IMock, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
 import { IssuesFormatter } from '../../../../../injected/visualization/issues-formatter';
@@ -20,7 +20,7 @@ describe('IssuesFormatterTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;
-        const frameMessenger: IMock<FrameMessenger> = Mock.ofType(FrameMessenger);
+        const frameMessenger: IMock<SingleFrameMessenger> = Mock.ofType<SingleFrameMessenger>();
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(NavigatorUtils);

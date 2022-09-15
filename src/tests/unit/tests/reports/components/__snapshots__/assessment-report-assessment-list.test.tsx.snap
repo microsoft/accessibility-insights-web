@@ -16,31 +16,31 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
     </h3>
     <AssessmentReportStepList
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       status={2}
       steps={
-        Array [
-          Object {
+        [
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step2A",
-              "guidanceLinks": Array [],
+              "guidanceLinks": [],
               "requirementType": "assisted",
             },
-            "instances": Array [
-              Object {
-                "props": Array [
-                  Object {
+            "instances": [
+              {
+                "props": [
+                  {
                     "key": "Path",
                     "value": "target1",
                   },
-                  Object {
+                  {
                     "key": "Snippet",
                     "value": "someHtml",
                   },
@@ -50,18 +50,18 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
             "key": "step2a",
             "showPassingInstances": false,
           },
-          Object {
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step4A",
-              "guidanceLinks": Array [],
+              "guidanceLinks": [],
               "requirementType": "manual",
             },
-            "instances": Array [
-              Object {
-                "props": Array [
-                  Object {
+            "instances": [
+              {
+                "props": [
+                  {
                     "key": "Comment",
                     "value": "comment",
                   },
@@ -89,24 +89,24 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
     </h3>
     <AssessmentReportStepList
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       status={2}
       steps={
-        Array [
-          Object {
+        [
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step2B",
-              "guidanceLinks": Array [],
+              "guidanceLinks": [],
               "requirementType": "manual",
             },
-            "instances": Array [],
+            "instances": [],
             "key": "step2b",
             "showPassingInstances": true,
           },
@@ -133,31 +133,31 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
     </h3>
     <AssessmentReportStepList
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       status={1}
       steps={
-        Array [
-          Object {
+        [
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step3A",
-              "guidanceLinks": Array [],
+              "guidanceLinks": [],
               "requirementType": "assisted",
             },
-            "instances": Array [
-              Object {
-                "props": Array [
-                  Object {
+            "instances": [
+              {
+                "props": [
+                  {
                     "key": "Path",
                     "value": "target2",
                   },
-                  Object {
+                  {
                     "key": "Snippet",
                     "value": "someHtml",
                   },
@@ -185,24 +185,24 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
     </h3>
     <AssessmentReportStepList
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       status={1}
       steps={
-        Array [
-          Object {
+        [
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step1B",
-              "guidanceLinks": Array [],
+              "guidanceLinks": [],
               "requirementType": "assisted",
             },
-            "instances": Array [],
+            "instances": [],
             "key": "step1b",
             "showPassingInstances": true,
           },
@@ -229,36 +229,36 @@ exports[`AssessmentReportAssessmentListTest render: pass 1`] = `
     </h3>
     <AssessmentReportStepList
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       status={0}
       steps={
-        Array [
-          Object {
+        [
+          {
             "defaultMessageComponent": null,
-            "header": Object {
+            "header": {
               "description": null,
               "displayName": "Step1A",
-              "guidanceLinks": Array [
-                Object {
+              "guidanceLinks": [
+                {
                   "href": "link1A",
                   "text": "link1A",
                 },
               ],
               "requirementType": "assisted",
             },
-            "instances": Array [
-              Object {
-                "props": Array [
-                  Object {
+            "instances": [
+              {
+                "props": [
+                  {
                     "key": "Path",
                     "value": "target1",
                   },
-                  Object {
+                  {
                     "key": "Snippet",
                     "value": "someHtml",
                   },

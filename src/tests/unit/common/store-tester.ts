@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
-import { Action } from 'common/flux/action';
+import { Action, ActionListener } from 'common/flux/action';
+import { HandlerReturnType } from 'common/flux/event-handler-list';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../common/base-store';
@@ -10,7 +11,7 @@ import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 export class StoreTester<TStoreData, TActions> {
     private actionName: string;
     private actionParam: any;
-    private listener: Function;
+    private listener: ActionListener<unknown, void | Promise<void>>;
     private actions: DefaultConstructor<TActions>;
     private storeFactory: (actions) => BaseStoreImpl<TStoreData>;
     private postListenerMock: IMock<any>;
@@ -18,7 +19,7 @@ export class StoreTester<TStoreData, TActions> {
     constructor(
         actions: DefaultConstructor<TActions>,
         actionName: keyof TActions,
-        storeFactory: (actions) => BaseStoreImpl<TStoreData>,
+        storeFactory: (actions) => BaseStoreImpl<TStoreData, HandlerReturnType>,
     ) {
         this.actionName = actionName as string;
         this.storeFactory = storeFactory;
@@ -35,15 +36,25 @@ export class StoreTester<TStoreData, TActions> {
         return this;
     }
 
-    public testListenerToNeverBeCalled(initial: TStoreData, expected: TStoreData): void {
-        this.testListenerToBeCalled(initial, expected, Times.never());
+    public async testListenerToNeverBeCalled(
+        initial: TStoreData,
+        expected: TStoreData,
+    ): Promise<void> {
+        await this.testListenerToBeCalled(initial, expected, Times.never());
     }
 
-    public testListenerToBeCalledOnce(initial: TStoreData, expected: TStoreData): void {
-        this.testListenerToBeCalled(initial, expected, Times.once());
+    public async testListenerToBeCalledOnce(
+        initial: TStoreData,
+        expected: TStoreData,
+    ): Promise<void> {
+        await this.testListenerToBeCalled(initial, expected, Times.once());
     }
 
-    public testListenerToBeCalled(initial: TStoreData, expected: TStoreData, times: Times): void {
+    public async testListenerToBeCalled(
+        initial: TStoreData,
+        expected: TStoreData,
+        times: Times,
+    ): Promise<void> {
         const actionsMock = this.createActionsMock();
 
         const testObject = this.storeFactory(actionsMock.object);
@@ -54,7 +65,7 @@ export class StoreTester<TStoreData, TActions> {
 
         testObject.addChangedListener(listenerMock.object);
 
-        this.listener(this.actionParam);
+        await this.listener(this.actionParam);
 
         expect(testObject.getState()).toEqual(expected);
 

@@ -2,40 +2,34 @@
 // Licensed under the MIT License.
 import { InspectActionCreator } from 'background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
-import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CHANGE_INSPECT_MODE } from 'common/extension-telemetry-events';
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
-import { flushSettledPromises } from 'tests/common/flush-settled-promises';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('InspectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let loggerMock: IMock<Logger>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>();
+        interpreterMock = new MockInterpreter();
     });
 
-    it('handles GetState message', () => {
-        const getCurrentStateMock = createSyncActionMock(undefined);
+    it('handles GetState message', async () => {
+        const getCurrentStateMock = createAsyncActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(
-            getStoreStateMessage(StoreNames.InspectStore),
-            null,
-        );
 
         const testSubject = new InspectActionCreator(
             interpreterMock.object,
@@ -47,6 +41,8 @@ describe('InspectActionCreator', () => {
 
         testSubject.registerCallbacks();
 
+        await interpreterMock.simulateMessage(getStoreStateMessage(StoreNames.InspectStore), null);
+
         getCurrentStateMock.verifyAll();
     });
 
@@ -57,9 +53,8 @@ describe('InspectActionCreator', () => {
 
         const tabId: number = -1;
 
-        let changeInspectModeMock: IMock<SyncAction<InspectPayload>>;
+        let changeInspectModeMock: IMock<AsyncAction<InspectPayload>>;
         let actionsMock: IMock<InspectActions>;
-        let interpreterMock: IMock<Interpreter>;
 
         let testSubject: InspectActionCreator;
 
@@ -68,13 +63,8 @@ describe('InspectActionCreator', () => {
                 .setup(publisher => publisher.publishTelemetry(CHANGE_INSPECT_MODE, payload))
                 .verifiable(Times.once());
 
-            changeInspectModeMock = createSyncActionMock(payload);
+            changeInspectModeMock = createAsyncActionMock(payload);
             actionsMock = createActionsMock('changeInspectMode', changeInspectModeMock.object);
-            interpreterMock = createInterpreterMock(
-                Messages.Inspect.ChangeInspectMode,
-                payload,
-                tabId,
-            );
 
             testSubject = new InspectActionCreator(
                 interpreterMock.object,
@@ -92,7 +82,11 @@ describe('InspectActionCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await flushSettledPromises();
+            await interpreterMock.simulateMessage(
+                Messages.Inspect.ChangeInspectMode,
+                payload,
+                tabId,
+            );
 
             changeInspectModeMock.verifyAll();
         });
@@ -105,7 +99,11 @@ describe('InspectActionCreator', () => {
 
             testSubject.registerCallbacks();
 
-            await flushSettledPromises();
+            await interpreterMock.simulateMessage(
+                Messages.Inspect.ChangeInspectMode,
+                payload,
+                tabId,
+            );
 
             changeInspectModeMock.verifyAll();
             loggerMock.verify(

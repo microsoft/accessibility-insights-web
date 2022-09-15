@@ -12,40 +12,40 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
     className="issuesTableContent"
   >
     <SomeInstancesSection
-      cardSelectionMessageCreator={Object {}}
+      cardSelectionMessageCreator={{}}
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -57,23 +57,23 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
       deps={
-        Object {
+        {
           "detailsViewActionMessageCreator": [typemoq mock object],
           "getDateFromTimestamp": [Function],
           "reportGenerator": [typemoq mock object],
         }
       }
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
         }
@@ -81,7 +81,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
       sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "gitHub",
         }
       }
@@ -124,40 +124,40 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
     className="issuesTableContent"
   >
     <SomeInstancesSection
-      cardSelectionMessageCreator={Object {}}
+      cardSelectionMessageCreator={{}}
       cardsViewData={
-        Object {
+        {
           "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
+          "cards": {
+            "fail": [
+              {
                 "description": "sample-description",
-                "guidance": Array [
-                  Object {
+                "guidance": [
+                  {
                     "href": "sample-guidance-href",
                     "text": "sample-guidance-text",
                   },
                 ],
                 "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
+                "nodes": [
+                  {
+                    "descriptors": {
                       "snippet": "this is a sample snippet",
                     },
-                    "identifiers": Object {
+                    "identifiers": {
                       "conciseName": "body img",
                       "css-selector": "body img",
                       "identifier": "body img",
                     },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
+                    "resolution": {
+                      "how-to-fix-web": {
+                        "all": [],
+                        "any": [
                           "Element does not have an alt attribute",
                           "aria-label attribute does not exist or is empty",
                           "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                         ],
-                        "none": Array [],
+                        "none": [],
                       },
                       "howToFixSummary": "sample how to fix summary",
                     },
@@ -169,23 +169,23 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
                 "url": "sample-url",
               },
             ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
+            "inapplicable": [],
+            "pass": [],
+            "unknown": [],
           },
           "visualHelperEnabled": true,
         }
       }
       deps={
-        Object {
+        {
           "detailsViewActionMessageCreator": [typemoq mock object],
           "getDateFromTimestamp": [Function],
           "reportGenerator": [typemoq mock object],
         }
       }
       scanMetadata={
-        Object {
-          "targetAppInfo": Object {
+        {
+          "targetAppInfo": {
             "name": "app",
           },
         }
@@ -193,7 +193,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
       sectionHeadingLevel={2}
       shouldAlertFailuresCount={true}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "gitHub",
         }
       }

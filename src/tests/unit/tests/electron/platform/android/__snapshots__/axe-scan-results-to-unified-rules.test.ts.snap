@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AxeScanResultsToUnifiedRules Null ScanResults input returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules Null ScanResults input returns empty output 1`] = `[]`;
 
 exports[`AxeScanResultsToUnifiedRules ScanResults with 1 supported rule 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "This describes Rule #1",
-    "guidance": Array [],
+    "guidance": [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": "rule-link",
@@ -15,10 +15,10 @@ Array [
 `;
 
 exports[`AxeScanResultsToUnifiedRules ScanResults with 1 supported rule that repeats 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "This describes Rule #1",
-    "guidance": Array [],
+    "guidance": [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": "rule-link",
@@ -27,13 +27,13 @@ Array [
 `;
 
 exports[`AxeScanResultsToUnifiedRules ScanResults with a mix of supported rules, unsupported rules, and excluded results 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "This describes Rule #3",
-    "guidance": Array [
-      Object {
+    "guidance": [
+      {
         "href": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
-        "tags": Array [],
+        "tags": [],
         "text": "WCAG 1.1.1",
       },
     ],
@@ -41,26 +41,26 @@ Array [
     "uid": "gguid-mock-stub",
     "url": "rule-link-3",
   },
-  Object {
+  {
     "description": "This describes Rule #1",
-    "guidance": Array [],
+    "guidance": [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": "rule-link",
   },
-  Object {
+  {
     "description": "This describes Rule #2",
-    "guidance": Array [],
+    "guidance": [],
     "id": "Rule #2",
     "uid": "gguid-mock-stub",
     "url": "rule-link",
   },
-  Object {
+  {
     "description": "This describes Rule #4",
-    "guidance": Array [
-      Object {
+    "guidance": [
+      {
         "href": "https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded",
-        "tags": Array [],
+        "tags": [],
         "text": "WCAG 1.2.1",
       },
     ],
@@ -71,6 +71,6 @@ Array [
 ]
 `;
 
-exports[`AxeScanResultsToUnifiedRules ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules ScanResults with no RuleResults returns empty output 1`] = `[]`;
 
-exports[`AxeScanResultsToUnifiedRules ScanResults with only unsupported rules 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules ScanResults with only unsupported rules 1`] = `[]`;

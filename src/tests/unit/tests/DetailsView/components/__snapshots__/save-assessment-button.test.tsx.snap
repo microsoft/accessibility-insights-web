@@ -1,16 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentButton should render per the snapshot 1`] = `
-<InsightsCommandButton
-  download="download"
-  href="url"
-  iconProps={
-    Object {
-      "iconName": "Save",
+exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    download="download"
+    href="url"
+    iconProps={
+      {
+        "iconName": "Save",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Save assessment
-</InsightsCommandButton>
+    onClick={[Function]}
+  >
+    Save assessment
+  </InsightsCommandButton>
+  <Dialog
+    dialogContentProps={
+      {
+        "title": "Assessment saved",
+        "type": 0,
+      }
+    }
+    hidden={false}
+    modalProps={
+      {
+        "containerClassName": "insightsDialogMainOverride",
+        "isBlocking": false,
+      }
+    }
+    onDismiss={[Function]}
+  >
+    <div
+      className="dialogBody"
+    >
+      To load this assessment, use the 
+      <strong>
+        Load assessment
+      </strong>
+       button in the Accessibility Insights Assessment command bar.
+    </div>
+    <StyledDialogFooterBase>
+      <Stack
+        horizontal={true}
+        horizontalAlign="space-between"
+        tokens={
+          {
+            "childrenGap": 6,
+          }
+        }
+        verticalAlign="center"
+        wrap={true}
+      >
+        <StackItem
+          disableShrink={true}
+          grow={true}
+        >
+          <StyledCheckboxBase
+            label="Don't show again"
+            onChange={[Function]}
+            value={false}
+          />
+        </StackItem>
+        <StackItem
+          grow={true}
+        >
+          <CustomizedPrimaryButton
+            onClick={[Function]}
+            text="Got it"
+          />
+        </StackItem>
+      </Stack>
+    </StyledDialogFooterBase>
+  </Dialog>
+</React.Fragment>
 `;

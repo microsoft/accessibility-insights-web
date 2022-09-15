@@ -26,14 +26,7 @@ import { AssessmentStore } from 'background/stores/assessment-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Tab } from 'common/itab';
 import { StoreNames } from 'common/stores/store-names';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import {
-    ManualTestStatus,
-    ManualTestStatusData,
-    TestStepData,
-} from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -43,14 +36,20 @@ import {
     PersistedTabInfo,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import {
+    ManualTestStatus,
+    ManualTestStatusData,
+    TestStepData,
+} from 'common/types/store-data/manual-test-status';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
-import { cloneDeep, isFunction } from 'lodash';
+import { cloneDeep } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -234,17 +233,15 @@ describe('AssessmentStore', () => {
         expect(actualState).toEqual(expectedState);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = getDefaultState();
         const finalState = getDefaultState();
 
-        createStoreTesterForAssessmentActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForAssessmentActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on resetData: only reset data for one test', () => {
+    test('on resetData: only reset data for one test', async () => {
         const expectedInstanceMap = {};
         const expectedManualTestStepResultMap = {};
 
@@ -291,12 +288,12 @@ describe('AssessmentStore', () => {
             test: assessmentType,
         };
 
-        createStoreTesterForAssessmentActions('resetData')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('resetData').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('on resetData: only reset data for one test with persisted data', () => {
+    test('on resetData: only reset data for one test with persisted data', async () => {
         const expectedInstanceMap = {};
         const expectedManualTestStepResultMap = {};
 
@@ -347,12 +344,14 @@ describe('AssessmentStore', () => {
             test: assessmentType,
         };
 
-        createStoreTesterForAssessmentActions('resetData', initialState)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'resetData',
+            initialState,
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('test that tests indexedDB and also reset', () => {
+    test('test that tests indexedDB and also reset', async () => {
         const expectedInstanceMap = {};
         const expectedManualTestStepResultMap = {};
 
@@ -398,13 +397,13 @@ describe('AssessmentStore', () => {
             test: assessmentType,
         };
 
-        createStoreTesterForAssessmentActions('resetData')
+        const storeTester = createStoreTesterForAssessmentActions('resetData')
             .withActionParam(payload)
-            .withPostListenerMock(indexDBInstanceMock)
-            .testListenerToBeCalledOnce(initialState, finalState);
+            .withPostListenerMock(indexDBInstanceMock);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('test for null indexedDB instance and also reset', () => {
+    test('test for null indexedDB instance and also reset', async () => {
         const expectedInstanceMap = {};
         const expectedManualTestStepResultMap = {};
 
@@ -450,29 +449,25 @@ describe('AssessmentStore', () => {
             test: assessmentType,
         };
 
-        createStoreTesterForAssessmentActions('resetData')
+        const storeTester = createStoreTesterForAssessmentActions('resetData')
             .withActionParam(payload)
-            .withPostListenerMock(indexDBInstanceMock)
-            .testListenerToBeCalledOnce(initialState, finalState);
+            .withPostListenerMock(indexDBInstanceMock);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onResetAllAssessmentsData', () => {
+    test('onResetAllAssessmentsData', async () => {
         const oldTabId = 1;
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let rejectCb;
+        } as chrome.tabs.Tab;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, resolve, reject) => {
-                rejectCb = reject;
-                resolve(tab);
-            })
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => tab)
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
         const initialState = new AssessmentsStoreDataBuilder(
@@ -492,14 +487,12 @@ describe('AssessmentStore', () => {
 
         setupDataGeneratorMock(null, getDefaultState(), Times.exactly(2));
 
-        createStoreTesterForAssessmentActions('resetAllAssessmentsData')
-            .withActionParam(tabId)
-            .testListenerToBeCalledOnce(initialState, finalState);
-
-        expect(() => rejectCb()).toThrowErrorMatchingSnapshot();
+        const storeTester =
+            createStoreTesterForAssessmentActions('resetAllAssessmentsData').withActionParam(tabId);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onResetAllAssessmentsData with persisted data', () => {
+    test('onResetAllAssessmentsData with persisted data', async () => {
         const persisted: AssessmentStoreData = {
             persistedTabInfo: null,
             assessments: {
@@ -532,18 +525,14 @@ describe('AssessmentStore', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let rejectCb;
+        } as chrome.tabs.Tab;
         browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, resolve, reject) => {
-                rejectCb = reject;
-                resolve(tab);
-            })
+            .setup(b => b.getTabAsync(tabId))
+            .returns(async () => tab)
             .verifiable();
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -567,27 +556,25 @@ describe('AssessmentStore', () => {
         // Called without persisted data from resetAllAssessmentsData
         setupDataGeneratorMock(null, getDefaultState(), Times.once());
 
-        createStoreTesterForAssessmentActions('resetAllAssessmentsData', persisted)
-            .withActionParam(tabId)
-            .testListenerToBeCalledOnce(initialState, finalState);
-
-        expect(() => rejectCb()).toThrowErrorMatchingSnapshot();
+        const storeTester = createStoreTesterForAssessmentActions(
+            'resetAllAssessmentsData',
+            persisted,
+        ).withActionParam(tabId);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onContinuePreviousAssessment', () => {
+    test('onContinuePreviousAssessment', async () => {
         const oldTabId = 1;
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
+        } as chrome.tabs.Tab;
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-        browserMock
-            .setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction)))
-            .callback((id, resolve) => resolve(tab));
+        browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
 
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -603,60 +590,94 @@ describe('AssessmentStore', () => {
             .withTargetTab(tabId, url, title, 'testId')
             .build();
 
-        createStoreTesterForAssessmentActions('continuePreviousAssessment')
-            .withActionParam(tabId)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'continuePreviousAssessment',
+        ).withActionParam(tabId);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onLoadAssessment', () => {
+    describe('onLoadAssessment', () => {
         const oldTabId = 1;
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
         const detailsViewId = 'testId';
 
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
+        } as chrome.tabs.Tab;
 
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(oldTabId, null, null, 'oldId')
-            .build();
+        beforeEach(() => {
+            assessmentsProviderMock
+                .setup(apm => apm.all())
+                .returns(() => assessmentsProvider.all());
+            browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
+        });
 
-        const payload: LoadAssessmentPayload = {
-            tabId,
-            versionedAssessmentData: {
-                version: -1,
-                assessmentData: initialState,
-            },
-            detailsViewId,
-        };
+        test('with tab info', async () => {
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(oldTabId, null, null, 'oldId')
+                .build();
 
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(tabId, url, title, detailsViewId)
-            .build();
+            const payload: LoadAssessmentPayload = {
+                tabId,
+                versionedAssessmentData: {
+                    version: -1,
+                    assessmentData: initialState,
+                },
+                detailsViewId,
+            };
 
-        setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title, detailsViewId)
+                .build();
 
-        assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-        browserMock
-            .setup(adapter => adapter.getTab(tabId, It.is(isFunction), It.is(isFunction)))
-            .callback((id, resolve) => resolve(tab));
+            setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
 
-        createStoreTesterForAssessmentActions('LoadAssessment')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+            const storeTester =
+                createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
+
+        test('without tab info', async () => {
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            ).build();
+
+            const payload: LoadAssessmentPayload = {
+                tabId,
+                versionedAssessmentData: {
+                    version: -1,
+                    assessmentData: initialState,
+                },
+                detailsViewId,
+            };
+
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title, detailsViewId)
+                .build();
+
+            setupDataGeneratorMock(payload.versionedAssessmentData.assessmentData, initialState);
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('loadAssessment').withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
     });
 
-    test('onScanCompleted with an assisted requirement', () => {
+    test('onScanCompleted with an assisted requirement', async () => {
         const initialAssessmentData = new AssessmentDataBuilder()
             .with('testStepStatus', {
                 ['assessment-1-step-1']: getDefaultTestStepData(),
@@ -730,12 +751,12 @@ describe('AssessmentStore', () => {
             )
             .returns(() => expectedInstanceMap);
 
-        createStoreTesterForAssessmentActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanCompleted with a manual requirement uses getInitialManualTestStatus to set status', () => {
+    test('onScanCompleted with a manual requirement uses getInitialManualTestStatus to set status', async () => {
         const initialManualTestStepResult = {
             status: ManualTestStatus.UNKNOWN,
             id: requirementKey,
@@ -854,14 +875,14 @@ describe('AssessmentStore', () => {
             )
             .returns(() => fullInstanceMap);
 
-        createStoreTesterForAssessmentActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
 
         mockGetInitialManualTestStatus.verifyAll();
     });
 
-    test('onScanCompleted with a manual requirement skips getInitialManualTestStatus for requirements that already have a status', () => {
+    test('onScanCompleted with a manual requirement skips getInitialManualTestStatus for requirements that already have a status', async () => {
         const initialManualTestStepResult = {
             status: ManualTestStatus.PASS,
             id: requirementKey,
@@ -956,12 +977,12 @@ describe('AssessmentStore', () => {
             )
             .returns(() => expectedInstanceMap);
 
-        createStoreTesterForAssessmentActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('scanCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onScanUpdate', () => {
+    test('onScanUpdate', async () => {
         const initialAssessmentData = new AssessmentDataBuilder()
             .with('testStepStatus', {
                 ['assessment-1-step-1']: getDefaultTestStepData(),
@@ -1023,12 +1044,12 @@ describe('AssessmentStore', () => {
             )
             .returns(() => expectedInstanceMap);
 
-        createStoreTesterForAssessmentActions('scanUpdate')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('scanUpdate').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onTrackingCompleted', () => {
+    test('onTrackingCompleted', async () => {
         const instanceKey = 'instance-1';
         const initialInstanceMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             [instanceKey]: {
@@ -1065,12 +1086,12 @@ describe('AssessmentStore', () => {
                 delete initialInstanceMap[instanceKey];
             });
 
-        createStoreTesterForAssessmentActions('trackingCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('trackingCompleted').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on selectTestStep', () => {
+    test('on selectTestStep', async () => {
         const visualizationType = 1 as VisualizationType;
         const requirement = 'test-step';
         const initialState = new AssessmentsStoreDataBuilder(
@@ -1092,12 +1113,12 @@ describe('AssessmentStore', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('selectTestSubview')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('selectTestSubview').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on expandTestNav', () => {
+    test('on expandTestNav', async () => {
         const visualizationType = 1 as VisualizationType;
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -1116,12 +1137,12 @@ describe('AssessmentStore', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('expandTestNav')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('expandTestNav').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on collapseTestNav', () => {
+    test('on collapseTestNav', async () => {
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
             assessmentDataConverterMock.object,
@@ -1135,68 +1156,63 @@ describe('AssessmentStore', () => {
 
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
-        createStoreTesterForAssessmentActions('collapseTestNav').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForAssessmentActions('collapseTestNav');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onUpdateTargetTabId', () => {
+    describe('onUpdateTargetTabId', () => {
         const tabId = 1000;
         const url = 'url';
         const title = 'title';
-        const tab: Tab = {
+        const tab = {
             id: tabId,
             url,
             title,
-        };
-        let onReject;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
-                onReject = reject;
-                cb(tab);
-            })
-            .verifiable();
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        )
-            .withTargetTab(tabId, url, title)
-            .build();
+        } as chrome.tabs.Tab;
 
-        createStoreTesterForAssessmentActions('updateTargetTabId')
-            .withActionParam(tabId)
-            .testListenerToBeCalledOnce(initialState, finalState);
-        expect(() => onReject()).toThrowErrorMatchingSnapshot();
+        it.each([undefined, { tabId: 2000 }])('with persisted tab=%s', async persistedTab => {
+            const storeDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            if (persistedTab !== undefined) {
+                storeDataBuilder.withTargetTab(persistedTab.tabId, undefined, undefined, undefined);
+            }
+            const initialState = storeDataBuilder.build();
+
+            const finalState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, url, title)
+                .build();
+
+            browserMock
+                .setup(b => b.getTabAsync(tabId))
+                .returns(async () => tab)
+                .verifiable();
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        });
+
+        test('with no tab id change', async () => {
+            browserMock.setup(b => b.getTabAsync(It.isAny())).verifiable(Times.never());
+            const initialState = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            )
+                .withTargetTab(tabId, undefined, undefined, undefined)
+                .build();
+
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateTargetTabId').withActionParam(tabId);
+            await storeTester.testListenerToNeverBeCalled(initialState, initialState);
+        });
     });
 
-    test('onUpdateTargetTabId: tab is null', () => {
-        const tabId = 1000;
-        const tab: Tab = null;
-        browserMock
-            .setup(b => b.getTab(tabId, It.isAny()))
-            .returns((id, cb) => cb(tab))
-            .verifiable();
-        const initialState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
-        const finalState = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        ).build();
-
-        createStoreTesterForAssessmentActions('updateTargetTabId')
-            .withActionParam(tabId)
-            .testListenerToNeverBeCalled(initialState, finalState);
-    });
-
-    test('on changeInstanceStatus, test step status updated', () => {
+    test('on changeInstanceStatus, test step status updated', async () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
@@ -1250,12 +1266,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeInstanceStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('changeInstanceStatus').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeStepStatus: user marked as pass', () => {
+    test('on changeStepStatus: user marked as pass', async () => {
         const assessmentData = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
                 [requirementKey]: {
@@ -1303,12 +1319,14 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeRequirementStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('changeRequirementStatus').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeStepStatus: user marked as fail', () => {
+    test('on changeStepStatus: user marked as fail', async () => {
         const assessmentData = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
                 [requirementKey]: {
@@ -1350,9 +1368,11 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeRequirementStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('changeRequirementStatus').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test.each`
@@ -1365,7 +1385,7 @@ describe('AssessmentStore', () => {
     `(
         'on changeAssessmentVisualizationState: supportsVisualization:$supportsVisualization, ' +
             'startsEnabled:$startsEnabled, payloadEnabled:$payloadEnabled -> finalEnabled:$expectedFinalEnabled',
-        ({ supportsVisualization, startsEnabled, payloadEnabled, expectedFinalEnabled }) => {
+        async ({ supportsVisualization, startsEnabled, payloadEnabled, expectedFinalEnabled }) => {
             const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> =
                 {
                     selector: {
@@ -1409,13 +1429,14 @@ describe('AssessmentStore', () => {
 
             const finalState = getStateWithAssessment(expectedAssessment);
 
-            createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, finalState);
+            const storeTester = createStoreTesterForAssessmentActions(
+                'changeAssessmentVisualizationState',
+            ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
         },
     );
 
-    test('changeAssessmentVisualizationStateForAll enables all visualizations that support it', () => {
+    test('changeAssessmentVisualizationStateForAll enables all visualizations that support it', async () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
@@ -1480,12 +1501,13 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeAssessmentVisualizationStateForAll')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'changeAssessmentVisualizationStateForAll',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on undoInstanceStatusChange', () => {
+    test('on undoInstanceStatusChange', async () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector: {
                 testStepResults: {
@@ -1536,12 +1558,13 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('undoInstanceStatusChange')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'undoInstanceStatusChange',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on undoStepStatusChange', () => {
+    test('on undoStepStatusChange', async () => {
         const assessmentData = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
                 [requirementKey]: {
@@ -1584,12 +1607,13 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('undoRequirementStatusChange')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'undoRequirementStatusChange',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on changeInstanceStatus: update test step status, do not go through all instances', () => {
+    test('on changeInstanceStatus: update test step status, do not go through all instances', async () => {
         const selector = 'test-selector';
         const generatedAssessmentInstancesMap = {
             [selector]: {
@@ -1640,12 +1664,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('changeInstanceStatus')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('changeInstanceStatus').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on addFailureInstance', () => {
+    test('on addFailureInstance', async () => {
         const assessmentData = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
                 [requirementKey]: {
@@ -1707,12 +1731,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('addFailureInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('addFailureInstance').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on removeFailureInstance', () => {
+    test('on removeFailureInstance', async () => {
         const failureInstance = {
             id: '1',
             description: 'description',
@@ -1756,12 +1780,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('removeFailureInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('removeFailureInstance').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on editFailureInstance', () => {
+    test('on editFailureInstance', async () => {
         const oldDescription = 'old';
         const newDescription = 'new';
         const oldPath = 'old path';
@@ -1823,12 +1847,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('editFailureInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('editFailureInstance').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on passUnmarkedInstance', () => {
+    test('on passUnmarkedInstance', async () => {
         const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
             selector1: {
                 testStepResults: {
@@ -1945,12 +1969,12 @@ describe('AssessmentStore', () => {
 
         const finalState = getStateWithAssessment(expectedAssessment);
 
-        createStoreTesterForAssessmentActions('passUnmarkedInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('passUnmarkedInstance').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on updateSelectedPivotChild, full payload', () => {
+    test('on updateSelectedPivotChild, full payload', async () => {
         const testType = assessmentType;
         const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: testType,
@@ -1977,12 +2001,13 @@ describe('AssessmentStore', () => {
             .withSelectedTestType(testType)
             .build();
 
-        createStoreTesterForAssessmentActions('updateSelectedPivotChild')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'updateSelectedPivotChild',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on updateSelectedPivotChild: details view type is null', () => {
+    test('on updateSelectedPivotChild: details view type is null', async () => {
         const selectedTest = VisualizationType.Color;
         const testType = null;
         const payload: UpdateSelectedDetailsViewPayload = {
@@ -2008,13 +2033,14 @@ describe('AssessmentStore', () => {
             .withSelectedTestType(selectedTest)
             .build();
 
-        createStoreTesterForAssessmentActions('updateSelectedPivotChild')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'updateSelectedPivotChild',
+        ).withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
         assessmentsProviderMock.verifyAll();
     });
 
-    test('on updateSelectedPivotChild: when selected pivot is not assessment', () => {
+    test('on updateSelectedPivotChild: when selected pivot is not assessment', async () => {
         const payload: UpdateSelectedDetailsViewPayload = {
             detailsViewType: assessmentType,
             pivotType: DetailsViewPivotType.fastPass,
@@ -2038,9 +2064,10 @@ describe('AssessmentStore', () => {
             .withSelectedTestType(VisualizationType.Color)
             .build();
 
-        createStoreTesterForAssessmentActions('updateSelectedPivotChild')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, finalState);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'updateSelectedPivotChild',
+        ).withActionParam(payload);
+        await storeTester.testListenerToNeverBeCalled(initialState, finalState);
         assessmentsProviderMock.verifyAll();
     });
 
@@ -2049,7 +2076,7 @@ describe('AssessmentStore', () => {
         expect(ManualTestStatus.UNKNOWN < ManualTestStatus.FAIL).toBeTruthy();
     });
 
-    test('onAddResultDescription', () => {
+    test('onAddResultDescription', async () => {
         const payload: AddResultDescriptionPayload = {
             description: 'new-test-description',
         };
@@ -2066,45 +2093,51 @@ describe('AssessmentStore', () => {
             .with('resultDescription', payload.description)
             .build();
 
-        createStoreTesterForAssessmentActions('addResultDescription')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreTesterForAssessmentActions('addResultDescription').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    it.each([true, false])('onUpdateDetailsViewId', includeStartData => {
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId: 'testId',
-        } as OnDetailsViewInitializedPayload;
-        const tabId = 1000;
-        const url = 'url';
-        const title = 'title';
+    it.each([true, false])(
+        'onUpdateDetailsViewId with includeStartData=%s',
+        async includeStartData => {
+            const payload: OnDetailsViewInitializedPayload = {
+                detailsViewId: 'testId',
+            } as OnDetailsViewInitializedPayload;
+            const tabId = 1000;
+            const url = 'url';
+            const title = 'title';
 
-        const initialDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
-        } else {
-            initialDataBuilder.withTargetTab(undefined, undefined, undefined, 'initialId');
-        }
-        const initialState = initialDataBuilder.build();
+            const initialDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            if (includeStartData) {
+                initialDataBuilder.withTargetTab(tabId, url, title, 'initialId');
+            }
+            const initialState = initialDataBuilder.build();
 
-        const finalDataBuilder = new AssessmentsStoreDataBuilder(
-            assessmentsProvider,
-            assessmentDataConverterMock.object,
-        );
-        if (includeStartData) {
-            finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
-        } else {
-            finalDataBuilder.withTargetTab(undefined, undefined, undefined, payload.detailsViewId);
-        }
-        const finalState = finalDataBuilder.build();
+            const finalDataBuilder = new AssessmentsStoreDataBuilder(
+                assessmentsProvider,
+                assessmentDataConverterMock.object,
+            );
+            let finalState: AssessmentStoreData;
+            if (includeStartData) {
+                finalDataBuilder.withTargetTab(tabId, url, title, payload.detailsViewId);
+                finalState = finalDataBuilder.build();
+            } else {
+                finalState = finalDataBuilder.build();
+                // Set this manually so we don't have extra undefined fields
+                finalState.persistedTabInfo = { detailsViewId: payload.detailsViewId };
+            }
 
-        createStoreTesterForAssessmentActions('updateDetailsViewId')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
+            const storeTester =
+                createStoreTesterForAssessmentActions('updateDetailsViewId').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+        },
+    );
 
     function setupDataGeneratorMock(
         persistedData: AssessmentStoreData,

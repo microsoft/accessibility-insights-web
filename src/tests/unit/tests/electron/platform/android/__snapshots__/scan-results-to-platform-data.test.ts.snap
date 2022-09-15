@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`convertScanResultsToPlatformData with device name produces the pinned output for the pinned example input (v2) 1`] = `
-Object {
+{
   "deviceName": "Android SDK built for x86",
-  "osInfo": Object {
+  "osInfo": {
     "name": "Android",
     "version": "Android 10 API Level 29",
   },
-  "viewPortInfo": Object {
+  "viewPortInfo": {
     "dpi": 2.75,
     "height": 2160,
     "width": 1080,

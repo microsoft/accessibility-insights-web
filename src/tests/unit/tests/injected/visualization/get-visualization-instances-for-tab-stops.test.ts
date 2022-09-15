@@ -37,7 +37,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
         ] as TabbedElementData[];
         expectedResults = {
             [tabbedElements[0].instanceId]: buildVisualizationInstance(
-                tabbedElements[0].target,
+                tabbedElements[0].target as string[],
                 false,
                 {
                     tabOrder: tabbedElements[0].tabOrder,
@@ -47,7 +47,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
                 undefined,
             ),
             [tabbedElements[1].instanceId]: buildVisualizationInstance(
-                tabbedElements[1].target,
+                tabbedElements[1].target as string[],
                 false,
                 {
                     tabOrder: tabbedElements[1].tabOrder,

@@ -11,7 +11,7 @@ import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { LaunchPanelStateActions } from './../../actions/launch-panel-state-action';
 
-export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
+export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData, Promise<void>> {
     constructor(
         private readonly launchPanelStateActions: LaunchPanelStateActions,
         private readonly storageAdapter: StorageAdapter,
@@ -38,11 +38,11 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
         this.launchPanelStateActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    private onSetLaunchPanelType = (panelType: LaunchPanelType): void => {
+    private onSetLaunchPanelType = async (panelType: LaunchPanelType): Promise<void> => {
         this.state.launchPanelType = panelType;
         this.storageAdapter
             .setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType })
             .catch(console.error);
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

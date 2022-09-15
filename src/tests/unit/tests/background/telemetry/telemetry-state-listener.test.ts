@@ -89,7 +89,7 @@ describe('TelemetryStateListenerTest', () => {
         });
     });
 
-    function setupChangeListener(store: IMock<BaseStoreImpl<any>>): void {
+    function setupChangeListener(store: IMock<BaseStoreImpl<any, Promise<void>>>): void {
         store
             .setup(f => f.addChangedListener(It.isAny()))
             .callback(cb => {

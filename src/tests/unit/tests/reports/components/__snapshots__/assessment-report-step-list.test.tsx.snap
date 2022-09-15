@@ -8,17 +8,17 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       header={
-        Object {
+        {
           "description": null,
           "displayName": "Step2A",
-          "guidanceLinks": Array [],
+          "guidanceLinks": [],
           "requirementType": "assisted",
         }
       }
@@ -27,14 +27,14 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
     />
     <ReportInstanceList
       instances={
-        Array [
-          Object {
-            "props": Array [
-              Object {
+        [
+          {
+            "props": [
+              {
                 "key": "Path",
                 "value": "target1",
               },
-              Object {
+              {
                 "key": "Snippet",
                 "value": "someHtml",
               },
@@ -50,17 +50,17 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       header={
-        Object {
+        {
           "description": null,
           "displayName": "Step4A",
-          "guidanceLinks": Array [],
+          "guidanceLinks": [],
           "requirementType": "manual",
         }
       }
@@ -69,10 +69,10 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
     />
     <ReportInstanceList
       instances={
-        Array [
-          Object {
-            "props": Array [
-              Object {
+        [
+          {
+            "props": [
+              {
                 "key": "Comment",
                 "value": "comment",
               },
@@ -93,17 +93,17 @@ exports[`AssessmentReportStepListTest renders incomplete 1`] = `
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       header={
-        Object {
+        {
           "description": null,
           "displayName": "Step3A",
-          "guidanceLinks": Array [],
+          "guidanceLinks": [],
           "requirementType": "assisted",
         }
       }
@@ -122,18 +122,18 @@ exports[`AssessmentReportStepListTest renders pass 1`] = `
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       header={
-        Object {
+        {
           "description": null,
           "displayName": "Step1A",
-          "guidanceLinks": Array [
-            Object {
+          "guidanceLinks": [
+            {
               "href": "link1A",
               "text": "link1A",
             },
@@ -156,18 +156,18 @@ exports[`AssessmentReportStepListTest renders pass without instances when showIn
     <AssessmentReportStepHeader
       defaultMessageComponent={null}
       deps={
-        Object {
-          "outcomeTypeSemanticsFromTestStatus": Object {
+        {
+          "outcomeTypeSemanticsFromTestStatus": {
             "stub": "outcomeTypeSemanticsFromTestStatus",
           },
         }
       }
       header={
-        Object {
+        {
           "description": null,
           "displayName": "Step1A",
-          "guidanceLinks": Array [
-            Object {
+          "guidanceLinks": [
+            {
               "href": "link1A",
               "text": "link1A",
             },

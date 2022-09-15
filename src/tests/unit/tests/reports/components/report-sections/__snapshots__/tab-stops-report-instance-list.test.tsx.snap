@@ -5,7 +5,7 @@ exports[`TabStopsReportInstanceList renders 1`] = `
   className="instanceList"
 >
   <ReportInstanceList
-    instances={Array []}
+    instances={[]}
   />
 </div>
 `;

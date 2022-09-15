@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { assign } from 'lodash';
 import { DialogRenderer } from '../dialog-renderer';
-import { HtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
 import { Formatter, SVGDrawerConfiguration } from './formatter';
 

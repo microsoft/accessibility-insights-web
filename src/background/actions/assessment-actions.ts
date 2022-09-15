@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SyncAction } from 'common/flux/sync-action';
+import { AsyncAction } from 'common/flux/async-action';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
@@ -24,31 +24,31 @@ import {
 } from './action-payloads';
 
 export class AssessmentActions {
-    public readonly selectTestSubview = new SyncAction<SelectTestSubviewPayload>();
-    public readonly expandTestNav = new SyncAction<ExpandTestNavPayload>();
-    public readonly collapseTestNav = new SyncAction<null>();
-    public readonly changeInstanceStatus = new SyncAction<ChangeInstanceStatusPayload>();
-    public readonly changeRequirementStatus = new SyncAction<ChangeRequirementStatusPayload>();
-    public readonly addFailureInstance = new SyncAction<AddFailureInstancePayload>();
-    public readonly addResultDescription = new SyncAction<AddResultDescriptionPayload>();
-    public readonly removeFailureInstance = new SyncAction<RemoveFailureInstancePayload>();
-    public readonly editFailureInstance = new SyncAction<EditFailureInstancePayload>();
-    public readonly passUnmarkedInstance = new SyncAction<ToggleActionPayload>();
+    public readonly selectTestSubview = new AsyncAction<SelectTestSubviewPayload>();
+    public readonly expandTestNav = new AsyncAction<ExpandTestNavPayload>();
+    public readonly collapseTestNav = new AsyncAction<null>();
+    public readonly changeInstanceStatus = new AsyncAction<ChangeInstanceStatusPayload>();
+    public readonly changeRequirementStatus = new AsyncAction<ChangeRequirementStatusPayload>();
+    public readonly addFailureInstance = new AsyncAction<AddFailureInstancePayload>();
+    public readonly addResultDescription = new AsyncAction<AddResultDescriptionPayload>();
+    public readonly removeFailureInstance = new AsyncAction<RemoveFailureInstancePayload>();
+    public readonly editFailureInstance = new AsyncAction<EditFailureInstancePayload>();
+    public readonly passUnmarkedInstance = new AsyncAction<ToggleActionPayload>();
     public readonly changeAssessmentVisualizationState =
-        new SyncAction<ChangeInstanceSelectionPayload>();
+        new AsyncAction<ChangeInstanceSelectionPayload>();
     public readonly changeAssessmentVisualizationStateForAll =
-        new SyncAction<ChangeInstanceSelectionPayload>();
-    public readonly undoInstanceStatusChange = new SyncAction<AssessmentActionInstancePayload>();
-    public readonly undoRequirementStatusChange = new SyncAction<ChangeRequirementStatusPayload>();
-    public readonly getCurrentState = new SyncAction<void>();
-    public readonly scanCompleted = new SyncAction<ScanCompletedPayload<null>>();
-    public readonly resetData = new SyncAction<ToggleActionPayload>();
-    public readonly resetAllAssessmentsData = new SyncAction<number>();
-    public readonly scanUpdate = new SyncAction<ScanUpdatePayload>();
-    public readonly trackingCompleted = new SyncAction<ScanBasePayload>();
-    public readonly updateSelectedPivotChild = new SyncAction<UpdateSelectedDetailsViewPayload>();
-    public readonly updateTargetTabId = new SyncAction<number>();
-    public readonly continuePreviousAssessment = new SyncAction<number>();
-    public readonly LoadAssessment = new SyncAction<LoadAssessmentPayload>();
-    public readonly updateDetailsViewId = new SyncAction<OnDetailsViewInitializedPayload>();
+        new AsyncAction<ChangeInstanceSelectionPayload>();
+    public readonly undoInstanceStatusChange = new AsyncAction<AssessmentActionInstancePayload>();
+    public readonly undoRequirementStatusChange = new AsyncAction<ChangeRequirementStatusPayload>();
+    public readonly getCurrentState = new AsyncAction<void>();
+    public readonly scanCompleted = new AsyncAction<ScanCompletedPayload<null>>();
+    public readonly resetData = new AsyncAction<ToggleActionPayload>();
+    public readonly resetAllAssessmentsData = new AsyncAction<number>();
+    public readonly scanUpdate = new AsyncAction<ScanUpdatePayload>();
+    public readonly trackingCompleted = new AsyncAction<ScanBasePayload>();
+    public readonly updateSelectedPivotChild = new AsyncAction<UpdateSelectedDetailsViewPayload>();
+    public readonly updateTargetTabId = new AsyncAction<number>();
+    public readonly continuePreviousAssessment = new AsyncAction<number>();
+    public readonly loadAssessment = new AsyncAction<LoadAssessmentPayload>();
+    public readonly updateDetailsViewId = new AsyncAction<OnDetailsViewInitializedPayload>();
 }

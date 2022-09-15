@@ -3,14 +3,14 @@
 exports[`UIFactory exports ContentView 1`] = `
 <Content
   deps={
-    Object {
+    {
       "getNarrowModeThresholds": [Function],
-      "storeActionMessageCreator": Object {
+      "storeActionMessageCreator": {
         "getAllStates": [Function],
       },
       "storesActionCreator": null,
       "storesHub": null,
-      "textContent": Object {
+      "textContent": {
         "applicationTitle": "THE_APPLICATION_TITLE",
       },
     }

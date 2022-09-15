@@ -5,64 +5,64 @@ exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
   ariaLabel="help menu"
   className="hamburgerMenuButton"
   iconProps={
-    Object {
+    {
       "iconName": "GlobalNavButton",
     }
   }
   menuProps={
-    Object {
-      "calloutProps": Object {
+    {
+      "calloutProps": {
         "className": "hamburgerMenuButtonCallout",
       },
-      "items": Array [
-        Object {
-          "iconProps": Object {
+      "items": [
+        {
+          "iconProps": {
             "iconName": "Rocket",
           },
           "key": "fast-pass",
           "name": "FastPass",
           "onClick": [Function],
         },
-        Object {
-          "iconProps": Object {
+        {
+          "iconProps": {
             "iconName": "testBeakerSolid",
           },
           "key": "assessment",
           "name": "Assessment",
           "onClick": [Function],
         },
-        Object {
-          "iconProps": Object {
+        {
+          "iconProps": {
             "iconName": "Medical",
           },
           "key": "ad-hoc-tools",
           "name": "Ad hoc tools",
           "onClick": [Function],
         },
-        Object {
+        {
           "itemType": 1,
           "key": "divider_1",
         },
-        Object {
-          "iconProps": Object {
+        {
+          "iconProps": {
             "iconName": "KeyboardClassic",
           },
           "key": "modify-shortcuts",
           "name": "Keyboard shortcuts",
           "onClick": [Function],
         },
-        Object {
+        {
           "data": "/NOTICE.html",
-          "iconProps": Object {
+          "iconProps": {
             "iconName": "TextDocument",
           },
           "key": "third-party-notices",
           "name": "Third party notices",
           "onClick": [Function],
         },
-        Object {
+        {
           "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
-          "iconProps": Object {
+          "iconProps": {
             "iconName": "Unknown",
           },
           "key": "help",

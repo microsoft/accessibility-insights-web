@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { Tab } from '../common/itab';
+import { Tab } from '../common/types/store-data/itab';
 import { UrlParser } from '../common/url-parser';
 import { UrlValidator } from '../common/url-validator';
 

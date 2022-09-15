@@ -216,7 +216,7 @@ describe('AppInsights telemetry client tests', () => {
         appInsightsStrictMock
             .setup(ai => ai.context)
             .returns(() => getAppInsightsContext())
-            .verifiable(Times.once());
+            .verifiable(Times.exactly(2));
     }
 
     function getAppInsightsContext(): ITelemetryContext {

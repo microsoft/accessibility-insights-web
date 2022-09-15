@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TargetHelper } from 'common/target-helper';
 import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { chain, each, isMatch } from 'lodash';
@@ -90,11 +91,19 @@ export class SVGDrawer extends BaseDrawer {
         newStateElement: TabStopVisualizationInstance,
         dom: Document,
     ): TabbedItem {
-        const selector: string = newStateElement.target[newStateElement.target.length - 1];
+        const element = TargetHelper.getTargetElement(
+            newStateElement.target,
+            dom,
+            newStateElement.target.length - 1,
+        );
+        const selector = TargetHelper.getSelectorFromTargetElement(
+            newStateElement.target,
+            newStateElement.target.length - 1,
+        );
 
         return {
-            element: dom.querySelector(selector),
-            selector: selector,
+            element,
+            selector,
             tabOrder: newStateElement.propertyBag.tabOrder,
             focusIndicator: oldStateElement ? oldStateElement.focusIndicator : null,
             isFailure: newStateElement.isFailure,

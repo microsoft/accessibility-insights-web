@@ -7,7 +7,7 @@ exports[`FluentSideNav render nav bar 1`] = `
   <DetailsViewLeftNav
     isSideNavOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isHeaderAndNavCollapsed": false,
       }
     }
@@ -15,7 +15,7 @@ exports[`FluentSideNav render nav bar 1`] = `
     setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
-      Object {
+      {
         "isClosed": false,
       }
     }
@@ -40,7 +40,7 @@ exports[`FluentSideNav render side nav 1`] = `
   <DetailsViewLeftNav
     isSideNavOpen={false}
     narrowModeStatus={
-      Object {
+      {
         "isHeaderAndNavCollapsed": true,
       }
     }
@@ -48,7 +48,7 @@ exports[`FluentSideNav render side nav 1`] = `
     setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
-      Object {
+      {
         "isClosed": false,
       }
     }

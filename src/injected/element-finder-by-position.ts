@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { BoundRectAccessor, ClientUtils } from './client-utils';
 
 export interface ElementFinderByPositionMessage {
@@ -16,7 +16,7 @@ export class ElementFinderByPosition {
     public static readonly findElementByPositionCommand = 'insights.findElementByPositionCommand';
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly clientUtils: ClientUtils,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
         private readonly dom: Document,

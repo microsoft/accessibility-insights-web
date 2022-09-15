@@ -4,7 +4,7 @@ exports[`InsightsCommandButton renders per snapshot with extra className combine
 <CustomizedActionButton
   className="insightsCommandButton test-extra-class-name"
   iconProps={
-    Object {
+    {
       "className": "commandBarButtonIcon",
     }
   }
@@ -15,7 +15,7 @@ exports[`InsightsCommandButton renders per snapshot with extra icon className co
 <CustomizedActionButton
   className="insightsCommandButton"
   iconProps={
-    Object {
+    {
       "className": "commandBarButtonIcon icon-class-name",
     }
   }
@@ -26,7 +26,7 @@ exports[`InsightsCommandButton renders per snapshot with iconProps passed throug
 <CustomizedActionButton
   className="insightsCommandButton"
   iconProps={
-    Object {
+    {
       "className": "commandBarButtonIcon",
       "testProperty": "test-value",
     }
@@ -38,7 +38,7 @@ exports[`InsightsCommandButton renders per snapshot with props passed through 1`
 <CustomizedActionButton
   className="insightsCommandButton"
   iconProps={
-    Object {
+    {
       "className": "commandBarButtonIcon",
     }
   }

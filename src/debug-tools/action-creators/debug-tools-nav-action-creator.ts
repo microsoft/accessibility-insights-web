@@ -7,7 +7,7 @@ import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 export class DebugToolsNavActionCreator {
     constructor(private readonly debugToolsNavActions: DebugToolsNavActions) {}
 
-    public onSelectTool = (selectedTool: ToolsNavKey) => {
-        this.debugToolsNavActions.setSelectedTool.invoke(selectedTool);
+    public onSelectTool = async (selectedTool: ToolsNavKey): Promise<void> => {
+        await this.debugToolsNavActions.setSelectedTool.invoke(selectedTool);
     };
 }

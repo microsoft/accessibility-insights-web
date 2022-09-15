@@ -4,7 +4,7 @@ import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-colla
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import styles from 'DetailsView/components/interactive-header.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -34,7 +34,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const isNavCollapsed = props.narrowModeStatus.isHeaderAndNavCollapsed;
     const getNavMenu = () => {
         if (isNavCollapsed === false) {
-            return null;
+            return;
         }
 
         return (
@@ -53,7 +53,6 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     return (
         <Header
             deps={props.deps}
-            items={null}
             farItems={getFarItems()}
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}

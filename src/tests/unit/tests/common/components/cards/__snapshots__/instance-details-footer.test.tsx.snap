@@ -14,8 +14,8 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   </div>
   <CardKebabMenuButton
     deps={
-      Object {
-        "cardInteractionSupport": Object {
+      {
+        "cardInteractionSupport": {
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
@@ -23,9 +23,9 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
         "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
-    issueDetailsData={Object {}}
+    issueDetailsData={{}}
     kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={Object {}}
+    userConfigurationStoreData={{}}
   />
 </div>
 `;
@@ -44,8 +44,8 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   </div>
   <CardKebabMenuButton
     deps={
-      Object {
-        "cardInteractionSupport": Object {
+      {
+        "cardInteractionSupport": {
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": false,
@@ -53,9 +53,9 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
         "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
-    issueDetailsData={Object {}}
+    issueDetailsData={{}}
     kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={Object {}}
+    userConfigurationStoreData={{}}
   />
 </div>
 `;
@@ -89,8 +89,8 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
   </div>
   <CardKebabMenuButton
     deps={
-      Object {
-        "cardInteractionSupport": Object {
+      {
+        "cardInteractionSupport": {
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
@@ -98,9 +98,9 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
         "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
-    issueDetailsData={Object {}}
+    issueDetailsData={{}}
     kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={Object {}}
+    userConfigurationStoreData={{}}
   />
 </div>
 `;
@@ -119,8 +119,8 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
   </div>
   <CardKebabMenuButton
     deps={
-      Object {
-        "cardInteractionSupport": Object {
+      {
+        "cardInteractionSupport": {
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
@@ -128,9 +128,9 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
         "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
-    issueDetailsData={Object {}}
+    issueDetailsData={{}}
     kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={Object {}}
+    userConfigurationStoreData={{}}
   />
 </div>
 `;
@@ -149,8 +149,8 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
   </div>
   <CardKebabMenuButton
     deps={
-      Object {
-        "cardInteractionSupport": Object {
+      {
+        "cardInteractionSupport": {
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
@@ -158,9 +158,9 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
         "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
       }
     }
-    issueDetailsData={Object {}}
+    issueDetailsData={{}}
     kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={Object {}}
+    userConfigurationStoreData={{}}
   />
 </div>
 `;

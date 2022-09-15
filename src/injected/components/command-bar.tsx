@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseButton, Button, DefaultButton } from '@fluentui/react';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 
 import {
@@ -18,7 +19,6 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../../types/common-types';
-import { DecoratedAxeNodeResult } from '../scanner-utils';
 
 export type CommandBarDeps = CopyIssueDetailsButtonDeps &
     IssueFilingButtonDeps & {

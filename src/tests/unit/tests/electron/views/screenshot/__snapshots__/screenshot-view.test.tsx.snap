@@ -63,9 +63,9 @@ exports[`ScreenshotView render matches snapshot when screenshot data is availabl
     Target app screenshot
   </h2>
   <ScreenshotContainer
-    highlightBoxViewModels={Array []}
+    highlightBoxViewModels={[]}
     screenshotData={
-      Object {
+      {
         "base64PngData": "test-base-64-png-data",
       }
     }

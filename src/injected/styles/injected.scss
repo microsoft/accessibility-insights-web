@@ -108,21 +108,13 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
-        fill: $neutral-30 !important;
-
-        @media screen and (forced-colors: active) {
-            fill: inherit !important;
-        }
-    }
-
     .insights-dialog-main-override .file-issue-button,
     .insights-dialog-main-override .copy-issue-details-button {
         margin-left: 8px !important;
 
         svg path {
             fill: $neutral-100 !important;
-            fill-opacity: 0.9 !important;
+            fill-opacity: 90% !important;
 
             @media screen and (forced-colors: active) {
                 fill: inherit !important;
@@ -139,6 +131,14 @@
                 stroke: ButtonText !important;
                 fill: ButtonFace !important;
             }
+        }
+    }
+
+    .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
+        fill: $neutral-30 !important;
+
+        @media screen and (forced-colors: active) {
+            fill: inherit !important;
         }
     }
 
@@ -169,6 +169,18 @@
         font-weight: $font-weight-semi-bold !important;
     }
 
+    .insights-highlight-container,
+    .insights-highlight-container svg {
+        position: absolute !important;
+        @include max-z-index-1;
+
+        top: 0 !important;
+        left: 0 !important;
+        overflow: visible !important;
+        pointer-events: none !important;
+        visibility: visible !important;
+    }
+
     .insights-dialog-main-override {
         .insights-dialog-title {
             margin-bottom: 16px !important;
@@ -192,7 +204,10 @@
             font-size: 14px !important;
 
             ul {
-                margin: 8px 8px 0 8px !important;
+                margin-top: 8px !important;
+                margin-right: 8px !important;
+                margin-bottom: 0 !important;
+                margin-left: 8px !important;
                 padding-left: 8px !important;
             }
         }
@@ -240,18 +255,6 @@
         }
     }
 
-    .insights-highlight-container,
-    .insights-highlight-container svg {
-        position: absolute !important;
-        @include max-z-index-1;
-
-        top: 0 !important;
-        left: 0 !important;
-        overflow: visible !important;
-        pointer-events: none !important;
-        visibility: visible !important;
-    }
-
     .insights-highlight-container .insights-highlight-box {
         visibility: visible !important;
         position: absolute !important;
@@ -261,6 +264,14 @@
         @include ms-high-contrast-override {
             forced-color-adjust: none;
             outline-color: Highlight !important;
+        }
+    }
+
+    .insights-highlight-container .insights-highlight-text {
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            color: HighlightText !important;
+            background-color: Highlight !important;
         }
     }
 
@@ -274,14 +285,6 @@
         text-align: center !important;
     }
 
-    .insights-highlight-container .insights-highlight-text {
-        @include ms-high-contrast-override {
-            forced-color-adjust: none;
-            color: HighlightText !important;
-            background-color: Highlight !important;
-        }
-    }
-
     :host {
         @include max-z-index-1;
 
@@ -291,6 +294,6 @@
         height: 0 !important;
         visibility: hidden !important;
         padding: 0 !important;
-        margin: 0 0 0 0 !important;
+        margin: 0 !important;
     }
 }

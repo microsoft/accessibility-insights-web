@@ -69,6 +69,7 @@ export const Messages = {
         SetAdbLocationConfig: `${messagePrefix}/userConfig/setAdbLocationConfig`,
         SaveWindowBounds: `${messagePrefix}/userConfig/saveWindowBounds`,
         SetAutoDetectedFailuresDialogState: `${messagePrefix}/userConfig/setAutoDetectedFailuresDialogState`,
+        SetSaveAssessmentDialogState: `${messagePrefix}/userConfig/setSaveAssessmentDialogState`,
     },
 
     Popup: {

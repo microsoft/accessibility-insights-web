@@ -5,7 +5,7 @@ exports[`AssessmentReport render 1`] = `
   <HeaderSection
     headerText="Accessibility Insights for Web"
     targetAppInfo={
-      Object {
+      {
         "name": "title",
         "url": "url",
       }
@@ -13,28 +13,28 @@ exports[`AssessmentReport render 1`] = `
   />
   <AssessmentReportBody
     data={
-      Object {
-        "failedDetailsData": Array [
-          Object {
+      {
+        "failedDetailsData": [
+          {
             "displayName": "Assessment1",
             "key": "assessment1",
-            "steps": Array [
-              Object {
+            "steps": [
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step2A",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": [],
                   "requirementType": "assisted",
                 },
-                "instances": Array [
-                  Object {
-                    "props": Array [
-                      Object {
+                "instances": [
+                  {
+                    "props": [
+                      {
                         "key": "Path",
                         "value": "target1",
                       },
-                      Object {
+                      {
                         "key": "Snippet",
                         "value": "someHtml",
                       },
@@ -44,18 +44,18 @@ exports[`AssessmentReport render 1`] = `
                 "key": "step2a",
                 "showPassingInstances": false,
               },
-              Object {
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step4A",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": [],
                   "requirementType": "manual",
                 },
-                "instances": Array [
-                  Object {
-                    "props": Array [
-                      Object {
+                "instances": [
+                  {
+                    "props": [
+                      {
                         "key": "Comment",
                         "value": "comment",
                       },
@@ -67,46 +67,46 @@ exports[`AssessmentReport render 1`] = `
               },
             ],
           },
-          Object {
+          {
             "displayName": "Assessment2",
             "key": "assessment2",
-            "steps": Array [
-              Object {
+            "steps": [
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step2B",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": [],
                   "requirementType": "manual",
                 },
-                "instances": Array [],
+                "instances": [],
                 "key": "step2b",
                 "showPassingInstances": true,
               },
             ],
           },
         ],
-        "incompleteDetailsData": Array [
-          Object {
+        "incompleteDetailsData": [
+          {
             "displayName": "Assessment1",
             "key": "assessment1",
-            "steps": Array [
-              Object {
+            "steps": [
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step3A",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": [],
                   "requirementType": "assisted",
                 },
-                "instances": Array [
-                  Object {
-                    "props": Array [
-                      Object {
+                "instances": [
+                  {
+                    "props": [
+                      {
                         "key": "Path",
                         "value": "target2",
                       },
-                      Object {
+                      {
                         "key": "Snippet",
                         "value": "someHtml",
                       },
@@ -118,51 +118,51 @@ exports[`AssessmentReport render 1`] = `
               },
             ],
           },
-          Object {
+          {
             "displayName": "Assessment2",
             "key": "assessment2",
-            "steps": Array [
-              Object {
+            "steps": [
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step1B",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": [],
                   "requirementType": "assisted",
                 },
-                "instances": Array [],
+                "instances": [],
                 "key": "step1b",
                 "showPassingInstances": true,
               },
             ],
           },
         ],
-        "passedDetailsData": Array [
-          Object {
+        "passedDetailsData": [
+          {
             "displayName": "Assessment1",
             "key": "assessment1",
-            "steps": Array [
-              Object {
+            "steps": [
+              {
                 "defaultMessageComponent": null,
-                "header": Object {
+                "header": {
                   "description": null,
                   "displayName": "Step1A",
-                  "guidanceLinks": Array [
-                    Object {
+                  "guidanceLinks": [
+                    {
                       "href": "link1A",
                       "text": "link1A",
                     },
                   ],
                   "requirementType": "assisted",
                 },
-                "instances": Array [
-                  Object {
-                    "props": Array [
-                      Object {
+                "instances": [
+                  {
+                    "props": [
+                      {
                         "key": "Path",
                         "value": "target1",
                       },
-                      Object {
+                      {
                         "key": "Snippet",
                         "value": "someHtml",
                       },
@@ -175,30 +175,30 @@ exports[`AssessmentReport render 1`] = `
             ],
           },
         ],
-        "scanDetails": Object {
+        "scanDetails": {
           "reportDate": 2000-01-01T00:00:00.000Z,
           "targetPage": "title",
           "url": "url",
         },
-        "summary": Object {
-          "byPercentage": Object {
+        "summary": {
+          "byPercentage": {
             "fail": 50,
             "incomplete": 37,
             "pass": 13,
           },
-          "byRequirement": Object {
+          "byRequirement": {
             "fail": 3,
             "incomplete": 2,
             "pass": 1,
           },
-          "reportSummaryDetailsData": Array [
-            Object {
+          "reportSummaryDetailsData": [
+            {
               "displayName": "Assessment1",
               "fail": 2,
               "incomplete": 1,
               "pass": 1,
             },
-            Object {
+            {
               "displayName": "Assessment2",
               "fail": 1,
               "incomplete": 1,
@@ -209,8 +209,8 @@ exports[`AssessmentReport render 1`] = `
       }
     }
     deps={
-      Object {
-        "outcomeTypeSemanticsFromTestStatus": Object {
+      {
+        "outcomeTypeSemanticsFromTestStatus": {
           "stub": "outcomeTypeSemanticsFromTestStatus",
         },
       }

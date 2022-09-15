@@ -46,7 +46,7 @@ export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S
             this.props.deps.storesHub.removeChangedListenerFromAllStores(this.onStoreChange);
         }
 
-        public onStoreChange = () => {
+        private onStoreChange = async () => {
             const storeData = this.props.deps.storesHub.getAllStoreData();
             this.setState(storeData);
         };

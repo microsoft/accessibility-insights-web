@@ -3,7 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 
 import { NavigatorUtils } from 'common/navigator-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { getCellAndHeaderElementsFromResult } from 'injected/visualization/get-cell-and-header-elements';
 import { TableHeadersAttributeFormatter } from 'injected/visualization/table-headers-formatter';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -14,6 +14,7 @@ import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { ShadowUtils } from '../shadow-utils';
+import { AccessibleNamesFormatter } from './accessible-names-formatter';
 import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
@@ -45,7 +46,7 @@ export class DrawerProvider {
         private readonly drawerUtils: DrawerUtils,
         private readonly clientUtils: ClientUtils,
         private readonly dom: Document,
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
@@ -94,6 +95,11 @@ export class DrawerProvider {
     public createLandmarksDrawer(): Drawer {
         const formatter = new LandmarkFormatter();
         return this.createDrawer('insights-landmark', formatter);
+    }
+
+    public createAccessibleNamesDrawer(): Drawer {
+        const formatter = new AccessibleNamesFormatter();
+        return this.createDrawer('insights-accessible-name', formatter);
     }
 
     public createIssuesDrawer(): Drawer {

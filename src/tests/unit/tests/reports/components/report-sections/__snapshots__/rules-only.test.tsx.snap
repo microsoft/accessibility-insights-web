@@ -6,29 +6,29 @@ exports[`RulesOnly renders 1`] = `
 >
   <FullRuleHeader
     cardRuleResult={
-      Object {
+      {
         "id": "1",
       }
     }
-    deps={Object {}}
+    deps={{}}
     outcomeType="pass"
   />
   <FullRuleHeader
     cardRuleResult={
-      Object {
+      {
         "id": "2",
       }
     }
-    deps={Object {}}
+    deps={{}}
     outcomeType="pass"
   />
   <FullRuleHeader
     cardRuleResult={
-      Object {
+      {
         "id": "3",
       }
     }
-    deps={Object {}}
+    deps={{}}
     outcomeType="pass"
   />
 </div>

@@ -10,7 +10,8 @@ export class TabContextManager {
 
     public addTabContextIfNotExists(tabId: number, tabContextFactory: TabContextFactory): void {
         if (!(tabId in this.targetPageTabIdToContextMap)) {
-            this.targetPageTabIdToContextMap[tabId] = tabContextFactory.createTabContext(tabId);
+            const tabContext = tabContextFactory.createTabContext(tabId);
+            this.targetPageTabIdToContextMap[tabId] = tabContext;
         }
     }
 

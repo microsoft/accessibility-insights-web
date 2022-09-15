@@ -17,22 +17,22 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
   <React.Fragment>
     <CopyIssueDetailsButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
     />
     <IssueFilingButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "None",
           "isFirstTime": false,
         }
@@ -59,22 +59,22 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
   <React.Fragment>
     <CopyIssueDetailsButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
     />
     <IssueFilingButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "None",
           "isFirstTime": false,
         }
@@ -107,22 +107,22 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
   <React.Fragment>
     <CopyIssueDetailsButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
     />
     <IssueFilingButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "None",
           "isFirstTime": false,
         }
@@ -149,22 +149,22 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
   <React.Fragment>
     <CopyIssueDetailsButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
     />
     <IssueFilingButton
       deps={
-        Object {
+        {
           "axeResultToIssueFilingDataConverter": [typemoq mock object],
         }
       }
-      issueDetailsData={Object {}}
+      issueDetailsData={{}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
-        Object {
+        {
           "bugService": "None",
           "isFirstTime": false,
         }

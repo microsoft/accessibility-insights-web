@@ -5,11 +5,11 @@ exports[`page view renders 1`] = `
   <NarrowModeDetector
     Component={[Function]}
     childrenProps={
-      Object {
-        "deps": Object {},
+      {
+        "deps": {},
       }
     }
-    deps={Object {}}
+    deps={{}}
     isNarrowModeEnabled={true}
   />
   <main>

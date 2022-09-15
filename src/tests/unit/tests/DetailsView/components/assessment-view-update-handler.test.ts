@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentViewUpdateHandler,
@@ -168,6 +168,38 @@ describe('AssessmentViewTest', () => {
             detailsViewActionMessageCreatorMock
                 .setup(a => a.disableVisualHelpersForTest(prevTest))
                 .verifiable(Times.once());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('enable because assessment data has been updated', () => {
+            selectedRequirementIsEnabled = true;
+            const prevProps = buildProps();
+            const props = buildProps();
+
+            prevProps.assessmentData.fullAxeResultsMap = {};
+
+            detailsViewActionMessageCreatorMock
+                .setup(a =>
+                    a.enableVisualHelper(firstAssessment.visualizationType, stepName, true, false),
+                )
+                .verifiable(Times.once());
+
+            testObject.update(prevProps, props);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('do not enable because assessment data has not been updated', () => {
+            selectedRequirementIsEnabled = true;
+            const prevProps = buildProps();
+            const props = buildProps();
+
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.enableVisualHelper(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+                .verifiable(Times.never());
 
             testObject.update(prevProps, props);
 

@@ -1,34 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeadingWithContentLink render null when reference is not defined 1`] = `
-"<div className=\\"headerWithContentLink undefined\\">
+"<div className="headerWithContentLink undefined">
   <h1>
     <span className={[undefined]}>
       heading
     </span>
   </h1>
-  <ContentLink deps={{...}} reference={{...}} iconName=\\"info\\" />
+  <ContentLink deps={{...}} reference={{...}} iconName="info" />
 </div>"
 `;
 
 exports[`HeadingWithContentLink renders with both text and icon 1`] = `
-"<div className=\\"headerWithContentLink undefined\\">
+"<div className="headerWithContentLink undefined">
   <h1>
     <span className={[undefined]}>
       heading
     </span>
   </h1>
-  <ContentLink deps={{...}} reference=\\"for/testing\\" iconName=\\"info\\" />
+  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
 </div>"
 `;
 
 exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1`] = `
-"<div className=\\"headerWithContentLink undefined\\">
+"<div className="headerWithContentLink undefined">
   <h1>
     <span className={[undefined]}>
       heading secondary
     </span>
   </h1>
-  <ContentLink deps={{...}} reference=\\"for/testing\\" iconName=\\"info\\" />
+  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
 </div>"
 `;

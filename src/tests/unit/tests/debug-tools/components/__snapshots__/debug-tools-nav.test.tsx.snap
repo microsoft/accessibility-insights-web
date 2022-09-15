@@ -4,16 +4,16 @@ exports[`DebugToolsNav renders 1`] = `
 <StyledNavBase
   className="test-class-name"
   groups={
-    Array [
-      Object {
-        "links": Array [
-          Object {
+    [
+      {
+        "links": [
+          {
             "icon": "OfflineStorage",
             "key": "stores",
             "name": "Stores",
             "url": "",
           },
-          Object {
+          {
             "icon": "Diagnostic",
             "key": "telemetryViewer",
             "name": "TelemetryViewer",

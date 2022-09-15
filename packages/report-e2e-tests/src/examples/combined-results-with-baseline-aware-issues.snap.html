@@ -155,13 +155,6 @@
         color: var(--neutral-100);
       }
 
-      .high-contrast-theme .insights-link:hover {
-        text-decoration: underline;
-      }
-      .high-contrast-theme .is-selected .status-icon {
-        color: var(--black) !important;
-      }
-
       .insights-link {
         color: var(--link) !important;
         text-decoration: none;
@@ -174,6 +167,13 @@
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
+      }
+
+      .high-contrast-theme .insights-link:hover {
+        text-decoration: underline;
+      }
+      .high-contrast-theme .is-selected .status-icon {
+        color: var(--black) !important;
       }
 
       .insights-code {
@@ -446,10 +446,11 @@
         height: 16px;
         color: var(--primary-text);
         border-radius: 0 8px 8px 0;
-        margin: 0 4px 0 4px;
+        margin-right: 4px;
+        margin-bottom: -3px;
+        margin-left: 4px;
         display: inline-flex;
         align-items: center;
-        margin-bottom: -3px;
       }
       .outcome-chip .icon {
         border-radius: 50%;
@@ -602,7 +603,8 @@
       }
       .outer-container .content-container {
         max-width: 960px;
-        margin: 0 auto;
+        margin-right: auto;
+        margin-left: auto;
         margin-top: 24px;
       }
       .outer-container .content-container h2 {
@@ -612,7 +614,9 @@
       }
       @media only screen and (max-width: 1000px) {
         .outer-container .content-container {
-          margin: 24px 16px 0 16px;
+          margin-top: 24px;
+          margin-right: 16px;
+          margin-left: 16px;
         }
       }
 
@@ -638,9 +642,6 @@
         margin: 0;
         font-size: 17px;
         line-height: 24px;
-      }
-      .scan-details-section ul :first-child li {
-        padding-top: 16px;
       }
       .scan-details-section li {
         display: inline-block;
@@ -668,7 +669,8 @@
 
       .report-footer-container {
         max-width: 960px;
-        margin: 0 auto;
+        margin-right: auto;
+        margin-left: auto;
         margin-bottom: 68px;
         margin-top: 24px;
       }
@@ -678,7 +680,8 @@
       }
       @media only screen and (max-width: 1000px) {
         .report-footer-container {
-          margin: 0 16px 68px 16px;
+          margin-right: 16px;
+          margin-left: 16px;
         }
       }
 
@@ -694,7 +697,7 @@
       }
       .report-header-command-bar .target-page {
         white-space: nowrap;
-        margin: 0 0 0 16px;
+        margin-left: 16px;
         display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
@@ -744,7 +747,7 @@
       }
       .title-section h1 {
         font-weight: 600;
-        margin: 0 0 24px 0;
+        margin-bottom: 24px;
         font-size: 21px;
         line-height: 32px;
         letter-spacing: -0.02em;
@@ -764,6 +767,20 @@
           display: none;
         }
       }
+      .collapsible-container .collapsible-control[aria-expanded="true"]::before,
+      .collapsible-container
+        .collapsible-control[aria-expanded="false"]::before {
+        display: inline-block;
+        border-right: 1px solid var(--secondary-text);
+        border-bottom: 1px solid var(--secondary-text);
+        min-width: 7px;
+        width: 7px;
+        height: 7px;
+        content: "";
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+      }
+
       .summary-section {
         box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0 1.6px 3.6px rgba(0, 0, 0, 0.132);
@@ -785,25 +802,6 @@
         margin-left: 16px;
       }
 
-      .collapsible-container:not(.collapsible-rule-details-group)
-        .collapsible-control {
-        padding-left: 2px;
-        padding-right: 16px;
-        position: relative;
-      }
-      .collapsible-container .collapsible-control[aria-expanded="true"]::before,
-      .collapsible-container
-        .collapsible-control[aria-expanded="false"]::before {
-        display: inline-block;
-        border-right: 1px solid var(--secondary-text);
-        border-bottom: 1px solid var(--secondary-text);
-        min-width: 7px;
-        width: 7px;
-        height: 7px;
-        content: "";
-        transform-origin: 50% 50%;
-        transition: transform 0.1s linear 0s;
-      }
       .collapsible-container .collapsible-control {
         font-family: "Segoe UI Web (West European)", "Segoe UI", -apple-system,
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
@@ -817,6 +815,12 @@
       }
       .collapsible-container .collapsible-control:hover {
         background-color: var(--neutral-alpha-4);
+      }
+      .collapsible-container:not(.collapsible-rule-details-group)
+        .collapsible-control {
+        padding-left: 2px;
+        padding-right: 16px;
+        position: relative;
       }
       .collapsible-container
         .collapsible-control[aria-expanded="false"]::before {
@@ -956,18 +960,18 @@
       }
 
       /* css-modules:src/common/components/cards/rich-resolution-content */
-      .multi-line-text-no-bullet--AUXXt {
-        padding-left: 0;
-        list-style: none;
-      }
-      .multi-line-text-no-bullet--AUXXt li:not(:last-child) {
-        margin-bottom: 4px;
-      }
       .multi-line-text-yes-bullet--TXyX- {
         padding-left: 16px;
       }
       .multi-line-text-yes-bullet--TXyX- li {
         list-style-type: disc;
+        margin-bottom: 4px;
+      }
+      .multi-line-text-no-bullet--AUXXt {
+        padding-left: 0;
+        list-style: none;
+      }
+      .multi-line-text-no-bullet--AUXXt li:not(:last-child) {
         margin-bottom: 4px;
       }
       .combination-lists--boK5y {
@@ -986,26 +990,6 @@
       .urls-row-content-new-Failure--oL5lS {
         color: var(--negative-outcome);
         font-weight: bold;
-      }
-
-      /* css-modules:src/common/components/fix-instruction-panel */
-      .insights-fix-instruction-list--eZigw
-        li
-        span.fix-instruction-color-box--sBkHG {
-        width: 14px;
-        height: 14px;
-        display: inline-block;
-        vertical-align: -5%;
-        margin: 0 2px;
-        border: 1px solid var(--light-black);
-      }
-      .insights-fix-instruction-list--eZigw .screen-reader-only--irrXo {
-        position: absolute;
-        left: -10000px;
-        top: auto;
-        height: 1px;
-        overflow: hidden;
-        clip-path: inset(100% 100% 100% 100%);
       }
 
       /* css-modules:src/common/components/cards/how-to-fix-card-row */
@@ -1092,6 +1076,14 @@
       }
 
       /* css-modules:src/common/components/cards/card-kebab-menu-button */
+      .kebab-menu-icon--RzpyN {
+        flex-grow: 1;
+      }
+      @media screen and (forced-colors: active) {
+        .kebab-menu-icon--RzpyN {
+          color: buttontext;
+        }
+      }
       .kebab-menu-button--e-7v- {
         margin-right: 8px;
         width: 32px;
@@ -1107,14 +1099,6 @@
         .kebab-menu-button--e-7v-.is-expanded .kebab-menu-icon--RzpyN,
         .kebab-menu-button--e-7v-:hover .kebab-menu-icon--RzpyN {
           color: highlight;
-        }
-      }
-      .kebab-menu-icon--RzpyN {
-        flex-grow: 1;
-      }
-      @media screen and (forced-colors: active) {
-        .kebab-menu-icon--RzpyN {
-          color: buttontext;
         }
       }
       @media screen and (forced-colors: active) {
@@ -1332,7 +1316,7 @@
       }
       .report-header-command-bar--NJWdl .target-page--hjh44 {
         white-space: nowrap;
-        margin: 0 0 0 16px;
+        margin-left: 16px;
         display: flex;
         color: var(--primary-text);
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
@@ -1522,12 +1506,13 @@
       }
 
       /* css-modules:src/common/components/cards/fix-instruction-color-box */
-      span.fix-instruction-color-box--DQpQE {
+      .fix-instruction-color-box--DQpQE {
         width: 14px;
         height: 14px;
         display: inline-block;
         vertical-align: -5%;
-        margin: 0 2px;
+        margin-right: 2px;
+        margin-left: 2px;
         border: 1px solid var(--light-black);
       }
       .screen-reader-only--6LUiO {
@@ -2109,7 +2094,6 @@
                                           ><div
                                             ><div>Fix ONE of the following:</div
                                             ><ul
-                                              class="insights-fix-instruction-list--eZigw"
                                               ><li>No valid skip link found</li
                                               ><li
                                                 >Page does not have a header</li
@@ -2233,7 +2217,6 @@
                                           ><div
                                             ><div>Fix ONE of the following:</div
                                             ><ul
-                                              class="insights-fix-instruction-list--eZigw"
                                               ><li>No valid skip link found</li
                                               ><li
                                                 >Page does not have a header</li
@@ -2466,7 +2449,6 @@
                                           ><div
                                             ><div>Fix the following:</div
                                             ><ul
-                                              class="insights-fix-instruction-list--eZigw"
                                               ><li
                                                 ><span aria-hidden="true"
                                                   ><span

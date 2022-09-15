@@ -11,13 +11,10 @@ module.exports = {
         'scss/comment-no-empty': null, // Disabled to allow for paragraph breaks in longer comments which is not supported yet: https://github.com/stylelint-scss/stylelint-scss/issues/606
         'selector-class-pattern':
             '^(ms-([A-Z][a-z0-9]*)(-[a-z0-9]+)*)|(([a-z][a-z0-9]*)(-[a-z0-9]+)*)$', // Allows: kebab case and ms-Kebab-case
+        'declaration-property-max-values': { padding: 1, margin: 1 }, // Limit shorthand to improve readability
 
-        // TO BE ENABLED: Recommended fixes
-        'no-descending-specificity': null,
-
-        // TO BE CONFIGURED: Limit shorthand for margin, padding
-        // Stretch goal: border-width, border-radius, border-color, border-style, grid-gap
-        'declaration-property-max-values': { padding: 1 },
+        // STRETCH GOAL: limit shorthand for border-width, border-radius, border-color, border-style, grid-gap
+        // Example: 'declaration-property-max-values': {  'border-width': 1 }
 
         // TO BE CONFIGURED: Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},

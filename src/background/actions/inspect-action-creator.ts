@@ -34,10 +34,10 @@ export class InspectActionCreator {
         await this.browserAdapter
             .switchToTab(tabId)
             .catch(error => this.logger.error(`switchToTab failed`, error));
-        this.inspectActions.changeInspectMode.invoke(payload);
+        await this.inspectActions.changeInspectMode.invoke(payload);
     };
 
-    private onGetInspectCurrentState = (): void => {
-        this.inspectActions.getCurrentState.invoke();
+    private onGetInspectCurrentState = async (): Promise<void> => {
+        await this.inspectActions.getCurrentState.invoke();
     };
 }

@@ -5,10 +5,10 @@ exports[`CurrentView renders for selected tool = stores 1`] = `
   className="main"
 >
   <StoresTree
-    deps={Object {}}
+    deps={{}}
     state={
-      Object {
-        "debugToolsNavStoreData": Object {
+      {
+        "debugToolsNavStoreData": {
           "selectedTool": "stores",
         },
       }
@@ -22,10 +22,10 @@ exports[`CurrentView renders for selected tool = telemetryViewer 1`] = `
   className="main"
 >
   <TelemetryViewer
-    deps={Object {}}
+    deps={{}}
     state={
-      Object {
-        "debugToolsNavStoreData": Object {
+      {
+        "debugToolsNavStoreData": {
           "selectedTool": "telemetryViewer",
         },
       }

@@ -91,7 +91,9 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         });
     };
 
-    private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
+    private toggleRuleExpandCollapse = async (
+        payload: RuleExpandCollapsePayload,
+    ): Promise<void> => {
         if (!payload || !this.state.rules?.[payload.ruleId]) {
             return;
         }
@@ -104,10 +106,10 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.deselectAllCardsInRule(rule);
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private toggleCardSelection = (payload: CardSelectionPayload): void => {
+    private toggleCardSelection = async (payload: CardSelectionPayload): Promise<void> => {
         if (
             !payload ||
             !this.state.rules?.[payload.ruleId] ||
@@ -126,10 +128,10 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.state.focusedResultUid = payload.resultInstanceUid;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private collapseAllRules = (): void => {
+    private collapseAllRules = async (): Promise<void> => {
         if (!this.state.rules) {
             return;
         }
@@ -139,10 +141,10 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             this.deselectAllCardsInRule(rule);
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private expandAllRules = (): void => {
+    private expandAllRules = async (): Promise<void> => {
         if (!this.state.rules) {
             return;
         }
@@ -151,20 +153,20 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             rule.isExpanded = true;
         });
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private toggleVisualHelper = (): void => {
+    private toggleVisualHelper = async (): Promise<void> => {
         this.state.visualHelperEnabled = !this.state.visualHelperEnabled;
 
         if (!this.state.visualHelperEnabled) {
             this.deselectAllCards();
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
         this.state = this.getDefaultState();
         this.state.rules = {};
 
@@ -189,15 +191,15 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
 
         this.state.visualHelperEnabled = true;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onResetFocusedIdentifier = (): void => {
+    private onResetFocusedIdentifier = async (): Promise<void> => {
         this.state.focusedResultUid = null;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onNavigateToNewCardsView = (): void => {
+    private onNavigateToNewCardsView = async (): Promise<void> => {
         this.state.focusedResultUid = null;
         if (this.state.rules) {
             for (const ruleId in this.state.rules) {
@@ -208,11 +210,11 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             }
         }
         this.state.visualHelperEnabled = !isEmpty(this.state.rules);
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onResetStoreData = (): void => {
+    private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

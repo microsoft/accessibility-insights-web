@@ -9,7 +9,7 @@ import {
     mergeStyles,
 } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 import styles from './choice-group-pass-fail.scss';

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Dialog, TooltipHost } from '@fluentui/react';
 import { BlockingDialog } from 'common/components/blocking-dialog';
-import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {

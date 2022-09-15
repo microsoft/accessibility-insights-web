@@ -29,14 +29,14 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
   checkboxVisibility={2}
   className="requirementTable"
   columns={
-    Array [
-      Object {
+    [
+      {
         "key": "requirement",
         "minWidth": 100,
         "name": "Requirement",
         "onRender": [Function],
       },
-      Object {
+      {
         "className": "passFailColumnCell",
         "key": "result",
         "maxWidth": 124,
@@ -47,61 +47,61 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
     ]
   }
   items={
-    Array [
-      Object {
+    [
+      {
         "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
-            "tags": Array [],
+            "tags": [],
             "text": "WCAG 2.1.1",
           },
         ],
         "id": "keyboard-navigation",
         "name": "Keyboard navigation",
       },
-      Object {
+      {
         "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
-            "tags": Array [],
+            "tags": [],
             "text": "WCAG 2.1.2",
           },
         ],
         "id": "keyboard-traps",
         "name": "Keyboard traps",
       },
-      Object {
+      {
         "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
-            "tags": Array [],
+            "tags": [],
             "text": "WCAG 2.4.7",
           },
         ],
         "id": "focus-indicator",
         "name": "Focus indicator",
       },
-      Object {
+      {
         "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
-            "tags": Array [],
+            "tags": [],
             "text": "WCAG 2.4.3",
           },
         ],
         "id": "tab-order",
         "name": "Tab order",
       },
-      Object {
+      {
         "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
-        "guidance": Array [
-          Object {
+        "guidance": [
+          {
             "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
-            "tags": Array [],
+            "tags": [],
             "text": "WCAG 2.3.1",
           },
         ],

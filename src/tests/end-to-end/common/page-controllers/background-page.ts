@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { InsightsWindowExtensions } from 'common/insights-window-extensions';
 import * as Playwright from 'playwright';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { Page, PageOptions } from './page';
 
@@ -11,7 +12,7 @@ declare let window: Window & InsightsWindowExtensions;
 // because it is based on animation frames, which don't run in the background page.
 const POLLING_INTERVAL_MS = 50;
 
-export class BackgroundPage extends Page {
+export class BackgroundPage extends Page implements BackgroundContext {
     public async waitForInitialization(): Promise<void> {
         await this.underlyingPage.waitForFunction(
             () => {
@@ -41,16 +42,12 @@ export class BackgroundPage extends Page {
 
     public async enableFeatureFlag(flag: string): Promise<void> {
         await this.waitForInitialization();
-        await this.evaluate(flag => {
-            window.insightsFeatureFlags.enableFeature(flag);
-        }, flag);
+        await this.evaluate(flag => globalThis.insightsFeatureFlags.enableFeature(flag), flag);
     }
 
     public async disableFeatureFlag(flag: string): Promise<void> {
         await this.waitForInitialization();
-        await this.evaluate(flag => {
-            window.insightsFeatureFlags.disableFeature(flag);
-        }, flag);
+        await this.evaluate(flag => window.insightsFeatureFlags.disableFeature(flag), flag);
     }
 
     constructor(underlyingPage: Playwright.Page, options?: PageOptions) {

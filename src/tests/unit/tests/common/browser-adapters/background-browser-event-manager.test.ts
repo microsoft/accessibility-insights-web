@@ -25,7 +25,7 @@ describe(BackgroundBrowserEventManager, () => {
         timeSimulatingPromiseFactory = new TimeSimulatingPromiseFactory();
         recordingLogger = new RecordingLogger();
         testEvent = new SimulatedBrowserEvent();
-        eventResponseFactory = new EventResponseFactory(timeSimulatingPromiseFactory, true);
+        eventResponseFactory = new EventResponseFactory(timeSimulatingPromiseFactory);
         testSubject = new BackgroundBrowserEventManager(
             timeSimulatingPromiseFactory,
             eventResponseFactory,
@@ -104,7 +104,7 @@ describe(BackgroundBrowserEventManager, () => {
         expect(appListenerInvocations).toBe(3);
     });
 
-    it('delegates to pre-registered, fire-and-forget ApplicationListeners with a post-delay', async () => {
+    it('delegates to pre-registered, synchronous ApplicationListeners', async () => {
         testSubject.preregisterBrowserListeners({ 'event-type': testEvent });
 
         let appListenerFired = false;
@@ -114,46 +114,16 @@ describe(BackgroundBrowserEventManager, () => {
 
         const promiseReturnedToEvent = testEvent.invoke();
 
-        // The synchronous app listener should fire before we start delaying
         expect(appListenerFired).toBe(true);
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
-
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
+        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
         expect(recordingLogger.allMessages).toStrictEqual([]);
     });
 
-    it('honors fire and forget timeout when isServiceWorker is set', async () => {
-        testSubject = new BackgroundBrowserEventManager(
-            timeSimulatingPromiseFactory,
-            eventResponseFactory,
-            recordingLogger,
-        );
-
-        testSubject.preregisterBrowserListeners({ 'event-type': testEvent });
-
-        let appListenerFired = false;
-        testSubject.addApplicationListener('event-type', testEvent, () => {
-            appListenerFired = true;
-        });
-
-        const promiseReturnedToEvent = testEvent.invoke();
-
-        // The synchronous app listener should fire before we start delaying
-        expect(appListenerFired).toBe(true);
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-
-        await expect(promiseReturnedToEvent).resolves.toBe(undefined);
-
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
-        expect(recordingLogger.allMessages).toStrictEqual([]);
-    });
-
-    it('delegates to post-registered, fire-and-forget ApplicationListeners with a post-delay', async () => {
-        // This test involves a fire-and-forget delay and an event timeout racing each
-        // other. This case is to test that the delay is present, so we make sure the delay wins
-        // the race by forcing the timeout to take a nonzero amount of real time.
+    it('delegates to post-registered, synchronous ApplicationListeners', async () => {
+        // This test involves a synchronous listener and an event timeout racing each
+        // other. In this case, we make sure the listener wins the race by forcing
+        // the timeout to take a nonzero amount of real time.
         timeSimulatingPromiseFactory.actualTimeoutMs = 1000;
 
         testSubject.preregisterBrowserListeners({ 'event-type': testEvent });
@@ -165,48 +135,10 @@ describe(BackgroundBrowserEventManager, () => {
             appListenerFired = true;
         });
 
-        // The synchronous app listener should fire before we start delaying
         expect(appListenerFired).toBe(true);
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-
         await expect(promiseReturnedToEvent).resolves.toBe(undefined);
-
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(30000);
         expect(recordingLogger.allMessages).toStrictEqual([]);
-    });
-
-    it('delegates to post-registered, fire-and-forget ApplicationListeners with a timeout', async () => {
-        // This test involves a fire-and-forget delay and an event timeout racing each
-        // other. This case is to test that the timeout is present, so we make sure the timeout wins
-        // the race by forcing the delay to take a nonzero amount of real time.
-        timeSimulatingPromiseFactory.actualDelayMs = 1000;
-
-        testSubject.preregisterBrowserListeners({ 'event-type': testEvent });
-        // event invoked before listener registered
-        const testEventArg = 'test-event-arg';
-        const promiseReturnedToEvent = testEvent.invoke(testEventArg);
-
-        let appListenerFired = false;
-        testSubject.addApplicationListener('event-type', testEvent, () => {
-            appListenerFired = true;
-        });
-
-        // The synchronous app listener should fire before we start delaying
-        expect(appListenerFired).toBe(true);
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
-
-        await expect(promiseReturnedToEvent).resolves.toBe(undefined);
-
-        expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
-        expect(recordingLogger.errorRecords).toHaveLength(1);
-        expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
-            `"Error while processing browser event-type event: "`,
-        );
-        const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
-        expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[\\"test-event-arg\\"]}]"`,
-        );
     });
 
     it('times out if no ApplicationListener registers in time', async () => {
@@ -224,7 +156,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[deferred browser event: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         let appListenerFired = false;
@@ -257,7 +189,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[deferred browser event: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak
@@ -286,7 +218,7 @@ describe(BackgroundBrowserEventManager, () => {
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
         expect(loggedError.context).toMatchInlineSnapshot(
-            `"[browser event listener: {\\"eventType\\":\\"event-type\\",\\"eventArgs\\":[]}]"`,
+            `"[browser event listener: {"eventType":"event-type","eventArgs":[]}]"`,
         );
 
         stalledAppListenerResponse.resolveHook(null); // test cleanup, avoids Promise leak

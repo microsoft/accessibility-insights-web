@@ -11,6 +11,10 @@ export class DirectActionMessageDispatcher implements ActionMessageDispatcher {
     public dispatchMessage(message: Message): void {
         this.interpreter.interpret(message);
     }
+    public asyncDispatchMessage(message: Message): Promise<void> {
+        // not needed yet on electron
+        throw new Error('Method not implemented.');
+    }
     public dispatchType(messageType: string): void {
         // not needed yet on electron
         throw new Error('Method not implemented.');

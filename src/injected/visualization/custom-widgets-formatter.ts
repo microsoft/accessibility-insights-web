@@ -7,7 +7,9 @@ import { DrawerConfiguration } from './formatter';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 
 export class CustomWidgetsFormatter extends HighlightBoxFormatter {
-    constructor() {
+    constructor(
+        private readonly getBoundingClientRectIncludingChildren = DrawerUtils.getBoundingClientRectIncludingChildren,
+    ) {
         super();
     }
 
@@ -25,7 +27,7 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
 
     protected getBoundingRect = (element: Element): BoundingRect => {
         if (this.isCompositeCustomWidget(element)) {
-            return DrawerUtils.getBoundingClientRectIncludingChildren(element);
+            return this.getBoundingClientRectIncludingChildren(element);
         } else {
             return element.getBoundingClientRect();
         }

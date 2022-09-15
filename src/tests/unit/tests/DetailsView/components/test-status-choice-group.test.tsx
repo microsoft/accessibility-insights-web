@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ChoiceGroup, IChoiceGroup, IconButton } from '@fluentui/react';
-import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ChoiceGroupPassFail } from 'DetailsView/components/choice-group-pass-fail';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
 import { mount, shallow } from 'enzyme';

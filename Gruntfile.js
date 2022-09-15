@@ -21,6 +21,10 @@ module.exports = function (grunt) {
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
 
+    const packageValidatorPath = path.join('packages', 'validator');
+    const packageValidatorBundlePath = path.join(packageValidatorPath, 'bundle');
+    const packageValidatorDropPath = path.join(packageValidatorPath, 'drop');
+
     const mockAdbObjPath = path.join('packages', 'mock-adb', 'obj');
     const mockAdbBinPath = path.join('packages', 'mock-adb', 'bin');
     const mockAdbDropPath = path.join('drop', 'mock-adb');
@@ -45,6 +49,7 @@ module.exports = function (grunt) {
             'mock-adb': [mockAdbObjPath, mockAdbBinPath, mockAdbDropPath],
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
+            'package-validator': packageValidatorDropPath,
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
@@ -53,6 +58,7 @@ module.exports = function (grunt) {
                 'exec:esbuild-dev-mv3',
                 'exec:webpack-unified',
                 'exec:esbuild-prod',
+                'exec:esbuild-prod-mv3',
             ],
         },
         copy: {
@@ -162,14 +168,26 @@ module.exports = function (grunt) {
                     },
                 ],
             },
+            'package-validator': {
+                files: [
+                    {
+                        cwd: '.',
+                        src: path.join(packageValidatorBundlePath, 'validator.bundle.js'),
+                        dest: path.join(packageValidatorDropPath, 'index.js'),
+                    },
+                ],
+            },
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
             'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
+            'esbuild-prod-mv3': `node esbuild.js --env prod-mv3`,
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
+            'esbuild-package-validator': `node esbuild.js --env validator`,
+            'generate-validator': `node ${packageValidatorDropPath}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'dotnet-publish-mock-adb': {
                 command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
@@ -457,6 +475,48 @@ module.exports = function (grunt) {
             },
         });
 
+        const commands = {
+            '01_toggle-issues': {
+                suggested_key: {
+                    windows: 'Alt+Shift+1',
+                    mac: 'Alt+Shift+1',
+                    chromeos: 'Alt+Shift+1',
+                    linux: 'Alt+Shift+1',
+                },
+                description: 'Toggle Automated checks',
+            },
+            '02_toggle-landmarks': {
+                suggested_key: {
+                    windows: 'Alt+Shift+2',
+                    mac: 'Alt+Shift+2',
+                    chromeos: 'Alt+Shift+2',
+                    linux: 'Alt+Shift+2',
+                },
+                description: 'Toggle Landmarks',
+            },
+            '03_toggle-headings': {
+                suggested_key: {
+                    windows: 'Alt+Shift+3',
+                    mac: 'Alt+Shift+3',
+                    chromeos: 'Alt+Shift+3',
+                    linux: 'Alt+Shift+3',
+                },
+                description: 'Toggle Headings',
+            },
+            '04_toggle-tabStops': {
+                description: 'Toggle Tab stops',
+            },
+            '05_toggle-color': {
+                description: 'Toggle Color',
+            },
+            '06_toggle-needsReview': {
+                description: 'Toggle Needs review',
+            },
+            '07_toggle-accessibleNames': {
+                description: 'Toggle Accessible names',
+            },
+        };
+
         if (config.options.manifestVersion === 3) {
             // Settings that are specific to MV3
             merge(manifestJSON, {
@@ -467,11 +527,18 @@ module.exports = function (grunt) {
                         40: config.options.icon48,
                     },
                 },
-                permissions: ['notifications', 'scripting', 'storage', 'tabs', 'webNavigation'],
+                permissions: [
+                    'notifications',
+                    'scripting',
+                    'storage',
+                    'tabs',
+                    'webNavigation',
+                    'activeTab',
+                ],
                 background: {
                     service_worker: 'bundle/serviceWorker.bundle.js',
                 },
-                host_permissions: ['*://*/*'],
+                optional_host_permissions: ['<all_urls>'],
                 web_accessible_resources: [
                     {
                         resources: [
@@ -487,6 +554,18 @@ module.exports = function (grunt) {
                         matches: ['<all_urls>'],
                     },
                 ],
+                commands: {
+                    _execute_action: {
+                        suggested_key: {
+                            windows: 'Alt+Shift+K',
+                            mac: 'Alt+Shift+K',
+                            chromeos: 'Alt+Shift+K',
+                            linux: 'Alt+Shift+K',
+                        },
+                        description: 'Activate the extension',
+                    },
+                    ...commands,
+                },
             });
         } else {
             // Settings that are specific to MV2. Note that many of these settings--especially the
@@ -517,6 +596,18 @@ module.exports = function (grunt) {
                 content_security_policy:
                     "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
                 optional_permissions: ['*://*/*'],
+                commands: {
+                    _execute_browser_action: {
+                        suggested_key: {
+                            windows: 'Alt+Shift+K',
+                            mac: 'Alt+Shift+K',
+                            chromeos: 'Alt+Shift+K',
+                            linux: 'Alt+Shift+K',
+                        },
+                        description: 'Activate the extension',
+                    },
+                    ...commands,
+                },
             });
         }
 
@@ -754,6 +845,16 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageUIDropPath}`);
     });
 
+    grunt.registerTask('package-validator', function () {
+        const mustExistPath = path.join(packageValidatorBundlePath, 'validator.bundle.js');
+
+        mustExist(mustExistPath, 'Have you run esbuild?');
+
+        grunt.task.run('clean:package-validator');
+        grunt.task.run('copy:package-validator');
+        console.log(`package is in ${packageValidatorDropPath}`);
+    });
+
     grunt.registerTask('build-mock-adb', function () {
         grunt.task.run('exec:dotnet-publish-mock-adb');
     });
@@ -800,6 +901,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev-mv3', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-dev-mv3',
         'build-assets',
         'drop:dev-mv3',
@@ -810,6 +913,13 @@ module.exports = function (grunt) {
         'exec:esbuild-prod',
         'build-assets',
         'drop:production',
+    ]);
+    grunt.registerTask('build-prod-mv3', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:esbuild-prod-mv3',
+        'build-assets',
+        'drop:production-mv3',
     ]);
     grunt.registerTask('build-unified', [
         'clean:intermediates',
@@ -839,6 +949,10 @@ module.exports = function (grunt) {
         'exec:webpack-package-ui',
         'build-assets',
         'package-ui',
+    ]);
+    grunt.registerTask('build-package-validator', [
+        'exec:esbuild-package-validator',
+        'package-validator',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',

@@ -12,7 +12,6 @@ export class BaseAnalyzer implements Analyzer {
     protected visualizationType: VisualizationType;
     protected emptyResults: AxeAnalyzerResult = {
         results: {},
-        originalResult: null,
     };
 
     constructor(
@@ -44,7 +43,7 @@ export class BaseAnalyzer implements Analyzer {
         config: AnalyzerConfiguration,
     ): Message {
         const messageType = config.analyzerMessageType;
-        const originalAxeResult = analyzerResult.originalResult;
+        const originalAxeResult = analyzerResult.originalResult!;
         const payload: ScanCompletedPayload<any> = {
             key: config.key,
             selectorMap: analyzerResult.results,

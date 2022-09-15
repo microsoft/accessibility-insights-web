@@ -8,13 +8,13 @@ exports[`FailedUrlsSection renders 1`] = `
     <UrlScanResultsTable
       id="failed-urls-table"
       results={
-        Array [
-          Object {},
+        [
+          {},
         ]
       }
     />
   }
-  deps={Object {}}
+  deps={{}}
   outcomeType="fail"
   title="Failed URLs"
 />

@@ -12,7 +12,7 @@ import {
 class TestableStoreProxy<TState> extends StoreProxy<TState> {
     public emitChangedCallCount: number = 0;
 
-    public emitChanged(): void {
+    public async emitChanged(): Promise<void> {
         this.emitChangedCallCount++;
     }
 }
@@ -20,7 +20,7 @@ class TestableStoreProxy<TState> extends StoreProxy<TState> {
 describe('StoreProxyTest', () => {
     const expectedData = 'test';
     const storeId = 'TestStore';
-    let onChange: (message: StoreUpdateMessage<string>) => void;
+    let onChange: (message: StoreUpdateMessage<string>) => Promise<void>;
     let storeUpdateHubMock: IMock<StoreUpdateMessageHub>;
 
     let testSubject: TestableStoreProxy<string>;
@@ -39,8 +39,8 @@ describe('StoreProxyTest', () => {
         storeUpdateHubMock.verifyAll();
     });
 
-    test('onChange when state is different', () => {
-        onChange.call(testSubject, {
+    test('onChange when state is different', async () => {
+        await onChange.call(testSubject, {
             messageType: storeUpdateMessageType,
             tabId: 1,
             storeId: 'TestStore',
@@ -52,7 +52,7 @@ describe('StoreProxyTest', () => {
         expect(testSubject.emitChangedCallCount).toBe(1);
     });
 
-    test('onChange when state is same', () => {
+    test('onChange when state is same', async () => {
         const stateUpdateMessage: StoreUpdateMessage<string> = {
             messageType: storeUpdateMessageType,
             tabId: 1,
@@ -61,11 +61,11 @@ describe('StoreProxyTest', () => {
             payload: 'test',
         };
 
-        onChange.call(testSubject, stateUpdateMessage);
+        await onChange.call(testSubject, stateUpdateMessage);
         testSubject.emitChangedCallCount = 0;
 
         // calling store update event again with same data
-        onChange.call(testSubject, stateUpdateMessage);
+        await onChange.call(testSubject, stateUpdateMessage);
 
         expect(testSubject.getState()).toEqual(expectedData);
         expect(testSubject.emitChangedCallCount).toBe(0);

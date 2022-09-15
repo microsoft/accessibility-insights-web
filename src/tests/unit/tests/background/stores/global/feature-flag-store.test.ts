@@ -89,17 +89,15 @@ describe('FeatureFlagStoreTest', () => {
         expect(testObject.getState()).toEqual(expectedState);
     });
 
-    test('on getCurrentState', () => {
+    test('on getCurrentState', async () => {
         const initialState = createFakeDefaultFeatureFlagValues();
         const finalState = createFakeDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('getCurrentState').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForFeatureFlagActions('getCurrentState');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('on setFeatureFlag', () => {
+    test('on setFeatureFlag', async () => {
         const initialState = createFakeDefaultFeatureFlagValues();
         const userDataStub: LocalStorageData = {
             featureFlags: createFakeDefaultFeatureFlagValues(),
@@ -120,22 +118,22 @@ describe('FeatureFlagStoreTest', () => {
             )
             .returns(() => Promise.resolve());
 
-        createStoreTesterForFeatureFlagActions('setFeatureFlag', userDataStub)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreTesterForFeatureFlagActions(
+            'setFeatureFlag',
+            userDataStub,
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onResetFeatureFlags', () => {
+    test('onResetFeatureFlags', async () => {
         const initialState = createFakeDefaultFeatureFlagValues();
         const featureFlagName = 'feature-flag-name';
         initialState[featureFlagName] = true;
 
         const finalState = createFakeDefaultFeatureFlagValues();
 
-        createStoreTesterForFeatureFlagActions('resetFeatureFlags').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
+        const storeTester = createStoreTesterForFeatureFlagActions('resetFeatureFlags');
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function createDefaultTestObject(userDataStub: LocalStorageData): FeatureFlagStore {

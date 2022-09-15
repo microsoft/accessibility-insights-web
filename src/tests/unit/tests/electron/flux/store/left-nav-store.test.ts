@@ -22,7 +22,7 @@ describe('LeftNavStore', () => {
         expect(store.getState()).toMatchSnapshot();
     });
 
-    it('item selection causes state change', () => {
+    it('item selection causes state change', async () => {
         const initialState: LeftNavStoreData = {
             selectedKey: 'needs-review',
             leftNavVisible: true,
@@ -32,9 +32,10 @@ describe('LeftNavStore', () => {
             leftNavVisible: false,
         };
 
-        CreateStoreTesterForLeftNavActions('itemSelected')
-            .withActionParam(expectedState.selectedKey)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForLeftNavActions('itemSelected').withActionParam(
+            expectedState.selectedKey,
+        );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     it.each([
@@ -42,7 +43,7 @@ describe('LeftNavStore', () => {
         [false, true],
         [false, false],
         [true, true],
-    ])('setLeftNavVisible causes state change', (initialValue, expectedValue) => {
+    ])('setLeftNavVisible causes state change', async (initialValue, expectedValue) => {
         const initialState: LeftNavStoreData = {
             selectedKey: 'needs-review',
             leftNavVisible: initialValue,
@@ -52,12 +53,12 @@ describe('LeftNavStore', () => {
             leftNavVisible: expectedValue,
         };
 
-        CreateStoreTesterForLeftNavActions('setLeftNavVisible')
-            .withActionParam(expectedValue)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForLeftNavActions('setLeftNavVisible').withActionParam(expectedValue);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function CreateStoreTesterForLeftNavActions(
+    function createStoreTesterForLeftNavActions(
         actionName: keyof LeftNavActions,
     ): StoreTester<LeftNavStoreData, LeftNavActions> {
         const factory = (actions: LeftNavActions) => new LeftNavStore(actions);

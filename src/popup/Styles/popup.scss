@@ -96,7 +96,10 @@ html {
     #popup-container .unsupported-browser-info-panel {
         text-align: center;
         width: 30em;
-        margin: 20px 14px 20px 14px;
+        margin-top: 20px;
+        margin-right: 14px;
+        margin-bottom: 20px;
+        margin-left: 14px;
 
         .incompatible-browser-message {
             margin-top: 15px;
@@ -124,7 +127,8 @@ html {
 
 #popup-container .ad-hoc-tools-panel {
     width: 540px;
-    margin: 10px 0 20px 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 #popup-container .popup-grid {
@@ -140,11 +144,19 @@ html {
 
 #popup-container .unsupported-url-info-panel {
     width: 28em;
-    margin: 20px 14px 20px 14px;
+    margin-top: 20px;
+    margin-right: 14px;
+    margin-bottom: 20px;
+    margin-left: 14px;
 }
 
 #popup-container .toggle-label {
     font-size: 16px;
+}
+
+#popup-container .ms-Link {
+    color: $communication-primary;
+    font-weight: 600;
 }
 
 #popup-container .main-section {
@@ -168,7 +180,8 @@ html {
     }
 
     .launch-pad-hr {
-        margin: 12px 0 0 0;
+        margin-top: 12px;
+        margin-bottom: 0;
         border-width: 1px 0 0 0;
         padding: 0;
         border-style: solid;
@@ -176,7 +189,8 @@ html {
     }
 
     .launch-pad-item-title {
-        margin: 5px 0 5px 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
         padding: 0;
         height: 20px;
 
@@ -264,17 +278,10 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
     margin-bottom: 20px;
 }
 
-#popup-container {
-    .ms-Link {
-        color: $communication-primary;
-        font-weight: 600;
-    }
-
-    .launch-pad-title {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: -4px;
-    }
+#popup-container .launch-pad-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: -4px;
 }
 
 #popup-container #new-launch-pad {
@@ -283,7 +290,8 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
 #popup-container .launch-panel {
     width: 296px;
-    margin: 10px 0 10px 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     .launch-pad-main-section {
         width: 100%;

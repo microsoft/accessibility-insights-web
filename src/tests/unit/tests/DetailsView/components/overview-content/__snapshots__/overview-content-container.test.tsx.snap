@@ -7,28 +7,28 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
 >
   <TargetChangeDialog
     deps={
-      Object {
-        "actionInitiators": Object {
+      {
+        "actionInitiators": {
           "openExternalLink": [MockFunction],
         },
-        "assessmentsProvider": Object {
+        "assessmentsProvider": {
           "all": [Function],
         },
         "assessmentsProviderWithFeaturesEnabled": [Function],
-        "detailsViewActionMessageCreator": Object {},
+        "detailsViewActionMessageCreator": {},
         "detailsViewId": undefined,
         "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
-        "urlParser": Object {},
+        "urlParser": {},
       }
     }
     newTab={
-      Object {
+      {
         "id": -1,
         "title": "some title",
         "url": "some url",
       }
     }
-    prevTab={Object {}}
+    prevTab={{}}
   />
   <section
     className="overviewTextSummarySection"
@@ -41,35 +41,35 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
   >
     <OverviewHelpSection
       deps={
-        Object {
-          "actionInitiators": Object {
+        {
+          "actionInitiators": {
             "openExternalLink": [MockFunction],
           },
-          "assessmentsProvider": Object {
+          "assessmentsProvider": {
             "all": [Function],
           },
           "assessmentsProviderWithFeaturesEnabled": [Function],
-          "detailsViewActionMessageCreator": Object {},
+          "detailsViewActionMessageCreator": {},
           "detailsViewId": undefined,
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
-          "urlParser": Object {},
+          "urlParser": {},
         }
       }
       linkDataSource={
-        Array [
-          Object {
+        [
+          {
             "href": "https://go.microsoft.com/fwlink/?linkid=2082219",
             "text": "Getting started",
           },
-          Object {
+          {
             "href": "https://go.microsoft.com/fwlink/?linkid=2082220",
             "text": "How to complete a test",
           },
-          Object {
+          {
             "href": "https://go.microsoft.com/fwlink/?linkid=2077941",
             "text": "Ask a question",
           },
-          Object {
+          {
             "href": "https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/",
             "text": "New WCAG 2.1 success criteria",
           },

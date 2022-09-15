@@ -3,12 +3,12 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/store-data/manual-test-status';
 import { cloneDeep, filter } from 'lodash';
 import * as TelemetryEvents from '../common/extension-telemetry-events';
 import { RequirementStatusTelemetryData } from '../common/extension-telemetry-events';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ManualTestStatus, ManualTestStatusData } from '../common/types/manual-test-status';
 import { AssessmentData } from '../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../types/common-types';
 import { PayloadWithEventName } from './actions/action-payloads';
@@ -40,7 +40,7 @@ export class CompletedTestStepTelemetryCreator {
         this.store.addChangedListener(this.onAssessmentChange);
     }
 
-    private onAssessmentChange = (): void => {
+    private onAssessmentChange = async (): Promise<void> => {
         this.provider
             .all()
             .some(assessment => this.sendTelemetryIfNewCompletedTestStep(assessment));
@@ -90,6 +90,7 @@ export class CompletedTestStepTelemetryCreator {
             step.key,
             newStatus[step.key].stepFinalResult === ManualTestStatus.PASS,
             numInstances,
+            this.getRequirementDetails(assessmentData, step),
         );
     }
 
@@ -109,6 +110,12 @@ export class CompletedTestStepTelemetryCreator {
             numInstances = assessmentData.manualTestStepResultMap[step.key].instances.length;
         }
         return numInstances;
+    }
+
+    private getRequirementDetails(assessmentData: AssessmentData, step: Requirement): any {
+        const detailProvider = step.getCompletedRequirementDetailsForTelemetry;
+
+        return detailProvider ? detailProvider(assessmentData) : undefined;
     }
 
     private updateOldTestStatusState(): void {

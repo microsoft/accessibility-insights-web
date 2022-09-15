@@ -8,7 +8,7 @@ import { IframeDetector } from './iframe-detector';
 export class ScanIncompleteWarningDetector {
     constructor(
         private iframeDetector: IframeDetector,
-        private permissionsStateStore: BaseStore<PermissionsStateStoreData>,
+        private permissionsStateStore: BaseStore<PermissionsStateStoreData, Promise<void>>,
     ) {}
 
     public detectScanIncompleteWarnings = () => {

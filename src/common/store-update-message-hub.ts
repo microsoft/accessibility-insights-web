@@ -8,7 +8,7 @@ import _ from 'lodash';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage, storeUpdateMessageType } from './types/store-update-message';
 
-type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => void;
+type StoreUpdateMessageListener = (message: StoreUpdateMessage<any>) => Promise<void>;
 
 export class StoreUpdateMessageHub {
     private browserMessageHandlerUsed: boolean = false;
@@ -52,8 +52,8 @@ export class StoreUpdateMessageHub {
 
         const listener = this.registeredUpdateListeners[message.storeId];
         if (listener) {
-            listener(message);
-            return { messageHandled: true, result: Promise.resolve() };
+            const result = listener(message);
+            return { messageHandled: true, result };
         }
 
         return { messageHandled: false };

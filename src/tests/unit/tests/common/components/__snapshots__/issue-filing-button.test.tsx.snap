@@ -2,9 +2,9 @@
 
 exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"file-issue-button\\" onClick={[Function: onClick]}>
+  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
     <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
+    <div className="ms-Button-label">
       File issue
     </div>
   </CustomizedDefaultButton>
@@ -14,9 +14,9 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"file-issue-button\\" onClick={[Function: onClick]}>
+  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
     <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
+    <div className="ms-Button-label">
       File issue
     </div>
   </CustomizedDefaultButton>
@@ -26,9 +26,9 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"file-issue-button\\" onClick={[Function: onClick]}>
+  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
     <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
+    <div className="ms-Button-label">
       File issue
     </div>
   </CustomizedDefaultButton>
@@ -38,9 +38,9 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 "<Fragment>
-  <CustomizedDefaultButton className=\\"file-issue-button\\" onClick={[Function: onClick]}>
+  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
     <LadyBugSolidIcon />
-    <div className=\\"ms-Button-label\\">
+    <div className="ms-Button-label">
       File issue
     </div>
   </CustomizedDefaultButton>

@@ -13,7 +13,7 @@ import {
 } from '../../../../common/types/store-update-message';
 
 describe('StateDispatcherTest', () => {
-    test('fire changed event on initialize', () => {
+    test('fire changed event on initialize', async () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
             messageType: storeUpdateMessageType,
@@ -22,7 +22,8 @@ describe('StateDispatcherTest', () => {
             payload: newstoreData,
         };
 
-        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
+        const storeMock: IMock<BaseStore<StoreStubData, Promise<void>>> =
+            Mock.ofType<BaseStore<StoreStubData, Promise<void>>>();
         const storeHubStrictMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
         storeHubStrictMock
             .setup(hub => hub.getAllStores())
@@ -60,7 +61,7 @@ describe('StateDispatcherTest', () => {
         broadcastMock.verifyAll();
     });
 
-    test('fire changed event from store', () => {
+    test('fire changed event from store', async () => {
         const newstoreData: StoreStubData = { value: 'testValue' };
         const expectedMessage: StoreUpdateMessage<StoreStubData> = {
             messageType: storeUpdateMessageType,
@@ -70,7 +71,8 @@ describe('StateDispatcherTest', () => {
         };
 
         let privateDispatcher: Function;
-        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
+        const storeMock: IMock<BaseStore<StoreStubData, Promise<void>>> =
+            Mock.ofType<BaseStore<StoreStubData, Promise<void>>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
         storeHubMock.setup(hub => hub.getAllStores()).returns(() => [storeMock.object]);
@@ -80,7 +82,7 @@ describe('StateDispatcherTest', () => {
         storeMock
             .setup(sm =>
                 sm.addChangedListener(
-                    It.is<Function>(handler => {
+                    It.is<(args?: unknown) => Promise<void>>(handler => {
                         return handler !== null;
                     }),
                 ),
@@ -121,7 +123,8 @@ describe('StateDispatcherTest', () => {
         };
 
         let privateDispatcher: Function;
-        const storeMock: IMock<BaseStore<StoreStubData>> = Mock.ofType<BaseStore<StoreStubData>>();
+        const storeMock: IMock<BaseStore<StoreStubData, Promise<void>>> =
+            Mock.ofType<BaseStore<StoreStubData, Promise<void>>>();
         const storeHubMock = Mock.ofType<StoreHubStub>(null, MockBehavior.Strict);
 
         storeHubMock.setup(hub => hub.getAllStores()).returns(() => [storeMock.object]);
@@ -131,7 +134,7 @@ describe('StateDispatcherTest', () => {
         storeMock
             .setup(sm =>
                 sm.addChangedListener(
-                    It.is<Function>(handler => {
+                    It.is<(args?: unknown) => Promise<void>>(handler => {
                         return handler !== null;
                     }),
                 ),
@@ -164,7 +167,7 @@ describe('StateDispatcherTest', () => {
 });
 
 class StoreHubStub implements StoreHub {
-    public getAllStores(): BaseStore<any>[] {
+    public getAllStores(): BaseStore<any, Promise<void>>[] {
         throw new Error('Method not implemented.');
     }
     public getStoreType(): StoreType {

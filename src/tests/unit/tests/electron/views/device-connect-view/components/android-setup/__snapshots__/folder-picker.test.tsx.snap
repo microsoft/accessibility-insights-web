@@ -18,7 +18,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
       ariaLabel="Enter a path"
       className="textField"
       iconProps={
-        Object {
+        {
           "iconName": "FabricFolder",
         }
       }

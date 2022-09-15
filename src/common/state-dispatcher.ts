@@ -16,14 +16,18 @@ export class StateDispatcher {
         this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));
     }
 
-    private addDispatchListenerToStore(store: BaseStore<any>): void {
+    private addDispatchListenerToStore(store: BaseStore<any, Promise<void>>): void {
         const dispatchStateUpdateDelegate = this.getDispatchStateUpdateEvent(store);
-        store.addChangedListener(dispatchStateUpdateDelegate);
+        store.addChangedListener(async () => dispatchStateUpdateDelegate());
         dispatchStateUpdateDelegate();
     }
 
-    private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
+    private getDispatchStateUpdateEvent = (store: BaseStore<any, Promise<void>>): (() => void) => {
         return () => {
+            // This message can be fire-and-forget because it's sent
+            // from the background service worker to other contexts, so
+            // the message won't be lost if the service worker goes idle
+            // while it is being processed
             this.broadcastMessage({
                 storeId: store.getId(),
                 messageType: storeUpdateMessageType,

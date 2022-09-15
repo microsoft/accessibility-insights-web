@@ -17,7 +17,6 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlParser } from 'common/url-parser';
-import { WindowUtils } from 'common/window-utils';
 import UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { DateProvider } from '../common/date-provider';
@@ -62,7 +61,7 @@ async function initialize(): Promise<void> {
     const logger = createDefaultLogger();
     const promiseFactory = createDefaultPromiseFactory();
 
-    const eventResponseFactory = new EventResponseFactory(promiseFactory, false);
+    const eventResponseFactory = new EventResponseFactory(promiseFactory);
     const browserEventManager = new BackgroundBrowserEventManager(
         promiseFactory,
         eventResponseFactory,
@@ -76,8 +75,6 @@ async function initialize(): Promise<void> {
         browserAdapter,
         deprecatedStorageDataKeys,
     );
-
-    const windowUtils = new WindowUtils();
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
@@ -128,7 +125,8 @@ async function initialize(): Promise<void> {
 
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
-    const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+    const telemetryEventHandler = new TelemetryEventHandler();
+    telemetryEventHandler.initialize(telemetryClient);
 
     const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
     const exceptionTelemetryListener = new SendingExceptionTelemetryListener(
@@ -197,21 +195,6 @@ async function initialize(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
-
-    const messageDistributor = new BackgroundMessageDistributor(
-        globalContext,
-        tabContextManager,
-        postMessageContentHandler,
-        browserAdapter,
-        eventResponseFactory,
-    );
-    messageDistributor.initialize();
-
     const targetTabController = new TargetTabController(
         browserAdapter,
         visualizationConfigurationFactory,
@@ -239,7 +222,6 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
-        windowUtils.setTimeout,
         persistedData,
         indexedDBInstance,
         persistData,
@@ -264,6 +246,23 @@ async function initialize(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
+
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
+    const messageDistributor = new BackgroundMessageDistributor(
+        globalContext,
+        tabContextManager,
+        postMessageContentHandler,
+        browserAdapter,
+        eventResponseFactory,
+    );
+    // This should happen as late as possible so we don't try to distribute messages
+    // before all stores and actions have finished initializing
+    messageDistributor.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;

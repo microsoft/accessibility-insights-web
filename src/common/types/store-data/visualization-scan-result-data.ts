@@ -1,11 +1,42 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
-import { TabStopEvent } from 'common/types/tab-stop-event';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
-import { TabOrderPropertyBag } from 'injected/tab-order-property-bag';
-import { ScanResults } from 'scanner/iruleresults';
+import { ScanResults, Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
+import { AdHocTestkeys } from './adhoc-test-keys';
+import { GuidanceLink } from './guidance-links';
+import { TabOrderPropertyBag } from './tab-order-property-bag';
+import { TabStopEvent } from './tab-stop-event';
+
+export interface FormattedCheckResult {
+    id: string;
+    message: string;
+    data: any;
+}
+
+export interface CheckData {
+    // tslint:disable-next-line: no-reserved-keywords
+    any?: FormattedCheckResult[];
+    none?: FormattedCheckResult[];
+    all?: FormattedCheckResult[];
+}
+
+export type DecoratedAxeNodeResult = {
+    status?: boolean;
+    ruleId: string;
+    failureSummary?: string;
+    selector: string;
+    html?: string;
+    help?: string;
+    id?: string;
+    guidanceLinks?: GuidanceLink[];
+    helpUrl?: string;
+} & CheckData;
+
+export interface HtmlElementAxeResults {
+    ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
+    propertyBag?: any;
+    target: Target;
+}
 
 interface IssuesScanResultData {
     scanResult?: ScanResults;
@@ -57,4 +88,5 @@ export interface VisualizationScanResultData {
     [AdHocTestkeys.Headings]: IssuesScanResultData;
     [AdHocTestkeys.Color]: IssuesScanResultData;
     [AdHocTestkeys.TabStops]: TabStopsScanResultData;
+    [AdHocTestkeys.AccessibleNames]: IssuesScanResultData;
 }

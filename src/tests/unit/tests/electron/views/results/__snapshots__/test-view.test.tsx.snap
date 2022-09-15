@@ -12,14 +12,14 @@ exports[`TestView when status scan <Completed> 1`] = `
   />
   <stubInstancesSectionComponent
     cardsViewData={
-      Object {
+      {
         "visualHelperEnabled": true,
       }
     }
-    deps={Object {}}
+    deps={{}}
     scanMetadata={
-      Object {
-        "timespan": Object {
+      {
+        "timespan": {
           "scanComplete": 1900-02-02T03:04:00.000Z,
         },
       }
@@ -28,7 +28,7 @@ exports[`TestView when status scan <Completed> 1`] = `
     shouldAlertFailuresCount={true}
     tabStopsEnabled={true}
     userConfigurationStoreData={
-      Object {
+      {
         "isFirstTime": false,
       }
     }

@@ -13,7 +13,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#e7ecd8",
           }
         }
@@ -25,7 +25,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#8a94a8",
           }
         }
@@ -76,7 +76,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#8a94a8",
           }
         }
@@ -88,7 +88,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#e7ecd8",
           }
         }
@@ -139,7 +139,7 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#8a94a8",
           }
         }
@@ -176,7 +176,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#fefefe",
           }
         }
@@ -188,7 +188,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#21809d",
           }
         }
@@ -218,7 +218,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#ffffff",
               }
             }
@@ -230,7 +230,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#21809d",
               }
             }
@@ -258,7 +258,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#1f7995",
               }
             }
@@ -270,7 +270,7 @@ exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#fcfcfc",
               }
             }
@@ -303,7 +303,7 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#fefefe",
           }
         }
@@ -315,7 +315,7 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#21809d",
           }
         }
@@ -345,7 +345,7 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#ffffff",
               }
             }
@@ -357,7 +357,7 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
             aria-hidden={true}
             className="fixInstructionColorBox"
             style={
-              Object {
+              {
                 "backgroundColor": "#21809d",
               }
             }
@@ -390,7 +390,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#ffffff",
           }
         }
@@ -402,7 +402,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
         aria-hidden={true}
         className="fixInstructionColorBox"
         style={
-          Object {
+          {
             "backgroundColor": "#AAAAAA",
           }
         }

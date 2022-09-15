@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { Tab } from 'common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
+import { Tab } from 'common/types/store-data/itab';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { isEqual } from 'lodash';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentViewUpdateHandlerDeps {
@@ -41,15 +42,16 @@ export class AssessmentViewUpdateHandler {
     ): void {
         if (this.isStepSwitched(prevProps, currentProps)) {
             this.disableVisualHelpersForSelectedTest(prevProps);
-            this.enableSelectedStepVisualHelper(currentProps);
+            this.enableSelectedStepVisualHelper(currentProps, prevProps);
         } else {
             // Cases where visualization doesn't reappear(Navigate back, refresh). No telemetry sent.
-            this.enableSelectedStepVisualHelper(currentProps, false);
+            this.enableSelectedStepVisualHelper(currentProps, prevProps, false);
         }
     }
 
     private enableSelectedStepVisualHelper(
         props: AssessmentViewUpdateHandlerProps,
+        prevProps: AssessmentViewUpdateHandlerProps = undefined,
         sendTelemetry = true,
     ): void {
         const test = props.assessmentNavState.selectedTestType;
@@ -59,7 +61,13 @@ export class AssessmentViewUpdateHandler {
         }
 
         const isStepNotScanned = !props.assessmentData.testStepStatus[step].isStepScanned;
-        if (props.selectedRequirementIsEnabled === false || isStepNotScanned) {
+        const assessmentDataUpdated = prevProps
+            ? !isEqual(props.assessmentData, prevProps.assessmentData)
+            : true;
+        if (
+            props.selectedRequirementIsEnabled === false ||
+            (isStepNotScanned && assessmentDataUpdated)
+        ) {
             props.deps.detailsViewActionMessageCreator.enableVisualHelper(
                 test,
                 step,

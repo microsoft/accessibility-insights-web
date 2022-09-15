@@ -15,7 +15,7 @@ import { Runtime, Tabs, Windows } from 'webextension-polyfill';
 export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     // Tests may modify this state directly; updates will be reflected in the following default mock implementations:
     //   * this.object.getAllWindows
-    //   * this.object.getTab
+    //   * this.object.getTabAsync
     //   * this.object.tabsQuery
     //
     // Tests are responsible for maintaining self-consistency (ie, ensuring all tabs have corresponding windows)
@@ -82,16 +82,6 @@ export function createSimulatedBrowserAdapter(
     mock.setup(m => m.getRuntimeLastError()).returns(() => undefined);
     mock.setup(m => m.getAllWindows(It.isAny())).returns(() =>
         Promise.resolve(mock.windows as Windows.Window[]),
-    );
-    mock.setup(m => m.getTab(It.isAny(), It.isAny(), It.isAny())).returns(
-        (tabId, resolve, reject) => {
-            const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);
-            if (matchingTabs.length === 1) {
-                resolve(matchingTabs[0]);
-            } else if (reject != null) {
-                reject();
-            }
-        },
     );
     mock.setup(m => m.getTabAsync(It.isAny())).returns(async tabId => {
         const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);

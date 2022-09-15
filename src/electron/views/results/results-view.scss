@@ -4,23 +4,20 @@
 @import '../../../common/styles/common.scss';
 @import '../common/window-title/window-title-const.scss';
 
-:global(.is-mac-os) {
-    .settings-panel-layer-host {
-        top: $mac-title-height !important;
-    }
-
-    .application-view {
-        height: calc(100% - (#{$mac-title-height}));
-    }
-}
-
 .settings-panel-layer-host {
     top: $default-title-height !important;
+    @include is-mac-os {
+        top: $mac-title-height !important;
+    }
 }
 
 .application-view {
     display: flex;
     height: calc(100% - (#{$default-title-height}));
+
+    @include is-mac-os {
+        height: calc(100% - (#{$mac-title-height}));
+    }
 }
 
 .results-view {

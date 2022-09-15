@@ -27,8 +27,8 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
     LinkComponent={[Function]}
     classNameForDiv="test-guidance-links-group"
     links={
-      Array [
-        Object {
+      [
+        {
           "href": "LINK_URL",
           "text": "LINK_TEXT",
         },
@@ -41,15 +41,15 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
   />
   <GuidanceTags
     deps={
-      Object {
+      {
         "LinkComponent": [Function],
         "getGuidanceTagsFromGuidanceLinks": [Function],
         "outcomeTypeSemanticsFromTestStatus": [Function],
       }
     }
     links={
-      Array [
-        Object {
+      [
+        {
           "href": "LINK_URL",
           "text": "LINK_TEXT",
         },

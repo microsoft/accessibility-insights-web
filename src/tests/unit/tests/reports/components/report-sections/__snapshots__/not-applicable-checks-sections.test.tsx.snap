@@ -4,15 +4,15 @@ exports[`NotApplicableChecksSection renders 1`] = `
 <CollapsibleResultSection
   badgeCount={3}
   cardRuleResults={
-    Array [
-      Object {},
-      Object {},
-      Object {},
+    [
+      {},
+      {},
+      {},
     ]
   }
   containerClassName="result-section"
   containerId="not-applicable-checks-section"
-  deps={Object {}}
+  deps={{}}
   headingLevel={3}
   outcomeType="inapplicable"
   title="Not applicable checks"

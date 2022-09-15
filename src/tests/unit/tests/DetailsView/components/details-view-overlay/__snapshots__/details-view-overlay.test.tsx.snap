@@ -4,79 +4,79 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={true}
     previewFeatureFlagsHandler={
-      Object {
+      {
         "getDisplayableFeatureFlags": null,
       }
     }
   />
   <ScopingPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     inspectActionMessageCreator={
-      Object {
+      {
         "changeInspectMode": null,
       }
     }
     isOpen={true}
     scopingActionMessageCreator={
-      Object {
+      {
         "addSelector": null,
       }
     }
-    scopingSelectorsData={Object {}}
+    scopingSelectorsData={{}}
   />
   <ContentPanel
     content="content/path"
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
     isOpen={true}
   />
   <SettingsPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
-    userConfigStoreState={Object {}}
+    featureFlagData={{}}
+    userConfigStoreState={{}}
   />
 </React.Fragment>
 `;
@@ -85,77 +85,77 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={true}
     previewFeatureFlagsHandler={
-      Object {
+      {
         "getDisplayableFeatureFlags": null,
       }
     }
   />
   <ScopingPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     inspectActionMessageCreator={
-      Object {
+      {
         "changeInspectMode": null,
       }
     }
     isOpen={true}
     scopingActionMessageCreator={
-      Object {
+      {
         "addSelector": null,
       }
     }
-    scopingSelectorsData={Object {}}
+    scopingSelectorsData={{}}
   />
   <ContentPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
   />
   <SettingsPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
-    userConfigStoreState={Object {}}
+    featureFlagData={{}}
+    userConfigStoreState={{}}
   />
 </React.Fragment>
 `;
@@ -164,77 +164,77 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={false}
     previewFeatureFlagsHandler={
-      Object {
+      {
         "getDisplayableFeatureFlags": null,
       }
     }
   />
   <ScopingPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     inspectActionMessageCreator={
-      Object {
+      {
         "changeInspectMode": null,
       }
     }
     isOpen={true}
     scopingActionMessageCreator={
-      Object {
+      {
         "addSelector": null,
       }
     }
-    scopingSelectorsData={Object {}}
+    scopingSelectorsData={{}}
   />
   <ContentPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
   />
   <SettingsPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
-    userConfigStoreState={Object {}}
+    featureFlagData={{}}
+    userConfigStoreState={{}}
   />
 </React.Fragment>
 `;
@@ -243,80 +243,80 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={true}
     previewFeatureFlagsHandler={
-      Object {
+      {
         "getDisplayableFeatureFlags": null,
       }
     }
   />
   <ScopingPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     inspectActionMessageCreator={
-      Object {
+      {
         "changeInspectMode": null,
       }
     }
     isOpen={true}
     scopingActionMessageCreator={
-      Object {
+      {
         "addSelector": null,
       }
     }
-    scopingSelectorsData={Object {}}
+    scopingSelectorsData={{}}
   />
   <ContentPanel
     content="content/path"
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
     isOpen={true}
   />
   <SettingsPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={false}
-    userConfigStoreState={Object {}}
+    userConfigStoreState={{}}
   />
 </React.Fragment>
 `;
@@ -325,80 +325,80 @@ exports[`DetailsViewOverlay renders with settings panel open 1`] = `
 <React.Fragment>
   <PreviewFeaturesPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={true}
     previewFeatureFlagsHandler={
-      Object {
+      {
         "getDisplayableFeatureFlags": null,
       }
     }
   />
   <ScopingPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     inspectActionMessageCreator={
-      Object {
+      {
         "changeInspectMode": null,
       }
     }
     isOpen={true}
     scopingActionMessageCreator={
-      Object {
+      {
         "addSelector": null,
       }
     }
-    scopingSelectorsData={Object {}}
+    scopingSelectorsData={{}}
   />
   <ContentPanel
     content="content/path"
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
     isOpen={true}
   />
   <SettingsPanel
     deps={
-      Object {
-        "contentActionMessageCreator": Object {},
-        "contentProvider": Object {},
-        "detailsViewActionMessageCreator": Object {
+      {
+        "contentActionMessageCreator": {},
+        "contentProvider": {},
+        "detailsViewActionMessageCreator": {
           "addFailureInstance": null,
         },
-        "settingsProvider": Object {},
-        "userConfigMessageCreator": Object {},
+        "settingsProvider": {},
+        "userConfigMessageCreator": {},
       }
     }
-    featureFlagData={Object {}}
+    featureFlagData={{}}
     isOpen={true}
-    userConfigStoreState={Object {}}
+    userConfigStoreState={{}}
   />
 </React.Fragment>
 `;

@@ -26,7 +26,7 @@ export class DevToolsMonitor {
         this.startMonitor();
     }
 
-    private onSetDevtoolState = (status: boolean) => {
+    private onSetDevtoolState = async (status: boolean) => {
         if (status) {
             this.startMonitor();
         }

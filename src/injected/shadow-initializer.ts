@@ -46,7 +46,7 @@ export class ShadowInitializer {
         return shadowHostElement;
     }
 
-    private removeExistingShadowHost(): void {
+    public removeExistingShadowHost(): void {
         this.htmlElementUtils.deleteAllElements('#insights-shadow-host');
     }
 

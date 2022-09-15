@@ -2,45 +2,101 @@
 
 exports[`ResultSectionContent does not render, no rules 1`] = `null`;
 
-exports[`ResultSectionContent renders, with some rules 1`] = `
+exports[`ResultSectionContent renders without modifier buttons without cardSelectionMessageCreator, with some rules 1`] = `
 <React.Fragment>
-  <test
+  <RulesWithInstances
     deps={
-      Object {
+      {
         "cardsVisualizationModifierButtons": [Function],
       }
     }
     outcomeType="pass"
-    results={
-      Array [
-        Object {
+    rules={
+      [
+        {
           "description": "sample-description",
-          "guidance": Array [
-            Object {
+          "guidance": [
+            {
               "href": "sample-guidance-href",
               "text": "sample-guidance-text",
             },
           ],
           "id": "some-rule",
-          "nodes": Array [
-            Object {
-              "descriptors": Object {
+          "nodes": [
+            {
+              "descriptors": {
                 "snippet": "this is a sample snippet",
               },
-              "identifiers": Object {
+              "identifiers": {
                 "conciseName": "body img",
                 "css-selector": "body img",
                 "identifier": "body img",
               },
-              "resolution": Object {
-                "how-to-fix-web": Object {
-                  "all": Array [],
-                  "any": Array [
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ]
+    }
+  />
+</React.Fragment>
+`;
+
+exports[`ResultSectionContent renders, with some rules 1`] = `
+<React.Fragment>
+  <test
+    cardSelectionMessageCreator={{}}
+    deps={
+      {
+        "cardsVisualizationModifierButtons": [Function],
+      }
+    }
+    outcomeType="pass"
+    results={
+      [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
                 },
                 "howToFixSummary": "sample how to fix summary",
               },
@@ -55,42 +111,43 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
     }
   />
   <RulesWithInstances
+    cardSelectionMessageCreator={{}}
     deps={
-      Object {
+      {
         "cardsVisualizationModifierButtons": [Function],
       }
     }
     outcomeType="pass"
     rules={
-      Array [
-        Object {
+      [
+        {
           "description": "sample-description",
-          "guidance": Array [
-            Object {
+          "guidance": [
+            {
               "href": "sample-guidance-href",
               "text": "sample-guidance-text",
             },
           ],
           "id": "some-rule",
-          "nodes": Array [
-            Object {
-              "descriptors": Object {
+          "nodes": [
+            {
+              "descriptors": {
                 "snippet": "this is a sample snippet",
               },
-              "identifiers": Object {
+              "identifiers": {
                 "conciseName": "body img",
                 "css-selector": "body img",
                 "identifier": "body img",
               },
-              "resolution": Object {
-                "how-to-fix-web": Object {
-                  "all": Array [],
-                  "any": Array [
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
                     "Element does not have an alt attribute",
                     "aria-label attribute does not exist or is empty",
                     "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "none": Array [],
+                  "none": [],
                 },
                 "howToFixSummary": "sample how to fix summary",
               },

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { AsyncAction } from 'common/flux/async-action';
 import { SyncAction } from 'common/flux/sync-action';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
@@ -25,14 +26,14 @@ describe('LeftNavActionCreator', () => {
         );
     });
 
-    it('itemSelected', () => {
+    it('itemSelected', async () => {
         const itemSelectedMock = Mock.ofType<SyncAction<LeftNavItemKey>>();
         leftNavActionsMock
             .setup(actions => actions.itemSelected)
             .returns(() => itemSelectedMock.object)
             .verifiable();
 
-        const navigateToNewCardsViewMock = Mock.ofType<SyncAction<void>>();
+        const navigateToNewCardsViewMock = Mock.ofType<AsyncAction<void>>();
         cardSelectionActionsMock
             .setup(actions => actions.navigateToNewCardsView)
             .returns(() => navigateToNewCardsViewMock.object)
@@ -43,7 +44,7 @@ describe('LeftNavActionCreator', () => {
         itemSelectedMock.setup(m => m.invoke(expectedKey)).verifiable();
         navigateToNewCardsViewMock.setup(m => m.invoke(null)).verifiable();
 
-        actionCreator.itemSelected(expectedKey);
+        await actionCreator.itemSelected(expectedKey);
 
         itemSelectedMock.verifyAll();
         leftNavActionsMock.verifyAll();

@@ -36,37 +36,39 @@ describe(TabStopsViewStore, () => {
         expect(testObject.getDefaultState()).toEqual(expected);
     });
 
-    test('onDismissPanel', () => {
+    test('onDismissPanel', async () => {
         const initialState = getDefaultState();
         initialState.failureInstanceState.isPanelOpen = true;
         const finalState = getDefaultState();
-        createStoreForTabStopsViewActions('dismissPanel')
-            .withActionParam(null)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForTabStopsViewActions('dismissPanel').withActionParam(null);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onUpdateDescription', () => {
+    test('onUpdateDescription', async () => {
         const expectedDescription = 'some description';
         const initialState = getDefaultState();
         const finalState = getDefaultState();
         finalState.failureInstanceState.description = expectedDescription;
-        createStoreForTabStopsViewActions('updateDescription')
-            .withActionParam(expectedDescription)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester =
+            createStoreForTabStopsViewActions('updateDescription').withActionParam(
+                expectedDescription,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onCreateNewFailureInstancePanel', () => {
+    test('onCreateNewFailureInstancePanel', async () => {
         const requirementId = 'focus-indicator';
         const initialState = getDefaultState();
         const finalState = getDefaultState();
         finalState.failureInstanceState.selectedRequirementId = requirementId;
         finalState.failureInstanceState.isPanelOpen = true;
-        createStoreForTabStopsViewActions('createNewFailureInstancePanel')
-            .withActionParam(requirementId)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForTabStopsViewActions(
+            'createNewFailureInstancePanel',
+        ).withActionParam(requirementId);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onEditExistingFailureInstance', () => {
+    test('onEditExistingFailureInstance', async () => {
         const requirementId = 'focus-indicator';
         const expectedDescription = 'some description';
         const someInstanceId = 'some instance id';
@@ -84,9 +86,10 @@ describe(TabStopsViewStore, () => {
             requirementId,
             description: expectedDescription,
         };
-        createStoreForTabStopsViewActions('editExistingFailureInstance')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
+        const storeTester = createStoreForTabStopsViewActions(
+            'editExistingFailureInstance',
+        ).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
     function getDefaultState(): TabStopsViewStoreData {

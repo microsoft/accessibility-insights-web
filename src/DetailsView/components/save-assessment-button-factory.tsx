@@ -4,6 +4,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileNameBuilder } from 'common/filename-builder';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     SaveAssessmentButton,
     SaveAssessmentButtonDeps,
@@ -22,6 +23,7 @@ export type SaveAssessmentButtonFactoryProps = {
     deps: SaveAssessmentButtonFactoryDeps;
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryProps): JSX.Element {
@@ -31,7 +33,7 @@ export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryPro
 
     const currentDate = props.deps.getCurrentDate();
     const fileDate = props.deps.fileNameBuilder.getDateSegment(currentDate);
-    const targetPageTitle = props.tabStoreData.title;
+    const targetPageTitle = props.tabStoreData.title || '';
     const fileTitle = props.deps.fileNameBuilder.getTitleSegment(targetPageTitle);
     const fileName = `SavedAssessment_${fileDate}_${fileTitle}.a11ywebassessment`;
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');

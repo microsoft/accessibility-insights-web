@@ -33,7 +33,7 @@ export type InstanceDetailsProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
@@ -63,10 +63,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const toggleSelectHandler = (event: React.SyntheticEvent): void => {
         event.stopPropagation();
-        cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
+        cardSelectionMessageCreator?.toggleCardSelection(result.ruleId, result.uid, event);
     };
 
-    const hiddenButton = React.useRef(null);
+    const hiddenButton = React.useRef<HTMLButtonElement>(null);
     const cardHighlightingProperties = isHighlightSupported
         ? {
               onClick: (_: React.SyntheticEvent): void => {
@@ -91,7 +91,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                             {renderCardRowsForPropertyBag(result.resolution, props)}
                         </tbody>
                     </table>
-                    {isHighlightSupported && (
+                    {isHighlightSupported && cardSelectionMessageCreator !== undefined && (
                         <button
                             ref={hiddenButton}
                             onClick={toggleSelectHandler}
@@ -124,7 +124,7 @@ const renderCardRowsForPropertyBag = (
     props: InstanceDetailsProps,
 ) => {
     let propertyIndex = 0;
-    const cardRows = [];
+    const cardRows: JSX.Element[] = [];
     forOwn(propertyBag, (propertyData, propertyName) => {
         const propertyConfig = props.deps.getPropertyConfigById(propertyName);
         if (!isEmpty(propertyConfig)) {

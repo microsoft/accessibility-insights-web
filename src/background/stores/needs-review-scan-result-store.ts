@@ -51,7 +51,7 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
-    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
         this.state.results = payload.scanResult;
         this.state.rules = payload.rules;
         this.state.toolInfo = payload.toolInfo;
@@ -60,11 +60,11 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onResetStoreData = (): void => {
+    private onResetStoreData = async (): Promise<void> => {
         this.state = this.getDefaultState();
-        this.emitChanged();
+        await this.emitChanged();
     };
 }

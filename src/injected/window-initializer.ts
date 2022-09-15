@@ -6,25 +6,27 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
-import { TabStopEvent } from 'common/types/tab-stop-event';
+import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
-import { getUniqueSelector } from 'scanner/axe-utils';
+import { getAllUniqueSelectors, getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
 import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
@@ -71,7 +73,8 @@ export class WindowInitializer {
     protected elementFinderByPath: ElementFinderByPath;
     protected clientUtils: ClientUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    protected frameMessenger: FrameMessenger;
+    protected frameMessenger: SingleFrameMessenger;
+    protected allFramesMessenger: AllFramesMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
     protected actionMessageDispatcher: RemoteActionMessageDispatcher;
@@ -133,7 +136,7 @@ export class WindowInitializer {
             logger,
         );
 
-        this.frameMessenger = new FrameMessenger(this.respondableCommandMessageCommunicator);
+        this.frameMessenger = new SingleFrameMessenger(this.respondableCommandMessageCommunicator);
         const axeFrameMessenger = new AxeFrameMessenger(
             this.respondableCommandMessageCommunicator,
             this.windowUtils,
@@ -142,13 +145,21 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
+        this.allFramesMessenger = new AllFramesMessenger(
+            this.frameMessenger,
+            htmlElementUtils,
+            promiseFactory,
+            logger,
+            mergePromiseResponses,
+        );
+
         const singleFrameListener = new SingleFrameTabStopListener(
             'manual-tab-stop-listener',
             getUniqueSelector,
             document,
         );
         this.manualTabStopListener = new AllFrameRunner<TabStopEvent>(
-            this.frameMessenger,
+            this.allFramesMessenger,
             htmlElementUtils,
             this.windowUtils,
             singleFrameListener,
@@ -159,6 +170,7 @@ export class WindowInitializer {
         const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtils,
             getUniqueSelector,
+            getAllUniqueSelectors,
         );
         const focusTrapsKeydownHandler = new FocusTrapsHandler(
             tabStopRequirementEvaluator,
@@ -175,7 +187,7 @@ export class WindowInitializer {
             getUniqueSelector,
         );
         this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
-            this.frameMessenger,
+            this.allFramesMessenger,
             htmlElementUtils,
             this.windowUtils,
             tabStopsOrchestrator,
@@ -196,9 +208,8 @@ export class WindowInitializer {
             new DetailsDialogHandler(htmlElementUtils, this.windowUtils),
         );
         this.drawingController = new DrawingController(
-            this.frameMessenger,
+            this.allFramesMessenger,
             new HtmlElementAxeResultsHelper(htmlElementUtils, logger),
-            htmlElementUtils,
         );
         this.scrollingController = new ScrollingController(this.frameMessenger, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(

@@ -14,14 +14,14 @@ describe('createToolData', () => {
         );
 
         expect(result).toMatchInlineSnapshot(`
-            Object {
-              "applicationProperties": Object {
+            {
+              "applicationProperties": {
                 "environmentName": "test-environment-name",
                 "name": "test-tool-name",
                 "resolution": "test-resolution",
                 "version": "test-tool-version",
               },
-              "scanEngineProperties": Object {
+              "scanEngineProperties": {
                 "name": "test-engine-name",
                 "version": "test-engine-version",
               },

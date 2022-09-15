@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
-
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -10,11 +9,11 @@ import {
     TelemetryEventSource,
     TUTORIAL_OPEN,
 } from 'common/extension-telemetry-events';
-import { Tab } from 'common/itab';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
-import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { Tab } from 'common/types/store-data/itab';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { WindowUtils } from 'common/window-utils';
@@ -85,7 +84,7 @@ describe('PopupActionMessageCreatorTest', () => {
         );
     });
 
-    test('openDetailsView', () => {
+    test('openDetailsView', async () => {
         const viewType = VisualizationType.Headings;
         const pivotType = DetailsViewPivotType.fastPass;
 
@@ -112,7 +111,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
         mockWindowUtils.setup(x => x.closeWindow()).verifiable(Times.once());
 
-        testSubject.openDetailsView(
+        await testSubject.openDetailsView(
             stubKeypressEvent,
             VisualizationType.Headings,
             testSource,
@@ -120,7 +119,7 @@ describe('PopupActionMessageCreatorTest', () => {
         );
 
         actionMessageDispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            dispatcher => dispatcher.asyncDispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
         );
         mockWindowUtils.verifyAll();

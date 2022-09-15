@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
+import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton, Stack } from '@fluentui/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -94,15 +94,27 @@ export class AutoDetectedFailuresDialog extends React.Component<
                     </ul>
                 </div>
                 <DialogFooter>
-                    <Checkbox
-                        label={"Don't show again"}
-                        onChange={this.disableAutoDetectedFailuresDialog}
-                        checked={this.state.isDisableBoxChecked}
-                    />
-                    <PrimaryButton
-                        onClick={this.dismissAutoDetectedFailuresDialog}
-                        text={'Got it'}
-                    />
+                    <Stack
+                        horizontal
+                        horizontalAlign="space-between"
+                        wrap
+                        verticalAlign="center"
+                        tokens={{ childrenGap: 6 }}
+                    >
+                        <Stack.Item grow disableShrink>
+                            <Checkbox
+                                label={"Don't show again"}
+                                onChange={this.disableAutoDetectedFailuresDialog}
+                                checked={this.state.isDisableBoxChecked}
+                            />
+                        </Stack.Item>
+                        <Stack.Item grow>
+                            <PrimaryButton
+                                onClick={this.dismissAutoDetectedFailuresDialog}
+                                text={'Got it'}
+                            />
+                        </Stack.Item>
+                    </Stack>
                 </DialogFooter>
             </Dialog>
         );

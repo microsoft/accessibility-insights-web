@@ -74,6 +74,12 @@
     }
 
     .content-hyperlinks {
+        .insights-link {
+            line-height: 20px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
         .content-inline {
             line-height: 20px;
             margin-bottom: 6px;
@@ -81,12 +87,6 @@
             .insights-link {
                 display: inline;
             }
-        }
-
-        .insights-link {
-            line-height: 20px;
-            margin-bottom: 6px;
-            display: block;
         }
     }
 

@@ -5,17 +5,17 @@ exports[`DeviceConnectViewContainer renders 1`] = `
   className="windowContainer"
 >
   <WindowTitle
-    deps={Object {}}
+    deps={{}}
     pageTitle="Connect to your Android device"
     windowStateStoreData={
-      Object {
+      {
         "currentWindowState": "customSize",
         "routeId": "deviceConnectView",
       }
     }
   >
     <WithStoreSubscriptionForHeaderIconComponent
-      deps={Object {}}
+      deps={{}}
       invertColors={true}
     />
   </WindowTitle>
@@ -27,25 +27,25 @@ exports[`DeviceConnectViewContainer renders 1`] = `
     >
       <AndroidSetupStepContainer
         androidSetupStoreData={
-          Object {
+          {
             "currentStepId": "detect-adb",
           }
         }
-        deps={Object {}}
+        deps={{}}
         userConfigurationStoreData={
-          Object {
+          {
             "isFirstTime": true,
           }
         }
         windowStateStoreData={
-          Object {
+          {
             "currentWindowState": "customSize",
             "routeId": "deviceConnectView",
           }
         }
       />
       <TelemetryPermissionDialog
-        deps={Object {}}
+        deps={{}}
         isFirstTime={true}
       />
     </div>

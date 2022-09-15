@@ -24,15 +24,18 @@ export class FeatureFlagsController {
         return this.featureFlagStore.getState();
     }
 
-    public disableFeature(feature: string): FeatureFlagStoreData {
+    public async disableFeature(feature: string): Promise<FeatureFlagStoreData> {
         return this.toggleFeatureFlag(feature, false);
     }
 
-    public enableFeature(feature: string): FeatureFlagStoreData {
+    public async enableFeature(feature: string): Promise<FeatureFlagStoreData> {
         return this.toggleFeatureFlag(feature, true);
     }
 
-    private toggleFeatureFlag(feature: string, enabled: boolean): FeatureFlagStoreData {
+    private async toggleFeatureFlag(
+        feature: string,
+        enabled: boolean,
+    ): Promise<FeatureFlagStoreData> {
         const payload: FeatureFlagPayload = {
             feature,
             enabled,
@@ -42,7 +45,9 @@ export class FeatureFlagsController {
             payload: payload,
             tabId: null,
         };
-        this.interpreter.interpret(message);
+        const response = this.interpreter.interpret(message);
+
+        await response.result;
 
         return this.listFeatureFlags();
     }

@@ -18,7 +18,7 @@ import { VisualizationConfiguration } from '../../../../../../common/configs/vis
 import {
     ManualTestStatus,
     ManualTestStatusData,
-} from '../../../../../../common/types/manual-test-status';
+} from '../../../../../../common/types/store-data/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import {
     BaseLeftNavLink,

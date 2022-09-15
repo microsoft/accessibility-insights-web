@@ -4,7 +4,7 @@
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { WindowUtils } from 'common/window-utils';
 import { AllFrameRunner, AllFrameRunnerTarget } from 'injected/all-frame-runner';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
     PromiseWindowCommandMessageListener,
@@ -15,7 +15,7 @@ type UnitTestTargetType = {
     id: string;
 };
 
-describe('AllFrameRunnerTests', () => {
+describe(AllFrameRunner, () => {
     const unitTestListener: AllFrameRunnerTarget<UnitTestTargetType> = {
         commandSuffix: '',
         start: async () => {},
@@ -25,20 +25,20 @@ describe('AllFrameRunnerTests', () => {
     };
 
     const unitTestListenerMock = Mock.ofInstance(unitTestListener, MockBehavior.Strict);
-    const frameMessengerMock = Mock.ofType(FrameMessenger, MockBehavior.Strict);
+    const allFramesMessengerMock = Mock.ofType<AllFramesMessenger>(undefined, MockBehavior.Strict);
     const htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
     const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
     beforeEach(() => {
         unitTestListenerMock.reset();
-        frameMessengerMock.reset();
+        allFramesMessengerMock.reset();
         htmlElementUtilsMock.reset();
         windowUtilsMock.reset();
     });
 
     afterEach(() => {
         unitTestListenerMock.verifyAll();
-        frameMessengerMock.verifyAll();
+        allFramesMessengerMock.verifyAll();
         windowUtilsMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
     });
@@ -46,12 +46,12 @@ describe('AllFrameRunnerTests', () => {
     describe('initialize', () => {
         test('general behavior', () => {
             const frameRunner = getFrameRunnerInstance(
-                frameMessengerMock,
+                allFramesMessengerMock,
                 htmlElementUtilsMock,
                 windowUtilsMock,
                 unitTestListenerMock,
             );
-            frameMessengerMock
+            allFramesMessengerMock
                 .setup(m => m.addMessageListener(It.isAnyString(), It.isAny()))
                 .verifiable(Times.exactly(3));
 
@@ -64,13 +64,13 @@ describe('AllFrameRunnerTests', () => {
 
         test('provides listener with callback that reports results through frames', async () => {
             const frameRunner = getFrameRunnerInstance(
-                frameMessengerMock,
+                allFramesMessengerMock,
                 htmlElementUtilsMock,
                 windowUtilsMock,
                 unitTestListenerMock,
             );
 
-            frameMessengerMock
+            allFramesMessengerMock
                 .setup(m => m.addMessageListener(It.isAnyString(), It.isAny()))
                 .verifiable(Times.exactly(3));
 
@@ -100,48 +100,64 @@ describe('AllFrameRunnerTests', () => {
         });
     });
 
-    test('public start: calls start in current frame & sends start command to other frames', async () => {
+    test.each([true, false])(
+        'public start: calls start in current frame & sends start command to other frames with isTopWindow=%s',
+        async isTopWindow => {
+            windowUtilsMock
+                .setup(m => m.isTopWindow())
+                .returns(() => isTopWindow)
+                .verifiable(Times.once());
+
+            const frameRunner = getFrameRunnerInstance(
+                allFramesMessengerMock,
+                htmlElementUtilsMock,
+                windowUtilsMock,
+                unitTestListenerMock,
+            );
+
+            unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
+
+            const expectedInitializedCallTimes = isTopWindow ? Times.once() : Times.never();
+            allFramesMessengerMock
+                .setup(m => m.initializeAllFrames())
+                .verifiable(expectedInitializedCallTimes);
+            allFramesMessengerMock
+                .setup(m => m.sendCommandToAllFrames((frameRunner as any).startCommand))
+                .verifiable(Times.once());
+
+            await frameRunner.start();
+        },
+    );
+
+    test('public stop: calls stop in current frame & sends stop command to other frames with', async () => {
         const frameRunner = getFrameRunnerInstance(
-            frameMessengerMock,
-            htmlElementUtilsMock,
-            windowUtilsMock,
-            unitTestListenerMock,
-        );
-
-        unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
-
-        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
-            command: (frameRunner as any).startCommand,
-        });
-
-        await frameRunner.start();
-    });
-
-    test('public stop: calls stop in current frame & sends stop command to other frames', async () => {
-        const frameRunner = getFrameRunnerInstance(
-            frameMessengerMock,
+            allFramesMessengerMock,
             htmlElementUtilsMock,
             windowUtilsMock,
             unitTestListenerMock,
         );
 
         unitTestListenerMock.setup(m => m.stop()).verifiable(Times.once());
-        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
-            command: (frameRunner as any).stopCommand,
-        });
+        allFramesMessengerMock
+            .setup(m => m.sendCommandToAllFrames((frameRunner as any).stopCommand))
+            .verifiable(Times.once());
 
         await frameRunner.stop();
     });
 
     test('child frames return null when sent start message', async () => {
+        windowUtilsMock
+            .setup(m => m.isTopWindow())
+            .returns(() => false)
+            .verifiable(Times.once());
         unitTestListenerMock.setup(m => m.start()).verifiable(Times.once());
 
         const { commandId, commandFunc } =
             captureFrameMessengerCallbacks(unitTestListenerMock).start;
 
-        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
-            command: commandId,
-        });
+        allFramesMessengerMock
+            .setup(m => m.sendCommandToAllFrames(commandId))
+            .verifiable(Times.once());
 
         expect(await commandFunc(null, null)).toBeNull();
     });
@@ -152,9 +168,9 @@ describe('AllFrameRunnerTests', () => {
         const { commandId, commandFunc } =
             captureFrameMessengerCallbacks(unitTestListenerMock).stop;
 
-        setupSendCommandToFrames(htmlElementUtilsMock, frameMessengerMock, {
-            command: commandId,
-        });
+        allFramesMessengerMock
+            .setup(m => m.sendCommandToAllFrames(commandId))
+            .verifiable(Times.once());
 
         expect(await commandFunc(null, null)).toBeNull();
     });
@@ -216,7 +232,7 @@ describe('AllFrameRunnerTests', () => {
             const { commandId, commandFunc } =
                 captureFrameMessengerCallbacks(unitTestListenerMock).onResultFromChildFrame;
 
-            frameMessengerMock
+            allFramesMessengerMock
                 .setup(m =>
                     m.sendMessageToWindow(parentWindow, {
                         command: commandId,
@@ -250,26 +266,6 @@ describe('AllFrameRunnerTests', () => {
         });
     });
 
-    const setupSendCommandToFrames = (
-        htmlUtilsMock: IMock<HTMLElementUtils>,
-        frameMsgrMock: IMock<FrameMessenger>,
-        expectedCommandMessage: CommandMessage,
-    ) => {
-        const fakeFrames = [{ id: 'iframe1' }, { id: 'iframe2' }];
-        htmlUtilsMock
-            .setup(m => m.getAllElementsByTagName('iframe'))
-            .returns(() => fakeFrames as any)
-            .verifiable(Times.once());
-
-        fakeFrames.forEach(f => {
-            frameMsgrMock
-                .setup(m =>
-                    m.sendMessageToFrame(f as unknown as HTMLIFrameElement, expectedCommandMessage),
-                )
-                .verifiable(Times.once());
-        });
-    };
-
     type CommandFunction = {
         commandId: string;
         commandFunc: PromiseWindowCommandMessageListener;
@@ -286,7 +282,7 @@ describe('AllFrameRunnerTests', () => {
         topWindowCallback?: (result: UnitTestTargetType) => void,
     ): AllFrameRunnerCommands => {
         const frameRunner = getFrameRunnerInstance(
-            frameMessengerMock,
+            allFramesMessengerMock,
             htmlElementUtilsMock,
             windowUtilsMock,
             unitTestListenerMock,
@@ -294,7 +290,7 @@ describe('AllFrameRunnerTests', () => {
         frameRunner.topWindowCallback = topWindowCallback;
 
         const commands: Record<string, PromiseWindowCommandMessageListener> = {};
-        frameMessengerMock
+        allFramesMessengerMock
             .setup(m => m.addMessageListener(It.isAnyString(), It.isAny()))
             .callback((command: string, func: PromiseWindowCommandMessageListener) => {
                 commands[command] = func;
@@ -325,7 +321,7 @@ describe('AllFrameRunnerTests', () => {
     };
 
     const getFrameRunnerInstance = (
-        _frameMessengerMock: IMock<FrameMessenger>,
+        _allFrameMessengerMock: IMock<AllFramesMessenger>,
         _htmlElementUtilsMock: IMock<HTMLElementUtils>,
         _windowUtilsMock: IMock<WindowUtils>,
         _listenerMock: IMock<AllFrameRunnerTarget<UnitTestTargetType>>,
@@ -337,7 +333,7 @@ describe('AllFrameRunnerTests', () => {
 
         const frameRunner: AllFrameRunner<UnitTestTargetType> =
             new AllFrameRunner<UnitTestTargetType>(
-                _frameMessengerMock.object,
+                _allFrameMessengerMock.object,
                 _htmlElementUtilsMock.object,
                 _windowUtilsMock.object,
                 _listenerMock.object,

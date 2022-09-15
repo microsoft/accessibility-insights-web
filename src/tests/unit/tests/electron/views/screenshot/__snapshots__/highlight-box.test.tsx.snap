@@ -6,7 +6,7 @@ exports[`HighlightBox renders for label="!" with appropriate position and dimens
   className="highlightBox"
   data-automation-id="screenshot-highlight-box"
   style={
-    Object {
+    {
       "height": "50px",
       "left": "50%",
       "top": "50%",
@@ -28,7 +28,7 @@ exports[`HighlightBox renders for label=null with appropriate position and dimen
   className="highlightBox"
   data-automation-id="screenshot-highlight-box"
   style={
-    Object {
+    {
       "height": "50px",
       "left": "50%",
       "top": "50%",

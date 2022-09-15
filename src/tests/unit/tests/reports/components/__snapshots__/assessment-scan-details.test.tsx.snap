@@ -34,8 +34,8 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
           <FormattedDate
             date={2018-10-22T12:29:00.000Z}
             deps={
-              Object {
-                "globalization": Object {
+              {
+                "globalization": {
                   "languageCode": "en-us",
                 },
               }

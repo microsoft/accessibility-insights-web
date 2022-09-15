@@ -6,8 +6,8 @@ exports[`Header renders in narrow mode 1`] = `
 >
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
-      Object {
-        "textContent": Object {
+      {
+        "textContent": {
           "applicationTitle": "THE_APPLICATION_TITLE",
         },
       }
@@ -29,8 +29,8 @@ exports[`Header renders per snapshot 1`] = `
 >
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
-      Object {
-        "textContent": Object {
+      {
+        "textContent": {
           "applicationTitle": "THE_APPLICATION_TITLE",
         },
       }
@@ -57,8 +57,8 @@ exports[`Header renders with showFarItems equals false 1`] = `
 >
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
-      Object {
-        "textContent": Object {
+      {
+        "textContent": {
           "applicationTitle": "THE_APPLICATION_TITLE",
         },
       }
@@ -82,8 +82,8 @@ exports[`Header renders with showFarItems equals true 1`] = `
 >
   <WithStoreSubscriptionForHeaderIconComponent
     deps={
-      Object {
-        "textContent": Object {
+      {
+        "textContent": {
           "applicationTitle": "THE_APPLICATION_TITLE",
         },
       }

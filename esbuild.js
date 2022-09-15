@@ -31,6 +31,7 @@ const devWebExtensionOutdir = path.join(__dirname, 'extension/devBundle');
 const devWebExtensionM3Outdir = path.join(__dirname, 'extension/devMv3Bundle');
 
 const prodWebExtensionOutDir = path.join(__dirname, 'extension/prodBundle');
+const prodWebExtensionM3OutDir = path.join(__dirname, 'extension/prodMv3Bundle');
 
 function isReactDevtoolsInstalled() {
     try {
@@ -50,6 +51,25 @@ function checkToAddReactDevTools(givenEntryFiles) {
         givenEntryFiles.detailsView = `${src}/DetailsView/details-view-init-with-react-devtools.ts`;
         givenEntryFiles.popup = `${src}/popup/popup-init-with-react-devtools.ts`;
     }
+}
+
+function ignoreNodeModules(givenPlugins) {
+    // esbuild doesn't have an easy way to ignore node_modules for monorepos,
+    // so this plugin is necessary (marks all node_modules as external).
+    // Thread: https://github.com/evanw/esbuild/issues/619
+    givenPlugins.push(
+        NodeResolve.NodeResolvePlugin({
+            extensions: ['.ts', '.tsx', '.js'],
+            onResolved: resolved => {
+                if (resolved.includes('node_modules')) {
+                    return {
+                        external: true,
+                    };
+                }
+                return resolved;
+            },
+        }),
+    );
 }
 
 // Default behavior; builds dev extension.
@@ -81,6 +101,15 @@ switch (argsObj.env) {
         outdir = prodWebExtensionOutDir;
         break;
 
+    case 'prod-mv3':
+        minify = true;
+        sourcemap = false;
+        outdir = prodWebExtensionM3OutDir;
+        define = {
+            global: 'globalThis',
+        };
+        break;
+
     case 'dev-mv3':
         outdir = devWebExtensionM3Outdir;
         define = {
@@ -93,24 +122,21 @@ switch (argsObj.env) {
     case 'report':
         entryFiles = { report: `${src}/reports/package/reporter-factory.ts` };
         outdir = path.join(__dirname, 'packages/report/bundle');
-        format = 'esm';
+        format = 'cjs';
 
-        // esbuild doesn't have an easy way to ignore node_modules for monorepos,
-        // so this plugin is necessary (marks all node_modules as external).
-        // Thread: https://github.com/evanw/esbuild/issues/619
-        plugins.push(
-            NodeResolve.NodeResolvePlugin({
-                extensions: ['.ts', '.tsx', '.js'],
-                onResolved: resolved => {
-                    if (resolved.includes('node_modules')) {
-                        return {
-                            external: true,
-                        };
-                    }
-                    return resolved;
-                },
-            }),
-        );
+        ignoreNodeModules(plugins);
+
+        break;
+
+    case 'validator':
+        entryFiles = {
+            validator: `${src}/packages/assessment-validator/index.ts`,
+        };
+        outdir = path.join(__dirname, 'packages/validator/bundle');
+        platform = 'node';
+
+        ignoreNodeModules(plugins);
+
         break;
 
     // dev web extension

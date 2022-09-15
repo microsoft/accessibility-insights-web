@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
@@ -27,14 +26,13 @@ export type RulesWithInstancesDeps = RuleContentDeps &
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
-    fixInstructionProcessor: FixInstructionProcessor;
     rules: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
+    cardSelectionMessageCreator?: CardSelectionMessageCreator;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -44,7 +42,6 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     ({
         rules,
         outcomeType,
-        fixInstructionProcessor,
         deps,
         userConfigurationStoreData,
         targetAppInfo,
@@ -73,7 +70,6 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         key={`${rule.id}-rule-group`}
                         deps={deps}
                         rule={rule}
-                        fixInstructionProcessor={fixInstructionProcessor}
                         userConfigurationStoreData={userConfigurationStoreData}
                         targetAppInfo={targetAppInfo}
                         cardSelectionMessageCreator={cardSelectionMessageCreator}
@@ -85,7 +81,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 headingLevel,
                 deps: deps,
                 onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                    cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
+                    cardSelectionMessageCreator?.toggleRuleExpandCollapse(rule.id, event);
                 },
                 isExpanded: rule.isExpanded,
             };

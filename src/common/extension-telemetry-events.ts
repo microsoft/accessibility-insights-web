@@ -80,6 +80,7 @@ export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
 export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 export const SET_AUTO_DETECTED_FAILURES_DIALOG_STATE: string = 'setAutoDetectedFailuresDialogState';
+export const SET_SAVE_ASSESSMENT_DIALOG_STATE: string = 'setSaveAssessmentDialogState';
 export const UNHANDLED_ERROR: string = 'unhandledError';
 export const ACCESSIBLENAMES_TOGGLE: string = 'accessibleNamesToggled';
 
@@ -137,7 +138,7 @@ export type ExportFastPassResultsTelemetryData = {
 } & ExportResultsTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
-    selectedTest: string;
+    selectedTest: string | null;
 } & BaseTelemetryData;
 
 export type DetailsViewOpenedTelemetryData = {
@@ -182,11 +183,6 @@ export type RequirementActionTelemetryData = {
 export type ModifiedCommandsTelemetryData = {
     modifiedCommands: string;
 };
-
-export type InspectTelemetryData = {
-    frameUrl?: string;
-    target?: string[];
-} & BaseTelemetryData;
 
 export type ScopingTelemetryData = {
     inputType: string;
@@ -290,6 +286,10 @@ export type AutoDetectedFailuresDialogStateTelemetryData = {
     enabled: boolean;
 };
 
+export type ShowAssessmentDialogStateTelemetryData = {
+    enabled: boolean;
+};
+
 export enum ErrorType {
     WindowError = 'WindowError',
     UnhandledRejection = 'UnhandledRejection',
@@ -317,7 +317,6 @@ export type TelemetryData =
     | DetailsViewPivotSelectedTelemetryData
     | RequirementSelectTelemetryData
     | ModifiedCommandsTelemetryData
-    | InspectTelemetryData
     | AssessmentTelemetryData
     | ScopingTelemetryData
     | RequirementActionTelemetryData
@@ -333,4 +332,5 @@ export type TelemetryData =
     | SetAllUrlsPermissionTelemetryData
     | TabStopsAutomatedResultsTelemetryData
     | AutoDetectedFailuresDialogStateTelemetryData
+    | ShowAssessmentDialogStateTelemetryData
     | UnhandledErrorTelemetryData;

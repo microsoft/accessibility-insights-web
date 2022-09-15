@@ -84,7 +84,7 @@ describe('PersistentStoreTest', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            testObject.callEmitChanged();
+            await testObject.callEmitChanged();
 
             idbInstanceMock.verifyAll();
         });
@@ -97,7 +97,7 @@ describe('PersistentStoreTest', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            testObject.callEmitChanged();
+            await testObject.callEmitChanged();
 
             idbInstanceMock.verifyAll();
         });
@@ -161,7 +161,7 @@ describe('PersistentStoreTest', () => {
             const testObject = new TestStore(true, false);
             testObject.initialize();
 
-            testObject.callEmitChanged();
+            await testObject.callEmitChanged();
 
             idbInstanceMock.verifyAll();
         });
@@ -170,7 +170,7 @@ describe('PersistentStoreTest', () => {
             const testObject = new TestStore(false, false);
             testObject.initialize();
 
-            testObject.callEmitChanged();
+            await testObject.callEmitChanged();
 
             idbInstanceMock.verifyAll();
         });
@@ -212,8 +212,8 @@ describe('PersistentStoreTest', () => {
             // Tested in base-store.tests.ts
         }
 
-        public callEmitChanged() {
-            this.emitChanged();
+        public async callEmitChanged() {
+            await this.emitChanged();
         }
 
         public async callPersistData(data: TestData) {

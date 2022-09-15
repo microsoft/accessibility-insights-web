@@ -3,6 +3,7 @@
 
 import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
+import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import { shallow } from 'enzyme';
 import { UIFactory } from 'packages/accessibility-insights-ui/ui-factory';
 import * as React from 'react';
@@ -13,7 +14,7 @@ describe('UIFactory', () => {
     const narrowModeThresholds = {
         collapseHeaderAndNavThreshold: 600,
         collapseCommandBarThreshold: 960,
-    };
+    } as NarrowModeThresholds;
     const options = {
         applicationTitle,
         setPageTitle: true,

@@ -20,7 +20,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
         protected scanner: ScannerUtils,
-        protected scopingStore: BaseStore<ScopingStoreData>,
+        protected scopingStore: BaseStore<ScopingStoreData, Promise<void>>,
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,

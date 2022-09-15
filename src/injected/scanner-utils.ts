@@ -1,30 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { GuidanceLink } from 'common/types/store-data/guidance-links';
-import { CheckData } from 'injected/element-based-view-model-creator';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { scan as scanRunner } from 'scanner/exposed-apis';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';
 import { ScanOptions } from 'scanner/scan-options';
 import { DictionaryStringTo } from 'types/common-types';
-
-export type DecoratedAxeNodeResult = {
-    status?: boolean;
-    ruleId: string;
-    failureSummary?: string;
-    selector: string;
-    html?: string;
-    help?: string;
-    id?: string;
-    guidanceLinks: GuidanceLink[];
-    helpUrl?: string;
-} & CheckData;
-
-export interface HtmlElementAxeResults {
-    ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
-    propertyBag?: any;
-    target: string[];
-}
 
 export class ScannerUtils {
     public constructor(

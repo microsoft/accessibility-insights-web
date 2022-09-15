@@ -5,7 +5,7 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.23.2-focal AS setup
+FROM mcr.microsoft.com/playwright:v1.25.1-focal AS setup
 
 USER root
 
@@ -44,6 +44,14 @@ RUN yarn build:dev --no-cache
 # we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run
 # man page for command: https://manpages.ubuntu.com/manpages/xenial/man1/xvfb-run.1.html
 ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:e2e $@", ""]
+
+FROM setup AS web-mv3
+RUN yarn build:dev:mv3 --no-cache
+
+# since we need our chromium to run in 'headful' mode (for testing chrome extension)
+# we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run
+# man page for command: https://manpages.ubuntu.com/manpages/xenial/man1/xvfb-run.1.html
+ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:e2e:mv3 $@", ""]
 
 FROM setup AS unified
 RUN apt-get update && \

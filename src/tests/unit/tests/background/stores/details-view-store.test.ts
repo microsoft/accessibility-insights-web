@@ -15,7 +15,7 @@ describe('DetailsViewStoreTest', () => {
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
-    test('onSetSelectedDetailsViewRightContentPanel', () => {
+    test('onSetSelectedDetailsViewRightContentPanel', async () => {
         const initialState = new DetailsViewStoreDataBuilder()
             .withDetailsViewRightContentPanel('Overview')
             .build();
@@ -24,12 +24,13 @@ describe('DetailsViewStoreTest', () => {
             .withDetailsViewRightContentPanel('TestView')
             .build();
 
-        createStoreTesterForDetailsViewActions('setSelectedDetailsViewRightContentPanel')
-            .withActionParam('TestView')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForDetailsViewActions(
+            'setSelectedDetailsViewRightContentPanel',
+        ).withActionParam('TestView');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onOpenPreviewFeatures', () => {
+    test('onOpenPreviewFeatures', async () => {
         const initialState = new DetailsViewStoreDataBuilder()
             .withPreviewFeaturesOpen(false)
             .build();
@@ -38,12 +39,14 @@ describe('DetailsViewStoreTest', () => {
             .withPreviewFeaturesOpen(true)
             .build();
 
-        createStoreTesterForSidePanelActions('openSidePanel')
-            .withActionParam('PreviewFeatures')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('openSidePanel').withActionParam(
+                'PreviewFeatures',
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onClosePreviewFeatures', () => {
+    test('onClosePreviewFeatures', async () => {
         const initialState = new DetailsViewStoreDataBuilder()
             .withPreviewFeaturesOpen(true)
             .build();
@@ -52,76 +55,78 @@ describe('DetailsViewStoreTest', () => {
             .withPreviewFeaturesOpen(false)
             .build();
 
-        createStoreTesterForSidePanelActions('closeSidePanel')
-            .withActionParam('PreviewFeatures')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('closeSidePanel').withActionParam(
+                'PreviewFeatures',
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onOpenScoping', () => {
+    test('onOpenScoping', async () => {
         const initialState = new DetailsViewStoreDataBuilder().withScopingOpen(false).build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withScopingOpen(true).build();
 
-        createStoreTesterForSidePanelActions('openSidePanel')
-            .withActionParam('Scoping')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('openSidePanel').withActionParam('Scoping');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onCloseScoping', () => {
+    test('onCloseScoping', async () => {
         const initialState = new DetailsViewStoreDataBuilder().withScopingOpen(true).build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withScopingOpen(false).build();
 
-        createStoreTesterForSidePanelActions('closeSidePanel')
-            .withActionParam('Scoping')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('closeSidePanel').withActionParam('Scoping');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onCloseSettings', () => {
+    test('onCloseSettings', async () => {
         const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
             .withSettingPanelState(false)
             .build();
 
-        createStoreTesterForSidePanelActions('closeSidePanel')
-            .withActionParam('Settings')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('closeSidePanel').withActionParam('Settings');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onOpenContent', () => {
+    test('onOpenContent', async () => {
         const initialState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
             .withContentOpen(true, 'content/path', 'content title')
             .build();
 
-        createStoreTesterForContentActions('openContentPanel')
-            .withActionParam({ contentPath: 'content/path', contentTitle: 'content title' })
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester = createStoreTesterForContentActions('openContentPanel').withActionParam({
+            contentPath: 'content/path',
+            contentTitle: 'content title',
+        });
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onCloseContent', () => {
+    test('onCloseContent', async () => {
         const initialState = new DetailsViewStoreDataBuilder()
             .withContentOpen(true, 'content/path', 'content title')
             .build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withContentOpen(false).build();
 
-        createStoreTesterForContentActions('closeContentPanel').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
+        const storeTester = createStoreTesterForContentActions('closeContentPanel');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onOpenSidePanel', () => {
+    test('onOpenSidePanel', async () => {
         const initialState = new DetailsViewStoreDataBuilder().withSettingPanelState(false).build();
 
         const expectedState = new DetailsViewStoreDataBuilder().withSettingPanelState(true).build();
 
-        createStoreTesterForSidePanelActions('openSidePanel')
-            .withActionParam('Settings')
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        const storeTester =
+            createStoreTesterForSidePanelActions('openSidePanel').withActionParam('Settings');
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForContentActions(

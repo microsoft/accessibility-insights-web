@@ -6,12 +6,12 @@ import {
 } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentData,
     AssessmentStoreData,
     TestStepInstance,
 } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { find, keys } from 'lodash';
 import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';

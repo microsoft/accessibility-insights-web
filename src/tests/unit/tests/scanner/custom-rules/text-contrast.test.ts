@@ -1,38 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior } from 'typemoq';
-
-import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { textContrastConfiguration } from '../../../../../scanner/custom-rules/text-contrast';
-import { DictionaryStringTo } from '../../../../../types/common-types';
-
-function testTextContrast(
-    node: DictionaryStringTo<string>,
-    expectedData: any,
-    axeUtilsMock: IGlobalMock<typeof AxeUtils.getEvaluateFromCheck>,
-    windowMock: IGlobalMock<typeof window.getComputedStyle>,
-    dataSetterMock: IMock<(data) => void>,
-): void {
-    windowMock
-        .setup(m => m(It.isAny()))
-        .returns(
-            currentNode =>
-                ({ getPropertyValue: property => currentNode[property] } as CSSStyleDeclaration),
-        );
-
-    dataSetterMock.setup(d => d(expectedData));
-
-    let result;
-    GlobalScope.using(windowMock, axeUtilsMock).with(() => {
-        result = textContrastConfiguration.checks[0].evaluate.call(
-            { data: dataSetterMock.object },
-            node,
-        );
-    });
-    expect(result).toBe(false);
-
-    dataSetterMock.verifyAll();
-}
+import axe from 'axe-core';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { textContrastConfiguration } from 'scanner/custom-rules/text-contrast';
+import { Mock } from 'typemoq';
 
 describe('text contrast', () => {
     describe('verify text contrast configs', () => {
@@ -48,64 +19,63 @@ describe('text contrast', () => {
     });
 
     describe('verify evaluate', () => {
-        let dataSetterMock: IMock<(data) => void>;
-        const axeUtilsMock = GlobalMock.ofInstance(
-            AxeUtils.getEvaluateFromCheck,
-            'getEvaluateFromCheck',
-            AxeUtils,
-            MockBehavior.Strict,
+        afterEach(() => {
+            document.body.innerHTML = '';
+        });
+
+        it.each([true, false, undefined])(
+            'propagates return value %p from color-contrast check',
+            colorContrastResult => {
+                document.body.innerHTML = `
+                    <span id="element-under-test">hello</span>
+                `;
+                const node = document.querySelector('#element-under-test');
+
+                const actualResult = withAxeSetup(() => {
+                    axe._audit.checks['color-contrast'].evaluate = () => colorContrastResult;
+
+                    return textContrastConfiguration.checks[0].evaluate.call(
+                        { data: () => {} },
+                        node,
+                    );
+                });
+                expect(actualResult).toBe(colorContrastResult);
+            },
         );
-        const windowMock = GlobalMock.ofInstance(
-            window.getComputedStyle,
-            'getComputedStyle',
-            window,
-            MockBehavior.Strict,
+
+        it.each`
+            fontSizePx | fontWeight | expectedSizeOutput
+            ${26}      | ${700}     | ${'large'}
+            ${26}      | ${200}     | ${'large'}
+            ${15}      | ${700}     | ${'large'}
+            ${15}      | ${200}     | ${'regular'}
+        `(
+            'infers size $expectedSizeOutput for fontSizePx=$fontSizePx fontWeight=$fontWeight',
+            ({ fontSizePx, fontWeight, expectedSizeOutput }) => {
+                document.body.innerHTML = `
+                    <span id="element-under-test" style="font-size: ${fontSizePx}px; font-weight: ${fontWeight}">hello</span>
+                `;
+                const node = document.querySelector('#element-under-test');
+
+                const expectedData = {
+                    textString: 'hello',
+                    size: expectedSizeOutput,
+                };
+
+                const dataSetterMock = Mock.ofInstance(data => {});
+                dataSetterMock.setup(d => d(expectedData));
+
+                withAxeSetup(() => {
+                    axe._audit.checks['color-contrast'].evaluate = () => false;
+
+                    return textContrastConfiguration.checks[0].evaluate.call(
+                        { data: dataSetterMock.object },
+                        node,
+                    );
+                });
+
+                dataSetterMock.verifyAll();
+            },
         );
-
-        beforeEach(() => {
-            dataSetterMock = Mock.ofInstance(data => {});
-            axeUtilsMock
-                .setup(m => m(It.isAnyString()))
-                .returns(_ => (node, options, virtualNode, context) => false);
-        });
-
-        it('large font size / regular font weight', () => {
-            const node = {
-                innerText: 'hello',
-                'font-size': '26px',
-                'font-weight': '200',
-            };
-            const expectedData = {
-                textString: 'hello',
-                size: 'large',
-            };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
-        });
-
-        it('set size to be large for font size >= 14pt bold text', () => {
-            const node = {
-                innerText: 'hello',
-                'font-size': '20px',
-                'font-weight': '700',
-            };
-            const expectedData = {
-                textString: 'hello',
-                size: 'large',
-            };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
-        });
-
-        it('set size to be regular for font size < 18pt non bold text', () => {
-            const node = {
-                innerText: 'hello',
-                'font-size': '15px',
-                'font-weight': '200',
-            };
-            const expectedData = {
-                textString: 'hello',
-                size: 'regular',
-            };
-            testTextContrast(node, expectedData, axeUtilsMock, windowMock, dataSetterMock);
-        });
     });
 });

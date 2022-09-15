@@ -5,7 +5,6 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { CheckType } from 'common/types/check-type';
 import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
-import styles from './fix-instruction-panel.scss';
 
 export interface FixInstructionPanelDeps {
     fixInstructionProcessor: FixInstructionProcessor;
@@ -56,9 +55,7 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
         return (
             <div>
                 {props.renderTitleElement(title)}
-                <ul className={styles.insightsFixInstructionList}>
-                    {renderInstructions(props.checkType)}
-                </ul>
+                <ul>{renderInstructions(props.checkType)}</ul>
             </div>
         );
     },

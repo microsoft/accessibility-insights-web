@@ -7,7 +7,7 @@ exports[`HighlightBox renders with appropriate styles/elements when boxConfig is
   className="insights-highlight-text some class name"
   onClick={[Function]}
   style={
-    Object {
+    {
       "background": "green",
       "color": "red",
       "cursor": "auto",

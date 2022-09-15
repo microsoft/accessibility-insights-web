@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FormattedCheckResult } from 'common/types/store-data/visualization-scan-result-data';
 import { DictionaryStringTo } from 'types/common-types';
 
 export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>;

@@ -8,6 +8,7 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     AutoDetectedFailuresDialogStatePayload,
+    SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
     SaveWindowBoundsPayload,
     SetHighContrastModePayload,
@@ -30,6 +31,7 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         lastWindowBounds: null,
         lastWindowState: null,
         showAutoDetectedFailuresDialog: true,
+        showSaveAssessmentDialog: true,
     };
 
     constructor(
@@ -81,40 +83,47 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.userConfigActions.setAutoDetectedFailuresDialogState.addListener(
             this.onSetAutoDetectedFailuresDialogState,
         );
+        this.userConfigActions.setSaveAssessmentDialogState.addListener(
+            this.onSetSaveAssessmentDialogState,
+        );
     }
 
-    private onSetAdbLocation = (location: string): void => {
+    private onSetAdbLocation = async (location: string): Promise<void> => {
         this.state.adbLocation = location;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetTelemetryState = (enableTelemetry: boolean): void => {
+    private onSetTelemetryState = async (enableTelemetry: boolean): Promise<void> => {
         this.state.isFirstTime = false;
         this.state.enableTelemetry = enableTelemetry;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetHighContrastMode = (payload: SetHighContrastModePayload): void => {
+    private onSetHighContrastMode = async (payload: SetHighContrastModePayload): Promise<void> => {
         this.state.enableHighContrast = payload.enableHighContrast;
         this.state.lastSelectedHighContrast = payload.enableHighContrast;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetNativeHighContrastMode = (payload: SetNativeHighContrastModePayload): void => {
+    private onSetNativeHighContrastMode = async (
+        payload: SetNativeHighContrastModePayload,
+    ): Promise<void> => {
         this.state.enableHighContrast = payload.enableHighContrast
             ? true
             : this.state.lastSelectedHighContrast;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetIssueFilingService = (payload: SetIssueFilingServicePayload): void => {
+    private onSetIssueFilingService = async (
+        payload: SetIssueFilingServicePayload,
+    ): Promise<void> => {
         this.state.bugService = payload.issueFilingServiceName;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetIssueFilingServiceProperty = (
+    private onSetIssueFilingServiceProperty = async (
         payload: SetIssueFilingServicePropertyPayload,
-    ): void => {
+    ): Promise<void> => {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
@@ -125,17 +134,19 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] =
             payload.propertyValue;
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSaveIssueSettings = (payload: SaveIssueFilingSettingsPayload): void => {
+    private onSaveIssueSettings = async (
+        payload: SaveIssueFilingSettingsPayload,
+    ): Promise<void> => {
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSaveLastWindowBounds = (payload: SaveWindowBoundsPayload): void => {
+    private onSaveLastWindowBounds = async (payload: SaveWindowBoundsPayload): Promise<void> => {
         this.state.lastWindowState = payload.windowState;
 
         // Retain these bounds only if the window is in a normal state
@@ -143,14 +154,21 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             this.state.lastWindowBounds = payload.windowBounds;
         }
 
-        this.emitChanged();
+        await this.emitChanged();
     };
 
-    private onSetAutoDetectedFailuresDialogState = (
+    private onSetAutoDetectedFailuresDialogState = async (
         payload: AutoDetectedFailuresDialogStatePayload,
-    ): void => {
+    ): Promise<void> => {
         this.state.showAutoDetectedFailuresDialog = payload.enabled;
 
-        this.emitChanged();
+        await this.emitChanged();
+    };
+
+    private onSetSaveAssessmentDialogState = async (
+        payload: SaveAssessmentDialogStatePayload,
+    ): Promise<void> => {
+        this.state.showSaveAssessmentDialog = payload.enabled;
+        await this.emitChanged();
     };
 }

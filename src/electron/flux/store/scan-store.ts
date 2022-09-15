@@ -24,7 +24,7 @@ export class ScanStore extends BaseStoreImpl<ScanStoreData> {
         this.scanActions.scanFailed.addListener(this.onScanFailed);
     }
 
-    private onScanStarted = () => {
+    private onScanStarted = async () => {
         if (this.state.status === ScanStatus.Scanning) {
             return;
         }

@@ -18,7 +18,6 @@ import {
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
     FileIssueClickTelemetryData,
-    InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
     NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
@@ -31,6 +30,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
+    ShowAssessmentDialogStateTelemetryData,
     TabStopAutomatedFailuresInstanceCount,
     TabStopRequirementInstanceCount,
     TabStopsAutomatedResultsTelemetryData,
@@ -44,7 +44,7 @@ import {
     ForNeedsReviewAnalyzerScanCallback,
     ForRuleAnalyzerScanCallback,
 } from './types/analyzer-telemetry-callbacks';
-import { DetailsViewPivotType } from './types/details-view-pivot-type';
+import { DetailsViewPivotType } from './types/store-data/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';
 
 export type SupportedMouseEvent =
@@ -192,8 +192,9 @@ export class TelemetryDataFactory {
         requirement: string,
         passed: boolean,
         numInstances: number,
+        requirementDetails?: any,
     ): RequirementStatusTelemetryData {
-        return {
+        const telemetry = {
             triggeredBy: TriggeredByNotApplicable,
             source: TelemetryEventSource.DetailsView,
             selectedTest: VisualizationType[visualizationType],
@@ -201,16 +202,22 @@ export class TelemetryDataFactory {
             passed: passed,
             numInstances: numInstances,
         };
+
+        if (requirementDetails) {
+            telemetry['requirementDetails'] = requirementDetails;
+        }
+
+        return telemetry;
     }
 
     public forOpenDetailsView(
         event: SupportedMouseEvent,
-        visualizationType: VisualizationType,
+        visualizationType: VisualizationType | null,
         source: TelemetryEventSource,
     ): DetailsViewOpenTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
-            selectedTest: VisualizationType[visualizationType],
+            selectedTest: visualizationType == null ? null : VisualizationType[visualizationType],
         };
     }
 
@@ -245,10 +252,9 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forInspectElement(event: SupportedMouseEvent, target: string[]): InspectTelemetryData {
+    public forInspectElement(event: SupportedMouseEvent): BaseTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, TelemetryEventSource.IssueDetailsDialog),
-            target: target,
         };
     }
 
@@ -390,10 +396,10 @@ export class TelemetryDataFactory {
         testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.passes,
+            analyzerResult.originalResult?.passes,
         );
         const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.violations,
+            analyzerResult.originalResult?.violations,
         );
         const telemetry: IssuesAnalyzerScanTelemetryData = {
             ...this.forTestScan(
@@ -416,13 +422,13 @@ export class TelemetryDataFactory {
         testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.passes,
+            analyzerResult.originalResult?.passes,
         );
         const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.violations,
+            analyzerResult.originalResult?.violations,
         );
         const incompleteRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
-            analyzerResult.originalResult.incomplete,
+            analyzerResult.originalResult?.incomplete,
         );
         const telemetry: NeedsReviewAnalyzerScanTelemetryData = {
             ...this.forTestScan(
@@ -458,9 +464,11 @@ export class TelemetryDataFactory {
         return mouseEvent.detail === 0 ? 'keypress' : 'mouseclick';
     }
 
-    private generateTelemetryRuleResult(axeRule: AxeRule[]): DictionaryStringTo<number> {
+    private generateTelemetryRuleResult(
+        axeRule: AxeRule[] | undefined,
+    ): DictionaryStringTo<number> {
         const ruleResults: DictionaryStringTo<number> = {};
-        axeRule.forEach(element => {
+        axeRule?.forEach(element => {
             const key: string = element.id;
             if (key != null) {
                 ruleResults[key] = element.nodes.length;
@@ -504,6 +512,18 @@ export class TelemetryDataFactory {
     public forSetAutoDetectedFailuresDialogState(
         enabled: boolean,
     ): AutoDetectedFailuresDialogStateTelemetryData | undefined {
+        if (enabled === undefined) {
+            return undefined;
+        }
+
+        return {
+            enabled,
+        };
+    }
+
+    public forSetShowAssessmentDialogState(
+        enabled: boolean,
+    ): ShowAssessmentDialogStateTelemetryData | undefined {
         if (enabled === undefined) {
             return undefined;
         }

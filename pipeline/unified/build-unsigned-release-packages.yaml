@@ -10,8 +10,8 @@ trigger: none
 strategy:
     matrix:
         windows: { vmImage: 'windows-latest', platform: 'windows' }
-        mac: { vmImage: 'macOS-10.15', platform: 'mac' }
-        linux: { vmImage: 'ubuntu-18.04', platform: 'linux' }
+        mac: { vmImage: 'macOS-11', platform: 'mac' }
+        linux: { vmImage: 'ubuntu-20.04', platform: 'linux' }
 
 pool:
     vmImage: $(vmImage)

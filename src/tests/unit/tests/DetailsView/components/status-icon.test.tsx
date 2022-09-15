@@ -3,7 +3,7 @@
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
+import { ManualTestStatus } from '../../../../../common/types/store-data/manual-test-status';
 import { StatusIcon } from '../../../../../DetailsView/components/status-icon';
 
 describe('StatusIcon', () => {

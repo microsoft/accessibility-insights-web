@@ -24,6 +24,7 @@ export interface UserConfigurationStoreData {
     lastWindowBounds: Rectangle | null;
 
     showAutoDetectedFailuresDialog: boolean;
+    showSaveAssessmentDialog: boolean;
 }
 
 export interface IssueFilingServicePropertiesMap {

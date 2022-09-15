@@ -5,14 +5,14 @@ exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialo
 exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -31,15 +31,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={true}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={true}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;
@@ -51,14 +72,14 @@ exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismis
 exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -77,15 +98,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={false}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;
@@ -93,14 +135,14 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
 <Dialog
   dialogContentProps={
-    Object {
+    {
       "title": "Possible failures auto-detected",
       "type": 0,
     }
   }
   hidden={false}
   modalProps={
-    Object {
+    {
       "containerClassName": "insightsDialogMainOverride",
     }
   }
@@ -119,15 +161,36 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
     </ul>
   </div>
   <StyledDialogFooterBase>
-    <StyledCheckboxBase
-      checked={false}
-      label="Don't show again"
-      onChange={[Function]}
-    />
-    <CustomizedPrimaryButton
-      onClick={[Function]}
-      text="Got it"
-    />
+    <Stack
+      horizontal={true}
+      horizontalAlign="space-between"
+      tokens={
+        {
+          "childrenGap": 6,
+        }
+      }
+      verticalAlign="center"
+      wrap={true}
+    >
+      <StackItem
+        disableShrink={true}
+        grow={true}
+      >
+        <StyledCheckboxBase
+          checked={false}
+          label="Don't show again"
+          onChange={[Function]}
+        />
+      </StackItem>
+      <StackItem
+        grow={true}
+      >
+        <CustomizedPrimaryButton
+          onClick={[Function]}
+          text="Got it"
+        />
+      </StackItem>
+    </Stack>
   </StyledDialogFooterBase>
 </Dialog>
 `;

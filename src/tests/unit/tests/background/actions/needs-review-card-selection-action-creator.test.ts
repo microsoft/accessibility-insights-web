@@ -10,35 +10,30 @@ import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
-import {
-    createSyncActionMock,
-    createInterpreterMock,
-} from '../global-action-creators/action-creator-test-helpers';
+import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('NeedsReviewCardSelectionActionCreator', () => {
     const tabId = -2;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let interpreterMock: MockInterpreter;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        interpreterMock = new MockInterpreter();
     });
 
-    it('handles card selection toggle', () => {
+    it('handles card selection toggle', async () => {
         const payload: CardSelectionPayload = {
             resultInstanceUid: 'test-instance-uuid',
             ruleId: 'test-rule-id',
         };
-        const toggleNeedsReviewCardSelectionMock = createSyncActionMock(payload);
+        const toggleNeedsReviewCardSelectionMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleCardSelection',
             toggleNeedsReviewCardSelectionMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewCardSelection.CardSelectionToggled,
-            payload,
-            tabId,
         );
 
         const testSubject = new NeedsReviewCardSelectionActionCreator(
@@ -48,6 +43,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.CardSelectionToggled,
+            payload,
+            tabId,
+        );
 
         toggleNeedsReviewCardSelectionMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -56,19 +57,14 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
     });
 
-    test('onRuleExpansionToggle', () => {
+    test('onRuleExpansionToggle', async () => {
         const payload: RuleExpandCollapsePayload = {
             ruleId: 'test-rule-id',
         };
-        const ruleExpansionToggleMock = createSyncActionMock(payload);
+        const ruleExpansionToggleMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock(
             'toggleRuleExpandCollapse',
             ruleExpansionToggleMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewCardSelection.RuleExpansionToggled,
-            payload,
-            tabId,
         );
 
         const testSubject = new NeedsReviewCardSelectionActionCreator(
@@ -78,6 +74,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.RuleExpansionToggled,
+            payload,
+            tabId,
+        );
 
         ruleExpansionToggleMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -86,15 +88,10 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
     });
 
-    test('onToggleVisualHelper', () => {
+    test('onToggleVisualHelper', async () => {
         const payloadStub: BaseActionPayload = {};
-        const toggleVisualHelperMock = createSyncActionMock(null);
+        const toggleVisualHelperMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewCardSelection.ToggleVisualHelper,
-            payloadStub,
-            tabId,
-        );
 
         const testSubject = new NeedsReviewCardSelectionActionCreator(
             interpreterMock.object,
@@ -103,6 +100,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.ToggleVisualHelper,
+            payloadStub,
+            tabId,
+        );
 
         toggleVisualHelperMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -111,17 +114,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
     });
 
-    test('onCollapseAllRules', () => {
+    test('onCollapseAllRules', async () => {
         const payloadStub: BaseActionPayload = {};
-        const collapseAllRulesActionMock = createSyncActionMock(null);
+        const collapseAllRulesActionMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock(
             'collapseAllRules',
             collapseAllRulesActionMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewCardSelection.CollapseAllRules,
-            payloadStub,
-            tabId,
         );
 
         const testSubject = new NeedsReviewCardSelectionActionCreator(
@@ -131,6 +129,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.CollapseAllRules,
+            payloadStub,
+            tabId,
+        );
 
         collapseAllRulesActionMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -139,15 +143,10 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
     });
 
-    test('onExpandAllRules', () => {
+    test('onExpandAllRules', async () => {
         const payloadStub: BaseActionPayload = {};
-        const expandAllRulesActionMock = createSyncActionMock(null);
+        const expandAllRulesActionMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
-        const interpreterMock = createInterpreterMock(
-            Messages.NeedsReviewCardSelection.ExpandAllRules,
-            payloadStub,
-            tabId,
-        );
 
         const testSubject = new NeedsReviewCardSelectionActionCreator(
             interpreterMock.object,
@@ -156,6 +155,12 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
         );
 
         testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.ExpandAllRules,
+            payloadStub,
+            tabId,
+        );
 
         expandAllRulesActionMock.verifyAll();
         telemetryEventHandlerMock.verify(
