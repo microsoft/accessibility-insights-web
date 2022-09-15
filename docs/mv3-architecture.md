@@ -9,7 +9,9 @@ This document describes the top level architecture for the Accessibility Insight
 
 ### Extension Contexts
 
-At a top level, the extension has 4 separate pages/ operating contexts. These separate environments communicate via flux messaging, as described [in the flux section](#flux).
+At a top level, the extension has 4 main pages/ operating contexts. These separate environments communicate via flux messaging, as described [in the flux section](#flux).
+
+In addition to these 4 main pages, the extension has 2 additional contexts targeted towards developers debugging the application, those being DevTools and DebugTools. 
 
 #### Details View
 
@@ -39,7 +41,7 @@ During the transition from manifest v2 to v3, the background script was migrated
 
 The separate extension contexts communicate via a [flux](https://facebook.github.io/flux/docs/in-depth-overview/) messaging pattern. At a high level, the flux pattern ensures that data flows in one direction, from an action to a dispatcher (or action creator) to a store and finally to a view (see [flux documentation](https://facebook.github.io/flux/docs/in-depth-overview/#structure-and-data-flow) for more details).
 
-In this repo, the actions and action creators are primarily contained in [the actions directory](../src/background/actions) and messages are created by message creators that are contained in [the message-creators directory](../src/common/message-creators). You can also find the top level action interfaces/ logic in [the flux directory](../src/common/flux) and stores in [the stores directory](../src/background/stores).
+In this repo, the actions and action creators are primarily contained in [the actions directory](../src/background/actions) and messages are created by message creators that are contained in [the message-creators directory](../src/common/message-creators). Note that the [interpreter](../src/background/interpreter.ts) maps messages to actions, and you can also find the top level action interfaces/ logic in [the flux directory](../src/common/flux) and stores in [the stores directory](../src/background/stores).
 
 Prior to manifest v3 changes, most of the flux actions were fire-and-forget, meaning we treated all action listeners as synchronous, even if they kicked off async work, as seen with the [sync-action class](../src/common/flux/sync-action.ts). This was fine with manifest v2's persistent background pages, but became a problem with manifest v3 service workers. Since service workers can be shut down when the browser thinks they have gone idle, it is important to track any outstanding work in the form of promises so that the browser is aware when there are unsettled promises still in progress and does not shut the service worker down prematurely. As a result, we switched any actions whose listeners kick off async work to be  [async-actions](../src/common/flux/async-action.ts). With this change, we are able to track outstanding work via promises, ensuring that the service worker stays active until all promises are settled.
 
