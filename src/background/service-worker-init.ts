@@ -193,21 +193,6 @@ async function initializeAsync(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
-
-    const messageDistributor = new BackgroundMessageDistributor(
-        globalContext,
-        tabContextManager,
-        postMessageContentHandler,
-        browserAdapter,
-        eventResponseFactory,
-    );
-    messageDistributor.initialize();
-
     const targetTabController = new TargetTabController(
         browserAdapter,
         visualizationConfigurationFactory,
@@ -259,6 +244,23 @@ async function initializeAsync(): Promise<void> {
         detailsViewController,
     );
     tabEventDistributor.initialize();
+
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
+    const messageDistributor = new BackgroundMessageDistributor(
+        globalContext,
+        tabContextManager,
+        postMessageContentHandler,
+        browserAdapter,
+        eventResponseFactory,
+    );
+    // This should happen as late as possible so we don't try to distribute messages
+    // before all stores and actions have finished initializing
+    messageDistributor.initialize();
 
     await cleanKeysFromStoragePromise;
 
