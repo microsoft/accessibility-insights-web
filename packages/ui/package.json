@@ -19,7 +19,7 @@
     "dependencies": {
         "@fluentui/react": "^8.94.2",
         "axe-core": "4.4.1",
-        "classnames": "^2.3.1",
+        "classnames": "^2.3.2",
         "lodash": "^4.17.21",
         "luxon": "^3.0.1",
         "react": "^16.14.0",
