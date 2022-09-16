@@ -13,6 +13,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "aria-allowed-role": {
+    "reason": "best practice rule that was investigated with no known false positives, implemented as an automated check.",
     "status": "included",
   },
   "aria-command-name": {
@@ -278,6 +279,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "excluded",
   },
   "presentation-role-conflict": {
+    "reason": "best practice rule that was investigated with no known false positives, implemented as an automated check.",
     "status": "included",
   },
   "region": {

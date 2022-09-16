@@ -400,7 +400,9 @@ exports[`RichResolutionContent renders static content with id=web/link-in-text-b
 
 exports[`RichResolutionContent renders static content with id=web/p-as-heading 1`] = `
 <span>
-  Inspect the element using the Accessibility pane in the browser Developer tools and verify that the element’s accessible name contains its visible text.
+  Inspect the 
+  &lt;p&gt;
+   element in the Accessibility pane in the browser Developer tools and verify that the element is not used as a heading that is styled with bold, italic text and font-size.
 </span>
 `;
 
