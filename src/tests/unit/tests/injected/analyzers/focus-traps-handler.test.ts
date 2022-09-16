@@ -127,6 +127,32 @@ describe(FocusTrapsHandler, () => {
             expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
         });
 
+        it('Returns result of getKeyboardTrapResults if a shadow dom element is focused after delay', async () => {
+            const shadowDomElement = {
+                shadowRoot: {
+                    activeElement: focusedElementStub,
+                } as unknown as ShadowRoot,
+            } as HTMLElement;
+
+            setupDOM(shadowDomElement);
+
+            const expectedResult = {
+                selector: ['selector'],
+                html: 'html',
+            } as AutomatedTabStopRequirementResult;
+
+            evaluatorMock
+                .setup(e => e.getKeyboardTrapResults(lastFocusedElementStub, focusedElementStub))
+                .returns(() => expectedResult)
+                .verifiable(Times.once());
+            delayMock.setup(d => d(It.isAny(), focusTrapTimeout)).verifiable(Times.once());
+
+            const result = await testSubject.handleTabPressed(domMock.object);
+
+            expect(result).toBe(expectedResult);
+            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
+        });
+
         it('Tab press during delay does not create a false positive', async () => {
             const expectedResult = {
                 selector: ['selector'],

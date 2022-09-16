@@ -421,6 +421,7 @@
         "./src/injected/scanner.d.ts",
         "./src/injected/scoping-listener.ts",
         "./src/injected/selector-to-visualization-map.ts",
+        "./src/injected/shadow-dom-focus-tracker.ts",
         "./src/injected/shadow-initializer.ts",
         "./src/injected/shadow-utils.ts",
         "./src/injected/single-frame-tab-stop-listener.ts",
