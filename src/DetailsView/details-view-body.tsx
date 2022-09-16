@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -50,6 +51,7 @@ export interface DetailsViewBodyProps {
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
+    cardsViewStoreData: CardsViewStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;

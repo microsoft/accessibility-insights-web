@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 import { Label } from '@fluentui/react';
 import {
+    CardFooterInstanceActionButtons,
+    CardFooterInstanceActionButtonsDeps,
+} from 'common/components/cards/card-footer-instance-action-buttons';
+import {
     HighlightHiddenIcon,
     HighlightUnavailableIcon,
     HighlightVisibleIcon,
@@ -11,17 +15,17 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import * as React from 'react';
 
 import { CardInteractionSupport } from './card-interaction-support';
-import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 import styles from './instance-details-footer.scss';
 
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;
     unifiedResultToIssueFilingDataConverter: UnifiedResultToIssueFilingDataConverter;
-} & CardKebabMenuButtonDeps;
+} & CardFooterInstanceActionButtonsDeps;
 
 export type InstanceDetailsFooterProps = {
     deps: InstanceDetailsFooterDeps;
@@ -29,12 +33,14 @@ export type InstanceDetailsFooterProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
     'InstanceDetailsFooter',
     props => {
-        const { deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
+        const { deps, userConfigurationStoreData, result, rule, targetAppInfo, narrowModeStatus } =
+            props;
         const { cardInteractionSupport } = deps;
 
         const supportsAnyActions =
@@ -56,11 +62,12 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
 
             const kebabMenuAriaLabel: string = `More Actions for failure instance ${result.identifiers.identifier} in rule ${rule.id}`;
             return (
-                <CardKebabMenuButton
+                <CardFooterInstanceActionButtons
                     deps={deps}
                     userConfigurationStoreData={userConfigurationStoreData}
                     issueDetailsData={issueDetailsData}
                     kebabMenuAriaLabel={kebabMenuAriaLabel}
+                    narrowModeStatus={narrowModeStatus}
                 />
             );
         };

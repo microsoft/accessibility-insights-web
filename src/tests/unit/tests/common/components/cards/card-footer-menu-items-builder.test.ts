@@ -50,6 +50,7 @@ describe(CardFooterMenuItemsBuilder, () => {
         },
     };
     const clickEvent = {} as React.MouseEvent<any>;
+    const onIssueFilingSettingsDialogDismissed = () => null;
 
     let toastMock: IMock<Toast>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
@@ -93,6 +94,7 @@ describe(CardFooterMenuItemsBuilder, () => {
             fileIssueButtonRef,
             issueDetailsData,
             userConfigurationStoreData,
+            onIssueFilingSettingsDialogDismissed,
             deps,
         };
 
@@ -160,7 +162,12 @@ describe(CardFooterMenuItemsBuilder, () => {
                 .verifiable(Times.never());
 
             cardsViewControllerMock
-                .setup(c => c.openIssueFilingSettingsDialog())
+                .setup(c =>
+                    c.openIssueFilingSettingsDialog(
+                        issueDetailsData,
+                        onIssueFilingSettingsDialogDismissed,
+                    ),
+                )
                 .verifiable(Times.once());
 
             const fileIssueMenuItem = getFileIssueMenuItem();

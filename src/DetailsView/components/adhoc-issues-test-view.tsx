@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -13,6 +14,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import styles from 'DetailsView/components/adhoc-issues-test-view.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
@@ -31,6 +33,7 @@ export type AdhocIssuesTestViewProps = {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    cardsViewStoreData: CardsViewStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
@@ -40,6 +43,7 @@ export type AdhocIssuesTestViewProps = {
     cardsViewData: CardsViewModel;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(

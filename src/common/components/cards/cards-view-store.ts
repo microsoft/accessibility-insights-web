@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
-import { CardsViewActions } from 'common/components/cards/cards-view-actions';
+import {
+    CardsViewActions,
+    OpenIssueFilingSettingsDialogPayload,
+} from 'common/components/cards/cards-view-actions';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { StoreNames } from 'common/stores/store-names';
 
@@ -28,13 +31,19 @@ export class CardsViewStore extends BaseStoreImpl<CardsViewStoreData> {
         );
     }
 
-    private openIssueFilingSettingsDialog = (): void => {
+    private openIssueFilingSettingsDialog = (
+        payload: OpenIssueFilingSettingsDialogPayload,
+    ): void => {
         this.state.isIssueFilingSettingsDialogOpen = true;
+        this.state.onIssueFilingSettingsClosedCallback = payload.onDialogDismissedCallback;
+        this.state.selectedIssueData = payload.selectedIssueData;
+
         this.emitChanged();
     };
 
     private closeIssueFilingSettingsDialog = (): void => {
         this.state.isIssueFilingSettingsDialogOpen = false;
+
         this.emitChanged();
     };
 }

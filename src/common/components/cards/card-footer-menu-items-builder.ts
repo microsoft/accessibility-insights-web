@@ -28,6 +28,7 @@ export type CardFooterMenuItemsProps = {
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData;
+    onIssueFilingSettingsDialogDismissed: () => void;
     deps: CardFooterMenuItemsDeps;
 };
 
@@ -76,7 +77,12 @@ export class CardFooterMenuItemsBuilder {
     }
 
     private fileIssue = (props: CardFooterMenuItemsProps, event: React.MouseEvent<any>): void => {
-        const { issueDetailsData, userConfigurationStoreData, deps } = props;
+        const {
+            issueDetailsData,
+            userConfigurationStoreData,
+            onIssueFilingSettingsDialogDismissed,
+            deps,
+        } = props;
         const {
             issueFilingServiceProvider,
             issueFilingActionMessageCreator,
@@ -103,7 +109,10 @@ export class CardFooterMenuItemsBuilder {
             );
             cardsViewController.closeIssueFilingSettingsDialog();
         } else {
-            cardsViewController.openIssueFilingSettingsDialog();
+            cardsViewController.openIssueFilingSettingsDialog(
+                issueDetailsData,
+                onIssueFilingSettingsDialogDismissed,
+            );
         }
     };
 
