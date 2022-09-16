@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Spinner, SpinnerSize } from '@fluentui/react';
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { Header, HeaderProps } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
@@ -98,6 +99,7 @@ export interface DetailsViewContainerState {
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
     permissionsStateStoreData: PermissionsStateStoreData;
     tabStopsViewStoreData: TabStopsViewStoreData;
+    cardsViewStoreData: CardsViewStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
