@@ -12894,10 +12894,10 @@ typed-emitter@^2.1.0:
   optionalDependencies:
     rxjs "^7.5.2"
 
-typed-scss-modules@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-6.5.0.tgz#158940eac0e389bad6a23dcd86e8b52443adf036"
-  integrity sha512-84PmewX4VR45+ylkeU5q9CHj/8XSI2SnVLIl9XydHKJ5va5WinXQ6J15GLkhA7q0JKKAkla875KzbjYT0VRdFQ==
+typed-scss-modules@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-7.0.0.tgz#d435c598bf61fe541da4cd4bb2bcaacff7873c51"
+  integrity sha512-0QjUYnkmwoi2xIG1HTfQYJvZ4uK5mi8cuyogzS8T+mOFTOqAK0zhuVpQ85V9F6b9MUaUkiTFog0p3RpShWY7aQ==
   dependencies:
     bundle-require "^3.0.4"
     chalk "4.1.2"
