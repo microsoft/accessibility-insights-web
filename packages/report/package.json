@@ -22,7 +22,7 @@
         "axe-core": "4.4.1",
         "classnames": "^2.3.2",
         "lodash": "^4.17.21",
-        "luxon": "^3.0.1",
+        "luxon": "^3.0.3",
         "react": "^16.14.0",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
