@@ -551,10 +551,10 @@
     global-agent "^3.0.0"
     global-tunnel-ng "^2.7.1"
 
-"@electron/get@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.0.tgz#d991e68dc089fc66b521ec3ca4021515482bef91"
-  integrity sha512-d0XfNGayKLrYRqddW4f2Zdjaj71LfvZlCnUN8ojyNMr7WD8v6B+fqdCV8Etnwn/vUfFWFwMk/HtLEFZy01h4tQ==
+"@electron/get@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.1.tgz#d960dd4bdbeb44613af7c196231e376ef4c48a6f"
+  integrity sha512-8nmTGC/3/6IaEfeTcQwtJdjLA/L3sb0XQJUv9x3ZfM0pfmKvkSdelbT4pgF3dpCQOvSmJ97kYAvFltikVjfepA==
   dependencies:
     debug "^4.1.1"
     env-paths "^2.2.0"
@@ -2847,10 +2847,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.184.tgz#23f96cd2a21a28e106dc24d825d4aa966de7a9fe"
   integrity sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==
 
-"@types/luxon@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-3.0.0.tgz#47fb7891e41875fce7018a8bd3d09b204c5621f5"
-  integrity sha512-Lx+EZoJxUKw4dp8uei9XiUVNlgkYmax5+ovqt6Xf3LzJOnWhlfJw/jLBmqfGVwOP/pDr4HT8bI1WtxK0IChMLw==
+"@types/luxon@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-3.0.1.tgz#2b1657096473e24b049bdedf3710f99645f3a17f"
+  integrity sha512-/LAvk1cMOJt0ghzMFrZEvByUhsiEfeeT2IF53Le+Ki3A538yEL9pRZ7a6MuCxdrYK+YNqNIDmrKU/r2nnw04zQ==
 
 "@types/mime@*":
   version "3.0.0"
@@ -9265,10 +9265,10 @@ lru-cache@^7.3.0, lru-cache@^7.4.0, lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cach
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.10.1.tgz#db577f42a94c168f676b638d15da8fb073448cab"
   integrity sha512-BQuhQxPuRl79J5zSXRP+uNzPOyZw2oFI9JLRQ80XswSvg21KMKNtQza9eF42rfI/3Z40RvzBdXgziEkudzjo8A==
 
-luxon@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.0.1.tgz#6901111d10ad06fd267ad4e4128a84bef8a77299"
-  integrity sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw==
+luxon@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.0.3.tgz#573e65531efd3d92265feb640f02ba7a192e2388"
+  integrity sha512-+EfHWnF+UT7GgTnq5zXg3ldnTKL2zdv7QJgsU5bjjpbH17E3qi/puMhQyJVYuCq+FRkogvB5WB6iVvUr+E4a7w==
 
 make-dir@^2.1.0:
   version "2.1.0"
