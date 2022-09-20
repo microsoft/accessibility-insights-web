@@ -551,10 +551,10 @@
     global-agent "^3.0.0"
     global-tunnel-ng "^2.7.1"
 
-"@electron/get@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.0.tgz#d991e68dc089fc66b521ec3ca4021515482bef91"
-  integrity sha512-d0XfNGayKLrYRqddW4f2Zdjaj71LfvZlCnUN8ojyNMr7WD8v6B+fqdCV8Etnwn/vUfFWFwMk/HtLEFZy01h4tQ==
+"@electron/get@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@electron/get/-/get-2.0.1.tgz#d960dd4bdbeb44613af7c196231e376ef4c48a6f"
+  integrity sha512-8nmTGC/3/6IaEfeTcQwtJdjLA/L3sb0XQJUv9x3ZfM0pfmKvkSdelbT4pgF3dpCQOvSmJ97kYAvFltikVjfepA==
   dependencies:
     debug "^4.1.1"
     env-paths "^2.2.0"
