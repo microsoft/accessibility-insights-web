@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FrameAssessmentProperties } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
@@ -62,7 +63,12 @@ export const FrameTitle: Requirement = {
             onRender: frameTitleInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField('Frame title', 'frameTitle')],
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField<FrameAssessmentProperties>(
+            'Frame title',
+            'frameTitle',
+        ),
+    ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
