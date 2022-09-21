@@ -321,9 +321,7 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
             case 'web/p-as-heading': {
                 return (
                     <span>
-                        Inspect the {`<p>`} element in the Accessibility pane in the browser
-                        Developer tools and verify that the element is not used as a heading that is
-                        styled with bold, italic text and font-size.
+                        Inspect the {`<p>`} element and verify that the element is not used as a heading through visual styling with bold, italic text and font-size. If headings are needed, use the appropriate heading tags.
                     </span>
                 );
             }

@@ -402,7 +402,7 @@ exports[`RichResolutionContent renders static content with id=web/p-as-heading 1
 <span>
   Inspect the 
   &lt;p&gt;
-   element in the Accessibility pane in the browser Developer tools and verify that the element is not used as a heading that is styled with bold, italic text and font-size.
+   element and verify that the element is not used as a heading through visual styling with bold, italic text and font-size. If headings are needed, use the appropriate heading tags.
 </span>
 `;
 
