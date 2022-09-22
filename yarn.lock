@@ -433,10 +433,17 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/runtime@7.17.9", "@babel/runtime@^7.0.0", "@babel/runtime@^7.7.2":
+"@babel/runtime@7.17.9":
   version "7.17.9"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
   integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@7.18.9", "@babel/runtime@^7.0.0", "@babel/runtime@^7.7.2":
+  version "7.18.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
+  integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -3595,10 +3602,10 @@ app-builder-lib@^23.5.1:
     tar "^6.1.11"
     temp-file "^3.4.0"
 
-appium-adb@^9.10.2:
-  version "9.10.2"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.10.2.tgz#6d89692b2c9f5871a0a8b737ae01ea5634e7c628"
-  integrity sha512-aeH0BJDUZzLRBlRwBtMZVIPmHqnRu8z+aQeIAd23JD0y3+d7d3Bk+Qa5q1+VhOuSSNU+ElWkJqnmaj8cRu+3FA==
+appium-adb@^9.10.10:
+  version "9.10.10"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-9.10.10.tgz#9646bf2ad90210945e64d2832035f4d607170a43"
+  integrity sha512-D9LFfGkYHKYRnrKYb7zRM4EAZZs88T+1msQFOpgFso3GZxm4qYAjAM/iJih9WxAkPSrHT2gRop3d/ECoFUnguw==
   dependencies:
     "@appium/support" "^2.55.3"
     "@babel/runtime" "^7.0.0"
@@ -3611,7 +3618,7 @@ appium-adb@^9.10.2:
     lru-cache "^7.3.0"
     semver "^7.0.0"
     source-map-support "^0.x"
-    teen_process "^1.11.0"
+    teen_process "^2.0.1"
     utf7 "^1.0.2"
 
 "aproba@^1.0.3 || ^2.0.0", aproba@^2.0.0:
@@ -12503,7 +12510,7 @@ tar@>=6.1.9, tar@^6.1.0, tar@^6.1.11, tar@^6.1.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-teen_process@1.16.0, teen_process@^1.11.0:
+teen_process@1.16.0:
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/teen_process/-/teen_process-1.16.0.tgz#2bad3e33b4d0a3a271cdd0c836434befa7771b44"
   integrity sha512-RnW7HHZD1XuhSTzD3djYOdIl1adE3oNEprE3HOFFxWs5m4FZsqYRhKJ4mDU2udtNGMLUS7jV7l8vVRLWAvmPDw==
@@ -12514,6 +12521,18 @@ teen_process@1.16.0, teen_process@^1.11.0:
     shell-quote "^1.4.3"
     source-map-support "^0.5.3"
     which "^2.0.2"
+
+teen_process@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/teen_process/-/teen_process-2.0.1.tgz#3e23d4b980bcdb7f7d0d064868943c6d8ec09894"
+  integrity sha512-1YI3e/leIKqkEliocmT2rqpRAJQS9/cgTWqoILdcSTT4aomSGamNXS0uevHwX1O34lVOidWQWDlMiZ+jaSI/5A==
+  dependencies:
+    "@babel/runtime" "7.18.9"
+    bluebird "3.7.2"
+    lodash "4.17.21"
+    shell-quote "1.7.3"
+    source-map-support "0.5.21"
+    which "2.0.2"
 
 teeny-request@7.1.1:
   version "7.1.1"
