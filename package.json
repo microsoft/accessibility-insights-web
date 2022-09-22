@@ -110,7 +110,7 @@
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^29.0.3",
         "@types/jsdom": "^20.0.0",
-        "@types/lodash": "^4.14.184",
+        "@types/lodash": "^4.14.185",
         "@types/luxon": "^3.0.1",
         "@types/node": "^16.11.7",
         "@types/react": "^16.14.25",
