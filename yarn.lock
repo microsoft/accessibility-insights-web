@@ -3452,10 +3452,10 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.11.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-android-device-list@^1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.7.tgz#704bab91698fa352db83955ee07dc89eb14da475"
-  integrity sha512-2YwXSPFMgZEEOLUq2QbWGcB9+YOzTF12Gg9N1Y7WPY6xajLQEl0Lx0/ScyhRpEdg0pWdB3fu01dGpLV2uE2pfg==
+android-device-list@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.8.tgz#fdebccfcaba45ce8c646debbef8839591e48cbed"
+  integrity sha512-U17fI3nmlFRkMeG/fRQh2GTsFb+mt+Ygz7h39t8+ACdwGMvvFXqZt7yMejVPEXhcQlIMZYc4E8ZvVhExHWvs7w==
 
 ansi-align@^3.0.0:
   version "3.0.1"
