@@ -26,6 +26,6 @@
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^7.1.2",
-        "uuid": "^8.3.2"
+        "uuid": "^9.0.0"
     }
 }
