@@ -173,7 +173,7 @@
         "serve-static": "^1.15.0",
         "simple-git": "^3.14.1",
         "source-map-loader": "^4.0.0",
-        "stylelint": "^14.11.0",
+        "stylelint": "^14.12.1",
         "stylelint-config-prettier-scss": "^0.0.1",
         "stylelint-config-standard-scss": "^5.0.0",
         "terser-webpack-plugin": "^5.3.6",
