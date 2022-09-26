@@ -61,7 +61,7 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
     };
 
     const renderGuidanceLinks = () => {
-        if (isEmpty(cardResult.guidance)) {
+        if (isEmpty(cardResult.guidance) || isEmpty(cardResult.guidance[0].text)) {
             return null;
         }
         return (
