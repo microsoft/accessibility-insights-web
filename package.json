@@ -186,7 +186,7 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "@fluentui/react": "^8.94.2",
+        "@fluentui/react": "^8.96.1",
         "@microsoft/applicationinsights-web": "^2.8.6",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
@@ -199,7 +199,7 @@
         "electron-updater": "^5.2.1",
         "idb-keyval": "^6.2.0",
         "lodash": "^4.17.21",
-        "luxon": "^3.0.3",
+        "luxon": "^3.0.4",
         "react": "^16.14.0",
         "react-copy-to-clipboard": "^5.1.0",
         "react-dom": "^16.14.0",
