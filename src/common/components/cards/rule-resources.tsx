@@ -53,8 +53,10 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         <div className={styles.ruleMoreResources}>
             {renderTitle()}
             {renderRuleLink()}
-            <span>
-                {renderGuidanceLinks()}
+            <span className={styles.ruleGuidance}>
+                {!isEmpty(rule.guidance) &&
+                    !isEmpty(rule.guidance[0]?.text) &&
+                    renderGuidanceLinks()}
                 {renderGuidanceTags()}
             </span>
         </div>

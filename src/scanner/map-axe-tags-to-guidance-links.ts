@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { GuidanceLink, guidanceTags } from 'common/types/store-data/guidance-links';
 import {
     getGuidelineKeyByAxeTag,
     GuidelineMetadata,
@@ -9,9 +10,10 @@ import {
 import { link } from 'content/link';
 import { sortBy } from 'lodash';
 
-export const BestPractice: HyperlinkDefinition = {
-    text: 'Best Practice',
+export const BestPractice: GuidanceLink = {
+    text: '',
     href: '',
+    tags: [guidanceTags.BEST_PRACTICE],
 };
 
 // Maps from axe-core rule/result objects' tags property (eg, "wcag1411") to the guidance

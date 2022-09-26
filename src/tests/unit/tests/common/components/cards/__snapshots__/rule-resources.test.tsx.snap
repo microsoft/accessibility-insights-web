@@ -23,11 +23,9 @@ exports[`RuleResources renders with {
       some-rule
     </ElectronExternalLink>
   </span>
-  <span>
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={[]}
-    />
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceTags
       deps={
         {
@@ -63,17 +61,9 @@ exports[`RuleResources renders with {
       some-rule
     </ElectronExternalLink>
   </span>
-  <span>
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceTags
       deps={
         {
@@ -111,17 +101,9 @@ exports[`RuleResources renders with {
   >
     Resources for this rule
   </div>
-  <span>
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceTags
       deps={
         {
@@ -159,11 +141,9 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
       some-rule
     </NewTabLink>
   </span>
-  <span>
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={null}
-    />
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceTags
       deps={
         {
