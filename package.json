@@ -122,7 +122,7 @@
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^8.3.4",
         "@types/webextension-polyfill": "^0.9.1",
-        "@typescript-eslint/eslint-plugin": "^5.38.0",
+        "@typescript-eslint/eslint-plugin": "^5.38.1",
         "@typescript-eslint/parser": "^5.38.1",
         "app-builder-lib": "^23.5.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
