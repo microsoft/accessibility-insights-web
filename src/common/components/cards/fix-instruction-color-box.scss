@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
+@import '../../../common/styles/common.scss';
 
 .fix-instruction-color-box {
     width: 14px;
@@ -10,6 +11,10 @@
     margin-right: 2px;
     margin-left: 2px;
     border: 1px solid $always-black;
+
+    @include ms-high-contrast-override {
+        forced-color-adjust: none;
+    }
 }
 
 .screen-reader-only {

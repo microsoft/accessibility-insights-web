@@ -25,10 +25,15 @@ import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-c
 import { UsageLogger } from 'background/usage-logger';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { provideBlob } from 'common/blob-provider';
+import { CardFooterMenuItemsBuilder } from 'common/components/cards/card-footer-menu-items-builder';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { CardsViewActions } from 'common/components/cards/cards-view-actions';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
+import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { getIssueFilingDialogProps } from 'common/components/get-issue-filing-dialog-props';
 import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
@@ -307,6 +312,11 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
+        const cardsViewActions = new CardsViewActions();
+        const cardsViewController = new CardsViewController(cardsViewActions);
+        const cardsViewStore = new CardsViewStore(cardsViewActions);
+        cardsViewStore.initialize();
+
         const storesHub = new ClientStoresHub<RootContainerState>([
             userConfigurationStore,
             windowStateStore,
@@ -319,7 +329,10 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             androidSetupStore,
             leftNavStore,
             tabStopsStore,
+            cardsViewStore,
         ]);
+
+        const cardFooterMenuItemsBuilder = new CardFooterMenuItemsBuilder();
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
@@ -545,6 +558,9 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             customCongratsContinueInvestigatingMessage:
                 "Continue investigating your app's accessibility compliance through manual testing.",
             getNextHeadingLevel: GetNextHeadingLevel,
+            cardsViewController: cardsViewController,
+            cardFooterMenuItemsBuilder: cardFooterMenuItemsBuilder,
+            issueFilingDialogPropsFactory: getIssueFilingDialogProps,
         };
 
         const documentManipulator = new DocumentManipulator(document);

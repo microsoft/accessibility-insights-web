@@ -17,6 +17,7 @@ import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -164,6 +165,7 @@ export class StoreMocks {
         null,
         null,
     ).getDefaultState();
+    public cardsViewStoreData = new CardsViewStore(null).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);

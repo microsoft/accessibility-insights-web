@@ -3,6 +3,7 @@
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
@@ -27,6 +28,7 @@ export type InstanceDetailsGroupProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -38,6 +40,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             userConfigurationStoreData,
             targetAppInfo,
             cardSelectionMessageCreator,
+            narrowModeStatus,
         } = props;
         const { nodes } = rule;
         const unifiedRule: UnifiedRule = {
@@ -64,6 +67,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             rule={unifiedRule}
                             targetAppInfo={targetAppInfo}
                             cardSelectionMessageCreator={cardSelectionMessageCreator}
+                            narrowModeStatus={narrowModeStatus}
                         />
                     </li>
                 ))}

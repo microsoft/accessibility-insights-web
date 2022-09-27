@@ -342,6 +342,7 @@ describe(DetailsViewContent.displayName, () => {
             needsReviewCardSelectionStoreData: storeMocks.needsReviewCardSelectionStoreData,
             permissionsStateStoreData: storeMocks.permissionsStateStoreData,
             tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
+            cardsViewStoreData: storeMocks.cardsViewStoreData,
         };
     }
 });

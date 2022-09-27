@@ -43,7 +43,6 @@ module.exports = {
             },
         ],
     ],
-    resolver: `${__dirname}/src/tests/common/resolver.js`,
     setupFilesAfterEnv: [`${__dirname}/src/tests/common/flush-promises-after-each-test.ts`],
     snapshotSerializers: [`${__dirname}/src/tests/common/typemoq-snapshot-serializer.ts`],
     testEnvironment: 'node',
