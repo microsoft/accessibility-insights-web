@@ -6,7 +6,7 @@
         "build": "tsc",
         "lint:check": "eslint --ext .ts ./",
         "lint:fix": "eslint --fix -c ../../.eslintrc.js --ext .ts ./",
-        "test": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --colors --runInBand --updateSnapshot"
+        "test": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --colors --runInBand"
     },
     "repository": "git+https://github.com/microsoft/accessibility-insights-web.git",
     "author": "Microsoft",
