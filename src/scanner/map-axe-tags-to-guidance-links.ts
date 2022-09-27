@@ -19,9 +19,9 @@ export const BestPractice: GuidanceLink = {
 const bestPracticeToGuidanceTagOverrideMapping = {
     'aria-allowed-role': ['wcag131', 'wcag412'],
     'presentation-role-conflict': ['wcag131'],
-}
+};
 
-function addGuidanceTagOverrides(resultId: string, currentTags?: string[]){
+function addGuidanceTagOverrides(resultId: string, currentTags?: string[]) {
     return concat(currentTags ?? [], bestPracticeToGuidanceTagOverrideMapping[resultId] ?? []);
 }
 
@@ -48,7 +48,10 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     return link[metadata.linkTag] ?? null;
 }
 
-export function mapAxeTagsToGuidanceLinks(resultId: string, axeTags?: string[]): HyperlinkDefinition[] {
+export function mapAxeTagsToGuidanceLinks(
+    resultId: string,
+    axeTags?: string[],
+): HyperlinkDefinition[] {
     const normalizedTags = addGuidanceTagOverrides(resultId, axeTags);
     const unsortedMaybeLinks = normalizedTags.map(mapAxeTagToGuidanceLink);
     const unsortedLinks = unsortedMaybeLinks.filter(isNotNull);

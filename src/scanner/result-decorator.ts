@@ -13,7 +13,10 @@ export class ResultDecorator {
         private readonly documentUtils: DocumentUtils,
         private readonly messageDecorator: MessageDecorator,
         private readonly getHelpUrl: (ruleId: string, axeHelpUrl?: string) => string | undefined,
-        private readonly mapAxeTagsToGuidanceLinks: (ruleId: string, axeTags?: string[]) => HyperlinkDefinition[],
+        private readonly mapAxeTagsToGuidanceLinks: (
+            ruleId: string,
+            axeTags?: string[],
+        ) => HyperlinkDefinition[],
         private readonly ruleProcessor: RuleProcessor,
     ) {}
 
