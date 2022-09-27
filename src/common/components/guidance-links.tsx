@@ -26,7 +26,7 @@ export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps
     };
 
     const getLinksWithDestinations = (): HyperlinkDefinition[] => {
-        return links.length === 1 ? links : links.filter(link => !isEmpty(link.href));
+        return links.filter(link => !isEmpty(link.href));
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {
