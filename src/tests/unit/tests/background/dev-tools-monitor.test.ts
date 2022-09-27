@@ -68,6 +68,7 @@ describe(DevToolsMonitor, () => {
             } as DevToolActions,
             messageTimeout,
             pollInterval,
+            1,
         );
     });
 
@@ -163,6 +164,50 @@ describe(DevToolsMonitor, () => {
         setupDevtoolClosed(Times.never());
 
         await expect(testSubject.testPollLoop()).rejects.toThrow(testError);
+    });
+
+    it('Only stops monitoring after maxFailedPings failures', async () => {
+        const maxFailedPings = 3;
+        let tabPollCount = 0;
+        testSubject = new TestDevToolsMonitor(
+            tabId,
+            browserAdapterMock.object,
+            promiseFactory,
+            interpreterMock.object,
+            {
+                setDevToolState: setDevToolStateActionMock.object,
+            } as DevToolActions,
+            messageTimeout,
+            pollInterval,
+            maxFailedPings,
+        );
+
+        const expectedMessage = {
+            messageType: Messages.DevTools.StatusRequest,
+            tabId: tabId,
+        };
+
+        browserAdapterMock
+            .setup(b => b.sendRuntimeMessage(expectedMessage))
+            .returns(async () => {
+                tabPollCount += 1;
+                // Let the second ping succeed to
+                // make sure the failure count resets
+                if (tabPollCount === 2) {
+                    return messageSuccessResponse;
+                } else {
+                    return mockTimeoutResponse;
+                }
+            })
+            .verifiable(Times.exactly(maxFailedPings + 2));
+
+        setupTimeoutCreator(Times.exactly(maxFailedPings + 2));
+        setupDelayCreator(Times.exactly(maxFailedPings + 1));
+        setupDevtoolClosed();
+
+        testSubject.initialize();
+
+        await flushSettledPromises();
     });
 
     function setupPollTabTimes(times: number, delayCallback?: () => void): void {
