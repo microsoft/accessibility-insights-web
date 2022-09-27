@@ -26,6 +26,10 @@ exports[`RuleResources renders with {
   <span
     className="ruleGuidance"
   >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={[]}
+    />
     <GuidanceTags
       deps={
         {
@@ -64,6 +68,16 @@ exports[`RuleResources renders with {
   <span
     className="ruleGuidance"
   >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
     <GuidanceTags
       deps={
         {
@@ -104,6 +118,16 @@ exports[`RuleResources renders with {
   <span
     className="ruleGuidance"
   >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
     <GuidanceTags
       deps={
         {
@@ -144,6 +168,10 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
   <span
     className="ruleGuidance"
   >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={null}
+    />
     <GuidanceTags
       deps={
         {

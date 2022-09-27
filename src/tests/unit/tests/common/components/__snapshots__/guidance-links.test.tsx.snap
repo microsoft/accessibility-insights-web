@@ -24,11 +24,7 @@ exports[`GuidanceLinksTest links is not null and correct with best practice and 
 </span>"
 `;
 
-exports[`GuidanceLinksTest links is not null and correct with one best practice link 1`] = `
-"<span className="className">
-  <ElectronExternalLink href="" onClick={[Function: onClick]} />
-</span>"
-`;
+exports[`GuidanceLinksTest links is not null and correct with one best practice link 1`] = `"<span className="className" />"`;
 
 exports[`GuidanceLinksTest links is not null and correct with one regular link 1`] = `
 "<span className="className">
