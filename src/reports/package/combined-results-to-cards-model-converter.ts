@@ -56,7 +56,7 @@ export class CombinedResultsToCardsModelConverter {
             description: rule.description,
             url: this.helpUrlGetter.getHelpUrl(rule.ruleId, rule.ruleUrl),
             isExpanded: false,
-            guidance: this.mapAxeTagsToGuidanceLinks(rule.tags),
+            guidance: this.mapAxeTagsToGuidanceLinks(rule.ruleId, rule.tags),
             nodes: isNil(nodes) ? [] : nodes,
         };
     }
