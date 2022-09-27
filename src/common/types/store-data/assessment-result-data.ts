@@ -84,6 +84,11 @@ export interface FrameAssessmentProperties {
     frameTitle?: string;
 }
 
+export interface PageAssessmentProperties {
+    pageType: string;
+    pageTitle?: string;
+}
+
 export interface LandmarksAssessmentProperties {
     role: string;
     label: string;

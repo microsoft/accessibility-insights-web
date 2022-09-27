@@ -238,8 +238,8 @@ describe(DialogRenderer, () => {
         renderMock
             .setup(render =>
                 render(
-                    It.is(detailsDialog => {
-                        return (detailsDialog.type as any) === LayeredDetailsDialogComponent;
+                    It.is((detailsDialog: any) => {
+                        return detailsDialog.type === LayeredDetailsDialogComponent;
                     }),
                     It.is((container: any) => container != null),
                 ),

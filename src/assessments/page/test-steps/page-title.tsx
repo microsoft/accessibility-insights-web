@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PageAssessmentProperties } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/page/page-title';
@@ -62,7 +63,12 @@ export const PageTitle: Requirement = {
             onRender: pageTitleInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField('Page title', 'pageTitle')],
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField<PageAssessmentProperties>(
+            'Page title',
+            'pageTitle',
+        ),
+    ],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
