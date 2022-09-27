@@ -45,7 +45,6 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
     };
 
     const renderGuidanceLinks = () => {
-        if (isEmpty(rule.guidance[0].text)) return null;
         return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
     };
     const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;

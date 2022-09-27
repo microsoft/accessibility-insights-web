@@ -4,7 +4,6 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceLinksProps {
@@ -15,20 +14,19 @@ export interface GuidanceLinksProps {
 
 export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps) => {
     const { links, classNameForDiv } = props;
-
     if (isEmpty(links)) {
         return null;
     }
 
     const renderLinks = (): JSX.Element[] => {
-        const linksToRender = getLinksWithoutBestPracticeWhenWCAGPresent();
+        const linksToRender = getLinksWithDestinations();
         return linksToRender.map((link, index) => {
             return renderLink(link, index, linksToRender.length);
         });
     };
 
-    const getLinksWithoutBestPracticeWhenWCAGPresent = (): HyperlinkDefinition[] => {
-        return links.length === 1 ? links : links.filter(link => link.text !== BestPractice.text);
+    const getLinksWithDestinations = (): HyperlinkDefinition[] => {
+        return links.length === 1 ? links : links.filter(link => !isEmpty(link.href));
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {

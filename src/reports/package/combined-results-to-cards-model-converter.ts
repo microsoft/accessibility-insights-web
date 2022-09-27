@@ -13,7 +13,7 @@ import { HelpUrlGetter } from "scanner/help-url-getter";
 
 export class CombinedResultsToCardsModelConverter {
     constructor(
-        private readonly mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => GuidanceLink[],
+        private readonly mapAxeTagsToGuidanceLinks: (ruleId: string, axeTags?: string[]) => GuidanceLink[],
         private readonly cardSelectionViewData: CardSelectionViewData,
         private readonly uuidGenerator: UUIDGenerator,
         private readonly helpUrlGetter: HelpUrlGetter,

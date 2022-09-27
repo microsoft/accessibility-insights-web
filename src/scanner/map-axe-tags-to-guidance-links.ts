@@ -8,13 +8,22 @@ import {
     guidelineMetadata,
 } from 'content/guideline-metadata';
 import { link } from 'content/link';
-import { sortBy } from 'lodash';
+import { concat, sortBy } from 'lodash';
 
 export const BestPractice: GuidanceLink = {
     text: '',
     href: '',
     tags: [guidanceTags.BEST_PRACTICE],
 };
+
+const bestPracticeToGuidanceTagOverrideMapping = {
+    'aria-allowed-role': ['wcag131', 'wcag412'],
+    'presentation-role-conflict': ['wcag131'],
+}
+
+function addGuidanceTagOverrides(resultId: string, currentTags?: string[]){
+    return concat(currentTags ?? [], bestPracticeToGuidanceTagOverrideMapping[resultId] ?? []);
+}
 
 // Maps from axe-core rule/result objects' tags property (eg, "wcag1411") to the guidance
 // links shared by /content (eg, link.WCAG_1_4_11)
@@ -39,8 +48,8 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     return link[metadata.linkTag] ?? null;
 }
 
-export function mapAxeTagsToGuidanceLinks(axeTags?: string[]): HyperlinkDefinition[] {
-    const normalizedTags = axeTags ?? [];
+export function mapAxeTagsToGuidanceLinks(resultId: string, axeTags?: string[]): HyperlinkDefinition[] {
+    const normalizedTags = addGuidanceTagOverrides(resultId, axeTags);
     const unsortedMaybeLinks = normalizedTags.map(mapAxeTagToGuidanceLink);
     const unsortedLinks = unsortedMaybeLinks.filter(isNotNull);
     const sortedLinks = sortBy(unsortedLinks, link => link.text);
