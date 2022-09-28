@@ -47,5 +47,6 @@ new-appx.ps1
 test-results/
 yarn.lock
 src/DetailsView/components/generated-validate-assessment-json.js
+replace-plugin.js
 
 .ignoredRevs

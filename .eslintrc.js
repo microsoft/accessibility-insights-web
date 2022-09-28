@@ -13,5 +13,6 @@ module.exports = {
         'packages/',
         'test-results/',
         'src/DetailsView/components/generated-validate-assessment-json.js',
+        'replace-plugin.js',
     ],
 };
