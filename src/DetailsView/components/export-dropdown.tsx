@@ -3,7 +3,6 @@
 
 import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
-import { FileURLProvider } from 'common/file-url-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 import {
@@ -27,7 +26,6 @@ export interface ExportDropdownProps {
     jsonFileName: string;
     htmlFileURL: string;
     jsonFileURL: string;
-    fileURLProvider: FileURLProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }
 

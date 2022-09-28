@@ -102,7 +102,6 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 <ExportDropdown
                     htmlFileName={props.htmlFileName}
                     jsonFileName={props.jsonFileName}
-                    fileURLProvider={props.deps.fileURLProvider}
                     featureFlagStoreData={props.featureFlagStoreData}
                     htmlFileURL={htmlFileUrl}
                     jsonFileURL={jsonFileUrl}

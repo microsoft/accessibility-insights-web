@@ -46,6 +46,17 @@ describe('ExportDialog', () => {
         ] as ReportExportService[];
     };
 
+    const setupGenerateFileUrls = () => {
+        fileProviderMock
+            .setup(provider => provider.provideURL([props.htmlExportData], 'text/html'))
+            .returns(() => 'html url')
+            .verifiable(Times.atLeastOnce());
+        fileProviderMock
+            .setup(provider => provider.provideURL([props.jsonExportData], 'application/json'))
+            .returns(() => 'json url')
+            .verifiable(Times.atLeastOnce());
+    };
+
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
@@ -77,15 +88,22 @@ describe('ExportDialog', () => {
     });
 
     describe('renders', () => {
-        const isOpenOptions = [true, false];
-
-        it.each(isOpenOptions)('with open %p', isOpen => {
-            props.isOpen = isOpen;
+        it('With dialog closed', () => {
+            props.isOpen = false;
             onlyIncludeHtmlService();
             fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
+                .setup(f => f.provideURL(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            const wrapper = shallow(<ExportDialog {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+
+            fileProviderMock.verifyAll();
+        });
+
+        it('With dialog open', () => {
+            props.isOpen = true;
+            onlyIncludeHtmlService();
+            setupGenerateFileUrls();
             const wrapper = shallow(<ExportDialog {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
 
@@ -99,10 +117,8 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
 
             props.isOpen = true;
-            fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
+            setupGenerateFileUrls();
+
             const wrapper = shallow(<ExportDialog {...props} />);
             const elem = wrapper.debug();
             expect(elem).toMatchSnapshot();
@@ -118,10 +134,7 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
 
             props.isOpen = true;
-            fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
+            setupGenerateFileUrls();
             const wrapper = shallow(<ExportDialog {...props} />);
             expect(wrapper.debug()).toMatchSnapshot();
 
@@ -145,12 +158,13 @@ describe('ExportDialog', () => {
     });
 
     describe('user interaction', () => {
+        beforeEach(() => {
+            props.isOpen = true;
+        });
+
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
-            fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
+            setupGenerateFileUrls();
             generateExportsMock.setup(getter => getter()).verifiable(Times.never());
             const wrapper = shallow(<ExportDialog {...props} />);
 
@@ -171,10 +185,7 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
 
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
-            fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.exactly(2));
+            setupGenerateFileUrls();
             generateExportsMock.setup(getter => getter()).verifiable(Times.once());
 
             exportResultsClickedTelemetryMock
@@ -196,10 +207,7 @@ describe('ExportDialog', () => {
 
         it('handles text changes for the description', () => {
             props.isOpen = true;
-            fileProviderMock
-                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
+            setupGenerateFileUrls();
             const changedDescription = 'changed-description';
             onDescriptionChangeMock
                 .setup(handler => handler(It.isValue(changedDescription)))
