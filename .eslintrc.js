@@ -12,6 +12,6 @@ module.exports = {
         'extension/',
         'packages/',
         'test-results/',
-        'src/DetailsView/components/validate-assessment-json.js',
+        'src/DetailsView/components/generated-validate-assessment-json.js',
     ],
 };

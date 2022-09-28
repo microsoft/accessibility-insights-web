@@ -46,6 +46,6 @@ LICENSE
 new-appx.ps1
 test-results/
 yarn.lock
-src/DetailsView/components/validate-assessment-json.js
+src/DetailsView/components/generated-validate-assessment-json.js
 
 .ignoredRevs
