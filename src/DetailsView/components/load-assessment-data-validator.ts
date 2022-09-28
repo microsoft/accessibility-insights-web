@@ -8,7 +8,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { isFunction } from 'lodash';
-import validateAssessmentJson from './static-validate-assessment-json';
+import validateAssessmentJson from './empty-validate-assessment-json';
 
 export type AjvValidationReturnData = {
     dataIsValid: boolean;

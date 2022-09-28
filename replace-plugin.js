@@ -15,7 +15,7 @@ const CreateReplaceJsonValidatorPlugin = () => {
                 async args => {
                     const origContent = fs.readFileSync(args.path, 'utf-8');
                     const newContent = origContent.replace(
-                        'static-validate-assessment-json',
+                        'empty-validate-assessment-json',
                         'generated-validate-assessment-json',
                     );
                     return {
