@@ -63,13 +63,22 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(value);
     };
 
-    const htmlFileUrl = props.deps.fileURLProvider.provideURL([props.htmlExportData], 'text/html');
     const exportService = props.reportExportServices.find(s => s.key === serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
     const exportToCodepen =
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] &&
         props.reportExportServices.some(s => s.key === 'codepen');
     const exportToJSON = props.reportExportServices.some(s => s.key === 'json');
+
+    let htmlFileUrl = '#';
+    let jsonFileUrl = '#';
+    if (props.isOpen) {
+        htmlFileUrl = props.deps.fileURLProvider.provideURL([props.htmlExportData], 'text/html');
+        jsonFileUrl = props.deps.fileURLProvider.provideURL(
+            [props.jsonExportData],
+            'application/json',
+        );
+    }
 
     const getSingleExportToHtmlButton = () => {
         return (
@@ -95,8 +104,8 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                     jsonFileName={props.jsonFileName}
                     fileURLProvider={props.deps.fileURLProvider}
                     featureFlagStoreData={props.featureFlagStoreData}
-                    htmlExportData={props.htmlExportData}
-                    jsonExportData={props.jsonExportData}
+                    htmlFileURL={htmlFileUrl}
+                    jsonFileURL={jsonFileUrl}
                     generateExports={props.generateExports}
                     onExportLinkClick={onExportLinkClick}
                     reportExportServices={props.reportExportServices}

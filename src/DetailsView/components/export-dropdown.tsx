@@ -25,8 +25,8 @@ export interface ExportDropdownProps {
     reportExportServices: ReportExportService[];
     htmlFileName: string;
     jsonFileName: string;
-    htmlExportData: string;
-    jsonExportData: string;
+    htmlFileURL: string;
+    jsonFileURL: string;
     fileURLProvider: FileURLProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -76,22 +76,14 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const {
-            featureFlagStoreData,
-            htmlExportData,
-            jsonExportData,
-            htmlFileName,
-            jsonFileName,
-            fileURLProvider,
-        } = this.props;
+        const { featureFlagStoreData, htmlFileURL, jsonFileURL, htmlFileName, jsonFileName } =
+            this.props;
 
         const exportToCodepen = featureFlagStoreData[FeatureFlags.exportReportOptions];
-        const htmlFileUrl = fileURLProvider.provideURL([htmlExportData], 'text/html');
-        const jsonFileUrl = fileURLProvider.provideURL([jsonExportData], 'application/json');
 
         const items: IContextualMenuItem[] = [];
-        this.tryAddMenuItemForKey('html', items, htmlFileUrl, htmlFileName);
-        this.tryAddMenuItemForKey('json', items, jsonFileUrl, jsonFileName);
+        this.tryAddMenuItemForKey('html', items, htmlFileURL, htmlFileName);
+        this.tryAddMenuItemForKey('json', items, jsonFileURL, jsonFileName);
 
         if (exportToCodepen) {
             this.tryAddMenuItemForKey('codepen', items);
