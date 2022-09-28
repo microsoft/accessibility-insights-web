@@ -251,6 +251,48 @@ describe('TabStopsAnalyzer', () => {
         });
     });
 
+    describe('teardown', () => {
+        let expectedTeardownMessage: Message;
+
+        beforeEach(() => {
+            expectedTeardownMessage = {
+                messageType: configStub.analyzerTerminatedMessageType,
+                payload: {
+                    key: configStub.key,
+                    testType: configStub.testType,
+                },
+            };
+
+            tabStopsListenerMock.setup(m => m.stop()).verifiable(Times.once());
+            setupSendMessageMock(expectedTeardownMessage);
+        });
+
+        it('stops processors when teardown() is invoked', async () => {
+            tabStopsRequirementResultProcessorMock.setup(m => m.stop()).verifiable(Times.once());
+
+            await testSubject.teardown();
+
+            verifyAll();
+        });
+
+        it('does not stop tabStopsRequirementResultProcessor when it is null', async () => {
+            testSubject = new TabStopsAnalyzer(
+                configStub,
+                tabStopsListenerMock.object,
+                sendMessageMock.object,
+                scanIncompleteWarningDetectorMock.object,
+                failTestOnErrorLogger,
+                tabStopsDoneAnalyzingTrackerMock.object,
+                null,
+                debounceFaker.debounce,
+            );
+
+            await testSubject.teardown();
+
+            verifyAll();
+        });
+    });
+
     function verifyAll(): void {
         tabStopsDoneAnalyzingTrackerMock.verifyAll();
         tabStopsListenerMock.verifyAll();
