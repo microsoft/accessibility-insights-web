@@ -19,7 +19,7 @@ export function getRules(
     axe: typeof Axe,
     urlGenerator: (ruleId: string, axeHelpUrl?: string) => string | undefined,
     ruleIncludedStatus: DictionaryStringTo<RuleIncluded>,
-    mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => HyperlinkDefinition[],
+    mapAxeTagsToGuidanceLinks: (ruleId: string, axeTags?: string[]) => HyperlinkDefinition[],
 ): ScannerRuleInfo[] {
     const allRules = axe.getRules() as ExpectedGetRuleObject[];
 
@@ -29,7 +29,7 @@ export function getRules(
             id: rule.ruleId,
             url: urlGenerator(rule.ruleId, rule.helpUrl),
             help: resolveHelp(rule.help),
-            a11yCriteria: mapAxeTagsToGuidanceLinks(rule.tags),
+            a11yCriteria: mapAxeTagsToGuidanceLinks(rule.ruleId, rule.tags),
         }));
 }
 

@@ -66,9 +66,9 @@ describe('ResultDecorator', () => {
     describe('decorateResults with only violations', () => {
         it('should call success callback with correct result', () => {
             const guidanceLink = {} as any;
-            const mockTagToLinkMapper = Mock.ofInstance(tags => []);
+            const mockTagToLinkMapper = Mock.ofInstance((ruleId, tags) => []);
             mockTagToLinkMapper
-                .setup(m => m(['tag1', 'tag2']))
+                .setup(m => m('test-rule', ['tag1', 'tag2']))
                 .returns(() => [guidanceLink])
                 .verifiable();
             const resultStubWithGuidanceLinks = {
@@ -147,7 +147,7 @@ describe('ResultDecorator', () => {
             const guidanceLinkStub2 = { stubId: '2' } as any;
             const urlStub1 = 'url-1';
             const urlStub2 = 'url-2';
-            const tagToLinkMapperMock = Mock.ofInstance(tags => []);
+            const tagToLinkMapperMock = Mock.ofInstance((ruleId, tags) => []);
             const resultStubWithGuidanceLinks = {
                 passes: [],
                 violations: [
@@ -171,11 +171,11 @@ describe('ResultDecorator', () => {
             };
 
             tagToLinkMapperMock
-                .setup(m => m(['tag1']))
+                .setup(m => m(violationInstance.id, ['tag1']))
                 .returns(() => [guidanceLinkStub1])
                 .verifiable();
             tagToLinkMapperMock
-                .setup(m => m(['tag2']))
+                .setup(m => m(inapplicableInstance.id, ['tag2']))
                 .returns(() => [guidanceLinkStub2])
                 .verifiable();
 

@@ -23,7 +23,9 @@ exports[`RuleResources renders with {
       some-rule
     </ElectronExternalLink>
   </span>
-  <span>
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceLinks
       LinkComponent={[Function]}
       links={[]}
@@ -63,7 +65,9 @@ exports[`RuleResources renders with {
       some-rule
     </ElectronExternalLink>
   </span>
-  <span>
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceLinks
       LinkComponent={[Function]}
       links={
@@ -111,7 +115,9 @@ exports[`RuleResources renders with {
   >
     Resources for this rule
   </div>
-  <span>
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceLinks
       LinkComponent={[Function]}
       links={
@@ -159,7 +165,9 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
       some-rule
     </NewTabLink>
   </span>
-  <span>
+  <span
+    className="ruleGuidance"
+  >
     <GuidanceLinks
       LinkComponent={[Function]}
       links={null}
