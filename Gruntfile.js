@@ -917,6 +917,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-prod-mv3', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-prod-mv3',
         'build-assets',
         'drop:production-mv3',
@@ -958,6 +960,8 @@ module.exports = function (grunt) {
         'clean:intermediates',
         'exec:generate-scss-typings',
         'build-mock-adb',
+        'build-package-validator',
+        'exec:generate-validator',
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',

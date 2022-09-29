@@ -42,7 +42,7 @@
         "Dockerfile",
         ".eslintignore",
         "**/*.plist",
-        "./src/DetailsView/components/validate-assessment-json.js"
+        "./src/DetailsView/components/generated-validate-assessment-json.js"
     ],
     "licenseFormats": {
         "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {
