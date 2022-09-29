@@ -76,11 +76,12 @@ describe('scanning', () => {
                 fastPassAutomatedChecksSelectors.ruleDetail,
             );
 
-            expect(ruleDetails).toHaveLength(4);
+            expect(ruleDetails).toHaveLength(5);
 
             const expectedCounts = {
                 'frame-title': 2,
                 'html-has-lang': 1,
+                'aria-allowed-role': 2,
                 'image-alt': 9,
                 label: 3,
             };

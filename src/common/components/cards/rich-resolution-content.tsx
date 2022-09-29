@@ -318,6 +318,15 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'web/p-as-heading': {
+                return (
+                    <span>
+                        Inspect the {`<p>`} element and verify that the element is not used as a
+                        heading through visual styling with bold, italic text or font-size. If
+                        headings are needed, use the appropriate heading tags.
+                    </span>
+                );
+            }
             default: {
                 throw new Error(
                     `Cannot render RichResolutionContent with unrecognized contentId ${contentId}`,
