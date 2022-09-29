@@ -16,6 +16,11 @@ import styles from './export-dialog.scss';
 
 export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 
+export interface ExportDialogState {
+    isVisible: boolean;
+    serviceKey: ReportExportServiceKey;
+}
+
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
     isOpen: boolean;
@@ -43,10 +48,23 @@ export interface ExportDialogDeps {
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
-    const [serviceKey, setServiceKey] = React.useState<ReportExportServiceKey | null>(null);
+    const defaultState = {
+        serviceKey: null,
+        isVisible: props.isOpen,
+    };
+    const [state, setState] = React.useState<ExportDialogState>(defaultState);
+
+    if (props.isOpen && !state.isVisible) {
+        setState({ ...state, isVisible: true });
+    }
 
     const onDismiss = (): void => {
         props.onClose();
+    };
+
+    const afterDismissed = (): void => {
+        props.afterDismissed();
+        setState({ ...state, isVisible: false });
     };
 
     const onExportLinkClick = (
@@ -55,7 +73,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     ): void => {
         props.onDescriptionChange(props.description);
         props.exportResultsClickedTelemetry(props.reportExportFormat, selectedServiceKey, event);
-        setServiceKey(selectedServiceKey);
+        setState({ ...state, serviceKey: selectedServiceKey });
         props.onClose();
     };
 
@@ -63,7 +81,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(value);
     };
 
-    const exportService = props.reportExportServices.find(s => s.key === serviceKey);
+    const exportService = props.reportExportServices.find(s => s.key === state.serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
     const exportToCodepen =
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] &&
@@ -72,7 +90,11 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
 
     let htmlFileUrl = '#';
     let jsonFileUrl = '#';
-    if (props.isOpen) {
+    // provideURL may cause performance issues if called on every rerender, so we
+    // only call it while the dialog is onscreen. We use a state variable because
+    // isOpen becomes false as soon as the button is clicked, before the download
+    // begins.
+    if (state.isVisible) {
         htmlFileUrl = props.deps.fileURLProvider.provideURL([props.htmlExportData], 'text/html');
         jsonFileUrl = props.deps.fileURLProvider.provideURL(
             [props.jsonExportData],
@@ -117,7 +139,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                         htmlExportData={props.htmlExportData}
                         jsonExportData={props.jsonExportData}
                         onSubmit={() => {
-                            setServiceKey(null);
+                            setState({ ...state, serviceKey: null });
                         }}
                     />
                 )}
@@ -145,7 +167,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
             modalProps={{
                 isBlocking: false,
                 containerClassName: styles.exportDialog,
-                onDismissed: props.afterDismissed,
+                onDismissed: afterDismissed,
             }}
         >
             <TextField

@@ -124,3 +124,102 @@ exports[`ExportDialog renders without export dropdown due to lack of service 1`]
   </StyledDialogFooterBase>
 </Dialog>"
 `;
+
+exports[`ExportDialog user interaction renders immediately after dialog closed with htmlOnly=false 1`] = `
+<Dialog
+  dialogContentProps={
+    {
+      "subText": "Optional: please describe the result (it will be saved in the report).",
+      "title": "Provide result description",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    {
+      "containerClassName": "exportDialog",
+      "isBlocking": false,
+      "onDismissed": [Function],
+    }
+  }
+  onDismiss={[Function]}
+>
+  <StyledTextFieldBase
+    ariaLabel="Provide result description"
+    autoFocus={true}
+    multiline={true}
+    onChange={[Function]}
+    resizable={false}
+    rows={8}
+    value="description"
+  />
+  <StyledDialogFooterBase>
+    <React.Fragment>
+      <ExportDropdown
+        featureFlagStoreData={{}}
+        generateExports={[Function]}
+        htmlFileName="THE REPORT FILE NAME"
+        htmlFileURL="html url"
+        jsonFileName="JSON file name"
+        jsonFileURL="json url"
+        onExportLinkClick={[Function]}
+        reportExportServices={
+          [
+            {
+              "exportForm": [Function],
+              "generateMenuItem": [Function],
+              "key": "html",
+            },
+            {
+              "exportForm": [Function],
+              "generateMenuItem": [Function],
+              "key": "json",
+            },
+          ]
+        }
+      />
+    </React.Fragment>
+  </StyledDialogFooterBase>
+</Dialog>
+`;
+
+exports[`ExportDialog user interaction renders immediately after dialog closed with htmlOnly=true 1`] = `
+<Dialog
+  dialogContentProps={
+    {
+      "subText": "Optional: please describe the result (it will be saved in the report).",
+      "title": "Provide result description",
+      "type": 0,
+    }
+  }
+  hidden={true}
+  modalProps={
+    {
+      "containerClassName": "exportDialog",
+      "isBlocking": false,
+      "onDismissed": [Function],
+    }
+  }
+  onDismiss={[Function]}
+>
+  <StyledTextFieldBase
+    ariaLabel="Provide result description"
+    autoFocus={true}
+    multiline={true}
+    onChange={[Function]}
+    resizable={false}
+    rows={8}
+    value="description"
+  />
+  <StyledDialogFooterBase>
+    <CustomizedPrimaryButton
+      data-automation-id="single-export-to-html-button"
+      download="THE REPORT FILE NAME"
+      href="html url"
+      onClick={[Function]}
+    >
+      Export
+    </CustomizedPrimaryButton>
+  </StyledDialogFooterBase>
+</Dialog>
+`;
