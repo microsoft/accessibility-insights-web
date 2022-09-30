@@ -205,23 +205,6 @@ describe('ExportDialog', () => {
             generateExportsMock.verifyAll();
         });
 
-        it.each([true, false])(
-            'renders immediately after dialog closed with htmlOnly=%s',
-            htmlOnly => {
-                if (htmlOnly) {
-                    onlyIncludeHtmlService();
-                }
-                setupGenerateFileUrls();
-
-                const validateAfterUpdate = () => {
-                    expect(wrapper.getElement()).toMatchSnapshot();
-                };
-
-                const wrapper = shallow(<ExportDialog {...props} />);
-                wrapper.setProps({ isOpen: false }, validateAfterUpdate);
-            },
-        );
-
         it('handles text changes for the description', () => {
             props.isOpen = true;
             setupGenerateFileUrls();
