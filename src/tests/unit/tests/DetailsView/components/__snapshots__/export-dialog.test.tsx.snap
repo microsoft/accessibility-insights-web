@@ -1,6 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExportDialog renders With dialog closed 1`] = `
+exports[`ExportDialog renders with CodePen export form 1`] = `
+<form
+  action="https://codepen.io/pen/define"
+  method="POST"
+  rel="noopener"
+  style={
+    {
+      "visibility": "hidden",
+    }
+  }
+  target="_blank"
+>
+  <input
+    name="data"
+    type="hidden"
+    value="{"title":"THE REPORT FILE NAME","description":"description","html":"fake html","editors":"100"}"
+  />
+  <button
+    type="submit"
+  />
+</form>
+`;
+
+exports[`ExportDialog renders with export dropdown 1`] = `
+"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
+  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
+  <StyledDialogFooterBase>
+    <ExportDropdown htmlFileName="THE REPORT FILE NAME" jsonFileName="JSON file name" featureFlagStoreData={{...}} htmlFileURL="html file url" jsonFileURL="json file url" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
+  </StyledDialogFooterBase>
+</Dialog>"
+`;
+
+exports[`ExportDialog renders with open false 1`] = `
 <Dialog
   dialogContentProps={
     {
@@ -32,7 +64,7 @@ exports[`ExportDialog renders With dialog closed 1`] = `
     <CustomizedPrimaryButton
       data-automation-id="single-export-to-html-button"
       download="THE REPORT FILE NAME"
-      href="#"
+      href="html file url"
       onClick={[Function]}
     >
       Export
@@ -41,7 +73,7 @@ exports[`ExportDialog renders With dialog closed 1`] = `
 </Dialog>
 `;
 
-exports[`ExportDialog renders With dialog open 1`] = `
+exports[`ExportDialog renders with open true 1`] = `
 <Dialog
   dialogContentProps={
     {
@@ -73,153 +105,22 @@ exports[`ExportDialog renders With dialog open 1`] = `
     <CustomizedPrimaryButton
       data-automation-id="single-export-to-html-button"
       download="THE REPORT FILE NAME"
-      href="html url"
+      href="html file url"
       onClick={[Function]}
     >
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
 </Dialog>
-`;
-
-exports[`ExportDialog renders with CodePen export form 1`] = `
-<form
-  action="https://codepen.io/pen/define"
-  method="POST"
-  rel="noopener"
-  style={
-    {
-      "visibility": "hidden",
-    }
-  }
-  target="_blank"
->
-  <input
-    name="data"
-    type="hidden"
-    value="{"title":"THE REPORT FILE NAME","description":"description","html":"fake html","editors":"100"}"
-  />
-  <button
-    type="submit"
-  />
-</form>
-`;
-
-exports[`ExportDialog renders with export dropdown 1`] = `
-"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
-  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
-  <StyledDialogFooterBase>
-    <ExportDropdown htmlFileName="THE REPORT FILE NAME" jsonFileName="JSON file name" featureFlagStoreData={{...}} htmlFileURL="html url" jsonFileURL="json url" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
-  </StyledDialogFooterBase>
-</Dialog>"
 `;
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
 "<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
   <StyledDialogFooterBase>
-    <CustomizedPrimaryButton onClick={[Function: onClick]} download="THE REPORT FILE NAME" href="html url" data-automation-id="single-export-to-html-button">
+    <CustomizedPrimaryButton onClick={[Function: onClick]} download="THE REPORT FILE NAME" href="html file url" data-automation-id="single-export-to-html-button">
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
 </Dialog>"
-`;
-
-exports[`ExportDialog user interaction renders immediately after dialog closed with htmlOnly=false 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "subText": "Optional: please describe the result (it will be saved in the report).",
-      "title": "Provide result description",
-      "type": 0,
-    }
-  }
-  hidden={true}
-  modalProps={
-    {
-      "containerClassName": "exportDialog",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    ariaLabel="Provide result description"
-    autoFocus={true}
-    multiline={true}
-    onChange={[Function]}
-    resizable={false}
-    rows={8}
-    value="description"
-  />
-  <StyledDialogFooterBase>
-    <React.Fragment>
-      <ExportDropdown
-        featureFlagStoreData={{}}
-        generateExports={[Function]}
-        htmlFileName="THE REPORT FILE NAME"
-        htmlFileURL="html url"
-        jsonFileName="JSON file name"
-        jsonFileURL="json url"
-        onExportLinkClick={[Function]}
-        reportExportServices={
-          [
-            {
-              "exportForm": [Function],
-              "generateMenuItem": [Function],
-              "key": "html",
-            },
-            {
-              "exportForm": [Function],
-              "generateMenuItem": [Function],
-              "key": "json",
-            },
-          ]
-        }
-      />
-    </React.Fragment>
-  </StyledDialogFooterBase>
-</Dialog>
-`;
-
-exports[`ExportDialog user interaction renders immediately after dialog closed with htmlOnly=true 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "subText": "Optional: please describe the result (it will be saved in the report).",
-      "title": "Provide result description",
-      "type": 0,
-    }
-  }
-  hidden={true}
-  modalProps={
-    {
-      "containerClassName": "exportDialog",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    ariaLabel="Provide result description"
-    autoFocus={true}
-    multiline={true}
-    onChange={[Function]}
-    resizable={false}
-    rows={8}
-    value="description"
-  />
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      data-automation-id="single-export-to-html-button"
-      download="THE REPORT FILE NAME"
-      href="html url"
-      onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>
-</Dialog>
 `;
