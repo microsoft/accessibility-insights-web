@@ -4,8 +4,11 @@ import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
+import { cloneDeep, isEqual } from 'lodash';
 
 export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Promise<void>> {
+    private previouslyPersistedState: TState | null;
+
     constructor(
         storeName: StoreNames,
         protected readonly persistedState: TState,
@@ -15,11 +18,13 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Prom
         private persistStoreData: boolean,
     ) {
         super(storeName);
+        this.previouslyPersistedState = null;
     }
 
-    protected async persistData(storeData: any): Promise<boolean> {
-        if (this.persistStoreData) {
-            return await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
+    protected async persistData(storeData: TState): Promise<boolean> {
+        if (this.persistStoreData && !isEqual(this.previouslyPersistedState, storeData)) {
+            this.previouslyPersistedState = storeData;
+            await this.idbInstance.setItem(this.indexedDBDataKey, storeData);
         }
         return true;
     }
@@ -44,13 +49,13 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Prom
     public async teardown(): Promise<void> {
         if (this.persistStoreData) {
             await this.idbInstance.removeItem(this.indexedDBDataKey);
+            this.previouslyPersistedState = null;
         }
     }
 
     protected async emitChanged(): Promise<void> {
-        const storeData = this.getState();
-
         if (this.idbInstance && this.logger && this.persistStoreData) {
+            const storeData = cloneDeep(this.getState());
             await this.persistData(storeData);
         }
 
