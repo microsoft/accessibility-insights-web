@@ -10,20 +10,20 @@ import {
     ReportExportServiceKey,
 } from 'report-export/types/report-export-service';
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
-import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
 import styles from './export-dialog.scss';
 
 export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 
 export interface ExportDialogProps {
-    deps: ExportDialogDeps;
     isOpen: boolean;
     htmlFileName: string;
     jsonFileName: string;
     description: string;
     htmlExportData: string;
     jsonExportData: string;
+    htmlFileUrl: string;
+    jsonFileUrl: string;
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
     reportExportFormat: ReportExportFormat;
@@ -36,10 +36,6 @@ export interface ExportDialogProps {
         selectedServiceKey: ReportExportServiceKey,
         event: React.MouseEvent<HTMLElement>,
     ) => void;
-}
-
-export interface ExportDialogDeps {
-    fileURLProvider: FileURLProvider;
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
@@ -63,7 +59,6 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(value);
     };
 
-    const htmlFileUrl = props.deps.fileURLProvider.provideURL([props.htmlExportData], 'text/html');
     const exportService = props.reportExportServices.find(s => s.key === serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
     const exportToCodepen =
@@ -79,7 +74,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                     onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html');
                 }}
                 download={props.htmlFileName}
-                href={htmlFileUrl}
+                href={props.htmlFileUrl}
                 data-automation-id={singleExportToHtmlButtonDataAutomationId}
             >
                 Export
@@ -93,10 +88,9 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 <ExportDropdown
                     htmlFileName={props.htmlFileName}
                     jsonFileName={props.jsonFileName}
-                    fileURLProvider={props.deps.fileURLProvider}
                     featureFlagStoreData={props.featureFlagStoreData}
-                    htmlExportData={props.htmlExportData}
-                    jsonExportData={props.jsonExportData}
+                    htmlFileURL={props.htmlFileUrl}
+                    jsonFileURL={props.jsonFileUrl}
                     generateExports={props.generateExports}
                     onExportLinkClick={onExportLinkClick}
                     reportExportServices={props.reportExportServices}

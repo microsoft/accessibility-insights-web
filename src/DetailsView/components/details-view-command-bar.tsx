@@ -15,7 +15,6 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import styles from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
 import {
     LoadAssessmentButtonDeps,
@@ -55,8 +54,7 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ExportDialogDeps &
-    SaveAssessmentButtonFactoryDeps &
+} & SaveAssessmentButtonFactoryDeps &
     LoadAssessmentButtonDeps &
     StartOverFactoryDeps &
     LoadAssessmentDialogDeps &

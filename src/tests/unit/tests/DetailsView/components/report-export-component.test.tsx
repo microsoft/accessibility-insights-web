@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FileURLProvider } from 'common/file-url-provider';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
@@ -22,6 +23,7 @@ describe('ReportExportComponent', () => {
     let getDescriptionMock: IMock<() => string>;
     let dismissDialogMock: IMock<() => void>;
     let afterDialogDismissedMock: IMock<() => void>;
+    let fileUrlProviderMock: IMock<FileURLProvider>;
 
     const exportDescription = 'export description';
     const scanDate = new Date(2019, 5, 28);
@@ -35,9 +37,11 @@ describe('ReportExportComponent', () => {
 
     beforeEach(() => {
         reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
+        fileUrlProviderMock = Mock.ofType<FileURLProvider>();
         deps = {
             reportNameGenerator: reportNameGeneratorMock.object,
-        } as ReportExportComponentDeps;
+            fileURLProvider: fileUrlProviderMock.object,
+        };
         htmlGeneratorMock = Mock.ofInstance(description => null);
         jsonGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
@@ -137,14 +141,25 @@ describe('ReportExportComponent', () => {
         const wrapper = shallow(<ReportExportComponent {...props} />);
         wrapper.setState({ exportDescription: testContentWithSpecials });
 
+        const htmlData = 'test html';
+        const jsonData = 'test json';
+
         htmlGeneratorMock
             .setup(hgm => hgm(testContentWithSpecials))
-            .returns(() => 'test html')
+            .returns(() => htmlData)
+            .verifiable(Times.once());
+        fileUrlProviderMock
+            .setup(f => f.provideURL([htmlData], 'text/html'))
+            .returns(() => 'html url')
             .verifiable(Times.once());
 
         jsonGeneratorMock
             .setup(jgm => jgm(testContentWithSpecials))
-            .returns(() => 'test json')
+            .returns(() => jsonData)
+            .verifiable(Times.once());
+        fileUrlProviderMock
+            .setup(f => f.provideURL([jsonData], 'application/json'))
+            .returns(() => 'json url')
             .verifiable(Times.once());
 
         const dialog = wrapper.find(ExportDialog);
@@ -155,5 +170,6 @@ describe('ReportExportComponent', () => {
 
         htmlGeneratorMock.verifyAll();
         jsonGeneratorMock.verifyAll();
+        fileUrlProviderMock.verifyAll();
     });
 });

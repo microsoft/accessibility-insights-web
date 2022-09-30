@@ -19,13 +19,13 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
       [
         {
           "download": "A file name",
-          "href": "a file url",
+          "href": "html file url",
           "key": "html",
           "onClick": [Function],
         },
         {
           "download": "json file name",
-          "href": undefined,
+          "href": "json file url",
           "key": "json",
           "onClick": [Function],
         },
@@ -62,7 +62,7 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
       [
         {
           "download": "A file name",
-          "href": "a file url",
+          "href": "html file url",
           "key": "html",
           "onClick": [Function],
         },
@@ -99,7 +99,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
       [
         {
           "download": "A file name",
-          "href": "a file url",
+          "href": "html file url",
           "key": "html",
           "onClick": [Function],
         },
