@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -44,11 +43,9 @@ export class GlobalContextFactory {
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
-        toolData: ToolData,
         storageAdapter: StorageAdapter,
         commandsAdapter: CommandsAdapter,
         logger: Logger,
-        persistStoreData: boolean,
     ): Promise<GlobalContext> {
         const interpreter = new Interpreter();
 
@@ -63,7 +60,6 @@ export class GlobalContextFactory {
             persistedData,
             storageAdapter,
             logger,
-            persistStoreData,
         );
 
         const featureFlagsController = new FeatureFlagsController(

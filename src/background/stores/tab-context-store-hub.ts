@@ -42,9 +42,9 @@ export class TabContextStoreHub implements StoreHub {
         indexedDBInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
         urlParser: UrlParser,
     ) {
+        const persistStoreData = true;
         const persistedTabData = persistedData.tabData ? persistedData.tabData[tabId] : null;
 
         this.visualizationStore = new VisualizationStore(

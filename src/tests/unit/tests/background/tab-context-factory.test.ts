@@ -121,7 +121,6 @@ describe('TabContextFactoryTest', () => {
             mockUsageLogger.object,
             persistedDataStub,
             mockDBInstance.object,
-            true,
             null,
         );
 
