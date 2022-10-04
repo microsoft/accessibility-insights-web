@@ -28,7 +28,9 @@ export class TabStopRequirementOrchestrator
         this.dom.addEventListener('focusin', this.onFocusIn);
 
         const tabbableFocusOrderResults = this.tabStopsHandler.getTabbableFocusOrderResults();
-        await this.reportResults(tabbableFocusOrderResults);
+        if (tabbableFocusOrderResults.length > 0) {
+            await this.reportResults(tabbableFocusOrderResults);
+        }
     };
 
     public stop = async () => {
@@ -36,7 +38,9 @@ export class TabStopRequirementOrchestrator
         this.dom.removeEventListener('focusin', this.onFocusIn);
 
         const keyboardNavigationResults = this.tabStopsHandler.getKeyboardNavigationResults();
-        await this.reportResults(keyboardNavigationResults);
+        if (keyboardNavigationResults.length > 0) {
+            await this.reportResults(keyboardNavigationResults);
+        }
     };
 
     public setResultCallback = (

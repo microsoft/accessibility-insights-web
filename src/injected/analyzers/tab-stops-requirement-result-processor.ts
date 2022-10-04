@@ -6,7 +6,7 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
-import { includes } from 'lodash';
+import { isEqual } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
@@ -67,9 +67,18 @@ export class TabStopsRequirementResultProcessor {
     private processTabStopRequirementResults = (
         tabStopRequirementResults: AutomatedTabStopRequirementResult[],
     ): void => {
-        const filteredResults = tabStopRequirementResults.filter(
-            result => !includes(this.seenTabStopRequirementResults, result),
-        );
+        const filteredResults = [];
+
+        tabStopRequirementResults.forEach(result => {
+            const duplicateResult = this.seenTabStopRequirementResults.some(seenResult =>
+                isEqual(seenResult, result),
+            );
+
+            if (!duplicateResult) {
+                filteredResults.push(result);
+                this.seenTabStopRequirementResults.push(result);
+            }
+        });
 
         if (filteredResults.length === 0) {
             return;
