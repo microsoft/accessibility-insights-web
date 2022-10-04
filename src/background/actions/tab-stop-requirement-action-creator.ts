@@ -109,6 +109,8 @@ export class TabStopRequirementActionCreator {
         payload: AddTabStopInstanceArrayPayload,
     ): Promise<void> => {
         await this.tabStopRequirementActions.addTabStopInstanceArray.invoke(payload);
+        // Report telemetry individually for each instance so it's consistent
+        // with telemetry reporting for onAddTabStopInstance
         payload.results.forEach(async result =>
             this.telemetryEventHandler.publishTelemetry(
                 TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,

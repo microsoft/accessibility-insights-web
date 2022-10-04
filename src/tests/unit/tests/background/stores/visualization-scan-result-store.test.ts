@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     AddTabbedElementPayload,
+    AddTabStopInstanceArrayPayload,
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
@@ -456,6 +457,69 @@ describe('VisualizationScanResultStoreTest', () => {
                 createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
                     payload,
                 );
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
+    });
+
+    describe('onAddTabStopInstanceArray', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const results: AddTabStopInstancePayload[] = [
+            {
+                requirementId: 'keyboard-navigation',
+                description: 'test1',
+                selector: ['some-selector'],
+                html: 'some html',
+            },
+            {
+                requirementId: 'focus-indicator',
+                description: 'test2',
+                selector: ['some-other-selector'],
+                html: 'some other html',
+            },
+        ];
+        const payload: AddTabStopInstanceArrayPayload = {
+            results,
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [
+                    {
+                        description: 'test1',
+                        id: 'abc',
+                        selector: ['some-selector'],
+                        html: 'some html',
+                    },
+                ],
+                isExpanded: false,
+            },
+            'focus-indicator': {
+                status: 'unknown',
+                instances: [
+                    {
+                        description: 'test2',
+                        id: 'abc',
+                        selector: ['some-other-selector'],
+                        html: 'some other html',
+                    },
+                ],
+                isExpanded: false,
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+        expectedState.tabStops.requirements[results[0].requirementId].status = 'fail';
+        expectedState.tabStops.requirements[results[1].requirementId].status = 'fail';
+
+        test('adds tab stop failure instance', async () => {
+            const storeTester =
+                createStoreTesterForTabStopRequirementActions(
+                    'addTabStopInstanceArray',
+                ).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
     });

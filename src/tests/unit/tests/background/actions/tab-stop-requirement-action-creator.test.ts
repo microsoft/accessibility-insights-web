@@ -10,6 +10,7 @@ import {
     UpdateTabbingCompletedPayload,
     UpdateNeedToCollectTabbingResultsPayload,
     BaseActionPayload,
+    AddTabStopInstanceArrayPayload,
 } from 'background/actions/action-payloads';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
@@ -137,6 +138,81 @@ describe('TabStopRequirementActionCreator', () => {
                 ),
             Times.once(),
         );
+    });
+
+    test('registerCallback for add tab stops requirement instance', async () => {
+        const actionName = 'addTabStopInstance';
+
+        const payload: AddTabStopInstancePayload = {
+            requirementId: requirementId,
+            description: 'testing',
+        };
+
+        const addTabStopRequirementInstanceMock = createAsyncActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, addTabStopRequirementInstanceMock.object);
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.AddTabStopInstance,
+            payload,
+        );
+
+        addTabStopRequirementInstanceMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(
+                    TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
+                    payload,
+                ),
+            Times.once(),
+        );
+    });
+
+    test('registerCallback for add tab stops instances array', async () => {
+        const actionName = 'addTabStopInstanceArray';
+
+        const payload: AddTabStopInstanceArrayPayload = {
+            results: [
+                { requirementId: requirementId, description: 'instance 1' },
+                { requirementId: requirementId, description: 'instance 2' },
+            ],
+        };
+
+        const addTabStopRequirementInstanceMock = createAsyncActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, addTabStopRequirementInstanceMock.object);
+
+        payload.results.forEach(result => {
+            telemetryEventHandlerMock
+                .setup(t =>
+                    t.publishTelemetry(TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE, result),
+                )
+                .verifiable(Times.once());
+        });
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.Visualizations.TabStops.AddTabStopInstanceArray,
+            payload,
+        );
+
+        addTabStopRequirementInstanceMock.verifyAll();
+        telemetryEventHandlerMock.verifyAll();
     });
 
     test('registerCallback for update tab stops requirement instance', async () => {

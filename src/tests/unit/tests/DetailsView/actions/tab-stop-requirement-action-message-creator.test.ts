@@ -3,6 +3,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AddTabStopInstanceArrayPayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
@@ -102,6 +103,53 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             .returns(() => telemetry);
 
         testSubject.addTabStopInstance(requirementInstance);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('addTabStopInstanceArray', () => {
+        const requirementInstances: TabStopRequirementResult[] = [
+            {
+                requirementId: 'input-focus',
+                description: 'instance 1',
+            },
+            {
+                requirementId: 'tab-order',
+                description: 'instance 2',
+            },
+        ];
+        const expectedPayload: AddTabStopInstanceArrayPayload = {
+            results: [],
+        };
+
+        requirementInstances.forEach(instance => {
+            const telemetry = {
+                triggeredBy: TriggeredByNotApplicable,
+                source: TelemetryEventSource.DetailsView,
+                requirementId: instance.requirementId,
+            };
+
+            expectedPayload.results.push({
+                ...instance,
+                telemetry,
+            });
+
+            telemetryFactoryMock
+                .setup(tf => tf.forTabStopRequirement(instance.requirementId, sourceStub))
+                .returns(() => telemetry);
+        });
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.AddTabStopInstanceArray,
+            payload: expectedPayload,
+        };
+
+        testSubject.addTabStopInstanceArray(requirementInstances);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
