@@ -5,6 +5,7 @@ import { Messages } from '../../common/messages';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
+    AddTabStopInstanceArrayPayload,
     AddTabStopInstancePayload,
     BaseActionPayload,
     RemoveTabStopInstancePayload,
@@ -38,6 +39,11 @@ export class TabStopRequirementActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.AddTabStopInstance,
             this.onAddTabStopInstance,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.AddTabStopInstanceArray,
+            this.onAddTabStopInstanceArray,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
@@ -96,6 +102,18 @@ export class TabStopRequirementActionCreator {
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
+        );
+    };
+
+    private onAddTabStopInstanceArray = async (
+        payload: AddTabStopInstanceArrayPayload,
+    ): Promise<void> => {
+        await this.tabStopRequirementActions.addTabStopInstanceArray.invoke(payload);
+        payload.results.forEach(async result =>
+            this.telemetryEventHandler.publishTelemetry(
+                TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
+                result,
+            ),
         );
     };
 

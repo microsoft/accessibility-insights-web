@@ -6,14 +6,16 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
-import { isEqual } from 'lodash';
+import { includes } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
     private seenTabStopRequirementResults: AutomatedTabStopRequirementResult[] = [];
     private isStopped: boolean = true;
 
     constructor(
-        private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
+        private readonly tabStopRequirementRunner: AllFrameRunner<
+            AutomatedTabStopRequirementResult[]
+        >,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly visualizationResultsStore: BaseStore<
             VisualizationScanResultData,
@@ -63,20 +65,16 @@ export class TabStopsRequirementResultProcessor {
     };
 
     private processTabStopRequirementResults = (
-        tabStopRequirementResult: AutomatedTabStopRequirementResult,
+        tabStopRequirementResults: AutomatedTabStopRequirementResult[],
     ): void => {
-        const duplicateResult = this.seenTabStopRequirementResults.some(r =>
-            isEqual(r, tabStopRequirementResult),
+        const filteredResults = tabStopRequirementResults.filter(
+            result => !includes(this.seenTabStopRequirementResults, result),
         );
 
-        if (!duplicateResult) {
-            this.tabStopRequirementActionMessageCreator.addTabStopInstance({
-                description: tabStopRequirementResult.description,
-                requirementId: tabStopRequirementResult.requirementId,
-                selector: tabStopRequirementResult.selector,
-                html: tabStopRequirementResult.html,
-            });
-            this.seenTabStopRequirementResults.push(tabStopRequirementResult);
+        if (filteredResults.length === 0) {
+            return;
         }
+
+        this.tabStopRequirementActionMessageCreator.addTabStopInstanceArray(filteredResults);
     };
 }
