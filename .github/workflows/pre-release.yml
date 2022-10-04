@@ -1,0 +1,40 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: Tag web version and create draft release
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: commit sha of version
+        message:
+          required: true
+      bump_type:
+        type: choice
+        description: type of version bump for release
+        options:
+        - patch
+        - minor
+        - major
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        id: tag version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_sha: ${{ github.event.inputs.commit }}
+          default_bump: ${{ github.event.inputs.bump_type}}
+
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          draft: true
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Accessibility Insights for Web ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
