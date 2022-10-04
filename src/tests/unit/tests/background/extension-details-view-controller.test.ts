@@ -42,7 +42,7 @@ describe('ExtensionDetailsViewController', () => {
                 .verifiable(Times.never());
             setupDatabaseInstance(null, Times.never());
 
-            testSubject = createTestSubject(true);
+            testSubject = createTestSubject();
             await testSubject.initialize();
 
             expect(isEmpty(tabIdToDetailsViewMap)).toBe(true);
@@ -57,7 +57,7 @@ describe('ExtensionDetailsViewController', () => {
                 .verifiable(Times.never());
             setupDatabaseInstance(null, Times.never());
 
-            testSubject = createTestSubject(true);
+            testSubject = createTestSubject();
             await testSubject.initialize();
 
             expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
@@ -66,132 +66,51 @@ describe('ExtensionDetailsViewController', () => {
             idbInstanceMock.verifyAll();
         });
 
-        it.each([true, false])(
-            'Removes details view tab id if it does not exist in browser with persistData=%s',
-            async persistData => {
-                tabIdToDetailsViewMap['1'] = 2;
-                tabIdToDetailsViewMap['3'] = 33;
-                interpretMessageForTabMock
-                    .setup(i =>
-                        i(3, {
-                            messageType: Messages.Visualizations.DetailsView.Close,
-                            payload: null,
-                            tabId: 3,
-                        }),
-                    )
-                    .returns(() => ({ messageHandled: true, result: undefined }))
-                    .verifiable(Times.once());
+        it('Removes details view tab id if it does not exist in browser with persistData=%s', async () => {
+            tabIdToDetailsViewMap['1'] = 2;
+            tabIdToDetailsViewMap['3'] = 33;
+            interpretMessageForTabMock
+                .setup(i =>
+                    i(3, {
+                        messageType: Messages.Visualizations.DetailsView.Close,
+                        payload: null,
+                        tabId: 3,
+                    }),
+                )
+                .returns(() => ({ messageHandled: true, result: undefined }))
+                .verifiable(Times.once());
 
-                if (persistData) {
-                    setupDatabaseInstance({ '1': 2 }, Times.once());
-                } else {
-                    setupDatabaseInstance(null, Times.never());
-                }
+            setupDatabaseInstance({ '1': 2 }, Times.once());
 
-                testSubject = createTestSubject(persistData);
-                await testSubject.initialize();
+            testSubject = createTestSubject();
+            await testSubject.initialize();
 
-                expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
-                interpretMessageForTabMock.verifyAll();
-                idbInstanceMock.verifyAll();
-            },
-        );
-
-        it.each([true, false])(
-            'Removes target tab id if it does not exist in browser with persistData=%s',
-            async persistData => {
-                tabIdToDetailsViewMap['1'] = 2;
-                tabIdToDetailsViewMap['33'] = 3;
-                interpretMessageForTabMock
-                    .setup(i => i(It.isAny(), It.isAny()))
-                    .verifiable(Times.never());
-
-                if (persistData) {
-                    setupDatabaseInstance({ '1': 2 }, Times.once());
-                } else {
-                    setupDatabaseInstance(null, Times.never());
-                }
-
-                testSubject = createTestSubject(persistData);
-                await testSubject.initialize();
-
-                expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
-                interpretMessageForTabMock.verifyAll();
-                idbInstanceMock.verifyAll();
-            },
-        );
-    });
-
-    describe('No Persisted Data', () => {
-        beforeEach(() => {
-            testSubject = createTestSubject(false);
-
-            setupDatabaseInstance(null, Times.never());
-        });
-
-        it('Does not persist data when details view created', async () => {
-            const targetTabId = 12;
-            const detailsViewTabId = 10;
-
-            setupCreateDetailsView(targetTabId, detailsViewTabId).verifiable(Times.once());
-
-            await testSubject.showDetailsView(targetTabId);
-
-            browserAdapterMock.verifyAll();
+            expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
+            interpretMessageForTabMock.verifyAll();
             idbInstanceMock.verifyAll();
         });
 
-        test('Does not persist data when tab updated', async () => {
-            const targetTabId = 5;
-            const detailsViewTabId = 10;
+        it('Removes target tab id if it does not exist in browser with persistData=%s', async () => {
+            tabIdToDetailsViewMap['1'] = 2;
+            tabIdToDetailsViewMap['33'] = 3;
+            interpretMessageForTabMock
+                .setup(i => i(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
 
-            setupCreateDetailsView(targetTabId, detailsViewTabId);
+            setupDatabaseInstance({ '1': 2 }, Times.once());
 
-            // call show details once
-            await testSubject.showDetailsView(targetTabId);
+            testSubject = createTestSubject();
+            await testSubject.initialize();
 
-            browserAdapterMock.reset();
-
-            // update target tab
-            await testSubject.onUpdateTab(targetTabId, null);
-
-            setupCreateDetailsViewForAnyUrl(Times.never());
-            setupSwitchToTab(detailsViewTabId);
-
-            // call show details second time
-            await testSubject.showDetailsView(targetTabId);
-
-            browserAdapterMock.verifyAll();
-            idbInstanceMock.verifyAll();
-        });
-
-        test('Does not persist data when tab removed', async () => {
-            const targetTabId = 5;
-            const detailsViewTabId = 10;
-
-            setupCreateDetailsView(targetTabId, detailsViewTabId);
-
-            // call show details once
-            await testSubject.showDetailsView(targetTabId);
-
-            browserAdapterMock.reset();
-
-            // remove target tab
-            await testSubject.onRemoveTab(targetTabId);
-
-            setupCreateDetailsViewForAnyUrl(Times.once());
-
-            // call show details second time
-            await testSubject.showDetailsView(targetTabId);
-
-            browserAdapterMock.verifyAll();
+            expect(Object.keys(tabIdToDetailsViewMap)).toEqual(['1']);
+            interpretMessageForTabMock.verifyAll();
             idbInstanceMock.verifyAll();
         });
     });
 
     describe('Persisted Data', () => {
         beforeEach(() => {
-            testSubject = createTestSubject(true);
+            testSubject = createTestSubject();
         });
 
         describe('showDetailsView', () => {
@@ -683,13 +602,12 @@ describe('ExtensionDetailsViewController', () => {
         }
     };
 
-    const createTestSubject = (persistData: boolean): ExtensionDetailsViewController => {
+    const createTestSubject = (): ExtensionDetailsViewController => {
         return new ExtensionDetailsViewController(
             browserAdapterMock.object,
             tabIdToDetailsViewMap,
             idbInstanceMock.object,
             interpretMessageForTabMock.object,
-            persistData,
         );
     };
 });

@@ -19,7 +19,6 @@ export class TargetPageController {
         private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
-        private persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {
@@ -127,18 +126,14 @@ export class TargetPageController {
         const url = await this.getUrl(tabId);
         if (this.knownTabs[tabId] === undefined || this.knownTabs[tabId] !== url) {
             this.knownTabs[tabId] = url;
-            if (this.persistStoreData) {
-                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
-            }
+            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
         }
     };
 
     private removeKnownTabId = async (tabId: number) => {
         if (Object.keys(this.knownTabs).includes(tabId.toString())) {
             delete this.knownTabs[tabId];
-            if (this.persistStoreData) {
-                await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
-            }
+            await this.idbInstance.setItem(IndexedDBDataKeys.knownTabIds, this.knownTabs);
         }
     };
 
