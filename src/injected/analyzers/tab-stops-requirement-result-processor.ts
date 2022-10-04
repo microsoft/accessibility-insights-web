@@ -5,7 +5,10 @@ import { BaseStore } from 'common/base-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import {
+    AutomatedTabStopRequirementResult,
+    TabStopRequirementResult,
+} from 'injected/tab-stop-requirement-result';
 import { isEqual } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
@@ -67,7 +70,7 @@ export class TabStopsRequirementResultProcessor {
     private processTabStopRequirementResults = (
         tabStopRequirementResults: AutomatedTabStopRequirementResult[],
     ): void => {
-        const filteredResults = [];
+        const filteredResults: TabStopRequirementResult[] = [];
 
         tabStopRequirementResults.forEach(result => {
             const duplicateResult = this.seenTabStopRequirementResults.some(seenResult =>
@@ -75,7 +78,7 @@ export class TabStopsRequirementResultProcessor {
             );
 
             if (!duplicateResult) {
-                filteredResults.push(result);
+                filteredResults.push({ ...result });
                 this.seenTabStopRequirementResults.push(result);
             }
         });
