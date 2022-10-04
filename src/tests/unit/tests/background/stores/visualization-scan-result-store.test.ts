@@ -555,7 +555,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
 
         const storeTester =
-            createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
+            createStoreTesterForTabStopRequirementActions('updateTabStopInstance').withActionParam(
                 payload,
             );
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -590,7 +590,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
 
         const storeTester =
-            createStoreTesterForTabStopRequirementActions('addTabStopInstance').withActionParam(
+            createStoreTesterForTabStopRequirementActions('removeTabStopInstance').withActionParam(
                 payload,
             );
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -630,6 +630,37 @@ describe('VisualizationScanResultStoreTest', () => {
         ).withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
+
+    test.each([true, false])(
+        'toggleTabStopRequirementExpand with initial state isExpanded=%s',
+        async isInitiallyExpanded => {
+            const requirementId = 'keyboard-navigation';
+            const requirement: TabStopRequirementState = {
+                [requirementId]: {
+                    status: 'unknown',
+                    instances: [{ description: 'test1', id: 'abc' }],
+                    isExpanded: isInitiallyExpanded,
+                },
+            };
+            const initialState = new VisualizationScanResultStoreDataBuilder()
+                .withTabStopRequirement(requirement)
+                .build();
+
+            const expectedState = new VisualizationScanResultStoreDataBuilder()
+                .withTabStopRequirement({
+                    [requirementId]: {
+                        ...requirement[requirementId],
+                        isExpanded: !isInitiallyExpanded,
+                    },
+                })
+                .build();
+
+            const storeTester = createStoreTesterForTabStopRequirementActions(
+                'toggleTabStopRequirementExpand',
+            ).withActionParam({ requirementId });
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        },
+    );
 
     function createStoreTesterForVisualizationScanResultActions(
         actionName: keyof VisualizationScanResultActions,

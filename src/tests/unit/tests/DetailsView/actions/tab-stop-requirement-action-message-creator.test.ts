@@ -16,6 +16,7 @@ import {
 } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import {
     TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
@@ -326,5 +327,29 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
         );
 
         telemetryFactoryMock.verifyAll();
+    });
+
+    test('resetStatusForRequirement', () => {
+        const requirementId: TabStopRequirementId = 'tab-order';
+        const telemetry = {
+            source: sourceStub,
+            requirementId: requirementId,
+            triggeredBy: null,
+        };
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
+            payload: { requirementId, telemetry },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forTabStopRequirement(requirementId, sourceStub))
+            .returns(() => telemetry);
+
+        testSubject.resetStatusForRequirement(requirementId);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 });
