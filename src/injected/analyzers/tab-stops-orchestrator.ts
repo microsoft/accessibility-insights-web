@@ -7,11 +7,11 @@ import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 
 export class TabStopRequirementOrchestrator
-    implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult>
+    implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult[]>
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
     public static readonly keyboardTrapTimeout: number = 500;
-    private reportResults: (payload: AutomatedTabStopRequirementResult) => Promise<void>;
+    private reportResults: (payload: AutomatedTabStopRequirementResult[]) => Promise<void>;
 
     constructor(
         private readonly dom: Document,
@@ -28,7 +28,9 @@ export class TabStopRequirementOrchestrator
         this.dom.addEventListener('focusin', this.onFocusIn);
 
         const tabbableFocusOrderResults = this.tabStopsHandler.getTabbableFocusOrderResults();
-        await Promise.all(tabbableFocusOrderResults.map(result => this.reportResults(result)));
+        if (tabbableFocusOrderResults.length > 0) {
+            await this.reportResults(tabbableFocusOrderResults);
+        }
     };
 
     public stop = async () => {
@@ -36,22 +38,26 @@ export class TabStopRequirementOrchestrator
         this.dom.removeEventListener('focusin', this.onFocusIn);
 
         const keyboardNavigationResults = this.tabStopsHandler.getKeyboardNavigationResults();
-        await Promise.all(keyboardNavigationResults.map(result => this.reportResults(result)));
+        if (keyboardNavigationResults.length > 0) {
+            await this.reportResults(keyboardNavigationResults);
+        }
     };
 
     public setResultCallback = (
-        reportResultCallback: (payload: AutomatedTabStopRequirementResult) => Promise<void>,
+        reportResultCallback: (payload: AutomatedTabStopRequirementResult[]) => Promise<void>,
     ) => {
         this.reportResults = reportResultCallback;
     };
 
     public transformChildResultForParent = (
-        result: AutomatedTabStopRequirementResult,
+        results: AutomatedTabStopRequirementResult[],
         messageSourceFrame: HTMLIFrameElement,
-    ): AutomatedTabStopRequirementResult => {
+    ): AutomatedTabStopRequirementResult[] => {
         const frameSelector = this.getUniqueSelector(messageSourceFrame);
-        result.selector = [frameSelector, ...result.selector];
-        return result;
+        results.forEach(result => {
+            result.selector = [frameSelector, ...result.selector];
+        });
+        return results;
     };
 
     private onFocusIn = async (focusEvent: FocusEvent) => {
@@ -62,7 +68,7 @@ export class TabStopRequirementOrchestrator
         if (result == null) {
             return;
         }
-        await this.reportResults(result);
+        await this.reportResults([result]);
     };
 
     private onKeydown = async (e: KeyboardEvent) => {
@@ -75,6 +81,6 @@ export class TabStopRequirementOrchestrator
         if (result == null) {
             return;
         }
-        await this.reportResults(result);
+        await this.reportResults([result]);
     };
 }

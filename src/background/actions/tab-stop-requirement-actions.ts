@@ -4,6 +4,7 @@
 // Licensed under the MIT License.
 import { AsyncAction } from 'common/flux/async-action';
 import {
+    AddTabStopInstanceArrayPayload,
     AddTabStopInstancePayload,
     BaseActionPayload,
     RemoveTabStopInstancePayload,
@@ -20,6 +21,7 @@ export class TabStopRequirementActions {
     public readonly updateTabStopsRequirementStatus =
         new AsyncAction<UpdateTabStopRequirementStatusPayload>();
     public readonly addTabStopInstance = new AsyncAction<AddTabStopInstancePayload>();
+    public readonly addTabStopInstanceArray = new AsyncAction<AddTabStopInstanceArrayPayload>();
     public readonly updateTabStopInstance = new AsyncAction<UpdateTabStopInstancePayload>();
     public readonly removeTabStopInstance = new AsyncAction<RemoveTabStopInstancePayload>();
     public readonly resetTabStopRequirementStatus =
