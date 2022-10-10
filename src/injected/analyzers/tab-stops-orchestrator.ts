@@ -9,7 +9,7 @@ import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement
 
 export class TabStopRequirementOrchestrator
     extends ShadowDomFocusTracker
-    implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult>
+    implements AllFrameRunnerTarget<AutomatedTabStopRequirementResult[]>
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
     public static readonly keyboardTrapTimeout: number = 500;
