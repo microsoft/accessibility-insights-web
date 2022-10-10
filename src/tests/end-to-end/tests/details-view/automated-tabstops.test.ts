@@ -93,6 +93,25 @@ describe('Automated TabStops Results', () => {
     );
 
     test(
+        'Visualize open shadow dom tabbable elements',
+        async () => {
+            await openTabStopsPage('tab-stops/shadow-doms.html');
+            const tabEventCount = 5;
+            await tabThroughPage(tabEventCount);
+
+            // No results, so results selectors shouldn't show up
+            await detailsViewPage.waitForTimeout(100);
+            const element = await detailsViewPage.getSelectorElement(
+                tabStopsSelectors.automatedChecksResultSection,
+            );
+            expect(element).toBeNull();
+
+            await verifyTargetPageVisualization(tabEventCount - 1, 1, 0, 0);
+        },
+        longRunningTabStopsTestTimeout,
+    );
+
+    test(
         'Detect and display failures when tabbing is not completed',
         async () => {
             await openTabStopsPage('tab-stops/unreachable.html');

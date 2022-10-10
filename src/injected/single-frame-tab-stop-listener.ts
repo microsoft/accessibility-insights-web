@@ -4,24 +4,22 @@
 import { DateProvider } from 'common/date-provider';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunnerTarget } from 'injected/all-frame-runner';
+import { ShadowDomFocusTracker } from 'injected/shadow-dom-focus-tracker';
 
-export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopEvent> {
+export class SingleFrameTabStopListener
+    extends ShadowDomFocusTracker
+    implements AllFrameRunnerTarget<TabStopEvent>
+{
     private reportResults: (payload: TabStopEvent) => Promise<void>;
 
     constructor(
         public readonly commandSuffix: string,
         private readonly getUniqueSelector: (element: HTMLElement) => string,
-        private readonly dom: Document,
+        dom: Document,
         private readonly getCurrentDate: typeof DateProvider.getCurrentDate = DateProvider.getCurrentDate,
-    ) {}
-
-    public start = async () => {
-        this.dom.addEventListener('focusin', this.onFocusIn);
-    };
-
-    public stop = async () => {
-        this.dom.removeEventListener('focusin', this.onFocusIn);
-    };
+    ) {
+        super(dom);
+    }
 
     public setResultCallback = (reportResultCallback: (payload: TabStopEvent) => Promise<void>) => {
         this.reportResults = reportResultCallback;
@@ -39,9 +37,7 @@ export class SingleFrameTabStopListener implements AllFrameRunnerTarget<TabStopE
         };
     };
 
-    private onFocusIn = async (event: Event): Promise<void> => {
-        const target: HTMLElement = event.target as HTMLElement;
-
+    protected override focusInCallback = async (target: HTMLElement): Promise<void> => {
         const timestamp: Date = this.getCurrentDate();
 
         const tabStopEvent: TabStopEvent = {

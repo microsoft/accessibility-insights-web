@@ -26,11 +26,15 @@ export class FocusTrapsHandler {
         }
 
         const elementFocusedBeforeTab = this.lastFocusedElement;
-        this.lastFocusedElement = dom.activeElement;
+        this.lastFocusedElement = this.getCurrentFocusedElement(dom.activeElement);
 
         await this.promiseFactory.delay(null, this.keyboardTrapTimeout);
 
-        const currentFocusedElement = dom.activeElement;
+        const currentFocusedElement = this.getCurrentFocusedElement(dom.activeElement);
+
+        if (currentFocusedElement === dom.body) {
+            return null;
+        }
 
         let result: AutomatedTabStopRequirementResult | null = null;
         if (currentFocusedElement != null && elementFocusedBeforeTab != null) {
@@ -42,5 +46,13 @@ export class FocusTrapsHandler {
         this.lastFocusedElement = currentFocusedElement;
 
         return result;
+    };
+
+    private getCurrentFocusedElement = (element: Element | null): HTMLElement => {
+        let activeElement = element as HTMLElement;
+        while (activeElement?.shadowRoot?.activeElement) {
+            activeElement = activeElement.shadowRoot.activeElement as HTMLElement;
+        }
+        return activeElement;
     };
 }
