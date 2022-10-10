@@ -172,7 +172,7 @@
         "script-loader": "0.7.2",
         "serve-static": "^1.15.0",
         "simple-git": "^3.14.1",
-        "source-map-loader": "^4.0.0",
+        "source-map-loader": "^4.0.1",
         "stylelint": "^14.12.1",
         "stylelint-config-prettier-scss": "^0.0.1",
         "stylelint-config-standard-scss": "^5.0.0",
@@ -187,7 +187,7 @@
     },
     "dependencies": {
         "@fluentui/react": "^8.96.1",
-        "@microsoft/applicationinsights-web": "^2.8.7",
+        "@microsoft/applicationinsights-web": "^2.8.8",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.8",
