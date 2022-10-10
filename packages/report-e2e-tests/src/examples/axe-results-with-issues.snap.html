@@ -190,7 +190,6 @@
       .guidance-tags span {
         font-size: 12px;
         font-weight: normal;
-        margin-left: 8px;
         padding-top: 2px;
         padding-right: 12px;
         padding-bottom: 2px;
@@ -1135,6 +1134,11 @@
         padding-top: 12px;
         padding-bottom: 12px;
       }
+      .rule-more-resources--uw9mc
+        .rule-guidance--TIQgm
+        > :not(span:first-of-type) {
+        margin-left: 8px;
+      }
 
       /* css-modules:src/common/components/cards/rules-with-instances */
       .rule-details-group--Tb-LW .rule-detail {
@@ -1469,6 +1473,11 @@
         margin-right: 2px;
         margin-left: 2px;
         border: 1px solid var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        .fix-instruction-color-box--DQpQE {
+          forced-color-adjust: none;
+        }
       }
       .screen-reader-only--6LUiO {
         position: absolute;
@@ -1945,7 +1954,7 @@
                         class="ms-Link insights-link root-109"
                         >More information about bypass</a
                       ></span
-                    ><span
+                    ><span class="rule-guidance--TIQgm"
                       ><span class="guidance-links"
                         ><a
                           target="_blank"
@@ -2076,7 +2085,7 @@
                         class="ms-Link insights-link root-109"
                         >More information about color-contrast</a
                       ></span
-                    ><span
+                    ><span class="rule-guidance--TIQgm"
                       ><span class="guidance-links"
                         ><a
                           target="_blank"
@@ -2614,7 +2623,7 @@
                         class="ms-Link insights-link root-109"
                         >More information about html-has-lang</a
                       ></span
-                    ><span
+                    ><span class="rule-guidance--TIQgm"
                       ><span class="guidance-links"
                         ><a
                           target="_blank"
@@ -2742,7 +2751,7 @@
                         class="ms-Link insights-link root-109"
                         >More information about image-alt</a
                       ></span
-                    ><span
+                    ><span class="rule-guidance--TIQgm"
                       ><span class="guidance-links"
                         ><a
                           target="_blank"
@@ -3067,7 +3076,7 @@
                         class="ms-Link insights-link root-109"
                         >More information about label</a
                       ></span
-                    ><span
+                    ><span class="rule-guidance--TIQgm"
                       ><span class="guidance-links"
                         ><a
                           target="_blank"
@@ -3866,13 +3875,10 @@
                         class="ms-Link insights-link root-109"
                         >More information about landmark-one-main</a
                       ></span
-                    ><span
-                      ><span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
+                    ><span class="rule-guidance--TIQgm"
+                      ><span class="guidance-links"></span
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
                       ></span
                     ></div
                   ><ul
@@ -3993,13 +3999,10 @@
                         class="ms-Link insights-link root-109"
                         >More information about page-has-heading-one</a
                       ></span
-                    ><span
-                      ><span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
+                    ><span class="rule-guidance--TIQgm"
+                      ><span class="guidance-links"></span
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
                       ></span
                     ></div
                   ><ul
@@ -4120,13 +4123,10 @@
                         class="ms-Link insights-link root-109"
                         >More information about region</a
                       ></span
-                    ><span
-                      ><span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
+                    ><span class="rule-guidance--TIQgm"
+                      ><span class="guidance-links"></span
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
                       ></span
                     ></div
                   ><ul
@@ -4457,13 +4457,9 @@
                         class="rule-details-description"
                         id="passed-rule-image-redundant-alt-description"
                         >Ensure image alternative is not repeated as text</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4507,13 +4503,9 @@
                         id="passed-rule-label-title-only-description"
                         >Ensures that every form element is not solely labeled
                         using the title or aria-describedby attributes</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4532,13 +4524,9 @@
                         id="passed-rule-landmark-no-duplicate-banner-description"
                         >Ensures the document has at most one banner
                         landmark</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4557,13 +4545,9 @@
                         id="passed-rule-landmark-no-duplicate-contentinfo-description"
                         >Ensures the document has at most one contentinfo
                         landmark</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4663,13 +4647,9 @@
                         id="passed-rule-table-duplicate-name-description"
                         >Ensure that tables do not have the same summary and
                         caption</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4805,13 +4785,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-accesskeys-description"
                         >Ensures every accesskey attribute value is unique</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -4883,12 +4859,21 @@
                         >Ensures role attribute has an appropriate value for the
                         element</span
                       >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
+                        ><a
+                          target="_blank"
+                          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                          class="ms-Link insights-link root-109"
+                          >WCAG 1.3.1</a
+                        ><span>, </span
+                        ><a
+                          target="_blank"
+                          href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                          class="ms-Link insights-link root-109"
+                          >WCAG 4.1.2</a
                         ></span
-                      >)</div
+                      >)<span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5301,13 +5286,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-empty-heading-description"
                         >Ensures headings have discernible text</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5326,13 +5307,9 @@
                         id="not-applicable-rule-frame-tested-description"
                         >Ensures &lt;iframe&gt; and &lt;frame&gt; elements
                         contain the axe-core script</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5351,13 +5328,9 @@
                         id="not-applicable-rule-frame-title-unique-description"
                         >Ensures &lt;iframe&gt; and &lt;frame&gt; elements
                         contain a unique title attribute</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5408,13 +5381,9 @@
                         id="not-applicable-rule-heading-order-description"
                         >Ensures the order of headings is semantically
                         correct</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5511,13 +5480,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-landmark-banner-is-top-level-description"
                         >Ensures the banner landmark is at top level</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5536,13 +5501,9 @@
                         id="not-applicable-rule-landmark-complementary-is-top-level-description"
                         >Ensures the complementary landmark or aside is at top
                         level</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5560,13 +5521,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-landmark-contentinfo-is-top-level-description"
                         >Ensures the contentinfo landmark is at top level</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5584,13 +5541,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-landmark-main-is-top-level-description"
                         >Ensures the main landmark is at top level</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5609,13 +5562,9 @@
                         id="not-applicable-rule-landmark-unique-description"
                         >Landmarks must have a unique role or role/label/title
                         (i.e. accessible name) combination</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5685,13 +5634,9 @@
                         id="not-applicable-rule-meta-viewport-large-description"
                         >Ensures &lt;meta name=&quot;viewport&quot;&gt; can
                         scale a significant amount</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5788,13 +5733,9 @@
                         id="not-applicable-rule-scope-attr-valid-description"
                         >Ensures the scope attribute is used correctly on
                         tables</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5863,13 +5804,9 @@
                         class="rule-details-description"
                         id="not-applicable-rule-skip-link-description"
                         >Ensure all skip links have a focusable target</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>
@@ -5888,13 +5825,9 @@
                         id="not-applicable-rule-tabindex-description"
                         >Ensures tabindex attribute values are not greater than
                         0</span
-                      >(<span class="guidance-links"
-                        ><button
-                          type="button"
-                          class="ms-Link insights-link root-110"
-                          >BEST PRACTICE</button
-                        ></span
-                      >)</div
+                      ><span class="guidance-tags"
+                        ><span>Best Practice</span></span
+                      ></div
                     ></div
                   ><div class="rule-detail"
                     ><div>

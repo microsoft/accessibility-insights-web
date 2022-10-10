@@ -45,8 +45,9 @@ export class GlobalStoreHub implements StoreHub {
         persistedData: PersistedData,
         storageAdapter: StorageAdapter,
         logger: Logger,
-        persistStoreData: boolean,
     ) {
+        const persistStoreData = true;
+
         this.commandStore = new CommandStore(
             globalActionHub.commandActions,
             telemetryEventHandler,

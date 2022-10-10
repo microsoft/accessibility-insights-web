@@ -13,7 +13,7 @@ import { HelpUrlGetter } from "scanner/help-url-getter";
 
 export class CombinedResultsToCardsModelConverter {
     constructor(
-        private readonly mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => GuidanceLink[],
+        private readonly mapAxeTagsToGuidanceLinks: (ruleId: string, axeTags?: string[]) => GuidanceLink[],
         private readonly cardSelectionViewData: CardSelectionViewData,
         private readonly uuidGenerator: UUIDGenerator,
         private readonly helpUrlGetter: HelpUrlGetter,
@@ -56,7 +56,7 @@ export class CombinedResultsToCardsModelConverter {
             description: rule.description,
             url: this.helpUrlGetter.getHelpUrl(rule.ruleId, rule.ruleUrl),
             isExpanded: false,
-            guidance: this.mapAxeTagsToGuidanceLinks(rule.tags),
+            guidance: this.mapAxeTagsToGuidanceLinks(rule.ruleId, rule.tags),
             nodes: isNil(nodes) ? [] : nodes,
         };
     }

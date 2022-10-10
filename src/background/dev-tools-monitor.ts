@@ -10,6 +10,7 @@ import { DevToolsStatusResponse } from 'common/types/dev-tools-messages';
 
 export class DevToolsMonitor {
     private monitorIsActive: boolean = false;
+    private failedPingCount = 0;
 
     constructor(
         private readonly tabId: number,
@@ -19,6 +20,7 @@ export class DevToolsMonitor {
         private readonly devtoolActions: DevToolActions,
         private readonly messageTimeoutMilliseconds = 500,
         private readonly pollIntervalMilliseconds = 500,
+        private readonly maxFailedPings = 3,
     ) {}
 
     public initialize(): void {
@@ -60,10 +62,17 @@ export class DevToolsMonitor {
                 this.messageTimeoutMilliseconds,
             );
 
+            this.failedPingCount = 0;
+
             return statusResponse?.isActive === true;
         } catch (e) {
             if (e instanceof TimeoutError || e.message.includes('Could not establish connection')) {
-                return false;
+                this.failedPingCount += 1;
+                if (this.failedPingCount >= this.maxFailedPings) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
             throw e;
         }

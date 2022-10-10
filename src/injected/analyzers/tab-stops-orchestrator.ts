@@ -13,7 +13,7 @@ export class TabStopRequirementOrchestrator
 {
     public readonly commandSuffix: string = 'TabStopRequirementOrchestrator';
     public static readonly keyboardTrapTimeout: number = 500;
-    private reportResults: (payload: AutomatedTabStopRequirementResult) => Promise<void>;
+    private reportResults: (payload: AutomatedTabStopRequirementResult[]) => Promise<void>;
 
     constructor(
         dom: Document,
@@ -31,7 +31,9 @@ export class TabStopRequirementOrchestrator
         this.dom.addEventListener('keydown', this.onKeydown);
 
         const tabbableFocusOrderResults = this.tabStopsHandler.getTabbableFocusOrderResults();
-        await Promise.all(tabbableFocusOrderResults.map(result => this.reportResults(result)));
+        if (tabbableFocusOrderResults.length > 0) {
+            await this.reportResults(tabbableFocusOrderResults);
+        }
     };
 
     public override stop = async () => {
@@ -39,22 +41,26 @@ export class TabStopRequirementOrchestrator
         await super.stop();
 
         const keyboardNavigationResults = this.tabStopsHandler.getKeyboardNavigationResults();
-        await Promise.all(keyboardNavigationResults.map(result => this.reportResults(result)));
+        if (keyboardNavigationResults.length > 0) {
+            await this.reportResults(keyboardNavigationResults);
+        }
     };
 
     public setResultCallback = (
-        reportResultCallback: (payload: AutomatedTabStopRequirementResult) => Promise<void>,
+        reportResultCallback: (payload: AutomatedTabStopRequirementResult[]) => Promise<void>,
     ) => {
         this.reportResults = reportResultCallback;
     };
 
     public transformChildResultForParent = (
-        result: AutomatedTabStopRequirementResult,
+        results: AutomatedTabStopRequirementResult[],
         messageSourceFrame: HTMLIFrameElement,
-    ): AutomatedTabStopRequirementResult => {
+    ): AutomatedTabStopRequirementResult[] => {
         const frameSelector = this.getUniqueSelector(messageSourceFrame);
-        result.selector = [frameSelector, ...result.selector];
-        return result;
+        results.forEach(result => {
+            result.selector = [frameSelector, ...result.selector];
+        });
+        return results;
     };
 
     protected override focusInCallback = async (target: HTMLElement): Promise<void> => {
@@ -63,7 +69,7 @@ export class TabStopRequirementOrchestrator
         if (result == null) {
             return;
         }
-        await this.reportResults(result);
+        await this.reportResults([result]);
     };
 
     private onKeydown = async (e: KeyboardEvent) => {
@@ -76,6 +82,6 @@ export class TabStopRequirementOrchestrator
         if (result == null) {
             return;
         }
-        await this.reportResults(result);
+        await this.reportResults([result]);
     };
 }

@@ -22,11 +22,9 @@ import styles from 'DetailsView/components/issues-table.scss';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ExportDialogDeps } from './export-dialog';
 
 export type IssuesTableDeps = CommonInstancesSectionDeps &
-    IssueFilingDialogDeps &
-    ExportDialogDeps & {
+    IssueFilingDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
         reportGenerator: ReportGenerator;
         issueFilingDialogPropsFactory: IssueFilingDialogPropsFactory;

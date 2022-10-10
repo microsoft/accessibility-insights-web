@@ -190,7 +190,6 @@
       .guidance-tags span {
         font-size: 12px;
         font-weight: normal;
-        margin-left: 8px;
         padding-top: 2px;
         padding-right: 12px;
         padding-bottom: 2px;
@@ -1135,6 +1134,11 @@
         padding-top: 12px;
         padding-bottom: 12px;
       }
+      .rule-more-resources--uw9mc
+        .rule-guidance--TIQgm
+        > :not(span:first-of-type) {
+        margin-left: 8px;
+      }
 
       /* css-modules:src/common/components/cards/rules-with-instances */
       .rule-details-group--Tb-LW .rule-detail {
@@ -1469,6 +1473,11 @@
         margin-right: 2px;
         margin-left: 2px;
         border: 1px solid var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        .fix-instruction-color-box--DQpQE {
+          forced-color-adjust: none;
+        }
       }
       .screen-reader-only--6LUiO {
         position: absolute;

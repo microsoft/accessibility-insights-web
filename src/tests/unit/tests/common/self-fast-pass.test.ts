@@ -74,6 +74,7 @@ describe('SelfFastPass', () => {
                             'link-in-text-block',
                             'scrollable-region-focusable',
                             'label-content-name-mismatch',
+                            'p-as-heading',
                         ],
                     },
                     It.isAny(),

@@ -27,17 +27,7 @@ exports[`ExportDialog renders with export dropdown 1`] = `
 "<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
   <StyledDialogFooterBase>
-    <ExportDropdown htmlFileName="THE REPORT FILE NAME" jsonFileName="JSON file name" fileURLProvider={[Function: function () {
-                        var args = [];
-                        for (var _i = 0; _i < arguments.length; _i++) {
-                            args[_i] = arguments[_i];
-                        }
-                        _this._interceptor.removeInvocation(invocation_1);
-                        var method = new MethodInfo(target, p);
-                        var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
-                        _this._interceptor.intercept(methodInvocation);
-                        return methodInvocation.returnValue;
-                    }] { provideURL: [Function (anonymous)], [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} featureFlagStoreData={{...}} htmlExportData="fake html" jsonExportData="fake json" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
+    <ExportDropdown htmlFileName="THE REPORT FILE NAME" jsonFileName="JSON file name" featureFlagStoreData={{...}} htmlFileURL="html file url" jsonFileURL="json file url" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
   </StyledDialogFooterBase>
 </Dialog>"
 `;
@@ -74,7 +64,7 @@ exports[`ExportDialog renders with open false 1`] = `
     <CustomizedPrimaryButton
       data-automation-id="single-export-to-html-button"
       download="THE REPORT FILE NAME"
-      href="fake-url"
+      href="html file url"
       onClick={[Function]}
     >
       Export
@@ -115,7 +105,7 @@ exports[`ExportDialog renders with open true 1`] = `
     <CustomizedPrimaryButton
       data-automation-id="single-export-to-html-button"
       download="THE REPORT FILE NAME"
-      href="fake-url"
+      href="html file url"
       onClick={[Function]}
     >
       Export
@@ -128,7 +118,7 @@ exports[`ExportDialog renders without export dropdown due to lack of service 1`]
 "<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
   <StyledDialogFooterBase>
-    <CustomizedPrimaryButton onClick={[Function: onClick]} download="THE REPORT FILE NAME" href="fake-url" data-automation-id="single-export-to-html-button">
+    <CustomizedPrimaryButton onClick={[Function: onClick]} download="THE REPORT FILE NAME" href="html file url" data-automation-id="single-export-to-html-button">
       Export
     </CustomizedPrimaryButton>
   </StyledDialogFooterBase>

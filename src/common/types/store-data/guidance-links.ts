@@ -11,6 +11,10 @@ export const guidanceTags = {
         id: 'WCAG_2_1',
         displayText: 'New for WCAG 2.1',
     },
+    BEST_PRACTICE: {
+        id: 'BEST_PRACTICE',
+        displayText: 'Best Practice',
+    },
 };
 
 export interface GuidanceLink {

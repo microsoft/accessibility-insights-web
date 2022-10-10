@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ReportExportFormat } from 'common/extension-telemetry-events';
+import { FileURLProvider } from 'common/file-url-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 import {
@@ -8,11 +9,12 @@ import {
     ReportExportServiceKey,
 } from 'report-export/types/report-export-service';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-import { ExportDialog, ExportDialogDeps } from './export-dialog';
+import { ExportDialog } from './export-dialog';
 
 export type ReportExportComponentDeps = {
     reportNameGenerator: ReportNameGenerator;
-} & ExportDialogDeps;
+    fileURLProvider: FileURLProvider;
+};
 
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
@@ -38,8 +40,10 @@ export interface ReportExportComponentProps {
 interface ReportExportComponentState {
     htmlExportName: string;
     htmlExportData: string;
+    htmlExportUrl: string;
     jsonExportName: string;
     jsonExportData: string;
+    jsonExportUrl: string;
     exportDescription: string;
 }
 
@@ -52,8 +56,10 @@ export class ReportExportComponent extends React.Component<
         this.state = {
             htmlExportName: '',
             htmlExportData: '',
+            htmlExportUrl: '#',
             jsonExportName: '',
             jsonExportData: '',
+            jsonExportUrl: '#',
             exportDescription: '',
         };
     }
@@ -64,15 +70,31 @@ export class ReportExportComponent extends React.Component<
     };
 
     private generateHtml = () => {
-        this.setState((prevState, prevProps) => ({
-            htmlExportData: prevProps.htmlGenerator(prevState.exportDescription),
-        }));
+        this.setState((prevState, prevProps) => {
+            const htmlExportData = prevProps.htmlGenerator(prevState.exportDescription);
+            const htmlExportUrl = prevProps.deps.fileURLProvider.provideURL(
+                [htmlExportData],
+                'text/html',
+            );
+            return {
+                htmlExportData,
+                htmlExportUrl,
+            };
+        });
     };
 
     private generateJson = () => {
-        this.setState((prevState, prevProps) => ({
-            jsonExportData: prevProps.jsonGenerator(prevState.exportDescription),
-        }));
+        this.setState((prevState, prevProps) => {
+            const jsonExportData = prevProps.jsonGenerator(prevState.exportDescription);
+            const jsonExportUrl = prevProps.deps.fileURLProvider.provideURL(
+                [jsonExportData],
+                'application/json',
+            );
+            return {
+                jsonExportData,
+                jsonExportUrl,
+            };
+        });
     };
 
     private generateExports = () => {
@@ -92,6 +114,8 @@ export class ReportExportComponent extends React.Component<
                 description={this.state.exportDescription}
                 htmlExportData={this.state.htmlExportData}
                 jsonExportData={this.state.jsonExportData}
+                htmlFileUrl={this.state.htmlExportUrl}
+                jsonFileUrl={this.state.jsonExportUrl}
                 onClose={this.props.dismissExportDialog}
                 onDescriptionChange={this.onExportDescriptionChange}
                 reportExportFormat={reportExportFormat}

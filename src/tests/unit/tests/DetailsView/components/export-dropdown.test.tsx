@@ -3,7 +3,6 @@
 
 import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
-import { FileURLProvider } from 'common/file-url-provider';
 import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/export-dropdown';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -15,7 +14,6 @@ import {
 import { Mock } from 'typemoq';
 
 describe('ExportDropdown', () => {
-    const fileProviderMock = Mock.ofType<FileURLProvider>();
     const generateExportsMock = Mock.ofType<() => void>();
     const event = {
         currentTarget: 'test target',
@@ -49,15 +47,11 @@ describe('ExportDropdown', () => {
             reportExportServices: null,
             htmlFileName: 'A file name',
             jsonFileName: 'json file name',
-            htmlExportData: '<some html>',
-            jsonExportData: '{}',
+            htmlFileURL: 'html file url',
+            jsonFileURL: 'json file url',
             generateExports: generateExportsMock.object,
-            fileURLProvider: fileProviderMock.object,
             featureFlagStoreData: {},
         };
-        fileProviderMock
-            .setup(f => f.provideURL(['<some html>'], 'text/html'))
-            .returns(() => 'a file url');
     });
 
     it('renders without menu items', () => {

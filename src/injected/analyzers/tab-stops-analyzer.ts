@@ -73,7 +73,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     public async teardown(): Promise<void> {
         this.debouncedProcessTabEvents?.cancel();
         await this.tabStopListenerRunner.stop();
-        await this.tabStopsRequirementResultProcessor.stop();
+        if (this.tabStopsRequirementResultProcessor) {
+            await this.tabStopsRequirementResultProcessor.stop();
+        }
 
         const payload: ScanBasePayload = {
             key: this.config.key,

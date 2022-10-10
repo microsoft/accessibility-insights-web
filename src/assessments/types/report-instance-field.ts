@@ -8,20 +8,23 @@ import {
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { TestStepInstance } from 'common/types/store-data/assessment-result-data';
 
-export type ReportInstanceField = {
+export type ReportInstanceField<Instance = Partial<TestStepInstance>> = {
     key: string;
     label: string;
-    getValue: (instance: Partial<TestStepInstance>) => ColumnValue;
+    getValue: (instance: Instance) => ColumnValue;
 };
+
 export type ReportInstanceFieldMap = { [KEY in string]?: ReportInstanceField };
 
 export type ReportInstanceFields = ReportInstanceField[];
 
 type HasPropertyBag<PB> = { propertyBag: PB };
-type PropertyBagKey<PB> = PB[keyof PB];
 
-function fromPropertyBagField<PB>(label: string, key: keyof PB & string): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>): string {
+function fromPropertyBagField<PB>(
+    label: string,
+    key: keyof PB & string,
+): ReportInstanceField<HasPropertyBag<PB>> {
+    function getValue(i: HasPropertyBag<PB>): ColumnValue {
         return i.propertyBag && i.propertyBag[key] && (i.propertyBag[key] as any).toString();
     }
     return { key, label, getValue };
@@ -31,8 +34,8 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
     label: string,
     key: keyof PB & string,
     defaultValue = '-',
-): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>): string | PropertyBagKey<PB> {
+): ReportInstanceField<HasPropertyBag<PB>> {
+    function getValue(i: HasPropertyBag<PB>): ColumnValue {
         const value = i.propertyBag && i.propertyBag[key];
         return isValid(value) ? value : defaultValue;
     }
@@ -44,8 +47,8 @@ function fromPropertyBagFunction<PB>(
     label: string,
     key: string,
     accessor: (bag: PB) => string,
-): ReportInstanceField {
-    function getValue(i: HasPropertyBag<PB>): string {
+): ReportInstanceField<HasPropertyBag<PB>> {
+    function getValue(i: HasPropertyBag<PB>): ColumnValue {
         return i.propertyBag && accessor(i.propertyBag);
     }
     return { key, label, getValue };
@@ -69,8 +72,8 @@ function isValid(value: ColumnValue): ColumnValue {
     return true;
 }
 
-function fromColumns<T extends ColumnValueBag>(
-    cfg: PropertyBagColumnRendererConfig<T>[],
+function fromColumns<PB extends ColumnValueBag>(
+    cfg: PropertyBagColumnRendererConfig<PB>[],
 ): ReportInstanceField[] {
     return cfg.map(fromColumnConfig);
 
@@ -78,11 +81,11 @@ function fromColumns<T extends ColumnValueBag>(
         propertyName,
         defaultValue,
         displayName,
-    }: PropertyBagColumnRendererConfig<T>): ReportInstanceField {
-        const getValue = (inst: HasPropertyBag<T>) => {
-            const value = inst.propertyBag && inst.propertyBag[propertyName];
+    }: PropertyBagColumnRendererConfig<PB>): ReportInstanceField<HasPropertyBag<PB>> {
+        function getValue(i: HasPropertyBag<PB>): ColumnValue {
+            const value = i.propertyBag && i.propertyBag[propertyName];
             return isValid(value) ? value : defaultValue;
-        };
+        }
 
         return {
             key: propertyName,

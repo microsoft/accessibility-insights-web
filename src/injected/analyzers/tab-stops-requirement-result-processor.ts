@@ -5,7 +5,10 @@ import { BaseStore } from 'common/base-store';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AllFrameRunner } from 'injected/all-frame-runner';
-import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
+import {
+    AutomatedTabStopRequirementResult,
+    TabStopRequirementResult,
+} from 'injected/tab-stop-requirement-result';
 import { isEqual } from 'lodash';
 
 export class TabStopsRequirementResultProcessor {
@@ -13,7 +16,9 @@ export class TabStopsRequirementResultProcessor {
     private isStopped: boolean = true;
 
     constructor(
-        private readonly tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>,
+        private readonly tabStopRequirementRunner: AllFrameRunner<
+            AutomatedTabStopRequirementResult[]
+        >,
         private readonly tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator,
         private readonly visualizationResultsStore: BaseStore<
             VisualizationScanResultData,
@@ -63,20 +68,25 @@ export class TabStopsRequirementResultProcessor {
     };
 
     private processTabStopRequirementResults = (
-        tabStopRequirementResult: AutomatedTabStopRequirementResult,
+        tabStopRequirementResults: AutomatedTabStopRequirementResult[],
     ): void => {
-        const duplicateResult = this.seenTabStopRequirementResults.some(r =>
-            isEqual(r, tabStopRequirementResult),
-        );
+        const filteredResults: TabStopRequirementResult[] = [];
 
-        if (!duplicateResult) {
-            this.tabStopRequirementActionMessageCreator.addTabStopInstance({
-                description: tabStopRequirementResult.description,
-                requirementId: tabStopRequirementResult.requirementId,
-                selector: tabStopRequirementResult.selector,
-                html: tabStopRequirementResult.html,
-            });
-            this.seenTabStopRequirementResults.push(tabStopRequirementResult);
+        tabStopRequirementResults.forEach(result => {
+            const duplicateResult = this.seenTabStopRequirementResults.some(seenResult =>
+                isEqual(seenResult, result),
+            );
+
+            if (!duplicateResult) {
+                filteredResults.push({ ...result });
+                this.seenTabStopRequirementResults.push(result);
+            }
+        });
+
+        if (filteredResults.length === 0) {
+            return;
         }
+
+        this.tabStopRequirementActionMessageCreator.addTabStopInstanceArray(filteredResults);
     };
 }

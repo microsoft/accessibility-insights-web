@@ -49,8 +49,10 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
     public withTabStopRequirement(
         requirement: TabStopRequirementState,
     ): VisualizationScanResultStoreDataBuilder {
-        const requirementId = Object.keys(requirement)[0];
-        this.data.tabStops.requirements[requirementId] = requirement[requirementId];
+        Object.keys(requirement).forEach(requirementId => {
+            this.data.tabStops.requirements[requirementId] = requirement[requirementId];
+        });
+
         return this;
     }
 

@@ -3,6 +3,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AddTabStopInstanceArrayPayload,
     AddTabStopInstancePayload,
     BaseActionPayload,
     RemoveTabStopInstancePayload,
@@ -48,6 +49,29 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
 
         this.dispatcher.dispatchMessage({
             messageType: messages.AddTabStopInstance,
+            payload,
+        });
+    }
+
+    public addTabStopInstanceArray(results: TabStopRequirementResult[]): void {
+        const resultsWithTelemetry = results.map(result => {
+            const telemetry = this.telemetryFactory.forTabStopRequirement(
+                result.requirementId,
+                this.source,
+            );
+
+            return {
+                ...result,
+                telemetry,
+            };
+        });
+
+        const payload: AddTabStopInstanceArrayPayload = {
+            results: resultsWithTelemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: messages.AddTabStopInstanceArray,
             payload,
         });
     }
