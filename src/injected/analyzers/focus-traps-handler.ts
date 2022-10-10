@@ -50,7 +50,7 @@ export class FocusTrapsHandler {
 
     private getCurrentFocusedElement = (element: Element | null): HTMLElement => {
         let activeElement = element as HTMLElement;
-        while (activeElement?.shadowRoot && activeElement.shadowRoot.activeElement) {
+        while (activeElement?.shadowRoot?.activeElement) {
             activeElement = activeElement.shadowRoot.activeElement as HTMLElement;
         }
         return activeElement;
