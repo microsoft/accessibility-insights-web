@@ -26,9 +26,6 @@ module.exports = {
     moduleDirectories: ['node_modules'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     moduleNameMapper: {
-        'office-ui-fabric-react/lib/(.*)$': 'office-ui-fabric-react/lib-commonjs/$1',
-        '@uifabric/utilities': '@uifabric/utilities/lib-commonjs',
-        '@uifabric/styling': '@uifabric/styling/lib-commonjs',
         /* Using proxy to handle css modules, as per: https://jestjs.io/docs/en/webpack#mocking-css-modules */
         '\\.(scss)$': `${__dirname}/src/tests/common/identity-obj-proxy`,
     },
