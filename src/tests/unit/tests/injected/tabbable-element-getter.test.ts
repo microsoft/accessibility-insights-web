@@ -33,7 +33,11 @@ describe('TabbableElementGetter', () => {
             ] as FocusableElement[];
 
             getTabbableElementsMock
-                .setup(m => m(documentElementStub))
+                .setup(m =>
+                    m(documentElementStub, {
+                        getShadowRoot: true,
+                    }),
+                )
                 .returns(() => focusableElementsStub);
 
             testSubject = new TabbableElementGetter(docMock.object, getTabbableElementsMock.object);
@@ -61,7 +65,11 @@ describe('TabbableElementGetter', () => {
             documentElementStub = {} as HTMLElement;
 
             getTabbableElementsMock
-                .setup(m => m(fakeDocument.documentElement))
+                .setup(m =>
+                    m(fakeDocument.documentElement, {
+                        getShadowRoot: true,
+                    }),
+                )
                 .returns((doc: Document) =>
                     Array.from(doc.querySelectorAll<FocusableElement>('div')),
                 );

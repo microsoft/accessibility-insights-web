@@ -6,7 +6,7 @@ import { BagOf } from 'common/types/property-bag/column-value-bag';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 
 describe('ReportInstanceField', () => {
-    type Bag = { one?: string; two?: string; attr?: BagOf<string> };
+    type Bag = { one?: string | BagOf<string>; two?: string | BagOf<string>; attr?: BagOf<string> };
     const oneAndTwo = { one: '1', two: '2' };
 
     describe('common fields', () => {

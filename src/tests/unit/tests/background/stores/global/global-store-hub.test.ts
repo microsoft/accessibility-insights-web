@@ -62,7 +62,6 @@ describe('GlobalStoreHubTest', () => {
             cloneDeep(persistedDataStub),
             null,
             failTestOnErrorLogger,
-            true,
         );
         const allStores = testSubject.getAllStores();
 
@@ -88,7 +87,6 @@ describe('GlobalStoreHubTest', () => {
             cloneDeep(persistedDataStub),
             null,
             failTestOnErrorLogger,
-            true,
         );
         const allStores = testSubject.getAllStores() as BaseStoreImpl<any>[];
         const initializeMocks: Array<IMock<Function>> = [];

@@ -16,6 +16,10 @@ describe('PersistentStoreTest', () => {
     const loggerMock: IMock<Logger> = Mock.ofType<Logger>();
 
     describe('Persist store data', () => {
+        beforeEach(() => {
+            idbInstanceMock.reset();
+        });
+
         test('Initialize with initial state', async () => {
             const testObject = new TestStore();
 
@@ -76,6 +80,21 @@ describe('PersistentStoreTest', () => {
             idbInstanceMock.verifyAll();
         });
 
+        test('do not persist data when it has not changed', async () => {
+            const testObject = new TestStore();
+            const data = { value: 'data' };
+            await testObject.callPersistData(data);
+
+            idbInstanceMock.reset();
+            idbInstanceMock
+                .setup(db => db.setItem(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+
+            await testObject.callPersistData(data);
+
+            idbInstanceMock.verifyAll();
+        });
+
         test('emitChanged', async () => {
             const testObject = new TestStore();
             testObject.initialize();
@@ -93,9 +112,8 @@ describe('PersistentStoreTest', () => {
             const testObject = new TestStore(false);
             testObject.initialize();
             idbInstanceMock
-                .setup(db => db.setItem(indexedDBDataKey, persistedState))
-                .returns(() => Promise.resolve(true))
-                .verifiable(Times.once());
+                .setup(db => db.setItem(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
 
             await testObject.callEmitChanged();
 

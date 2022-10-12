@@ -1,5 +1,110 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IssuesTableTest With issue filing support 1`] = `
+<div
+  className="issuesTable"
+>
+  <h1>
+    test title
+     test steps text
+  </h1>
+  <div
+    className="issuesTableContent"
+  >
+    <React.Fragment>
+      <SomeInstancesSection
+        cardSelectionMessageCreator={{}}
+        cardsViewData={
+          {
+            "allCardsCollapsed": true,
+            "cards": {
+              "fail": [
+                {
+                  "description": "sample-description",
+                  "guidance": [
+                    {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
+                    },
+                  ],
+                  "id": "some-rule",
+                  "nodes": [
+                    {
+                      "descriptors": {
+                        "snippet": "this is a sample snippet",
+                      },
+                      "identifiers": {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
+                    },
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
+            },
+            "visualHelperEnabled": true,
+          }
+        }
+        cardsViewStoreData={
+          {
+            "isIssueFilingSettingsDialogOpen": false,
+          }
+        }
+        deps={
+          {
+            "cardInteractionSupport": {
+              "supportsIssueFiling": true,
+            },
+            "cardsViewController": {
+              "closeIssueFilingSettingsDialog": [Function],
+            },
+            "detailsViewActionMessageCreator": [typemoq mock object],
+            "getDateFromTimestamp": [Function],
+            "issueFilingDialogPropsFactory": [Function],
+            "issueFilingServiceProvider": [typemoq mock object],
+            "reportGenerator": [typemoq mock object],
+          }
+        }
+        narrowModeStatus={{}}
+        scanMetadata={
+          {
+            "targetAppInfo": {
+              "name": "app",
+            },
+          }
+        }
+        sectionHeadingLevel={2}
+        shouldAlertFailuresCount={true}
+        userConfigurationStoreData={{}}
+      />
+      <IssueFilingDialog
+        isOpen={false}
+      />
+    </React.Fragment>
+  </div>
+</div>
+`;
+
 exports[`IssuesTableTest automated checks disabled 1`] = `
 <div
   className="issuesTable"
@@ -11,81 +116,93 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
   <div
     className="issuesTableContent"
   >
-    <SomeInstancesSection
-      cardSelectionMessageCreator={{}}
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
+    <React.Fragment>
+      <SomeInstancesSection
+        cardSelectionMessageCreator={{}}
+        cardsViewData={
+          {
+            "allCardsCollapsed": true,
+            "cards": {
+              "fail": [
+                {
+                  "description": "sample-description",
+                  "guidance": [
+                    {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
                     },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
+                  ],
+                  "id": "some-rule",
+                  "nodes": [
+                    {
+                      "descriptors": {
+                        "snippet": "this is a sample snippet",
                       },
-                      "howToFixSummary": "sample how to fix summary",
+                      "identifiers": {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
                     },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
+            },
+            "visualHelperEnabled": true,
+          }
         }
-      }
-      deps={
-        {
-          "detailsViewActionMessageCreator": [typemoq mock object],
-          "getDateFromTimestamp": [Function],
-          "reportGenerator": [typemoq mock object],
+        cardsViewStoreData={
+          {
+            "isIssueFilingSettingsDialogOpen": false,
+          }
         }
-      }
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
+        deps={
+          {
+            "cardInteractionSupport": {
+              "supportsIssueFiling": false,
+            },
+            "cardsViewController": {
+              "closeIssueFilingSettingsDialog": [Function],
+            },
+            "detailsViewActionMessageCreator": [typemoq mock object],
+            "getDateFromTimestamp": [Function],
+            "issueFilingDialogPropsFactory": [Function],
+            "issueFilingServiceProvider": [typemoq mock object],
+            "reportGenerator": [typemoq mock object],
+          }
         }
-      }
-      sectionHeadingLevel={2}
-      shouldAlertFailuresCount={true}
-      userConfigurationStoreData={
-        {
-          "bugService": "gitHub",
+        narrowModeStatus={{}}
+        scanMetadata={
+          {
+            "targetAppInfo": {
+              "name": "app",
+            },
+          }
         }
-      }
-    />
+        sectionHeadingLevel={2}
+        shouldAlertFailuresCount={true}
+        userConfigurationStoreData={{}}
+      />
+    </React.Fragment>
   </div>
 </div>
 `;
@@ -123,81 +240,93 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
   <div
     className="issuesTableContent"
   >
-    <SomeInstancesSection
-      cardSelectionMessageCreator={{}}
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
+    <React.Fragment>
+      <SomeInstancesSection
+        cardSelectionMessageCreator={{}}
+        cardsViewData={
+          {
+            "allCardsCollapsed": true,
+            "cards": {
+              "fail": [
+                {
+                  "description": "sample-description",
+                  "guidance": [
+                    {
+                      "href": "sample-guidance-href",
+                      "text": "sample-guidance-text",
                     },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
+                  ],
+                  "id": "some-rule",
+                  "nodes": [
+                    {
+                      "descriptors": {
+                        "snippet": "this is a sample snippet",
                       },
-                      "howToFixSummary": "sample how to fix summary",
+                      "identifiers": {
+                        "conciseName": "body img",
+                        "css-selector": "body img",
+                        "identifier": "body img",
+                      },
+                      "resolution": {
+                        "how-to-fix-web": {
+                          "all": [],
+                          "any": [
+                            "Element does not have an alt attribute",
+                            "aria-label attribute does not exist or is empty",
+                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                          ],
+                          "none": [],
+                        },
+                        "howToFixSummary": "sample how to fix summary",
+                      },
+                      "ruleId": "image-alt",
+                      "status": "fail",
+                      "uid": "some-guid-here",
                     },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
+                  ],
+                  "url": "sample-url",
+                },
+              ],
+              "inapplicable": [],
+              "pass": [],
+              "unknown": [],
+            },
+            "visualHelperEnabled": true,
+          }
         }
-      }
-      deps={
-        {
-          "detailsViewActionMessageCreator": [typemoq mock object],
-          "getDateFromTimestamp": [Function],
-          "reportGenerator": [typemoq mock object],
+        cardsViewStoreData={
+          {
+            "isIssueFilingSettingsDialogOpen": false,
+          }
         }
-      }
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
+        deps={
+          {
+            "cardInteractionSupport": {
+              "supportsIssueFiling": false,
+            },
+            "cardsViewController": {
+              "closeIssueFilingSettingsDialog": [Function],
+            },
+            "detailsViewActionMessageCreator": [typemoq mock object],
+            "getDateFromTimestamp": [Function],
+            "issueFilingDialogPropsFactory": [Function],
+            "issueFilingServiceProvider": [typemoq mock object],
+            "reportGenerator": [typemoq mock object],
+          }
         }
-      }
-      sectionHeadingLevel={2}
-      shouldAlertFailuresCount={true}
-      userConfigurationStoreData={
-        {
-          "bugService": "gitHub",
+        narrowModeStatus={{}}
+        scanMetadata={
+          {
+            "targetAppInfo": {
+              "name": "app",
+            },
+          }
         }
-      }
-    />
+        sectionHeadingLevel={2}
+        shouldAlertFailuresCount={true}
+        userConfigurationStoreData={{}}
+      />
+    </React.Fragment>
   </div>
 </div>
 `;

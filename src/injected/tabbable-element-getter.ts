@@ -13,7 +13,9 @@ export class TabbableElementGetter {
     constructor(private doc: Document, private getTabbableElements: typeof tabbable) {}
 
     public getRawElements: () => FocusableElement[] = () => {
-        const tabbableElements = this.getTabbableElements(this.doc.documentElement);
+        const tabbableElements = this.getTabbableElements(this.doc.documentElement, {
+            getShadowRoot: true,
+        });
         const filteredElements = this.filterHiddenElements(tabbableElements);
         return filteredElements;
     };

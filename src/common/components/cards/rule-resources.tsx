@@ -44,16 +44,16 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         );
     };
 
-    const renderGuidanceLinks = () => (
-        <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />
-    );
+    const renderGuidanceLinks = () => {
+        return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
+    };
     const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;
 
     return (
         <div className={styles.ruleMoreResources}>
             {renderTitle()}
             {renderRuleLink()}
-            <span>
+            <span className={styles.ruleGuidance}>
                 {renderGuidanceLinks()}
                 {renderGuidanceTags()}
             </span>

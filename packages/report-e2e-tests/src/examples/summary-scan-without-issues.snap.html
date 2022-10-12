@@ -190,7 +190,6 @@
       .guidance-tags span {
         font-size: 12px;
         font-weight: normal;
-        margin-left: 8px;
         padding-top: 2px;
         padding-right: 12px;
         padding-bottom: 2px;
@@ -1010,51 +1009,6 @@
         white-space: normal;
       }
 
-      /* css-modules:src/DetailsView/components/common-dialog-styles */
-      div.insights-dialog-main-override--ma4DA {
-        width: 75%;
-        max-width: 500px;
-        user-select: text;
-      }
-      @media screen and (max-width: 500px) {
-        div.insights-dialog-main-override--ma4DA {
-          min-width: 240px;
-          width: 75%;
-        }
-      }
-      div.insights-dialog-main-override--ma4DA .dialog-body--cmWmz {
-        font-size: 16px;
-      }
-
-      /* css-modules:src/DetailsView/components/issue-filing-dialog */
-      .issue-filing-dialog--F9jun .ms-Dialog-title {
-        font-size: 21px;
-        line-height: 32px;
-        letter-spacing: -0.02em;
-        font-weight: 600;
-        padding-bottom: 0;
-      }
-      .issue-filing-dialog--F9jun .ms-Dialog-subText {
-        font-weight: 400;
-        font-size: 15px;
-        color: var(--secondary-text);
-      }
-      .issue-filing-dialog--F9jun .textfield-description {
-        color: var(--secondary-text);
-        font-style: italic;
-      }
-
-      /* css-modules:src/DetailsView/components/action-and-cancel-buttons-component */
-      .action-and-cancel-buttons-component--DF7bf {
-        display: flex;
-        justify-content: flex-end;
-      }
-      .action-and-cancel-buttons-component--DF7bf
-        .action-cancel-button-col--RMfN-
-        + .action-cancel-button-col--RMfN- {
-        margin-left: 8px;
-      }
-
       /* css-modules:src/common/components/toast */
       .toast-container--L-5HM {
         display: inline-block;
@@ -1075,34 +1029,34 @@
         position: absolute;
       }
 
-      /* css-modules:src/common/components/cards/card-kebab-menu-button */
-      .kebab-menu-icon--RzpyN {
+      /* css-modules:src/common/components/cards/card-footer-instance-action-buttons */
+      .kebab-menu-icon--EUIj- {
         flex-grow: 1;
       }
       @media screen and (forced-colors: active) {
-        .kebab-menu-icon--RzpyN {
+        .kebab-menu-icon--EUIj- {
           color: buttontext;
         }
       }
-      .kebab-menu-button--e-7v- {
+      .kebab-menu-button--9Qt0a {
         margin-right: 8px;
         width: 32px;
         height: 32px;
       }
-      .kebab-menu-button--e-7v-:hover {
+      .kebab-menu-button--9Qt0a:hover {
         background-color: var(--menu-item-background-hover);
       }
-      .kebab-menu-button--e-7v-.is-expanded {
+      .kebab-menu-button--9Qt0a.is-expanded {
         background-color: var(--menu-item-background-active);
       }
       @media screen and (forced-colors: active) {
-        .kebab-menu-button--e-7v-.is-expanded .kebab-menu-icon--RzpyN,
-        .kebab-menu-button--e-7v-:hover .kebab-menu-icon--RzpyN {
+        .kebab-menu-button--9Qt0a.is-expanded .kebab-menu-icon--EUIj-,
+        .kebab-menu-button--9Qt0a:hover .kebab-menu-icon--EUIj- {
           color: highlight;
         }
       }
       @media screen and (forced-colors: active) {
-        .kebab-menu--eKCNX button:hover {
+        .kebab-menu--7coPg button:hover {
           color: highlight;
         }
       }
@@ -1179,6 +1133,11 @@
       .rule-more-resources--uw9mc .rule-details-id--s-TpO {
         padding-top: 12px;
         padding-bottom: 12px;
+      }
+      .rule-more-resources--uw9mc
+        .rule-guidance--TIQgm
+        > :not(span:first-of-type) {
+        margin-left: 8px;
       }
 
       /* css-modules:src/common/components/cards/rules-with-instances */
@@ -1514,6 +1473,11 @@
         margin-right: 2px;
         margin-left: 2px;
         border: 1px solid var(--light-black);
+      }
+      @media screen and (forced-colors: active) {
+        .fix-instruction-color-box--DQpQE {
+          forced-color-adjust: none;
+        }
       }
       .screen-reader-only--6LUiO {
         position: absolute;

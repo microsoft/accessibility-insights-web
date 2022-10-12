@@ -24,7 +24,7 @@ export interface IssueFilingDialogProps {
     deps: IssueFilingDialogDeps;
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
-    selectedIssueData: CreateIssueDetailsTextData;
+    selectedIssueData?: CreateIssueDetailsTextData;
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev?: React.SyntheticEvent) => void;
     afterClosed?: () => void;
@@ -121,7 +121,7 @@ export class IssueFilingDialog extends React.Component<
         this.props.deps.issueFilingActionMessageCreator.fileIssue(
             ev,
             service,
-            this.props.selectedIssueData,
+            this.props.selectedIssueData!,
             this.props.deps.toolData,
         );
         this.props.onClose(ev);

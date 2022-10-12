@@ -67,7 +67,7 @@ export class WindowInitializer {
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
     protected manualTabStopListener: AllFrameRunner<TabStopEvent>;
-    protected tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>;
+    protected tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult[]>;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
@@ -186,7 +186,7 @@ export class WindowInitializer {
             focusTrapsKeydownHandler,
             getUniqueSelector,
         );
-        this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
+        this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult[]>(
             this.allFramesMessenger,
             htmlElementUtils,
             this.windowUtils,

@@ -6,12 +6,15 @@ import { flatMap } from 'lodash';
 import { BestPractice, mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
 
 describe('mapAxeTagsToGuidanceLinks', () => {
+    const defaultIncludedRuleId = 'color-contrast';
     it('should map best-practice to the BestPractice link', () => {
-        expect(mapAxeTagsToGuidanceLinks(['best-practice'])).toEqual([BestPractice]);
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, ['best-practice'])).toEqual([
+            BestPractice,
+        ]);
     });
 
     it.each([null, undefined])('should map %p tags to no links', tags => {
-        expect(mapAxeTagsToGuidanceLinks(tags)).toEqual([]);
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, tags)).toEqual([]);
     });
 
     const wcagAAAtags = ['wcag146', 'wcag223', 'wcag224', 'wcag248', 'wcag249', 'wcag325'];
@@ -34,12 +37,12 @@ describe('mapAxeTagsToGuidanceLinks', () => {
     it.each(irrelevantAxeCoreTags)(
         'should omit entries for irrelevant axe-core tag %s',
         irrelevantTag => {
-            expect(mapAxeTagsToGuidanceLinks([irrelevantTag])).toEqual([]);
+            expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [irrelevantTag])).toEqual([]);
         },
     );
 
     it('should omit entries for completely unrecognized tags', () => {
-        expect(mapAxeTagsToGuidanceLinks(['bogus'])).toEqual([]);
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, ['bogus'])).toEqual([]);
     });
 
     it.each`
@@ -48,20 +51,35 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         ${'wcag121'}  | ${link.WCAG_1_2_1}
         ${'wcag1410'} | ${link.WCAG_1_4_10}
     `('should map known wcag tag $tag to expected link', ({ tag, expectedLink }) => {
-        expect(mapAxeTagsToGuidanceLinks([tag])).toEqual([expectedLink]);
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [tag])).toEqual([expectedLink]);
     });
 
     it('should handle multiple inputs in the list (omitting unrecognized cases)', () => {
         expect(
-            mapAxeTagsToGuidanceLinks(['best-practice', 'wcag111', 'should-be-omitted']),
+            mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [
+                'best-practice',
+                'wcag111',
+                'should-be-omitted',
+            ]),
         ).toEqual([BestPractice, link.WCAG_1_1_1]);
     });
 
     it('should sort the output', () => {
-        expect(mapAxeTagsToGuidanceLinks(['wcag111', 'wcag1411', 'best-practice'])).toEqual([
+        expect(
+            mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [
+                'wcag111',
+                'wcag1411',
+                'best-practice',
+            ]),
+        ).toEqual([BestPractice, link.WCAG_1_1_1, link.WCAG_1_4_11]);
+    });
+
+    it('should add additional links for special case ruleIds', () => {
+        const specialCaseRuleId = 'aria-allowed-role';
+        expect(mapAxeTagsToGuidanceLinks(specialCaseRuleId, ['best-practice'])).toEqual([
             BestPractice,
-            link.WCAG_1_1_1,
-            link.WCAG_1_4_11,
+            link.WCAG_1_3_1,
+            link.WCAG_4_1_2,
         ]);
     });
 
@@ -72,7 +90,7 @@ describe('mapAxeTagsToGuidanceLinks', () => {
     it.each(axeWcagNonAAATags)(
         `should have a mapping for wcag A/AA tag "%s" used by axe`,
         axeWcagTag => {
-            expect(mapAxeTagsToGuidanceLinks([axeWcagTag])).toHaveLength(1);
+            expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [axeWcagTag])).toHaveLength(1);
         },
     );
 });

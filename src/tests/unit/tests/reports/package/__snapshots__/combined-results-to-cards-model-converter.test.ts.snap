@@ -7,12 +7,7 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
     "fail": [
       {
         "description": "failed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
-            "text": "guidance for common-tag-failed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-1",
         "isExpanded": false,
         "nodes": [
@@ -58,12 +53,7 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
     "inapplicable": [
       {
         "description": "inapplicable-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
-            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "inapplicable-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -73,12 +63,7 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
     "pass": [
       {
         "description": "passed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
-            "text": "guidance for common-tag-passed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "passed-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -98,12 +83,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
     "fail": [
       {
         "description": "failed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
-            "text": "guidance for common-tag-failed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-1",
         "isExpanded": false,
         "nodes": [
@@ -174,12 +154,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
       },
       {
         "description": "failed-rule-2 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-2-specific-tag",
-            "text": "guidance for common-tag-failed-rule-2-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-2",
         "isExpanded": false,
         "nodes": [
@@ -252,12 +227,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
     "inapplicable": [
       {
         "description": "inapplicable-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
-            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "inapplicable-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -267,12 +237,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
     "pass": [
       {
         "description": "passed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
-            "text": "guidance for common-tag-passed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "passed-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -292,12 +257,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
     "fail": [
       {
         "description": "failed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
-            "text": "guidance for common-tag-failed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-1",
         "isExpanded": false,
         "nodes": [
@@ -368,12 +328,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
       },
       {
         "description": "failed-rule-2 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-2-specific-tag",
-            "text": "guidance for common-tag-failed-rule-2-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-2",
         "isExpanded": false,
         "nodes": [
@@ -446,12 +401,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
     "inapplicable": [
       {
         "description": "inapplicable-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
-            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "inapplicable-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -461,12 +411,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
     "pass": [
       {
         "description": "passed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
-            "text": "guidance for common-tag-passed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "passed-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -487,12 +432,7 @@ exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
     "inapplicable": [
       {
         "description": "inapplicable-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
-            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "inapplicable-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -500,12 +440,7 @@ exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
       },
       {
         "description": "inapplicable-rule-2 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-2-specific-tag",
-            "text": "guidance for common-tag-inapplicable-rule-2-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "inapplicable-rule-2",
         "isExpanded": false,
         "nodes": [],
@@ -515,12 +450,7 @@ exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
     "pass": [
       {
         "description": "passed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
-            "text": "guidance for common-tag-passed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "passed-rule-1",
         "isExpanded": false,
         "nodes": [],
@@ -528,12 +458,7 @@ exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
       },
       {
         "description": "passed-rule-2 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-passed-rule-2-specific-tag",
-            "text": "guidance for common-tag-passed-rule-2-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "passed-rule-2",
         "isExpanded": false,
         "nodes": [],
@@ -553,12 +478,7 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
     "fail": [
       {
         "description": "failed-rule-1 description",
-        "guidance": [
-          {
-            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
-            "text": "guidance for common-tag-failed-rule-1-specific-tag",
-          },
-        ],
+        "guidance": undefined,
         "id": "failed-rule-1",
         "isExpanded": false,
         "nodes": [

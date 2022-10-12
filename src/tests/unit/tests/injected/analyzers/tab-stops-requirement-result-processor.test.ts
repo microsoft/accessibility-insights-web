@@ -12,9 +12,9 @@ import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsRequirementResultProcessor', () => {
-    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<AutomatedTabStopRequirementResult>>;
+    let tabStopRequirementRunnerMock: IMock<AllFrameRunner<AutomatedTabStopRequirementResult[]>>;
     let requirementResultRunnerCallback: (
-        requirementResult: AutomatedTabStopRequirementResult,
+        requirementResult: AutomatedTabStopRequirementResult[],
     ) => void;
     let tabStopRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let visualizationScanResultsStoreMock: IMock<VisualizationScanResultStore>;
@@ -26,7 +26,7 @@ describe('TabStopsRequirementResultProcessor', () => {
             start: () => {},
             stop: () => {},
             initialize: () => {},
-        } as AllFrameRunner<AutomatedTabStopRequirementResult>);
+        } as AllFrameRunner<AutomatedTabStopRequirementResult[]>);
         tabStopRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         visualizationScanResultsStoreMock = Mock.ofType<VisualizationScanResultStore>();
@@ -97,23 +97,27 @@ describe('TabStopsRequirementResultProcessor', () => {
     });
 
     it('start adds unique tab stop instances when processing tab stops requirement result', async () => {
-        const requirementResult: AutomatedTabStopRequirementResult = {
+        const result1: AutomatedTabStopRequirementResult = {
             requirementId: 'keyboard-navigation',
             description: 'some description',
             selector: ['some', 'selector'],
             html: 'some html',
         } as AutomatedTabStopRequirementResult;
-        const secondRequirementResult = {
-            ...requirementResult,
-            html: 'new html',
+        const result2 = {
+            ...result1,
+            html: 'html 2',
+        };
+        const result3 = {
+            ...result1,
+            html: 'html 3',
         };
 
         setupTabStopRequirementRunner();
         tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.addTabStopInstance(It.isValue(requirementResult)))
+            .setup(m => m.addTabStopInstanceArray([result1]))
             .verifiable(Times.once());
         tabStopRequirementActionMessageCreatorMock
-            .setup(m => m.addTabStopInstance(It.isValue(secondRequirementResult)))
+            .setup(m => m.addTabStopInstanceArray([result2, result3]))
             .verifiable(Times.once());
         setupVisualizationScanResultStoreMock({
             tabStops: { needToCollectTabbingResults: true },
@@ -121,10 +125,10 @@ describe('TabStopsRequirementResultProcessor', () => {
 
         await testSubject.start();
 
-        // send 1 duplicate and 2 unique results
-        requirementResultRunnerCallback(requirementResult);
-        requirementResultRunnerCallback(requirementResult);
-        requirementResultRunnerCallback(secondRequirementResult);
+        // send 1 duplicate and 3 unique results
+        requirementResultRunnerCallback([result1]);
+        requirementResultRunnerCallback([result1]);
+        requirementResultRunnerCallback([result2, result3]);
 
         verifyAll();
     });

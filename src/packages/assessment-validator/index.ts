@@ -10,7 +10,7 @@ import standaloneCode from 'ajv/dist/standalone';
 
 const validatorFilePath = path.join(
     __dirname,
-    '../../../src/DetailsView/components/validate-assessment-json.js',
+    '../../../src/DetailsView/components/generated-validate-assessment-json.js',
 );
 
 const generateValidator = () => {

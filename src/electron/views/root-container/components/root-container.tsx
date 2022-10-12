@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
@@ -54,6 +55,7 @@ export type RootContainerState = {
     androidSetupStoreData: AndroidSetupStoreData;
     leftNavStoreData: LeftNavStoreData;
     tabStopsStoreData: TabStopsStoreData;
+    cardsViewStoreData: CardsViewStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

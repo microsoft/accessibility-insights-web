@@ -10,7 +10,6 @@ import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, It, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
@@ -29,7 +28,6 @@ describe('GlobalContextFactoryTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let loggerMock: IMock<Logger>;
 
-    let toolData: ToolData;
     let userDataStub: LocalStorageData;
     let mockDBInstance: IMock<IndexedDBAPI>;
     let persistedDataStub: PersistedData;
@@ -50,7 +48,6 @@ describe('GlobalContextFactoryTest', () => {
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
 
         userDataStub = {};
-        toolData = {} as ToolData;
         persistedDataStub = {} as PersistedData;
         mockDBInstance = Mock.ofType<IndexedDBAPI>();
         mockDBInstance
@@ -68,11 +65,9 @@ describe('GlobalContextFactoryTest', () => {
             mockDBInstance.object,
             persistedDataStub,
             issueFilingServiceProviderMock.object,
-            toolData,
             storageAdapterMock.object,
             commandsAdapterMock.object,
             loggerMock.object,
-            true,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);

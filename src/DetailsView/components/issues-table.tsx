@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import {
     CommonInstancesSectionDeps,
     CommonInstancesSectionProps,
 } from 'common/components/cards/common-instances-section-props';
+import { IssueFilingDialogPropsFactory } from 'common/components/get-issue-filing-dialog-props';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
@@ -12,15 +14,20 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    IssueFilingDialog,
+    IssueFilingDialogDeps,
+} from 'DetailsView/components/issue-filing-dialog';
 import styles from 'DetailsView/components/issues-table.scss';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ExportDialogDeps } from './export-dialog';
 
 export type IssuesTableDeps = CommonInstancesSectionDeps &
-    ExportDialogDeps & {
+    IssueFilingDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
         reportGenerator: ReportGenerator;
+        issueFilingDialogPropsFactory: IssueFilingDialogPropsFactory;
     };
 
 export interface IssuesTableProps {
@@ -37,6 +44,8 @@ export interface IssuesTableProps {
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     visualizationStoreData: VisualizationStoreData;
+    narrowModeStatus: NarrowModeStatus;
+    cardsViewStoreData: CardsViewStoreData;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -114,19 +123,42 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         const InstancesSection = this.props.instancesSection;
 
         return (
-            <InstancesSection
-                deps={this.props.deps}
-                cardsViewData={this.props.cardsViewData}
-                userConfigurationStoreData={this.props.userConfigurationStoreData}
-                scanMetadata={this.props.scanMetadata}
-                shouldAlertFailuresCount={true}
-                cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
-                sectionHeadingLevel={2}
-            />
+            <>
+                <InstancesSection
+                    deps={this.props.deps}
+                    cardsViewData={this.props.cardsViewData}
+                    userConfigurationStoreData={this.props.userConfigurationStoreData}
+                    scanMetadata={this.props.scanMetadata}
+                    shouldAlertFailuresCount={true}
+                    cardSelectionMessageCreator={this.props.cardSelectionMessageCreator}
+                    sectionHeadingLevel={2}
+                    narrowModeStatus={this.props.narrowModeStatus}
+                    cardsViewStoreData={this.props.cardsViewStoreData}
+                />
+                {this.renderIssueFilingSettingContent()}
+            </>
         );
     }
 
     private renderSpinner(label: string): JSX.Element {
         return <ScanningSpinner isSpinning={true} label={label} />;
+    }
+
+    public renderIssueFilingSettingContent(): JSX.Element | null {
+        const { deps, userConfigurationStoreData, cardsViewStoreData } = this.props;
+        const { cardInteractionSupport, cardsViewController, issueFilingDialogPropsFactory } = deps;
+
+        if (!cardInteractionSupport.supportsIssueFiling) {
+            return null;
+        }
+
+        const dialogProps = issueFilingDialogPropsFactory(
+            userConfigurationStoreData,
+            cardsViewStoreData,
+            cardsViewController,
+            deps,
+        );
+
+        return <IssueFilingDialog {...dialogProps} />;
     }
 }

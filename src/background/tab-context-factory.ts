@@ -52,7 +52,6 @@ export class TabContextFactory {
         private readonly usageLogger: UsageLogger,
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
-        private readonly persistStoreData: boolean,
         private readonly urlParser: UrlParser,
     ) {}
 
@@ -66,7 +65,6 @@ export class TabContextFactory {
             this.indexedDBInstance,
             this.logger,
             tabId,
-            this.persistStoreData,
             this.urlParser,
         );
         const notificationCreator = new NotificationCreator(

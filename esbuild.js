@@ -6,6 +6,7 @@ const { argv } = require('process');
 const NodeResolve = require('@esbuild-plugins/node-resolve');
 const esbuild = require('esbuild');
 const yargs = require('yargs');
+const { CreateReplaceJsonValidatorPlugin } = require('./replace-plugin');
 const { CreateStylePlugin } = require('./style-plugin');
 
 const src = './src';
@@ -108,6 +109,7 @@ switch (argsObj.env) {
         define = {
             global: 'globalThis',
         };
+        plugins = plugins.concat(CreateReplaceJsonValidatorPlugin());
         break;
 
     case 'dev-mv3':
@@ -116,6 +118,7 @@ switch (argsObj.env) {
             global: 'globalThis',
         };
         checkToAddReactDevTools(entryFiles);
+        plugins = plugins.concat(CreateReplaceJsonValidatorPlugin());
 
         break;
 

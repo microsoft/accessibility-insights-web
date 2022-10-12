@@ -61,12 +61,16 @@ export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', pro
     };
 
     const renderGuidanceLinks = () => {
-        if (isEmpty(cardResult.guidance)) {
+        // don't display the best practice link since it is included in tags now
+        const links =
+            cardResult.guidance?.filter(guidanceLink => !isEmpty(guidanceLink.href)) || [];
+
+        if (isEmpty(links)) {
             return null;
         }
         return (
             <>
-                (<GuidanceLinks links={cardResult.guidance} LinkComponent={deps.LinkComponent} />)
+                (<GuidanceLinks links={links} LinkComponent={deps.LinkComponent} />)
             </>
         );
     };

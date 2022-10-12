@@ -158,11 +158,16 @@ export interface UpdateTabbingCompletedPayload extends BaseActionPayload {
 export interface UpdateNeedToCollectTabbingResultsPayload extends BaseActionPayload {
     needToCollectTabbingResults: boolean;
 }
+
 export interface AddTabStopInstancePayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
     description: string;
     selector?: string[];
     html?: string;
+}
+
+export interface AddTabStopInstanceArrayPayload {
+    results: AddTabStopInstancePayload[];
 }
 
 export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
