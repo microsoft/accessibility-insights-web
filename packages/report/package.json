@@ -18,7 +18,7 @@
         "url": "https://github.com/Microsoft/accessibility-insights-web"
     },
     "dependencies": {
-        "@fluentui/react": "^8.96.1",
+        "@fluentui/react": "^8.98.1",
         "axe-core": "4.4.1",
         "classnames": "^2.3.2",
         "lodash": "^4.17.21",
