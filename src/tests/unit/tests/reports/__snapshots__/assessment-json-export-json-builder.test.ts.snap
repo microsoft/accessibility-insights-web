@@ -337,7 +337,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         },
         {
           "requirementKey": "tableSemantics",
-          "requirementDescription": "A undefined element must be coded correctly as a data table or a layout table"
+          "requirementDescription": "A table element must be coded correctly as a data table or a layout table"
         },
         {
           "requirementKey": "headers",
@@ -345,7 +345,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         },
         {
           "requirementKey": "headersAttribute",
-          "requirementDescription": "The headers attribute of a undefined element must reference the correct undefined element(s)"
+          "requirementDescription": "The headers attribute of a td element must reference the correct th element(s)"
         },
         {
           "requirementKey": "lists",
@@ -357,7 +357,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         },
         {
           "requirementKey": "quotes",
-          "requirementDescription": "The undefined element must not be used to style non-quote text"
+          "requirementDescription": "The blockquote element must not be used to style non-quote text"
         },
         {
           "requirementKey": "letterSpacing",
