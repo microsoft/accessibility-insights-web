@@ -89,6 +89,10 @@ export const fastPassAutomatedChecksSelectors = {
     iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
     expandButton: getAutomationIdSelector(collapsibleButtonAutomationId),
     recommendationsCard: getAutomationIdSelector(recommendationsAutomationId),
+    cardFooterKebabButton: {
+        collapsed: 'button[aria-label*="More Actions for failure instance"][aria-expanded=false]',
+        expanded: 'button[aria-label*="More Actions for failure instance"][aria-expanded=true]',
+    },
 };
 
 export const tabStopsSelectors = {
