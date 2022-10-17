@@ -127,7 +127,7 @@
         "app-builder-lib": "^23.5.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
-        "commander": "^9.4.0",
+        "commander": "^9.4.1",
         "core-js-bundle": "^3.25.3",
         "cross-env": "^7.0.3",
         "css-loader": "^6.7.1",
