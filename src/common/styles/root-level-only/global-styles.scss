@@ -65,3 +65,12 @@ button::after {
         color: $spinner-text;
     }
 }
+
+// Add hover state that's not yet in FluentUI to menu items:
+.ms-ContextualMenu button:hover {
+    .ms-ContextualMenu-itemText, .ms-ContextualMenu-linkText {
+        @media screen and (forced-colors: active) {
+            color: highlight;
+        }
+    }
+}
