@@ -2,7 +2,6 @@
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `
 {
-  "className": "kebabMenu",
   "directionalHint": 6,
   "items": [
     {
@@ -22,14 +21,13 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} className="kebabMenuButton" ariaLabel="test-kebabmenuarialabel" menuIconProps={{...}} menuProps={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="test-kebabmenuarialabel" menuIconProps={{...}} menuProps={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `
 {
-  "className": "kebabMenu",
   "directionalHint": 6,
   "items": [
     {
@@ -49,7 +47,7 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with undefined ari
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: component snapshot 1`] = `
 "<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} className="kebabMenuButton" ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
@@ -79,7 +77,6 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false render
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `
 {
-  "className": "kebabMenu",
   "directionalHint": 6,
   "items": [
     {
@@ -99,7 +96,7 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: component snapshot 1`] = `
 "<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} className="kebabMenuButton" ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
+  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
