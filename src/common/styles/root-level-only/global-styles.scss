@@ -66,7 +66,8 @@ button::after {
     }
 }
 
-// Add hover state that's not yet in FluentUI to menu items:
+// Add hover state that's not yet in FluentUI to menu items
+// GH Issue: https://github.com/microsoft/fluentui/issues/25330
 .ms-ContextualMenu button:hover {
     .ms-ContextualMenu-itemText,
     .ms-ContextualMenu-linkText {
