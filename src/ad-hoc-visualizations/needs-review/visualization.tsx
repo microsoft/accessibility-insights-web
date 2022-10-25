@@ -14,17 +14,18 @@ import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const needsReviewTestKey = AdHocTestkeys.NeedsReview;
+export const needsReviewRules = [
+    'aria-input-field-name',
+    'color-contrast',
+    'th-has-data-cells',
+    'link-in-text-block',
+    'scrollable-region-focusable',
+    'label-content-name-mismatch',
+    'p-as-heading',
+];
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: [
-        'aria-input-field-name',
-        'color-contrast',
-        'th-has-data-cells',
-        'link-in-text-block',
-        'scrollable-region-focusable',
-        'label-content-name-mismatch',
-        'p-as-heading',
-    ],
+    rules: needsReviewRules,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,

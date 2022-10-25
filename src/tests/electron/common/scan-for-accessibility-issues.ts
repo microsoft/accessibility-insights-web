@@ -6,6 +6,7 @@ import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
+import { needsReviewRules } from 'ad-hoc-visualizations/needs-review/visualization';
 
 declare let window: Window & { axe };
 
@@ -27,13 +28,15 @@ async function scanForAccessibilityIssues(
 
 async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
     await injectAxeIfUndefined(client);
+     const needsReviewRulesConfig = {};
+     needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
     const axeRunOptions = {
         runOnly: {
             type: 'tag',
             values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'],
         },
+        rules: needsReviewRulesConfig,
     };
-
     const axeResults = await client.evaluate(
         ({ selector, axeRunOptions }) => {
             const elementContext = selector === undefined ? document : { include: [selector] };

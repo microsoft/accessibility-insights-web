@@ -5,6 +5,7 @@ import { AxeResults, ElementContext } from 'axe-core';
 
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
+import { needsReviewRules } from 'ad-hoc-visualizations/needs-review/visualization';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare let axe;
@@ -14,16 +15,17 @@ export async function scanForAccessibilityIssues(
     selector: string,
 ): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(page);
-
-    const axeResults = (await page.evaluate(selectorInEvaluate => {
+    const needsReviewRulesConfig = {};
+    needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
+    const axeResults = (await page.evaluate(options => {
         return axe.run(
-            { include: [selectorInEvaluate] } as ElementContext,
+            { include: [options.selector] } as ElementContext,
             {
                 runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] },
+                rules: options.rules
             } as ElementContext,
         );
-    }, selector)) as AxeResults;
-
+    }, { selector, rules: needsReviewRulesConfig })) as AxeResults;
     return prettyPrintAxeViolations(axeResults);
 }
 
