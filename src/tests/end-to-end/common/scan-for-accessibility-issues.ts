@@ -3,9 +3,9 @@
 import * as path from 'path';
 import { AxeResults, ElementContext } from 'axe-core';
 
+import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
-import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare let axe;

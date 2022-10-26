@@ -3,10 +3,10 @@
 import * as path from 'path';
 import { Result } from 'axe-core';
 import { Page } from 'playwright';
+import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
-import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 
 declare let window: Window & { axe };
 
