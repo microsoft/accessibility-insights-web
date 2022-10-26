@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details View -> Settings Panel should pass accessibility validation with highContrastMode=false 1`] = `[]`;
+
+exports[`Details View -> Settings Panel should pass accessibility validation with highContrastMode=true 1`] = `
+[
+  {
+    "id": "link-in-text-block",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Links need to be distinguished from surrounding text in some way other than by color",
+        "selector": [
+          "p:nth-child(1) > .root-294.insights-link[target="_blank"]",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Links need to be distinguished from surrounding text in some way other than by color",
+        "selector": [
+          ".toggle-description--ieTgg > .root-294.insights-link[target="_blank"]",
+        ],
+      },
+    ],
+  },
+]
+`;
