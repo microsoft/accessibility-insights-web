@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { needsReviewRules } from 'ad-hoc-visualizations/needs-review/visualization';
 import { AxeResults, ElementContext } from 'axe-core';
 
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
+import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare let axe;
@@ -15,8 +15,6 @@ export async function scanForAccessibilityIssues(
     selector: string,
 ): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(page);
-    const needsReviewRulesConfig = {};
-    needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
     const axeResults = (await page.evaluate(
         options => {
             return axe.run(
@@ -27,7 +25,7 @@ export async function scanForAccessibilityIssues(
                 } as ElementContext,
             );
         },
-        { selector, rules: needsReviewRulesConfig },
+        { selector, rules: getNeedsReviewRulesConfig() },
     )) as AxeResults;
     return prettyPrintAxeViolations(axeResults);
 }
