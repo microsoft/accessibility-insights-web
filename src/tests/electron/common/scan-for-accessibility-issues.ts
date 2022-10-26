@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
+import { needsReviewRules } from 'ad-hoc-visualizations/needs-review/visualization';
 import { Result } from 'axe-core';
 import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
-import { needsReviewRules } from 'ad-hoc-visualizations/needs-review/visualization';
 
 declare let window: Window & { axe };
 
@@ -28,8 +28,8 @@ async function scanForAccessibilityIssues(
 
 async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
     await injectAxeIfUndefined(client);
-     const needsReviewRulesConfig = {};
-     needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
+    const needsReviewRulesConfig = {};
+    needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
     const axeRunOptions = {
         runOnly: {
             type: 'tag',

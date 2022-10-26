@@ -47,7 +47,7 @@ describe('Details View -> Assessment -> Headings', () => {
                     detailsViewSelectors.mainContent,
                 );
                 // this results object has a false positive for label-content-name-misatch
-                // where the "show all visualizations" content does not match the label 
+                // where the "show all visualizations" content does not match the label
                 // because the content is a checkbox. because this is symbolic, this criteria
                 // does not apply
                 expect(results).toMatchSnapshot();
