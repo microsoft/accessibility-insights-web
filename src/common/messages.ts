@@ -7,6 +7,8 @@ export const getStoreStateMessage = (storeName: StoreNames): string => {
     return `${messagePrefix}/${StoreNames[storeName]}/state/current`;
 };
 
+export type AssessmentMessages = typeof Messages.Assessment & typeof Messages.MediumPass;
+
 export const Messages = {
     Visualizations: {
         Common: {
@@ -118,6 +120,41 @@ export const Messages = {
         LoadAssessment: `${messagePrefix}/assessment/loadAssessment`,
         LoadAssessmentFinishedUpload: `${messagePrefix}/assessment/loadAssessmentFinishedUpload`,
         SaveAssessment: `${messagePrefix}/assessment/saveAssessment`,
+    },
+
+    MediumPass: {
+        SelectTestRequirement: `${messagePrefix}/mediumPass/requirement/select`,
+        SelectNextRequirement: `${messagePrefix}/mediumPass/requirement/select-next`,
+        SelectGettingStarted: `${messagePrefix}/mediumPass/select-getting-started`,
+        ExpandTestNav: `${messagePrefix}/mediumPass/expand-test-nav`,
+        CollapseTestNav: `${messagePrefix}/mediumPass/collapse-test-nav`,
+        AssessmentScanCompleted: `${messagePrefix}/mediumPass/scanComplete`,
+        TabbedElementAdded: `${messagePrefix}/mediumPass/tab-stops/element-added`,
+        TrackingCompleted: `${messagePrefix}/mediumPass/tab-stops/recording-completed`,
+        CancelStartOver: `${messagePrefix}/mediumPass/cancel-start-over`,
+        CancelStartOverAllAssessments: `${messagePrefix}/mediumPass/cancel-start-over-all-assessments`,
+        StartOverAssessment: `${messagePrefix}/mediumPass/startOverTest`,
+        StartOverAllAssessments: `${messagePrefix}/mediumPass/startOverAllAssessments`,
+        EnableVisualHelper: `${messagePrefix}/mediumPass/enableVisualHelper`,
+        EnableVisualHelperWithoutScan: `${messagePrefix}/mediumPass/enableVisualHelperWithoutScan`,
+        DisableVisualHelperForTest: `${messagePrefix}/mediumPass/disableVisualHelperForTest`,
+        DisableVisualHelper: `${messagePrefix}/mediumPass/disableVisualHelper`,
+        ChangeStatus: `${messagePrefix}/mediumPass/changeStatus`,
+        ChangeRequirementStatus: `${messagePrefix}/mediumPass/changeManualRequirementStatus`,
+        ChangeVisualizationState: `${messagePrefix}/mediumPass/changeSVisualizationState`,
+        Undo: `${messagePrefix}/mediumPass/undo`,
+        UndoChangeRequirementStatus: `${messagePrefix}/mediumPass/undoChangeManualRequirementStatus`,
+        AddFailureInstance: `${messagePrefix}/mediumPass/addFailureInstance`,
+        AddResultDescription: `${messagePrefix}/mediumPass/addResultDescription`,
+        RemoveFailureInstance: `${messagePrefix}/mediumPass/removeFailureInstance`,
+        EditFailureInstance: `${messagePrefix}/mediumPass/editFailureInstance`,
+        PassUnmarkedInstances: `${messagePrefix}/mediumPass/passUnmarkedInstances`,
+        ChangeVisualizationStateForAll: `${messagePrefix}/mediumPass/changeVisualizationStateForAll`,
+        ScanUpdate: `${messagePrefix}/mediumPass/scanUpdate`,
+        ContinuePreviousAssessment: `${messagePrefix}/mediumPass/continuePreviousAssessment`,
+        LoadAssessment: `${messagePrefix}/mediumPass/loadAssessment`,
+        LoadAssessmentFinishedUpload: `${messagePrefix}/mediumPass/loadAssessmentFinishedUpload`,
+        SaveAssessment: `${messagePrefix}/mediumPass/saveAssessment`,
     },
 
     FeatureFlags: {
