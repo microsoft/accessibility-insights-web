@@ -10,7 +10,6 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
-    LoadAssessmentPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -731,57 +730,6 @@ describe('MediumPassActionCreatorTest', () => {
         await interpreterMock.simulateMessage(Messages.Visualizations.DetailsView.Select, payload);
 
         updateSelectedPivotChildMock.verifyAll();
-    });
-
-    it('handles SaveAssessment message', async () => {
-        const testSubject = new MediumPassActionCreator(
-            interpreterMock.object,
-            mediumPassAssessmentActionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testSubject.registerCallbacks();
-
-        await interpreterMock.simulateMessage(
-            MediumPassMessages.SaveAssessment,
-            telemetryOnlyPayload,
-            testTabId,
-        );
-
-        telemetryEventHandlerMock.verify(
-            handler =>
-                handler.publishTelemetry(TelemetryEvents.SAVE_MEDIUM_PASS, telemetryOnlyPayload),
-            Times.once(),
-        );
-    });
-
-    it('handles LoadAssessment message', async () => {
-        const payload = {
-            tabId: 1,
-            detailsViewId: 'testId',
-        } as LoadAssessmentPayload;
-
-        const loadAssessmentMock = createAsyncActionMock(payload, actionExecutingScope);
-        const actionsMock = createActionsMock('loadAssessment', loadAssessmentMock.object);
-
-        const testSubject = new MediumPassActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testSubject.registerCallbacks();
-
-        await interpreterMock.simulateMessage(
-            MediumPassMessages.LoadAssessment,
-            payload,
-            testTabId,
-        );
-
-        telemetryEventHandlerMock.verify(
-            handler => handler.publishTelemetry(TelemetryEvents.LOAD_MEDIUM_PASS, payload),
-            Times.once(),
-        );
     });
 
     function setupAssessmentActionsMock<ActionName extends keyof AssessmentActions>(

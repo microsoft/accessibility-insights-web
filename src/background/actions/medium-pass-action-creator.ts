@@ -22,7 +22,6 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
-    LoadAssessmentPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
@@ -139,16 +138,8 @@ export class MediumPassActionCreator {
             this.onContinuePreviousAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.LoadAssessment,
-            this.onLoadAssessment,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.DetailsView.Select,
             this.onPivotChildSelected,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.SaveAssessment,
-            this.onSaveAssessment,
         );
     }
 
@@ -159,20 +150,6 @@ export class MediumPassActionCreator {
         const eventName = TelemetryEvents.CONTINUE_PREVIOUS_MEDIUM_PASS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.mediumPassActions.continuePreviousAssessment.invoke(tabId, this.executingScope);
-    };
-
-    private onLoadAssessment = async (
-        payload: LoadAssessmentPayload,
-        tabId: number,
-    ): Promise<void> => {
-        const eventName = TelemetryEvents.LOAD_MEDIUM_PASS;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.loadAssessment.invoke(payload, this.executingScope);
-    };
-
-    private onSaveAssessment = (payload: BaseActionPayload): void => {
-        const eventName = TelemetryEvents.SAVE_MEDIUM_PASS;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onPassUnmarkedInstances = async (
