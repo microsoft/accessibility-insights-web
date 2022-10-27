@@ -66,7 +66,7 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     }
 
                     let collapsibleComponentProps: CollapsibleComponentCardsProps;
-                    const buttonAriaLabel = `${requirement.id} ${totalCount} ${pastTense} ${requirement.description}`;
+                    const buttonAriaLabel = `${totalCount} ${pastTense} ${requirement.name} ${requirement.description}`;
                     if (instanceCount === 0) {
                         collapsibleComponentProps = getCollapsibleComponentPropsWithoutInstance(
                             requirement,

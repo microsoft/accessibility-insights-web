@@ -4,6 +4,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
+import { needsReviewRules } from 'scanner/get-rule-inclusions';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { Messages } from '../../common/messages';
@@ -16,15 +17,7 @@ import { VisualizationInstanceProcessor } from '../../injected/visualization-ins
 const needsReviewTestKey = AdHocTestkeys.NeedsReview;
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: [
-        'aria-input-field-name',
-        'color-contrast',
-        'th-has-data-cells',
-        'link-in-text-block',
-        'scrollable-region-focusable',
-        'label-content-name-mismatch',
-        'p-as-heading',
-    ],
+    rules: needsReviewRules,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,

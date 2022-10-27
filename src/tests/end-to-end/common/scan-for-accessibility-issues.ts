@@ -3,6 +3,7 @@
 import * as path from 'path';
 import { AxeResults, ElementContext } from 'axe-core';
 
+import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
 
@@ -14,16 +15,18 @@ export async function scanForAccessibilityIssues(
     selector: string,
 ): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(page);
-
-    const axeResults = (await page.evaluate(selectorInEvaluate => {
-        return axe.run(
-            { include: [selectorInEvaluate] } as ElementContext,
-            {
-                runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] },
-            } as ElementContext,
-        );
-    }, selector)) as AxeResults;
-
+    const axeResults = (await page.evaluate(
+        options => {
+            return axe.run(
+                { include: [options.selector] } as ElementContext,
+                {
+                    runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] },
+                    rules: options.rules,
+                } as ElementContext,
+            );
+        },
+        { selector, rules: getNeedsReviewRulesConfig() },
+    )) as AxeResults;
     return prettyPrintAxeViolations(axeResults);
 }
 
