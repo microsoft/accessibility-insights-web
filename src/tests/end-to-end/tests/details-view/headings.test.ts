@@ -46,9 +46,9 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                // this results object has a false positive for label-content-name-misatch
-                // where the "show all visualizations" content does not match the label
-                // because the content is a checkbox. because this is symbolic, this criteria
+                // this results object has a failure for label-content-name-misatch
+                // where the "show all visualizations" label does not match the content (a checkbox)
+                // this is a false positive because the checkbox is symbolic, so this criteria
                 // does not apply
                 expect(results).toMatchSnapshot();
             },
