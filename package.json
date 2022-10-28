@@ -219,6 +219,7 @@
         "jpeg-js": ">=0.4.4",
         "kind-of": "^6.0.3",
         "license-check-and-add/yargs": "^15.3.1",
+        "**/dir-compare/minimatch": "^3.0.5",
         "minimist": "^1.2.3",
         "moment": "^2.29.4",
         "nth-check": ">=2.0.1",

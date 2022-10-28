@@ -12,5 +12,8 @@
         "grunt-cli": "^1.3.1",
         "grunt-contrib-compress": "^2.0.0",
         "grunt-webstore-upload": "^0.9.23"
+    },
+    "resolutions": {
+        "minimatch": "^3.0.5"
     }
 }
