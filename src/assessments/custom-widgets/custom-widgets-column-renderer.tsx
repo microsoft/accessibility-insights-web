@@ -58,7 +58,7 @@ const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     alert: [{ designPattern: 'Alert', URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/alert' }],
     alertdialog: [
         {
-            designPattern: 'Alert and Message Dialogs',
+            designPattern: 'Alert or Message Dialog',
             URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog',
         },
     ],
