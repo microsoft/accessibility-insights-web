@@ -41,8 +41,6 @@ export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryPro
     return <SaveAssessmentButton download={fileName} href={fileURL} {...props} />;
 }
 
-export function getSaveButtonForFastPass(
-    props: SaveAssessmentButtonFactoryProps,
-): JSX.Element | null {
+export function getNullSaveButton(props: SaveAssessmentButtonFactoryProps): JSX.Element | null {
     return null;
 }

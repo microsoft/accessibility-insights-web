@@ -26,6 +26,21 @@ export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavBut
     },
 );
 
+export const MediumPassLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
+    'MediumPassLeftNavHamburgerButton',
+    props => {
+        const ariaLabel: string = 'MediumPass - all tests and requirements list';
+        return (
+            <LeftNavHamburgerButton
+                ariaLabel={ariaLabel}
+                isSideNavOpen={props.isSideNavOpen}
+                setSideNavOpen={props.setSideNavOpen}
+                className={props.className}
+            />
+        );
+    },
+);
+
 export const FastPassLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
     'FastPassLeftNavHamburgerButton',
     props => {
