@@ -84,10 +84,9 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 icon: 'testBeakerSolid',
             },
         };
-        return  featureFlagStoreData[FeatureFlags.mediumPass]
+        return featureFlagStoreData[FeatureFlags.mediumPass]
             ? [fastPassConfig, mediumPassConfig, assessmentConfig]
             : [fastPassConfig, assessmentConfig];
-
     };
 
     public render(): JSX.Element {

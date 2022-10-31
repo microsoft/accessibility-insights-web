@@ -124,15 +124,15 @@ export class LeftNavLinkBuilder {
     ): TestRequirementLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
-        let testLinks = [];
+        const testLinks = [];
         const { navLinkHandler } = deps;
-        for (let assessment of assessments) {
+        for (const assessment of assessments) {
             if (assessment.key === 'automated-checks') {
                 continue;
             }
             const stepStatus = assessmentsData[assessment.key];
 
-            for (let requirement of assessment.requirements) {
+            for (const requirement of assessment.requirements) {
                 testLinks.push(
                     this.buildRequirementLink(
                         deps,
@@ -245,7 +245,6 @@ export class LeftNavLinkBuilder {
             testType: assessment.visualizationType,
             forceAnchor: false,
         };
-        
 
         return testLink;
     };

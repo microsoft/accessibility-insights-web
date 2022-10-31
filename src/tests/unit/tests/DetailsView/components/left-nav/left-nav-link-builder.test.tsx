@@ -5,9 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
-import {
-    TestRequirementLeftNavLink,
-} from 'DetailsView/components/left-nav/assessment-left-nav';
+import { TestRequirementLeftNavLink } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
@@ -221,7 +219,7 @@ describe('LeftNavBuilder', () => {
                 expectedRequirementLinkA,
                 expectedRequirementLinkB,
             ];
-            const actualLink = testSubject.buildAutomatedChecksLinks(
+            const testLink = testSubject.buildAutomatedChecksLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
@@ -229,10 +227,10 @@ describe('LeftNavBuilder', () => {
                 expandedTest,
                 onRightPanelContentSwitchMock.object,
             );
-            expect(actualLink).toMatchObject(expectedTestLink);
-            for (let index in actualLink.links) {
-                expect(actualLink.links[index]).toMatchObject(expectedAutomatedChecksLinks[index]);
-            }
+            expect(testLink).toMatchObject(expectedTestLink);
+            testLink.links.forEach((actualLink, index) => {
+                expect(actualLink).toMatchObject(expectedAutomatedChecksLinks[index]);
+            });
         });
     });
 
@@ -260,7 +258,7 @@ describe('LeftNavBuilder', () => {
                 assessmentStub.requirements.forEach(() => {
                     const actualRequirementLink = links[assessmentIndex - 1];
                     const expectedRequirementLink = getExpectedRequirementLink(
-                        linkIndex == 0 ? requirementStubA : requirementStubB,
+                        linkIndex === 0 ? requirementStubA : requirementStubB,
                         assessmentStub.visualizationType,
                         testStatusStub,
                     );

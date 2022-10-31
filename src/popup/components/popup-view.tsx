@@ -150,7 +150,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                 this,
                 popupActionMessageCreator,
                 this.props.popupHandlers.popupViewControllerHandler,
-                this.props.storeState.featureFlagStoreData
+                this.props.storeState.featureFlagStoreData,
             );
 
         const onClickTutorialLink = event => popupActionMessageCreator.openTutorial(event);

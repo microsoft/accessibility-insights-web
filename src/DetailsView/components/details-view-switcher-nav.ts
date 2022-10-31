@@ -8,17 +8,18 @@ import {
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
-import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
     CommandBarProps,
     LoadAssessmentButtonFactory,
     ReportExportDialogFactory,
     SaveAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
+import { MediumPassLeftNav } from 'DetailsView/components/left-nav/medium-pass-left-nav';
 import {
     getLoadButtonForAssessment,
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
+import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
@@ -61,7 +62,6 @@ import {
     getFastPassSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
-import { MediumPassLeftNav } from 'DetailsView/components/left-nav/medium-pass-left-nav';
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;

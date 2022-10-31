@@ -13,12 +13,12 @@ import {
     AssessmentLeftNavLink,
     TestRequirementLeftNavLink,
 } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
+import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import {
     MediumPassLeftNav,
     MediumPassLeftNavDeps,
     MediumPassLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/medium-pass-left-nav';
-import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
@@ -74,7 +74,10 @@ describe(MediumPassLeftNav.displayName, () => {
         } as AssessmentLeftNavLink;
 
         mediumPassChecksLinksStub = [
-            { name: 'keyboard navigation', status: ManualTestStatus.FAIL } as TestRequirementLeftNavLink,
+            {
+                name: 'keyboard navigation',
+                status: ManualTestStatus.FAIL,
+            } as TestRequirementLeftNavLink,
             { name: 'focus order', status: ManualTestStatus.PASS } as TestRequirementLeftNavLink,
         ];
 
