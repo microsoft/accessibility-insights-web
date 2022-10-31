@@ -104,6 +104,7 @@ export enum TelemetryEventSource {
     LaunchPadFastPass,
     LaunchPadAllTests,
     LaunchPadAssessment,
+    LaunchPadMediumPass,
     AdHocTools,
     HamburgerMenu,
     DetailsView,
