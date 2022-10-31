@@ -21,7 +21,6 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
-import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 
 describe(MediumPassLeftNav.displayName, () => {
     let overviewLinkStub: AssessmentLeftNavLink;
