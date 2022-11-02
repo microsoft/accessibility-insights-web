@@ -4,7 +4,7 @@
 name: "Combine Dependabot PRs"
 on:
   schedule:
-    - cron: '15,30,45,0 * * * *'
+    - cron: '0 13 * * 1'
   workflow_dispatch:
 
 jobs:
