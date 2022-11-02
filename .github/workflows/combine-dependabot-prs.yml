@@ -17,6 +17,6 @@ jobs:
           branchPrefix: "dependabot"
           mustBeGreen: true
           combineBranchName: combined-prs-${{ github.run_id }}
-          ignoreLabel: "nocombine"
+          ignoreLabel: "pr: do not combine"
           baseBranch: "main"
           openPR: true
