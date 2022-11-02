@@ -18,6 +18,7 @@ import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
+import { GetAnalyzerMessageTypes } from 'injected/analyzers/get-analyzer-message-types';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
@@ -341,6 +342,7 @@ export class MainWindowInitializer extends WindowInitializer {
             analyzerStateUpdateHandler,
             Assessments,
             this.shadowInitializer,
+            GetAnalyzerMessageTypes,
         );
 
         this.analyzerController.listenToStore();

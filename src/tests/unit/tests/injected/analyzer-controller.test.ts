@@ -5,6 +5,10 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import {
+    AnalyzerMessageConfiguration,
+    GetAnalyzerMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
@@ -37,7 +41,9 @@ describe('AnalyzerControllerTests', () => {
     let getIdentifierMock: IMock<() => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
+    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
+    let getAnalyzerMessageTypesMock: IMock<typeof GetAnalyzerMessageTypes>;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationStoreState: VisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
@@ -62,11 +68,15 @@ describe('AnalyzerControllerTests', () => {
         getIdentifierMock = Mock.ofInstance(() => {
             return null;
         });
+        getAnalyzerMessageTypesMock = Mock.ofType<typeof GetAnalyzerMessageTypes>();
         configStub = {
             getStoreData: getStoreDataMock.object,
             getAnalyzer: getAnalyzerMock.object,
             getIdentifier: getIdentifierMock.object,
         } as any;
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
+        };
 
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
@@ -118,6 +128,7 @@ describe('AnalyzerControllerTests', () => {
             analyzerStateUpdateHandlerStrictMock.object,
             assessmentsMock.object,
             shadowInitializerMock.object,
+            getAnalyzerMessageTypesMock.object,
         );
     });
 
@@ -176,10 +187,12 @@ describe('AnalyzerControllerTests', () => {
     });
 
     test('startScan', () => {
+        visualizationStoreState = new VisualizationStoreDataBuilder().build();
+
         testObject.listenToStore();
 
         getAnalyzerMock.reset();
-        setupAnalyzeCall();
+        setupAnalyzeCall(visualizationStoreState);
         setupGetAnalyzerMockNeverCalled();
 
         shadowInitializerMock.setup(m => m.removeExistingShadowHost()).verifiable(Times.once());
@@ -208,8 +221,11 @@ describe('AnalyzerControllerTests', () => {
         analyzerMock.verifyAll();
     });
 
-    function setupAnalyzeCall(): void {
-        analyzerMock.setup(am => am.analyze()).verifiable();
+    function setupAnalyzeCall(visualizationState: VisualizationStoreData): void {
+        getAnalyzerMessageTypesMock
+            .setup(m => m(visualizationState.selectedDetailsViewPivot))
+            .returns(() => messageConfigurationStub);
+        analyzerMock.setup(am => am.analyze(messageConfigurationStub)).verifiable();
     }
 
     function setupTeardownCall(): void {

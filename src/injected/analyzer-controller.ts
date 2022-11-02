@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { GetAnalyzerMessageTypes } from 'injected/analyzers/get-analyzer-message-types';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -33,6 +34,7 @@ export class AnalyzerController {
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
         assessmentsProvider: AssessmentsProvider,
         private readonly shadowInitializer: ShadowInitializer,
+        private readonly getAnalyzerMessageTypes: typeof GetAnalyzerMessageTypes,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
@@ -70,7 +72,10 @@ export class AnalyzerController {
         this.shadowInitializer.removeExistingShadowHost();
 
         const analyzer = this.getAnalyzerByIdentifier(id);
-        analyzer.analyze();
+        const messageConfiguration = this.getAnalyzerMessageTypes(
+            this.visualizationstore.getState().selectedDetailsViewPivot,
+        );
+        analyzer.analyze(messageConfiguration);
 
         void this.shadowInitializer.initialize();
     };

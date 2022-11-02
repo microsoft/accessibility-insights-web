@@ -4,8 +4,8 @@ import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-
 import { Analyzer, AnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
@@ -13,6 +13,7 @@ export class BaseAnalyzer implements Analyzer {
     protected emptyResults: AxeAnalyzerResult = {
         results: {},
     };
+    protected messageConfiguration: AnalyzerMessageConfiguration;
 
     constructor(
         protected readonly config: AnalyzerConfiguration,
@@ -23,7 +24,8 @@ export class BaseAnalyzer implements Analyzer {
         this.visualizationType = config.testType;
     }
 
-    public analyze(): void {
+    public analyze(messageConfiguration: AnalyzerMessageConfiguration): void {
+        this.messageConfiguration = messageConfiguration;
         const results = this.getResults();
         results.then(this.onResolve).catch(this.logger.error);
     }
@@ -42,7 +44,7 @@ export class BaseAnalyzer implements Analyzer {
         analyzerResult: AxeAnalyzerResult,
         config: AnalyzerConfiguration,
     ): Message {
-        const messageType = config.analyzerMessageType;
+        const messageType = this.messageConfiguration.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult!;
         const payload: ScanCompletedPayload<any> = {
             key: config.key,
