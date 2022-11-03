@@ -35,7 +35,7 @@ exports[`Switcher props dropdown has correct options when medium pass feature fl
     "data": {
       "icon": "",
     },
-    "key": 1,
+    "key": 3,
     "text": "MediumPass",
     "title": "MediumPass",
   },
