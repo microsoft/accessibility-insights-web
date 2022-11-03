@@ -4,7 +4,7 @@
 import { LoadAssessmentButtonProps } from 'DetailsView/components/load-assessment-button';
 import {
     getLoadButtonForAssessment,
-    getLoadButtonForFastPass,
+    getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
 
 describe('LoadAssessmentFactory', () => {
@@ -19,7 +19,7 @@ describe('LoadAssessmentFactory', () => {
 
     describe('getLoadButtonForFastPass', () => {
         test('renders load assessment button as null', () => {
-            const rendered = getLoadButtonForFastPass(props);
+            const rendered = getNullLoadButton(props);
             expect(rendered).toBeNull();
         });
     });

@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MediumPassLeftNav renders left nav with appropriate params 1`] = `
+<BaseLeftNav
+  links={
+    [
+      {
+        "key": "overview",
+        "status": 1,
+      },
+      {
+        "key": "automated-checks",
+        "status": 1,
+      },
+      {
+        "name": "keyboard navigation",
+        "status": 2,
+      },
+      {
+        "name": "focus order",
+        "status": 0,
+      },
+    ]
+  }
+  selectedKey="some key"
+  setNavComponentRef={[Function]}
+/>
+`;

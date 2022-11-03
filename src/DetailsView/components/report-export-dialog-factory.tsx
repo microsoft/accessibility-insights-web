@@ -80,6 +80,12 @@ export function getReportExportDialogForAssessment(
     return <ReportExportComponent {...dialogProps} />;
 }
 
+export function getReportExportDialogForMediumPass(
+    props: ReportExportDialogFactoryProps,
+): JSX.Element {
+    return null;
+}
+
 export function getReportExportDialogForFastPass(
     props: ReportExportDialogFactoryProps,
 ): JSX.Element {

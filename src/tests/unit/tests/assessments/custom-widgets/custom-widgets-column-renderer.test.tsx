@@ -62,19 +62,19 @@ describe('CustomWidgetsColumnRenderer', () => {
         const expectedValues = [
             {
                 designPattern: 'Accordion',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/accordion',
             },
             {
                 designPattern: 'Button',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/button',
             },
             {
                 designPattern: 'Disclosure (Show/Hide)',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/disclosure',
             },
             {
                 designPattern: 'Menu Button',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/menubutton',
             },
         ];
         item.instance.propertyBag.role = 'button';
@@ -103,11 +103,11 @@ describe('CustomWidgetsColumnRenderer', () => {
         const expectedValues = [
             {
                 designPattern: 'Slider',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#slider',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/slider',
             },
             {
                 designPattern: 'Slider (Multi-thumb)',
-                URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#sliderwothumb',
+                URL: 'https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb',
             },
         ];
         item.instance.propertyBag.role = 'slider';

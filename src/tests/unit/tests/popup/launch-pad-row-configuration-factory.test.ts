@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Mock, Times } from 'typemoq';
 
 import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
@@ -11,92 +12,130 @@ import { PopupViewControllerHandler } from '../../../../popup/handlers/popup-vie
 import { LaunchPadRowConfigurationFactory } from '../../../../popup/launch-pad-row-configuration-factory';
 
 describe('LaunchPadRowConfigurationFactoryTests', () => {
-    test('createRowConfigs: verify string properties', () => {
-        const componentStub = {};
-        const handlerMock = Mock.ofType(PopupViewControllerHandler);
-        const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        const testSubject = new LaunchPadRowConfigurationFactory();
-        const fastPassRowConfig = {
-            iconName: 'Rocket',
-            title: 'FastPass',
-            description:
-                'Run three tests to find the most common accessibility issues in less than 5 minutes.',
-            onClickTitle: null,
-        };
-        const adhocRowConfig = {
-            iconName: 'Medical',
-            title: 'Ad hoc tools',
-            description:
-                'Get quick access to visualizations that help you identify accessibility issues.',
-            onClickTitle: null,
-        };
-        const assessmentRowConfig = {
-            iconName: 'testBeaker',
-            title: 'Assessment',
-            description: 'Walk through a guided process for assessing accessibility compliance.',
-            onClickTitle: null,
-        };
+    let componentStub = {};
+    let handlerMock = Mock.ofType(PopupViewControllerHandler);
+    let actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
+    let featureFlagStoreDataStub: FeatureFlagStoreData;
+    const mediumPassFlagName = 'mediumPass';
+    let testSubject: LaunchPadRowConfigurationFactory;
+    const fastPassRowConfig = {
+        iconName: 'Rocket',
+        title: 'FastPass',
+        description:
+            'Run three tests to find the most common accessibility issues in less than 5 minutes.',
+        onClickTitle: null,
+    };
+    const adhocRowConfig = {
+        iconName: 'Medical',
+        title: 'Ad hoc tools',
+        description:
+            'Get quick access to visualizations that help you identify accessibility issues.',
+        onClickTitle: null,
+    };
+    const assessmentRowConfig = {
+        iconName: 'testBeaker',
+        title: 'Assessment',
+        description: 'Walk through a guided process for assessing accessibility compliance.',
+        onClickTitle: null,
+    };
 
-        const expectedConfig: LaunchPadRowConfiguration[] = [
-            fastPassRowConfig,
-            assessmentRowConfig,
-            adhocRowConfig,
-        ];
+    const mediumPassRowConfig = {
+        iconName: '',
+        title: 'MediumPass',
+        description: 'MediumPass tag line goes here',
+        onClickTitle: null,
+    };
 
-        const configs = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-        );
-
-        compareStaticProperties(expectedConfig, configs);
+    beforeEach(() => {
+        componentStub = {};
+        handlerMock = Mock.ofType(PopupViewControllerHandler);
+        actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
+        featureFlagStoreDataStub = {};
+        testSubject = new LaunchPadRowConfigurationFactory();
     });
 
-    test('createRowConfigs: onClick title', () => {
-        const componentStub = {};
-        const handlerMock = Mock.ofType(PopupViewControllerHandler);
-        const actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        const testSubject = new LaunchPadRowConfigurationFactory();
+    it.each([true, false])(
+        'createRowConfigs: verify string properties when mediumPass featureFlag is %s',
+        featureFlagValue => {
+            featureFlagStoreDataStub[mediumPassFlagName] = featureFlagValue;
 
-        actionMessageCreatorMock
-            .setup(a =>
-                a.openDetailsView(
-                    null,
-                    VisualizationType.Issues,
-                    TelemetryEventSource.LaunchPadFastPass,
-                    DetailsViewPivotType.fastPass,
-                ),
-            )
-            .verifiable(Times.once());
+            const expectedConfig: LaunchPadRowConfiguration[] =
+                featureFlagValue === true
+                    ? [fastPassRowConfig, mediumPassRowConfig, assessmentRowConfig, adhocRowConfig]
+                    : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
 
-        actionMessageCreatorMock
-            .setup(a =>
-                a.openDetailsView(
-                    null,
-                    null,
-                    TelemetryEventSource.LaunchPadAssessment,
-                    DetailsViewPivotType.assessment,
-                ),
-            )
-            .verifiable(Times.once());
+            const configs = testSubject.createRowConfigs(
+                componentStub as any,
+                actionMessageCreatorMock.object,
+                handlerMock.object,
+                featureFlagStoreDataStub,
+            );
 
-        handlerMock
-            .setup(h => h.openAdhocToolsPanel(componentStub as any))
-            .verifiable(Times.once());
+            compareStaticProperties(expectedConfig, configs);
+        },
+    );
 
-        const configs = testSubject.createRowConfigs(
-            componentStub as any,
-            actionMessageCreatorMock.object,
-            handlerMock.object,
-        );
+    it.each([true, false])(
+        'createRowConfigs: onClick title when mediumPass featureFlag is %s',
+        featureFlagValue => {
+            featureFlagStoreDataStub[mediumPassFlagName] = featureFlagValue;
 
-        configs[0].onClickTitle(null);
-        configs[1].onClickTitle(null);
-        configs[2].onClickTitle();
+            actionMessageCreatorMock
+                .setup(a =>
+                    a.openDetailsView(
+                        null,
+                        VisualizationType.Issues,
+                        TelemetryEventSource.LaunchPadFastPass,
+                        DetailsViewPivotType.fastPass,
+                    ),
+                )
+                .verifiable(Times.once());
 
-        actionMessageCreatorMock.verifyAll();
-        handlerMock.verifyAll();
-    });
+            actionMessageCreatorMock
+                .setup(a =>
+                    a.openDetailsView(
+                        null,
+                        null,
+                        TelemetryEventSource.LaunchPadAssessment,
+                        DetailsViewPivotType.assessment,
+                    ),
+                )
+                .verifiable(Times.once());
+
+            actionMessageCreatorMock
+                .setup(a =>
+                    a.openDetailsView(
+                        null,
+                        null,
+                        TelemetryEventSource.LaunchPadMediumPass,
+                        DetailsViewPivotType.mediumPass,
+                    ),
+                )
+                .verifiable(featureFlagValue === true ? Times.once() : Times.never());
+
+            handlerMock
+                .setup(h => h.openAdhocToolsPanel(componentStub as any))
+                .verifiable(Times.once());
+
+            const configs = testSubject.createRowConfigs(
+                componentStub as any,
+                actionMessageCreatorMock.object,
+                handlerMock.object,
+                featureFlagStoreDataStub,
+            );
+
+            configs.forEach((config, index) => {
+                if (index === configs.length - 1) {
+                    config.onClickTitle();
+                } else {
+                    config.onClickTitle(null);
+                }
+            });
+
+            actionMessageCreatorMock.verifyAll();
+            handlerMock.verifyAll();
+        },
+    );
 
     function compareStaticProperties(
         expected: LaunchPadRowConfiguration[],
