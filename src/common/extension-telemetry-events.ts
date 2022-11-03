@@ -94,7 +94,6 @@ export enum TelemetryEventSource {
     LaunchPadFastPass,
     LaunchPadAllTests,
     LaunchPadAssessment,
-    LaunchPadMediumPass,
     AdHocTools,
     HamburgerMenu,
     DetailsView,
@@ -112,6 +111,7 @@ export enum TelemetryEventSource {
     DevTools,
     Insights,
     DebugTools,
+    LaunchPadMediumPass,
 }
 
 export type BaseTelemetryData = {

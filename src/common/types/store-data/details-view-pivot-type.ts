@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 export enum DetailsViewPivotType {
     fastPass = 0,
-    mediumPass = 1,
     assessment = 2,
+    mediumPass = 3,
 }
