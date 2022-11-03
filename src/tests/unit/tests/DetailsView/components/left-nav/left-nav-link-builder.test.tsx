@@ -184,41 +184,8 @@ describe('LeftNavBuilder', () => {
 
     describe('buildAutomatedChecksLinks', () => {
         it('should build just automated checks assessment link', () => {
-            const startingIndexStub = 0;
-            const {
-                assessmentsStub,
-                testStatusStub,
-                requirementStubA,
-                requirementStubB,
-                narratorStatusStub,
-                expandedTest,
-            } = createAssessmentsStubs();
-            const assessmentStub = assessmentsStub[0];
-            const { expectedTestLink, expectedGettingStartedLink } = getExpectedAssessmentLinks(
-                assessmentStub,
-                0,
-                startingIndexStub,
-                narratorStatusStub,
-                expandedTest,
-                testStatusStub,
-            );
+            const { expandedTest } = setupAssessmentMocks();
 
-            const expectedRequirementLinkA = getExpectedRequirementLink(
-                requirementStubA,
-                assessmentStub.visualizationType,
-                testStatusStub,
-            );
-            const expectedRequirementLinkB = getExpectedRequirementLink(
-                requirementStubB,
-                assessmentStub.visualizationType,
-                testStatusStub,
-            );
-
-            const expectedAutomatedChecksLinks = [
-                expectedGettingStartedLink,
-                expectedRequirementLinkA,
-                expectedRequirementLinkB,
-            ];
             const testLink = testSubject.buildAutomatedChecksLinks(
                 deps,
                 assessmentProviderMock.object,
@@ -227,111 +194,54 @@ describe('LeftNavBuilder', () => {
                 expandedTest,
                 onRightPanelContentSwitchMock.object,
             );
-            expect(testLink).toMatchObject(expectedTestLink);
-            testLink.links.forEach((actualLink, index) => {
-                expect(actualLink).toMatchObject(expectedAutomatedChecksLinks[index]);
+            expect(testLink).toMatchSnapshot();
+            testLink.links.forEach(actualLink => {
+                expect(actualLink).toMatchSnapshot();
             });
         });
     });
 
     describe('buildMediumPassTestLinks', () => {
         it('should build links for medium pass tests', () => {
-            const startingIndexStub = 1;
-            const { assessmentsStub, testStatusStub, requirementStubA, requirementStubB } =
-                createAssessmentsStubs();
-
+            setupAssessmentMocks();
             const links = testSubject.buildMediumPassTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
-                startingIndexStub,
+                1,
                 onRightPanelContentSwitchMock.object,
             );
 
-            for (
-                let assessmentIndex = 1;
-                assessmentIndex < assessmentsStub.length;
-                assessmentIndex++
-            ) {
-                const assessmentStub = assessmentsStub[assessmentIndex];
-                const linkIndex = assessmentIndex - 1;
-                assessmentStub.requirements.forEach(() => {
-                    const actualRequirementLink = links[assessmentIndex - 1];
-                    const expectedRequirementLink = getExpectedRequirementLink(
-                        linkIndex === 0 ? requirementStubA : requirementStubB,
-                        assessmentStub.visualizationType,
-                        testStatusStub,
-                    );
-
-                    expect(actualRequirementLink).toMatchObject(expectedRequirementLink);
-                });
-            }
+            links.forEach(link => {
+                expect(link).toMatchSnapshot();
+            });
         });
     });
 
     describe('buildAssessmentTestLinks', () => {
         it('should build links for assessments', () => {
-            const startingIndexStub = -1;
-            const {
-                expandedTest,
-                assessmentsStub,
-                testStatusStub,
-                narratorStatusStub,
-                requirementStubA,
-                requirementStubB,
-            } = createAssessmentsStubs();
+            const { expandedTest } = setupAssessmentMocks();
 
             const links = testSubject.buildAssessmentTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
-                startingIndexStub,
+                1,
                 expandedTest,
                 onRightPanelContentSwitchMock.object,
             );
 
-            links.forEach((testLink, linkIndex) => {
-                const assessmentStub = assessmentsStub[linkIndex];
-                const { expectedTestLink, expectedGettingStartedLink } = getExpectedAssessmentLinks(
-                    assessmentStub,
-                    linkIndex,
-                    startingIndexStub,
-                    narratorStatusStub,
-                    expandedTest,
-                    testStatusStub,
-                );
-
-                const expectedRequirementLinkA = getExpectedRequirementLink(
-                    requirementStubA,
-                    assessmentStub.visualizationType,
-                    testStatusStub,
-                );
-                const expectedRequirementLinkB = getExpectedRequirementLink(
-                    requirementStubB,
-                    assessmentStub.visualizationType,
-                    testStatusStub,
-                );
-
-                const expectedLinksForIndex = [
-                    [
-                        expectedGettingStartedLink,
-                        expectedRequirementLinkA,
-                        expectedRequirementLinkB,
-                    ],
-                    [expectedGettingStartedLink, expectedRequirementLinkA],
-                    [expectedGettingStartedLink, expectedRequirementLinkB],
-                ];
-
-                testLink.links.forEach((actualLink, index) => {
-                    expect(actualLink).toMatchObject(expectedLinksForIndex[linkIndex][index]);
+            links.forEach(testLink => {
+                testLink.links.forEach(actualLink => {
+                    expect(actualLink).toMatchSnapshot();
                 });
 
-                expect(testLink).toMatchObject(expectedTestLink);
+                expect(testLink).toMatchSnapshot();
             });
         });
     });
 
-    const createAssessmentsStubs = () => {
+    const setupAssessmentMocks = () => {
         const requirementStubA = {
             name: 'requirement-name-1',
             key: 'requirement-key-1',
@@ -341,6 +251,16 @@ describe('LeftNavBuilder', () => {
             name: 'requirement-name-2',
             key: 'requirement-key-2',
         } as Requirement;
+
+        const requirementStubC = {
+            name: 'requirement-name-3',
+            key: 'requirement-key-3',
+        };
+
+        const requirementStubD = {
+            name: 'requirement-name-4',
+            key: 'requirement-key-4',
+        };
 
         const assessmentStub1 = {
             key: 'automated-checks',
@@ -353,14 +273,14 @@ describe('LeftNavBuilder', () => {
             key: 'another key',
             title: 'another title',
             visualizationType: 2,
-            requirements: [requirementStubA],
+            requirements: [requirementStubC],
         } as Assessment;
 
         const assessmentStub3 = {
             key: 'some key',
             title: 'some other title',
             visualizationType: 2,
-            requirements: [requirementStubB],
+            requirements: [requirementStubD],
         } as Assessment;
         const assessmentsStub = [assessmentStub1, assessmentStub2, assessmentStub3];
 
@@ -378,13 +298,13 @@ describe('LeftNavBuilder', () => {
         } as ManualTestStatusData;
 
         const stepStatusStub2: ManualTestStatusData = {
-            [requirementStubA.key]: {
+            [requirementStubC.key]: {
                 stepFinalResult: testStatusStub,
             },
         } as ManualTestStatusData;
 
         const stepStatusStub3: ManualTestStatusData = {
-            [requirementStubB.key]: {
+            [requirementStubD.key]: {
                 stepFinalResult: testStatusStub,
             },
         } as ManualTestStatusData;
@@ -415,73 +335,6 @@ describe('LeftNavBuilder', () => {
 
         return {
             expandedTest,
-            assessmentsStub,
-            testStatusStub,
-            narratorStatusStub,
-            requirementStubA,
-            requirementStubB,
         };
     };
-
-    function getExpectedAssessmentLinks(
-        assessmentStub,
-        linkIndex,
-        startingIndexStub,
-        narratorStatusStub,
-        expandedTest,
-        testStatusStub,
-    ) {
-        const visualizationType = assessmentStub.visualizationType;
-        const expectedTestLink = {
-            name: assessmentStub.title,
-            key: VisualizationType[visualizationType],
-            forceAnchor: false,
-            url: '',
-            index: startingIndexStub + linkIndex,
-            iconProps: {
-                className: 'hidden',
-            },
-            status: testStatusStub,
-            title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
-                narratorStatusStub.pastTense
-            })`,
-            onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
-            isExpanded: assessmentStub.visualizationType === expandedTest,
-            testType: visualizationType,
-        };
-
-        const expectedGettingStartedLink = {
-            name: 'Getting started',
-            key: `${VisualizationType[visualizationType]}: ${gettingStartedSubview}`,
-            forceAnchor: true,
-            url: '',
-            index: 0,
-            iconProps: {
-                className: 'hidden',
-            },
-            onRenderNavLink: navLinkRendererMock.object.renderGettingStartedLink,
-        };
-
-        return { expectedGettingStartedLink, expectedTestLink };
-    }
-
-    function getExpectedRequirementLink(
-        requirement: Requirement,
-        test: VisualizationType,
-        status: ManualTestStatus,
-    ): TestRequirementLeftNavLink {
-        return {
-            name: requirement.name,
-            key: `${VisualizationType[test]}: ${requirement.key}`,
-            forceAnchor: true,
-            url: '',
-            iconProps: {
-                className: 'hidden',
-            },
-            testType: test,
-            status,
-            requirementKey: requirement.key,
-            onRenderNavLink: expect.any(Function), //navLinkRendererMock.object.renderRequirementLink,
-        } as TestRequirementLeftNavLink;
-    }
 });

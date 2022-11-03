@@ -134,7 +134,7 @@ export class LeftNavLinkBuilder {
 
             for (const requirement of assessment.requirements) {
                 testLinks.push(
-                    this.buildRequirementLink(
+                    this.buildMediumPassRequirementLink(
                         deps,
                         assessment.visualizationType,
                         requirement,
@@ -222,17 +222,17 @@ export class LeftNavLinkBuilder {
 
         const requirementLinks = assessment.requirements.map(
             (requirement: Requirement, requirementIndex: number) =>
-                this.buildRequirementLink(
+                this.buildAssessmentRequirementLink(
                     deps,
                     assessment.visualizationType,
                     requirement,
                     stepStatus[requirement.key]?.stepFinalResult,
                     index,
+                    requirementIndex + 1,
                     this.getRightPanelContentSwitchLinkClickHandler(
                         navLinkHandler.onRequirementClick,
                         onRightPanelContentSwitch,
                     ),
-                    requirementIndex + 1,
                 ),
         );
 
@@ -249,33 +249,59 @@ export class LeftNavLinkBuilder {
         return testLink;
     };
 
-    //requirementIndex is optional so we can create both Assessment-style requirement links
-    //and MediumPass-style Assessment links based on whether it is included or not, respectfully
-    private buildRequirementLink(
+    private buildMediumPassRequirementLink(
         deps: AssessmentLinkBuilderDeps,
         test: VisualizationType,
         requirement: Requirement,
         requirementStatus: ManualTestStatus,
         testIndex: number,
         onClick: onTestRequirementClick,
-        requirementIndex?: number,
     ): TestRequirementLeftNavLink {
         const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
         const name = requirement.name;
-
-        const displayedIndex = requirementIndex
-            ? `${testIndex}.${requirementIndex}`
-            : `${testIndex}`;
+        const displayedIndex = `${testIndex}`;
         const narratorRequirementStatus =
             outcomeTypeSemanticsFromTestStatus(requirementStatus).pastTense;
 
         const baselink = this.buildBaseLink(
             name,
             generateAssessmentTestKey(test, requirement.key),
-            requirementIndex ?? testIndex,
-            requirementIndex
-                ? navLinkRenderer.renderRequirementLink
-                : navLinkRenderer.renderAssessmentTestLink,
+            testIndex,
+            navLinkRenderer.renderAssessmentTestLink,
+            onClick,
+        );
+
+        return {
+            ...baselink,
+            status: requirementStatus,
+            title: `${displayedIndex}: ${name} (${narratorRequirementStatus})`,
+            displayedIndex,
+            testType: test,
+            requirementKey: requirement.key,
+        };
+    }
+
+    private buildAssessmentRequirementLink(
+        deps: AssessmentLinkBuilderDeps,
+        test: VisualizationType,
+        requirement: Requirement,
+        requirementStatus: ManualTestStatus,
+        testIndex: number,
+        requirementIndex: number,
+        onClick: onTestRequirementClick,
+    ): TestRequirementLeftNavLink {
+        const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
+        const name = requirement.name;
+        const displayedIndex = `${testIndex}.${requirementIndex}`;
+
+        const narratorRequirementStatus =
+            outcomeTypeSemanticsFromTestStatus(requirementStatus).pastTense;
+
+        const baselink = this.buildBaseLink(
+            name,
+            generateAssessmentTestKey(test, requirement.key),
+            requirementIndex,
+            navLinkRenderer.renderRequirementLink,
             onClick,
         );
 
