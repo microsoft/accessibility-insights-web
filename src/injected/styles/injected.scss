@@ -285,6 +285,16 @@
         text-align: center !important;
     }
 
+    .insights-highlight-box {
+        &::after {
+            content: '' !important;
+            border: solid 1px white !important;
+            position: absolute !important;
+            width: calc(100% - 2px) !important;
+            height: calc(100% - 2px) !important;
+        }
+    }
+
     :host {
         @include max-z-index-1;
 

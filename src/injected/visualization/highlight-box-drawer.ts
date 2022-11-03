@@ -23,6 +23,9 @@ export class HighlightBoxDrawer extends BaseDrawer {
     private clientUtils: ClientUtils;
 
     public static defaultConfiguration: DrawerConfiguration = {
+        borderStyle: 'solid',
+        borderWidth: '2px',
+        borderRadius: '2px',
         borderColor: 'rgb(255, 255, 255)',
         textBoxConfig: {
             fontColor: 'rgb(255, 255, 255)',
@@ -31,6 +34,8 @@ export class HighlightBoxDrawer extends BaseDrawer {
             boxWidth: '2em',
         },
         outlineStyle: 'solid',
+        outlineWidth: '1px',
+        outlineColor: 'rgb(255, 255, 255)',
         showVisualization: true,
     };
 
@@ -108,8 +113,14 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const wrapper = currentDom.createElement('div');
         wrapper.setAttribute('class', 'insights-highlight-box');
         wrapper.style.outlineStyle = drawerConfig.outlineStyle;
-        wrapper.style.outlineColor = drawerConfig.borderColor;
+        wrapper.style.outlineColor = drawerConfig.outlineColor;
         wrapper.style.outlineWidth = drawerConfig.outlineWidth;
+
+        wrapper.style.borderStyle = drawerConfig.borderStyle;
+        wrapper.style.borderColor = drawerConfig.borderColor;
+        wrapper.style.borderWidth = drawerConfig.borderWidth;
+        wrapper.style.borderRadius = drawerConfig.borderRadius;
+
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
         wrapper.style.minWidth =

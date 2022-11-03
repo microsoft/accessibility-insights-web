@@ -7,6 +7,10 @@ import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe
 export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
     outlineStyle?: string;
     outlineWidth?: string;
+    outlineColor?: string;
+    borderStyle?: string;
+    borderWidth?: string;
+    borderRadius?: string;
     borderColor: string;
     showVisualization: boolean;
     failureBoxConfig?: FailureBoxConfig;

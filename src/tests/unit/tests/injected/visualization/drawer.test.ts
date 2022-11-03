@@ -1102,6 +1102,7 @@ describe('Drawer', () => {
 
         const element1Config: DrawerConfiguration = {
             borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             textBoxConfig: {
                 fontColor: 'rgb(100, 200, 0)',
                 text: 'element 1 text',
@@ -1119,6 +1120,7 @@ describe('Drawer', () => {
                 background: 'rgb(10, 1, 15)',
             },
             borderColor: 'rgb(10, 1, 15)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 2 tooltip',
             outlineStyle: 'dashed',
             showVisualization: true,
@@ -1126,6 +1128,7 @@ describe('Drawer', () => {
 
         const element3Config: DrawerConfiguration = {
             borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 3 tooltip',
             outlineStyle: 'solid',
             showVisualization: false,
@@ -1138,6 +1141,7 @@ describe('Drawer', () => {
                 background: 'rgb(12, 13, 14)',
             },
             borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 4 tooltip',
             outlineStyle: 'solid',
             showVisualization: true,
@@ -1269,7 +1273,7 @@ describe('Drawer', () => {
         drawerConfig: DrawerConfiguration = HighlightBoxDrawer.defaultConfiguration,
     ): void {
         expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
-        expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
+        expect(overlay.container.style.outlineColor).toEqual(drawerConfig.outlineColor);
         expect(overlay.container.style.top).toEqual('5px');
         expect(overlay.container.style.left).toEqual('5px');
         expect(overlay.container.style.minHeight).toEqual('0px');
