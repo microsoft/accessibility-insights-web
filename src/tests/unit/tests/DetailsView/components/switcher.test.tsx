@@ -11,6 +11,7 @@ import { IMock, Mock, Times } from 'typemoq';
 describe('Switcher', () => {
     let defaultProps: SwitcherProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    const mediumPassFeatureFlag = 'mediumPass';
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -19,37 +20,52 @@ describe('Switcher', () => {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
+            featureFlagStoreData: {},
         };
     });
 
     describe('renders', () => {
-        it('Switcher itself matches snapshot', () => {
-            const renderer = shallow(<Switcher {...defaultProps} />);
+        it.each([true, false])(
+            'Switcher itself matches snapshot when medium pass feature flag is %s',
+            featureFlagValue => {
+                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
+                const renderer = shallow(<Switcher {...defaultProps} />);
 
-            expect(renderer.debug()).toMatchSnapshot();
-        });
+                expect(renderer.debug()).toMatchSnapshot();
+            },
+        );
 
-        it('option renderer override matches snapshot ', () => {
-            const renderer = shallow(<Switcher {...defaultProps} />);
+        it.each([true, false])(
+            'option renderer override matches snapshotm when medium pass feature flag is %s',
+            featureFlagValue => {
+                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
 
-            const dropdown = renderer.find(Dropdown);
+                const renderer = shallow(<Switcher {...defaultProps} />);
 
-            const options = dropdown.prop('options');
+                const dropdown = renderer.find(Dropdown);
 
-            const onRenderOption = dropdown.prop('onRenderOption');
+                const options = dropdown.prop('options');
 
-            expect(onRenderOption(options[0])).toMatchSnapshot();
-        });
+                const onRenderOption = dropdown.prop('onRenderOption');
+
+                expect(onRenderOption(options[0])).toMatchSnapshot();
+            },
+        );
     });
 
     describe('props', () => {
-        it('dropdown has correct options', () => {
-            const renderer = shallow(<Switcher {...defaultProps} />);
+        it.each([true, false])(
+            'dropdown has correct options when medium pass feature flag is %s',
+            featureFlagValue => {
+                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
 
-            const dropdown = renderer.find(Dropdown);
+                const renderer = shallow(<Switcher {...defaultProps} />);
 
-            expect(dropdown.prop('options')).toMatchSnapshot();
-        });
+                const dropdown = renderer.find(Dropdown);
+
+                expect(dropdown.prop('options')).toMatchSnapshot();
+            },
+        );
     });
 
     describe('user interaction', () => {

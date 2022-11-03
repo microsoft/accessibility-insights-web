@@ -4,6 +4,7 @@ import {
     AssessmentLeftNavHamburgerButton,
     ExpandCollpaseLeftNavButtonProps,
     FastPassLeftNavHamburgerButton,
+    MediumPassLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
@@ -13,22 +14,26 @@ import {
     ReportExportDialogFactory,
     SaveAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
+import { MediumPassLeftNav } from 'DetailsView/components/left-nav/medium-pass-left-nav';
 import {
     getLoadButtonForAssessment,
-    getLoadButtonForFastPass,
+    getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
+import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
+    getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
     getSaveButtonForAssessment,
-    getSaveButtonForFastPass,
+    getNullSaveButton,
 } from 'DetailsView/components/save-assessment-button-factory';
 import {
     ShouldShowReportExportButton,
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
+    shouldShowReportExportButtonForMediumPass,
 } from 'DetailsView/components/should-show-report-export-button';
 import {
     AssessmentStartOverFactory,
@@ -108,12 +113,24 @@ const detailsViewSwitcherNavs: {
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
     },
+    [DetailsViewPivotType.mediumPass]: {
+        CommandBar: MediumPassCommandBar,
+        ReportExportDialogFactory: getReportExportDialogForMediumPass,
+        shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
+        SaveAssessmentButton: getNullSaveButton,
+        LoadAssessmentButton: getNullLoadButton,
+        StartOverComponentFactory: AssessmentStartOverFactory,
+        LeftNav: MediumPassLeftNav,
+        getSelectedDetailsView: getAssessmentSelectedDetailsView,
+        warningConfiguration: assessmentWarningConfiguration,
+        leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
+    },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
-        SaveAssessmentButton: getSaveButtonForFastPass,
-        LoadAssessmentButton: getLoadButtonForFastPass,
+        SaveAssessmentButton: getNullSaveButton,
+        LoadAssessmentButton: getNullLoadButton,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,

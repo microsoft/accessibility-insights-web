@@ -92,6 +92,67 @@ export class LeftNavLinkBuilder {
         return overviewLink;
     }
 
+    public buildAutomatedChecksLinks(
+        deps: AssessmentLinkBuilderDeps,
+        assessmentsProvider: AssessmentsProvider,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+        startingIndex: number,
+        expandedTest: VisualizationType | undefined,
+        onRightPanelContentSwitch: () => void,
+    ): BaseLeftNavLink {
+        const assessment = assessmentsProvider.forKey('automated-checks');
+
+        const isExpanded = assessment.visualizationType === expandedTest;
+        const test = this.buildAssessmentLink(
+            deps,
+            assessment,
+            startingIndex,
+            assessmentsData,
+            isExpanded,
+            onRightPanelContentSwitch,
+        );
+
+        return test;
+    }
+
+    public buildMediumPassTestLinks(
+        deps: AssessmentLinkBuilderDeps,
+        assessmentsProvider: AssessmentsProvider,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+        startingIndex: number,
+        onRightPanelContentSwitch: () => void,
+    ): TestRequirementLeftNavLink[] {
+        const assessments = assessmentsProvider.all();
+        let index = startingIndex;
+        const testLinks = [];
+        const { navLinkHandler } = deps;
+        for (const assessment of assessments) {
+            if (assessment.key === 'automated-checks') {
+                continue;
+            }
+            const stepStatus = assessmentsData[assessment.key];
+
+            for (const requirement of assessment.requirements) {
+                testLinks.push(
+                    this.buildMediumPassRequirementLink(
+                        deps,
+                        assessment.visualizationType,
+                        requirement,
+                        stepStatus[requirement.key]?.stepFinalResult,
+                        index,
+                        this.getRightPanelContentSwitchLinkClickHandler(
+                            navLinkHandler.onRequirementClick,
+                            onRightPanelContentSwitch,
+                        ),
+                    ),
+                );
+                index++;
+            }
+        }
+
+        return testLinks;
+    }
+
     public buildAssessmentTestLinks(
         deps: AssessmentLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
@@ -161,13 +222,13 @@ export class LeftNavLinkBuilder {
 
         const requirementLinks = assessment.requirements.map(
             (requirement: Requirement, requirementIndex: number) =>
-                this.buildRequirementLink(
+                this.buildAssessmentRequirementLink(
                     deps,
                     assessment.visualizationType,
                     requirement,
                     stepStatus[requirement.key]?.stepFinalResult,
-                    requirementIndex + 1,
                     index,
+                    requirementIndex + 1,
                     this.getRightPanelContentSwitchLinkClickHandler(
                         navLinkHandler.onRequirementClick,
                         onRightPanelContentSwitch,
@@ -188,18 +249,51 @@ export class LeftNavLinkBuilder {
         return testLink;
     };
 
-    private buildRequirementLink(
+    private buildMediumPassRequirementLink(
         deps: AssessmentLinkBuilderDeps,
         test: VisualizationType,
         requirement: Requirement,
         requirementStatus: ManualTestStatus,
-        requirementIndex: number,
         testIndex: number,
         onClick: onTestRequirementClick,
     ): TestRequirementLeftNavLink {
         const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
         const name = requirement.name;
+        const displayedIndex = `${testIndex}`;
+        const narratorRequirementStatus =
+            outcomeTypeSemanticsFromTestStatus(requirementStatus).pastTense;
+
+        const baselink = this.buildBaseLink(
+            name,
+            generateAssessmentTestKey(test, requirement.key),
+            testIndex,
+            navLinkRenderer.renderAssessmentTestLink,
+            onClick,
+        );
+
+        return {
+            ...baselink,
+            status: requirementStatus,
+            title: `${displayedIndex}: ${name} (${narratorRequirementStatus})`,
+            displayedIndex,
+            testType: test,
+            requirementKey: requirement.key,
+        };
+    }
+
+    private buildAssessmentRequirementLink(
+        deps: AssessmentLinkBuilderDeps,
+        test: VisualizationType,
+        requirement: Requirement,
+        requirementStatus: ManualTestStatus,
+        testIndex: number,
+        requirementIndex: number,
+        onClick: onTestRequirementClick,
+    ): TestRequirementLeftNavLink {
+        const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
+        const name = requirement.name;
         const displayedIndex = `${testIndex}.${requirementIndex}`;
+
         const narratorRequirementStatus =
             outcomeTypeSemanticsFromTestStatus(requirementStatus).pastTense;
 

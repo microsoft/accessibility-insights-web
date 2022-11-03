@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Switcher props dropdown has correct options 1`] = `
+exports[`Switcher props dropdown has correct options when medium pass feature flag is false 1`] = `
 [
   {
     "data": {
@@ -21,13 +21,61 @@ exports[`Switcher props dropdown has correct options 1`] = `
 ]
 `;
 
-exports[`Switcher renders Switcher itself matches snapshot 1`] = `
+exports[`Switcher props dropdown has correct options when medium pass feature flag is true 1`] = `
+[
+  {
+    "data": {
+      "icon": "Rocket",
+    },
+    "key": 0,
+    "text": "FastPass",
+    "title": "FastPass",
+  },
+  {
+    "data": {
+      "icon": "",
+    },
+    "key": 3,
+    "text": "MediumPass",
+    "title": "MediumPass",
+  },
+  {
+    "data": {
+      "icon": "testBeakerSolid",
+    },
+    "key": 2,
+    "text": "Assessment",
+    "title": "Assessment",
+  },
+]
+`;
+
+exports[`Switcher renders Switcher itself matches snapshot when medium pass feature flag is false 1`] = `
 "<div className="leftNavSwitcher" role="region" aria-label="activity">
   <Dropdown className="leftNavSwitcherDropdown" ariaLabel="select activity" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
 </div>"
 `;
 
-exports[`Switcher renders option renderer override matches snapshot  1`] = `
+exports[`Switcher renders Switcher itself matches snapshot when medium pass feature flag is true 1`] = `
+"<div className="leftNavSwitcher" role="region" aria-label="activity">
+  <Dropdown className="leftNavSwitcherDropdown" ariaLabel="select activity" responsiveMode={2} selectedKey={0} onRenderOption={[Function (anonymous)]} onRenderTitle={[Function (anonymous)]} onChange={[Function (anonymous)]} options={{...}} />
+</div>"
+`;
+
+exports[`Switcher renders option renderer override matches snapshotm when medium pass feature flag is false 1`] = `
+<span
+  className="switcherDropdownOption"
+>
+  <Memo(Icon)
+    iconName="Rocket"
+  />
+  <span>
+    FastPass
+  </span>
+</span>
+`;
+
+exports[`Switcher renders option renderer override matches snapshotm when medium pass feature flag is true 1`] = `
 <span
   className="switcherDropdownOption"
 >

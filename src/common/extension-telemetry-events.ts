@@ -121,6 +121,7 @@ export enum TelemetryEventSource {
     DevTools,
     Insights,
     DebugTools,
+    LaunchPadMediumPass,
 }
 
 export type BaseTelemetryData = {
