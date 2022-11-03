@@ -23,6 +23,7 @@ import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
+    getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
     getSaveButtonForAssessment,
@@ -114,7 +115,7 @@ const detailsViewSwitcherNavs: {
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
-        ReportExportDialogFactory: getReportExportDialogForAssessment,
+        ReportExportDialogFactory: getReportExportDialogForMediumPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
