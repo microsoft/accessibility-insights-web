@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-medium-pass-filter';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
