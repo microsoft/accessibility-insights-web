@@ -30,6 +30,10 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         return this.all().find(a => a.key === key);
     }
 
+    public forRequirementKey(key: string): Assessment {
+        return this.all().find(a => a.requirements.find(r => r.key === key));
+    }
+
     public isValidKey(key: string): boolean {
         return this.forKey(key) != null;
     }
