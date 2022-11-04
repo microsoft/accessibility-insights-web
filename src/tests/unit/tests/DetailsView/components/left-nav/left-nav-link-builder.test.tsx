@@ -201,12 +201,13 @@ describe('LeftNavBuilder', () => {
 
     describe('buildMediumPassTestLinks', () => {
         it('should build links for medium pass tests', () => {
-            setupAssessmentMocks();
+            const { mediumPassRequirementKeysStub } = setupAssessmentMocks();
             const links = testSubject.buildMediumPassTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
                 1,
+                mediumPassRequirementKeysStub,
                 onRightPanelContentSwitchMock.object,
             );
 
@@ -307,6 +308,10 @@ describe('LeftNavBuilder', () => {
             },
         } as ManualTestStatusData;
 
+        const mediumPassRequirementKeysStub: string[] = [
+            requirementStubD.key,
+            requirementStubC.key,
+        ];
         const expandedTest = assessmentStub1.visualizationType;
 
         assessmentsDataStub = {
@@ -321,6 +326,22 @@ describe('LeftNavBuilder', () => {
             .setup(apm => apm.forKey('automated-checks'))
             .returns(() => assessmentStub1);
 
+        assessmentProviderMock
+            .setup(apm => apm.forRequirementKey(requirementStubC.key))
+            .returns(() => assessmentStub2);
+
+        assessmentProviderMock
+            .setup(apm => apm.forRequirementKey(requirementStubD.key))
+            .returns(() => assessmentStub3);
+
+        assessmentProviderMock
+            .setup(apm => apm.getStep(assessmentStub3.visualizationType, requirementStubD.key))
+            .returns(() => requirementStubD as Requirement);
+
+        assessmentProviderMock
+            .setup(apm => apm.getStep(assessmentStub2.visualizationType, requirementStubC.key))
+            .returns(() => requirementStubC as Requirement);
+
         outcomeStatsFromManualTestStatusMock
             .setup(mock => mock(It.isAny()))
             .returns(() => outcomeStatsStub);
@@ -333,6 +354,7 @@ describe('LeftNavBuilder', () => {
 
         return {
             expandedTest,
+            mediumPassRequirementKeysStub,
         };
     };
 });

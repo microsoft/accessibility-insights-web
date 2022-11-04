@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { INav } from '@fluentui/react';
+import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -75,6 +76,7 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
             assessmentsProvider,
             assessmentsData,
             2,
+            MediumPassRequirementKeys,
             onRightPanelContentSwitch,
         ),
     );

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
@@ -120,35 +121,34 @@ export class LeftNavLinkBuilder {
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
+        requirementKeys: string[],
         onRightPanelContentSwitch: () => void,
     ): TestRequirementLeftNavLink[] {
-        const assessments = assessmentsProvider.all();
         let index = startingIndex;
         const testLinks = [];
         const { navLinkHandler } = deps;
-        for (const assessment of assessments) {
-            if (assessment.key === 'automated-checks') {
-                continue;
-            }
+        requirementKeys.forEach(requirementKey => {
+            const assessment = assessmentsProvider.forRequirementKey(requirementKey);
             const stepStatus = assessmentsData[assessment.key];
-
-            for (const requirement of assessment.requirements) {
-                testLinks.push(
-                    this.buildMediumPassRequirementLink(
-                        deps,
-                        assessment.visualizationType,
-                        requirement,
-                        stepStatus[requirement.key]?.stepFinalResult,
-                        index,
-                        this.getRightPanelContentSwitchLinkClickHandler(
-                            navLinkHandler.onRequirementClick,
-                            onRightPanelContentSwitch,
-                        ),
+            const requirement = assessmentsProvider.getStep(
+                assessment.visualizationType,
+                requirementKey,
+            );
+            testLinks.push(
+                this.buildMediumPassRequirementLink(
+                    deps,
+                    assessment.visualizationType,
+                    requirement,
+                    stepStatus[requirement.key]?.stepFinalResult,
+                    index,
+                    this.getRightPanelContentSwitchLinkClickHandler(
+                        navLinkHandler.onRequirementClick,
+                        onRightPanelContentSwitch,
                     ),
-                );
-                index++;
-            }
-        }
+                ),
+            );
+            index++;
+        });
 
         return testLinks;
     }
