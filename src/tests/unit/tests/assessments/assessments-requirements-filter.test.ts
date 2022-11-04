@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
