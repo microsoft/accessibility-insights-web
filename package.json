@@ -186,7 +186,7 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "@fluentui/react": "^8.96.1",
+        "@fluentui/react": "^8.100.0",
         "@microsoft/applicationinsights-web": "^2.8.8",
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
