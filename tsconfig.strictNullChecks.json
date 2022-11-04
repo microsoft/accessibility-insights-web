@@ -84,6 +84,7 @@
         "./src/assessments/links/test-steps/test-steps.ts",
         "./src/assessments/live-multimedia/test-steps/test-steps.ts",
         "./src/assessments/markup.tsx",
+        "./src/assessments/medium-pass-requirements.ts",
         "./src/assessments/native-widgets/test-steps/test-steps.ts",
         "./src/assessments/page/pagetitle-instance-details-column-renderer.tsx",
         "./src/assessments/page/test-steps/test-steps.ts",
