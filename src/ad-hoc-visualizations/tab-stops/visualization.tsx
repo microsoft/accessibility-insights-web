@@ -31,7 +31,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
         guidance: extraGuidance,
     },
     getStoreData: data => data.adhoc[tabStopsTestKey],
-    enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
+    enableTest: (data, _) => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => true,

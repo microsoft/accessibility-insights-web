@@ -97,7 +97,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
         const testRequirement = 'testRequirement';
-        config.enableTest(vizStoreData, {
+        config.enableTest(scanData, {
             requirement: testRequirement,
         } as AssessmentToggleActionPayload);
         expect(vizStoreData.assessments.manualAssessmentKeyAssessment.enabled).toBe(true);
@@ -272,7 +272,7 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         const testRequirement = 'testRequirement';
-        config.enableTest(vizStoreData, {
+        config.enableTest(scanData, {
             requirement: testRequirement,
         } as AssessmentToggleActionPayload);
         expect(vizStoreData.assessments.headingsAssessment.enabled).toBe(true);
