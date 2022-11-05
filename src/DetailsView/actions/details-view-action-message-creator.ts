@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import {
     BaseActionPayload,
-    ExpandTestNavPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,

@@ -1,31 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import {
-    LoadAssessmentPayload,
     OnDetailsViewPivotSelected,
     SetAllUrlsPermissionStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewRightContentPanelType } from 'common/types/store-data/details-view-right-content-panel-type';
-import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
-    AssessmentTelemetryData,
     BaseTelemetryData,
     COPY_ISSUE_DETAILS,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
     DETAILS_VIEW_OPEN,
     ExportFastPassResultsTelemetryData,
-    ExportResultsTelemetryData,
     EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
     LEFT_NAV_PANEL_EXPANDED,
-    RequirementActionTelemetryData,
-    RequirementSelectTelemetryData,
-    SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
