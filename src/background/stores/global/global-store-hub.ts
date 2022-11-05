@@ -4,6 +4,7 @@ import { PermissionsStateStore } from 'background/stores/global/permissions-stat
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { getAllFeatureFlagDetails } from 'common/feature-flags';
 import { Logger } from 'common/logging/logger';
+import { StoreNames } from 'common/stores/store-names';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -84,6 +85,7 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.assessmentStoreData,
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
             logger,
+            StoreNames.AssessmentStore,
         );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,

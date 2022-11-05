@@ -58,15 +58,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         persistedData: AssessmentStoreData,
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
         logger: Logger,
+        name: StoreNames,
     ) {
-        super(
-            StoreNames.AssessmentStore,
-            persistedData,
-            idbInstance,
-            IndexedDBDataKeys.assessmentStore,
-            logger,
-            true,
-        );
+        super(name, persistedData, idbInstance, IndexedDBDataKeys.assessmentStore, logger, true);
     }
 
     protected override generateDefaultState(
