@@ -16,9 +16,9 @@ import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data
 import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
-import { GetAnalyzerMessageTypes } from 'injected/analyzers/get-analyzer-message-types';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
@@ -342,7 +342,7 @@ export class MainWindowInitializer extends WindowInitializer {
             analyzerStateUpdateHandler,
             Assessments,
             this.shadowInitializer,
-            GetAnalyzerMessageTypes,
+            GetDetailsSwitcherNavConfiguration,
         );
 
         this.analyzerController.listenToStore();

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Messages } from 'common/messages';
-import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 
 export type AnalyzerMessageConfiguration =
     | BaseAnalyzerMessageConfiguration
@@ -33,14 +32,4 @@ export const MediumPassVisualizationMessageTypes: AnalyzerMessageConfiguration =
     analyzerMessageType: Messages.MediumPass.AssessmentScanCompleted,
     analyzerProgressMessageType: Messages.MediumPass.ScanUpdate,
     analyzerTerminatedMessageType: Messages.MediumPass.TrackingCompleted,
-};
-
-export const GetAnalyzerMessageTypes = (detailsViewPivot: DetailsViewPivotType) => {
-    switch (detailsViewPivot) {
-        case DetailsViewPivotType.assessment:
-            return AssessmentVisualizationMessageTypes;
-
-        case DetailsViewPivotType.fastPass:
-            return AdhocVisualizationMessageTypes;
-    }
 };

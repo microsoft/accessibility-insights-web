@@ -26,8 +26,8 @@ import {
     getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
-    getSaveButtonForAssessment,
     getNullSaveButton,
+    getSaveButtonForAssessment,
 } from 'DetailsView/components/save-assessment-button-factory';
 import {
     ShouldShowReportExportButton,
@@ -45,6 +45,12 @@ import {
     fastpassWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
+import {
+    AdhocVisualizationMessageTypes,
+    AnalyzerMessageConfiguration,
+    AssessmentVisualizationMessageTypes,
+    MediumPassVisualizationMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -79,20 +85,15 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    analyzerMessageConfiguration: AnalyzerMessageConfiguration;
 }>;
 
-type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
-    CommandBar: ReactFCWithDisplayName<CommandBarProps>;
-    ReportExportDialogFactory: ReportExportDialogFactory;
-    shouldShowReportExportButton: ShouldShowReportExportButton;
-    SaveAssessmentButton: SaveAssessmentButtonFactory;
-    LoadAssessmentButton: LoadAssessmentButtonFactory;
-    StartOverComponentFactory: StartOverComponentFactory;
+type InternalDetailsViewSwitcherNavConfiguration = Omit<
+    DetailsViewSwitcherNavConfiguration,
+    'LeftNav'
+> & {
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
-    getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
-    warningConfiguration: WarningConfiguration;
-    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-}>;
+};
 
 export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
@@ -112,6 +113,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
+        analyzerMessageConfiguration: AssessmentVisualizationMessageTypes,
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -124,6 +126,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
+        analyzerMessageConfiguration: MediumPassVisualizationMessageTypes,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -136,6 +139,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
+        analyzerMessageConfiguration: AdhocVisualizationMessageTypes,
     },
 };
 
