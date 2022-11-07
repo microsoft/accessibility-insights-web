@@ -28,6 +28,7 @@ import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
+    MediumPassLinkBuilderDeps &
     VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
@@ -44,6 +45,10 @@ export type AssessmentLinkBuilderDeps = {
     ) => RequirementOutcomeStats;
     navLinkRenderer: NavLinkRenderer;
 };
+
+export type MediumPassLinkBuilderDeps = {
+    mediumPassRequirementKeys: string[];
+} & AssessmentLinkBuilderDeps;
 
 export type VisualizationConfigurationLinkBuilderDeps = {
     navLinkRenderer: NavLinkRenderer;
@@ -116,39 +121,37 @@ export class LeftNavLinkBuilder {
     }
 
     public buildMediumPassTestLinks(
-        deps: AssessmentLinkBuilderDeps,
+        deps: MediumPassLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
         onRightPanelContentSwitch: () => void,
     ): TestRequirementLeftNavLink[] {
-        const assessments = assessmentsProvider.all();
         let index = startingIndex;
         const testLinks = [];
-        const { navLinkHandler } = deps;
-        for (const assessment of assessments) {
-            if (assessment.key === 'automated-checks') {
-                continue;
-            }
+        const { navLinkHandler, mediumPassRequirementKeys } = deps;
+        mediumPassRequirementKeys.forEach(requirementKey => {
+            const assessment = assessmentsProvider.forRequirementKey(requirementKey);
             const stepStatus = assessmentsData[assessment.key];
-
-            for (const requirement of assessment.requirements) {
-                testLinks.push(
-                    this.buildMediumPassRequirementLink(
-                        deps,
-                        assessment.visualizationType,
-                        requirement,
-                        stepStatus[requirement.key]?.stepFinalResult,
-                        index,
-                        this.getRightPanelContentSwitchLinkClickHandler(
-                            navLinkHandler.onRequirementClick,
-                            onRightPanelContentSwitch,
-                        ),
+            const requirement = assessmentsProvider.getStep(
+                assessment.visualizationType,
+                requirementKey,
+            );
+            testLinks.push(
+                this.buildMediumPassRequirementLink(
+                    deps,
+                    assessment.visualizationType,
+                    requirement,
+                    stepStatus[requirement.key]?.stepFinalResult,
+                    index,
+                    this.getRightPanelContentSwitchLinkClickHandler(
+                        navLinkHandler.onRequirementClick,
+                        onRightPanelContentSwitch,
                     ),
-                );
-                index++;
-            }
-        }
+                ),
+            );
+            index++;
+        });
 
         return testLinks;
     }

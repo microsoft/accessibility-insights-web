@@ -16,6 +16,7 @@ describe('AssessmentsProviderTest', () => {
     const invalidKey = 'ninety-nine';
     const stepOneKey = 'ONE';
     const stepTwoKey = 'TWO';
+    const stepThreeKey = 'THREE';
     const invalidStepKey = 'INVALID';
 
     test('isValidType', () => {
@@ -65,6 +66,23 @@ describe('AssessmentsProviderTest', () => {
         const provider = getProvider();
 
         const invalidAssessment = provider.forKey(invalidKey);
+        expect(invalidAssessment).not.toBeDefined();
+    });
+
+    test('forRequirementKey exists', () => {
+        const provider = getProvider();
+
+        const firstAssessment = provider.forRequirementKey(stepOneKey);
+        expect(firstAssessment.visualizationType).toEqual(firstType);
+
+        const secondAssessment = provider.forRequirementKey(stepThreeKey);
+        expect(secondAssessment.visualizationType).toEqual(secondType);
+    });
+
+    test('forRequirementKey does not exist', () => {
+        const provider = getProvider();
+
+        const invalidAssessment = provider.forRequirementKey(invalidStepKey);
         expect(invalidAssessment).not.toBeDefined();
     });
 
@@ -142,7 +160,11 @@ describe('AssessmentsProviderTest', () => {
                 key: firstKey,
                 requirements: [{ key: stepOneKey }, { key: stepTwoKey }],
             } as Assessment,
-            { visualizationType: secondType, key: secondKey } as Assessment,
+            {
+                visualizationType: secondType,
+                key: secondKey,
+                requirements: [{ key: stepThreeKey }],
+            } as Assessment,
         ];
         const provider = AssessmentsProviderImpl.Create(assessments);
         return provider;
