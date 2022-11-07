@@ -28,6 +28,7 @@ import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
+    MediumPassLinkBuilderDeps &
     VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
@@ -44,6 +45,10 @@ export type AssessmentLinkBuilderDeps = {
     ) => RequirementOutcomeStats;
     navLinkRenderer: NavLinkRenderer;
 };
+
+export type MediumPassLinkBuilderDeps = {
+    mediumPassRequirementKeys: string[];
+} & AssessmentLinkBuilderDeps;
 
 export type VisualizationConfigurationLinkBuilderDeps = {
     navLinkRenderer: NavLinkRenderer;
@@ -116,17 +121,16 @@ export class LeftNavLinkBuilder {
     }
 
     public buildMediumPassTestLinks(
-        deps: AssessmentLinkBuilderDeps,
+        deps: MediumPassLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
-        requirementKeys: string[],
         onRightPanelContentSwitch: () => void,
     ): TestRequirementLeftNavLink[] {
         let index = startingIndex;
         const testLinks = [];
-        const { navLinkHandler } = deps;
-        requirementKeys.forEach(requirementKey => {
+        const { navLinkHandler, mediumPassRequirementKeys } = deps;
+        mediumPassRequirementKeys.forEach(requirementKey => {
             const assessment = assessmentsProvider.forRequirementKey(requirementKey);
             const stepStatus = assessmentsData[assessment.key];
             const requirement = assessmentsProvider.getStep(

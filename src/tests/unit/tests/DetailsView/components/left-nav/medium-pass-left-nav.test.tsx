@@ -33,6 +33,7 @@ describe(MediumPassLeftNav.displayName, () => {
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: AssessmentsProvider;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
+    let mediumPassRequirementKeysStub: string[];
     const expandedTest: VisualizationType = 1;
     let onRightPanelContentSwitch: () => void;
     let setNavComponentRef: (nav) => void;
@@ -42,6 +43,7 @@ describe(MediumPassLeftNav.displayName, () => {
         setNavComponentRef = _ => {};
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
+        mediumPassRequirementKeysStub = [];
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
@@ -51,6 +53,7 @@ describe(MediumPassLeftNav.displayName, () => {
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             navLinkHandler: navLinkHandlerMock,
+            mediumPassRequirementKeys: mediumPassRequirementKeysStub,
         } as MediumPassLeftNavDeps;
         props = {
             deps,
@@ -115,7 +118,6 @@ describe(MediumPassLeftNav.displayName, () => {
                     assessmentsProviderStub,
                     assessmentsDataStub,
                     2,
-                    MediumPassRequirementKeys,
                     onRightPanelContentSwitch,
                 ),
             )

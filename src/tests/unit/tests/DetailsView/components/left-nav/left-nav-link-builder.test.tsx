@@ -202,12 +202,15 @@ describe('LeftNavBuilder', () => {
     describe('buildMediumPassTestLinks', () => {
         it('should build links for medium pass tests', () => {
             const { mediumPassRequirementKeysStub } = setupAssessmentMocks();
+            deps = {
+                ...deps,
+                mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+            };
             const links = testSubject.buildMediumPassTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
                 1,
-                mediumPassRequirementKeysStub,
                 onRightPanelContentSwitchMock.object,
             );
 
