@@ -9,40 +9,34 @@ import { Assessment } from 'assessments/types/iassessment';
 describe('filter by requirements', () => {
     const assessments: Assessment[] = [
         {
-            key: 'x',
-            featureFlag: { required: ['x'] },
+            key: 'a-and-b',
             requirements: [{ key: 'a' }, { key: 'b' }],
         } as Assessment,
-        { key: 'y', featureFlag: { required: ['y'] }, requirements: [{ key: 'c' }] } as Assessment,
+        { key: 'c', requirements: [{ key: 'c' }] } as Assessment,
         {
-            key: 'x & y',
-            featureFlag: { required: ['x', 'y'] },
-            requirements: [{ key: 'd' }, { key: 'e' }],
+            key: 'd-and-e-and-f',
+            requirements: [{ key: 'd' }, { key: 'e' }, { key: 'f' }],
         } as Assessment,
-        { key: 'empty', featureFlag: { required: [] }, requirements: [] } as Assessment,
-        { key: 'missing', requirements: [{ key: 'f' }, { key: 'g' }] } as Assessment,
+        { key: 'none', requirements: [] } as Assessment,
     ];
 
     let baseProvider: AssessmentsProvider;
-    let create: (flags, requirements) => AssessmentsProvider;
+    let create: (requirements) => AssessmentsProvider;
 
     beforeEach(() => {
         baseProvider = AssessmentsProviderImpl.Create(assessments);
-        create = (flags, requirements) =>
-            assessmentsProviderForRequirements(baseProvider, flags, requirements);
+        create = requirements => assessmentsProviderForRequirements(baseProvider, requirements);
     });
 
     it.each`
-        name                                         | requirements                      | flags
-        ${'only one requirement'}                    | ${['c']}                          | ${{ x: true, y: true }}
-        ${'all requirements'}                        | ${['a', 'b', 'c', 'd', 'e', 'f']} | ${{ x: true, y: true }}
-        ${'all requirements with featureFlag false'} | ${['a', 'b', 'c', 'd', 'e', 'f']} | ${{ x: false, y: true }}
-        ${'all requirements with no feature flags'}  | ${['a', 'b', 'c', 'd', 'e', 'f']} | ${{}}
-        ${'empty requirements'}                      | ${[]}                             | ${{ x: true, y: true }}
+        name                      | requirements                      | keys
+        ${'only one requirement'} | ${['c']}                          | ${['automated-checks', 'c']}
+        ${'all requirements'}     | ${['a', 'b', 'c', 'd', 'e', 'f']} | ${['automated-checks', 'a-and-b', 'c', 'd-and-e-and-f']}
+        ${'empty requirements'}   | ${[]}                             | ${['automated-checks']}
     `(
         'for case $name contains only automated checks and assessments with the included requirements',
-        ({ flags, requirements }) => {
-            const testSubject = create(flags, requirements);
+        ({ requirements, keys }) => {
+            const testSubject = create(requirements);
             const containsOnlyIncludedRequirements = assessment => {
                 return assessment.key === 'automated-checks'
                     ? true
@@ -50,15 +44,11 @@ describe('filter by requirements', () => {
                           requirements.includes(requirement.key),
                       );
             };
-            const excludesDisabledFlags = assessment => {
-                return assessment.featureFlag
-                    ? assessment.featureFlag.required.every(key => flags[key] === true)
-                    : true;
-            };
+            const allAssessments = testSubject.all();
             expect(testSubject.forKey('automated-checks')).toStrictEqual(AutomatedChecks);
-            expect(testSubject.all().every(containsOnlyIncludedRequirements)).toBe(true);
-            expect(testSubject.all().every(excludesDisabledFlags)).toBe(true);
-            expect(testSubject.all()).toMatchSnapshot();
+            expect(allAssessments.every(containsOnlyIncludedRequirements)).toBe(true);
+            const assessmentKeys = allAssessments.map(a => a.key);
+            expect(assessmentKeys).toMatchObject(keys);
         },
     );
 });
