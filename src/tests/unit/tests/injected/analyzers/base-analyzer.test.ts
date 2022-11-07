@@ -6,6 +6,7 @@ import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete
 import { VisualizationType } from 'common/types/visualization-type';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -16,6 +17,7 @@ describe('BaseAnalyzer', () => {
     let sendMessageMock: IMock<(message) => void>;
     let typeStub: VisualizationType;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     beforeEach(() => {
         sendMessageMock = Mock.ofInstance(message => {});
@@ -25,6 +27,9 @@ describe('BaseAnalyzer', () => {
             analyzerMessageType: 'sample message type',
             key: 'sample key',
             testType: typeStub,
+        };
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
         };
         testSubject = new BaseAnalyzer(
             configStub,
@@ -40,7 +45,7 @@ describe('BaseAnalyzer', () => {
             'missing-required-cross-origin-permissions',
         ];
         const expectedMessage: Message = {
-            messageType: configStub.analyzerMessageType,
+            messageType: messageConfigurationStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: resultsStub,
@@ -62,6 +67,6 @@ describe('BaseAnalyzer', () => {
             })
             .verifiable(Times.once());
 
-        testSubject.analyze();
+        testSubject.analyze(messageConfigurationStub);
     });
 });

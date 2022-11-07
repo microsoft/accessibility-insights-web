@@ -7,13 +7,14 @@ import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { TelemetryProcessor } from 'common/types/telemetry-processor';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { TabbableElementInfo } from 'injected/tabbable-element-getter';
 import { ScanResults } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { ScannerUtils } from '../scanner-utils';
 
 export interface Analyzer {
-    analyze(): void;
+    analyze(messageConfiguration: AnalyzerMessageConfiguration): void;
     teardown(): void;
 }
 

@@ -3,12 +3,11 @@
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { isEqual } from 'lodash';
-import { clone, isFunction } from 'lodash';
+import { clone, isEqual, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -39,6 +38,7 @@ describe('BatchedRuleAnalyzer', () => {
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -51,6 +51,9 @@ describe('BatchedRuleAnalyzer', () => {
             getTime: () => {
                 return null;
             },
+        };
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
         };
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateMock = Mock.ofInstance(dateStub as Date);
@@ -98,7 +101,7 @@ describe('BatchedRuleAnalyzer', () => {
             testType: typeStub,
             telemetryProcessor: telemetryProcessorStub,
             resultProcessor: scanner => resultProcessorMockOne.object,
-        };
+        } as RuleAnalyzerConfiguration;
         const ruleTwo = 'the second rule';
         const resultProcessorMockTwo: IMock<
             (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>
@@ -151,7 +154,7 @@ describe('BatchedRuleAnalyzer', () => {
                 .returns(_ => startTime)
                 .verifiable();
 
-            testSubject.analyze();
+            testSubject.analyze(messageConfigurationStub);
         });
 
         /*
@@ -260,7 +263,7 @@ describe('BatchedRuleAnalyzer', () => {
         expectedTelemetryStub,
     ): Message {
         return {
-            messageType: config.analyzerMessageType,
+            messageType: messageConfigurationStub.analyzerMessageType,
             payload: {
                 key: config.key,
                 selectorMap: allInstancesMocks,

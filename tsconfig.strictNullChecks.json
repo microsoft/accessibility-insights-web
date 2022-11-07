@@ -347,6 +347,7 @@
         "./src/injected/analyzers/base-analyzer.ts",
         "./src/injected/analyzers/filter-results.ts",
         "./src/injected/analyzers/focus-traps-handler.ts",
+        "./src/injected/analyzers/get-analyzer-message-types.ts",
         "./src/injected/analyzers/notification-text-creator.ts",
         "./src/injected/analyzers/rule-analyzer.ts",
         "./src/injected/analyzers/tab-stops-done-analyzing-tracker.ts",

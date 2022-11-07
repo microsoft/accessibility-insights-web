@@ -106,11 +106,17 @@ export class SelfFastPass {
     }
 
     public automatedChecks(): void {
-        IssuesAdHocVisualization.getAnalyzer(this.analyzerProvider).analyze();
+        const analyzer = IssuesAdHocVisualization.getAnalyzer(
+            this.analyzerProvider,
+        ) as SelfFastPassAnalyzer;
+        analyzer.analyze();
     }
 
     public needsReview(): void {
-        NeedsReviewAdHocVisualization.getAnalyzer(this.analyzerProvider).analyze();
+        const analyzer = NeedsReviewAdHocVisualization.getAnalyzer(
+            this.analyzerProvider,
+        ) as SelfFastPassAnalyzer;
+        analyzer.analyze();
     }
 
     public customScan(axeRuleIds: string[], relevantResultTypes?: ResultType[]): void {
