@@ -203,7 +203,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         }
 
         this.state.injectingRequested = true;
-        configuration.enableTest(this.state.tests, payload);
+        configuration.enableTest(configuration.getStoreData(this.state.tests), payload);
         await this.emitChanged();
     }
 

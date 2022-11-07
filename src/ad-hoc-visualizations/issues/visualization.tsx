@@ -31,7 +31,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocFailure',
     getStoreData: data => data.adhoc[issuesTestKey],
-    enableTest: data => (data.adhoc[issuesTestKey].enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => true,
