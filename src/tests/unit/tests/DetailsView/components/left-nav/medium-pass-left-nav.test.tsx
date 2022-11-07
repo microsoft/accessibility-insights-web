@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
