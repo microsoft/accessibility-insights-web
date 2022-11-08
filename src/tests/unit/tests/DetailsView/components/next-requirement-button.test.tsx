@@ -3,7 +3,7 @@
 
 import { DefaultButton } from '@fluentui/react';
 import { Requirement } from 'assessments/types/requirement';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     NextRequirementButton,
     NextRequirementButtonDeps,
@@ -13,16 +13,16 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 describe('NextRequirementButton', () => {
-    let messageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
 
     beforeEach(() => {
-        messageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        messageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         eventStub = {} as React.MouseEvent<HTMLElement>;
         props = {
             deps: {
-                detailsViewActionMessageCreator: messageCreatorMock.object,
+                assessmentActionMessageCreator: messageCreatorMock.object,
             } as NextRequirementButtonDeps,
             nextRequirement: {
                 key: 'some requirement key',

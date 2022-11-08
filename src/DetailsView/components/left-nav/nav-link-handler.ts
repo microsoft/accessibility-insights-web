@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentLeftNavLink,
     TestGettingStartedNavLink,
@@ -12,7 +13,10 @@ import { DetailsViewActionMessageCreator } from '../../actions/details-view-acti
 import { BaseLeftNavLink } from '../base-left-nav';
 
 export class NavLinkHandler {
-    constructor(private detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
+    constructor(
+        private detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        private assessmentActionMessageCreator: AssessmentActionMessageCreator,
+    ) {}
 
     public onOverviewClick = (): void => {
         this.detailsViewActionMessageCreator.changeRightContentPanel('Overview');
@@ -42,7 +46,7 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: TestRequirementLeftNavLink,
     ) => {
-        this.detailsViewActionMessageCreator.selectRequirement(
+        this.assessmentActionMessageCreator.selectRequirement(
             event,
             item.requirementKey,
             item.testType,
@@ -54,7 +58,7 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: TestGettingStartedNavLink,
     ) => {
-        this.detailsViewActionMessageCreator.selectGettingStarted(event, item.testType);
+        this.assessmentActionMessageCreator.selectGettingStarted(event, item.testType);
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 
@@ -63,9 +67,9 @@ export class NavLinkHandler {
         item: AssessmentLeftNavLink,
     ) => {
         if (item.isExpanded) {
-            this.detailsViewActionMessageCreator.collapseTestNav();
+            this.assessmentActionMessageCreator.collapseTestNav();
         } else {
-            this.detailsViewActionMessageCreator.expandTestNav(item.testType);
+            this.assessmentActionMessageCreator.expandTestNav(item.testType);
         }
     };
 }
