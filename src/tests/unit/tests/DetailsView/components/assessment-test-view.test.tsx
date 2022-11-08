@@ -16,7 +16,7 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentTestView,
     AssessmentTestViewDeps,
@@ -38,7 +38,7 @@ describe('AssessmentTestView', () => {
     let getTestStatusMock: IMock<(data: ScanData, step: string) => boolean>;
     let scanDataStub: ScanData;
     let visualizationStoreDataStub: VisualizationStoreData;
-    let detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    let assessmentActionMessageCreator: AssessmentActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
@@ -78,7 +78,7 @@ describe('AssessmentTestView', () => {
         } as AssessmentStoreData;
 
         featureFlagStoreDataStub = {} as FeatureFlagStoreData;
-        detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
+        assessmentActionMessageCreator = {} as AssessmentActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as AssessmentData;
         assessmentStub = {} as Assessment;
@@ -95,7 +95,7 @@ describe('AssessmentTestView', () => {
         props = {
             deps: {
                 assessmentsProvider: assessmentsProviderStub,
-                detailsViewActionMessageCreator,
+                assessmentActionMessageCreator: assessmentActionMessageCreator,
             } as AssessmentTestViewDeps,
             configuration,
             visualizationStoreData: visualizationStoreDataStub,

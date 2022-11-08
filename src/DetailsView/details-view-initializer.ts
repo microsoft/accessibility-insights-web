@@ -43,6 +43,7 @@ import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-re
 import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
@@ -292,6 +293,11 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
+            const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+            );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -517,6 +523,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,

@@ -10,6 +10,7 @@ import {
     ToolData,
 } from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
@@ -39,6 +40,7 @@ describe('ReportExportDialogFactory', () => {
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let cardsViewData: CardsViewModel;
@@ -56,6 +58,7 @@ describe('ReportExportDialogFactory', () => {
     beforeEach(() => {
         featureFlagStoreData = {};
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
@@ -78,6 +81,7 @@ describe('ReportExportDialogFactory', () => {
         tabStopRequirementData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,
@@ -191,7 +195,7 @@ describe('ReportExportDialogFactory', () => {
 
         test('updatePersistedDescription sends addResultDescription message', () => {
             const updatedDescription = 'updated description';
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(d => d.addResultDescription(updatedDescription))
                 .verifiable(Times.once());
 
@@ -199,7 +203,7 @@ describe('ReportExportDialogFactory', () => {
 
             dialog.props.updatePersistedDescription(updatedDescription);
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
 
         test('getExportDescription returns description', () => {
@@ -229,7 +233,7 @@ describe('ReportExportDialogFactory', () => {
             const reportExportFormat = 'Assessment';
             const selectedServiceKey = 'html';
 
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
                 .verifiable(Times.once());
 
@@ -241,7 +245,7 @@ describe('ReportExportDialogFactory', () => {
                 null,
             );
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 

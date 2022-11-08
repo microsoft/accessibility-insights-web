@@ -6,7 +6,7 @@ import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data
 import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     LoadAssessmentDialog,
     LoadAssessmentDialogProps,
@@ -17,14 +17,14 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LoadAssessmentDialog', () => {
     let urlParserMock: IMock<UrlParser>;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let loadAssessmentDialogProps: LoadAssessmentDialogProps;
     let prevTab: PersistedTabInfo;
     let newTab: Tab;
 
     beforeEach(() => {
         urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         prevTab = {
             id: 111,
             url: 'https://www.test.com',
@@ -40,7 +40,7 @@ describe('LoadAssessmentDialog', () => {
         loadAssessmentDialogProps = {
             deps: {
                 urlParser: urlParserMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
                 detailsViewId: undefined,
             },
             prevTab: prevTab,

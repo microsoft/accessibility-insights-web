@@ -7,7 +7,7 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
@@ -30,7 +30,7 @@ export type ReflowCommandBarDeps = {
     reportHtmlGenerator: ReportHtmlGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 } & ReportExportComponentDeps;
 
 export interface ReflowCommandBarProps {
@@ -121,7 +121,7 @@ export class ReflowCommandBar extends React.Component<
                         selectedServiceKey,
                         event,
                     ) =>
-                        deps.detailsViewActionMessageCreator.exportResultsClicked(
+                        deps.assessmentActionMessageCreator.exportResultsClicked(
                             reportExportFormat,
                             selectedServiceKey,
                             event,

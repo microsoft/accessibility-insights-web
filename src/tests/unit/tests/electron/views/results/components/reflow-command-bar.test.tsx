@@ -6,7 +6,7 @@ import { FileURLProvider } from 'common/file-url-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
@@ -40,7 +40,7 @@ describe('ReflowCommandBar', () => {
     let props: ReflowCommandBarProps;
     let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
     let fileUrlProviderMock: IMock<FileURLProvider>;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -63,7 +63,7 @@ describe('ReflowCommandBar', () => {
             isCardFooterCollapsed: false,
         };
         scanDateStub = new Date(0);
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         reportHtmlGeneratorMock = Mock.ofType(ReportHtmlGenerator);
         reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
         reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
@@ -76,7 +76,7 @@ describe('ReflowCommandBar', () => {
                 reportNameGenerator: reportNameGeneratorMock.object,
                 reportExportServiceProvider: reportExportServiceProviderMock.object,
                 fileURLProvider: fileUrlProviderMock.object,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {} as ScanStoreData,
             cardsViewData: cardsViewDataStub,
@@ -183,7 +183,7 @@ describe('ReflowCommandBar', () => {
         test('exportResultsClickedTelemetry sends exportResultsClicked message', () => {
             const reportExportFormat = 'Assessment';
             const selectedServiceKey = 'html';
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
                 .verifiable(Times.once());
 
@@ -195,7 +195,7 @@ describe('ReflowCommandBar', () => {
                 null,
             );
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 
