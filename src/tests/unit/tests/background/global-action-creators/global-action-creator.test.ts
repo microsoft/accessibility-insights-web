@@ -113,6 +113,7 @@ class GlobalActionCreatorValidator {
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
+    private quickAssessActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private permissionsStateActionsContainerMock = Mock.ofType(PermissionsStateActions);
     private interpreterMock = Mock.ofType<Interpreter>();
@@ -126,6 +127,7 @@ class GlobalActionCreatorValidator {
         launchPanelStateActions: this.launchPanelStateActionsContainerMock.object,
         scopingActions: null,
         assessmentActions: this.assessmentActionsContainerMock.object,
+        quickAssessActions: this.quickAssessActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
         permissionsStateActions: this.permissionsStateActionsContainerMock.object,
     };
