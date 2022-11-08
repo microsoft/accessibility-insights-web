@@ -4,6 +4,7 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     StartOverDialog,
     StartOverDialogProps,
@@ -18,6 +19,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 describe('StartOverDialog', () => {
     let props: StartOverDialogProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let dismissDialogMock: IMock<() => void>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: AssessmentStoreData;
@@ -34,6 +36,7 @@ describe('StartOverDialog', () => {
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
         dismissDialogMock = Mock.ofInstance(() => null);
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
         assessmentsProviderMock.setup(ap => ap.forType(test)).returns(() => assessmentStub);
@@ -46,6 +49,7 @@ describe('StartOverDialog', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             },
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
@@ -70,7 +74,7 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOver(event, test, requirementKey))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
@@ -78,12 +82,12 @@ describe('StartOverDialog', () => {
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onCancelButtonClick')(event);
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over test', () => {
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverTest(event, test))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
@@ -91,7 +95,7 @@ describe('StartOverDialog', () => {
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onPrimaryButtonClick')(event);
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
     });
@@ -102,7 +106,7 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOverAllAssessments(event))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
@@ -110,12 +114,12 @@ describe('StartOverDialog', () => {
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onCancelButtonClick')(event);
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over assessment', () => {
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverAllAssessments(event))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
@@ -123,7 +127,7 @@ describe('StartOverDialog', () => {
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onPrimaryButtonClick')(event);
 
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
     });

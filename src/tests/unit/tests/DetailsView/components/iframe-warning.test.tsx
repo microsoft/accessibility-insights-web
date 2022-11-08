@@ -3,6 +3,7 @@
 import { Link } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentIframeWarning,
@@ -39,18 +40,18 @@ describe('IframeWarning', () => {
 
 describe('AssessmentIframeWarning', () => {
     let allUrlsPermissionHandlerMock: IMock<AllUrlsPermissionHandler>;
-    let detailsViewActionCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionCreatorMock: IMock<AssessmentActionMessageCreator>;
     let testStub: VisualizationType;
     let props: AssessmentIframeWarningProps;
 
     beforeEach(() => {
         allUrlsPermissionHandlerMock = Mock.ofType<AllUrlsPermissionHandler>();
-        detailsViewActionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        assessmentActionCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
         testStub = -1;
         props = {
             deps: {
                 allUrlsPermissionHandler: allUrlsPermissionHandlerMock.object,
-                detailsViewActionMessageCreator: detailsViewActionCreatorMock.object,
+                assessmentActionMessageCreator: assessmentActionCreatorMock.object,
             } as AssessmentIframeWarningDeps,
             test: testStub,
         };
@@ -69,10 +70,7 @@ describe('AssessmentIframeWarning', () => {
 
         await onAllowPermissionsClick(eventStub);
 
-        detailsViewActionCreatorMock.verify(
-            m => m.startOverTest(eventStub, testStub),
-            Times.once(),
-        );
+        assessmentActionCreatorMock.verify(m => m.startOverTest(eventStub, testStub), Times.once());
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

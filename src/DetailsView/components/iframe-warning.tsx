@@ -5,6 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import * as React from 'react';
@@ -34,7 +35,7 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
 
 export type AssessmentIframeWarningDeps = {
     allUrlsPermissionHandler: AllUrlsPermissionHandler;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
 export type AssessmentIframeWarningProps = {
@@ -49,7 +50,7 @@ export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>(
 
         const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
             const rescanTest = () => {
-                deps.detailsViewActionMessageCreator.startOverTest(event, test);
+                deps.assessmentActionMessageCreator.startOverTest(event, test);
             };
 
             await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
