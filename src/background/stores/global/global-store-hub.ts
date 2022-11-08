@@ -33,6 +33,7 @@ export class GlobalStoreHub implements StoreHub {
     public launchPanelStore: LaunchPanelStore;
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
+    public quickAssessStore: AssessmentStore;
     public userConfigurationStore: UserConfigurationStore;
     public permissionsStateStore: PermissionsStateStore;
 
@@ -87,6 +88,18 @@ export class GlobalStoreHub implements StoreHub {
             logger,
             StoreNames.AssessmentStore,
         );
+        this.quickAssessStore = new AssessmentStore(
+            browserAdapter,
+            globalActionHub.assessmentActions,
+            new AssessmentDataConverter(generateUID),
+            new AssessmentDataRemover(),
+            assessmentsProvider,
+            indexedDbInstance,
+            persistedData.quickAssessStoreData,
+            new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
+            logger,
+            StoreNames.QuickAssessStore,
+        );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
             globalActionHub.userConfigurationActions,
@@ -108,6 +121,7 @@ export class GlobalStoreHub implements StoreHub {
         this.launchPanelStore.initialize();
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
+        this.quickAssessStore.initialize();
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
     }
@@ -119,6 +133,7 @@ export class GlobalStoreHub implements StoreHub {
             this.launchPanelStore,
             this.scopingStore,
             this.assessmentStore,
+            this.quickAssessStore,
             this.userConfigurationStore,
             this.permissionsStateStore,
         ];

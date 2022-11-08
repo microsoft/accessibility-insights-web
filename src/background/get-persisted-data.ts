@@ -27,6 +27,7 @@ export interface PersistedData {
         [tabId: number]: TabSpecificPersistedData;
     };
     assessmentStoreData: AssessmentStoreData;
+    quickAssessStoreData: AssessmentStoreData;
     userConfigurationData: UserConfigurationStoreData;
     installationData: InstallationData;
     featureFlags: FeatureFlagStoreData;
@@ -53,6 +54,7 @@ export interface TabSpecificPersistedData {
 
 const keyToPersistedDataMappingOverrides = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
+    [IndexedDBDataKeys.quickAssessStore]: 'quickAssessStoreData',
     [IndexedDBDataKeys.installation]: 'installationData',
     [IndexedDBDataKeys.unifiedFeatureFlags]: 'featureFlags',
     [IndexedDBDataKeys.knownTabIds]: 'knownTabIds',
