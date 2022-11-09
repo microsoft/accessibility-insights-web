@@ -69,7 +69,10 @@ const detailsViewTypeContentMap: {
 export const GetDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration = (
     props: GetDetailsRightPanelConfigurationProps,
 ) => {
-    if (props.selectedDetailsViewPivot === DetailsViewPivotType.assessment) {
+    if (
+        props.selectedDetailsViewPivot === DetailsViewPivotType.assessment ||
+        props.selectedDetailsViewPivot === DetailsViewPivotType.mediumPass
+    ) {
         return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
     }
 

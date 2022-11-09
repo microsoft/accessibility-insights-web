@@ -6,6 +6,7 @@ import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
@@ -528,6 +529,7 @@ if (tabId != null) {
                 assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
+                mediumPassRequirementKeys: MediumPassRequirementKeys,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
@@ -554,6 +556,7 @@ if (tabId != null) {
                 outcomeTypeFromTestStatus,
                 outcomeStatsFromManualTestStatus,
                 assessmentsProviderWithFeaturesEnabled,
+                assessmentsProviderForRequirements,
                 outcomeTypeSemanticsFromTestStatus,
                 getInnerTextFromJsxElement,
                 storesHub,
@@ -606,7 +609,7 @@ if (tabId != null) {
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
-                mediumPassRequirementKeys: MediumPassRequirementKeys,
+                quickAssessRequirementKeys: MediumPassRequirementKeys,
             };
 
             const renderer = new DetailsViewRenderer(

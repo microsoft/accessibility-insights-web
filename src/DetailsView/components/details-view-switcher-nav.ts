@@ -14,7 +14,10 @@ import {
     ReportExportDialogFactory,
     SaveAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
-import { MediumPassLeftNav } from 'DetailsView/components/left-nav/medium-pass-left-nav';
+import {
+    MediumPassLeftNav,
+    MediumPassLeftNavDeps,
+} from 'DetailsView/components/left-nav/medium-pass-left-nav';
 import {
     getLoadButtonForAssessment,
     getNullLoadButton,
@@ -43,6 +46,7 @@ import {
 import {
     assessmentWarningConfiguration,
     fastpassWarningConfiguration,
+    quickAssessWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
 import {
@@ -70,7 +74,7 @@ import {
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
 
-export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps;
+export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;
 type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 
@@ -124,7 +128,7 @@ const detailsViewSwitcherNavs: {
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: MediumPassLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
-        warningConfiguration: assessmentWarningConfiguration,
+        warningConfiguration: quickAssessWarningConfiguration,
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
         analyzerMessageConfiguration: MediumPassVisualizationMessageTypes,
     },
