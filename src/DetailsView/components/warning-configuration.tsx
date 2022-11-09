@@ -9,6 +9,7 @@ import {
     FastPassIframeWarning,
     FastPassIframeWarningDeps,
     FastPassIframeWarningProps,
+    QuickAssessIframeWarning,
 } from 'DetailsView/components/iframe-warning';
 
 export type ScanIncompleteWarningMessageBarProps =
@@ -28,4 +29,8 @@ export const assessmentWarningConfiguration: WarningConfiguration = {
 
 export const fastpassWarningConfiguration: WarningConfiguration = {
     'missing-required-cross-origin-permissions': FastPassIframeWarning,
+};
+
+export const quickAssessWarningConfiguration: WarningConfiguration = {
+    'missing-required-cross-origin-permissions': QuickAssessIframeWarning,
 };
