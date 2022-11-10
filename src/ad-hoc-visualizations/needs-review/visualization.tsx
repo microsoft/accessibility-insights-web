@@ -31,7 +31,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocNeedsReview',
     getStoreData: data => data.adhoc[needsReviewTestKey],
-    enableTest: data => (data.adhoc[needsReviewTestKey].enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,

@@ -30,7 +30,7 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     key: accessiblenamesTestKey,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc[accessiblenamesTestKey],
-    enableTest: data => (data.adhoc[accessiblenamesTestKey].enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,

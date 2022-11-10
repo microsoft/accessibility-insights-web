@@ -5,6 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
+import { StoreNames } from 'common/stores/store-names';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import {
@@ -33,6 +34,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
             null,
             initialAssessmentStoreDataGenerator || this.getPreparedMock(),
             failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
         ).getDefaultState();
     }
 

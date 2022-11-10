@@ -169,11 +169,7 @@ export class AssessmentBuilder {
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
             getStoreData: getStoreData,
-            enableTest: (data, payload) =>
-                AssessmentBuilder.enableTest(
-                    getStoreData(data),
-                    payload as AssessmentToggleActionPayload,
-                ),
+            enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
@@ -268,11 +264,7 @@ export class AssessmentBuilder {
                 thisAssessment.generatedAssessmentInstancesMap = instanceMap;
             },
             getStoreData: getStoreData,
-            enableTest: (data, payload) =>
-                AssessmentBuilder.enableTest(
-                    getStoreData(data),
-                    payload as AssessmentToggleActionPayload,
-                ),
+            enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,

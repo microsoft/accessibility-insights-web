@@ -19,6 +19,7 @@ import { NavLinkHandler } from './nav-link-handler';
 export type MediumPassLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
     navLinkHandler: NavLinkHandler;
+    mediumPassRequirementKeys: string[];
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
 

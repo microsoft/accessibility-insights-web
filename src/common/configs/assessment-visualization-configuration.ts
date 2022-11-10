@@ -20,7 +20,7 @@ export interface AssessmentVisualizationConfiguration {
     testViewType: TestViewType;
     testViewOverrides?: TestViewOverrides;
     getStoreData: (data: TestsEnabledState) => ScanData;
-    enableTest: (data: TestsEnabledState, payload: ToggleActionPayload) => void;
+    enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
     getTestStatus: (data: ScanData, step?: string) => boolean;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
