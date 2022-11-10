@@ -344,7 +344,7 @@ if (tabId != null) {
                 detailsViewActionMessageCreator,
                 assessmentActionMessageCreator,
                 new AssessmentTableColumnConfigHandler(
-                    new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
+                    new MasterCheckBoxConfigProvider(assessmentActionMessageCreator),
                     Assessments,
                 ),
                 Assessments,
