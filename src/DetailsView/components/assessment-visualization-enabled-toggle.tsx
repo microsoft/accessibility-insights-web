@@ -14,7 +14,7 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
     }
 
     protected onClick = (event): void => {
-        this.props.deps.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
+        this.props.deps.assessmentActionMessageCreator.changeAssessmentVisualizationStateForAll(
             !this.isAnyInstanceVisible(
                 this.filterInstancesByTestStep(
                     this.props.assessmentNavState,

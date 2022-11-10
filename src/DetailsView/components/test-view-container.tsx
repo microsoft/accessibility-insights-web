@@ -7,6 +7,7 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import {
     AdhocTabStopsTestView,
@@ -38,6 +39,7 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
 } & TestViewDeps &

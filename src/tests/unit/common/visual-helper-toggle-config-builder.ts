@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentResultType,
     GeneratedAssessmentInstance,
     TestStepResult,
 } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
@@ -20,6 +20,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
         this.data = {
             deps: {
                 detailsViewActionMessageCreator: null,
+                assessmentActionMessageCreator: null,
             },
             assessmentNavState: {
                 selectedTestSubview: this.stepKey,
@@ -37,9 +38,9 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
         };
     }
     public withActionMessageCreator(
-        detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        assessmentActionMessageCreator: AssessmentActionMessageCreator,
     ): VisualHelperToggleConfigBuilder {
-        this.data.deps.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
+        this.data.deps.assessmentActionMessageCreator = assessmentActionMessageCreator;
         return this;
     }
     public withToggleStepEnabled(stepEnabled: boolean): VisualHelperToggleConfigBuilder {
