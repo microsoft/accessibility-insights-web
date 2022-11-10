@@ -342,6 +342,7 @@ if (tabId != null) {
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 new AssessmentTableColumnConfigHandler(
                     new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
                     Assessments,
