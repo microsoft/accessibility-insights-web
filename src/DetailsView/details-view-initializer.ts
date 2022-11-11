@@ -502,7 +502,7 @@ if (tabId != null) {
 
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
-                detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 fileReader,
                 document,
                 loadAssessmentDataValidator,
