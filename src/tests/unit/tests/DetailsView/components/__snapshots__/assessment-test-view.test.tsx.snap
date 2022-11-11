@@ -5,10 +5,10 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <ScanIncompleteWarning
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
     test={-1}
@@ -17,10 +17,10 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <TargetChangeDialog
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
     newTab={
@@ -35,10 +35,10 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     assessment={{}}
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
   />
@@ -50,10 +50,10 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <ScanIncompleteWarning
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
     test={-1}
@@ -62,10 +62,10 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <TargetChangeDialog
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
     newTab={
@@ -94,10 +94,10 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     }
     deps={
       {
+        "assessmentActionMessageCreator": {},
         "assessmentsProvider": {
           "forType": [Function],
         },
-        "detailsViewActionMessageCreator": {},
       }
     }
     featureFlagStoreData={{}}
