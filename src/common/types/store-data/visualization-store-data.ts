@@ -22,6 +22,8 @@ export interface VisualizationStoreData {
     selectedDetailsViewPivot: DetailsViewPivotType;
     injectingRequested: boolean;
     injectingStarted: boolean;
+    injectionFailed?: boolean;
+    injectionAttempts?: number;
     focusedTarget: string[];
 }
 

@@ -19,6 +19,10 @@ export class InjectionActionCreator {
             Messages.Visualizations.State.InjectionCompleted,
             this.injectionCompleted,
         );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.State.InjectionFailed,
+            this.injectionFailed,
+        );
     }
 
     private injectionStarted = async (): Promise<void> =>
@@ -26,4 +30,7 @@ export class InjectionActionCreator {
 
     private injectionCompleted = async (): Promise<void> =>
         await this.injectionActions.injectionCompleted.invoke(null);
+
+    private injectionFailed = async (): Promise<void> =>
+        await this.injectionActions.injectionFailed.invoke(null);
 }

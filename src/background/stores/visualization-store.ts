@@ -82,6 +82,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
         this.injectionActions.injectionCompleted.addListener(this.onInjectionCompleted);
         this.injectionActions.injectionStarted.addListener(this.onInjectionStarted);
+        this.injectionActions.injectionFailed.addListener(this.onInjectionFailed);
     }
 
     public getDefaultState(): VisualizationStoreData {
@@ -111,6 +112,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
             selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
             injectingStarted: false,
             injectingRequested: false,
+            injectionFailed: false,
             focusedTarget: null,
         };
 
@@ -267,6 +269,17 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
         this.state.injectingRequested = true;
         this.state.injectingStarted = true;
+        await this.emitChanged();
+    };
+
+    private onInjectionFailed = async (): Promise<void> => {
+        this.state.injectionAttempts = (this.state.injectionAttempts ?? 0) + 1;
+        if (this.state.injectionAttempts < 3) {
+            this.state.injectingRequested = true;
+            this.state.injectingStarted = false;
+        } else {
+            this.state.injectionFailed = true;
+        }
         await this.emitChanged();
     };
 

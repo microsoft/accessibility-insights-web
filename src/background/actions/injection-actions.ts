@@ -5,4 +5,5 @@ import { AsyncAction } from 'common/flux/async-action';
 export class InjectionActions {
     public readonly injectionCompleted = new AsyncAction();
     public readonly injectionStarted = new AsyncAction();
+    public readonly injectionFailed = new AsyncAction();
 }

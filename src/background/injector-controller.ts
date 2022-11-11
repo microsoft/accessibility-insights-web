@@ -38,7 +38,11 @@ export class InjectorController {
         const isInjectingRequested =
             inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
 
-        if (isInjectingRequested && !visualizationStoreState.injectingStarted) {
+        if (
+            isInjectingRequested &&
+            !visualizationStoreState.injectingStarted &&
+            !visualizationStoreState.injectionFailed
+        ) {
             await this.interpreter.interpret({
                 messageType: Messages.Visualizations.State.InjectionStarted,
                 tabId: tabId,
@@ -52,9 +56,16 @@ export class InjectorController {
                         tabId: tabId,
                     }).result;
                 })
-                .catch(this.logger.error);
+                .catch(this.handleInjectionError);
         }
 
         this.oldInspectType = inspectStoreState.inspectMode;
+    };
+
+    private handleInjectionError = async (err: any): Promise<void> => {
+        this.logger.error(err);
+        await this.interpreter.interpret({
+            messageType: Messages.Visualizations.State.InjectionFailed,
+        }).result;
     };
 }
