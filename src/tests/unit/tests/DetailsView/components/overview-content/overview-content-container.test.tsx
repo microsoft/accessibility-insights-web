@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
@@ -47,18 +48,27 @@ describe('OverviewContainer', () => {
         (provider, featureFlagData) => null,
         MockBehavior.Strict,
     );
+    const assessmentsProviderForRequirementsMock = Mock.ofInstance(
+        (provider, requirements) => null,
+        MockBehavior.Strict,
+    );
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
-
+    const getQuickAssessSummaryModelFromProviderAndStoreData = jest.fn();
+    const quickAssessRequirementKeysStub = [];
     const deps: OverviewContainerDeps = {
         assessmentsProvider: assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData:
             getAssessmentSummaryModelFromProviderAndStoreData,
         assessmentActionMessageCreator,
+        getQuickAssessSummaryModelFromProviderAndStoreData:
+            getQuickAssessSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
+        assessmentsProviderForRequirements: assessmentsProviderForRequirementsMock.object,
         detailsViewId: undefined,
+        quickAssessRequirementKeys: quickAssessRequirementKeysStub,
     };
 
     const featureFlagDataStub = {};
@@ -71,18 +81,27 @@ describe('OverviewContainer', () => {
         .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
         .returns(() => filteredProvider);
 
-    const component = (
-        <OverviewContainer
-            deps={deps}
-            assessmentStoreData={assessmentStoreData}
-            featureFlagStoreData={featureFlagDataStub}
-            tabStoreData={tabStoreDataStub}
-        />
-    );
-    const wrapper = shallow(component);
+    assessmentsProviderForRequirementsMock
+        .setup(mock => mock(filteredProvider, quickAssessRequirementKeysStub))
+        .returns(() => filteredProvider);
 
-    test('component is defined and matches snapshot', () => {
-        expect(component).toBeDefined();
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
+    let component: JSX.Element;
+
+    it.each([DetailsViewPivotType.assessment, DetailsViewPivotType.mediumPass])(
+        'component is defined and matches snapshot for pivotType %s',
+        selectedPivot => {
+            component = (
+                <OverviewContainer
+                    deps={deps}
+                    assessmentStoreData={assessmentStoreData}
+                    featureFlagStoreData={featureFlagDataStub}
+                    tabStoreData={tabStoreDataStub}
+                    selectedPivot={selectedPivot}
+                />
+            );
+            const wrapper = shallow(component);
+            expect(component).toBeDefined();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        },
+    );
 });

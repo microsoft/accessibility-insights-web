@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OverviewContainer component is defined and matches snapshot 1`] = `
+exports[`OverviewContainer component is defined and matches snapshot for pivotType 2 1`] = `
 <div
   className="overview"
   data-automation-id="overviewContainerAutomationId"
@@ -15,10 +15,28 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "assessmentsProvider": {
           "all": [Function],
         },
+        "assessmentsProviderForRequirements": [Function],
         "assessmentsProviderWithFeaturesEnabled": [Function],
         "detailsViewActionMessageCreator": {},
         "detailsViewId": undefined,
-        "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction] {
+          "calls": [
+            [
+              {},
+              {
+                "persistedTabInfo": {},
+              },
+            ],
+          ],
+          "results": [
+            {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction],
+        "quickAssessRequirementKeys": [],
         "urlParser": {},
       }
     }
@@ -35,7 +53,9 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
     className="overviewTextSummarySection"
   >
     <OverviewHeading />
-    <AssessmentReportSummary />
+    <AssessmentReportSummary
+      selectedPivot={2}
+    />
   </section>
   <section
     className="overviewHelpSection"
@@ -50,10 +70,148 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "assessmentsProvider": {
             "all": [Function],
           },
+          "assessmentsProviderForRequirements": [Function],
+          "assessmentsProviderWithFeaturesEnabled": [Function],
+          "detailsViewActionMessageCreator": {},
+          "detailsViewId": undefined,
+          "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction] {
+            "calls": [
+              [
+                {},
+                {
+                  "persistedTabInfo": {},
+                },
+              ],
+            ],
+            "results": [
+              {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
+          "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction],
+          "quickAssessRequirementKeys": [],
+          "urlParser": {},
+        }
+      }
+      linkDataSource={
+        [
+          {
+            "href": "https://go.microsoft.com/fwlink/?linkid=2082219",
+            "text": "Getting started",
+          },
+          {
+            "href": "https://go.microsoft.com/fwlink/?linkid=2082220",
+            "text": "How to complete a test",
+          },
+          {
+            "href": "https://go.microsoft.com/fwlink/?linkid=2077941",
+            "text": "Ask a question",
+          },
+          {
+            "href": "https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/",
+            "text": "New WCAG 2.1 success criteria",
+          },
+        ]
+      }
+    />
+  </section>
+</div>
+`;
+
+exports[`OverviewContainer component is defined and matches snapshot for pivotType 3 1`] = `
+<div
+  className="overview"
+  data-automation-id="overviewContainerAutomationId"
+>
+  <TargetChangeDialog
+    deps={
+      {
+        "actionInitiators": {
+          "openExternalLink": [MockFunction],
+        },
+        "assessmentsProvider": {
+          "all": [Function],
+        },
+        "assessmentsProviderForRequirements": [Function],
+        "assessmentsProviderWithFeaturesEnabled": [Function],
+        "detailsViewActionMessageCreator": {},
+        "detailsViewId": undefined,
+        "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction] {
+          "calls": [
+            [
+              {},
+              {
+                "persistedTabInfo": {},
+              },
+              [],
+            ],
+          ],
+          "results": [
+            {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        },
+        "quickAssessRequirementKeys": [],
+        "urlParser": {},
+      }
+    }
+    newTab={
+      {
+        "id": -1,
+        "title": "some title",
+        "url": "some url",
+      }
+    }
+    prevTab={{}}
+  />
+  <section
+    className="overviewTextSummarySection"
+  >
+    <OverviewHeading />
+    <AssessmentReportSummary
+      selectedPivot={3}
+    />
+  </section>
+  <section
+    className="overviewHelpSection"
+  >
+    <OverviewHelpSection
+      deps={
+        {
+          "actionInitiators": {
+            "openExternalLink": [MockFunction],
+          },
+          "assessmentsProvider": {
+            "all": [Function],
+          },
+          "assessmentsProviderForRequirements": [Function],
           "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": {},
           "detailsViewId": undefined,
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+          "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction] {
+            "calls": [
+              [
+                {},
+                {
+                  "persistedTabInfo": {},
+                },
+                [],
+              ],
+            ],
+            "results": [
+              {
+                "type": "return",
+                "value": undefined,
+              },
+            ],
+          },
+          "quickAssessRequirementKeys": [],
           "urlParser": {},
         }
       }

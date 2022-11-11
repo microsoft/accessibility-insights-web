@@ -80,6 +80,10 @@ import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from 'reports/get-assessment-summary-model';
+import {
+    getQuickAssessSummaryModelFromProviderAndStoreData,
+    getQuickAssessSummaryModelFromProviderAndStatusData,
+} from 'reports/get-quick-assess-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
@@ -541,8 +545,12 @@ if (tabId != null) {
                 loadAssessmentHelper,
                 getAssessmentSummaryModelFromProviderAndStoreData:
                     getAssessmentSummaryModelFromProviderAndStoreData,
+                getQuickAssessSummaryModelFromProviderAndStoreData:
+                    getQuickAssessSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData:
                     getAssessmentSummaryModelFromProviderAndStatusData,
+                getQuickAssessSummaryModelFromProviderAndStatusData:
+                    getQuickAssessSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 navLinkHandler: new NavLinkHandler(

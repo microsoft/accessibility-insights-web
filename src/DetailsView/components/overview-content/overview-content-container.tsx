@@ -5,6 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -13,6 +14,7 @@ import * as React from 'react';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
+import { GetQuickAssessSummaryModelFromProviderAndStoreData } from 'reports/get-quick-assess-summary-model';
 
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
@@ -41,11 +43,17 @@ const linkDataSource: HyperlinkDefinition[] = [
 export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
+    getQuickAssessSummaryModelFromProviderAndStoreData: GetQuickAssessSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
+    assessmentsProviderForRequirements: (
+        assessmentsProvider: AssessmentsProvider,
+        requirementKeys: string[],
+    ) => AssessmentsProvider;
+    quickAssessRequirementKeys: string[];
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
@@ -54,16 +62,20 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    selectedPivot: DetailsViewPivotType;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
 
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
+    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData, selectedPivot } = props;
     const {
         assessmentsProvider,
         getAssessmentSummaryModelFromProviderAndStoreData,
+        getQuickAssessSummaryModelFromProviderAndStoreData,
         assessmentsProviderWithFeaturesEnabled,
+        assessmentsProviderForRequirements,
+        quickAssessRequirementKeys,
     } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
@@ -71,20 +83,35 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(
+    let filteredProvider = assessmentsProviderWithFeaturesEnabled(
         assessmentsProvider,
         featureFlagStoreData,
     );
+    let summaryData: OverviewSummaryReportModel;
 
-    const summaryData: OverviewSummaryReportModel =
-        getAssessmentSummaryModelFromProviderAndStoreData(filteredProvider, assessmentStoreData);
+    if (selectedPivot === DetailsViewPivotType.assessment) {
+        summaryData = getAssessmentSummaryModelFromProviderAndStoreData(
+            filteredProvider,
+            assessmentStoreData,
+        );
+    } else {
+        filteredProvider = assessmentsProviderForRequirements(
+            filteredProvider,
+            quickAssessRequirementKeys,
+        );
+        summaryData = getQuickAssessSummaryModelFromProviderAndStoreData(
+            filteredProvider,
+            assessmentStoreData,
+            quickAssessRequirementKeys,
+        );
+    }
 
     return (
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className={styles.overviewTextSummarySection}>
                 <OverviewHeading />
-                <AssessmentReportSummary summary={summaryData} />
+                <AssessmentReportSummary summary={summaryData} selectedPivot={selectedPivot} />
             </section>
             <section className={styles.overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
