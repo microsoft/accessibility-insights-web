@@ -143,7 +143,7 @@ export class AllFramesMessenger {
                     this.responsiveFrames!.push(allIFrameElements[index]);
                 } else {
                     const error = new Error(
-                        `Recieved unexpected value for ping response: ${JSON.stringify(response)}`,
+                        `Received unexpected value for ping response: ${JSON.stringify(response)}`,
                     );
                     unexpectedErrors.push(error);
                 }
