@@ -36,7 +36,7 @@ export class AllFramesMessenger {
             promises: Promise<unknown>[],
         ) => Promise<void> = mergePromiseResponses,
         private readonly pingCommand: string = 'insights.pingFrame',
-        private readonly pingTimeoutMilliseconds: number = 500,
+        private readonly pingTimeoutMilliseconds: number = 1000,
     ) {
         this.addMessageListener(this.pingCommand, async () => {
             await this.findResponsiveFrames();
