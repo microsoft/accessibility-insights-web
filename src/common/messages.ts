@@ -48,6 +48,9 @@ export const Messages = {
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
         },
+        Assessment: {
+            Initialize: `${messagePrefix}/assessment/initialize`,
+        },
     },
 
     DevTools: {

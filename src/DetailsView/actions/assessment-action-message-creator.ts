@@ -12,6 +12,7 @@ import {
     EditFailureInstancePayload,
     ExpandTestNavPayload,
     LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
@@ -31,6 +32,20 @@ import { ReportExportServiceKey } from 'report-export/types/report-export-servic
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 export class AssessmentActionMessageCreator extends DevToolActionMessageCreator {
+    public initialize = (detailsViewId: string): void => {
+        const messageType = Messages.Visualizations.Assessment.Initialize;
+        const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
+        const payload: OnDetailsViewInitializedPayload = {
+            detailsViewId,
+            telemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: messageType,
+            payload,
+        });
+    };
+
     public exportResultsClicked(
         reportExportFormat: ReportExportFormat,
         selectedServiceKey: ReportExportServiceKey,

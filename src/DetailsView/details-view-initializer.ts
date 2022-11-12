@@ -512,6 +512,7 @@ if (tabId != null) {
 
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
+            assessmentActionMessageCreator.initialize(detailsViewId);
 
             const deps: DetailsViewContainerDeps = {
                 textContent,
