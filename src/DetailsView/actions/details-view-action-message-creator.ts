@@ -104,6 +104,21 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
+    public exportResultsClicked(
+        reportExportFormat: ReportExportFormat,
+        selectedServiceKey: ReportExportServiceKey,
+        event: React.MouseEvent<HTMLElement>,
+    ): void {
+        const telemetryData = this.telemetryFactory.forExportedResults(
+            reportExportFormat,
+            selectedServiceKey,
+            event,
+            TelemetryEvents.TelemetryEventSource.DetailsView,
+        );
+
+        this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
+    }
+
     public exportResultsClickedFastPass(
         tabStopRequirementData: TabStopRequirementState,
         wereAutomatedChecksRun: boolean,

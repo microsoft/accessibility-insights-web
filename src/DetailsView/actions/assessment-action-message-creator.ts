@@ -18,8 +18,6 @@ import {
     SelectTestSubviewPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
-import * as TelemetryEvents from 'common/extension-telemetry-events';
-import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
@@ -28,7 +26,6 @@ import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
-import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 export class AssessmentActionMessageCreator extends DevToolActionMessageCreator {
@@ -45,21 +42,6 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
             payload,
         });
     };
-
-    public exportResultsClicked(
-        reportExportFormat: ReportExportFormat,
-        selectedServiceKey: ReportExportServiceKey,
-        event: React.MouseEvent<HTMLElement>,
-    ): void {
-        const telemetryData = this.telemetryFactory.forExportedResults(
-            reportExportFormat,
-            selectedServiceKey,
-            event,
-            TelemetryEvents.TelemetryEventSource.DetailsView,
-        );
-
-        this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
-    }
 
     public selectRequirement(
         event: React.MouseEvent<HTMLElement>,

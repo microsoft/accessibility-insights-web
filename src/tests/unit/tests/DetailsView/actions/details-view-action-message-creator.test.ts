@@ -14,6 +14,7 @@ import {
     DetailsViewPivotSelectedTelemetryData,
     DETAILS_VIEW_OPEN,
     ExportFastPassResultsTelemetryData,
+    ExportResultsTelemetryData,
     EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
     LEFT_NAV_PANEL_EXPANDED,
@@ -316,6 +317,38 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         testSubject.clearPathSnippetData();
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('exportResultsClicked', () => {
+        const serviceKey = 'html';
+        const event = eventStubFactory.createMouseClickEvent() as any;
+
+        const telemetry: ExportResultsTelemetryData = {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'mouseclick',
+            exportResultsService: 'html',
+            exportResultsType: 'export result type',
+        };
+
+        const exportResultsType = 'Assessment';
+
+        telemetryFactoryMock
+            .setup(tf =>
+                tf.forExportedResults(
+                    exportResultsType,
+                    serviceKey,
+                    event,
+                    TelemetryEventSource.DetailsView,
+                ),
+            )
+            .returns(() => telemetry);
+
+        testSubject.exportResultsClicked(exportResultsType, serviceKey, event);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.sendTelemetry(EXPORT_RESULTS, telemetry),
             Times.once(),
         );
     });
