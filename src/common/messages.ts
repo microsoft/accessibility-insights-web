@@ -48,9 +48,6 @@ export const Messages = {
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
         },
-        Assessment: {
-            Initialize: `${messagePrefix}/assessment/initialize`,
-        },
     },
 
     DevTools: {
@@ -91,6 +88,7 @@ export const Messages = {
     },
 
     Assessment: {
+        Initialize: `${messagePrefix}/assessment/initialize`,
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
         SelectNextRequirement: `${messagePrefix}/details-view/requirement/select-next`,
         SelectGettingStarted: `${messagePrefix}/details-view/select-getting-started`,

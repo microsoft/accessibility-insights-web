@@ -33,7 +33,7 @@ import { DetailsViewRightContentPanelType } from '../../common/types/store-data/
 
 export class AssessmentActionMessageCreator extends DevToolActionMessageCreator {
     public initialize = (detailsViewId: string): void => {
-        const messageType = Messages.Visualizations.Assessment.Initialize;
+        const messageType = Messages.Assessment.Initialize;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: OnDetailsViewInitializedPayload = {
             detailsViewId,
