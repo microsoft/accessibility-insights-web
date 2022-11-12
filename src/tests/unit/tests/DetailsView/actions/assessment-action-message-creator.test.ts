@@ -10,8 +10,6 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
-    ExportResultsTelemetryData,
-    EXPORT_RESULTS,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     SelectGettingStartedTelemetryData,

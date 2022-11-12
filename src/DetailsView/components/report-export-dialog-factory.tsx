@@ -71,7 +71,7 @@ export function getReportExportDialogForAssessment(
         afterDialogDismissed,
         reportExportServices: deps.reportExportServiceProvider.servicesForAssessment(),
         exportResultsClickedTelemetry: (reportExportFormat, selectedServiceKey, event) =>
-            deps.assessmentActionMessageCreator.exportResultsClicked(
+            deps.detailsViewActionMessageCreator.exportResultsClicked(
                 reportExportFormat,
                 selectedServiceKey,
                 event,

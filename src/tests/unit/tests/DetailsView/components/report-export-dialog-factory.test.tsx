@@ -233,7 +233,7 @@ describe('ReportExportDialogFactory', () => {
             const reportExportFormat = 'Assessment';
             const selectedServiceKey = 'html';
 
-            assessmentActionMessageCreatorMock
+            detailsViewActionMessageCreatorMock
                 .setup(d => d.exportResultsClicked(reportExportFormat, selectedServiceKey, null))
                 .verifiable(Times.once());
 
@@ -245,7 +245,7 @@ describe('ReportExportDialogFactory', () => {
                 null,
             );
 
-            assessmentActionMessageCreatorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
     });
 

@@ -57,7 +57,6 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { ipcRenderer, shell } from 'electron';
@@ -492,11 +491,6 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             dispatcher,
         );
 
-        const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
-            telemetryDataFactory,
-            dispatcher,
-        );
-
         const fixInstructionProcessor = new FixInstructionProcessor();
         const recommendColor = new RecommendColor();
 
@@ -628,7 +622,6 @@ getGlobalPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
             leftNavActionCreator,
             tabStopsActionCreator: tabStopsActionCreator,
-            assessmentActionMessageCreator,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
