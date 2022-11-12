@@ -9,6 +9,7 @@ import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-a
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     TargetChangeDialog,
+    TargetChangeDialogDeps,
     TargetChangeDialogProps,
 } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
@@ -61,11 +62,13 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     let urlParserMock: IMock<UrlParser>;
     let prevTab: PersistedTabInfo;
     let newTab: Tab;
-    let deps: any;
+    let deps: TargetChangeDialogDeps;
     let detailsViewActionMessageCreatorMock;
+    let assessmentActionMessageCreatorMock;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         prevTab = {
             id: 111,
             url: 'https://www.abc.com',
@@ -81,6 +84,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         deps = {
             urlParser: urlParserMock.object,
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             detailsViewId: 'detailsViewId',
         };
     });
