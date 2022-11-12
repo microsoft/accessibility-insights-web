@@ -10,6 +10,7 @@ import {
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     CommandBarProps,
@@ -54,6 +55,7 @@ describe('DetailsViewCommandBar', () => {
     let saveAssessmentButtonPropsStub: SaveAssessmentButtonProps;
     let loadAssessmentButtonPropsStub: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
@@ -66,6 +68,10 @@ describe('DetailsViewCommandBar', () => {
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
             DetailsViewActionMessageCreator,
+            MockBehavior.Loose,
+        );
+        assessmentActionMessageCreatorMock = Mock.ofType(
+            AssessmentActionMessageCreator,
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
@@ -87,6 +93,7 @@ describe('DetailsViewCommandBar', () => {
         saveAssessmentButtonPropsStub = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             download: 'download',
