@@ -35,6 +35,7 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
 
 export type AssessmentIframeWarningDeps = {
     allUrlsPermissionHandler: AllUrlsPermissionHandler;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
