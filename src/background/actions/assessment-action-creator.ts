@@ -152,10 +152,6 @@ export class AssessmentActionCreator {
             this.onDetailsViewInitialized,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            AssessmentMessages.Initialize,
-            this.onDetailsViewInitialized,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SaveAssessment,
             this.onSaveAssessment,
         );

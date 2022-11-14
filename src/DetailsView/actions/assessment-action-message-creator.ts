@@ -12,7 +12,6 @@ import {
     EditFailureInstancePayload,
     ExpandTestNavPayload,
     LoadAssessmentPayload,
-    OnDetailsViewInitializedPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
@@ -29,20 +28,6 @@ import * as React from 'react';
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 export class AssessmentActionMessageCreator extends DevToolActionMessageCreator {
-    public initialize = (detailsViewId: string): void => {
-        const messageType = Messages.Assessment.Initialize;
-        const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId,
-            telemetry,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: messageType,
-            payload,
-        });
-    };
-
     public selectRequirement(
         event: React.MouseEvent<HTMLElement>,
         selectedRequirement: string,

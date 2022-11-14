@@ -37,32 +37,6 @@ describe('AssessmentActionMessageCreatorTest', () => {
         );
     });
 
-    test('initialize', () => {
-        const telemetry = {
-            triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
-        };
-
-        const detailsViewId = 'testId';
-
-        const expectedMessage = {
-            messageType: Messages.Assessment.Initialize,
-            payload: {
-                telemetry,
-                detailsViewId,
-            },
-        };
-
-        setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
-
-        testSubject.initialize(detailsViewId);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
     test('selectRequirement', () => {
         const view = VisualizationType.Headings;
         const selectedRequirement = HeadingsTestStep.headingFunction;
