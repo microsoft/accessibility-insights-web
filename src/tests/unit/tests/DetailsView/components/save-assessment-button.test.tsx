@@ -5,7 +5,6 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     SaveAssessmentButton,
     SaveAssessmentButtonProps,
@@ -17,14 +16,12 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('SaveAssessmentButton', () => {
     let propsStub: SaveAssessmentButtonProps;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: any;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
         userConfigurationStoreData = {
             showSaveAssessmentDialog: true,
@@ -32,7 +29,6 @@ describe('SaveAssessmentButton', () => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         propsStub = {
             deps: {
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },

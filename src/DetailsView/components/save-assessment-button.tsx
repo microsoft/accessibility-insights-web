@@ -7,12 +7,10 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export interface SaveAssessmentButtonDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
     userConfigMessageCreator: UserConfigMessageCreator;
 }
