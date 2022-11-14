@@ -14,11 +14,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 
 describe('StartOverDialog', () => {
     let props: StartOverDialogProps;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let dismissDialogMock: IMock<() => void>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
@@ -35,7 +33,6 @@ describe('StartOverDialog', () => {
     } as Assessment;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
         dismissDialogMock = Mock.ofInstance(() => null);
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
@@ -48,7 +45,6 @@ describe('StartOverDialog', () => {
         } as AssessmentStoreData;
         props = {
             deps: {
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             },
             assessmentStoreData,

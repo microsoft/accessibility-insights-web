@@ -6,7 +6,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
 export type StartOverDialogType = 'assessment' | 'test';
@@ -14,7 +13,6 @@ export const dialogClosedState = 'none';
 export type StartOverDialogState = StartOverDialogType | typeof dialogClosedState;
 
 export type StartOverDialogDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
