@@ -19,7 +19,6 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
         super();
         this.data = {
             deps: {
-                detailsViewActionMessageCreator: null,
                 assessmentActionMessageCreator: null,
             },
             assessmentNavState: {
