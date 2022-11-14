@@ -21,6 +21,7 @@ export type DetailsViewLeftNavDeps = {
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
+    mediumPassRequirementKeys: string[];
 } & LeftNavDeps &
     SwitcherDeps;
 

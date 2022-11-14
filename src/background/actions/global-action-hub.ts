@@ -14,6 +14,7 @@ export class GlobalActionHub {
     public launchPanelStateActions: LaunchPanelStateActions;
     public scopingActions: ScopingActions;
     public assessmentActions: AssessmentActions;
+    public quickAssessActions: AssessmentActions;
     public userConfigurationActions: UserConfigurationActions;
     public permissionsStateActions: PermissionsStateActions;
 
@@ -23,6 +24,7 @@ export class GlobalActionHub {
         this.launchPanelStateActions = new LaunchPanelStateActions();
         this.scopingActions = new ScopingActions();
         this.assessmentActions = new AssessmentActions();
+        this.quickAssessActions = new AssessmentActions();
         this.userConfigurationActions = new UserConfigurationActions();
         this.permissionsStateActions = new PermissionsStateActions();
     }
