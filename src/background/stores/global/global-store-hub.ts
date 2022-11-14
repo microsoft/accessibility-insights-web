@@ -90,7 +90,7 @@ export class GlobalStoreHub implements StoreHub {
         );
         this.quickAssessStore = new AssessmentStore(
             browserAdapter,
-            globalActionHub.assessmentActions,
+            globalActionHub.quickAssessActions,
             new AssessmentDataConverter(generateUID),
             new AssessmentDataRemover(),
             assessmentsProvider,
