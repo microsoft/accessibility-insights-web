@@ -43,6 +43,19 @@ describe('InjectionActionCreator', () => {
         injectionCompletedMock.verifyAll();
     });
 
+    it('handles InjectionFailed message', async () => {
+        const injectionFailedMock = createAsyncActionMock<void>(null);
+        const actionsMock = createActionsMock('injectionFailed', injectionFailedMock.object);
+
+        const testSubject = new InjectionActionCreator(interpreterMock.object, actionsMock.object);
+
+        testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(Messages.Visualizations.State.InjectionFailed, null);
+
+        injectionFailedMock.verifyAll();
+    });
+
     function createActionsMock<ActionName extends keyof InjectionActions>(
         actionName: ActionName,
         action: InjectionActions[ActionName],

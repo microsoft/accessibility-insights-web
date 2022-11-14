@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InjectionFailed renders stale view for default 1`] = `
+<main
+  className="injectionFailed"
+>
+  <h1>
+    Unable to communicate with target page
+  </h1>
+  <ul>
+    <li>
+      If you are using Edge, make sure that the target page is not in Internet Explorer mode.
+    </li>
+  </ul>
+</main>
+`;

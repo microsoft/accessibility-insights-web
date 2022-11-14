@@ -7,6 +7,7 @@ import { Interpreter } from 'background/interpreter';
 import { InspectStore } from 'background/stores/inspect-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -116,6 +117,41 @@ describe('InjectorControllerTest', () => {
         await validator.inspectInjectCallback();
         validator.verifyAll();
     });
+
+    test("inject doesn't occur when injection has failed", async () => {
+        const visualizationData = new VisualizationStoreDataBuilder()
+            .with('injectionFailed', true)
+            .build();
+
+        validator
+            .setupTabStore({ id: tabId })
+            .setupVizStoreGetState(visualizationData)
+            .setupInspectStore({ inspectMode: InspectMode.off })
+            .setupInjectScriptsCall(tabId, 0);
+        validator.buildInjectorController().initialize();
+        await validator.inspectInjectCallback();
+        validator.verifyAll();
+    });
+
+    test('inject sends injection failed message when injection errors', async () => {
+        const visualizationData = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', true)
+            .build();
+
+        validator
+            .setupTabStore({ id: tabId })
+            .setupVizStoreGetState(visualizationData)
+            .setupInspectStore({ inspectMode: InspectMode.off })
+            .setupFailingInjectScriptsCall(tabId)
+            .setupLoggerError(undefined);
+
+        validator.buildInjectorController(false).initialize();
+        validator.setupVerifyInjectionStartedActionCalled(tabId, 1);
+        validator.setupVerifyInjectionFailedActionCalled(tabId);
+        await validator.inspectInjectCallback();
+        await validator.invokeRejectedPromise();
+        validator.verifyAll();
+    });
 });
 
 class InjectorControllerValidator {
@@ -124,12 +160,14 @@ class InjectorControllerValidator {
     private mockInterpreter = Mock.ofType(Interpreter, MockBehavior.Strict);
     private mockInspectStore = Mock.ofType(InspectStore, MockBehavior.Strict);
     private mockTabStore = Mock.ofType(TabStore, MockBehavior.Strict);
+    private mockLogger = Mock.ofType<Logger>();
     private injectedScriptsDeferred: Promise<void>;
     private injectedScriptsDeferredResolver: () => void;
+    private injectedScriptsDeferredRejector: () => void;
     public visualizationInjectCallback: () => Promise<void>;
     public inspectInjectCallback: () => Promise<void>;
 
-    public buildInjectorController(): InjectorController {
+    public buildInjectorController(failOnLoggerError = true): InjectorController {
         this.mockVisualizationStore
             .setup(mockVizStore =>
                 mockVizStore.addChangedListener(
@@ -162,7 +200,7 @@ class InjectorControllerValidator {
             this.mockInterpreter.object,
             this.mockTabStore.object,
             this.mockInspectStore.object,
-            failTestOnErrorLogger,
+            failOnLoggerError ? failTestOnErrorLogger : this.mockLogger.object,
         );
     }
 
@@ -195,6 +233,23 @@ class InjectorControllerValidator {
                     It.isObjectWith({
                         messageType: Messages.Visualizations.State.InjectionCompleted,
                         tabId: tabId,
+                    }),
+                ),
+            )
+            .returns(() => ({ messageHandled: true, result: undefined }))
+            .verifiable(Times.exactly(numTimes));
+
+        return this;
+    }
+
+    public setupVerifyInjectionFailedActionCalled(
+        numTimes: number = 1,
+    ): InjectorControllerValidator {
+        this.mockInterpreter
+            .setup(x =>
+                x.interpret(
+                    It.isObjectWith({
+                        messageType: Messages.Visualizations.State.InjectionFailed,
                     }),
                 ),
             )
@@ -252,9 +307,32 @@ class InjectorControllerValidator {
         return this;
     }
 
+    public setupFailingInjectScriptsCall(calledWithTabId: number): InjectorControllerValidator {
+        this.injectedScriptsDeferred = new Promise((resolve, reject) => {
+            this.injectedScriptsDeferredRejector = reject;
+        });
+        this.mockInjector
+            .setup(injector => injector.injectScripts(calledWithTabId))
+            .returns(() => this.injectedScriptsDeferred)
+            .verifiable(Times.once());
+
+        return this;
+    }
+
+    public setupLoggerError(errorMsg: any): InjectorControllerValidator {
+        this.mockLogger.setup(mockLogger => mockLogger.error(errorMsg)).verifiable(Times.once());
+
+        return this;
+    }
+
     public async invokeInjectedPromise(): Promise<void> {
         this.injectedScriptsDeferredResolver();
         return await this.injectedScriptsDeferred;
+    }
+
+    public async invokeRejectedPromise(): Promise<void> {
+        this.injectedScriptsDeferredRejector();
+        return await expect(this.injectedScriptsDeferred).rejects.toBe(undefined);
     }
 
     public verifyAll(): void {

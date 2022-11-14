@@ -17,6 +17,7 @@
         "./src/DetailsView/components/generic-panel.tsx",
         "./src/DetailsView/components/generic-toggle.tsx",
         "./src/DetailsView/components/iframe-warning.tsx",
+        "./src/DetailsView/components/injection-failed/injection-failed.tsx",
         "./src/DetailsView/components/inline-start-over-button.tsx",
         "./src/DetailsView/components/interactive-header.tsx",
         "./src/DetailsView/components/invalid-load-assessment-dialog.tsx",

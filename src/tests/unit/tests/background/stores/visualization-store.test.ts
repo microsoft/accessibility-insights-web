@@ -714,6 +714,37 @@ describe('VisualizationStoreTest ', () => {
         await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
+    test('onInjectionFailed when injectionAttempts is less than three', async () => {
+        const actionName = 'injectionFailed';
+
+        const initialState = new VisualizationStoreDataBuilder().build();
+
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', true)
+            .with('injectingStarted', false)
+            .with('injectionAttempts', 1)
+            .build();
+
+        const storeTester = createStoreTesterForInjectionActions(actionName);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onInjectionFailed when injectionAttempts is greater than three', async () => {
+        const actionName = 'injectionFailed';
+
+        const initialState = new VisualizationStoreDataBuilder()
+            .with('injectionAttempts', 3)
+            .build();
+
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectionFailed', true)
+            .with('injectionAttempts', 4)
+            .build();
+
+        const storeTester = createStoreTesterForInjectionActions(actionName);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     test('onScrollRequested', async () => {
         const actionName = 'scrollRequested';
 
