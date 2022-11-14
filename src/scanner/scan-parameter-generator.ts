@@ -15,6 +15,7 @@ export class ScanParameterGenerator {
                 type: 'rule',
                 values: [],
             },
+            pingWaitTime: 1000,
         };
 
         if (options == null || options.testsToRun == null) {

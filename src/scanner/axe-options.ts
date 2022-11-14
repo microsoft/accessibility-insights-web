@@ -5,6 +5,7 @@ import * as Axe from 'axe-core';
 export interface AxeOptions {
     runOnly?: Axe.RunOnly;
     restoreScroll?: boolean;
+    pingWaitTime: number;
 }
 export type AxeScanContext = string | Document | IncludeExcludeOptions | NodeList;
 export interface IncludeExcludeOptions {
