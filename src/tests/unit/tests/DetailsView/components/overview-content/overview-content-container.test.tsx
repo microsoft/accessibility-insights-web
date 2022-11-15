@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
@@ -41,6 +42,7 @@ describe('OverviewContainer', () => {
 
     const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
+    const assessmentActionMessageCreator = {} as AssessmentActionMessageCreator;
     const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
         (provider, featureFlagData) => null,
         MockBehavior.Strict,
@@ -52,6 +54,7 @@ describe('OverviewContainer', () => {
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData:
             getAssessmentSummaryModelFromProviderAndStoreData,
+        assessmentActionMessageCreator,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,

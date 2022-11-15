@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { IColumn } from '@fluentui/react';
 import classNames from 'classnames';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 
 import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export class MasterCheckBoxConfigProvider {
     private static MASTER_CHECKBOX_ICON_NAME_ENABLED: string = 'view';
     private static MASTER_CHECKBOX_ICON_NAME_DISABLED: string = 'checkbox';
-    private detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    private assessmentActionMessageCreator: AssessmentActionMessageCreator;
 
-    constructor(detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {
-        this.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
+    constructor(assessmentActionMessageCreator: AssessmentActionMessageCreator) {
+        this.assessmentActionMessageCreator = assessmentActionMessageCreator;
     }
 
     public getMasterCheckBoxProperty(
@@ -43,7 +43,7 @@ export class MasterCheckBoxConfigProvider {
         allEnabled: boolean,
     ): ((ev: React.MouseEvent<HTMLElement>, column: IColumn) => void) => {
         return (ev: React.MouseEvent<HTMLElement>, column: IColumn) => {
-            this.detailsViewActionMessageCreator.changeAssessmentVisualizationStateForAll(
+            this.assessmentActionMessageCreator.changeAssessmentVisualizationStateForAll(
                 !allEnabled,
                 assessmentNavState.selectedTestType,
                 assessmentNavState.selectedTestSubview,

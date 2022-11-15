@@ -4,7 +4,7 @@ import {
     VisualizationToggle,
     VisualizationToggleProps,
 } from 'common/components/visualization-toggle';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { visualHelperText } from 'DetailsView/components/base-visual-helper-toggle';
 import * as Enzyme from 'enzyme';
@@ -14,8 +14,8 @@ import { VisualizationTogglePropsBuilder } from 'tests/unit/common/visualization
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('AssessmentVisualizationEnabledToggle', () => {
-    const actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator> = Mock.ofType(
-        DetailsViewActionMessageCreator,
+    const actionMessageCreatorMock: IMock<AssessmentActionMessageCreator> = Mock.ofType(
+        AssessmentActionMessageCreator,
     );
 
     describe('render', () => {

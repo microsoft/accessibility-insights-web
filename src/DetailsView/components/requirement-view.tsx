@@ -12,7 +12,7 @@ import {
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Tab } from 'common/types/store-data/itab';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerDeps,
@@ -30,7 +30,7 @@ import * as React from 'react';
 import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;

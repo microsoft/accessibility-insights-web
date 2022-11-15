@@ -5,9 +5,11 @@ import { BlockingDialog } from 'common/components/blocking-dialog';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     TargetChangeDialog,
+    TargetChangeDialogDeps,
     TargetChangeDialogProps,
 } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
@@ -25,6 +27,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         { detailsViewId: 'testId' } as PersistedTabInfo,
     ])('should render null when prevTab does not exists', prevTab => {
         const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
 
         const newTab = {
             id: 111,
@@ -40,6 +43,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         const targetChangeProps: TargetChangeDialogProps = {
             deps: {
                 urlParser: urlParserMock.object,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 detailsViewId: '',
             },
@@ -58,11 +62,13 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     let urlParserMock: IMock<UrlParser>;
     let prevTab: PersistedTabInfo;
     let newTab: Tab;
-    let deps: any;
+    let deps: TargetChangeDialogDeps;
     let detailsViewActionMessageCreatorMock;
+    let assessmentActionMessageCreatorMock;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         prevTab = {
             id: 111,
             url: 'https://www.abc.com',
@@ -78,6 +84,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         deps = {
             urlParser: urlParserMock.object,
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
             detailsViewId: 'detailsViewId',
         };
     });
