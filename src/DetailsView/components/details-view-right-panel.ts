@@ -49,36 +49,32 @@ export type GetDetailsRightPanelConfigurationProps = {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
 };
 
-const TestViewPanel: DetailsRightPanelConfiguration = {
-    RightPanel: TestViewContainer,
-    GetTitle: getTestViewTitle,
-    GetLeftNavSelectedKey: getTestViewKey,
-    GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
-};
-
-const detailsViewOverviewConfiguration: {
-    [key in DetailsViewPivotType]: DetailsRightPanelConfiguration;
+const detailsViewTypeContentMap: {
+    [key in DetailsViewRightContentPanelType]: DetailsRightPanelConfiguration;
 } = {
-    [DetailsViewPivotType.assessment]: {
+    Overview: {
         RightPanel: OverviewContainer,
         GetTitle: getOverviewTitle,
         GetLeftNavSelectedKey: getOverviewKey,
         GetStartOverContextualMenuItemKeys: () => ['assessment'],
     },
-    [DetailsViewPivotType.mediumPass]: {
-        RightPanel: OverviewContainer,
-        GetTitle: getOverviewTitle,
-        GetLeftNavSelectedKey: getOverviewKey,
-        GetStartOverContextualMenuItemKeys: () => ['assessment'],
+    TestView: {
+        RightPanel: TestViewContainer,
+        GetTitle: getTestViewTitle,
+        GetLeftNavSelectedKey: getTestViewKey,
+        GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
     },
-    [DetailsViewPivotType.fastPass]: TestViewPanel,
 };
 
 export const GetDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration = (
     props: GetDetailsRightPanelConfigurationProps,
 ) => {
-    if (props.detailsViewRightContentPanel === 'TestView') {
-        return TestViewPanel;
+    if (
+        props.selectedDetailsViewPivot === DetailsViewPivotType.assessment ||
+        props.selectedDetailsViewPivot === DetailsViewPivotType.mediumPass
+    ) {
+        return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
     }
-    return detailsViewOverviewConfiguration[props.selectedDetailsViewPivot];
+
+    return detailsViewTypeContentMap.TestView;
 };
