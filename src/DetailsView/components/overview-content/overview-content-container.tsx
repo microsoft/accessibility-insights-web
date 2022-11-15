@@ -10,13 +10,9 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import {
-    GetFilteredProviderProps,
-    GetSummaryModelFromStoreDataProps,
-} from 'DetailsView/components/details-view-right-panel';
+import { GetOverviewSummaryData } from 'DetailsView/components/overview-content/get-overview-summary-data';
 import * as React from 'react';
 
-import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 import { GetQuickAssessSummaryModelFromProviderAndStoreData } from 'reports/get-quick-assess-summary-model';
@@ -61,10 +57,7 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    getFilteredProvider?: (props: GetFilteredProviderProps) => AssessmentsProvider;
-    getSummaryModelFromProviderAndStoreData?: (
-        props: GetSummaryModelFromStoreDataProps,
-    ) => OverviewSummaryReportModel;
+    getSummaryData?: GetOverviewSummaryData;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
@@ -77,15 +70,10 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
-
-    const filteredProvider = props.getFilteredProvider({
+    const summaryData = props.getSummaryData({
         deps,
-        featureFlagStoreData,
-    });
-    const summaryData = props.getSummaryModelFromProviderAndStoreData({
-        deps,
-        assessmentsProvider: filteredProvider,
         assessmentStoreData,
+        featureFlagStoreData,
     });
 
     return (

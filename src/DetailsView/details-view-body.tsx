@@ -132,10 +132,11 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderRightPanel(): JSX.Element {
+        const { switcherNavConfiguration } = this.props;
         return (
             <this.props.rightPanelConfiguration.RightPanel
-                {...this.props.rightPanelConfiguration.OverviewSummaryDataProps}
                 {...this.props}
+                getSummaryData={switcherNavConfiguration.getOverviewSummaryData}
             />
         );
     }

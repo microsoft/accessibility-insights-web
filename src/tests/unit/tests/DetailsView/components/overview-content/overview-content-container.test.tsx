@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { GetOverviewSummaryDataProps } from 'DetailsView/components/overview-content/get-overview-summary-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { Mock, MockBehavior } from 'typemoq';
 
 import {
@@ -40,22 +42,11 @@ describe('OverviewContainer', () => {
         all: () => [],
     } as any;
 
-    const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
     const assessmentActionMessageCreator = {} as AssessmentActionMessageCreator;
-    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
-        (provider, featureFlagData) => null,
-        MockBehavior.Strict,
-    );
-    const assessmentsProviderForRequirementsMock = Mock.ofInstance(
-        (provider, requirements) => null,
-        MockBehavior.Strict,
-    );
-    const getFilteredProviderMock = Mock.ofInstance(props => null, MockBehavior.Strict);
-    const getSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
-        props => null,
-        MockBehavior.Strict,
-    );
+    const assessmentsProviderWithFeaturesEnabledMock = jest.fn();
+    const assessmentsProviderForRequirementsMock = jest.fn();
+    const getSummaryDataMock = Mock.ofInstance(props => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
     const getQuickAssessSummaryModelFromProviderAndStoreData = jest.fn();
     const quickAssessRequirementKeysStub = [];
@@ -69,8 +60,8 @@ describe('OverviewContainer', () => {
             getQuickAssessSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
-        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
-        assessmentsProviderForRequirements: assessmentsProviderForRequirementsMock.object,
+        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock,
+        assessmentsProviderForRequirements: assessmentsProviderForRequirementsMock,
         detailsViewId: undefined,
         quickAssessRequirementKeys: quickAssessRequirementKeysStub,
     };
@@ -81,12 +72,14 @@ describe('OverviewContainer', () => {
         persistedTabInfo: {} as PersistedTabInfo,
     } as AssessmentStoreData;
 
-    getFilteredProviderMock
-        .setup(mock => mock({ deps, featureFlagStoreData: featureFlagDataStub }))
-        .returns(() => filteredProvider);
-    getSummaryModelFromProviderAndStoreDataMock.setup(mock =>
-        mock({ deps, assessmentsProvider: filteredProvider, assessmentStoreData }),
-    );
+    const summaryData = {} as OverviewSummaryReportModel;
+    const summaryDataProps = {
+        deps,
+        assessmentStoreData,
+        featureFlagStoreData: featureFlagDataStub,
+    } as GetOverviewSummaryDataProps;
+
+    getSummaryDataMock.setup(mock => mock(summaryDataProps)).returns(() => summaryData);
 
     let component: JSX.Element;
 
@@ -97,14 +90,12 @@ describe('OverviewContainer', () => {
                 assessmentStoreData={assessmentStoreData}
                 featureFlagStoreData={featureFlagDataStub}
                 tabStoreData={tabStoreDataStub}
-                getFilteredProvider={getFilteredProviderMock.object}
-                getSummaryModelFromProviderAndStoreData={
-                    getSummaryModelFromProviderAndStoreDataMock.object
-                }
+                getSummaryData={getSummaryDataMock.object}
             />
         );
         const wrapper = shallow(component);
         expect(component).toBeDefined();
         expect(wrapper.getElement()).toMatchSnapshot();
+        getSummaryDataMock.verifyAll();
     });
 });
