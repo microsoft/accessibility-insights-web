@@ -47,6 +47,7 @@ export type AssessmentIframeWarningProps = {
 export type QuickAssessIframeWarningDeps = {
     allUrlsPermissionHandler: AllUrlsPermissionHandler;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
 export type QuickAssessIframeWarningProps = {
@@ -78,7 +79,7 @@ export const QuickAssessIframeWarning = NamedFC<QuickAssessIframeWarningProps>(
 
         const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
             const rescanTest = () => {
-                deps.detailsViewActionMessageCreator.startOverTest(event, test);
+                deps.assessmentActionMessageCreator.startOverTest(event, test);
             };
 
             await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
