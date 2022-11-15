@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
@@ -52,6 +51,11 @@ describe('OverviewContainer', () => {
         (provider, requirements) => null,
         MockBehavior.Strict,
     );
+    const getFilteredProviderMock = Mock.ofInstance(props => null, MockBehavior.Strict);
+    const getSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
+        props => null,
+        MockBehavior.Strict,
+    );
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
     const getQuickAssessSummaryModelFromProviderAndStoreData = jest.fn();
     const quickAssessRequirementKeysStub = [];
@@ -77,31 +81,30 @@ describe('OverviewContainer', () => {
         persistedTabInfo: {} as PersistedTabInfo,
     } as AssessmentStoreData;
 
-    assessmentsProviderWithFeaturesEnabledMock
-        .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
+    getFilteredProviderMock
+        .setup(mock => mock({ deps, featureFlagStoreData: featureFlagDataStub }))
         .returns(() => filteredProvider);
-
-    assessmentsProviderForRequirementsMock
-        .setup(mock => mock(filteredProvider, quickAssessRequirementKeysStub))
-        .returns(() => filteredProvider);
+    getSummaryModelFromProviderAndStoreDataMock.setup(mock =>
+        mock({ deps, assessmentsProvider: filteredProvider, assessmentStoreData }),
+    );
 
     let component: JSX.Element;
 
-    it.each([DetailsViewPivotType.assessment, DetailsViewPivotType.mediumPass])(
-        'component is defined and matches snapshot for pivotType %s',
-        selectedPivot => {
-            component = (
-                <OverviewContainer
-                    deps={deps}
-                    assessmentStoreData={assessmentStoreData}
-                    featureFlagStoreData={featureFlagDataStub}
-                    tabStoreData={tabStoreDataStub}
-                    selectedPivot={selectedPivot}
-                />
-            );
-            const wrapper = shallow(component);
-            expect(component).toBeDefined();
-            expect(wrapper.getElement()).toMatchSnapshot();
-        },
-    );
+    it('component is defined and matches snapshot', () => {
+        component = (
+            <OverviewContainer
+                deps={deps}
+                assessmentStoreData={assessmentStoreData}
+                featureFlagStoreData={featureFlagDataStub}
+                tabStoreData={tabStoreDataStub}
+                getFilteredProvider={getFilteredProviderMock.object}
+                getSummaryModelFromProviderAndStoreData={
+                    getSummaryModelFromProviderAndStoreDataMock.object
+                }
+            />
+        );
+        const wrapper = shallow(component);
+        expect(component).toBeDefined();
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });

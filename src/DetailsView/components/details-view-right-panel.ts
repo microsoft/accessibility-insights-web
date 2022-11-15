@@ -68,7 +68,7 @@ export type GetSummaryModelFromStoreDataProps = {
 
 export type DetailsRightPanelConfiguration = Readonly<{
     RightPanel: ReactFCWithDisplayName<RightPanelProps>;
-    RightPanelProps?: {
+    OverviewSummaryDataProps?: {
         getFilteredProvider?: (props: GetFilteredProviderProps) => AssessmentsProvider;
         getSummaryModelFromProviderAndStoreData?: (
             props: GetSummaryModelFromStoreDataProps,
@@ -99,7 +99,7 @@ const detailsViewOverviewConfiguration: {
 } = {
     [DetailsViewPivotType.assessment]: {
         RightPanel: OverviewContainer,
-        RightPanelProps: {
+        OverviewSummaryDataProps: {
             getFilteredProvider: (props: GetFilteredProviderProps) =>
                 props.deps.assessmentsProviderWithFeaturesEnabled(
                     props.deps.assessmentsProvider,
@@ -117,7 +117,7 @@ const detailsViewOverviewConfiguration: {
     },
     [DetailsViewPivotType.mediumPass]: {
         RightPanel: OverviewContainer,
-        RightPanelProps: {
+        OverviewSummaryDataProps: {
             getFilteredProvider: (props: GetFilteredProviderProps) =>
                 props.deps.assessmentsProviderForRequirements(
                     props.deps.assessmentsProviderWithFeaturesEnabled(
