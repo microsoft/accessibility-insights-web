@@ -16,6 +16,7 @@ export class ExceptionTelemetrySanitizer {
         'selector',
         'elementSelector',
         'cssSelector',
+        'inspectElement',
     ];
     private readonly exclusionRegex: RegExp;
 
