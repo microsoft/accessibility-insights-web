@@ -132,6 +132,11 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     }
 
     private renderRightPanel(): JSX.Element {
-        return <this.props.rightPanelConfiguration.RightPanel {...this.props} />;
+        return (
+            <this.props.rightPanelConfiguration.RightPanel
+                {...this.props.rightPanelConfiguration.RightPanelProps}
+                {...this.props}
+            />
+        );
     }
 }

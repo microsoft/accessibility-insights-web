@@ -1,14 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AssessmentsFeatureFlagFilter } from 'assessments/assessments-feature-flag-filter';
+import { AssessmentsRequirementsFilter } from 'assessments/assessments-requirements-filter';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import {
+    GetFilteredProviderProps,
+    GetSummaryModelFromStoreDataProps,
+} from 'DetailsView/components/details-view-right-panel';
 import * as React from 'react';
 
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
@@ -45,14 +50,8 @@ export type OverviewContainerDeps = {
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     getQuickAssessSummaryModelFromProviderAndStoreData: GetQuickAssessSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (
-        assessmentProvider: AssessmentsProvider,
-        flags: FeatureFlagStoreData,
-    ) => AssessmentsProvider;
-    assessmentsProviderForRequirements: (
-        assessmentsProvider: AssessmentsProvider,
-        requirementKeys: string[],
-    ) => AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: AssessmentsFeatureFlagFilter;
+    assessmentsProviderForRequirements: AssessmentsRequirementsFilter;
     quickAssessRequirementKeys: string[];
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
@@ -62,56 +61,39 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    selectedPivot: DetailsViewPivotType;
+    getFilteredProvider?: (props: GetFilteredProviderProps) => AssessmentsProvider;
+    getSummaryModelFromProviderAndStoreData?: (
+        props: GetSummaryModelFromStoreDataProps,
+    ) => OverviewSummaryReportModel;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
 
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData, selectedPivot } = props;
-    const {
-        assessmentsProvider,
-        getAssessmentSummaryModelFromProviderAndStoreData,
-        getQuickAssessSummaryModelFromProviderAndStoreData,
-        assessmentsProviderWithFeaturesEnabled,
-        assessmentsProviderForRequirements,
-        quickAssessRequirementKeys,
-    } = deps;
+    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
-    let filteredProvider = assessmentsProviderWithFeaturesEnabled(
-        assessmentsProvider,
-        featureFlagStoreData,
-    );
-    let summaryData: OverviewSummaryReportModel;
 
-    if (selectedPivot === DetailsViewPivotType.assessment) {
-        summaryData = getAssessmentSummaryModelFromProviderAndStoreData(
-            filteredProvider,
-            assessmentStoreData,
-        );
-    } else {
-        filteredProvider = assessmentsProviderForRequirements(
-            filteredProvider,
-            quickAssessRequirementKeys,
-        );
-        summaryData = getQuickAssessSummaryModelFromProviderAndStoreData(
-            filteredProvider,
-            assessmentStoreData,
-            quickAssessRequirementKeys,
-        );
-    }
+    const filteredProvider = props.getFilteredProvider({
+        deps,
+        featureFlagStoreData,
+    });
+    const summaryData = props.getSummaryModelFromProviderAndStoreData({
+        deps,
+        assessmentsProvider: filteredProvider,
+        assessmentStoreData,
+    });
 
     return (
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className={styles.overviewTextSummarySection}>
                 <OverviewHeading />
-                <AssessmentReportSummary summary={summaryData} selectedPivot={selectedPivot} />
+                <AssessmentReportSummary summary={summaryData} />
             </section>
             <section className={styles.overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
