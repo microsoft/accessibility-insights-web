@@ -5,12 +5,10 @@ import { CardsViewStoreData } from 'common/components/cards/cards-view-store-dat
 import { Header, HeaderProps } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
-import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
-import { InjectionFailed } from 'DetailsView/components/injection-failed/injection-failed';
 import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
@@ -109,11 +107,18 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     public render(): JSX.Element {
         if (this.shouldShowNoContentAvailable()) {
-            return this.renderErrorContent(NoContentAvailable);
-        }
-
-        if (this.shouldShowInjectionFailedError()) {
-            return this.renderErrorContent(InjectionFailed);
+            const headerProps: Omit<HeaderProps, 'narrowModeStatus'> = { deps: this.props.deps };
+            return (
+                <>
+                    <NarrowModeDetector
+                        deps={this.props.deps}
+                        isNarrowModeEnabled={this.hasStores()}
+                        Component={Header}
+                        childrenProps={headerProps}
+                    />
+                    <NoContentAvailable />
+                </>
+            );
         }
 
         if (!this.props.deps.storesHub.hasStoreData()) {
@@ -130,30 +135,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return this.renderContent();
     }
 
-    private renderErrorContent(Content: ReactFCWithDisplayName): JSX.Element {
-        const headerProps: Omit<HeaderProps, 'narrowModeStatus'> = { deps: this.props.deps };
-        return (
-            <>
-                <NarrowModeDetector
-                    deps={this.props.deps}
-                    isNarrowModeEnabled={this.hasStores()}
-                    Component={Header}
-                    childrenProps={headerProps}
-                />
-                <Content />
-            </>
-        );
-    }
-
     private shouldShowNoContentAvailable(): boolean {
         return (
             !this.hasStores() ||
             (this.props.deps.storesHub.hasStoreData() && this.isTargetPageInvalid())
         );
-    }
-
-    private shouldShowInjectionFailedError(): boolean {
-        return this.props.storeState?.visualizationStoreData?.injectionFailed;
     }
 
     private isTargetPageInvalid(): boolean {

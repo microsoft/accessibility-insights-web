@@ -22,28 +22,6 @@ exports[`DetailsViewContainer render content render once; should call details vi
 />
 `;
 
-exports[`DetailsViewContainer render content show InjectionFailed when injection failed 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
-  />
-  <InjectionFailed />
-</React.Fragment>
-`;
-
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
 <React.Fragment>
   <NarrowModeDetector

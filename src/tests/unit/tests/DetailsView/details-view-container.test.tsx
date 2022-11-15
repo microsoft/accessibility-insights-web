@@ -103,28 +103,6 @@ describe('DetailsViewContainer', () => {
             expect(rendered.getElement()).toMatchSnapshot();
         });
 
-        it('show InjectionFailed when injection failed', () => {
-            const storesHubMock = Mock.ofType(ClientStoresHub);
-
-            const props: DetailsViewContainerProps = {
-                storeState: {
-                    tabStoreData: {
-                        isClosed: false,
-                    },
-                    visualizationStoreData: { injectionFailed: true },
-                },
-                deps: {
-                    storesHub: storesHubMock.object,
-                },
-            } as DetailsViewContainerProps;
-
-            storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
-            storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
-
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
-        });
-
         it('render once; should call details view opened', () => {
             const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
