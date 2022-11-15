@@ -58,6 +58,11 @@ export class TabContextFactory {
     public createTabContext(tabId: number): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
+        const notificationCreator = new NotificationCreator(
+            this.browserAdapter,
+            this.visualizationConfigurationFactory,
+            this.logger,
+        );
         const storeHub = new TabContextStoreHub(
             actionsHub,
             this.visualizationConfigurationFactory,
@@ -66,11 +71,7 @@ export class TabContextFactory {
             this.logger,
             tabId,
             this.urlParser,
-        );
-        const notificationCreator = new NotificationCreator(
-            this.browserAdapter,
-            this.visualizationConfigurationFactory,
-            this.logger,
+            this.notificationCreator,
         );
         const shortcutsPageController = new ShortcutsPageController(this.browserAdapter);
 

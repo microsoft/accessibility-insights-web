@@ -5,10 +5,12 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { EnumHelper } from 'common/enum-helper';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
@@ -42,6 +44,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
+        private notificationCreator: NotificationCreator,
     ) {
         super(
             StoreNames.VisualizationStore,
@@ -279,6 +282,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
             this.state.injectingStarted = false;
         } else {
             this.state.injectionFailed = true;
+            this.notificationCreator.createNotification(DisplayableStrings.injectionFailed);
         }
         await this.emitChanged();
     };

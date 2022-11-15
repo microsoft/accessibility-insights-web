@@ -75,6 +75,49 @@ exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
 </div>
 `;
 
+exports[`DiagnosticViewToggleTest renders toggle when injection failed 1`] = `
+<div
+  className="diagnosticViewToggle"
+>
+  <div
+    className="title"
+  >
+    Automated checks
+  </div>
+  <div
+    className="toggle"
+  >
+    <VisualizationToggle
+      checked={false}
+      componentRef={
+        {
+          "current": null,
+        }
+      }
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      visualizationName="Automated checks"
+    />
+  </div>
+  <div>
+    <StyledLinkBase
+      className="insights-link"
+      href="#"
+      onClick={[Function]}
+    >
+      List view and filtering
+    </StyledLinkBase>
+  </div>
+  <div
+    className="shortcut"
+  >
+    Ctrl+Shift+1
+  </div>
+</div>
+`;
+
 exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
 <div
   className="diagnosticViewToggle"

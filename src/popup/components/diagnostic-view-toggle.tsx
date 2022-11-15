@@ -87,7 +87,7 @@ export class DiagnosticViewToggle extends React.Component<
         const id = this.configuration.getIdentifier();
         const scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
-        if (scanning === id) {
+        if (scanning === id && !this.props.visualizationStoreData.injectionFailed) {
             return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
         } else {
             const disabled = scanning != null;

@@ -7,6 +7,7 @@ import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import { NotificationCreator } from 'common/notification-creator';
 import { UrlParser } from 'common/url-parser';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { StoreType } from '../../common/types/store-type';
@@ -43,6 +44,7 @@ export class TabContextStoreHub implements StoreHub {
         logger: Logger,
         tabId: number,
         urlParser: UrlParser,
+        notificationCreator: NotificationCreator,
     ) {
         const persistStoreData = true;
         const persistedTabData = persistedData.tabData ? persistedData.tabData[tabId] : null;
@@ -57,6 +59,7 @@ export class TabContextStoreHub implements StoreHub {
             logger,
             tabId,
             persistStoreData,
+            notificationCreator,
         );
         this.visualizationStore.initialize();
 

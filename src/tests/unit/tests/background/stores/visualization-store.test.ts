@@ -13,8 +13,11 @@ import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { DisplayableStrings } from 'common/constants/displayable-strings';
+import { NotificationCreator } from 'common/notification-creator';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { cloneDeep } from 'lodash';
+import { Mock, Times } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
@@ -741,8 +744,16 @@ describe('VisualizationStoreTest ', () => {
             .with('injectionAttempts', 4)
             .build();
 
-        const storeTester = createStoreTesterForInjectionActions(actionName);
+        const notificationCreatorMock = Mock.ofType<NotificationCreator>();
+        notificationCreatorMock
+            .setup(m => m.createNotification(DisplayableStrings.injectionFailed))
+            .verifiable(Times.once());
+        const storeTester = createStoreTesterForInjectionActions(
+            actionName,
+            notificationCreatorMock.object,
+        );
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        notificationCreatorMock.verifyAll();
     });
 
     test('onScrollRequested', async () => {
@@ -869,6 +880,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 true,
+                null,
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -888,6 +900,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 true,
+                null,
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
@@ -895,6 +908,7 @@ describe('VisualizationStoreTest ', () => {
 
     function createStoreTesterForInjectionActions(
         actionName: keyof InjectionActions,
+        notificationCreatorMock: NotificationCreator | null = null,
     ): StoreTester<VisualizationStoreData, InjectionActions> {
         const factory = (actions: InjectionActions) =>
             new VisualizationStore(
@@ -907,6 +921,7 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 true,
+                notificationCreatorMock,
             );
 
         return new StoreTester(InjectionActions, actionName, factory);

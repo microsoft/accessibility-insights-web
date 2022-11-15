@@ -89,6 +89,22 @@ describe('DiagnosticViewToggleTest', () => {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
+
+        it('toggle when injection failed', () => {
+            const visualizationType = VisualizationType.Issues;
+            const data = new VisualizationStoreDataBuilder().with('injectionFailed', true).build();
+
+            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(
+                visualizationType,
+                testTelemetrySource,
+            )
+                .setupVisualizationStoreData(data)
+                .build();
+
+            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 
     describe('user interaction: ', () => {

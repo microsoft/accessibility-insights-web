@@ -24,6 +24,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             null,
             null,
             true,
+            null,
         ).getDefaultState();
     }
 
