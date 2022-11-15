@@ -5,6 +5,11 @@ import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProviderImpl } from './assessments-provider';
 import { AssessmentsProvider } from './types/assessments-provider';
 
+export type AssessmentsRequirementsFilter = (
+    assessmentsProvider: AssessmentsProvider,
+    requirementKeys: string[],
+) => AssessmentsProvider;
+
 // the assessmentProvider passed into this function should already
 // have been passed through the filter for feature flags
 export function assessmentsProviderForRequirements(
