@@ -10,13 +10,12 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
-    OnDetailsViewInitializedPayload,
+    LoadAssessmentPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
-    LoadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
 import { AssessmentActions } from 'background/actions/assessment-actions';
