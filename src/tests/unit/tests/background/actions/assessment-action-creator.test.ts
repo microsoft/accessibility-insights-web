@@ -756,30 +756,6 @@ describe('AssessmentActionCreatorTest', () => {
         );
     });
 
-    it('handles DetailsViewInitialize message', async () => {
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId: 'testId',
-        } as OnDetailsViewInitializedPayload;
-
-        const detailsViewInitMock = createAsyncActionMock(payload, actionExecutingScope);
-        const actionsMock = createActionsMock('updateDetailsViewId', detailsViewInitMock.object);
-
-        const testSubject = new AssessmentActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testSubject.registerCallbacks();
-
-        await interpreterMock.simulateMessage(
-            Messages.Visualizations.DetailsView.Initialize,
-            payload,
-        );
-
-        detailsViewInitMock.verifyAll();
-    });
-
     it('handles LoadAssessment message', async () => {
         const payload = {
             tabId: 1,
