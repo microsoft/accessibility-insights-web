@@ -3,7 +3,12 @@
 import { CommandsAdapter } from '../../common/browser-adapters/commands-adapter';
 import { getStoreStateMessage, Messages } from '../../common/messages';
 import { StoreNames } from '../../common/stores/store-names';
-import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
+import {
+    OnDetailsViewInitializedPayload,
+    PayloadWithEventName,
+    SetLaunchPanelState,
+} from '../actions/action-payloads';
+import { AssessmentActions } from '../actions/assessment-actions';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
@@ -17,6 +22,8 @@ export class GlobalActionCreator {
 
     private commandActions: CommandActions;
     private launchPanelStateActions: LaunchPanelStateActions;
+    private assessmentActions: AssessmentActions;
+    private quickAssessActions: AssessmentActions;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -29,6 +36,8 @@ export class GlobalActionCreator {
         this.telemetryEventHandler = telemetryEventHandler;
         this.commandActions = globalActionHub.commandActions;
         this.launchPanelStateActions = globalActionHub.launchPanelStateActions;
+        this.assessmentActions = globalActionHub.assessmentActions;
+        this.quickAssessActions = globalActionHub.quickAssessActions;
     }
 
     public registerCallbacks(): void {
@@ -49,6 +58,11 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Telemetry.Send,
             this.onSendTelemetry,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.DetailsView.Initialize,
+            this.onDetailsViewInitialized,
         );
     }
 
@@ -72,5 +86,12 @@ export class GlobalActionCreator {
     private onSendTelemetry = (payload: PayloadWithEventName): void => {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
+    };
+
+    private onDetailsViewInitialized = async (
+        payload: OnDetailsViewInitializedPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.updateDetailsViewId.invoke(payload);
+        await this.quickAssessActions.updateDetailsViewId.invoke(payload);
     };
 }

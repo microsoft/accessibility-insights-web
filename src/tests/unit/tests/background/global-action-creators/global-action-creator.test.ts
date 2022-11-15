@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SetLaunchPanelState } from 'background/actions/action-payloads';
+import {
+    OnDetailsViewInitializedPayload,
+    SetLaunchPanelState,
+} from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { CommandActions } from 'background/actions/command-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
@@ -100,6 +103,27 @@ describe('GlobalActionCreatorTest', () => {
 
         validator.verifyAll();
     });
+
+    test('handles DetailsViewInitialize message', async () => {
+        const actionName = 'updateDetailsViewId';
+        const payload: OnDetailsViewInitializedPayload = {
+            detailsViewId: 'testId',
+        } as OnDetailsViewInitializedPayload;
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegisterCallbacks()
+            .setupActionOnAssessmentActions(actionName)
+            .setupActionOnQuickAssessActions(actionName)
+            .setupAssessmentActionWithInvokeParameter(actionName, payload)
+            .setupQuickAssessActionWithInvokeParameter(actionName, payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(Messages.Visualizations.DetailsView.Initialize, payload);
+
+        validator.verifyAll();
+    });
 });
 
 class GlobalActionCreatorValidator {
@@ -107,6 +131,8 @@ class GlobalActionCreatorValidator {
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private assessmentActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private quickAssessActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
@@ -158,6 +184,22 @@ class GlobalActionCreatorValidator {
         );
     }
 
+    public setupActionOnAssessmentActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.assessmentActionsContainerMock,
+            this.assessmentActionsMockMap,
+        );
+    }
+
+    public setupActionOnQuickAssessActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.quickAssessActionsContainerMock,
+            this.quickAssessActionsMockMap,
+        );
+    }
+
     public setupGetCommandsFromAdapter(
         commands: chrome.commands.Command[],
     ): GlobalActionCreatorValidator {
@@ -196,6 +238,28 @@ class GlobalActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.launchPanelActionsMockMap,
+        );
+    }
+
+    public setupAssessmentActionWithInvokeParameter(
+        actionName: keyof AssessmentActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.assessmentActionsMockMap,
+        );
+    }
+
+    public setupQuickAssessActionWithInvokeParameter(
+        actionName: keyof AssessmentActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.quickAssessActionsMockMap,
         );
     }
 
@@ -293,6 +357,8 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.commandActionMocksMap);
         this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
+        this.verifyAllActions(this.assessmentActionsMockMap);
+        this.verifyAllActions(this.quickAssessActionsMockMap);
     }
 
     private verifyAllActions(
