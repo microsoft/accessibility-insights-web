@@ -24,6 +24,10 @@ import {
 } from 'DetailsView/components/load-assessment-button-factory';
 import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
+    GetOverviewSummaryData,
+    getOverviewSummaryDataForPivot,
+} from 'DetailsView/components/overview-content/get-overview-summary-data';
+import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
     getReportExportDialogForMediumPass,
@@ -90,6 +94,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     analyzerMessageConfiguration: AnalyzerMessageConfiguration;
+    getOverviewSummaryData: GetOverviewSummaryData;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -118,6 +123,7 @@ const detailsViewSwitcherNavs: {
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
         analyzerMessageConfiguration: AssessmentVisualizationMessageTypes,
+        getOverviewSummaryData: getOverviewSummaryDataForPivot(DetailsViewPivotType.assessment),
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -131,6 +137,7 @@ const detailsViewSwitcherNavs: {
         warningConfiguration: quickAssessWarningConfiguration,
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
         analyzerMessageConfiguration: MediumPassVisualizationMessageTypes,
+        getOverviewSummaryData: getOverviewSummaryDataForPivot(DetailsViewPivotType.mediumPass),
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -144,6 +151,7 @@ const detailsViewSwitcherNavs: {
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
         analyzerMessageConfiguration: AdhocVisualizationMessageTypes,
+        getOverviewSummaryData: () => null,
     },
 };
 
