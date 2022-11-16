@@ -24,6 +24,7 @@ import { EventStubFactory } from '../../../common/event-stub-factory';
 describe('SharedAssessmentActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
+    const messageType: string = 'test-message-type';
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: SharedAssessmentActionMessageCreator;
@@ -49,7 +50,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectTestRequirement,
+            messageType,
             payload: {
                 telemetry: telemetry,
                 selectedTestSubview: selectedRequirement,
@@ -61,7 +62,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forSelectRequirement(event, view, selectedRequirement))
             .returns(() => telemetry);
 
-        testSubject.selectRequirement(event, HeadingsTestStep.headingFunction, view);
+        testSubject.selectRequirement(event, HeadingsTestStep.headingFunction, view, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -81,7 +82,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectNextRequirement,
+            messageType,
             payload: {
                 telemetry: telemetry,
                 selectedTestSubview: selectedRequirement,
@@ -93,7 +94,12 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forSelectRequirement(event, view, selectedRequirement))
             .returns(() => telemetry);
 
-        testSubject.selectNextRequirement(event, HeadingsTestStep.headingFunction, view);
+        testSubject.selectNextRequirement(
+            event,
+            HeadingsTestStep.headingFunction,
+            view,
+            messageType,
+        );
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -111,7 +117,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectGettingStarted,
+            messageType,
             payload: {
                 telemetry: telemetry,
                 selectedTest: view,
@@ -122,7 +128,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forSelectGettingStarted(event, view))
             .returns(() => telemetry);
 
-        testSubject.selectGettingStarted(event, view);
+        testSubject.selectGettingStarted(event, view, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -134,13 +140,13 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         const view = VisualizationType.Headings;
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ExpandTestNav,
+            messageType,
             payload: {
                 selectedTest: view,
             },
         };
 
-        testSubject.expandTestNav(view);
+        testSubject.expandTestNav(view, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -150,10 +156,10 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
     test('collapseTestNav', () => {
         const expectedMessage = {
-            messageType: Messages.Assessment.CollapseTestNav,
+            messageType,
         };
 
-        testSubject.collapseTestNav();
+        testSubject.collapseTestNav(messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -170,7 +176,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.StartOverTest,
+            messageType,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 telemetry,
@@ -183,7 +189,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             )
             .returns(() => telemetry);
 
-        testSubject.startOverTest(event, VisualizationType.HeadingsAssessment);
+        testSubject.startOverTest(event, VisualizationType.HeadingsAssessment, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -200,7 +206,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelper,
+            messageType,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -214,87 +220,25 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
                 ),
             )
             .returns(() => telemetry);
-
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
-    test('enableVisualHelper without scan', () => {
-        const requirement = 'fake-requirement-name';
-        const telemetry = {
-            source: TelemetryEventSource.DetailsView,
-            triggeredBy: TriggeredByNotApplicable,
-            selectedTest: VisualizationType[VisualizationType.HeadingsAssessment],
-        };
-
-        const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
-            payload: {
-                test: VisualizationType.HeadingsAssessment,
-                requirement,
-                telemetry,
-            },
-        };
-
-        telemetryFactoryMock
-            .setup(tf =>
-                tf.forAssessmentActionFromDetailsViewNoTriggeredBy(
-                    VisualizationType.HeadingsAssessment,
-                ),
-            )
-            .returns(() => telemetry);
-
-        testSubject.enableVisualHelper(VisualizationType.HeadingsAssessment, requirement, false);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
-    test('enableVisualHelper, with scan, without telemetry', () => {
-        const requirement = 'fake-requirement-name';
-
-        const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelper,
-            payload: {
-                test: VisualizationType.HeadingsAssessment,
-                requirement,
-                telemetry: undefined,
-            },
-        };
-
-        telemetryFactoryMock
-            .setup(tf =>
-                tf.forAssessmentActionFromDetailsViewNoTriggeredBy(
-                    VisualizationType.HeadingsAssessment,
-                ),
-            )
-            .verifiable(Times.never());
 
         testSubject.enableVisualHelper(
             VisualizationType.HeadingsAssessment,
             requirement,
             true,
-            false,
+            messageType,
         );
 
-        telemetryFactoryMock.verifyAll();
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
         );
     });
 
-    test('enableVisualHelper, without scan, without telemetry', () => {
+    test('enableVisualHelper, without telemetry', () => {
         const requirement = 'fake-requirement-name';
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -314,7 +258,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             VisualizationType.HeadingsAssessment,
             requirement,
             false,
-            false,
+            messageType,
         );
 
         telemetryFactoryMock.verifyAll();
@@ -326,13 +270,13 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
     test('disableVisualHelpersForTest', () => {
         const expectedMessage = {
-            messageType: Messages.Assessment.DisableVisualHelperForTest,
+            messageType,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
             },
         };
 
-        testSubject.disableVisualHelpersForTest(VisualizationType.HeadingsAssessment);
+        testSubject.disableVisualHelpersForTest(VisualizationType.HeadingsAssessment, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -346,7 +290,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         const telemetry = {};
 
         const expectedMessage = {
-            messageType: Messages.Assessment.DisableVisualHelper,
+            messageType,
             payload: {
                 test: test,
                 telemetry,
@@ -357,7 +301,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tfm => tfm.forRequirementFromDetailsView(test, requirement))
             .returns(() => telemetry as RequirementActionTelemetryData);
 
-        testSubject.disableVisualHelper(test, requirement);
+        testSubject.disableVisualHelper(test, requirement, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -374,7 +318,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeStatus,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -388,7 +332,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry);
 
-        testSubject.changeManualTestStatus(1, 1, 'requirement', 'selector');
+        testSubject.changeManualTestStatus(1, 1, 'requirement', 'selector', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -405,7 +349,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeRequirementStatus,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -418,7 +362,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry);
 
-        testSubject.changeManualRequirementStatus(1, 1, 'requirement');
+        testSubject.changeManualRequirementStatus(1, 1, 'requirement', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -435,7 +379,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.Undo,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -448,7 +392,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tfm => tfm.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry);
 
-        testSubject.undoManualTestStatusChange(1, 'requirement', 'selector');
+        testSubject.undoManualTestStatusChange(1, 'requirement', 'selector', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -463,7 +407,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -473,7 +417,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.undoManualRequirementStatusChange(1, 'requirement');
+        testSubject.undoManualRequirementStatusChange(1, 'requirement', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -488,7 +432,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeVisualizationState,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -500,7 +444,13 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.changeAssessmentVisualizationState(true, 1, 'requirement', 'selector');
+        testSubject.changeAssessmentVisualizationState(
+            true,
+            1,
+            'requirement',
+            'selector',
+            messageType,
+        );
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -511,13 +461,13 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
     test('addResultDescription', () => {
         const persistedDescription = 'persisted description';
         const expectedMessage = {
-            messageType: Messages.Assessment.AddResultDescription,
+            messageType,
             payload: {
                 description: persistedDescription,
             },
         };
 
-        testSubject.addResultDescription(persistedDescription);
+        testSubject.addResultDescription(persistedDescription, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -540,7 +490,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.AddFailureInstance,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -552,7 +502,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry);
 
-        testSubject.addFailureInstance(instanceData, 1, 'requirement');
+        testSubject.addFailureInstance(instanceData, 1, 'requirement', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -569,7 +519,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.RemoveFailureInstance,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -582,7 +532,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forRequirementFromDetailsView(1, 'requirement'))
             .returns(() => telemetry);
 
-        testSubject.removeFailureInstance(1, 'requirement', '1');
+        testSubject.removeFailureInstance(1, 'requirement', '1', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -602,7 +552,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             snippet: 'snippet',
         };
         const expectedMessage = {
-            messageType: Messages.Assessment.EditFailureInstance,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -614,7 +564,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.editFailureInstance(instanceData, 1, 'requirement', '1');
+        testSubject.editFailureInstance(instanceData, 1, 'requirement', '1', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -631,7 +581,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.PassUnmarkedInstances,
+            messageType,
             payload: {
                 test: test,
                 requirement: requirement,
@@ -641,7 +591,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.passUnmarkedInstances(test, requirement);
+        testSubject.passUnmarkedInstances(test, requirement, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -656,7 +606,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -667,7 +617,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.changeAssessmentVisualizationStateForAll(true, 1, 'requirement');
+        testSubject.changeAssessmentVisualizationStateForAll(true, 1, 'requirement', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -683,7 +633,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ContinuePreviousAssessment,
+            messageType,
             payload: {
                 telemetry,
             },
@@ -691,7 +641,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
 
-        testSubject.continuePreviousAssessment(event);
+        testSubject.continuePreviousAssessment(event, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -711,7 +661,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessageToLoadAssessment = {
-            messageType: Messages.Assessment.LoadAssessment,
+            messageType,
             payload: {
                 tabId,
                 versionedAssessmentData: {
@@ -731,7 +681,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.fromDetailsViewNoTriggeredBy())
             .returns(() => telemetry);
 
-        testSubject.loadAssessment(assessmentData, tabId, 'testId');
+        testSubject.loadAssessment(assessmentData, tabId, 'testId', messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToLoadAssessment)),
@@ -751,7 +701,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessageToStartOverAllAssessments = {
-            messageType: Messages.Assessment.StartOverAllAssessments,
+            messageType,
             payload: {
                 telemetry,
             },
@@ -763,7 +713,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
 
-        testSubject.startOverAllAssessments(event);
+        testSubject.startOverAllAssessments(event, messageType);
 
         dispatcherMock.verify(
             dispatcher =>
@@ -791,7 +741,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.CancelStartOver,
+            messageType,
             payload: {
                 telemetry,
             },
@@ -801,7 +751,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
             .setup(tf => tf.forCancelStartOver(event, test, requirement))
             .returns(() => telemetry);
 
-        testSubject.cancelStartOver(event, test, requirement);
+        testSubject.cancelStartOver(event, test, requirement, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -817,7 +767,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType,
             payload: {
                 telemetry,
             },
@@ -825,7 +775,7 @@ describe('SharedAssessmentActionMessageCreatorTest', () => {
 
         telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
 
-        testSubject.cancelStartOverAllAssessments(event);
+        testSubject.cancelStartOverAllAssessments(event, messageType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
