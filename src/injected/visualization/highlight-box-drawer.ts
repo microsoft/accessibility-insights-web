@@ -22,23 +22,6 @@ export class HighlightBoxDrawer extends BaseDrawer {
     protected dialogRenderer: DialogRenderer;
     private clientUtils: ClientUtils;
 
-    public static defaultConfiguration: DrawerConfiguration = {
-        borderStyle: 'solid',
-        borderWidth: '2px',
-        borderRadius: '2px',
-        borderColor: 'rgb(255, 255, 255)',
-        textBoxConfig: {
-            fontColor: 'rgb(255, 255, 255)',
-            background: '#FFFFFF',
-            text: null,
-            boxWidth: '2em',
-        },
-        outlineStyle: 'solid',
-        outlineWidth: '1px',
-        outlineColor: 'rgb(255, 255, 255)',
-        showVisualization: true,
-    };
-
     constructor(
         dom: Document,
         containerClass: string,
@@ -46,14 +29,12 @@ export class HighlightBoxDrawer extends BaseDrawer {
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
         clientUtils: ClientUtils,
-        formatter: Formatter = null,
+        formatter: Formatter,
         private readonly getElementsToHighlight: typeof getTargetElementsFromResult = getTargetElementsFromResult,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.clientUtils = clientUtils;
-        if (this.formatter) {
-            this.dialogRenderer = this.formatter.getDialogRenderer();
-        }
+        this.dialogRenderer = this.formatter.getDialogRenderer();
     }
 
     public initialize(config: DrawerInitData<HtmlElementAxeResults>): void {
@@ -79,13 +60,10 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const body = currentDom.body;
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
-        let drawerConfig = HighlightBoxDrawer.defaultConfiguration;
-        if (this.formatter) {
-            drawerConfig = this.formatter.getDrawerConfiguration(
-                element,
-                data,
-            ) as DrawerConfiguration;
-        }
+        const drawerConfig = this.formatter.getDrawerConfiguration(
+            element,
+            data,
+        ) as DrawerConfiguration;
 
         let elementBoundingClientRect: BoundingRect = element.getBoundingClientRect();
         if (drawerConfig.getBoundingRect) {
@@ -111,15 +89,9 @@ export class HighlightBoxDrawer extends BaseDrawer {
         }
 
         const wrapper = currentDom.createElement('div');
-        wrapper.setAttribute('class', 'insights-highlight-box');
-        wrapper.style.outlineStyle = drawerConfig.outlineStyle;
+        wrapper.classList.add('insights-highlight-box');
+        wrapper.classList.add(`insights-highlight-outline-${drawerConfig.outlineStyle ?? 'solid'}`);
         wrapper.style.outlineColor = drawerConfig.outlineColor;
-        wrapper.style.outlineWidth = drawerConfig.outlineWidth;
-
-        wrapper.style.borderStyle = drawerConfig.borderStyle;
-        wrapper.style.borderColor = drawerConfig.borderColor;
-        wrapper.style.borderWidth = drawerConfig.borderWidth;
-        wrapper.style.borderRadius = drawerConfig.borderRadius;
 
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
@@ -189,7 +161,6 @@ export class HighlightBoxDrawer extends BaseDrawer {
         box.style.color = boxConfig.fontColor;
         box.style.fontSize = boxConfig.fontSize;
         box.style.fontWeight = boxConfig.fontWeight;
-        box.style.outline = boxConfig.outline;
         box.style.setProperty('width', boxConfig.boxWidth, 'important');
         box.style.setProperty('cursor', drawerConfig.cursor, 'important');
         box.style.setProperty('text-align', drawerConfig.textAlign, 'important');

@@ -255,43 +255,68 @@
         }
     }
 
-    .insights-highlight-container .insights-highlight-box {
-        visibility: visible !important;
-        position: absolute !important;
-        overflow: hidden !important;
-        pointer-events: none !important;
-
-        @include ms-high-contrast-override {
-            forced-color-adjust: none;
-            outline-color: Highlight !important;
-        }
-    }
-
-    .insights-highlight-container .insights-highlight-text {
-        @include ms-high-contrast-override {
-            forced-color-adjust: none;
-            color: HighlightText !important;
-            background-color: Highlight !important;
-        }
-    }
-
-    .insights-highlight-container .insights-highlight-box .insights-highlight-text {
-        cursor: default !important;
-        pointer-events: all !important;
-        font-size: 1em !important;
-        padding: 0.3em !important;
-        float: right !important;
-        position: relative !important;
-        text-align: center !important;
-    }
-
-    .insights-highlight-box {
-        &::after {
-            content: '' !important;
-            border: solid 1px white !important;
+    .insights-highlight-container {
+        .insights-highlight-box {
+            visibility: visible !important;
             position: absolute !important;
-            width: calc(100% - 2px) !important;
-            height: calc(100% - 2px) !important;
+            overflow: hidden !important;
+            pointer-events: none !important;
+        }
+
+        // This applies to both the text in highlight boxes and also the text
+        // in highlight circled used for tab/focus visualizers
+        .insights-highlight-text {
+            @include ms-high-contrast-override {
+                // Note that forced-color-adjust: none is required for highlight box labels'
+                // outline/box-shadows to be inherited correctly in HC mode, in addition to being
+                // required for color and background-color
+                forced-color-adjust: none;
+                color: HighlightText !important;
+                background-color: Highlight !important;
+            }
+        }
+
+        .insights-highlight-box .insights-highlight-text {
+            cursor: default !important;
+            pointer-events: all !important;
+            font-size: 1em !important;
+            padding: 0.3em !important;
+            float: right !important;
+            position: relative !important;
+            text-align: center !important;
+
+            // This results in the highlight box outline appearing to also run down the left edge of
+            // the label
+            outline: inherit !important;
+            outline-offset: inherit !important;
+            box-shadow: inherit !important;
+        }
+
+        .insights-highlight-outline-solid {
+            // Non-HC outline-color is intentionally unset; individual formatters should override it
+            outline-width: 1px !important;
+            outline-style: solid !important;
+            outline-offset: 1px !important;
+            box-shadow: 0 0 0 3px white !important;
+
+            @include ms-high-contrast-override {
+                forced-color-adjust: none;
+                outline-color: Highlight !important;
+                box-shadow: 0 0 0 3px HighlightText !important;
+            }
+        }
+
+        .insights-highlight-outline-dashed {
+            // Non-HC outline-color is intentionally unset; individual formatters should override it
+            outline-width: 2px !important;
+            outline-style: dashed !important;
+            outline-offset: 1px !important;
+            box-shadow: 0 0 0 4px white !important;
+
+            @include ms-high-contrast-override {
+                outline-color: Highlight !important;
+                box-shadow: 0 0 0 4px HighlightText !important;
+            }
         }
     }
 
