@@ -5,13 +5,8 @@ import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
 export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
-    outlineStyle?: string;
-    outlineWidth?: string;
+    outlineStyle?: 'solid' | 'dashed';
     outlineColor?: string;
-    borderStyle?: string;
-    borderWidth?: string;
-    borderRadius?: string;
-    borderColor: string;
     showVisualization: boolean;
     failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
@@ -42,7 +37,6 @@ export interface BoxConfig {
     boxWidth?: string;
     fontSize?: string;
     fontWeight?: string;
-    outline?: string;
 }
 
 export interface StrokeConfiguration {

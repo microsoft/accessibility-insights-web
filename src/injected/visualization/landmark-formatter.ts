@@ -18,41 +18,41 @@ interface ElemData {
 export class LandmarkFormatter extends FailureInstanceFormatter {
     private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
         banner: {
-            borderColor: '#d08311',
+            outlineColor: '#d08311',
             fontColor: '#ffffff',
         },
         complementary: {
-            borderColor: '#6b9d1a',
+            outlineColor: '#6b9d1a',
             fontColor: '#ffffff',
         },
         contentinfo: {
-            borderColor: '#00a88c',
+            outlineColor: '#00a88c',
             fontColor: '#ffffff',
         },
         form: {
-            borderColor: '#0298c7',
+            outlineColor: '#0298c7',
             fontColor: '#ffffff',
         },
         main: {
-            borderColor: '#cb2e6d',
+            outlineColor: '#cb2e6d',
             fontColor: '#ffffff',
         },
         navigation: {
-            borderColor: '#9b38e6',
+            outlineColor: '#9b38e6',
             fontColor: '#ffffff',
         },
         region: {
-            borderColor: '#2560e0',
+            outlineColor: '#2560e0',
             fontColor: '#ffffff',
         },
         search: {
-            borderColor: '#d363d8',
+            outlineColor: '#d363d8',
             fontColor: '#ffffff',
         },
     };
 
     private static readonly invalidLandmarkStyle: HeadingStyleConfiguration = {
-        borderColor: '#C00000',
+        outlineColor: '#C00000',
         fontColor: '#FFFFFF',
     };
 
@@ -76,15 +76,13 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
-                background: style.borderColor,
+                background: style.outlineColor,
                 text: elemData.label,
                 fontSize: '14pt !important',
                 fontWeight: '600',
-                outline: `3px dashed ${style.borderColor}`,
             },
-            borderColor: style.borderColor,
+            outlineColor: style.outlineColor,
             outlineStyle: 'dashed',
-            outlineWidth: '3px',
             showVisualization: true,
         };
 
