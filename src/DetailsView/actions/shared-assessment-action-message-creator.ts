@@ -32,6 +32,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         event: React.MouseEvent<HTMLElement>,
         selectedRequirement: string,
         visualizationType: VisualizationType,
+        messageType: string,
     ): void {
         const payload: SelectTestSubviewPayload = {
             telemetry: this.telemetryFactory.forSelectRequirement(
@@ -44,7 +45,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectTestRequirement,
+            messageType: messageType,
             payload: payload,
         });
     }
@@ -53,6 +54,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         event: React.MouseEvent<HTMLElement>,
         nextRequirement: string,
         visualizationType: VisualizationType,
+        messageType: string,
     ): void {
         const payload: SelectTestSubviewPayload = {
             telemetry: this.telemetryFactory.forSelectRequirement(
@@ -65,7 +67,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectNextRequirement,
+            messageType,
             payload: payload,
         });
     }
@@ -73,6 +75,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
     public selectGettingStarted(
         event: React.MouseEvent<HTMLElement>,
         visualizationType: VisualizationType,
+        messageType: string,
     ): void {
         const payload: SelectGettingStartedPayload = {
             telemetry: this.telemetryFactory.forSelectGettingStarted(event, visualizationType),
@@ -80,29 +83,33 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectGettingStarted,
+            messageType,
             payload: payload,
         });
     }
 
-    public expandTestNav(visualizationType: VisualizationType): void {
+    public expandTestNav(visualizationType: VisualizationType, messageType: string): void {
         const payload: ExpandTestNavPayload = {
             selectedTest: visualizationType,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ExpandTestNav,
+            messageType,
             payload: payload,
         });
     }
 
-    public collapseTestNav(): void {
+    public collapseTestNav(messageType: string): void {
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CollapseTestNav,
+            messageType,
         });
     }
 
-    public startOverTest(event: SupportedMouseEvent, test: VisualizationType): void {
+    public startOverTest(
+        event: SupportedMouseEvent,
+        test: VisualizationType,
+        messageType: string,
+    ): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
         const payload: ToggleActionPayload = {
             test,
@@ -110,7 +117,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOverTest,
+            messageType,
             payload,
         });
     }
@@ -118,8 +125,8 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
     public enableVisualHelper(
         test: VisualizationType,
         requirement: string,
-        shouldScan = true,
         sendTelemetry = true,
+        messageType: string,
     ): void {
         const telemetry = sendTelemetry
             ? this.telemetryFactory.forAssessmentActionFromDetailsViewNoTriggeredBy(test)
@@ -131,25 +138,27 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: shouldScan
-                ? Messages.Assessment.EnableVisualHelper
-                : Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType,
             payload,
         });
     }
 
-    public disableVisualHelpersForTest(test: VisualizationType): void {
+    public disableVisualHelpersForTest(test: VisualizationType, messageType: string): void {
         const payload: ToggleActionPayload = {
             test,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.DisableVisualHelperForTest,
+            messageType,
             payload,
         });
     }
 
-    public disableVisualHelper(test: VisualizationType, requirement: string): void {
+    public disableVisualHelper(
+        test: VisualizationType,
+        requirement: string,
+        messageType: string,
+    ): void {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ToggleActionPayload = {
             test,
@@ -157,7 +166,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.DisableVisualHelper,
+            messageType,
             payload,
         });
     }
@@ -167,6 +176,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         test: VisualizationType,
         requirement: string,
         selector: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeInstanceStatusPayload = {
@@ -178,7 +188,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeStatus,
+            messageType,
             payload,
         });
     };
@@ -187,6 +197,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         status: ManualTestStatus,
         test: VisualizationType,
         requirement: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeRequirementStatusPayload = {
@@ -197,7 +208,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeRequirementStatus,
+            messageType,
             payload,
         });
     };
@@ -206,6 +217,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         test: VisualizationType,
         requirement: string,
         selector: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AssessmentActionInstancePayload = {
@@ -216,7 +228,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.Undo,
+            messageType,
             payload,
         });
     };
@@ -224,6 +236,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
     public undoManualRequirementStatusChange = (
         test: VisualizationType,
         requirement: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeRequirementStatusPayload = {
@@ -233,7 +246,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType,
             payload,
         });
     };
@@ -243,6 +256,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         test: VisualizationType,
         requirement: string,
         selector: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeInstanceSelectionPayload = {
@@ -254,18 +268,18 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeVisualizationState,
+            messageType,
             payload,
         });
     };
 
-    public addResultDescription(description: string): void {
+    public addResultDescription(description: string, messageType: string): void {
         const payload: AddResultDescriptionPayload = {
             description,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.AddResultDescription,
+            messageType,
             payload,
         });
     }
@@ -274,6 +288,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         instanceData: FailureInstanceData,
         test: VisualizationType,
         requirement: string,
+        messageType: string,
     ): void {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AddFailureInstancePayload = {
@@ -284,7 +299,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.AddFailureInstance,
+            messageType,
             payload,
         });
     }
@@ -293,6 +308,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         test: VisualizationType,
         requirement: string,
         id: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: RemoveFailureInstancePayload = {
@@ -303,7 +319,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.RemoveFailureInstance,
+            messageType,
             payload,
         });
     };
@@ -313,6 +329,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         test: VisualizationType,
         requirement: string,
         id: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: EditFailureInstancePayload = {
@@ -324,12 +341,16 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.EditFailureInstance,
+            messageType,
             payload,
         });
     };
 
-    public passUnmarkedInstances(test: VisualizationType, requirement: string): void {
+    public passUnmarkedInstances(
+        test: VisualizationType,
+        requirement: string,
+        messageType: string,
+    ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ToggleActionPayload = {
             test,
@@ -338,7 +359,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.PassUnmarkedInstances,
+            messageType,
             payload,
         });
     }
@@ -347,6 +368,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         isVisualizationEnabled: boolean,
         test: VisualizationType,
         requirement: string,
+        messageType: string,
     ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: Omit<ChangeInstanceSelectionPayload, 'selector'> = {
@@ -357,18 +379,21 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType,
             payload,
         });
     }
 
-    public continuePreviousAssessment = (event: React.MouseEvent<any>): void => {
+    public continuePreviousAssessment = (
+        event: React.MouseEvent<any>,
+        messageType: string,
+    ): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ContinuePreviousAssessment,
+            messageType,
             payload,
         });
     };
@@ -377,6 +402,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         assessmentData: VersionedAssessmentData,
         tabId: number,
         detailsViewId: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
@@ -391,24 +417,24 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
             payload: setDetailsViewRightContentPanelPayload,
         });
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.LoadAssessment,
+            messageType,
             payload,
         });
     };
 
-    public saveAssessment = (event: React.MouseEvent<any>): void => {
+    public saveAssessment = (event: React.MouseEvent<any>, messageType: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SaveAssessment,
+            messageType,
             payload,
         });
     };
 
-    public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
+    public startOverAllAssessments = (event: React.MouseEvent<any>, messageType: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
         const startOverAllAssessmentsActionPayload: BaseActionPayload = {
@@ -420,7 +446,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
             payload: setDetailsViewRightContentPanelPayload,
         });
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOverAllAssessments,
+            messageType,
             payload: startOverAllAssessmentsActionPayload,
         });
     };
@@ -429,6 +455,7 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         event: React.MouseEvent<any>,
         test: VisualizationType,
         requirement: string,
+        messageType: string,
     ): void => {
         const telemetry = this.telemetryFactory.forCancelStartOver(event, test, requirement);
         const payload: BaseActionPayload = {
@@ -436,19 +463,22 @@ export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCr
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CancelStartOver,
+            messageType,
             payload,
         });
     };
 
-    public cancelStartOverAllAssessments = (event: React.MouseEvent<any>): void => {
+    public cancelStartOverAllAssessments = (
+        event: React.MouseEvent<any>,
+        messageType: string,
+    ): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType,
             payload,
         });
     };
