@@ -22,13 +22,12 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
+    LoadAssessmentPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
-    LoadAssessmentPayload,
-    OnDetailsViewInitializedPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
@@ -146,10 +145,6 @@ export class AssessmentActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.DetailsView.Select,
             this.onPivotChildSelected,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.Visualizations.DetailsView.Initialize,
-            this.onDetailsViewInitialized,
         );
         this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SaveAssessment,
@@ -354,11 +349,5 @@ export class AssessmentActionCreator {
 
     private onPivotChildSelected = async (payload: OnDetailsViewOpenPayload): Promise<void> => {
         await this.assessmentActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
-    };
-
-    private onDetailsViewInitialized = async (
-        payload: OnDetailsViewInitializedPayload,
-    ): Promise<void> => {
-        await this.assessmentActions.updateDetailsViewId.invoke(payload, this.executingScope);
     };
 }
