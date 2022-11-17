@@ -9,6 +9,7 @@ on:
 
 jobs:
   combine-prs:
+    if: github.event_name != 'schedule' || github.repository_owner == 'microsoft'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.3
