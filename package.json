@@ -130,7 +130,7 @@
         "commander": "^9.4.1",
         "core-js-bundle": "^3.25.3",
         "cross-env": "^7.0.3",
-        "css-loader": "^6.7.1",
+        "css-loader": "^6.7.2",
         "electron-builder": "23.3.3",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.6",
