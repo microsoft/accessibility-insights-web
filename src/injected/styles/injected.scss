@@ -314,6 +314,7 @@
             box-shadow: 0 0 0 4px white !important;
 
             @include ms-high-contrast-override {
+                forced-color-adjust: none;
                 outline-color: Highlight !important;
                 box-shadow: 0 0 0 4px HighlightText !important;
             }
