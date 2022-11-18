@@ -7,6 +7,10 @@ on:
     - cron: '0 13 * * 1'
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   combine-prs:
     if: github.event_name != 'schedule' || github.repository_owner == 'microsoft'
