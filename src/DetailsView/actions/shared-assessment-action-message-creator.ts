@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
 import {
     SelectTestSubviewPayload,
@@ -26,7 +27,6 @@ import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 
-// Licensed under the MIT License.
 export class SharedAssessmentActionMessageCreator extends DevToolActionMessageCreator {
     public selectRequirement(
         event: React.MouseEvent<HTMLElement>,
