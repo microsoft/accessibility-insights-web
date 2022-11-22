@@ -63,7 +63,7 @@ export function getReportExportDialogForAssessment(
                 description,
             ),
         updatePersistedDescription: value =>
-            props.deps.detailsViewActionMessageCreator.addResultDescription(value),
+            props.deps.assessmentActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SetLaunchPanelState } from 'background/actions/action-payloads';
+import {
+    OnDetailsViewInitializedPayload,
+    SetLaunchPanelState,
+} from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { CommandActions } from 'background/actions/command-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
@@ -100,6 +103,27 @@ describe('GlobalActionCreatorTest', () => {
 
         validator.verifyAll();
     });
+
+    test('handles DetailsViewInitialize message', async () => {
+        const actionName = 'updateDetailsViewId';
+        const payload: OnDetailsViewInitializedPayload = {
+            detailsViewId: 'testId',
+        } as OnDetailsViewInitializedPayload;
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegisterCallbacks()
+            .setupActionOnAssessmentActions(actionName)
+            .setupActionOnQuickAssessActions(actionName)
+            .setupAssessmentActionWithInvokeParameter(actionName, payload)
+            .setupQuickAssessActionWithInvokeParameter(actionName, payload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(Messages.Visualizations.DetailsView.Initialize, payload);
+
+        validator.verifyAll();
+    });
 });
 
 class GlobalActionCreatorValidator {
@@ -107,12 +131,15 @@ class GlobalActionCreatorValidator {
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private assessmentActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private quickAssessActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
+    private quickAssessActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private permissionsStateActionsContainerMock = Mock.ofType(PermissionsStateActions);
     private interpreterMock = Mock.ofType<Interpreter>();
@@ -126,6 +153,7 @@ class GlobalActionCreatorValidator {
         launchPanelStateActions: this.launchPanelStateActionsContainerMock.object,
         scopingActions: null,
         assessmentActions: this.assessmentActionsContainerMock.object,
+        quickAssessActions: this.quickAssessActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
         permissionsStateActions: this.permissionsStateActionsContainerMock.object,
     };
@@ -153,6 +181,22 @@ class GlobalActionCreatorValidator {
             actionName,
             this.launchPanelStateActionsContainerMock,
             this.launchPanelActionsMockMap,
+        );
+    }
+
+    public setupActionOnAssessmentActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.assessmentActionsContainerMock,
+            this.assessmentActionsMockMap,
+        );
+    }
+
+    public setupActionOnQuickAssessActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.quickAssessActionsContainerMock,
+            this.quickAssessActionsMockMap,
         );
     }
 
@@ -194,6 +238,28 @@ class GlobalActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.launchPanelActionsMockMap,
+        );
+    }
+
+    public setupAssessmentActionWithInvokeParameter(
+        actionName: keyof AssessmentActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.assessmentActionsMockMap,
+        );
+    }
+
+    public setupQuickAssessActionWithInvokeParameter(
+        actionName: keyof AssessmentActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.quickAssessActionsMockMap,
         );
     }
 
@@ -291,6 +357,8 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.commandActionMocksMap);
         this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
+        this.verifyAllActions(this.assessmentActionsMockMap);
+        this.verifyAllActions(this.quickAssessActionsMockMap);
     }
 
     private verifyAllActions(

@@ -5,17 +5,17 @@ import { NamedFC } from 'common/react/named-fc';
 import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
 } from 'DetailsView/components/change-assessment-dialog';
 import styles from 'DetailsView/components/load-assessment-dialog.scss';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type LoadAssessmentDialogDeps = {
     urlParser: UrlParser;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     detailsViewId: string;
 };
 
@@ -33,7 +33,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
     'LoadAssessmentDialog',
     props => {
         const loadAssessment = () => {
-            props.deps.detailsViewActionMessageCreator.loadAssessment(
+            props.deps.assessmentActionMessageCreator.loadAssessment(
                 props.loadedAssessmentData,
                 props.tabId,
                 props.deps.detailsViewId,
@@ -42,7 +42,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
         };
 
         const continuePreviousAssessment = (event: React.MouseEvent<any, MouseEvent>) => {
-            props.deps.detailsViewActionMessageCreator.continuePreviousAssessment(event);
+            props.deps.assessmentActionMessageCreator.continuePreviousAssessment(event);
             props.onClose();
         };
 

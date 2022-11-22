@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MediumPassActionCreator } from 'background/actions/quick-assess-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { Logger } from 'common/logging/logger';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
@@ -96,6 +97,11 @@ export class GlobalContextFactory {
             globalActionsHub.assessmentActions,
             telemetryEventHandler,
         );
+        const quickAssessActionCreator = new MediumPassActionCreator(
+            interpreter,
+            globalActionsHub.quickAssessActions,
+            telemetryEventHandler,
+        );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             globalActionsHub.userConfigurationActions,
             telemetryEventHandler,
@@ -118,6 +124,7 @@ export class GlobalContextFactory {
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
+        quickAssessActionCreator.registerCallbacks();
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { forEach } from 'lodash';
 import * as React from 'react';
@@ -8,7 +9,6 @@ import {
     VisualizationToggle,
     VisualizationToggleProps,
 } from '../../../../../common/components/visualization-toggle';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
@@ -16,17 +16,17 @@ import { VisualizationTogglePropsBuilder } from '../../../common/visualization-t
 
 describe('RestartScanVisualHelperToggleTest', () => {
     const stepKey = 'assessment-1-step-1';
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
     });
 
     test('render', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(true)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
+            .withActionMessageCreator(assessmentActionMessageCreatorMock.object)
             .build();
 
         const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
@@ -55,11 +55,11 @@ describe('RestartScanVisualHelperToggleTest', () => {
         const props = new VisualHelperToggleConfigBuilder()
             .withToggleStepEnabled(stepIsEnabled)
             .withToggleStepScanned(false)
-            .withActionMessageCreator(detailsViewActionMessageCreatorMock.object)
+            .withActionMessageCreator(assessmentActionMessageCreatorMock.object)
             .build();
         const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
-        detailsViewActionMessageCreatorMock.reset();
-        detailsViewActionMessageCreatorMock
+        assessmentActionMessageCreatorMock.reset();
+        assessmentActionMessageCreatorMock
             .setup(acm => {
                 return stepIsEnabled
                     ? acm.disableVisualHelper(
@@ -72,7 +72,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
         wrapper.find(VisualizationToggle).simulate('click');
 
-        detailsViewActionMessageCreatorMock.verifyAll();
+        assessmentActionMessageCreatorMock.verifyAll();
         assertSnapshotMatch(wrapper);
     });
 

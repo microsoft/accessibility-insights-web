@@ -10,13 +10,12 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
-    OnDetailsViewInitializedPayload,
+    LoadAssessmentPayload,
     OnDetailsViewOpenPayload,
     RemoveFailureInstancePayload,
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
-    LoadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
 import { AssessmentActions } from 'background/actions/assessment-actions';
@@ -754,30 +753,6 @@ describe('AssessmentActionCreatorTest', () => {
                 handler.publishTelemetry(TelemetryEvents.SAVE_ASSESSMENT, telemetryOnlyPayload),
             Times.once(),
         );
-    });
-
-    it('handles DetailsViewInitialize message', async () => {
-        const payload: OnDetailsViewInitializedPayload = {
-            detailsViewId: 'testId',
-        } as OnDetailsViewInitializedPayload;
-
-        const detailsViewInitMock = createAsyncActionMock(payload, actionExecutingScope);
-        const actionsMock = createActionsMock('updateDetailsViewId', detailsViewInitMock.object);
-
-        const testSubject = new AssessmentActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testSubject.registerCallbacks();
-
-        await interpreterMock.simulateMessage(
-            Messages.Visualizations.DetailsView.Initialize,
-            payload,
-        );
-
-        detailsViewInitMock.verifyAll();
     });
 
     it('handles LoadAssessment message', async () => {

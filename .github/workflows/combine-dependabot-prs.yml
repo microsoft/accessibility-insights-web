@@ -1,0 +1,27 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+name: "Combine Dependabot PRs"
+on:
+  schedule:
+    - cron: '0 13 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  combine-prs:
+    if: github.event_name != 'schedule' || github.repository_owner == 'microsoft'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.3
+      - uses: maadhattah/combine-dependabot-prs@e4dc7e045b018ee1e963a1a67bccbbf8ff3b176f
+        with:
+          branchPrefix: "dependabot"
+          mustBeGreen: true
+          combineBranchName: combined-prs-${{ github.run_id }}
+          ignoreLabel: "pr: do not combine"
+          baseBranch: "main"
+          openPR: true

@@ -6,6 +6,7 @@ import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
@@ -43,6 +44,7 @@ import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-re
 import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
@@ -292,6 +294,11 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
+            const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+            );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -336,8 +343,9 @@ if (tabId != null) {
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 new AssessmentTableColumnConfigHandler(
-                    new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
+                    new MasterCheckBoxConfigProvider(assessmentActionMessageCreator),
                     Assessments,
                 ),
                 Assessments,
@@ -495,7 +503,7 @@ if (tabId != null) {
 
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
-                detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 fileReader,
                 document,
                 loadAssessmentDataValidator,
@@ -517,6 +525,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
@@ -534,7 +543,10 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -594,6 +606,7 @@ if (tabId != null) {
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
+                mediumPassRequirementKeys: MediumPassRequirementKeys,
             };
 
             const renderer = new DetailsViewRenderer(

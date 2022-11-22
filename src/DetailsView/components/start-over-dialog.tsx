@@ -4,8 +4,8 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
 export type StartOverDialogType = 'assessment' | 'test';
@@ -13,7 +13,7 @@ export const dialogClosedState = 'none';
 export type StartOverDialogState = StartOverDialogType | typeof dialogClosedState;
 
 export type StartOverDialogDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
 export interface StartOverDialogProps {
@@ -36,22 +36,22 @@ export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', 
     const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
     const onStartTestOver = (event: React.MouseEvent<any>): void => {
-        deps.detailsViewActionMessageCreator.startOverTest(event, test);
+        deps.assessmentActionMessageCreator.startOverTest(event, test);
         dismissDialog();
     };
 
     const onStartOverAllTests = (event: React.MouseEvent<any>): void => {
-        deps.detailsViewActionMessageCreator.startOverAllAssessments(event);
+        deps.assessmentActionMessageCreator.startOverAllAssessments(event);
         dismissDialog();
     };
 
     const onCancelStartOver = (event: React.MouseEvent<any>) => {
-        deps.detailsViewActionMessageCreator.cancelStartOver(event, test, requirementKey);
+        deps.assessmentActionMessageCreator.cancelStartOver(event, test, requirementKey);
         dismissDialog();
     };
 
     const onCancelStartOverAllTests = (event: React.MouseEvent<any>) => {
-        deps.detailsViewActionMessageCreator.cancelStartOverAllAssessments(event);
+        deps.assessmentActionMessageCreator.cancelStartOverAllAssessments(event);
         dismissDialog();
     };
 
