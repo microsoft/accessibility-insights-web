@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
@@ -14,8 +15,10 @@ import { ShadowInitializer } from 'injected/shadow-initializer';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../../../../common/enum-helper';
+import {
+    ForEachConfigCallback,
+    VisualizationConfigurationFactory,
+} from '../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import {
@@ -38,10 +41,11 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>;
-    let getIdentifierMock: IMock<() => string>;
+    let getAnalyzerMock: IMock<(provider: AnalyzerProvider, key?: string) => Analyzer>;
+    let getIdentifierMock: IMock<(key?: string) => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
+    let requirementStub: Requirement;
     let messageConfigurationStub: AnalyzerMessageConfiguration;
     let switcherConfigurationStub: DetailsViewSwitcherNavConfiguration;
 
@@ -55,6 +59,7 @@ describe('AnalyzerControllerTests', () => {
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
     let assessmentsMock: IMock<AssessmentsProvider>;
     let shadowInitializerMock: IMock<ShadowInitializer>;
+    let analyzerInitializeCallback: ForEachConfigCallback;
     let testObject: AnalyzerController;
     let teardown: (id: string) => void;
     let startScan: (id: string) => void;
@@ -76,6 +81,9 @@ describe('AnalyzerControllerTests', () => {
             getAnalyzer: getAnalyzerMock.object,
             getIdentifier: getIdentifierMock.object,
         } as any;
+        requirementStub = {
+            key: 'some requirement key',
+        } as Requirement;
         messageConfigurationStub = {
             analyzerMessageType: 'some message type',
         };
@@ -115,14 +123,16 @@ describe('AnalyzerControllerTests', () => {
         visualizationStoreState = null;
         scopingStoreState = null;
 
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            setupVisualizationConfigurationFactory(test, configStub);
-        });
+        visualizationConfigurationFactoryMock
+            .setup(m => m.forEachConfig(It.isAny()))
+            .callback(givenCallback => {
+                analyzerInitializeCallback = givenCallback;
+                analyzerInitializeCallback(configStub, -1, requirementStub);
+            });
 
         identifier = 'fake-key';
-        const times = Times.exactly(EnumHelper.getNumericValues(VisualizationType).length);
-        setupGetIdentifierMock(identifier, times);
-        setupGetAnalyzerMockCalled(times);
+        setupGetIdentifierMock(identifier, requirementStub);
+        setupGetAnalyzerMockCalled(requirementStub);
 
         testObject = new AnalyzerController(
             visualizationStoreMock.object,
@@ -146,7 +156,7 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreState = {};
     });
 
-    test('handleUpdate when stores are initialized', () => {
+    test('listenToStore: verify initializiation and handle update', () => {
         assessmentsMock
             .setup(mock => mock.isValidType(It.isAny()))
             .returns(() => false)
@@ -165,8 +175,37 @@ describe('AnalyzerControllerTests', () => {
         testObject.listenToStore();
 
         analyzerStateUpdateHandlerStrictMock.verifyAll();
-        getAnalyzerMock.verifyAll();
         getIdentifierMock.verifyAll();
+        getAnalyzerMock.verifyAll();
+    });
+
+    test('listenToStore: verify initializiation and handle update for configs without requirements', () => {
+        getIdentifierMock.reset();
+        getAnalyzerMock.reset();
+        requirementStub = null;
+        setupGetIdentifierMock(identifier, requirementStub);
+        setupGetAnalyzerMockCalled(requirementStub);
+
+        assessmentsMock
+            .setup(mock => mock.isValidType(It.isAny()))
+            .returns(() => false)
+            .verifiable(Times.atLeastOnce());
+
+        visualizationStoreState = new VisualizationStoreDataBuilder()
+            .with('scanning', testType.toString())
+            .build();
+
+        scopingStoreState = new ScopingStoreDataBuilder().build();
+
+        analyzerStateUpdateHandlerStrictMock
+            .setup(handler => handler.handleUpdate(visualizationStoreState))
+            .verifiable(Times.once());
+
+        testObject.listenToStore();
+
+        analyzerStateUpdateHandlerStrictMock.verifyAll();
+        getIdentifierMock.verifyAll();
+        getAnalyzerMock.verifyAll();
     });
 
     test('do not scan on if any store state is null', () => {
@@ -240,18 +279,18 @@ describe('AnalyzerControllerTests', () => {
         analyzerMock.setup(am => am.teardown()).verifiable();
     }
 
-    function setupGetIdentifierMock(key: string, times): void {
+    function setupGetIdentifierMock(identifier: string, requirement: Requirement): void {
         getIdentifierMock
-            .setup(gim => gim())
-            .returns(step => key)
-            .verifiable(times);
+            .setup(gim => gim(requirement?.key))
+            .returns(step => identifier)
+            .verifiable();
     }
 
-    function setupGetAnalyzerMockCalled(times): void {
+    function setupGetAnalyzerMockCalled(requirement: Requirement): void {
         getAnalyzerMock
-            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object)))
+            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object), requirement?.key))
             .returns(() => analyzerMock.object)
-            .verifiable(times);
+            .verifiable();
     }
 
     function setupGetAnalyzerMockNeverCalled(): void {

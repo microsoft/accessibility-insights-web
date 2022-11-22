@@ -1,12 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
-import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
-import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { IMock, It, Mock, Times } from 'typemoq';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
+import { Requirement } from 'assessments/types/requirement';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    ForEachConfigCallback,
+    VisualizationConfigurationFactory,
+} from '../../../../common/configs/visualization-configuration-factory';
+import {
+    ScanData,
+    VisualizationStoreData,
+} from '../../../../common/types/store-data/visualization-store-data';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
@@ -15,9 +20,20 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     let startScanMock: IMock<(id) => void>;
     let teardownMock: IMock<(id) => void>;
     let testObject: TestableAnalyzerStateUpdateHandler;
+    let tearDownCallback: ForEachConfigCallback;
+    let configMock: IMock<VisualizationConfiguration>;
+    let requirementConfig: Requirement;
 
     beforeEach(() => {
-        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
+        tearDownCallback = null;
+        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        configMock = Mock.ofType<VisualizationConfiguration>();
+        requirementConfig = {
+            key: 'some requirement key',
+        } as Requirement;
         startScanMock = Mock.ofInstance(id => {});
         teardownMock = Mock.ofInstance(id => {});
         testObject = new TestableAnalyzerStateUpdateHandler(
@@ -41,170 +57,152 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         teardownMock.verifyAll();
     });
 
-    test('do not start scan if nothing is scanning', () => {
+    test('do not scan/teardown if nothing is scanning and no prevState', () => {
         const state = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
-
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
 
         testObject.handleUpdate(state);
 
-        startScanMock.verifyAll();
+        teardownMock.verify(m => m(It.isAny()), Times.never());
+        startScanMock.verify(m => m(It.isAny()), Times.never());
     });
 
-    test('do not start scan if inject in progress', () => {
+    test('do not start scan if inject in progress and no prevState', () => {
         const state = new VisualizationStoreDataBuilder()
             .with('scanning', 'landmarks')
             .with('injectingRequested', true)
             .withLandmarksEnable()
             .build();
 
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
-
         testObject.handleUpdate(state);
 
-        startScanMock.verifyAll();
+        startScanMock.verify(m => m(It.isAny()), Times.never());
     });
 
-    test('do not start scan if state is not changed', () => {
+    test('do not start scan or terminate if state is not changed', () => {
         const prevState = new VisualizationStoreDataBuilder()
             .with('scanning', 'landmarks')
             .withLandmarksEnable()
             .build();
         const newState = prevState;
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(It.isAny())).verifiable(Times.never());
+
         setupDefaultVisualizationConfigFactory();
+        setupIsTestTerminated(configMock, requirementConfig, prevState, newState, false, true);
 
         testObject.handleUpdate(newState);
+        tearDownCallback(configMock.object, -1, requirementConfig);
 
-        startScanMock.verifyAll();
+        teardownMock.verify(m => m(It.isAny()), Times.never());
+        startScanMock.verify(m => m(It.isAny()), Times.never());
     });
 
     test('start scan: prev state is null', () => {
-        const enabledStep = HeadingsTestStep.headingFunction;
+        const currentlyScanning = 'some test id';
         const state = new VisualizationStoreDataBuilder()
-            .with('scanning', HeadingsTestStep.headingFunction)
-            .withHeadingsAssessment(true, enabledStep)
+            .with('scanning', currentlyScanning)
             .build();
-        startScanMock
-            .setup(start => start(HeadingsTestStep.headingFunction))
-            .verifiable(Times.once());
-        setupDefaultVisualizationConfigFactory();
 
         testObject.handleUpdate(state);
 
-        startScanMock.verifyAll();
+        startScanMock.verify(m => m(currentlyScanning), Times.once());
     });
 
-    test('start scan: inject just completed', () => {
-        const enabledStep = HeadingsTestStep.headingFunction;
+    test('start scan w/o teardowns: inject just completed', () => {
+        const scanningTestStub = 'some test id';
         const prevState = new VisualizationStoreDataBuilder()
             .with('injectingRequested', true)
-            .with('scanning', enabledStep)
-            .withHeadingsAssessment(true, enabledStep)
+            .with('scanning', scanningTestStub)
             .build();
         const currState = new VisualizationStoreDataBuilder()
-            .with('scanning', enabledStep)
-            .withHeadingsAssessment(true, enabledStep)
+            .with('scanning', scanningTestStub)
             .build();
         testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(enabledStep)).verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
+        setupIsTestTerminated(configMock, requirementConfig, prevState, currState, true, true);
 
         testObject.handleUpdate(currState);
+        tearDownCallback(configMock.object, -1, requirementConfig);
 
-        startScanMock.verifyAll();
-    });
-
-    test('start scan: headings assessment just got enabled', () => {
-        const enabledStep = HeadingsTestStep.headingFunction;
-        const prevState = new VisualizationStoreDataBuilder().build();
-        const currState = new VisualizationStoreDataBuilder()
-            .with('scanning', enabledStep)
-            .withHeadingsAssessment(true, enabledStep)
-            .build();
-        testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(enabledStep)).verifiable(Times.once());
-        setupDefaultVisualizationConfigFactory();
-
-        testObject.handleUpdate(currState);
-
-        startScanMock.verifyAll();
-    });
-
-    test('do not terminate anything if prev state is null', () => {
-        const currState = new VisualizationStoreDataBuilder().build();
-
-        teardownMock.setup(teardown => teardown(It.isAny())).verifiable(Times.never());
-        setupDefaultVisualizationConfigFactory();
-
-        testObject.handleUpdate(currState);
-
-        teardownMock.verifyAll();
+        startScanMock.verify(m => m(scanningTestStub), Times.once());
+        teardownMock.verify(m => m(It.isAny()), Times.never());
     });
 
     test('teardown when a test is turned form enabled to disabled', () => {
-        const enabledStep = HeadingsTestStep.headingFunction;
-        const prevState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, enabledStep)
-            .build();
-        const currState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(false, enabledStep)
-            .build();
+        const enabledTest = 'some test id';
+        const prevState = {
+            tests: {
+                assessments: {},
+            },
+        } as VisualizationStoreData;
+        const currState = {
+            tests: {
+                adhoc: {},
+            },
+        } as VisualizationStoreData;
         testObject.setPrevState(prevState);
-        teardownMock.setup(teardown => teardown(enabledStep)).verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
+        setupIsTestTerminated(configMock, requirementConfig, prevState, currState, true, false);
+        configMock.setup(m => m.getIdentifier(requirementConfig.key)).returns(() => enabledTest);
 
         testObject.handleUpdate(currState);
+        tearDownCallback(configMock.object, -1, requirementConfig);
 
-        teardownMock.verifyAll();
+        teardownMock.verify(m => m(enabledTest), Times.once());
     });
 
-    test('teardown when enabled step is changed', () => {
-        const prevEnabledStep = HeadingsTestStep.headingFunction;
-        const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(true, prevEnabledStep)
-            .build();
-        const currState = new VisualizationStoreDataBuilder()
-            .withHeadingsAssessment(false, prevEnabledStep)
-            .withHeadingsAssessment(true, currEnabledStep)
-            .build();
+    test('teardown when a test is turned form enabled to disabled, without a requirement configuration', () => {
+        const enabledTest = 'some test id';
+        const prevState = {
+            tests: {
+                assessments: {},
+            },
+        } as VisualizationStoreData;
+        const currState = {
+            tests: {
+                adhoc: {},
+            },
+        } as VisualizationStoreData;
         testObject.setPrevState(prevState);
-        teardownMock.setup(teardown => teardown(prevEnabledStep)).verifiable(Times.once());
         setupDefaultVisualizationConfigFactory();
+        setupIsTestTerminated(configMock, undefined, prevState, currState, true, false);
+        configMock.setup(m => m.getIdentifier(undefined)).returns(() => enabledTest);
 
         testObject.handleUpdate(currState);
+        tearDownCallback(configMock.object, -1);
 
-        teardownMock.verifyAll();
-    });
-
-    test('both test and step get changed', () => {
-        const prevEnabledStep = LandmarkTestStep.landmarkRoles;
-        const currEnabledStep = HeadingsTestStep.headingLevel;
-        const prevState = new VisualizationStoreDataBuilder()
-            .withLandmarksAssessment(true, prevEnabledStep)
-            .build();
-        const currState = new VisualizationStoreDataBuilder()
-            .with('scanning', currEnabledStep)
-            .withLandmarksAssessment(false, prevEnabledStep)
-            .withHeadingsAssessment(true, currEnabledStep)
-            .build();
-        testObject.setPrevState(prevState);
-        startScanMock.setup(start => start(currEnabledStep)).verifiable(Times.once());
-        teardownMock.setup(teardown => teardown(prevEnabledStep)).verifiable(Times.once());
-        setupDefaultVisualizationConfigFactory();
-
-        testObject.handleUpdate(currState);
-
-        teardownMock.verifyAll();
-        startScanMock.verifyAll();
+        teardownMock.verify(m => m(enabledTest), Times.once());
     });
 
     function setupDefaultVisualizationConfigFactory(): void {
         visualizationConfigurationFactoryMock
-            .setup(vcfm => vcfm.getConfiguration(It.isAnyNumber()))
-            .returns(test => new WebVisualizationConfigurationFactory().getConfiguration(test));
+            .setup(m => m.forEachConfig(It.isAny()))
+            .callback(givenCallback => {
+                tearDownCallback = givenCallback;
+            });
+    }
+
+    function setupIsTestTerminated(
+        configMock: IMock<VisualizationConfiguration>,
+        requirementStub: Requirement,
+        expectedPrevState: VisualizationStoreData,
+        expectedCurrState: VisualizationStoreData,
+        withPrevEnabled: boolean,
+        withCurrEnabled: boolean,
+    ): void {
+        const prevScanStateStub = {} as ScanData;
+        const currScanStateStub = {} as ScanData;
+        configMock
+            .setup(m => m.getStoreData(expectedPrevState.tests))
+            .returns(() => prevScanStateStub);
+        configMock
+            .setup(m => m.getStoreData(expectedCurrState.tests))
+            .returns(() => currScanStateStub);
+        configMock
+            .setup(m => m.getTestStatus(prevScanStateStub, requirementStub?.key))
+            .returns(() => withPrevEnabled);
+        configMock
+            .setup(m => m.getTestStatus(currScanStateStub, requirementStub?.key))
+            .returns(() => withCurrEnabled);
     }
 });
 
