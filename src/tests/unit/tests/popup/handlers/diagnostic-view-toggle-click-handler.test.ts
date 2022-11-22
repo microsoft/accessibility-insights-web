@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { It, Mock } from 'typemoq';
 
@@ -52,7 +53,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new WebVisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(Assessments),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
@@ -97,7 +98,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new WebVisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(Assessments),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
