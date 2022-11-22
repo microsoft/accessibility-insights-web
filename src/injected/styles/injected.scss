@@ -294,15 +294,15 @@
 
         .insights-highlight-outline-solid {
             // Non-HC outline-color is intentionally unset; individual formatters should override it
-            outline-width: 1px !important;
+            outline-width: 2px !important;
             outline-style: solid !important;
             outline-offset: 1px !important;
-            box-shadow: 0 0 0 3px white !important;
+            box-shadow: 0 0 0 4px white !important;
 
             @include ms-high-contrast-override {
                 forced-color-adjust: none;
                 outline-color: Highlight !important;
-                box-shadow: 0 0 0 3px HighlightText !important;
+                box-shadow: 0 0 0 4px HighlightText !important;
             }
         }
 
