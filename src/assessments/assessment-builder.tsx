@@ -141,14 +141,6 @@ export class AssessmentBuilder {
             });
         };
 
-        const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return requirementConfig.key;
-        };
-
         const getNotificationMessage = (
             selectorMap: DictionaryStringTo<any>,
             requirement?: string,
@@ -175,7 +167,6 @@ export class AssessmentBuilder {
             getAssessmentData: data => data.assessments[key],
             key: `${key}Assessment`,
             getAnalyzer: getAnalyzer,
-            getIdentifier: getIdentifier,
             visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
             getDrawer: provider => provider.createNullDrawer(),
             getNotificationMessage: getNotificationMessage,
@@ -213,14 +204,6 @@ export class AssessmentBuilder {
                 });
             }
             return requirementConfig.getAnalyzer(provider);
-        };
-
-        const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return requirementConfig.key;
         };
 
         const getDrawer = (
@@ -271,7 +254,6 @@ export class AssessmentBuilder {
             ...assessment.visualizationConfiguration,
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
-            getIdentifier: getIdentifier,
             visualizationInstanceProcessor:
                 AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
             getDrawer: getDrawer,

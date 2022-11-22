@@ -105,7 +105,6 @@ describe('AssessmentBuilderTest', () => {
             vizStoreData.assessments.manualAssessmentKeyAssessment.stepStatus[testRequirement],
         ).toBe(true);
 
-        expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
         expect(config.visualizationInstanceProcessor()).toBe(
             VisualizationInstanceProcessor.nullProcessor,
         );
@@ -282,7 +281,6 @@ describe('AssessmentBuilderTest', () => {
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,
         );
-        expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement1.key);
         expect(config.visualizationInstanceProcessor(selectedRequirementKey)).toBe(
             visualizationInstanceProcessorMock.object,
         );
