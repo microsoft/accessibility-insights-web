@@ -1,75 +1,76 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
-import { VisualizationType } from 'common/types/visualization-type';
+import {
+    ForEachConfigCallback,
+    VisualizationConfigurationFactory,
+} from 'common/configs/visualization-configuration-factory';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { UpdateVisualization } from 'injected/target-page-visualization-updater';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-import { forOwn } from 'lodash';
-import { IMock, Mock } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('VisualizationStateChangeHandler', () => {
-    let assessmentProviderMock: IMock<AssessmentsProvider>;
+    let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationUpdaterMock: IMock<UpdateVisualization>;
     let storeDataStub: TargetPageStoreData;
     let testSubject: VisualizationStateChangeHandler;
-    let visualizations: VisualizationType[];
 
     beforeEach(() => {
-        assessmentProviderMock = Mock.ofType<AssessmentsProvider>();
         visualizationUpdaterMock = Mock.ofType<UpdateVisualization>();
+        configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         storeDataStub = { assessmentStoreData: {} } as TargetPageStoreData;
-        visualizations = [-1, -2];
         testSubject = new VisualizationStateChangeHandler(
-            visualizations,
             visualizationUpdaterMock.object,
-            assessmentProviderMock.object,
+            configFactoryMock.object,
         );
     });
 
-    test('non-assessment visualizations', async () => {
-        visualizations.forEach(visualizationType => {
-            assessmentProviderMock
-                .setup(apm => apm.isValidType(visualizationType))
-                .returns(() => false);
-            visualizationUpdaterMock
-                .setup(vum => vum(visualizationType, null, storeDataStub))
-                .verifiable();
-        });
+    test('visualization is updated, with requirement passed', async () => {
+        const requirementConfigStub = {
+            key: 'some requirement',
+        } as Requirement;
+        let callback: ForEachConfigCallback;
+
+        configFactoryMock
+            .setup(m => m.forEachConfig(It.isAny()))
+            .callback(async givenCallback => {
+                callback = givenCallback;
+                await callback(null, -1, requirementConfigStub);
+            })
+            .returns(_ => {
+                return [];
+            });
+
         await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
-        visualizationUpdaterMock.verifyAll();
+        visualizationUpdaterMock.verify(
+            m => m(-1, requirementConfigStub.key, storeDataStub),
+            Times.once(),
+        );
     });
 
-    test('assessment visualizations', async () => {
-        const requirementOneStub = {
-            key: 'some key',
-        } as Requirement;
-        const requirementTwoStub = {
-            key: 'some other key',
-        } as Requirement;
-        const stepMapStub = {
-            step1: requirementOneStub,
-            step2: requirementTwoStub,
-        };
+    test('visualization is updated, without requirement passed', async () => {
+        let callback: ForEachConfigCallback;
 
-        visualizations.forEach(visualizationType => {
-            assessmentProviderMock
-                .setup(apm => apm.isValidType(visualizationType))
-                .returns(() => true);
-            assessmentProviderMock
-                .setup(apm => apm.getStepMap(visualizationType))
-                .returns(() => stepMapStub);
-            forOwn(stepMapStub, step => {
-                visualizationUpdaterMock
-                    .setup(vum => vum(visualizationType, step.key, storeDataStub))
-                    .verifiable();
+        configFactoryMock
+            .setup(m => m.forEachConfig(It.isAny()))
+            .callback(async givenCallback => {
+                callback = givenCallback;
+                await callback(null, -1);
+            })
+            .returns(_ => {
+                return [];
             });
-        });
 
         await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
-        visualizationUpdaterMock.verifyAll();
+        visualizationUpdaterMock.verify(m => m(-1, undefined, storeDataStub), Times.once());
+    });
+
+    test('no assessment store data', async () => {
+        await testSubject.updateVisualizationsWithStoreData({} as TargetPageStoreData);
+
+        visualizationUpdaterMock.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
     });
 });
