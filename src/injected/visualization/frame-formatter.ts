@@ -6,7 +6,7 @@ import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
 export interface FrameStyleConfiguration {
-    borderColor: string;
+    outlineColor: string;
     fontColor: string;
     contentText: string;
 }
@@ -14,17 +14,17 @@ export interface FrameStyleConfiguration {
 export class FrameFormatter extends FailureInstanceFormatter {
     public static frameStyles: { [frameType: string]: FrameStyleConfiguration } = {
         frame: {
-            borderColor: '#0066CC',
+            outlineColor: '#0066CC',
             fontColor: '#FFFFFF',
             contentText: 'F',
         },
         iframe: {
-            borderColor: '#00CC00',
+            outlineColor: '#00CC00',
             fontColor: '#FFFFFF',
             contentText: 'I',
         },
         default: {
-            borderColor: '#C00000',
+            outlineColor: '#C00000',
             fontColor: '#FFFFFF',
             contentText: '',
         },
@@ -45,9 +45,9 @@ export class FrameFormatter extends FailureInstanceFormatter {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 text: style.contentText,
-                background: style.borderColor,
+                background: style.outlineColor,
             },
-            borderColor: style.borderColor,
+            outlineColor: style.outlineColor,
             outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'center',

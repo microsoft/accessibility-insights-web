@@ -17,7 +17,7 @@ export class AccessibleNamesFormatter implements Formatter {
     }
 
     public static style: HeadingStyleConfiguration = {
-        borderColor: '#8D4DFF',
+        outlineColor: '#8D4DFF',
         fontColor: '#FFFFFF',
     };
 
@@ -48,13 +48,13 @@ export class AccessibleNamesFormatter implements Formatter {
         const config: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: AccessibleNamesFormatter.style.fontColor,
-                background: AccessibleNamesFormatter.style.borderColor,
+                background: AccessibleNamesFormatter.style.outlineColor,
                 text: accessibleNameToDisplay?.accessibleName,
                 fontWeight: '400',
                 fontSize: '10px',
                 outline: '3px dashed',
             },
-            borderColor: AccessibleNamesFormatter.style.borderColor,
+            outlineColor: AccessibleNamesFormatter.style.outlineColor,
             outlineStyle: 'dashed',
             outlineWidth: '3px',
             showVisualization: true,

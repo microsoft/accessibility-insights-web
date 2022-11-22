@@ -25,7 +25,7 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
         const isHeader = element.matches('th');
 
         const style = {
-            borderColor: isHeader ? this.headerColor : this.cellColor,
+            outlineColor: isHeader ? this.headerColor : this.cellColor,
             fontColor: '#FFFFFF',
         };
 
@@ -35,9 +35,9 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 text,
-                background: style.borderColor,
+                background: style.outlineColor,
             },
-            borderColor: style.borderColor,
+            outlineColor: style.outlineColor,
             outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'right',
