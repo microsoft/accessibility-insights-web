@@ -175,12 +175,15 @@ describe('WebVisualizationConfigurationFactory', () => {
             mediumPassProviderMock.object,
         );
         const assessmentStubs = [getAssessmentStub('a-1', -1), getAssessmentStub('a-2', -2)];
+        const mediumPassStubs = [getAssessmentStub('mp-1', -3), getAssessmentStub('mp-2', -4)];
 
+        mediumPassProviderMock.setup(mock => mock.all()).returns(() => mediumPassStubs);
         assessmentProviderMock.setup(mock => mock.all()).returns(() => assessmentStubs);
 
         testObject.forEachConfig(callbackMock.object);
 
         verifyEachProviderConfigIsCalled(callbackMock, assessmentStubs, TestMode.Assessments);
+        verifyEachProviderConfigIsCalled(callbackMock, mediumPassStubs, TestMode.MediumPass);
         forOwn(
             (testObject as any).configurationByType,
             (config: VisualizationConfiguration, key: string) => {
