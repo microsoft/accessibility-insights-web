@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Requirement } from 'assessments/types/requirement';
 import { DictionaryStringTo } from '../../types/common-types';
 import { VisualizationType } from '../types/visualization-type';
 import { VisualizationConfiguration } from './visualization-configuration';
@@ -12,4 +13,11 @@ export interface VisualizationConfigurationFactory {
     getConfigurationByKey(key: string): VisualizationConfiguration;
     getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration;
     getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<VisualizationType>;
+    forEachConfig(callback: ForEachConfigCallback): (Promise<void> | void)[];
 }
+
+export type ForEachConfigCallback = (
+    config: VisualizationConfiguration,
+    type: VisualizationType,
+    requirementConfig?: Requirement,
+) => void | Promise<void>;

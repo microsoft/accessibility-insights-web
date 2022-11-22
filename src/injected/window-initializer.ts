@@ -115,7 +115,9 @@ export class WindowInitializer {
         );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
-        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+        );
 
         const backchannelWindowMessageTranslator = new BackchannelWindowMessageTranslator(
             this.browserAdapter,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { KeyboardShortcutHandler } from 'background/keyboard-shortcut-handler';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
@@ -50,7 +51,7 @@ describe('KeyboardShortcutHandler', () => {
     const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
 
     beforeEach(() => {
-        visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+        visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(Assessments);
 
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         visualizationStoreMock.setup(vs => vs.getState()).returns(() => storeState);
@@ -114,7 +115,7 @@ describe('KeyboardShortcutHandler', () => {
             browserAdapterMock.object,
             urlValidatorMock.object,
             notificationCreatorMock.object,
-            new WebVisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(Assessments),
             new TelemetryDataFactory(),
             userConfigurationStoreMock.object,
             commandsAdapterMock.object,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
@@ -18,7 +19,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             null,
             null,
             null,
-            new WebVisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(Assessments),
             null,
             null,
             null,

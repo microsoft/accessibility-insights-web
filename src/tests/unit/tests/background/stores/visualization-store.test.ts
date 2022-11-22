@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import {
@@ -12,6 +13,7 @@ import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { TestMode } from 'common/configs/test-mode';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { cloneDeep } from 'lodash';
@@ -328,7 +330,7 @@ describe('VisualizationStoreTest ', () => {
             .withHeadingsAssessment(true, payload.requirement)
             .withHeadingsEnable()
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -351,7 +353,7 @@ describe('VisualizationStoreTest ', () => {
             .withLandmarksAssessment(false, LandmarkTestStep.landmarkRoles)
             .withHeadingsAssessment(true, payload.requirement)
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -374,7 +376,7 @@ describe('VisualizationStoreTest ', () => {
             .withHeadingsAssessment(false, HeadingsTestStep.headingFunction)
             .withHeadingsAssessment(true, payload.requirement)
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -832,7 +834,7 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 actions,
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(Assessments),
                 null,
                 null,
                 null,
@@ -851,7 +853,7 @@ describe('VisualizationStoreTest ', () => {
                 actions,
                 new TabActions(),
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(Assessments),
                 null,
                 null,
                 null,
@@ -870,7 +872,7 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 new TabActions(),
                 actions,
-                new WebVisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(Assessments),
                 null,
                 null,
                 null,
