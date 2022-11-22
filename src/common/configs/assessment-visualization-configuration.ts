@@ -32,7 +32,6 @@ export interface AssessmentVisualizationConfiguration {
     analyzerProgressMessageType?: string;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
-    getIdentifier: (testStep?: string) => string;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback;
     getNotificationMessage: (
         selectorMap: DictionaryStringTo<any>,
