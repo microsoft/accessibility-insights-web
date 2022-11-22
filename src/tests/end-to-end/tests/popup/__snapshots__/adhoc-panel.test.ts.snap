@@ -19,8 +19,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
       class="insights-container insights-highlight-container insights-issues"
     >
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
@@ -31,8 +31,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
         </div>
       </div>
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
@@ -43,8 +43,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
         </div>
       </div>
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
@@ -55,8 +55,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
         </div>
       </div>
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: html-has-lang"
       >
         <div
@@ -109,8 +109,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
       class="insights-container insights-highlight-container insights-heading"
     >
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title=""
       >
         <div
@@ -121,8 +121,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
         </div>
       </div>
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title=""
       >
         <div
@@ -133,8 +133,8 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
         </div>
       </div>
       <div
-        class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        class="insights-highlight-box insights-highlight-outline-solid"
+        style="outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title=""
       >
         <div

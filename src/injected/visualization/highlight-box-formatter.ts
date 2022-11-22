@@ -21,7 +21,7 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
     ): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             failureBoxConfig: this.getFailureBoxConfig(data),
-            borderColor: IssuesFormatter.style.borderColor,
+            outlineColor: IssuesFormatter.style.outlineColor,
             outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'center',
