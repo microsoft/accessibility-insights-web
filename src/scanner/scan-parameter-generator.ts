@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FRAME_COMMUNICATION_TIMEOUT_MS } from 'common/constants/frame-timeouts';
 import { RuleIncluded } from 'scanner/get-rule-inclusions';
 import { DictionaryStringTo } from 'types/common-types';
 import { AxeOptions, AxeScanContext } from './axe-options';
@@ -15,6 +16,7 @@ export class ScanParameterGenerator {
                 type: 'rule',
                 values: [],
             },
+            pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
         };
 
         if (options == null || options.testsToRun == null) {

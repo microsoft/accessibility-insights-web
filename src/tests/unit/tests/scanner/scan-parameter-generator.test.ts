@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FRAME_COMMUNICATION_TIMEOUT_MS } from 'common/constants/frame-timeouts';
 import { RuleIncluded } from 'scanner/get-rule-inclusions';
 import { Mock } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
@@ -34,6 +35,7 @@ describe('ScanParameterGenerator', () => {
                     type: 'rule',
                     values: ['rule-a', 'rule-b'],
                 },
+                pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
 
             const scanOptions: ScanOptions = null;
@@ -48,6 +50,7 @@ describe('ScanParameterGenerator', () => {
                     type: 'rule',
                     values: ['rule-a', 'rule-b'],
                 },
+                pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
 
             const scanOptions: ScanOptions = {};
@@ -63,6 +66,7 @@ describe('ScanParameterGenerator', () => {
                     type: 'rule',
                     values: ['ruleA', 'ruleB'],
                 },
+                pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
 
             const scanOptions: ScanOptions = {
