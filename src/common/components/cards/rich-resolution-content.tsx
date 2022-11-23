@@ -25,10 +25,8 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                 return (
                     <div className={styles.combinationLists}>
                         <ul className={styles.multiLineTextYesBullet}>
-                            <li list-style-type="disc">
-                                If the text is intended to be invisible, it passes.
-                            </li>
-                            <li list-style-type="disc">
+                            <li>If the text is intended to be invisible, it passes.</li>
+                            <li>
                                 If the text is intended to be visible, use{' '}
                                 <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                     Accessibility Insights for Windows
@@ -181,10 +179,8 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                 return (
                     <div className={styles.combinationLists}>
                         <ul className={styles.multiLineTextYesBullet}>
-                            <li list-style-type="disc">
-                                If the text is intended to be invisible, it passes.
-                            </li>
-                            <li list-style-type="disc">
+                            <li>If the text is intended to be invisible, it passes.</li>
+                            <li>
                                 If the text is intended to be visible, use{' '}
                                 <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                     Accessibility Insights for Windows
@@ -240,11 +236,11 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                 return (
                     <div className={styles.combinationLists}>
                         <ul className={styles.multiLineTextYesBullet}>
-                            <li list-style-type="disc">
+                            <li>
                                 If the instance is an icon or other non-text content, ignore it.
                                 This rule applies only to text.
                             </li>
-                            <li list-style-type="disc">
+                            <li>
                                 If the instance is text, use{' '}
                                 <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                     Accessibility Insights for Windows

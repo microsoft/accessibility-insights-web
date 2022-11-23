@@ -15,7 +15,7 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
     >
         <mask
             id="mask0"
-            mask-type="alpha"
+            style={{ maskType: 'alpha' }}
             maskUnits="userSpaceOnUse"
             x="0"
             y="3"
@@ -42,7 +42,7 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
             />
             <mask
                 id="mask1"
-                mask-type="alpha"
+                style={{ maskType: 'alpha' }}
                 maskUnits="userSpaceOnUse"
                 x="-1"
                 y="3"
