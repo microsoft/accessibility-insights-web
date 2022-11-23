@@ -6,7 +6,11 @@ import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
-import { MediumPassRequirementKeys } from 'assessments/medium-pass-requirements';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import {
+    MediumPassRequirementKeys,
+    MediumPassRequirementMap,
+} from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
@@ -341,6 +345,7 @@ if (tabId != null) {
             );
             const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
                 Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
             );
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(

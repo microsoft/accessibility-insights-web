@@ -9,7 +9,7 @@ import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-revie
 import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { ScanData, TestsEnabledState } from 'common/types/store-data/visualization-store-data';
+import { TestsEnabledState } from 'common/types/store-data/visualization-store-data';
 import { find, forOwn, values } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { VisualizationType } from '../types/visualization-type';
@@ -25,7 +25,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
 
     constructor(
         private readonly fullAssessmentProvider: AssessmentsProvider,
-        private readonly mediumPassProvider?: AssessmentsProvider,
+        private readonly mediumPassProvider: AssessmentsProvider,
     ) {
         this.configurationByType = {
             [VisualizationType.Color]: ColorAdHocVisualization,
@@ -95,8 +95,8 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             return `${testMode}-${requirement.key}`;
         };
 
-        const getStoreData: (data: TestsEnabledState) => ScanData = data => {
-            return data[testMode];
+        const getStoreData = (data: TestsEnabledState) => {
+            return data[testMode][config.key];
         };
 
         const defaults = {

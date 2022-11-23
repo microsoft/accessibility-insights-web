@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { It, Mock } from 'typemoq';
 
@@ -53,7 +55,10 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new WebVisualizationConfigurationFactory(Assessments),
+            new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            ),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
@@ -98,7 +103,10 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new WebVisualizationConfigurationFactory(Assessments),
+            new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            ),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 

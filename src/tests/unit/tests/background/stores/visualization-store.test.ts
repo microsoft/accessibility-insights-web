@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,
@@ -58,7 +60,6 @@ describe('VisualizationStoreTest ', () => {
                 detailsViewType: viewType,
                 pivotType: finalPivot,
             };
-
             const storeTester =
                 createStoreTesterForVisualizationActions(actionName).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -834,7 +835,10 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 actions,
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(Assessments),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
                 null,
                 null,
                 null,
@@ -853,7 +857,10 @@ describe('VisualizationStoreTest ', () => {
                 actions,
                 new TabActions(),
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(Assessments),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
                 null,
                 null,
                 null,
@@ -872,7 +879,10 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 new TabActions(),
                 actions,
-                new WebVisualizationConfigurationFactory(Assessments),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
                 null,
                 null,
                 null,

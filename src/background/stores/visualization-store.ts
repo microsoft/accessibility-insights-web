@@ -88,6 +88,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         const tests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
+            mediumPass: {},
         };
 
         if (this.visualizationConfigurationFactory != null) {
@@ -100,6 +101,10 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
 
             Object.keys(tests.assessments).forEach(key => {
                 tests.assessments[key].stepStatus = {};
+            });
+
+            Object.keys(tests.mediumPass).forEach(key => {
+                tests.mediumPass[key].stepStatus = {};
             });
         }
 
@@ -132,7 +137,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
         const scanData = configuration.getStoreData(this.state.tests);
 
-        if (this.isAssessment(configuration)) {
+        if (!this.isAdhoc(configuration)) {
             const assessmentScanData = configuration.getStoreData(
                 this.state.tests,
             ) as AssessmentScanData;
@@ -166,7 +171,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
-            const shouldDisableTest = this.isAssessment(configuration);
+            const shouldDisableTest = !this.isAdhoc(configuration);
             if (shouldDisableTest) {
                 this.toggleTestOff(test);
             }
@@ -207,8 +212,8 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         await this.emitChanged();
     }
 
-    private isAssessment(config: VisualizationConfiguration): boolean {
-        return config.testMode === TestMode.Assessments;
+    private isAdhoc(config: VisualizationConfiguration): boolean {
+        return config.testMode === TestMode.Adhoc;
     }
 
     private onUpdateSelectedPivot = async (payload: UpdateSelectedPivot): Promise<void> => {

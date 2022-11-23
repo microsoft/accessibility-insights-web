@@ -16,6 +16,7 @@ describe('isAnAssessmentSelectedTest', () => {
                 },
             },
             assessments: {},
+            mediumPass: {},
         };
 
         const actual = isAnAssessmentSelected(testData);
@@ -31,6 +32,7 @@ describe('isAnAssessmentSelectedTest', () => {
                     stepStatus: {},
                 },
             },
+            mediumPass: {},
         };
 
         const actual = isAnAssessmentSelected(testData);
@@ -47,6 +49,7 @@ describe('isAnAssessmentSelectedTest', () => {
                     stepStatus: {},
                 },
             },
+            mediumPass: {},
         };
 
         const actual = isAnAssessmentSelected(testData);

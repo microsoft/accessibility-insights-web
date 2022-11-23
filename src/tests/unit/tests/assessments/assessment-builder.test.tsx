@@ -258,6 +258,7 @@ describe('AssessmentBuilderTest', () => {
         const vizStoreData = {
             assessments: { headingsAssessment: scanData },
             adhoc: {},
+            mediumPass: {},
         } as TestsEnabledState;
 
         config.getAnalyzer(providerMock.object, requirement1.key);

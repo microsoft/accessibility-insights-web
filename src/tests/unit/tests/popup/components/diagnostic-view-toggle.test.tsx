@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { Link } from '@fluentui/react';
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -28,7 +30,10 @@ import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleTest', () => {
-    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(Assessments);
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+        Assessments,
+        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+    );
     const testTelemetrySource: TelemetryEventSource = -1 as TelemetryEventSource;
     const eventStubFactory = new EventStubFactory();
 
@@ -341,6 +346,7 @@ class DiagnosticViewTogglePropsBuilder {
     private data: VisualizationStoreData = new VisualizationStoreDataBuilder().build();
     private visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
         Assessments,
+        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
     );
     private defaultVisualizationConfigurationFactoryMock =
         Mock.ofType<VisualizationConfigurationFactory>();

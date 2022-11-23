@@ -55,6 +55,8 @@ import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
 
 // Required to initialize axe-core with our ruleset/branding
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import 'scanner/exposed-apis';
 
 export class WindowInitializer {
@@ -115,6 +117,7 @@ export class WindowInitializer {
 
         this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
         );
 
         const backchannelWindowMessageTranslator = new BackchannelWindowMessageTranslator(
