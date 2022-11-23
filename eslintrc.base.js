@@ -89,7 +89,6 @@ module.exports = {
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
         'react/no-direct-mutation-state': 'off',
-        'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',
         'security/detect-object-injection': 'off',
         'no-prototype-builtins': 'off',
