@@ -9,6 +9,7 @@ import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-revie
 import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { ScanData, TestsEnabledState } from 'common/types/store-data/visualization-store-data';
 import { find, forOwn, values } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { VisualizationType } from '../types/visualization-type';
@@ -94,6 +95,10 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             return `${testMode}-${requirement.key}`;
         };
 
+        const getStoreData: (data: TestsEnabledState) => ScanData = data => {
+            return data[testMode];
+        };
+
         const defaults = {
             testMode,
             chromeCommand: null,
@@ -108,6 +113,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             },
             shouldShowExportReport: null,
             getIdentifier,
+            getStoreData,
         };
 
         return { ...config, ...defaults };
