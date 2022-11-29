@@ -40,9 +40,8 @@ describe('AccessibleNamesFormatterTests', () => {
     });
 
     function testStyling(Drawerconfig: DrawerConfiguration, accessibleText: string) {
-        expect(Drawerconfig.borderColor).toBe('#8D4DFF');
+        expect(Drawerconfig.outlineColor).toBe('#8D4DFF');
         expect(Drawerconfig.outlineStyle).toBe('dashed');
-        expect(Drawerconfig.outlineWidth).toBe('3px');
         expect(Drawerconfig.showVisualization).toBe(true);
         expect(Drawerconfig.textBoxConfig.fontColor).toBe('#FFFFFF');
         expect(Drawerconfig.textBoxConfig.background).toBe('#8D4DFF');

@@ -197,6 +197,8 @@ jobs:
 
     - uses: github/codeql-action/init@v2
       timeout-minutes: 2
+      with:
+        trap-caching: false
     
     - uses: github/codeql-action/autobuild@v2
       timeout-minutes: 2

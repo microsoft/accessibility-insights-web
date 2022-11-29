@@ -28,7 +28,7 @@ export abstract class BaseDrawer implements Drawer {
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
-        formatter: Formatter = null,
+        formatter: Formatter,
     ) {
         this.dom = dom;
         this.containerClass = containerClass;
