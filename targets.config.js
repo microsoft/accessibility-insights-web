@@ -44,7 +44,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
-        mustExistFile: 'background.bundle.js',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     playground: {
         release: true,
@@ -57,7 +57,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
-        mustExistFile: 'background.bundle.js',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     canary: {
         release: true,
@@ -70,7 +70,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
-        mustExistFile: 'background.bundle.js',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     insider: {
         release: true,
@@ -83,7 +83,7 @@ module.exports = {
             },
         },
         bundleFolder: 'prodBundle',
-        mustExistFile: 'background.bundle.js',
+        mustExistFile: 'serviceWorker.bundle.js',
     },
     'unified-dev': {
         config: {

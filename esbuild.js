@@ -19,7 +19,6 @@ const electronEntryFiles = {
 const unifiedOutdir = path.join(__dirname, 'extension/unifiedBundle');
 
 const webExtensionEntryFiles = {
-    background: `${src}/background/background-init.ts`,
     injected: `${src}/injected/client-init.ts`,
     popup: `${src}/popup/popup-init.ts`,
     insights: `${src}/views/insights/initializer.ts`,
