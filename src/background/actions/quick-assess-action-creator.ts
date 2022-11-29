@@ -74,7 +74,7 @@ export class MediumPassActionCreator {
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.StartOverAssessment,
+            MediumPassMessages.StartOverTest,
             this.onStartOverAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
