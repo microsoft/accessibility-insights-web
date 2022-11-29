@@ -85,6 +85,18 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'serviceWorker.bundle.js',
     },
+    production: {
+        release: true,
+        config: {
+            options: {
+                ...commonExtensionOptions,
+                ...icons.production,
+                telemetryBuildName: 'Production',
+            },
+        },
+        bundleFolder: 'prodBundle',
+        mustExistFile: 'serviceWorker.bundle.js',
+    },
     'unified-dev': {
         config: {
             options: {
