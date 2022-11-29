@@ -262,62 +262,6 @@ jobs:
           test-results/e2e/failure-screenshots
       timeout-minutes: 15 # chrome-logs is several GB, this can take a while
 
-  e2e-mv3-web-tests:
-    name: e2e-mv3-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.24.0-focal
-    strategy:
-      fail-fast: false
-      matrix:
-        shard-index: [1, 2]
-
-    steps:
-    - uses: actions/checkout@v3
-      timeout-minutes: 2
-
-    - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    # Intentionally omitting caching; it would need a separate, larger
-    # cache bucket to account for differences in container image and
-    # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD, and that would eat so far into
-    # our 5GB cache quota that we'd run into issues with useful main builds'
-    # caches being evicted anytime dependabot filed a few PRs in a row.
-
-    - run: yarn install --frozen-lockfile --prefer-offline
-      timeout-minutes: 10
-
-    - run: yarn build:dev:mv3
-      timeout-minutes: 5
-
-    - name: yarn test:e2e:mv3
-      run: |
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e:mv3 --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
-      env:
-        # If you need to debug Playwright/Chromium, using pw:* instead may help
-        DEBUG: pw:api
-        WEB_E2E_TARGET: 'production'
-      timeout-minutes: 10
-
-    - name: upload artifact e2e-mv3-web-tests-results
-      uses: actions/upload-artifact@v3
-      if: ${{ always() }}
-      with:
-        name: e2e-mv3-web-tests-${{ matrix.shard-index }}-results
-        path: test-results/e2e/junit-e2e.xml
-      timeout-minutes: 3
-
-    - name: upload artifact e2e-mv3-web-tests-debug-logs
-      uses: actions/upload-artifact@v3
-      if: ${{ failure() }}
-      with:
-        name: e2e-mv3-web-tests-${{ matrix.shard-index }}-debug-logs
-        path: |
-          test-results/e2e/chrome-logs
-          test-results/e2e/failure-screenshots
-      timeout-minutes: 15 # chrome-logs is several GB, this can take a while
-  
   e2e-unified-tests:
     name: e2e-unified-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
