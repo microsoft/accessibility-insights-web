@@ -57,7 +57,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     // simplify the initial migration from Puppeteer to Playwright.
     const playwrightContext = await launchNewBrowserContext(userDataDir, extensionPath);
 
-    const browser = new Browser(browserInstanceId, playwrightContext, true, onCloseCallback);
+    const browser = new Browser(browserInstanceId, playwrightContext, onCloseCallback);
 
     const backgroundPage = await browser.background();
     if (extensionOptions.suppressFirstTimeDialog) {
