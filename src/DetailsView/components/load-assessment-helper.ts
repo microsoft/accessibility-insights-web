@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
-import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
+import type { AssessmentDataParser } from 'common/assessment-data-parser';
+import type { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import type { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
+import type { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import type { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 
 export class LoadAssessmentHelper {
     constructor(
