@@ -8,7 +8,7 @@
 # - could be applicable to any agent, but intentionally no-ops on non-linux agents
 
 parameters:
-    - name: target # should be web, web-mv3 or unified
+    - name: target # should be web or unified
       type: string
     - name: run-timeout-minutes
       type: number
