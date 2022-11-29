@@ -781,6 +781,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-prod', // required to get the css assets
         'exec:esbuild-package-report',
         'build-assets',
