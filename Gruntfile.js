@@ -53,13 +53,7 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'compile-all': [
-                'exec:esbuild-dev',
-                'exec:esbuild-dev-mv3',
-                'exec:webpack-unified',
-                'exec:esbuild-prod',
-                'exec:esbuild-prod-mv3',
-            ],
+            'compile-all': ['exec:esbuild-dev', 'exec:webpack-unified', 'exec:esbuild-prod'],
         },
         copy: {
             code: {
@@ -180,9 +174,7 @@ module.exports = function (grunt) {
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
-            'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
-            'esbuild-prod-mv3': `node esbuild.js --env prod-mv3`,
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
@@ -222,25 +214,20 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
             },
             // We assume esbuild --watch is running separately (usually via 'yarn watch')
             'esbuild-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
-            },
-            // We assume esbuild --watch is running separately (usually via 'yarn watch')
-            'esbuild-dev-mv3-output': {
-                files: ['extension/devMv3Bundle/**/*.*'],
-                tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
@@ -762,34 +749,20 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-dev',
         'build-assets',
         'drop:dev',
     ]);
-    grunt.registerTask('build-dev-mv3', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'exec:esbuild-dev-mv3',
-        'build-assets',
-        'drop:dev-mv3',
-    ]);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-prod',
         'build-assets',
         'drop:production',
-    ]);
-    grunt.registerTask('build-prod-mv3', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'exec:esbuild-prod-mv3',
-        'build-assets',
-        'drop:production-mv3',
     ]);
     grunt.registerTask('build-unified', [
         'clean:intermediates',
@@ -833,7 +806,6 @@ module.exports = function (grunt) {
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',
-        'drop:dev-mv3',
         'drop:unified-dev',
         'extension-release-drops',
     ]);
