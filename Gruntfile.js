@@ -463,153 +463,21 @@ module.exports = function (grunt) {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
 
-        // Build-specific settings that exist in both MV2 and MV3
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
-            manifest_version: config.options.manifestVersion,
             icons: {
                 16: config.options.icon16,
                 48: config.options.icon48,
                 128: config.options.icon128,
             },
+            action: {
+                default_icon: {
+                    20: config.options.icon16,
+                    40: config.options.icon48,
+                },
+            },
         });
-
-        const commands = {
-            '01_toggle-issues': {
-                suggested_key: {
-                    windows: 'Alt+Shift+1',
-                    mac: 'Alt+Shift+1',
-                    chromeos: 'Alt+Shift+1',
-                    linux: 'Alt+Shift+1',
-                },
-                description: 'Toggle Automated checks',
-            },
-            '02_toggle-landmarks': {
-                suggested_key: {
-                    windows: 'Alt+Shift+2',
-                    mac: 'Alt+Shift+2',
-                    chromeos: 'Alt+Shift+2',
-                    linux: 'Alt+Shift+2',
-                },
-                description: 'Toggle Landmarks',
-            },
-            '03_toggle-headings': {
-                suggested_key: {
-                    windows: 'Alt+Shift+3',
-                    mac: 'Alt+Shift+3',
-                    chromeos: 'Alt+Shift+3',
-                    linux: 'Alt+Shift+3',
-                },
-                description: 'Toggle Headings',
-            },
-            '04_toggle-tabStops': {
-                description: 'Toggle Tab stops',
-            },
-            '05_toggle-color': {
-                description: 'Toggle Color',
-            },
-            '06_toggle-needsReview': {
-                description: 'Toggle Needs review',
-            },
-            '07_toggle-accessibleNames': {
-                description: 'Toggle Accessible names',
-            },
-        };
-
-        if (config.options.manifestVersion === 3) {
-            // Settings that are specific to MV3
-            merge(manifestJSON, {
-                action: {
-                    default_popup: 'popup/popup.html',
-                    default_icon: {
-                        20: config.options.icon16,
-                        40: config.options.icon48,
-                    },
-                },
-                permissions: [
-                    'notifications',
-                    'scripting',
-                    'storage',
-                    'tabs',
-                    'webNavigation',
-                    'activeTab',
-                ],
-                background: {
-                    service_worker: 'bundle/serviceWorker.bundle.js',
-                },
-                optional_host_permissions: ['<all_urls>'],
-                web_accessible_resources: [
-                    {
-                        resources: [
-                            'insights.html',
-                            'assessments/*',
-                            'injected/*',
-                            'background/*',
-                            'common/*',
-                            'DetailsView/*',
-                            'bundle/*',
-                            'NOTICE.html',
-                        ],
-                        matches: ['<all_urls>'],
-                    },
-                ],
-                commands: {
-                    _execute_action: {
-                        suggested_key: {
-                            windows: 'Alt+Shift+K',
-                            mac: 'Alt+Shift+K',
-                            chromeos: 'Alt+Shift+K',
-                            linux: 'Alt+Shift+K',
-                        },
-                        description: 'Activate the extension',
-                    },
-                    ...commands,
-                },
-            });
-        } else {
-            // Settings that are specific to MV2. Note that many of these settings--especially the
-            // commands--will eventually be restored to manifest.json. They are here only because
-            // we want to vet each settings as we convert from MV2 to MV3.
-            merge(manifestJSON, {
-                browser_action: {
-                    default_popup: 'popup/popup.html',
-                    default_icon: {
-                        20: config.options.icon16,
-                        40: config.options.icon48,
-                    },
-                },
-                background: {
-                    page: 'background/background.html',
-                    persistent: true,
-                },
-                web_accessible_resources: [
-                    'insights.html',
-                    'assessments/*',
-                    'injected/*',
-                    'background/*',
-                    'common/*',
-                    'DetailsView/*',
-                    'bundle/*',
-                    'NOTICE.html',
-                ],
-                content_security_policy:
-                    "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
-                optional_permissions: ['*://*/*'],
-                commands: {
-                    _execute_browser_action: {
-                        suggested_key: {
-                            windows: 'Alt+Shift+K',
-                            mac: 'Alt+Shift+K',
-                            chromeos: 'Alt+Shift+K',
-                            linux: 'Alt+Shift+K',
-                        },
-                        description: 'Activate the extension',
-                    },
-                    ...commands,
-                },
-            });
-        }
 
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
