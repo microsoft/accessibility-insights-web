@@ -6,6 +6,7 @@ import { ActionMessageDispatcher } from 'common/message-creators/types/dispatche
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { keys } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
     AssessmentTelemetryData,
@@ -16,7 +17,7 @@ import {
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
-import { Messages } from '../../../../../common/messages';
+import { AssessmentMessages, Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -27,6 +28,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: AssessmentActionMessageCreator;
+    const assessmentMessageStubs = getMessageStubs();
 
     beforeEach(() => {
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
@@ -34,8 +36,18 @@ describe('AssessmentActionMessageCreatorTest', () => {
         testSubject = new AssessmentActionMessageCreator(
             telemetryFactoryMock.object,
             dispatcherMock.object,
+            assessmentMessageStubs,
         );
     });
+
+    function getMessageStubs(): AssessmentMessages {
+        const messagesMock = Mock.ofType<AssessmentMessages>();
+        const messagesStub = {} as AssessmentMessages;
+        keys(messagesMock.object).forEach(messageType => {
+            messagesStub[messageType] = `stub for ${messageType}`;
+        });
+        return messagesStub;
+    }
 
     test('selectRequirement', () => {
         const view = VisualizationType.Headings;
@@ -49,7 +61,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectTestRequirement,
+            messageType: assessmentMessageStubs.SelectTestRequirement,
             payload: {
                 telemetry: telemetry,
                 selectedTestSubview: selectedRequirement,
@@ -81,7 +93,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectNextRequirement,
+            messageType: assessmentMessageStubs.SelectNextRequirement,
             payload: {
                 telemetry: telemetry,
                 selectedTestSubview: selectedRequirement,
@@ -111,7 +123,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.SelectGettingStarted,
+            messageType: assessmentMessageStubs.SelectGettingStarted,
             payload: {
                 telemetry: telemetry,
                 selectedTest: view,
@@ -134,7 +146,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         const view = VisualizationType.Headings;
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ExpandTestNav,
+            messageType: assessmentMessageStubs.ExpandTestNav,
             payload: {
                 selectedTest: view,
             },
@@ -150,7 +162,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
 
     test('collapseTestNav', () => {
         const expectedMessage = {
-            messageType: Messages.Assessment.CollapseTestNav,
+            messageType: assessmentMessageStubs.CollapseTestNav,
         };
 
         testSubject.collapseTestNav();
@@ -170,7 +182,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.StartOverTest,
+            messageType: assessmentMessageStubs.StartOverTest,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 telemetry,
@@ -200,7 +212,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelper,
+            messageType: assessmentMessageStubs.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -232,7 +244,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType: assessmentMessageStubs.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -260,7 +272,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         const requirement = 'fake-requirement-name';
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelper,
+            messageType: assessmentMessageStubs.EnableVisualHelper,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -294,7 +306,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         const requirement = 'fake-requirement-name';
 
         const expectedMessage = {
-            messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
+            messageType: assessmentMessageStubs.EnableVisualHelperWithoutScan,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
@@ -326,7 +338,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
 
     test('disableVisualHelpersForTest', () => {
         const expectedMessage = {
-            messageType: Messages.Assessment.DisableVisualHelperForTest,
+            messageType: assessmentMessageStubs.DisableVisualHelperForTest,
             payload: {
                 test: VisualizationType.HeadingsAssessment,
             },
@@ -346,7 +358,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         const telemetry = {};
 
         const expectedMessage = {
-            messageType: Messages.Assessment.DisableVisualHelper,
+            messageType: assessmentMessageStubs.DisableVisualHelper,
             payload: {
                 test: test,
                 telemetry,
@@ -374,7 +386,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeStatus,
+            messageType: assessmentMessageStubs.ChangeStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -405,7 +417,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeRequirementStatus,
+            messageType: assessmentMessageStubs.ChangeRequirementStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -435,7 +447,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.Undo,
+            messageType: assessmentMessageStubs.Undo,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -463,7 +475,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType: assessmentMessageStubs.UndoChangeRequirementStatus,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -488,7 +500,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeVisualizationState,
+            messageType: assessmentMessageStubs.ChangeVisualizationState,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -511,7 +523,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
     test('addResultDescription', () => {
         const persistedDescription = 'persisted description';
         const expectedMessage = {
-            messageType: Messages.Assessment.AddResultDescription,
+            messageType: assessmentMessageStubs.AddResultDescription,
             payload: {
                 description: persistedDescription,
             },
@@ -540,7 +552,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.AddFailureInstance,
+            messageType: assessmentMessageStubs.AddFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -569,7 +581,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.RemoveFailureInstance,
+            messageType: assessmentMessageStubs.RemoveFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -602,7 +614,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
             snippet: 'snippet',
         };
         const expectedMessage = {
-            messageType: Messages.Assessment.EditFailureInstance,
+            messageType: assessmentMessageStubs.EditFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -631,7 +643,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.PassUnmarkedInstances,
+            messageType: assessmentMessageStubs.PassUnmarkedInstances,
             payload: {
                 test: test,
                 requirement: requirement,
@@ -656,7 +668,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType: assessmentMessageStubs.ChangeVisualizationStateForAll,
             payload: {
                 test: 1,
                 requirement: 'requirement',
@@ -683,7 +695,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.ContinuePreviousAssessment,
+            messageType: assessmentMessageStubs.ContinuePreviousAssessment,
             payload: {
                 telemetry,
             },
@@ -711,7 +723,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessageToLoadAssessment = {
-            messageType: Messages.Assessment.LoadAssessment,
+            messageType: assessmentMessageStubs.LoadAssessment,
             payload: {
                 tabId,
                 versionedAssessmentData: {
@@ -751,7 +763,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessageToStartOverAllAssessments = {
-            messageType: Messages.Assessment.StartOverAllAssessments,
+            messageType: assessmentMessageStubs.StartOverAllAssessments,
             payload: {
                 telemetry,
             },
@@ -791,7 +803,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.CancelStartOver,
+            messageType: assessmentMessageStubs.CancelStartOver,
             payload: {
                 telemetry,
             },
@@ -817,7 +829,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
         };
 
         const expectedMessage = {
-            messageType: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType: assessmentMessageStubs.CancelStartOverAllAssessments,
             payload: {
                 telemetry,
             },

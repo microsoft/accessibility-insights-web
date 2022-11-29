@@ -36,6 +36,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
+import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
@@ -301,6 +302,7 @@ if (tabId != null) {
             const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
+                Messages.Assessment,
             );
 
             const scopingActionMessageCreator = new ScopingActionMessageCreator(

@@ -458,7 +458,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.StartOverAssessment, payload);
+        await interpreterMock.simulateMessage(MediumPassMessages.StartOverTest, payload);
 
         resetDataMock.verifyAll();
     });
