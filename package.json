@@ -73,7 +73,6 @@
         "test": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --projects src/tests/unit",
         "publish-code-coverage": "npx codecov",
         "test:e2e": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --projects src/tests/end-to-end --runInBand --forceExit --detectOpenHandles",
-        "test:e2e:mv3": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' WEB_E2E_TARGET='dev-mv3' jest --projects src/tests/end-to-end --runInBand --forceExit --detectOpenHandles",
         "test:e2e:docker:build": "docker build -t accessibility-insights-e2e  --target web .",
         "test:e2e:docker:build:web": "docker build -t accessibility-insights-web-e2e --target web .",
         "test:e2e:docker:build:unified": "docker build -t accessibility-insights-unified-e2e --target unified .",
