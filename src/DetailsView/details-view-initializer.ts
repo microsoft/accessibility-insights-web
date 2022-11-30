@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { loadTheme, setFocusVisibility } from '@fluentui/react';
-import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -48,7 +47,6 @@ import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-a
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
-import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -492,13 +490,9 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
-            const ajv = new Ajv();
-
             const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
-                ajv,
                 Assessments,
                 featureFlagStore.getState() as FeatureFlagStoreData,
-                new LoadAssessmentDataSchemaProvider(),
             );
 
             const loadAssessmentHelper = new LoadAssessmentHelper(

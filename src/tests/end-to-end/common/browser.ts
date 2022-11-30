@@ -14,7 +14,6 @@ import {
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
-import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
 import { ContentPage, contentPageRelativeUrl } from './page-controllers/content-page';
 import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/details-view-page';
 import { Page } from './page-controllers/page';
@@ -22,7 +21,6 @@ import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
 
 export class Browser {
-    private memoizedBackgroundPage: BackgroundPage;
     private memoizedServiceWorker: ServiceWorker;
     private pages: Array<Page> = [];
     private underlyingBrowserContext: Playwright.BrowserContext | null;
@@ -31,7 +29,6 @@ export class Browser {
     constructor(
         private readonly browserInstanceId: string,
         underlyingBrowserContext: Playwright.BrowserContext,
-        private readonly manifestV3: boolean,
         private readonly onClose?: () => Promise<void>,
     ) {
         this.underlyingBrowserContext = underlyingBrowserContext;
@@ -63,31 +60,15 @@ export class Browser {
     }
 
     public async background(): Promise<BackgroundContext> {
-        if (this.manifestV3) {
-            if (this.memoizedServiceWorker) {
-                return this.memoizedServiceWorker;
-            }
-
-            const ourServiceWorkerPage = await this.waitForServiceWorkerMatching(
-                hasServiceWorkerUrl,
-            );
-
-            this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
-
+        if (this.memoizedServiceWorker) {
             return this.memoizedServiceWorker;
         }
 
-        if (this.memoizedBackgroundPage) {
-            return this.memoizedBackgroundPage;
-        }
+        const ourServiceWorkerPage = await this.waitForServiceWorkerMatching(hasServiceWorkerUrl);
 
-        const ourBackgroundPage = await this.waitForBackgroundPageMatching(hasBackgroundPageUrl);
+        this.memoizedServiceWorker = new ServiceWorker(ourServiceWorkerPage);
 
-        this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
-            onPageCrash: this.onPageCrash,
-        });
-
-        return this.memoizedBackgroundPage;
+        return this.memoizedServiceWorker;
     }
 
     public async newPage(url: string): Promise<Page> {
@@ -209,35 +190,6 @@ export class Browser {
                 );
             });
         }, null);
-    }
-
-    private async waitForBackgroundPageMatching(
-        predicate: (candidate: Playwright.Page) => boolean,
-    ): Promise<Playwright.Page> {
-        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != null;
-        if (!apiSupported) {
-            // Tracking issue for native Playwright support: https://github.com/microsoft/playwright/issues/2874
-            // Suggested workaround for Firefox: https://github.com/microsoft/playwright/issues/2644#issuecomment-647842059
-            throw new Error("Don't know how to query for backgroundPages() in non-Chromium");
-        }
-        const context = this.underlyingBrowserContext as ChromiumBrowserContext;
-
-        const allBackgroundPages = context.backgroundPages();
-
-        const existingMatches = allBackgroundPages.filter(predicate);
-        if (existingMatches.length > 0) {
-            return existingMatches[0];
-        }
-
-        return await new Promise(resolve => {
-            const onNewPage = async newPage => {
-                if (predicate(newPage)) {
-                    context.off('backgroundpage', onNewPage);
-                    resolve(newPage);
-                }
-            };
-            context.on('backgroundpage', onNewPage);
-        });
     }
 
     private async waitForServiceWorkerMatching(

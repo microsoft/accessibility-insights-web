@@ -478,8 +478,6 @@
         "./src/tests/end-to-end/common/extension-paths.ts",
         "./src/tests/end-to-end/common/force-test-failure.ts",
         "./src/tests/end-to-end/common/manifest-instance.ts",
-        "./src/tests/end-to-end/common/mv2-manifest-instance.ts",
-        "./src/tests/end-to-end/common/mv3-manifest-instance.ts",
         "./src/tests/end-to-end/common/page-controllers/background-context.ts",
         "./src/tests/end-to-end/common/page-controllers/content-page.ts",
         "./src/tests/end-to-end/common/page-controllers/context.ts",
