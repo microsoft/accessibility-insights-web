@@ -18,8 +18,9 @@ import {
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
-import { Messages } from 'common/messages';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { AssessmentMessages, Messages } from 'common/messages';
+import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
@@ -28,6 +29,14 @@ import * as React from 'react';
 import { DetailsViewRightContentPanelType } from '../../common/types/store-data/details-view-right-content-panel-type';
 
 export class AssessmentActionMessageCreator extends DevToolActionMessageCreator {
+    constructor(
+        protected readonly telemetryFactory: TelemetryDataFactory,
+        protected readonly dispatcher: ActionMessageDispatcher,
+        protected readonly messages: AssessmentMessages,
+    ) {
+        super(telemetryFactory, dispatcher);
+    }
+
     public selectRequirement(
         event: React.MouseEvent<HTMLElement>,
         selectedRequirement: string,
@@ -44,7 +53,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectTestRequirement,
+            messageType: this.messages.SelectTestRequirement,
             payload: payload,
         });
     }
@@ -65,7 +74,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectNextRequirement,
+            messageType: this.messages.SelectNextRequirement,
             payload: payload,
         });
     }
@@ -80,7 +89,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SelectGettingStarted,
+            messageType: this.messages.SelectGettingStarted,
             payload: payload,
         });
     }
@@ -91,14 +100,14 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ExpandTestNav,
+            messageType: this.messages.ExpandTestNav,
             payload: payload,
         });
     }
 
     public collapseTestNav(): void {
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CollapseTestNav,
+            messageType: this.messages.CollapseTestNav,
         });
     }
 
@@ -110,7 +119,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOverTest,
+            messageType: this.messages.StartOverTest,
             payload,
         });
     }
@@ -132,8 +141,8 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
 
         this.dispatcher.dispatchMessage({
             messageType: shouldScan
-                ? Messages.Assessment.EnableVisualHelper
-                : Messages.Assessment.EnableVisualHelperWithoutScan,
+                ? this.messages.EnableVisualHelper
+                : this.messages.EnableVisualHelperWithoutScan,
             payload,
         });
     }
@@ -144,7 +153,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.DisableVisualHelperForTest,
+            messageType: this.messages.DisableVisualHelperForTest,
             payload,
         });
     }
@@ -157,7 +166,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.DisableVisualHelper,
+            messageType: this.messages.DisableVisualHelper,
             payload,
         });
     }
@@ -178,7 +187,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeStatus,
+            messageType: this.messages.ChangeStatus,
             payload,
         });
     };
@@ -197,7 +206,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeRequirementStatus,
+            messageType: this.messages.ChangeRequirementStatus,
             payload,
         });
     };
@@ -216,7 +225,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.Undo,
+            messageType: this.messages.Undo,
             payload,
         });
     };
@@ -233,7 +242,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.UndoChangeRequirementStatus,
+            messageType: this.messages.UndoChangeRequirementStatus,
             payload,
         });
     };
@@ -254,7 +263,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeVisualizationState,
+            messageType: this.messages.ChangeVisualizationState,
             payload,
         });
     };
@@ -265,7 +274,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.AddResultDescription,
+            messageType: this.messages.AddResultDescription,
             payload,
         });
     }
@@ -284,7 +293,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.AddFailureInstance,
+            messageType: this.messages.AddFailureInstance,
             payload,
         });
     }
@@ -303,7 +312,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.RemoveFailureInstance,
+            messageType: this.messages.RemoveFailureInstance,
             payload,
         });
     };
@@ -324,7 +333,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.EditFailureInstance,
+            messageType: this.messages.EditFailureInstance,
             payload,
         });
     };
@@ -338,7 +347,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.PassUnmarkedInstances,
+            messageType: this.messages.PassUnmarkedInstances,
             payload,
         });
     }
@@ -357,7 +366,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ChangeVisualizationStateForAll,
+            messageType: this.messages.ChangeVisualizationStateForAll,
             payload,
         });
     }
@@ -368,7 +377,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
             telemetry: telemetry,
         };
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.ContinuePreviousAssessment,
+            messageType: this.messages.ContinuePreviousAssessment,
             payload,
         });
     };
@@ -391,7 +400,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
             payload: setDetailsViewRightContentPanelPayload,
         });
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.LoadAssessment,
+            messageType: this.messages.LoadAssessment,
             payload,
         });
     };
@@ -403,7 +412,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.SaveAssessment,
+            messageType: this.messages.SaveAssessment,
             payload,
         });
     };
@@ -420,7 +429,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
             payload: setDetailsViewRightContentPanelPayload,
         });
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.StartOverAllAssessments,
+            messageType: this.messages.StartOverAllAssessments,
             payload: startOverAllAssessmentsActionPayload,
         });
     };
@@ -436,7 +445,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CancelStartOver,
+            messageType: this.messages.CancelStartOver,
             payload,
         });
     };
@@ -448,7 +457,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.CancelStartOverAllAssessments,
+            messageType: this.messages.CancelStartOverAllAssessments,
             payload,
         });
     };
