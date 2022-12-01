@@ -79,7 +79,7 @@ export interface SingleTargetDrawerConfiguration {
 export interface Formatter {
     getDrawerConfiguration(
         element: Node,
-        data: AxeResultsWithFrameLevel,
+        data: AxeResultsWithFrameLevel | null,
     ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
     getDialogRenderer(): DialogRenderer | null;
 }

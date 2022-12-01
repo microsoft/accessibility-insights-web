@@ -393,6 +393,7 @@
         "./src/injected/visualization/drawer.ts",
         "./src/injected/visualization/failure-instance-formatter.ts",
         "./src/injected/visualization/focus-indicator.ts",
+        "./src/injected/visualization/focus-indicator-creator.ts",
         "./src/injected/visualization/formatter.ts",
         "./src/injected/visualization/frame-formatter.ts",
         "./src/injected/visualization/heading-formatter.ts",
