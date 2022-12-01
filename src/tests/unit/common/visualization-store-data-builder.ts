@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
@@ -19,7 +21,10 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             null,
             null,
             null,
-            new WebVisualizationConfigurationFactory(Assessments),
+            new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            ),
             null,
             null,
             null,

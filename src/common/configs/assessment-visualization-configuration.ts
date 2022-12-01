@@ -11,7 +11,7 @@ import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../../types/common-types';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
-import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
+import { ScanData } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
 import { TestViewOverrides, TestViewType } from '../types/test-view-type';
 
@@ -19,7 +19,6 @@ export interface AssessmentVisualizationConfiguration {
     key: string;
     testViewType: TestViewType;
     testViewOverrides?: TestViewOverrides;
-    getStoreData: (data: TestsEnabledState) => ScanData;
     enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
     getTestStatus: (data: ScanData, step?: string) => boolean;

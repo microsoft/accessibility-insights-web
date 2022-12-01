@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { ActionCreator } from 'background/actions/action-creator';
 import { ActionHub } from 'background/actions/action-hub';
 import {
@@ -1308,7 +1310,10 @@ class ActionCreatorValidator {
             this.detailsViewControllerStrictMock.object,
             this.telemetryEventHandlerStrictMock.object,
             this.notificationCreatorStrictMock.object,
-            new WebVisualizationConfigurationFactory(Assessments),
+            new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            ),
             this.targetTabControllerStrictMock.object,
             this.loggerMock.object,
         );

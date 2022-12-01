@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
@@ -157,7 +159,10 @@ async function initializeAsync(): Promise<void> {
 
     const tabContextManager = new TabContextManager();
 
-    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(Assessments);
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+        Assessments,
+        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+    );
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,

@@ -94,7 +94,6 @@ describe('AssessmentBuilderTest', () => {
         const config = manual.getVisualizationConfiguration();
         const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
-        expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
         const testRequirement = 'testRequirement';
         config.enableTest(scanData, {
@@ -259,6 +258,7 @@ describe('AssessmentBuilderTest', () => {
         const vizStoreData = {
             assessments: { headingsAssessment: scanData },
             adhoc: {},
+            mediumPass: {},
         } as TestsEnabledState;
 
         config.getAnalyzer(providerMock.object, requirement1.key);
@@ -277,7 +277,6 @@ describe('AssessmentBuilderTest', () => {
         expect(vizStoreData.assessments.headingsAssessment.enabled).toBe(true);
         expect(vizStoreData.assessments.headingsAssessment.stepStatus[testRequirement]).toBe(true);
 
-        expect(config.getStoreData(vizStoreData)).toEqual(scanData);
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,
         );
