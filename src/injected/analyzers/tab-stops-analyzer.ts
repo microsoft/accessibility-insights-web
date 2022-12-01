@@ -5,7 +5,6 @@ import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
-import { FocusAnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
@@ -20,7 +19,6 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
     protected config: FocusAnalyzerConfiguration;
-    protected messageConfiguration: FocusAnalyzerMessageConfiguration;
 
     constructor(
         config: FocusAnalyzerConfiguration,
@@ -66,7 +64,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         };
 
         const message = {
-            messageType: this.messageConfiguration.analyzerProgressMessageType,
+            messageType: this.config.analyzerProgressMessageType,
             payload,
         };
         this.sendMessage(message);
@@ -84,12 +82,8 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
             testType: this.config.testType,
         };
 
-        if (this.messageConfiguration == null) {
-            return;
-        }
-
         this.sendMessage({
-            messageType: this.messageConfiguration.analyzerTerminatedMessageType,
+            messageType: this.config.analyzerTerminatedMessageType,
             payload,
         });
     }

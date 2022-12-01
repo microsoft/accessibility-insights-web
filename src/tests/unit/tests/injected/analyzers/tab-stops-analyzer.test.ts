@@ -6,7 +6,6 @@ import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
-import { FocusAnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
@@ -28,7 +27,6 @@ describe('TabStopsAnalyzer', () => {
     let debounceFaker: DebounceFaker<() => void>;
     let tabStopsDoneAnalyzingTrackerMock: IMock<TabStopsDoneAnalyzingTracker>;
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
-    let messageConfigurationStub: FocusAnalyzerMessageConfiguration;
 
     const tabEventStub1: TabStopEvent = {
         target: ['selector1'],
@@ -50,11 +48,6 @@ describe('TabStopsAnalyzer', () => {
             analyzerMessageType: 'ScanCompleted message type',
             key: 'sample key',
             testType: -1,
-        };
-        messageConfigurationStub = {
-            analyzerMessageType: 'some message type',
-            analyzerTerminatedMessageType: 'some terminated message',
-            analyzerProgressMessageType: 'some progress message',
         };
         simulateTabEvent = null;
         debounceFaker = new DebounceFaker();
@@ -87,7 +80,7 @@ describe('TabStopsAnalyzer', () => {
         visualizationTypeStub = -1 as VisualizationType;
 
         emptyScanCompleteMessage = {
-            messageType: messageConfigurationStub.analyzerMessageType,
+            messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: {},
@@ -103,7 +96,7 @@ describe('TabStopsAnalyzer', () => {
 
         beforeEach(() => {
             expectedScanUpdatedMessage = {
-                messageType: messageConfigurationStub.analyzerProgressMessageType,
+                messageType: configStub.analyzerProgressMessageType,
                 payload: {
                     key: configStub.key,
                     testType: configStub.testType,
@@ -121,14 +114,14 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             verifyAll();
         });
 
         it('emits ScanUpdated messages when tab events are detected', async () => {
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsDoneAnalyzingTrackerMock
@@ -144,7 +137,7 @@ describe('TabStopsAnalyzer', () => {
         });
 
         it('passes tab events to done-analyzing-tracker', async () => {
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsDoneAnalyzingTrackerMock
@@ -162,7 +155,7 @@ describe('TabStopsAnalyzer', () => {
         it('starts tabStopsRequirementResultProcessor', async () => {
             tabStopsRequirementResultProcessorMock.setup(m => m.start()).verifiable(Times.once());
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsDoneAnalyzingTrackerMock
@@ -191,7 +184,7 @@ describe('TabStopsAnalyzer', () => {
 
             tabStopsRequirementResultProcessorMock.setup(m => m.start()).verifiable(Times.never());
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsDoneAnalyzingTrackerMock
@@ -208,7 +201,7 @@ describe('TabStopsAnalyzer', () => {
 
         it('batches ScanUpdated messages for tab events detected in quick succession', async () => {
             const expectedScanUpdatedMessage: Message = {
-                messageType: messageConfigurationStub.analyzerProgressMessageType,
+                messageType: configStub.analyzerProgressMessageType,
                 payload: {
                     key: configStub.key,
                     testType: configStub.testType,
@@ -220,7 +213,7 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsDoneAnalyzingTrackerMock
@@ -240,13 +233,13 @@ describe('TabStopsAnalyzer', () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
             await flushSettledPromises();
 
             tabStopsListenerMock.setup(tslm => tslm.stop()).verifiable(Times.once());
 
             setupSendMessageMock({
-                messageType: messageConfigurationStub.analyzerTerminatedMessageType,
+                messageType: configStub.analyzerTerminatedMessageType,
                 payload: { key: configStub.key, testType: configStub.testType },
             });
 
@@ -265,7 +258,7 @@ describe('TabStopsAnalyzer', () => {
 
         beforeEach(() => {
             expectedTeardownMessage = {
-                messageType: messageConfigurationStub.analyzerTerminatedMessageType,
+                messageType: configStub.analyzerTerminatedMessageType,
                 payload: {
                     key: configStub.key,
                     testType: configStub.testType,
@@ -279,7 +272,6 @@ describe('TabStopsAnalyzer', () => {
         it('stops processors when teardown() is invoked', async () => {
             tabStopsRequirementResultProcessorMock.setup(m => m.stop()).verifiable(Times.once());
 
-            (testSubject as any).messageConfiguration = messageConfigurationStub;
             await testSubject.teardown();
 
             verifyAll();
@@ -297,19 +289,9 @@ describe('TabStopsAnalyzer', () => {
                 debounceFaker.debounce,
             );
 
-            (testSubject as any).messageConfiguration = messageConfigurationStub;
             await testSubject.teardown();
 
             verifyAll();
-        });
-
-        // Teardown is only called after analyze is called, setting up the message configuration.
-        it('no message is sent without a message configuration', async () => {
-            sendMessageMock.reset();
-
-            await testSubject.teardown();
-
-            sendMessageMock.verify(m => m(It.isAny()), Times.never());
         });
     });
 
