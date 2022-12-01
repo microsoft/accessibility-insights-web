@@ -32,9 +32,7 @@ import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { Assessments } from './../assessments/assessments';
@@ -115,7 +113,9 @@ export class WindowInitializer {
         );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
-        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+        );
 
         const backchannelWindowMessageTranslator = new BackchannelWindowMessageTranslator(
             this.browserAdapter,
@@ -226,13 +226,10 @@ export class WindowInitializer {
         const visualizationTypeDrawerRegistrar = new VisualizationTypeDrawerRegistrar(
             this.drawingController.registerDrawer,
             this.visualizationConfigurationFactory,
-            Assessments,
             drawerProvider,
         );
 
-        EnumHelper.getNumericValues(VisualizationType).forEach(
-            visualizationTypeDrawerRegistrar.registerType,
-        );
+        visualizationTypeDrawerRegistrar.registerAllVisualizations();
 
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameMessenger,

@@ -339,7 +339,9 @@ if (tabId != null) {
                 visualizationActionCreator,
                 telemetryFactory,
             );
-            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+                Assessments,
+            );
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,

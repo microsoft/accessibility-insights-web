@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { ActionCreator } from 'background/actions/action-creator';
 import { ActionHub } from 'background/actions/action-hub';
 import {
@@ -1307,7 +1308,7 @@ class ActionCreatorValidator {
             this.detailsViewControllerStrictMock.object,
             this.telemetryEventHandlerStrictMock.object,
             this.notificationCreatorStrictMock.object,
-            new WebVisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(Assessments),
             this.targetTabControllerStrictMock.object,
             this.loggerMock.object,
         );

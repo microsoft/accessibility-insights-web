@@ -157,7 +157,7 @@ async function initializeAsync(): Promise<void> {
 
     const tabContextManager = new TabContextManager();
 
-    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(Assessments);
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,
