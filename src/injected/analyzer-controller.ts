@@ -88,9 +88,14 @@ export class AnalyzerController {
                 requirementConfig: Requirement,
             ) => {
                 const identifier = testConfig.getIdentifier(requirementConfig?.key);
+                const analyzerConfig = {
+                    key: requirementConfig?.key,
+                    testType: type,
+                    ...testConfig.messageConfiguration,
+                };
                 this.analyzers[identifier] = testConfig.getAnalyzer(
                     this.analyzerProvider,
-                    requirementConfig?.key,
+                    analyzerConfig,
                 );
             },
         );

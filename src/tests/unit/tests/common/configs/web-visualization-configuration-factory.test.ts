@@ -7,6 +7,11 @@ import { Requirement } from 'assessments/types/requirement';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import {
+    AnalyzerMessageConfiguration,
+    AssessmentVisualizationMessageTypes,
+    MediumPassVisualizationMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
@@ -177,8 +182,18 @@ describe('WebVisualizationConfigurationFactory', () => {
 
         testObject.forEachConfig(callbackMock.object);
 
-        verifyEachProviderConfigIsCalled(callbackMock, assessmentStubs, TestMode.Assessments);
-        verifyEachProviderConfigIsCalled(callbackMock, mediumPassStubs, TestMode.MediumPass);
+        verifyEachProviderConfigIsCalled(
+            callbackMock,
+            assessmentStubs,
+            TestMode.Assessments,
+            AssessmentVisualizationMessageTypes,
+        );
+        verifyEachProviderConfigIsCalled(
+            callbackMock,
+            mediumPassStubs,
+            TestMode.MediumPass,
+            MediumPassVisualizationMessageTypes,
+        );
         forOwn(
             (testObject as any).configurationByType,
             (config: VisualizationConfiguration, key: string) => {
@@ -215,13 +230,16 @@ describe('WebVisualizationConfigurationFactory', () => {
         >,
         assessmentStubs: Readonly<Assessment>[],
         testMode: TestMode,
+        messageConfiguration: AnalyzerMessageConfiguration,
     ) {
         assessmentStubs.forEach(stub => {
             stub.requirements.forEach(reqStub =>
                 callbackMock.verify(
                     m =>
                         m(
-                            It.isObjectWith(getAssessmentDefaults(stub.title, testMode)),
+                            It.isObjectWith(
+                                getAssessmentDefaults(stub.title, testMode, messageConfiguration),
+                            ),
                             stub.visualizationType,
                             reqStub,
                         ),
@@ -251,7 +269,11 @@ describe('WebVisualizationConfigurationFactory', () => {
                 },
             } as TestsScanData,
         } as TestsEnabledState;
-        const expectedDefaults = getAssessmentDefaults(assessmentStub.title, TestMode.MediumPass);
+        const expectedDefaults = getAssessmentDefaults(
+            assessmentStub.title,
+            TestMode.MediumPass,
+            MediumPassVisualizationMessageTypes,
+        );
         const expected = {
             ...assessmentStub.getVisualizationConfiguration(),
             ...expectedDefaults,
@@ -325,6 +347,7 @@ describe('WebVisualizationConfigurationFactory', () => {
     function getAssessmentDefaults(
         expectedDisplayableTitle: string,
         testMode: TestMode,
+        expectedMessageConfig: AnalyzerMessageConfiguration,
     ): Partial<VisualizationConfiguration> {
         return {
             testMode,
@@ -339,6 +362,7 @@ describe('WebVisualizationConfigurationFactory', () => {
                 linkToDetailsViewText: null,
             },
             shouldShowExportReport: null,
+            messageConfiguration: expectedMessageConfig,
         };
     }
 });
