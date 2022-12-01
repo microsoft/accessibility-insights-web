@@ -3,6 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { DialogRendererImpl } from 'injected/dialog-renderer-impl';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import * as ReactDOM from 'react-dom';
 
@@ -28,7 +29,7 @@ export class IssuesFormatter implements Formatter {
         getRTLFunc: typeof getRTL,
         detailsDialogHandler: DetailsDialogHandler,
     ) {
-        this.dialogRenderer = new DialogRenderer(
+        this.dialogRenderer = new DialogRendererImpl(
             document,
             ReactDOM.render,
             frameMessenger,
@@ -42,7 +43,7 @@ export class IssuesFormatter implements Formatter {
     }
 
     public static style: HeadingStyleConfiguration = {
-        borderColor: '#E81123',
+        outlineColor: '#E81123',
         fontColor: '#FFFFFF',
     };
 
@@ -52,15 +53,14 @@ export class IssuesFormatter implements Formatter {
     ): DrawerConfiguration {
         const config: DrawerConfiguration = {
             failureBoxConfig: {
-                background: IssuesFormatter.style.borderColor,
+                background: IssuesFormatter.style.outlineColor,
                 fontColor: '#FFFFFF',
                 text: '!',
                 hasDialogView: true,
                 boxWidth: '2em',
             },
-            borderColor: IssuesFormatter.style.borderColor,
+            outlineColor: IssuesFormatter.style.outlineColor,
             toolTip: this.getText(data),
-            outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'center',
             cursor: 'pointer',

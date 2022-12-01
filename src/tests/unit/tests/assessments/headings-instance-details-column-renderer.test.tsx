@@ -37,7 +37,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={HeadingFormatter.headingStyles['3'].borderColor}
+                background={HeadingFormatter.headingStyles['3'].outlineColor}
                 labelText={'H3'}
                 textContent={'heading'}
                 customClassName={null}

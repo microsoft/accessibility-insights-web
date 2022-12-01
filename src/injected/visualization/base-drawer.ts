@@ -17,7 +17,7 @@ export abstract class BaseDrawer implements Drawer {
     public static recalculationTimeout = 16;
     protected dialogRenderer: DialogRenderer;
     protected windowUtils: WindowUtils;
-    protected containerElement: HTMLElement;
+    protected containerElement: HTMLElement | null;
     protected drawerUtils: DrawerUtils;
 
     private shadowUtils: ShadowUtils;
@@ -28,7 +28,7 @@ export abstract class BaseDrawer implements Drawer {
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
-        formatter: Formatter = null,
+        formatter: Formatter,
     ) {
         this.dom = dom;
         this.containerClass = containerClass;
@@ -105,6 +105,10 @@ export abstract class BaseDrawer implements Drawer {
     };
 
     protected applyContainerClass(): void {
+        if (this.containerElement == null) {
+            throw new Error('applyContainerClass invoked in illegal state (no containerElement)');
+        }
+
         this.containerElement.setAttribute(
             'class',
             `insights-container insights-highlight-container ${this.containerClass}`,
@@ -127,6 +131,10 @@ export abstract class BaseDrawer implements Drawer {
     }
 
     private attachContainerToDom(): void {
+        if (this.containerElement == null) {
+            throw new Error('attachContainerToDom invoked in illegal state (no containerElement)');
+        }
+
         this.shadowUtils.getShadowContainer().appendChild(this.containerElement);
     }
 }

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { loadTheme, setFocusVisibility } from '@fluentui/react';
-import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -32,6 +31,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
+import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
@@ -48,7 +48,6 @@ import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-a
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
-import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -297,6 +296,7 @@ if (tabId != null) {
             const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
+                Messages.Assessment,
             );
 
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -494,13 +494,9 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
-            const ajv = new Ajv();
-
             const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
-                ajv,
                 Assessments,
                 featureFlagStore.getState() as FeatureFlagStoreData,
-                new LoadAssessmentDataSchemaProvider(),
             );
 
             const loadAssessmentHelper = new LoadAssessmentHelper(

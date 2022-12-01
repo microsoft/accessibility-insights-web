@@ -40,7 +40,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
         this.tabStopListenerRunner.topWindowCallback = (tabEvent: TabStopEvent) => {
             this.pendingTabbedElements.push(tabEvent);
-            this.debouncedProcessTabEvents();
+            this.debouncedProcessTabEvents!();
         };
         await this.tabStopListenerRunner.start();
 

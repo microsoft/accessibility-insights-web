@@ -18,6 +18,7 @@ exports[`AssessmentReportFooter renders 1`] = `
   <a
     className="link report-footer-link"
     href="http://aka.ms/AccessibilityInsights"
+    rel="noreferrer"
     target="_blank"
   >
     http://aka.ms/AccessibilityInsights
