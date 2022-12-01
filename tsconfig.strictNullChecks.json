@@ -396,6 +396,7 @@
         "./src/injected/visualization/focus-indicator-creator.ts",
         "./src/injected/visualization/formatter.ts",
         "./src/injected/visualization/frame-formatter.ts",
+        "./src/injected/visualization/get-cell-and-header-elements.ts",
         "./src/injected/visualization/heading-formatter.ts",
         "./src/injected/visualization/highlight-box.tsx",
         "./src/injected/visualization/highlight-box-drawer.ts",
