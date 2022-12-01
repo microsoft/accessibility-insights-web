@@ -268,8 +268,8 @@ describe(DialogRendererImpl, () => {
             .setup(wum => wum.getTopWindow())
             .returns(() => {
                 return windowStub;
-            })
-            .verifiable(Times.atLeastOnce());
+            });
+        windowUtilsMock.setup(wum => wum.isTopWindow()).returns(() => true);
         windowUtilsMock.setup(wum => wum.getPlatform()).returns(() => 'Win32');
         frameMessenger
             .setup(fm => fm.addMessageListener(It.isValue('insights.detailsDialog'), It.isAny()))
@@ -294,10 +294,8 @@ describe(DialogRendererImpl, () => {
             id: 'this is a different window than windowStub',
         } as unknown as Window;
 
-        windowUtilsMock
-            .setup(wum => wum.getTopWindow())
-            .returns(() => topWindowStub)
-            .verifiable(Times.atLeastOnce());
+        windowUtilsMock.setup(wum => wum.getTopWindow()).returns(() => topWindowStub);
+        windowUtilsMock.setup(wum => wum.isTopWindow()).returns(() => false);
 
         frameMessenger
             .setup(fm => fm.addMessageListener(It.isValue(commandMessage.command), It.isAny()))
