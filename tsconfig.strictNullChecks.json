@@ -75,7 +75,6 @@
         "./src/assessments/custom-widgets/design-pattern.ts",
         "./src/assessments/custom-widgets/test-steps/test-steps.ts",
         "./src/assessments/errors/test-steps/test-steps.ts",
-        "./src/assessments/headings/headings-instance-details-column-renderer.tsx",
         "./src/assessments/headings/test-steps/test-steps.ts",
         "./src/assessments/images/test-steps/test-steps.ts",
         "./src/assessments/keyboard-interaction/test-steps/test-steps.ts",
