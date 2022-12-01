@@ -30,7 +30,7 @@ export class FrameFormatter extends FailureInstanceFormatter {
         },
     };
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 

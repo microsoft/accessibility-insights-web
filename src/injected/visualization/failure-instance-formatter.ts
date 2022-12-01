@@ -19,11 +19,13 @@ export abstract class FailureInstanceFormatter implements Formatter {
 
     public abstract getDialogRenderer(): DialogRenderer | null;
 
-    protected getFailureBoxConfig(data: AssessmentVisualizationInstance): FailureBoxConfig | null {
+    protected getFailureBoxConfig(
+        data: AssessmentVisualizationInstance,
+    ): FailureBoxConfig | undefined {
         if (data && data.isFailure) {
             return FailureInstanceFormatter.failureBoxConfig;
         }
 
-        return null;
+        return undefined;
     }
 }
