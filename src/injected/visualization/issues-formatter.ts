@@ -3,6 +3,7 @@
 import { getRTL } from '@fluentui/utilities';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { DialogRendererImpl } from 'injected/dialog-renderer-impl';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import * as ReactDOM from 'react-dom';
 
@@ -28,7 +29,7 @@ export class IssuesFormatter implements Formatter {
         getRTLFunc: typeof getRTL,
         detailsDialogHandler: DetailsDialogHandler,
     ) {
-        this.dialogRenderer = new DialogRenderer(
+        this.dialogRenderer = new DialogRendererImpl(
             document,
             ReactDOM.render,
             frameMessenger,

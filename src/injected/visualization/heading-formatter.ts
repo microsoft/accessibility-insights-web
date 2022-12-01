@@ -54,7 +54,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         },
     };
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
@@ -62,9 +62,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         element: HTMLElement,
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
-        const level = this.getAriaLevel(element)
-            ? this.getAriaLevel(element)
-            : this.getHTagLevel(element);
+        const level = this.getAriaLevel(element) ?? this.getHTagLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;
 
@@ -111,12 +109,12 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return headingLevel ? headingLevel[1] : '-';
     }
 
-    private getAriaLevel(element: HTMLElement): string {
+    private getAriaLevel(element: HTMLElement): string | null {
         const attr = element.attributes.getNamedItem('aria-level');
         return attr ? attr.textContent : null;
     }
 
-    private getAttribute(element: HTMLElement, attrName: string): string {
+    private getAttribute(element: HTMLElement, attrName: string): string | null {
         const attr = element.attributes.getNamedItem(attrName);
         return attr ? attr.textContent : null;
     }

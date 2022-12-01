@@ -2,7 +2,7 @@
 
 exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=headers role=null id=id 1`] = `
 {
-  "failureBoxConfig": null,
+  "failureBoxConfig": undefined,
   "outlineColor": "#6600CC",
   "outlineStyle": "solid",
   "showVisualization": true,
@@ -17,7 +17,7 @@ exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=head
 
 exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=headers role=null id=null 1`] = `
 {
-  "failureBoxConfig": null,
+  "failureBoxConfig": undefined,
   "outlineColor": "#6600CC",
   "outlineStyle": "solid",
   "showVisualization": true,
@@ -32,7 +32,7 @@ exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=head
 
 exports[`TableHeadersAttributeFormatter getDrawerConfiguration - th headers=headers role=null id=id 1`] = `
 {
-  "failureBoxConfig": null,
+  "failureBoxConfig": undefined,
   "outlineColor": "#0066CC",
   "outlineStyle": "solid",
   "showVisualization": true,
@@ -47,7 +47,7 @@ exports[`TableHeadersAttributeFormatter getDrawerConfiguration - th headers=head
 
 exports[`TableHeadersAttributeFormatter getDrawerConfiguration - th headers=null role=null id=id 1`] = `
 {
-  "failureBoxConfig": null,
+  "failureBoxConfig": undefined,
   "outlineColor": "#0066CC",
   "outlineStyle": "solid",
   "showVisualization": true,
