@@ -529,6 +529,7 @@
         "./src/tests/unit/common/simulated-browser-event.ts",
         "./src/tests/unit/common/simulated-window.ts",
         "./src/tests/unit/common/store-tester.ts",
+        "./src/tests/unit/common/tab-store-data-builder.ts",
         "./src/tests/unit/common/test-document-creator.ts",
         "./src/tests/unit/common/time-simulating-promise-factory.ts",
         "./src/tests/unit/common/typemoq-helper.ts",
