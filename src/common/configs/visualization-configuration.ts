@@ -27,5 +27,5 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
     shouldShowExportReport: () => boolean;
-    getIdentifier: (testStep?: string) => string;
+    getIdentifier: (requirementKey?: string) => string;
 }

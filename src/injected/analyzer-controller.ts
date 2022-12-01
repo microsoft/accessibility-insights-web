@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationType } from 'common/types/visualization-type';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
@@ -79,7 +82,11 @@ export class AnalyzerController {
 
     private initializeAnalyzers(): void {
         this.visualizationConfigurationFactory.forEachConfig(
-            (testConfig, type, requirementConfig) => {
+            (
+                testConfig: VisualizationConfiguration,
+                type: VisualizationType,
+                requirementConfig: Requirement,
+            ) => {
                 const identifier = testConfig.getIdentifier(requirementConfig?.key);
                 this.analyzers[identifier] = testConfig.getAnalyzer(
                     this.analyzerProvider,

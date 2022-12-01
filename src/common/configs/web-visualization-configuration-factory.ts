@@ -62,22 +62,22 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     }
 
     public forEachConfig(callback: ForEachConfigCallback): void {
-        Object.keys(this.configurationByType).map(type => {
+        Object.keys(this.configurationByType).forEach(type => {
             callback(this.configurationByType[type], Number(type));
         });
 
-        this.fullAssessmentProvider.all().map(assessment => {
+        this.fullAssessmentProvider.all().forEach(assessment => {
             const testConfig = this.buildAssessmentConfiguration(assessment, TestMode.Assessments);
 
-            assessment.requirements.map(requirementConfig => {
+            assessment.requirements.forEach(requirementConfig => {
                 callback(testConfig, assessment.visualizationType, requirementConfig);
             });
         });
 
-        this.mediumPassProvider?.all().map(assessment => {
+        this.mediumPassProvider?.all().forEach(assessment => {
             const testConfig = this.buildAssessmentConfiguration(assessment, TestMode.MediumPass);
 
-            assessment.requirements.map(requirementConfig => {
+            assessment.requirements.forEach(requirementConfig => {
                 callback(testConfig, assessment.visualizationType, requirementConfig);
             });
         });
@@ -89,8 +89,8 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     ): VisualizationConfiguration {
         const config = assessment.getVisualizationConfiguration();
 
-        const getIdentifier = step => {
-            const requirement = assessment.requirements.find(req => req.key === step);
+        const getIdentifier = (requirementKey: string) => {
+            const requirement = assessment.requirements.find(req => req.key === requirementKey);
             return `${testMode}-${requirement.key}`;
         };
 
