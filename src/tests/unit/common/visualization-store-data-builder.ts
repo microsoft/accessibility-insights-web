@@ -9,7 +9,7 @@ import { cloneDeep, forOwn } from 'lodash';
 import { DetailsViewPivotType } from '../../../common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
-    VisualizationStoreData
+    VisualizationStoreData,
 } from '../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
