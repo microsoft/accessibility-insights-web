@@ -87,9 +87,9 @@ describe('filter by requirements', () => {
                 return;
             }
 
-            let baseAssessment = baseProvider.forKey(createdAssessment.key);
-            let baseConfig = baseAssessment.getVisualizationConfiguration();
-            let createdConfig = createdAssessment.getVisualizationConfiguration();
+            const baseAssessment = baseProvider.forKey(createdAssessment.key);
+            const baseConfig = baseAssessment.getVisualizationConfiguration();
+            const createdConfig = createdAssessment.getVisualizationConfiguration();
             expect(createdConfig).toMatchObject(baseConfig);
         });
     }
