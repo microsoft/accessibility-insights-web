@@ -445,6 +445,7 @@
         "./src/reports/components/report-sections/body-section.tsx",
         "./src/reports/components/report-sections/collapsible-script-provider.tsx",
         "./src/reports/components/report-sections/collapsible-url-result-section.tsx",
+        "./src/reports/components/report-sections/combined-report-failed-section.tsx",
         "./src/reports/components/report-sections/content-container.tsx",
         "./src/reports/components/report-sections/failed-urls-section.tsx",
         "./src/reports/components/report-sections/fast-pass-results-title-section.tsx",
