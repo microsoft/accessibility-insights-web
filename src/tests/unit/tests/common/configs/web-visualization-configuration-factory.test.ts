@@ -266,7 +266,7 @@ describe('WebVisualizationConfigurationFactory', () => {
             `${TestMode.MediumPass}-${requirementKey}`,
         );
         expect(returnedConfiguration.getStoreData(testData)).toEqual(
-            testData.mediumPass[`${visualizationKeyStub}Assessment`],
+            testData.mediumPass[visualizationKeyStub],
         );
     });
 
