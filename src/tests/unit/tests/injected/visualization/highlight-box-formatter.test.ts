@@ -16,7 +16,7 @@ describe('HighlightBoxFormatterTests', () => {
         const config = testSubject.getDrawerConfiguration(htmlElement, null);
 
         expect(config.showVisualization).toBe(true);
-        expect(config.failureBoxConfig).toBeNull();
+        expect(config.failureBoxConfig).toBeUndefined();
         expect(config.outlineColor).toEqual('#E81123');
         expect(config.textAlign).toEqual('center');
     });
