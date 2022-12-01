@@ -29,7 +29,7 @@ import {
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
-import { Analyzer } from '../../../../injected/analyzers/analyzer';
+import { Analyzer, AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { ScopingStoreDataBuilder } from '../../common/scoping-store-data-builder';
 import { IsSameObject } from '../../common/typemoq-helper';
@@ -41,7 +41,9 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider, key?: string) => Analyzer>;
+    let getAnalyzerMock: IMock<
+        (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => Analyzer
+    >;
     let getIdentifierMock: IMock<(key?: string) => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
@@ -69,24 +71,27 @@ describe('AnalyzerControllerTests', () => {
         getStoreDataMock = Mock.ofInstance(data => {
             return null;
         });
-        getAnalyzerMock = Mock.ofInstance((provider: AnalyzerProvider) => {
-            return null;
-        });
+        getAnalyzerMock = Mock.ofInstance(
+            (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+                return null;
+            },
+        );
         getIdentifierMock = Mock.ofInstance(() => {
             return null;
         });
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
+        };
         getDetailsSwitcherNavConfigurationMock = Mock.ofType<GetDetailsSwitcherNavConfiguration>();
         configStub = {
             getStoreData: getStoreDataMock.object,
             getAnalyzer: getAnalyzerMock.object,
             getIdentifier: getIdentifierMock.object,
+            messageConfiguration: messageConfigurationStub,
         } as any;
         requirementStub = {
             key: 'some requirement key',
         } as Requirement;
-        messageConfigurationStub = {
-            analyzerMessageType: 'some message type',
-        };
         switcherConfigurationStub = {
             analyzerMessageConfiguration: messageConfigurationStub,
         } as DetailsViewSwitcherNavConfiguration;
@@ -127,7 +132,7 @@ describe('AnalyzerControllerTests', () => {
             .setup(m => m.forEachConfig(It.isAny()))
             .callback(givenCallback => {
                 analyzerInitializeCallback = givenCallback;
-                analyzerInitializeCallback(configStub, -1, requirementStub);
+                analyzerInitializeCallback(configStub, testType, requirementStub);
             });
 
         identifier = 'fake-key';
@@ -287,15 +292,25 @@ describe('AnalyzerControllerTests', () => {
     }
 
     function setupGetAnalyzerMockCalled(requirement: Requirement): void {
+        const expectedAnalyzerConfig = {
+            key: requirement?.key,
+            testType,
+            ...messageConfigurationStub,
+        } as AnalyzerConfiguration;
         getAnalyzerMock
-            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object), requirement?.key))
+            .setup(gam =>
+                gam(
+                    IsSameObject(analyzerProviderStrictMock.object),
+                    It.isValue(expectedAnalyzerConfig),
+                ),
+            )
             .returns(() => analyzerMock.object)
             .verifiable();
     }
 
     function setupGetAnalyzerMockNeverCalled(): void {
         getAnalyzerMock
-            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object)))
+            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object), It.isAny()))
             .returns(() => analyzerMock.object)
             .verifiable(Times.never());
     }

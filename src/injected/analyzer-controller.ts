@@ -81,9 +81,14 @@ export class AnalyzerController {
         this.visualizationConfigurationFactory.forEachConfig(
             (testConfig, type, requirementConfig) => {
                 const identifier = testConfig.getIdentifier(requirementConfig?.key);
+                const analyzerConfig = {
+                    key: requirementConfig?.key,
+                    testType: type,
+                    ...testConfig.messageConfiguration,
+                };
                 this.analyzers[identifier] = testConfig.getAnalyzer(
                     this.analyzerProvider,
-                    requirementConfig?.key,
+                    analyzerConfig,
                 );
             },
         );

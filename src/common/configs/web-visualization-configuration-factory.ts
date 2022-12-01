@@ -10,6 +10,11 @@ import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visu
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { TestsEnabledState } from 'common/types/store-data/visualization-store-data';
+import {
+    AnalyzerMessageConfiguration,
+    AssessmentVisualizationMessageTypes,
+    MediumPassVisualizationMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
 import { find, forOwn, values } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { VisualizationType } from '../types/visualization-type';
@@ -45,12 +50,20 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
         if (this.mediumPassProvider?.isValidType(visualizationType)) {
             const assessment = this.mediumPassProvider.forType(visualizationType);
-            return this.buildAssessmentConfiguration(assessment, TestMode.MediumPass);
+            return this.buildAssessmentConfiguration(
+                assessment,
+                TestMode.MediumPass,
+                MediumPassVisualizationMessageTypes,
+            );
         }
 
         if (this.fullAssessmentProvider.isValidType(visualizationType)) {
             const assessment = this.fullAssessmentProvider.forType(visualizationType);
-            return this.buildAssessmentConfiguration(assessment, TestMode.Assessments);
+            return this.buildAssessmentConfiguration(
+                assessment,
+                TestMode.Assessments,
+                AssessmentVisualizationMessageTypes,
+            );
         }
 
         const configuration = this.configurationByType[visualizationType];
@@ -68,7 +81,11 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
         });
 
         this.fullAssessmentProvider.all().map(assessment => {
-            const testConfig = this.buildAssessmentConfiguration(assessment, TestMode.Assessments);
+            const testConfig = this.buildAssessmentConfiguration(
+                assessment,
+                TestMode.Assessments,
+                AssessmentVisualizationMessageTypes,
+            );
 
             assessment.requirements.map(requirementConfig => {
                 callback(testConfig, assessment.visualizationType, requirementConfig);
@@ -76,7 +93,11 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
         });
 
         this.mediumPassProvider?.all().map(assessment => {
-            const testConfig = this.buildAssessmentConfiguration(assessment, TestMode.MediumPass);
+            const testConfig = this.buildAssessmentConfiguration(
+                assessment,
+                TestMode.MediumPass,
+                MediumPassVisualizationMessageTypes,
+            );
 
             assessment.requirements.map(requirementConfig => {
                 callback(testConfig, assessment.visualizationType, requirementConfig);
@@ -87,6 +108,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     private buildAssessmentConfiguration(
         assessment: Assessment,
         testMode: TestMode,
+        messageConfiguration: AnalyzerMessageConfiguration,
     ): VisualizationConfiguration {
         const config = assessment.getVisualizationConfiguration();
 
@@ -114,6 +136,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             shouldShowExportReport: null,
             getIdentifier,
             getStoreData,
+            messageConfiguration,
         };
 
         return { ...config, ...defaults };
