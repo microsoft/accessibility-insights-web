@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -115,6 +117,7 @@ export class WindowInitializer {
 
         this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
         );
 
         const backchannelWindowMessageTranslator = new BackchannelWindowMessageTranslator(

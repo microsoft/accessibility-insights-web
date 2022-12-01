@@ -17,10 +17,10 @@ import {
 } from '../../../../../common/types/store-data/assessment-result-data';
 import {
     ScanData,
-    VisualizationStoreData,
+    TestsEnabledState,
+    TestsScanData,
 } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('WebVisualizationConfigurationFactory', () => {
     let testObject: WebVisualizationConfigurationFactory;
@@ -47,24 +47,22 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('getStoreData for color', () => {
         const visualizationType = VisualizationType.Color;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.color;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.color;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for headings', () => {
         const visualizationType = VisualizationType.Headings;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.headings;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.headings;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for headingsAssessment', () => {
         const visualizationType = VisualizationType.HeadingsAssessment;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.assessments.headingsAssessment;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments.headingsAssessment;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
@@ -95,24 +93,21 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('getStoreData for issues', () => {
         const visualizationType = VisualizationType.Issues;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.issues;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.issues;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for landmarks', () => {
         const visualizationType = VisualizationType.Landmarks;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.landmarks;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.landmarks;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for tabStops', () => {
         const visualizationType = VisualizationType.TabStops;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.tabStops;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.tabStops;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
@@ -238,10 +233,24 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('getConfiguration for mediumPass', () => {
         const type = VisualizationType.HeadingsAssessment;
+        const requirementKey = 'some requirement key';
+        const visualizationKeyStub = 'some key';
         const assessmentStub = {
             title: 'some title',
-            getVisualizationConfiguration: () => ({ key: 'some key' }),
+            getVisualizationConfiguration: () => ({ key: visualizationKeyStub }),
+            requirements: [
+                {
+                    key: requirementKey,
+                },
+            ],
         } as Assessment;
+        const testData = {
+            [TestMode.MediumPass]: {
+                [visualizationKeyStub]: {
+                    enabled: true,
+                },
+            } as TestsScanData,
+        } as TestsEnabledState;
         const expectedDefaults = getAssessmentDefaults(assessmentStub.title, TestMode.MediumPass);
         const expected = {
             ...assessmentStub.getVisualizationConfiguration(),
@@ -250,7 +259,15 @@ describe('WebVisualizationConfigurationFactory', () => {
         mediumPassProviderMock.reset();
         mediumPassProviderMock.setup(m => m.isValidType(type)).returns(() => true);
         mediumPassProviderMock.setup(m => m.forType(type)).returns(() => assessmentStub);
-        expect(testObject.getConfiguration(type)).toMatchObject(expected);
+
+        const returnedConfiguration = testObject.getConfiguration(type);
+        expect(returnedConfiguration).toMatchObject(expected);
+        expect(returnedConfiguration.getIdentifier(requirementKey)).toEqual(
+            `${TestMode.MediumPass}-${requirementKey}`,
+        );
+        expect(returnedConfiguration.getStoreData(testData)).toEqual(
+            testData.mediumPass[visualizationKeyStub],
+        );
     });
 
     test('getConfigurationByKey for adhoc visualizations', () => {
@@ -288,13 +305,17 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     function testGetStoreData(
         visualizationType: VisualizationType,
-        getExpectedData: (data: VisualizationStoreData) => ScanData,
+        getExpectedData: (data: TestsEnabledState) => ScanData,
     ): void {
-        const data = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
-
         const configuration = testObject.getConfiguration(visualizationType);
-
-        const scanData = configuration.getStoreData(data.tests);
+        const data = {
+            [configuration.testMode]: {
+                [configuration.key]: {
+                    enabled: true,
+                },
+            },
+        } as any;
+        const scanData = configuration.getStoreData(data);
 
         const expected = getExpectedData(data);
 

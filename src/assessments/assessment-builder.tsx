@@ -13,11 +13,7 @@ import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
-import {
-    AssessmentScanData,
-    ScanData,
-    TestsEnabledState,
-} from 'common/types/store-data/visualization-store-data';
+import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import {
     VisualizationInstanceProcessor,
@@ -155,12 +151,8 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
-            data.assessments[`${key}Assessment`];
-
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
-            getStoreData: getStoreData,
             enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
@@ -235,9 +227,6 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
-            data.assessments[assessment.storeDataKey];
-
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
             getAssessmentData: data => data.assessments[key],
@@ -246,7 +235,6 @@ export class AssessmentBuilder {
                 thisAssessment.fullAxeResultsMap = selectorMap;
                 thisAssessment.generatedAssessmentInstancesMap = instanceMap;
             },
-            getStoreData: getStoreData,
             enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
