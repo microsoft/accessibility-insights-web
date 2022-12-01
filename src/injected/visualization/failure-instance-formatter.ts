@@ -17,9 +17,9 @@ export abstract class FailureInstanceFormatter implements Formatter {
 
     public abstract getDrawerConfiguration(element: Node, data: AxeResultsWithFrameLevel): any;
 
-    public abstract getDialogRenderer(): DialogRenderer;
+    public abstract getDialogRenderer(): DialogRenderer | null;
 
-    protected getFailureBoxConfig(data: AssessmentVisualizationInstance): FailureBoxConfig {
+    protected getFailureBoxConfig(data: AssessmentVisualizationInstance): FailureBoxConfig | null {
         if (data && data.isFailure) {
             return FailureInstanceFormatter.failureBoxConfig;
         }

@@ -18,6 +18,7 @@ import { WindowUtils } from 'common/window-utils';
 import { rootContainerId } from 'injected/constants';
 import { DetailsDialogHandler } from 'injected/details-dialog-handler';
 import { DialogRenderer } from 'injected/dialog-renderer';
+import { DialogRendererImpl } from 'injected/dialog-renderer-impl';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -31,7 +32,7 @@ import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
-describe(DialogRenderer, () => {
+describe(DialogRendererImpl, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
@@ -331,7 +332,7 @@ describe(DialogRenderer, () => {
     }
 
     function createDialogRenderer(): DialogRenderer {
-        return new DialogRenderer(
+        return new DialogRendererImpl(
             domMock.object,
             renderMock.object,
             frameMessenger.object,

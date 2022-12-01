@@ -81,5 +81,5 @@ export interface Formatter {
         element: Node,
         data: AxeResultsWithFrameLevel,
     ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
-    getDialogRenderer(): DialogRenderer;
+    getDialogRenderer(): DialogRenderer | null;
 }
