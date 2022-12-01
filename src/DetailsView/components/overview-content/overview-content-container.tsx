@@ -57,7 +57,7 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    getSummaryData?: GetOverviewSummaryData;
+    getSummaryData: GetOverviewSummaryData;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
