@@ -31,7 +31,7 @@ export type InstanceDetailsProps = {
     deps: InstanceDetailsDeps;
     result: CardResult;
     index: number;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;

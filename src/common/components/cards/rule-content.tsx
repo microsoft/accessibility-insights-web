@@ -16,7 +16,7 @@ export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 export type RuleContentProps = {
     deps: RuleContentDeps;
     rule: CardRuleResult;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;

@@ -27,7 +27,7 @@ export type CardFooterMenuItemsProps = {
     fileIssueButtonRef: IRefObject<IButton> & IRefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     onIssueFilingSettingsDialogDismissed: () => void;
     deps: CardFooterMenuItemsDeps;
 };
@@ -89,6 +89,11 @@ export class CardFooterMenuItemsBuilder {
             toolData,
             cardsViewController,
         } = deps;
+
+        if (userConfigurationStoreData == null) {
+            // Intentionally no-op; store data is still in flight from initial load
+            return;
+        }
 
         const selectedBugFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,

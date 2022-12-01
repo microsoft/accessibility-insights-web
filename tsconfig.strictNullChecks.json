@@ -601,6 +601,7 @@
         "src/injected/frameCommunicators/**/*",
         "src/injected/styles/**/*",
         "src/issue-filing/common/markup/**/*",
+        "src/packages/accessibility-insights-ui/**/*",
         "src/popup/Styles/**/*",
         "src/popup/actions/**/*",
         "src/report-export/**/*",
