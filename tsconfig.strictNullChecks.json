@@ -387,6 +387,7 @@
         "./src/injected/target-page-action-message-creator.ts",
         "./src/injected/visualization-instance-processor.ts",
         "./src/injected/visualization-needs-update.ts",
+        "./src/injected/visualization/accessible-names-formatter.ts",
         "./src/injected/visualization/base-drawer.ts",
         "./src/injected/visualization/center-position-calculator.ts",
         "./src/injected/visualization/drawer-utils.ts",
