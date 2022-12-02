@@ -3,6 +3,7 @@
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
@@ -17,19 +18,21 @@ import { BaseDataBuilder } from './base-data-builder';
 export class VisualizationStoreDataBuilder extends BaseDataBuilder<VisualizationStoreData> {
     constructor() {
         super();
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
         this.data = new VisualizationStore(
             null,
             null,
             null,
-            new WebVisualizationConfigurationFactory(
-                Assessments,
-                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
-            ),
+            visualizationConfigurationFactory,
             null,
             null,
             null,
             null,
             true,
+            new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
         ).getDefaultState();
     }
 
