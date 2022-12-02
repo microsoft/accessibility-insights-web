@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
 import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -8,12 +7,11 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { EnumHelper } from 'common/enum-helper';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     let defaultState: VisualizationStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let initialDataCreatorMock: IMock<InitialDataCreator>;
     let generator: InitialVisualizationStoreDataGenerator;
     const visualizationTypes = EnumHelper.getNumericValues(VisualizationType);
     const visualizationConfigurationStub = (test: number, testMode: string) => {
@@ -28,7 +26,6 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
 
     beforeEach(() => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
-        initialDataCreatorMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         visualizationTypes.forEach((type: VisualizationType, index: number) => {
             visualizationConfigurationFactoryMock
                 .setup(vcf => vcf.getConfiguration(type))
