@@ -5,7 +5,7 @@ import { link } from 'content/link';
 import { title } from 'content/strings/application';
 import * as content from 'content/test/focus/visible-focus';
 import { RestartScanVisualHelperToggle } from 'DetailsView/components/restart-scan-visual-helper-toggle';
-import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
@@ -56,8 +56,8 @@ export const VisibleFocus: Requirement = {
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_7],
     ...content,
-    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
-        return provider.createFocusTrackingAnalyzer(analyzerConfig as any);
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: FocusAnalyzerConfiguration) => {
+        return provider.createFocusTrackingAnalyzer(analyzerConfig);
     },
     getVisualHelperToggle: props => <RestartScanVisualHelperToggle {...props} />,
     visualizationInstanceProcessor: VisualizationInstanceProcessor.addOrder,

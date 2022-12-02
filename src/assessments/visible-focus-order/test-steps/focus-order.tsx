@@ -4,7 +4,7 @@ import { generateUID } from 'common/uid-generator';
 import { link } from 'content/link';
 import * as content from 'content/test/focus/focus-order';
 import { RestartScanVisualHelperToggle } from 'DetailsView/components/restart-scan-visual-helper-toggle';
-import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
@@ -64,8 +64,8 @@ export const FocusOrder: Requirement = {
     isManual: true,
     guidanceLinks: [link.WCAG_2_4_3],
     ...content,
-    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
-        provider.createFocusTrackingAnalyzer(analyzerConfig as any),
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: FocusAnalyzerConfiguration) =>
+        provider.createFocusTrackingAnalyzer(analyzerConfig),
     getVisualHelperToggle: props => <RestartScanVisualHelperToggle {...props} />,
     getDrawer: provider => provider.createSVGDrawer(),
     visualizationInstanceProcessor: VisualizationInstanceProcessor.addOrder,
