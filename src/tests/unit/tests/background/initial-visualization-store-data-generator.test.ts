@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
 import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 
 import { EnumHelper } from 'common/enum-helper';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -15,7 +15,7 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let initialDataCreatorMock: IMock<InitialDataCreator>;
     let generator: InitialVisualizationStoreDataGenerator;
-    let visualizationTypes = EnumHelper.getNumericValues(VisualizationType);
+    const visualizationTypes = EnumHelper.getNumericValues(VisualizationType);
     const visualizationConfigurationStub = (test: number, testMode: string) => {
         return {
             key: `type-${test}`,
