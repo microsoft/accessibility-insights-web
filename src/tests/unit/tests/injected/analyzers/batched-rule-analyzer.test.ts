@@ -3,7 +3,6 @@
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { clone, isEqual, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -38,7 +37,6 @@ describe('BatchedRuleAnalyzer', () => {
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
-    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -51,9 +49,6 @@ describe('BatchedRuleAnalyzer', () => {
             getTime: () => {
                 return null;
             },
-        };
-        messageConfigurationStub = {
-            analyzerMessageType: 'some message type',
         };
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateMock = Mock.ofInstance(dateStub as Date);
@@ -154,7 +149,7 @@ describe('BatchedRuleAnalyzer', () => {
                 .returns(_ => startTime)
                 .verifiable();
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
         });
 
         /*
@@ -263,7 +258,7 @@ describe('BatchedRuleAnalyzer', () => {
         expectedTelemetryStub,
     ): Message {
         return {
-            messageType: messageConfigurationStub.analyzerMessageType,
+            messageType: config.analyzerMessageType,
             payload: {
                 key: config.key,
                 selectorMap: allInstancesMocks,

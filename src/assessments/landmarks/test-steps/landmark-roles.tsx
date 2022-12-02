@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 
 import { LandmarksAssessmentProperties } from 'common/types/store-data/assessment-result-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/landmarks/landmark-roles';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
@@ -98,12 +99,11 @@ export const LandmarkRoles: Requirement = {
             pb => pb.role + (pb.label ? ': ' + pb.label : ''),
         ),
     ],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['unique-landmark'],
-                key: LandmarkTestStep.landmarkRoles,
-                testType: VisualizationType.LandmarksAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createLandmarksDrawer(),

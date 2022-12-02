@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 
 import { doesResultHaveMainRole } from 'assessments/landmarks/does-result-have-main-role';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/landmarks/primary-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { autoPassIfNoResults } from '../../auto-pass-if-no-results';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -68,12 +69,11 @@ export const PrimaryContent: Requirement = {
     getInitialManualTestStatus: autoPassIfNoResults,
     isVisualizationSupportedForResult: doesResultHaveMainRole,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_4_1],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['unique-landmark'],
-                key: LandmarkTestStep.primaryContent,
-                testType: VisualizationType.LandmarksAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createLandmarksDrawer(),

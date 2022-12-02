@@ -174,7 +174,7 @@ describe('RuleAnalyzer', () => {
             .returns(_ => startTime)
             .verifiable();
 
-        testSubject.analyze(messageConfigurationStub);
+        testSubject.analyze();
 
         dateMock.reset();
         dateMock
