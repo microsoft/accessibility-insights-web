@@ -60,13 +60,19 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     );
 
     it.each([[undefined], [null]])(
-        'returns default state.tests when persistedState.tests is %p',
+        'returns default state.tests when persistedState is %p',
         persistedTests => {
-            const generatedState = generator.generateInitialState({
-                tests: persistedTests,
-            } as VisualizationStoreData);
+            const generatedState = generator.generateInitialState(persistedTests);
 
             expect(generatedState.tests).toEqual(defaultState.tests);
         },
     );
+
+    it('does not overwrite other persisted data', () => {
+        const generatedState = generator.generateInitialState({
+            injectingStarted: true,
+        } as VisualizationStoreData);
+
+        expect(generatedState.injectingStarted).toEqual(true);
+    });
 });

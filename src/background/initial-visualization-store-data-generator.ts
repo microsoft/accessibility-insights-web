@@ -9,6 +9,7 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { isEmpty, merge } from 'lodash';
 
 export class InitialVisualizationStoreDataGenerator {
     constructor(
@@ -40,12 +41,8 @@ export class InitialVisualizationStoreDataGenerator {
                 defaultTests.mediumPass[key].stepStatus = {};
             });
         }
-        const tests: TestsEnabledState = persistedData?.tests
-            ? { ...defaultTests, ...persistedData.tests }
-            : defaultTests;
-
         const defaultValues: VisualizationStoreData = {
-            tests,
+            tests: defaultTests,
             scanning: null,
             selectedFastPassDetailsView: VisualizationType.Issues,
             selectedAdhocDetailsView: VisualizationType.Issues,
@@ -54,7 +51,10 @@ export class InitialVisualizationStoreDataGenerator {
             injectingRequested: false,
             focusedTarget: null,
         };
+        const initialState = !isEmpty(persistedData)
+            ? merge({}, defaultValues, persistedData)
+            : defaultValues;
 
-        return defaultValues;
+        return initialState;
     }
 }
