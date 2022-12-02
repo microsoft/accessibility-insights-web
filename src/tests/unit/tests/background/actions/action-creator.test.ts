@@ -608,43 +608,52 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onAssessmentScanCompleted', async () => {
-        const tabId = -1;
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
+    describe('onAssessmentScanCompleted', () => {
+        const testCases = [
+            [
+                Messages.Assessment.AssessmentScanCompleted,
+                TelemetryEvents.ASSESSMENT_SCAN_COMPLETED,
+            ],
+            [
+                Messages.MediumPass.AssessmentScanCompleted,
+                TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED,
+            ],
+        ];
 
-        const payload: ScanCompletedPayload<any> = {
-            telemetry: telemetryData,
-            selectorMap: {},
-            scanResult: null,
-            testType: VisualizationType.HeadingsAssessment,
-            key: 'key',
-            scanIncompleteWarnings: [],
-        };
+        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+            const tabId = -1;
+            const telemetryData: BaseTelemetryData = {
+                triggeredBy: 'stub triggered by' as TriggeredBy,
+                source: testSource,
+            };
 
-        const validator = new ActionCreatorValidator()
-            .setupTelemetrySend(TelemetryEvents.ASSESSMENT_SCAN_COMPLETED, payload, tabId)
-            .setupCreateNotificationByVisualizationKey(
-                payload.selectorMap,
-                payload.key,
-                payload.testType,
-                payload.scanIncompleteWarnings,
-            )
-            .setupShowTargetTab(tabId, payload.testType, payload.key);
+            const payload: ScanCompletedPayload<any> = {
+                telemetry: telemetryData,
+                selectorMap: {},
+                scanResult: null,
+                testType: VisualizationType.HeadingsAssessment,
+                key: 'key',
+                scanIncompleteWarnings: [],
+            };
 
-        const actionCreator = validator.buildActionCreator();
+            const validator = new ActionCreatorValidator()
+                .setupTelemetrySend(telemetryEvent, payload, tabId)
+                .setupCreateNotificationByVisualizationKey(
+                    payload.selectorMap,
+                    payload.key,
+                    payload.testType,
+                    payload.scanIncompleteWarnings,
+                )
+                .setupShowTargetTab(tabId, payload.testType, payload.key);
 
-        actionCreator.registerCallbacks();
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(
-            Messages.Assessment.AssessmentScanCompleted,
-            payload,
-            tabId,
-        );
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
     describe('onStartOverAssessment', () => {
@@ -700,54 +709,66 @@ describe('ActionCreatorTest', () => {
         });
     });
 
-    test('registerCallback for onStartOverAllAssessments', async () => {
-        const tabId = 1;
-        const payload: ChangeInstanceStatusPayload = {
-            test: VisualizationType.HeadingsAssessment,
-            status: null,
-            requirement: null,
-            selector: null,
-        };
-        const disableActionName = 'disableAssessmentVisualizations';
+    describe('onStartOverAllAssessments', () => {
+        const testCases = [
+            [Messages.Assessment.StartOverAllAssessments, TelemetryEvents.START_OVER_ASSESSMENT],
+            [Messages.MediumPass.StartOverAllAssessments, TelemetryEvents.START_OVER_MEDIUM_PASS],
+        ];
 
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(disableActionName)
-            .setupVisualizationActionWithInvokeParameter(disableActionName, null)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_ASSESSMENT, payload, 1);
-        const actionCreator = validator.buildActionCreator();
+        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+            const tabId = 1;
+            const payload: ChangeInstanceStatusPayload = {
+                test: VisualizationType.HeadingsAssessment,
+                status: null,
+                requirement: null,
+                selector: null,
+            };
+            const disableActionName = 'disableAssessmentVisualizations';
 
-        actionCreator.registerCallbacks();
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(disableActionName)
+                .setupVisualizationActionWithInvokeParameter(disableActionName, null)
+                .setupTelemetrySend(telemetryEvent, payload, 1);
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(
-            Messages.Assessment.StartOverAllAssessments,
-            payload,
-            tabId,
-        );
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
-    test('registerCallback for onCancelStartOverAllAssessments', async () => {
-        const tabId = 1;
-        const payload: BaseActionPayload = {};
+    describe('onCancelStartOverAllAssessments', () => {
+        const testCases = [
+            [
+                Messages.Assessment.CancelStartOverAllAssessments,
+                TelemetryEvents.CANCEL_START_OVER_ASSESSMENT,
+            ],
+            [
+                Messages.MediumPass.CancelStartOverAllAssessments,
+                TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS,
+            ],
+        ];
 
-        const validator = new ActionCreatorValidator().setupTelemetrySend(
-            TelemetryEvents.CANCEL_START_OVER_ASSESSMENT,
-            payload,
-            tabId,
-        );
+        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+            const tabId = 1;
+            const payload: BaseActionPayload = {};
 
-        const actionCreator = validator.buildActionCreator();
+            const validator = new ActionCreatorValidator().setupTelemetrySend(
+                telemetryEvent,
+                payload,
+                tabId,
+            );
 
-        actionCreator.registerCallbacks();
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(
-            Messages.Assessment.CancelStartOverAllAssessments,
-            payload,
-            tabId,
-        );
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
     test('registerCallback for onRescanVisualization', async () => {

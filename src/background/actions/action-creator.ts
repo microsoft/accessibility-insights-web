@@ -169,6 +169,7 @@ export class ActionCreator {
             Messages.Assessment.EnableVisualHelperWithoutScan,
             this.onEnableVisualHelperWithoutScan,
         );
+
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.AssessmentScanCompleted,
             this.onAssessmentScanCompletedForQuickAssess,
