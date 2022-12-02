@@ -29,6 +29,19 @@ describe('LandmarkFormatterTests', () => {
         'search',
     ];
 
+    it('should not show visualization if data is missing', () => {
+        const axeData = {
+            isFailure: false,
+            isVisualizationEnabled: true,
+            target: ['html'],
+            ruleResults: {
+                /* missing */
+            },
+        };
+        const config = testSubject.getDrawerConfiguration(null, axeData);
+        expect(config).toEqual({ showVisualization: false });
+    });
+
     test.each(landmarkRoles)('verify styling for landmark role %s', role => {
         const axeData = getAxeData(role);
         const config = testSubject.getDrawerConfiguration(null, axeData);

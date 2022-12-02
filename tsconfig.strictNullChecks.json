@@ -402,6 +402,7 @@
         "./src/injected/visualization/heading-formatter.ts",
         "./src/injected/visualization/highlight-box.tsx",
         "./src/injected/visualization/highlight-box-drawer.ts",
+        "./src/injected/visualization/landmark-formatter.ts",
         "./src/injected/visualization/null-drawer.ts",
         "./src/injected/visualization/point.ts",
         "./src/injected/visualization/root-container-creator.ts",

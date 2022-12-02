@@ -60,7 +60,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
     }
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
@@ -70,6 +70,10 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
     ): DrawerConfiguration {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
+
+        if (elemData == null) {
+            return { showVisualization: false };
+        }
 
         const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
@@ -91,16 +95,16 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return drawerConfig;
     }
 
-    private getLandmarkInfo(data: HtmlElementAxeResults): ElemData {
+    private getLandmarkInfo(data: HtmlElementAxeResults): ElemData | undefined {
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'unique-landmark') {
-                return this.getData(data.ruleResults[idx].any);
+                return this.getData(data.ruleResults[idx].any ?? []);
             }
         }
         return undefined;
     }
 
-    private getData(nodes: FormattedCheckResult[]): ElemData {
+    private getData(nodes: FormattedCheckResult[]): ElemData | undefined {
         for (const check of nodes) {
             if (check.id === 'unique-landmark') {
                 return {
@@ -111,7 +115,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         }
     }
 
-    private decorateLabelText(elemData: ElemData): ElemData {
+    private decorateLabelText(elemData?: ElemData): ElemData | null {
         if (elemData == null) {
             return null;
         }
