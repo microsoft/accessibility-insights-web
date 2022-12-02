@@ -3,10 +3,11 @@
 import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from 'assessments/common/assisted-test-record-your-results';
 import { onRenderSnippetColumn } from 'assessments/common/element-column-renderers';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/semantics/headers-attribute';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 
 import * as Markup from '../../markup';
@@ -71,12 +72,11 @@ export const HeadersAttribute: Requirement = {
     isManual: false,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['headers-attribute'],
-                key,
-                testType: VisualizationType.SemanticsAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createTableHeaderAttributeDrawer(),

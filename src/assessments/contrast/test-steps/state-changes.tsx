@@ -9,10 +9,11 @@ import {
     PropertyBagColumnRendererConfig,
 } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { StateChangesPropertyBag } from 'common/types/property-bag/state-changes';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/state-changes';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 
@@ -132,13 +133,12 @@ export const StateChanges: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['link-purpose', 'native-widgets-default', 'custom-widget'],
-                key: ContrastTestStep.stateChanges,
-                testType: VisualizationType.ContrastAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createNonTextComponentDrawer(),

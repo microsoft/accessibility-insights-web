@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/text-spacing';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
@@ -56,12 +57,11 @@ export const TextSpacing: Requirement = {
     ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_12],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['text-spacing'],
-                key: AdaptableContentTestStep.textSpacing,
-                testType: VisualizationType.AdaptableContent,
+                ...analyzerConfig,
             }),
         ),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
