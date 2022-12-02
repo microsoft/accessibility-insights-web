@@ -647,46 +647,57 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onStartOverAssessment', async () => {
-        const tabId = 1;
-        const payload: ChangeInstanceStatusPayload = {
-            test: VisualizationType.HeadingsAssessment,
-            status: null,
-            requirement: null,
-            selector: null,
-        };
-        const disableActionName = 'disableVisualization';
+    describe('onStartOverAssessment', () => {
+        const testCases = [Messages.Assessment.StartOverTest, Messages.MediumPass.StartOverTest];
 
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(disableActionName)
-            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
-            .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
-        const actionCreator = validator.buildActionCreator();
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: ChangeInstanceStatusPayload = {
+                test: VisualizationType.HeadingsAssessment,
+                status: null,
+                requirement: null,
+                selector: null,
+            };
+            const disableActionName = 'disableVisualization';
 
-        actionCreator.registerCallbacks();
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(disableActionName)
+                .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+                .setupTelemetrySend(TelemetryEvents.START_OVER_TEST, payload, 1);
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(Messages.Assessment.StartOverTest, payload, tabId);
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
-    test('registerCallback for onCancelStartOverAssessment', async () => {
-        const tabId = 1;
-        const payload: BaseActionPayload = {};
+    describe('onCancelStartOverAssessment', () => {
+        const testCases = [
+            Messages.Assessment.CancelStartOver,
+            Messages.MediumPass.CancelStartOver,
+        ];
 
-        const validator = new ActionCreatorValidator().setupTelemetrySend(
-            TelemetryEvents.CANCEL_START_OVER_TEST,
-            payload,
-            tabId,
-        );
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: BaseActionPayload = {};
 
-        const actionCreator = validator.buildActionCreator();
+            const validator = new ActionCreatorValidator().setupTelemetrySend(
+                TelemetryEvents.CANCEL_START_OVER_TEST,
+                payload,
+                tabId,
+            );
 
-        actionCreator.registerCallbacks();
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(Messages.Assessment.CancelStartOver, payload, tabId);
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
     test('registerCallback for onStartOverAllAssessments', async () => {
@@ -769,90 +780,110 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onEnableVisualHelper', async () => {
-        const tabId = 1;
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.HeadingsAssessment,
-        };
-        const actionName = 'enableVisualization';
+    describe('onEnableVisualHelper', () => {
+        const testCases = [
+            Messages.Assessment.EnableVisualHelper,
+            Messages.MediumPass.EnableVisualHelper,
+        ];
 
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload);
-        const actionCreator = validator.buildActionCreator();
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: ToggleActionPayload = {
+                test: VisualizationType.HeadingsAssessment,
+            };
+            const actionName = 'enableVisualization';
 
-        actionCreator.registerCallbacks();
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(actionName)
+                .setupVisualizationActionWithInvokeParameter(actionName, payload);
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(Messages.Assessment.EnableVisualHelper, payload, tabId);
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
-    test('registerCallback for onEnableVisualHelperWithoutScan', async () => {
-        const tabId = 1;
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.HeadingsAssessment,
-        };
-        const actionName = 'enableVisualizationWithoutScan';
-
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload);
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        await validator.simulateMessage(
+    describe('onEnableVisualHelperWithoutScan', () => {
+        const testCases = [
             Messages.Assessment.EnableVisualHelperWithoutScan,
-            payload,
-            tabId,
-        );
+            Messages.MediumPass.EnableVisualHelperWithoutScan,
+        ];
 
-        validator.verifyAll();
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: ToggleActionPayload = {
+                test: VisualizationType.HeadingsAssessment,
+            };
+            const actionName = 'enableVisualizationWithoutScan';
+
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(actionName)
+                .setupVisualizationActionWithInvokeParameter(actionName, payload);
+            const actionCreator = validator.buildActionCreator();
+
+            actionCreator.registerCallbacks();
+
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
-    test('registerCallback for onDisableVisualHelper', async () => {
-        const tabId = 1;
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.HeadingsAssessment,
-        };
-        const actionName = 'disableVisualization';
+    describe('onDisableVisualHelper', () => {
+        const testCases = [
+            Messages.Assessment.DisableVisualHelper,
+            Messages.MediumPass.DisableVisualHelper,
+        ];
 
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload.test)
-            .setupTelemetrySend(TelemetryEvents.DISABLE_VISUAL_HELPER, payload, 1);
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: ToggleActionPayload = {
+                test: VisualizationType.HeadingsAssessment,
+            };
+            const actionName = 'disableVisualization';
 
-        const actionCreator = validator.buildActionCreator();
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(actionName)
+                .setupVisualizationActionWithInvokeParameter(actionName, payload.test)
+                .setupTelemetrySend(TelemetryEvents.DISABLE_VISUAL_HELPER, payload, 1);
 
-        actionCreator.registerCallbacks();
+            const actionCreator = validator.buildActionCreator();
 
-        await validator.simulateMessage(Messages.Assessment.DisableVisualHelper, payload, tabId);
+            actionCreator.registerCallbacks();
 
-        validator.verifyAll();
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
-    test('registerCallback for onDisableVisualHelpersForTest', async () => {
-        const tabId = 1;
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.HeadingsAssessment,
-        };
-        const actionName = 'disableVisualization';
-
-        const validator = new ActionCreatorValidator()
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, payload.test);
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        await validator.simulateMessage(
+    describe('onDisableVisualHelpersForTest', () => {
+        const testCases = [
             Messages.Assessment.DisableVisualHelperForTest,
-            payload,
-            tabId,
-        );
+            Messages.MediumPass.DisableVisualHelperForTest,
+        ];
 
-        validator.verifyAll();
+        test.each(testCases)('registerCallback with %s', async eventType => {
+            const tabId = 1;
+            const payload: ToggleActionPayload = {
+                test: VisualizationType.HeadingsAssessment,
+            };
+            const actionName = 'disableVisualization';
+
+            const validator = new ActionCreatorValidator()
+                .setupActionOnVisualizationActions(actionName)
+                .setupVisualizationActionWithInvokeParameter(actionName, payload.test);
+            const actionCreator = validator.buildActionCreator();
+
+            actionCreator.registerCallbacks();
+
+            await validator.simulateMessage(eventType, payload, tabId);
+
+            validator.verifyAll();
+        });
     });
 
     test('registerCallback for switch focus back to target', async () => {
