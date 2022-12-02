@@ -49,9 +49,9 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     headingLevel={4}
                 />
             ),
-            onExpandToggle: null,
+            onExpandToggle: () => {},
             headingLevel: 3,
-            deps: null,
+            deps: {},
         });
 
         return <div className="result-section">{CollapsibleContent}</div>;

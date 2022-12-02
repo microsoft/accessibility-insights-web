@@ -29,7 +29,7 @@ export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
     rules: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
