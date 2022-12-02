@@ -620,7 +620,7 @@ describe('ActionCreatorTest', () => {
             ],
         ];
 
-        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+        test.each(testCases)('registerCallback with %s', async (eventName, telemetryEvent) => {
             const tabId = -1;
             const telemetryData: BaseTelemetryData = {
                 triggeredBy: 'stub triggered by' as TriggeredBy,
@@ -650,7 +650,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -659,7 +659,7 @@ describe('ActionCreatorTest', () => {
     describe('onStartOverAssessment', () => {
         const testCases = [Messages.Assessment.StartOverTest, Messages.MediumPass.StartOverTest];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: ChangeInstanceStatusPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -677,7 +677,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -689,7 +689,7 @@ describe('ActionCreatorTest', () => {
             Messages.MediumPass.CancelStartOver,
         ];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: BaseActionPayload = {};
 
@@ -703,7 +703,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -715,7 +715,7 @@ describe('ActionCreatorTest', () => {
             [Messages.MediumPass.StartOverAllAssessments, TelemetryEvents.START_OVER_MEDIUM_PASS],
         ];
 
-        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+        test.each(testCases)('registerCallback with %s', async (eventName, telemetryEvent) => {
             const tabId = 1;
             const payload: ChangeInstanceStatusPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -733,7 +733,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -751,7 +751,7 @@ describe('ActionCreatorTest', () => {
             ],
         ];
 
-        test.each(testCases)('registerCallback with %s', async (eventType, telemetryEvent) => {
+        test.each(testCases)('registerCallback with %s', async (eventName, telemetryEvent) => {
             const tabId = 1;
             const payload: BaseActionPayload = {};
 
@@ -765,7 +765,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -807,7 +807,7 @@ describe('ActionCreatorTest', () => {
             Messages.MediumPass.EnableVisualHelper,
         ];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: ToggleActionPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -821,7 +821,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -833,7 +833,7 @@ describe('ActionCreatorTest', () => {
             Messages.MediumPass.EnableVisualHelperWithoutScan,
         ];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: ToggleActionPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -847,7 +847,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -859,7 +859,7 @@ describe('ActionCreatorTest', () => {
             Messages.MediumPass.DisableVisualHelper,
         ];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: ToggleActionPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -875,7 +875,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
@@ -887,7 +887,7 @@ describe('ActionCreatorTest', () => {
             Messages.MediumPass.DisableVisualHelperForTest,
         ];
 
-        test.each(testCases)('registerCallback with %s', async eventType => {
+        test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
             const payload: ToggleActionPayload = {
                 test: VisualizationType.HeadingsAssessment,
@@ -901,7 +901,7 @@ describe('ActionCreatorTest', () => {
 
             actionCreator.registerCallbacks();
 
-            await validator.simulateMessage(eventType, payload, tabId);
+            await validator.simulateMessage(eventName, payload, tabId);
 
             validator.verifyAll();
         });
