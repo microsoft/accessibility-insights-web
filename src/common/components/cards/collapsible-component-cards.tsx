@@ -59,9 +59,9 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
         }
 
         const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
-            if (event.nativeEvent.detail === 0) {
+            if (event.nativeEvent.detail === 0 && deps.setFocusVisibility != null) {
                 // 0 => keyboard event
-                deps.setFocusVisibility?.(true);
+                deps.setFocusVisibility(true);
             }
 
             onExpandToggle(event);
