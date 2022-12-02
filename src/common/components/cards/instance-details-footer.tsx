@@ -30,7 +30,7 @@ export type InstanceDetailsFooterDeps = {
 export type InstanceDetailsFooterProps = {
     deps: InstanceDetailsFooterDeps;
     result: CardResult;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
     narrowModeStatus?: NarrowModeStatus;

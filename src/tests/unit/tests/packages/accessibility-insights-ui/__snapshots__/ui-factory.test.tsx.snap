@@ -8,8 +8,14 @@ exports[`UIFactory exports ContentView 1`] = `
       "storeActionMessageCreator": {
         "getAllStates": [Function],
       },
-      "storesActionCreator": null,
-      "storesHub": null,
+      "storesHub": {
+        "addChangedListenerToAllStores": [Function],
+        "getAllStoreData": [Function],
+        "hasStoreData": [Function],
+        "hasStores": [Function],
+        "removeChangedListenerFromAllStores": [Function],
+        "stores": [],
+      },
       "textContent": {
         "applicationTitle": "THE_APPLICATION_TITLE",
       },

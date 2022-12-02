@@ -25,7 +25,7 @@ export type InstanceDetailsGroupDeps = {
 export type InstanceDetailsGroupProps = {
     deps: InstanceDetailsGroupDeps;
     rule: CardRuleResult;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;

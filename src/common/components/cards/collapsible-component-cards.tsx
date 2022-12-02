@@ -11,7 +11,7 @@ import styles from './collapsible-component-cards.scss';
 export const collapsibleButtonAutomationId = 'collapsible-component-cards-button';
 
 export type CollapsibleComponentCardsDeps = {
-    setFocusVisibility: SetFocusVisibility;
+    setFocusVisibility?: SetFocusVisibility;
 };
 
 export interface CollapsibleComponentCardsProps {
@@ -59,7 +59,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
         }
 
         const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
-            if (event.nativeEvent.detail === 0) {
+            if (event.nativeEvent.detail === 0 && deps.setFocusVisibility != null) {
                 // 0 => keyboard event
                 deps.setFocusVisibility(true);
             }

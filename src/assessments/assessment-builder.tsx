@@ -8,12 +8,12 @@ import {
     UniquelyIdentifiableInstances,
 } from 'background/instance-identifier-generator';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
-import { Messages } from 'common/messages';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import {
     VisualizationInstanceProcessor,
@@ -125,16 +125,8 @@ export class AssessmentBuilder {
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return provider.createBaseAnalyzer({
-                key: requirementConfig.key,
-                testType: assessment.visualizationType,
-                analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-            });
+        const getAnalyzer = (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+            return provider.createBaseAnalyzer(analyzerConfig);
         };
 
         const getNotificationMessage = (
@@ -183,19 +175,15 @@ export class AssessmentBuilder {
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
+        const getAnalyzer = (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
-                requirement,
+                analyzerConfig.key,
             );
             if (requirementConfig.getAnalyzer == null) {
-                return provider.createBaseAnalyzer({
-                    key: requirementConfig.key,
-                    testType: assessment.visualizationType,
-                    analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-                });
+                return provider.createBaseAnalyzer(analyzerConfig);
             }
-            return requirementConfig.getAnalyzer(provider);
+            return requirementConfig.getAnalyzer(provider, analyzerConfig);
         };
 
         const getDrawer = (
