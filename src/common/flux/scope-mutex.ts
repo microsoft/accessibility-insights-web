@@ -6,7 +6,7 @@ import { DictionaryStringTo } from 'types/common-types';
 
 type Scope = {
     name: string;
-    stack?: string;
+    stack: string;
 };
 
 export class ScopeMutex {

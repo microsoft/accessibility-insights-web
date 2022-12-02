@@ -6,7 +6,7 @@ export type GetStackTraceOptions = {
     framesToIgnore?: number;
 };
 
-export function getStackTrace(options?: GetStackTraceOptions) {
+export function getStackTrace(options?: GetStackTraceOptions): string {
     const rawStack = new Error().stack!;
     const framesToIgnore = options?.framesToIgnore ?? 0;
 
