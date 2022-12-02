@@ -15,37 +15,60 @@ describe(ScopeMutex, () => {
     it('Should not allow locking the default scope twice', () => {
         testSubject.tryLockScope();
 
-        expect(() => testSubject.tryLockScope()).toThrowError(/.*DEFAULT_SCOPE.*/);
-
-        testSubject.unlockScope();
+        try {
+            expect(() => testSubject.tryLockScope()).toThrowError(/.*DEFAULT_SCOPE.*/);
+        } finally {
+            testSubject.unlockScope();
+        }
     });
 
     it('Should not allow locking the same non-default scope twice', () => {
         testSubject.tryLockScope(testScope);
 
-        expect(() => testSubject.tryLockScope(testScope)).toThrowError(/.*test_scope.*/);
+        try {
+            expect(() => testSubject.tryLockScope(testScope)).toThrowError(/.*test_scope.*/);
+        } finally {
+            testSubject.unlockScope(testScope);
+        }
+    });
 
-        testSubject.unlockScope(testScope);
+    it("Should include the original scope-holder's stack in scope re-use errors", () => {
+        function lockingFunctionWithSpecificName() {
+            testSubject.tryLockScope();
+        }
+        lockingFunctionWithSpecificName();
+
+        try {
+            expect(() => testSubject.tryLockScope()).toThrowError(
+                /lockingFunctionWithSpecificName/,
+            );
+        } finally {
+            testSubject.unlockScope();
+        }
     });
 
     it.each([undefined, testScope])('Should allow locking %s scope after an unlock', scope => {
         testSubject.tryLockScope(scope);
         testSubject.unlockScope(scope);
 
-        expect(() => testSubject.tryLockScope(scope)).not.toThrow();
-
-        testSubject.unlockScope(scope);
+        try {
+            expect(() => testSubject.tryLockScope(scope)).not.toThrow();
+        } finally {
+            testSubject.unlockScope(scope);
+        }
     });
 
     it('Should allow locking different scopes consecutively', () => {
         const anotherScope = 'another_test_scope';
 
-        testSubject.tryLockScope();
-        expect(() => testSubject.tryLockScope(testScope)).not.toThrow();
-        expect(() => testSubject.tryLockScope(anotherScope)).not.toThrow();
-
-        testSubject.unlockScope();
-        testSubject.unlockScope(testScope);
-        testSubject.unlockScope(anotherScope);
+        try {
+            testSubject.tryLockScope();
+            expect(() => testSubject.tryLockScope(testScope)).not.toThrow();
+            expect(() => testSubject.tryLockScope(anotherScope)).not.toThrow();
+        } finally {
+            testSubject.unlockScope();
+            testSubject.unlockScope(testScope);
+            testSubject.unlockScope(anotherScope);
+        }
     });
 });
