@@ -129,7 +129,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
                 visualizationConfigurationFactory={props.deps.visualizationConfigurationFactory}
-                assessmentsProvider={props.deps.assessmentsProvider}
                 dropdownClickHandler={props.deps.dropdownClickHandler}
                 clickHandlerFactory={props.deps.clickHandlerFactory}
                 assessmentInstanceTableHandler={props.deps.assessmentInstanceTableHandler}
