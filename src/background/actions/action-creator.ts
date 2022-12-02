@@ -135,7 +135,7 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.AssessmentScanCompleted,
-            this.onAssessmentScanCompleted,
+            this.onAssessmentScanCompletedForAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.StartOverTest,
@@ -147,11 +147,11 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.StartOverAllAssessments,
-            this.onStartOverAllAssessments,
+            this.onStartOverAllAssessmentsForAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.CancelStartOverAllAssessments,
-            this.onCancelStartOverAllAssessments,
+            this.onCancelStartOverAllAssessmentsForAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.EnableVisualHelper,
@@ -171,7 +171,7 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.AssessmentScanCompleted,
-            this.onQuickAssessScanCompleted,
+            this.onAssessmentScanCompletedForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.StartOverTest,
@@ -183,11 +183,11 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.StartOverAllAssessments,
-            this.onStartOverQuickAssess,
+            this.onStartOverAllAssessmentsForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.CancelStartOverAllAssessments,
-            this.onCancelStartOverQuickAssess,
+            this.onCancelStartOverAllAssessmentsForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.MediumPass.EnableVisualHelper,
@@ -255,8 +255,10 @@ export class ActionCreator {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
-    private onStartOverAllAssessments = async (payload: ToggleActionPayload): Promise<void> => {
-        const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
+    private onStartOverAllAssessments = async (
+        payload: ToggleActionPayload,
+        eventName: string,
+    ): Promise<void> => {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.visualizationActions.disableAssessmentVisualizations.invoke(
             null,
@@ -264,23 +266,34 @@ export class ActionCreator {
         );
     };
 
-    private onStartOverQuickAssess = async (payload: ToggleActionPayload): Promise<void> => {
-        const eventName = TelemetryEvents.START_OVER_MEDIUM_PASS;
+    private onStartOverAllAssessmentsForAssessment = async (
+        payload: ToggleActionPayload,
+    ): Promise<void> => {
+        await this.onStartOverAllAssessments(payload, TelemetryEvents.START_OVER_ASSESSMENT);
+    };
+
+    private onStartOverAllAssessmentsForQuickAssess = async (
+        payload: ToggleActionPayload,
+    ): Promise<void> => {
+        await this.onStartOverAllAssessments(payload, TelemetryEvents.START_OVER_MEDIUM_PASS);
+    };
+
+    private onCancelStartOverAllAssessments = (
+        payload: BaseActionPayload,
+        eventName: string,
+    ): void => {
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.visualizationActions.disableAssessmentVisualizations.invoke(
-            null,
-            this.executingScope,
+    };
+
+    private onCancelStartOverAllAssessmentsForAssessment = (payload: BaseActionPayload): void => {
+        this.onCancelStartOverAllAssessments(payload, TelemetryEvents.CANCEL_START_OVER_ASSESSMENT);
+    };
+
+    private onCancelStartOverAllAssessmentsForQuickAssess = (payload: BaseActionPayload): void => {
+        this.onCancelStartOverAllAssessments(
+            payload,
+            TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS,
         );
-    };
-
-    private onCancelStartOverAllAssessments = (payload: BaseActionPayload): void => {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    };
-
-    private onCancelStartOverQuickAssess = (payload: BaseActionPayload): void => {
-        const eventName = TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onDetailsViewClosed = async (): Promise<void> => {
@@ -293,8 +306,8 @@ export class ActionCreator {
     private onAssessmentScanCompleted = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
+        eventName: string,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
         this.notificationCreator.createNotificationByVisualizationKey(
@@ -306,20 +319,26 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onQuickAssessScanCompleted = async (
+    private onAssessmentScanCompletedForAssessment = async (
         payload: ScanCompletedPayload<any>,
         tabId: number,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.visualizationActions.scanCompleted.invoke(null, this.executingScope);
-        this.notificationCreator.createNotificationByVisualizationKey(
-            payload.selectorMap,
-            payload.key,
-            payload.testType,
-            payload.scanIncompleteWarnings,
+        await this.onAssessmentScanCompleted(
+            payload,
+            tabId,
+            TelemetryEvents.ASSESSMENT_SCAN_COMPLETED,
         );
-        await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
+    };
+
+    private onAssessmentScanCompletedForQuickAssess = async (
+        payload: ScanCompletedPayload<any>,
+        tabId: number,
+    ): Promise<void> => {
+        await this.onAssessmentScanCompleted(
+            payload,
+            tabId,
+            TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED,
+        );
     };
 
     private onTabbedElementAdded = async (payload: AddTabbedElementPayload): Promise<void> => {
