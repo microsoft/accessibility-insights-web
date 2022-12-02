@@ -260,6 +260,7 @@
         "./src/common/get-card-selection-view-data.ts",
         "./src/common/get-guidance-tags-from-guidance-links.ts",
         "./src/common/get-inner-text-from-jsx-element.ts",
+        "./src/common/get-stack-trace.ts",
         "./src/common/globalization.ts",
         "./src/common/html-element-utils.ts",
         "./src/common/is-result-highlight-unavailable.ts",
