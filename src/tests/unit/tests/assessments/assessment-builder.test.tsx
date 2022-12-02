@@ -10,8 +10,7 @@ import { InstanceIdentifierGenerator } from 'background/instance-identifier-gene
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
-import { Messages } from '../../../../common/messages';
+import { Mock, Times } from 'typemoq';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/store-data/manual-test-status';
 import {
@@ -19,12 +18,15 @@ import {
     TestsEnabledState,
 } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
+import { Analyzer, AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 
 describe('AssessmentBuilderTest', () => {
+    const analyzerConfigStub = {
+        analyzerMessageType: 'some message type',
+    } as AnalyzerConfiguration;
     test('Manual', () => {
         const selectedRequirementKey = 'requirement key';
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider);
@@ -62,14 +64,8 @@ describe('AssessmentBuilderTest', () => {
             requirements: [],
         };
 
-        const expectedConfig: AnalyzerConfiguration = {
-            key: requirement.key,
-            testType: baseAssessment.visualizationType,
-            analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-        };
-
         analyzerProviderMock
-            .setup(a => a.createBaseAnalyzer(It.isValue(expectedConfig)))
+            .setup(a => a.createBaseAnalyzer(analyzerConfigStub))
             .verifiable(Times.once());
 
         drawerProviderMock.setup(d => d.createNullDrawer()).verifiable(Times.once());
@@ -130,7 +126,7 @@ describe('AssessmentBuilderTest', () => {
 
         validateInstanceTableSettings(requirement);
 
-        config.getAnalyzer(analyzerProviderMock.object, selectedRequirementKey);
+        config.getAnalyzer(analyzerProviderMock.object, analyzerConfigStub);
         config.getDrawer(drawerProviderMock.object);
         const expectedData = {
             key: 'value',
@@ -151,10 +147,10 @@ describe('AssessmentBuilderTest', () => {
         const visualizationInstanceProcessorMock = Mock.ofInstance(() => null);
         const getInstanceIdentifierMock = Mock.ofInstance(() => null);
         const drawerProviderMock = Mock.ofType(DrawerProvider);
-        const getAnalyzerMock = Mock.ofInstance(provider => {
-            return null;
-        });
-        getAnalyzerMock.setup(gam => gam(providerMock.object)).verifiable(Times.once());
+        const getAnalyzerMock =
+            Mock.ofType<
+                (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => Analyzer
+            >();
         const getDrawerMock = Mock.ofInstance((provider, ffStoreData?) => null);
         getDrawerMock
             .setup(gdm => gdm(drawerProviderMock.object, undefined))
@@ -261,13 +257,20 @@ describe('AssessmentBuilderTest', () => {
             mediumPass: {},
         } as TestsEnabledState;
 
-        config.getAnalyzer(providerMock.object, requirement1.key);
+        const requirement1AnalyzerConfig = { key: requirement1.key } as AnalyzerConfiguration;
+        getAnalyzerMock
+            .setup(gam => gam(providerMock.object, requirement1AnalyzerConfig))
+            .verifiable(Times.once());
+        config.getAnalyzer(providerMock.object, requirement1AnalyzerConfig);
         config.getDrawer(drawerProviderMock.object, requirement1.key);
 
-        providerMock.setup(pm => pm.createBaseAnalyzer(It.isAny())).verifiable(Times.once());
+        const requirement5AnalyzerConfig = { key: requirement5.key } as AnalyzerConfiguration;
+        providerMock
+            .setup(pm => pm.createBaseAnalyzer(requirement5AnalyzerConfig))
+            .verifiable(Times.once());
         drawerProviderMock.setup(pm => pm.createNullDrawer()).verifiable(Times.once());
 
-        config.getAnalyzer(providerMock.object, requirement5.key);
+        config.getAnalyzer(providerMock.object, requirement5AnalyzerConfig);
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         const testRequirement = 'testRequirement';

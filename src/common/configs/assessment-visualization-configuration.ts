@@ -3,7 +3,7 @@
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
-import { Analyzer } from '../../injected/analyzers/analyzer';
+import { Analyzer, AnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { Drawer } from '../../injected/visualization/drawer';
@@ -30,7 +30,10 @@ export interface AssessmentVisualizationConfiguration {
     ) => void;
     analyzerProgressMessageType?: string;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
-    getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
+    getAnalyzer: (
+        analyzerProvider: AnalyzerProvider,
+        analyzerConfig?: AnalyzerConfiguration,
+    ) => Analyzer;
     visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback;
     getNotificationMessage: (
         selectorMap: DictionaryStringTo<any>,
