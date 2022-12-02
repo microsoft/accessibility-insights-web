@@ -115,7 +115,7 @@
         "@types/react-router-dom": "^5.3.3",
         "@types/serve-static": "^1.15.0",
         "@types/ua-parser-js": "^0.7.36",
-        "@types/uuid": "^8.3.4",
+        "@types/uuid": "^9.0.0",
         "@types/webextension-polyfill": "^0.9.1",
         "@typescript-eslint/eslint-plugin": "^5.38.1",
         "@typescript-eslint/parser": "^5.38.1",
