@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationType } from 'common/types/visualization-type';
-import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -32,9 +30,7 @@ export class AnalyzerController {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
-        assessmentsProvider: AssessmentsProvider,
         private readonly shadowInitializer: ShadowInitializer,
-        private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
     ) {
         this.analyzers = {};
         this.visualizationstore = visualizationstore;
@@ -71,11 +67,7 @@ export class AnalyzerController {
         this.shadowInitializer.removeExistingShadowHost();
 
         const analyzer = this.getAnalyzerByIdentifier(id);
-        const pivot = this.visualizationstore.getState().selectedDetailsViewPivot;
-        const messageConfiguration = this.getDetailsSwitcherNavConfiguration({
-            selectedDetailsViewPivot: pivot,
-        }).analyzerMessageConfiguration;
-        analyzer.analyze(messageConfiguration);
+        analyzer.analyze();
 
         void this.shadowInitializer.initialize();
     };

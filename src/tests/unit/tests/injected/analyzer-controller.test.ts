@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
@@ -59,7 +57,6 @@ describe('AnalyzerControllerTests', () => {
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
     let analyzerMock: IMock<Analyzer>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
-    let assessmentsMock: IMock<AssessmentsProvider>;
     let shadowInitializerMock: IMock<ShadowInitializer>;
     let analyzerInitializeCallback: ForEachConfigCallback;
     let testObject: AnalyzerController;
@@ -97,7 +94,6 @@ describe('AnalyzerControllerTests', () => {
         } as DetailsViewSwitcherNavConfiguration;
 
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
-        assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
@@ -146,9 +142,7 @@ describe('AnalyzerControllerTests', () => {
             visualizationConfigurationFactoryMock.object,
             analyzerProviderStrictMock.object,
             analyzerStateUpdateHandlerStrictMock.object,
-            assessmentsMock.object,
             shadowInitializerMock.object,
-            getDetailsSwitcherNavConfigurationMock.object,
         );
     });
 
@@ -162,11 +156,6 @@ describe('AnalyzerControllerTests', () => {
     });
 
     test('listenToStore: verify initializiation and handle update', () => {
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
-
         visualizationStoreState = new VisualizationStoreDataBuilder()
             .with('scanning', testType.toString())
             .build();
@@ -191,11 +180,6 @@ describe('AnalyzerControllerTests', () => {
         setupGetIdentifierMock(identifier, requirementStub);
         setupGetAnalyzerMockCalled(requirementStub);
 
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
-
         visualizationStoreState = new VisualizationStoreDataBuilder()
             .with('scanning', testType.toString())
             .build();
@@ -219,10 +203,6 @@ describe('AnalyzerControllerTests', () => {
         scopingStoreState = new ScopingStoreDataBuilder().build();
 
         setupVisualizationConfigurationFactory(testType, configStub);
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
 
         analyzerStateUpdateHandlerStrictMock
             .setup(handler => handler.handleUpdate(visualizationStoreState))
@@ -277,7 +257,7 @@ describe('AnalyzerControllerTests', () => {
         getDetailsSwitcherNavConfigurationMock
             .setup(m => m(It.isValue(expected)))
             .returns(() => switcherConfigurationStub);
-        analyzerMock.setup(am => am.analyze(messageConfigurationStub)).verifiable();
+        analyzerMock.setup(am => am.analyze()).verifiable();
     }
 
     function setupTeardownCall(): void {

@@ -14,7 +14,6 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
-import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
@@ -337,9 +336,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
-            Assessments,
             this.shadowInitializer,
-            GetDetailsSwitcherNavConfiguration,
         );
 
         this.analyzerController.listenToStore();

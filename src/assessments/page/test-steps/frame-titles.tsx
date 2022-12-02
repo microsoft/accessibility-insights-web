@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FrameAssessmentProperties } from 'common/types/store-data/assessment-result-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import * as content from 'content/test/page/frame-titles';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -69,13 +70,12 @@ export const FrameTitle: Requirement = {
             'frameTitle',
         ),
     ],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['get-frame-title'],
-                key: PageTestStep.frameTitle,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
-                testType: VisualizationType.PageAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createFrameDrawer(),

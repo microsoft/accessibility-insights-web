@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 
 import { LinkFunctionPropertyBag } from 'common/types/property-bag/link-function-property-bag';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { title } from 'content/strings/application';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/links/link-function';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import {
@@ -97,13 +98,12 @@ export const LinkFunction: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['link-function'],
-                key: LinksTestStep.linkFunction,
-                testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

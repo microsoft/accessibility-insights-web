@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getStackTrace } from 'common/get-stack-trace';
 import { Logger } from 'common/logging/logger';
 
 export type LogRecord = {
@@ -28,7 +29,7 @@ export class RecordingLogger implements Logger {
     }
 
     private record(level: 'error' | 'log', message: string | undefined, optionalParams: any[]) {
-        const stack = new Error().stack!.split('\n').splice(2).join('\n');
+        const stack = getStackTrace({ framesToIgnore: 1 });
         this.allRecords.push({ level, message, optionalParams, stack });
     }
 

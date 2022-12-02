@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 
 import { LabelInNamePropertyBag } from 'common/types/property-bag/label-in-name-property-bag';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/links/label-in-name';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import {
@@ -97,13 +98,12 @@ export const LabelInName: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['label-in-name'],
-                key: LinksTestStep.labelInName,
-                testType: VisualizationType.LinksAssessment,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

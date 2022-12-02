@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/sequence/css-positioning';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
@@ -75,12 +76,11 @@ export const CssPositioning: Requirement = {
     getInitialManualTestStatus: autoPassIfNoResults,
     ...content,
     guidanceLinks: [link.WCAG_1_3_2],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['css-positioning'],
-                key,
-                testType: VisualizationType.SequenceAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
