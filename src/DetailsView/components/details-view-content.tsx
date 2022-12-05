@@ -5,7 +5,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
 import { InteractiveHeader } from 'DetailsView/components/interactive-header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { DetailsViewBody } from 'DetailsView/details-view-body';
+import { DetailsViewBody, DetailsViewBodyDeps } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
@@ -13,7 +13,7 @@ import * as React from 'react';
 export type DetailsViewContentDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
     getAssessmentInstanceTableHandler: () => AssessmentInstanceTableHandler;
-};
+} & DetailsViewBodyDeps;
 
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     deps: DetailsViewContentDeps;
