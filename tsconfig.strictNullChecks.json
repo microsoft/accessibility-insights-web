@@ -362,6 +362,7 @@
         "./src/injected/bounding-rect.ts",
         "./src/injected/client-store-listener.ts",
         "./src/injected/client-utils.ts",
+        "./src/injected/components/command-bar.tsx",
         "./src/injected/constants.ts",
         "./src/injected/dialog-renderer.ts",
         "./src/injected/element-based-view-model-creator.ts",

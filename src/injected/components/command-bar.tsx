@@ -97,7 +97,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         );
     };
 
-    const renderInspectMessage = (): JSX.Element => {
+    const renderInspectMessage = (): JSX.Element | undefined => {
         if (props.shouldShowInspectButtonMessage()) {
             return (
                 <div role="alert" className="insights-dialog-inspect-disabled">
@@ -107,7 +107,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         }
     };
 
-    const renderCopyIssueDetailsMessage = (): JSX.Element => {
+    const renderCopyIssueDetailsMessage = (): JSX.Element | undefined => {
         if (props.shouldShowInsecureOriginPageMessage) {
             return (
                 <div role="alert" className="copy-issue-details-button-help">
