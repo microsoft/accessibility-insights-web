@@ -3,8 +3,8 @@
 import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { DetailsView, DetailsViewContainerDeps } from 'DetailsView/details-view-container';
-import { DetailsViewRenderer } from 'DetailsView/details-view-renderer';
+import { DetailsView } from 'DetailsView/details-view-container';
+import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
@@ -12,7 +12,7 @@ import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('DetailsViewRendererTest', () => {
     test('render', () => {
-        const deps = Mock.ofType<DetailsViewContainerDeps>().object;
+        const deps = Mock.ofType<DetailsViewRendererDeps>().object;
 
         const fakeDocument = TestDocumentCreator.createTestDocument(
             '<div id="details-container"></div>',

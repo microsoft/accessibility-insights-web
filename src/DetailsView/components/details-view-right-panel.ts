@@ -25,9 +25,7 @@ import {
     TestViewContainerProps,
 } from './test-view-container';
 
-export type DetailsViewContentDeps = OverviewContainerDeps &
-    TestViewContainerDeps &
-    TargetChangeDialogDeps;
+export type RightPanelDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
 
 export type RightPanelProps = Omit<TestViewContainerProps, 'deps'> &
     Omit<OverviewContainerProps, 'deps'> & {

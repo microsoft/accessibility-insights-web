@@ -38,6 +38,7 @@ import {
     DetailsViewContainerDeps,
     DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -98,6 +99,8 @@ describe(DetailsViewContent.displayName, () => {
         toolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
+        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
@@ -106,6 +109,7 @@ describe(DetailsViewContent.displayName, () => {
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
+            getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
         } as DetailsViewContainerDeps;
     });
 
