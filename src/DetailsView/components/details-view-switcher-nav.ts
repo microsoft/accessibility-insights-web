@@ -87,7 +87,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-    getSharedAssessmentFunctionalityObjects?: GetSharedAssessmentFunctionalityObjects;
+    getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<

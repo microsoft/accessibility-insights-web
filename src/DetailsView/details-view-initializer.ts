@@ -550,7 +550,7 @@ if (tabId != null) {
                 actionMessageCreator: quickAssessActionMessageCreator,
                 navLinkHandler: new NavLinkHandler(
                     detailsViewActionMessageCreator,
-                    assessmentActionMessageCreator,
+                    quickAssessActionMessageCreator,
                 ),
                 instanceTableHandler: quickAssessInstanceTableHandler,
             };
@@ -658,7 +658,8 @@ if (tabId != null) {
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
                 mediumPassRequirementKeys: MediumPassRequirementKeys,
                 getProvider: assessmentFunctionalitySwitcher.getProvider,
-                getActionMessageCreator: assessmentFunctionalitySwitcher.getActionMessageCreator,
+                getAssessmentActionMessageCreator:
+                    assessmentFunctionalitySwitcher.getActionMessageCreator,
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
                 getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
