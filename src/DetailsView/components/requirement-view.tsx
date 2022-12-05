@@ -12,7 +12,6 @@ import {
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Tab } from 'common/types/store-data/itab';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerDeps,
@@ -30,7 +29,6 @@ import * as React from 'react';
 import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
     getProvider: () => AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;

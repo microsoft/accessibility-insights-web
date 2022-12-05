@@ -19,7 +19,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     detailsViewId: string;
 };
 
@@ -37,9 +37,10 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         subtitleAriaId: 'target-change-dialog-description',
         divId: 'target-change-dialog-description',
         leftButtonText: 'Continue previous',
-        leftButtonOnClick: props.deps.assessmentActionMessageCreator.continuePreviousAssessment,
+        leftButtonOnClick:
+            props.deps.getAssessmentActionMessageCreator().continuePreviousAssessment,
         rightButtonText: 'Start new',
-        rightButtonOnClick: props.deps.assessmentActionMessageCreator.startOverAllAssessments,
+        rightButtonOnClick: props.deps.getAssessmentActionMessageCreator().startOverAllAssessments,
         dialogFirstText: (
             <>
                 Would you like to continue your current assessment on the new target of{' '}

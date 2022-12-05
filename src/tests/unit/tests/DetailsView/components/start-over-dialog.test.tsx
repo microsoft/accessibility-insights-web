@@ -45,8 +45,8 @@ describe('StartOverDialog', () => {
         } as AssessmentStoreData;
         props = {
             deps: {
-                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
-                assessmentsProvider: assessmentsProviderMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
+                getProvider: () => assessmentsProviderMock.object,
             },
             assessmentStoreData,
             dismissDialog: dismissDialogMock.object,

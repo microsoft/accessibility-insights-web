@@ -82,12 +82,12 @@ describe('ReportExportDialogFactory', () => {
         tabStopRequirementData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
             getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,
             reportExportServiceProvider: reportExportServiceProviderMock.object,
-            assessmentsProvider: assessmentsProviderMock.object,
+            getProvider: () => assessmentsProviderMock.object,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,

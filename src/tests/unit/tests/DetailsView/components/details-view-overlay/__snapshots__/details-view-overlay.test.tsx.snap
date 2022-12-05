@@ -5,11 +5,9 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
   <PreviewFeaturesPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -25,11 +23,9 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
   <ScopingPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -52,11 +48,9 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
     content="content/path"
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -66,11 +60,9 @@ exports[`DetailsViewOverlay renders with content open 1`] = `
   <SettingsPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -86,11 +78,9 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
   <PreviewFeaturesPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -106,11 +96,9 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
   <ScopingPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -132,11 +120,9 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
   <ContentPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -145,11 +131,9 @@ exports[`DetailsViewOverlay renders with preview features open 1`] = `
   <SettingsPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -165,11 +149,9 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
   <PreviewFeaturesPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -185,11 +167,9 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
   <ScopingPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -211,11 +191,9 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
   <ContentPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -224,11 +202,9 @@ exports[`DetailsViewOverlay renders with scoping open 1`] = `
   <SettingsPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -244,11 +220,9 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
   <PreviewFeaturesPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -264,11 +238,9 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
   <ScopingPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -291,11 +263,9 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
     content="content/path"
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -305,11 +275,9 @@ exports[`DetailsViewOverlay renders with settings false 1`] = `
   <SettingsPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -326,11 +294,9 @@ exports[`DetailsViewOverlay renders with settings panel open 1`] = `
   <PreviewFeaturesPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -346,11 +312,9 @@ exports[`DetailsViewOverlay renders with settings panel open 1`] = `
   <ScopingPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -373,11 +337,9 @@ exports[`DetailsViewOverlay renders with settings panel open 1`] = `
     content="content/path"
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }
@@ -387,11 +349,9 @@ exports[`DetailsViewOverlay renders with settings panel open 1`] = `
   <SettingsPanel
     deps={
       {
-        "assessmentActionMessageCreator": {
-          "addFailureInstance": null,
-        },
         "contentActionMessageCreator": {},
         "contentProvider": {},
+        "getAssessmentActionMessageCreator": [Function],
         "settingsProvider": {},
         "userConfigMessageCreator": {},
       }

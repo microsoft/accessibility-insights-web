@@ -61,7 +61,7 @@ export interface Requirement {
 }
 
 export type VisualHelperToggleConfigDeps = {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 };
 
 export interface VisualHelperToggleConfig {

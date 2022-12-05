@@ -54,7 +54,7 @@ describe('OverviewContainer', () => {
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData:
             getAssessmentSummaryModelFromProviderAndStoreData,
-        assessmentActionMessageCreator,
+        getAssessmentActionMessageCreator: () => assessmentActionMessageCreator,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,

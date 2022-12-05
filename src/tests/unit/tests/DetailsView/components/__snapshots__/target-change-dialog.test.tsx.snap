@@ -4,9 +4,9 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -61,9 +61,9 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -120,9 +120,9 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -179,9 +179,9 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -238,9 +238,9 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }

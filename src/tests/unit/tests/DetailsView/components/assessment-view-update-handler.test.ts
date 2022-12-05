@@ -232,7 +232,7 @@ describe('AssessmentViewTest', () => {
         prevTarget = {},
     ): AssessmentViewUpdateHandlerProps {
         const deps: AssessmentViewUpdateHandlerDeps = {
-            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
             getProvider: () => assessmentsProvider,
         };
         const assessment = assessmentsProvider.all()[0];

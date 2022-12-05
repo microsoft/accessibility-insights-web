@@ -14,15 +14,19 @@ export class RestartScanVisualHelperToggle extends BaseVisualHelperToggle {
 
     protected onClick = (event): void => {
         if (this.props.isStepEnabled) {
-            this.props.deps.assessmentActionMessageCreator.disableVisualHelper(
-                this.props.assessmentNavState.selectedTestType,
-                this.props.assessmentNavState.selectedTestSubview,
-            );
+            this.props.deps
+                .getAssessmentActionMessageCreator()
+                .disableVisualHelper(
+                    this.props.assessmentNavState.selectedTestType,
+                    this.props.assessmentNavState.selectedTestSubview,
+                );
         } else {
-            this.props.deps.assessmentActionMessageCreator.enableVisualHelper(
-                this.props.assessmentNavState.selectedTestType,
-                this.props.assessmentNavState.selectedTestSubview,
-            );
+            this.props.deps
+                .getAssessmentActionMessageCreator()
+                .enableVisualHelper(
+                    this.props.assessmentNavState.selectedTestType,
+                    this.props.assessmentNavState.selectedTestSubview,
+                );
         }
     };
 }

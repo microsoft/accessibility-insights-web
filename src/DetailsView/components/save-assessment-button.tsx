@@ -11,7 +11,7 @@ import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export interface SaveAssessmentButtonDeps {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     userConfigMessageCreator: UserConfigMessageCreator;
 }
 export interface SaveAssessmentButtonProps {
@@ -27,7 +27,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
 
         function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
-            props.deps.assessmentActionMessageCreator.saveAssessment(event);
+            props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
                 showDialog();
             }

@@ -575,9 +575,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
-                assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
-                assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
@@ -655,7 +653,7 @@ if (tabId != null) {
                 mediumPassRequirementKeys: MediumPassRequirementKeys,
                 getProvider: assessmentFunctionalitySwitcher.getProvider,
                 getAssessmentActionMessageCreator:
-                    assessmentFunctionalitySwitcher.getActionMessageCreator,
+                    assessmentFunctionalitySwitcher.getAssessmentActionMessageCreator,
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
                 getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };

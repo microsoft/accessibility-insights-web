@@ -19,7 +19,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
         super();
         this.data = {
             deps: {
-                assessmentActionMessageCreator: null,
+                getAssessmentActionMessageCreator: () => null,
             },
             assessmentNavState: {
                 selectedTestSubview: this.stepKey,
@@ -39,7 +39,7 @@ export class VisualHelperToggleConfigBuilder extends BaseDataBuilder<VisualHelpe
     public withActionMessageCreator(
         assessmentActionMessageCreator: AssessmentActionMessageCreator,
     ): VisualHelperToggleConfigBuilder {
-        this.data.deps.assessmentActionMessageCreator = assessmentActionMessageCreator;
+        this.data.deps.getAssessmentActionMessageCreator = () => assessmentActionMessageCreator;
         return this;
     }
     public withToggleStepEnabled(stepEnabled: boolean): VisualHelperToggleConfigBuilder {

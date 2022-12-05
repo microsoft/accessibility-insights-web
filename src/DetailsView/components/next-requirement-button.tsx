@@ -8,7 +8,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
 export type NextRequirementButtonDeps = {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 };
 
 export type NextRequirementButtonProps = {
@@ -26,11 +26,9 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         }
 
         const selectNextRequirement = (event: React.MouseEvent<HTMLElement>) => {
-            props.deps.assessmentActionMessageCreator.selectNextRequirement(
-                event,
-                props.nextRequirement.key,
-                props.currentTest,
-            );
+            props.deps
+                .getAssessmentActionMessageCreator()
+                .selectNextRequirement(event, props.nextRequirement.key, props.currentTest);
         };
 
         return (

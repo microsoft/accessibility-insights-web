@@ -5,7 +5,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <ScanIncompleteWarning
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }
@@ -15,7 +15,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <TargetChangeDialog
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }
@@ -31,7 +31,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     assessment={{}}
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }
@@ -44,7 +44,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <ScanIncompleteWarning
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }
@@ -54,7 +54,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <TargetChangeDialog
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }
@@ -84,7 +84,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     }
     deps={
       {
-        "assessmentActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
         "getProvider": [Function],
       }
     }

@@ -4,8 +4,8 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewId": undefined,
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -40,8 +40,8 @@ exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <ChangeAssessmentDialog
   deps={
     {
-      "assessmentActionMessageCreator": [typemoq mock object],
       "detailsViewId": undefined,
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }

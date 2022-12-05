@@ -46,7 +46,7 @@ describe('DetailsViewOverlay', () => {
     const deps: DetailsViewOverlayDeps = {
         contentProvider: {} as ContentProvider,
         contentActionMessageCreator: {} as ContentActionMessageCreator,
-        assessmentActionMessageCreator,
+        getAssessmentActionMessageCreator: () => assessmentActionMessageCreator,
         userConfigMessageCreator: userConfigMessageCreatorStub,
         settingsProvider: {} as SettingsProvider,
     } as DetailsViewOverlayDeps;
