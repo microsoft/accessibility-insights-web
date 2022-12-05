@@ -233,7 +233,7 @@ describe('AssessmentViewTest', () => {
     ): AssessmentViewUpdateHandlerProps {
         const deps: AssessmentViewUpdateHandlerDeps = {
             assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
-            assessmentsProvider,
+            getProvider: () => assessmentsProvider,
         };
         const assessment = assessmentsProvider.all()[0];
         const firstStep = assessment.requirements[0];

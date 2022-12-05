@@ -94,7 +94,7 @@ describe('AssessmentTestView', () => {
 
         props = {
             deps: {
-                assessmentsProvider: assessmentsProviderStub,
+                getProvider: () => assessmentsProviderStub,
                 assessmentActionMessageCreator: assessmentActionMessageCreator,
             } as AssessmentTestViewDeps,
             configuration,

@@ -6,9 +6,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
     test={-1}
@@ -18,9 +16,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
     newTab={
@@ -36,9 +32,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
   />
@@ -51,9 +45,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
     test={-1}
@@ -63,9 +55,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
     newTab={
@@ -95,9 +85,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     deps={
       {
         "assessmentActionMessageCreator": {},
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
+        "getProvider": [Function],
       }
     }
     featureFlagStoreData={{}}

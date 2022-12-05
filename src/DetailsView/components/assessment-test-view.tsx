@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     GettingStartedView,
@@ -27,7 +28,9 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
-export type AssessmentTestViewDeps = ScanIncompleteWarningDeps &
+export type AssessmentTestViewDeps = {
+    getProvider: () => AssessmentsProvider;
+} & ScanIncompleteWarningDeps &
     TargetChangeDialogDeps &
     GettingStartedViewDeps &
     RequirementViewDeps;
@@ -50,7 +53,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const scanningInProgress: boolean = props.visualizationStoreData.scanning !== null;
         const assessmentNavState = props.assessmentStoreData.assessmentNavState;
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-        const assessment = deps.assessmentsProvider.forType(assessmentNavState.selectedTestType);
+        const assessment = deps.getProvider().forType(assessmentNavState.selectedTestType);
         const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
         const selectedRequirementIsEnabled = props.configuration.getTestStatus(

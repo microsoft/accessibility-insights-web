@@ -50,7 +50,7 @@ describe('OverviewContainer', () => {
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {
-        assessmentsProvider: assessmentsProvider,
+        getProvider: () => assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData:
             getAssessmentSummaryModelFromProviderAndStoreData,
