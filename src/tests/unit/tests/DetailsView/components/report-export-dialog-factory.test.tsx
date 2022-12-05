@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -71,7 +72,7 @@ describe('ReportExportDialogFactory', () => {
             toolData: theToolData,
             targetAppInfo: targetAppInfo,
         } as ScanMetadata;
-        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
+        assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
         reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
         dismissExportDialogMock = Mock.ofInstance(() => null);
@@ -86,6 +87,7 @@ describe('ReportExportDialogFactory', () => {
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,
             reportExportServiceProvider: reportExportServiceProviderMock.object,
+            assessmentsProvider: assessmentsProviderMock.object,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
@@ -95,7 +97,6 @@ describe('ReportExportDialogFactory', () => {
             deps,
             featureFlagStoreData,
             assessmentStoreData,
-            assessmentsProvider: assessmentsProviderMock.object,
             automatedChecksCardsViewData: cardsViewData,
             needsReviewCardsViewData: cardsViewData,
             tabStopRequirementData,

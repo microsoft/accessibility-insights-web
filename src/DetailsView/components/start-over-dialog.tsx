@@ -14,18 +14,19 @@ export type StartOverDialogState = StartOverDialogType | typeof dialogClosedStat
 
 export type StartOverDialogDeps = {
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    assessmentsProvider: AssessmentsProvider;
 };
 
 export interface StartOverDialogProps {
     deps: StartOverDialogDeps;
     assessmentStoreData: AssessmentStoreData;
-    assessmentsProvider: AssessmentsProvider;
     dialogState: StartOverDialogState;
     dismissDialog: () => void;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
-    const { dialogState, deps, assessmentStoreData, assessmentsProvider, dismissDialog } = props;
+    const { dialogState, deps, assessmentStoreData, dismissDialog } = props;
+    const { assessmentsProvider } = deps;
 
     if (dialogState === dialogClosedState) {
         return null;
