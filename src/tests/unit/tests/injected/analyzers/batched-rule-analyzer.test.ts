@@ -110,7 +110,7 @@ describe('BatchedRuleAnalyzer', () => {
             id: ruleTwo,
         } as RuleResult;
 
-        setupScannerUtilsMock(null, Times.exactly(2));
+        setupScannerUtilsMock(undefined, Times.exactly(2));
 
         const testSubjectOne = createAnalyzer(configOne);
         const testSubjectTwo = createAnalyzer(configTwo);
