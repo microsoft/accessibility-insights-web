@@ -28,7 +28,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import {
     DetailsRightPanelConfiguration,
-    DetailsViewContentDeps,
+    RightPanelDeps,
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -37,7 +37,7 @@ import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
-export type DetailsViewBodyDeps = DetailsViewContentDeps &
+export type DetailsViewBodyDeps = RightPanelDeps &
     DetailsViewLeftNavDeps &
     DetailsViewCommandBarDeps &
     FluentSideNavDeps;

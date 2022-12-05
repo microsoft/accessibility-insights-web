@@ -8,6 +8,7 @@ import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavail
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
+import { DetailsViewContentDeps } from 'DetailsView/components/details-view-content';
 import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 import {
     NarrowModeDetector,
@@ -40,7 +41,6 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import { DetailsViewOverlayDeps } from './components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
-    DetailsViewContentDeps,
     GetDetailsRightPanelConfiguration,
 } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
@@ -49,7 +49,6 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { NoContentAvailable } from './components/no-content-available/no-content-available';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
 import { DetailsViewBodyDeps } from './details-view-body';
-import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 
@@ -62,7 +61,6 @@ export type DetailsViewContainerDeps = {
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;
     issuesTableHandler: IssuesTableHandler;
-    assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
     isResultHighlightUnavailable: IsResultHighlightUnavailable;

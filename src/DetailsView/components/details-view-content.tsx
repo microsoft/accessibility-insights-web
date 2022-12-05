@@ -7,10 +7,12 @@ import { InteractiveHeader } from 'DetailsView/components/interactive-header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
 
 export type DetailsViewContentDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
+    getAssessmentInstanceTableHandler: () => AssessmentInstanceTableHandler;
 };
 
 export type DetailsViewContentProps = DetailsViewContainerProps & {
@@ -115,6 +117,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             toolData: props.storeState.unifiedScanResultStoreData.toolInfo,
         };
 
+        const assessmentInstanceTableHandler = props.deps.getAssessmentInstanceTableHandler();
+
         return (
             <DetailsViewBody
                 deps={deps}
@@ -131,7 +135,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 visualizationConfigurationFactory={props.deps.visualizationConfigurationFactory}
                 dropdownClickHandler={props.deps.dropdownClickHandler}
                 clickHandlerFactory={props.deps.clickHandlerFactory}
-                assessmentInstanceTableHandler={props.deps.assessmentInstanceTableHandler}
+                assessmentInstanceTableHandler={assessmentInstanceTableHandler}
                 issuesTableHandler={props.deps.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}

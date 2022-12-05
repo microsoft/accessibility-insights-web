@@ -636,7 +636,6 @@ if (tabId != null) {
                 inspectActionMessageCreator,
                 clickHandlerFactory,
                 issuesTableHandler,
-                assessmentInstanceTableHandler,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 Assessments,
@@ -657,7 +656,8 @@ if (tabId != null) {
                 getAssessmentActionMessageCreator:
                     assessmentFunctionalitySwitcher.getActionMessageCreator,
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
-                getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
+                getAssessmentInstanceTableHandler:
+                    assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
 
             const renderer = new DetailsViewRenderer(
