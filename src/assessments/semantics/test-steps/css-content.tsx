@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/semantics/css-content';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
@@ -109,14 +110,14 @@ export const CssContent: Requirement = {
     getInitialManualTestStatus: autoPassIfNoResults,
     guidanceLinks: [link.WCAG_1_3_1],
     ...content,
-    getAnalyzer: provider =>
-        provider.createRuleAnalyzer(
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+        return provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['css-content'],
-                key,
-                testType: VisualizationType.SemanticsAssessment,
+                ...analyzerConfig,
             }),
-        ),
+        );
+    },
     getDrawer: provider =>
         provider.createSingleTargetDrawer('insights-pseudo-selector-style-container'),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,

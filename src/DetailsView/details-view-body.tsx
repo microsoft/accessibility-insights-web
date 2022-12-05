@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -56,7 +55,6 @@ export interface DetailsViewBodyProps {
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    assessmentsProvider: AssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;

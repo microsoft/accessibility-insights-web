@@ -187,6 +187,13 @@
         color: var(--spinner-text);
       }
 
+      @media screen and (forced-colors: active) {
+        .ms-ContextualMenu button:hover .ms-ContextualMenu-itemText,
+        .ms-ContextualMenu button:hover .ms-ContextualMenu-linkText {
+          color: highlight;
+        }
+      }
+
       .guidance-tags span {
         font-size: 12px;
         font-weight: normal;
@@ -1052,11 +1059,6 @@
       @media screen and (forced-colors: active) {
         .kebab-menu-button--9Qt0a.is-expanded .kebab-menu-icon--EUIj-,
         .kebab-menu-button--9Qt0a:hover .kebab-menu-icon--EUIj- {
-          color: highlight;
-        }
-      }
-      @media screen and (forced-colors: active) {
-        .kebab-menu--7coPg button:hover {
           color: highlight;
         }
       }

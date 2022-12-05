@@ -100,7 +100,11 @@ describe('Details View -> Settings Panel', () => {
                 detailsViewPage,
                 settingsPanelSelectors.settingsPanel,
             );
-            expect(results).toHaveLength(0);
+
+            // this results object has a false positive for link-in-text-block
+            // the text block foreground (#000000) and link foreground color (#106ebe) have
+            // a contrast value of 3.99:1
+            expect(results).toMatchSnapshot();
         },
     );
 });

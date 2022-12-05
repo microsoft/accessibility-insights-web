@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { getStackTrace } from 'common/get-stack-trace';
 import { DictionaryStringTo } from 'types/common-types';
+
+type Scope = {
+    name: string;
+    stack: string;
+};
 
 export class ScopeMutex {
     /**
@@ -14,22 +20,26 @@ export class ScopeMutex {
      * actions. In this case, a different scope should be passed to invoke() in each
      * callback to allow them to run concurrently.
      */
-    private static executingScopes: DictionaryStringTo<boolean> = {};
+    private static executingScopes: DictionaryStringTo<Scope> = {};
     private static defaultScope: string = 'DEFAULT_SCOPE';
 
-    public tryLockScope(scope?: string): void {
-        const activeScope = scope ?? ScopeMutex.defaultScope;
-        if (ScopeMutex.executingScopes[activeScope]) {
+    public tryLockScope(scopeName?: string): void {
+        scopeName = scopeName ?? ScopeMutex.defaultScope;
+        const scope = ScopeMutex.executingScopes[scopeName];
+        if (scope != null) {
             throw new Error(
-                `Cannot invoke an action with scope ${activeScope} from inside another action with the same scope`,
+                `Cannot invoke an action with scope ${scopeName} from inside another action with the same scope. Stack of original scope holder: ${scope.stack}`,
             );
         }
 
-        ScopeMutex.executingScopes[activeScope] = true;
+        ScopeMutex.executingScopes[scopeName] = {
+            name: scopeName,
+            stack: getStackTrace(),
+        };
     }
 
-    public unlockScope(scope?: string): void {
-        const activeScope = scope ?? ScopeMutex.defaultScope;
-        delete ScopeMutex.executingScopes[activeScope];
+    public unlockScope(scopeName?: string): void {
+        scopeName = scopeName ?? ScopeMutex.defaultScope;
+        delete ScopeMutex.executingScopes[scopeName];
     }
 }

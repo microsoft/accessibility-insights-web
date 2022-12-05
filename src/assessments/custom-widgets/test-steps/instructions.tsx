@@ -3,10 +3,11 @@
 import { NewTabLink } from 'common/components/new-tab-link';
 import { CustomWidgetPropertyBag } from 'common/types/property-bag/custom-widgets-property-bag';
 import { NoValue } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/custom-widgets/instructions';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -108,13 +109,12 @@ export const Instructions: Requirement = {
             'describedBy',
         ),
     ],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['custom-widget'],
-                key: CustomWidgetsTestStep.instructions,
-                testType: VisualizationType.CustomWidgets,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

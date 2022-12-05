@@ -54,7 +54,6 @@ export class TargetPageVisualizationUpdater {
         const configuration =
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const configId = configuration.getIdentifier(stepKey);
-
         const oldState = this.previousVisualizationStates[visualizationType]?.[configId];
         const newState = this.calculateVisualizationState(
             visualizationType,

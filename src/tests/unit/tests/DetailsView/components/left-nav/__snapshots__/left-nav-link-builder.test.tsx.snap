@@ -1,0 +1,463 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 1`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 1,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 2`] = `
+{
+  "displayedIndex": "1.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Issues: requirement-key-1",
+  "name": "requirement-name-1",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-1",
+  "status": -2,
+  "testType": 1,
+  "title": "1.1: requirement-name-1 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 3`] = `
+{
+  "displayedIndex": "1.2",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Issues: requirement-key-2",
+  "name": "requirement-name-2",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-2",
+  "status": -2,
+  "testType": 1,
+  "title": "1.2: requirement-name-2 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 4`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "isExpanded": true,
+  "key": "Issues",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Issues: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 1,
+      "url": "",
+    },
+    {
+      "displayedIndex": "1.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "1.1: requirement-name-1 (passed)",
+      "url": "",
+    },
+    {
+      "displayedIndex": "1.2",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Issues: requirement-key-2",
+      "name": "requirement-name-2",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-2",
+      "status": -2,
+      "testType": 1,
+      "title": "1.2: requirement-name-2 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "1: some title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 5`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Landmarks: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 2,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 6`] = `
+{
+  "displayedIndex": "2.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Landmarks: requirement-key-3",
+  "name": "requirement-name-3",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-3",
+  "status": -2,
+  "testType": 2,
+  "title": "2.1: requirement-name-3 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 7`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "isExpanded": false,
+  "key": "Landmarks",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Landmarks: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 2,
+      "url": "",
+    },
+    {
+      "displayedIndex": "2.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Landmarks: requirement-key-3",
+      "name": "requirement-name-3",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-3",
+      "status": -2,
+      "testType": 2,
+      "title": "2.1: requirement-name-3 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "another title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 2,
+  "title": "2: another title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 8`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Landmarks: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 2,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 9`] = `
+{
+  "displayedIndex": "3.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Landmarks: requirement-key-4",
+  "name": "requirement-name-4",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-4",
+  "status": -2,
+  "testType": 2,
+  "title": "3.1: requirement-name-4 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 10`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 3,
+  "isExpanded": false,
+  "key": "Landmarks",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Landmarks: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 2,
+      "url": "",
+    },
+    {
+      "displayedIndex": "3.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Landmarks: requirement-key-4",
+      "name": "requirement-name-4",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-4",
+      "status": -2,
+      "testType": 2,
+      "title": "3.1: requirement-name-4 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some other title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 2,
+  "title": "3: some other title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 1`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "isExpanded": true,
+  "key": "Issues",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Issues: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 1,
+      "url": "",
+    },
+    {
+      "displayedIndex": "0.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "0.1: requirement-name-1 (passed)",
+      "url": "",
+    },
+    {
+      "displayedIndex": "0.2",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Issues: requirement-key-2",
+      "name": "requirement-name-2",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-2",
+      "status": -2,
+      "testType": 1,
+      "title": "0.2: requirement-name-2 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "0: some title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 2`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 1,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 3`] = `
+{
+  "displayedIndex": "0.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Issues: requirement-key-1",
+  "name": "requirement-name-1",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-1",
+  "status": -2,
+  "testType": 1,
+  "title": "0.1: requirement-name-1 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 4`] = `
+{
+  "displayedIndex": "0.2",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Issues: requirement-key-2",
+  "name": "requirement-name-2",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-2",
+  "status": -2,
+  "testType": 1,
+  "title": "0.2: requirement-name-2 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildMediumPassTestLinks should build links for medium pass tests 1`] = `
+{
+  "displayedIndex": "1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Landmarks: requirement-key-4",
+  "name": "requirement-name-4",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-4",
+  "status": -2,
+  "testType": 2,
+  "title": "1: requirement-name-4 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildMediumPassTestLinks should build links for medium pass tests 2`] = `
+{
+  "displayedIndex": "2",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Landmarks: requirement-key-3",
+  "name": "requirement-name-3",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-3",
+  "status": -2,
+  "testType": 2,
+  "title": "2: requirement-name-3 (passed)",
+  "url": "",
+}
+`;

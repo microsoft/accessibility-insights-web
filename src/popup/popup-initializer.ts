@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { loadTheme } from '@fluentui/react';
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
@@ -161,7 +164,10 @@ export class PopupInitializer {
             storeUpdateMessageHub,
         );
 
-        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
 
         const diagnosticViewClickHandler: DiagnosticViewClickHandler =

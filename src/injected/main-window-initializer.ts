@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { createToolData } from 'common/application-properties-provider';
-import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
@@ -13,7 +12,6 @@ import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
@@ -259,9 +257,8 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const visualizationStateChangeHandler = new VisualizationStateChangeHandler(
-            EnumHelper.getNumericValues(VisualizationType),
             targetPageVisualizationUpdater.updateVisualization,
-            Assessments,
+            this.visualizationConfigurationFactory,
         );
 
         clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
@@ -339,7 +336,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
-            Assessments,
             this.shadowInitializer,
         );
 

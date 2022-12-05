@@ -3,14 +3,14 @@
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('LoadAssessmentHelper', () => {
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let assessmentDataParserMock: IMock<AssessmentDataParser>;
     let fileReaderMock: IMock<FileReader>;
     let documentMock: IMock<Document>;
@@ -35,7 +35,7 @@ describe('LoadAssessmentHelper', () => {
     let testSubject: LoadAssessmentHelper;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
         loadAssessmentDataValidatorMock = Mock.ofType(LoadAssessmentDataValidator);
         fileReaderMock = Mock.ofType(FileReader);
@@ -88,7 +88,7 @@ describe('LoadAssessmentHelper', () => {
 
         testSubject = new LoadAssessmentHelper(
             assessmentDataParserMock.object,
-            detailsViewActionMessageCreatorMock.object,
+            assessmentActionMessageCreatorMock.object,
             fileReaderMock.object,
             documentMock.object,
             loadAssessmentDataValidatorMock.object,
@@ -99,12 +99,12 @@ describe('LoadAssessmentHelper', () => {
         fileReaderMock.verifyAll();
         documentMock.verifyAll();
         clickMock.verifyAll();
-        detailsViewActionMessageCreatorMock.verifyAll();
+        assessmentActionMessageCreatorMock.verifyAll();
         setAssessmentStateMock.verifyAll();
     });
 
     it('it loads assessment when prevTargetPageData is null', () => {
-        detailsViewActionMessageCreatorMock
+        assessmentActionMessageCreatorMock
             .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.once());
 
@@ -146,7 +146,7 @@ describe('LoadAssessmentHelper', () => {
     });
 
     it('toggles dialog when prevTargetPageData is not null', () => {
-        detailsViewActionMessageCreatorMock
+        assessmentActionMessageCreatorMock
             .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 
@@ -166,7 +166,7 @@ describe('LoadAssessmentHelper', () => {
     });
 
     it('toggles invalid dialog when validationData is not valid', () => {
-        detailsViewActionMessageCreatorMock
+        assessmentActionMessageCreatorMock
             .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 
@@ -193,7 +193,7 @@ describe('LoadAssessmentHelper', () => {
     });
 
     it('toggles invalid dialog when parsed data is not valid JSON', () => {
-        detailsViewActionMessageCreatorMock
+        assessmentActionMessageCreatorMock
             .setup(d => d.loadAssessment(assessmentData, tabId, undefined))
             .verifiable(Times.never());
 

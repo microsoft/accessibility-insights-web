@@ -9,6 +9,7 @@ import * as React from 'react';
 import { ContentView, ContentViewDeps } from 'views/content/content-view';
 import { GuidanceTitle } from 'views/content/guidance-title';
 import { createMarkup, MarkupDeps } from 'views/content/markup';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 
 type UIOptions = {
     applicationTitle: string;
@@ -17,6 +18,14 @@ type UIOptions = {
 };
 
 const nullCreator = () => {};
+const nullStoresHub: ClientStoresHub<any> = {
+    stores: [],
+    addChangedListenerToAllStores: () => {},
+    removeChangedListenerFromAllStores: () => {},
+    hasStores: () => false,
+    hasStoreData: () => false,
+    getAllStoreData: () => null,
+};
 
 export const contentViewFactory = ({ applicationTitle, getNarrowModeThresholds }: UIOptions) => {
     const contentViewDeps: ContentViewDeps = {
@@ -26,8 +35,7 @@ export const contentViewFactory = ({ applicationTitle, getNarrowModeThresholds }
         storeActionMessageCreator: {
             getAllStates: nullCreator,
         },
-        storesHub: null,
-        storesActionCreator: null,
+        storesHub: nullStoresHub,
         getNarrowModeThresholds,
     };
 

@@ -30,7 +30,7 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     key: headingsTestKey,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc[headingsTestKey],
-    enableTest: data => (data.adhoc[headingsTestKey].enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,

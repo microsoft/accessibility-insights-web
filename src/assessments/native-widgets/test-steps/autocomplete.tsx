@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { link } from 'content/link';
 import * as content from 'content/test/native-widgets/autocomplete';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
@@ -10,7 +12,6 @@ import {
     NoValue,
     PropertyBagColumnRendererConfig,
 } from '../../../common/types/property-bag/property-bag-column-renderer-config';
-import { VisualizationType } from '../../../common/types/visualization-type';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -85,13 +86,12 @@ export const Autocomplete: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['autocomplete'],
-                key,
-                testType: VisualizationType.NativeWidgets,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

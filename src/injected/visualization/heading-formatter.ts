@@ -7,7 +7,7 @@ import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
 export interface HeadingStyleConfiguration {
-    borderColor: string;
+    outlineColor: string;
     fontColor: string;
 }
 
@@ -25,36 +25,36 @@ export class HeadingFormatter extends FailureInstanceFormatter {
 
     public static headingStyles: { [level: string]: HeadingStyleConfiguration } = {
         '1': {
-            borderColor: '#0066CC',
+            outlineColor: '#0066CC',
             fontColor: '#FFFFFF',
         },
         '2': {
-            borderColor: '#CC0099',
+            outlineColor: '#CC0099',
             fontColor: '#FFFFFF',
         },
         '3': {
-            borderColor: '#008000',
+            outlineColor: '#008000',
             fontColor: '#FFFFFF',
         },
         '4': {
-            borderColor: '#6600CC',
+            outlineColor: '#6600CC',
             fontColor: '#FFFFFF',
         },
         '5': {
-            borderColor: '#008080',
+            outlineColor: '#008080',
             fontColor: '#FFFFFF',
         },
         '6': {
-            borderColor: '#996633',
+            outlineColor: '#996633',
             fontColor: '#FFFFFF',
         },
         blank: {
-            borderColor: '#C00000',
+            outlineColor: '#C00000',
             fontColor: '#FFFFFF',
         },
     };
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
@@ -62,9 +62,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         element: HTMLElement,
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
-        const level = this.getAriaLevel(element)
-            ? this.getAriaLevel(element)
-            : this.getHTagLevel(element);
+        const level = this.getAriaLevel(element) ?? this.getHTagLevel(element);
         const text = (this.isHTag(element) ? 'H' : 'h') + level;
         const style = HeadingFormatter.headingStyles[level] || HeadingFormatter.headingStyles.blank;
 
@@ -72,9 +70,9 @@ export class HeadingFormatter extends FailureInstanceFormatter {
             textBoxConfig: {
                 fontColor: style.fontColor,
                 text,
-                background: style.borderColor,
+                background: style.outlineColor,
             },
-            borderColor: style.borderColor,
+            outlineColor: style.outlineColor,
             outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'center',
@@ -111,12 +109,12 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return headingLevel ? headingLevel[1] : '-';
     }
 
-    private getAriaLevel(element: HTMLElement): string {
+    private getAriaLevel(element: HTMLElement): string | null {
         const attr = element.attributes.getNamedItem('aria-level');
         return attr ? attr.textContent : null;
     }
 
-    private getAttribute(element: HTMLElement, attrName: string): string {
+    private getAttribute(element: HTMLElement, attrName: string): string | null {
         const attr = element.attributes.getNamedItem(attrName);
         return attr ? attr.textContent : null;
     }

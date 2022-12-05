@@ -5,6 +5,8 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   afterDialogDismissed={[Function]}
   deps={
     {
+      "assessmentActionMessageCreator": [typemoq mock object],
+      "assessmentsProvider": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],
@@ -47,6 +49,8 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   afterDialogDismissed={[Function]}
   deps={
     {
+      "assessmentActionMessageCreator": [typemoq mock object],
+      "assessmentsProvider": [typemoq mock object],
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],

@@ -32,7 +32,7 @@ export type CardFooterInstanceActionButtonsDeps = {
 
 export interface CardFooterInstanceActionButtonsProps {
     deps: CardFooterInstanceActionButtonsDeps;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;
@@ -76,14 +76,12 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
         return (
             <ActionButton
                 componentRef={ref => (this.kebabButtonRef = ref)}
-                className={styles.kebabMenuButton}
                 ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                 menuIconProps={{
                     iconName: 'MoreActionsMenuIcon',
                     className: styles.kebabMenuIcon,
                 }}
                 menuProps={{
-                    className: styles.kebabMenu,
                     directionalHint: DirectionalHint.bottomRightEdge,
                     shouldFocusOnMount: true,
                     items: this.getMenuItems(),

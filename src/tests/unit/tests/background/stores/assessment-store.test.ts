@@ -114,7 +114,19 @@ describe('AssessmentStore', () => {
     });
 
     test('getId', () => {
-        const testObject = createStoreWithNullParams(AssessmentStore);
+        const testObject = new AssessmentStore(
+            null,
+            null,
+            assessmentDataConverterMock.object,
+            assessmentDataRemoverMock.object,
+            assessmentsProviderMock.object,
+            null,
+            null,
+            initialAssessmentStoreDataGeneratorMock.object,
+            failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
+        );
+
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
     });
 
@@ -132,6 +144,7 @@ describe('AssessmentStore', () => {
             null,
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
         );
 
         const actualState = testObject.getDefaultState();
@@ -227,6 +240,7 @@ describe('AssessmentStore', () => {
             persisted,
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
         );
         const actualState = testObject.getDefaultState();
 
@@ -2234,6 +2248,7 @@ describe('AssessmentStore', () => {
                 persistedData,
                 initialAssessmentStoreDataGeneratorMock.object,
                 failTestOnErrorLogger,
+                StoreNames.AssessmentStore,
             );
         return new AssessmentStoreTester(
             AssessmentActions,

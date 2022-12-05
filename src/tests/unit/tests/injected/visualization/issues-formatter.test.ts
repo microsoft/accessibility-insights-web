@@ -78,7 +78,7 @@ describe('IssuesFormatterTests', () => {
         const config = testSubject.getDrawerConfiguration(htmlElement, axeData);
 
         expect(config.showVisualization).toBe(true);
-        expect(config.borderColor).toEqual(issuesStyle.borderColor);
+        expect(config.outlineColor).toEqual(issuesStyle.outlineColor);
         expect(config.failureBoxConfig.fontColor).toEqual(issuesStyle.fontColor);
         expect(config.failureBoxConfig.text).toEqual('!');
         expect(config.failureBoxConfig.boxWidth).toEqual('2em');

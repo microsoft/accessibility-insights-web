@@ -1,14 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TestMode } from '../common/configs/test-mode';
+import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
 import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../common/enum-helper';
-import {
-    AssessmentScanData,
-    VisualizationStoreData,
-} from '../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../common/types/visualization-type';
+import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 
 export class AnalyzerStateUpdateHandler {
     protected prevState: VisualizationStoreData;
@@ -41,19 +37,31 @@ export class AnalyzerStateUpdateHandler {
         prevState: VisualizationStoreData,
         currState: VisualizationStoreData,
     ): void {
-        const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(visualizationType => {
-            if (prevState != null) {
-                const configuration =
-                    this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-                const keys = this.getTestKeysFromConfiguration(configuration, currState);
-                keys.forEach(testKey => {
-                    if (this.isTestTerminated(configuration, prevState, currState, testKey)) {
-                        this.teardown(configuration.getIdentifier(testKey));
-                    }
-                });
-            }
-        });
+        if (prevState == null) {
+            return;
+        }
+
+        this.visualizationConfigurationFactory.forEachConfig(
+            (
+                configuration: VisualizationConfiguration,
+                type: VisualizationType,
+                requirementConfig: Requirement,
+            ) => {
+                if (
+                    !this.isTestTerminated(
+                        configuration,
+                        prevState,
+                        currState,
+                        requirementConfig?.key,
+                    )
+                ) {
+                    return;
+                }
+
+                const identifier = configuration.getIdentifier(requirementConfig?.key);
+                this.teardown(identifier);
+            },
+        );
     }
 
     private startAnalyzers(
@@ -75,32 +83,12 @@ export class AnalyzerStateUpdateHandler {
         config: VisualizationConfiguration,
         prevState: VisualizationStoreData,
         currState: VisualizationStoreData,
-        step: string,
+        requirement: string,
     ): boolean {
         const prevScanState = config.getStoreData(prevState.tests);
         const currScanState = config.getStoreData(currState.tests);
-        const prevEnabled = config.getTestStatus(prevScanState, step);
-        const currEnabled = config.getTestStatus(currScanState, step);
-        return prevState != null && prevEnabled === true && currEnabled === false;
-    }
-
-    private getTestKeysFromConfiguration(
-        config: VisualizationConfiguration,
-        currState: VisualizationStoreData,
-    ): string[] {
-        const keys = [];
-        if (this.isAssessment(config)) {
-            const prevScanState = config.getStoreData(currState.tests) as AssessmentScanData;
-            Object.keys(prevScanState.stepStatus).forEach(step => {
-                keys.push(config.getIdentifier(step));
-            });
-        } else {
-            keys.push(config.getIdentifier());
-        }
-        return keys;
-    }
-
-    private isAssessment(config: VisualizationConfiguration): boolean {
-        return config.testMode === TestMode.Assessments;
+        const prevEnabled = config.getTestStatus(prevScanState, requirement);
+        const currEnabled = config.getTestStatus(currScanState, requirement);
+        return prevEnabled === true && currEnabled === false;
     }
 }

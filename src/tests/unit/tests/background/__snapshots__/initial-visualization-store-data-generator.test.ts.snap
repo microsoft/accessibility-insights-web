@@ -1,0 +1,496 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InitialVisualizationStoreDataGenerator.generateInitialState generates the pinned default state when no persistedData is provided 1`] = `
+{
+  "focusedTarget": null,
+  "injectingRequested": false,
+  "injectingStarted": false,
+  "scanning": null,
+  "selectedAdhocDetailsView": 1,
+  "selectedDetailsViewPivot": 0,
+  "selectedFastPassDetailsView": 1,
+  "tests": {
+    "adhoc": {
+      "type-0": {
+        "enabled": false,
+      },
+      "type-1": {
+        "enabled": false,
+      },
+      "type-2": {
+        "enabled": false,
+      },
+      "type-3": {
+        "enabled": false,
+      },
+      "type-4": {
+        "enabled": false,
+      },
+    },
+    "assessments": {
+      "type-11": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-12": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-13": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-14": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-15": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-16": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-17": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-18": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-19": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-20": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-21": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-22": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-23": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-24": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-25": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-26": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-27": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-28": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-29": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-30": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-31": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-32": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-33": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-34": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-35": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-36": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-37": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-38": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+    },
+    "mediumPass": {
+      "type-10": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-5": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-6": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-7": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-8": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+      "type-9": {
+        "enabled": false,
+        "stepStatus": {},
+      },
+    },
+  },
+}
+`;
+
+exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites empty state.tests if persistedState.tests has data when persistedState.tests.mediumPass has data is false 1`] = `
+{
+  "adhoc": {
+    "type-0": {
+      "enabled": false,
+    },
+    "type-1": {
+      "enabled": false,
+    },
+    "type-2": {
+      "enabled": false,
+    },
+    "type-3": {
+      "enabled": false,
+    },
+    "type-4": {
+      "enabled": false,
+    },
+  },
+  "assessments": {
+    "type-11": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-12": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-13": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-14": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-15": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-16": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-17": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-18": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-19": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-20": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-21": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-22": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-23": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-24": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-25": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-26": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-27": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-28": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-29": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-30": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-31": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-32": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-33": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-34": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-35": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-36": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-37": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-38": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+  },
+  "mediumPass": {
+    "type-10": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-5": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-6": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-7": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-8": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-9": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+  },
+}
+`;
+
+exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites empty state.tests if persistedState.tests has data when persistedState.tests.mediumPass has data is true 1`] = `
+{
+  "adhoc": {
+    "type-0": {
+      "enabled": false,
+    },
+    "type-1": {
+      "enabled": false,
+    },
+    "type-2": {
+      "enabled": false,
+    },
+    "type-3": {
+      "enabled": false,
+    },
+    "type-4": {
+      "enabled": false,
+    },
+  },
+  "assessments": {
+    "type-11": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-12": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-13": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-14": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-15": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-16": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-17": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-18": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-19": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-20": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-21": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-22": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-23": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-24": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-25": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-26": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-27": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-28": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-29": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-30": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-31": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-32": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-33": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-34": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-35": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-36": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-37": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-38": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+  },
+  "mediumPass": {
+    "type-10": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-5": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-6": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-7": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-8": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-9": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+  },
+}
+`;

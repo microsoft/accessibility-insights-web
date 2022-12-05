@@ -12,6 +12,8 @@ export interface AssessmentScanData extends ScanData {
     stepStatus: DictionaryStringTo<boolean>;
 }
 
+export type TestsScanData = DictionaryStringTo<AssessmentScanData | ScanData>;
+
 export interface VisualizationStoreData {
     tests: TestsEnabledState;
     scanning: string;
@@ -29,5 +31,8 @@ export interface TestsEnabledState {
     };
     adhoc: {
         [key: string]: ScanData;
+    };
+    mediumPass: {
+        [key: string]: AssessmentScanData;
     };
 }

@@ -4,11 +4,9 @@ import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { isEqual } from 'lodash';
-import { clone, isFunction } from 'lodash';
+import { clone, isEqual, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -98,7 +96,7 @@ describe('BatchedRuleAnalyzer', () => {
             testType: typeStub,
             telemetryProcessor: telemetryProcessorStub,
             resultProcessor: scanner => resultProcessorMockOne.object,
-        };
+        } as RuleAnalyzerConfiguration;
         const ruleTwo = 'the second rule';
         const resultProcessorMockTwo: IMock<
             (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>

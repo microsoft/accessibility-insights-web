@@ -38,6 +38,23 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     },
 };
 
+// all the rules we enable in needs review
+export const needsReviewRules = [
+    'aria-input-field-name',
+    'color-contrast',
+    'th-has-data-cells',
+    'link-in-text-block',
+    'scrollable-region-focusable',
+    'label-content-name-mismatch',
+    'p-as-heading',
+];
+
+export const getNeedsReviewRulesConfig: () => DictionaryStringTo<RuleIncluded> = () => {
+    const needsReviewRulesConfig = {};
+    needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
+    return needsReviewRulesConfig;
+};
+
 export const getRuleInclusions = (
     ruleset: IRuleConfiguration[],
     ruleOverrides: DictionaryStringTo<RuleIncluded>,

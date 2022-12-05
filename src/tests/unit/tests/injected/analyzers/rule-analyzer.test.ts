@@ -10,6 +10,7 @@ import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { PostResolveCallback, RuleAnalyzer } from 'injected/analyzers/rule-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { ScannerUtils } from 'injected/scanner-utils';
@@ -39,6 +40,7 @@ describe('RuleAnalyzer', () => {
     let scanCallback: (results: ScanResults) => void;
     let postResolveCallbackMock: IMock<PostResolveCallback>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -63,6 +65,9 @@ describe('RuleAnalyzer', () => {
                 [ScopingInputTypes.include]: [['fake include selector']],
                 [ScopingInputTypes.exclude]: [['fake exclude selector']],
             },
+        };
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
         };
         scopingStoreMock
             .setup(sm => sm.getState())
@@ -128,7 +133,7 @@ describe('RuleAnalyzer', () => {
         const scanResults = createTestResults();
 
         const expectedMessage: Message = {
-            messageType: configStub.analyzerMessageType,
+            messageType: messageConfigurationStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
                 selectorMap: allInstancesMock,

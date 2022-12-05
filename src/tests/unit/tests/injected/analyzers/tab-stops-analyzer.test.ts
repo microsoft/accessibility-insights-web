@@ -212,6 +212,7 @@ describe('TabStopsAnalyzer', () => {
 
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
+
             testSubject.analyze();
             await flushSettledPromises();
 
@@ -231,6 +232,7 @@ describe('TabStopsAnalyzer', () => {
         it('emits a ScanTerminated message and stops emitting ScanUpdated messages after teardown() is invoked', async () => {
             setupTabStopsListenerForStartTabStops();
             setupSendMessageMock(emptyScanCompleteMessage);
+
             testSubject.analyze();
             await flushSettledPromises();
 

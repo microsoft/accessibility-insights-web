@@ -13,6 +13,7 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
+    public static readonly mediumPass = 'mediumPass';
 }
 
 export interface FeatureFlagDetail {
@@ -95,6 +96,14 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.mediumPass,
+            defaultValue: false,
+            displayableName: 'Medium Pass',
+            displayableDescription: 'Adds Medium Pass option to launch pad and details view pivot',
+            isPreviewFeature: false,
             forceDefault: false,
         },
     ];

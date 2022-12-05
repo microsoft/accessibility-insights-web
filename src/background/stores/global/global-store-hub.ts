@@ -4,6 +4,7 @@ import { PermissionsStateStore } from 'background/stores/global/permissions-stat
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { getAllFeatureFlagDetails } from 'common/feature-flags';
 import { Logger } from 'common/logging/logger';
+import { StoreNames } from 'common/stores/store-names';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -32,6 +33,7 @@ export class GlobalStoreHub implements StoreHub {
     public launchPanelStore: LaunchPanelStore;
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
+    public quickAssessStore: AssessmentStore;
     public userConfigurationStore: UserConfigurationStore;
     public permissionsStateStore: PermissionsStateStore;
 
@@ -84,6 +86,19 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.assessmentStoreData,
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
             logger,
+            StoreNames.AssessmentStore,
+        );
+        this.quickAssessStore = new AssessmentStore(
+            browserAdapter,
+            globalActionHub.quickAssessActions,
+            new AssessmentDataConverter(generateUID),
+            new AssessmentDataRemover(),
+            assessmentsProvider,
+            indexedDbInstance,
+            persistedData.quickAssessStoreData,
+            new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
+            logger,
+            StoreNames.QuickAssessStore,
         );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
@@ -106,6 +121,7 @@ export class GlobalStoreHub implements StoreHub {
         this.launchPanelStore.initialize();
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
+        this.quickAssessStore.initialize();
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
     }
@@ -117,6 +133,7 @@ export class GlobalStoreHub implements StoreHub {
             this.launchPanelStore,
             this.scopingStore,
             this.assessmentStore,
+            this.quickAssessStore,
             this.userConfigurationStore,
             this.permissionsStateStore,
         ];

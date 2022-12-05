@@ -20,7 +20,7 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<LandmarksAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}
+                background={LandmarkFormatter.getStyleForLandmarkRole('banner').outlineColor}
                 textContent={'banner: label'}
                 customClassName="radio"
             />
@@ -39,7 +39,7 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<LandmarksAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}
+                background={LandmarkFormatter.getStyleForLandmarkRole('banner').outlineColor}
                 textContent={'banner'}
                 customClassName="radio"
             />

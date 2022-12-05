@@ -29,7 +29,7 @@ export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
     rules: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
@@ -99,7 +99,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const count = outcomeCounter(rule.nodes);
-                    const buttonAriaLabel = `${rule.id} ${count} ${pastTense} ${rule.description}`;
+                    const buttonAriaLabel = `${count} ${pastTense} ${rule.id} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
                     );

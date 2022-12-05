@@ -21,6 +21,7 @@ export class AssessmentReportFooter extends React.Component<AssessmentReportFoot
                     href="http://aka.ms/AccessibilityInsights"
                     className="link report-footer-link"
                     target="_blank"
+                    rel="noreferrer"
                 >
                     http://aka.ms/AccessibilityInsights
                 </a>

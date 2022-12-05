@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IButton } from '@fluentui/react';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -11,6 +10,7 @@ import { TabStopRequirementState } from 'common/types/store-data/visualization-s
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import styles from 'DetailsView/components/details-view-command-bar.scss';
@@ -39,6 +39,7 @@ import { StartOverFactoryDeps } from 'DetailsView/components/start-over-componen
 import {
     dialogClosedState,
     StartOverDialog,
+    StartOverDialogDeps,
     StartOverDialogProps,
     StartOverDialogState,
     StartOverDialogType,
@@ -54,11 +55,13 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 } & SaveAssessmentButtonFactoryDeps &
     LoadAssessmentButtonDeps &
     StartOverFactoryDeps &
     LoadAssessmentDialogDeps &
-    ReportExportDialogFactoryDeps;
+    ReportExportDialogFactoryDeps &
+    StartOverDialogDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -79,7 +82,6 @@ export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
-    assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     automatedChecksCardsViewData: CardsViewModel;

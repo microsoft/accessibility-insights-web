@@ -3,7 +3,7 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 
-## Accessibility Insights Manifest v3 Extension Architecture
+## Accessibility Insights Extension Architecture
 
 This document describes the top level architecture for the Accessibility Insights extension. It was written after completing the transition from Chrome's [manifest v2](https://developer.chrome.com/docs/extensions/mv2/) to [manifest v3](https://developer.chrome.com/docs/extensions/mv3/), and as a result it highlights the changes made during that transition.
 

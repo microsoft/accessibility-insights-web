@@ -35,7 +35,7 @@ describe('CombinedReportFailedSection', () => {
 
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
             headingLevel: 3,
-            deps: null,
+            deps: {},
         };
 
         collapsibleControlMock

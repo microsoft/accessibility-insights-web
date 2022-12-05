@@ -15,7 +15,7 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerConfiguration, RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
@@ -84,6 +84,11 @@ describe('buildTestStepsFromRules', () => {
             key: rule.id,
             testType: VisualizationType.AutomatedChecks,
         };
+        const givenBaseConfig: AnalyzerConfiguration = {
+            testType: VisualizationType.AutomatedChecks,
+            key: rule.id,
+            analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
+        };
 
         analyzerProviderMock
             .setup(apm => apm.createBatchedRuleAnalyzer(It.isAny()))
@@ -96,7 +101,7 @@ describe('buildTestStepsFromRules', () => {
             })
             .verifiable();
 
-        actual.getAnalyzer(analyzerProviderMock.object);
+        actual.getAnalyzer(analyzerProviderMock.object, givenBaseConfig);
         analyzerProviderMock.verifyAll();
     }
 

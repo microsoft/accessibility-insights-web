@@ -32,4 +32,12 @@ export enum VisualizationType {
     ContrastAssessment,
     NeedsReview,
     AccessibleNames,
+    KeyboardInteractionMediumPass,
+    LinksMediumPass,
+    ImagesMediumPass,
+    VisibleFocusOrderMediumPass,
+    AdaptableContentMediumPass,
+    HeadingsMediumPass,
+    RepetitiveContentMediumPass,
+    AutomatedChecksMediumPass,
 }

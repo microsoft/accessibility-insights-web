@@ -23,13 +23,6 @@ declare interface AxeNodeResult {
     snippet?: string;
 }
 
-declare interface LandmarkValue {
-    selectors: string[];
-    label: string[];
-    borderColor: string;
-    fontColor: string;
-}
-
 declare function getAxeResults(
     rulesToTest: string[],
     successCallback: (axeResults: AxeResult) => void,

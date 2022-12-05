@@ -27,7 +27,7 @@ export type ResultSectionContentProps = {
     results: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;

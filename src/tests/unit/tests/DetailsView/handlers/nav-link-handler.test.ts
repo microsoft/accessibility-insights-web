@@ -2,6 +2,7 @@
 // Licensed under the MIT License.`
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 import {
@@ -15,6 +16,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 describe('NavLinkHandler', () => {
     const irrelevantVisualizationType = -1 as VisualizationType;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let testSubject: NavLinkHandler;
     let eventStub: React.MouseEvent<HTMLElement>;
     let link: BaseLeftNavLink;
@@ -24,7 +26,14 @@ describe('NavLinkHandler', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Strict,
         );
-        testSubject = new NavLinkHandler(detailsViewActionMessageCreatorMock.object);
+        assessmentActionMessageCreatorMock = Mock.ofType(
+            AssessmentActionMessageCreator,
+            MockBehavior.Strict,
+        );
+        testSubject = new NavLinkHandler(
+            detailsViewActionMessageCreatorMock.object,
+            assessmentActionMessageCreatorMock.object,
+        );
         eventStub = {} as React.MouseEvent<HTMLElement>;
         link = {
             key: 'test',
@@ -86,7 +95,7 @@ describe('NavLinkHandler', () => {
                 requirementKey: 'some requirement',
                 testType: irrelevantVisualizationType,
             } as TestRequirementLeftNavLink;
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(amc =>
                     amc.selectRequirement(
                         eventStub,
@@ -102,6 +111,7 @@ describe('NavLinkHandler', () => {
 
             testSubject.onRequirementClick(eventStub, requirementLink);
             detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 
@@ -110,7 +120,7 @@ describe('NavLinkHandler', () => {
             const gettingStartedLink = {
                 testType: irrelevantVisualizationType,
             } as TestGettingStartedNavLink;
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(amc => amc.selectGettingStarted(eventStub, gettingStartedLink.testType))
                 .verifiable();
 
@@ -120,6 +130,7 @@ describe('NavLinkHandler', () => {
 
             testSubject.onGettingStartedClick(eventStub, gettingStartedLink);
             detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 
@@ -129,12 +140,12 @@ describe('NavLinkHandler', () => {
                 testType: irrelevantVisualizationType,
                 isExpanded: false,
             } as AssessmentLeftNavLink;
-            detailsViewActionMessageCreatorMock
+            assessmentActionMessageCreatorMock
                 .setup(amc => amc.expandTestNav(testHeadingLink.testType))
                 .verifiable();
 
             testSubject.onTestHeadingClick(eventStub, testHeadingLink);
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 
@@ -144,10 +155,10 @@ describe('NavLinkHandler', () => {
                 testType: irrelevantVisualizationType,
                 isExpanded: true,
             } as AssessmentLeftNavLink;
-            detailsViewActionMessageCreatorMock.setup(amc => amc.collapseTestNav()).verifiable();
+            assessmentActionMessageCreatorMock.setup(amc => amc.collapseTestNav()).verifiable();
 
             testSubject.onTestHeadingClick(eventStub, testHeadingLink);
-            detailsViewActionMessageCreatorMock.verifyAll();
+            assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 });

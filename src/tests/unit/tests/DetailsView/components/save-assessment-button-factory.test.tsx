@@ -10,7 +10,7 @@ import {
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     getSaveButtonForAssessment,
-    getSaveButtonForFastPass,
+    getNullSaveButton,
     SaveAssessmentButtonFactoryDeps,
     SaveAssessmentButtonFactoryProps,
 } from 'DetailsView/components/save-assessment-button-factory';
@@ -96,7 +96,7 @@ describe('SaveAssessmentButtonFactory', () => {
 
     describe('getSaveButtonForFastPass', () => {
         test('renders save assessment button as null', () => {
-            const rendered = getSaveButtonForFastPass(props);
+            const rendered = getNullSaveButton(props);
             expect(rendered).toBeNull();
         });
     });

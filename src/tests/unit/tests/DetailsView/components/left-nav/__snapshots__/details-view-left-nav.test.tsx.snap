@@ -11,6 +11,7 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
         "assessmentsProviderWithFeaturesEnabled": [Function],
       }
     }
+    featureFlagStoreData={{}}
   />
   <test
     assessmentsData={

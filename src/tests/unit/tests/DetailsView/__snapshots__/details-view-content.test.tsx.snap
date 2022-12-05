@@ -386,6 +386,40 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "stepStatus": {},
             },
           },
+          "mediumPass": {
+            "adaptableContentAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "automatedChecks": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "headingsAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "imageAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "keyboardInteractionAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "linksAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "repetitiveContentAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "visibleFocusOrderAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+          },
         },
       }
     }

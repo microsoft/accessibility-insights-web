@@ -24,12 +24,12 @@ export const isVisualizationEnabled: IsVisualizationEnabledCallback = (
     const scanData = config.getStoreData(visualizationState.tests);
     return (
         config.getTestStatus(scanData, step) &&
-        (!isAssessment(config) ||
+        (isAdhoc(config) ||
             assessmentState.persistedTabInfo === null ||
             tabState.id === assessmentState.persistedTabInfo.id)
     );
 };
 
-function isAssessment(config: VisualizationConfiguration): boolean {
-    return config.testMode === TestMode.Assessments;
+function isAdhoc(config: VisualizationConfiguration): boolean {
+    return config.testMode === TestMode.Adhoc;
 }

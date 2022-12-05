@@ -49,12 +49,14 @@ const howToTest: JSX.Element = (
                 </p>
             </li>
             <li>
-                Run the first bookmarklet in the browser tab containing your target page. It will
-                send the page's DOM to the checker and show the results in a new browser tab.
+                Go to the browser tab containing your target page and, in that browser window,
+                select the first bookmarklet. It will send the page's DOM to the checker and show
+                the results in a new browser tab.
             </li>
             <li>
-                Run the second bookmarklet in the browser tab containing the checker results. It
-                will filter the results to show only WCAG parsing errors.
+                Go to the browser tab containing the checker results and, in that browser window,
+                select the second bookmarklet. It will filter the results to show only WCAG parsing
+                errors.
             </li>
             <li>
                 Examine the filtered results to verify that there are no errors related to:

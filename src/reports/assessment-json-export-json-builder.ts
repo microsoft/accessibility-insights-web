@@ -247,7 +247,7 @@ function processRequirementDescription(descriptionProps): string {
             }
         });
     } else {
-        requirementDescription += descriptionProps.children;
+        requirementDescription += descriptionProps.children ?? descriptionProps.tagName;
     }
     return requirementDescription;
 }

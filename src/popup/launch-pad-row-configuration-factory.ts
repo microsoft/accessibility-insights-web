@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -13,6 +15,7 @@ export class LaunchPadRowConfigurationFactory {
         component: PopupView,
         actionMessageCreator: PopupActionMessageCreator,
         handler: PopupViewControllerHandler,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): LaunchPadRowConfiguration[] {
         const fastPassRowConfig = {
             iconName: 'Rocket',
@@ -34,6 +37,18 @@ export class LaunchPadRowConfigurationFactory {
                 'Get quick access to visualizations that help you identify accessibility issues.',
             onClickTitle: () => handler.openAdhocToolsPanel(component),
         };
+        const mediumPassRowConfig = {
+            iconName: '',
+            title: 'MediumPass',
+            description: 'MediumPass tag line goes here',
+            onClickTitle: event =>
+                actionMessageCreator.openDetailsView(
+                    event,
+                    null,
+                    TelemetryEventSource.LaunchPadMediumPass,
+                    DetailsViewPivotType.mediumPass,
+                ),
+        };
         const assessmentRowConfig = {
             iconName: 'testBeaker',
             title: 'Assessment',
@@ -47,6 +62,8 @@ export class LaunchPadRowConfigurationFactory {
                 ),
         };
 
-        return [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
+        return featureFlagStoreData[FeatureFlags.mediumPass]
+            ? [fastPassRowConfig, mediumPassRowConfig, assessmentRowConfig, adhocRowConfig]
+            : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
     }
 }

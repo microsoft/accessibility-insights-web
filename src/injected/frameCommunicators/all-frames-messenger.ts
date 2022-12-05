@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FRAME_COMMUNICATION_TIMEOUT_MS } from 'common/constants/frame-timeouts';
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { Logger } from 'common/logging/logger';
 import { mergePromiseResponses } from 'common/merge-promise-responses';
@@ -16,8 +17,9 @@ import { isEqual } from 'lodash';
 // This class provides functionality for messaging all frames in a page that can
 // respond, to handle cases where an iframe fails to load or does not have the
 // script injected.
+//
 // On initialize(), we ping every frame and store a list of the frames that
-// respond within 500ms. sendCommandToFrames only messages the frames that
+// respond within a timeout. sendCommandToFrames only messages the frames that
 // responded to the initial ping.
 export class AllFramesMessenger {
     private responsiveFrames: HTMLIFrameElement[] | null = null;
@@ -36,7 +38,7 @@ export class AllFramesMessenger {
             promises: Promise<unknown>[],
         ) => Promise<void> = mergePromiseResponses,
         private readonly pingCommand: string = 'insights.pingFrame',
-        private readonly pingTimeoutMilliseconds: number = 500,
+        private readonly pingTimeoutMilliseconds: number = FRAME_COMMUNICATION_TIMEOUT_MS,
     ) {
         this.addMessageListener(this.pingCommand, async () => {
             await this.findResponsiveFrames();
@@ -143,7 +145,7 @@ export class AllFramesMessenger {
                     this.responsiveFrames!.push(allIFrameElements[index]);
                 } else {
                     const error = new Error(
-                        `Recieved unexpected value for ping response: ${JSON.stringify(response)}`,
+                        `Received unexpected value for ping response: ${JSON.stringify(response)}`,
                     );
                     unexpectedErrors.push(error);
                 }

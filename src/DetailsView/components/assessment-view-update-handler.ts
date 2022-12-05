@@ -7,12 +7,12 @@ import {
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { isEqual } from 'lodash';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentViewUpdateHandlerDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
 }
 
@@ -68,7 +68,7 @@ export class AssessmentViewUpdateHandler {
             props.selectedRequirementIsEnabled === false ||
             (isStepNotScanned && assessmentDataUpdated)
         ) {
-            props.deps.detailsViewActionMessageCreator.enableVisualHelper(
+            props.deps.assessmentActionMessageCreator.enableVisualHelper(
                 test,
                 step,
                 isStepNotScanned,
@@ -105,6 +105,6 @@ export class AssessmentViewUpdateHandler {
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {
         const test = props.assessmentNavState.selectedTestType;
-        props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
+        props.deps.assessmentActionMessageCreator.disableVisualHelpersForTest(test);
     }
 }

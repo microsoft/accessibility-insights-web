@@ -2,10 +2,14 @@
 // Licensed under the MIT License.
 
 import { loadTheme, setFocusVisibility } from '@fluentui/react';
-import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import {
+    MediumPassRequirementKeys,
+    MediumPassRequirementMap,
+} from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
@@ -31,6 +35,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
+import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
@@ -43,10 +48,14 @@ import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-re
 import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import {
+    AssessmentFunctionalitySwitcher,
+    SharedAssessmentObjects,
+} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
-import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -292,6 +301,12 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
+            const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+                Messages.Assessment,
+            );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -332,12 +347,16 @@ if (tabId != null) {
                 visualizationActionCreator,
                 telemetryFactory,
             );
-            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            );
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 new AssessmentTableColumnConfigHandler(
-                    new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
+                    new MasterCheckBoxConfigProvider(assessmentActionMessageCreator),
                     Assessments,
                 ),
                 Assessments,
@@ -484,24 +503,63 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
-            const ajv = new Ajv();
-
             const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
-                ajv,
                 Assessments,
                 featureFlagStore.getState() as FeatureFlagStoreData,
-                new LoadAssessmentDataSchemaProvider(),
             );
 
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
-                detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 fileReader,
                 document,
                 loadAssessmentDataValidator,
             );
 
             const cardFooterMenuItemsBuilder = new CardFooterMenuItemsBuilder();
+
+            const quickAssessProvider = assessmentsProviderForRequirements(
+                Assessments,
+                MediumPassRequirementMap,
+            );
+            const quickAssessActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+                Messages.MediumPass,
+            );
+            const quickAssessInstanceTableHandler = new AssessmentInstanceTableHandler(
+                detailsViewActionMessageCreator,
+                quickAssessActionMessageCreator,
+                new AssessmentTableColumnConfigHandler(
+                    new MasterCheckBoxConfigProvider(quickAssessActionMessageCreator),
+                    quickAssessProvider,
+                ),
+                quickAssessProvider,
+            );
+            const assessmentObjects: SharedAssessmentObjects = {
+                provider: Assessments,
+                actionMessageCreator: assessmentActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
+                instanceTableHandler: assessmentInstanceTableHandler,
+            };
+            const quickAssessObjects: SharedAssessmentObjects = {
+                provider: quickAssessProvider,
+                actionMessageCreator: quickAssessActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    quickAssessActionMessageCreator,
+                ),
+                instanceTableHandler: quickAssessInstanceTableHandler,
+            };
+            const assessmentFunctionalitySwitcher = new AssessmentFunctionalitySwitcher(
+                visualizationStore,
+                assessmentObjects,
+                quickAssessObjects,
+                GetDetailsSwitcherNavConfiguration,
+            );
 
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
@@ -517,6 +575,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
@@ -534,7 +593,10 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -594,6 +656,12 @@ if (tabId != null) {
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
+                mediumPassRequirementKeys: MediumPassRequirementKeys,
+                getProvider: assessmentFunctionalitySwitcher.getProvider,
+                getAssessmentActionMessageCreator:
+                    assessmentFunctionalitySwitcher.getActionMessageCreator,
+                getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
+                getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
 
             const renderer = new DetailsViewRenderer(

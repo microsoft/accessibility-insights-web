@@ -15,6 +15,7 @@ import {
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
+import { DialogRenderer } from 'injected/dialog-renderer';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -36,13 +37,7 @@ import {
 } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 
-export interface DetailsDialogWindowMessage {
-    data: HtmlElementAxeResults;
-}
-
-export type RenderDialog = (data: HtmlElementAxeResults) => void;
-
-export class DialogRenderer {
+export class DialogRendererImpl implements DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
 
     constructor(
@@ -56,16 +51,16 @@ export class DialogRenderer {
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
-        if (this.isInMainWindow()) {
+        if (this.windowUtils.isTopWindow()) {
             this.frameMessenger.addMessageListener(
-                DialogRenderer.renderDetailsDialogCommand,
+                DialogRendererImpl.renderDetailsDialogCommand,
                 this.processRequest,
             );
         }
     }
 
     public render = async (data: HtmlElementAxeResults): Promise<CommandMessageResponse | null> => {
-        if (this.isInMainWindow()) {
+        if (this.windowUtils.isTopWindow()) {
             const mainWindowContext = MainWindowContext.fromWindow(this.windowUtils.getWindow());
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
@@ -121,14 +116,21 @@ export class DialogRenderer {
             );
             return null;
         } else {
+            const topWindow = this.windowUtils.getTopWindow();
+            if (topWindow == null) {
+                // This is only expected if this frame's window has been detached from the
+                // corresponding browser navigable entity, eg because it is in the process of
+                // unloading. Particularly, topWindow will *not* be null merely if the top window
+                // is across an origin boundary. If we're in this state, we intentionally abandon
+                // rendering.
+                return null;
+            }
+
             const message: CommandMessage = {
-                command: DialogRenderer.renderDetailsDialogCommand,
+                command: DialogRendererImpl.renderDetailsDialogCommand,
                 payload: { data: data },
             };
-            return await this.frameMessenger.sendMessageToWindow(
-                this.windowUtils.getTopWindow(),
-                message,
-            );
+            return await this.frameMessenger.sendMessageToWindow(topWindow, message);
         }
     };
 
@@ -146,7 +148,11 @@ export class DialogRenderer {
 
         const dialogContainer = this.dom.createElement('div');
         dialogContainer.setAttribute('class', 'insights-dialog-container');
-        this.dom.querySelector(`#${rootContainerId}`).appendChild(dialogContainer);
+        const rootContainer = this.dom.querySelector(`#${rootContainerId}`);
+        if (rootContainer == null) {
+            throw new Error(`Could not find #${rootContainerId} element to inject dialog into`);
+        }
+        rootContainer.appendChild(dialogContainer);
         return dialogContainer;
     }
 
@@ -162,9 +168,5 @@ export class DialogRenderer {
 
     private getElementSelector(data: HtmlElementAxeResults): string {
         return TargetHelper.getSelectorFromTarget(data.target);
-    }
-
-    private isInMainWindow(): boolean {
-        return this.windowUtils.getTopWindow() === this.windowUtils.getWindow();
     }
 }

@@ -5,10 +5,10 @@ import { DefaultButton, Icon } from '@fluentui/react';
 import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
 export type NextRequirementButtonDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
 };
 
 export type NextRequirementButtonProps = {
@@ -26,7 +26,7 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         }
 
         const selectNextRequirement = (event: React.MouseEvent<HTMLElement>) => {
-            props.deps.detailsViewActionMessageCreator.selectNextRequirement(
+            props.deps.assessmentActionMessageCreator.selectNextRequirement(
                 event,
                 props.nextRequirement.key,
                 props.currentTest,

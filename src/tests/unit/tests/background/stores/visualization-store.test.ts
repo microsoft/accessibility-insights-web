@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,
@@ -11,18 +14,25 @@ import {
 import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
+import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { TestMode } from 'common/configs/test-mode';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { cloneDeep } from 'lodash';
+import { IMock, Mock, Times } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/store-data/details-view-pivot-type';
-import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
+import {
+    TestsEnabledState,
+    VisualizationStoreData,
+} from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('VisualizationStoreTest ', () => {
+    let initialVisualizationStoreDataGeneratorMock: IMock<InitialVisualizationStoreDataGenerator>;
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(VisualizationStore);
         expect(testObject).toBeDefined();
@@ -31,6 +41,123 @@ describe('VisualizationStoreTest ', () => {
     test('getId', () => {
         const testObject = createStoreWithNullParams(VisualizationStore);
         expect(StoreNames[StoreNames.VisualizationStore]).toEqual(testObject.getId());
+    });
+
+    describe('getDefaultState', () => {
+        beforeEach(() => {
+            initialVisualizationStoreDataGeneratorMock =
+                Mock.ofType<InitialVisualizationStoreDataGenerator>();
+        });
+
+        it('with no tests in state', () => {
+            const defaultStateStub = {};
+            setupDataGeneratorMock(null, defaultStateStub as VisualizationStoreData);
+
+            const testObject = new VisualizationStore(
+                null,
+                new TabActions(),
+                new InjectionActions(),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
+                null,
+                null,
+                null,
+                null,
+                true,
+                initialVisualizationStoreDataGeneratorMock.object,
+            );
+
+            const actualState = testObject.getDefaultState();
+
+            expect(actualState).toEqual(defaultStateStub);
+            initialVisualizationStoreDataGeneratorMock.verifyAll();
+        });
+
+        it('with tests in persistedData missing mediumPass data', () => {
+            const persistedState: VisualizationStoreData = {
+                tests: {
+                    adhoc: {},
+                    assessments: {},
+                } as TestsEnabledState,
+            } as VisualizationStoreData;
+
+            const expectedState = {
+                tests: {
+                    adhoc: {},
+                    assessments: {},
+                    mediumPass: {},
+                },
+            };
+
+            setupDataGeneratorMock(
+                persistedState as VisualizationStoreData,
+                expectedState as VisualizationStoreData,
+            );
+
+            const testObject = new VisualizationStore(
+                null,
+                new TabActions(),
+                new InjectionActions(),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
+                persistedState,
+                null,
+                null,
+                null,
+                true,
+                initialVisualizationStoreDataGeneratorMock.object,
+            );
+
+            const actualState = testObject.getDefaultState();
+
+            expect(actualState).toEqual(expectedState);
+            initialVisualizationStoreDataGeneratorMock.verifyAll();
+        });
+        it('with tests in persistedData including mediumPass data', () => {
+            const persistedState: VisualizationStoreData = {
+                tests: {
+                    adhoc: {},
+                    assessments: {},
+                    mediumPass: {},
+                } as TestsEnabledState,
+            } as VisualizationStoreData;
+
+            const expectedState = {
+                tests: {
+                    adhoc: {},
+                    assessments: {},
+                    mediumPass: {},
+                },
+            };
+            setupDataGeneratorMock(
+                persistedState as VisualizationStoreData,
+                expectedState as VisualizationStoreData,
+            );
+            const testObject = new VisualizationStore(
+                null,
+                new TabActions(),
+                new InjectionActions(),
+                new WebVisualizationConfigurationFactory(
+                    Assessments,
+                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                ),
+                persistedState,
+                null,
+                null,
+                null,
+                true,
+                initialVisualizationStoreDataGeneratorMock.object,
+            );
+
+            const actualState = testObject.getDefaultState();
+
+            expect(actualState).toEqual(expectedState);
+            initialVisualizationStoreDataGeneratorMock.verifyAll();
+        });
     });
 
     describe('onUpdateSelectedPivotChild', () => {
@@ -56,7 +183,6 @@ describe('VisualizationStoreTest ', () => {
                 detailsViewType: viewType,
                 pivotType: finalPivot,
             };
-
             const storeTester =
                 createStoreTesterForVisualizationActions(actionName).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -328,7 +454,7 @@ describe('VisualizationStoreTest ', () => {
             .withHeadingsAssessment(true, payload.requirement)
             .withHeadingsEnable()
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -351,7 +477,7 @@ describe('VisualizationStoreTest ', () => {
             .withLandmarksAssessment(false, LandmarkTestStep.landmarkRoles)
             .withHeadingsAssessment(true, payload.requirement)
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -374,7 +500,7 @@ describe('VisualizationStoreTest ', () => {
             .withHeadingsAssessment(false, HeadingsTestStep.headingFunction)
             .withHeadingsAssessment(true, payload.requirement)
             .with('injectingRequested', true)
-            .with('scanning', HeadingsTestStep.missingHeadings)
+            .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
         const storeTester =
@@ -827,17 +953,22 @@ describe('VisualizationStoreTest ', () => {
     function createStoreTesterForTabActions(
         actionName: keyof TabActions,
     ): StoreTester<VisualizationStoreData, TabActions> {
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
         const factory = (actions: TabActions) =>
             new VisualizationStore(
                 new VisualizationActions(),
                 actions,
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(),
+                visualizationConfigurationFactory,
                 null,
                 null,
                 null,
                 null,
                 true,
+                new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -846,17 +977,22 @@ describe('VisualizationStoreTest ', () => {
     function createStoreTesterForVisualizationActions(
         actionName: keyof VisualizationActions,
     ): StoreTester<VisualizationStoreData, VisualizationActions> {
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
         const factory = (actions: VisualizationActions) =>
             new VisualizationStore(
                 actions,
                 new TabActions(),
                 new InjectionActions(),
-                new WebVisualizationConfigurationFactory(),
+                visualizationConfigurationFactory,
                 null,
                 null,
                 null,
                 null,
                 true,
+                new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
@@ -865,19 +1001,35 @@ describe('VisualizationStoreTest ', () => {
     function createStoreTesterForInjectionActions(
         actionName: keyof InjectionActions,
     ): StoreTester<VisualizationStoreData, InjectionActions> {
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
         const factory = (actions: InjectionActions) =>
             new VisualizationStore(
                 new VisualizationActions(),
                 new TabActions(),
                 actions,
-                new WebVisualizationConfigurationFactory(),
+                visualizationConfigurationFactory,
                 null,
                 null,
                 null,
                 null,
                 true,
+                new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 
         return new StoreTester(InjectionActions, actionName, factory);
+    }
+
+    function setupDataGeneratorMock(
+        persistedData: VisualizationStoreData,
+        expectedData: VisualizationStoreData,
+        times: Times = Times.once(),
+    ): void {
+        initialVisualizationStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(persistedData))
+            .returns(() => expectedData)
+            .verifiable(times);
     }
 });

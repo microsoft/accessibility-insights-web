@@ -21,9 +21,9 @@ export class TargetHelper {
         target: (string | string[])[],
         dom: Document,
         targetIndex,
-    ) => {
+    ): Element[] => {
         if (!target || target.length < 1) {
-            return;
+            return [];
         }
         const selectors = target[targetIndex];
         let elements: NodeListOf<Element> | null;
@@ -32,7 +32,7 @@ export class TargetHelper {
         } else {
             const shadowHost = this.getShadowHost(selectors, dom);
             if (!shadowHost || !shadowHost.shadowRoot) {
-                return;
+                return [];
             }
             elements = shadowHost.shadowRoot.querySelectorAll(selectors[selectors.length - 1]);
         }

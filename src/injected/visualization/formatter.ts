@@ -5,9 +5,8 @@ import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
 export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
-    outlineStyle?: string;
-    outlineWidth?: string;
-    borderColor: string;
+    outlineStyle?: 'solid' | 'dashed';
+    outlineColor?: string;
     showVisualization: boolean;
     failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
@@ -38,7 +37,6 @@ export interface BoxConfig {
     boxWidth?: string;
     fontSize?: string;
     fontWeight?: string;
-    outline?: string;
 }
 
 export interface StrokeConfiguration {
@@ -81,7 +79,7 @@ export interface SingleTargetDrawerConfiguration {
 export interface Formatter {
     getDrawerConfiguration(
         element: Node,
-        data: AxeResultsWithFrameLevel,
+        data: AxeResultsWithFrameLevel | null,
     ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
-    getDialogRenderer(): DialogRenderer;
+    getDialogRenderer(): DialogRenderer | null;
 }

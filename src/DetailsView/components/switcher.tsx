@@ -3,7 +3,9 @@
 import { Dropdown, IDropdownOption } from '@fluentui/react';
 import { Icon } from '@fluentui/react';
 import { ResponsiveMode } from '@fluentui/react';
+import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -16,6 +18,7 @@ export type SwitcherDeps = {
 export interface SwitcherProps {
     deps: SwitcherDeps;
     pivotKey: DetailsViewPivotType;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export interface SwitcherState {
@@ -56,25 +59,34 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         );
     };
 
-    private getOptions = (): IDropdownOption[] => {
-        return [
-            {
-                key: DetailsViewPivotType.fastPass,
-                text: 'FastPass',
-                title: 'FastPass',
-                data: {
-                    icon: 'Rocket',
-                },
+    private getOptions = (featureFlagStoreData: FeatureFlagStoreData): IDropdownOption[] => {
+        const fastPassConfig = {
+            key: DetailsViewPivotType.fastPass,
+            text: 'FastPass',
+            title: 'FastPass',
+            data: {
+                icon: 'Rocket',
             },
-            {
-                key: DetailsViewPivotType.assessment,
-                text: 'Assessment',
-                title: 'Assessment',
-                data: {
-                    icon: 'testBeakerSolid',
-                },
+        };
+        const mediumPassConfig = {
+            key: DetailsViewPivotType.mediumPass,
+            text: 'MediumPass',
+            title: 'MediumPass',
+            data: {
+                icon: '',
             },
-        ];
+        };
+        const assessmentConfig = {
+            key: DetailsViewPivotType.assessment,
+            text: 'Assessment',
+            title: 'Assessment',
+            data: {
+                icon: 'testBeakerSolid',
+            },
+        };
+        return featureFlagStoreData[FeatureFlags.mediumPass]
+            ? [fastPassConfig, mediumPassConfig, assessmentConfig]
+            : [fastPassConfig, assessmentConfig];
     };
 
     public render(): JSX.Element {
@@ -88,7 +100,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                     onRenderOption={this.onRenderOption}
                     onRenderTitle={this.onRenderTitle}
                     onChange={this.onOptionChange}
-                    options={this.getOptions()}
+                    options={this.getOptions(this.props.featureFlagStoreData)}
                 />
             </div>
         );
