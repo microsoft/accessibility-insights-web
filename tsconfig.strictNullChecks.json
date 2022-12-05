@@ -422,6 +422,7 @@
         "./src/issue-filing/common/http-query-builder.ts",
         "./src/issue-filing/common/issue-details-builder.ts",
         "./src/issue-filing/common/issue-filing-url-string-utils.ts",
+        "./src/issue-filing/rule-result-to-issue-filing-data.ts",
         "./src/issue-filing/services/azure-boards/azure-boards-issue-filing-settings.tsx",
         "./src/issue-filing/services/azure-boards/create-azure-boards-issue-filing-url.ts",
         "./src/issue-filing/services/github/create-github-issue-filing-url.ts",
