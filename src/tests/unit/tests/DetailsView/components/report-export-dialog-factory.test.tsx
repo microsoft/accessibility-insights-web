@@ -87,7 +87,7 @@ describe('ReportExportDialogFactory', () => {
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,
             reportExportServiceProvider: reportExportServiceProviderMock.object,
-            assessmentsProvider: assessmentsProviderMock.object,
+            getProvider: () => assessmentsProviderMock.object,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,

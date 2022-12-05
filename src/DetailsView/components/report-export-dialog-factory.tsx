@@ -18,7 +18,7 @@ import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
 } & ReportExportComponentDeps;
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
@@ -41,16 +41,16 @@ export function getReportExportDialogForAssessment(
         dismissExportDialog,
         afterDialogDismissed,
     } = props;
-    const { reportGenerator, assessmentsProvider } = deps;
+    const { reportGenerator, getProvider } = deps;
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
-        scanDate: props.deps.getCurrentDate(),
+        scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentHtmlReport(
                 assessmentStoreData,
-                assessmentsProvider,
+                getProvider(),
                 featureFlagStoreData,
                 scanMetadata.targetAppInfo,
                 description,
@@ -58,7 +58,7 @@ export function getReportExportDialogForAssessment(
         jsonGenerator: description =>
             reportGenerator.generateAssessmentJsonExport(
                 assessmentStoreData,
-                assessmentsProvider,
+                getProvider(),
                 featureFlagStoreData,
                 scanMetadata.targetAppInfo,
                 description,

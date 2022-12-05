@@ -577,7 +577,6 @@ if (tabId != null) {
                 detailsViewActionMessageCreator,
                 assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
-                assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,

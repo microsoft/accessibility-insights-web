@@ -14,7 +14,7 @@ export type StartOverDialogState = StartOverDialogType | typeof dialogClosedStat
 
 export type StartOverDialogDeps = {
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
 };
 
 export interface StartOverDialogProps {
@@ -26,14 +26,14 @@ export interface StartOverDialogProps {
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
     const { dialogState, deps, assessmentStoreData, dismissDialog } = props;
-    const { assessmentsProvider } = deps;
+    const { getProvider } = deps;
 
     if (dialogState === dialogClosedState) {
         return null;
     }
 
     const test = assessmentStoreData.assessmentNavState.selectedTestType;
-    const testName = assessmentsProvider.forType(test).title;
+    const testName = getProvider().forType(test).title;
     const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
     const onStartTestOver = (event: React.MouseEvent<any>): void => {
