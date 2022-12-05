@@ -593,10 +593,6 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(
-                    detailsViewActionMessageCreator,
-                    assessmentActionMessageCreator,
-                ),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),

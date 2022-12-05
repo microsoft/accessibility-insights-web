@@ -69,7 +69,7 @@ describe('LeftNavBuilder', () => {
             outcomeTypeSemanticsFromTestStatus: outcomeTypeFromTestStatusMock.object,
             getAssessmentSummaryModelFromProviderAndStatusData:
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
-            navLinkHandler: navLinkHandlerMock.object,
+            getNavLinkHandler: () => navLinkHandlerMock.object,
             navLinkRenderer: navLinkRendererMock.object,
         } as LeftNavLinkBuilderDeps;
 

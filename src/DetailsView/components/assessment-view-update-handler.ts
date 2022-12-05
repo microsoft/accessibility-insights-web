@@ -13,7 +13,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentViewUpdateHandlerDeps {
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
 }
 
 export interface AssessmentViewUpdateHandlerProps {
@@ -100,7 +100,7 @@ export class AssessmentViewUpdateHandler {
         test: VisualizationType,
         step: string,
     ): boolean {
-        return props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
+        return props.deps.getProvider().getStep(test, step).doNotScanByDefault === true;
     }
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {

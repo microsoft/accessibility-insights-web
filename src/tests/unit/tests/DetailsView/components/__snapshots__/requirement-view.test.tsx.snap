@@ -9,7 +9,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       deps={
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
-          "assessmentsProvider": [typemoq mock object],
+          "getProvider": [Function],
         }
       }
       name="test-requirement-name"
@@ -86,7 +86,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
       deps={
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
-          "assessmentsProvider": [typemoq mock object],
+          "getProvider": [Function],
         }
       }
       nextRequirement={
