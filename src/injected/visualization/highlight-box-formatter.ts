@@ -11,7 +11,7 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
         super();
     }
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 

@@ -78,14 +78,12 @@ export class TargetHelper {
         return shadowDomSelectors;
     };
 
-    public static getSelectorFromTarget = (target: Target): string | undefined => {
-        if (target) {
-            return target
-                .map((targets: string | string[]) =>
-                    typeof targets === 'string' ? targets : targets.join(','),
-                )
-                .join(';');
-        }
+    public static getSelectorFromTarget = (target: Target): string => {
+        return target
+            ?.map((targets: string | string[]) =>
+                typeof targets === 'string' ? targets : targets.join(','),
+            )
+            ?.join(';');
     };
 
     public static getSelectorFromTargetElement = (
