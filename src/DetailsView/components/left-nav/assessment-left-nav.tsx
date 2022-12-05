@@ -21,7 +21,7 @@ import { NavLinkHandler } from './nav-link-handler';
 
 export type AssessmentLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
-    navLinkHandler: NavLinkHandler;
+    getNavLinkHandler: () => NavLinkHandler;
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
 
@@ -73,8 +73,8 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         setNavComponentRef,
     } = props;
 
-    const { navLinkHandler, leftNavLinkBuilder } = deps;
-
+    const { getNavLinkHandler, leftNavLinkBuilder } = deps;
+    const navLinkHandler = getNavLinkHandler();
     let links = [];
     links.push(
         leftNavLinkBuilder.buildOverviewLink(

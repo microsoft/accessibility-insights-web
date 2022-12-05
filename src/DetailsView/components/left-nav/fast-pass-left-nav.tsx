@@ -12,7 +12,7 @@ import {
 } from './visualization-based-left-nav';
 
 export type FastPassLeftNavDeps = {
-    navLinkHandler: NavLinkHandler;
+    getNavLinkHandler: () => NavLinkHandler;
 } & VisualizationBasedLeftNavDeps;
 export type FastPassLeftNavProps = {
     deps: FastPassLeftNavDeps;
@@ -25,8 +25,8 @@ export type FastPassLeftNavProps = {
 export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', props => {
     const { deps, setNavComponentRef } = props;
 
-    const { navLinkHandler } = deps;
-
+    const { getNavLinkHandler } = deps;
+    const navLinkHandler = getNavLinkHandler();
     const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
     const tests = fastPassProvider.getAllFastPassVisualizations();
 
