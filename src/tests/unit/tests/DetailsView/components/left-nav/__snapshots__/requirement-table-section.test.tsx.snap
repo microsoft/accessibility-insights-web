@@ -7,6 +7,11 @@ exports[`RequirementTableSection render ManualTestStepView when requirement is m
       "changeRequirementStatus": null,
     }
   }
+  assessmentsProvider={
+    {
+      "all": null,
+    }
+  }
   featureFlagStoreData={
     {
       "some feature flag": true,

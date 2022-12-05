@@ -73,7 +73,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
     };
     const assessmentsProvider = getProvider();
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(
-        getProvider(),
+        assessmentsProvider,
         featureFlagStoreData,
     );
 

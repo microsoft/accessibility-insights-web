@@ -19,16 +19,12 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 
-export type RequirementTableSectionDeps = {
-    getProvider: () => AssessmentsProvider;
-};
-
 export type RequirementTableSectionProps = {
-    deps: RequirementTableSectionDeps;
     assessmentNavState: AssessmentNavState;
     requirement: Requirement;
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
+    assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     scanningInProgress: boolean;
@@ -44,11 +40,11 @@ export const RequirementTableSection = NamedFC<RequirementTableSectionProps>(
         if (props.requirement.isManual) {
             return (
                 <ManualTestStepView
-                    deps={props.deps}
                     test={props.assessmentNavState.selectedTestType}
                     step={props.assessmentNavState.selectedTestSubview}
                     manualTestStepResultMap={props.manualRequirementResultMap}
                     assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                    assessmentsProvider={props.assessmentsProvider}
                     featureFlagStoreData={props.featureFlagStoreData}
                     pathSnippetStoreData={props.pathSnippetStoreData}
                 />

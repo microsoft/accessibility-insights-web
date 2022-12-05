@@ -93,7 +93,7 @@ describe('DetailsViewCommandBar', () => {
         saveAssessmentButtonPropsStub = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             },
             download: 'download',

@@ -40,7 +40,7 @@ describe('LoadAssessmentDialog', () => {
         loadAssessmentDialogProps = {
             deps: {
                 urlParser: urlParserMock.object,
-                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
                 detailsViewId: undefined,
             },
             prevTab: prevTab,

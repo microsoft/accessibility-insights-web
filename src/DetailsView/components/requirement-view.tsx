@@ -124,7 +124,6 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                         {visualHelperToggle}
                         <RequirementInstructions howToTest={requirement.howToTest} />
                         <RequirementTableSection
-                            deps={this.props.deps}
                             requirement={requirement}
                             assessmentNavState={this.props.assessmentNavState}
                             instancesMap={this.props.assessmentData.generatedAssessmentInstancesMap}
@@ -134,6 +133,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                             assessmentInstanceTableHandler={
                                 this.props.assessmentInstanceTableHandler
                             }
+                            assessmentsProvider={deps.getProvider()}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             pathSnippetStoreData={this.props.pathSnippetStoreData}
                             scanningInProgress={this.props.scanningInProgress}

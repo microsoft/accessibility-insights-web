@@ -42,12 +42,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
             "selectedTestType": 0,
           }
         }
-        deps={
-          {
-            "assessmentViewUpdateHandler": [typemoq mock object],
-            "getProvider": [Function],
-          }
-        }
+        assessmentsProvider={[typemoq mock object]}
         featureFlagStoreData={
           {
             "some feature flag": true,
