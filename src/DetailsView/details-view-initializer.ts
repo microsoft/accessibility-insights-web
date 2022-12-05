@@ -153,8 +153,8 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
-import { DetailsViewRenderer } from './details-view-renderer';
+import { DetailsViewContainerState } from './details-view-container';
+import { DetailsViewRenderer, DetailsViewRendererDeps } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -564,7 +564,7 @@ if (tabId != null) {
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
-            const deps: DetailsViewContainerDeps = {
+            const deps: DetailsViewRendererDeps = {
                 textContent,
                 fixInstructionProcessor,
                 recommendColor,

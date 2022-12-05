@@ -2,14 +2,15 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Theme } from '../common/components/theme';
+import { Theme, ThemeDeps } from '../common/components/theme';
 import { config } from '../common/configuration';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DetailsView, DetailsViewContainerDeps } from './details-view-container';
 
+export type DetailsViewRendererDeps = DetailsViewContainerDeps & ThemeDeps;
 export class DetailsViewRenderer {
     constructor(
-        private readonly deps: DetailsViewContainerDeps,
+        private readonly deps: DetailsViewRendererDeps,
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
         private readonly documentManipulator: DocumentManipulator,

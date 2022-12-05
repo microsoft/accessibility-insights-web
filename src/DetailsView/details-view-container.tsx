@@ -3,28 +3,21 @@
 import { Spinner, SpinnerSize } from '@fluentui/react';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { Header, HeaderProps } from 'common/components/header';
-import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
-import { DetailsViewContentDeps } from 'DetailsView/components/details-view-content';
-import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import {
+    DetailsViewContentWithLocalState,
+    DetailsViewContentWithLocalStateDeps,
+} from 'DetailsView/components/details-view-content-with-local-state';
 import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import * as React from 'react';
-import { ThemeDeps } from '../common/components/theme';
-import {
-    withStoreSubscription,
-    WithStoreSubscriptionDeps,
-} from '../common/components/with-store-subscription';
-import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
-import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { GetCardViewData } from '../common/rule-based-view-model-provider';
+import { withStoreSubscription } from '../common/components/with-store-subscription';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -37,42 +30,13 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
-import { DetailsViewOverlayDeps } from './components/details-view-overlay/details-view-overlay';
-import {
-    DetailsRightPanelConfiguration,
-    GetDetailsRightPanelConfiguration,
-} from './components/details-view-right-panel';
-import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
-import { InteractiveHeaderDeps } from './components/interactive-header';
-import { IssuesTableHandler } from './components/issues-table-handler';
+import { DetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { NoContentAvailable } from './components/no-content-available/no-content-available';
-import { TargetChangeDialogDeps } from './components/target-change-dialog';
-import { DetailsViewBodyDeps } from './details-view-body';
-import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
-import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 
 export type DetailsViewContainerDeps = {
-    getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
-    getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
-    getCardViewData: GetCardViewData;
-    getCardSelectionViewData: GetCardSelectionViewData;
-    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    scopingActionMessageCreator: ScopingActionMessageCreator;
-    inspectActionMessageCreator: InspectActionMessageCreator;
-    issuesTableHandler: IssuesTableHandler;
-    previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
-    dropdownClickHandler: DropdownClickHandler;
-    isResultHighlightUnavailable: IsResultHighlightUnavailable;
-} & DetailsViewBodyDeps &
-    DetailsViewOverlayDeps &
-    DetailsViewCommandBarDeps &
-    InteractiveHeaderDeps &
-    WithStoreSubscriptionDeps<DetailsViewContainerState> &
-    ThemeDeps &
-    TargetChangeDialogDeps &
-    NarrowModeDetectorDeps &
-    DetailsViewContentDeps;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & NarrowModeDetectorDeps &
+    DetailsViewContentWithLocalStateDeps;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;

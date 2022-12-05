@@ -1,26 +1,58 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
+import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
-import { InteractiveHeader } from 'DetailsView/components/interactive-header';
+import {
+    DetailsViewOverlay,
+    DetailsViewOverlayDeps,
+} from 'DetailsView/components/details-view-overlay/details-view-overlay';
+import { GetDetailsRightPanelConfiguration } from 'DetailsView/components/details-view-right-panel';
+import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import {
+    InteractiveHeader,
+    InteractiveHeaderDeps,
+} from 'DetailsView/components/interactive-header';
+import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewBody, DetailsViewBodyDeps } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import * as React from 'react';
 
 export type DetailsViewContentDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
     getAssessmentInstanceTableHandler: () => AssessmentInstanceTableHandler;
-} & DetailsViewBodyDeps;
+    getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
+    getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
+    getCardViewData: GetCardViewData;
+    getCardSelectionViewData: GetCardSelectionViewData;
+    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
+    scopingActionMessageCreator: ScopingActionMessageCreator;
+    inspectActionMessageCreator: InspectActionMessageCreator;
+    issuesTableHandler: IssuesTableHandler;
+    previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
+    dropdownClickHandler: DropdownClickHandler;
+    isResultHighlightUnavailable: IsResultHighlightUnavailable;
+    visualizationConfigurationFactory: VisualizationConfigurationFactory;
+} & InteractiveHeaderDeps &
+    DetailsViewOverlayDeps &
+    DetailsViewBodyDeps;
 
-export type DetailsViewContentProps = DetailsViewContainerProps & {
+export type DetailsViewContentProps = {
     deps: DetailsViewContentDeps;
     isSideNavOpen: boolean;
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
-};
+} & DetailsViewContainerProps;
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
     const selectedDetailsViewSwitcherNavConfiguration =
