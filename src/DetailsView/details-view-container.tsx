@@ -54,6 +54,7 @@ export interface DetailsViewContainerState {
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
+    quickAssessStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     scopingPanelStateStoreData: ScopingStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
