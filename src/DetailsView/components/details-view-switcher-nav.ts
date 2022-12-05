@@ -6,6 +6,10 @@ import {
     FastPassLeftNavHamburgerButton,
     MediumPassLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
+import {
+    AssessmentFunctionalitySwitcher,
+    SharedAssessmentObjects,
+} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
@@ -45,12 +49,6 @@ import {
     fastpassWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
-import {
-    AdhocVisualizationMessageTypes,
-    AnalyzerMessageConfiguration,
-    AssessmentVisualizationMessageTypes,
-    MediumPassVisualizationMessageTypes,
-} from 'injected/analyzers/get-analyzer-message-types';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -74,6 +72,10 @@ export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;
 type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 
+export type GetSharedAssessmentFunctionalityObjects = (
+    switcher: AssessmentFunctionalitySwitcher,
+) => SharedAssessmentObjects;
+
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportDialogFactory: ReportExportDialogFactory;
@@ -85,7 +87,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-    analyzerMessageConfiguration: AnalyzerMessageConfiguration;
+    getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -113,7 +115,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
-        analyzerMessageConfiguration: AssessmentVisualizationMessageTypes,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -126,7 +128,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
-        analyzerMessageConfiguration: MediumPassVisualizationMessageTypes,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -139,7 +141,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
-        analyzerMessageConfiguration: AdhocVisualizationMessageTypes,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
     },
 };
 

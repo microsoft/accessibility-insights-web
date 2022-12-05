@@ -4,10 +4,6 @@ import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
-import {
-    DetailsViewSwitcherNavConfiguration,
-    GetDetailsSwitcherNavConfiguration,
-} from 'DetailsView/components/details-view-switcher-nav';
 import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -47,9 +43,7 @@ describe('AnalyzerControllerTests', () => {
     let configStub: VisualizationConfiguration;
     let requirementStub: Requirement;
     let messageConfigurationStub: AnalyzerMessageConfiguration;
-    let switcherConfigurationStub: DetailsViewSwitcherNavConfiguration;
 
-    let getDetailsSwitcherNavConfigurationMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationStoreState: VisualizationStoreData;
     let featureFlagStoreState: FeatureFlagStoreData;
@@ -79,7 +73,6 @@ describe('AnalyzerControllerTests', () => {
         messageConfigurationStub = {
             analyzerMessageType: 'some message type',
         };
-        getDetailsSwitcherNavConfigurationMock = Mock.ofType<GetDetailsSwitcherNavConfiguration>();
         configStub = {
             getStoreData: getStoreDataMock.object,
             getAnalyzer: getAnalyzerMock.object,
@@ -89,9 +82,6 @@ describe('AnalyzerControllerTests', () => {
         requirementStub = {
             key: 'some requirement key',
         } as Requirement;
-        switcherConfigurationStub = {
-            analyzerMessageConfiguration: messageConfigurationStub,
-        } as DetailsViewSwitcherNavConfiguration;
 
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
@@ -251,12 +241,6 @@ describe('AnalyzerControllerTests', () => {
     });
 
     function setupAnalyzeCall(visualizationState: VisualizationStoreData): void {
-        const expected = {
-            selectedDetailsViewPivot: visualizationState.selectedDetailsViewPivot,
-        };
-        getDetailsSwitcherNavConfigurationMock
-            .setup(m => m(It.isValue(expected)))
-            .returns(() => switcherConfigurationStub);
         analyzerMock.setup(am => am.analyze()).verifiable();
     }
 
