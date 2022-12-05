@@ -50,6 +50,10 @@ import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import {
+    AssessmentFunctionalitySwitcher,
+    SharedAssessmentObjects,
+} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
@@ -514,6 +518,49 @@ if (tabId != null) {
 
             const cardFooterMenuItemsBuilder = new CardFooterMenuItemsBuilder();
 
+            const quickAssessProvider = assessmentsProviderForRequirements(
+                Assessments,
+                MediumPassRequirementMap,
+            );
+            const quickAssessActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+                Messages.MediumPass,
+            );
+            const quickAssessInstanceTableHandler = new AssessmentInstanceTableHandler(
+                detailsViewActionMessageCreator,
+                quickAssessActionMessageCreator,
+                new AssessmentTableColumnConfigHandler(
+                    new MasterCheckBoxConfigProvider(quickAssessActionMessageCreator),
+                    quickAssessProvider,
+                ),
+                quickAssessProvider,
+            );
+            const assessmentObjects: SharedAssessmentObjects = {
+                provider: Assessments,
+                actionMessageCreator: assessmentActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
+                instanceTableHandler: assessmentInstanceTableHandler,
+            };
+            const quickAssessObjects: SharedAssessmentObjects = {
+                provider: quickAssessProvider,
+                actionMessageCreator: quickAssessActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
+                instanceTableHandler: quickAssessInstanceTableHandler,
+            };
+            const assessmentFunctionalitySwitcher = new AssessmentFunctionalitySwitcher(
+                visualizationStore,
+                assessmentObjects,
+                quickAssessObjects,
+                GetDetailsSwitcherNavConfiguration,
+            );
+
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
@@ -610,6 +657,10 @@ if (tabId != null) {
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
                 mediumPassRequirementKeys: MediumPassRequirementKeys,
+                getProvider: assessmentFunctionalitySwitcher.getProvider,
+                getActionMessageCreator: assessmentFunctionalitySwitcher.getActionMessageCreator,
+                getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
+                getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
 
             const renderer = new DetailsViewRenderer(
