@@ -9,7 +9,6 @@ import { TableHeadersAttributeFormatter } from 'injected/visualization/table-hea
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
-import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
@@ -19,7 +18,7 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
-import { Formatter, SVGDrawerConfiguration } from './formatter';
+import { Formatter, IPartialSVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxDrawer } from './highlight-box-drawer';
@@ -34,8 +33,6 @@ import { SVGDrawer } from './svg-drawer';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
-
-export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
 
 export class DrawerProvider {
     constructor(

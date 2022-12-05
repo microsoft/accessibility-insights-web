@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeepPartial } from 'common/types/deep-partial';
 import { BoundingRect } from '../bounding-rect';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
@@ -71,6 +72,8 @@ export interface SVGDrawerConfiguration {
     focusedLine: LineConfiguration;
     failureBoxConfig: FailureBoxConfig;
 }
+
+export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
 
 export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;

@@ -415,6 +415,7 @@
         "./src/injected/visualization/svg-constants.ts",
         "./src/injected/visualization/svg-shape-factory.ts",
         "./src/injected/visualization/svg-solid-shadow-filter-factory.ts",
+        "./src/injected/visualization/tab-stops-formatter.ts",
         "./src/injected/visualization/tabbed-item.ts",
         "./src/injected/visualization/table-headers-formatter.ts",
         "./src/issue-filing/common/create-issue-details-builder-for-unified.ts",

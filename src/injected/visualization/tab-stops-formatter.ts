@@ -3,15 +3,14 @@
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { assign } from 'lodash';
 import { DialogRenderer } from '../dialog-renderer';
-import { IPartialSVGDrawerConfiguration } from './drawer-provider';
-import { Formatter, SVGDrawerConfiguration } from './formatter';
+import { Formatter, IPartialSVGDrawerConfiguration, SVGDrawerConfiguration } from './formatter';
 
 export class TabStopsFormatter implements Formatter {
     private static readonly ELLIPSE_RX_CALCULATOR_OFFSET: number = 1.3;
     private static readonly ELLIPSE_RX_CALCULATOR_SLOPE: number = 4.2;
-    private givenConfiguration: IPartialSVGDrawerConfiguration;
+    private givenConfiguration: IPartialSVGDrawerConfiguration | null;
 
-    constructor(givenConfiguration?: IPartialSVGDrawerConfiguration) {
+    constructor(givenConfiguration: IPartialSVGDrawerConfiguration | null) {
         this.givenConfiguration = givenConfiguration;
     }
 
@@ -22,7 +21,7 @@ export class TabStopsFormatter implements Formatter {
         let ellipseRx: number = 16;
         const tabindex = element.getAttribute('tabindex');
         if (tabindex && parseInt(tabindex, 10) > 0) {
-            const stringLength: number = element.getAttribute('tabindex').length;
+            const stringLength: number = tabindex.length;
             if (stringLength > 3) {
                 ellipseRx = this.calculateEllipseRx(stringLength);
             }
@@ -92,12 +91,10 @@ export class TabStopsFormatter implements Formatter {
             return config;
         }
 
-        Object.keys(this.givenConfiguration).forEach(
-            (svgPartConfigKey: keyof SVGDrawerConfiguration) => {
-                const configAdditions = this.givenConfiguration[svgPartConfigKey];
-                assign(config[svgPartConfigKey], configAdditions);
-            },
-        );
+        for (const svgPartConfigKey in this.givenConfiguration) {
+            const configAdditions = this.givenConfiguration[svgPartConfigKey];
+            assign(config[svgPartConfigKey], configAdditions);
+        }
 
         return config;
     }
@@ -109,7 +106,7 @@ export class TabStopsFormatter implements Formatter {
         );
     }
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 }
