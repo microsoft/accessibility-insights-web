@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportComponent,
@@ -19,6 +20,7 @@ import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
     getProvider: () => AssessmentsProvider;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 } & ReportExportComponentDeps;
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
@@ -64,7 +66,7 @@ export function getReportExportDialogForAssessment(
                 description,
             ),
         updatePersistedDescription: value =>
-            props.deps.assessmentActionMessageCreator.addResultDescription(value),
+            deps.getAssessmentActionMessageCreator().addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,

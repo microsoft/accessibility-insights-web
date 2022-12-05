@@ -55,7 +55,7 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 } & SaveAssessmentButtonFactoryDeps &
     LoadAssessmentButtonDeps &
     StartOverFactoryDeps &

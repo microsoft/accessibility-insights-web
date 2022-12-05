@@ -30,7 +30,7 @@ import * as React from 'react';
 import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
     getProvider: () => AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
@@ -134,7 +134,6 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                             assessmentInstanceTableHandler={
                                 this.props.assessmentInstanceTableHandler
                             }
-                            assessmentsProvider={deps.getProvider()}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             pathSnippetStoreData={this.props.pathSnippetStoreData}
                             scanningInProgress={this.props.scanningInProgress}

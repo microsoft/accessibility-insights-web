@@ -51,7 +51,7 @@ describe('AssessmentIframeWarning', () => {
         props = {
             deps: {
                 allUrlsPermissionHandler: allUrlsPermissionHandlerMock.object,
-                assessmentActionMessageCreator: assessmentActionCreatorMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionCreatorMock.object,
             } as AssessmentIframeWarningDeps,
             test: testStub,
         };

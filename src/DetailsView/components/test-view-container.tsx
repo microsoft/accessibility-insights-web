@@ -39,7 +39,7 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
 } & TestViewDeps &

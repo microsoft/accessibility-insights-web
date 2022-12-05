@@ -24,7 +24,7 @@ import {
 
 export type DetailsViewOverlayDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 } & ContentPanelDeps &
     SettingsPanelDeps;
 

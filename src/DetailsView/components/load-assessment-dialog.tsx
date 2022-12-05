@@ -15,7 +15,7 @@ import * as React from 'react';
 
 export type LoadAssessmentDialogDeps = {
     urlParser: UrlParser;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     detailsViewId: string;
 };
 
@@ -33,16 +33,14 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
     'LoadAssessmentDialog',
     props => {
         const loadAssessment = () => {
-            props.deps.assessmentActionMessageCreator.loadAssessment(
-                props.loadedAssessmentData,
-                props.tabId,
-                props.deps.detailsViewId,
-            );
+            props.deps
+                .getAssessmentActionMessageCreator()
+                .loadAssessment(props.loadedAssessmentData, props.tabId, props.deps.detailsViewId);
             props.onClose();
         };
 
         const continuePreviousAssessment = (event: React.MouseEvent<any, MouseEvent>) => {
-            props.deps.assessmentActionMessageCreator.continuePreviousAssessment(event);
+            props.deps.getAssessmentActionMessageCreator().continuePreviousAssessment(event);
             props.onClose();
         };
 

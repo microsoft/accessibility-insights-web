@@ -82,7 +82,7 @@ describe('ReportExportDialogFactory', () => {
         tabStopRequirementData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
             getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,

@@ -36,7 +36,7 @@ export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props 
 export type AssessmentIframeWarningDeps = {
     allUrlsPermissionHandler: AllUrlsPermissionHandler;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 };
 
 export type AssessmentIframeWarningProps = {
@@ -51,7 +51,7 @@ export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>(
 
         const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
             const rescanTest = () => {
-                deps.assessmentActionMessageCreator.startOverTest(event, test);
+                deps.getAssessmentActionMessageCreator().startOverTest(event, test);
             };
 
             await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
