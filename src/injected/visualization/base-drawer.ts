@@ -15,7 +15,7 @@ export abstract class BaseDrawer implements Drawer {
     protected containerClass: string;
     protected changeHandler: () => void;
     public static recalculationTimeout = 16;
-    protected dialogRenderer: DialogRenderer;
+    protected dialogRenderer: DialogRenderer | null;
     protected windowUtils: WindowUtils;
     protected containerElement: HTMLElement | null;
     protected drawerUtils: DrawerUtils;

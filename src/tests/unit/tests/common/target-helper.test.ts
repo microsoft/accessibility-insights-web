@@ -97,7 +97,7 @@ describe(TargetHelper, () => {
             0,
         );
         expect(actualTargetElements).toEqual(
-            testScenario.expectedFinalTargetElement ? [elementStub] : undefined,
+            testScenario.expectedFinalTargetElement ? [elementStub] : [],
         );
     });
 

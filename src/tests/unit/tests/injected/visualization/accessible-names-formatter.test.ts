@@ -5,38 +5,49 @@ import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/htm
 import { DrawerConfiguration } from 'injected/visualization/formatter';
 import { AccessibleNamesFormatter } from '../../../../../injected/visualization/accessible-names-formatter';
 
-describe('AccessibleNamesFormatterTests', () => {
+describe(AccessibleNamesFormatter, () => {
     let testSubject: AccessibleNamesFormatter;
-    const htmlElement = document.createElement('dialog');
     beforeEach(() => {
         testSubject = new AccessibleNamesFormatter();
     });
 
-    test('verify getDialogRenderer', () => {
-        expect(testSubject.getDialogRenderer()).toBeNull;
+    it('should not provide a dialog renderer', () => {
+        expect(testSubject.getDialogRenderer()).toBeNull();
     });
 
-    test('verify styling for accessible names shorter than 40 characters', () => {
-        const name = 'test button';
-        const ruleId = 'display-accessible-names';
-        const Data = buildData(name, ruleId);
-        const config = testSubject.getDrawerConfiguration(htmlElement, Data);
+    it('should use the expected formatting without truncating the name for accessible names of length <= 40 characters', () => {
+        const name = 'this value is exactly 40 characters long';
+        const data = buildData(name);
+        const config = testSubject.getDrawerConfiguration(null!, data);
         testStyling(config, name);
     });
 
-    test('verify styling for accessible names longer than 40 characters', () => {
-        const name = 'The quick brown fox jumped over the lazy dog';
-        const truncatedName = 'The quick brown fox jumped over the lazy...';
-        const ruleId = 'display-accessible-names';
-        const Data = buildData(name, ruleId);
-        const config = testSubject.getDrawerConfiguration(htmlElement, Data);
+    it('should use the expected formatting and truncate the name for accessible names of length > 40 characters', () => {
+        const name = 'this value takes up exactly 41 characters';
+        const truncatedName = 'this value takes up exactly 41 character...';
+        const data = buildData(name);
+        const config = testSubject.getDrawerConfiguration(null!, data);
         testStyling(config, truncatedName);
     });
 
-    test('verify wrong rule id referenced', () => {
-        const Data = buildData('button', 'display-accessible');
-        const config = testSubject.getDrawerConfiguration(htmlElement, Data);
-        testStyling(config, undefined);
+    it('should not show a visualization for null data', () => {
+        const config = testSubject.getDrawerConfiguration(null!, null);
+
+        expect(config).toEqual({ showVisualization: false });
+    });
+
+    it('should not show a visualization for a result missing the display-accessible-names rule', () => {
+        const data = buildData('irrelevant', false);
+        const config = testSubject.getDrawerConfiguration(null!, data);
+
+        expect(config).toEqual({ showVisualization: false });
+    });
+
+    it('should not show a visualization for a result missing the display-accessible-names check', () => {
+        const data = buildData('irrelevant', true, false);
+        const config = testSubject.getDrawerConfiguration(null!, data);
+
+        expect(config).toEqual({ showVisualization: false });
     });
 
     function testStyling(Drawerconfig: DrawerConfiguration, accessibleText: string) {
@@ -51,33 +62,43 @@ describe('AccessibleNamesFormatterTests', () => {
     }
 
     function buildData(
-        accessibleNameValue: string,
-        ruleIdValue: string,
+        accessibleName: string,
+        withRule: boolean = true,
+        withCheck: boolean = true,
     ): AssessmentVisualizationInstance {
-        const Data: AssessmentVisualizationInstance = {
+        const data: AssessmentVisualizationInstance = {
             target: ['html'],
             isFailure: false,
             isVisualizationEnabled: true,
-            ruleResults: {
-                'display-accessible-names': {
-                    any: [
-                        {
-                            id: 'display-accessible-names',
-                            message: 'message for none-check1',
-                            data: {
-                                accessibleName: accessibleNameValue,
-                            },
-                        },
-                    ],
-                    none: [],
-                    all: [],
-                    status: true,
-                    ruleId: ruleIdValue,
-                    selector: 'selector',
-                    guidanceLinks: [],
-                },
-            },
+            ruleResults: {},
         };
-        return Data;
+
+        if (withRule) {
+            const rule = {
+                any: [],
+                none: [],
+                all: [],
+                status: true,
+                ruleId: 'display-accessible-names',
+                selector: 'selector',
+                guidanceLinks: [],
+            };
+
+            if (withCheck) {
+                rule.any = [
+                    {
+                        id: 'display-accessible-names',
+                        message: 'message for none-check1',
+                        data: {
+                            accessibleName: accessibleName,
+                        },
+                    },
+                ];
+            }
+
+            data.ruleResults['display-accessible-names'] = rule;
+        }
+
+        return data;
     }
 });

@@ -83,17 +83,15 @@ describe('FocusIndicatorCreator', () => {
                 .setup(m => m.getElementCenterPosition(It.isAny()))
                 .returns(() => null);
 
-            expect(
-                testSubject.createFocusIndicator({} as TabbedItem, null, true, null),
-            ).toBeUndefined();
+            expect(testSubject.createFocusIndicator({} as TabbedItem, null, true, null)).toBeNull();
         });
 
         test('for one tab item without any previous item', () => {
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedFocusIndicator = {
                 circle: expectedCircle,
-                line: null,
-                tabIndexLabel: null,
+                line: undefined,
+                tabIndexLabel: undefined,
             } as FocusIndicator;
 
             centerPositionCalculatorMock
@@ -112,7 +110,7 @@ describe('FocusIndicatorCreator', () => {
             const expectedFocusIndicator = {
                 circle: expectedCircle,
                 line: expectedLine,
-                tabIndexLabel: null,
+                tabIndexLabel: undefined,
             } as FocusIndicator;
 
             centerPositionCalculatorMock
@@ -146,8 +144,8 @@ describe('FocusIndicatorCreator', () => {
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedFocusIndicator = {
                 circle: expectedCircle,
-                line: null,
-                tabIndexLabel: null,
+                line: undefined,
+                tabIndexLabel: undefined,
             } as FocusIndicator;
 
             centerPositionCalculatorMock
@@ -168,8 +166,8 @@ describe('FocusIndicatorCreator', () => {
             const drawerConfig = getDrawerConfigStub(true, true);
             const expectedFocusIndicator = {
                 circle: expectedCircle,
-                line: null,
-                tabIndexLabel: null,
+                line: undefined,
+                tabIndexLabel: undefined,
             } as FocusIndicator;
 
             centerPositionCalculatorMock
@@ -194,7 +192,7 @@ describe('FocusIndicatorCreator', () => {
             const drawerConfig = getDrawerConfigStub(false, true);
             const expectedFocusIndicator = {
                 circle: expectedCircle,
-                line: null,
+                line: undefined,
                 tabIndexLabel: expectedLabel,
             } as FocusIndicator;
 
@@ -227,7 +225,7 @@ describe('FocusIndicatorCreator', () => {
             const expectedFocusIndicator = {
                 circle: expectedCircle,
                 line: expectedLine,
-                tabIndexLabel: null,
+                tabIndexLabel: undefined,
             } as FocusIndicator;
 
             centerPositionCalculatorMock
@@ -263,9 +261,7 @@ describe('FocusIndicatorCreator', () => {
                 .setup(m => m.getElementCenterPosition(It.isAny()))
                 .returns(() => null);
 
-            expect(
-                testSubject.createFocusIndicatorForFailure({} as TabbedItem, null),
-            ).toBeUndefined();
+            expect(testSubject.createFocusIndicatorForFailure({} as TabbedItem, null)).toBeNull();
         });
 
         test('for tab item with a non ErroredItem item type', () => {

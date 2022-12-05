@@ -19,8 +19,7 @@ const getTargetElementsFromResult = (result: AxeResultsWithFrameLevel, dom: Docu
 
 export class HighlightBoxDrawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
-    protected dialogRenderer: DialogRenderer;
-    private clientUtils: ClientUtils;
+    protected readonly dialogRenderer: DialogRenderer | null;
 
     constructor(
         dom: Document,
@@ -28,7 +27,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
         drawerUtils: DrawerUtils,
-        clientUtils: ClientUtils,
+        private readonly clientUtils: ClientUtils,
         formatter: Formatter,
         private readonly getElementsToHighlight: typeof getTargetElementsFromResult = getTargetElementsFromResult,
     ) {
@@ -45,7 +44,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
     protected addHighlightsToContainer = async (): Promise<void> => {
         const highlightElements = await this.getHighlightElements();
 
-        if (highlightElements.length > 0) {
+        if (this.containerElement != null && highlightElements.length > 0) {
             for (let elementPos = 0; elementPos < highlightElements.length; elementPos++) {
                 this.containerElement.appendChild(highlightElements[elementPos]);
             }
@@ -55,7 +54,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
     protected createHighlightElement = async (
         element: Element,
         data: HtmlElementAxeResults,
-    ): Promise<HTMLElement> => {
+    ): Promise<HTMLElement | undefined> => {
         const currentDom = this.drawerUtils.getDocumentElement();
         const body = currentDom.body;
         const bodyStyle = this.windowUtils.getComputedStyle(body);
@@ -91,7 +90,9 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const wrapper = currentDom.createElement('div');
         wrapper.classList.add('insights-highlight-box');
         wrapper.classList.add(`insights-highlight-outline-${drawerConfig.outlineStyle ?? 'solid'}`);
-        wrapper.style.outlineColor = drawerConfig.outlineColor;
+        if (drawerConfig.outlineColor != null) {
+            wrapper.style.outlineColor = drawerConfig.outlineColor;
+        }
 
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
@@ -138,7 +139,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
             if (drawerConfig.failureBoxConfig.hasDialogView) {
                 failureBox.addEventListener('click', async () => {
-                    await this.dialogRenderer.render(data as any);
+                    await this.dialogRenderer?.render(data as any);
                 });
             }
             wrapper.appendChild(failureBox);
@@ -159,11 +160,15 @@ export class HighlightBoxDrawer extends BaseDrawer {
         box.innerText = boxConfig.text || '';
         box.style.background = boxConfig.background;
         box.style.color = boxConfig.fontColor;
-        box.style.fontSize = boxConfig.fontSize;
-        box.style.fontWeight = boxConfig.fontWeight;
-        box.style.setProperty('width', boxConfig.boxWidth, 'important');
-        box.style.setProperty('cursor', drawerConfig.cursor, 'important');
-        box.style.setProperty('text-align', drawerConfig.textAlign, 'important');
+        if (boxConfig.fontSize != null) {
+            box.style.fontSize = boxConfig.fontSize;
+        }
+        if (boxConfig.fontWeight != null) {
+            box.style.fontWeight = boxConfig.fontWeight;
+        }
+        box.style.setProperty('width', boxConfig.boxWidth ?? null, 'important');
+        box.style.setProperty('cursor', drawerConfig.cursor ?? null, 'important');
+        box.style.setProperty('text-align', drawerConfig.textAlign ?? null, 'important');
 
         return box;
     }
