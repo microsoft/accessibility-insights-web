@@ -237,6 +237,10 @@ if (tabId != null) {
                 StoreNames[StoreNames.AssessmentStore],
                 storeUpdateMessageHub,
             );
+            const quickAssessStore = new StoreProxy<AssessmentStoreData>(
+                StoreNames[StoreNames.QuickAssessStore],
+                storeUpdateMessageHub,
+            );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
                 storeUpdateMessageHub,
@@ -272,6 +276,7 @@ if (tabId != null) {
                 needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
@@ -446,6 +451,7 @@ if (tabId != null) {
                 detailsViewStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 GetDetailsRightPanelConfiguration,
                 GetDetailsSwitcherNavConfiguration,
                 visualizationConfigurationFactory,

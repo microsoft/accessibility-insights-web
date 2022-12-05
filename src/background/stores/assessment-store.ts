@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
@@ -59,8 +58,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
         logger: Logger,
         name: StoreNames,
+        indexDBKey: string,
     ) {
-        super(name, persistedData, idbInstance, IndexedDBDataKeys.assessmentStore, logger, true);
+        super(name, persistedData, idbInstance, indexDBKey, logger, true);
     }
 
     protected override generateDefaultState(
