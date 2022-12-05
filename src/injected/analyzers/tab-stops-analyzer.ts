@@ -27,7 +27,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
         private readonly tabStopsDoneAnalyzingTracker: TabStopsDoneAnalyzingTracker,
-        private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor,
+        private readonly tabStopsRequirementResultProcessor: TabStopsRequirementResultProcessor | null,
         private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
