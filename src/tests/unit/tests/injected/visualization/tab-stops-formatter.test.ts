@@ -76,7 +76,7 @@ describe('TabStopsFormatterTests', () => {
     }
 
     beforeEach(() => {
-        testSubject = new TabStopsFormatter();
+        testSubject = new TabStopsFormatter(null);
         sandbox = document.createElement('div');
         document.body.appendChild(sandbox);
     });
