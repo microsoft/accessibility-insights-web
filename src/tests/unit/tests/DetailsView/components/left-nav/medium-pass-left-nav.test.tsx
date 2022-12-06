@@ -51,7 +51,7 @@ describe(MediumPassLeftNav.displayName, () => {
 
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
-            navLinkHandler: navLinkHandlerMock,
+            getNavLinkHandler: () => navLinkHandlerMock,
             mediumPassRequirementKeys: mediumPassRequirementKeysStub,
         } as MediumPassLeftNavDeps;
         props = {

@@ -59,6 +59,7 @@ describe('DocumentTitleUpdater', () => {
             storeMocks.detailsViewStoreMock.object,
             storeMocks.visualizationStoreMock.object,
             storeMocks.assessmentStoreMock.object,
+            storeMocks.quickAssessStoreMock.object,
             getPanelConfigMock.object,
             getSwitcherNavConfigMock.object,
             visualizationConfigFactoryMock.object,
@@ -130,6 +131,7 @@ describe('DocumentTitleUpdater', () => {
                 mock({
                     assessmentStoreData: storeMocks.assessmentStoreData,
                     visualizationStoreData: storeMocks.visualizationStoreData,
+                    quickAssessStoreData: storeMocks.quickAssessStoreData,
                 }),
             )
             .returns(() => selectedDetailsView);
@@ -167,6 +169,10 @@ describe('DocumentTitleUpdater', () => {
             .setup(store => store.addChangedListener(It.isAny()))
             .callback(cb => (onStoreChange = cb))
             .verifiable();
+        storeMocks.quickAssessStoreMock
+            .setup(store => store.addChangedListener(It.isAny()))
+            .callback(cb => (onStoreChange = cb))
+            .verifiable();
     }
 
     function setupStoreGetState(): void {
@@ -182,5 +188,8 @@ describe('DocumentTitleUpdater', () => {
         storeMocks.assessmentStoreMock
             .setup(store => store.getState())
             .returns(() => storeMocks.assessmentStoreData);
+        storeMocks.quickAssessStoreMock
+            .setup(store => store.getState())
+            .returns(() => storeMocks.quickAssessStoreData);
     }
 });

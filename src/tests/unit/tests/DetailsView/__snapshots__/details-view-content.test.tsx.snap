@@ -119,6 +119,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     setSideNavOpen={[Function]}
     switcherNavConfiguration={
       {
+        "getSelectedAssessmentStoreData": [Function],
         "getSelectedDetailsView": [Function],
       }
     }

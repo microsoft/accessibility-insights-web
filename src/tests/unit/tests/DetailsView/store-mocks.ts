@@ -54,6 +54,7 @@ export class StoreMocks {
     public tabStoreMock = Mock.ofType(TabStore, MockBehavior.Strict);
     public featureFlagStoreMock = Mock.ofType(FeatureFlagStore, MockBehavior.Strict);
     public assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
+    public quickAssessStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
     public assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
     public scopingStoreMock = Mock.ofType(ScopingStore, MockBehavior.Strict);
     public inspectStoreMock = Mock.ofType(InspectStore, MockBehavior.Strict);
@@ -137,6 +138,7 @@ export class StoreMocks {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
+    public quickAssessStoreData: AssessmentStoreData;
     public permissionsStateStoreData = new PermissionsStateStore(
         null,
         null,
@@ -176,6 +178,10 @@ export class StoreMocks {
             .returns(() => null);
 
         this.assessmentStoreData = new AssessmentsStoreDataBuilder(
+            this.assessmentsProviderMock.object,
+            assessmentDataConverterMock.object,
+        ).build();
+        this.quickAssessStoreData = new AssessmentsStoreDataBuilder(
             this.assessmentsProviderMock.object,
             assessmentDataConverterMock.object,
         ).build();

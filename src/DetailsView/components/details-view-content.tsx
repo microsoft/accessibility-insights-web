@@ -150,13 +150,17 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         };
 
         const assessmentInstanceTableHandler = props.deps.getAssessmentInstanceTableHandler();
+        const assessmentStoreData =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
+                props.storeState,
+            );
 
         return (
             <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 tabStopsViewStoreData={storeState.tabStopsViewStoreData}
-                assessmentStoreData={storeState.assessmentStoreData}
+                assessmentStoreData={assessmentStoreData}
                 pathSnippetStoreData={storeState.pathSnippetStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 cardsViewStoreData={storeState.cardsViewStoreData}
