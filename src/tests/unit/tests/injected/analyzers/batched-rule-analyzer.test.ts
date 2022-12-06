@@ -106,6 +106,12 @@ describe('BatchedRuleAnalyzer', () => {
             rules: [ruleTwo],
             resultProcessor: scanner => resultProcessorMockTwo.object,
         };
+        const configThree = {
+            ...clone(configOne),
+            testType: -2,
+            rules: [ruleTwo],
+            resultProcessor: scanner => resultProcessorMockTwo.object,
+        };
         const resultTwo: RuleResult = {
             id: ruleTwo,
         } as RuleResult;
@@ -114,6 +120,7 @@ describe('BatchedRuleAnalyzer', () => {
 
         const testSubjectOne = createAnalyzer(configOne);
         const testSubjectTwo = createAnalyzer(configTwo);
+        createAnalyzer(configThree);
 
         const completeRuleResults = createTestRuleResultsWithResult([resultOne, resultTwo]);
         const scanResultsOne = createTestRuleResultsWithResult([resultOne]);
@@ -155,9 +162,11 @@ describe('BatchedRuleAnalyzer', () => {
         /*
         BatchedRuleAnalyzer maintains a static list of
         RuleAnalyzerConfigurations. After scanning, it
-        sends a scanCompleted message for each rule-config.
+        sends a scanCompleted message for each rule-config
+        for each config that matches the visualization-type
+        that initiated the scan.
 
-        Because we instantiate two analyzers, each analyzer
+        Because we instantiate two analyzers with the same type, each analyzer
         has two configs and therefore the scanCallback
         produces two scanCompleted messages.
         */
