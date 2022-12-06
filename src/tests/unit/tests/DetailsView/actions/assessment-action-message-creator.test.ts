@@ -755,6 +755,30 @@ describe('AssessmentActionMessageCreatorTest', () => {
         );
     });
 
+    test('saveAssessment', () => {
+        const event = eventStubFactory.createMouseClickEvent() as any;
+        const telemetry: BaseTelemetryData = {
+            triggeredBy: 'mouseclick',
+            source: TelemetryEventSource.DetailsView,
+        };
+
+        const expectedMessageToSaveAssessment = {
+            messageType: assessmentMessageStubs.SaveAssessment,
+            payload: {
+                telemetry,
+            },
+        };
+
+        telemetryFactoryMock.setup(tf => tf.fromDetailsView(event)).returns(() => telemetry);
+
+        testSubject.saveAssessment(event);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToSaveAssessment)),
+            Times.once(),
+        );
+    });
+
     test('startOverAllAssessments', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
         const telemetry: BaseTelemetryData = {
