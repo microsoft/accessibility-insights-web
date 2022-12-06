@@ -21,6 +21,7 @@ export interface TargetPageStoreData {
     needsReviewScanResultStoreData: NeedsReviewScanResultStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     assessmentStoreData: AssessmentStoreData;
+    quickAssessStoreData: AssessmentStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
