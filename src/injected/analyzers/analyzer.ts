@@ -43,7 +43,8 @@ export interface AnalyzerConfiguration {
 }
 
 export interface RuleAnalyzerConfiguration extends AnalyzerConfiguration {
-    rules: string[];
+    // null implies "the scanner's default rule set"
+    rules: string[] | null;
     resultProcessor: (
         scanner: ScannerUtils,
     ) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;

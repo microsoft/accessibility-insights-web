@@ -11,7 +11,7 @@ export const createIssueDetailsBuilderForUnified = (
 ): IssueDetailsBuilder => {
     const getter = (toolData: ToolData, data: CreateIssueDetailsTextData): string => {
         const {
-            howToFixSection,
+            howToFixSection: howToFixSummary,
             link,
             sectionHeader,
             snippet,
@@ -29,6 +29,15 @@ export const createIssueDetailsBuilderForUnified = (
                   sectionHeader('Snippet'),
                   sectionHeaderSeparator(),
                   snippet(data.snippet),
+                  sectionSeparator(),
+              ]
+            : [];
+
+        const howToFixSection = data.howToFixSummary
+            ? [
+                  sectionHeader('How to fix'),
+                  sectionHeaderSeparator(),
+                  howToFixSummary(data.howToFixSummary),
                   sectionSeparator(),
               ]
             : [];
@@ -59,10 +68,7 @@ export const createIssueDetailsBuilderForUnified = (
 
             ...snippetSection,
 
-            sectionHeader('How to fix'),
-            sectionHeaderSeparator(),
-            howToFixSection(data.howToFixSummary),
-            sectionSeparator(),
+            ...howToFixSection,
 
             sectionHeader('Environment'),
             sectionHeaderSeparator(),

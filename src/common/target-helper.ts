@@ -59,12 +59,15 @@ export class TargetHelper {
         }
     };
 
-    public static getTargetFromSelector = (selector: string): Target | undefined => {
+    // This returns undefined for undefined input for compatibility with non-strict-null-compatible
+    // usages that we haven't investigated yet. The "!selector" clause can/should be removed once
+    // #2869 is complete.
+    public static getTargetFromSelector = (selector: string): Target => {
         if (selector === '') {
             return [];
         }
         if (!selector) {
-            return;
+            return undefined!;
         }
         const selectors: string[] = selector.split(';');
         const shadowDomSelectors = selectors.map(selectors => {
@@ -78,14 +81,14 @@ export class TargetHelper {
         return shadowDomSelectors;
     };
 
-    public static getSelectorFromTarget = (target: Target): string | undefined => {
-        if (target) {
-            return target
-                .map((targets: string | string[]) =>
-                    typeof targets === 'string' ? targets : targets.join(','),
-                )
-                .join(';');
-        }
+    // This returns undefined for undefined input for compatibility with non-strict-null-compatible
+    // usages that we haven't investigated yet. The ?s can/should be removed once #2869 is complete.
+    public static getSelectorFromTarget = (target: Target): string => {
+        return target
+            ?.map((targets: string | string[]) =>
+                typeof targets === 'string' ? targets : targets.join(','),
+            )
+            ?.join(';');
     };
 
     public static getSelectorFromTargetElement = (

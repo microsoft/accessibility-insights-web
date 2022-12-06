@@ -12,7 +12,10 @@ import { ScannerUtils } from '../scanner-utils';
 import { RuleAnalyzerConfiguration } from './analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 
-export type IResultRuleFilter = (results: ScanResults, rules: string[]) => ScanResults;
+export type IResultRuleFilter = (
+    results: ScanResults | undefined,
+    rules: string[] | null,
+) => ScanResults;
 
 export class BatchedRuleAnalyzer extends RuleAnalyzer {
     private static batchConfigs: RuleAnalyzerConfiguration[] = [];
@@ -42,7 +45,8 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
 
-    protected getRulesToRun(): string[] {
+    // null implies "the scanner's default rule set"
+    protected getRulesToRun(): string[] | null {
         return null;
     }
 

@@ -39,7 +39,7 @@ export interface AssessmentVisualizationConfiguration {
         selectorMap: DictionaryStringTo<any>,
         testStep?: string,
         warnings?: ScanIncompleteWarningId[],
-    ) => string;
+    ) => string | null;
     getDrawer: (provider: DrawerProvider, testStep?: string) => Drawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (
