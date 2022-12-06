@@ -57,7 +57,7 @@ export class DrawerProvider {
         return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
-    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {
+    public createSVGDrawer(config: IPartialSVGDrawerConfiguration | null = null): Drawer {
         const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,
