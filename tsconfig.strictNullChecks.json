@@ -21,6 +21,7 @@
         "./src/DetailsView/components/interactive-header.tsx",
         "./src/DetailsView/components/invalid-load-assessment-dialog.tsx",
         "./src/DetailsView/components/issues-table-handler.ts",
+        "./src/DetailsView/components/left-nav/get-selected-assessment-store-data.ts",
         "./src/DetailsView/components/left-nav/get-selected-details-view.ts",
         "./src/DetailsView/components/left-nav/getting-started-nav-link.tsx",
         "./src/DetailsView/components/left-nav/overview-left-nav-link.tsx",
