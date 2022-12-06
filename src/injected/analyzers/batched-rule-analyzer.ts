@@ -51,15 +51,20 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
     }
 
     protected onResolve = (results: AxeAnalyzerResult): void => {
-        BatchedRuleAnalyzer.batchConfigs.forEach(config => {
-            const filteredScannerResult = this.postScanFilter(results.originalResult, config.rules);
-            const processResults = config.resultProcessor(this.scanner);
-            const filteredAxeAnalyzerResult: AxeAnalyzerResult = {
-                ...results,
-                originalResult: filteredScannerResult,
-                results: processResults(filteredScannerResult),
-            };
-            this.sendScanCompleteResolveMessage(filteredAxeAnalyzerResult, config);
-        });
+        BatchedRuleAnalyzer.batchConfigs
+            .filter(config => config.testType === this.config.testType)
+            .forEach(config => {
+                const filteredScannerResult = this.postScanFilter(
+                    results.originalResult,
+                    config.rules,
+                );
+                const processResults = config.resultProcessor(this.scanner);
+                const filteredAxeAnalyzerResult: AxeAnalyzerResult = {
+                    ...results,
+                    originalResult: filteredScannerResult,
+                    results: processResults(filteredScannerResult),
+                };
+                this.sendScanCompleteResolveMessage(filteredAxeAnalyzerResult, config);
+            });
     };
 }
