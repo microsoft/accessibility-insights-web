@@ -74,6 +74,7 @@ export class DocumentTitleUpdater {
             this.detailsViewStore,
             this.visualizationStore,
             this.assessmentStore,
+            this.quickAssessStore,
         ].every(store => store.getState() != null);
     }
 }
