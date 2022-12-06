@@ -94,6 +94,36 @@ describe('DocumentTitleUpdater', () => {
         expect(doc.title).toEqual(title);
     });
 
+    test('no quickAssessStore data', () => {
+        storeMocks.setQuickAssessData(null);
+        setupStoreGetState();
+
+        testObject.initialize();
+        onStoreChange();
+
+        expect(doc.title).toEqual(title);
+    });
+
+    test('no assessmentStore data', () => {
+        storeMocks.setAssessmentData(null);
+        setupStoreGetState();
+
+        testObject.initialize();
+        onStoreChange();
+
+        expect(doc.title).toEqual(title);
+    });
+
+    test('no visualizationStore data', () => {
+        storeMocks.setVisualizationStoreData(null);
+        setupStoreGetState();
+
+        testObject.initialize();
+        onStoreChange();
+
+        expect(doc.title).toEqual(title);
+    });
+
     test('tab is closed', () => {
         storeMocks.setTabStoreData({ isClosed: true } as TabStoreData);
         setupStoreGetState();

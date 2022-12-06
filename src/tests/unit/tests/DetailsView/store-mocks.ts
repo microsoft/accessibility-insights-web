@@ -224,6 +224,16 @@ export class StoreMocks {
         return this;
     }
 
+    public setQuickAssessData(data: AssessmentStoreData): StoreMocks {
+        this.quickAssessStoreData = data;
+        return this;
+    }
+
+    public setAssessmentData(data: AssessmentStoreData): StoreMocks {
+        this.assessmentStoreData = data;
+        return this;
+    }
+
     public setVisualizationStoreData(data: VisualizationStoreData): StoreMocks {
         this.visualizationStoreData = data;
         return this;
