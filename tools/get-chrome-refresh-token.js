@@ -1,21 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const request = require('request');
 const http = require('http');
+const request = require('request');
 
 // This script is used to generate new chrome web store access tokens and refresh tokens from the
 // chrome web store API (see docs: https://developer.chrome.com/docs/webstore/using_webstore_api/).
-// Before running this script, be sure to updated the following variables with the appropriate
-// client ID and secret values.
-const clientId = 'TODO';
-const clientSecret = 'TODO';
+// Parameters:
+//      0: client id
+//      1: client secret
+// Example command line call: node .\get-chrome-refresh-token.js $CLIENT_ID $CLIENT_SECRET
 
 const host = 'localhost';
 const port = 8000;
 const scope = 'https://www.googleapis.com/auth/chromewebstore';
 
+// Validate command line args
+const clientId = process.argv[2];
+const clientSecret = process.argv[3];
+if (!clientId || !clientSecret) {
+    throw new Error('Please provide client id and secret command line args');
+} else {
+    console.log('Provided client id: ' + clientId);
+    console.log('Provided client secret: ' + clientSecret);
+}
+
 const constructAccessTokenUrl = function () {
-    return `https://accounts.google.com/o/oauth2/v2/auth?scope=${scope}&response_type=code&redirect_uri=http%3A//${host}%3A${post}&client_id=${clientId}`;
+    return `https://accounts.google.com/o/oauth2/v2/auth?scope=${scope}&response_type=code&redirect_uri=http%3A//${host}%3A${port}&client_id=${clientId}`;
 };
 
 const fetchRefreshToken = function (accessToken) {

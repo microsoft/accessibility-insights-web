@@ -14,6 +14,5 @@ module.exports = {
         'test-results/',
         'src/DetailsView/components/generated-validate-assessment-json.js',
         'replace-plugin.js',
-        'tools/get-chrome-refresh-token.js',
     ],
 };
