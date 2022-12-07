@@ -166,7 +166,7 @@
         "sass-loader": "^13.0.2",
         "script-loader": "0.7.2",
         "serve-static": "^1.15.0",
-        "simple-git": "^3.14.1",
+        "simple-git": "^3.15.0",
         "source-map-loader": "^4.0.1",
         "stylelint": "^14.14.0",
         "stylelint-config-prettier-scss": "^0.0.1",
