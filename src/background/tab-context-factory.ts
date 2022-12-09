@@ -58,11 +58,6 @@ export class TabContextFactory {
     public createTabContext(tabId: number): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
-        const notificationCreator = new NotificationCreator(
-            this.browserAdapter,
-            this.visualizationConfigurationFactory,
-            this.logger,
-        );
         const storeHub = new TabContextStoreHub(
             actionsHub,
             this.visualizationConfigurationFactory,
@@ -71,7 +66,6 @@ export class TabContextFactory {
             this.logger,
             tabId,
             this.urlParser,
-            this.notificationCreator,
         );
         const shortcutsPageController = new ShortcutsPageController(this.browserAdapter);
 
@@ -87,7 +81,7 @@ export class TabContextFactory {
             actionsHub,
             this.detailsViewController,
             this.telemetryEventHandler,
-            notificationCreator,
+            this.notificationCreator,
             this.visualizationConfigurationFactory,
             this.targetTabController,
             this.logger,
@@ -168,6 +162,7 @@ export class TabContextFactory {
         const injectionActionCreator = new InjectionActionCreator(
             interpreter,
             actionsHub.injectionActions,
+            this.notificationCreator,
         );
 
         const injectorController = new InjectorController(

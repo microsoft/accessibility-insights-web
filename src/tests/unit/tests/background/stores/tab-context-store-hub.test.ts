@@ -16,7 +16,6 @@ describe('TabContextStoreHubTest', () => {
             null,
             null,
             null,
-            null,
         );
     });
 

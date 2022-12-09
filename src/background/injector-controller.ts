@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InjectionFailedPayload } from 'background/actions/action-payloads';
 import { Logger } from 'common/logging/logger';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { Messages } from '../common/messages';
@@ -64,8 +65,14 @@ export class InjectorController {
 
     private handleInjectionError = async (err: any): Promise<void> => {
         this.logger.error(err);
+        var attempts = (this.visualizationStore.getState().injectionAttempts ?? 0) + 1;
+        var payload = {
+            failedAttempts: attempts,
+            injectionFailed: attempts > 3,
+        } as InjectionFailedPayload;
         await this.interpreter.interpret({
             messageType: Messages.Visualizations.State.InjectionFailed,
+            payload,
         }).result;
     };
 }

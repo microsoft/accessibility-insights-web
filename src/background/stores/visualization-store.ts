@@ -6,12 +6,10 @@ import { InitialVisualizationStoreDataGenerator } from 'background/initial-visua
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { EnumHelper } from 'common/enum-helper';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
@@ -21,6 +19,7 @@ import {
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     AssessmentToggleActionPayload,
+    InjectionFailedPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
@@ -45,7 +44,6 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
-        private notificationCreator: NotificationCreator,
         initialVisualizationStoreDataGenerator: InitialVisualizationStoreDataGenerator,
     ) {
         super(
@@ -252,14 +250,12 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         await this.emitChanged();
     };
 
-    private onInjectionFailed = async (): Promise<void> => {
-        this.state.injectionAttempts = (this.state.injectionAttempts ?? 0) + 1;
-        if (this.state.injectionAttempts < 3) {
+    private onInjectionFailed = async (payload: InjectionFailedPayload): Promise<void> => {
+        this.state.injectionAttempts = payload.failedAttempts;
+        this.state.injectionFailed = payload.injectionFailed;
+        if (!this.state.injectionFailed) {
             this.state.injectingRequested = true;
             this.state.injectingStarted = false;
-        } else {
-            this.state.injectionFailed = true;
-            this.notificationCreator.createNotification(DisplayableStrings.injectionFailed);
         }
         await this.emitChanged();
     };
