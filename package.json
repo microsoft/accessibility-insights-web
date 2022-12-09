@@ -201,7 +201,7 @@
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^7.1.2",
         "react-router-dom": "^6.4.3",
-        "tabbable": "^6.0.0",
+        "tabbable": "^6.0.1",
         "ua-parser-js": "^1.0.32",
         "uuid": "^9.0.0",
         "webextension-polyfill": "^0.10.0"
