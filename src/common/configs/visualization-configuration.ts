@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ContentPageComponent } from 'views/content/content-page';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
@@ -27,4 +28,6 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
     shouldShowExportReport: () => boolean;
+    getIdentifier: (requirementKey?: string) => string;
+    messageConfiguration?: AnalyzerMessageConfiguration;
 }

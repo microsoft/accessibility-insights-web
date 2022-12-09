@@ -2,10 +2,14 @@
 // Licensed under the MIT License.
 
 import { loadTheme, setFocusVisibility } from '@fluentui/react';
-import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import {
+    MediumPassRequirementKeys,
+    MediumPassRequirementMap,
+} from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
@@ -31,6 +35,7 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
+import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
@@ -43,10 +48,14 @@ import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-re
 import { generateUID } from 'common/uid-generator';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import {
+    AssessmentFunctionalitySwitcher,
+    SharedAssessmentObjects,
+} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
-import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
@@ -144,8 +153,8 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
-import { DetailsViewRenderer } from './details-view-renderer';
+import { DetailsViewContainerState } from './details-view-container';
+import { DetailsViewRenderer, DetailsViewRendererDeps } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -228,6 +237,10 @@ if (tabId != null) {
                 StoreNames[StoreNames.AssessmentStore],
                 storeUpdateMessageHub,
             );
+            const quickAssessStore = new StoreProxy<AssessmentStoreData>(
+                StoreNames[StoreNames.QuickAssessStore],
+                storeUpdateMessageHub,
+            );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
                 storeUpdateMessageHub,
@@ -263,6 +276,7 @@ if (tabId != null) {
                 needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
@@ -290,6 +304,12 @@ if (tabId != null) {
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
+            );
+
+            const assessmentActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+                Messages.Assessment,
             );
 
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -332,12 +352,16 @@ if (tabId != null) {
                 visualizationActionCreator,
                 telemetryFactory,
             );
-            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+                Assessments,
+                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            );
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 new AssessmentTableColumnConfigHandler(
-                    new MasterCheckBoxConfigProvider(detailsViewActionMessageCreator),
+                    new MasterCheckBoxConfigProvider(assessmentActionMessageCreator),
                     Assessments,
                 ),
                 Assessments,
@@ -427,6 +451,7 @@ if (tabId != null) {
                 detailsViewStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 GetDetailsRightPanelConfiguration,
                 GetDetailsSwitcherNavConfiguration,
                 visualizationConfigurationFactory,
@@ -484,18 +509,14 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
-            const ajv = new Ajv();
-
             const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
-                ajv,
                 Assessments,
                 featureFlagStore.getState() as FeatureFlagStoreData,
-                new LoadAssessmentDataSchemaProvider(),
             );
 
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
-                detailsViewActionMessageCreator,
+                assessmentActionMessageCreator,
                 fileReader,
                 document,
                 loadAssessmentDataValidator,
@@ -503,10 +524,53 @@ if (tabId != null) {
 
             const cardFooterMenuItemsBuilder = new CardFooterMenuItemsBuilder();
 
+            const quickAssessProvider = assessmentsProviderForRequirements(
+                Assessments,
+                MediumPassRequirementMap,
+            );
+            const quickAssessActionMessageCreator = new AssessmentActionMessageCreator(
+                telemetryFactory,
+                actionMessageDispatcher,
+                Messages.MediumPass,
+            );
+            const quickAssessInstanceTableHandler = new AssessmentInstanceTableHandler(
+                detailsViewActionMessageCreator,
+                quickAssessActionMessageCreator,
+                new AssessmentTableColumnConfigHandler(
+                    new MasterCheckBoxConfigProvider(quickAssessActionMessageCreator),
+                    quickAssessProvider,
+                ),
+                quickAssessProvider,
+            );
+            const assessmentObjects: SharedAssessmentObjects = {
+                provider: Assessments,
+                actionMessageCreator: assessmentActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    assessmentActionMessageCreator,
+                ),
+                instanceTableHandler: assessmentInstanceTableHandler,
+            };
+            const quickAssessObjects: SharedAssessmentObjects = {
+                provider: quickAssessProvider,
+                actionMessageCreator: quickAssessActionMessageCreator,
+                navLinkHandler: new NavLinkHandler(
+                    detailsViewActionMessageCreator,
+                    quickAssessActionMessageCreator,
+                ),
+                instanceTableHandler: quickAssessInstanceTableHandler,
+            };
+            const assessmentFunctionalitySwitcher = new AssessmentFunctionalitySwitcher(
+                visualizationStore,
+                assessmentObjects,
+                quickAssessObjects,
+                GetDetailsSwitcherNavConfiguration,
+            );
+
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
-            const deps: DetailsViewContainerDeps = {
+            const deps: DetailsViewRendererDeps = {
                 textContent,
                 fixInstructionProcessor,
                 recommendColor,
@@ -518,7 +582,6 @@ if (tabId != null) {
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
-                assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
@@ -534,7 +597,6 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -578,7 +640,6 @@ if (tabId != null) {
                 inspectActionMessageCreator,
                 clickHandlerFactory,
                 issuesTableHandler,
-                assessmentInstanceTableHandler,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 Assessments,
@@ -594,6 +655,13 @@ if (tabId != null) {
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
+                mediumPassRequirementKeys: MediumPassRequirementKeys,
+                getProvider: assessmentFunctionalitySwitcher.getProvider,
+                getAssessmentActionMessageCreator:
+                    assessmentFunctionalitySwitcher.getAssessmentActionMessageCreator,
+                getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
+                getAssessmentInstanceTableHandler:
+                    assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
 
             const renderer = new DetailsViewRenderer(

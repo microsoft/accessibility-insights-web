@@ -230,7 +230,7 @@ describe('HeadingFormatterTests', () => {
         text: string,
     ): void {
         expect(config.showVisualization).toBe(true);
-        expect(config.borderColor).toBe(headingStyle.borderColor);
+        expect(config.outlineColor).toBe(headingStyle.outlineColor);
         expect(config.textBoxConfig.fontColor).toBe(headingStyle.fontColor);
         expect(config.textBoxConfig.text).toBe(text);
     }

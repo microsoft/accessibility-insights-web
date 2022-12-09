@@ -16,11 +16,12 @@ import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-vie
 import styles from './details-view-left-nav.scss';
 
 export type DetailsViewLeftNavDeps = {
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
     assessmentsProviderWithFeaturesEnabled: (
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
+    mediumPassRequirementKeys: string[];
 } & LeftNavDeps &
     SwitcherDeps;
 
@@ -46,8 +47,8 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         assessmentStoreData,
     } = props;
 
-    const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
-
+    const { getProvider, assessmentsProviderWithFeaturesEnabled } = deps;
+    const assessmentsProvider = getProvider();
     const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({
         visualizationType: selectedTest,
         selectedSubview: assessmentStoreData.assessmentNavState.selectedTestSubview,

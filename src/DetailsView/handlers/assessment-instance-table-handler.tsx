@@ -13,6 +13,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
@@ -25,15 +26,18 @@ import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
     private detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    private assessmentActionMessageCreator: AssessmentActionMessageCreator;
     private assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler;
     private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        assessmentActionMessageCreator: AssessmentActionMessageCreator,
         assessmentTableColumnConfigHandler: AssessmentTableColumnConfigHandler,
         assessmentsProvider: AssessmentsProvider,
     ) {
         this.detailsViewActionMessageCreator = detailsViewActionMessageCreator;
+        this.assessmentActionMessageCreator = assessmentActionMessageCreator;
         this.assessmentTableColumnConfigHandler = assessmentTableColumnConfigHandler;
         this.assessmentsProvider = assessmentsProvider;
     }
@@ -43,11 +47,11 @@ export class AssessmentInstanceTableHandler {
         test: VisualizationType,
         step: string,
     ): void => {
-        this.detailsViewActionMessageCreator.changeManualRequirementStatus(status, test, step);
+        this.assessmentActionMessageCreator.changeManualRequirementStatus(status, test, step);
     };
 
     public undoRequirementStatusChange = (test: VisualizationType, step: string): void => {
-        this.detailsViewActionMessageCreator.undoManualRequirementStatusChange(test, step);
+        this.assessmentActionMessageCreator.undoManualRequirementStatusChange(test, step);
     };
 
     public addFailureInstance = (
@@ -55,7 +59,7 @@ export class AssessmentInstanceTableHandler {
         test: VisualizationType,
         step: string,
     ): void => {
-        this.detailsViewActionMessageCreator.addFailureInstance(instanceData, test, step);
+        this.assessmentActionMessageCreator.addFailureInstance(instanceData, test, step);
     };
 
     public addPathForValidation = (path: string): void => {
@@ -67,7 +71,7 @@ export class AssessmentInstanceTableHandler {
     };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
-        this.detailsViewActionMessageCreator.passUnmarkedInstances(test, step);
+        this.assessmentActionMessageCreator.passUnmarkedInstances(test, step);
     }
 
     public updateFocusedTarget(target: Target): void {
@@ -160,8 +164,8 @@ export class AssessmentInstanceTableHandler {
                 selector={key}
                 status={instance.testStepResults[step].status}
                 originalStatus={instance.testStepResults[step].originalStatus}
-                onGroupChoiceChange={this.detailsViewActionMessageCreator.changeManualTestStatus}
-                onUndoClicked={this.detailsViewActionMessageCreator.undoManualTestStatusChange}
+                onGroupChoiceChange={this.assessmentActionMessageCreator.changeManualTestStatus}
+                onUndoClicked={this.assessmentActionMessageCreator.undoManualTestStatusChange}
             />
         );
     };
@@ -181,7 +185,7 @@ export class AssessmentInstanceTableHandler {
                 selector={key}
                 isVisualizationEnabled={instance.testStepResults[step].isVisualizationEnabled}
                 isVisible={instance.testStepResults[step].isVisible}
-                onSelected={this.detailsViewActionMessageCreator.changeAssessmentVisualizationState}
+                onSelected={this.assessmentActionMessageCreator.changeAssessmentVisualizationState}
             />
         );
     };
@@ -204,8 +208,8 @@ export class AssessmentInstanceTableHandler {
                 step={step}
                 id={instance.id}
                 currentInstance={currentInstance}
-                onRemove={this.detailsViewActionMessageCreator.removeFailureInstance}
-                onEdit={this.detailsViewActionMessageCreator.editFailureInstance}
+                onRemove={this.assessmentActionMessageCreator.removeFailureInstance}
+                onEdit={this.assessmentActionMessageCreator.editFailureInstance}
                 onClearPathSnippetData={this.detailsViewActionMessageCreator.clearPathSnippetData}
                 onAddPath={this.detailsViewActionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}

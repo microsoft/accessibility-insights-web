@@ -15,7 +15,7 @@ export const getCellAndHeaderElementsFromResult = (
         if (isEmpty(headersAttr)) {
             return;
         }
-        const headers = headersAttr.split(' ');
+        const headers = headersAttr!.split(' ');
         headers.forEach(headerId => {
             const headerElement = dom.getElementById(headerId);
             if (headerElement) {

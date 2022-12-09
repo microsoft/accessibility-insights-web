@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 
 import { HeadingsAssessmentProperties } from 'common/types/store-data/assessment-result-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/headings/heading-function';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
@@ -72,12 +73,11 @@ export const HeadingFunction: Requirement = {
             'headingText',
         ),
     ],
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['collect-headings'],
-                key: HeadingsTestStep.headingFunction,
-                testType: VisualizationType.HeadingsAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHeadingsDrawer(),

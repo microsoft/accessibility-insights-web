@@ -18,7 +18,7 @@ import { NavLinkHandler } from './nav-link-handler';
 
 export type MediumPassLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
-    navLinkHandler: NavLinkHandler;
+    getNavLinkHandler: () => NavLinkHandler;
     mediumPassRequirementKeys: string[];
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
@@ -45,13 +45,13 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
         setNavComponentRef,
     } = props;
 
-    const { navLinkHandler, leftNavLinkBuilder } = deps;
+    const { getNavLinkHandler, leftNavLinkBuilder } = deps;
 
     let links = [];
     links.push(
         leftNavLinkBuilder.buildOverviewLink(
             deps,
-            navLinkHandler.onOverviewClick,
+            getNavLinkHandler().onOverviewClick,
             assessmentsProvider,
             assessmentsData,
             0,

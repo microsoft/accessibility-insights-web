@@ -17,6 +17,6 @@ export interface CreateIssueDetailsTextData {
         identifier: string;
         conciseName: string;
     };
-    howToFixSummary: string;
+    howToFixSummary?: string;
     snippet?: string;
 }

@@ -6,12 +6,12 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 
 export interface SaveAssessmentButtonDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     userConfigMessageCreator: UserConfigMessageCreator;
 }
 export interface SaveAssessmentButtonProps {
@@ -27,7 +27,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
 
         function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
-            props.deps.detailsViewActionMessageCreator.saveAssessment(event);
+            props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
                 showDialog();
             }

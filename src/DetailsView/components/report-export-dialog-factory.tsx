@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportComponent,
@@ -17,6 +19,8 @@ import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
+    getProvider: () => AssessmentsProvider;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 } & ReportExportComponentDeps;
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
@@ -33,23 +37,22 @@ export function getReportExportDialogForAssessment(
     const {
         deps,
         assessmentStoreData,
-        assessmentsProvider,
         featureFlagStoreData,
         scanMetadata,
         isOpen,
         dismissExportDialog,
         afterDialogDismissed,
     } = props;
-    const reportGenerator = deps.reportGenerator;
+    const { reportGenerator, getProvider } = deps;
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
-        scanDate: props.deps.getCurrentDate(),
+        scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentHtmlReport(
                 assessmentStoreData,
-                assessmentsProvider,
+                getProvider(),
                 featureFlagStoreData,
                 scanMetadata.targetAppInfo,
                 description,
@@ -57,13 +60,13 @@ export function getReportExportDialogForAssessment(
         jsonGenerator: description =>
             reportGenerator.generateAssessmentJsonExport(
                 assessmentStoreData,
-                assessmentsProvider,
+                getProvider(),
                 featureFlagStoreData,
                 scanMetadata.targetAppInfo,
                 description,
             ),
         updatePersistedDescription: value =>
-            props.deps.detailsViewActionMessageCreator.addResultDescription(value),
+            deps.getAssessmentActionMessageCreator().addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,

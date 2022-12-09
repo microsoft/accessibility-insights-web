@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { InjectionActions } from 'background/actions/injection-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -15,7 +16,6 @@ import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
-    TestsEnabledState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -33,6 +33,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     private tabActions: TabActions;
     private injectionActions: InjectionActions;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
+    private initialVisualizationStoreDataGenerator: InitialVisualizationStoreDataGenerator;
 
     constructor(
         visualizationActions: VisualizationActions,
@@ -45,6 +46,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         tabId: number,
         persistStoreData: boolean,
         private notificationCreator: NotificationCreator,
+        initialVisualizationStoreDataGenerator: InitialVisualizationStoreDataGenerator,
     ) {
         super(
             StoreNames.VisualizationStore,
@@ -59,6 +61,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         this.tabActions = tabActions;
         this.injectionActions = injectionActions;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
+        this.initialVisualizationStoreDataGenerator = initialVisualizationStoreDataGenerator;
     }
 
     protected addActionListeners(): void {
@@ -88,38 +91,12 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         this.injectionActions.injectionFailed.addListener(this.onInjectionFailed);
     }
 
+    protected generateDefaultState(persistedData: VisualizationStoreData): VisualizationStoreData {
+        return this.initialVisualizationStoreDataGenerator.generateInitialState(persistedData);
+    }
+
     public getDefaultState(): VisualizationStoreData {
-        const tests: TestsEnabledState = {
-            adhoc: {},
-            assessments: {},
-        };
-
-        if (this.visualizationConfigurationFactory != null) {
-            EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-                const config = this.visualizationConfigurationFactory.getConfiguration(test);
-                tests[config.testMode][config.key] = {
-                    enabled: false,
-                };
-            });
-
-            Object.keys(tests.assessments).forEach(key => {
-                tests.assessments[key].stepStatus = {};
-            });
-        }
-
-        const defaultValues: VisualizationStoreData = {
-            tests,
-            scanning: null,
-            selectedFastPassDetailsView: VisualizationType.Issues,
-            selectedAdhocDetailsView: VisualizationType.Issues,
-            selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
-            injectingStarted: false,
-            injectingRequested: false,
-            injectionFailed: false,
-            focusedTarget: null,
-        };
-
-        return defaultValues;
+        return this.generateDefaultState(this.persistedState);
     }
 
     private onDisableVisualization = async (test: VisualizationType): Promise<void> => {
@@ -137,7 +114,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
         const scanData = configuration.getStoreData(this.state.tests);
 
-        if (this.isAssessment(configuration)) {
+        if (!this.isAdhoc(configuration)) {
             const assessmentScanData = configuration.getStoreData(
                 this.state.tests,
             ) as AssessmentScanData;
@@ -171,7 +148,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
-            const shouldDisableTest = this.isAssessment(configuration);
+            const shouldDisableTest = !this.isAdhoc(configuration);
             if (shouldDisableTest) {
                 this.toggleTestOff(test);
             }
@@ -212,8 +189,8 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
         await this.emitChanged();
     }
 
-    private isAssessment(config: VisualizationConfiguration): boolean {
-        return config.testMode === TestMode.Assessments;
+    private isAdhoc(config: VisualizationConfiguration): boolean {
+        return config.testMode === TestMode.Adhoc;
     }
 
     private onUpdateSelectedPivot = async (payload: UpdateSelectedPivot): Promise<void> => {

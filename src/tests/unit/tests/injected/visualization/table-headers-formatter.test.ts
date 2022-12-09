@@ -34,7 +34,7 @@ describe(TableHeadersAttributeFormatter, () => {
 
             const config = testSubject.getDrawerConfiguration(testElement, null);
 
-            expect(config.failureBoxConfig).toBeNull();
+            expect(config.failureBoxConfig).toBeUndefined();
         });
 
         test('with failure box', () => {

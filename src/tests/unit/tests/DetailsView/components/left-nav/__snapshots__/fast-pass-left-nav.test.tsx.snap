@@ -4,9 +4,7 @@ exports[`FastPassLeftNav renders visualization based left nav with appropriate p
 <VisualizationBasedLeftNav
   deps={
     {
-      "navLinkHandler": {
-        "onFastPassTestClick": [Function],
-      },
+      "getNavLinkHandler": [Function],
     }
   }
   featureFlagStoreData={{}}

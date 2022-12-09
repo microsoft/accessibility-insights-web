@@ -7,7 +7,7 @@ export const getStoreStateMessage = (storeName: StoreNames): string => {
     return `${messagePrefix}/${StoreNames[storeName]}/state/current`;
 };
 
-export type AssessmentMessages = typeof Messages.Assessment & typeof Messages.MediumPass;
+export type AssessmentMessages = typeof Messages.Assessment | typeof Messages.MediumPass;
 
 export const Messages = {
     Visualizations: {
@@ -134,7 +134,7 @@ export const Messages = {
         TrackingCompleted: `${messagePrefix}/mediumPass/tab-stops/recording-completed`,
         CancelStartOver: `${messagePrefix}/mediumPass/cancel-start-over`,
         CancelStartOverAllAssessments: `${messagePrefix}/mediumPass/cancel-start-over-all-assessments`,
-        StartOverAssessment: `${messagePrefix}/mediumPass/startOverTest`,
+        StartOverTest: `${messagePrefix}/mediumPass/startOverTest`,
         StartOverAllAssessments: `${messagePrefix}/mediumPass/startOverAllAssessments`,
         EnableVisualHelper: `${messagePrefix}/mediumPass/enableVisualHelper`,
         EnableVisualHelperWithoutScan: `${messagePrefix}/mediumPass/enableVisualHelperWithoutScan`,

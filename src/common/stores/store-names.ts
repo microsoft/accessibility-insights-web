@@ -30,5 +30,5 @@ export enum StoreNames {
     NeedsReviewScanResultStore,
     NeedsReviewCardSelectionStore,
     CardsViewStore,
-    MediumPassStore,
+    QuickAssessStore,
 }

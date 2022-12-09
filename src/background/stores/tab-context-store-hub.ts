@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PersistedData } from 'background/get-persisted-data';
+import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
@@ -60,6 +61,7 @@ export class TabContextStoreHub implements StoreHub {
             tabId,
             persistStoreData,
             notificationCreator,
+            new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
         );
         this.visualizationStore.initialize();
 

@@ -3,7 +3,6 @@
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { clone, isEqual, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
@@ -38,7 +37,6 @@ describe('BatchedRuleAnalyzer', () => {
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
-    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -51,9 +49,6 @@ describe('BatchedRuleAnalyzer', () => {
             getTime: () => {
                 return null;
             },
-        };
-        messageConfigurationStub = {
-            analyzerMessageType: 'some message type',
         };
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         dateMock = Mock.ofInstance(dateStub as Date);
@@ -111,14 +106,21 @@ describe('BatchedRuleAnalyzer', () => {
             rules: [ruleTwo],
             resultProcessor: scanner => resultProcessorMockTwo.object,
         };
+        const configThree = {
+            ...clone(configOne),
+            testType: -2,
+            rules: [ruleTwo],
+            resultProcessor: scanner => resultProcessorMockTwo.object,
+        };
         const resultTwo: RuleResult = {
             id: ruleTwo,
         } as RuleResult;
 
-        setupScannerUtilsMock(null, Times.exactly(2));
+        setupScannerUtilsMock(undefined, Times.exactly(2));
 
         const testSubjectOne = createAnalyzer(configOne);
         const testSubjectTwo = createAnalyzer(configTwo);
+        createAnalyzer(configThree);
 
         const completeRuleResults = createTestRuleResultsWithResult([resultOne, resultTwo]);
         const scanResultsOne = createTestRuleResultsWithResult([resultOne]);
@@ -154,15 +156,17 @@ describe('BatchedRuleAnalyzer', () => {
                 .returns(_ => startTime)
                 .verifiable();
 
-            testSubject.analyze(messageConfigurationStub);
+            testSubject.analyze();
         });
 
         /*
         BatchedRuleAnalyzer maintains a static list of
         RuleAnalyzerConfigurations. After scanning, it
-        sends a scanCompleted message for each rule-config.
+        sends a scanCompleted message for each rule-config
+        for each config that matches the visualization-type
+        that initiated the scan.
 
-        Because we instantiate two analyzers, each analyzer
+        Because we instantiate two analyzers with the same type, each analyzer
         has two configs and therefore the scanCallback
         produces two scanCompleted messages.
         */
@@ -263,7 +267,7 @@ describe('BatchedRuleAnalyzer', () => {
         expectedTelemetryStub,
     ): Message {
         return {
-            messageType: messageConfigurationStub.analyzerMessageType,
+            messageType: config.analyzerMessageType,
             payload: {
                 key: config.key,
                 selectorMap: allInstancesMocks,

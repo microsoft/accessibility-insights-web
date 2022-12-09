@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { getAllFeatureFlagDetails } from 'common/feature-flags';
@@ -33,6 +36,7 @@ export class GlobalStoreHub implements StoreHub {
     public launchPanelStore: LaunchPanelStore;
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
+    public quickAssessStore: AssessmentStore;
     public userConfigurationStore: UserConfigurationStore;
     public permissionsStateStore: PermissionsStateStore;
 
@@ -86,6 +90,24 @@ export class GlobalStoreHub implements StoreHub {
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
             logger,
             StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
+        );
+        const mediumPassProvider = assessmentsProviderForRequirements(
+            assessmentsProvider,
+            MediumPassRequirementMap,
+        );
+        this.quickAssessStore = new AssessmentStore(
+            browserAdapter,
+            globalActionHub.quickAssessActions,
+            new AssessmentDataConverter(generateUID),
+            new AssessmentDataRemover(),
+            mediumPassProvider,
+            indexedDbInstance,
+            persistedData.quickAssessStoreData,
+            new InitialAssessmentStoreDataGenerator(mediumPassProvider.all()),
+            logger,
+            StoreNames.QuickAssessStore,
+            IndexedDBDataKeys.quickAssessStore,
         );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
@@ -108,6 +130,7 @@ export class GlobalStoreHub implements StoreHub {
         this.launchPanelStore.initialize();
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
+        this.quickAssessStore.initialize();
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
     }
@@ -119,6 +142,7 @@ export class GlobalStoreHub implements StoreHub {
             this.launchPanelStore,
             this.scopingStore,
             this.assessmentStore,
+            this.quickAssessStore,
             this.userConfigurationStore,
             this.permissionsStateStore,
         ];

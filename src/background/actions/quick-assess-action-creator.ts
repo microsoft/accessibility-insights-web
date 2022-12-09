@@ -66,7 +66,7 @@ export class MediumPassActionCreator {
             this.onCollapseTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            getStoreStateMessage(StoreNames.MediumPassStore),
+            getStoreStateMessage(StoreNames.QuickAssessStore),
             this.onGetAssessmentCurrentState,
         );
         this.interpreter.registerTypeToPayloadCallback(
@@ -74,7 +74,7 @@ export class MediumPassActionCreator {
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.StartOverAssessment,
+            MediumPassMessages.StartOverTest,
             this.onStartOverAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(

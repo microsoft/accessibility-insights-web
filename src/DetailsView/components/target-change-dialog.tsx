@@ -7,6 +7,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
@@ -18,6 +19,7 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 export type TargetChangeDialogDeps = {
     urlParser: UrlParser;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
     detailsViewId: string;
 };
 
@@ -35,9 +37,10 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         subtitleAriaId: 'target-change-dialog-description',
         divId: 'target-change-dialog-description',
         leftButtonText: 'Continue previous',
-        leftButtonOnClick: props.deps.detailsViewActionMessageCreator.continuePreviousAssessment,
+        leftButtonOnClick:
+            props.deps.getAssessmentActionMessageCreator().continuePreviousAssessment,
         rightButtonText: 'Start new',
-        rightButtonOnClick: props.deps.detailsViewActionMessageCreator.startOverAllAssessments,
+        rightButtonOnClick: props.deps.getAssessmentActionMessageCreator().startOverAllAssessments,
         dialogFirstText: (
             <>
                 Would you like to continue your current assessment on the new target of{' '}

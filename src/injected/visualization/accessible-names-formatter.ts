@@ -1,60 +1,48 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    FormattedCheckResult,
-    HtmlElementAxeResults,
-} from 'common/types/store-data/visualization-scan-result-data';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { DialogRenderer } from 'injected/dialog-renderer';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration, Formatter } from 'injected/visualization/formatter';
 import { HeadingStyleConfiguration } from 'injected/visualization/heading-formatter';
-interface DisplayAccessibleNameData {
-    accessibleName: string;
-}
+
 export class AccessibleNamesFormatter implements Formatter {
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
     public static style: HeadingStyleConfiguration = {
-        borderColor: '#8D4DFF',
+        outlineColor: '#8D4DFF',
         fontColor: '#FFFFFF',
     };
 
-    public getData(nodes: FormattedCheckResult[]) {
-        for (const check of nodes) {
-            if (check.id === 'display-accessible-names') {
-                return {
-                    accessibleName: check.data.accessibleName,
-                };
-            }
-        }
-    }
+    private accessibleNameFromCheck(data: HtmlElementAxeResults | null): string | null {
+        const ruleResult = data?.ruleResults['display-accessible-names'];
+        const checkResult = ruleResult?.any?.find(check => check.id === 'display-accessible-names');
 
-    private getInfo(data: HtmlElementAxeResults): DisplayAccessibleNameData {
-        for (const idx in data.ruleResults) {
-            if (data.ruleResults[idx].ruleId === 'display-accessible-names') {
-                return this.getData(data.ruleResults[idx].any);
-            }
-        }
-        return undefined;
+        return checkResult?.data?.accessibleName ?? null;
     }
 
     public getDrawerConfiguration(
         element: HTMLElement,
-        data: AssessmentVisualizationInstance,
+        data: AssessmentVisualizationInstance | null,
     ): DrawerConfiguration {
-        const accessibleNameToDisplay = this.formatText(this.getInfo(data));
+        const accessibleName = this.accessibleNameFromCheck(data);
+        if (accessibleName == null) {
+            return { showVisualization: false };
+        }
+
+        const formattedAccessibleName = this.formatAccessibleName(accessibleName);
         const config: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: AccessibleNamesFormatter.style.fontColor,
-                background: AccessibleNamesFormatter.style.borderColor,
-                text: accessibleNameToDisplay?.accessibleName,
+                background: AccessibleNamesFormatter.style.outlineColor,
+                text: formattedAccessibleName,
                 fontWeight: '400',
                 fontSize: '10px',
                 outline: '3px dashed',
             },
-            borderColor: AccessibleNamesFormatter.style.borderColor,
+            outlineColor: AccessibleNamesFormatter.style.outlineColor,
             outlineStyle: 'dashed',
             outlineWidth: '3px',
             showVisualization: true,
@@ -62,21 +50,12 @@ export class AccessibleNamesFormatter implements Formatter {
         return config;
     }
 
-    private formatText(accessibleNameData: DisplayAccessibleNameData): DisplayAccessibleNameData {
-        const ElmtAccessibleName = accessibleNameData?.accessibleName;
-        let nameToDisplay;
+    private formatAccessibleName(accessibleName: string): string {
         const allowedNameMaxLength = 40;
-        if (ElmtAccessibleName === undefined) {
-            nameToDisplay = undefined;
+        if (accessibleName.length <= allowedNameMaxLength) {
+            return accessibleName;
         } else {
-            if (ElmtAccessibleName.length <= allowedNameMaxLength) {
-                nameToDisplay = ElmtAccessibleName;
-            } else if (ElmtAccessibleName.length > allowedNameMaxLength) {
-                nameToDisplay = `${ElmtAccessibleName.substring(0, allowedNameMaxLength)}...`;
-            }
+            return `${accessibleName.substring(0, allowedNameMaxLength)}...`;
         }
-        return {
-            accessibleName: nameToDisplay,
-        };
     }
 }

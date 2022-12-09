@@ -10,10 +10,11 @@ import {
     NoValue,
     PropertyBagColumnRendererConfig,
 } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/graphics';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
@@ -92,12 +93,11 @@ export const Graphics: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['accessible-image'],
-                key: ContrastTestStep.graphics,
-                testType: VisualizationType.ContrastAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

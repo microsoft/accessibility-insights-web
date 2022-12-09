@@ -4,6 +4,7 @@ export class HTMLCollectionOfBuilder {
     public static create<T extends Element>(items: T[]): HTMLCollectionOf<T> {
         const length = items.length;
         const nodeList: HTMLCollectionOf<T> = {
+            ...(items ? [...items] : []),
             length: length,
             item: (pos: number) => {
                 return items[pos];
@@ -12,9 +13,6 @@ export class HTMLCollectionOfBuilder {
                 return null;
             },
         };
-        for (let i = 0; i < items.length; i++) {
-            nodeList[i] = items[i];
-        }
         return nodeList;
     }
 }

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -28,7 +28,7 @@ export type VisualizationRelatedStoreData = Pick<
 
 export class SelectorMapHelper {
     constructor(
-        private assessmentsProvider: AssessmentsProvider,
+        private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
         private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
     ) {}
@@ -38,7 +38,6 @@ export class SelectorMapHelper {
         stepKey: string,
         visualizationRelatedStoreData: VisualizationRelatedStoreData,
     ): SelectorToVisualizationMap {
-        let selectorMap = {};
         const {
             visualizationScanResultStoreData,
             unifiedScanResultStoreData,
@@ -49,7 +48,7 @@ export class SelectorMapHelper {
         } = visualizationRelatedStoreData;
 
         if (this.isAdHocVisualization(visualizationType)) {
-            selectorMap = this.getAdHocVisualizationSelectorMap(
+            return this.getAdHocVisualizationSelectorMap(
                 visualizationType,
                 visualizationScanResultStoreData,
                 unifiedScanResultStoreData,
@@ -59,15 +58,14 @@ export class SelectorMapHelper {
             );
         }
 
-        if (this.assessmentsProvider.isValidType(visualizationType)) {
-            const key = this.assessmentsProvider.forType(visualizationType).key;
-            selectorMap = this.getFilteredSelectorMap(
-                assessmentStoreData.assessments[key].generatedAssessmentInstancesMap,
-                stepKey,
-            );
-        }
+        const assessmentData = this.visualizationConfigurationFactory
+            .getConfiguration(visualizationType)
+            .getAssessmentData(assessmentStoreData);
 
-        return selectorMap;
+        return this.getFilteredSelectorMap(
+            assessmentData?.generatedAssessmentInstancesMap,
+            stepKey,
+        );
     }
 
     private isAdHocVisualization(visualizationType: VisualizationType): boolean {

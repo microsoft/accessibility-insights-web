@@ -18,41 +18,41 @@ interface ElemData {
 export class LandmarkFormatter extends FailureInstanceFormatter {
     private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
         banner: {
-            borderColor: '#d08311',
+            outlineColor: '#d08311',
             fontColor: '#ffffff',
         },
         complementary: {
-            borderColor: '#6b9d1a',
+            outlineColor: '#6b9d1a',
             fontColor: '#ffffff',
         },
         contentinfo: {
-            borderColor: '#00a88c',
+            outlineColor: '#00a88c',
             fontColor: '#ffffff',
         },
         form: {
-            borderColor: '#0298c7',
+            outlineColor: '#0298c7',
             fontColor: '#ffffff',
         },
         main: {
-            borderColor: '#cb2e6d',
+            outlineColor: '#cb2e6d',
             fontColor: '#ffffff',
         },
         navigation: {
-            borderColor: '#9b38e6',
+            outlineColor: '#9b38e6',
             fontColor: '#ffffff',
         },
         region: {
-            borderColor: '#2560e0',
+            outlineColor: '#2560e0',
             fontColor: '#ffffff',
         },
         search: {
-            borderColor: '#d363d8',
+            outlineColor: '#d363d8',
             fontColor: '#ffffff',
         },
     };
 
     private static readonly invalidLandmarkStyle: HeadingStyleConfiguration = {
-        borderColor: '#C00000',
+        outlineColor: '#C00000',
         fontColor: '#FFFFFF',
     };
 
@@ -60,7 +60,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
     }
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
@@ -71,20 +71,22 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         // parse down the IHtmlElementAxeResult to see if it is contained in the map
         const elemData = this.decorateLabelText(data.propertyBag || this.getLandmarkInfo(data));
 
+        if (elemData == null) {
+            return { showVisualization: false };
+        }
+
         const style = LandmarkFormatter.getStyleForLandmarkRole(elemData.role);
 
         const drawerConfig: DrawerConfiguration = {
             textBoxConfig: {
                 fontColor: style.fontColor,
-                background: style.borderColor,
+                background: style.outlineColor,
                 text: elemData.label,
                 fontSize: '14pt !important',
                 fontWeight: '600',
-                outline: `3px dashed ${style.borderColor}`,
             },
-            borderColor: style.borderColor,
+            outlineColor: style.outlineColor,
             outlineStyle: 'dashed',
-            outlineWidth: '3px',
             showVisualization: true,
         };
 
@@ -93,16 +95,16 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         return drawerConfig;
     }
 
-    private getLandmarkInfo(data: HtmlElementAxeResults): ElemData {
+    private getLandmarkInfo(data: HtmlElementAxeResults): ElemData | undefined {
         for (const idx in data.ruleResults) {
             if (data.ruleResults[idx].ruleId === 'unique-landmark') {
-                return this.getData(data.ruleResults[idx].any);
+                return this.getData(data.ruleResults[idx].any ?? []);
             }
         }
         return undefined;
     }
 
-    private getData(nodes: FormattedCheckResult[]): ElemData {
+    private getData(nodes: FormattedCheckResult[]): ElemData | undefined {
         for (const check of nodes) {
             if (check.id === 'unique-landmark') {
                 return {
@@ -113,7 +115,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         }
     }
 
-    private decorateLabelText(elemData: ElemData): ElemData {
+    private decorateLabelText(elemData?: ElemData): ElemData | null {
         if (elemData == null) {
             return null;
         }

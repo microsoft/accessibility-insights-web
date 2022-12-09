@@ -32,7 +32,7 @@ export type CardFooterInstanceActionButtonsDeps = {
 
 export interface CardFooterInstanceActionButtonsProps {
     deps: CardFooterInstanceActionButtonsDeps;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     issueDetailsData: CreateIssueDetailsTextData;
     kebabMenuAriaLabel?: string;
     narrowModeStatus?: NarrowModeStatus;

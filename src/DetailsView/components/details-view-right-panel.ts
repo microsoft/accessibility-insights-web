@@ -25,9 +25,7 @@ import {
     TestViewContainerProps,
 } from './test-view-container';
 
-export type DetailsViewContentDeps = OverviewContainerDeps &
-    TestViewContainerDeps &
-    TargetChangeDialogDeps;
+export type RightPanelDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
 
 export type RightPanelProps = Omit<TestViewContainerProps, 'deps'> &
     Omit<OverviewContainerProps, 'deps'> & {
@@ -69,9 +67,9 @@ const detailsViewTypeContentMap: {
 export const GetDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration = (
     props: GetDetailsRightPanelConfigurationProps,
 ) => {
-    if (props.selectedDetailsViewPivot === DetailsViewPivotType.assessment) {
-        return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
+    if (props.selectedDetailsViewPivot === DetailsViewPivotType.fastPass) {
+        return detailsViewTypeContentMap.TestView;
     }
 
-    return detailsViewTypeContentMap.TestView;
+    return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
 };

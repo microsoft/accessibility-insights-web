@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
@@ -10,6 +11,7 @@ import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, Mock } from 'typemoq';
 import {
+    AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
     InstanceIdToInstanceDataMap,
@@ -20,16 +22,15 @@ import {
     SelectorMapHelper,
     VisualizationRelatedStoreData,
 } from '../../../../injected/selector-map-helper';
-import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
 describe('SelectorMapHelperTest', () => {
-    let assessmentsProvider: AssessmentsProvider;
     let testSubject: SelectorMapHelper;
     let getElementBasedViewModelMock: IMock<GetElementBasedViewModelCallback>;
     let getVisualizationInstancesForTabStopsMock: IMock<
         typeof GetVisualizationInstancesForTabStops
     >;
+    let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
 
     const adHocVisualizationTypes = [
         VisualizationType.Headings,
@@ -42,12 +43,12 @@ describe('SelectorMapHelperTest', () => {
         VisualizationType.NeedsReview,
     ];
     beforeEach(() => {
-        assessmentsProvider = CreateTestAssessmentProvider();
+        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
         getVisualizationInstancesForTabStopsMock =
             Mock.ofType<typeof GetVisualizationInstancesForTabStops>();
         testSubject = new SelectorMapHelper(
-            assessmentsProvider,
+            visualizationConfigurationFactoryMock.object,
             getElementBasedViewModelMock.object,
             getVisualizationInstancesForTabStopsMock.object,
         );
@@ -127,10 +128,9 @@ describe('SelectorMapHelperTest', () => {
     });
 
     test('getState for assessment, selector map is not null', () => {
-        const assessment = assessmentsProvider.all()[0];
-        const visualizationType = assessment.visualizationType;
-        const firstStep = assessment.requirements[0];
-
+        const visualizationType = -1;
+        const assessmentKeyStub = 'some assessment key';
+        const stepKey = 'some step';
         const selectorMap: InstanceIdToInstanceDataMap = {
             key1: {
                 target: ['element1'],
@@ -143,10 +143,10 @@ describe('SelectorMapHelperTest', () => {
                 ruleResults: null,
                 html: null,
             } as GeneratedAssessmentInstance,
-            [assessment.key]: {
+            [assessmentKeyStub]: {
                 target: ['element2'],
                 testStepResults: {
-                    [firstStep.key]: {
+                    [stepKey]: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
                     } as TestStepResult,
@@ -155,22 +155,26 @@ describe('SelectorMapHelperTest', () => {
                 propertyBag: {},
             } as GeneratedAssessmentInstance,
         };
-
+        const assessmentDataStub = {
+            generatedAssessmentInstancesMap: selectorMap,
+        } as AssessmentData;
+        const assessmentsData: {
+            [key: string]: AssessmentData;
+        } = {
+            [assessmentKeyStub]: assessmentDataStub,
+        };
         const state = {
-            assessments: {
-                [assessment.key]: {
-                    generatedAssessmentInstancesMap: selectorMap,
-                },
-            },
+            assessments: assessmentsData,
         } as AssessmentStoreData;
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
         } as VisualizationRelatedStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, firstStep.key, storeData);
+        setupVisualizationConfigurationFactory(state, assessmentDataStub, visualizationType);
+        const result = testSubject.getSelectorMap(visualizationType, stepKey, storeData);
 
         const expectedSelectedMap = {
-            [assessment.key]: {
+            [assessmentKeyStub]: {
                 isFailure: true,
                 isVisualizationEnabled: true,
                 propertyBag: {},
@@ -183,25 +187,45 @@ describe('SelectorMapHelperTest', () => {
     });
 
     test('getState for assessment: selectorMap null', () => {
-        const assessment = assessmentsProvider.all()[0];
-        const visualizationType = assessment.visualizationType;
-        const firstStep = assessment.requirements[0];
-
+        const visualizationType = -1;
+        const assessmentKeyStub = 'some assessment key';
+        const stepKey = 'some step';
         const selectorMap = null;
+        const assessmentDataStub = {
+            generatedAssessmentInstancesMap: selectorMap,
+        } as AssessmentData;
+        const assessmentsData: {
+            [key: string]: AssessmentData;
+        } = {
+            [assessmentKeyStub]: assessmentDataStub,
+        };
         const state = {
-            assessments: {
-                [assessment.key]: {
-                    generatedAssessmentInstancesMap: selectorMap,
-                },
-            },
+            assessments: assessmentsData,
         } as AssessmentStoreData;
 
+        setupVisualizationConfigurationFactory(state, assessmentDataStub, visualizationType);
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
         } as VisualizationRelatedStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, firstStep.key, storeData);
+        const result = testSubject.getSelectorMap(visualizationType, stepKey, storeData);
 
         expect(result).toBeNull();
     });
+
+    function setupVisualizationConfigurationFactory(
+        state: AssessmentStoreData,
+        assessmentData: AssessmentData,
+        visualizationType: VisualizationType,
+    ): void {
+        const getAssessmentDataMock = Mock.ofType<(storeData: AssessmentStoreData) => void>();
+        getAssessmentDataMock.setup(m => m(state)).returns(() => assessmentData);
+        visualizationConfigurationFactoryMock
+            .setup(m => m.getConfiguration(visualizationType))
+            .returns(() => {
+                return {
+                    getAssessmentData: getAssessmentDataMock.object,
+                } as VisualizationConfiguration;
+            });
+    }
 });

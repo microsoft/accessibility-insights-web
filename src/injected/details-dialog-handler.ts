@@ -112,7 +112,7 @@ export class DetailsDialogHandler {
             return;
         }
 
-        let parentLayer = dialogContainer;
+        let parentLayer: HTMLElement | null = dialogContainer;
 
         while (parentLayer != null) {
             if (parentLayer.classList.contains('ms-Layer--fixed')) {

@@ -16,7 +16,7 @@ export function frameTitleInstanceDetailsColumnRenderer(
 
     return (
         <AssessmentInstanceDetailsColumn
-            background={frameConfig.borderColor}
+            background={frameConfig.outlineColor}
             labelText={frameConfig.contentText}
             textContent={frameTitle}
         />

@@ -7,7 +7,7 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     DetailsViewOverlay,
     DetailsViewOverlayDeps,
@@ -18,9 +18,9 @@ import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature
 import { ContentProvider } from 'views/content/content-page';
 
 describe('DetailsViewOverlay', () => {
-    const detailsViewActionMessageCreator = {
+    const assessmentActionMessageCreator = {
         addFailureInstance: null,
-    } as DetailsViewActionMessageCreator;
+    } as AssessmentActionMessageCreator;
     const previewFeatureFlagsHandlerStub = {
         getDisplayableFeatureFlags: null,
     } as PreviewFeatureFlagsHandler;
@@ -46,7 +46,7 @@ describe('DetailsViewOverlay', () => {
     const deps: DetailsViewOverlayDeps = {
         contentProvider: {} as ContentProvider,
         contentActionMessageCreator: {} as ContentActionMessageCreator,
-        detailsViewActionMessageCreator,
+        getAssessmentActionMessageCreator: () => assessmentActionMessageCreator,
         userConfigMessageCreator: userConfigMessageCreatorStub,
         settingsProvider: {} as SettingsProvider,
     } as DetailsViewOverlayDeps;

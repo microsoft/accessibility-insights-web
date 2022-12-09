@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TabStopsScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    SingleTabStopRequirementState,
+    TabStopsScanResultData,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import {
     InstanceIdToTabStopVisualizationMap,
@@ -24,7 +27,7 @@ export const GetVisualizationInstancesForTabStops = (
         const instance: TabStopVisualizationInstance = {
             isFailure: false,
             isVisualizationEnabled: true,
-            ruleResults: null,
+            ruleResults: {},
             target: element.target,
             propertyBag: {
                 tabOrder: element.tabOrder,
@@ -36,34 +39,37 @@ export const GetVisualizationInstancesForTabStops = (
         instanceIdToVisualizationInstanceMap[element.instanceId] = instance;
     });
 
-    forOwn(tabStopScanResultData.requirements, (obj, requirementId: TabStopRequirementId) => {
-        obj.instances.forEach(instance => {
-            if (instance.selector == null) {
-                return;
-            }
+    forOwn(
+        tabStopScanResultData.requirements,
+        (obj: SingleTabStopRequirementState, requirementId: TabStopRequirementId) => {
+            obj.instances.forEach(instance => {
+                if (instance.selector == null) {
+                    return;
+                }
 
-            const itemType =
-                requirementId === 'keyboard-navigation'
-                    ? TabbedItemType.MissingItem
-                    : TabbedItemType.ErroredItem;
+                const itemType =
+                    requirementId === 'keyboard-navigation'
+                        ? TabbedItemType.MissingItem
+                        : TabbedItemType.ErroredItem;
 
-            const newInstance: TabStopVisualizationInstance = {
-                isFailure: true,
-                isVisualizationEnabled: true,
-                ruleResults: null,
-                target: instance.selector,
-                propertyBag: {},
-                requirementResults: {
-                    [requirementId]: {
-                        instanceId: instance.id,
+                const newInstance: TabStopVisualizationInstance = {
+                    isFailure: true,
+                    isVisualizationEnabled: true,
+                    ruleResults: {},
+                    target: instance.selector,
+                    propertyBag: {},
+                    requirementResults: {
+                        [requirementId]: {
+                            instanceId: instance.id,
+                        },
                     },
-                },
-                itemType,
-            };
+                    itemType,
+                };
 
-            instanceIdToVisualizationInstanceMap[instance.id] = newInstance;
-        });
-    });
+                instanceIdToVisualizationInstanceMap[instance.id] = newInstance;
+            });
+        },
+    );
 
     return instanceIdToVisualizationInstanceMap;
 };

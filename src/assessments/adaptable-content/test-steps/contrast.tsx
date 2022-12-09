@@ -10,12 +10,13 @@ import {
     NoValue,
     PropertyBagColumnRendererConfig,
 } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import * as content from 'content/test/adaptable-content/contrast';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 
@@ -70,8 +71,6 @@ const contrastHowToTest: JSX.Element = (
     </div>
 );
 
-const key = AdaptableContentTestStep.contrast;
-
 const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] = [
     {
         propertyName: 'textString',
@@ -100,13 +99,12 @@ export const Contrast: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['text-contrast'],
-                key,
-                testType: VisualizationType.AdaptableContent,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getIncompleteInstances,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

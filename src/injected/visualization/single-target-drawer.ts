@@ -9,7 +9,7 @@ import { SingleTargetFormatter } from './single-target-formatter';
 export class SingleTargetDrawer implements Drawer {
     protected isEnabled = false;
     protected drawerUtils: DrawerUtils;
-    private target: HTMLElement;
+    private target: HTMLElement | null;
     private formatter: SingleTargetFormatter;
 
     constructor(drawerUtils: DrawerUtils, formatter: SingleTargetFormatter) {
@@ -48,7 +48,7 @@ export class SingleTargetDrawer implements Drawer {
     private getFirstElementTarget(
         document: Document,
         elementResults: HtmlElementAxeResults[],
-    ): HTMLElement {
+    ): HTMLElement | null {
         if (!elementResults[0]) {
             return null;
         }

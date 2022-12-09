@@ -11,7 +11,7 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
         super();
     }
 
-    public getDialogRenderer(): DialogRenderer {
+    public getDialogRenderer(): DialogRenderer | null {
         return null;
     }
 
@@ -21,7 +21,7 @@ export class HighlightBoxFormatter extends FailureInstanceFormatter {
     ): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             failureBoxConfig: this.getFailureBoxConfig(data),
-            borderColor: IssuesFormatter.style.borderColor,
+            outlineColor: IssuesFormatter.style.outlineColor,
             outlineStyle: 'solid',
             showVisualization: true,
             textAlign: 'center',

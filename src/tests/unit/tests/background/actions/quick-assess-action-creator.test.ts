@@ -17,7 +17,7 @@ import {
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
-import { MediumPassActionCreator } from 'background/actions/medium-pass-action-creator';
+import { MediumPassActionCreator } from 'background/actions/quick-assess-action-creator';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -458,7 +458,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.StartOverAssessment, payload);
+        await interpreterMock.simulateMessage(MediumPassMessages.StartOverTest, payload);
 
         resetDataMock.verifyAll();
     });
@@ -531,7 +531,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            getStoreStateMessage(StoreNames.MediumPassStore),
+            getStoreStateMessage(StoreNames.QuickAssessStore),
             null,
         );
 

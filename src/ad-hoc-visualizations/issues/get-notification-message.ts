@@ -6,9 +6,9 @@ import { DictionaryStringTo } from 'types/common-types';
 
 export const getNotificationMessage = (
     selectorMap: DictionaryStringTo<any>,
-    warnings: ScanIncompleteWarningId[],
+    warnings?: ScanIncompleteWarningId[],
 ) => {
-    if (isEmpty(selectorMap) && isEmpty(warnings)) {
+    if (warnings == null || (isEmpty(selectorMap) && isEmpty(warnings))) {
         return 'Congratulations!\n\nAutomated checks found no issues on this page.';
     }
 

@@ -34,4 +34,7 @@ export interface TestsEnabledState {
     adhoc: {
         [key: string]: ScanData;
     };
+    mediumPass: {
+        [key: string]: AssessmentScanData;
+    };
 }

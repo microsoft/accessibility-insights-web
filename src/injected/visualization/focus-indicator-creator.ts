@@ -26,13 +26,13 @@ export class FocusIndicatorCreator {
         prevItem: TabbedItem,
         isLastItem: boolean,
         formatter: Formatter,
-    ): FocusIndicator => {
-        const centerPosition: Point = this.centerPositionCalculator.getElementCenterPosition(
+    ): FocusIndicator | null => {
+        const centerPosition: Point | null = this.centerPositionCalculator.getElementCenterPosition(
             item.element,
         );
 
-        if (centerPosition == null) {
-            return;
+        if (item.element == null || centerPosition == null) {
+            return null;
         }
 
         const drawerConfig = formatter.getDrawerConfiguration(
@@ -69,20 +69,20 @@ export class FocusIndicatorCreator {
             drawerConfig.tabIndexLabel,
             item.tabOrder.toString(),
         );
-        const newLine: Element = this.createLinesInTabOrderVisualization(
+        const newLine: Element | null = this.createLinesInTabOrderVisualization(
             item,
             prevItem,
             drawerConfig.line,
             centerPosition,
             drawerConfig.circle.ellipseRx,
-            drawerConfig.line.showSolidFocusLine,
+            drawerConfig.line.showSolidFocusLine ?? false,
         );
 
         const showTabIndexedLabel = drawerConfig.tabIndexLabel.showTabIndexedLabel;
         const focusIndicator: FocusIndicator = {
             circle: newCircle,
-            tabIndexLabel: !showTabIndexedLabel ? null : newLabel,
-            line: newLine,
+            tabIndexLabel: !showTabIndexedLabel ? undefined : newLabel,
+            line: newLine ?? undefined,
         };
 
         return focusIndicator;
@@ -95,7 +95,7 @@ export class FocusIndicatorCreator {
         centerPosition: Point,
         ellipseRx: string,
         showSolidFocusLine: boolean,
-    ): Element {
+    ): Element | null {
         const shouldBreakGraph = this.shouldBreakGraph(item, prevItem);
 
         if (!showSolidFocusLine || shouldBreakGraph) {
@@ -135,23 +135,23 @@ export class FocusIndicatorCreator {
             drawerConfig.focusedLine,
             elementPosition,
             drawerConfig.focusedCircle.ellipseRx,
-            drawerConfig.line.showSolidFocusLine,
+            drawerConfig.line.showSolidFocusLine ?? false,
         );
         return {
             circle: lastItemCircle,
-            line: lastItemLine,
-            tabIndexLabel: null,
+            line: lastItemLine ?? undefined,
+            tabIndexLabel: undefined,
         };
     };
 
     public createFocusIndicatorForFailure = (
         item: TabbedItem,
         formatter: Formatter,
-    ): FocusIndicator => {
+    ): FocusIndicator | null => {
         const centerPosition = this.centerPositionCalculator.getElementCenterPosition(item.element);
 
-        if (centerPosition == null) {
-            return;
+        if (item.element == null || centerPosition == null) {
+            return null;
         }
 
         const drawerConfig = formatter.getDrawerConfiguration(

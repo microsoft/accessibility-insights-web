@@ -11,13 +11,12 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "actionInitiators": {
           "openExternalLink": [MockFunction],
         },
-        "assessmentsProvider": {
-          "all": [Function],
-        },
         "assessmentsProviderWithFeaturesEnabled": [Function],
         "detailsViewActionMessageCreator": {},
         "detailsViewId": undefined,
+        "getAssessmentActionMessageCreator": [Function],
         "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        "getProvider": [Function],
         "urlParser": {},
       }
     }
@@ -45,13 +44,12 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "actionInitiators": {
             "openExternalLink": [MockFunction],
           },
-          "assessmentsProvider": {
-            "all": [Function],
-          },
           "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": {},
           "detailsViewId": undefined,
+          "getAssessmentActionMessageCreator": [Function],
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+          "getProvider": [Function],
           "urlParser": {},
         }
       }
