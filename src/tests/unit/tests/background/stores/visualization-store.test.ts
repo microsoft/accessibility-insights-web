@@ -7,6 +7,7 @@ import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import {
     AssessmentToggleActionPayload,
+    InjectionFailedPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
@@ -18,8 +19,6 @@ import { InitialVisualizationStoreDataGenerator } from 'background/initial-visua
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { TestMode } from 'common/configs/test-mode';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { DisplayableStrings } from 'common/constants/displayable-strings';
-import { NotificationCreator } from 'common/notification-creator';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { cloneDeep } from 'lodash';
 import { IMock, Mock, Times } from 'typemoq';
@@ -796,90 +795,87 @@ describe('VisualizationStoreTest ', () => {
         await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    // test('onInjectionCompleted', async () => {
-    //     const actionName = 'injectionCompleted';
+    test('onInjectionCompleted', async () => {
+        const actionName = 'injectionCompleted';
 
-    //     const initialState = new VisualizationStoreDataBuilder().build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
-    //     const expectedState = new VisualizationStoreDataBuilder()
-    //         .with('injectingRequested', false)
-    //         .with('injectingStarted', false)
-    //         .build();
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', false)
+            .with('injectingStarted', false)
+            .build();
 
-    //     const storeTester = createStoreTesterForInjectionActions(actionName);
-    //     await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    // });
+        const storeTester = createStoreTesterForInjectionActions(actionName);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
 
-    // test('onInjectionStarted when injectingStarted is false', async () => {
-    //     const actionName = 'injectionStarted';
+    test('onInjectionStarted when injectingStarted is false', async () => {
+        const actionName = 'injectionStarted';
 
-    //     const initialState = new VisualizationStoreDataBuilder()
-    //         .with('injectingStarted', false)
-    //         .build();
+        const initialState = new VisualizationStoreDataBuilder()
+            .with('injectingStarted', false)
+            .build();
 
-    //     const expectedState = new VisualizationStoreDataBuilder()
-    //         .with('injectingRequested', true)
-    //         .with('injectingStarted', true)
-    //         .build();
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', true)
+            .with('injectingStarted', true)
+            .build();
 
-    //     const storeTester = createStoreTesterForInjectionActions(actionName);
-    //     await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    // });
+        const storeTester = createStoreTesterForInjectionActions(actionName);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
 
-    // test('onInjectionStarted when injectingStarted is true', async () => {
-    //     const actionName = 'injectionStarted';
+    test('onInjectionStarted when injectingStarted is true', async () => {
+        const actionName = 'injectionStarted';
 
-    //     const initialState = new VisualizationStoreDataBuilder()
-    //         .with('injectingStarted', true)
-    //         .build();
+        const initialState = new VisualizationStoreDataBuilder()
+            .with('injectingStarted', true)
+            .build();
 
-    //     const expectedState = new VisualizationStoreDataBuilder()
-    //         .with('injectingRequested', false)
-    //         .with('injectingStarted', true)
-    //         .build();
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', false)
+            .with('injectingStarted', true)
+            .build();
 
-    //     const storeTester = createStoreTesterForInjectionActions(actionName);
-    //     await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    // });
+        const storeTester = createStoreTesterForInjectionActions(actionName);
+        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+    });
 
-    // test('onInjectionFailed when injectionAttempts is less than three', async () => {
-    //     const actionName = 'injectionFailed';
+    test('onInjectionFailed when injection has not failed', async () => {
+        const actionName = 'injectionFailed';
 
-    //     const initialState = new VisualizationStoreDataBuilder().build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
-    //     const expectedState = new VisualizationStoreDataBuilder()
-    //         .with('injectingRequested', true)
-    //         .with('injectingStarted', false)
-    //         .with('injectionAttempts', 1)
-    //         .build();
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingRequested', true)
+            .with('injectingStarted', false)
+            .with('injectionFailed', false)
+            .with('injectionAttempts', 1)
+            .build();
 
-    //     const storeTester = createStoreTesterForInjectionActions(actionName);
-    //     await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    // });
+        const payload = { injectionFailed: false, failedAttempts: 1 } as InjectionFailedPayload;
 
-    // test('onInjectionFailed when injectionAttempts is greater than three', async () => {
-    //     const actionName = 'injectionFailed';
+        const storeTester =
+            createStoreTesterForInjectionActions(actionName).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
 
-    //     const initialState = new VisualizationStoreDataBuilder()
-    //         .with('injectionAttempts', 3)
-    //         .build();
+    test('onInjectionFailed when injection failed', async () => {
+        const actionName = 'injectionFailed';
 
-    //     const expectedState = new VisualizationStoreDataBuilder()
-    //         .with('injectionFailed', true)
-    //         .with('injectionAttempts', 4)
-    //         .build();
+        const initialState = new VisualizationStoreDataBuilder().build();
 
-    //     const notificationCreatorMock = Mock.ofType<NotificationCreator>();
-    //     notificationCreatorMock
-    //         .setup(m => m.createNotification(DisplayableStrings.injectionFailed))
-    //         .verifiable(Times.once());
-    //     const storeTester = createStoreTesterForInjectionActions(
-    //         actionName,
-    //         notificationCreatorMock.object,
-    //     );
-    //     await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    //     notificationCreatorMock.verifyAll();
-    // });
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectionFailed', true)
+            .with('injectionAttempts', 4)
+            .build();
+
+        const payload = { injectionFailed: true, failedAttempts: 4 } as InjectionFailedPayload;
+
+        const storeTester =
+            createStoreTesterForInjectionActions(actionName).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
 
     test('onScrollRequested', async () => {
         const actionName = 'scrollRequested';
@@ -1037,6 +1033,30 @@ describe('VisualizationStoreTest ', () => {
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
+    }
+
+    function createStoreTesterForInjectionActions(
+        actionName: keyof InjectionActions,
+    ): StoreTester<VisualizationStoreData, InjectionActions> {
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
+        const factory = (actions: InjectionActions) =>
+            new VisualizationStore(
+                new VisualizationActions(),
+                new TabActions(),
+                actions,
+                visualizationConfigurationFactory,
+                null,
+                null,
+                null,
+                null,
+                true,
+                new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
+            );
+
+        return new StoreTester(InjectionActions, actionName, factory);
     }
 
     function setupDataGeneratorMock(

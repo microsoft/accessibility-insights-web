@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { InjectionFailedPayload } from 'background/actions/action-payloads';
 import { InjectorController } from 'background/injector-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
 import { Interpreter } from 'background/interpreter';
@@ -138,6 +139,8 @@ describe('InjectorControllerTest', () => {
             .with('injectingRequested', true)
             .build();
 
+        const payload = { injectionFailed: false, failedAttempts: 1 } as InjectionFailedPayload;
+
         validator
             .setupTabStore({ id: tabId })
             .setupVizStoreGetState(visualizationData)
@@ -147,7 +150,7 @@ describe('InjectorControllerTest', () => {
 
         validator.buildInjectorController(false).initialize();
         validator.setupVerifyInjectionStartedActionCalled(tabId, 1);
-        validator.setupVerifyInjectionFailedActionCalled(tabId);
+        validator.setupVerifyInjectionFailedActionCalled(payload);
         await validator.inspectInjectCallback();
         await validator.invokeRejectedPromise();
         validator.verifyAll();
@@ -243,6 +246,7 @@ class InjectorControllerValidator {
     }
 
     public setupVerifyInjectionFailedActionCalled(
+        payload: InjectionFailedPayload,
         numTimes: number = 1,
     ): InjectorControllerValidator {
         this.mockInterpreter
@@ -250,6 +254,7 @@ class InjectorControllerValidator {
                 x.interpret(
                     It.isObjectWith({
                         messageType: Messages.Visualizations.State.InjectionFailed,
+                        payload,
                     }),
                 ),
             )

@@ -65,8 +65,8 @@ export class InjectorController {
 
     private handleInjectionError = async (err: any): Promise<void> => {
         this.logger.error(err);
-        var attempts = (this.visualizationStore.getState().injectionAttempts ?? 0) + 1;
-        var payload = {
+        const attempts = (this.visualizationStore.getState().injectionAttempts ?? 0) + 1;
+        const payload = {
             failedAttempts: attempts,
             injectionFailed: attempts > 3,
         } as InjectionFailedPayload;

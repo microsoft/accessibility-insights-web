@@ -2,7 +2,7 @@
 
 exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected 1`] = `
 <React.Fragment>
-  <ScanIncompleteWarning
+  <BannerWarnings
     deps={
       {
         "getAssessmentActionMessageCreator": [Function],
@@ -10,6 +10,12 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
       }
     }
     test={-1}
+    visualizationStoreData={
+      {
+        "scanning": "test-scanning",
+        "tests": {},
+      }
+    }
     warningConfiguration={{}}
   />
   <TargetChangeDialog
@@ -41,7 +47,7 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
 
 exports[`AssessmentTestView renders with a RequirementView when a requirement is selected 1`] = `
 <React.Fragment>
-  <ScanIncompleteWarning
+  <BannerWarnings
     deps={
       {
         "getAssessmentActionMessageCreator": [Function],
@@ -49,6 +55,12 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
       }
     }
     test={-1}
+    visualizationStoreData={
+      {
+        "scanning": "test-scanning",
+        "tests": {},
+      }
+    }
     warningConfiguration={{}}
   />
   <TargetChangeDialog

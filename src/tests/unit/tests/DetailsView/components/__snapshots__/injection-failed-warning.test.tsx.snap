@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InjectionFailedWarning render with injection failed true 1`] = `
+<StyledMessageBar
+  messageBarType={5}
+>
+  <div
+    data-automation-id="injection-failed-warning-container"
+  >
+    Unable to communicate with target page. If you are using Edge, make sure that the target page is not in Internet Explorer mode.
+  </div>
+</StyledMessageBar>
+`;

@@ -264,7 +264,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "focusedTarget": null,
         "injectingRequested": false,
         "injectingStarted": false,
-        "injectionFailed": false,
         "scanning": null,
         "selectedAdhocDetailsView": -1,
         "selectedDetailsViewPivot": 0,
