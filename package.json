@@ -186,7 +186,7 @@
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.8",
-        "appium-adb": "^9.10.2",
+        "appium-adb": "^9.10.18",
         "axe-core": "4.4.1",
         "classnames": "^2.3.2",
         "electron": "19.1.3",
