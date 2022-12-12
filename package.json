@@ -123,7 +123,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
         "commander": "^9.4.1",
-        "core-js-bundle": "^3.25.3",
+        "core-js-bundle": "^3.26.1",
         "cross-env": "^7.0.3",
         "css-loader": "^6.7.2",
         "electron-builder": "23.3.3",
