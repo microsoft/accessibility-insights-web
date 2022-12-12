@@ -46,7 +46,7 @@
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "eslint \"**/*.{js,ts,tsx}\"",
-        "lint:check:all": "yarn lint:check && yarn lint:scss && npx lerna run --npm-client yarn lint:check",
+        "lint:check:all": "yarn lint:check && yarn lint:scss && lerna run lint:check",
         "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --quiet --fix",
         "lint:scss": "stylelint \"**/*.scss\"",
         "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
