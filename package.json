@@ -163,7 +163,7 @@
         "prettier": "^2.7.1",
         "regenerator-runtime": "^0.13.11",
         "sass": "^1.56.1",
-        "sass-loader": "^13.0.2",
+        "sass-loader": "^13.2.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.15.0",
         "simple-git": "^3.15.1",
