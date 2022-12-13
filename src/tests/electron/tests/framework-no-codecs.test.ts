@@ -58,7 +58,7 @@ it('electron versions in package.json and build id are updated together', async 
     };
     expect(versions).toMatchInlineSnapshot(`
         {
-          "electronBuildId": "16272414",
+          "electronBuildId": "14306133",
           "electronVersion": "22.0.0",
         }
     `);
