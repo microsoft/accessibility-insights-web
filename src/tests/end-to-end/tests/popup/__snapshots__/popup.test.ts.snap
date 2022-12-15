@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup -> end-of-life message content should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric end-of-life-panel"
+  >
+    <div
+      class="main-section"
+    >
+      <div
+        class="popup-grid"
+      >
+        <div
+          class="launch-panel-general-container"
+        >
+          <p>
+            Thank you for helping the Accessibility Insights team test this preview extension. The "Insider (M3)" build has now been released into production. Please continue using Accessibility Insights for Web by switching to the Production version:
+          </p>
+          <ul>
+            <li>
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni"
+                id="install-production-chrome-link"
+                role="link"
+                target="_blank"
+              >
+                Install for Google Chrome
+              </a>
+            </li>
+            <li>
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://microsoftedge.microsoft.com/addons/detail/accessibility-insights-fo/ghbhpcookfemncgoinjblecnilppimih"
+                id="install-production-edge-link"
+                role="link"
+                target="_blank"
+              >
+                Install for Microsoft Edge
+              </a>
+            </li>
+          </ul>
+          <p>
+            If you have an assessment in progress which you would like to continue working on in the Production version, 
+            <button
+              class="ms-Link insights-link root-000"
+              id="open-assessment-link"
+              role="link"
+              type="button"
+            >
+              open the assessment
+            </button>
+             and select the "Save Assessment" button to save your assessment in progress to a file, then use the "Load Assessment" button from the Production version to continue where you left off.
+          </p>
+          <p>
+            Once you have switched to the Production version, you can remove the "Accessibility Insights for Web - Insider (M3)" build from your browser's "Extensions" settings page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

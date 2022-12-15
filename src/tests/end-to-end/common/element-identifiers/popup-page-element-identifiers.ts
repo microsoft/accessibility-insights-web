@@ -9,4 +9,5 @@ export const popupPageElementIdentifiers = {
     gotoAdhocToolsButton: '#ad-hoc-tools',
     backToLaunchPadLink: '#back-to-launchpad-link',
     hamburgerMenuButton: 'button[aria-label="help menu"]',
+    endOfLifePanel: '.end-of-life-panel',
 };
