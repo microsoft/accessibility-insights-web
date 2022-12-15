@@ -80,9 +80,9 @@ export class PopupView extends React.Component<PopupViewProps> {
                         <div className="launch-panel-general-container">
                             <p>
                                 Thank you for helping the Accessibility Insights team test this
-                                preview extension. The "Insider (M3)" build now been released into
-                                production. Please continue using Accessibility Insights for Web by
-                                switching to the Production version:
+                                preview extension. The "Insider (M3)" build has now been released
+                                into production. Please continue using Accessibility Insights for
+                                Web by switching to the Production version:
                             </p>
                             <ul>
                                 <li>
