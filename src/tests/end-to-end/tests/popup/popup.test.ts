@@ -8,7 +8,7 @@ import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Popup -> Hamburger menu', () => {
+describe('Popup -> end-of-life message', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let popupPage: PopupPage;
@@ -17,23 +17,19 @@ describe('Popup -> Hamburger menu', () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.clickSelector(popupPageElementIdentifiers.hamburgerMenuButton);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.endOfLifePanel);
     });
 
     afterAll(async () => {
         await browser?.close();
     });
 
-    it('should have content matching snapshot', async () => {
-        const button = await popupPage.getSelectorElement(
-            popupPageElementIdentifiers.hamburgerMenuButton,
+    it('content should match snapshot', async () => {
+        const element = await formatPageElementForSnapshot(
+            popupPage,
+            popupPageElementIdentifiers.endOfLifePanel,
         );
-        const menuCalloutId = await button.evaluate(element =>
-            element.getAttribute('aria-controls'),
-        );
-
-        const hamburgerMenu = await formatPageElementForSnapshot(popupPage, `#${menuCalloutId}`);
-        expect(hamburgerMenu).toMatchSnapshot();
+        expect(element).toMatchSnapshot();
     });
 
     it.each([true, false])(
@@ -42,14 +38,7 @@ describe('Popup -> Hamburger menu', () => {
             await browser.setHighContrastMode(highContrastMode);
             await popupPage.waitForHighContrastMode(highContrastMode);
 
-            const button = await popupPage.getSelectorElement(
-                popupPageElementIdentifiers.hamburgerMenuButton,
-            );
-            const menuCalloutId = await button.evaluate(element =>
-                element.getAttribute('aria-controls'),
-            );
-
-            const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
+            const results = await scanForAccessibilityIssues(popupPage, '*');
             expect(results).toHaveLength(0);
         },
     );
