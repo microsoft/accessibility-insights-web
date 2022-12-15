@@ -4,13 +4,9 @@ import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data
 import { PopupView } from '../components/popup-view';
 
 export class PopupViewControllerHandler {
-    public openLaunchPad(component: PopupView): void {
-        this.triggerRerender(component, LaunchPanelType.LaunchPad);
-    }
+    public openLaunchPad(component: PopupView): void {}
 
-    public openAdhocToolsPanel(component: PopupView): void {
-        this.triggerRerender(component, LaunchPanelType.AdhocToolsPanel);
-    }
+    public openAdhocToolsPanel(component: PopupView): void {}
 
     public triggerRerender(component: PopupView, panelType: LaunchPanelType): void {}
 }
