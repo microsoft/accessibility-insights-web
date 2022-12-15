@@ -206,27 +206,33 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
-        const fixUrl = (url: string) => {
-            if (url.indexOf('://') >= 0) {
-                return url;
-            } else {
-                const { browserAdapter } = this.props.deps;
-                return browserAdapter.getUrl(url);
-            }
-        };
+    private renderRuleLink(rule: DecoratedAxeNodeResult): JSX.Element {
+        const url = rule.helpUrl;
+        if (url == null) {
+            return <>rule.ruleId</>;
+        }
 
+        let sanitizedUrl = url;
+        if (url.indexOf('://') < 0) {
+            const { browserAdapter } = this.props.deps;
+            sanitizedUrl = browserAdapter.getUrl(url);
+        }
+
+        return <NewTabLink href={sanitizedUrl}>{rule.ruleId}</NewTabLink>;
+    }
+
+    private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
         const ruleNameID = 'rule-name';
 
         return (
             <section className="insights-dialog-rule-name" aria-labelledby={ruleNameID}>
                 {this.renderSectionTitle('Rule name', ruleNameID)}
-                <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
+                {this.renderRuleLink(rule)}
             </section>
         );
     }
 
-    private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
+    private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element | null {
         if (isEmpty(ruleGuidanceLinks)) {
             return null;
         }
@@ -257,18 +263,22 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderFixInstructions(ruleResult: DecoratedAxeNodeResult): JSX.Element {
+        const allChecks = ruleResult.all ?? [];
+        const noneChecks = ruleResult.none ?? [];
+        const anyChecks = ruleResult.any ?? [];
+
         return (
             <div className="insights-dialog-fix-instruction-container">
                 <FixInstructionPanel
                     deps={this.props.deps}
                     checkType={CheckType.All}
-                    checks={ruleResult.all.concat(ruleResult.none)}
+                    checks={allChecks.concat(noneChecks)}
                     renderTitleElement={this.renderSectionTitle}
                 />
                 <FixInstructionPanel
                     deps={this.props.deps}
                     checkType={CheckType.Any}
-                    checks={ruleResult.any}
+                    checks={anyChecks}
                     renderTitleElement={this.renderSectionTitle}
                 />
             </div>
@@ -279,7 +289,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <div className="insights-dialog-content">
                 {this.renderRuleName(rule)}
-                {this.renderSuccessCriteria(rule.guidanceLinks)}
+                {this.renderSuccessCriteria(rule.guidanceLinks ?? [])}
                 {this.renderPathSelector()}
                 {this.renderCommandBar()}
                 {this.renderFixInstructions(rule)}

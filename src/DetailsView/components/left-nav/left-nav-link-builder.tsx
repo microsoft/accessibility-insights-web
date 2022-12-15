@@ -5,9 +5,9 @@ import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import {
+    AssessmentLeftNavLink,
     onTestGettingStartedClick,
     onTestRequirementClick,
-    AssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -37,7 +37,7 @@ export type OverviewLinkBuilderDeps = {
 };
 
 export type AssessmentLinkBuilderDeps = {
-    navLinkHandler: NavLinkHandler;
+    getNavLinkHandler: () => NavLinkHandler;
     getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
     outcomeStatsFromManualTestStatus: (
@@ -129,7 +129,8 @@ export class LeftNavLinkBuilder {
     ): TestRequirementLeftNavLink[] {
         let index = startingIndex;
         const testLinks = [];
-        const { navLinkHandler, mediumPassRequirementKeys } = deps;
+        const { getNavLinkHandler, mediumPassRequirementKeys } = deps;
+        const navLinkHandler = getNavLinkHandler();
         mediumPassRequirementKeys.forEach(requirementKey => {
             const assessment = assessmentsProvider.forRequirementKey(requirementKey);
             const stepStatus = assessmentsData[assessment.key];
@@ -196,10 +197,11 @@ export class LeftNavLinkBuilder {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,
             outcomeStatsFromManualTestStatus,
-            navLinkHandler,
+            getNavLinkHandler,
             navLinkRenderer,
         } = deps;
 
+        const navLinkHandler = getNavLinkHandler();
         const stepStatus = assessmentsData[assessment.key];
         const stats = outcomeStatsFromManualTestStatus(stepStatus);
         const status = getStatusForTest(stats);

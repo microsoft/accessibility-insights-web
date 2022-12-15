@@ -64,7 +64,7 @@ export class MainWindowContext {
         toolData: ToolData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
     ): void {
-        window.mainWindowContext = new MainWindowContext(
+        window['mainWindowContext'] = new MainWindowContext(
             devToolStore,
             userConfigStore,
             devToolActionMessageCreator,
@@ -77,9 +77,9 @@ export class MainWindowContext {
     }
 
     public static fromWindow(windowObj: Window): MainWindowContext {
-        if (windowObj.mainWindowContext == null) {
+        if (windowObj['mainWindowContext'] == null) {
             throw new Error('No window.mainWindowContext found');
         }
-        return windowObj.mainWindowContext;
+        return windowObj['mainWindowContext'];
     }
 }

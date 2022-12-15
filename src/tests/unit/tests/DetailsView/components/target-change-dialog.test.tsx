@@ -43,7 +43,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         const targetChangeProps: TargetChangeDialogProps = {
             deps: {
                 urlParser: urlParserMock.object,
-                assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 detailsViewId: '',
             },
@@ -84,7 +84,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         deps = {
             urlParser: urlParserMock.object,
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            assessmentActionMessageCreator: assessmentActionMessageCreatorMock.object,
+            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
             detailsViewId: 'detailsViewId',
         };
     });

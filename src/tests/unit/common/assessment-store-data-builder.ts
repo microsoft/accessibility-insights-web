@@ -3,6 +3,7 @@
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { StoreNames } from 'common/stores/store-names';
@@ -35,6 +36,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
             initialAssessmentStoreDataGenerator || this.getPreparedMock(),
             failTestOnErrorLogger,
             StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         ).getDefaultState();
     }
 

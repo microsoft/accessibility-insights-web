@@ -12,8 +12,8 @@ import { isEqual } from 'lodash';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentViewUpdateHandlerDeps {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
-    assessmentsProvider: AssessmentsProvider;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
+    getProvider: () => AssessmentsProvider;
 }
 
 export interface AssessmentViewUpdateHandlerProps {
@@ -68,12 +68,9 @@ export class AssessmentViewUpdateHandler {
             props.selectedRequirementIsEnabled === false ||
             (isStepNotScanned && assessmentDataUpdated)
         ) {
-            props.deps.assessmentActionMessageCreator.enableVisualHelper(
-                test,
-                step,
-                isStepNotScanned,
-                sendTelemetry,
-            );
+            props.deps
+                .getAssessmentActionMessageCreator()
+                .enableVisualHelper(test, step, isStepNotScanned, sendTelemetry);
         }
     }
 
@@ -100,11 +97,11 @@ export class AssessmentViewUpdateHandler {
         test: VisualizationType,
         step: string,
     ): boolean {
-        return props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
+        return props.deps.getProvider().getStep(test, step).doNotScanByDefault === true;
     }
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {
         const test = props.assessmentNavState.selectedTestType;
-        props.deps.assessmentActionMessageCreator.disableVisualHelpersForTest(test);
+        props.deps.getAssessmentActionMessageCreator().disableVisualHelpersForTest(test);
     }
 }

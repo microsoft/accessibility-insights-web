@@ -22,7 +22,7 @@ describe('NextRequirementButton', () => {
         eventStub = {} as React.MouseEvent<HTMLElement>;
         props = {
             deps: {
-                assessmentActionMessageCreator: messageCreatorMock.object,
+                getAssessmentActionMessageCreator: () => messageCreatorMock.object,
             } as NextRequirementButtonDeps,
             nextRequirement: {
                 key: 'some requirement key',

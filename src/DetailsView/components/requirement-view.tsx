@@ -12,7 +12,6 @@ import {
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Tab } from 'common/types/store-data/itab';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerDeps,
@@ -30,9 +29,8 @@ import * as React from 'react';
 import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 } & RequirementViewTitleDeps &
     AssessmentViewUpdateHandlerDeps;
@@ -81,13 +79,15 @@ export class RequirementView extends React.Component<RequirementViewProps> {
 
     public render(): JSX.Element {
         const { deps } = this.props;
-        const assessment: Readonly<Assessment> = deps.assessmentsProvider.forType(
-            this.props.assessmentNavState.selectedTestType,
-        );
-        const requirement: Readonly<Requirement> = deps.assessmentsProvider.getStep(
-            this.props.assessmentNavState.selectedTestType,
-            this.props.assessmentNavState.selectedTestSubview,
-        );
+        const assessment: Readonly<Assessment> = deps
+            .getProvider()
+            .forType(this.props.assessmentNavState.selectedTestType);
+        const requirement: Readonly<Requirement> = deps
+            .getProvider()
+            .getStep(
+                this.props.assessmentNavState.selectedTestType,
+                this.props.assessmentNavState.selectedTestSubview,
+            );
         const requirementIndex = assessment.requirements.findIndex(r => r.key === requirement.key);
         const nextRequirement = assessment.requirements[requirementIndex + 1] ?? null;
 
@@ -131,7 +131,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                             assessmentInstanceTableHandler={
                                 this.props.assessmentInstanceTableHandler
                             }
-                            assessmentsProvider={deps.assessmentsProvider}
+                            assessmentsProvider={deps.getProvider()}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             pathSnippetStoreData={this.props.pathSnippetStoreData}
                             scanningInProgress={this.props.scanningInProgress}

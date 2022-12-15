@@ -66,8 +66,10 @@ describe(AssessmentFunctionalitySwitcher, () => {
             expect(() => testSubject.getProvider()).toThrowError(NO_STORE_DATA_ERROR);
         });
 
-        test('getActionMessageCreator', () => {
-            expect(() => testSubject.getActionMessageCreator()).toThrowError(NO_STORE_DATA_ERROR);
+        test('getAssessmentActionMessageCreator', () => {
+            expect(() => testSubject.getAssessmentActionMessageCreator()).toThrowError(
+                NO_STORE_DATA_ERROR,
+            );
         });
 
         test('getNavLinkHandler', () => {
@@ -100,8 +102,8 @@ describe(AssessmentFunctionalitySwitcher, () => {
             expect(testSubject.getProvider()).toEqual(assessmentObjectsStub.provider);
         });
 
-        test('getActionMessageCreator', () => {
-            expect(testSubject.getActionMessageCreator()).toEqual(
+        test('getAssessmentActionMessageCreator', () => {
+            expect(testSubject.getAssessmentActionMessageCreator()).toEqual(
                 assessmentObjectsStub.actionMessageCreator,
             );
         });

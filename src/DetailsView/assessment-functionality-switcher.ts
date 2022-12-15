@@ -37,7 +37,7 @@ export class AssessmentFunctionalitySwitcher {
         return this.getSharedObjects().provider;
     };
 
-    public getActionMessageCreator: () => AssessmentActionMessageCreator = () => {
+    public getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator = () => {
         return this.getSharedObjects().actionMessageCreator;
     };
 

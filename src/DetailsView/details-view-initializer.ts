@@ -153,8 +153,8 @@ import { IssuesTableHandler } from './components/issues-table-handler';
 import { getStatusForTest } from './components/left-nav/get-status-for-test';
 import { LeftNavLinkBuilder } from './components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from './components/left-nav/nav-link-handler';
-import { DetailsViewContainerDeps, DetailsViewContainerState } from './details-view-container';
-import { DetailsViewRenderer } from './details-view-renderer';
+import { DetailsViewContainerState } from './details-view-container';
+import { DetailsViewRenderer, DetailsViewRendererDeps } from './details-view-renderer';
 import { DocumentTitleUpdater } from './document-title-updater';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -237,6 +237,10 @@ if (tabId != null) {
                 StoreNames[StoreNames.AssessmentStore],
                 storeUpdateMessageHub,
             );
+            const quickAssessStore = new StoreProxy<AssessmentStoreData>(
+                StoreNames[StoreNames.QuickAssessStore],
+                storeUpdateMessageHub,
+            );
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(
                 StoreNames[StoreNames.FeatureFlagStore],
                 storeUpdateMessageHub,
@@ -272,6 +276,7 @@ if (tabId != null) {
                 needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
@@ -446,6 +451,7 @@ if (tabId != null) {
                 detailsViewStore,
                 visualizationStore,
                 assessmentStore,
+                quickAssessStore,
                 GetDetailsRightPanelConfiguration,
                 GetDetailsSwitcherNavConfiguration,
                 visualizationConfigurationFactory,
@@ -564,7 +570,7 @@ if (tabId != null) {
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
-            const deps: DetailsViewContainerDeps = {
+            const deps: DetailsViewRendererDeps = {
                 textContent,
                 fixInstructionProcessor,
                 recommendColor,
@@ -575,9 +581,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
-                assessmentActionMessageCreator,
                 tabStopRequirementActionMessageCreator,
-                assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
@@ -593,10 +597,6 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
-                navLinkHandler: new NavLinkHandler(
-                    detailsViewActionMessageCreator,
-                    assessmentActionMessageCreator,
-                ),
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
@@ -640,7 +640,6 @@ if (tabId != null) {
                 inspectActionMessageCreator,
                 clickHandlerFactory,
                 issuesTableHandler,
-                assessmentInstanceTableHandler,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 Assessments,
@@ -659,9 +658,10 @@ if (tabId != null) {
                 mediumPassRequirementKeys: MediumPassRequirementKeys,
                 getProvider: assessmentFunctionalitySwitcher.getProvider,
                 getAssessmentActionMessageCreator:
-                    assessmentFunctionalitySwitcher.getActionMessageCreator,
+                    assessmentFunctionalitySwitcher.getAssessmentActionMessageCreator,
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
-                getInstanceTableHandler: assessmentFunctionalitySwitcher.getInstanceTableHandler,
+                getAssessmentInstanceTableHandler:
+                    assessmentFunctionalitySwitcher.getInstanceTableHandler,
             };
 
             const renderer = new DetailsViewRenderer(

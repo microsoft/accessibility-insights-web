@@ -18,7 +18,7 @@ import styles from './start-over-menu-item.scss';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
 };
 
 export type StartOverFactoryProps = {
@@ -60,7 +60,7 @@ export function getStartOverComponentForAssessment(
     dropdownDirection: DropdownDirection,
 ): JSX.Element {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
-    const test = props.deps.assessmentsProvider.forType(selectedTest);
+    const test = props.deps.getProvider().forType(selectedTest);
     const startOverProps: StartOverProps = {
         testName: test.title,
         rightPanelConfiguration: props.rightPanelConfiguration,

@@ -21,6 +21,7 @@ import {
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { AssessmentDataRemover } from 'background/assessment-data-remover';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -125,6 +126,7 @@ describe('AssessmentStore', () => {
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
             StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         );
 
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
@@ -145,6 +147,7 @@ describe('AssessmentStore', () => {
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
             StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         );
 
         const actualState = testObject.getDefaultState();
@@ -241,6 +244,7 @@ describe('AssessmentStore', () => {
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
             StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         );
         const actualState = testObject.getDefaultState();
 
@@ -2249,6 +2253,7 @@ describe('AssessmentStore', () => {
                 initialAssessmentStoreDataGeneratorMock.object,
                 failTestOnErrorLogger,
                 StoreNames.AssessmentStore,
+                IndexedDBDataKeys.assessmentStore,
             );
         return new AssessmentStoreTester(
             AssessmentActions,

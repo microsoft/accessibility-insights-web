@@ -6,6 +6,8 @@ import {
     GetAssessmentSelectedDetailsViewProps,
     getFastPassSelectedDetailsView,
     GetFastPassSelectedDetailsViewProps,
+    getQuickAssessSelectedDetailsView,
+    GetQuickAssessSelectedDetailsViewProps,
 } from 'DetailsView/components/left-nav/get-selected-details-view';
 
 describe('getAssessmentSelectedDetailsView', () => {
@@ -33,5 +35,20 @@ describe('getFastPassSelectedDetailsView', () => {
         } as GetFastPassSelectedDetailsViewProps;
 
         expect(getFastPassSelectedDetailsView(props)).toEqual(expectedValue);
+    });
+});
+
+describe('getQuickAssessSelectedDetailsView', () => {
+    it('should return selected fast pass details view', () => {
+        const expectedValue = -1 as VisualizationType;
+        const props = {
+            quickAssessStoreData: {
+                assessmentNavState: {
+                    selectedTestType: expectedValue,
+                },
+            },
+        } as GetQuickAssessSelectedDetailsViewProps;
+
+        expect(getQuickAssessSelectedDetailsView(props)).toEqual(expectedValue);
     });
 });

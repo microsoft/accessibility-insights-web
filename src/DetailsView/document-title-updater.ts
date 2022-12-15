@@ -16,6 +16,7 @@ export class DocumentTitleUpdater {
         private readonly detailsViewStore: BaseStore<DetailsViewStoreData, Promise<void>>,
         private readonly visualizationStore: BaseStore<VisualizationStoreData, Promise<void>>,
         private readonly assessmentStore: BaseStore<AssessmentStoreData, Promise<void>>,
+        private readonly quickAssessStore: BaseStore<AssessmentStoreData, Promise<void>>,
         private readonly getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
         private readonly getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
         private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -27,6 +28,7 @@ export class DocumentTitleUpdater {
         this.detailsViewStore.addChangedListener(this.onStoreChange);
         this.visualizationStore.addChangedListener(this.onStoreChange);
         this.assessmentStore.addChangedListener(this.onStoreChange);
+        this.quickAssessStore.addChangedListener(this.onStoreChange);
     }
 
     private onStoreChange = async (): Promise<void> => {
@@ -42,6 +44,7 @@ export class DocumentTitleUpdater {
         }
 
         const assessmentStoreData = this.assessmentStore.getState();
+        const quickAssessStoreData = this.quickAssessStore.getState();
         const visualizationStoreData = this.visualizationStore.getState();
         const selectedDetailsViewPivot = visualizationStoreData.selectedDetailsViewPivot;
         const switcherNavConfiguration = this.getDetailsSwitcherNavConfiguration({
@@ -51,6 +54,7 @@ export class DocumentTitleUpdater {
         const selectedDetailsView = switcherNavConfiguration.getSelectedDetailsView({
             assessmentStoreData,
             visualizationStoreData,
+            quickAssessStoreData,
         });
 
         const panel = this.detailsViewStore.getState().detailsViewRightContentPanel;
@@ -70,6 +74,7 @@ export class DocumentTitleUpdater {
             this.detailsViewStore,
             this.visualizationStore,
             this.assessmentStore,
+            this.quickAssessStore,
         ].every(store => store.getState() != null);
     }
 }
