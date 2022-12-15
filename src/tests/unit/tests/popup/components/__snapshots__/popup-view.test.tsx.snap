@@ -1,59 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} featureFlagStoreData={{...}} />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad 1`] = `
-"<Fragment>
-  <div className="ms-Fabric launch-panel" id="new-launch-pad">
-    <LaunchPanelHeader deps={{...}} title="test title" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <LaunchPad deps={{...}} productName="test title" rowConfigs={[undefined]} version="2" />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
-"<Fragment>
-  <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2082374" onClick={[Function: onClickTutorialLink]}>
-    Watch 3-minute video introduction
-  </NewTabLink>
-   
-</Fragment>"
-`;
-
-exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} featureFlagStoreData={{...}} />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
-exports[`PopupView render spinner 1`] = `
-<StyledSpinnerBase
-  className="insights-spinner"
-  label="Loading..."
-  size={3}
-/>
-`;
-
-exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
+exports[`PopupView render end-of-life message 1`] = `
 <div
-  className="ms-Fabric unsupported-url-info-panel"
+  className="ms-Fabric end-of-life-panel"
 >
-  <Header
-    title="test title"
-  />
   <div
     className="main-section"
   >
@@ -63,15 +13,111 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
       <div
         className="launch-panel-general-container"
       >
-        <React.Fragment>
-          <span>
-            Accessibility Insights for Web can't run on this URL.
-          </span>
-          <br />
-          <span>
-            You'll need to go to a different page.
-          </span>
-        </React.Fragment>
+        <p>
+          Thank you for helping the Accessibility Insights team test this preview extension. The "Insider (M3)" build has now been released into production. Please continue using Accessibility Insights for Web by switching to the Production version:
+        </p>
+        <ul>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni"
+              id="install-production-chrome-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Google Chrome
+            </StyledLinkBase>
+          </li>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://microsoftedge.microsoft.com/addons/detail/accessibility-insights-fo/ghbhpcookfemncgoinjblecnilppimih"
+              id="install-production-edge-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Microsoft Edge
+            </StyledLinkBase>
+          </li>
+        </ul>
+        <p>
+          If you have an assessment in progress which you would like to continue working on in the Production version,
+           
+          <StyledLinkBase
+            className="insights-link"
+            id="open-assessment-link"
+            onClick={[Function]}
+            role="link"
+          >
+            open the assessment
+          </StyledLinkBase>
+           and select the "Save Assessment" button to save your assessment in progress to a file, then use the "Load Assessment" button from the Production version to continue where you left off.
+        </p>
+        <p>
+          Once you have switched to the Production version, you can remove the "Accessibility Insights for Web - Insider (M3)" build from your browser's "Extensions" settings page.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
+<div
+  className="ms-Fabric end-of-life-panel"
+>
+  <div
+    className="main-section"
+  >
+    <div
+      className="popup-grid"
+    >
+      <div
+        className="launch-panel-general-container"
+      >
+        <p>
+          Thank you for helping the Accessibility Insights team test this preview extension. The "Insider (M3)" build has now been released into production. Please continue using Accessibility Insights for Web by switching to the Production version:
+        </p>
+        <ul>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni"
+              id="install-production-chrome-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Google Chrome
+            </StyledLinkBase>
+          </li>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://microsoftedge.microsoft.com/addons/detail/accessibility-insights-fo/ghbhpcookfemncgoinjblecnilppimih"
+              id="install-production-edge-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Microsoft Edge
+            </StyledLinkBase>
+          </li>
+        </ul>
+        <p>
+          If you have an assessment in progress which you would like to continue working on in the Production version,
+           
+          <StyledLinkBase
+            className="insights-link"
+            id="open-assessment-link"
+            onClick={[Function]}
+            role="link"
+          >
+            open the assessment
+          </StyledLinkBase>
+           and select the "Save Assessment" button to save your assessment in progress to a file, then use the "Load Assessment" button from the Production version to continue where you left off.
+        </p>
+        <p>
+          Once you have switched to the Production version, you can remove the "Accessibility Insights for Web - Insider (M3)" build from your browser's "Extensions" settings page.
+        </p>
       </div>
     </div>
   </div>
@@ -79,20 +125,63 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 `;
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
-<FileUrlUnsupportedMessagePanel
-  deps={
-    {
-      "browserAdapter": {
-        "getManifest": [Function],
-      },
-      "storesHub": [typemoq mock object],
-    }
-  }
-  header={
-    <Header
-      title="test title"
-    />
-  }
-  title="test title"
-/>
+<div
+  className="ms-Fabric end-of-life-panel"
+>
+  <div
+    className="main-section"
+  >
+    <div
+      className="popup-grid"
+    >
+      <div
+        className="launch-panel-general-container"
+      >
+        <p>
+          Thank you for helping the Accessibility Insights team test this preview extension. The "Insider (M3)" build has now been released into production. Please continue using Accessibility Insights for Web by switching to the Production version:
+        </p>
+        <ul>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni"
+              id="install-production-chrome-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Google Chrome
+            </StyledLinkBase>
+          </li>
+          <li>
+            <StyledLinkBase
+              className="insights-link"
+              href="https://microsoftedge.microsoft.com/addons/detail/accessibility-insights-fo/ghbhpcookfemncgoinjblecnilppimih"
+              id="install-production-edge-link"
+              role="link"
+              target="_blank"
+            >
+              Install for Microsoft Edge
+            </StyledLinkBase>
+          </li>
+        </ul>
+        <p>
+          If you have an assessment in progress which you would like to continue working on in the Production version,
+           
+          <StyledLinkBase
+            className="insights-link"
+            id="open-assessment-link"
+            onClick={[Function]}
+            role="link"
+          >
+            open the assessment
+          </StyledLinkBase>
+           and select the "Save Assessment" button to save your assessment in progress to a file, then use the "Load Assessment" button from the Production version to continue where you left off.
+        </p>
+        <p>
+          Once you have switched to the Production version, you can remove the "Accessibility Insights for Web - Insider (M3)" build from your browser's "Extensions" settings page.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 `;
