@@ -130,6 +130,7 @@
         "./src/background/assessment-data-remover.ts",
         "./src/background/browser-message-broadcaster-factory.ts",
         "./src/background/browser-permissions-tracker.ts",
+        "./src/background/create-initial-assessment-test-data.ts",
         "./src/background/details-view-controller.ts",
         "./src/background/dev-tools-monitor.ts",
         "./src/background/extension-details-view-controller.ts",
