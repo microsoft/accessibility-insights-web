@@ -558,6 +558,7 @@
         "src/assessments/color/test-steps/**/*",
         "src/assessments/common/**/*",
         "src/assessments/contrast/test-steps/**/*",
+        "src/assessments/custom-widgets/test-steps/**/*",
         "src/assessments/errors/test-steps/**/*",
         "src/assessments/images/test-steps/**/*",
         "src/assessments/keyboard-interaction/test-steps/**/*",

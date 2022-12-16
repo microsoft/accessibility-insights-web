@@ -46,7 +46,7 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
 function fromPropertyBagFunction<PB>(
     label: string,
     key: string,
-    accessor: (bag: PB) => string,
+    accessor: (bag: PB) => string | null,
 ): ReportInstanceField<HasPropertyBag<PB>> {
     function getValue(i: HasPropertyBag<PB>): ColumnValue {
         return i.propertyBag && accessor(i.propertyBag);
