@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
