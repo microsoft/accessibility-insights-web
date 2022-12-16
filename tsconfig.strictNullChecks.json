@@ -73,6 +73,7 @@
         "./src/assessments/assessment-builder.tsx",
         "./src/assessments/assessment-default-message-generator.tsx",
         "./src/assessments/assessments-provider.ts",
+        "./src/assessments/assessments-requirements-filter.ts",
         "./src/assessments/auto-pass-if-no-results.ts",
         "./src/assessments/automated-checks/automated-checks-visualization-enabled-toggle.tsx",
         "./src/assessments/automated-checks/build-test-steps-from-rules.tsx",
