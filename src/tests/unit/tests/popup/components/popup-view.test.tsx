@@ -1,40 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { NewTabLink } from 'common/components/new-tab-link';
-import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import {
-    LaunchPanelStoreData,
-    LaunchPanelType,
-} from 'common/types/store-data/launch-panel-store-data';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
-import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
-import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
-import {
-    PopupView,
-    PopupViewControllerDeps,
-    PopupViewControllerState,
-    PopupViewProps,
-} from 'popup/components/popup-view';
-import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
-import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
-import { LaunchPadRowConfigurationFactory } from 'popup/launch-pad-row-configuration-factory';
+import { PopupView, PopupViewProps } from 'popup/components/popup-view';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
-import { IsSameObject } from '../../../common/typemoq-helper';
 
 describe('PopupView', () => {
     const browserAdapterStub = {
         getManifest: getManifestStub,
     } as BrowserAdapter;
-
-    const launchPanelStateStoreState: LaunchPanelStoreData = {
-        launchPanelType: LaunchPanelType.LaunchPad,
-    };
-    const featureFlagStoreData = {};
 
     test('constructor', () => {
         const storesHubMock = createDefaultStoresHubMock(false);
