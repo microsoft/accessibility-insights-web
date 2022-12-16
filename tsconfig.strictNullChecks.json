@@ -70,6 +70,7 @@
         "./src/DetailsView/tab-stops-failed-counter.ts",
         "./src/DetailsView/tab-stops-requirement-instances-collapsible-content.tsx",
         "./src/DetailsView/tab-stops-requirement-result.ts",
+        "./src/assessments/assessment-builder.tsx",
         "./src/assessments/assessment-default-message-generator.tsx",
         "./src/assessments/auto-pass-if-no-results.ts",
         "./src/assessments/automated-checks/automated-checks-visualization-enabled-toggle.tsx",

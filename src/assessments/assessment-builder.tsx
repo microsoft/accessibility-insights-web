@@ -23,17 +23,17 @@ import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
-import { ReportInstanceField } from './types/report-instance-field';
+import { ReportInstanceField, ReportInstanceFields } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(requirement: Requirement): void {
         const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
 
-        const defaults = requirement.isManual
+        const defaults: ReportInstanceFields = requirement.isManual
             ? [comment, manualPath, manualSnippet]
             : [path, snippet];
-        const specified = requirement.reportInstanceFields || [];
+        const specified: ReportInstanceFields = requirement.reportInstanceFields ?? [];
 
         requirement.reportInstanceFields = [...defaults, ...specified];
     }
@@ -133,11 +133,14 @@ export class AssessmentBuilder {
             selectorMap: DictionaryStringTo<any>,
             requirement?: string,
         ) => {
+            if (requirement == null) {
+                return null;
+            }
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getNotificationMessage == null) {
+            if (requirementConfig?.getNotificationMessage == null) {
                 return null;
             }
             return requirementConfig.getNotificationMessage(selectorMap);
@@ -180,7 +183,7 @@ export class AssessmentBuilder {
                 requirements,
                 analyzerConfig.key,
             );
-            if (requirementConfig.getAnalyzer == null) {
+            if (requirementConfig?.getAnalyzer == null) {
                 return provider.createBaseAnalyzer(analyzerConfig);
             }
             return requirementConfig.getAnalyzer(provider, analyzerConfig);
@@ -195,7 +198,7 @@ export class AssessmentBuilder {
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getDrawer == null) {
+            if (requirementConfig?.getDrawer == null) {
                 return provider.createNullDrawer();
             }
             return requirementConfig.getDrawer(provider, featureFlagStoreData);
@@ -205,11 +208,14 @@ export class AssessmentBuilder {
             selectorMap: DictionaryStringTo<any>,
             requirement?: string,
         ) => {
+            if (requirement == null) {
+                return null;
+            }
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getNotificationMessage == null) {
+            if (requirementConfig?.getNotificationMessage == null) {
                 return null;
             }
             return requirementConfig.getNotificationMessage(selectorMap);
@@ -249,7 +255,7 @@ export class AssessmentBuilder {
     private static getRequirementConfig(
         requirements: Requirement[],
         requirementKey: string,
-    ): Requirement {
+    ): Requirement | undefined {
         return requirements.find(req => req.key === requirementKey);
     }
 
