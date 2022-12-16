@@ -39,7 +39,7 @@ export abstract class BaseDrawer implements Drawer {
         this.drawerUtils = drawerUtils;
     }
 
-    public abstract initialize(config: DrawerInitData<any>): void;
+    public abstract initialize(config: DrawerInitData): void;
 
     public drawLayout = async (): Promise<void> => {
         this.addListeners();

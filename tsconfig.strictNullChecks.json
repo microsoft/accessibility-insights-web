@@ -392,6 +392,7 @@
         "./src/injected/details-dialog-handler.ts",
         "./src/injected/dialog-renderer-impl.tsx",
         "./src/injected/dialog-renderer.ts",
+        "./src/injected/drawing-controller.ts",
         "./src/injected/element-based-view-model-creator.ts",
         "./src/injected/element-finder-by-path.ts",
         "./src/injected/element-finder-by-position.ts",

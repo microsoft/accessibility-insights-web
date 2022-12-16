@@ -42,20 +42,18 @@ export class SVGDrawer extends BaseDrawer {
         this.failureItems = [];
     }
 
-    public initialize(
-        drawerInfo: DrawerInitData<TabStopVisualizationInstance | TabbedElementData>,
-    ): void {
-        const visualizationInstances: TabStopVisualizationInstance[] = drawerInfo.data.map(
-            (element: TabStopVisualizationInstance) => {
+    public initialize(drawerInfo: DrawerInitData): void {
+        const originalVisualizationInstances = drawerInfo.data ?? [];
+        const annotatedVisualizationInstances: TabStopVisualizationInstance[] =
+            originalVisualizationInstances.map((element: TabStopVisualizationInstance) => {
                 return {
                     propertyBag: {
                         tabOrder: this.getTabOrder(element),
                     },
                     ...element,
                 };
-            },
-        );
-        this.updateTabbedElements(visualizationInstances);
+            });
+        this.updateTabbedElements(annotatedVisualizationInstances);
         this.tabOrderedItems = this.allVisualizedItems.filter(item => item.tabOrder != null);
         this.failureItems = this.allVisualizedItems.filter(item => item.isFailure);
     }
