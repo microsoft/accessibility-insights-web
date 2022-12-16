@@ -48,7 +48,7 @@ describe('LandmarkFormatterTests', () => {
         testStyling(config, role);
     });
 
-    test.each(['application', 'unrecognized-role'])(
+    test.each(['application', 'unrecognized-role', undefined])(
         'verify styling for non-landmark-role %s',
         role => {
             const axeData = getAxeData(role, true);
