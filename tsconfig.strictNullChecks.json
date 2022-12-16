@@ -10,6 +10,7 @@
         "./src/DetailsView/components/assessment-instance-selected-button.tsx",
         "./src/DetailsView/components/auto-detected-failures-dialog.tsx",
         "./src/DetailsView/components/base-left-nav.tsx",
+        "./src/DetailsView/components/base-visual-helper-toggle.tsx",
         "./src/DetailsView/components/change-assessment-dialog.tsx",
         "./src/DetailsView/components/choice-group-pass-fail.tsx",
         "./src/DetailsView/components/failure-instance-panel-details.tsx",
