@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
@@ -29,12 +30,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData = {
             data: [
                 {
                     target: ['body'],
-                },
-            ] as HtmlElementAxeResults[],
+                } as AssessmentVisualizationInstance,
+            ],
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
@@ -53,12 +54,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData = {
             data: [
                 {
                     target: ['body'],
-                },
-            ] as HtmlElementAxeResults[],
+                } as AssessmentVisualizationInstance,
+            ],
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
@@ -84,12 +85,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData = {
             data: [
                 {
                     target: ['body'],
-                },
-            ] as HtmlElementAxeResults[],
+                } as AssessmentVisualizationInstance,
+            ],
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 
@@ -115,12 +116,12 @@ describe('SingleTargetDrawer Tests', () => {
 
         const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
 
-        const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
+        const drawerInfo: DrawerInitData = {
             data: [
                 {
                     target: ['body'],
-                },
-            ] as HtmlElementAxeResults[],
+                } as AssessmentVisualizationInstance,
+            ],
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
 

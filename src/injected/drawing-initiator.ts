@@ -76,6 +76,7 @@ export class DrawingInitiator {
             isEnabled: false,
             featureFlagStoreData: featureFlagStoreData,
             configId: configId,
+            elementResults: null,
         };
 
         await this.drawingController.processRequest(visualizationMessage);
