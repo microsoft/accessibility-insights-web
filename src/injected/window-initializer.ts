@@ -92,13 +92,21 @@ export class WindowInitializer {
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
 
+        const extensionId = browserAdapter.getExtensionId();
+        if (extensionId == null) {
+            logger.error(
+                'Aborting Accessibility Insights initialization - extension instance is unloaded',
+            );
+            return;
+        }
+
         this.actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
             null,
             logger,
         );
 
-        const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(extensionId);
         const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.TargetPage,
             this.actionMessageDispatcher.sendTelemetry,

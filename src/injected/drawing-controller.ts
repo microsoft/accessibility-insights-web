@@ -19,8 +19,8 @@ export interface VisualizationWindowMessage {
     visualizationType?: VisualizationType;
     isEnabled: boolean;
     configId: string;
-    elementResults?: AssessmentVisualizationInstance[];
-    featureFlagStoreData?: FeatureFlagStoreData;
+    elementResults: AssessmentVisualizationInstance[] | null;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class DrawingController {
@@ -69,7 +69,7 @@ export class DrawingController {
     };
 
     private async enableVisualization(
-        elementResults: AssessmentVisualizationInstance[] | undefined,
+        elementResults: AssessmentVisualizationInstance[] | null,
         configId: string,
     ): Promise<void> {
         if (elementResults) {
@@ -96,7 +96,7 @@ export class DrawingController {
         const childFrameResults = elementResultsByFrame.filter(results => results.frame != null);
         await this.allFramesMessenger.sendCommandToMultipleFrames(
             DrawingController.triggerVisualizationCommand,
-            childFrameResults.map(results => results.frame),
+            childFrameResults.map(results => results.frame!),
             (_frame, index) =>
                 this.createEnableVisualizationPayload(
                     configId,
@@ -110,12 +110,12 @@ export class DrawingController {
 
         await this.allFramesMessenger.sendCommandToAllFrames(
             DrawingController.triggerVisualizationCommand,
-            this.createEnableVisualizationPayload(configId),
+            this.createEnableVisualizationPayload(configId, null),
         );
     }
 
     private enableVisualizationInCurrentFrame = async (
-        currentFrameResults: AssessmentVisualizationInstance[],
+        currentFrameResults: AssessmentVisualizationInstance[] | null,
         configId: string,
     ): Promise<void> => {
         const drawer = this.getDrawer(configId);
@@ -128,10 +128,10 @@ export class DrawingController {
 
     private createEnableVisualizationPayload(
         configId: string,
-        frameResults?: AssessmentVisualizationInstance[],
+        frameResults: AssessmentVisualizationInstance[] | null,
     ): VisualizationWindowMessage {
         return {
-            elementResults: frameResults ?? null,
+            elementResults: frameResults,
             isEnabled: true,
             featureFlagStoreData: this.featureFlagStoreData,
             configId: configId,
@@ -164,8 +164,8 @@ export class DrawingController {
     }
 
     private getInitialElements(
-        currentFrameResults: AssessmentVisualizationInstance[],
-    ): AssessmentVisualizationInstance[] {
+        currentFrameResults: AssessmentVisualizationInstance[] | null,
+    ): AssessmentVisualizationInstance[] | null {
         if (currentFrameResults == null) {
             return null;
         }

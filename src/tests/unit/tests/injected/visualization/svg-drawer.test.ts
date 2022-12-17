@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabbedElementData } from 'common/types/store-data/visualization-scan-result-data';
-import { TabStopVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
+import {
+    AssessmentVisualizationInstance,
+    TabStopVisualizationInstance,
+} from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
@@ -47,7 +50,9 @@ describe('SVGDrawer', () => {
         shadowUtilsMock.setup(x => x.getShadowContainer()).returns(() => shadowContainer);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
+    function createDrawerInfo(
+        elementResults: AssessmentVisualizationInstance[] | null,
+    ): DrawerInitData {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
@@ -176,7 +181,7 @@ describe('SVGDrawer', () => {
             null,
         );
 
-        testSubject.initialize(createDrawerInfo(tabbedElements));
+        testSubject.initialize(createDrawerInfo(tabbedElements as any));
         expect((testSubject as any).allVisualizedItems).toEqual(expectedAllVisualizedItems);
         drawerUtilsMock.verifyAll();
     });
