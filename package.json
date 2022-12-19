@@ -16,9 +16,11 @@
         "packages/*"
     ],
     "browserslist": [
-        "chrome 88",
-        "edge 88",
-        "firefox 87"
+        ">= 0.2%",
+        "last 2 versions",
+        "not dead",
+        "last 4 chrome major versions",
+        "last 4 edge major versions"
     ],
     "scripts": {
         "ada-cat": "grunt ada-cat",

@@ -846,7 +846,9 @@
     ><style>
       /* css-modules:src/common/components/heading-element-for-level */
       .heading-element-for-level--ifVX6 {
+        -webkit-margin-before: unset;
         margin-block-start: unset;
+        -webkit-margin-after: unset;
         margin-block-end: unset;
       }
 
@@ -1084,8 +1086,11 @@
       /* css-modules:src/common/components/cards/instance-details-group */
       ul.instance-details-list--YfkRy {
         list-style-type: none;
+        -webkit-padding-start: unset;
         padding-inline-start: unset;
+        -webkit-margin-before: unset;
         margin-block-start: unset;
+        -webkit-margin-after: unset;
         margin-block-end: unset;
       }
       ul.instance-details-list--YfkRy > li {
@@ -1254,6 +1259,7 @@
         width: 100%;
         display: flex;
         justify-content: end;
+        min-height: -webkit-fit-content;
         min-height: -moz-fit-content;
         min-height: fit-content;
         align-items: center;
@@ -1472,6 +1478,7 @@
         top: auto;
         height: 1px;
         overflow: hidden;
+        -webkit-clip-path: inset(100% 100% 100% 100%);
         clip-path: inset(100% 100% 100% 100%);
       }
       /*# sourceMappingURL=report.css.map */
