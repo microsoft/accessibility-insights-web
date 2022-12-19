@@ -358,7 +358,6 @@ describe('WebVisualizationConfigurationFactory', () => {
                 title: expectedDisplayableTitle,
                 adHoc: null,
             },
-            shouldShowExportReport: null,
             messageConfiguration: expectedMessageConfig,
         };
     }
