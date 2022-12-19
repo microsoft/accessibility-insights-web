@@ -37,9 +37,11 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => true,
     displayableData: {
         title: 'Tab stops',
-        enableMessage: 'Start pressing Tab to start visualizing tab stops.',
-        toggleLabel: 'Show tab stops',
-        linkToDetailsViewText: 'How to test tab stops',
+        adHoc: {
+            enableMessage: 'Start pressing Tab to start visualizing tab stops.',
+            toggleLabel: 'Show tab stops',
+            linkToDetailsViewText: 'How to test tab stops',
+        },
     },
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,

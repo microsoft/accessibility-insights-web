@@ -356,10 +356,7 @@ describe('WebVisualizationConfigurationFactory', () => {
             adhocToolsPanelDisplayOrder: null,
             displayableData: {
                 title: expectedDisplayableTitle,
-                noResultsFound: null,
-                enableMessage: null,
-                toggleLabel: null,
-                linkToDetailsViewText: null,
+                adHoc: null,
             },
             shouldShowExportReport: null,
             messageConfiguration: expectedMessageConfig,

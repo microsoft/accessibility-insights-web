@@ -279,7 +279,9 @@ exports[`AdhocTabStopsTestView render should return target page changed view as 
   displayableData={
     {
       "title": "test title",
-      "toggleLabel": "test toggle label",
+      "adHoc": {
+        "toggleLabel": "test toggle label",
+      }      
     }
   }
   toggleClickHandler={[Function]}

@@ -48,9 +48,11 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
                 .
             </>
         ),
-        enableMessage: 'Running needs review checks...',
-        toggleLabel: 'Show elements needing review',
-        linkToDetailsViewText: 'List view and filtering',
+        adHoc: {
+            enableMessage: 'Running needs review checks...',
+            toggleLabel: 'Show elements needing review',
+            linkToDetailsViewText: 'List view and filtering',
+        },
     },
     chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,

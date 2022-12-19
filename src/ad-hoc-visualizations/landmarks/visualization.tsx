@@ -36,9 +36,11 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => false,
     displayableData: {
         title: 'Landmarks',
-        enableMessage: 'Finding landmarks...',
-        toggleLabel: 'Show landmarks',
-        linkToDetailsViewText: 'How to test landmarks',
+        adHoc: {
+            enableMessage: 'Finding landmarks...',
+            toggleLabel: 'Show landmarks',
+            linkToDetailsViewText: 'How to test landmarks',
+        },
     },
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,

@@ -38,7 +38,9 @@ describe('AdhocStaticTestView', () => {
         );
         displayableDataStub = {
             title: 'test title',
-            toggleLabel: 'test toggle label',
+            adHoc: {
+                toggleLabel: 'test toggle label',
+            },
         } as DisplayableVisualizationTypeData;
         scanDataStub = {
             enabled: true,
