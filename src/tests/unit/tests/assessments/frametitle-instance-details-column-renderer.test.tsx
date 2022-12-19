@@ -20,7 +20,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].outlineColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
-                textContent={null}
+                textContent={''}
             />
         );
         expect(expected).toEqual(frameTitleInstanceDetailsColumnRenderer(item));

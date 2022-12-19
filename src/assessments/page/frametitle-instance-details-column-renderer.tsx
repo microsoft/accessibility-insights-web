@@ -10,7 +10,9 @@ export function frameTitleInstanceDetailsColumnRenderer(
     item: InstanceTableRow<FrameAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
-    const frameTitle = propertyBag ? propertyBag.frameTitle : null;
+    // Undefined frameTitles shouldn't occur; frames without titles are expected to be omitted from
+    // the instance list, since they're already covered by an automated check failure.
+    const frameTitle = propertyBag?.frameTitle ?? '';
     const frameType = propertyBag ? propertyBag.frameType : 'default';
     const frameConfig = FrameFormatter.frameStyles[frameType];
 

@@ -154,7 +154,7 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
             },
         );
 
-        expect(actual.generatedAssessmentInstancesMap).toEqual(null);
+        expect(actual.generatedAssessmentInstancesMap).toBeUndefined();
         expect(actual.manualTestStepResultMap).toEqual(expectedManual);
         expect(actual.testStepStatus).toEqual(expectedTestStepStatus);
     });
@@ -246,7 +246,7 @@ describe('createAutomatedChecksInitialAssessmentTestData', () => {
         const persistedGenerated = {
             id1: createGeneratedAssessmentInstance('id1', [knownRequirement1, unknownRequirement]),
         };
-        const expectedGenerated = null;
+        const expectedGenerated = undefined;
 
         const actual = createAutomatedChecksInitialAssessmentTestData(
             assessmentsProvider.forKey(knownTestIds[0]),
