@@ -18,9 +18,5 @@ module.exports = {
 
         // TO BE CONFIGURED: Enforce variable values
         // Example: 'declaration-property-value-allowed-list': { 'font-weight': ['/^\\$.*$/']},
-
-        // Requires investigation
-        'property-no-vendor-prefix': null,
-        'value-no-vendor-prefix': null,
     },
 };

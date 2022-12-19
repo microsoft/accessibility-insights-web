@@ -187,6 +187,7 @@
         "ajv": "^8.11.0",
         "android-device-list": "^1.2.8",
         "appium-adb": "^9.10.2",
+        "autoprefixer": "^10.4.13",
         "axe-core": "4.4.1",
         "classnames": "^2.3.2",
         "electron": "22.0.0",

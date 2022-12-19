@@ -14,7 +14,7 @@
     display: flex;
     align-items: center;
     -webkit-app-region: drag;
-    -webkit-user-select: none;
+    user-select: none;
 
     @include is-mac-os {
         height: $mac-title-height;
