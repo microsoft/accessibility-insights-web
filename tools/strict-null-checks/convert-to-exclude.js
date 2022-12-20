@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./config');
 const { getAllCheckedFiles, getAllEligibleFiles } = require('./eligible-file-finder');
-const { writeTsconfigSync } = require('./write-tsconfig');
+const { writeTsConfig } = require('./write-tsconfig');
 
 const repoRoot = config.repoRoot;
 const tsconfigPath = path.join(repoRoot, config.targetTsconfig);
@@ -19,7 +19,7 @@ async function main() {
     tsconfig.include = ['src/**/*.ts', 'src/**/*.tsx'];
     tsconfig.exclude = ['**/*.test.ts', '**/*.test.tsx', ...excludeList];
 
-    writeTsconfigSync(tsconfigPath, tsconfig);
+    await writeTsConfig(tsconfigPath, tsconfig);
 }
 
 async function buildExcludeList() {

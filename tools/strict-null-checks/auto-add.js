@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./config');
 const { getUncheckedLeafFiles } = require('./eligible-file-finder');
-const { writeTsconfigSync } = require('./write-tsconfig');
+const { writeTsConfig } = require('./write-tsconfig');
 
 const repoRoot = config.repoRoot;
 const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
@@ -58,7 +58,7 @@ async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
 
     const buildCompetePromise = waitForBuildComplete(child);
 
-    writeTsconfigSync(tsconfigPath, newConfig);
+    await writeTsConfig(tsconfigPath, newConfig);
 
     const errorCount = await buildCompetePromise;
     const success = errorCount === 0;
@@ -66,7 +66,7 @@ async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
         console.log(`Success`);
     } else {
         console.log(`Errors (x${errorCount}), skipped`);
-        writeTsconfigSync(tsconfigPath, originalConfig);
+        await writeTsConfig(tsconfigPath, originalConfig);
     }
 
     return success;
