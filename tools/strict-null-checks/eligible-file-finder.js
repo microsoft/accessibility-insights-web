@@ -57,8 +57,8 @@ async function getAllCheckedFiles() {
         }),
     );
     await Promise.all(
-        (tsconfigContent.exclude ?? []).map(async include => {
-            const excludePath = path.join(config.repoRoot, include);
+        (tsconfigContent.exclude ?? []).map(async exclude => {
+            const excludePath = path.join(config.repoRoot, exclude);
             const files = await globAsync(excludePath);
             for (const file of files) {
                 set.delete(file);
