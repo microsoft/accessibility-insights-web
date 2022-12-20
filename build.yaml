@@ -15,6 +15,7 @@ variables:
     windowsImage: 'windows-2019'
     macImage: 'macOS-11'
     linuxImage: 'ubuntu-20.04'
+    Codeql.Enabled: true
 
 jobs:
     - job: 'unit_tests_and_lints'
