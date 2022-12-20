@@ -11,7 +11,10 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    InjectingState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
@@ -26,7 +29,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: injectingRequested is true = inject occurs', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .build();
 
         validator
@@ -62,7 +65,7 @@ describe('InjectorControllerTest', () => {
 
     test("inject doesn't occur when inspect mode is unchanged", async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', false)
+            .with('injectingState', InjectingState.notInjecting)
             .build();
 
         // Inject once to setup internal state.
@@ -90,8 +93,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: already injecting => no inject', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', true)
-            .with('injectingStarted', true)
+            .with('injectingState', InjectingState.injectingStarted)
             .build();
 
         validator
@@ -106,7 +108,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: injectingRequested is false and inspect mode is off => no inject', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', false)
+            .with('injectingState', InjectingState.notInjecting)
             .build();
 
         validator
@@ -121,7 +123,7 @@ describe('InjectorControllerTest', () => {
 
     test("inject doesn't occur when injection has failed", async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectionFailed', true)
+            .with('injectingState', InjectingState.injectingFailed)
             .build();
 
         validator
@@ -136,10 +138,10 @@ describe('InjectorControllerTest', () => {
 
     test('inject sends injection failed message when injection errors', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .build();
 
-        const payload = { injectionFailed: false, failedAttempts: 1 } as InjectionFailedPayload;
+        const payload = { shouldRetry: true, failedAttempts: 1 } as InjectionFailedPayload;
 
         validator
             .setupTabStore({ id: tabId })
@@ -155,6 +157,8 @@ describe('InjectorControllerTest', () => {
         await validator.invokeRejectedPromise();
         validator.verifyAll();
     });
+
+    // Missing a case for the attempts > 3 transition that should set injectionFailed: true?
 });
 
 class InjectorControllerValidator {

@@ -3,7 +3,10 @@
 import { MessageBar, MessageBarType } from '@fluentui/react';
 import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { NamedFC } from 'common/react/named-fc';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    InjectingState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import * as React from 'react';
 
 export const InjectionFailedWarningContainerAutomationId = 'injection-failed-warning-container';
@@ -15,7 +18,7 @@ export type InjectionFailedWarningProps = {
 export const InjectionFailedWarning = NamedFC<InjectionFailedWarningProps>(
     'injection-failed-warning',
     props => {
-        if (!props.visualizationStoreData.injectionFailed) {
+        if (props.visualizationStoreData.injectingState !== InjectingState.injectingFailed) {
             return null;
         } else {
             return (

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InjectionFailedWarning render with injection failed true 1`] = `
+exports[`InjectionFailedWarning render with injection failed 1`] = `
 <StyledMessageBar
   messageBarType={5}
 >

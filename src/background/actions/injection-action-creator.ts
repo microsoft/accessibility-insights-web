@@ -36,7 +36,7 @@ export class InjectionActionCreator {
         await this.injectionActions.injectionCompleted.invoke(null);
 
     private injectionFailed = async (payload: InjectionFailedPayload): Promise<void> => {
-        if (payload.injectionFailed) {
+        if (!payload.shouldRetry) {
             this.notificationCreator.createNotification(DisplayableStrings.injectionFailed);
         }
         return await this.injectionActions.injectionFailed.invoke(payload);

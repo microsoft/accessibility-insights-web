@@ -5,7 +5,10 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 
 import { EnumHelper } from 'common/enum-helper';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    InjectingState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, Mock } from 'typemoq';
 
@@ -70,9 +73,9 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
 
     it('does not overwrite other persisted data', () => {
         const generatedState = generator.generateInitialState({
-            injectingStarted: true,
+            injectingState: InjectingState.injectingStarted,
         } as VisualizationStoreData);
 
-        expect(generatedState.injectingStarted).toEqual(true);
+        expect(generatedState.injectingState).toEqual(InjectingState.injectingStarted);
     });
 });

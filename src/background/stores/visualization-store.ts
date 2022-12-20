@@ -14,6 +14,7 @@ import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     AssessmentScanData,
+    InjectingState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -182,7 +183,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
             this.state.scanning = configuration.getIdentifier(step);
         }
 
-        this.state.injectingRequested = true;
+        this.state.injectingState = InjectingState.injectingRequested;
         configuration.enableTest(configuration.getStoreData(this.state.tests), payload);
         await this.emitChanged();
     }
@@ -235,27 +236,26 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     };
 
     private onInjectionCompleted = async (): Promise<void> => {
-        this.state.injectingRequested = false;
-        this.state.injectingStarted = false;
+        this.state.injectionAttempts = 0;
+        this.state.injectingState = InjectingState.notInjecting;
         await this.emitChanged();
     };
 
     private onInjectionStarted = async (): Promise<void> => {
-        if (this.state.injectingStarted) {
+        if (this.state.injectingState === InjectingState.injectingStarted) {
             return;
         }
 
-        this.state.injectingRequested = true;
-        this.state.injectingStarted = true;
+        this.state.injectingState = InjectingState.injectingStarted;
         await this.emitChanged();
     };
 
     private onInjectionFailed = async (payload: InjectionFailedPayload): Promise<void> => {
         this.state.injectionAttempts = payload.failedAttempts;
-        this.state.injectionFailed = payload.injectionFailed;
-        if (!this.state.injectionFailed) {
-            this.state.injectingRequested = true;
-            this.state.injectingStarted = false;
+        if (payload.shouldRetry) {
+            this.state.injectingState = InjectingState.injectingRequested;
+        } else {
+            this.state.injectingState = InjectingState.injectingFailed;
         }
         await this.emitChanged();
     };

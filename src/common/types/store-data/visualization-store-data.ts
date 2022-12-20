@@ -20,9 +20,7 @@ export interface VisualizationStoreData {
     selectedFastPassDetailsView: VisualizationType;
     selectedAdhocDetailsView: VisualizationType;
     selectedDetailsViewPivot: DetailsViewPivotType;
-    injectingRequested: boolean;
-    injectingStarted: boolean;
-    injectionFailed?: boolean;
+    injectingState: InjectingState;
     injectionAttempts?: number;
     focusedTarget: string[];
 }
@@ -37,4 +35,12 @@ export interface TestsEnabledState {
     mediumPass: {
         [key: string]: AssessmentScanData;
     };
+}
+
+// TODO backwards compat?
+export const enum InjectingState {
+    notInjecting = 'notInjecting',
+    injectingRequested = 'injectingRequested',
+    injectingStarted = 'injectingStarted',
+    injectingFailed = 'injectingFailed',
 }

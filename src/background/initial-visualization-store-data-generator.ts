@@ -5,6 +5,7 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { EnumHelper } from 'common/enum-helper';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
+    InjectingState,
     TestsEnabledState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
@@ -47,8 +48,7 @@ export class InitialVisualizationStoreDataGenerator {
             selectedFastPassDetailsView: VisualizationType.Issues,
             selectedAdhocDetailsView: VisualizationType.Issues,
             selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
-            injectingStarted: false,
-            injectingRequested: false,
+            injectingState: InjectingState.notInjecting,
             focusedTarget: null,
         };
         const initialState = !isEmpty(persistedData)

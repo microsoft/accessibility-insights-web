@@ -61,7 +61,7 @@ describe('InjectionActionCreator', () => {
     });
 
     it('handles InjectionFailed message', async () => {
-        const payload = { failedAttempts: 1, injectionFailed: false } as InjectionFailedPayload;
+        const payload = { failedAttempts: 1, shouldRetry: true } as InjectionFailedPayload;
         const injectionFailedMock = createAsyncActionMock<InjectionFailedPayload>(payload);
         const actionsMock = createActionsMock('injectionFailed', injectionFailedMock.object);
         setUpNotificationCreator();

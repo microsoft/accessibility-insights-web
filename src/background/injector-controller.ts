@@ -3,6 +3,7 @@
 import { InjectionFailedPayload } from 'background/actions/action-payloads';
 import { Logger } from 'common/logging/logger';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
+import { InjectingState } from 'common/types/store-data/visualization-store-data';
 import { Messages } from '../common/messages';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
@@ -37,12 +38,13 @@ export class InjectorController {
             inspectStoreState.inspectMode !== InspectMode.off;
 
         const isInjectingRequested =
-            inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
+            inspectStoreInjectingRequested ||
+            visualizationStoreState.injectingState === InjectingState.injectingRequested;
 
         if (
             isInjectingRequested &&
-            !visualizationStoreState.injectingStarted &&
-            !visualizationStoreState.injectionFailed
+            visualizationStoreState.injectingState !== InjectingState.injectingStarted &&
+            visualizationStoreState.injectingState !== InjectingState.injectingFailed
         ) {
             await this.interpreter.interpret({
                 messageType: Messages.Visualizations.State.InjectionStarted,
@@ -66,10 +68,10 @@ export class InjectorController {
     private handleInjectionError = async (err: any): Promise<void> => {
         this.logger.error(err);
         const attempts = (this.visualizationStore.getState().injectionAttempts ?? 0) + 1;
-        const payload = {
+        const payload: InjectionFailedPayload = {
             failedAttempts: attempts,
-            injectionFailed: attempts > 3,
-        } as InjectionFailedPayload;
+            shouldRetry: attempts <= 3,
+        };
         await this.interpreter.interpret({
             messageType: Messages.Visualizations.State.InjectionFailed,
             payload,

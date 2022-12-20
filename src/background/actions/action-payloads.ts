@@ -268,5 +268,5 @@ export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
 
 export interface InjectionFailedPayload extends BaseActionPayload {
     failedAttempts: number;
-    injectionFailed: boolean;
+    shouldRetry: boolean;
 }
