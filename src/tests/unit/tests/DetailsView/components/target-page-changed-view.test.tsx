@@ -23,7 +23,9 @@ describe('TargetPageChangedView', () => {
             const clickHandlerStub: () => void = () => {};
             const displayableData = {
                 title: 'test title',
-                toggleLabel: 'test toggle label',
+                adHoc: {
+                    toggleLabel: 'test toggle label',
+                },
                 subtitle,
             } as DisplayableVisualizationTypeData;
             const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;

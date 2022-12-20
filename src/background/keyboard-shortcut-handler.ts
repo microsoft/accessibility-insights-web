@@ -135,9 +135,9 @@ export class KeyboardShortcutHandler {
         if (!scanData.enabled) {
             const displayableVisualizationData = configuration.displayableData;
 
-            if (displayableVisualizationData) {
+            if (displayableVisualizationData?.adHoc?.enableMessage) {
                 this.notificationCreator.createNotification(
-                    displayableVisualizationData.enableMessage,
+                    displayableVisualizationData.adHoc.enableMessage,
                 );
             }
         }

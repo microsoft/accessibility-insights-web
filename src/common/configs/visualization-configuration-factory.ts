@@ -10,7 +10,7 @@ import { VisualizationConfiguration } from './visualization-configuration';
 // The interface is split to avoid circular dependencies (this interface is a commonly used react
 // prop/dep for components which WebVisualizationConfigurationFactory indirectly points to)
 export interface VisualizationConfigurationFactory {
-    getConfigurationByKey(key: string): VisualizationConfiguration;
+    getConfigurationByKey(key: string): VisualizationConfiguration | undefined;
     getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration;
     getChromeCommandToVisualizationTypeMap(): DictionaryStringTo<VisualizationType>;
     forEachConfig(callback: ForEachConfigCallback): void;
