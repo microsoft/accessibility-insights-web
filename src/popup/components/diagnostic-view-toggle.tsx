@@ -68,13 +68,21 @@ export class DiagnosticViewToggle extends React.Component<
             <div className={styles.diagnosticViewToggle}>
                 <div className={styles.title}>{displayableData.title}</div>
                 <div className={styles.toggle}>{this.renderToggleOrSpinner()}</div>
-                <div>{this.renderLink(displayableData.linkToDetailsViewText)}</div>
+                {this.renderLinkToDetailsView()}
                 {this.renderShortcut()}
             </div>
         );
     }
 
-    private renderShortcut(): JSX.Element {
+    private renderLinkToDetailsView(): JSX.Element | null {
+        const linkText = this.configuration.displayableData.adHoc?.linkToDetailsViewText;
+        if (linkText == null) {
+            return null;
+        }
+        return <div>{this.renderLink(linkText)}</div>;
+    }
+
+    private renderShortcut(): JSX.Element | null {
         if (!this.configuration.chromeCommand) {
             return null;
         }

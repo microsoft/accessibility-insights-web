@@ -172,7 +172,7 @@
         "source-map-loader": "^4.0.1",
         "stylelint": "^14.14.0",
         "stylelint-config-prettier-scss": "^0.0.1",
-        "stylelint-config-standard-scss": "^5.0.0",
+        "stylelint-config-standard-scss": "^6.1.0",
         "terser-webpack-plugin": "^5.3.6",
         "ts-loader": "^9.4.1",
         "typed-scss-modules": "^7.0.1",

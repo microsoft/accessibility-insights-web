@@ -244,7 +244,7 @@ describe('KeyboardShortcutHandler', () => {
             const configuration =
                 visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-            const enableMessage = configuration.displayableData.enableMessage;
+            const enableMessage = configuration.displayableData.adHoc.enableMessage;
             notificationCreatorMock
                 .setup(nc => nc.createNotification(enableMessage))
                 .verifiable(Times.once());
