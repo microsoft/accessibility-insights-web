@@ -65,6 +65,15 @@ const scssRule = (useHash = true) => ({
             },
         },
         'sass-loader',
+        {
+            loader: 'postcss-loader',
+            options: {
+                postcssOptions: {
+                    parser: 'postcss-scss',
+                    plugins: ['autoprefixer'],
+                },
+            },
+        },
     ],
 });
 
