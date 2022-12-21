@@ -254,6 +254,8 @@
         background: var(--neutral-0);
         display: table;
         table-layout: fixed;
+        width: -webkit-fill-available;
+        width: -moz-available;
         width: stretch;
         border-radius: inherit;
         border-collapse: collapse;
@@ -431,6 +433,7 @@
         top: auto;
         height: 1px;
         overflow: hidden;
+        -webkit-clip-path: inset(100% 100% 100% 100%);
         clip-path: inset(100% 100% 100% 100%);
       }
 
@@ -661,6 +664,7 @@
         top: auto;
         height: 1px;
         overflow: hidden;
+        -webkit-clip-path: inset(100% 100% 100% 100%);
         clip-path: inset(100% 100% 100% 100%);
       }
 
@@ -687,6 +691,8 @@
         width: 100%;
         display: flex;
         justify-content: flex-end;
+        min-height: -webkit-fit-content;
+        min-height: -moz-fit-content;
         min-height: fit-content;
         align-items: center;
         background-color: var(--neutral-0);
@@ -774,8 +780,11 @@
         width: 7px;
         height: 7px;
         content: "";
+        -webkit-transform-origin: 50% 50%;
         transform-origin: 50% 50%;
+        transition: -webkit-transform 0.1s linear 0s;
         transition: transform 0.1s linear 0s;
+        transition: transform 0.1s linear 0s, -webkit-transform 0.1s linear 0s;
       }
 
       .summary-section {
@@ -821,10 +830,12 @@
       }
       .collapsible-container
         .collapsible-control[aria-expanded="false"]::before {
+        -webkit-transform: rotate(-45deg);
         transform: rotate(-45deg);
       }
       .collapsible-container
         .collapsible-control[aria-expanded="true"]::before {
+        -webkit-transform: rotate(45deg);
         transform: rotate(45deg);
       }
       .collapsible-container .collapsible-content[aria-hidden="true"] {
@@ -833,8 +844,11 @@
 
       ul.instance-details-list {
         list-style-type: none;
+        -webkit-padding-start: unset;
         padding-inline-start: unset;
+        -webkit-margin-before: unset;
         margin-block-start: unset;
+        -webkit-margin-after: unset;
         margin-block-end: unset;
       }
       ul.instance-details-list li {

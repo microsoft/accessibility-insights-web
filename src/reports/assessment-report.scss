@@ -12,12 +12,7 @@
 
 * {
     font-family: $font-family;
-    -webkit-print-color-adjust: exact;
-
-    /* Chrome, Safari */
-    color-adjust: exact;
-
-    /* Firefox */
+    print-color-adjust: exact;
 }
 
 body {

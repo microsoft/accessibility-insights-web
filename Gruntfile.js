@@ -234,6 +234,15 @@ module.exports = function (grunt) {
                 tasks: ['drop:unified-dev'],
             },
         },
+        postcss: {
+            options: {
+                map: false,
+                processors: [require('autoprefixer')()],
+            },
+            dist: {
+                src: 'dist/**/*.css',
+            },
+        },
     });
 
     const targetNames = Object.keys(targets);
@@ -398,6 +407,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('@lodder/grunt-postcss');
 
     grunt.registerMultiTask('embed-styles', function () {
         const { cssPath } = this.data;
@@ -743,7 +753,13 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
+    grunt.registerTask('build-assets', [
+        'sass',
+        'postcss',
+        'copy:code',
+        'copy:styles',
+        'copy:images',
+    ]);
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', [
