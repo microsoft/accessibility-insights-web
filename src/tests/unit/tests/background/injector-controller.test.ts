@@ -141,7 +141,7 @@ describe('InjectorControllerTest', () => {
             .with('injectingState', InjectingState.injectingRequested)
             .build();
 
-        const payload = { shouldRetry: true, failedAttempts: 1 } as InjectionFailedPayload;
+        const payload: InjectionFailedPayload = { shouldRetry: true, failedAttempts: 1 };
 
         validator
             .setupTabStore({ id: tabId })
@@ -158,7 +158,28 @@ describe('InjectorControllerTest', () => {
         validator.verifyAll();
     });
 
-    // Missing a case for the attempts > 3 transition that should set injectionFailed: true?
+    test('inject sends injection failed message without retry when injection errors after 3 attempts', async () => {
+        const visualizationData = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.injectingRequested)
+            .with('injectionAttempts', 3)
+            .build();
+
+        const payload: InjectionFailedPayload = { shouldRetry: false, failedAttempts: 4 };
+
+        validator
+            .setupTabStore({ id: tabId })
+            .setupVizStoreGetState(visualizationData)
+            .setupInspectStore({ inspectMode: InspectMode.off })
+            .setupFailingInjectScriptsCall(tabId)
+            .setupLoggerError(undefined);
+
+        validator.buildInjectorController(false).initialize();
+        validator.setupVerifyInjectionStartedActionCalled(tabId, 1);
+        validator.setupVerifyInjectionFailedActionCalled(payload);
+        await validator.inspectInjectCallback();
+        await validator.invokeRejectedPromise();
+        validator.verifyAll();
+    });
 });
 
 class InjectorControllerValidator {

@@ -37,7 +37,6 @@ export interface TestsEnabledState {
     };
 }
 
-// TODO backwards compat?
 export const enum InjectingState {
     notInjecting = 'notInjecting',
     injectingRequested = 'injectingRequested',
