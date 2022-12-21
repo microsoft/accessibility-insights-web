@@ -185,6 +185,10 @@ module.exports = function (grunt) {
                 command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
                 cwd: 'packages/mock-adb',
             },
+            autoprefix: {
+                command: `npx postcss **/*.css --use autoprefixer -r --no-map`,
+                cwd: 'dist/',
+            },
         },
         sass: {
             options: {
@@ -232,15 +236,6 @@ module.exports = function (grunt) {
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
                 tasks: ['drop:unified-dev'],
-            },
-        },
-        postcss: {
-            options: {
-                map: false,
-                processors: [require('autoprefixer')()],
-            },
-            dist: {
-                src: 'dist/**/*.css',
             },
         },
     });
@@ -407,7 +402,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
-    grunt.loadNpmTasks('@lodder/grunt-postcss');
 
     grunt.registerMultiTask('embed-styles', function () {
         const { cssPath } = this.data;
@@ -755,7 +749,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build-assets', [
         'sass',
-        'postcss',
+        'exec:autoprefix',
         'copy:code',
         'copy:styles',
         'copy:images',
