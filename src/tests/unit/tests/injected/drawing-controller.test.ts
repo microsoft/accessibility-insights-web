@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
@@ -23,12 +22,13 @@ import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight
 class VisualizationWindowMessageStubBuilder {
     private isEnabled: boolean;
     private configId: string;
-    private elementResults?: AssessmentVisualizationInstance[];
+    private elementResults: AssessmentVisualizationInstance[] | null;
     private featureFlagStoreData?: FeatureFlagStoreData;
 
     public constructor(configId: string) {
         this.configId = configId;
         this.featureFlagStoreData = getDefaultFeatureFlagsWeb();
+        this.elementResults = null;
     }
 
     public setVisualizationEnabled(): VisualizationWindowMessageStubBuilder {
@@ -42,7 +42,7 @@ class VisualizationWindowMessageStubBuilder {
     }
 
     public setElementResults(
-        results: AssessmentVisualizationInstance[],
+        results: AssessmentVisualizationInstance[] | null,
     ): VisualizationWindowMessageStubBuilder {
         this.elementResults = results;
         return this;
@@ -158,7 +158,7 @@ describe('DrawingControllerTest', () => {
         const iframeResults = ['iframeContent'];
         const iframeElement = 'iframeElement';
         const targetFrame = iframeElement as any;
-        const visibleResultStub = {} as HtmlElementAxeResults;
+        const visibleResultStub = {} as AssessmentVisualizationInstance;
         const disabledResultStub = {
             isVisualizationEnabled: false,
         } as AssessmentVisualizationInstance;
@@ -207,7 +207,7 @@ describe('DrawingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        const expected: DrawerInitData<HtmlElementAxeResults> = {
+        const expected: DrawerInitData = {
             data: [visibleResultStub],
             featureFlagStoreData,
         };

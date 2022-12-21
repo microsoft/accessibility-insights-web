@@ -21,9 +21,9 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
         instanceMap?: DictionaryStringTo<any>,
     ) => void;
     displayableData: DisplayableVisualizationTypeData;
-    chromeCommand: string;
-    launchPanelDisplayOrder: number;
-    adhocToolsPanelDisplayOrder: number;
+    chromeCommand: string | null;
+    launchPanelDisplayOrder: number | null;
+    adhocToolsPanelDisplayOrder: number | null;
     analyzerProgressMessageType?: string;
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;

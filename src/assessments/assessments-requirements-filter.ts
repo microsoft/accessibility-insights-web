@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
+import { Assessment } from 'assessments/types/iassessment';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -11,25 +12,24 @@ export function assessmentsProviderForRequirements(
     assessmentProvider: AssessmentsProvider,
     requirementToVisualizationTypeMap: DictionaryStringTo<VisualizationType>,
 ): AssessmentsProvider {
-    const assessments = assessmentProvider
-        .all()
-        .map(assessment => {
-            let type: VisualizationType;
-            const requirements = assessment.requirements.filter(req => {
-                if (requirementToVisualizationTypeMap[req.key]) {
-                    type = requirementToVisualizationTypeMap[req.key];
-                    return true;
-                }
-                return false;
-            });
+    const assessments: Assessment[] = assessmentProvider.all().reduce((accumulator, assessment) => {
+        // This is a filterMap operation; it can be simplified if/when lodash merges
+        // https://github.com/lodash/lodash/issues/5300
+        const filteredRequirements = assessment.requirements.filter(
+            req => requirementToVisualizationTypeMap[req.key] != null,
+        );
+        if (filteredRequirements.length > 0) {
+            const lastRequirement = filteredRequirements[filteredRequirements.length - 1];
+            const visualizationType = requirementToVisualizationTypeMap[lastRequirement.key];
 
-            return {
+            accumulator.push({
                 ...assessment,
-                requirements,
-                visualizationType: type,
-            };
-        })
-        .filter(assessment => assessment.requirements.length > 0);
+                requirements: filteredRequirements,
+                visualizationType,
+            });
+        }
+        return accumulator;
+    }, [] as Assessment[]);
 
     const mediumPassAutomatedChecks = { ...AutomatedChecks };
     mediumPassAutomatedChecks.visualizationType = VisualizationType.AutomatedChecksMediumPass;

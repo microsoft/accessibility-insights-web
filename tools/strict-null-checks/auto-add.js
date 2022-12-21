@@ -5,10 +5,9 @@
 const child_process = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { collapseCompletedDirectories } = require('./collapse-completed-directories');
 const config = require('./config');
 const { getUncheckedLeafFiles } = require('./eligible-file-finder');
-const { writeTsconfigSync } = require('./write-tsconfig');
+const { writeTsConfig } = require('./write-tsconfig');
 
 const repoRoot = config.repoRoot;
 const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
@@ -44,9 +43,6 @@ async function main() {
 
     console.log('## Stopping tsc --watch process...');
     tscWatchProcess.kill();
-
-    console.log('## Collapsing fully null-checked directories into "include" patterns...');
-    collapseCompletedDirectories(tsconfigPath);
 }
 
 async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
@@ -54,17 +50,15 @@ async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
     console.log(`Trying to auto add '${relativeFilePath}'`);
 
     const originalConfig = JSON.parse(fs.readFileSync(tsconfigPath).toString());
-    originalConfig.files = Array.from(new Set(originalConfig.files.sort()));
+    originalConfig.exclude = Array.from(new Set(originalConfig.exclude.sort()));
 
     // Config on accept
     const newConfig = Object.assign({}, originalConfig);
-    newConfig.files = Array.from(
-        new Set(originalConfig.files.concat('./' + relativeFilePath).sort()),
-    );
+    newConfig.exclude = originalConfig.exclude.filter(entry => entry !== relativeFilePath);
 
     const buildCompetePromise = waitForBuildComplete(child);
 
-    writeTsconfigSync(tsconfigPath, newConfig);
+    await writeTsConfig(tsconfigPath, newConfig);
 
     const errorCount = await buildCompetePromise;
     const success = errorCount === 0;
@@ -72,7 +66,7 @@ async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
         console.log(`Success`);
     } else {
         console.log(`Errors (x${errorCount}), skipped`);
-        writeTsconfigSync(tsconfigPath, originalConfig);
+        await writeTsConfig(tsconfigPath, originalConfig);
     }
 
     return success;

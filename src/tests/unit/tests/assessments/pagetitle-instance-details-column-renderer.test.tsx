@@ -4,7 +4,7 @@
 import { pageTitleInstanceDetailsColumnRenderer } from 'assessments/page/pagetitle-instance-details-column-renderer';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import * as React from 'react';
-import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
+import { PageAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 
 describe('PageTitleInstanceDetailsColumnRendererTest', () => {
@@ -13,8 +13,8 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as InstanceTableRow<HeadingsAssessmentProperties>;
-        const expected = <AssessmentInstanceDetailsColumn textContent={null} />;
+        } as InstanceTableRow<PageAssessmentProperties>;
+        const expected = <AssessmentInstanceDetailsColumn textContent={''} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 
@@ -26,7 +26,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                     pageTitle: pageTitle,
                 },
             },
-        } as InstanceTableRow<any>;
+        } as InstanceTableRow<PageAssessmentProperties>;
         const expected = <AssessmentInstanceDetailsColumn textContent={pageTitle} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });

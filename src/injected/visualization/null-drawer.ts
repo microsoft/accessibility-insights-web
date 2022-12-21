@@ -3,7 +3,7 @@
 import { Drawer, DrawerInitData } from './drawer';
 
 export class NullDrawer implements Drawer {
-    public initialize(drawerData: DrawerInitData<any>): void {}
+    public initialize(drawerData: DrawerInitData): void {}
     public isOverlayEnabled: boolean = false;
     public drawLayout = async (): Promise<void> => {};
     public eraseLayout(): void {}
