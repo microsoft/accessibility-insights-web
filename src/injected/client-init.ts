@@ -16,16 +16,23 @@ async function initClient() {
     }
 
     const { Stylesheet } = await import('@fluentui/merge-styles');
+    const stylesheet = Stylesheet.getInstance();
+
+    // This *must* be set *before* any transitive import of any other fluentui component!
+    //
+    // This configuration modifies the prefix that fluentui will use for any styles that it
+    // injects dynamically into the target page's global styles. It's important that we use a
+    // unique prefix to avoid conflicts with target pages that use fluentui themselves. In some
+    // cases, just *importing* fluentui will transitively create conflicting styles, so this needs
+    // to be configured before that import happens (see #6212).
+    stylesheet.setConfig({
+        defaultPrefix: 'insights',
+    });
+
     const { createDefaultLogger } = await import('common/logging/default-logger');
     const { initializeFabricIcons } = await import('../common/fabric-icons');
     const { MainWindowInitializer } = await import('./main-window-initializer');
     const { WindowInitializer } = await import('./window-initializer');
-
-    const stylesheet = Stylesheet.getInstance();
-
-    stylesheet.setConfig({
-        defaultPrefix: 'insights',
-    });
 
     const logger = createDefaultLogger();
     initializeFabricIcons();
