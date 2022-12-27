@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
 import { BoundingRect } from 'injected/bounding-rect';
 import { ClientUtils } from 'injected/client-utils';
 import { DialogRenderer } from 'injected/dialog-renderer';
+import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { ShadowUtils } from 'injected/shadow-utils';
 import { DrawerInitData } from 'injected/visualization/drawer';
 import { DrawerUtils } from 'injected/visualization/drawer-utils';
@@ -1195,20 +1195,22 @@ describe('Drawer', () => {
         verifyOverlayStyle(overlays[2], element4Config);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
+    function createDrawerInfo<T>(
+        elementResults: AssessmentVisualizationInstance[] | null,
+    ): DrawerInitData {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
     }
 
-    function createElementResults(ids: string[]): HtmlElementAxeResults[] {
+    function createElementResults(ids: string[]): AssessmentVisualizationInstance[] {
         return ids.map(id => {
             return {
                 ruleResults: {},
                 target: [id],
                 targetIndex: 0,
-            };
+            } as AssessmentVisualizationInstance;
         });
     }
 

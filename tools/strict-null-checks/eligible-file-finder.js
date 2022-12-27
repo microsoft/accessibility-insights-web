@@ -45,14 +45,23 @@ async function getAllCheckedFiles() {
     const tsconfigContent = JSON.parse(fs.readFileSync(tsconfigPath).toString());
 
     const set = new Set(
-        tsconfigContent.files.map(f => path.join(config.repoRoot, f).replace(/\\/g, '/')),
+        (tsconfigContent.files ?? []).map(f => path.join(config.repoRoot, f).replace(/\\/g, '/')),
     );
     await Promise.all(
-        tsconfigContent.include.map(async include => {
+        (tsconfigContent.include ?? []).map(async include => {
             const includePath = path.join(config.repoRoot, include);
             const files = await globAsync(includePath);
             for (const file of files) {
                 set.add(file);
+            }
+        }),
+    );
+    await Promise.all(
+        (tsconfigContent.exclude ?? []).map(async exclude => {
+            const excludePath = path.join(config.repoRoot, exclude);
+            const files = await globAsync(excludePath);
+            for (const file of files) {
+                set.delete(file);
             }
         }),
     );

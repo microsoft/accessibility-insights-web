@@ -17,9 +17,9 @@ export class SingleTargetDrawer implements Drawer {
         this.formatter = formatter;
     }
 
-    public initialize(drawerInfo: DrawerInitData<HtmlElementAxeResults>): void {
+    public initialize(drawerInfo: DrawerInitData): void {
         this.eraseLayout();
-        const elementResults = drawerInfo.data;
+        const elementResults = drawerInfo.data ?? [];
         const myDocument = this.drawerUtils.getDocumentElement();
         this.target = this.getFirstElementTarget(myDocument, elementResults);
     }

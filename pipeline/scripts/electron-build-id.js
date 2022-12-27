@@ -6,4 +6,4 @@ This number identifies an internally-maintained Electron build
 used in our releases. Each Electron update in package.json requires
 a corresponding change here.
 */
-exports.electronBuildId = '14306133';
+exports.electronBuildId = '17374396';

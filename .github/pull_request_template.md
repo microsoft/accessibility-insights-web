@@ -15,7 +15,6 @@
 #### Pull request checklist
 <!-- If a checklist item is not applicable to this change, write "n/a" in the checkbox -->
 - [ ] Addresses an existing issue: #0000
-- [ ] Ran `yarn null:autoadd`
 - [ ] Ran `yarn fastpass`
 - [ ] Added/updated relevant unit test(s) (and ran `yarn test`)
 - [ ] Verified code coverage for the changes made. Check coverage report at: `<rootDir>/test-results/unit/coverage`

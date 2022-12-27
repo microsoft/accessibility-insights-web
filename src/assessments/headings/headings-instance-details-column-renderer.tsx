@@ -10,16 +10,13 @@ export function headingsAssessmentInstanceDetailsColumnRenderer(
     item: InstanceTableRow<HeadingsAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
-    const textContent = propertyBag ? propertyBag.headingText : null;
-    const headingLevel = propertyBag ? propertyBag.headingLevel : null;
-    const labelText = headingLevel ? `H${item.instance.propertyBag.headingLevel}` : 'N/A';
-    const headingStyle = headingLevel ? HeadingFormatter.headingStyles[headingLevel] : null;
-    const background = headingStyle ? headingStyle.outlineColor : '#767676';
-    let customClass: string = null;
+    const textContent = propertyBag?.headingText ?? '';
+    const headingLevel = propertyBag?.headingLevel ?? null;
 
-    if (headingLevel == null) {
-        customClass = 'not-applicable';
-    }
+    const labelText = headingLevel != null ? `H${headingLevel}` : 'N/A';
+    const headingStyle = headingLevel != null ? HeadingFormatter.headingStyles[headingLevel] : null;
+    const customClass = headingLevel != null ? undefined : 'not-applicable';
+    const background = headingStyle != null ? headingStyle.outlineColor : '#767676';
 
     return (
         <AssessmentInstanceDetailsColumn

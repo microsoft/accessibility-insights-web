@@ -56,8 +56,12 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
         fontColor: '#FFFFFF',
     };
 
-    public static getStyleForLandmarkRole(role: string): HeadingStyleConfiguration {
-        return LandmarkFormatter.landmarkStyles[role] || LandmarkFormatter.invalidLandmarkStyle;
+    public static getStyleForLandmarkRole(role?: string): HeadingStyleConfiguration {
+        if (role == null) {
+            return LandmarkFormatter.invalidLandmarkStyle;
+        }
+
+        return LandmarkFormatter.landmarkStyles[role] ?? LandmarkFormatter.invalidLandmarkStyle;
     }
 
     public getDialogRenderer(): DialogRenderer | null {

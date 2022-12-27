@@ -36,9 +36,11 @@ export const AccessibleNamesAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => false,
     displayableData: {
         title: 'Accessible names',
-        enableMessage: 'Calculating accessible names...',
-        toggleLabel: 'Show accessible names',
-        linkToDetailsViewText: 'How to test accessible names',
+        adHoc: {
+            enableMessage: 'Calculating accessible names...',
+            toggleLabel: 'Show accessible names',
+            linkToDetailsViewText: 'How to test accessible names',
+        },
     },
     chromeCommand: '07_toggle-accessibleNames',
     launchPanelDisplayOrder: 2,

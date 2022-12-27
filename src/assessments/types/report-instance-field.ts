@@ -46,7 +46,7 @@ function fromColumnValueBagField<PB extends ColumnValueBag>(
 function fromPropertyBagFunction<PB>(
     label: string,
     key: string,
-    accessor: (bag: PB) => string,
+    accessor: (bag: PB) => string | null,
 ): ReportInstanceField<HasPropertyBag<PB>> {
     function getValue(i: HasPropertyBag<PB>): ColumnValue {
         return i.propertyBag && accessor(i.propertyBag);
@@ -54,7 +54,8 @@ function fromPropertyBagFunction<PB>(
     return { key, label, getValue };
 }
 
-const common: ReportInstanceFieldMap = {
+type CommonReportInstanceFieldKey = 'comment' | 'snippet' | 'path' | 'manualSnippet' | 'manualPath';
+const common: { [key in CommonReportInstanceFieldKey]: ReportInstanceField } = {
     comment: { key: 'comment', label: 'Comment', getValue: i => i.description },
     snippet: { key: 'snippet', label: 'Snippet', getValue: i => i.html },
     path: { key: 'path', label: 'Path', getValue: i => i.target && i.target.join(', ') },

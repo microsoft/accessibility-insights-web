@@ -56,14 +56,14 @@ export const createAutomatedChecksInitialAssessmentTestData: InitialDataCreator 
 };
 
 function getDefaultInitialTestData(requirements: string[]): AssessmentData {
-    return getInitialTestDataUsingPersistedData(requirements, {}, {}, null);
+    return getInitialTestDataUsingPersistedData(requirements, {}, {}, undefined);
 }
 
 function getInitialTestDataUsingPersistedData(
     requirements: string[],
     persistedRequirementsStatus: ManualTestStatusData,
-    persistedManualMap: RequirementIdToResultMap,
-    persistedGeneratedMap: InstanceIdToInstanceDataMap,
+    persistedManualMap?: RequirementIdToResultMap,
+    persistedGeneratedMap?: InstanceIdToInstanceDataMap,
 ): AssessmentData {
     const testData: AssessmentData = getDefaultTestResult();
     testData.testStepStatus = constructRequirementStatus(requirements, persistedRequirementsStatus);
@@ -89,7 +89,7 @@ function allRequirementsAreScanned(requirements: string[], persistedTest: Assess
 function getDefaultTestResult(): AssessmentData {
     return {
         fullAxeResultsMap: null,
-        generatedAssessmentInstancesMap: null,
+        generatedAssessmentInstancesMap: undefined,
         manualTestStepResultMap: {},
         testStepStatus: {},
     };
@@ -116,7 +116,7 @@ function constructRequirementStatus(
 
 function constructManualRequirementResultMap(
     requirements: string[],
-    persistedMap: RequirementIdToResultMap,
+    persistedMap?: RequirementIdToResultMap,
 ): RequirementIdToResultMap {
     return constructMapFromRequirementTo<ManualTestStepResult>(
         requirements,
@@ -127,7 +127,7 @@ function constructManualRequirementResultMap(
 
 function constructMapFromRequirementTo<T>(
     requirements: string[],
-    persistedMap: DictionaryStringTo<T>,
+    persistedMap: DictionaryStringTo<T> | undefined,
     getDefaultData: (req: string) => T,
 ): DictionaryStringTo<T> {
     const map: DictionaryStringTo<T> = {};
@@ -141,11 +141,11 @@ function constructMapFromRequirementTo<T>(
 
 function constructGeneratedAssessmentInstancesMap(
     requirements: string[],
-    persistedMap: InstanceIdToInstanceDataMap,
-): InstanceIdToInstanceDataMap {
+    persistedMap?: InstanceIdToInstanceDataMap,
+): InstanceIdToInstanceDataMap | undefined {
     const map: InstanceIdToInstanceDataMap = {};
     if (isEmpty(persistedMap)) {
-        return null;
+        return undefined;
     }
     Object.keys(persistedMap).forEach(instanceId => {
         const instanceData: GeneratedAssessmentInstance = persistedMap[instanceId];
@@ -156,7 +156,7 @@ function constructGeneratedAssessmentInstancesMap(
         }
     });
     if (isEmpty(map)) {
-        return null;
+        return undefined;
     }
     return map;
 }

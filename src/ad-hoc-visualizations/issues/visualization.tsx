@@ -49,9 +49,11 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
                 .
             </>
         ),
-        enableMessage: 'Running automated checks...',
-        toggleLabel: 'Show failures',
-        linkToDetailsViewText: 'List view and filtering',
+        adHoc: {
+            enableMessage: 'Running automated checks...',
+            toggleLabel: 'Show failures',
+            linkToDetailsViewText: 'List view and filtering',
+        },
     },
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,

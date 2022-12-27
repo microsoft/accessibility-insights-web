@@ -33,7 +33,9 @@ describe('DetailsListIssuesView', () => {
         displayableDataStub = {
             title: 'test title',
             subtitle: <>test subtitle</>,
-            toggleLabel: 'test toggle label',
+            adHoc: {
+                toggleLabel: 'test toggle label',
+            },
         } as DisplayableVisualizationTypeData;
         scanDataStub = {
             enabled: true,

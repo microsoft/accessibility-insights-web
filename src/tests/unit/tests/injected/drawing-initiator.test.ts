@@ -51,6 +51,7 @@ describe('DrawingInitiatorTest', () => {
             isEnabled: false,
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
             configId: configId,
+            elementResults: null,
         };
 
         drawingControllerMock

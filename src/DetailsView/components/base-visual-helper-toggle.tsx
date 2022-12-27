@@ -64,7 +64,7 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         });
     }
 
-    private renderNoMatchingElementsMessage(isDisabled: boolean): JSX.Element {
+    private renderNoMatchingElementsMessage(isDisabled: boolean): JSX.Element | null {
         if (isDisabled) {
             return (
                 <span className="no-matching-elements">

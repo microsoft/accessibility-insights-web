@@ -36,8 +36,8 @@ export class HighlightBoxDrawer extends BaseDrawer {
         this.dialogRenderer = this.formatter?.getDialogRenderer();
     }
 
-    public initialize(config: DrawerInitData<HtmlElementAxeResults>): void {
-        this.elementResults = config.data;
+    public initialize(config: DrawerInitData): void {
+        this.elementResults = config.data ?? [];
         this.eraseLayout();
     }
 
