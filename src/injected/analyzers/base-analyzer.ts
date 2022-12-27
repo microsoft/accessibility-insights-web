@@ -5,7 +5,6 @@ import { Message } from 'common/message';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-
 import { Analyzer, AnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
@@ -25,7 +24,7 @@ export class BaseAnalyzer implements Analyzer {
 
     public analyze(): void {
         const results = this.getResults();
-        results.then(this.onResolve).catch(e => this.logger.error(e));
+        results.then(this.onResolve).catch(this.logger.error);
     }
 
     public teardown(): void {}
@@ -42,7 +41,7 @@ export class BaseAnalyzer implements Analyzer {
         analyzerResult: AxeAnalyzerResult,
         config: AnalyzerConfiguration,
     ): Message {
-        const messageType = config.analyzerMessageType;
+        const messageType = this.config.analyzerMessageType;
         const originalAxeResult = analyzerResult.originalResult!;
         const payload: ScanCompletedPayload<any> = {
             key: config.key,

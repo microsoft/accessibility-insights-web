@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
@@ -15,9 +16,10 @@ export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 export type RuleContentProps = {
     deps: RuleContentDeps;
     rule: CardRuleResult;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { HTMLElementUtils } from '../common/html-element-utils';
 
 export interface ElementFinderByPathMessage {
@@ -16,7 +16,7 @@ export class ElementFinderByPath {
 
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
     ) {}
 
     public initialize = (): void => {

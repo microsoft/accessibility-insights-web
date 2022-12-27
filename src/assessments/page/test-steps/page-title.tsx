@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from 'common/types/visualization-type';
+import { PageAssessmentProperties } from 'common/types/store-data/assessment-result-data';
 import { link } from 'content/link';
 import * as content from 'content/test/page/page-title';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { Term } from '../../markup';
@@ -62,13 +64,17 @@ export const PageTitle: Requirement = {
             onRender: pageTitleInstanceDetailsColumnRenderer,
         },
     ],
-    reportInstanceFields: [ReportInstanceField.fromPropertyBagField('Page title', 'pageTitle')],
-    getAnalyzer: provider =>
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagField<PageAssessmentProperties>(
+            'Page title',
+            'pageTitle',
+        ),
+    ],
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['page-title'],
-                key: PageTestStep.pageTitle,
-                testType: VisualizationType.PageAssessment,
+                ...analyzerConfig,
             }),
         ),
 };

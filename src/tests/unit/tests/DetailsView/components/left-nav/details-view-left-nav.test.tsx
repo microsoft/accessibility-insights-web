@@ -66,7 +66,7 @@ describe(DetailsViewLeftNav.displayName, () => {
         } as DetailsViewSwitcherNavConfiguration;
 
         const deps = {
-            assessmentsProvider: assessmentProviderStub,
+            getProvider: () => assessmentProviderStub,
             assessmentsProviderWithFeaturesEnabled:
                 assessmentsProviderWithFeaturesEnabledMock.object,
         } as DetailsViewLeftNavDeps;

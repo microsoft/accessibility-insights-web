@@ -46,7 +46,7 @@ describe(AssessmentLeftNav.displayName, () => {
         } as AssessmentLeftNavLink;
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
-            navLinkHandler: navLinkHandlerMock,
+            getNavLinkHandler: () => navLinkHandlerMock,
         } as AssessmentLeftNavDeps;
         props = {
             deps,

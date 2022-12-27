@@ -4,7 +4,7 @@ import { FocusIndicator } from './focus-indicator';
 
 export interface TabbedItem {
     selector?: string;
-    element: Element;
+    element: Element | null;
     focusIndicator?: FocusIndicator;
     tabOrder: number;
     shouldRedraw?: boolean;

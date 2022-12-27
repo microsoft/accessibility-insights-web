@@ -13,7 +13,7 @@ export class SingleTargetFormatter implements Formatter {
         return config;
     }
 
-    public getDialogRenderer(): DialogRenderer {
-        return;
+    public getDialogRenderer(): DialogRenderer | null {
+        return null;
     }
 }

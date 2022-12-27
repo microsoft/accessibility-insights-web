@@ -3,13 +3,12 @@
 import { getRTL } from '@fluentui/utilities';
 
 import { NavigatorUtils } from 'common/navigator-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { getCellAndHeaderElementsFromResult } from 'injected/visualization/get-cell-and-header-elements';
 import { TableHeadersAttributeFormatter } from 'injected/visualization/table-headers-formatter';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
-import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
@@ -19,7 +18,7 @@ import { CenterPositionCalculator } from './center-position-calculator';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { Drawer } from './drawer';
 import { DrawerUtils } from './drawer-utils';
-import { Formatter, SVGDrawerConfiguration } from './formatter';
+import { Formatter, IPartialSVGDrawerConfiguration } from './formatter';
 import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxDrawer } from './highlight-box-drawer';
@@ -35,8 +34,6 @@ import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 
-export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
-
 export class DrawerProvider {
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
@@ -46,7 +43,7 @@ export class DrawerProvider {
         private readonly drawerUtils: DrawerUtils,
         private readonly clientUtils: ClientUtils,
         private readonly dom: Document,
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
@@ -60,7 +57,7 @@ export class DrawerProvider {
         return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
-    public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {
+    public createSVGDrawer(config: IPartialSVGDrawerConfiguration | null = null): Drawer {
         const tabbableElementsHelper = new TabbableElementsHelper(this.htmlElementUtils);
         const centerPositionCalculator = new CenterPositionCalculator(
             this.drawerUtils,

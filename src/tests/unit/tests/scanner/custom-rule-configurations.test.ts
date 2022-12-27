@@ -11,7 +11,7 @@ describe('CustomRuleConfiguration', () => {
 
         it('is either disabled or has guidance link mappings', () => {
             const isDisabled = config.rule.enabled === false;
-            const guidanceLinks = mapAxeTagsToGuidanceLinks(config.rule.tags);
+            const guidanceLinks = mapAxeTagsToGuidanceLinks(id, config.rule.tags);
             const hasGuidanceLinks = guidanceLinks.length > 0;
             expect(isDisabled || hasGuidanceLinks).toBeTruthy();
         });

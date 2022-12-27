@@ -1,11 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewContent } from 'DetailsView/components/details-view-content';
-import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
-import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
+import {
+    DetailsViewContent,
+    DetailsViewContentDeps,
+    DetailsViewContentProps,
+} from 'DetailsView/components/details-view-content';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorDeps,
+} from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
-export type DetailsViewContentWithLocalStateProps = DetailsViewContainerProps;
+export type DetailsViewContentWithLocalStateDeps = DetailsViewContentDeps & NarrowModeDetectorDeps;
+export type DetailsViewContentWithLocalStateProps = {
+    deps: DetailsViewContentWithLocalStateDeps;
+} & Omit<DetailsViewContentProps, 'deps' | 'isSideNavOpen' | 'setSideNavOpen' | 'narrowModeStatus'>;
+
 export type DetailsViewContentState = {
     isSideNavOpen: boolean;
 };

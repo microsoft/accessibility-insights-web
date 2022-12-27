@@ -3,6 +3,7 @@
 import * as path from 'path';
 import { Result } from 'axe-core';
 import { Page } from 'playwright';
+import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
@@ -27,13 +28,15 @@ async function scanForAccessibilityIssues(
 
 async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
     await injectAxeIfUndefined(client);
+    const needsReviewRulesConfig = getNeedsReviewRulesConfig();
+
     const axeRunOptions = {
         runOnly: {
             type: 'tag',
             values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'],
         },
+        rules: needsReviewRulesConfig,
     };
-
     const axeResults = await client.evaluate(
         ({ selector, axeRunOptions }) => {
             const elementContext = selector === undefined ? document : { include: [selector] };

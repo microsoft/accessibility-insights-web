@@ -10,6 +10,6 @@ export function getLoadButtonForAssessment(props: LoadAssessmentButtonProps): JS
     return <LoadAssessmentButton {...props} />;
 }
 
-export function getLoadButtonForFastPass(props: LoadAssessmentButtonProps): JSX.Element | null {
+export function getNullLoadButton(props: LoadAssessmentButtonProps): JSX.Element | null {
     return null;
 }

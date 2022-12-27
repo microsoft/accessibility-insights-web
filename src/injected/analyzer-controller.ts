@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationType } from 'common/types/visualization-type';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../common/enum-helper';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { Analyzer } from './analyzers/analyzer';
@@ -22,7 +22,6 @@ export class AnalyzerController {
     private featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private analyzerStateUpdateHandler: AnalyzerStateUpdateHandler;
-    private assessmentsProvider: AssessmentsProvider;
 
     constructor(
         visualizationstore: BaseStore<VisualizationStoreData, Promise<void>>,
@@ -31,7 +30,6 @@ export class AnalyzerController {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         analyzerProvider: AnalyzerProvider,
         analyzerStateUpdateHandler: AnalyzerStateUpdateHandler,
-        assessmentsProvider: AssessmentsProvider,
         private readonly shadowInitializer: ShadowInitializer,
     ) {
         this.analyzers = {};
@@ -40,7 +38,6 @@ export class AnalyzerController {
         this.featureFlagStore = featureFlagStore;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
         this.analyzerProvider = analyzerProvider;
-        this.assessmentsProvider = assessmentsProvider;
         this.analyzerStateUpdateHandler = analyzerStateUpdateHandler;
         this.analyzerStateUpdateHandler.setupHandlers(this.startScan, this.teardown);
     }
@@ -76,27 +73,31 @@ export class AnalyzerController {
     };
 
     private initializeAnalyzers(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            const config = this.visualizationConfigurationFactory.getConfiguration(test);
-            if (this.assessmentsProvider.isValidType(test)) {
-                this.assessmentsProvider.forType(test).requirements.forEach(stepConfig => {
-                    this.analyzers[stepConfig.key] = config.getAnalyzer(
-                        this.analyzerProvider,
-                        stepConfig.key,
-                    );
-                });
-            } else {
-                const key = config.getIdentifier();
-                this.analyzers[key] = config.getAnalyzer(this.analyzerProvider);
-            }
-        });
+        this.visualizationConfigurationFactory.forEachConfig(
+            (
+                testConfig: VisualizationConfiguration,
+                type: VisualizationType,
+                requirementConfig: Requirement,
+            ) => {
+                const identifier = testConfig.getIdentifier(requirementConfig?.key);
+                const analyzerConfig = {
+                    key: requirementConfig?.key,
+                    testType: type,
+                    ...testConfig.messageConfiguration,
+                };
+                this.analyzers[identifier] = testConfig.getAnalyzer(
+                    this.analyzerProvider,
+                    analyzerConfig,
+                );
+            },
+        );
     }
 
-    private getAnalyzerByIdentifier(key: string): Analyzer {
-        if (!this.analyzers[key]) {
+    private getAnalyzerByIdentifier(identifier: string): Analyzer {
+        if (!this.analyzers[identifier]) {
             return null;
         }
-        return this.analyzers[key];
+        return this.analyzers[identifier];
     }
 
     private hasInitializedStores(): boolean {

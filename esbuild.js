@@ -6,6 +6,7 @@ const { argv } = require('process');
 const NodeResolve = require('@esbuild-plugins/node-resolve');
 const esbuild = require('esbuild');
 const yargs = require('yargs');
+const { CreateReplaceJsonValidatorPlugin } = require('./replace-plugin');
 const { CreateStylePlugin } = require('./style-plugin');
 
 const src = './src';
@@ -18,7 +19,6 @@ const electronEntryFiles = {
 const unifiedOutdir = path.join(__dirname, 'extension/unifiedBundle');
 
 const webExtensionEntryFiles = {
-    background: `${src}/background/background-init.ts`,
     injected: `${src}/injected/client-init.ts`,
     popup: `${src}/popup/popup-init.ts`,
     insights: `${src}/views/insights/initializer.ts`,
@@ -28,10 +28,7 @@ const webExtensionEntryFiles = {
     debugTools: `${src}/debug-tools/initializer/debug-tools-init.tsx`,
 };
 const devWebExtensionOutdir = path.join(__dirname, 'extension/devBundle');
-const devWebExtensionM3Outdir = path.join(__dirname, 'extension/devMv3Bundle');
-
 const prodWebExtensionOutDir = path.join(__dirname, 'extension/prodBundle');
-const prodWebExtensionM3OutDir = path.join(__dirname, 'extension/prodMv3Bundle');
 
 function isReactDevtoolsInstalled() {
     try {
@@ -99,24 +96,10 @@ switch (argsObj.env) {
         minify = true;
         sourcemap = false;
         outdir = prodWebExtensionOutDir;
-        break;
-
-    case 'prod-mv3':
-        minify = true;
-        sourcemap = false;
-        outdir = prodWebExtensionM3OutDir;
         define = {
             global: 'globalThis',
         };
-        break;
-
-    case 'dev-mv3':
-        outdir = devWebExtensionM3Outdir;
-        define = {
-            global: 'globalThis',
-        };
-        checkToAddReactDevTools(entryFiles);
-
+        plugins = plugins.concat(CreateReplaceJsonValidatorPlugin());
         break;
 
     case 'report':
@@ -141,6 +124,10 @@ switch (argsObj.env) {
 
     // dev web extension
     default:
+        define = {
+            global: 'globalThis',
+        };
+        plugins = plugins.concat(CreateReplaceJsonValidatorPlugin());
         checkToAddReactDevTools(entryFiles);
         break;
 }

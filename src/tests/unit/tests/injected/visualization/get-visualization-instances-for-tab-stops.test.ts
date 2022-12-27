@@ -134,7 +134,7 @@ describe('GetVisualizationInstancesForTabStops', () => {
             isFailure,
             isVisualizationEnabled: true,
             target,
-            ruleResults: null,
+            ruleResults: {},
             propertyBag,
             requirementResults,
             itemType,

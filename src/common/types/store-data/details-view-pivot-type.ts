@@ -3,4 +3,5 @@
 export enum DetailsViewPivotType {
     fastPass = 0,
     assessment = 2,
+    mediumPass = 3,
 }

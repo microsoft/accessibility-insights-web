@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IButton } from '@fluentui/react';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -15,7 +14,6 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import styles from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
 import {
     LoadAssessmentButtonDeps,
@@ -40,6 +38,7 @@ import { StartOverFactoryDeps } from 'DetailsView/components/start-over-componen
 import {
     dialogClosedState,
     StartOverDialog,
+    StartOverDialogDeps,
     StartOverDialogProps,
     StartOverDialogState,
     StartOverDialogType,
@@ -55,12 +54,12 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ExportDialogDeps &
-    SaveAssessmentButtonFactoryDeps &
+} & SaveAssessmentButtonFactoryDeps &
     LoadAssessmentButtonDeps &
     StartOverFactoryDeps &
     LoadAssessmentDialogDeps &
-    ReportExportDialogFactoryDeps;
+    ReportExportDialogFactoryDeps &
+    StartOverDialogDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -81,7 +80,6 @@ export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
-    assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     automatedChecksCardsViewData: CardsViewModel;

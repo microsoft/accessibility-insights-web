@@ -23,7 +23,7 @@ describe(FastPassLeftNav.displayName, () => {
             onFastPassTestClick: (e, link) => null,
         } as NavLinkHandler;
         deps = {
-            navLinkHandler: navLinkHandlerStub,
+            getNavLinkHandler: () => navLinkHandlerStub,
         } as FastPassLeftNavDeps;
         props = {
             deps,

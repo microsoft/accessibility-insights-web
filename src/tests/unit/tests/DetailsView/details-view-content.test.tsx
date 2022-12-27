@@ -33,11 +33,13 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from 'DetailsView/components/details-view-switcher-nav';
+import { GetSelectedAssessmentStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
 import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
 import {
     DetailsViewContainerDeps,
     DetailsViewContainerState,
 } from 'DetailsView/details-view-container';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -98,6 +100,8 @@ describe(DetailsViewContent.displayName, () => {
         toolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
+        const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
@@ -106,6 +110,7 @@ describe(DetailsViewContent.displayName, () => {
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
+            getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -119,10 +124,14 @@ describe(DetailsViewContent.displayName, () => {
                 (theProps: GetSelectedDetailsViewProps) => null,
                 MockBehavior.Strict,
             );
+            const getSelectedAssessmentStoreDataMock = Mock.ofInstance(
+                (() => null) as GetSelectedAssessmentStoreData,
+            );
             const rightContentPanelType = 'TestView';
             const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
             const switcherNavConfig = {
                 getSelectedDetailsView: getSelectedDetailsViewMock.object,
+                getSelectedAssessmentStoreData: getSelectedAssessmentStoreDataMock.object,
             } as DetailsViewSwitcherNavConfiguration;
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
@@ -198,11 +207,24 @@ describe(DetailsViewContent.displayName, () => {
                         It.isObjectWith({
                             assessmentStoreData: state.assessmentStoreData,
                             visualizationStoreData: state.visualizationStoreData,
-                            pathSnippetStoreData: state.pathSnippetStoreData,
+                            quickAssessStoreData: state.quickAssessStoreData,
                         }),
                     ),
                 )
                 .returns(() => viewType);
+
+            getSelectedAssessmentStoreDataMock
+                .setup(m =>
+                    m(
+                        It.isObjectWith({
+                            assessmentStoreData: state.assessmentStoreData,
+                            quickAssessStoreData: state.quickAssessStoreData,
+                        }),
+                    ),
+                )
+                .returns(() => {
+                    return state.assessmentStoreData;
+                });
 
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
             getCardSelectionViewDataMock
@@ -270,6 +292,7 @@ describe(DetailsViewContent.displayName, () => {
                         featureFlagStoreData: storeMocks.featureFlagStoreData,
                         detailsViewStoreData: storeMocks.detailsViewStoreData,
                         assessmentStoreData: storeMocks.assessmentStoreData,
+                        quickAssessStoreData: storeMocks.quickAssessStoreData,
                         pathSnippetStoreData: storeMocks.pathSnippetStoreData,
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
@@ -342,6 +365,8 @@ describe(DetailsViewContent.displayName, () => {
             needsReviewCardSelectionStoreData: storeMocks.needsReviewCardSelectionStoreData,
             permissionsStateStoreData: storeMocks.permissionsStateStoreData,
             tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
+            cardsViewStoreData: storeMocks.cardsViewStoreData,
+            quickAssessStoreData: storeMocks.quickAssessStoreData,
         };
     }
 });

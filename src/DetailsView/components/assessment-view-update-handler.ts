@@ -7,12 +7,13 @@ import {
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { isEqual } from 'lodash';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface AssessmentViewUpdateHandlerDeps {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProvider: AssessmentsProvider;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
+    getProvider: () => AssessmentsProvider;
 }
 
 export interface AssessmentViewUpdateHandlerProps {
@@ -41,15 +42,16 @@ export class AssessmentViewUpdateHandler {
     ): void {
         if (this.isStepSwitched(prevProps, currentProps)) {
             this.disableVisualHelpersForSelectedTest(prevProps);
-            this.enableSelectedStepVisualHelper(currentProps);
+            this.enableSelectedStepVisualHelper(currentProps, prevProps);
         } else {
             // Cases where visualization doesn't reappear(Navigate back, refresh). No telemetry sent.
-            this.enableSelectedStepVisualHelper(currentProps, false);
+            this.enableSelectedStepVisualHelper(currentProps, prevProps, false);
         }
     }
 
     private enableSelectedStepVisualHelper(
         props: AssessmentViewUpdateHandlerProps,
+        prevProps: AssessmentViewUpdateHandlerProps = undefined,
         sendTelemetry = true,
     ): void {
         const test = props.assessmentNavState.selectedTestType;
@@ -59,13 +61,16 @@ export class AssessmentViewUpdateHandler {
         }
 
         const isStepNotScanned = !props.assessmentData.testStepStatus[step].isStepScanned;
-        if (props.selectedRequirementIsEnabled === false || isStepNotScanned) {
-            props.deps.detailsViewActionMessageCreator.enableVisualHelper(
-                test,
-                step,
-                isStepNotScanned,
-                sendTelemetry,
-            );
+        const assessmentDataUpdated = prevProps
+            ? !isEqual(props.assessmentData, prevProps.assessmentData)
+            : true;
+        if (
+            props.selectedRequirementIsEnabled === false ||
+            (isStepNotScanned && assessmentDataUpdated)
+        ) {
+            props.deps
+                .getAssessmentActionMessageCreator()
+                .enableVisualHelper(test, step, isStepNotScanned, sendTelemetry);
         }
     }
 
@@ -92,11 +97,11 @@ export class AssessmentViewUpdateHandler {
         test: VisualizationType,
         step: string,
     ): boolean {
-        return props.deps.assessmentsProvider.getStep(test, step).doNotScanByDefault === true;
+        return props.deps.getProvider().getStep(test, step).doNotScanByDefault === true;
     }
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {
         const test = props.assessmentNavState.selectedTestType;
-        props.deps.detailsViewActionMessageCreator.disableVisualHelpersForTest(test);
+        props.deps.getAssessmentActionMessageCreator().disableVisualHelpersForTest(test);
     }
 }

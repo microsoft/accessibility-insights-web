@@ -27,22 +27,24 @@ describe('DetailsViewRightPanelTests', () => {
             validateTestView(testSubject);
         });
 
-        it('GetDetailsRightPanelConfiguration: return TestView object when assessment selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration({
-                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
-                detailsViewRightContentPanel: 'TestView',
+        [DetailsViewPivotType.assessment, DetailsViewPivotType.mediumPass].forEach(pivot => {
+            it(`GetDetailsRightPanelConfiguration: return TestView object when ${DetailsViewPivotType[pivot]} selected`, () => {
+                const testSubject = GetDetailsRightPanelConfiguration({
+                    selectedDetailsViewPivot: pivot,
+                    detailsViewRightContentPanel: 'TestView',
+                });
+
+                validateTestView(testSubject);
             });
 
-            validateTestView(testSubject);
-        });
+            it(`GetDetailsRightPanelConfiguration: return TestView object when ${DetailsViewPivotType[pivot]} selected`, () => {
+                const testSubject = GetDetailsRightPanelConfiguration({
+                    selectedDetailsViewPivot: pivot,
+                    detailsViewRightContentPanel: 'Overview',
+                });
 
-        it('GetDetailsRightPanelConfiguration: return TestView object when assessment selected', () => {
-            const testSubject = GetDetailsRightPanelConfiguration({
-                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
-                detailsViewRightContentPanel: 'Overview',
+                validateOverview(testSubject);
             });
-
-            validateOverview(testSubject);
         });
     });
 

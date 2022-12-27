@@ -102,7 +102,7 @@ describe('RequirementViewTest', () => {
         props = {
             deps: {
                 assessmentViewUpdateHandler: updateHandlerMock.object,
-                assessmentsProvider: assessmentsProviderMock.object,
+                getProvider: () => assessmentsProviderMock.object,
             } as RequirementViewDeps,
             assessmentNavState: assessmentNavState,
             isRequirementEnabled: true,

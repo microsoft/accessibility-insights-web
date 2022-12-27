@@ -3,6 +3,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AddTabStopInstanceArrayPayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
@@ -15,6 +16,7 @@ import {
 } from 'injected/tab-stop-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import {
     TabStopsAutomatedResultsTelemetryData,
     TelemetryEventSource,
@@ -102,6 +104,53 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             .returns(() => telemetry);
 
         testSubject.addTabStopInstance(requirementInstance);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('addTabStopInstanceArray', () => {
+        const requirementInstances: TabStopRequirementResult[] = [
+            {
+                requirementId: 'input-focus',
+                description: 'instance 1',
+            },
+            {
+                requirementId: 'tab-order',
+                description: 'instance 2',
+            },
+        ];
+        const expectedPayload: AddTabStopInstanceArrayPayload = {
+            results: [],
+        };
+
+        requirementInstances.forEach(instance => {
+            const telemetry = {
+                triggeredBy: TriggeredByNotApplicable,
+                source: TelemetryEventSource.DetailsView,
+                requirementId: instance.requirementId,
+            };
+
+            expectedPayload.results.push({
+                ...instance,
+                telemetry,
+            });
+
+            telemetryFactoryMock
+                .setup(tf => tf.forTabStopRequirement(instance.requirementId, sourceStub))
+                .returns(() => telemetry);
+        });
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.AddTabStopInstanceArray,
+            payload: expectedPayload,
+        };
+
+        testSubject.addTabStopInstanceArray(requirementInstances);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -278,5 +327,29 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
         );
 
         telemetryFactoryMock.verifyAll();
+    });
+
+    test('resetStatusForRequirement', () => {
+        const requirementId: TabStopRequirementId = 'tab-order';
+        const telemetry = {
+            source: sourceStub,
+            requirementId: requirementId,
+            triggeredBy: null,
+        };
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
+            payload: { requirementId, telemetry },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forTabStopRequirement(requirementId, sourceStub))
+            .returns(() => telemetry);
+
+        testSubject.resetStatusForRequirement(requirementId);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
     });
 });

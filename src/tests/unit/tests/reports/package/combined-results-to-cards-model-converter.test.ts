@@ -16,7 +16,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
         visualHelperEnabled: false,
         resultsHighlightStatus: {},
     };
-    let mapAxeTagsToGuidanceLinksMock: IMock<(axeTags?: string[]) => GuidanceLink[]>;
+    let mapAxeTagsToGuidanceLinksMock: IMock<(ruleId: string, axeTags?: string[]) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
     const helpUrlGetterStub = {
         getHelpUrl: (ruleId, defaultUrl) => {

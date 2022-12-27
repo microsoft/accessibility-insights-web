@@ -32,10 +32,3 @@
         }
     }
 }
-
-// Add hover state that's not yet in FluentUI to menu items:
-.kebab-menu button:hover {
-    @media screen and (forced-colors: active) {
-        color: highlight;
-    }
-}

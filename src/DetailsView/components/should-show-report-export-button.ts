@@ -17,6 +17,10 @@ export function shouldShowReportExportButtonForAssessment(): boolean {
     return true;
 }
 
+export function shouldShowReportExportButtonForMediumPass(): boolean {
+    return false;
+}
+
 export function shouldShowReportExportButtonForFastpass(
     props: ShouldShowReportExportButtonProps,
 ): boolean {

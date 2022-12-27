@@ -12,7 +12,7 @@ describe('TabStopRequirementOrchestrator', () => {
     let tabStopsHandlerMock: IMock<TabStopsHandler>;
     let focusTrapsHandlerMock: IMock<FocusTrapsHandler>;
     let getUniqueSelectorMock: IMock<(e: HTMLElement) => string>;
-    let reportResultsMock: IMock<(payload: AutomatedTabStopRequirementResult) => Promise<void>>;
+    let reportResultsMock: IMock<(payload: AutomatedTabStopRequirementResult[]) => Promise<void>>;
 
     let tabStopRequirementResultStub: AutomatedTabStopRequirementResult;
 
@@ -30,7 +30,7 @@ describe('TabStopRequirementOrchestrator', () => {
         focusTrapsHandlerMock = Mock.ofType<FocusTrapsHandler>();
         getUniqueSelectorMock = Mock.ofType<(e: HTMLElement) => string>();
         reportResultsMock =
-            Mock.ofType<(payload: AutomatedTabStopRequirementResult) => Promise<void>>();
+            Mock.ofType<(payload: AutomatedTabStopRequirementResult[]) => Promise<void>>();
         tabStopRequirementResultStub = {
             html: 'some html',
         } as AutomatedTabStopRequirementResult;
@@ -57,21 +57,48 @@ describe('TabStopRequirementOrchestrator', () => {
         await testSubject.start();
     });
 
+    test('start() does not report results when there are none', async () => {
+        tabStopsHandlerMock
+            .setup(t => t.getTabbableFocusOrderResults())
+            .returns(() => [])
+            .verifiable();
+        reportResultsMock.setup(m => m(It.isAny())).verifiable(Times.never());
+        testSubject.setResultCallback(reportResultsMock.object);
+
+        await testSubject.start();
+    });
+
     test('transformChildResultForParent', () => {
         const frameStub = {} as HTMLIFrameElement;
-        const selectorStub = 'some selector';
-        const anotherSelectorStub = 'some other selector';
-        const result = {
-            selector: [anotherSelectorStub],
-        } as AutomatedTabStopRequirementResult;
-        const expectedResult = {
-            selector: [selectorStub, anotherSelectorStub],
-        };
+        const frameSelectorStub = 'some selector';
+        const selectorStub1 = 'selector 1';
+        const selectorStub2 = 'selector 2';
 
-        getUniqueSelectorMock.setup(m => m(frameStub)).returns(() => selectorStub);
+        const results = [
+            {
+                selector: [selectorStub1],
+            },
+            {
+                selector: [selectorStub2],
+            },
+        ] as AutomatedTabStopRequirementResult[];
 
-        expect(testSubject.transformChildResultForParent(result, frameStub)).toEqual(
-            expectedResult,
+        const expectedResults = [
+            {
+                selector: [frameSelectorStub, selectorStub1],
+            },
+            {
+                selector: [frameSelectorStub, selectorStub2],
+            },
+        ];
+
+        getUniqueSelectorMock
+            .setup(m => m(frameStub))
+            .returns(() => frameSelectorStub)
+            .verifiable(Times.once());
+
+        expect(testSubject.transformChildResultForParent(results, frameStub)).toEqual(
+            expectedResults,
         );
     });
 
@@ -86,9 +113,18 @@ describe('TabStopRequirementOrchestrator', () => {
         tabStopsHandlerMock
             .setup(m => m.getKeyboardNavigationResults())
             .returns(() => keyboardNavigationResultsStub);
-        keyboardNavigationResultsStub.forEach(result => {
-            reportResultsMock.setup(m => m(result)).verifiable(Times.once());
-        });
+        reportResultsMock.setup(m => m(keyboardNavigationResultsStub)).verifiable(Times.once());
+
+        await testSubject.stop();
+    });
+
+    test('stop() does not report results if there are none', async () => {
+        setupStartTabStopsOrchestrator();
+        await testSubject.start();
+
+        tabStopsHandlerMock.setup(m => m.getKeyboardNavigationResults()).returns(() => []);
+        reportResultsMock.reset();
+        reportResultsMock.setup(m => m(It.isAny())).verifiable(Times.never());
 
         await testSubject.stop();
     });
@@ -129,7 +165,7 @@ describe('TabStopRequirementOrchestrator', () => {
             .setup(t => t.handleNewTabStop(focusedElement))
             .returns(() => Promise.resolve(result))
             .verifiable();
-        reportResultsMock.setup(m => m(result)).verifiable(result ? Times.once() : Times.never());
+        reportResultsMock.setup(m => m([result])).verifiable(result ? Times.once() : Times.never());
 
         await testSubject.start();
         await focusInCallback(eventStub);
@@ -147,7 +183,7 @@ describe('TabStopRequirementOrchestrator', () => {
             .setup(k => k.handleTabPressed(domMock.object))
             .returns(async () => result)
             .verifiable();
-        reportResultsMock.setup(m => m(result)).verifiable(result ? Times.once() : Times.never());
+        reportResultsMock.setup(m => m([result])).verifiable(result ? Times.once() : Times.never());
 
         await testSubject.start();
         await keydownCallback(eventStub);
@@ -179,9 +215,7 @@ describe('TabStopRequirementOrchestrator', () => {
             .setup(t => t.getTabbableFocusOrderResults())
             .returns(() => tabbableFocusOrderResults)
             .verifiable();
-        tabbableFocusOrderResults.forEach(result => {
-            reportResultsMock.setup(m => m(result)).verifiable(Times.once());
-        });
+        reportResultsMock.setup(m => m(tabbableFocusOrderResults)).verifiable(Times.once());
     }
 
     function getTabStopRequirementResultStubs(): AutomatedTabStopRequirementResult[] {

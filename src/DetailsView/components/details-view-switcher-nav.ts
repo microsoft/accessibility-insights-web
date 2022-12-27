@@ -4,7 +4,12 @@ import {
     AssessmentLeftNavHamburgerButton,
     ExpandCollpaseLeftNavButtonProps,
     FastPassLeftNavHamburgerButton,
+    MediumPassLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
+import {
+    AssessmentFunctionalitySwitcher,
+    SharedAssessmentObjects,
+} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
@@ -14,21 +19,34 @@ import {
     SaveAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
+    getAssessmentStoreData,
+    getQuickAssessStoreData,
+    GetSelectedAssessmentStoreData,
+} from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
+import {
+    MediumPassLeftNav,
+    MediumPassLeftNavDeps,
+    MediumPassLeftNavProps,
+} from 'DetailsView/components/left-nav/medium-pass-left-nav';
+import {
     getLoadButtonForAssessment,
-    getLoadButtonForFastPass,
+    getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
+import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
+    getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
+    getNullSaveButton,
     getSaveButtonForAssessment,
-    getSaveButtonForFastPass,
 } from 'DetailsView/components/save-assessment-button-factory';
 import {
     ShouldShowReportExportButton,
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
+    shouldShowReportExportButtonForMediumPass,
 } from 'DetailsView/components/should-show-report-export-button';
 import {
     AssessmentStartOverFactory,
@@ -56,12 +74,17 @@ import {
 import {
     getAssessmentSelectedDetailsView,
     getFastPassSelectedDetailsView,
+    getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
 
-export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps;
-export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;
-type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
+export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
+export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & MediumPassLeftNavProps;
+type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps | MediumPassLeftNavProps;
+
+export type GetSharedAssessmentFunctionalityObjects = (
+    switcher: AssessmentFunctionalitySwitcher,
+) => SharedAssessmentObjects;
 
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
@@ -74,20 +97,16 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
+    getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
 }>;
 
-type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
-    CommandBar: ReactFCWithDisplayName<CommandBarProps>;
-    ReportExportDialogFactory: ReportExportDialogFactory;
-    shouldShowReportExportButton: ShouldShowReportExportButton;
-    SaveAssessmentButton: SaveAssessmentButtonFactory;
-    LoadAssessmentButton: LoadAssessmentButtonFactory;
-    StartOverComponentFactory: StartOverComponentFactory;
+type InternalDetailsViewSwitcherNavConfiguration = Omit<
+    DetailsViewSwitcherNavConfiguration,
+    'LeftNav'
+> & {
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
-    getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
-    warningConfiguration: WarningConfiguration;
-    leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-}>;
+};
 
 export type GetDetailsSwitcherNavConfigurationProps = {
     selectedDetailsViewPivot: DetailsViewPivotType;
@@ -107,18 +126,38 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
+        getSelectedAssessmentStoreData: getAssessmentStoreData,
+    },
+    [DetailsViewPivotType.mediumPass]: {
+        CommandBar: MediumPassCommandBar,
+        ReportExportDialogFactory: getReportExportDialogForMediumPass,
+        shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
+        SaveAssessmentButton: getNullSaveButton,
+        LoadAssessmentButton: getNullLoadButton,
+        StartOverComponentFactory: AssessmentStartOverFactory,
+        LeftNav: MediumPassLeftNav,
+        getSelectedDetailsView: getQuickAssessSelectedDetailsView,
+        warningConfiguration: assessmentWarningConfiguration,
+        leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
+        getSelectedAssessmentStoreData: getQuickAssessStoreData,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
-        SaveAssessmentButton: getSaveButtonForFastPass,
-        LoadAssessmentButton: getLoadButtonForFastPass,
+        SaveAssessmentButton: getNullSaveButton,
+        LoadAssessmentButton: getNullLoadButton,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
+        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
+
+        // Getting assessmentStoreData is default behavior
+        getSelectedAssessmentStoreData: getAssessmentStoreData,
     },
 };
 

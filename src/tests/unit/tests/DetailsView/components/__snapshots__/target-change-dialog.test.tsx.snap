@@ -6,6 +6,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -62,6 +63,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -120,6 +122,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -178,6 +181,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }
@@ -236,6 +240,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "detailsViewId": "detailsViewId",
+      "getAssessmentActionMessageCreator": [Function],
       "urlParser": [typemoq mock object],
     }
   }

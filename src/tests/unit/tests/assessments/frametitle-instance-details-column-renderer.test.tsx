@@ -18,9 +18,9 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={FrameFormatter.frameStyles[frameType].borderColor}
+                background={FrameFormatter.frameStyles[frameType].outlineColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
-                textContent={null}
+                textContent={''}
             />
         );
         expect(expected).toEqual(frameTitleInstanceDetailsColumnRenderer(item));
@@ -39,7 +39,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={FrameFormatter.frameStyles[frameType].borderColor}
+                background={FrameFormatter.frameStyles[frameType].outlineColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
                 textContent={frameTitle}
             />
@@ -60,7 +60,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={FrameFormatter.frameStyles[frameType].borderColor}
+                background={FrameFormatter.frameStyles[frameType].outlineColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
                 textContent={frameTitle}
             />

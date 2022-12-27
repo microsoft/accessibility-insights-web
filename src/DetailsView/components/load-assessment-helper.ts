@@ -3,13 +3,13 @@
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 
 export class LoadAssessmentHelper {
     constructor(
         private readonly assessmentDataParser: AssessmentDataParser,
-        private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        private readonly assessmentActionMessageCreator: AssessmentActionMessageCreator,
         private readonly fileReader: FileReader,
         private readonly document: Document,
         private readonly loadAssessmentDataValidator: LoadAssessmentDataValidator,
@@ -55,7 +55,7 @@ export class LoadAssessmentHelper {
             ) {
                 toggleLoadAssessmentDialog();
             } else {
-                this.detailsViewActionMessageCreator.loadAssessment(
+                this.assessmentActionMessageCreator.loadAssessment(
                     parsedAssessmentData,
                     newTargetPageId,
                     prevTargetPageData?.detailsViewId,

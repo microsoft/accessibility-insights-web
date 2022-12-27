@@ -109,7 +109,50 @@ describe(FocusTrapsHandler, () => {
             expect(testSubject.lastFocusedElement).toBeNull();
         });
 
+        it('Returns null if current focused element is dom body', async () => {
+            const focusedElement = {
+                shadowRoot: { activeElement: bodyElementStub } as unknown as ShadowRoot,
+            } as HTMLElement;
+            setupDOM(focusedElement);
+
+            evaluatorMock
+                .setup(e => e.getFocusOrderResult(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+            delayMock.setup(d => d(It.isAny(), It.isAny())).verifiable(Times.once());
+
+            const result = await testSubject.handleTabPressed(domMock.object);
+
+            expect(result).toBeNull();
+            expect(testSubject.lastFocusedElement).toBe(bodyElementStub);
+        });
+
         it('Returns result of getKeyboardTrapResults if an element is focused after delay', async () => {
+            const expectedResult = {
+                selector: ['selector'],
+                html: 'html',
+            } as AutomatedTabStopRequirementResult;
+
+            evaluatorMock
+                .setup(e => e.getKeyboardTrapResults(lastFocusedElementStub, focusedElementStub))
+                .returns(() => expectedResult)
+                .verifiable(Times.once());
+            delayMock.setup(d => d(It.isAny(), focusTrapTimeout)).verifiable(Times.once());
+
+            const result = await testSubject.handleTabPressed(domMock.object);
+
+            expect(result).toBe(expectedResult);
+            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
+        });
+
+        it('Returns result of getKeyboardTrapResults if a shadow dom element is focused after delay', async () => {
+            const shadowDomElement = {
+                shadowRoot: {
+                    activeElement: focusedElementStub,
+                } as unknown as ShadowRoot,
+            } as HTMLElement;
+
+            setupDOM(shadowDomElement);
+
             const expectedResult = {
                 selector: ['selector'],
                 html: 'html',

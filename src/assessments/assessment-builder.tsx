@@ -8,16 +8,12 @@ import {
     UniquelyIdentifiableInstances,
 } from 'background/instance-identifier-generator';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
-import { Messages } from 'common/messages';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
-import {
-    AssessmentScanData,
-    ScanData,
-    TestsEnabledState,
-} from 'common/types/store-data/visualization-store-data';
+import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import {
     VisualizationInstanceProcessor,
@@ -27,17 +23,17 @@ import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
-import { ReportInstanceField } from './types/report-instance-field';
+import { ReportInstanceField, ReportInstanceFields } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(requirement: Requirement): void {
         const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
 
-        const defaults = requirement.isManual
+        const defaults: ReportInstanceFields = requirement.isManual
             ? [comment, manualPath, manualSnippet]
             : [path, snippet];
-        const specified = requirement.reportInstanceFields || [];
+        const specified: ReportInstanceFields = requirement.reportInstanceFields ?? [];
 
         requirement.reportInstanceFields = [...defaults, ...specified];
     }
@@ -129,57 +125,35 @@ export class AssessmentBuilder {
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return provider.createBaseAnalyzer({
-                key: requirementConfig.key,
-                testType: assessment.visualizationType,
-                analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-            });
-        };
-
-        const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return requirementConfig.key;
+        const getAnalyzer = (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+            return provider.createBaseAnalyzer(analyzerConfig);
         };
 
         const getNotificationMessage = (
             selectorMap: DictionaryStringTo<any>,
             requirement?: string,
         ) => {
+            if (requirement == null) {
+                return null;
+            }
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getNotificationMessage == null) {
+            if (requirementConfig?.getNotificationMessage == null) {
                 return null;
             }
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
-        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
-            data.assessments[`${key}Assessment`];
-
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
-            getStoreData: getStoreData,
-            enableTest: (data, payload) =>
-                AssessmentBuilder.enableTest(
-                    getStoreData(data),
-                    payload as AssessmentToggleActionPayload,
-                ),
+            enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
             key: `${key}Assessment`,
             getAnalyzer: getAnalyzer,
-            getIdentifier: getIdentifier,
             visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
             getDrawer: provider => provider.createNullDrawer(),
             getNotificationMessage: getNotificationMessage,
@@ -204,27 +178,15 @@ export class AssessmentBuilder {
         requirements.forEach(AssessmentBuilder.applyDefaultReportFieldMap);
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
-        const getAnalyzer = (provider: AnalyzerProvider, requirement: string) => {
+        const getAnalyzer = (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
-                requirement,
+                analyzerConfig.key,
             );
-            if (requirementConfig.getAnalyzer == null) {
-                return provider.createBaseAnalyzer({
-                    key: requirementConfig.key,
-                    testType: assessment.visualizationType,
-                    analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-                });
+            if (requirementConfig?.getAnalyzer == null) {
+                return provider.createBaseAnalyzer(analyzerConfig);
             }
-            return requirementConfig.getAnalyzer(provider);
-        };
-
-        const getIdentifier = (requirement: string) => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(
-                requirements,
-                requirement,
-            );
-            return requirementConfig.key;
+            return requirementConfig.getAnalyzer(provider, analyzerConfig);
         };
 
         const getDrawer = (
@@ -236,7 +198,7 @@ export class AssessmentBuilder {
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getDrawer == null) {
+            if (requirementConfig?.getDrawer == null) {
                 return provider.createNullDrawer();
             }
             return requirementConfig.getDrawer(provider, featureFlagStoreData);
@@ -246,18 +208,18 @@ export class AssessmentBuilder {
             selectorMap: DictionaryStringTo<any>,
             requirement?: string,
         ) => {
+            if (requirement == null) {
+                return null;
+            }
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 requirement,
             );
-            if (requirementConfig.getNotificationMessage == null) {
+            if (requirementConfig?.getNotificationMessage == null) {
                 return null;
             }
             return requirementConfig.getNotificationMessage(selectorMap);
         };
-
-        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
-            data.assessments[assessment.storeDataKey];
 
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
@@ -267,19 +229,13 @@ export class AssessmentBuilder {
                 thisAssessment.fullAxeResultsMap = selectorMap;
                 thisAssessment.generatedAssessmentInstancesMap = instanceMap;
             },
-            getStoreData: getStoreData,
-            enableTest: (data, payload) =>
-                AssessmentBuilder.enableTest(
-                    getStoreData(data),
-                    payload as AssessmentToggleActionPayload,
-                ),
+            enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,
             ...assessment.visualizationConfiguration,
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
-            getIdentifier: getIdentifier,
             visualizationInstanceProcessor:
                 AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
             getDrawer: getDrawer,
@@ -299,7 +255,7 @@ export class AssessmentBuilder {
     private static getRequirementConfig(
         requirements: Requirement[],
         requirementKey: string,
-    ): Requirement {
+    ): Requirement | undefined {
         return requirements.find(req => req.key === requirementKey);
     }
 

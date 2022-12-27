@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WebVisualizationConfigurationFactory getChromeCommandToVisualizationTypeMap 1`] = `
+{
+  "01_toggle-issues": 1,
+  "02_toggle-landmarks": 2,
+  "03_toggle-headings": 0,
+  "04_toggle-tabStops": 3,
+  "05_toggle-color": 4,
+  "06_toggle-needsReview": 29,
+  "07_toggle-accessibleNames": 30,
+}
+`;
+
+exports[`WebVisualizationConfigurationFactory getChromeCommandToVisualizationTypeMap where a config does not have a chrome command 1`] = `
+{
+  "01_toggle-issues": 1,
+  "02_toggle-landmarks": 2,
+  "03_toggle-headings": 0,
+  "04_toggle-tabStops": 3,
+  "06_toggle-needsReview": 29,
+  "07_toggle-accessibleNames": 30,
+}
+`;

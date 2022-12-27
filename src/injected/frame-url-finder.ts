@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { WindowUtils } from 'common/window-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 
 export class FrameUrlFinder {
     public static readonly GetTargetFrameUrlCommand: string = 'GetTargetFrameUrl';
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly frameMessenger: SingleFrameMessenger,
         private readonly windowUtils: WindowUtils,
         private readonly htmlElementUtils: HTMLElementUtils,
     ) {}

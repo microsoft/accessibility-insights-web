@@ -42,9 +42,9 @@ describe(TabContextManager, () => {
             const tabContextStub = {} as TabContext;
             tabContextFactoryMock
                 .setup(t => t.createTabContext(tabId))
-                .returns(() => Promise.resolve(tabContextStub))
+                .returns(() => tabContextStub)
                 .verifiable(Times.once());
-            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
             expect(tabToContextMap[tabId]).toBe(tabContextStub);
         });
@@ -54,7 +54,7 @@ describe(TabContextManager, () => {
 
             tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
 
-            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
             expect(tabToContextMap[tabId]).toBe(tabContextMock.object);
         });
@@ -64,7 +64,7 @@ describe(TabContextManager, () => {
 
             tabContextFactoryMock.setup(t => t.createTabContext(tabId)).verifiable(Times.never());
 
-            await testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
+            testSubject.addTabContextIfNotExists(tabId, tabContextFactoryMock.object);
 
             expect(tabToContextMap[tabId]).toBeUndefined();
         });

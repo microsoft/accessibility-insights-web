@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
@@ -25,8 +27,6 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { TelemetryStateListener } from 'background/telemetry/telemetry-state-listener';
 import { UsageLogger } from 'background/usage-logger';
-import { createToolData } from 'common/application-properties-provider';
-import { AxeInfo } from 'common/axe-info';
 import { BackgroundBrowserEventManager } from 'common/browser-adapters/background-browser-event-manager';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
@@ -38,14 +38,13 @@ import { getIndexedDBStore } from 'common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from 'common/indexedDB/indexedDB';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
-import { NavigatorUtils } from 'common/navigator-utils';
 import { NotificationCreator } from 'common/notification-creator';
 import { createDefaultPromiseFactory, PromiseFactory } from 'common/promises/promise-factory';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
 import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
-import { title, toolName } from 'content/strings/application';
+import { title } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import UAParser from 'ua-parser-js';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
@@ -135,16 +134,6 @@ async function initializeAsync(): Promise<void> {
 
     const usageLogger = new UsageLogger(browserAdapter, DateProvider.getCurrentDate, logger);
 
-    const browserSpec = new NavigatorUtils(navigator, logger).getBrowserSpec();
-
-    const toolData = createToolData(
-        'axe-core',
-        AxeInfo.Default.version,
-        toolName,
-        browserAdapter.getVersion(),
-        browserSpec,
-    );
-
     const globalContext = await GlobalContextFactory.createContext(
         browserAdapter,
         telemetryEventHandler,
@@ -154,11 +143,9 @@ async function initializeAsync(): Promise<void> {
         indexedDBInstance,
         persistedData,
         IssueFilingServiceProviderImpl,
-        toolData,
         browserAdapter,
         browserAdapter,
         logger,
-        true,
     );
 
     telemetryLogger.initialize(globalContext.featureFlagsController);
@@ -172,7 +159,10 @@ async function initializeAsync(): Promise<void> {
 
     const tabContextManager = new TabContextManager();
 
-    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+        Assessments,
+        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+    );
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,
@@ -193,21 +183,6 @@ async function initializeAsync(): Promise<void> {
     );
     keyboardShortcutHandler.initialize();
 
-    const postMessageContentRepository = new PostMessageContentRepository(
-        DateProvider.getCurrentDate,
-    );
-
-    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
-
-    const messageDistributor = new BackgroundMessageDistributor(
-        globalContext,
-        tabContextManager,
-        postMessageContentHandler,
-        browserAdapter,
-        eventResponseFactory,
-    );
-    messageDistributor.initialize();
-
     const targetTabController = new TargetTabController(
         browserAdapter,
         visualizationConfigurationFactory,
@@ -218,7 +193,6 @@ async function initializeAsync(): Promise<void> {
         persistedData.tabIdToDetailsViewMap ?? {},
         indexedDBInstance,
         tabContextManager.interpretMessageForTab,
-        true,
     );
     await detailsViewController.initialize();
 
@@ -238,7 +212,6 @@ async function initializeAsync(): Promise<void> {
         usageLogger,
         persistedData,
         indexedDBInstance,
-        true,
         urlParser,
     );
 
@@ -249,7 +222,6 @@ async function initializeAsync(): Promise<void> {
         logger,
         persistedData.knownTabIds ?? {},
         indexedDBInstance,
-        true,
     );
     await targetPageController.initialize();
 
@@ -260,10 +232,34 @@ async function initializeAsync(): Promise<void> {
     );
     tabEventDistributor.initialize();
 
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(postMessageContentRepository);
+
+    const messageDistributor = new BackgroundMessageDistributor(
+        globalContext,
+        tabContextManager,
+        postMessageContentHandler,
+        browserAdapter,
+        eventResponseFactory,
+    );
+    // This should happen as late as possible so we don't try to distribute messages
+    // before all stores and actions have finished initializing
+    messageDistributor.initialize();
+
     await cleanKeysFromStoragePromise;
 
     globalThis.insightsFeatureFlags = globalContext.featureFlagsController;
     globalThis.insightsUserConfiguration = globalContext.userConfigurationController;
+}
+
+try {
+    importScripts('../insights.config.js');
+    console.log('Set insights configuration successfully');
+} catch (e) {
+    console.error('Failed to set up configuration: ', e);
 }
 
 try {

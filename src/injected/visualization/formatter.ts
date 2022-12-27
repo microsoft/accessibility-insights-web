@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeepPartial } from 'common/types/deep-partial';
 import { BoundingRect } from '../bounding-rect';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
 export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
-    outlineStyle?: string;
-    outlineWidth?: string;
-    borderColor: string;
+    outlineStyle?: 'solid' | 'dashed';
+    outlineColor?: string;
     showVisualization: boolean;
     failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
@@ -38,7 +38,6 @@ export interface BoxConfig {
     boxWidth?: string;
     fontSize?: string;
     fontWeight?: string;
-    outline?: string;
 }
 
 export interface StrokeConfiguration {
@@ -74,6 +73,8 @@ export interface SVGDrawerConfiguration {
     failureBoxConfig: FailureBoxConfig;
 }
 
+export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
+
 export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
 }
@@ -81,7 +82,7 @@ export interface SingleTargetDrawerConfiguration {
 export interface Formatter {
     getDrawerConfiguration(
         element: Node,
-        data: AxeResultsWithFrameLevel,
+        data: AxeResultsWithFrameLevel | null,
     ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
-    getDialogRenderer(): DialogRenderer;
+    getDialogRenderer(): DialogRenderer | null;
 }

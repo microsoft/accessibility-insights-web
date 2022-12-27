@@ -6,6 +6,7 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
     PreviewFeaturesPanel,
     PreviewFeaturesPanelProps,
@@ -23,6 +24,7 @@ import {
 
 export type DetailsViewOverlayDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
 } & ContentPanelDeps &
     SettingsPanelDeps;
 

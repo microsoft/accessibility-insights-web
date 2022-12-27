@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { forOwn } from 'lodash';
-import { HTMLElementUtils } from '../common/html-element-utils';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryNumberTo } from '../types/common-types';
 import {
     AssessmentVisualizationInstance,
     HtmlElementAxeResultsHelper,
-    HTMLIFrameResult,
 } from './frameCommunicators/html-element-axe-results-helper';
 import { Drawer } from './visualization/drawer';
 
@@ -21,8 +19,8 @@ export interface VisualizationWindowMessage {
     visualizationType?: VisualizationType;
     isEnabled: boolean;
     configId: string;
-    elementResults?: AssessmentVisualizationInstance[];
-    featureFlagStoreData?: FeatureFlagStoreData;
+    elementResults: AssessmentVisualizationInstance[] | null;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class DrawingController {
@@ -32,16 +30,19 @@ export class DrawingController {
     private featureFlagStoreData: FeatureFlagStoreData;
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly allFramesMessenger: AllFramesMessenger,
         private readonly axeResultsHelper: HtmlElementAxeResultsHelper,
-        private readonly htmlElementUtils: HTMLElementUtils,
     ) {}
 
     public initialize(): void {
-        this.frameMessenger.addMessageListener(
+        this.allFramesMessenger.addMessageListener(
             DrawingController.triggerVisualizationCommand,
             this.onTriggerVisualization,
         );
+    }
+
+    public async prepareVisualization(): Promise<void> {
+        await this.allFramesMessenger.initializeAllFrames();
     }
 
     public registerDrawer = (id: string, drawer: Drawer) => {
@@ -68,48 +69,53 @@ export class DrawingController {
     };
 
     private async enableVisualization(
-        elementResults: AssessmentVisualizationInstance[] | undefined,
+        elementResults: AssessmentVisualizationInstance[] | null,
         configId: string,
     ): Promise<void> {
         if (elementResults) {
-            const elementResultsByFrame = this.axeResultsHelper.splitResultsByFrame(elementResults);
-
-            await Promise.all(
-                elementResultsByFrame.map(
-                    async frameResults =>
-                        await this.enableVisualizationForFrameResults(frameResults, configId),
-                ),
-            );
+            await this.enableVisualizationWithElementResults(elementResults, configId);
         } else {
-            await this.enableVisualizationInCurrentFrame(null, configId);
-
-            const childFrames = this.getChildFrames();
-            await Promise.all(
-                childFrames.map(
-                    async iframe =>
-                        await this.enableVisualizationInChildFrame(iframe, null, configId),
-                ),
-            );
+            await this.enableVisualizationForAllFrames(configId);
         }
     }
 
-    private enableVisualizationForFrameResults = async (
-        frameResults: HTMLIFrameResult,
+    private async enableVisualizationWithElementResults(
+        elementResults: AssessmentVisualizationInstance[],
         configId: string,
-    ): Promise<void> => {
-        if (frameResults.frame == null) {
-            await this.enableVisualizationInCurrentFrame(frameResults.elementResults, configId);
-        } else {
-            await this.enableVisualizationInChildFrame(
-                frameResults.frame,
-                frameResults.elementResults,
+    ): Promise<void> {
+        const elementResultsByFrame = this.axeResultsHelper.splitResultsByFrame(elementResults);
+
+        const currentFrameResults = elementResultsByFrame.find(results => results.frame == null);
+        if (currentFrameResults != null) {
+            await this.enableVisualizationInCurrentFrame(
+                currentFrameResults.elementResults,
                 configId,
             );
         }
-    };
+
+        const childFrameResults = elementResultsByFrame.filter(results => results.frame != null);
+        await this.allFramesMessenger.sendCommandToMultipleFrames(
+            DrawingController.triggerVisualizationCommand,
+            childFrameResults.map(results => results.frame!),
+            (_frame, index) =>
+                this.createEnableVisualizationPayload(
+                    configId,
+                    childFrameResults[index].elementResults,
+                ),
+        );
+    }
+
+    private async enableVisualizationForAllFrames(configId: string): Promise<void> {
+        await this.enableVisualizationInCurrentFrame(null, configId);
+
+        await this.allFramesMessenger.sendCommandToAllFrames(
+            DrawingController.triggerVisualizationCommand,
+            this.createEnableVisualizationPayload(configId, null),
+        );
+    }
 
     private enableVisualizationInCurrentFrame = async (
-        currentFrameResults: AssessmentVisualizationInstance[],
+        currentFrameResults: AssessmentVisualizationInstance[] | null,
         configId: string,
     ): Promise<void> => {
         const drawer = this.getDrawer(configId);
@@ -120,58 +126,31 @@ export class DrawingController {
         await drawer.drawLayout();
     };
 
-    private enableVisualizationInChildFrame = async (
-        frame: HTMLIFrameElement,
-        frameResults: AssessmentVisualizationInstance[],
+    private createEnableVisualizationPayload(
         configId: string,
-    ): Promise<void> => {
-        const message: VisualizationWindowMessage = {
+        frameResults: AssessmentVisualizationInstance[] | null,
+    ): VisualizationWindowMessage {
+        return {
             elementResults: frameResults,
             isEnabled: true,
             featureFlagStoreData: this.featureFlagStoreData,
             configId: configId,
         };
-
-        await this.frameMessenger.sendMessageToFrame(
-            frame,
-            this.createFrameRequestMessage(message),
-        );
-    };
+    }
 
     private async disableVisualization(configId: string): Promise<void> {
         this.disableVisualizationInCurrentFrame(configId);
         await this.disableVisualizationInChildFrames(configId);
     }
 
-    private createFrameRequestMessage(message: VisualizationWindowMessage): CommandMessage {
-        return {
-            command: DrawingController.triggerVisualizationCommand,
-            payload: message,
-        };
-    }
-
     private disableVisualizationInChildFrames = async (configId: string): Promise<void> => {
-        const iframes = this.getChildFrames();
-
-        await Promise.all(
-            iframes.map(async iframe => {
-                await this.disableVisualizationInChildFrame(configId, iframe);
-            }),
-        );
-    };
-
-    private disableVisualizationInChildFrame = async (
-        configId: string,
-        iframe: HTMLIFrameElement,
-    ): Promise<void> => {
-        const message: VisualizationWindowMessage = {
+        const commandPayload = {
             isEnabled: false,
             configId: configId,
         };
-
-        await this.frameMessenger.sendMessageToFrame(
-            iframe,
-            this.createFrameRequestMessage(message),
+        await this.allFramesMessenger.sendCommandToAllFrames(
+            DrawingController.triggerVisualizationCommand,
+            commandPayload,
         );
     };
 
@@ -180,21 +159,13 @@ export class DrawingController {
         drawer.eraseLayout();
     }
 
-    private getChildFrames(): HTMLIFrameElement[] {
-        return Array.from(
-            this.htmlElementUtils.getAllElementsByTagName(
-                'iframe',
-            ) as HTMLCollectionOf<HTMLIFrameElement>,
-        );
-    }
-
     private getDrawer(configId: string): Drawer {
         return this.drawers[configId];
     }
 
     private getInitialElements(
-        currentFrameResults: AssessmentVisualizationInstance[],
-    ): AssessmentVisualizationInstance[] {
+        currentFrameResults: AssessmentVisualizationInstance[] | null,
+    ): AssessmentVisualizationInstance[] | null {
         if (currentFrameResults == null) {
             return null;
         }

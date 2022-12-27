@@ -9,9 +9,32 @@
         "128": "icons/brand/blue/brand-blue-128px.png"
     },
     "devtools_page": "Devtools/devtools.html",
-    "permissions": ["storage", "webNavigation", "tabs", "notifications", "activeTab"],
+    "action": {
+        "default_popup": "popup/popup.html"
+    },
+    "manifest_version": 3,
+    "permissions": ["notifications", "scripting", "storage", "tabs", "webNavigation", "activeTab"],
+    "background": {
+        "service_worker": "bundle/serviceWorker.bundle.js"
+    },
+    "optional_host_permissions": ["<all_urls>"],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "insights.html",
+                "assessments/*",
+                "injected/*",
+                "background/*",
+                "common/*",
+                "DetailsView/*",
+                "bundle/*",
+                "NOTICE.html"
+            ],
+            "matches": ["<all_urls>"]
+        }
+    ],
     "commands": {
-        "_execute_browser_action": {
+        "_execute_action": {
             "suggested_key": {
                 "windows": "Alt+Shift+K",
                 "mac": "Alt+Shift+K",

@@ -44,6 +44,12 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
             !scanData.enabled,
         );
         const displayableData = props.configuration.displayableData;
+        const adHocDisplayableData = displayableData.adHoc;
+        if (adHocDisplayableData == null) {
+            throw new Error(
+                'Cannot render AdhocStaticTestView for visualization without adHoc displayableData',
+            );
+        }
 
         const stepsText = (): string => {
             const fastPassProvider = createFastPassProviderWithFeatureFlags(
@@ -68,7 +74,7 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
             visualizationEnabled: scanData.enabled,
             onToggleClick: clickHandler,
             title: displayableData.title,
-            toggleLabel: displayableData.toggleLabel,
+            toggleLabel: adHocDisplayableData.toggleLabel,
             content: props.content,
             guidance: props.guidance,
             stepsText: stepsText(),

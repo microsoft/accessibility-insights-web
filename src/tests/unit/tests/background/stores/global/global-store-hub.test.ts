@@ -41,6 +41,12 @@ describe('GlobalStoreHubTest', () => {
                 assessments: null,
                 resultDescription: '',
             },
+            quickAssessStoreData: {
+                persistedTabInfo: {} as PersistedTabInfo,
+                assessmentNavState: null,
+                assessments: null,
+                resultDescription: '',
+            },
             userConfigurationData: {
                 enableTelemetry: true,
                 isFirstTime: false,
@@ -62,11 +68,10 @@ describe('GlobalStoreHubTest', () => {
             cloneDeep(persistedDataStub),
             null,
             failTestOnErrorLogger,
-            true,
         );
         const allStores = testSubject.getAllStores();
 
-        expect(allStores.length).toBe(7);
+        expect(allStores.length).toBe(8);
         expect(testSubject.getStoreType()).toEqual(StoreType.GlobalStore);
 
         verifyStoreExists(allStores, FeatureFlagStore);
@@ -88,7 +93,6 @@ describe('GlobalStoreHubTest', () => {
             cloneDeep(persistedDataStub),
             null,
             failTestOnErrorLogger,
-            true,
         );
         const allStores = testSubject.getAllStores() as BaseStoreImpl<any>[];
         const initializeMocks: Array<IMock<Function>> = [];
@@ -114,7 +118,11 @@ describe('GlobalStoreHubTest', () => {
         storeType,
     ): BaseStore<StoreType, Promise<void>> {
         const matchingStores = stores.filter(s => s instanceof storeType);
-        expect(matchingStores.length).toBe(1);
+        if (storeType !== AssessmentStore) {
+            expect(matchingStores.length).toBe(1);
+        } else {
+            expect(matchingStores.length).toBe(2);
+        }
         return matchingStores[0];
     }
 });

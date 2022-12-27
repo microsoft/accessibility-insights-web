@@ -17,7 +17,6 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             tabId: number,
             message: Message,
         ) => InterpreterResponse,
-        private readonly persistStoreData: boolean,
     ) {}
 
     public async initialize(): Promise<void> {
@@ -61,12 +60,10 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     }
 
     private persistTabIdToDetailsViewMap = async () => {
-        if (this.persistStoreData) {
-            await this.idbInstance.setItem(
-                IndexedDBDataKeys.tabIdToDetailsViewMap,
-                this.tabIdToDetailsViewMap,
-            );
-        }
+        await this.idbInstance.setItem(
+            IndexedDBDataKeys.tabIdToDetailsViewMap,
+            this.tabIdToDetailsViewMap,
+        );
     };
 
     public async showDetailsView(targetTabId: number): Promise<void> {

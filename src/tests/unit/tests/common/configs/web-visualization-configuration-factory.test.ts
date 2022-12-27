@@ -1,9 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
-import { each } from 'lodash';
-import { EnumHelper } from '../../../../../common/enum-helper';
+import {
+    AnalyzerMessageConfiguration,
+    AssessmentVisualizationMessageTypes,
+    MediumPassVisualizationMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
+import { forOwn } from 'lodash';
+import { IMock, It, Mock, Times } from 'typemoq';
+import { DictionaryNumberTo } from 'types/common-types';
 import {
     AssessmentData,
     AssessmentStoreData,
@@ -11,13 +22,24 @@ import {
 } from '../../../../../common/types/store-data/assessment-result-data';
 import {
     ScanData,
-    VisualizationStoreData,
+    TestsEnabledState,
+    TestsScanData,
 } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('WebVisualizationConfigurationFactory', () => {
-    const testObject = new WebVisualizationConfigurationFactory();
+    let testObject: WebVisualizationConfigurationFactory;
+
+    let mediumPassProviderMock: IMock<AssessmentsProvider>;
+
+    beforeEach(() => {
+        mediumPassProviderMock = Mock.ofType<AssessmentsProvider>();
+        mediumPassProviderMock.setup(m => m.isValidType(It.isAny())).returns(() => false);
+        testObject = new WebVisualizationConfigurationFactory(
+            Assessments,
+            mediumPassProviderMock.object,
+        );
+    });
 
     test('get config for unsupported type', () => {
         const invalidType = -1 as VisualizationType;
@@ -30,24 +52,22 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('getStoreData for color', () => {
         const visualizationType = VisualizationType.Color;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.color;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.color;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for headings', () => {
         const visualizationType = VisualizationType.Headings;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.headings;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.headings;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for headingsAssessment', () => {
         const visualizationType = VisualizationType.HeadingsAssessment;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.assessments.headingsAssessment;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments.headingsAssessment;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
@@ -78,24 +98,21 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('getStoreData for issues', () => {
         const visualizationType = VisualizationType.Issues;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.issues;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.issues;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for landmarks', () => {
         const visualizationType = VisualizationType.Landmarks;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.landmarks;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.landmarks;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
 
     test('getStoreData for tabStops', () => {
         const visualizationType = VisualizationType.TabStops;
-        const getExpectedData: (data: VisualizationStoreData) => ScanData = data =>
-            data.tests.adhoc.tabStops;
+        const getExpectedData: (data: TestsEnabledState) => ScanData = data => data.adhoc.tabStops;
 
         testGetStoreData(visualizationType, getExpectedData);
     });
@@ -124,33 +141,158 @@ describe('WebVisualizationConfigurationFactory', () => {
         testDisplayableData(VisualizationType.TabStops);
     });
 
-    test('get chrome commands to visualization type maps', () => {
+    test('getChromeCommandToVisualizationTypeMap', () => {
         const result = testObject.getChromeCommandToVisualizationTypeMap();
-
-        const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-
-        each(types, visualizationType => {
-            const configuration = testObject.getConfiguration(visualizationType);
-
-            if (configuration.chromeCommand != null) {
-                expect(visualizationType).toBe(result[configuration.chromeCommand]);
-            } else {
-                expect(result[visualizationType]).toBeUndefined();
-            }
-        });
+        expect(result).toMatchSnapshot();
     });
 
-    test('getConfiguration', () => {
-        const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-
-        types.forEach(visualizationType => {
-            const configuration = testObject.getConfiguration(visualizationType);
-
-            expect(configuration).toBeDefined();
-        });
+    test('getChromeCommandToVisualizationTypeMap where a config does not have a chrome command', () => {
+        const configurationByTypeStub = {
+            [VisualizationType.Color]: {} as VisualizationConfiguration,
+        } as DictionaryNumberTo<VisualizationConfiguration>;
+        (testObject as any).configurationByType = {
+            ...(testObject as any).configurationByType,
+            ...configurationByTypeStub,
+        };
+        const result = testObject.getChromeCommandToVisualizationTypeMap();
+        expect(result).toMatchSnapshot();
     });
 
-    test('getConfigurationByKey for visualizations', () => {
+    test('forEachConfig', () => {
+        const assessmentProviderMock = Mock.ofType<AssessmentsProvider>();
+        const mediumPassProviderMock = Mock.ofType<AssessmentsProvider>();
+        const callbackMock =
+            Mock.ofType<
+                (
+                    config: VisualizationConfiguration,
+                    type: VisualizationType,
+                    requirementConfig?: Requirement,
+                ) => void
+            >();
+
+        testObject = new WebVisualizationConfigurationFactory(
+            assessmentProviderMock.object,
+            mediumPassProviderMock.object,
+        );
+        const assessmentStubs = [getAssessmentStub('a-1', -1), getAssessmentStub('a-2', -2)];
+        const mediumPassStubs = [getAssessmentStub('mp-1', -3), getAssessmentStub('mp-2', -4)];
+
+        mediumPassProviderMock.setup(mock => mock.all()).returns(() => mediumPassStubs);
+        assessmentProviderMock.setup(mock => mock.all()).returns(() => assessmentStubs);
+
+        testObject.forEachConfig(callbackMock.object);
+
+        verifyEachProviderConfigIsCalled(
+            callbackMock,
+            assessmentStubs,
+            TestMode.Assessments,
+            AssessmentVisualizationMessageTypes,
+        );
+        verifyEachProviderConfigIsCalled(
+            callbackMock,
+            mediumPassStubs,
+            TestMode.MediumPass,
+            MediumPassVisualizationMessageTypes,
+        );
+        forOwn(
+            (testObject as any).configurationByType,
+            (config: VisualizationConfiguration, key: string) => {
+                const type = Number(key);
+                callbackMock.verify(m => m(config, type), Times.once());
+            },
+        );
+    });
+
+    function getAssessmentStub(title: string, visualizationType: VisualizationType): Assessment {
+        const requirementsStub = [
+            {
+                key: 'req-1',
+            },
+            {
+                key: 'req-2',
+            },
+        ] as Requirement[];
+        return {
+            title,
+            visualizationType,
+            requirements: requirementsStub,
+            getVisualizationConfiguration: () => {},
+        } as Assessment;
+    }
+
+    function verifyEachProviderConfigIsCalled(
+        callbackMock: IMock<
+            (
+                config: VisualizationConfiguration,
+                type: VisualizationType,
+                requirementConfig?: Requirement,
+            ) => void
+        >,
+        assessmentStubs: Readonly<Assessment>[],
+        testMode: TestMode,
+        messageConfiguration: AnalyzerMessageConfiguration,
+    ) {
+        assessmentStubs.forEach(stub => {
+            stub.requirements.forEach(reqStub =>
+                callbackMock.verify(
+                    m =>
+                        m(
+                            It.isObjectWith(
+                                getAssessmentDefaults(stub.title, testMode, messageConfiguration),
+                            ),
+                            stub.visualizationType,
+                            reqStub,
+                        ),
+                    Times.once(),
+                ),
+            );
+        });
+    }
+
+    test('getConfiguration for mediumPass', () => {
+        const type = VisualizationType.HeadingsAssessment;
+        const requirementKey = 'some requirement key';
+        const visualizationKeyStub = 'some key';
+        const assessmentStub = {
+            title: 'some title',
+            getVisualizationConfiguration: () => ({ key: visualizationKeyStub }),
+            requirements: [
+                {
+                    key: requirementKey,
+                },
+            ],
+        } as Assessment;
+        const testData = {
+            [TestMode.MediumPass]: {
+                [visualizationKeyStub]: {
+                    enabled: true,
+                },
+            } as TestsScanData,
+        } as TestsEnabledState;
+        const expectedDefaults = getAssessmentDefaults(
+            assessmentStub.title,
+            TestMode.MediumPass,
+            MediumPassVisualizationMessageTypes,
+        );
+        const expected = {
+            ...assessmentStub.getVisualizationConfiguration(),
+            ...expectedDefaults,
+        };
+        mediumPassProviderMock.reset();
+        mediumPassProviderMock.setup(m => m.isValidType(type)).returns(() => true);
+        mediumPassProviderMock.setup(m => m.forType(type)).returns(() => assessmentStub);
+
+        const returnedConfiguration = testObject.getConfiguration(type);
+        expect(returnedConfiguration).toMatchObject(expected);
+        expect(returnedConfiguration.getIdentifier(requirementKey)).toEqual(
+            `${TestMode.MediumPass}-${requirementKey}`,
+        );
+        expect(returnedConfiguration.getStoreData(testData)).toEqual(
+            testData.mediumPass[visualizationKeyStub],
+        );
+    });
+
+    test('getConfigurationByKey for adhoc visualizations', () => {
         const keys = ['color', 'headings', 'landmarks', 'tabStops', 'issues'];
 
         keys.forEach(key => {
@@ -185,16 +327,38 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     function testGetStoreData(
         visualizationType: VisualizationType,
-        getExpectedData: (data: VisualizationStoreData) => ScanData,
+        getExpectedData: (data: TestsEnabledState) => ScanData,
     ): void {
-        const data = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
-
         const configuration = testObject.getConfiguration(visualizationType);
-
-        const scanData = configuration.getStoreData(data.tests);
+        const data = {
+            [configuration.testMode]: {
+                [configuration.key]: {
+                    enabled: true,
+                },
+            },
+        } as any;
+        const scanData = configuration.getStoreData(data);
 
         const expected = getExpectedData(data);
 
         expect(scanData).toEqual(expected);
+    }
+
+    function getAssessmentDefaults(
+        expectedDisplayableTitle: string,
+        testMode: TestMode,
+        expectedMessageConfig: AnalyzerMessageConfiguration,
+    ): Partial<VisualizationConfiguration> {
+        return {
+            testMode,
+            chromeCommand: null,
+            launchPanelDisplayOrder: null,
+            adhocToolsPanelDisplayOrder: null,
+            displayableData: {
+                title: expectedDisplayableTitle,
+                adHoc: null,
+            },
+            messageConfiguration: expectedMessageConfig,
+        };
     }
 });

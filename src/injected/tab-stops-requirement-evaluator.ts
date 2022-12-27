@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { HTMLElementUtils } from 'common/html-element-utils';
-import { getUniqueSelector } from 'scanner/axe-utils';
+import { getAllUniqueSelectors, getUniqueSelector } from 'scanner/axe-utils';
 import { FocusableElement } from 'tabbable';
 import { AutomatedTabStopRequirementResult } from './tab-stop-requirement-result';
 
@@ -37,28 +36,33 @@ export class DefaultTabStopsRequirementEvaluator implements TabStopsRequirementE
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly generateSelector: typeof getUniqueSelector,
+        private readonly generateAllSelectors: typeof getAllUniqueSelectors,
     ) {}
 
     public getKeyboardNavigationResults(
-        tabbableTabStops: FocusableElement[],
+        tabbableTabStops: HTMLElement[],
         actualTabStops: Set<HTMLElement>,
     ): AutomatedTabStopRequirementResult[] {
         if (!tabbableTabStops) {
             return [];
         }
 
+        const selectors = this.generateAllSelectors(tabbableTabStops);
         const requirementResults: AutomatedTabStopRequirementResult[] = [];
-        (tabbableTabStops as HTMLElement[]).forEach(expectedTabStop => {
-            if (!actualTabStops.has(expectedTabStop)) {
-                const selector = this.generateSelector(expectedTabStop);
-                requirementResults.push({
-                    description: this.keyboardNavigationDescription(selector),
-                    selector: [selector],
-                    html: expectedTabStop.outerHTML,
-                    requirementId: 'keyboard-navigation',
-                });
+
+        tabbableTabStops.forEach((expectedTabStop, index) => {
+            if (actualTabStops.has(expectedTabStop)) {
+                return;
             }
+            const selector = selectors[index];
+            requirementResults.push({
+                description: this.keyboardNavigationDescription(selector),
+                selector: [selector],
+                html: expectedTabStop.outerHTML,
+                requirementId: 'keyboard-navigation',
+            });
         });
+
         return requirementResults;
     }
 

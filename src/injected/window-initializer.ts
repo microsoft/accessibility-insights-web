@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { mergePromiseResponses } from 'common/merge-promise-responses';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
@@ -15,24 +18,23 @@ import { TabStopEvent } from 'common/types/store-data/tab-stop-event';
 import { AllFrameRunner } from 'injected/all-frame-runner';
 import { TabStopsHandler } from 'injected/analyzers/tab-stops-handler';
 import { TabStopRequirementOrchestrator } from 'injected/analyzers/tab-stops-orchestrator';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/backchannel-window-message-translator';
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { SingleFrameTabStopListener } from 'injected/single-frame-tab-stop-listener';
 import { AutomatedTabStopRequirementResult } from 'injected/tab-stop-requirement-result';
 import { DefaultTabStopsRequirementEvaluator } from 'injected/tab-stops-requirement-evaluator';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
-import { getUniqueSelector } from 'scanner/axe-utils';
+import { getAllUniqueSelectors, getUniqueSelector } from 'scanner/axe-utils';
 import { tabbable } from 'tabbable';
 import UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { Assessments } from './../assessments/assessments';
@@ -65,13 +67,14 @@ export class WindowInitializer {
     protected drawingController: DrawingController;
     protected scrollingController: ScrollingController;
     protected manualTabStopListener: AllFrameRunner<TabStopEvent>;
-    protected tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult>;
+    protected tabStopRequirementRunner: AllFrameRunner<AutomatedTabStopRequirementResult[]>;
     protected frameUrlFinder: FrameUrlFinder;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
     protected clientUtils: ClientUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    protected frameMessenger: FrameMessenger;
+    protected frameMessenger: SingleFrameMessenger;
+    protected allFramesMessenger: AllFramesMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
     protected windowMessagePoster: BrowserBackchannelWindowMessagePoster;
     protected actionMessageDispatcher: RemoteActionMessageDispatcher;
@@ -89,13 +92,21 @@ export class WindowInitializer {
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
 
+        const extensionId = browserAdapter.getExtensionId();
+        if (extensionId == null) {
+            logger.error(
+                'Aborting Accessibility Insights initialization - extension instance is unloaded',
+            );
+            return;
+        }
+
         this.actionMessageDispatcher = new RemoteActionMessageDispatcher(
             this.browserAdapter.sendMessageToFrames,
             null,
             logger,
         );
 
-        const telemetrySanitizer = new ExceptionTelemetrySanitizer(browserAdapter.getExtensionId());
+        const telemetrySanitizer = new ExceptionTelemetrySanitizer(extensionId);
         const exceptionTelemetryListener = new ExceptionTelemetryListener(
             TelemetryEventSource.TargetPage,
             this.actionMessageDispatcher.sendTelemetry,
@@ -112,7 +123,10 @@ export class WindowInitializer {
         );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
-        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
+            Assessments,
+            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        );
 
         const backchannelWindowMessageTranslator = new BackchannelWindowMessageTranslator(
             this.browserAdapter,
@@ -133,7 +147,7 @@ export class WindowInitializer {
             logger,
         );
 
-        this.frameMessenger = new FrameMessenger(this.respondableCommandMessageCommunicator);
+        this.frameMessenger = new SingleFrameMessenger(this.respondableCommandMessageCommunicator);
         const axeFrameMessenger = new AxeFrameMessenger(
             this.respondableCommandMessageCommunicator,
             this.windowUtils,
@@ -142,13 +156,21 @@ export class WindowInitializer {
 
         axeFrameMessenger.registerGlobally(axe);
 
+        this.allFramesMessenger = new AllFramesMessenger(
+            this.frameMessenger,
+            htmlElementUtils,
+            promiseFactory,
+            logger,
+            mergePromiseResponses,
+        );
+
         const singleFrameListener = new SingleFrameTabStopListener(
             'manual-tab-stop-listener',
             getUniqueSelector,
             document,
         );
         this.manualTabStopListener = new AllFrameRunner<TabStopEvent>(
-            this.frameMessenger,
+            this.allFramesMessenger,
             htmlElementUtils,
             this.windowUtils,
             singleFrameListener,
@@ -159,6 +181,7 @@ export class WindowInitializer {
         const tabStopRequirementEvaluator = new DefaultTabStopsRequirementEvaluator(
             htmlElementUtils,
             getUniqueSelector,
+            getAllUniqueSelectors,
         );
         const focusTrapsKeydownHandler = new FocusTrapsHandler(
             tabStopRequirementEvaluator,
@@ -174,8 +197,8 @@ export class WindowInitializer {
             focusTrapsKeydownHandler,
             getUniqueSelector,
         );
-        this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult>(
-            this.frameMessenger,
+        this.tabStopRequirementRunner = new AllFrameRunner<AutomatedTabStopRequirementResult[]>(
+            this.allFramesMessenger,
             htmlElementUtils,
             this.windowUtils,
             tabStopsOrchestrator,
@@ -196,9 +219,8 @@ export class WindowInitializer {
             new DetailsDialogHandler(htmlElementUtils, this.windowUtils),
         );
         this.drawingController = new DrawingController(
-            this.frameMessenger,
+            this.allFramesMessenger,
             new HtmlElementAxeResultsHelper(htmlElementUtils, logger),
-            htmlElementUtils,
         );
         this.scrollingController = new ScrollingController(this.frameMessenger, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(
@@ -215,13 +237,10 @@ export class WindowInitializer {
         const visualizationTypeDrawerRegistrar = new VisualizationTypeDrawerRegistrar(
             this.drawingController.registerDrawer,
             this.visualizationConfigurationFactory,
-            Assessments,
             drawerProvider,
         );
 
-        EnumHelper.getNumericValues(VisualizationType).forEach(
-            visualizationTypeDrawerRegistrar.registerType,
-        );
+        visualizationTypeDrawerRegistrar.registerAllVisualizations();
 
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameMessenger,

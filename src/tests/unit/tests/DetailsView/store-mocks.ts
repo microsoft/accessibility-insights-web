@@ -17,6 +17,7 @@ import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -53,6 +54,7 @@ export class StoreMocks {
     public tabStoreMock = Mock.ofType(TabStore, MockBehavior.Strict);
     public featureFlagStoreMock = Mock.ofType(FeatureFlagStore, MockBehavior.Strict);
     public assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
+    public quickAssessStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
     public assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
     public scopingStoreMock = Mock.ofType(ScopingStore, MockBehavior.Strict);
     public inspectStoreMock = Mock.ofType(InspectStore, MockBehavior.Strict);
@@ -136,6 +138,7 @@ export class StoreMocks {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
+    public quickAssessStoreData: AssessmentStoreData;
     public permissionsStateStoreData = new PermissionsStateStore(
         null,
         null,
@@ -164,6 +167,7 @@ export class StoreMocks {
         null,
         null,
     ).getDefaultState();
+    public cardsViewStoreData = new CardsViewStore(null).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
@@ -174,6 +178,10 @@ export class StoreMocks {
             .returns(() => null);
 
         this.assessmentStoreData = new AssessmentsStoreDataBuilder(
+            this.assessmentsProviderMock.object,
+            assessmentDataConverterMock.object,
+        ).build();
+        this.quickAssessStoreData = new AssessmentsStoreDataBuilder(
             this.assessmentsProviderMock.object,
             assessmentDataConverterMock.object,
         ).build();
@@ -213,6 +221,16 @@ export class StoreMocks {
 
     public setTabStoreData(data: TabStoreData): StoreMocks {
         this.tabStoreData = data;
+        return this;
+    }
+
+    public setQuickAssessData(data: AssessmentStoreData): StoreMocks {
+        this.quickAssessStoreData = data;
+        return this;
+    }
+
+    public setAssessmentData(data: AssessmentStoreData): StoreMocks {
+        this.assessmentStoreData = data;
         return this;
     }
 

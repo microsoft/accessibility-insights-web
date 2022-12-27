@@ -52,14 +52,10 @@ exports[`RichResolutionContent renders static content with id=android/ColorContr
   <ul
     className="multiLineTextYesBullet"
   >
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the text is intended to be invisible, it passes.
     </li>
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the text is intended to be visible, use
        
       <stubLinkComponent
@@ -253,14 +249,10 @@ exports[`RichResolutionContent renders static content with id=android/atfa/TextC
   <ul
     className="multiLineTextYesBullet"
   >
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the text is intended to be invisible, it passes.
     </li>
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the text is intended to be visible, use
        
       <stubLinkComponent
@@ -317,14 +309,10 @@ exports[`RichResolutionContent renders static content with id=web/color-contrast
   <ul
     className="multiLineTextYesBullet"
   >
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the instance is an icon or other non-text content, ignore it. This rule applies only to text.
     </li>
-    <li
-      list-style-type="disc"
-    >
+    <li>
       If the instance is text, use
        
       <stubLinkComponent
@@ -396,6 +384,14 @@ exports[`RichResolutionContent renders static content with id=web/link-in-text-b
     if you're testing on a Mac).
   </li>
 </ul>
+`;
+
+exports[`RichResolutionContent renders static content with id=web/p-as-heading 1`] = `
+<span>
+  Inspect the 
+  &lt;p&gt;
+   element and verify that the element is not used as a heading through visual styling with bold, italic text or font-size. If headings are needed, use the appropriate heading tags.
+</span>
 `;
 
 exports[`RichResolutionContent renders static content with id=web/scrollable-region-focusable 1`] = `

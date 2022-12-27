@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { PersistedData } from 'background/get-persisted-data';
@@ -34,7 +37,10 @@ import { StoreUpdateMessage } from '../../../../common/types/store-update-messag
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
-    return new WebVisualizationConfigurationFactory().getConfiguration(visualizationType);
+    return new WebVisualizationConfigurationFactory(
+        Assessments,
+        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+    ).getConfiguration(visualizationType);
 }
 
 describe('TabContextFactoryTest', () => {
@@ -121,11 +127,10 @@ describe('TabContextFactoryTest', () => {
             mockUsageLogger.object,
             persistedDataStub,
             mockDBInstance.object,
-            true,
             null,
         );
 
-        const tabContext = await testObject.createTabContext(tabId);
+        const tabContext = testObject.createTabContext(tabId);
 
         broadcastMock.verifyAll();
         broadcastMock.reset();

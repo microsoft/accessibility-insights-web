@@ -5,10 +5,8 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <ScanIncompleteWarning
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
     test={-1}
@@ -17,10 +15,8 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
   <TargetChangeDialog
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
     newTab={
@@ -35,10 +31,8 @@ exports[`AssessmentTestView renders with a GettingStartedView when a Getting sta
     assessment={{}}
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
   />
@@ -50,10 +44,8 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <ScanIncompleteWarning
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
     test={-1}
@@ -62,10 +54,8 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
   <TargetChangeDialog
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
     newTab={
@@ -94,10 +84,8 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     }
     deps={
       {
-        "assessmentsProvider": {
-          "forType": [Function],
-        },
-        "detailsViewActionMessageCreator": {},
+        "getAssessmentActionMessageCreator": [Function],
+        "getProvider": [Function],
       }
     }
     featureFlagStoreData={{}}

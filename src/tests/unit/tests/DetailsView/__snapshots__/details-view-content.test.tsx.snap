@@ -7,6 +7,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
       {
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
+        "getAssessmentInstanceTableHandler": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
@@ -35,6 +36,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     tabClosed={false}
   />
   <DetailsViewBody
+    assessmentInstanceTableHandler={[typemoq mock object]}
     assessmentStoreData={
       {
         "assessmentNavState": {
@@ -51,6 +53,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
       {
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
+        "getAssessmentInstanceTableHandler": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
@@ -116,6 +119,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     setSideNavOpen={[Function]}
     switcherNavConfiguration={
       {
+        "getSelectedAssessmentStoreData": [Function],
         "getSelectedDetailsView": [Function],
       }
     }
@@ -386,6 +390,40 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "stepStatus": {},
             },
           },
+          "mediumPass": {
+            "adaptableContentAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "automatedChecks": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "headingsAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "imageAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "keyboardInteractionAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "linksAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "repetitiveContentAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "visibleFocusOrderAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+          },
         },
       }
     }
@@ -395,6 +433,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
       {
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
+        "getAssessmentInstanceTableHandler": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],

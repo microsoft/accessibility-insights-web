@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
-import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
 import { BoundingRect } from 'injected/bounding-rect';
 import { ClientUtils } from 'injected/client-utils';
 import { DialogRenderer } from 'injected/dialog-renderer';
+import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { ShadowUtils } from 'injected/shadow-utils';
 import { DrawerInitData } from 'injected/visualization/drawer';
 import { DrawerUtils } from 'injected/visualization/drawer-utils';
@@ -274,7 +274,7 @@ describe('Drawer', () => {
             bottom: 2003,
         };
         const configStub: DrawerConfiguration = {
-            borderColor: 'rgb(255, 255, 255)',
+            outlineColor: 'rgb(255, 255, 255)',
             textBoxConfig: {
                 fontColor: 'rgb(255, 255, 255)',
                 background: '#FFFFFF',
@@ -1101,7 +1101,7 @@ describe('Drawer', () => {
         `;
 
         const element1Config: DrawerConfiguration = {
-            borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             textBoxConfig: {
                 fontColor: 'rgb(100, 200, 0)',
                 text: 'element 1 text',
@@ -1118,14 +1118,14 @@ describe('Drawer', () => {
                 text: 'element 2 text',
                 background: 'rgb(10, 1, 15)',
             },
-            borderColor: 'rgb(10, 1, 15)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 2 tooltip',
             outlineStyle: 'dashed',
             showVisualization: true,
         };
 
         const element3Config: DrawerConfiguration = {
-            borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 3 tooltip',
             outlineStyle: 'solid',
             showVisualization: false,
@@ -1137,22 +1137,32 @@ describe('Drawer', () => {
                 text: 'element 4 text',
                 background: 'rgb(12, 13, 14)',
             },
-            borderColor: 'rgb(12, 13, 14)',
+            outlineColor: 'rgb(12, 13, 14)',
             toolTip: 'element 4 tooltip',
             outlineStyle: 'solid',
             showVisualization: true,
         };
 
-        class FormatterStub implements Formatter {
-            public getDrawerConfiguration(el: Node, data): DrawerConfiguration {
-                throw new Error('Not implemented');
+        class ConfigPerIdFormatterStub extends FormatterStub {
+            public constructor(
+                private readonly drawerConfigsById: {
+                    [id in string]: DrawerConfiguration;
+                },
+            ) {
+                super(null);
             }
 
-            public getDialogRenderer(): DialogRenderer {
-                return null;
+            public override getDrawerConfiguration(el: Node, data): DrawerConfiguration {
+                return this.drawerConfigsById[(el as Element).id];
             }
         }
-        const formatterMock = Mock.ofType(FormatterStub);
+
+        const formatterStub = new ConfigPerIdFormatterStub({
+            id1: element1Config,
+            id2: element2Config,
+            id3: element3Config,
+            id4: element4Config,
+        });
 
         windowUtilsMock
             .setup(wu => wu.getComputedStyle(It.isAny()))
@@ -1163,23 +1173,9 @@ describe('Drawer', () => {
 
         const elementResults = createElementResults(['#id1', '#id2', '#id3', '#id4']);
 
-        function addMockForElement(selector: string, config: DrawerConfiguration): void {
-            const elementResult = elementResults.filter(el => el.target[0] === selector)[0];
-            formatterMock
-                .setup(it =>
-                    it.getDrawerConfiguration(fakeDocument.querySelector(selector), elementResult),
-                )
-                .returns(() => config)
-                .verifiable();
-        }
-        addMockForElement('#id1', element1Config);
-        addMockForElement('#id2', element2Config);
-        addMockForElement('#id3', element3Config);
-        addMockForElement('#id4', element4Config);
-
         const testSubject = createDrawerBuilder()
             .setDomAndDrawerUtils(fakeDocument)
-            .setFormatter(formatterMock.object)
+            .setFormatter(formatterStub)
             .setWindowUtils(windowUtilsMock.object)
             .setDrawerUtils(getDrawerUtilsMock(fakeDocument).object)
             .build();
@@ -1188,7 +1184,6 @@ describe('Drawer', () => {
         await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toEqual(true);
-        formatterMock.verifyAll();
 
         const overlays = findCurrentDrawerOverlays();
 
@@ -1200,20 +1195,22 @@ describe('Drawer', () => {
         verifyOverlayStyle(overlays[2], element4Config);
     });
 
-    function createDrawerInfo<T>(elementResults: T[]): DrawerInitData<T> {
+    function createDrawerInfo<T>(
+        elementResults: AssessmentVisualizationInstance[] | null,
+    ): DrawerInitData {
         return {
             data: elementResults,
             featureFlagStoreData: getDefaultFeatureFlagsWeb(),
         };
     }
 
-    function createElementResults(ids: string[]): HtmlElementAxeResults[] {
+    function createElementResults(ids: string[]): AssessmentVisualizationInstance[] {
         return ids.map(id => {
             return {
                 ruleResults: {},
                 target: [id],
                 targetIndex: 0,
-            };
+            } as AssessmentVisualizationInstance;
         });
     }
 
@@ -1266,28 +1263,33 @@ describe('Drawer', () => {
 
     function verifyOverlayStyle(
         overlay: { container: HTMLDivElement; label: HTMLDivElement; failureLabel: HTMLDivElement },
-        drawerConfig: DrawerConfiguration = HighlightBoxDrawer.defaultConfiguration,
+        drawerConfig: DrawerConfiguration = FormatterStub.defaultStubDrawerConfiguration,
     ): void {
-        expect(overlay.container.style.outlineStyle).toEqual(drawerConfig.outlineStyle);
-        expect(overlay.container.style.outlineColor).toEqual(drawerConfig.borderColor);
+        expect(overlay.container.className).toEqual(
+            `insights-highlight-box insights-highlight-outline-${drawerConfig.outlineStyle}`,
+        );
+        expect(overlay.container.style.outlineColor).toEqual(drawerConfig.outlineColor);
         expect(overlay.container.style.top).toEqual('5px');
         expect(overlay.container.style.left).toEqual('5px');
         expect(overlay.container.style.minHeight).toEqual('0px');
         expect(overlay.container.style.minWidth).toEqual('0px');
         expect(overlay.container.title).toEqual(drawerConfig.toolTip || '');
-        expect(overlay.label.style.backgroundColor).toEqual(drawerConfig.borderColor);
         expect(overlay.label.style.textAlign).toEqual(drawerConfig.textAlign || '');
         expect(overlay.label.style.cursor).toEqual(drawerConfig.cursor || '');
         if (drawerConfig.textBoxConfig) {
             expect(overlay.label.innerText).toEqual(drawerConfig.textBoxConfig.text || '');
             expect(overlay.label.style.width).toEqual(drawerConfig.textBoxConfig.boxWidth || '');
             expect(overlay.label.style.color).toEqual(drawerConfig.textBoxConfig.fontColor);
+            expect(overlay.label.style.background).toEqual(drawerConfig.textBoxConfig.background);
             expect(overlay.label.className).toEqual('insights-highlight-text text-label');
         }
         if (drawerConfig.failureBoxConfig) {
             expect(overlay.label.innerText).toEqual(drawerConfig.failureBoxConfig.text || '');
             expect(overlay.label.style.width).toEqual(drawerConfig.failureBoxConfig.boxWidth || '');
             expect(overlay.label.style.color).toEqual(drawerConfig.failureBoxConfig.fontColor);
+            expect(overlay.label.style.background).toEqual(
+                drawerConfig.failureBoxConfig.background,
+            );
             expect(overlay.label.className).toEqual('insights-highlight-text failure-label');
         }
     }
@@ -1379,7 +1381,7 @@ describe('Drawer', () => {
     }
 
     function createDrawerBuilder(): DrawerBuilder {
-        return new DrawerBuilder(shadowUtilsMock.object);
+        return new DrawerBuilder(shadowUtilsMock.object).setFormatter(new FormatterStub());
     }
 
     function setupWindow(): void {
@@ -1440,3 +1442,29 @@ describe('Drawer', () => {
             .verifiable(Times.never());
     }
 });
+
+class FormatterStub implements Formatter {
+    public static readonly defaultStubDrawerConfiguration: DrawerConfiguration = {
+        outlineColor: 'rgb(1, 2, 3)',
+        outlineStyle: 'solid',
+        showVisualization: true,
+        textBoxConfig: {
+            fontColor: 'rgb(4, 5, 6)',
+            background: 'rgb(7, 8, 9)',
+            text: null,
+            boxWidth: '2em',
+        },
+    };
+
+    public constructor(
+        public readonly drawerConfiguration: DrawerConfiguration = FormatterStub.defaultStubDrawerConfiguration,
+    ) {}
+
+    public getDrawerConfiguration(el: Node, data): DrawerConfiguration {
+        return this.drawerConfiguration;
+    }
+
+    public getDialogRenderer(): DialogRenderer {
+        return null;
+    }
+}

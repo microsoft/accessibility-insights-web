@@ -52,11 +52,10 @@ export class TabContextFactory {
         private readonly usageLogger: UsageLogger,
         private readonly persistedData: PersistedData,
         private readonly indexedDBInstance: IndexedDBAPI,
-        private readonly persistStoreData: boolean,
         private readonly urlParser: UrlParser,
     ) {}
 
-    public async createTabContext(tabId: number): Promise<TabContext> {
+    public createTabContext(tabId: number): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(
@@ -66,7 +65,6 @@ export class TabContextFactory {
             this.indexedDBInstance,
             this.logger,
             tabId,
-            this.persistStoreData,
             this.urlParser,
         );
         const notificationCreator = new NotificationCreator(
@@ -200,7 +198,7 @@ export class TabContextFactory {
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
-        await dispatcher.initialize();
+        dispatcher.initialize();
 
         const devToolsMonitor = new DevToolsMonitor(
             tabId,

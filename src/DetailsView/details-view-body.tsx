@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -28,7 +28,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import {
     DetailsRightPanelConfiguration,
-    DetailsViewContentDeps,
+    RightPanelDeps,
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -37,7 +37,7 @@ import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
-export type DetailsViewBodyDeps = DetailsViewContentDeps &
+export type DetailsViewBodyDeps = RightPanelDeps &
     DetailsViewLeftNavDeps &
     DetailsViewCommandBarDeps &
     FluentSideNavDeps;
@@ -50,11 +50,11 @@ export interface DetailsViewBodyProps {
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
+    cardsViewStoreData: CardsViewStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    assessmentsProvider: AssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;

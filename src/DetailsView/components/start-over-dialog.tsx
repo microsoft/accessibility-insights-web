@@ -4,8 +4,8 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
 export type StartOverDialogType = 'assessment' | 'test';
@@ -13,45 +13,46 @@ export const dialogClosedState = 'none';
 export type StartOverDialogState = StartOverDialogType | typeof dialogClosedState;
 
 export type StartOverDialogDeps = {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    getAssessmentActionMessageCreator: () => AssessmentActionMessageCreator;
+    getProvider: () => AssessmentsProvider;
 };
 
 export interface StartOverDialogProps {
     deps: StartOverDialogDeps;
     assessmentStoreData: AssessmentStoreData;
-    assessmentsProvider: AssessmentsProvider;
     dialogState: StartOverDialogState;
     dismissDialog: () => void;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
-    const { dialogState, deps, assessmentStoreData, assessmentsProvider, dismissDialog } = props;
+    const { dialogState, deps, assessmentStoreData, dismissDialog } = props;
+    const { getProvider } = deps;
 
     if (dialogState === dialogClosedState) {
         return null;
     }
 
     const test = assessmentStoreData.assessmentNavState.selectedTestType;
-    const testName = assessmentsProvider.forType(test).title;
+    const testName = getProvider().forType(test).title;
     const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
     const onStartTestOver = (event: React.MouseEvent<any>): void => {
-        deps.detailsViewActionMessageCreator.startOverTest(event, test);
+        deps.getAssessmentActionMessageCreator().startOverTest(event, test);
         dismissDialog();
     };
 
     const onStartOverAllTests = (event: React.MouseEvent<any>): void => {
-        deps.detailsViewActionMessageCreator.startOverAllAssessments(event);
+        deps.getAssessmentActionMessageCreator().startOverAllAssessments(event);
         dismissDialog();
     };
 
     const onCancelStartOver = (event: React.MouseEvent<any>) => {
-        deps.detailsViewActionMessageCreator.cancelStartOver(event, test, requirementKey);
+        deps.getAssessmentActionMessageCreator().cancelStartOver(event, test, requirementKey);
         dismissDialog();
     };
 
     const onCancelStartOverAllTests = (event: React.MouseEvent<any>) => {
-        deps.detailsViewActionMessageCreator.cancelStartOverAllAssessments(event);
+        deps.getAssessmentActionMessageCreator().cancelStartOverAllAssessments(event);
         dismissDialog();
     };
 

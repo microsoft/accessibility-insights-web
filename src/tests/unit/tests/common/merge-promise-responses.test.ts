@@ -11,6 +11,10 @@ type VerifiablePromise = {
 };
 
 describe(mergePromiseResponses, () => {
+    it('handles empty array', async () => {
+        await mergePromiseResponses([]);
+    });
+
     it('awaits all input promises concurrently if all inputs are async and successful', async () => {
         const verifiablePromises = [
             createVerifiableResolvingPromise(),

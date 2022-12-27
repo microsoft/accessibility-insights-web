@@ -28,6 +28,31 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'excluded',
         reason: 'only reports to needs-review results due to potential false-positives',
     },
+    'aria-allowed-role': {
+        status: 'included',
+        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
+    },
+    'presentation-role-conflict': {
+        status: 'included',
+        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
+    },
+};
+
+// all the rules we enable in needs review
+export const needsReviewRules = [
+    'aria-input-field-name',
+    'color-contrast',
+    'th-has-data-cells',
+    'link-in-text-block',
+    'scrollable-region-focusable',
+    'label-content-name-mismatch',
+    'p-as-heading',
+];
+
+export const getNeedsReviewRulesConfig: () => DictionaryStringTo<RuleIncluded> = () => {
+    const needsReviewRulesConfig = {};
+    needsReviewRules.forEach(ruleId => (needsReviewRulesConfig[ruleId] = { enabled: true }));
+    return needsReviewRulesConfig;
 };
 
 export const getRuleInclusions = (

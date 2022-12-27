@@ -3,6 +3,7 @@
 export class IndexedDBDataKeys {
     // Global keys
     public static readonly assessmentStore: string = 'assessmentStoreData';
+    public static readonly quickAssessStore: string = 'quickAssessStoreData';
     public static readonly userConfiguration: string = 'userConfiguration';
     public static readonly installation: string = 'installationData';
     public static readonly unifiedFeatureFlags: string = 'featureFlags';
@@ -37,6 +38,7 @@ export class IndexedDBDataKeys {
 
     public static readonly globalKeys: string[] = [
         IndexedDBDataKeys.assessmentStore,
+        IndexedDBDataKeys.quickAssessStore,
         IndexedDBDataKeys.userConfiguration,
         IndexedDBDataKeys.installation,
         IndexedDBDataKeys.unifiedFeatureFlags,

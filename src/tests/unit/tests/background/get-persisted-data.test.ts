@@ -22,6 +22,7 @@ import { UserConfigurationStoreData } from '../../../../common/types/store-data/
 describe('GetPersistedDataTest', () => {
     let indexedDBInstanceStrictMock: IMock<IndexedDBAPI>;
     let assessmentStoreData: AssessmentStoreData;
+    let quickAssessStoreData: AssessmentStoreData;
     let userConfigurationData: UserConfigurationStoreData;
     let installationData: InstallationData;
     let permissionsStateStoreData: PermissionsStateStoreData;
@@ -30,6 +31,12 @@ describe('GetPersistedDataTest', () => {
 
     beforeEach(() => {
         assessmentStoreData = {
+            assessmentNavState: null,
+            assessments: null,
+            persistedTabInfo: {} as PersistedTabInfo,
+            resultDescription: '',
+        };
+        quickAssessStoreData = {
             assessmentNavState: null,
             assessments: null,
             persistedTabInfo: {} as PersistedTabInfo,
@@ -63,12 +70,16 @@ describe('GetPersistedDataTest', () => {
         it('propagates the results of IndexedDBAPI.getItem for the appropriate keys', async () => {
             const indexedDataKeysToFetch = [
                 IndexedDBDataKeys.assessmentStore,
+                IndexedDBDataKeys.quickAssessStore,
                 IndexedDBDataKeys.userConfiguration,
             ];
 
             indexedDBInstanceStrictMock
                 .setup(i => i.getItem(IndexedDBDataKeys.assessmentStore))
                 .returns(async () => assessmentStoreData);
+            indexedDBInstanceStrictMock
+                .setup(i => i.getItem(IndexedDBDataKeys.quickAssessStore))
+                .returns(async () => quickAssessStoreData);
             indexedDBInstanceStrictMock
                 .setup(i => i.getItem(IndexedDBDataKeys.userConfiguration))
                 .returns(async () => userConfigurationData);
@@ -80,6 +91,7 @@ describe('GetPersistedDataTest', () => {
 
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
+                quickAssessStoreData: quickAssessStoreData,
                 userConfigurationData: userConfigurationData,
             } as PersistedData);
         });
@@ -135,6 +147,7 @@ describe('GetPersistedDataTest', () => {
 
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
+                quickAssessStoreData: quickAssessStoreData,
                 knownTabIds: {},
                 userConfigurationData: {},
                 commandStoreData: {},
@@ -175,6 +188,7 @@ describe('GetPersistedDataTest', () => {
             };
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
+                quickAssessStoreData: quickAssessStoreData,
                 knownTabIds: knownTabIds,
                 userConfigurationData: {},
                 commandStoreData: {},
@@ -191,6 +205,9 @@ describe('GetPersistedDataTest', () => {
             indexedDBInstanceStrictMock
                 .setup(i => i.getItem(IndexedDBDataKeys.assessmentStore))
                 .returns(async () => assessmentStoreData);
+            indexedDBInstanceStrictMock
+                .setup(i => i.getItem(IndexedDBDataKeys.quickAssessStore))
+                .returns(async () => quickAssessStoreData);
             IndexedDBDataKeys.globalKeys.forEach(key => {
                 if (
                     key !== IndexedDBDataKeys.knownTabIds &&

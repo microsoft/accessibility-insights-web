@@ -19,7 +19,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
                 labelText={'N/A'}
-                textContent={null}
+                textContent={''}
                 customClassName="not-applicable"
             />
         );
@@ -37,10 +37,9 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
         } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
-                background={HeadingFormatter.headingStyles['3'].borderColor}
+                background={HeadingFormatter.headingStyles['3'].outlineColor}
                 labelText={'H3'}
                 textContent={'heading'}
-                customClassName={null}
             />
         );
         expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);
@@ -60,7 +59,6 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 background={'#767676'}
                 labelText={'H7'}
                 textContent={'heading'}
-                customClassName={null}
             />
         );
         expect(headingsAssessmentInstanceDetailsColumnRenderer(item)).toEqual(expected);

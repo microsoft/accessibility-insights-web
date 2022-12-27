@@ -5,6 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
@@ -26,13 +27,14 @@ export type ResultSectionContentProps = {
     results: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -48,6 +50,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             outcomeCounter,
             headingLevel,
             cardSelectionMessageCreator,
+            narrowModeStatus,
         } = props;
         if (results.length === 0) {
             return null;
@@ -70,6 +73,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     outcomeCounter={outcomeCounter}
                     headingLevel={headingLevel}
                     cardSelectionMessageCreator={cardSelectionMessageCreator}
+                    narrowModeStatus={narrowModeStatus}
                 />
             </>
         );

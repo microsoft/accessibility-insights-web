@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
 import { TextAlternativePropertyBag } from 'common/types/property-bag/text-alternative-property-bag';
-import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import * as content from 'content/test/images/text-alternative';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import {
     NoValue,
@@ -90,8 +91,6 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const key = ImagesTestStep.textAlternative;
-
 const propertyBagConfig: PropertyBagColumnRendererConfig<TextAlternativePropertyBag>[] = [
     {
         propertyName: 'imageType',
@@ -125,12 +124,11 @@ export const TextAlternative: Requirement = {
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
-    getAnalyzer: provider =>
+    getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['accessible-image'],
-                key,
-                testType: VisualizationType.ImagesAssessment,
+                ...analyzerConfig,
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),

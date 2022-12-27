@@ -8,11 +8,12 @@ import { Requirement } from './requirement';
 export interface AssessmentsProvider {
     all(): ReadonlyArray<Readonly<Assessment>>;
     isValidType(visualizationType: VisualizationType): boolean;
-    forType(visualizationType: VisualizationType): Readonly<Assessment>;
+    forType(visualizationType: VisualizationType): Readonly<Assessment> | undefined;
     isValidKey(key: string): boolean;
-    forKey(key: string): Readonly<Assessment>;
-    getStep(visualizationType: VisualizationType, key: string): Readonly<Requirement>;
+    forKey(key: string): Readonly<Assessment> | undefined;
+    forRequirementKey(key: string): Readonly<Assessment> | undefined;
+    getStep(visualizationType: VisualizationType, key: string): Readonly<Requirement> | null;
     getStepMap(
         visualizationType: VisualizationType,
-    ): Readonly<DictionaryStringTo<Readonly<Requirement>>>;
+    ): Readonly<DictionaryStringTo<Readonly<Requirement>>> | null;
 }

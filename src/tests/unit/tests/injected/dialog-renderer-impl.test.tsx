@@ -18,11 +18,12 @@ import { WindowUtils } from 'common/window-utils';
 import { rootContainerId } from 'injected/constants';
 import { DetailsDialogHandler } from 'injected/details-dialog-handler';
 import { DialogRenderer } from 'injected/dialog-renderer';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { DialogRendererImpl } from 'injected/dialog-renderer-impl';
 import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
 import { LayeredDetailsDialogComponent } from 'injected/layered-details-dialog-component';
 import { MainWindowContext } from 'injected/main-window-context';
 import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
@@ -31,11 +32,11 @@ import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
-describe(DialogRenderer, () => {
+describe(DialogRendererImpl, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
-    let frameMessenger: IMock<FrameMessenger>;
+    let frameMessenger: IMock<SingleFrameMessenger>;
     let mainWindowContext: MainWindowContext;
     let browserAdapter: IMock<BrowserAdapter>;
     let domMock: IMock<Document>;
@@ -61,7 +62,7 @@ describe(DialogRenderer, () => {
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
 
-        frameMessenger = Mock.ofType(FrameMessenger);
+        frameMessenger = Mock.ofType(SingleFrameMessenger);
         domMock = Mock.ofInstance({
             createElement: selector => null,
             body: {
@@ -238,8 +239,8 @@ describe(DialogRenderer, () => {
         renderMock
             .setup(render =>
                 render(
-                    It.is(detailsDialog => {
-                        return (detailsDialog.type as any) === LayeredDetailsDialogComponent;
+                    It.is((detailsDialog: any) => {
+                        return detailsDialog.type === LayeredDetailsDialogComponent;
                     }),
                     It.is((container: any) => container != null),
                 ),
@@ -267,8 +268,8 @@ describe(DialogRenderer, () => {
             .setup(wum => wum.getTopWindow())
             .returns(() => {
                 return windowStub;
-            })
-            .verifiable(Times.atLeastOnce());
+            });
+        windowUtilsMock.setup(wum => wum.isTopWindow()).returns(() => true);
         windowUtilsMock.setup(wum => wum.getPlatform()).returns(() => 'Win32');
         frameMessenger
             .setup(fm => fm.addMessageListener(It.isValue('insights.detailsDialog'), It.isAny()))
@@ -293,10 +294,8 @@ describe(DialogRenderer, () => {
             id: 'this is a different window than windowStub',
         } as unknown as Window;
 
-        windowUtilsMock
-            .setup(wum => wum.getTopWindow())
-            .returns(() => topWindowStub)
-            .verifiable(Times.atLeastOnce());
+        windowUtilsMock.setup(wum => wum.getTopWindow()).returns(() => topWindowStub);
+        windowUtilsMock.setup(wum => wum.isTopWindow()).returns(() => false);
 
         frameMessenger
             .setup(fm => fm.addMessageListener(It.isValue(commandMessage.command), It.isAny()))
@@ -331,7 +330,7 @@ describe(DialogRenderer, () => {
     }
 
     function createDialogRenderer(): DialogRenderer {
-        return new DialogRenderer(
+        return new DialogRendererImpl(
             domMock.object,
             renderMock.object,
             frameMessenger.object,

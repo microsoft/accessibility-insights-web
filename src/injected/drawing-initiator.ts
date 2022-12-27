@@ -20,6 +20,23 @@ export class DrawingInitiator {
         configId: string,
         processor: VisualizationInstanceProcessorCallback,
     ): Promise<void> => {
+        await this.drawingController.prepareVisualization();
+        await this.updateVisualization(
+            visualizationType,
+            featureFlagStoreData,
+            selectorMap,
+            configId,
+            processor,
+        );
+    };
+
+    public updateVisualization = async (
+        visualizationType: VisualizationType,
+        featureFlagStoreData: FeatureFlagStoreData,
+        selectorMap: SelectorToVisualizationMap,
+        configId: string,
+        processor: VisualizationInstanceProcessorCallback,
+    ): Promise<void> => {
         if (selectorMap == null) {
             return;
         }
@@ -59,6 +76,7 @@ export class DrawingInitiator {
             isEnabled: false,
             featureFlagStoreData: featureFlagStoreData,
             configId: configId,
+            elementResults: null,
         };
 
         await this.drawingController.processRequest(visualizationMessage);

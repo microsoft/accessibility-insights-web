@@ -3,7 +3,7 @@
 
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { WindowUtils } from 'common/window-utils';
-import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import { AllFramesMessenger } from 'injected/frameCommunicators/all-frames-messenger';
 import {
     CommandMessage,
     CommandMessageResponse,
@@ -37,7 +37,7 @@ export class AllFrameRunner<T> {
     public topWindowCallback: (result: T) => void;
 
     constructor(
-        private readonly frameMessenger: FrameMessenger,
+        private readonly allFramesMessenger: AllFramesMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly listener: AllFrameRunnerTarget<T>,
@@ -47,15 +47,15 @@ export class AllFrameRunner<T> {
     ) {}
 
     public initialize() {
-        this.frameMessenger.addMessageListener(this.startCommand, async () => {
+        this.allFramesMessenger.addMessageListener(this.startCommand, async () => {
             await this.start();
             return null;
         });
-        this.frameMessenger.addMessageListener(this.stopCommand, async () => {
+        this.allFramesMessenger.addMessageListener(this.stopCommand, async () => {
             await this.stop();
             return null;
         });
-        this.frameMessenger.addMessageListener(
+        this.allFramesMessenger.addMessageListener(
             this.onResultFromChildFrameCommand,
             this.onResultFromChildFrame,
         );
@@ -66,14 +66,17 @@ export class AllFrameRunner<T> {
     }
 
     public start = async () => {
+        if (this.windowUtils.isTopWindow()) {
+            await this.allFramesMessenger.initializeAllFrames();
+        }
         const startPromise = this.listener.start();
-        await this.sendCommandToFrames(this.startCommand);
+        await this.allFramesMessenger.sendCommandToAllFrames(this.startCommand);
         await startPromise;
     };
 
     public stop = async () => {
         const stopPromise = this.listener.stop();
-        await this.sendCommandToFrames(this.stopCommand);
+        await this.allFramesMessenger.sendCommandToAllFrames(this.stopCommand);
         await stopPromise;
     };
 
@@ -87,15 +90,6 @@ export class AllFrameRunner<T> {
             };
         } else {
             return await this.sendResultsToParent(payload);
-        }
-    };
-
-    private sendCommandToFrames = async (command: string) => {
-        const iframes = this.getAllFrames();
-        for (let i = 0; i < iframes.length; i++) {
-            await this.frameMessenger.sendMessageToFrame(iframes[i], {
-                command,
-            });
         }
     };
 
@@ -122,7 +116,10 @@ export class AllFrameRunner<T> {
             command: this.onResultFromChildFrameCommand,
             payload,
         };
-        return this.frameMessenger.sendMessageToWindow(this.windowUtils.getParentWindow(), message);
+        return this.allFramesMessenger.sendMessageToWindow(
+            this.windowUtils.getParentWindow(),
+            message,
+        );
     };
 
     private getFrameElementForWindow(win: Window): HTMLIFrameElement | null {

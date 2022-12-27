@@ -5,6 +5,8 @@ steps:
       inputs:
           # Keep this in sync with /.github/workflows/ci.yml
           version: '6.0.301'
+      timeoutInMinutes: 2
+      retryCountOnTaskFailure: 2
 
     - task: NodeTool@0
       inputs:
@@ -12,11 +14,14 @@ steps:
           versionSpec: '16.14.2'
       displayName: use node 16.14.2
       timeoutInMinutes: 2
+      retryCountOnTaskFailure: 2
 
     - script: npm install yarn@1.22.10 -g
       displayName: install yarn as a global dependency
       timeoutInMinutes: 1
+      retryCountOnTaskFailure: 2
 
     - script: yarn install --frozen-lockfile
       displayName: install packages and dependencies
       timeoutInMinutes: 10
+      retryCountOnTaskFailure: 2

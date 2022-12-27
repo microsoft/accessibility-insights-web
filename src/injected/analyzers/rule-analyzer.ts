@@ -43,7 +43,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
             const exclude = scopingState[ScopingInputTypes.exclude];
 
             const scanOptions: ScanOptions = {
-                testsToRun: this.getRulesToRun(),
+                testsToRun: this.getRulesToRun() ?? undefined,
                 include: include,
                 exclude: exclude,
             };
@@ -65,7 +65,8 @@ export class RuleAnalyzer extends BaseAnalyzer {
         });
     };
 
-    protected getRulesToRun(): string[] {
+    // null implies "the scanner's default rule set"
+    protected getRulesToRun(): string[] | null {
         return this.config.rules;
     }
 

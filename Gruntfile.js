@@ -53,13 +53,7 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'compile-all': [
-                'exec:esbuild-dev',
-                'exec:esbuild-dev-mv3',
-                'exec:webpack-unified',
-                'exec:esbuild-prod',
-                'exec:esbuild-prod-mv3',
-            ],
+            'compile-all': ['exec:esbuild-dev', 'exec:webpack-unified', 'exec:esbuild-prod'],
         },
         copy: {
             code: {
@@ -180,9 +174,7 @@ module.exports = function (grunt) {
         },
         exec: {
             'esbuild-dev': `node esbuild.js`,
-            'esbuild-dev-mv3': `node esbuild.js --env dev-mv3`,
             'esbuild-prod': `node esbuild.js --env prod`,
-            'esbuild-prod-mv3': `node esbuild.js --env prod-mv3`,
             'esbuild-package-report': `node esbuild.js --env report`,
             'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
@@ -222,25 +214,20 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:dev-mv3', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
             },
             // We assume esbuild --watch is running separately (usually via 'yarn watch')
             'esbuild-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
-            },
-            // We assume esbuild --watch is running separately (usually via 'yarn watch')
-            'esbuild-dev-mv3-output': {
-                files: ['extension/devMv3Bundle/**/*.*'],
-                tasks: ['drop:dev-mv3'],
             },
             'webpack-unified-output': {
                 files: ['extension/unifiedBundle/**/*.*'],
@@ -463,87 +450,21 @@ module.exports = function (grunt) {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
 
-        // Build-specific settings that exist in both MV2 and MV3
         merge(manifestJSON, {
             name: config.options.fullName,
             description: config.options.extensionDescription,
-            manifest_version: config.options.manifestVersion,
             icons: {
                 16: config.options.icon16,
                 48: config.options.icon48,
                 128: config.options.icon128,
             },
+            action: {
+                default_icon: {
+                    20: config.options.icon16,
+                    40: config.options.icon48,
+                },
+            },
         });
-
-        if (config.options.manifestVersion === 3) {
-            // Settings that are specific to MV3
-            merge(manifestJSON, {
-                action: {
-                    default_popup: 'popup/popup.html',
-                    default_icon: {
-                        20: config.options.icon16,
-                        40: config.options.icon48,
-                    },
-                },
-                permissions: [
-                    'notifications',
-                    'scripting',
-                    'storage',
-                    'tabs',
-                    'webNavigation',
-                    'activeTab',
-                ],
-                background: {
-                    service_worker: 'bundle/serviceWorker.bundle.js',
-                },
-                optional_host_permissions: ['<all_urls>'],
-                web_accessible_resources: [
-                    {
-                        resources: [
-                            'insights.html',
-                            'assessments/*',
-                            'injected/*',
-                            'background/*',
-                            'common/*',
-                            'DetailsView/*',
-                            'bundle/*',
-                            'NOTICE.html',
-                        ],
-                        matches: ['<all_urls>'],
-                    },
-                ],
-            });
-        } else {
-            // Settings that are specific to MV2. Note that many of these settings--especially the
-            // commands--will eventually be restored to manifest.json. They are here only because
-            // we want to vet each settings as we convert from MV2 to MV3.
-            merge(manifestJSON, {
-                browser_action: {
-                    default_popup: 'popup/popup.html',
-                    default_icon: {
-                        20: config.options.icon16,
-                        40: config.options.icon48,
-                    },
-                },
-                background: {
-                    page: 'background/background.html',
-                    persistent: true,
-                },
-                web_accessible_resources: [
-                    'insights.html',
-                    'assessments/*',
-                    'injected/*',
-                    'background/*',
-                    'common/*',
-                    'DetailsView/*',
-                    'bundle/*',
-                    'NOTICE.html',
-                ],
-                content_security_policy:
-                    "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
-                optional_permissions: ['*://*/*'],
-            });
-        }
 
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
@@ -828,32 +749,20 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-dev',
         'build-assets',
         'drop:dev',
     ]);
-    grunt.registerTask('build-dev-mv3', [
+    grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'build-package-validator',
         'exec:generate-validator',
-        'exec:esbuild-dev-mv3',
-        'build-assets',
-        'drop:dev-mv3',
-    ]);
-    grunt.registerTask('build-prod', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
         'exec:esbuild-prod',
         'build-assets',
         'drop:production',
-    ]);
-    grunt.registerTask('build-prod-mv3', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'exec:esbuild-prod-mv3',
-        'build-assets',
-        'drop:production-mv3',
     ]);
     grunt.registerTask('build-unified', [
         'clean:intermediates',
@@ -872,6 +781,8 @@ module.exports = function (grunt) {
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'build-package-validator',
+        'exec:generate-validator',
         'exec:esbuild-prod', // required to get the css assets
         'exec:esbuild-package-report',
         'build-assets',
@@ -892,10 +803,11 @@ module.exports = function (grunt) {
         'clean:intermediates',
         'exec:generate-scss-typings',
         'build-mock-adb',
+        'build-package-validator',
+        'exec:generate-validator',
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',
-        'drop:dev-mv3',
         'drop:unified-dev',
         'extension-release-drops',
     ]);

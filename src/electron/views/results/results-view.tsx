@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -80,6 +81,7 @@ export type ResultsViewProps = {
     leftNavStoreData: LeftNavStoreData;
     narrowModeStatus: NarrowModeStatus;
     tabStopsStoreData: TabStopsStoreData;
+    cardsViewStoreData: CardsViewStoreData;
 };
 
 export class ResultsView extends React.Component<ResultsViewProps> {
@@ -94,6 +96,9 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             cardSelectionStoreData,
             deps,
             userConfigurationStoreData,
+            tabStopsStoreData,
+            narrowModeStatus,
+            cardsViewStoreData,
         } = this.props;
         const { rules, results, toolInfo } = unifiedScanResultStoreData;
 
@@ -154,7 +159,9 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
                                         contentPageInfo={contentPageInfo}
-                                        tabStopsEnabled={this.props.tabStopsStoreData.focusTracking}
+                                        tabStopsEnabled={tabStopsStoreData.focusTracking}
+                                        narrowModeStatus={narrowModeStatus}
+                                        cardsViewStoreData={cardsViewStoreData}
                                     />
                                 </main>
                             </div>

@@ -1,12 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Assessments } from 'assessments/assessments';
 import { createToolData } from 'common/application-properties-provider';
-import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -14,9 +11,9 @@ import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
@@ -87,6 +84,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private storeUpdateMessageHub: StoreUpdateMessageHub;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
+    private quickAssessStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
@@ -132,6 +130,10 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(
             StoreNames[StoreNames.AssessmentStore],
+            this.storeUpdateMessageHub,
+        );
+        this.quickAssessStoreProxy = new StoreProxy<AssessmentStoreData>(
+            StoreNames[StoreNames.QuickAssessStore],
             this.storeUpdateMessageHub,
         );
         this.tabStoreProxy = new StoreProxy<TabStoreData>(
@@ -225,7 +227,7 @@ export class MainWindowInitializer extends WindowInitializer {
             isResultHighlightUnavailableWeb,
         );
         const selectorMapHelper = new SelectorMapHelper(
-            Assessments,
+            this.visualizationConfigurationFactory,
             elementBasedViewModelCreator.getElementBasedViewModel,
             GetVisualizationInstancesForTabStops,
         );
@@ -242,6 +244,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.needsReviewScanResultStoreProxy,
             this.needsReviewCardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
+            this.quickAssessStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);
@@ -260,9 +263,9 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const visualizationStateChangeHandler = new VisualizationStateChangeHandler(
-            EnumHelper.getNumericValues(VisualizationType),
             targetPageVisualizationUpdater.updateVisualization,
-            Assessments,
+            this.visualizationConfigurationFactory,
+            GetDetailsSwitcherNavConfiguration,
         );
 
         clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
@@ -314,8 +317,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationScanResultStoreProxy,
         );
 
-        const promiseFactory = createDefaultPromiseFactory();
-
         const analyzerProvider = new AnalyzerProvider(
             this.manualTabStopListener,
             tabStopsDoneAnalyzingTracker,
@@ -330,7 +331,6 @@ export class MainWindowInitializer extends WindowInitializer {
             unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
             logger,
-            promiseFactory,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(
@@ -343,7 +343,6 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             analyzerProvider,
             analyzerStateUpdateHandler,
-            Assessments,
             this.shadowInitializer,
         );
 

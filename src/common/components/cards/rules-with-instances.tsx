@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
@@ -28,11 +29,12 @@ export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
     rules: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -48,6 +50,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         outcomeCounter,
         headingLevel,
         cardSelectionMessageCreator,
+        narrowModeStatus,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -73,6 +76,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         userConfigurationStoreData={userConfigurationStoreData}
                         targetAppInfo={targetAppInfo}
                         cardSelectionMessageCreator={cardSelectionMessageCreator}
+                        narrowModeStatus={narrowModeStatus}
                     />
                 ),
                 containerAutomationId: ruleGroupAutomationId,
@@ -95,7 +99,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
                     const count = outcomeCounter(rule.nodes);
-                    const buttonAriaLabel = `${rule.id} ${count} ${pastTense} ${rule.description}`;
+                    const buttonAriaLabel = `${count} ${pastTense} ${rule.id} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
                     );

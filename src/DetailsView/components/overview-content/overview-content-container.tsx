@@ -39,7 +39,7 @@ const linkDataSource: HyperlinkDefinition[] = [
 ];
 
 export type OverviewContainerDeps = {
-    assessmentsProvider: AssessmentsProvider;
+    getProvider: () => AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (
@@ -61,7 +61,7 @@ export const overviewContainerAutomationId = 'overviewContainerAutomationId';
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
     const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const {
-        assessmentsProvider,
+        getProvider,
         getAssessmentSummaryModelFromProviderAndStoreData,
         assessmentsProviderWithFeaturesEnabled,
     } = deps;
@@ -71,6 +71,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
+    const assessmentsProvider = getProvider();
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(
         assessmentsProvider,
         featureFlagStoreData,

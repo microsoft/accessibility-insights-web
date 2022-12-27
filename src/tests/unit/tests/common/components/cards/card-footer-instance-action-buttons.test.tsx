@@ -11,35 +11,20 @@ import {
     CardFooterMenuItemsBuilder,
     CardFooterMenuItemsProps,
 } from 'common/components/cards/card-footer-menu-items-builder';
-import {
-    allCardInteractionsSupported,
-    onlyUserConfigAgnosticCardInteractionsSupported,
-} from 'common/components/cards/card-interaction-support';
-import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
-import { NamedFC } from 'common/react/named-fc';
+import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
-import { guidanceTags } from 'common/types/store-data/guidance-links';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { IssueFilingDialog } from 'DetailsView/components/issue-filing-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow, ShallowWrapper } from 'enzyme';
-import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
-import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(CardFooterInstanceActionButtons, () => {
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;
-    let userConfigurationStoreData: UserConfigurationStoreData;
-    let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
-    let testIssueFilingServiceStub: IssueFilingService;
-    let issueDetailsData: CreateIssueDetailsTextData;
     let menuItemsBuilderMock: IMock<CardFooterMenuItemsBuilder>;
     let cardsViewControllerMock: IMock<CardsViewController>;
-    let cardsViewStoreData: CardsViewStoreData;
-    const testKey: string = 'test';
 
     const menuItems: CardFooterMenuItem[] = [
         {
@@ -55,72 +40,10 @@ describe(CardFooterInstanceActionButtons, () => {
     ];
 
     beforeEach(() => {
-        testIssueFilingServiceStub = {
-            key: testKey,
-            displayName: 'TEST',
-            settingsForm: NamedFC('testForm', () => <>Hello World</>),
-            isSettingsValid: () => true,
-            buildStoreData: testField => {
-                return { testField };
-            },
-            getSettingsFromStoreData: data => data[testKey],
-            fileIssue: () => Promise.resolve(),
-        };
-
-        issueDetailsData = {
-            rule: {
-                id: 'id',
-                description: 'description',
-                url: 'url',
-                guidance: [
-                    {
-                        href: 'www.test.com',
-                        text: 'text',
-                        tags: [guidanceTags.WCAG_2_1],
-                    },
-                ],
-            },
-            targetApp: {
-                name: 'name',
-                url: 'url',
-            },
-            element: {
-                identifier: 'identifier',
-                conciseName: 'conciseName',
-            },
-            howToFixSummary: 'howToFixSummary',
-            snippet: 'snippet',
-        };
-        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         menuItemsBuilderMock = Mock.ofType<CardFooterMenuItemsBuilder>();
         cardsViewControllerMock = Mock.ofType<CardsViewController>();
 
-        userConfigurationStoreData = {
-            bugService: testKey,
-            bugServicePropertiesMap: {
-                [testKey]: {},
-            },
-            enableHighContrast: false,
-            lastSelectedHighContrast: false,
-            enableTelemetry: true,
-            isFirstTime: true,
-            adbLocation: null,
-            lastWindowState: null,
-            lastWindowBounds: null,
-            showAutoDetectedFailuresDialog: true,
-            showSaveAssessmentDialog: true,
-        };
-
-        cardsViewStoreData = {
-            isIssueFilingSettingsDialogOpen: false,
-        };
-
-        issueFilingServiceProviderMock
-            .setup(bp => bp.forKey('test'))
-            .returns(() => testIssueFilingServiceStub);
-
         defaultDeps = {
-            issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             cardInteractionSupport: allCardInteractionsSupported,
             cardFooterMenuItemsBuilder: menuItemsBuilderMock.object,
             cardsViewController: cardsViewControllerMock.object,
@@ -128,14 +51,9 @@ describe(CardFooterInstanceActionButtons, () => {
 
         defaultProps = {
             deps: defaultDeps,
-            userConfigurationStoreData,
-            issueDetailsData,
-            cardsViewStoreData: cardsViewStoreData,
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
+            issueDetailsData: {} as CreateIssueDetailsTextData,
         } as CardFooterInstanceActionButtonsProps;
-    });
-
-    afterEach(() => {
-        issueFilingServiceProviderMock.verifyAll();
     });
 
     it('renders as null with no menu items', () => {
@@ -146,31 +64,33 @@ describe(CardFooterInstanceActionButtons, () => {
         expect(rendered.getElement()).toBeNull();
     });
 
+    it('renders without copyFailureDetails supported', () => {
+        const props = {
+            ...defaultProps,
+            deps: {
+                ...defaultDeps,
+                cardInteractionSupport: {
+                    ...allCardInteractionsSupported,
+                    supportsCopyFailureDetails: false,
+                },
+            },
+        };
+        setupGetMenuItems(menuItems, props);
+
+        const rendered = shallow(<CardFooterInstanceActionButtons {...props} />);
+
+        expect(rendered.debug()).toMatchSnapshot('component snapshot');
+    });
+
     describe.each([true, false])('with isCardFooterCollapsed=%s', isCardFooterCollapsed => {
         beforeEach(() => {
             defaultProps.narrowModeStatus = { isCardFooterCollapsed } as NarrowModeStatus;
         });
 
-        it('renders per snapshot with allCardInteractionsSupported', () => {
+        it('renders per snapshot', () => {
             setupGetMenuItems(menuItems, defaultProps);
 
             const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
-
-            verifySnapshots(rendered);
-        });
-
-        it('renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported', () => {
-            const newProps: CardFooterInstanceActionButtonsProps = {
-                ...defaultProps,
-                deps: {
-                    ...defaultDeps,
-                    cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported,
-                },
-            };
-
-            setupGetMenuItems(menuItems, newProps);
-
-            const rendered = shallow(<CardFooterInstanceActionButtons {...newProps} />);
 
             verifySnapshots(rendered);
         });
@@ -186,7 +106,7 @@ describe(CardFooterInstanceActionButtons, () => {
     });
 
     it.each(['test-kebabmenuarialabel', undefined])(
-        'renders per snapshot with allCardInteractionsSupported and %s aria label passed as prop',
+        'renders per snapshot with %s aria label passed as prop',
         ariaLabel => {
             defaultProps.narrowModeStatus = { isCardFooterCollapsed: true } as NarrowModeStatus;
 
@@ -205,39 +125,40 @@ describe(CardFooterInstanceActionButtons, () => {
         },
     );
 
-    it('kebab button is focused when issue filing settings dialog is dismissed', async () => {
+    it('onIssueFilingSettingsDialogDismissed focuses kebab button', async () => {
         defaultProps.narrowModeStatus = { isCardFooterCollapsed: true } as NarrowModeStatus;
-
         const kebabButtonMock = Mock.ofType<IButton>();
+        let menuItemsProps: CardFooterMenuItemsProps;
 
-        setupGetMenuItems(menuItems, defaultProps);
+        menuItemsBuilderMock
+            .setup(m =>
+                m.getCardFooterMenuItems(
+                    It.isObjectWith(defaultProps as unknown as CardFooterMenuItemsProps),
+                ),
+            )
+            .returns((props: CardFooterMenuItemsProps) => {
+                menuItemsProps = props;
+                return menuItems;
+            });
 
-        const rendered = shallow(
-            <CardFooterInstanceActionButtons
-                {...defaultProps}
-                deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
-            />,
-        );
+        const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
+
+        // call ref callback to set rendered component's ref to our button mock
         const kebabButtonRefCallback = rendered.find(ActionButton).prop('componentRef') as (
             ref: IButton,
         ) => void;
-
         kebabButtonRefCallback(kebabButtonMock.object);
 
-        const issueFilingDialog = rendered.find(IssueFilingDialog);
-        const afterDialogDismissed = issueFilingDialog.prop('afterClosed');
-
-        afterDialogDismissed();
+        menuItemsProps.onIssueFilingSettingsDialogDismissed();
 
         kebabButtonMock.verify(k => k.focus(), Times.once());
     });
 
     it('File issue button is focused when issue filing settings dialog is dismissed', async () => {
         defaultProps.narrowModeStatus = { isCardFooterCollapsed: false } as NarrowModeStatus;
-
         const fileIssueButtonMock = Mock.ofType<IButton>();
 
-        let fileIssueButtonRefCallback: any;
+        let menuItemsProps: CardFooterMenuItemsProps;
         menuItemsBuilderMock
             .setup(m =>
                 m.getCardFooterMenuItems(
@@ -245,23 +166,22 @@ describe(CardFooterInstanceActionButtons, () => {
                 ),
             )
             .returns(props => {
-                fileIssueButtonRefCallback = props.fileIssueButtonRef;
+                menuItemsProps = props;
                 return menuItems;
             });
 
-        const rendered = shallow(
+        shallow(
             <CardFooterInstanceActionButtons
                 {...defaultProps}
                 deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}
             />,
         );
 
-        fileIssueButtonRefCallback(fileIssueButtonMock.object);
+        // call ref callback to set rendered component's ref to our button mock
+        const buttonRefCallback = menuItemsProps.fileIssueButtonRef as (button: IButton) => void;
+        buttonRefCallback(fileIssueButtonMock.object);
 
-        const issueFilingDialog = rendered.find(IssueFilingDialog);
-        const afterDialogDismissed = issueFilingDialog.prop('afterClosed');
-
-        afterDialogDismissed();
+        menuItemsProps.onIssueFilingSettingsDialogDismissed();
 
         fileIssueButtonMock.verify(f => f.focus(), Times.once());
     });

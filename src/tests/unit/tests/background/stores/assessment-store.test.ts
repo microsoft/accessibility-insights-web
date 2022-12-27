@@ -21,6 +21,7 @@ import {
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { AssessmentDataRemover } from 'background/assessment-data-remover';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
@@ -114,7 +115,20 @@ describe('AssessmentStore', () => {
     });
 
     test('getId', () => {
-        const testObject = createStoreWithNullParams(AssessmentStore);
+        const testObject = new AssessmentStore(
+            null,
+            null,
+            assessmentDataConverterMock.object,
+            assessmentDataRemoverMock.object,
+            assessmentsProviderMock.object,
+            null,
+            null,
+            initialAssessmentStoreDataGeneratorMock.object,
+            failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
+        );
+
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentStore]);
     });
 
@@ -132,6 +146,8 @@ describe('AssessmentStore', () => {
             null,
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         );
 
         const actualState = testObject.getDefaultState();
@@ -227,6 +243,8 @@ describe('AssessmentStore', () => {
             persisted,
             initialAssessmentStoreDataGeneratorMock.object,
             failTestOnErrorLogger,
+            StoreNames.AssessmentStore,
+            IndexedDBDataKeys.assessmentStore,
         );
         const actualState = testObject.getDefaultState();
 
@@ -2234,6 +2252,8 @@ describe('AssessmentStore', () => {
                 persistedData,
                 initialAssessmentStoreDataGeneratorMock.object,
                 failTestOnErrorLogger,
+                StoreNames.AssessmentStore,
+                IndexedDBDataKeys.assessmentStore,
             );
         return new AssessmentStoreTester(
             AssessmentActions,

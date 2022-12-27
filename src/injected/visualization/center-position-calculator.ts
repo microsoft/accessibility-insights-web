@@ -25,7 +25,11 @@ export class CenterPositionCalculator {
         this.clientUtils = clientUtils;
     }
 
-    public getElementCenterPosition(targetElement: Element): Point | null {
+    public getElementCenterPosition(targetElement: Element | null): Point | null {
+        if (targetElement == null) {
+            return null;
+        }
+
         if (targetElement.tagName.toLowerCase() === 'area') {
             return this.getAreaElementCenterPosition(targetElement as HTMLAreaElement);
         }

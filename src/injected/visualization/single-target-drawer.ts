@@ -9,7 +9,7 @@ import { SingleTargetFormatter } from './single-target-formatter';
 export class SingleTargetDrawer implements Drawer {
     protected isEnabled = false;
     protected drawerUtils: DrawerUtils;
-    private target: HTMLElement;
+    private target: HTMLElement | null;
     private formatter: SingleTargetFormatter;
 
     constructor(drawerUtils: DrawerUtils, formatter: SingleTargetFormatter) {
@@ -17,9 +17,9 @@ export class SingleTargetDrawer implements Drawer {
         this.formatter = formatter;
     }
 
-    public initialize(drawerInfo: DrawerInitData<HtmlElementAxeResults>): void {
+    public initialize(drawerInfo: DrawerInitData): void {
         this.eraseLayout();
-        const elementResults = drawerInfo.data;
+        const elementResults = drawerInfo.data ?? [];
         const myDocument = this.drawerUtils.getDocumentElement();
         this.target = this.getFirstElementTarget(myDocument, elementResults);
     }
@@ -48,7 +48,7 @@ export class SingleTargetDrawer implements Drawer {
     private getFirstElementTarget(
         document: Document,
         elementResults: HtmlElementAxeResults[],
-    ): HTMLElement {
+    ): HTMLElement | null {
         if (!elementResults[0]) {
             return null;
         }

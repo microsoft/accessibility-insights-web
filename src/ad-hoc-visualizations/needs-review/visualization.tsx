@@ -4,6 +4,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/types/store-data/adhoc-test-keys';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
+import { needsReviewRules } from 'scanner/get-rule-inclusions';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { Messages } from '../../common/messages';
@@ -16,14 +17,7 @@ import { VisualizationInstanceProcessor } from '../../injected/visualization-ins
 const needsReviewTestKey = AdHocTestkeys.NeedsReview;
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: [
-        'aria-input-field-name',
-        'color-contrast',
-        'th-has-data-cells',
-        'link-in-text-block',
-        'scrollable-region-focusable',
-        'label-content-name-mismatch',
-    ],
+    rules: needsReviewRules,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
@@ -37,7 +31,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocNeedsReview',
     getStoreData: data => data.adhoc[needsReviewTestKey],
-    enableTest: data => (data.adhoc[needsReviewTestKey].enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
@@ -54,9 +48,11 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
                 .
             </>
         ),
-        enableMessage: 'Running needs review checks...',
-        toggleLabel: 'Show elements needing review',
-        linkToDetailsViewText: 'List view and filtering',
+        adHoc: {
+            enableMessage: 'Running needs review checks...',
+            toggleLabel: 'Show elements needing review',
+            linkToDetailsViewText: 'List view and filtering',
+        },
     },
     chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,

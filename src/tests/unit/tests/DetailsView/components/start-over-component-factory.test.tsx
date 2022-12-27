@@ -37,7 +37,9 @@ describe('StartOverComponentFactory', () => {
     });
 
     function getProps(isForAssessment: boolean): StartOverFactoryProps {
-        const deps = {} as StartOverFactoryDeps;
+        const deps = {
+            getProvider: () => assessmentsProviderMock.object,
+        } as StartOverFactoryDeps;
 
         let visualizationStoreData: VisualizationStoreData = null;
         let selectedTestType: VisualizationType = null;
@@ -67,7 +69,6 @@ describe('StartOverComponentFactory', () => {
         return {
             deps,
             assessmentStoreData,
-            assessmentsProvider: assessmentsProviderMock.object,
             visualizationStoreData,
         } as StartOverFactoryProps;
     }

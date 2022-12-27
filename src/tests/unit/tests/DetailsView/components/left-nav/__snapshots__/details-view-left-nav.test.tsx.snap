@@ -7,10 +7,11 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
   <Switcher
     deps={
       {
-        "assessmentsProvider": {},
         "assessmentsProviderWithFeaturesEnabled": [Function],
+        "getProvider": [Function],
       }
     }
+    featureFlagStoreData={{}}
   />
   <test
     assessmentsData={
@@ -21,8 +22,8 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
     assessmentsProvider={{}}
     deps={
       {
-        "assessmentsProvider": {},
         "assessmentsProviderWithFeaturesEnabled": [Function],
+        "getProvider": [Function],
       }
     }
     featureFlagStoreData={{}}

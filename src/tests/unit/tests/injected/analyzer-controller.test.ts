@@ -1,16 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { AnalyzerMessageConfiguration } from 'injected/analyzers/get-analyzer-message-types';
 import { ShadowInitializer } from 'injected/shadow-initializer';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../../../../common/enum-helper';
+import {
+    ForEachConfigCallback,
+    VisualizationConfigurationFactory,
+} from '../../../../common/configs/visualization-configuration-factory';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import {
@@ -21,7 +23,7 @@ import {
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerController } from '../../../../injected/analyzer-controller';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
-import { Analyzer } from '../../../../injected/analyzers/analyzer';
+import { Analyzer, AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { ScopingStoreDataBuilder } from '../../common/scoping-store-data-builder';
 import { IsSameObject } from '../../common/typemoq-helper';
@@ -33,10 +35,14 @@ describe('AnalyzerControllerTests', () => {
     let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let testType: VisualizationType;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let getAnalyzerMock: IMock<(provider: AnalyzerProvider) => Analyzer>;
-    let getIdentifierMock: IMock<() => string>;
+    let getAnalyzerMock: IMock<
+        (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => Analyzer
+    >;
+    let getIdentifierMock: IMock<(key?: string) => string>;
     let identifier: string;
     let configStub: VisualizationConfiguration;
+    let requirementStub: Requirement;
+    let messageConfigurationStub: AnalyzerMessageConfiguration;
 
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let visualizationStoreState: VisualizationStoreData;
@@ -45,8 +51,8 @@ describe('AnalyzerControllerTests', () => {
     let analyzerProviderStrictMock: IMock<AnalyzerProvider>;
     let analyzerMock: IMock<Analyzer>;
     let analyzerStateUpdateHandlerStrictMock: IMock<AnalyzerStateUpdateHandler>;
-    let assessmentsMock: IMock<AssessmentsProvider>;
     let shadowInitializerMock: IMock<ShadowInitializer>;
+    let analyzerInitializeCallback: ForEachConfigCallback;
     let testObject: AnalyzerController;
     let teardown: (id: string) => void;
     let startScan: (id: string) => void;
@@ -56,20 +62,28 @@ describe('AnalyzerControllerTests', () => {
         getStoreDataMock = Mock.ofInstance(data => {
             return null;
         });
-        getAnalyzerMock = Mock.ofInstance((provider: AnalyzerProvider) => {
-            return null;
-        });
+        getAnalyzerMock = Mock.ofInstance(
+            (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+                return null;
+            },
+        );
         getIdentifierMock = Mock.ofInstance(() => {
             return null;
         });
+        messageConfigurationStub = {
+            analyzerMessageType: 'some message type',
+        };
         configStub = {
             getStoreData: getStoreDataMock.object,
             getAnalyzer: getAnalyzerMock.object,
             getIdentifier: getIdentifierMock.object,
+            messageConfiguration: messageConfigurationStub,
         } as any;
+        requirementStub = {
+            key: 'some requirement key',
+        } as Requirement;
 
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
-        assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         scopingStoreMock = Mock.ofType<ScopingStore>(ScopingStore);
@@ -100,14 +114,16 @@ describe('AnalyzerControllerTests', () => {
         visualizationStoreState = null;
         scopingStoreState = null;
 
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            setupVisualizationConfigurationFactory(test, configStub);
-        });
+        visualizationConfigurationFactoryMock
+            .setup(m => m.forEachConfig(It.isAny()))
+            .callback(givenCallback => {
+                analyzerInitializeCallback = givenCallback;
+                analyzerInitializeCallback(configStub, testType, requirementStub);
+            });
 
         identifier = 'fake-key';
-        const times = Times.exactly(EnumHelper.getNumericValues(VisualizationType).length);
-        setupGetIdentifierMock(identifier, times);
-        setupGetAnalyzerMockCalled(times);
+        setupGetIdentifierMock(identifier, requirementStub);
+        setupGetAnalyzerMockCalled(requirementStub);
 
         testObject = new AnalyzerController(
             visualizationStoreMock.object,
@@ -116,7 +132,6 @@ describe('AnalyzerControllerTests', () => {
             visualizationConfigurationFactoryMock.object,
             analyzerProviderStrictMock.object,
             analyzerStateUpdateHandlerStrictMock.object,
-            assessmentsMock.object,
             shadowInitializerMock.object,
         );
     });
@@ -130,11 +145,30 @@ describe('AnalyzerControllerTests', () => {
         featureFlagStoreState = {};
     });
 
-    test('handleUpdate when stores are initialized', () => {
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
+    test('listenToStore: verify initializiation and handle update', () => {
+        visualizationStoreState = new VisualizationStoreDataBuilder()
+            .with('scanning', testType.toString())
+            .build();
+
+        scopingStoreState = new ScopingStoreDataBuilder().build();
+
+        analyzerStateUpdateHandlerStrictMock
+            .setup(handler => handler.handleUpdate(visualizationStoreState))
+            .verifiable(Times.once());
+
+        testObject.listenToStore();
+
+        analyzerStateUpdateHandlerStrictMock.verifyAll();
+        getIdentifierMock.verifyAll();
+        getAnalyzerMock.verifyAll();
+    });
+
+    test('listenToStore: verify initializiation and handle update for configs without requirements', () => {
+        getIdentifierMock.reset();
+        getAnalyzerMock.reset();
+        requirementStub = null;
+        setupGetIdentifierMock(identifier, requirementStub);
+        setupGetAnalyzerMockCalled(requirementStub);
 
         visualizationStoreState = new VisualizationStoreDataBuilder()
             .with('scanning', testType.toString())
@@ -149,8 +183,8 @@ describe('AnalyzerControllerTests', () => {
         testObject.listenToStore();
 
         analyzerStateUpdateHandlerStrictMock.verifyAll();
-        getAnalyzerMock.verifyAll();
         getIdentifierMock.verifyAll();
+        getAnalyzerMock.verifyAll();
     });
 
     test('do not scan on if any store state is null', () => {
@@ -159,10 +193,6 @@ describe('AnalyzerControllerTests', () => {
         scopingStoreState = new ScopingStoreDataBuilder().build();
 
         setupVisualizationConfigurationFactory(testType, configStub);
-        assessmentsMock
-            .setup(mock => mock.isValidType(It.isAny()))
-            .returns(() => false)
-            .verifiable(Times.atLeastOnce());
 
         analyzerStateUpdateHandlerStrictMock
             .setup(handler => handler.handleUpdate(visualizationStoreState))
@@ -176,10 +206,12 @@ describe('AnalyzerControllerTests', () => {
     });
 
     test('startScan', () => {
+        visualizationStoreState = new VisualizationStoreDataBuilder().build();
+
         testObject.listenToStore();
 
         getAnalyzerMock.reset();
-        setupAnalyzeCall();
+        setupAnalyzeCall(visualizationStoreState);
         setupGetAnalyzerMockNeverCalled();
 
         shadowInitializerMock.setup(m => m.removeExistingShadowHost()).verifiable(Times.once());
@@ -208,7 +240,7 @@ describe('AnalyzerControllerTests', () => {
         analyzerMock.verifyAll();
     });
 
-    function setupAnalyzeCall(): void {
+    function setupAnalyzeCall(visualizationState: VisualizationStoreData): void {
         analyzerMock.setup(am => am.analyze()).verifiable();
     }
 
@@ -216,23 +248,33 @@ describe('AnalyzerControllerTests', () => {
         analyzerMock.setup(am => am.teardown()).verifiable();
     }
 
-    function setupGetIdentifierMock(key: string, times): void {
+    function setupGetIdentifierMock(identifier: string, requirement: Requirement): void {
         getIdentifierMock
-            .setup(gim => gim())
-            .returns(step => key)
-            .verifiable(times);
+            .setup(gim => gim(requirement?.key))
+            .returns(step => identifier)
+            .verifiable();
     }
 
-    function setupGetAnalyzerMockCalled(times): void {
+    function setupGetAnalyzerMockCalled(requirement: Requirement): void {
+        const expectedAnalyzerConfig = {
+            key: requirement?.key,
+            testType,
+            ...messageConfigurationStub,
+        } as AnalyzerConfiguration;
         getAnalyzerMock
-            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object)))
+            .setup(gam =>
+                gam(
+                    IsSameObject(analyzerProviderStrictMock.object),
+                    It.isValue(expectedAnalyzerConfig),
+                ),
+            )
             .returns(() => analyzerMock.object)
-            .verifiable(times);
+            .verifiable();
     }
 
     function setupGetAnalyzerMockNeverCalled(): void {
         getAnalyzerMock
-            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object)))
+            .setup(gam => gam(IsSameObject(analyzerProviderStrictMock.object), It.isAny()))
             .returns(() => analyzerMock.object)
             .verifiable(Times.never());
     }

@@ -23,6 +23,7 @@ import { DictionaryStringTo } from 'types/common-types';
 import { TabStopRequirementIds } from 'types/tab-stop-requirement-info';
 import {
     AddTabbedElementPayload,
+    AddTabStopInstanceArrayPayload,
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
@@ -112,6 +113,9 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
             this.onResetTabStopRequirementStatus,
         );
         this.tabStopRequirementActions.addTabStopInstance.addListener(this.onAddTabStopInstance);
+        this.tabStopRequirementActions.addTabStopInstanceArray.addListener(
+            this.onAddTabStopInstanceArray,
+        );
         this.tabStopRequirementActions.updateTabStopInstance.addListener(
             this.onUpdateTabStopInstance,
         );
@@ -205,6 +209,18 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
     };
 
     private onAddTabStopInstance = async (payload: AddTabStopInstancePayload): Promise<void> => {
+        this.updateStateFromAddTabStopInstancePayload(payload);
+        await this.emitChanged();
+    };
+
+    private onAddTabStopInstanceArray = async (
+        payload: AddTabStopInstanceArrayPayload,
+    ): Promise<void> => {
+        payload.results.map(this.updateStateFromAddTabStopInstancePayload);
+        await this.emitChanged();
+    };
+
+    private updateStateFromAddTabStopInstancePayload = (payload: AddTabStopInstancePayload) => {
         const { requirementId, description, selector, html } = payload;
         this.state.tabStops.requirements[requirementId].status = 'fail';
         this.state.tabStops.requirements[requirementId].instances.push({
@@ -213,7 +229,6 @@ export class VisualizationScanResultStore extends PersistentStore<VisualizationS
             selector,
             html,
         });
-        await this.emitChanged();
     };
 
     private onUpdateTabStopInstance = async (

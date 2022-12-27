@@ -6,7 +6,7 @@ exports[`RulesWithInstances renders 1`] = `
   data-automation-id="rule-details-group"
 >
   <CollapsibleControlStub
-    buttonAriaLabel="some-rule 5 Passed sample-description"
+    buttonAriaLabel="5 Passed some-rule sample-description"
     containerAutomationId="cards-rule-group"
     containerClassName="collapsibleRuleDetailsGroup"
     content={

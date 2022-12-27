@@ -65,175 +65,97 @@ describe('TargetPageController', () => {
         knownTabIds = {};
     });
 
-    describe('No Persisted Data', () => {
+    beforeEach(() => {
+        testSubject = new TargetPageController(
+            mockTabContextManager.object,
+            mockTabContextFactory.object,
+            mockBrowserAdapter.object,
+            mockLogger.object,
+            knownTabIds,
+            idbInstanceMock.object,
+        );
+    });
+
+    afterEach(() => {
+        mockTabContextManager.verifyAll();
+        mockTabContextFactory.verifyAll();
+        idbInstanceMock.verifyAll();
+    });
+
+    describe('initialize', () => {
         beforeEach(() => {
-            testSubject = new TargetPageController(
-                mockTabContextManager.object,
-                mockTabContextFactory.object,
-                mockBrowserAdapter.object,
-                mockLogger.object,
-                knownTabIds,
-                idbInstanceMock.object,
-                false,
-            );
-
             idbInstanceMock.reset();
-
-            setupDatabaseInstance(Times.never());
         });
 
-        afterEach(() => {
-            mockTabContextManager.verifyAll();
-            mockTabContextFactory.verifyAll();
-            idbInstanceMock.verifyAll();
+        it('should persist the expected tabs', async () => {
+            setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID]);
+            setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
+            setupNeverDeleteTabs();
+
+            await testSubject.initialize();
         });
 
-        it('should not persist data on init', async () => {
+        it('should create a tab context for each pre-existing tab', async () => {
+            setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID]);
+            setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
+
             setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
             setupNeverCreateTabContexts([NEW_TAB_ID]);
 
             await testSubject.initialize();
         });
 
-        it('should not persist data for new tabs', async () => {
+        it('should create a tab context for each persisted tab', async () => {
+            setupDatabaseInstance(Times.never());
+
+            knownTabIds[EXISTING_INACTIVE_TAB_ID] = undefined;
+            knownTabIds[EXISTING_ACTIVE_TAB_ID] = undefined;
+
+            setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
+            setupNeverCreateTabContexts([NEW_TAB_ID]);
+            setupNeverInterpretMessage();
+
             await testSubject.initialize();
-
-            setupTryCreateTabContexts([NEW_TAB_ID]);
-
-            await testSubject.onTabNavigated({
-                frameId: 0,
-                tabId: NEW_TAB_ID,
-            } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
         });
 
-        it('should not persist data for tabs that are removed', async () => {
-            await testSubject.initialize();
+        it('should create a tab context for each persisted and non-persisted tab', async () => {
+            knownTabIds[EXISTING_ACTIVE_TAB_ID] = undefined;
 
+            setupDatabaseInstance(Times.once(), null, {
+                1: undefined,
+                2: '',
+            });
+
+            setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
+            setupNeverCreateTabContexts([NEW_TAB_ID]);
+            setupNeverInterpretMessage(EXISTING_ACTIVE_TAB_ID);
+            setupInterpretMessageForTab(EXISTING_INACTIVE_TAB_ID);
+
+            await testSubject.initialize();
+        });
+
+        it('should treat known tabs with a changed url and no details view as new', async () => {
+            knownTabIds[EXISTING_ACTIVE_TAB_ID] = 'url';
+
+            // The browser adapter always returns '' for the url, so the database should be updated to reflect this 'updated' url
+            setupDatabaseInstance(Times.once(), null, {
+                1: '',
+                2: '',
+            });
+
+            setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
+            setupNeverCreateTabContexts([NEW_TAB_ID]);
+            const expectedMessage = {
+                messageType: Messages.Tab.ExistingTabUpdated,
+                payload: { ...EXISTING_ACTIVE_TAB },
+                tabId: EXISTING_ACTIVE_TAB_ID,
+            };
             mockTabContextManager
-                .setup(m => m.deleteTabContext(EXISTING_ACTIVE_TAB_ID))
+                .setup(m => m.interpretMessageForTab(EXISTING_ACTIVE_TAB_ID, expectedMessage))
+                .returns(() => ({ messageHandled: true, result: undefined }))
                 .verifiable();
 
-            await testSubject.onTargetTabRemoved(EXISTING_ACTIVE_TAB_ID);
-        });
-
-        it('should remove tabs that no longer exist', async () => {
-            knownTabIds[EXISTING_ACTIVE_TAB_ID] = undefined;
-            knownTabIds[EXISTING_INACTIVE_TAB_ID] = undefined;
-            knownTabIds[NEW_TAB_ID] = undefined;
-            setupTryCreateTabContexts([
-                EXISTING_ACTIVE_TAB_ID,
-                EXISTING_INACTIVE_TAB_ID,
-                NEW_TAB_ID,
-            ]);
-
-            setupNeverInterpretMessage(EXISTING_ACTIVE_TAB_ID);
-            setupNeverInterpretMessage(EXISTING_INACTIVE_TAB_ID);
-            setupInterpretMessageForTab(NEW_TAB_ID, Messages.Tab.Remove);
-
             await testSubject.initialize();
-        });
-    });
-
-    describe('Persisted Data', () => {
-        beforeEach(() => {
-            testSubject = new TargetPageController(
-                mockTabContextManager.object,
-                mockTabContextFactory.object,
-                mockBrowserAdapter.object,
-                mockLogger.object,
-                knownTabIds,
-                idbInstanceMock.object,
-                true,
-            );
-        });
-
-        afterEach(() => {
-            mockTabContextManager.verifyAll();
-            mockTabContextFactory.verifyAll();
-            idbInstanceMock.verifyAll();
-        });
-
-        describe('initialize', () => {
-            beforeEach(() => {
-                idbInstanceMock.reset();
-            });
-
-            it('should persist the expected tabs', async () => {
-                setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID]);
-                setupDatabaseInstance(Times.once(), [
-                    EXISTING_ACTIVE_TAB_ID,
-                    EXISTING_INACTIVE_TAB_ID,
-                ]);
-                setupNeverDeleteTabs();
-
-                await testSubject.initialize();
-            });
-
-            it('should create a tab context for each pre-existing tab', async () => {
-                setupDatabaseInstance(Times.once(), [EXISTING_ACTIVE_TAB_ID]);
-                setupDatabaseInstance(Times.once(), [
-                    EXISTING_ACTIVE_TAB_ID,
-                    EXISTING_INACTIVE_TAB_ID,
-                ]);
-
-                setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
-                setupNeverCreateTabContexts([NEW_TAB_ID]);
-
-                await testSubject.initialize();
-            });
-
-            it('should create a tab context for each persisted tab', async () => {
-                setupDatabaseInstance(Times.never());
-
-                knownTabIds[EXISTING_INACTIVE_TAB_ID] = undefined;
-                knownTabIds[EXISTING_ACTIVE_TAB_ID] = undefined;
-
-                setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
-                setupNeverCreateTabContexts([NEW_TAB_ID]);
-                setupNeverInterpretMessage();
-
-                await testSubject.initialize();
-            });
-
-            it('should create a tab context for each persisted and non-persisted tab', async () => {
-                knownTabIds[EXISTING_ACTIVE_TAB_ID] = undefined;
-
-                setupDatabaseInstance(Times.once(), null, {
-                    1: undefined,
-                    2: '',
-                });
-
-                setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
-                setupNeverCreateTabContexts([NEW_TAB_ID]);
-                setupNeverInterpretMessage(EXISTING_ACTIVE_TAB_ID);
-                setupInterpretMessageForTab(EXISTING_INACTIVE_TAB_ID);
-
-                await testSubject.initialize();
-            });
-
-            it('should treat known tabs with a changed url and no details view as new', async () => {
-                knownTabIds[EXISTING_ACTIVE_TAB_ID] = 'url';
-
-                // The browser adapter always returns '' for the url, so the database should be updated to reflect this 'updated' url
-                setupDatabaseInstance(Times.once(), null, {
-                    1: '',
-                    2: '',
-                });
-
-                setupTryCreateTabContexts([EXISTING_ACTIVE_TAB_ID, EXISTING_INACTIVE_TAB_ID]);
-                setupNeverCreateTabContexts([NEW_TAB_ID]);
-                const expectedMessage = {
-                    messageType: Messages.Tab.ExistingTabUpdated,
-                    payload: { ...EXISTING_ACTIVE_TAB },
-                    tabId: EXISTING_ACTIVE_TAB_ID,
-                };
-                mockTabContextManager
-                    .setup(m => m.interpretMessageForTab(EXISTING_ACTIVE_TAB_ID, expectedMessage))
-                    .returns(() => ({ messageHandled: true, result: undefined }))
-                    .verifiable();
-
-                await testSubject.initialize();
-            });
         });
 
         describe('in initialized state', () => {

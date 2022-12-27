@@ -5,13 +5,13 @@ exports[`TabStopsRequirementsWithInstances renders component instance count === 
   <React.Fragment>
     <CollapsibleControlStub
       headingLevel={3}
-      id="keyboard-navigation0keyboard-navigation 0 Failed test requirement description 1"
+      id="keyboard-navigation00 Failed test requirement name 1 test requirement description 1"
     />
   </React.Fragment>
   <React.Fragment>
     <CollapsibleControlStub
       headingLevel={3}
-      id="keyboard-traps1keyboard-traps 0 Failed test requirement description 2"
+      id="keyboard-traps10 Failed test requirement name 2 test requirement description 2"
     />
   </React.Fragment>
 </div>
@@ -24,13 +24,13 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
   <React.Fragment>
     <CollapsibleControlStub
       headingLevel={3}
-      id="keyboard-navigation0keyboard-navigation 2 Failed test requirement description 1"
+      id="keyboard-navigation02 Failed test requirement name 1 test requirement description 1"
     />
   </React.Fragment>
   <React.Fragment>
     <CollapsibleControlStub
       headingLevel={3}
-      id="keyboard-traps1keyboard-traps 2 Failed test requirement description 2"
+      id="keyboard-traps12 Failed test requirement name 2 test requirement description 2"
     />
   </React.Fragment>
 </div>
