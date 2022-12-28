@@ -15,7 +15,6 @@ export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.PathSnippetStore,
@@ -23,7 +22,6 @@ export class PathSnippetStore extends PersistentStore<PathSnippetStoreData> {
             idbInstance,
             IndexedDBDataKeys.pathSnippetStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 

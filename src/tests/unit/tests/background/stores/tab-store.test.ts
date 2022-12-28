@@ -251,7 +251,6 @@ describe('TabStoreTest', () => {
                 null,
                 null,
                 null,
-                true,
                 mockUrlParser.object,
             );
         return new StoreTester(TabActions, actionName, factory);
@@ -261,16 +260,7 @@ describe('TabStoreTest', () => {
         actionName: keyof VisualizationActions,
     ): StoreTester<TabStoreData, VisualizationActions> {
         const factory = (actions: VisualizationActions) =>
-            new TabStore(
-                new TabActions(),
-                actions,
-                null,
-                null,
-                null,
-                null,
-                true,
-                mockUrlParser.object,
-            );
+            new TabStore(new TabActions(), actions, null, null, null, null, mockUrlParser.object);
         return new StoreTester(VisualizationActions, actionName, factory);
     }
 });

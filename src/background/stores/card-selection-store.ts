@@ -35,7 +35,6 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
         private readonly convertResultsToCardSelectionStoreDataCallback: ConvertResultsToCardSelectionStoreDataCallback = convertResultsToCardSelectionStoreData,
         private readonly convertDataToScanNodeResults: ConvertUnifiedStoreDataToScanNodeResultsCallback = convertUnifiedStoreDataToScanNodeResults,
     ) {
@@ -45,7 +44,6 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
             idbInstance,
             IndexedDBDataKeys.cardSelectionStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 

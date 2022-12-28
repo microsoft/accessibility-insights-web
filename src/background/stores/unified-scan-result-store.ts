@@ -18,7 +18,6 @@ export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultSto
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.UnifiedScanResultStore,
@@ -26,7 +25,6 @@ export class UnifiedScanResultStore extends PersistentStore<UnifiedScanResultSto
             idbInstance,
             IndexedDBDataKeys.unifiedScanResultStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 
