@@ -11,7 +11,7 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null, null, null, null, null, true);
+        const testObject = new DetailsViewStore(null, null, null, null, null, null, null);
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
@@ -141,7 +141,6 @@ describe('DetailsViewStoreTest', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(ContentActions, actionName, factory);
@@ -159,7 +158,6 @@ describe('DetailsViewStoreTest', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(DetailsViewActions, actionName, factory);
@@ -177,7 +175,6 @@ describe('DetailsViewStoreTest', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(SidePanelActions, actionName, factory);

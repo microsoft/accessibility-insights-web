@@ -60,7 +60,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         name: StoreNames,
         indexDBKey: string,
     ) {
-        super(name, persistedData, idbInstance, indexDBKey, logger, true);
+        super(name, persistedData, idbInstance, indexDBKey, logger);
     }
 
     protected override generateDefaultState(

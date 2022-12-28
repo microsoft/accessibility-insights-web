@@ -79,14 +79,14 @@ describe('DevToolsStoreTest', () => {
     });
 
     function getDefaultState(): DevToolStoreData {
-        return new DevToolStore(null, null, null, null, null, null).getDefaultState();
+        return new DevToolStore(null, null, null, null, null).getDefaultState();
     }
 
     function createStoreTesterForDevToolsActions(
         actionName: keyof DevToolActions,
     ): StoreTester<DevToolStoreData, DevToolActions> {
         const factory = (actions: DevToolActions) =>
-            new DevToolStore(actions, null, null, null, null, true);
+            new DevToolStore(actions, null, null, null, null);
 
         return new StoreTester(DevToolActions, actionName, factory);
     }

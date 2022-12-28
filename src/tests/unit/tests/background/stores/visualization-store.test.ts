@@ -65,7 +65,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 initialVisualizationStoreDataGeneratorMock.object,
             );
 
@@ -108,7 +107,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 initialVisualizationStoreDataGeneratorMock.object,
             );
 
@@ -149,7 +147,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 initialVisualizationStoreDataGeneratorMock.object,
             );
 
@@ -967,7 +964,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 
@@ -991,7 +987,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 
@@ -1015,7 +1010,6 @@ describe('VisualizationStoreTest ', () => {
                 null,
                 null,
                 null,
-                true,
                 new InitialVisualizationStoreDataGenerator(visualizationConfigurationFactory),
             );
 

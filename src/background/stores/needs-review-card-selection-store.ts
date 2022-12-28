@@ -26,7 +26,6 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.NeedsReviewCardSelectionStore,
@@ -34,7 +33,6 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             idbInstance,
             IndexedDBDataKeys.needsReviewCardSelectionStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 

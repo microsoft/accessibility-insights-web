@@ -21,7 +21,6 @@ export class InspectStore extends PersistentStore<InspectStoreData> {
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.InspectStore,
@@ -29,7 +28,6 @@ export class InspectStore extends PersistentStore<InspectStoreData> {
             idbInstance,
             IndexedDBDataKeys.inspectStore(tabId),
             logger,
-            persistStoreData,
         );
 
         this.inspectActions = inspectActions;

@@ -17,7 +17,6 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.DevToolsStore,
@@ -25,7 +24,6 @@ export class DevToolStore extends PersistentStore<DevToolStoreData> {
             idbInstance,
             IndexedDBDataKeys.devToolStore(tabId),
             logger,
-            persistStoreData,
         );
 
         this.devToolActions = devToolActions;
