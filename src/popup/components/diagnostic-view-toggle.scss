@@ -5,6 +5,7 @@
 .diagnostic-view-toggle {
     display: grid;
     grid-template-columns: auto auto;
+    grid-template-rows: minmax(25px, min-content) minmax(25px, min-content);
     align-items: center;
 
     .title {
