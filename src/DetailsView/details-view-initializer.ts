@@ -86,6 +86,10 @@ import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from 'reports/get-assessment-summary-model';
+import {
+    getQuickAssessSummaryModelFromProviderAndStatusData,
+    getQuickAssessSummaryModelFromProviderAndStoreData,
+} from 'reports/get-quick-assess-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
@@ -595,6 +599,11 @@ if (tabId != null) {
                     getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData:
                     getAssessmentSummaryModelFromProviderAndStatusData,
+                getQuickAssessSummaryModelFromProviderAndStoreData:
+                    getQuickAssessSummaryModelFromProviderAndStoreData,
+                getQuickAssessSummaryModelFromProviderAndStatusData:
+                    getQuickAssessSummaryModelFromProviderAndStatusData,
+
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
