@@ -93,6 +93,8 @@ export const SET_SAVE_ASSESSMENT_DIALOG_STATE: string = 'setSaveAssessmentDialog
 export const SET_SAVE_MEDIUM_PASS_DIALOG_STATE: string = 'setSaveMediumPassDialogState';
 export const UNHANDLED_ERROR: string = 'unhandledError';
 export const ACCESSIBLENAMES_TOGGLE: string = 'accessibleNamesToggled';
+export const TRANSFER_QUICK_ASSESS_DATA_TO_ASSESSMENT_INITIATED: string =
+    'transferQuickAssessDataToAssessmentInitiated';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
