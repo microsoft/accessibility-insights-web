@@ -34,11 +34,7 @@ import {
     GetDetailsSwitcherNavConfigurationProps,
 } from 'DetailsView/components/details-view-switcher-nav';
 import { GetSelectedAssessmentStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
-import {
-    GetGetSelectedAssessmentSummaryModelFromProviderAndStatusData,
-    GetGetSelectedAssessmentSummaryModelFromProviderAndStoreData,
-    GetSelectedAssessmentSummaryModelGetters,
-} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
+import { GetSelectedAssessmentSummaryModelGetters } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
 import {
     DetailsViewContainerDeps,

@@ -4,17 +4,8 @@
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { chain, zipObject } from 'lodash';
-import { OutcomeMath } from 'reports/components/outcome-math';
-import {
-    RequirementOutcomeStats,
-    RequirementOutcomeType,
-    allRequirementOutcomeTypes,
-    outcomeTypeFromTestStatus,
-} from 'reports/components/requirement-outcome-type';
 import {
     AssessmentStatusData,
-    AssessmentSummaryResult,
     getAssessmentSummaryModelFromResults,
 } from 'reports/get-assessment-summary-model';
 import * as Model from './assessment-report-model';

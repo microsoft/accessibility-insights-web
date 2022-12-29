@@ -17,6 +17,7 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { map } from 'lodash';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
@@ -25,7 +26,6 @@ import {
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
