@@ -34,6 +34,11 @@ import {
     GetDetailsSwitcherNavConfigurationProps,
 } from 'DetailsView/components/details-view-switcher-nav';
 import { GetSelectedAssessmentStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
+import {
+    GetGetSelectedAssessmentSummaryModelFromProviderAndStatusData,
+    GetGetSelectedAssessmentSummaryModelFromProviderAndStoreData,
+    GetSelectedAssessmentSummaryModelGetters,
+} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
 import {
     DetailsViewContainerDeps,
@@ -43,6 +48,14 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import {
+    GetAssessmentSummaryModelFromProviderAndStoreData,
+    GetAssessmentSummaryModelFromProviderAndStatusData,
+} from 'reports/get-assessment-summary-model';
+import {
+    GetQuickAssessSummaryModelFromProviderAndStoreData,
+    GetQuickAssessSummaryModelFromProviderAndStatusData,
+} from 'reports/get-quick-assess-summary-model';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -65,6 +78,10 @@ describe(DetailsViewContent.displayName, () => {
     let scanDate: Date;
     let toolData: ToolData;
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
+    let getAssessmentSummaryModelFromProviderAndStoreDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStoreData>;
+    let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
+    let getQuickAssessSummaryModelFromProviderAndStoreDataMock: IMock<GetQuickAssessSummaryModelFromProviderAndStoreData>;
+    let getQuickAssessSummaryModelFromProviderAndStatusDataMock: IMock<GetQuickAssessSummaryModelFromProviderAndStatusData>;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
@@ -100,6 +117,23 @@ describe(DetailsViewContent.displayName, () => {
         toolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
+        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
+            props => null,
+            MockBehavior.Strict,
+        );
+        getAssessmentSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
+            props => null,
+            MockBehavior.Strict,
+        );
+        getQuickAssessSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
+            props => null,
+            MockBehavior.Strict,
+        );
+        getQuickAssessSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
+            props => null,
+            MockBehavior.Strict,
+        );
+
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
         deps = {
@@ -111,6 +145,14 @@ describe(DetailsViewContent.displayName, () => {
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
+            getAssessmentSummaryModelFromProviderAndStatusData:
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            getAssessmentSummaryModelFromProviderAndStoreData:
+                getAssessmentSummaryModelFromProviderAndStoreDataMock.object,
+            getQuickAssessSummaryModelFromProviderAndStatusData:
+                getQuickAssessSummaryModelFromProviderAndStatusDataMock.object,
+            getQuickAssessSummaryModelFromProviderAndStoreData:
+                getQuickAssessSummaryModelFromProviderAndStoreDataMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -127,11 +169,17 @@ describe(DetailsViewContent.displayName, () => {
             const getSelectedAssessmentStoreDataMock = Mock.ofInstance(
                 (() => null) as GetSelectedAssessmentStoreData,
             );
+            const getSelectedAssessmentSummaryModelGettersMock = Mock.ofInstance(
+                (() => null) as GetSelectedAssessmentSummaryModelGetters,
+            );
+
             const rightContentPanelType = 'TestView';
             const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
             const switcherNavConfig = {
                 getSelectedDetailsView: getSelectedDetailsViewMock.object,
                 getSelectedAssessmentStoreData: getSelectedAssessmentStoreDataMock.object,
+                getSelectedAssessmentSummaryModelGetters:
+                    getSelectedAssessmentSummaryModelGettersMock.object,
             } as DetailsViewSwitcherNavConfiguration;
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
@@ -224,6 +272,30 @@ describe(DetailsViewContent.displayName, () => {
                 )
                 .returns(() => {
                     return state.assessmentStoreData;
+                });
+
+            getSelectedAssessmentSummaryModelGettersMock
+                .setup(m =>
+                    m(
+                        It.isObjectWith({
+                            getAssessmentSummaryModelFromProviderAndStatusData:
+                                deps.getAssessmentSummaryModelFromProviderAndStatusData,
+                            getQuickAssessSummaryModelFromProviderAndStatusData:
+                                deps.getQuickAssessSummaryModelFromProviderAndStatusData,
+                            getAssessmentSummaryModelFromProviderAndStoreData:
+                                deps.getAssessmentSummaryModelFromProviderAndStoreData,
+                            getQuickAssessSummaryModelFromProviderAndStoreData:
+                                deps.getQuickAssessSummaryModelFromProviderAndStoreData,
+                        }),
+                    ),
+                )
+                .returns(() => {
+                    return {
+                        getAssessmentSummaryModelFromProviderAndStatusData:
+                            deps.getAssessmentSummaryModelFromProviderAndStatusData,
+                        getAssessmentSummaryModelFromProviderAndStoreData:
+                            deps.getAssessmentSummaryModelFromProviderAndStoreData,
+                    };
                 });
 
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;

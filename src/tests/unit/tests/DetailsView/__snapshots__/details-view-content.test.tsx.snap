@@ -8,11 +8,15 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],
+        "getAssessmentSummaryModelFromProviderAndStatusData": [Function],
+        "getAssessmentSummaryModelFromProviderAndStoreData": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStatusData": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }
@@ -54,11 +58,15 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],
+        "getAssessmentSummaryModelFromProviderAndStatusData": [Function],
+        "getAssessmentSummaryModelFromProviderAndStoreData": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStatusData": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }
@@ -82,6 +90,8 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    getAssessmentSummaryModelFromProviderAndStatusData={[Function]}
+    getAssessmentSummaryModelFromProviderAndStoreData={[Function]}
     isSideNavOpen={false}
     narrowModeStatus={
       {
@@ -120,6 +130,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     switcherNavConfiguration={
       {
         "getSelectedAssessmentStoreData": [Function],
+        "getSelectedAssessmentSummaryModelGetters": [Function],
         "getSelectedDetailsView": [Function],
       }
     }
@@ -434,11 +445,15 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],
+        "getAssessmentSummaryModelFromProviderAndStatusData": [Function],
+        "getAssessmentSummaryModelFromProviderAndStoreData": [Function],
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStatusData": [Function],
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }
