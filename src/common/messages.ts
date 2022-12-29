@@ -155,6 +155,8 @@ export const Messages = {
         LoadAssessment: `${messagePrefix}/mediumPass/loadAssessment`,
         LoadAssessmentFinishedUpload: `${messagePrefix}/mediumPass/loadAssessmentFinishedUpload`,
         SaveAssessment: `${messagePrefix}/mediumPass/saveAssessment`,
+        InitiateTransferDataToAssessment: `${messagePrefix}/mediumPass/initiateTransferDataToAssessment`,
+        FinalizeTransferDataToAssessment: `${messagePrefix}/mediumPass/finalizeTransferDataToAssessment`,
     },
 
     FeatureFlags: {
