@@ -47,18 +47,21 @@ describe('OverviewContainer', () => {
         (provider, featureFlagData) => null,
         MockBehavior.Strict,
     );
-    const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
+    const getAssessmentSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
+        (provider, assessmentData, requirementKeys) => null,
+        MockBehavior.Strict,
+    );
+    const mediumPassRequirementKeysStub = [];
 
     const deps: OverviewContainerDeps = {
         getProvider: () => assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
-        getAssessmentSummaryModelFromProviderAndStoreData:
-            getAssessmentSummaryModelFromProviderAndStoreData,
         getAssessmentActionMessageCreator: () => assessmentActionMessageCreator,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
         detailsViewId: undefined,
+        mediumPassRequirementKeys: mediumPassRequirementKeysStub,
     };
 
     const featureFlagDataStub = {};
@@ -71,12 +74,19 @@ describe('OverviewContainer', () => {
         .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
         .returns(() => filteredProvider);
 
+    getAssessmentSummaryModelFromProviderAndStoreDataMock.setup(mock =>
+        mock(filteredProvider, assessmentStoreData, mediumPassRequirementKeysStub),
+    );
+
     const component = (
         <OverviewContainer
             deps={deps}
             assessmentStoreData={assessmentStoreData}
             featureFlagStoreData={featureFlagDataStub}
             tabStoreData={tabStoreDataStub}
+            getAssessmentSummaryModelFromProviderAndStoreData={
+                getAssessmentSummaryModelFromProviderAndStoreDataMock.object
+            }
         />
     );
     const wrapper = shallow(component);

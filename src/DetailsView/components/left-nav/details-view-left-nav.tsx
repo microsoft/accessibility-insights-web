@@ -3,6 +3,7 @@
 import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { mapValues } from 'lodash';
@@ -35,6 +36,7 @@ export type DetailsViewLeftNavProps = {
     selectedPivot: DetailsViewPivotType;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
+    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -82,6 +84,9 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                 featureFlagStoreData={featureFlagStoreData}
                 expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
                 setNavComponentRef={props.setNavComponentRef}
+                getAssessmentSummaryModelFromProviderAndStatusData={
+                    props.getAssessmentSummaryModelFromProviderAndStatusData
+                }
             />
         </div>
     );

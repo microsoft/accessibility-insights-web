@@ -4,6 +4,7 @@ import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatusData } from '../../../common/types/store-data/manual-test-status';
@@ -32,6 +33,7 @@ export type MediumPassLeftNavProps = {
     expandedTest: VisualizationType | undefined;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
+    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeftNav', props => {
@@ -43,6 +45,7 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
+        getAssessmentSummaryModelFromProviderAndStatusData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
@@ -56,6 +59,7 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
             assessmentsData,
             0,
             onRightPanelContentSwitch,
+            getAssessmentSummaryModelFromProviderAndStatusData,
         ),
     );
 

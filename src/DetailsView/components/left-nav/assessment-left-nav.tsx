@@ -4,6 +4,7 @@ import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import {
@@ -34,6 +35,7 @@ export type AssessmentLeftNavProps = {
     expandedTest: VisualizationType | undefined;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
+    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export type AssessmentLeftNavLink = {
@@ -71,6 +73,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
+        getAssessmentSummaryModelFromProviderAndStatusData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
@@ -84,6 +87,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
             assessmentsData,
             0,
             onRightPanelContentSwitch,
+            getAssessmentSummaryModelFromProviderAndStatusData,
         ),
     );
 

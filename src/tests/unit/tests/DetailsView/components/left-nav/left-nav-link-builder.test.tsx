@@ -9,7 +9,7 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
@@ -34,7 +34,7 @@ describe('LeftNavBuilder', () => {
     let assessmentProviderMock: IMock<AssessmentsProvider>;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     let testSubject: LeftNavLinkBuilder;
-    let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
+    let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetSelectedAssessmentSummaryModelFromProviderAndStatusData>;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
     let outcomeStatsFromManualTestStatusMock: IMock<
@@ -45,6 +45,7 @@ describe('LeftNavBuilder', () => {
     let onRightPanelContentSwitchMock: IMock<() => void>;
     let eventStub: React.MouseEvent<HTMLElement, MouseEvent>;
     let itemStub: BaseLeftNavLink;
+    let mediumPassRequirementKeysStub: string[];
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -52,16 +53,15 @@ describe('LeftNavBuilder', () => {
         outcomeTypeFromTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeStatsFromManualTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
-        getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
-            (provider, statusData) => null,
-            MockBehavior.Strict,
-        );
+        getAssessmentSummaryModelFromProviderAndStatusDataMock =
+            Mock.ofType<GetSelectedAssessmentSummaryModelFromProviderAndStatusData>();
         assessmentsDataStub = {};
         navLinkHandlerMock = Mock.ofType(NavLinkHandler);
         navLinkRendererMock = Mock.ofType(NavLinkRenderer);
         onRightPanelContentSwitchMock = Mock.ofInstance(() => {});
         eventStub = {} as React.MouseEvent<HTMLElement, MouseEvent>;
         itemStub = {} as BaseLeftNavLink;
+        mediumPassRequirementKeysStub = [];
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -71,6 +71,7 @@ describe('LeftNavBuilder', () => {
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             getNavLinkHandler: () => navLinkHandlerMock.object,
             navLinkRenderer: navLinkRendererMock.object,
+            mediumPassRequirementKeys: mediumPassRequirementKeysStub,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -93,8 +94,16 @@ describe('LeftNavBuilder', () => {
                 },
             } as OverviewSummaryReportModel;
 
+            assessmentProviderMock.setup(mock => mock.all()).returns(() => [] as Assessment[]);
+
             getAssessmentSummaryModelFromProviderAndStatusDataMock
-                .setup(mock => mock(assessmentProviderMock.object, assessmentsDataStub))
+                .setup(mock =>
+                    mock(
+                        assessmentProviderMock.object,
+                        assessmentsDataStub,
+                        mediumPassRequirementKeysStub,
+                    ),
+                )
                 .returns(() => reportModelStub);
 
             const actual = testSubject.buildOverviewLink(
@@ -104,6 +113,7 @@ describe('LeftNavBuilder', () => {
                 assessmentsDataStub,
                 index,
                 onRightPanelContentSwitchMock.object,
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             );
 
             setupLinkClickHandlerMocks();
