@@ -42,6 +42,9 @@ export class InitialVisualizationStoreDataGenerator {
                 defaultTests.mediumPass[key].stepStatus = {};
             });
         }
+
+        this.updateInjectionState(persistedData);
+
         const defaultValues: VisualizationStoreData = {
             tests: defaultTests,
             scanning: null,
@@ -51,10 +54,28 @@ export class InitialVisualizationStoreDataGenerator {
             injectingState: InjectingState.notInjecting,
             focusedTarget: null,
         };
+
         const initialState = !isEmpty(persistedData)
             ? merge({}, defaultValues, persistedData)
             : defaultValues;
 
         return initialState;
+    }
+
+    private updateInjectionState(data: VisualizationStoreData): void {
+        if (!data || data.injectingState !== undefined) {
+            // Preserve any existing injection state
+            return;
+        }
+
+        if (data['injectingStarted']) {
+            data.injectingState = InjectingState.injectingStarted;
+        } else {
+            data.injectingState = data['injectingRequested']
+                ? InjectingState.injectingRequested
+                : InjectingState.notInjecting;
+        }
+        delete data['injectingRequested'];
+        delete data['injectingStarted'];
     }
 }
