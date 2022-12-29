@@ -95,7 +95,7 @@ export function getQuickAssessSummaryModelFromProviderAndStoreData(
         quickAssessStoreData,
         AutomatedChecks.key,
     );
-    let quickAssessResults = requirementKeys.map(requirementKey =>
+    const quickAssessResults = requirementKeys.map(requirementKey =>
         getStoreDataByRequirementKey(assessmentsProvider, quickAssessStoreData, requirementKey),
     );
 
