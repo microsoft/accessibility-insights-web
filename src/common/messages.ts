@@ -39,6 +39,7 @@ export const Messages = {
         State: {
             InjectionCompleted: `${messagePrefix}/visualization/state/injectionCompleted`,
             InjectionStarted: `${messagePrefix}/visualization/state/InjectionStarted`,
+            InjectionFailed: `${messagePrefix}/visualization/state/InjectionFailed`,
         },
         DetailsView: {
             Open: `${messagePrefix}/details-view/open`,

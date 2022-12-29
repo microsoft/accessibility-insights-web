@@ -13,12 +13,10 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import styles from 'DetailsView/components/adhoc-issues-test-view.scss';
+import { BannerWarnings } from 'DetailsView/components/banner-warnings';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import {
-    ScanIncompleteWarning,
-    ScanIncompleteWarningDeps,
-} from 'DetailsView/components/scan-incomplete-warning';
+import { ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import * as React from 'react';
 import { NamedFC, ReactFCWithDisplayName } from '../../common/react/named-fc';
@@ -78,11 +76,12 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
 function createTestView(props: AdhocIssuesTestViewProps): JSX.Element {
     return (
         <>
-            <ScanIncompleteWarning
+            <BannerWarnings
                 deps={props.deps}
                 warnings={props.scanIncompleteWarnings}
                 warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
                 test={props.selectedTest}
+                visualizationStoreData={props.visualizationStoreData}
             />
             <DetailsListIssuesView {...props} />
         </>
