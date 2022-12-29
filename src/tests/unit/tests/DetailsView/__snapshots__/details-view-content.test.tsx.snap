@@ -90,8 +90,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
-    getAssessmentSummaryModelFromProviderAndStatusData={[Function]}
-    getAssessmentSummaryModelFromProviderAndStoreData={[Function]}
     isSideNavOpen={false}
     narrowModeStatus={
       {

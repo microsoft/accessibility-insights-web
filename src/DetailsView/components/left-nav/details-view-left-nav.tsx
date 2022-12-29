@@ -23,6 +23,7 @@ export type DetailsViewLeftNavDeps = {
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
     mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & LeftNavDeps &
     SwitcherDeps;
 
@@ -36,7 +37,6 @@ export type DetailsViewLeftNavProps = {
     selectedPivot: DetailsViewPivotType;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
-    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -84,9 +84,6 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                 featureFlagStoreData={featureFlagStoreData}
                 expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
                 setNavComponentRef={props.setNavComponentRef}
-                getAssessmentSummaryModelFromProviderAndStatusData={
-                    props.getAssessmentSummaryModelFromProviderAndStatusData
-                }
             />
         </div>
     );

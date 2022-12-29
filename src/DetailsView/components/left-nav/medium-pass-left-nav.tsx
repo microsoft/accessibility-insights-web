@@ -21,6 +21,7 @@ export type MediumPassLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
     getNavLinkHandler: () => NavLinkHandler;
     mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
 
@@ -33,7 +34,6 @@ export type MediumPassLeftNavProps = {
     expandedTest: VisualizationType | undefined;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
-    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeftNav', props => {
@@ -45,7 +45,6 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
-        getAssessmentSummaryModelFromProviderAndStatusData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
@@ -59,7 +58,6 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
             assessmentsData,
             0,
             onRightPanelContentSwitch,
-            getAssessmentSummaryModelFromProviderAndStatusData,
         ),
     );
 

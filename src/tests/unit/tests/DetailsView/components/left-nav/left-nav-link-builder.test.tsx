@@ -72,6 +72,8 @@ describe('LeftNavBuilder', () => {
             getNavLinkHandler: () => navLinkHandlerMock.object,
             navLinkRenderer: navLinkRendererMock.object,
             mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+            getGetAssessmentSummaryModelFromProviderAndStatusData: () =>
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         } as LeftNavLinkBuilderDeps;
 
         testSubject = new LeftNavLinkBuilder();
@@ -113,7 +115,6 @@ describe('LeftNavBuilder', () => {
                 assessmentsDataStub,
                 index,
                 onRightPanelContentSwitchMock.object,
-                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             );
 
             setupLinkClickHandlerMocks();

@@ -45,13 +45,13 @@ export type OverviewContainerDeps = {
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
     mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStoreData: () => GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
 export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
     assessmentStoreData: AssessmentStoreData;
-    getAssessmentSummaryModelFromProviderAndStoreData: GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -59,14 +59,13 @@ export interface OverviewContainerProps {
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
 
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
+    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const {
-        deps,
-        assessmentStoreData,
-        tabStoreData,
-        featureFlagStoreData,
-        getAssessmentSummaryModelFromProviderAndStoreData,
-    } = props;
-    const { getProvider, assessmentsProviderWithFeaturesEnabled, mediumPassRequirementKeys } = deps;
+        getProvider,
+        assessmentsProviderWithFeaturesEnabled,
+        mediumPassRequirementKeys,
+        getGetAssessmentSummaryModelFromProviderAndStoreData,
+    } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
@@ -78,7 +77,8 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         assessmentsProvider,
         featureFlagStoreData,
     );
-
+    const getAssessmentSummaryModelFromProviderAndStoreData =
+        getGetAssessmentSummaryModelFromProviderAndStoreData();
     const summaryData: OverviewSummaryReportModel =
         getAssessmentSummaryModelFromProviderAndStoreData(
             filteredProvider,

@@ -21,6 +21,7 @@ import {
 import { NavLinkHandler } from './nav-link-handler';
 
 export type AssessmentLeftNavDeps = {
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
     leftNavLinkBuilder: LeftNavLinkBuilder;
     getNavLinkHandler: () => NavLinkHandler;
 } & OverviewLinkBuilderDeps &
@@ -35,7 +36,6 @@ export type AssessmentLeftNavProps = {
     expandedTest: VisualizationType | undefined;
     onRightPanelContentSwitch: () => void;
     setNavComponentRef: (nav: INav) => void;
-    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 };
 
 export type AssessmentLeftNavLink = {
@@ -73,7 +73,6 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
-        getAssessmentSummaryModelFromProviderAndStatusData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
@@ -87,7 +86,6 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
             assessmentsData,
             0,
             onRightPanelContentSwitch,
-            getAssessmentSummaryModelFromProviderAndStatusData,
         ),
     );
 

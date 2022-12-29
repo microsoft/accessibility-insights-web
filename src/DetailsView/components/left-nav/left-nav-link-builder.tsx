@@ -17,7 +17,7 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { map } from 'lodash';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
@@ -33,7 +33,7 @@ export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
-    getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
     navLinkRenderer: NavLinkRenderer;
     mediumPassRequirementKeys: string[];
 };
@@ -73,9 +73,10 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
         onRightPanelContentSwitch: () => void,
-        getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
     ): BaseLeftNavLink {
-        const { navLinkRenderer } = deps;
+        const { navLinkRenderer, getGetAssessmentSummaryModelFromProviderAndStatusData } = deps;
+        const getAssessmentSummaryModelFromProviderAndStatusData =
+            getGetAssessmentSummaryModelFromProviderAndStatusData();
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
             assessmentsProvider,

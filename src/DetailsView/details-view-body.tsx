@@ -33,10 +33,6 @@ import {
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
-import {
-    GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
-    GetSelectedAssessmentSummaryModelFromProviderAndStoreData,
-} from './components/left-nav/get-selected-assessment-summary-model';
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
@@ -74,8 +70,6 @@ export interface DetailsViewBodyProps {
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
     tabStopRequirementData: TabStopRequirementState;
-    getAssessmentSummaryModelFromProviderAndStoreData: GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
-    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

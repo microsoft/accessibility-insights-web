@@ -49,10 +49,12 @@ describe(MediumPassLeftNav.displayName, () => {
             onAssessmentTestClick: (x, y) => {},
         } as NavLinkHandler;
         const getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
-            props => null,
+            (provider, statusData, requirementKeys) => null,
             MockBehavior.Strict,
         );
         deps = {
+            getGetAssessmentSummaryModelFromProviderAndStatusData: () =>
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             getNavLinkHandler: () => navLinkHandlerMock,
             mediumPassRequirementKeys: mediumPassRequirementKeysStub,
@@ -67,8 +69,6 @@ describe(MediumPassLeftNav.displayName, () => {
             expandedTest,
             onRightPanelContentSwitch,
             setNavComponentRef,
-            getAssessmentSummaryModelFromProviderAndStatusData:
-                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         };
 
         overviewLinkStub = {
@@ -98,7 +98,6 @@ describe(MediumPassLeftNav.displayName, () => {
                     assessmentsDataStub,
                     0,
                     onRightPanelContentSwitch,
-                    getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
                 ),
             )
             .returns(() => overviewLinkStub);

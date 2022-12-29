@@ -5,6 +5,11 @@ import { BaseStore } from 'common/base-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import {
+    GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
+    GetSelectedAssessmentSummaryModelFromProviderAndStoreData,
+    SelectedAssessmentSummaryModelGetter,
+} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 
@@ -13,6 +18,8 @@ export type SharedAssessmentObjects = {
     actionMessageCreator: AssessmentActionMessageCreator;
     navLinkHandler: NavLinkHandler;
     instanceTableHandler: AssessmentInstanceTableHandler;
+    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
+    getAssessmentSummaryModelFromProviderAndStoreData: GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
 };
 
 export const NO_STORE_DATA_ERROR = 'no store data';
@@ -48,6 +55,16 @@ export class AssessmentFunctionalitySwitcher {
     public getInstanceTableHandler: () => AssessmentInstanceTableHandler = () => {
         return this.getSharedObjects().instanceTableHandler;
     };
+
+    public getGetAssessmentSummaryModelFromProviderAndStatusData: () => SelectedAssessmentSummaryModelGetter =
+        () => {
+            return this.getSharedObjects().getAssessmentSummaryModelFromProviderAndStatusData;
+        };
+
+    public getGetAssessmentSummaryModelFromProviderAndStoreData: () => SelectedAssessmentSummaryModelGetter =
+        () => {
+            return this.getSharedObjects().getAssessmentSummaryModelFromProviderAndStoreData;
+        };
 
     private getSharedObjects(): SharedAssessmentObjects {
         const storeData = this.visualizationStore.getState();

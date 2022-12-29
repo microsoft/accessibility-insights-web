@@ -62,6 +62,8 @@ describe('OverviewContainer', () => {
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
         detailsViewId: undefined,
         mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+        getGetAssessmentSummaryModelFromProviderAndStoreData: () =>
+            getAssessmentSummaryModelFromProviderAndStoreDataMock.object,
     };
 
     const featureFlagDataStub = {};
@@ -84,9 +86,6 @@ describe('OverviewContainer', () => {
             assessmentStoreData={assessmentStoreData}
             featureFlagStoreData={featureFlagDataStub}
             tabStoreData={tabStoreDataStub}
-            getAssessmentSummaryModelFromProviderAndStoreData={
-                getAssessmentSummaryModelFromProviderAndStoreDataMock.object
-            }
         />
     );
     const wrapper = shallow(component);

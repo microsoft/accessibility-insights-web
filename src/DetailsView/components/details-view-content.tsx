@@ -20,10 +20,6 @@ import {
     InteractiveHeaderDeps,
 } from 'DetailsView/components/interactive-header';
 import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
-import {
-    GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
-    GetSelectedAssessmentSummaryModelFromProviderAndStoreData,
-} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewBody, DetailsViewBodyDeps } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
@@ -47,10 +43,6 @@ export type DetailsViewContentDeps = {
     dropdownClickHandler: DropdownClickHandler;
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    getAssessmentSummaryModelFromProviderAndStoreData: GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
-    getQuickAssessSummaryModelFromProviderAndStoreData: GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
-    getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
-    getQuickAssessSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -162,19 +154,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
                 props.storeState,
             );
-        const {
-            getAssessmentSummaryModelFromProviderAndStoreData,
-            getAssessmentSummaryModelFromProviderAndStatusData,
-        } = selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentSummaryModelGetters({
-            getAssessmentSummaryModelFromProviderAndStoreData:
-                props.deps.getAssessmentSummaryModelFromProviderAndStoreData,
-            getQuickAssessSummaryModelFromProviderAndStoreData:
-                props.deps.getQuickAssessSummaryModelFromProviderAndStoreData,
-            getAssessmentSummaryModelFromProviderAndStatusData:
-                props.deps.getAssessmentSummaryModelFromProviderAndStatusData,
-            getQuickAssessSummaryModelFromProviderAndStatusData:
-                props.deps.getQuickAssessSummaryModelFromProviderAndStatusData,
-        });
 
         return (
             <DetailsViewBody
@@ -207,12 +186,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 tabStopRequirementData={tabStopRequirementData}
-                getAssessmentSummaryModelFromProviderAndStoreData={
-                    getAssessmentSummaryModelFromProviderAndStoreData
-                }
-                getAssessmentSummaryModelFromProviderAndStatusData={
-                    getAssessmentSummaryModelFromProviderAndStatusData
-                }
             />
         );
     };
