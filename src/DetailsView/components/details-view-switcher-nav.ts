@@ -24,6 +24,11 @@ import {
     GetSelectedAssessmentStoreData,
 } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
 import {
+    GetSelectedAssessmentSummaryModelGetters,
+    getSelectedSummaryModelGettersForAssessment,
+    getSelectedSummaryModelGettersForQuickAssess,
+} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
+import {
     MediumPassLeftNav,
     MediumPassLeftNavDeps,
     MediumPassLeftNavProps,
@@ -99,6 +104,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
+    getSelectedAssessmentSummaryModelGetters: GetSelectedAssessmentSummaryModelGetters;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -128,6 +134,7 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getSelectedAssessmentSummaryModelGetters: getSelectedSummaryModelGettersForAssessment,
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -142,6 +149,7 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
+        getSelectedAssessmentSummaryModelGetters: getSelectedSummaryModelGettersForQuickAssess,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -158,6 +166,7 @@ const detailsViewSwitcherNavs: {
 
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getSelectedAssessmentSummaryModelGetters: getSelectedSummaryModelGettersForAssessment,
     },
 };
 
