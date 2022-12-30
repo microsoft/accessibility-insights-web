@@ -100,6 +100,7 @@ describe(DetailsViewContent.displayName, () => {
         toolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
+
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
         deps = {
@@ -127,6 +128,7 @@ describe(DetailsViewContent.displayName, () => {
             const getSelectedAssessmentStoreDataMock = Mock.ofInstance(
                 (() => null) as GetSelectedAssessmentStoreData,
             );
+
             const rightContentPanelType = 'TestView';
             const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
             const switcherNavConfig = {

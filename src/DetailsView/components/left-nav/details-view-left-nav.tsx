@@ -3,6 +3,7 @@
 import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { mapValues } from 'lodash';
@@ -22,6 +23,7 @@ export type DetailsViewLeftNavDeps = {
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
     mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & LeftNavDeps &
     SwitcherDeps;
 

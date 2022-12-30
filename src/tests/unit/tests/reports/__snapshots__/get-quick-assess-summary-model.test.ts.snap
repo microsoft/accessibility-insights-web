@@ -1,0 +1,305 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getQuickAssessSummaryModel getAssessmentSummaryModelFromProviderAndStoreData handles multiple requirements completed for all requirements included 1`] = `
+{
+  "byPercentage": {
+    "fail": 50,
+    "incomplete": 29,
+    "pass": 21,
+  },
+  "byRequirement": {
+    "fail": 5,
+    "incomplete": 2,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+    {
+      "displayName": "Step 2A",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2B",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2C",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2D",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2E",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getAssessmentSummaryModelFromProviderAndStoreData handles multiple requirements completed for empty requirements included 1`] = `
+{
+  "byPercentage": {
+    "fail": 50,
+    "incomplete": 0,
+    "pass": 50,
+  },
+  "byRequirement": {
+    "fail": 2,
+    "incomplete": 0,
+    "pass": 2,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getAssessmentSummaryModelFromProviderAndStoreData handles multiple requirements completed for one requirement included 1`] = `
+{
+  "byPercentage": {
+    "fail": 25,
+    "incomplete": 0,
+    "pass": 75,
+  },
+  "byRequirement": {
+    "fail": 2,
+    "incomplete": 0,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getAssessmentSummaryModelFromProviderAndStoreData handles multiple requirements completed for some requirements included 1`] = `
+{
+  "byPercentage": {
+    "fail": 38,
+    "incomplete": 24,
+    "pass": 38,
+  },
+  "byRequirement": {
+    "fail": 3,
+    "incomplete": 1,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+    {
+      "displayName": "Step 2C",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2E",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getQuickAssessSummaryModelFromProviderAndStatusData handles all requirements included in assessment 1`] = `
+{
+  "byPercentage": {
+    "fail": 50,
+    "incomplete": 29,
+    "pass": 21,
+  },
+  "byRequirement": {
+    "fail": 5,
+    "incomplete": 2,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+    {
+      "displayName": "Step 2A",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2B",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2C",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2D",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2E",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getQuickAssessSummaryModelFromProviderAndStatusData handles empty requirements included in assessment 1`] = `
+{
+  "byPercentage": {
+    "fail": 50,
+    "incomplete": 0,
+    "pass": 50,
+  },
+  "byRequirement": {
+    "fail": 2,
+    "incomplete": 0,
+    "pass": 2,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getQuickAssessSummaryModelFromProviderAndStatusData handles one requirement included in assessment 1`] = `
+{
+  "byPercentage": {
+    "fail": 25,
+    "incomplete": 0,
+    "pass": 75,
+  },
+  "byRequirement": {
+    "fail": 2,
+    "incomplete": 0,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+  ],
+}
+`;
+
+exports[`getQuickAssessSummaryModel getQuickAssessSummaryModelFromProviderAndStatusData handles some requirements included in assessment 1`] = `
+{
+  "byPercentage": {
+    "fail": 38,
+    "incomplete": 24,
+    "pass": 38,
+  },
+  "byRequirement": {
+    "fail": 3,
+    "incomplete": 1,
+    "pass": 3,
+  },
+  "reportSummaryDetailsData": [
+    {
+      "displayName": "Automated Checks",
+      "fail": 2,
+      "incomplete": 0,
+      "pass": 2,
+    },
+    {
+      "displayName": "Step 1A",
+      "fail": 0,
+      "incomplete": 0,
+      "pass": 1,
+    },
+    {
+      "displayName": "Step 2C",
+      "fail": 0,
+      "incomplete": 1,
+      "pass": 0,
+    },
+    {
+      "displayName": "Step 2E",
+      "fail": 1,
+      "incomplete": 0,
+      "pass": 0,
+    },
+  ],
+}
+`;
