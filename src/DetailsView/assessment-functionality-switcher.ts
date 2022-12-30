@@ -8,7 +8,6 @@ import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/detai
 import {
     GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
     GetSelectedAssessmentSummaryModelFromProviderAndStoreData,
-    SelectedAssessmentSummaryModelGetter,
 } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
@@ -56,12 +55,12 @@ export class AssessmentFunctionalitySwitcher {
         return this.getSharedObjects().instanceTableHandler;
     };
 
-    public getGetAssessmentSummaryModelFromProviderAndStatusData: () => SelectedAssessmentSummaryModelGetter =
+    public getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData =
         () => {
             return this.getSharedObjects().getAssessmentSummaryModelFromProviderAndStatusData;
         };
 
-    public getGetAssessmentSummaryModelFromProviderAndStoreData: () => SelectedAssessmentSummaryModelGetter =
+    public getGetAssessmentSummaryModelFromProviderAndStoreData: () => GetSelectedAssessmentSummaryModelFromProviderAndStoreData =
         () => {
             return this.getSharedObjects().getAssessmentSummaryModelFromProviderAndStoreData;
         };
