@@ -10,6 +10,7 @@ import {
     OnDetailsViewInitializedPayload,
     PayloadWithEventName,
     SetLaunchPanelState,
+    TransferAssessmentPayload,
 } from '../actions/action-payloads';
 import { AssessmentActions } from '../actions/assessment-actions';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
@@ -28,6 +29,7 @@ export class GlobalActionCreator {
     private assessmentActions: AssessmentActions;
     private quickAssessActions: AssessmentActions;
     private dataTransferActions: DataTransferActions;
+    private readonly executingScope = 'GlobalActionCreator';
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -76,12 +78,17 @@ export class GlobalActionCreator {
         );
 
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.InitiateTransferDataToAssessment,
+            Messages.DataTransfer.InitiateTransferDataToAssessment,
             this.onInitiateQuickAssessToAssessmentTransfer,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.FinalizeTransferDataToAssessment,
+            Messages.DataTransfer.TransferDataToAssessment,
+            this.onTransferDataToAssessment,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.DataTransfer.FinalizeTransferDataToAssessment,
             this.onFinalizeQuickAssessToAssessmentTransfer,
         );
     }
@@ -131,5 +138,11 @@ export class GlobalActionCreator {
 
     private onFinalizeQuickAssessToAssessmentTransfer = async (): Promise<void> => {
         await this.dataTransferActions.finalizeTransferQuickAssessDataToAssessment.invoke(null);
+    };
+
+    private onTransferDataToAssessment = async (
+        payload: TransferAssessmentPayload,
+    ): Promise<void> => {
+        await this.assessmentActions.transferAssessment.invoke(payload, this.executingScope);
     };
 }

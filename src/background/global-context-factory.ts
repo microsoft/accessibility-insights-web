@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { MediumPassActionCreator } from 'background/actions/quick-assess-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
+import { QuickAssessToAssessmentConverter } from 'background/quick-assess-to-assessment-converter';
 import { Logger } from 'common/logging/logger';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
@@ -156,6 +157,13 @@ export class GlobalContextFactory {
             logger,
         );
         await browserPermissionTracker.initialize();
+
+        const converter = new QuickAssessToAssessmentConverter(
+            globalStoreHub.dataTransferStore,
+            globalStoreHub.quickAssessStore,
+            interpreter,
+        );
+        converter.initialize();
 
         return new GlobalContext(
             interpreter,

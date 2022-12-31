@@ -29,6 +29,7 @@ import {
     LoadAssessmentPayload,
     OnDetailsViewInitializedPayload,
     SelectTestSubviewPayload,
+    TransferAssessmentPayload,
 } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
@@ -107,6 +108,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         );
         this.assessmentActions.loadAssessment.addListener(this.onLoadAssessment);
         this.assessmentActions.updateDetailsViewId.addListener(this.onUpdateDetailsViewId);
+        this.assessmentActions.transferAssessment.addListener(this.onTransferAssessment);
     }
 
     private async updateTargetTabWithId(tabId: number): Promise<void> {
@@ -135,6 +137,18 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             this.state.persistedTabInfo = { detailsViewId: payload.detailsViewId };
         }
         await this.updateTargetTabWithId(payload.tabId);
+    };
+
+    private onTransferAssessment = async (payload: TransferAssessmentPayload): Promise<void> => {
+        const validTransferedData = this.initialAssessmentStoreDataGenerator.generateInitialState(
+            payload.assessmentData,
+        );
+        this.state = {
+            ...validTransferedData,
+            assessmentNavState: this.state.assessmentNavState,
+        };
+        console.log('hahahah agot here');
+        await this.emitChanged();
     };
 
     private onUpdateTargetTabId = async (tabId: number): Promise<void> => {

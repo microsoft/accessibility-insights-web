@@ -16,6 +16,7 @@ import {
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
+    TransferAssessmentPayload,
     UpdateSelectedDetailsViewPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
@@ -415,9 +416,8 @@ describe('AssessmentStore', () => {
             test: assessmentType,
         };
 
-        const storeTester = createStoreTesterForAssessmentActions('resetData')
-            .withActionParam(payload)
-            .withPostListenerMock(indexDBInstanceMock);
+        const storeTester =
+            createStoreTesterForAssessmentActions('resetData').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
@@ -628,9 +628,6 @@ describe('AssessmentStore', () => {
         } as chrome.tabs.Tab;
 
         beforeEach(() => {
-            assessmentsProviderMock
-                .setup(apm => apm.all())
-                .returns(() => assessmentsProvider.all());
             browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
         });
 
@@ -2113,6 +2110,39 @@ describe('AssessmentStore', () => {
 
         const storeTester =
             createStoreTesterForAssessmentActions('addResultDescription').withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('onTransferAssessment', async () => {
+        const testStepStub = 'some-test-step';
+        const assessmentStubData = {
+            resultDescription: 'some description ',
+        } as AssessmentStoreData;
+
+        const payload: TransferAssessmentPayload = {
+            assessmentData: assessmentStubData,
+        };
+
+        const initialState = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        )
+            .withSelectedTestSubview(testStepStub)
+            .build();
+
+        const assessmentData = new AssessmentDataBuilder()
+            .with('testStepStatus', getSampleTestStepsData())
+            .build();
+
+        const storeDataFromGeneration = getStateWithAssessment(assessmentData);
+        const finalState = getStateWithAssessment(assessmentData);
+
+        finalState.assessmentNavState = initialState.assessmentNavState;
+
+        setupDataGeneratorMock(assessmentStubData, storeDataFromGeneration);
+
+        const storeTester =
+            createStoreTesterForAssessmentActions('transferAssessment').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 
