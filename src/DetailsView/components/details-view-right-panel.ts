@@ -27,10 +27,11 @@ import {
 
 export type RightPanelDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
 
-export type RightPanelProps = Omit<TestViewContainerProps, 'deps'> &
-    Omit<OverviewContainerProps, 'deps'> & {
-        deps: OverviewContainerDeps | TestViewContainerDeps;
-    };
+export type RightPanelProps =
+    | Omit<TestViewContainerProps, 'deps'>
+    | (Omit<OverviewContainerProps, 'deps'> & {
+          deps: OverviewContainerDeps | TestViewContainerDeps;
+      });
 
 export type DetailsRightPanelConfiguration = Readonly<{
     RightPanel: ReactFCWithDisplayName<RightPanelProps>;

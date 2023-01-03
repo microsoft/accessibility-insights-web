@@ -4,7 +4,10 @@ import { Requirement } from 'assessments/types/requirement';
 import { VisualizationType } from 'common/types/visualization-type';
 import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import {
+    InjectingState,
+    VisualizationStoreData,
+} from '../common/types/store-data/visualization-store-data';
 
 export class AnalyzerStateUpdateHandler {
     protected prevState: VisualizationStoreData;
@@ -68,11 +71,14 @@ export class AnalyzerStateUpdateHandler {
         prevState: VisualizationStoreData,
         currState: VisualizationStoreData,
     ): void {
-        if (currState.scanning != null && currState.injectingRequested !== true) {
+        if (
+            currState.scanning != null &&
+            currState.injectingState !== InjectingState.injectingRequested
+        ) {
             if (
                 prevState == null ||
                 prevState.scanning !== currState.scanning ||
-                prevState.injectingRequested !== currState.injectingRequested
+                prevState.injectingState !== currState.injectingState
             ) {
                 this.startScan(currState.scanning);
             }

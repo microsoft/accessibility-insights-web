@@ -9,6 +9,7 @@ import {
     VisualizationConfigurationFactory,
 } from '../../../../common/configs/visualization-configuration-factory';
 import {
+    InjectingState,
     ScanData,
     VisualizationStoreData,
 } from '../../../../common/types/store-data/visualization-store-data';
@@ -69,7 +70,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('do not start scan if inject in progress and no prevState', () => {
         const state = new VisualizationStoreDataBuilder()
             .with('scanning', 'landmarks')
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .withLandmarksEnable()
             .build();
 
@@ -110,7 +111,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('start scan w/o teardowns: inject just completed', () => {
         const scanningTestStub = 'some test id';
         const prevState = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .with('scanning', scanningTestStub)
             .build();
         const currState = new VisualizationStoreDataBuilder()

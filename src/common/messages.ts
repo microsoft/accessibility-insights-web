@@ -39,6 +39,7 @@ export const Messages = {
         State: {
             InjectionCompleted: `${messagePrefix}/visualization/state/injectionCompleted`,
             InjectionStarted: `${messagePrefix}/visualization/state/InjectionStarted`,
+            InjectionFailed: `${messagePrefix}/visualization/state/InjectionFailed`,
         },
         DetailsView: {
             Open: `${messagePrefix}/details-view/open`,
@@ -155,6 +156,8 @@ export const Messages = {
         LoadAssessment: `${messagePrefix}/mediumPass/loadAssessment`,
         LoadAssessmentFinishedUpload: `${messagePrefix}/mediumPass/loadAssessmentFinishedUpload`,
         SaveAssessment: `${messagePrefix}/mediumPass/saveAssessment`,
+        InitiateTransferDataToAssessment: `${messagePrefix}/mediumPass/initiateTransferDataToAssessment`,
+        FinalizeTransferDataToAssessment: `${messagePrefix}/mediumPass/finalizeTransferDataToAssessment`,
     },
 
     FeatureFlags: {

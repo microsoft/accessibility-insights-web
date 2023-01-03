@@ -132,7 +132,6 @@
         "src/common/feature-flag-defaults-helper.ts",
         "src/common/feature-flags.ts",
         "src/common/insights-window-extensions.ts",
-        "src/common/notification-creator.ts",
         "src/common/self-fast-pass.ts",
         "src/debug-tools/action-creators/debug-tools-nav-action-creator.ts",
         "src/debug-tools/actions/debug-tools-nav-actions.ts",

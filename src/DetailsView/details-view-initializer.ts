@@ -86,6 +86,10 @@ import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from 'reports/get-assessment-summary-model';
+import {
+    getQuickAssessSummaryModelFromProviderAndStatusData,
+    getQuickAssessSummaryModelFromProviderAndStoreData,
+} from 'reports/get-quick-assess-summary-model';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
@@ -550,6 +554,10 @@ if (tabId != null) {
                     assessmentActionMessageCreator,
                 ),
                 instanceTableHandler: assessmentInstanceTableHandler,
+                getAssessmentSummaryModelFromProviderAndStatusData:
+                    getAssessmentSummaryModelFromProviderAndStatusData,
+                getAssessmentSummaryModelFromProviderAndStoreData:
+                    getAssessmentSummaryModelFromProviderAndStoreData,
             };
             const quickAssessObjects: SharedAssessmentObjects = {
                 provider: quickAssessProvider,
@@ -559,6 +567,10 @@ if (tabId != null) {
                     quickAssessActionMessageCreator,
                 ),
                 instanceTableHandler: quickAssessInstanceTableHandler,
+                getAssessmentSummaryModelFromProviderAndStatusData:
+                    getQuickAssessSummaryModelFromProviderAndStatusData,
+                getAssessmentSummaryModelFromProviderAndStoreData:
+                    getQuickAssessSummaryModelFromProviderAndStoreData,
             };
             const assessmentFunctionalitySwitcher = new AssessmentFunctionalitySwitcher(
                 visualizationStore,
@@ -591,10 +603,6 @@ if (tabId != null) {
                 assessmentDataParser,
                 fileNameBuilder,
                 loadAssessmentHelper,
-                getAssessmentSummaryModelFromProviderAndStoreData:
-                    getAssessmentSummaryModelFromProviderAndStoreData,
-                getAssessmentSummaryModelFromProviderAndStatusData:
-                    getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
@@ -662,6 +670,10 @@ if (tabId != null) {
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
                 getAssessmentInstanceTableHandler:
                     assessmentFunctionalitySwitcher.getInstanceTableHandler,
+                getGetAssessmentSummaryModelFromProviderAndStoreData:
+                    assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStoreData,
+                getGetAssessmentSummaryModelFromProviderAndStatusData:
+                    assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
             };
 
             const renderer = new DetailsViewRenderer(
