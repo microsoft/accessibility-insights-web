@@ -53,7 +53,7 @@ describe('AxeResultToIssueFilingDataConverter', () => {
             snippet: result.html,
         };
 
-        const shortenSelector = Mock.ofInstance(str => '');
+        const shortenSelector = Mock.ofInstance(str => 'short');
         shortenSelector
             .setup(m => m(It.isAnyString()))
             .returns(_ => 'short')

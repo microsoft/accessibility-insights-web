@@ -60,7 +60,7 @@ describe('AndroidSetupTelemetrySender', () => {
         timestamps: number[],
         expectedEvents: Omit<AndroidSetupStepTelemetryData, 'triggeredBy' | 'source'>[],
     ): void {
-        const getCurrentMsMock = Mock.ofInstance(() => 0, MockBehavior.Strict);
+        const getCurrentMsMock = Mock.ofInstance(It.isAnyNumber, MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         const androidSetupStoreMock = Mock.ofType(AndroidSetupStore, MockBehavior.Strict);
         const testListener = new AndroidSetupTelemetrySender(
