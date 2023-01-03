@@ -19,7 +19,7 @@
         "accessibility-insights-report": "*"
     },
     "devDependencies": {
-        "@types/jest": "^29.2.3",
+        "@types/jest": "^29.2.4",
         "jest": "^29.3.1",
         "jest-file-snapshot": "^0.5.0",
         "jest-junit": "^14.0.1",

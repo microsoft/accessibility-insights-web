@@ -4,6 +4,7 @@ import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatusData } from '../../../common/types/store-data/manual-test-status';
@@ -20,6 +21,7 @@ export type MediumPassLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
     getNavLinkHandler: () => NavLinkHandler;
     mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
 

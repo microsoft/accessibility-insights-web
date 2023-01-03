@@ -36,9 +36,11 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => false,
     displayableData: {
         title: 'Headings',
-        enableMessage: 'Finding headings...',
-        toggleLabel: 'Show headings',
-        linkToDetailsViewText: 'How to test headings',
+        adHoc: {
+            enableMessage: 'Finding headings...',
+            toggleLabel: 'Show headings',
+            linkToDetailsViewText: 'How to test headings',
+        },
     },
     chromeCommand: '03_toggle-headings',
     launchPanelDisplayOrder: 3,

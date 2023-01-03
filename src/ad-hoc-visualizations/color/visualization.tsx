@@ -35,9 +35,11 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => false,
     displayableData: {
         title: 'Color',
-        enableMessage: 'Changing color to grayscale...',
-        toggleLabel: 'Show grayscale',
-        linkToDetailsViewText: 'How to test color',
+        adHoc: {
+            enableMessage: 'Changing color to grayscale...',
+            toggleLabel: 'Show grayscale',
+            linkToDetailsViewText: 'How to test color',
+        },
     },
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,

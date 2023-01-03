@@ -5,6 +5,7 @@ import { PersistedData } from 'background/get-persisted-data';
 import { LocalStorageData } from 'background/storage-data';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { GlobalStoreHub } from 'background/stores/global/global-store-hub';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
@@ -71,7 +72,7 @@ describe('GlobalStoreHubTest', () => {
         );
         const allStores = testSubject.getAllStores();
 
-        expect(allStores.length).toBe(8);
+        expect(allStores.length).toBe(9);
         expect(testSubject.getStoreType()).toEqual(StoreType.GlobalStore);
 
         verifyStoreExists(allStores, FeatureFlagStore);
@@ -80,6 +81,7 @@ describe('GlobalStoreHubTest', () => {
         verifyStoreExists(allStores, AssessmentStore);
         verifyStoreExists(allStores, UserConfigurationStore);
         verifyStoreExists(allStores, PermissionsStateStore);
+        verifyStoreExists(allStores, DataTransferStore);
     });
 
     it('test initialize', () => {

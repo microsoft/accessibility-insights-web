@@ -14,6 +14,10 @@ import {
     DetailsViewSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfiguration,
 } from 'DetailsView/components/details-view-switcher-nav';
+import {
+    GetSelectedAssessmentSummaryModelFromProviderAndStatusData,
+    GetSelectedAssessmentSummaryModelFromProviderAndStoreData,
+} from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { StoreMock } from 'tests/unit/mock-helpers/store-mock';
@@ -77,7 +81,19 @@ describe(AssessmentFunctionalitySwitcher, () => {
         });
 
         test('getInstanceTableHandler', () => {
-            expect(() => testSubject.getInstanceTableHandler()).toThrowError(NO_STORE_DATA_ERROR);
+            expect(() => testSubject.getInstanceTableHandler());
+        });
+
+        test('getGetAssessmentSummaryModelFromProviderAndStatusData', () => {
+            expect(() =>
+                testSubject.getGetAssessmentSummaryModelFromProviderAndStatusData(),
+            ).toThrowError(NO_STORE_DATA_ERROR);
+        });
+
+        test('getGetAssessmentSummaryModelFromProviderAndStoreData', () => {
+            expect(() =>
+                testSubject.getGetAssessmentSummaryModelFromProviderAndStoreData(),
+            ).toThrowError(NO_STORE_DATA_ERROR);
         });
     });
 
@@ -93,6 +109,11 @@ describe(AssessmentFunctionalitySwitcher, () => {
                 actionMessageCreator: Mock.ofType<AssessmentActionMessageCreator>().object,
                 navLinkHandler: Mock.ofType<NavLinkHandler>().object,
                 instanceTableHandler: Mock.ofType<AssessmentInstanceTableHandler>().object,
+                getAssessmentSummaryModelFromProviderAndStatusData:
+                    Mock.ofType<GetSelectedAssessmentSummaryModelFromProviderAndStatusData>()
+                        .object,
+                getAssessmentSummaryModelFromProviderAndStoreData:
+                    Mock.ofType<GetSelectedAssessmentSummaryModelFromProviderAndStoreData>().object,
             };
             setupSwitcherMock(storeData.selectedDetailsViewPivot);
             setupGetState(storeData);
@@ -115,6 +136,18 @@ describe(AssessmentFunctionalitySwitcher, () => {
         test('getInstanceTableHandler', () => {
             expect(testSubject.getInstanceTableHandler()).toEqual(
                 assessmentObjectsStub.instanceTableHandler,
+            );
+        });
+
+        test('getGetAssessmentSummaryModelFromProviderAndStatusData', () => {
+            expect(testSubject.getGetAssessmentSummaryModelFromProviderAndStatusData()).toEqual(
+                assessmentObjectsStub.getAssessmentSummaryModelFromProviderAndStatusData,
+            );
+        });
+
+        test('getGetAssessmentSummaryModelFromProviderAndStoreData', () => {
+            expect(testSubject.getGetAssessmentSummaryModelFromProviderAndStoreData()).toEqual(
+                assessmentObjectsStub.getAssessmentSummaryModelFromProviderAndStoreData,
             );
         });
     });

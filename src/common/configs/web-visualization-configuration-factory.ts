@@ -43,13 +43,13 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
         };
     }
 
-    public getConfigurationByKey(key: string): VisualizationConfiguration {
+    public getConfigurationByKey(key: string): VisualizationConfiguration | undefined {
         return find(values(this.configurationByType), config => config.key === key);
     }
 
     public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
         if (this.mediumPassProvider?.isValidType(visualizationType)) {
-            const assessment = this.mediumPassProvider.forType(visualizationType);
+            const assessment = this.mediumPassProvider.forType(visualizationType)!;
             return this.buildAssessmentConfiguration(
                 assessment,
                 TestMode.MediumPass,
@@ -58,7 +58,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
         }
 
         if (this.fullAssessmentProvider.isValidType(visualizationType)) {
-            const assessment = this.fullAssessmentProvider.forType(visualizationType);
+            const assessment = this.fullAssessmentProvider.forType(visualizationType)!;
             return this.buildAssessmentConfiguration(
                 assessment,
                 TestMode.Assessments,
@@ -114,7 +114,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
 
         const getIdentifier = (requirementKey: string) => {
             const requirement = assessment.requirements.find(req => req.key === requirementKey);
-            return `${testMode}-${requirement.key}`;
+            return `${testMode}-${requirement!.key}`;
         };
 
         const getStoreData = (data: TestsEnabledState) => {
@@ -128,12 +128,9 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             adhocToolsPanelDisplayOrder: null,
             displayableData: {
                 title: assessment.title,
-                noResultsFound: null,
-                enableMessage: null,
-                toggleLabel: null,
-                linkToDetailsViewText: null,
+                adHoc: null,
             },
-            shouldShowExportReport: null,
+            shouldShowExportReport: () => false,
             getIdentifier,
             getStoreData,
             messageConfiguration,

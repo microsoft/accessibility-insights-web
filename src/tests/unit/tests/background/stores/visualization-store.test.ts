@@ -7,6 +7,7 @@ import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import {
     AssessmentToggleActionPayload,
+    InjectionFailedPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
@@ -24,6 +25,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/store-data/details-view-pivot-type';
 import {
+    InjectingState,
     TestsEnabledState,
     VisualizationStoreData,
 } from '../../../../../common/types/store-data/visualization-store-data';
@@ -389,7 +391,7 @@ describe('VisualizationStoreTest ', () => {
                     .with('scanning', 'headings')
                     .with('selectedAdhocDetailsView', VisualizationType.Issues)
                     .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-                    .with('injectingRequested', true)
+                    .with('injectingState', InjectingState.injectingRequested)
                     .build();
 
                 const storeTester =
@@ -411,7 +413,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = dataBuilder
             .withHeadingsAssessment(true, payload.requirement)
             .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .build();
 
         const storeTester =
@@ -432,7 +434,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsEnable()
             .withHeadingsAssessment(false, HeadingsTestStep.missingHeadings)
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .with('scanning', 'headings')
             .build();
 
@@ -453,7 +455,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(true, payload.requirement)
             .withHeadingsEnable()
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
@@ -476,7 +478,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = new VisualizationStoreDataBuilder()
             .withLandmarksAssessment(false, LandmarkTestStep.landmarkRoles)
             .withHeadingsAssessment(true, payload.requirement)
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
@@ -499,7 +501,7 @@ describe('VisualizationStoreTest ', () => {
         const expectedState = new VisualizationStoreDataBuilder()
             .withHeadingsAssessment(false, HeadingsTestStep.headingFunction)
             .withHeadingsAssessment(true, payload.requirement)
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .with('scanning', `${TestMode.Assessments}-${HeadingsTestStep.missingHeadings}`)
             .build();
 
@@ -551,7 +553,7 @@ describe('VisualizationStoreTest ', () => {
                 const initialState = initialDataBuilder.build();
                 const expectedState = new VisualizationStoreDataBuilder()
                     .withTabStopsEnable()
-                    .with('injectingRequested', true)
+                    .with('injectingState', InjectingState.injectingRequested)
                     .with('scanning', 'tabStops')
                     .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
                     .build();
@@ -631,7 +633,7 @@ describe('VisualizationStoreTest ', () => {
                 const expectedState = new VisualizationStoreDataBuilder()
                     .withLandmarksEnable()
                     .with('scanning', 'landmarks')
-                    .with('injectingRequested', true)
+                    .with('injectingState', InjectingState.injectingRequested)
                     .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
                     .build();
 
@@ -689,7 +691,7 @@ describe('VisualizationStoreTest ', () => {
                 const expectedState = new VisualizationStoreDataBuilder()
                     .withIssuesEnable()
                     .with('scanning', 'issues')
-                    .with('injectingRequested', true)
+                    .with('injectingState', InjectingState.injectingRequested)
                     .with('selectedAdhocDetailsView', VisualizationType.Issues)
                     .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
                     .build();
@@ -744,7 +746,7 @@ describe('VisualizationStoreTest ', () => {
             .withColorEnable()
             .with('scanning', 'color')
             .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .with('injectingRequested', true)
+            .with('injectingState', InjectingState.injectingRequested)
             .build();
 
         const storeTester =
@@ -800,44 +802,76 @@ describe('VisualizationStoreTest ', () => {
         const initialState = new VisualizationStoreDataBuilder().build();
 
         const expectedState = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', false)
-            .with('injectingStarted', false)
+            .with('injectingState', InjectingState.notInjecting)
+            .with('injectionAttempts', 0)
             .build();
 
         const storeTester = createStoreTesterForInjectionActions(actionName);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onInjectionStarted when injectingStarted is false', async () => {
+    test('onInjectionStarted when injectingState is notInjecting', async () => {
         const actionName = 'injectionStarted';
 
         const initialState = new VisualizationStoreDataBuilder()
-            .with('injectingStarted', false)
+            .with('injectingState', InjectingState.notInjecting)
             .build();
 
         const expectedState = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', true)
-            .with('injectingStarted', true)
+            .with('injectingState', InjectingState.injectingStarted)
             .build();
 
         const storeTester = createStoreTesterForInjectionActions(actionName);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onInjectionStarted when injectingStarted is true', async () => {
+    test('onInjectionStarted when injectingState is injectingStarted', async () => {
         const actionName = 'injectionStarted';
 
         const initialState = new VisualizationStoreDataBuilder()
-            .with('injectingStarted', true)
+            .with('injectingState', InjectingState.injectingStarted)
             .build();
 
         const expectedState = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', false)
-            .with('injectingStarted', true)
+            .with('injectingState', InjectingState.injectingStarted)
             .build();
 
         const storeTester = createStoreTesterForInjectionActions(actionName);
         await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('onInjectionFailed when injection has not failed', async () => {
+        const actionName = 'injectionFailed';
+
+        const initialState = new VisualizationStoreDataBuilder().build();
+
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.injectingRequested)
+            .with('injectionAttempts', 1)
+            .build();
+
+        const payload = { shouldRetry: true, failedAttempts: 1 } as InjectionFailedPayload;
+
+        const storeTester =
+            createStoreTesterForInjectionActions(actionName).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onInjectionFailed when injection failed', async () => {
+        const actionName = 'injectionFailed';
+
+        const initialState = new VisualizationStoreDataBuilder().build();
+
+        const expectedState = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.injectingFailed)
+            .with('injectionAttempts', 4)
+            .build();
+
+        const payload = { shouldRetry: false, failedAttempts: 4 } as InjectionFailedPayload;
+
+        const storeTester =
+            createStoreTesterForInjectionActions(actionName).withActionParam(payload);
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onScrollRequested', async () => {
