@@ -3,6 +3,7 @@
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { getAllFeatureFlagDetails } from 'common/feature-flags';
@@ -37,6 +38,7 @@ export class GlobalStoreHub implements StoreHub {
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
     public quickAssessStore: AssessmentStore;
+    public dataTransferStore: DataTransferStore;
     public userConfigurationStore: UserConfigurationStore;
     public permissionsStateStore: PermissionsStateStore;
 
@@ -122,6 +124,7 @@ export class GlobalStoreHub implements StoreHub {
             logger,
             persistStoreData,
         );
+        this.dataTransferStore = new DataTransferStore(globalActionHub.dataTransferActions);
     }
 
     public initialize(): void {
@@ -133,6 +136,7 @@ export class GlobalStoreHub implements StoreHub {
         this.quickAssessStore.initialize();
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
+        this.dataTransferStore.initialize();
     }
 
     public getAllStores(): BaseStore<any, Promise<void>>[] {
@@ -145,6 +149,7 @@ export class GlobalStoreHub implements StoreHub {
             this.quickAssessStore,
             this.userConfigurationStore,
             this.permissionsStateStore,
+            this.dataTransferStore,
         ];
     }
 

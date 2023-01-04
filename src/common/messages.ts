@@ -39,6 +39,7 @@ export const Messages = {
         State: {
             InjectionCompleted: `${messagePrefix}/visualization/state/injectionCompleted`,
             InjectionStarted: `${messagePrefix}/visualization/state/InjectionStarted`,
+            InjectionFailed: `${messagePrefix}/visualization/state/InjectionFailed`,
         },
         DetailsView: {
             Open: `${messagePrefix}/details-view/open`,
@@ -238,5 +239,11 @@ export const Messages = {
     DebugTools: {
         Open: `${messagePrefix}/debugTools/open`,
         Telemetry: `${messagePrefix}/debugTools/telemetry`,
+    },
+
+    DataTransfer: {
+        InitiateTransferDataToAssessment: `${messagePrefix}/dataTransfer/initiateTransferDataToAssessment`,
+        TransferDataToAssessment: `${messagePrefix}/dataTransfer/transferDataToAssessment`,
+        FinalizeTransferDataToAssessment: `${messagePrefix}/dataTransfer/finalizeTransferDataToAssessment`,
     },
 };

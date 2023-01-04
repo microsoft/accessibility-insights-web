@@ -8,17 +8,16 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import * as React from 'react';
 
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
-import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
-
 const linkDataSource: HyperlinkDefinition[] = [
     {
         href: 'https://go.microsoft.com/fwlink/?linkid=2082219',
@@ -40,12 +39,13 @@ const linkDataSource: HyperlinkDefinition[] = [
 
 export type OverviewContainerDeps = {
     getProvider: () => AssessmentsProvider;
-    getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
+    mediumPassRequirementKeys: string[];
+    getGetAssessmentSummaryModelFromProviderAndStoreData: () => GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
@@ -62,8 +62,9 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
     const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const {
         getProvider,
-        getAssessmentSummaryModelFromProviderAndStoreData,
         assessmentsProviderWithFeaturesEnabled,
+        mediumPassRequirementKeys,
+        getGetAssessmentSummaryModelFromProviderAndStoreData,
     } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
@@ -76,9 +77,14 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         assessmentsProvider,
         featureFlagStoreData,
     );
-
+    const getAssessmentSummaryModelFromProviderAndStoreData =
+        getGetAssessmentSummaryModelFromProviderAndStoreData();
     const summaryData: OverviewSummaryReportModel =
-        getAssessmentSummaryModelFromProviderAndStoreData(filteredProvider, assessmentStoreData);
+        getAssessmentSummaryModelFromProviderAndStoreData(
+            filteredProvider,
+            assessmentStoreData,
+            mediumPassRequirementKeys,
+        );
 
     return (
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>

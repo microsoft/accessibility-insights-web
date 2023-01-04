@@ -5,6 +5,7 @@ import {
     DefaultButton,
     DetailsList,
     FontIcon,
+    IObjectWithKey,
     ISelection,
     Selection,
     SelectionMode,
@@ -17,9 +18,9 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 import { DeviceDescription } from './device-description';
 import styles from './prompt-choose-device-step.scss';
 
-export type PromptChooseDeviceListItem = {
+interface PromptChooseDeviceListItem extends IObjectWithKey {
     deviceInfo: DeviceInfo;
-};
+}
 
 export type PromptChooseDeviceStepState = {
     selectedDevice: PromptChooseDeviceListItem | null;

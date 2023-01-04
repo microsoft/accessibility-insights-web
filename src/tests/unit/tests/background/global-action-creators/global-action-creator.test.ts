@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    BaseActionPayload,
     OnDetailsViewInitializedPayload,
     SetLaunchPanelState,
+    TransferAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { CommandActions } from 'background/actions/command-actions';
+import { DataTransferActions } from 'background/actions/data-transfer-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
 import { GlobalActionHub } from 'background/actions/global-action-hub';
 import { LaunchPanelStateActions } from 'background/actions/launch-panel-state-action';
@@ -14,6 +17,10 @@ import { UserConfigurationActions } from 'background/actions/user-configuration-
 import { GlobalActionCreator } from 'background/global-action-creators/global-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import {
+    TelemetryEventSource,
+    TRANSFER_QUICK_ASSESS_DATA_TO_ASSESSMENT_INITIATED,
+} from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { PayloadCallback } from 'common/message';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
@@ -71,6 +78,21 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
+    test('registerCallback for onGetDataTransferStoreCurrentState', async () => {
+        const actionName = 'getCurrentState';
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegisterCallbacks()
+            .setupActionOnDataTransferActions(actionName)
+            .setupDataTransferActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(getStoreStateMessage(StoreNames.DataTransferStore));
+
+        validator.verifyAll();
+    });
+
     test('registerCallback for on set launch panel state', async () => {
         const actionName = 'setLaunchPanelType';
         const payload: SetLaunchPanelState = {
@@ -86,6 +108,69 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         await validator.simulateMessage(Messages.LaunchPanel.Set, payload);
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onInitiateQuickAssessToAssessmentTransfer', async () => {
+        const actionName = 'initiateTransferQuickAssessDataToAssessment';
+        const payload: BaseActionPayload = {
+            telemetry: {
+                source: TelemetryEventSource.DetailsView,
+            },
+        };
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegisterCallbacks()
+            .setupActionOnDataTransferActions(actionName)
+            .setupDataTransferActionWithInvokeParameter(actionName, null)
+            .setupTelemetrySend(TRANSFER_QUICK_ASSESS_DATA_TO_ASSESSMENT_INITIATED);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(
+            Messages.DataTransfer.InitiateTransferDataToAssessment,
+            payload,
+        );
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onFinalizeQuickAssessToAssessmentTransfer', async () => {
+        const actionName = 'finalizeTransferQuickAssessDataToAssessment';
+
+        const validator = new GlobalActionCreatorValidator()
+            .setupRegisterCallbacks()
+            .setupActionOnDataTransferActions(actionName)
+            .setupDataTransferActionWithInvokeParameter(actionName, null);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(Messages.DataTransfer.FinalizeTransferDataToAssessment);
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onLoadAssessmentFromTransfer', async () => {
+        const actionName = 'loadAssessmentFromTransfer';
+        const expectedPayload = {
+            assessmentData: { resultDescription: 'some description' },
+        } as TransferAssessmentPayload;
+
+        const validator = new GlobalActionCreatorValidator(true)
+            .setupRegisterCallbacks()
+            .setupActionOnAssessmentActions(actionName)
+            .setupAssessmentActionWithInvokeParameter(actionName, expectedPayload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(
+            Messages.DataTransfer.TransferDataToAssessment,
+            expectedPayload,
+        );
 
         validator.verifyAll();
     });
@@ -127,10 +212,13 @@ describe('GlobalActionCreatorTest', () => {
 });
 
 class GlobalActionCreatorValidator {
+    private readonly executingScope = 'GlobalActionCreator';
+
     public testSubject: GlobalActionCreator;
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private dataTransferActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private assessmentActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private quickAssessActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
@@ -142,6 +230,7 @@ class GlobalActionCreatorValidator {
     private quickAssessActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private permissionsStateActionsContainerMock = Mock.ofType(PermissionsStateActions);
+    private dataTransferActionsMock = Mock.ofType(DataTransferActions);
     private interpreterMock = Mock.ofType<Interpreter>();
     private commandsAdapterMock = Mock.ofType<CommandsAdapter>();
 
@@ -156,9 +245,12 @@ class GlobalActionCreatorValidator {
         quickAssessActions: this.quickAssessActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
         permissionsStateActions: this.permissionsStateActionsContainerMock.object,
+        dataTransferActions: this.dataTransferActionsMock.object,
     };
 
     private actionsSetup: boolean = false;
+
+    public constructor(private readonly withExecutingScope: boolean = false) {}
 
     public setupActionOnCommandActions(actionName: string): GlobalActionCreatorValidator {
         return this.setupAction(
@@ -181,6 +273,14 @@ class GlobalActionCreatorValidator {
             actionName,
             this.launchPanelStateActionsContainerMock,
             this.launchPanelActionsMockMap,
+        );
+    }
+
+    public setupActionOnDataTransferActions(actionName: string): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.dataTransferActionsMock,
+            this.dataTransferActionsMockMap,
         );
     }
 
@@ -241,6 +341,17 @@ class GlobalActionCreatorValidator {
         );
     }
 
+    public setupDataTransferActionWithInvokeParameter(
+        actionName: keyof DataTransferActions,
+        expectedInvokeParam: any,
+    ): GlobalActionCreatorValidator {
+        return this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.dataTransferActionsMockMap,
+        );
+    }
+
     public setupAssessmentActionWithInvokeParameter(
         actionName: keyof AssessmentActions,
         expectedInvokeParam: any,
@@ -270,7 +381,13 @@ class GlobalActionCreatorValidator {
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
-        action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
+        if (this.withExecutingScope === true) {
+            action
+                .setup(am => am.invoke(It.isValue(expectedInvokeParam), this.executingScope))
+                .verifiable(Times.once());
+        } else {
+            action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
+        }
 
         return this;
     }

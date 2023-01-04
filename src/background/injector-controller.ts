@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InjectionFailedPayload } from 'background/actions/action-payloads';
 import { Logger } from 'common/logging/logger';
 import { InspectMode } from 'common/types/store-data/inspect-modes';
+import { InjectingState } from 'common/types/store-data/visualization-store-data';
 import { Messages } from '../common/messages';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
@@ -36,9 +38,14 @@ export class InjectorController {
             inspectStoreState.inspectMode !== InspectMode.off;
 
         const isInjectingRequested =
-            inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
+            inspectStoreInjectingRequested ||
+            visualizationStoreState.injectingState === InjectingState.injectingRequested;
 
-        if (isInjectingRequested && !visualizationStoreState.injectingStarted) {
+        if (
+            isInjectingRequested &&
+            visualizationStoreState.injectingState !== InjectingState.injectingStarted &&
+            visualizationStoreState.injectingState !== InjectingState.injectingFailed
+        ) {
             await this.interpreter.interpret({
                 messageType: Messages.Visualizations.State.InjectionStarted,
                 tabId: tabId,
@@ -52,9 +59,22 @@ export class InjectorController {
                         tabId: tabId,
                     }).result;
                 })
-                .catch(this.logger.error);
+                .catch(this.handleInjectionError);
         }
 
         this.oldInspectType = inspectStoreState.inspectMode;
+    };
+
+    private handleInjectionError = async (err: any): Promise<void> => {
+        this.logger.error(err);
+        const attempts = (this.visualizationStore.getState().injectionAttempts ?? 0) + 1;
+        const payload: InjectionFailedPayload = {
+            failedAttempts: attempts,
+            shouldRetry: attempts <= 3,
+        };
+        await this.interpreter.interpret({
+            messageType: Messages.Visualizations.State.InjectionFailed,
+            payload,
+        }).result;
     };
 }

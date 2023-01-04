@@ -11,7 +11,7 @@ import { Mock } from 'typemoq';
 
 describe('ResultsByUrlContainer', () => {
     it('renders', () => {
-        const getScriptMock = Mock.ofInstance(() => '');
+        const getScriptMock = Mock.ofInstance((): string => '');
         getScriptMock.setup(getScript => getScript()).returns(() => 'test script');
 
         const props: ResultsByUrlContainerProps = {

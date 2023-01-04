@@ -22,7 +22,7 @@ export class NotificationCreator {
                     type: 'basic',
                     message: message,
                     title: manifest.name,
-                    iconUrl: '../' + manifest.icons[128],
+                    iconUrl: '../' + manifest.icons![128],
                 })
                 .catch(this.logger.error);
         }
@@ -42,6 +42,6 @@ export class NotificationCreator {
             warnings,
         );
 
-        this.createNotification(notificationMessage);
+        this.createNotification(notificationMessage!);
     }
 }

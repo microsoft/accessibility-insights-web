@@ -15,12 +15,13 @@ import {
     ChangeRequirementStatusPayload,
     EditFailureInstancePayload,
     ExpandTestNavPayload,
+    LoadAssessmentPayload,
+    OnDetailsViewInitializedPayload,
     RemoveFailureInstancePayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
+    TransferAssessmentPayload,
     UpdateSelectedDetailsViewPayload,
-    LoadAssessmentPayload,
-    OnDetailsViewInitializedPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
@@ -51,4 +52,5 @@ export class AssessmentActions {
     public readonly continuePreviousAssessment = new AsyncAction<number>();
     public readonly loadAssessment = new AsyncAction<LoadAssessmentPayload>();
     public readonly updateDetailsViewId = new AsyncAction<OnDetailsViewInitializedPayload>();
+    public readonly loadAssessmentFromTransfer = new AsyncAction<TransferAssessmentPayload>();
 }
