@@ -2141,8 +2141,9 @@ describe('AssessmentStore', () => {
 
         setupDataGeneratorMock(assessmentStubData, storeDataFromGeneration);
 
-        const storeTester =
-            createStoreTesterForAssessmentActions('transferAssessment').withActionParam(payload);
+        const storeTester = createStoreTesterForAssessmentActions(
+            'loadAssessmentFromTransfer',
+        ).withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, finalState);
     });
 

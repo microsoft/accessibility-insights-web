@@ -84,7 +84,7 @@ export class GlobalActionCreator {
 
         this.interpreter.registerTypeToPayloadCallback(
             Messages.DataTransfer.TransferDataToAssessment,
-            this.onTransferDataToAssessment,
+            this.onLoadAssessmentFromTransfer,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
@@ -140,9 +140,12 @@ export class GlobalActionCreator {
         await this.dataTransferActions.finalizeTransferQuickAssessDataToAssessment.invoke(null);
     };
 
-    private onTransferDataToAssessment = async (
+    private onLoadAssessmentFromTransfer = async (
         payload: TransferAssessmentPayload,
     ): Promise<void> => {
-        await this.assessmentActions.transferAssessment.invoke(payload, this.executingScope);
+        await this.assessmentActions.loadAssessmentFromTransfer.invoke(
+            payload,
+            this.executingScope,
+        );
     };
 }

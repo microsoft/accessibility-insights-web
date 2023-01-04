@@ -108,7 +108,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         );
         this.assessmentActions.loadAssessment.addListener(this.onLoadAssessment);
         this.assessmentActions.updateDetailsViewId.addListener(this.onUpdateDetailsViewId);
-        this.assessmentActions.transferAssessment.addListener(this.onTransferAssessment);
+        this.assessmentActions.loadAssessmentFromTransfer.addListener(this.onTransferAssessment);
     }
 
     private async updateTargetTabWithId(tabId: number): Promise<void> {

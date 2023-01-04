@@ -153,8 +153,8 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for onTransferDataToAssessment', async () => {
-        const actionName = 'transferAssessment';
+    test('registerCallback for onLoadAssessmentFromTransfer', async () => {
+        const actionName = 'loadAssessmentFromTransfer';
         const expectedPayload = {
             assessmentData: { resultDescription: 'some description' },
         } as TransferAssessmentPayload;

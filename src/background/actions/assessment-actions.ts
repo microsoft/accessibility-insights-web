@@ -52,5 +52,5 @@ export class AssessmentActions {
     public readonly continuePreviousAssessment = new AsyncAction<number>();
     public readonly loadAssessment = new AsyncAction<LoadAssessmentPayload>();
     public readonly updateDetailsViewId = new AsyncAction<OnDetailsViewInitializedPayload>();
-    public readonly transferAssessment = new AsyncAction<TransferAssessmentPayload>();
+    public readonly loadAssessmentFromTransfer = new AsyncAction<TransferAssessmentPayload>();
 }
