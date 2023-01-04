@@ -156,8 +156,6 @@ export const Messages = {
         LoadAssessment: `${messagePrefix}/mediumPass/loadAssessment`,
         LoadAssessmentFinishedUpload: `${messagePrefix}/mediumPass/loadAssessmentFinishedUpload`,
         SaveAssessment: `${messagePrefix}/mediumPass/saveAssessment`,
-        InitiateTransferDataToAssessment: `${messagePrefix}/mediumPass/initiateTransferDataToAssessment`,
-        FinalizeTransferDataToAssessment: `${messagePrefix}/mediumPass/finalizeTransferDataToAssessment`,
     },
 
     FeatureFlags: {
@@ -241,5 +239,11 @@ export const Messages = {
     DebugTools: {
         Open: `${messagePrefix}/debugTools/open`,
         Telemetry: `${messagePrefix}/debugTools/telemetry`,
+    },
+
+    DataTransfer: {
+        InitiateTransferDataToAssessment: `${messagePrefix}/dataTransfer/initiateTransferDataToAssessment`,
+        TransferDataToAssessment: `${messagePrefix}/dataTransfer/transferDataToAssessment`,
+        FinalizeTransferDataToAssessment: `${messagePrefix}/dataTransfer/finalizeTransferDataToAssessment`,
     },
 };

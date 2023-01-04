@@ -112,6 +112,7 @@
         "src/background/initial-visualization-store-data-generator.ts",
         "src/background/injector-controller.ts",
         "src/background/keyboard-shortcut-handler.ts",
+        "src/background/quick-assess-to-assessment-converter.ts",
         "src/background/service-worker-init.ts",
         "src/background/stores/assessment-store.ts",
         "src/background/stores/global/feature-flag-store.ts",

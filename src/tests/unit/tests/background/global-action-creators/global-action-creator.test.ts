@@ -4,6 +4,7 @@ import {
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     SetLaunchPanelState,
+    TransferAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { CommandActions } from 'background/actions/command-actions';
@@ -129,7 +130,7 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         await validator.simulateMessage(
-            Messages.MediumPass.InitiateTransferDataToAssessment,
+            Messages.DataTransfer.InitiateTransferDataToAssessment,
             payload,
         );
 
@@ -147,7 +148,29 @@ describe('GlobalActionCreatorTest', () => {
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
 
-        await validator.simulateMessage(Messages.MediumPass.FinalizeTransferDataToAssessment);
+        await validator.simulateMessage(Messages.DataTransfer.FinalizeTransferDataToAssessment);
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onLoadAssessmentFromTransfer', async () => {
+        const actionName = 'loadAssessmentFromTransfer';
+        const expectedPayload = {
+            assessmentData: { resultDescription: 'some description' },
+        } as TransferAssessmentPayload;
+
+        const validator = new GlobalActionCreatorValidator(true)
+            .setupRegisterCallbacks()
+            .setupActionOnAssessmentActions(actionName)
+            .setupAssessmentActionWithInvokeParameter(actionName, expectedPayload);
+
+        const actionCreator = validator.buildActionCreator();
+        actionCreator.registerCallbacks();
+
+        await validator.simulateMessage(
+            Messages.DataTransfer.TransferDataToAssessment,
+            expectedPayload,
+        );
 
         validator.verifyAll();
     });
@@ -189,6 +212,8 @@ describe('GlobalActionCreatorTest', () => {
 });
 
 class GlobalActionCreatorValidator {
+    private readonly executingScope = 'GlobalActionCreator';
+
     public testSubject: GlobalActionCreator;
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
@@ -224,6 +249,8 @@ class GlobalActionCreatorValidator {
     };
 
     private actionsSetup: boolean = false;
+
+    public constructor(private readonly withExecutingScope: boolean = false) {}
 
     public setupActionOnCommandActions(actionName: string): GlobalActionCreatorValidator {
         return this.setupAction(
@@ -354,7 +381,13 @@ class GlobalActionCreatorValidator {
     ): GlobalActionCreatorValidator {
         const action = this.getOrCreateAction(actionName, actionsMockMap);
 
-        action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
+        if (this.withExecutingScope === true) {
+            action
+                .setup(am => am.invoke(It.isValue(expectedInvokeParam), this.executingScope))
+                .verifiable(Times.once());
+        } else {
+            action.setup(am => am.invoke(It.isValue(expectedInvokeParam))).verifiable(Times.once());
+        }
 
         return this;
     }
