@@ -5,9 +5,15 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
   className="issuesTestView"
 >
   <React.Fragment>
-    <ScanIncompleteWarning
+    <BannerWarnings
       deps={{}}
       test={-1}
+      visualizationStoreData={
+        {
+          "scanning": "test-scanning",
+          "tests": {},
+        }
+      }
       warningConfiguration={{}}
       warnings={[]}
     />

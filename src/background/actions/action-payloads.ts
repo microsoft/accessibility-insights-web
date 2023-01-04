@@ -271,3 +271,8 @@ export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayloa
 export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
     enabled: boolean;
 }
+
+export interface InjectionFailedPayload extends BaseActionPayload {
+    failedAttempts: number;
+    shouldRetry: boolean;
+}

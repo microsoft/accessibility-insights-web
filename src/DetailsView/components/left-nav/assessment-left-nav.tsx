@@ -4,6 +4,7 @@ import { INav } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import {
@@ -20,6 +21,7 @@ import {
 import { NavLinkHandler } from './nav-link-handler';
 
 export type AssessmentLeftNavDeps = {
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
     leftNavLinkBuilder: LeftNavLinkBuilder;
     getNavLinkHandler: () => NavLinkHandler;
 } & OverviewLinkBuilderDeps &

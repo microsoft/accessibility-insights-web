@@ -44,7 +44,13 @@ describe(AssessmentLeftNav.displayName, () => {
         linkStub = {
             status: ManualTestStatus.UNKNOWN,
         } as AssessmentLeftNavLink;
+        const getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
+            (provider, statusData, requirementKeys) => null,
+            MockBehavior.Strict,
+        );
         deps = {
+            getGetAssessmentSummaryModelFromProviderAndStatusData: () =>
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             getNavLinkHandler: () => navLinkHandlerMock,
         } as AssessmentLeftNavDeps;
@@ -58,6 +64,8 @@ describe(AssessmentLeftNav.displayName, () => {
             expandedTest,
             onRightPanelContentSwitch,
             setNavComponentRef,
+            getAssessmentSummaryModelFromProviderAndStatusData:
+                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         };
 
         leftNavLinkBuilderMock

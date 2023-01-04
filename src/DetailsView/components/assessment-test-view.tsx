@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { BannerWarnings } from 'DetailsView/components/banner-warnings';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     GettingStartedView,
     GettingStartedViewDeps,
 } from 'DetailsView/components/getting-started-view';
 import { RequirementView, RequirementViewDeps } from 'DetailsView/components/requirement-view';
-import {
-    ScanIncompleteWarning,
-    ScanIncompleteWarningDeps,
-} from 'DetailsView/components/scan-incomplete-warning';
+import { ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
 import {
     TargetChangeDialog,
     TargetChangeDialogDeps,
@@ -71,11 +69,12 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
 
         return (
             <>
-                <ScanIncompleteWarning
+                <BannerWarnings
                     deps={deps}
                     warnings={assessmentData.scanIncompleteWarnings}
                     warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
                     test={assessmentNavState.selectedTestType}
+                    visualizationStoreData={props.visualizationStoreData}
                 />
                 <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
                 {isGettingStartedSelected ? (

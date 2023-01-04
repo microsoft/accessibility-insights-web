@@ -11,12 +11,13 @@ import {
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { map } from 'lodash';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
@@ -32,8 +33,9 @@ export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
-    getAssessmentSummaryModelFromProviderAndStatusData: GetAssessmentSummaryModelFromProviderAndStatusData;
+    getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
     navLinkRenderer: NavLinkRenderer;
+    mediumPassRequirementKeys: string[];
 };
 
 export type AssessmentLinkBuilderDeps = {
@@ -72,11 +74,14 @@ export class LeftNavLinkBuilder {
         index: number,
         onRightPanelContentSwitch: () => void,
     ): BaseLeftNavLink {
-        const { getAssessmentSummaryModelFromProviderAndStatusData, navLinkRenderer } = deps;
+        const { navLinkRenderer, getGetAssessmentSummaryModelFromProviderAndStatusData } = deps;
+        const getAssessmentSummaryModelFromProviderAndStatusData =
+            getGetAssessmentSummaryModelFromProviderAndStatusData();
 
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
             assessmentsProvider,
             assessmentsData,
+            deps.mediumPassRequirementKeys,
         );
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
 
