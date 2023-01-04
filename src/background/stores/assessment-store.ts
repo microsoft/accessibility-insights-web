@@ -147,7 +147,6 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             ...validTransferedData,
             assessmentNavState: this.state.assessmentNavState,
         };
-        console.log('hahahah agot here');
         await this.emitChanged();
     };
 
