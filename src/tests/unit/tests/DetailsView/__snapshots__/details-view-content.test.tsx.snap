@@ -398,6 +398,10 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
+            "contrastAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
             "headingsAssessment": {
               "enabled": false,
               "stepStatus": {},

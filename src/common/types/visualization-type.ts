@@ -40,4 +40,5 @@ export enum VisualizationType {
     HeadingsMediumPass,
     RepetitiveContentMediumPass,
     AutomatedChecksMediumPass,
+    ContrastMediumPass,
 }

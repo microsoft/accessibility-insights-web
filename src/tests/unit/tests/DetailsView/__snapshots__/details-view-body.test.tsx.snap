@@ -343,6 +343,10 @@ exports[`DetailsViewBody render render 1`] = `
                 "enabled": false,
                 "stepStatus": {},
               },
+              "contrastAssessment": {
+                "enabled": false,
+                "stepStatus": {},
+              },
               "headingsAssessment": {
                 "enabled": false,
                 "stepStatus": {},
@@ -706,6 +710,10 @@ exports[`DetailsViewBody render render 1`] = `
                   "stepStatus": {},
                 },
                 "automatedChecks": {
+                  "enabled": false,
+                  "stepStatus": {},
+                },
+                "contrastAssessment": {
                   "enabled": false,
                   "stepStatus": {},
                 },
@@ -1079,6 +1087,10 @@ exports[`DetailsViewBody render render 1`] = `
                       "stepStatus": {},
                     },
                     "automatedChecks": {
+                      "enabled": false,
+                      "stepStatus": {},
+                    },
+                    "contrastAssessment": {
                       "enabled": false,
                       "stepStatus": {},
                     },

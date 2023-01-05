@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
+import { ContrastTestStep } from 'assessments/contrast/test-steps/test-steps';
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { ImagesTestStep } from 'assessments/images/test-steps/test-steps';
 import { KeyboardInteractionTestStep } from 'assessments/keyboard-interaction/test-steps/test-steps';
@@ -15,7 +16,7 @@ export const MediumPassRequirementKeys: string[] = [
     LinksTestStep.linkPurpose,
     ImagesTestStep.imageFunction,
     visibleFfocusOrderTestStep.visibleFocus,
-    AdaptableContentTestStep.contrast,
+    ContrastTestStep.uiComponents,
     HeadingsTestStep.missingHeadings,
     HeadingsTestStep.headingLevel,
     RepetitiveContentTestStep.bypassBlocks,
@@ -28,7 +29,7 @@ export const MediumPassRequirementMap: DictionaryStringTo<VisualizationType> = {
     [LinksTestStep.linkPurpose]: VisualizationType.LinksMediumPass,
     [ImagesTestStep.imageFunction]: VisualizationType.ImagesMediumPass,
     [visibleFfocusOrderTestStep.visibleFocus]: VisualizationType.VisibleFocusOrderMediumPass,
-    [AdaptableContentTestStep.contrast]: VisualizationType.AdaptableContentMediumPass,
+    [ContrastTestStep.uiComponents]: VisualizationType.ContrastMediumPass,
     [HeadingsTestStep.missingHeadings]: VisualizationType.HeadingsMediumPass,
     [HeadingsTestStep.headingLevel]: VisualizationType.HeadingsMediumPass,
     [RepetitiveContentTestStep.bypassBlocks]: VisualizationType.RepetitiveContentMediumPass,
