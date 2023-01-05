@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as characterKeyShortcuts from './character-key-shortcuts';
 import { guidance } from './guidance';
-import * as keyboardNavigation from './keyboard-navigation';
+import { infoAndExamples as keyboardNavigation } from './keyboard-navigation';
 import * as noKeyboardTraps from './no-keyboard-traps';
 import * as noKeystrokeTimings from './no-keystroke-timings';
 import * as onFocus from './on-focus';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { create, React } from '../../common';
 import { HyperlinkDefinition } from '../../../common/types/hyperlink-definition';
+import { create, React } from '../../common';
 
 export const whyItMatters = create(() => (
     <p>

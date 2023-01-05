@@ -3,7 +3,7 @@
 import * as graphics from './graphics';
 import { guidance } from './guidance';
 import * as stateChanges from './state-changes';
-import * as uiComponents from './ui-components';
+import { infoAndExamples as uiComponents } from './ui-components';
 
 export const contrast = {
     guidance,
