@@ -4,6 +4,13 @@
 @import '../../common/styles/colors.scss';
 @import '../../common/styles/fonts.scss';
 
+@mixin fill-available-width {
+    // `stretch` is experimental: https://caniuse.com/mdn-css_properties_width_stretch
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+
 .hidden-highlight-button {
     opacity: 0;
     margin: 0;
@@ -17,6 +24,7 @@
     outline-style: 'border-style';
     box-shadow: 0 0.6px 1.8px $box-shadow-108, 0 3.2px 7.2px $box-shadow-132;
     margin-bottom: 16px;
+    @include fill-available-width;
 }
 
 .instance-details-card-container.selected {
@@ -50,7 +58,8 @@
     background: $neutral-0;
     display: table;
     table-layout: fixed;
-    width: stretch;
+    @include fill-available-width;
+
     border-radius: inherit;
     border-collapse: collapse;
     overflow-wrap: break-word;

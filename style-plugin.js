@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const genericNames = require('generic-names');
 const postcss = require('postcss');
 const postCssModules = require('postcss-modules');
@@ -78,7 +77,6 @@ const CreateStylePlugin = (useHash = true) => {
                                 singleModuleCssJSON = JSON.stringify(json);
                             },
                         }),
-                        autoprefixer,
                     ]).process(source, { from: undefined });
 
                     let pathAsJsString = JSON.stringify(

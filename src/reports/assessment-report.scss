@@ -12,6 +12,7 @@
 
 * {
     font-family: $font-family;
+    -webkit-print-color-adjust: exact; // Requires vendor prefix: https://caniuse.com/mdn-css_properties_print-color-adjust
     print-color-adjust: exact;
 }
 

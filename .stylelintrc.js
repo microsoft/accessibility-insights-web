@@ -13,6 +13,8 @@ module.exports = {
             '^(ms-([A-Z][a-z0-9]*)(-[a-z0-9]+)*)|(([a-z][a-z0-9]*)(-[a-z0-9]+)*)$', // Allows: kebab case and ms-Kebab-case
         'declaration-property-max-values': { padding: 1, margin: 1 }, // Limit shorthand to improve readability
         'annotation-no-unknown': null, // Disabled per guidance at https://github.com/stylelint-scss/stylelint-config-recommended-scss/issues/149
+        'property-no-vendor-prefix': null, // Disabled, we decided against using a tool like autoprefixer
+        'value-no-vendor-prefix': null, // Disabled, we decided against using a tool like autoprefixer
 
         // STRETCH GOAL: limit shorthand for border-width, border-radius, border-color, border-style, grid-gap
         // Example: 'declaration-property-max-values': {  'border-width': 1 }

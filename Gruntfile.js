@@ -185,10 +185,6 @@ module.exports = function (grunt) {
                 command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
                 cwd: 'packages/mock-adb',
             },
-            autoprefix: {
-                command: `npx postcss **/*.css --use autoprefixer -r --no-map`,
-                cwd: 'dist/',
-            },
         },
         sass: {
             options: {
@@ -747,13 +743,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('build-assets', [
-        'sass',
-        'exec:autoprefix',
-        'copy:code',
-        'copy:styles',
-        'copy:images',
-    ]);
+    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', [

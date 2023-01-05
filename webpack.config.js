@@ -65,27 +65,8 @@ const scssRule = (useHash = true) => ({
             },
         },
         'sass-loader',
-        {
-            loader: 'postcss-loader',
-            options: {
-                postcssOptions: {
-                    parser: 'postcss-scss',
-                    plugins: ['autoprefixer', stripInlineComments],
-                },
-            },
-        },
     ],
 });
-
-const stripInlineComments = () => ({
-    postcssPlugin: 'postcss-remove-inline-comments',
-    OnceExit(css) {
-        css.walkComments(comment => {
-            if (comment.raws.inline) comment.remove();
-        });
-    },
-});
-stripInlineComments.postcss = true;
 
 const commonConfig = {
     entry: commonEntryFiles,

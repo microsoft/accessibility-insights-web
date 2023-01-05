@@ -22,6 +22,7 @@
     }
 
     ol {
+        -webkit-padding-start: 16px; // Chrome versions before 87 use non-standard name: https://caniuse.com/mdn-css_properties_padding-inline-start
         padding-inline-start: 16px;
     }
 
