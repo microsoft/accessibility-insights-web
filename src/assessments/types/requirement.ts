@@ -33,6 +33,7 @@ export interface Requirement {
     howToTest: JSX.Element;
     addFailureInstruction?: string;
     infoAndExamples?: ContentPageComponent;
+    whyItMatters?: ContentPageComponent;
     isManual: boolean;
     // This is for semi-manual cases where we can't present a list of instances like an assisted
     // test would, but can infer a PASS or FAIL state. If not specified, acts like () => UNKNOWN.

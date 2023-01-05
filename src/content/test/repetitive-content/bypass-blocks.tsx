@@ -2,6 +2,16 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        Web pages typically have blocks of content that repeat across multiple pages, such as banners and site navigation menus. A person
+        who uses a mouse can visually skim past that repeated content to access a link or other control within the primary content with a
+        single click. Similarly, a bypass mechanism allows keyboard users to navigate directly to the page’s main content without dozens of
+        keystrokes. People with limited mobility could find this task difficult or painful, and people who use screen readers could find it
+        tedious to listen as each repeated element is announced.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>A page must provide a keyboard-accessible method to bypass repetitive content.</p>

@@ -1,6 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { create, React } from '../../common';
+import { HyperlinkDefinition } from '../../../common/types/hyperlink-definition';
+
+export const whyItMatters = create(() => (
+    <p>
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual
+        characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label
+        and instructions must be programmatically related to it.
+    </p>
+));
+
+export const helpfulResourceLinks: HyperlinkDefinition[] = [
+    {
+        href: 'https://www.youtube.com/watch?v=bAFzL-dOzu0',
+        text: 'Short video on voice control',
+    },
+    {
+        href: 'https://www.youtube.com/watch?v=Mki-ZknCrB4',
+        text: 'Short video on form labels',
+    },
+];
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
