@@ -32,4 +32,5 @@ export enum StoreNames {
     CardsViewStore,
     QuickAssessStore,
     DataTransferStore,
+    DataTransferViewStore,
 }
