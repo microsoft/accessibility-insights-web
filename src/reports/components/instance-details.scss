@@ -5,13 +5,10 @@
 @import '../../common/styles/fonts.scss';
 
 @mixin fill-available-width {
+    // `stretch` is experimental: https://caniuse.com/mdn-css_properties_width_stretch
     width: -moz-available;
-
-    /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;
-
-    /* Mozilla-based browsers will ignore this. */
-    width: fill-available;
+    width: stretch;
 }
 
 .hidden-highlight-button {

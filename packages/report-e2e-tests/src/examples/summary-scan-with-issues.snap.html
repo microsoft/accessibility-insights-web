@@ -221,10 +221,8 @@
           0 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
         width: -moz-available;
-        /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available;
-        /* Mozilla-based browsers will ignore this. */
-        width: fill-available;
+        width: stretch;
       }
 
       .instance-details-card-container.selected {
@@ -260,10 +258,8 @@
         display: table;
         table-layout: fixed;
         width: -moz-available;
-        /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available;
-        /* Mozilla-based browsers will ignore this. */
-        width: fill-available;
+        width: stretch;
         border-radius: inherit;
         border-collapse: collapse;
         overflow-wrap: break-word;
@@ -830,14 +826,10 @@
       }
       .collapsible-container
         .collapsible-control[aria-expanded="false"]::before {
-        -webkit-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
         transform: rotate(-45deg);
       }
       .collapsible-container
         .collapsible-control[aria-expanded="true"]::before {
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
         transform: rotate(45deg);
       }
       .collapsible-container .collapsible-content[aria-hidden="true"] {
@@ -889,7 +881,7 @@
         margin-bottom: 16px;
         width: -moz-available;
         width: -webkit-fill-available;
-        width: fill-available;
+        width: stretch;
       }
       .instance-details-card-container--KLHTp.selected--wEA4l {
         outline: 5px solid var(--communication-tint-10);
@@ -919,7 +911,7 @@
         table-layout: fixed;
         width: -moz-available;
         width: -webkit-fill-available;
-        width: fill-available;
+        width: stretch;
         border-radius: inherit;
         border-collapse: collapse;
         overflow-wrap: break-word;
