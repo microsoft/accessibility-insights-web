@@ -418,6 +418,10 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
+            "nativeWidgetsAssessment": {
+              "enabled": false,
+              "stepStatus": {},
+            },
             "repetitiveContentAssessment": {
               "enabled": false,
               "stepStatus": {},

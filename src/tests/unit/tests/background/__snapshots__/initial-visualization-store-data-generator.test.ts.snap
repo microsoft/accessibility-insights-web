@@ -143,6 +143,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState generates t
         "enabled": false,
         "stepStatus": {},
       },
+      "type-40": {
+        "enabled": false,
+        "stepStatus": {},
+      },
     },
     "mediumPass": {
       "type-10": {
@@ -310,6 +314,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "enabled": false,
       "stepStatus": {},
     },
+    "type-40": {
+      "enabled": false,
+      "stepStatus": {},
+    },
   },
   "mediumPass": {
     "type-10": {
@@ -473,6 +481,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "stepStatus": {},
     },
     "type-39": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-40": {
       "enabled": false,
       "stepStatus": {},
     },

@@ -363,6 +363,10 @@ exports[`DetailsViewBody render render 1`] = `
                 "enabled": false,
                 "stepStatus": {},
               },
+              "nativeWidgetsAssessment": {
+                "enabled": false,
+                "stepStatus": {},
+              },
               "repetitiveContentAssessment": {
                 "enabled": false,
                 "stepStatus": {},
@@ -730,6 +734,10 @@ exports[`DetailsViewBody render render 1`] = `
                   "stepStatus": {},
                 },
                 "linksAssessment": {
+                  "enabled": false,
+                  "stepStatus": {},
+                },
+                "nativeWidgetsAssessment": {
                   "enabled": false,
                   "stepStatus": {},
                 },
@@ -1107,6 +1115,10 @@ exports[`DetailsViewBody render render 1`] = `
                       "stepStatus": {},
                     },
                     "linksAssessment": {
+                      "enabled": false,
+                      "stepStatus": {},
+                    },
+                    "nativeWidgetsAssessment": {
                       "enabled": false,
                       "stepStatus": {},
                     },

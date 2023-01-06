@@ -41,4 +41,5 @@ export enum VisualizationType {
     RepetitiveContentMediumPass,
     AutomatedChecksMediumPass,
     ContrastMediumPass,
+    NativeWidgetsMediumPass,
 }
