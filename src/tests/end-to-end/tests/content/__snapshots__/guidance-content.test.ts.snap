@@ -2916,9 +2916,208 @@ exports[`Guidance Content pages test/adaptableContent/reflow matches the snapsho
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/adaptableContent/reflow
-      </h1>
+      <p>
+        Content must be visible without having to scroll both vertically and horizontally.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Having to scroll in two directions is difficult for everyone. Having to scroll in the direction of reading makes reading especially difficult for people with certain disabilities, including:
+      </p>
+      <ul>
+        <li>
+           People with low vision, who are more likely to need enlarged text in a single column
+        </li>
+        <li>
+           People with reading disabilities that make it difficult to visually track long lines of text
+        </li>
+        <li>
+           People with motor disabilities who find scrolling difficult
+        </li>
+      </ul>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Use responsive web design to ensure page content reflows to fit within the window whenever the viewport narrows or the text size changes.
+      </p>
+      <ul>
+        <li>
+          Good: Do not require users to scroll in two directions.
+        </li>
+        <li>
+          Better: Do not require users to scroll in the direction of reading:
+          <ul>
+            <li>
+              If the text is read horizontally (left-to-right or right-to-left), text should scroll vertically.
+            </li>
+            <li>
+              If the text is read vertically (top-to-bottom), text should scroll horizontally.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A web application has a tab control with a set of vertically-stacked tabs always positioned to the left of the tab panel. When viewed on a handheld device, the user must scroll both horizontally and vertically to see both the tabs and the tab panel.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The tab control is redesigned so the tab panel moves below the tabs as needed when the viewport is narrowed or the text size is increased. The user never needs to scroll horizontally to see the content.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/reflow.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.10 Reflow
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C32"
+          target="_blank"
+        >
+          Using media queries and grid CSS to reflow columns
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C31"
+          target="_blank"
+        >
+          Using CSS Flexbox to reflow content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C33"
+          target="_blank"
+        >
+          Allowing for Reflow with Long URLs and Strings of Text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C38"
+          target="_blank"
+        >
+          Using CSS width, max-width and flexbox to fit labels and inputs
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR34"
+          target="_blank"
+        >
+          Calculating size and position in a way that scales with text size
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://responsivedesign.is/examples/"
+          target="_blank"
+        >
+          Examples – Responsive Web Design
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -4851,9 +5050,183 @@ exports[`Guidance Content pages test/contrast/uiComponents matches the snapshot 
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/contrast/uiComponents
-      </h1>
+      <p>
+        Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Most people find it easier to see and use UI Components when they have sufficient contrast against the background. People with low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+         are especially likely to struggle with controls when contrast is too low.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure any visual information that helps users detect and operate a control has a contrast ratio ≥ 3:1. Such visual information includes:
+      </p>
+      <ul>
+        <li>
+          Any visual boundary that indicates the component's clickable area
+        </li>
+        <li>
+          Any visual effect that indicates the component's state
+        </li>
+      </ul>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A button with a light gray boundary (#cccccc) is displayed on a white background (#ffffff). The boundary and background have an insufficient contrast of 1.605:1.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The button has a medium gray boundary (#888888). The button and white background have a sufficient contrast of 3.544:1.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11: Non-text Contrast
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G195"
+          target="_blank"
+        >
+          Using an author-supplied, highly visible focus indicator
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F78"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.7 due to styling element outlines and borders in a way that removes or renders non-visible the visual focus indicator
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G183"
+          target="_blank"
+        >
+          Using a contrast ratio of 3:1 with surrounding text and providing additional visual cues on focus for links or controls where color alone is used to identify them
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -9644,9 +10017,239 @@ exports[`Guidance Content pages test/focus/focusOrder matches the snapshot 1`] =
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/focus/focusOrder
-      </h1>
+      <p>
+        Components must receive focus in an order that preserves meaning and operability.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When users navigate through a web page, they expect to encounter controls and other content in an order that makes sense and makes it easy to use the page's functionality. Poor focus order can be disorienting to people who use screen readers or screen magnifiers and to people with reading disorders. Poor focus order can also make it difficult or even painful for people who use keyboards because of mobility impairments.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I use a keyboard and a screen reader to navigate content and operate software. When creating solutions, organize content and controls so that I can understand the presentation, meaning and operation of the interface by the order in which information is presented. To 'see' it like I do, write down the text and controls in the order required to complete the task. Next, read the sequence out loud. If it doesn’t make sense to you, it is likely to confuse me and many other people."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Ensure interactive components receive focus in a logical, usable order.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <div>
+            <p>
+              A web form is organized as two columns. The first column allows users to provide their contact information (name, address, phone, etc.). The second column allows users to select topics of interest to them.
+            </p>
+            <p>
+              The visual presentation suggests users should provide their contact information before selecting topics. The first column's content appears first in the DOM, followed by the second column's content.
+            </p>
+            <p>
+              However, in a misguided belief that focus order must follow a left-to-right / top-to-bottom reading order, tabindex values have been added so that focus moves back and forth between the two columns as the user tabs.
+            </p>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Tabindex values have been removed. Now Tabbing moves focus through all the content in the first column before moving it to the second column.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.3: Focus Order
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G59"
+          target="_blank"
+        >
+          Placing the interactive elements in an order that follows sequences and relationships within the content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H4"
+          target="_blank"
+        >
+          Creating a logical tab order through links, form controls, and objects
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C27"
+          target="_blank"
+        >
+          Making the DOM order match the visual order
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR26"
+          target="_blank"
+        >
+          Inserting dynamic content into the Document Object Model immediately following its trigger element
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR37"
+          target="_blank"
+        >
+          Creating Custom Dialogs in a Device Independent Way
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR27"
+          target="_blank"
+        >
+          Reordering page sections using the Document Object Model
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F44"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.3 due to using tabindex to create a tab order that does not preserve meaning and operability
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F85"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.3 due to using dialogs or menus that are not adjacent to their trigger control in the sequential navigation order
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://hiddedevries.nl/en/blog/2017-01-29-using-javascript-to-trap-focus-in-an-element"
+          target="_blank"
+        >
+          Using JavaScript to trap focus in an element
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://bitsofco.de/accessible-modal-dialog/"
+          target="_blank"
+        >
+          Creating an Accessible Modal Dialog
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices/"
+          target="_blank"
+        >
+          Dialog (Modal) in WAI-ARIA Authoring Practices 1.1
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -11463,9 +12066,218 @@ exports[`Guidance Content pages test/headings/headingLevel matches the snapshot 
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/headings/headingLevel
-      </h1>
+      <p>
+        A heading's programmatic level must match the level that's presented visually.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Heading levels communicate the relative importance of headings within a page. People with good vision can infer heading levels through visual cues—higher-level headings typically have greater visual prominence than lower-level headings. Users of assistive technology rely on programmatic cues to perceive heading levels.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Specify a programmatic heading level that matches the visual level.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Both headings are coded as level 2, but styling makes the second heading visually less prominent.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;!--section title--&gt;
+                <br />
+                           &lt;h2&gt;Web accessibility&lt;/h2&gt;
+                <br />
+                           &lt;p&gt;Web accessibility refers to the inclusive practice of removing barriers that prevent interaction with, or access to websites, by people with disabilities. When sites are correctly designed, developed and edited, all users have equal access to information and functionality.&lt;/p&gt;
+                <br />
+                <br />
+                            &lt;!--subsection title--&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;h2 style="font-size: 1.17em; font-weight: "bold"&gt;
+                </span>
+                Designing for accessibility
+                <span
+                  class="highlight"
+                >
+                  &lt;/h2&gt;
+                </span>
+                <br />
+                            &lt;p&gt;The most important step you can take to ensure everyone can use your site is to design for accessibility in the first place.&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The second heading is re-coded as level 3.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <br />
+                                &lt;!--section title--&gt;
+                <br />
+                                &lt;h2&gt;Web accessibility&lt;/h2&gt;
+                <br />
+                                &lt;p&gt;Web accessibility refers to the inclusive practice of removing barriers that prevent interaction with, or access to websites, by people with disabilities. When sites are correctly designed, developed and edited, all users have equal access to information and functionality.&lt;/p&gt;
+                <br />
+                <br />
+                                &lt;!--subsection title--&gt;
+                <br />
+                               
+                <span
+                  class="highlight"
+                >
+                  &lt;h3&gt;
+                </span>
+                Designing for accessibility
+                <span
+                  class="highlight"
+                >
+                  &lt;/h3&gt;
+                </span>
+                <br />
+                                &lt;p&gt;The most important step you can take to ensure everyone can use your site is to design for accessibility in the first place.&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/WCAG20-TECHS/H42.html"
+          target="_blank"
+        >
+          Using h1 - h6 to identify headings
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -11485,9 +12297,244 @@ exports[`Guidance Content pages test/headings/noMissingHeadings matches the snap
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/headings/noMissingHeadings
-      </h1>
+      <p>
+        Text that looks like a heading must be coded as a heading.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        People with good vision can quickly scan a page to identify headings based solely on their appearance, such as large or bold font, preceding white space, or indentation. Users of assistive technologies can't find headings that aren't properly coded.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
+          target="_blank"
+        >
+          This short video on headings
+        </a>
+         shows how programmatically related headings help people who use screen readers.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Re-implement using a heading tag. (You could add role="heading" to a different element, but the 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/using-aria/#rule1"
+          target="_blank"
+        >
+          first rule of ARIA
+        </a>
+         is to use native HTML elements where possible, instead of repurposing an element by adding ARIA.)
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This element looks like a heading, but it isn't coded as a heading.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;p style="font-size:2em; font-weight:700;
+                </span>
+                 color:#e81123"&gt;About Accessibility Insights for Web&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The element is coded as a heading.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;h1 
+                </span>
+                style="color:#e81123"&gt;About Accessibility Insights for Web
+                <span
+                  class="highlight"
+                >
+                  &lt;/h1&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.6: Headings and Labels
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/WCAG20-TECHS/G130.html"
+          target="_blank"
+        >
+          Providing descriptive headings
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/WCAG20-TECHS/H42.html"
+          target="_blank"
+        >
+          Using h1 - h6 to identify headings
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/WCAG20-TECHS/G141.html"
+          target="_blank"
+        >
+          Organizing a page using headings
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/WCAG20-TECHS/F43.html"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the content
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -12460,9 +13507,490 @@ exports[`Guidance Content pages test/images/imageFunction matches the snapshot 1
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/images/imageFunction
-      </h1>
+      <p>
+        Every image must be correctly coded as either meaningful or decorative.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Screen readers will ignore any image coded as decorative, even if it has an accessible name. Unless an image is coded as decorative, screen readers will assume it's meaningful. In an attempt to communicate the image's meaning, they might announce the image's filename.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <ol>
+        <li>
+          Determine the 
+          <em>
+            function
+          </em>
+           of the image:
+          <ul>
+            <li>
+              If the image conveys information that isn't available through other page content, it's 
+              <em>
+                meaningful
+              </em>
+              .
+            </li>
+            <li>
+              If the image could be removed from the page with no impact on meaning for function, it's 
+              <em>
+                decorative
+              </em>
+              .
+            </li>
+          </ul>
+        </li>
+        <li>
+          If the image is meaningful:
+          <ul>
+            <li>
+              Make sure it has a descriptive accessible name using a 
+              <em>
+                non-empty
+              </em>
+               
+              <span
+                class="insights-code"
+              >
+                alt
+              </span>
+              , 
+              <span
+                class="insights-code"
+              >
+                aria-label
+              </span>
+              , 
+              <span
+                class="insights-code"
+              >
+                aria-labelledby
+              </span>
+              , or 
+              <span
+                class="insights-code"
+              >
+                title
+              </span>
+               attribute. (Only 
+              <span
+                class="insights-code"
+              >
+                &lt;img&gt;
+              </span>
+              , 
+              <span
+                class="insights-code"
+              >
+                &lt;input&gt;
+              </span>
+              , and 
+              <span
+                class="insights-code"
+              >
+                &lt;area&gt;
+              </span>
+               elements can have 
+              <span
+                class="insights-code"
+              >
+                alt
+              </span>
+               attributes.)
+            </li>
+            <li>
+              If it's an icon font, 
+              <span
+                class="insights-code"
+              >
+                &lt;svg&gt;
+              </span>
+               image, or CSS background image, also add 
+              <span
+                class="insights-code"
+              >
+                role="img"
+              </span>
+              .
+            </li>
+            <li>
+              If it's a CSS background image, also add a text element that conveys the image's information and is visible when CSS is turned off.
+            </li>
+          </ul>
+        </li>
+        <li>
+          If the image is decorative:
+          <ul>
+            <li>
+              And it's an 
+              <span
+                class="insights-code"
+              >
+                &lt;img&gt;
+              </span>
+              , 
+              <span
+                class="insights-code"
+              >
+                &lt;input&gt;
+              </span>
+              , or 
+              <span
+                class="insights-code"
+              >
+                &lt;area&gt;
+              </span>
+               element, add an 
+              <em>
+                empty
+              </em>
+               
+              <span
+                class="insights-code"
+              >
+                alt
+              </span>
+               attribute (
+              <span
+                class="insights-code"
+              >
+                alt
+              </span>
+               or 
+              <span
+                class="insights-code"
+              >
+                alt=""
+              </span>
+              ).
+            </li>
+            <li>
+              And it's an icon font or 
+              <span
+                class="insights-code"
+              >
+                &lt;svg&gt;
+              </span>
+               image, add 
+              <span
+                class="insights-code"
+              >
+                role="img"
+              </span>
+               and 
+              <span
+                class="insights-code"
+              >
+                aria-hidden="true"
+              </span>
+              .
+            </li>
+            <li>
+              And it's a CSS background image, no additional markup is needed.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A web page about pets has an image link that opens a page about hamsters. Because the image of the hamster is redundant to the text link, the image is decorative, and its alt attribute is redundant. The screen reader will announce "Hamsters" twice.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;a href="hamsters.html"&gt;
+                <br />
+                                &lt;img src="hamster.jpg" 
+                <span
+                  class="highlight"
+                >
+                  alt="Hamsters"
+                </span>
+                &gt;
+                <br />
+                                &lt;strong&gt; Hamsters&lt;/strong&gt;
+                <br />
+                                &lt;/a&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The image has an empty 
+            <span
+              class="insights-code"
+            >
+              alt
+            </span>
+             attribute, so screen readers will announce "Hamsters" only once.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;a href="hamsters.html"&gt;
+                <br />
+                                &lt;img src="hamster.jpg" 
+                <span
+                  class="highlight"
+                >
+                  alt=""
+                </span>
+                &gt;
+                <br />
+                                &lt;strong&gt; Hamsters&lt;/strong&gt;
+                <br />
+                                &lt;/a&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.1.1: Non-text Content
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <h4>
+        Techniques to indicate meaningful images
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G94"
+          target="_blank"
+        >
+          Providing short text alternative for non-text content that serves the same purpose and presents the same information as the non-text content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA6"
+          target="_blank"
+        >
+          Using aria-label to provide labels for objects
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA10"
+          target="_blank"
+        >
+          Using aria-labelledby to provide a text alternative for non-text content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G196"
+          target="_blank"
+        >
+          Using a text alternative on one item within a group of images that describes all items in the group
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H2"
+          target="_blank"
+        >
+          Combining adjacent image and text links for the same resource
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H37"
+          target="_blank"
+        >
+          Using alt attributes on img elements
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H86"
+          target="_blank"
+        >
+          Providing text alternatives for ASCII art, emoticons, and leetspeak
+        </a>
+      </div>
+      <h4>
+        Techniques to indicate decorative images
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C9"
+          target="_blank"
+        >
+          Using CSS to include decorative images
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H67"
+          target="_blank"
+        >
+          Using null alt text and no title attribute on img elements for images that AT should ignore
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F3"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to using CSS to include images that convey important information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F38"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to not marking up decorative images in HTML in a way that allows assistive technology to ignore them
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F39"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to providing a text alternative that is not null (e.g., alt="spacer" or alt="image") for images that should be ignored by assistive technology
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F65"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type "image"
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F71"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to using text look-alikes to represent text without providing a text alternative
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F72"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.1.1 due to using ASCII art without providing a text alternative
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -14019,9 +15547,354 @@ exports[`Guidance Content pages test/keyboard/keyboardNavigation matches the sna
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/keyboard/keyboardNavigation
-      </h1>
+      <p>
+        Users must be able to navigate to all interactive interface components using a keyboard.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Users can't access a web app's functionality if they can't access its interactive interface components. Many people, including those who are blind or who have low vision or hand tremors, rely on a keyboard (or keyboard alternate) to access those components.
+      </p>
+      <p>
+        Keyboard users must be able to navigate using standard keyboard commands: 
+        <strong>
+          Tab
+        </strong>
+         (which moves focus forward to the next component) and 
+        <strong>
+          Shift+Tab
+        </strong>
+         (which moves focus backward to the previous component). They must be able to navigate between the focusable elements of a composite widget using 
+        <strong>
+          arrow
+        </strong>
+         keys.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        The fix for a keyboard navigation failure depends on its cause:
+      </p>
+      <ul>
+        <li>
+          Links and native HTML form controls are in the tab sequence by default. If one of these elements can't be reached using the 
+          <strong>
+            Tab
+          </strong>
+           key, it's likely to have been removed from the tab sequence using 
+          <strong>
+            tabindex="-1"
+          </strong>
+          . To return the control to the tab sequence, simply delete the 
+          <strong>
+            tabindex
+          </strong>
+           attribute.
+        </li>
+        <li>
+          <a
+            class="ms-Link insights-link root-000"
+            href="https://www.w3.org/TR/wai-aria-practices/#aria_ex"
+            target="_blank"
+          >
+            Custom widgets
+          </a>
+           based on HTML elements that are not natively focusable must be added to the tab sequence using 
+          <strong>
+            tabindex="0"
+          </strong>
+          .
+        </li>
+        <li>
+          <a
+            class="ms-Link insights-link root-000"
+            href="https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_general_within"
+            target="_blank"
+          >
+            Composite custom widgets
+          </a>
+           (such as a combo boxes, grids, menus, or tree views) have multiple focusable elements, only one of which should be included in the tab sequence at any given time. The developer must ensure that a composite custom widget manages the movement of focus between its focusable elements.
+        </li>
+      </ul>
+      <h2>
+        Examples
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This listbox can't be accessed via the 
+            <strong>
+              Tab
+            </strong>
+             key because it isn't based on any elements that are in the tab sequence by default.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;div class="listbox-area"&gt;
+                <br />
+                            &lt;div class="left-area"&gt;
+                <br />
+                            &lt;span id="ss_elem"&gt;Transuranium
+                <br />
+                            elements:&lt;/span&gt;
+                <br />
+                            &lt;ul id="ss_elem_list" role="listbox" aria-
+                <br />
+                            labelledby="ss_elem"&gt;
+                <br />
+                            &lt;li id="ss_elem_Np" role="option"
+                <br />
+                            class="focused"&gt; Neptunium&lt;/li&gt;
+                <br />
+                            &lt;li id="ss_elem_Pu"
+                <br />
+                            role="option"&gt;Plutonium&lt;/li&gt;&lt;/ul&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The listbox has been added to the tab sequence by specifying 
+            <strong>
+              tabindex="0"
+            </strong>
+             on the 
+            <strong>
+              &lt;ul&gt;
+            </strong>
+             element
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;div class="listbox-area"&gt;
+                <br />
+                            &lt;div class="left-area"&gt;
+                <br />
+                            &lt;span id="ss_elem"&gt;Transuranium elements:&lt;/span&gt;
+                <br />
+                            &lt;ul id="ss_elem_list" role="listbox"
+                <br />
+                            aria-labelledby="ss_elem" 
+                <span
+                  class="highlight"
+                >
+                  tabindex="0"
+                </span>
+                &gt;
+                <br />
+                            &lt;li id="ss_elem_Np" role="option" class="focused"&gt; Neptunium&lt;/li&gt;
+                <br />
+                            &lt;li id="ss_elem_Pu" role="option"&gt;Plutonium&lt;/li&gt;&lt;/ul&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.1.1: Keyboard
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G202"
+          target="_blank"
+        >
+          Ensuring keyboard control for all functionality
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
+          target="_blank"
+        >
+          Using HTML form controls and links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G90"
+          target="_blank"
+        >
+          Providing keyboard-triggered event handlers
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR20"
+          target="_blank"
+        >
+          Using both keyboard and other device-specific functions
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR35"
+          target="_blank"
+        >
+          Making actions keyboard accessible by using the onclick event of anchors and buttons
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR2"
+          target="_blank"
+        >
+          Using redundant keyboard and mouse event handlers
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F54"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.1.1 due to using only pointing-device-specific event handlers (including gesture) for a function
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F55"
+          target="_blank"
+        >
+          Failure of Success Criteria 2.1.1, 2.4.7, and 3.2.1 due to using script to remove focus when focus is received
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F42"
+          target="_blank"
+        >
+          Failure of Success Criteria 1.3.1, 2.1.1, 2.1.3, or 4.1.2 when emulating links
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices/#keyboard"
+          target="_blank"
+        >
+          WAI-ARIA Authoring Practices 1.1: Developing a Keyboard Interface
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -18236,9 +20109,351 @@ exports[`Guidance Content pages test/links/linkPurpose matches the snapshot 1`] 
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/links/linkPurpose
-      </h1>
+      <p>
+        A link's purpose must be described to users.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Understanding a link's purpose helps users decide whether they want to follow it. When the link text alone is unclear, sighted users can examine the surrounding context for clues about the link's purpose. Assistive technologies can similarly help non-sighted users by reporting the link's programmatically related context.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I utilize a screen reader and keyboard to enjoy content and operate software. For every link, provide unique text so I know what will happen if I click the link. For example, 'Shop Devices', 'Shop Software', 'Shop Games'."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Describe the purpose of the link using any of the following:
+      </p>
+      <ul>
+        <li>
+          Good: Programmatically related context, or
+        </li>
+        <li>
+          Better: Accessible name and/or accessible description, or
+        </li>
+        <li>
+          Best: Link text
+        </li>
+      </ul>
+      <p>
+        Programmatically related context includes:
+      </p>
+      <ul>
+        <li>
+          Text in the same sentence, paragraph, list item, or table cell as the link
+        </li>
+        <li>
+          Text in a parent list item
+        </li>
+        <li>
+          Text in a table header cell associated with the cell that contains the link
+        </li>
+      </ul>
+      <p>
+        Writing tips:
+      </p>
+      <ul>
+        <li>
+          If a link's destination is a document or web application, the name of the document or application is sufficient.
+        </li>
+        <li>
+          Links with different destinations should have different descriptions; links with the same destination should have the same description.
+        </li>
+        <li>
+          Programmatically related context is easier to understand when it precedes the link.
+        </li>
+      </ul>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            In an online bookstore, each book has a title, a one-paragraph description, and a "Read more…" link. Because each link is in a separate paragraph, all the links have identical programmatically related context.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2&gt;Slaughterhouse-five&lt;/h2&gt;
+                <br />
+                            &lt;p&gt;Kurt Vonnegut's absurdist classic introduces us to Billy Pilgrim, a man who becomes "unstuck in time" after he is abducted by aliens from the planet Tralfamadore."&lt;/p&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p&gt;&lt;a href="Von24242.html"&gt;Read more&lt;/a&gt;&lt;/p&gt;
+                </span>
+                <br />
+                            &lt;h2&gt;The Sirens of Titan&lt;/h2&gt;
+                <br />
+                            &lt;p&gt;The richest and most depraved man on Earth takes a wild space journey to distant worlds, learning about the purpose of human life along the way.&lt;/p&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p&gt;&lt;a href="Von22495.html"&gt;Read more&lt;/a&gt;&lt;/p&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The unique purpose of each link is made clear by adding the name of the book to the link text.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2&gt;Slaughterhouse-five&lt;/h2&gt;
+                <br />
+                            &lt;p&gt;Kurt Vonnegut's absurdist classic introduces us to Billy Pilgrim, a man who becomes "unstuck in time" after he is abducted by aliens from the planet Tralfamadore."&lt;/p&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p&gt;&lt;a href="Von24242.html"&gt;Read more about Slaughterhouse-five&lt;/a&gt;&lt;/p&gt;
+                </span>
+                <br />
+                            &lt;h2&gt;The Sirens of Titan&lt;/h2&gt;
+                <br />
+                            &lt;p&gt;The richest and most depraved man on Earth takes a wild space journey to distant worlds, learning about the purpose of human life along the way.&lt;/p&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p&gt;&lt;a href="Von22495.html"&gt;Read more about The Sirens of Titan&lt;/a&gt;&lt;/p&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.4: Link Purpose (In Context)
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H30"
+          target="_blank"
+        >
+          Providing link text that describes the purpose of a link for anchor elements
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H33"
+          target="_blank"
+        >
+          Supplementing link text with the title attribute
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA7"
+          target="_blank"
+        >
+          Using aria-labelledby for link purpose
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA8"
+          target="_blank"
+        >
+          Using aria-label for link purpose
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G53"
+          target="_blank"
+        >
+          Identifying the purpose of a link using link text combined with the text of the enclosing sentence
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H77"
+          target="_blank"
+        >
+          Identifying the purpose of a link using link text combined with its enclosing list item
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H78"
+          target="_blank"
+        >
+          Identifying the purpose of a link using link text combined with its enclosing paragraph
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H79"
+          target="_blank"
+        >
+          Identifying the purpose of a link in a data table using the link text combined with its enclosing table cell and associated table header cells
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H81"
+          target="_blank"
+        >
+          Identifying the purpose of a link in a nested list using link text combined with the parent list item under which the list is nested
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F63"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.4 due to providing link context only in content that is not related to the link
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F89"
+          target="_blank"
+        >
+          Failure of Success Criteria 2.4.4, 2.4.9 and 4.1.2 due to not providing an accessible name for an image which is the only content in a link
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.nngroup.com/articles/title-attribute/"
+          target="_blank"
+        >
+          Using the Title Attribute to Help Users Predict Where They Are Going
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -21415,9 +23630,315 @@ exports[`Guidance Content pages test/nativeWidgets/instructions matches the snap
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/nativeWidgets/instructions
-      </h1>
+      <p>
+        If a native widget has a visible label or instructions, they must be programmatically determinable.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
+          target="_blank"
+        >
+          This short video on voice control
+        </a>
+         shows how programmatically related labels help people who use voice control.
+      </p>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
+          target="_blank"
+        >
+          This short video on form labels
+        </a>
+         shows how programmatically related labels help people who use screen readers.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This dialog's close button is followed by instructions that are not programmatically related to it.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;button onclick="dialog.close()"&gt; Close&lt;/button&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;div&gt;Closing this dialog will discard any information you have entered.&lt;/div&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The button's instructions are programmatically related to it using 
+            <span
+              class="insights-code"
+            >
+              aria-describedby
+            </span>
+            .
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;button 
+                <span
+                  class="highlight"
+                >
+                  aria- describedby="closeDescription"
+                </span>
+                 onclick="dialog.close()"&gt; Close&lt;/button&gt;
+                <br />
+                            &lt;div 
+                <span
+                  class="highlight"
+                >
+                  id="closeDescription"
+                </span>
+                &gt;Closing this dialog will discard any information you have entered.&lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+      </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
+          target="_blank"
+        >
+          Using HTML form controls and links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H44"
+          target="_blank"
+        >
+          Using label elements to associate text labels with form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA14"
+          target="_blank"
+        >
+          Using aria-label to provide an invisible label where a visible label cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA16"
+          target="_blank"
+        >
+          Using aria-labelledby to provide a name for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H65"
+          target="_blank"
+        >
+          Using the title attribute to identify form controls when the label element cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+          target="_blank"
+        >
+          Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -24121,9 +26642,381 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks matches the 
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/repetitiveContent/bypassBlocks
-      </h1>
+      <p>
+        A page must provide a keyboard-accessible method to bypass repetitive content.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Web pages typically have blocks of content that repeat across multiple pages, such as banners and site navigation menus. A person who uses a mouse can visually skim past that repeated content to access a link or other control within the primary content with a single click. Similarly, a bypass mechanism allows keyboard users to navigate directly to the page’s main content. Otherwise, reaching the primary content could require dozens of keystrokes. People with limited mobility could find this task difficult or painful, and people who use screen readers could find it tedious to listen as each repeated element is announced.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I navigate content and interfaces using a screen reader and a keyboard. Repeated blocks of navigation and content force me to 're-read' everything as I work back and forth over the interface to complete a task or, enjoy content. Allow me a way to 'bypass' repetitive blocks of navigation and content via keyboard commands, skip links, and WAI-ARIA regions."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Implement one or more of the following keyboard-accessible methods for bypassing repetitive content:
+      </p>
+      <ul>
+        <li>
+          Provide a link for bypassing repeated content (preferred, as it helps all keyboard users):
+          <ul>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/general/G1"
+                  target="_blank"
+                >
+                  Add a 'skip link' at the top of the page that navigates directly to the main content
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/general/G123"
+                  target="_blank"
+                >
+                  Add a link at the beginning of a block of repeated content that navigates to the end of the block
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/general/G124"
+                  target="_blank"
+                >
+                  Add links at the top of the page that navigate to each section of content
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Group blocks of content so they can be bypassed (acceptable, but it helps only users of assistive technology):
+          <ul>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA11"
+                  target="_blank"
+                >
+                  Use ARIA landmarks to identify regions of a page
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H69"
+                  target="_blank"
+                >
+                  Provide headings at the beginning of each section of content
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H70"
+                  target="_blank"
+                >
+                  Use frame elements to group blocks of repeated content
+                </a>
+              </div>
+            </li>
+            <li>
+              <div
+                class="content-hyperlinks"
+              >
+                <a
+                  class="ms-Link insights-link root-000"
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR28"
+                  target="_blank"
+                >
+                  Contain repeated content in a collapsible menu
+                </a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This page has no keyboard-accessible method for bypassing repetitive content.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;body&gt;
+                <br />
+                            ...
+                <br />
+                            &lt;main&gt;
+                <br />
+                            &lt;p&gt;It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."&lt;/p&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            A skip link is added as the first item in the page. In this case, the skip link is always visible, but it could be 
+            <a
+              class="ms-Link insights-link root-000"
+              href="https://webaim.org/techniques/css/invisiblecontent/#skipnavlinks"
+              target="_blank"
+            >
+              hidden using CSS.
+            </a>
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;body&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;a href="#maincontent"&gt;Skip to main content&lt;/a&gt;
+                </span>
+                <br />
+                            ...
+                <br />
+                            &lt;main 
+                <span
+                  class="highlight"
+                >
+                  id="maincontent"
+                </span>
+                &gt;
+                <br />
+                            &lt;p&gt;It was Ralph Waldo Emerson who said, "Build a better mousetrap, and the world will beat a path to your door."&lt;/p&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.1: Bypass Blocks
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <p>
+        Use one of these techniques to provide a link for bypassing repeated content:
+      </p>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G1"
+          target="_blank"
+        >
+          Adding a 'skip link' at the top of the page that navigates directly to the main content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G123"
+          target="_blank"
+        >
+          Adding a link at the beginning of a block of repeated content that navigates to the end of the block
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G124"
+          target="_blank"
+        >
+          Adding links at the top of the page that navigate to each section of content
+        </a>
+      </div>
+      <p>
+        OR use one of these techniques to group blocks of repeated content so they can be bypassed:
+      </p>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA11"
+          target="_blank"
+        >
+          Using ARIA landmarks to identify regions of a page
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H69"
+          target="_blank"
+        >
+          Providing headings at the beginning of each section of content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H70"
+          target="_blank"
+        >
+          Using frame elements to group blocks of repeated content
+        </a>
+        and
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H64"
+          target="_blank"
+        >
+          Using the title attribute of the frame and iframe elements
+        </a>
+      </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/client-side-script/SCR28"
+          target="_blank"
+        >
+          Containing repeated content in a collapsible menu
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
