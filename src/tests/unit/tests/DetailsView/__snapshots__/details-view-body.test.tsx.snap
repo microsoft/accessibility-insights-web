@@ -343,6 +343,10 @@ exports[`DetailsViewBody render render 1`] = `
                 "enabled": false,
                 "stepStatus": {},
               },
+              "contrastAssessment": {
+                "enabled": false,
+                "stepStatus": {},
+              },
               "headingsAssessment": {
                 "enabled": false,
                 "stepStatus": {},
@@ -356,6 +360,10 @@ exports[`DetailsViewBody render render 1`] = `
                 "stepStatus": {},
               },
               "linksAssessment": {
+                "enabled": false,
+                "stepStatus": {},
+              },
+              "nativeWidgetsAssessment": {
                 "enabled": false,
                 "stepStatus": {},
               },
@@ -709,6 +717,10 @@ exports[`DetailsViewBody render render 1`] = `
                   "enabled": false,
                   "stepStatus": {},
                 },
+                "contrastAssessment": {
+                  "enabled": false,
+                  "stepStatus": {},
+                },
                 "headingsAssessment": {
                   "enabled": false,
                   "stepStatus": {},
@@ -722,6 +734,10 @@ exports[`DetailsViewBody render render 1`] = `
                   "stepStatus": {},
                 },
                 "linksAssessment": {
+                  "enabled": false,
+                  "stepStatus": {},
+                },
+                "nativeWidgetsAssessment": {
                   "enabled": false,
                   "stepStatus": {},
                 },
@@ -1082,6 +1098,10 @@ exports[`DetailsViewBody render render 1`] = `
                       "enabled": false,
                       "stepStatus": {},
                     },
+                    "contrastAssessment": {
+                      "enabled": false,
+                      "stepStatus": {},
+                    },
                     "headingsAssessment": {
                       "enabled": false,
                       "stepStatus": {},
@@ -1095,6 +1115,10 @@ exports[`DetailsViewBody render render 1`] = `
                       "stepStatus": {},
                     },
                     "linksAssessment": {
+                      "enabled": false,
+                      "stepStatus": {},
+                    },
+                    "nativeWidgetsAssessment": {
                       "enabled": false,
                       "stepStatus": {},
                     },
