@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
@@ -35,16 +36,25 @@ describe('RequirementViewTest', () => {
     let assessmentStub: Assessment;
     let requirementStub: Requirement;
     let otherRequirementStub: Requirement;
+    let nextQuickAssessRequirementStub: Requirement;
+    let otherAssessmentStub: Assessment;
     let assessmentNavState: AssessmentNavState;
+    let quickAssessNavState: AssessmentNavState;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let quickAssessProviderMock: IMock<AssessmentsProvider>;
     let props: RequirementViewProps;
     let assessmentDataStub: AssessmentData;
     let assessmentInstanceTableHandlerStub: AssessmentInstanceTableHandler;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
+    let mediumPassRequirementKeysStub: string[];
 
     beforeEach(() => {
+        mediumPassRequirementKeysStub = [
+            'test-requirement-key',
+            'next-quick-assess-requirement-key',
+        ];
         requirementStub = {
             key: 'test-requirement-key',
             name: 'test-requirement-name',
@@ -57,11 +67,23 @@ describe('RequirementViewTest', () => {
         otherRequirementStub = {
             key: 'other-requirement-key',
         } as Requirement;
+        nextQuickAssessRequirementStub = {
+            key: 'next-quick-assess-requirement-key',
+        } as Requirement;
         assessmentStub = {
             requirements: [requirementStub, otherRequirementStub],
+            key: 'test-assessment',
+        } as Assessment;
+        otherAssessmentStub = {
+            requirements: [nextQuickAssessRequirementStub],
+            key: 'other-assessment',
         } as Assessment;
         assessmentNavState = {
             selectedTestType: VisualizationType.Headings,
+            selectedTestSubview: 'test-requirement-name',
+        };
+        quickAssessNavState = {
+            selectedTestType: VisualizationType.HeadingsMediumPass,
             selectedTestSubview: 'test-requirement-name',
         };
 
@@ -77,6 +99,21 @@ describe('RequirementViewTest', () => {
                 ),
             )
             .returns(() => requirementStub);
+        quickAssessProviderMock = Mock.ofType(AssessmentsProviderImpl);
+        quickAssessProviderMock
+            .setup(qap => qap.forType(quickAssessNavState.selectedTestType))
+            .returns(() => assessmentStub);
+        quickAssessProviderMock
+            .setup(qap =>
+                qap.getStep(
+                    quickAssessNavState.selectedTestType,
+                    quickAssessNavState.selectedTestSubview,
+                ),
+            )
+            .returns(() => requirementStub);
+        quickAssessProviderMock
+            .setup(qap => qap.forRequirementKey('next-quick-assess-requirement-key'))
+            .returns(() => otherAssessmentStub);
         assessmentInstanceTableHandlerStub = {
             changeRequirementStatus: null,
         } as AssessmentInstanceTableHandler;
@@ -103,6 +140,7 @@ describe('RequirementViewTest', () => {
             deps: {
                 assessmentViewUpdateHandler: updateHandlerMock.object,
                 getProvider: () => assessmentsProviderMock.object,
+                mediumPassRequirementKeys: mediumPassRequirementKeysStub,
             } as RequirementViewDeps,
             assessmentNavState: assessmentNavState,
             isRequirementEnabled: true,
@@ -122,27 +160,73 @@ describe('RequirementViewTest', () => {
     });
 
     describe('nextRequirement handling', () => {
-        it('passes along nextRequirement if one exists', () => {
-            assessmentStub.requirements = [requirementStub, otherRequirementStub];
+        describe('when shouldShowQuickAssessRequirementView is true', () => {
+            beforeEach(() => {
+                props.deps.mediumPassRequirementKeys = mediumPassRequirementKeysStub = [
+                    'test-requirement-key',
+                    'next-quick-assess-requirement-key',
+                ];
+                props.deps.getProvider = () => quickAssessProviderMock.object;
+                props.assessmentNavState = quickAssessNavState;
+                props.shouldShowQuickAssessRequirementView = true;
+            });
 
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
-                otherRequirementStub,
-            );
+            it('passes along nextRequirement from mediumPassRequirementKeys if one exists', () => {
+                const rendered = shallow(<RequirementView {...props} />);
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
+                    nextQuickAssessRequirementStub,
+                );
+            });
+
+            it('passes the next Automated Checks requirement if we are in Automated Checks', () => {
+                assessmentStub.key = AutomatedChecks.key;
+                quickAssessProviderMock
+                    .setup(qap => qap.forType(quickAssessNavState.selectedTestType))
+                    .returns(() => assessmentStub);
+                const rendered = shallow(<RequirementView {...props} />);
+
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
+                    otherRequirementStub,
+                );
+            });
+
+            it('passes a null nextRequirement if we are the last requirement', () => {
+                props.deps.mediumPassRequirementKeys = ['test-requirement-key'];
+
+                const rendered = shallow(<RequirementView {...props} />);
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+            });
         });
 
-        it('passes a null nextRequirement if none exist', () => {
-            assessmentStub.requirements = [requirementStub];
+        describe('when shouldShowQuickAssessRequirementView is false', () => {
+            it('passes along nextRequirement if one exists', () => {
+                assessmentStub.requirements = [requirementStub, otherRequirementStub];
 
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
-        });
+                const rendered = shallow(
+                    <RequirementView shouldShowQuickAssessRequirementView={false} {...props} />,
+                );
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
+                    otherRequirementStub,
+                );
+            });
 
-        it('passes a null nextRequirement if we are the last requirement', () => {
-            assessmentStub.requirements = [otherRequirementStub, requirementStub];
+            it('passes a null nextRequirement if none exist', () => {
+                assessmentStub.requirements = [requirementStub];
 
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+                const rendered = shallow(
+                    <RequirementView shouldShowQuickAssessRequirementView={false} {...props} />,
+                );
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+            });
+
+            it('passes a null nextRequirement if we are the last requirement', () => {
+                assessmentStub.requirements = [otherRequirementStub, requirementStub];
+
+                const rendered = shallow(
+                    <RequirementView shouldShowQuickAssessRequirementView={false} {...props} />,
+                );
+                expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+            });
         });
     });
 

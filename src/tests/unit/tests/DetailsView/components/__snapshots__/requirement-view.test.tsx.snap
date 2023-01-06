@@ -10,6 +10,10 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "getProvider": [Function],
+          "mediumPassRequirementKeys": [
+            "test-requirement-key",
+            "next-quick-assess-requirement-key",
+          ],
         }
       }
       name="test-requirement-name"
@@ -87,6 +91,10 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "getProvider": [Function],
+          "mediumPassRequirementKeys": [
+            "test-requirement-key",
+            "next-quick-assess-requirement-key",
+          ],
         }
       }
       nextRequirement={
