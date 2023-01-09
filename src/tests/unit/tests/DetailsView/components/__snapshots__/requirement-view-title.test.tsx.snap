@@ -30,32 +30,3 @@ exports[`RequirementViewTitleTest renders content from props 1`] = `
   </React.Fragment>
 </h1>
 `;
-
-exports[`RequirementViewTitleTest renders with content from props 1`] = `
-<h1
-  className="requirementViewTitle"
->
-  test-requirement-name
-  <GuidanceTags
-    deps={{}}
-    links={
-      [
-        {
-          "href": "test-guidance-href",
-          "text": "test-guidance-text",
-        },
-      ]
-    }
-  />
-  <ContentPanelButton
-    contentTitle="test-requirement-name"
-    deps={{}}
-    iconName="info"
-    reference={
-      {
-        "pageTitle": "test-page-title",
-      }
-    }
-  />
-</h1>
-`;
