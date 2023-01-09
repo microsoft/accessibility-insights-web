@@ -83,7 +83,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
       >
         <main>
           <h2
-            class="launch-pad-title ms-fontWeight-semibold"
+            class="launch-pad-title"
           >
             Launch pad
           </h2>

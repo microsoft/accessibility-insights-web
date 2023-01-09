@@ -50,10 +50,7 @@ export const FileUrlUnsupportedMessagePanel = NamedFC<FileUrlUnsupportedMessageP
                             </div>
                             <div>
                                 {'2. Enable '}
-                                <span className="ms-fontWeight-semibold">
-                                    Allow Access to file URLs
-                                </span>
-                                .
+                                <strong>Allow Access to file URLs</strong>.
                             </div>
                         </div>
                     </div>

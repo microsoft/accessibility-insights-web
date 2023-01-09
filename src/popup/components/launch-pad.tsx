@@ -57,7 +57,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
             <div className="main-section">
                 <div className="popup-grid">
                     <main>
-                        <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
+                        <h2 className="launch-pad-title">Launch pad</h2>
                         <hr className="launch-pad-hr" />
                         <div className="launch-pad-main-section">
                             {this.renderLaunchPadItemRows(this.props.rowConfigs)}

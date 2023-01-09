@@ -57,7 +57,7 @@ describe('LaunchPad', () => {
             <div className="main-section">
                 <div className="popup-grid">
                     <main>
-                        <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
+                        <h2 className="launch-pad-title">Launch pad</h2>
                         <hr className="launch-pad-hr" />
                         <div className="launch-pad-main-section">
                             <div key="row-item-1">

@@ -34,11 +34,9 @@ exports[`FileUrlUnsupportedMessagePanel renders 1`] = `
         </div>
         <div>
           2. Enable 
-          <span
-            className="ms-fontWeight-semibold"
-          >
+          <strong>
             Allow Access to file URLs
-          </span>
+          </strong>
           .
         </div>
       </div>
