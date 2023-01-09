@@ -26,6 +26,7 @@ import {
 } from 'DetailsView/components/requirement-view';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
+import { RequirementViewTitle } from 'DetailsView/components/requirement-view-title';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
@@ -109,6 +110,8 @@ describe('RequirementViewTest', () => {
 
         requirementViewComponentConfigurationStub = {
             getNextRequirementButtonConfiguration: getNextRequirementButtonConfigurationMock.object,
+            shouldShowInfoButton: () => true,
+            shouldShowRequirementContextBox: () => false,
         } as RequirementViewComponentConfiguration;
 
         props = {
@@ -128,7 +131,18 @@ describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
         setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
+        expect(rendered.find(RequirementViewTitle).prop('shouldShowInfoButton')).toEqual(
+            props.requirementViewComponentConfiguration.shouldShowInfoButton(
+                'not-automated-checks',
+            ),
+        );
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 
+    it('renders RequirementContextSection if shouldShowRequirementContextBox is true', () => {
+        setupGetNextRequirementButtonConfiguration();
+        requirementViewComponentConfigurationStub.shouldShowRequirementContextBox = () => true;
+        const rendered = shallow(<RequirementView {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
@@ -208,10 +222,15 @@ describe('RequirementViewTest', () => {
                 }),
             )
             .returns(() => {
-                return {
-                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
+                return nextRequirementExists
+                    ? {
+                          nextRequirement: otherRequirementStub,
+                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                      }
+                    : {
+                          nextRequirement: null,
+                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                      };
             });
     }
 });

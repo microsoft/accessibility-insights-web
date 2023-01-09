@@ -19,6 +19,10 @@ import {
 } from 'DetailsView/components/assessment-view-update-handler';
 import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
 import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
+import {
+    RequirementContextSection,
+    RequirementContextSectionDeps,
+} from 'DetailsView/components/requirement-context-section';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import {
@@ -35,7 +39,8 @@ export type RequirementViewDeps = {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     mediumPassRequirementKeys: string[];
 } & RequirementViewTitleDeps &
-    AssessmentViewUpdateHandlerDeps;
+    AssessmentViewUpdateHandlerDeps &
+    RequirementContextSectionDeps;
 
 export interface RequirementViewProps {
     deps: RequirementViewDeps;
@@ -139,31 +144,52 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                         name={requirement.name}
                         guidanceLinks={requirement.guidanceLinks}
                         infoAndExamples={requirement.infoAndExamples}
+                        shouldShowInfoButton={this.props.requirementViewComponentConfiguration.shouldShowInfoButton(
+                            requirement.key,
+                        )}
                     />
-                    <div className={styles.mainContent}>
-                        {requirement.description}
-                        {visualHelperToggle}
-                        <RequirementInstructions howToTest={requirement.howToTest} />
-                        <RequirementTableSection
-                            requirement={requirement}
-                            assessmentNavState={this.props.assessmentNavState}
-                            instancesMap={this.props.assessmentData.generatedAssessmentInstancesMap}
-                            manualRequirementResultMap={
-                                this.props.assessmentData.manualTestStepResultMap
-                            }
-                            assessmentInstanceTableHandler={
-                                this.props.assessmentInstanceTableHandler
-                            }
-                            assessmentsProvider={deps.getProvider()}
-                            featureFlagStoreData={this.props.featureFlagStoreData}
-                            pathSnippetStoreData={this.props.pathSnippetStoreData}
-                            scanningInProgress={this.props.scanningInProgress}
-                            selectedRequirementHasVisualHelper={requirementHasVisualHelper}
-                            isRequirementScanned={isRequirementScanned}
-                            assessmentDefaultMessageGenerator={
-                                deps.assessmentDefaultMessageGenerator
-                            }
-                        />
+                    <div className={styles.requirementContent}>
+                        <div className={styles.mainContent}>
+                            <>
+                                {requirement.description}
+                                {visualHelperToggle}
+                                <RequirementInstructions howToTest={requirement.howToTest} />
+                                <RequirementTableSection
+                                    requirement={requirement}
+                                    assessmentNavState={this.props.assessmentNavState}
+                                    instancesMap={
+                                        this.props.assessmentData.generatedAssessmentInstancesMap
+                                    }
+                                    manualRequirementResultMap={
+                                        this.props.assessmentData.manualTestStepResultMap
+                                    }
+                                    assessmentInstanceTableHandler={
+                                        this.props.assessmentInstanceTableHandler
+                                    }
+                                    assessmentsProvider={deps.getProvider()}
+                                    featureFlagStoreData={this.props.featureFlagStoreData}
+                                    pathSnippetStoreData={this.props.pathSnippetStoreData}
+                                    scanningInProgress={this.props.scanningInProgress}
+                                    selectedRequirementHasVisualHelper={requirementHasVisualHelper}
+                                    isRequirementScanned={isRequirementScanned}
+                                    assessmentDefaultMessageGenerator={
+                                        deps.assessmentDefaultMessageGenerator
+                                    }
+                                />
+                            </>
+                        </div>
+                        {this.props.requirementViewComponentConfiguration.shouldShowRequirementContextBox(
+                            requirement.key,
+                        ) && (
+                            <div className={styles.requirementContextBox}>
+                                <RequirementContextSection
+                                    deps={this.props.deps}
+                                    whyItMatters={requirement.whyItMatters}
+                                    helpfulResourceLinks={requirement.helpfulResourceLinks}
+                                    infoAndExamples={requirement.infoAndExamples}
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
                 {this.renderNextRequirementButton(assessment, requirement)}
