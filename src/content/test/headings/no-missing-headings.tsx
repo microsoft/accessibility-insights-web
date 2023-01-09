@@ -2,6 +2,13 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        People with good vision can quickly scan a page to identify headings based solely on their appearance, such as large or bold font,
+        preceding white space, or indentation. Users of assistive technologies can't find headings that aren't properly coded.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>Text that looks like a heading must be coded as a heading.</p>

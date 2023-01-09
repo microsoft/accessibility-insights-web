@@ -2,6 +2,14 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        Heading levels communicate the relative importance of headings within a page. People with good vision can infer heading levels
+        through visual cues—higher-level headings typically have greater visual prominence than lower-level headings. Users of assistive
+        technology rely on programmatic cues to perceive heading levels.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>A heading's programmatic level must match the level that's presented visually.</p>

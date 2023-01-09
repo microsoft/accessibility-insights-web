@@ -2,6 +2,15 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        When users navigate through a web page, they expect to encounter controls and other content in an order that makes sense and makes
+        it easy to use the page's functionality. Poor focus order can be disorienting to people who use screen readers or screen magnifiers
+        and to people with reading disorders. Poor focus order can also make it difficult or even painful for people who use keyboards
+        because of mobility impairments.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>Components must receive focus in an order that preserves meaning and operability.</p>

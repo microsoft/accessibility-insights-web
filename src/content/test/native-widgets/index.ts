@@ -4,7 +4,7 @@ import * as autocomplete from './autocomplete';
 import * as cues from './cues';
 import * as expectedInput from './expected-input';
 import { guidance } from './guidance';
-import * as instructions from './instructions';
+import { infoAndExamples as instructions } from './instructions';
 import * as widgetFunction from './widget-function';
 
 export const nativeWidgets = {

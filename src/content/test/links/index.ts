@@ -3,7 +3,7 @@
 import { guidance } from './guidance';
 import * as labelInName from './label-in-name';
 import * as linkFunction from './link-function';
-import * as linkPurpose from './link-purpose';
+import { infoAndExamples as linkPurpose } from './link-purpose';
 
 export const links = {
     guidance,

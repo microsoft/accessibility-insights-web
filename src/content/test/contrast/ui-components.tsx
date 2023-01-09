@@ -2,6 +2,13 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(({ Link }) => (
+    <p>
+        Most people find it easier to see and use UI Components when they have sufficient contrast against the background. People with low
+        vision, limited color perception, or <Link.Presbyopia /> are especially likely to struggle with controls when contrast is too low.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.</p>

@@ -2,6 +2,14 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        Understanding a link's purpose helps users decide whether they want to follow it. When the link text alone is unclear, sighted users
+        can examine the surrounding context for clues about the link's purpose. Assistive technologies can similarly help non-sighted users
+        by reporting the link's programmatically related context.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>A link's purpose must be described to users.</p>

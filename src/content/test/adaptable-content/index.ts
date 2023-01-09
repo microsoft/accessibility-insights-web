@@ -4,7 +4,7 @@ import * as contrast from './contrast';
 import { guidance } from './guidance';
 import * as hoverFocusContent from './hover-focus-content';
 import * as orientation from './orientation';
-import * as reflow from './reflow';
+import { infoAndExamples as reflow } from './reflow';
 import * as resizeText from './resize-text';
 import * as textSpacing from './text-spacing';
 

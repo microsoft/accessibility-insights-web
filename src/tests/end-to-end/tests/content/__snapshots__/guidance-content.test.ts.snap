@@ -2905,7 +2905,7 @@ exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExample
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/adaptableContent/reflow/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/adaptableContent/reflow matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -5039,7 +5039,7 @@ exports[`Guidance Content pages test/contrast/stateChanges/infoAndExamples match
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/contrast/uiComponents/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/contrast/uiComponents matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -10006,7 +10006,7 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/focus/focusOrder/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/focus/focusOrder matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -12055,7 +12055,7 @@ exports[`Guidance Content pages test/headings/headingFunction/infoAndExamples ma
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/headings/headingLevel matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -12286,7 +12286,7 @@ exports[`Guidance Content pages test/headings/headingLevel/infoAndExamples match
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/headings/noMissingHeadings matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -13496,7 +13496,7 @@ exports[`Guidance Content pages test/images/guidance matches the snapshot 1`] = 
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/images/imageFunction/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/images/imageFunction matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -15536,7 +15536,7 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/keyboard/keyboardNavigation/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/keyboard/keyboardNavigation matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -20098,7 +20098,7 @@ exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches 
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/links/linkPurpose/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/links/linkPurpose matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -23619,7 +23619,7 @@ exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/nativeWidgets/instructions matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"
@@ -26631,7 +26631,7 @@ exports[`Guidance Content pages test/pointerMotion/pointerGestures/infoAndExampl
 </DocumentFragment>
 `;
 
-exports[`Guidance Content pages test/repetitiveContent/bypassBlocks/infoAndExamples matches the snapshot 1`] = `
+exports[`Guidance Content pages test/repetitiveContent/bypassBlocks matches the snapshot 1`] = `
 <DocumentFragment>
   <div
     class="content-container"

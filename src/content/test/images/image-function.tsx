@@ -2,6 +2,14 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
+export const whyItMatters = create(() => (
+    <p>
+        Screen readers will ignore any image coded as decorative, even if it has an accessible name. Unless an image is coded as decorative,
+        screen readers will assume it's meaningful. In an attempt to communicate the image's meaning, they might announce the image's
+        filename.
+    </p>
+));
+
 export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>Every image must be correctly coded as either meaningful or decorative.</p>
