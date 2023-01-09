@@ -149,7 +149,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "frame-title-unique": {
-    "reason": "rule is tagged best-practice",
+    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
   },
   "heading-order": {
@@ -170,7 +170,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "identical-links-same-purpose": {
-    "reason": "rule is tagged wcag2aaa",
+    "reason": "disabled in axe config",
     "status": "excluded",
   },
   "image-alt": {
@@ -251,9 +251,12 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
   "meta-refresh": {
     "status": "included",
   },
-  "meta-viewport": {
-    "reason": "rule is tagged best-practice",
+  "meta-refresh-no-exceptions": {
+    "reason": "disabled in axe config",
     "status": "excluded",
+  },
+  "meta-viewport": {
+    "status": "included",
   },
   "meta-viewport-large": {
     "reason": "rule is tagged best-practice",
@@ -263,7 +266,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "no-autoplay-audio": {
-    "reason": "rule is tagged experimental",
+    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
   },
   "object-alt": {
@@ -319,6 +322,10 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
   },
   "table-fake-caption": {
     "reason": "rule is tagged experimental",
+    "status": "excluded",
+  },
+  "target-size": {
+    "reason": "disabled in axe config",
     "status": "excluded",
   },
   "td-has-header": {

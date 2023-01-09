@@ -24,7 +24,15 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'excluded',
         reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     },
+    'frame-title-unique': {
+        status: 'excluded',
+        reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
     'form-field-multiple-labels': {
+        status: 'excluded',
+        reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
+    'no-autoplay-audio': {
         status: 'excluded',
         reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     },
