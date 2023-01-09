@@ -8,9 +8,17 @@ export type RuleIncluded =
     | { status: 'excluded'; reason: string };
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
+    'aria-allowed-role': {
+        status: 'included',
+        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
+    },
     'audio-caption': {
         status: 'included',
         reason: 'for parity with video-caption, which axe-core includes by default',
+    },
+    'duplicate-id': {
+        status: 'excluded',
+        reason: 'Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.',
     },
     'empty-table-header': {
         status: 'excluded',
@@ -20,21 +28,13 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'excluded',
         reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     },
-    'duplicate-id': {
-        status: 'excluded',
-        reason: 'Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.',
+    'presentation-role-conflict': {
+        status: 'included',
+        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
     },
     'scrollable-region-focusable': {
         status: 'excluded',
         reason: 'only reports to needs-review results due to potential false-positives',
-    },
-    'aria-allowed-role': {
-        status: 'included',
-        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
-    },
-    'presentation-role-conflict': {
-        status: 'included',
-        reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
     },
 };
 
