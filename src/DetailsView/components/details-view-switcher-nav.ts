@@ -42,6 +42,7 @@ import {
     GetRequirementViewComponentConfiguration,
     getRequirementViewComponentConfigurationForAssessment,
     getRequirementViewComponentConfigurationForQuickAssess,
+    getRequirementViewComponentCongfigurationForFastPass,
 } from 'DetailsView/components/requirement-view-component-configuration';
 import {
     getNullSaveButton,
@@ -166,11 +167,10 @@ const detailsViewSwitcherNavs: {
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
-
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentCongfigurationForFastPass,
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
-        getRequirementViewComponentConfiguration:
-            getRequirementViewComponentConfigurationForAssessment,
     },
 };
 
