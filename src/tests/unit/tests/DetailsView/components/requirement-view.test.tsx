@@ -208,15 +208,10 @@ describe('RequirementViewTest', () => {
                 }),
             )
             .returns(() => {
-                return nextRequirementExists
-                    ? {
-                          nextRequirement: otherRequirementStub,
-                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                      }
-                    : {
-                          nextRequirement: null,
-                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                      };
+                return {
+                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
+                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                };
             });
     }
 });
