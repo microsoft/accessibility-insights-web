@@ -14,7 +14,7 @@ export type NextRequirementButtonDeps = {
 export type NextRequirementButtonProps = {
     deps: NextRequirementButtonDeps;
     nextRequirement: Requirement;
-    currentTest: VisualizationType;
+    nextRequirementVisualizationType: VisualizationType;
     className?: string;
 };
 
@@ -28,7 +28,11 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         const selectNextRequirement = (event: React.MouseEvent<HTMLElement>) => {
             props.deps
                 .getAssessmentActionMessageCreator()
-                .selectNextRequirement(event, props.nextRequirement.key, props.currentTest);
+                .selectNextRequirement(
+                    event,
+                    props.nextRequirement.key,
+                    props.nextRequirementVisualizationType,
+                );
         };
 
         return (

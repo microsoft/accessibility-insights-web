@@ -27,13 +27,13 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
   </div>
   <NextRequirementButton
     className="nextRequirementButton"
-    currentTest={-1}
     deps={{}}
     nextRequirement={
       {
         "key": "expectedNextRequirement",
       }
     }
+    nextRequirementVisualizationType={-1}
   />
 </div>
 `;

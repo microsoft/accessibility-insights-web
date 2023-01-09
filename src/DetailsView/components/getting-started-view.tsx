@@ -39,7 +39,7 @@ export const GettingStartedView = NamedFC<GettingStartedViewProps>(
                 </div>
                 <NextRequirementButton
                     nextRequirement={firstRequirement}
-                    currentTest={visualizationType}
+                    nextRequirementVisualizationType={visualizationType}
                     className={styles.nextRequirementButton}
                     deps={deps}
                 />

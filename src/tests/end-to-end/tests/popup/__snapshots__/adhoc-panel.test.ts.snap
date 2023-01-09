@@ -15,58 +15,6 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
       rel="stylesheet"
       type="text/css"
     />
-    <div
-      class="insights-container insights-highlight-container insights-issues"
-    >
-      <div
-        class="insights-highlight-box insights-highlight-outline-solid"
-        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
-        title="Failed rules: frame-title"
-      >
-        <div
-          class="insights-highlight-text failure-label"
-          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
-        >
-          !
-        </div>
-      </div>
-      <div
-        class="insights-highlight-box insights-highlight-outline-solid"
-        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
-        title="Failed rules: frame-title"
-      >
-        <div
-          class="insights-highlight-text failure-label"
-          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
-        >
-          !
-        </div>
-      </div>
-      <div
-        class="insights-highlight-box insights-highlight-outline-solid"
-        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
-        title="Failed rules: frame-title"
-      >
-        <div
-          class="insights-highlight-text failure-label"
-          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
-        >
-          !
-        </div>
-      </div>
-      <div
-        class="insights-highlight-box insights-highlight-outline-solid"
-        style="outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
-        title="Failed rules: html-has-lang"
-      >
-        <div
-          class="insights-highlight-text failure-label"
-          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
-        >
-          !
-        </div>
-      </div>
-    </div>
   </div>
 </DocumentFragment>
 `;
