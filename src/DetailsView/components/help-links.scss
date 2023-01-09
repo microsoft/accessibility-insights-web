@@ -1,0 +1,13 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
+
+.help-link {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: $font-family;
+    line-height: 20px;
+    font-size: 15px;
+    color: $communication-primary;
+}
