@@ -8,15 +8,6 @@
 @import 'colors.scss';
 @import 'fonts.scss';
 
-$focus-ring-color: $neutral-100;
-
-@mixin set-focus-ring-styles($property: 'border') {
-    #{$property}: 1px solid $focus-ring-color;
-    @include ms-high-contrast-override {
-        #{$property}: 1px dashed windowtext !important;
-    }
-}
-
 $normal-title-font-weight: 300 !default;
 $pivot-item-left-border-width: 3px !default;
 $pivot-item-border-style: solid !default;

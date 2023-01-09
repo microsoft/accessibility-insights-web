@@ -8,18 +8,9 @@
 
 @import '../common.scss';
 
-.ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
-    @include set-focus-ring-styles('border');
-}
-
 button::after {
     content: '';
     position: absolute;
-}
-
-.ms-fontColor-neutralPrimary,
-.ms-fontColor-neutralPrimary--hover:hover {
-    color: $neutral-100 !important;
 }
 
 .ms-Fabric {
