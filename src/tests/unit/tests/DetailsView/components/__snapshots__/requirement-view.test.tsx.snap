@@ -10,30 +10,13 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "getProvider": [Function],
-          "mediumPassRequirementKeys": [
-            "test-requirement-key",
-            "next-quick-assess-requirement-key",
-          ],
         }
       }
-      name="test-requirement-name"
     />
     <div
       className="mainContent"
     >
-      <div>
-        test-description
-      </div>
-      <div>
-        test-visual-helper-toggle
-      </div>
-      <RequirementInstructions
-        howToTest={
-          <p>
-            how-to-test-stub
-          </p>
-        }
-      />
+      <RequirementInstructions />
       <RequirementTableSection
         assessmentInstanceTableHandler={
           {
@@ -66,18 +49,10 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         }
         requirement={
           {
-            "description": <div>
-              test-description
-            </div>,
-            "getVisualHelperToggle": [Function],
-            "howToTest": <p>
-              how-to-test-stub
-            </p>,
             "key": "test-requirement-key",
-            "name": "test-requirement-name",
           }
         }
-        selectedRequirementHasVisualHelper={true}
+        selectedRequirementHasVisualHelper={false}
       />
     </div>
   </div>
@@ -86,15 +61,10 @@ exports[`RequirementViewTest renders with content from props 1`] = `
   >
     <NextRequirementButton
       className="nextRequirementButton"
-      currentTest={0}
       deps={
         {
           "assessmentViewUpdateHandler": [typemoq mock object],
           "getProvider": [Function],
-          "mediumPassRequirementKeys": [
-            "test-requirement-key",
-            "next-quick-assess-requirement-key",
-          ],
         }
       }
       nextRequirement={
@@ -102,6 +72,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
           "key": "other-requirement-key",
         }
       }
+      nextRequirementVisualizationType={0}
     />
   </div>
 </div>
