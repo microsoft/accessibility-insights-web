@@ -3532,10 +3532,10 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.12.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-android-device-list@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.8.tgz#fdebccfcaba45ce8c646debbef8839591e48cbed"
-  integrity sha512-U17fI3nmlFRkMeG/fRQh2GTsFb+mt+Ygz7h39t8+ACdwGMvvFXqZt7yMejVPEXhcQlIMZYc4E8ZvVhExHWvs7w==
+android-device-list@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.9.tgz#c3b63010a0c3d2c822feffb514dfc866b258d49c"
+  integrity sha512-h8uJ538gWB2OqDDwKwxkI97lQTR5CcTGPkg8TUn66lv0IUJryHi0SJSvMA2eqo47LwDDHrf5LN/IuRA2uaU1oQ==
 
 ansi-align@^3.0.0:
   version "3.0.1"
