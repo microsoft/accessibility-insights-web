@@ -10,10 +10,10 @@ module.exports = {
         'shorthand-property-no-redundant-values': null, // Prefer longhand to improve readability
         'scss/comment-no-empty': null, // Disabled to allow for paragraph breaks in longer comments which is not supported yet: https://github.com/stylelint-scss/stylelint-scss/issues/606
         'selector-class-pattern': [
-            '^(ms-([A-Z][a-z0-9]*)(-[a-z0-9]+)*)|^(is-[a-z][a-zA-Z0-9]+)|^(([a-z][a-z0-9]*)(-[a-z0-9]+)*)$',
+            '^(ms-([A-Z][a-z0-9]*)(-[a-z0-9]+)*)|^(([a-z][a-z0-9]*)(-[a-z0-9]+)*)$',
             {
                 message:
-                    'Selectors should use `kebab-case`. For FluentUI selectors, use `ms-Upper-kebab-case` or `is-lowerCamelCase`.',
+                    'Selectors should use `kebab-case`. For FluentUI selectors, use `ms-Upper-kebab-case`.',
             },
         ],
         'declaration-property-max-values': { padding: 1, margin: 1 }, // Limit shorthand to improve readability
