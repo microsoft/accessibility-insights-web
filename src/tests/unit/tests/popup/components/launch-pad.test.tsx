@@ -58,7 +58,7 @@ describe('LaunchPad', () => {
                 <div className="popup-grid">
                     <main>
                         <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
-                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                        <hr className="launch-pad-hr" />
                         <div className="launch-pad-main-section">
                             <div key="row-item-1">
                                 <LaunchPadItemRow
@@ -67,7 +67,7 @@ describe('LaunchPad', () => {
                                     title="Title 1"
                                     onClickTitle={null}
                                 />
-                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                                <hr className="launch-pad-hr" />
                             </div>
 
                             <div key="row-item-2">
@@ -77,7 +77,7 @@ describe('LaunchPad', () => {
                                     title="Title 2"
                                     onClickTitle={null}
                                 />
-                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                                <hr className="launch-pad-hr" />
                             </div>
 
                             <div key="row-item-3">
@@ -87,7 +87,7 @@ describe('LaunchPad', () => {
                                     title="Title 3"
                                     onClickTitle={null}
                                 />
-                                <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                                <hr className="launch-pad-hr" />
                             </div>
                         </div>
                     </main>

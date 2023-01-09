@@ -42,7 +42,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
                             title={config.title}
                             onClickTitle={config.onClickTitle}
                         />
-                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                        <hr className="launch-pad-hr" />
                     </div>
                 );
             },
@@ -58,7 +58,7 @@ export class LaunchPad extends React.Component<LaunchPadProps, undefined> {
                 <div className="popup-grid">
                     <main>
                         <h2 className="launch-pad-title ms-fontWeight-semibold">Launch pad</h2>
-                        <hr className="ms-fontColor-neutralTertiaryAlt launch-pad-hr" />
+                        <hr className="launch-pad-hr" />
                         <div className="launch-pad-main-section">
                             {this.renderLaunchPadItemRows(this.props.rowConfigs)}
                         </div>

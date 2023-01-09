@@ -88,7 +88,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
             Launch pad
           </h2>
           <hr
-            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+            class="launch-pad-hr"
           />
           <div
             class="launch-pad-main-section"
@@ -132,7 +132,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                 </div>
               </div>
               <hr
-                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+                class="launch-pad-hr"
               />
             </div>
             <div>
@@ -174,7 +174,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                 </div>
               </div>
               <hr
-                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+                class="launch-pad-hr"
               />
             </div>
             <div>
@@ -216,7 +216,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                 </div>
               </div>
               <hr
-                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+                class="launch-pad-hr"
               />
             </div>
           </div>
