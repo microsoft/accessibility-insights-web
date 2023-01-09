@@ -39,6 +39,11 @@ import {
     getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
+    GetRequirementViewComponentConfiguration,
+    getRequirementViewComponentConfigurationForAssessment,
+    getRequirementViewComponentConfigurationForQuickAssess,
+} from 'DetailsView/components/requirement-view-component-configuration';
+import {
     getNullSaveButton,
     getSaveButtonForAssessment,
 } from 'DetailsView/components/save-assessment-button-factory';
@@ -99,6 +104,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
+    getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -128,6 +134,8 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForAssessment,
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -142,6 +150,9 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
+        shouldShowQuickAssessRequirementView: true,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForQuickAssess,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -158,6 +169,8 @@ const detailsViewSwitcherNavs: {
 
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForAssessment,
     },
 };
 

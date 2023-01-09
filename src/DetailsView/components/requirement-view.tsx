@@ -20,6 +20,7 @@ import {
 import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
 import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
+import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import {
     RequirementViewTitle,
     RequirementViewTitleDeps,
@@ -32,6 +33,7 @@ export type RequirementViewDeps = {
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
     getProvider: () => AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
+    mediumPassRequirementKeys: string[];
 } & RequirementViewTitleDeps &
     AssessmentViewUpdateHandlerDeps;
 
@@ -46,6 +48,7 @@ export interface RequirementViewProps {
     assessmentData: AssessmentData;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
+    requirementViewComponentConfiguration: RequirementViewComponentConfiguration;
 }
 
 export class RequirementView extends React.Component<RequirementViewProps> {
@@ -77,6 +80,29 @@ export class RequirementView extends React.Component<RequirementViewProps> {
         };
     }
 
+    private renderNextRequirementButton(
+        assessment: Assessment,
+        requirement: Requirement,
+    ): JSX.Element {
+        const { nextRequirement, nextRequirementVisualizationType } =
+            this.props.requirementViewComponentConfiguration.getNextRequirementButtonConfiguration({
+                deps: this.props.deps,
+                currentAssessment: assessment,
+                currentRequirement: requirement,
+                assessmentNavState: this.props.assessmentNavState,
+            });
+        return (
+            <div className={styles.nextRequirementButtonContainer}>
+                <NextRequirementButton
+                    deps={this.props.deps}
+                    nextRequirement={nextRequirement}
+                    nextRequirementVisualizationType={nextRequirementVisualizationType}
+                    className={styles.nextRequirementButton}
+                />
+            </div>
+        );
+    }
+
     public render(): JSX.Element {
         const { deps } = this.props;
         const assessment: Readonly<Assessment> = deps
@@ -88,9 +114,6 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                 this.props.assessmentNavState.selectedTestType,
                 this.props.assessmentNavState.selectedTestSubview,
             );
-        const requirementIndex = assessment.requirements.findIndex(r => r.key === requirement.key);
-        const nextRequirement = assessment.requirements[requirementIndex + 1] ?? null;
-
         const isRequirementScanned =
             this.props.assessmentData.testStepStatus[requirement.key].isStepScanned;
 
@@ -143,14 +166,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                         />
                     </div>
                 </div>
-                <div className={styles.nextRequirementButtonContainer}>
-                    <NextRequirementButton
-                        deps={this.props.deps}
-                        nextRequirement={nextRequirement}
-                        currentTest={this.props.assessmentNavState.selectedTestType}
-                        className={styles.nextRequirementButton}
-                    />
-                </div>
+                {this.renderNextRequirementButton(assessment, requirement)}
             </div>
         );
     }

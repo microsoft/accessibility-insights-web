@@ -3,7 +3,7 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
+import { Requirement } from 'assessments/types/requirement';
 import {
     AssessmentData,
     AssessmentNavState,
@@ -24,6 +24,8 @@ import {
     RequirementViewDeps,
     RequirementViewProps,
 } from 'DetailsView/components/requirement-view';
+import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
+import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
@@ -43,28 +45,24 @@ describe('RequirementViewTest', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
-
+    let requirementViewComponentConfigurationStub: RequirementViewComponentConfiguration;
+    let getNextRequirementButtonConfigurationMock: IMock<GetNextRequirementButtonConfiguration>;
+    let deps: RequirementViewDeps;
     beforeEach(() => {
         requirementStub = {
             key: 'test-requirement-key',
-            name: 'test-requirement-name',
-            description: <div>test-description</div>,
-            howToTest: <p>how-to-test-stub</p>,
-            getVisualHelperToggle: (props: VisualHelperToggleConfig) => (
-                <div>test-visual-helper-toggle</div>
-            ),
         } as Requirement;
         otherRequirementStub = {
             key: 'other-requirement-key',
         } as Requirement;
         assessmentStub = {
             requirements: [requirementStub, otherRequirementStub],
+            key: 'test-assessment',
         } as Assessment;
         assessmentNavState = {
             selectedTestType: VisualizationType.Headings,
             selectedTestSubview: 'test-requirement-name',
         };
-
         assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
         assessmentsProviderMock
             .setup(ap => ap.forType(assessmentNavState.selectedTestType))
@@ -80,6 +78,9 @@ describe('RequirementViewTest', () => {
         assessmentInstanceTableHandlerStub = {
             changeRequirementStatus: null,
         } as AssessmentInstanceTableHandler;
+
+        getNextRequirementButtonConfigurationMock =
+            Mock.ofType<GetNextRequirementButtonConfiguration>();
 
         assessmentDataStub = {
             generatedAssessmentInstancesMap: {} as DictionaryStringTo<GeneratedAssessmentInstance>,
@@ -98,12 +99,20 @@ describe('RequirementViewTest', () => {
             path: null,
         } as PathSnippetStoreData;
         updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
+        deps = {
+            assessmentViewUpdateHandler: updateHandlerMock.object,
+            getProvider: () => assessmentsProviderMock.object,
+        } as RequirementViewDeps;
+
+        getNextRequirementButtonConfigurationMock =
+            Mock.ofType<GetNextRequirementButtonConfiguration>();
+
+        requirementViewComponentConfigurationStub = {
+            getNextRequirementButtonConfiguration: getNextRequirementButtonConfigurationMock.object,
+        } as RequirementViewComponentConfiguration;
 
         props = {
-            deps: {
-                assessmentViewUpdateHandler: updateHandlerMock.object,
-                getProvider: () => assessmentsProviderMock.object,
-            } as RequirementViewDeps,
+            deps: deps,
             assessmentNavState: assessmentNavState,
             isRequirementEnabled: true,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerStub,
@@ -112,38 +121,21 @@ describe('RequirementViewTest', () => {
             prevTarget: { id: 4 },
             currentTarget: { id: 5 },
             assessmentData: assessmentDataStub,
+            requirementViewComponentConfiguration: requirementViewComponentConfigurationStub,
         } as RequirementViewProps;
     });
 
     it('renders with content from props', () => {
+        setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    describe('nextRequirement handling', () => {
-        it('passes along nextRequirement if one exists', () => {
-            assessmentStub.requirements = [requirementStub, otherRequirementStub];
-
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
-                otherRequirementStub,
-            );
-        });
-
-        it('passes a null nextRequirement if none exist', () => {
-            assessmentStub.requirements = [requirementStub];
-
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
-        });
-
-        it('passes a null nextRequirement if we are the last requirement', () => {
-            assessmentStub.requirements = [otherRequirementStub, requirementStub];
-
-            const rendered = shallow(<RequirementView {...props} />);
-            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
-        });
+    test('does not render a next requirement button if there is no next requirement', () => {
+        setupGetNextRequirementButtonConfiguration(false);
+        const rendered = shallow(<RequirementView {...props} />);
+        expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
     });
 
     test('componentDidUpdate', () => {
@@ -203,5 +195,23 @@ describe('RequirementViewTest', () => {
             prevTarget: givenProps.prevTarget,
             currentTarget: givenProps.currentTarget,
         };
+    }
+
+    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {
+        getNextRequirementButtonConfigurationMock
+            .setup(g =>
+                g({
+                    deps: deps,
+                    currentAssessment: assessmentStub,
+                    currentRequirement: requirementStub,
+                    assessmentNavState,
+                }),
+            )
+            .returns(() => {
+                return {
+                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
+                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                };
+            });
     }
 });

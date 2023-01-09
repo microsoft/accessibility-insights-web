@@ -27,7 +27,7 @@ describe('NextRequirementButton', () => {
             nextRequirement: {
                 key: 'some requirement key',
             } as Requirement,
-            currentTest: -1,
+            nextRequirementVisualizationType: -1,
         };
     });
 
@@ -39,7 +39,11 @@ describe('NextRequirementButton', () => {
     it('validate next requirement button', () => {
         messageCreatorMock
             .setup(mock =>
-                mock.selectNextRequirement(eventStub, props.nextRequirement.key, props.currentTest),
+                mock.selectNextRequirement(
+                    eventStub,
+                    props.nextRequirement.key,
+                    props.nextRequirementVisualizationType,
+                ),
             )
             .verifiable();
 
