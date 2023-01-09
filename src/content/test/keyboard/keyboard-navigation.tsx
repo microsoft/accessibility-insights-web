@@ -6,7 +6,7 @@ export const whyItMatters = create(() => (
     <p>
         Users must be able to navigate to all interactive interface components using a keyboard. Users can't access a web app's
         functionality if they can't access its interactive interface components. Many people, including those who are blind or who have low
-        vision or hand tremors, rely on a keyboard (or keyboard alternate) to access those components.{' '}
+        vision or hand tremors, rely on a keyboard (or keyboard alternate) to access those components.
     </p>
 ));
 

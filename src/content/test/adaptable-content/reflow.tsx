@@ -7,7 +7,7 @@ export const whyItMatters = create(() => (
         Having to scroll in two directions is difficult for everyone. Having to scroll in the direction of reading makes reading especially
         difficult for people with certain disabilities, including people with low vision, who are more likely to need enlarged text in a
         single column as well as people with reading disabilities that make it difficult to visually track long lines of text. It also
-        impacts people with motor disabilities who find scrolling difficult on the webpage.{' '}
+        impacts people with motor disabilities who find scrolling difficult on the webpage.
     </p>
 ));
 
