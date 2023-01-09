@@ -267,28 +267,6 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </div>
                 );
             }
-            case 'web/link-in-text-block': {
-                return (
-                    <ul className={styles.multiLineTextNoBullet}>
-                        <li>
-                            Manually verify that the link text EITHER has a contrast ratio of at
-                            least 3:1 compared to surrounding text OR has a distinct visual style
-                            (such as underlined, bolded, or italicized).
-                        </li>
-                        <li>
-                            To measure contrast, use{' '}
-                            <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
-                                Accessibility Insights for Windows
-                            </LinkComponent>{' '}
-                            (or the{' '}
-                            <LinkComponent href="https://developer.paciellogroup.com/resources/contrastanalyser/">
-                                Colour Contrast Analyser
-                            </LinkComponent>{' '}
-                            if you're testing on a Mac).
-                        </li>
-                    </ul>
-                );
-            }
             case 'web/th-has-data-cells': {
                 return (
                     <div>

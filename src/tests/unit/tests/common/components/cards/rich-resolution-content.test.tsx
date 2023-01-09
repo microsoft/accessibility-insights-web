@@ -23,7 +23,6 @@ describe('RichResolutionContent', () => {
         'web/aria-input-field-name',
         'web/color-contrast',
         'web/th-has-data-cells',
-        'web/link-in-text-block',
         'web/scrollable-region-focusable',
         'web/label-content-name-mismatch',
         'web/p-as-heading',

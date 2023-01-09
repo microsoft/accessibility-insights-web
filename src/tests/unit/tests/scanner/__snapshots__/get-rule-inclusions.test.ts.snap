@@ -234,8 +234,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "excluded",
   },
   "link-in-text-block": {
-    "reason": "rule is tagged experimental",
-    "status": "excluded",
+    "status": "included",
   },
   "link-name": {
     "status": "included",
