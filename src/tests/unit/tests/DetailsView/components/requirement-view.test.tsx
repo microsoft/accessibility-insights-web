@@ -126,43 +126,14 @@ describe('RequirementViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        getNextRequirementButtonConfigurationMock
-            .setup(g =>
-                g({
-                    deps: deps,
-                    currentAssessment: assessmentStub,
-                    currentRequirement: requirementStub,
-                    assessmentNavState,
-                }),
-            )
-            .returns(() => {
-                return {
-                    nextRequirement: otherRequirementStub,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
-            });
-
+        setupGetNextRequirementButtonConfiguration(true);
         const rendered = shallow(<RequirementView {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('does not render a next requirement button if there is no next requirement', () => {
-        getNextRequirementButtonConfigurationMock
-            .setup(g =>
-                g({
-                    deps: deps,
-                    currentAssessment: assessmentStub,
-                    currentRequirement: requirementStub,
-                    assessmentNavState,
-                }),
-            )
-            .returns(() => {
-                return {
-                    nextRequirement: null,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
-            });
+        setupGetNextRequirementButtonConfiguration(false);
         const rendered = shallow(<RequirementView {...props} />);
         expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
     });
@@ -224,5 +195,28 @@ describe('RequirementViewTest', () => {
             prevTarget: givenProps.prevTarget,
             currentTarget: givenProps.currentTarget,
         };
+    }
+
+    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {
+        getNextRequirementButtonConfigurationMock
+            .setup(g =>
+                g({
+                    deps: deps,
+                    currentAssessment: assessmentStub,
+                    currentRequirement: requirementStub,
+                    assessmentNavState,
+                }),
+            )
+            .returns(() => {
+                return nextRequirementExists
+                    ? {
+                          nextRequirement: otherRequirementStub,
+                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                      }
+                    : {
+                          nextRequirement: null,
+                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                      };
+            });
     }
 });
