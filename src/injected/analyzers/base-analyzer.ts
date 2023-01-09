@@ -48,8 +48,9 @@ export class BaseAnalyzer implements Analyzer {
             selectorMap: analyzerResult.results,
             scanResult: originalAxeResult,
             testType: config.testType,
-            scanIncompleteWarnings:
-                this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(),
+            scanIncompleteWarnings: this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(
+                analyzerResult.originalResult,
+            ),
         };
 
         return {

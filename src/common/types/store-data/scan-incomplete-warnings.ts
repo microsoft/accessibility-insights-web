@@ -2,4 +2,4 @@
 // Licensed under the MIT License.
 
 // This is a string-enum, but we only have one type right now
-export type ScanIncompleteWarningId = 'missing-required-cross-origin-permissions';
+export type ScanIncompleteWarningId = 'missing-required-cross-origin-permissions' | 'frame-skipped';

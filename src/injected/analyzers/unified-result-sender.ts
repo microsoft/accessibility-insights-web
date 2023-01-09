@@ -64,7 +64,7 @@ export class UnifiedResultSender {
         notificationMessage: TextGenerator,
     ): UnifiedScanCompletedPayload => {
         const scanIncompleteWarnings =
-            this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
+            this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(results);
 
         let telemetry: ScanIncompleteWarningsTelemetryData = null;
 
