@@ -67,8 +67,8 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const isGettingStartedSelected =
             assessmentNavState.selectedTestSubview === gettingStartedSubview;
 
-        const shouldShowQuickAssessRequirementView =
-            props.switcherNavConfiguration.shouldShowQuickAssessRequirementView;
+        const requirementViewComponentConfiguration =
+            props.switcherNavConfiguration.getRequirementViewComponentConfiguration();
 
         return (
             <>
@@ -94,7 +94,9 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                         assessmentData={assessmentData}
                         currentTarget={currentTarget}
                         prevTarget={prevTarget}
-                        shouldShowQuickAssessRequirementView={shouldShowQuickAssessRequirementView}
+                        requirementViewComponentConfiguration={
+                            requirementViewComponentConfiguration
+                        }
                     />
                 )}
             </>

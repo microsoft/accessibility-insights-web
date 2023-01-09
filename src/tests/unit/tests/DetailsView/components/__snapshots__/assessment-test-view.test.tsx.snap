@@ -103,6 +103,7 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     featureFlagStoreData={{}}
     isRequirementEnabled={false}
     pathSnippetStoreData={{}}
+    requirementViewComponentConfiguration={{}}
     scanningInProgress={true}
   />
 </React.Fragment>

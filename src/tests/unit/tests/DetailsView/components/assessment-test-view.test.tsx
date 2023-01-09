@@ -25,6 +25,10 @@ import {
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { GettingStartedView } from 'DetailsView/components/getting-started-view';
 import { RequirementView } from 'DetailsView/components/requirement-view';
+import {
+    GetRequirementViewComponentConfiguration,
+    RequirementViewComponentConfiguration,
+} from 'DetailsView/components/requirement-view-component-configuration';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
@@ -47,6 +51,7 @@ describe('AssessmentTestView', () => {
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
     let warningConfigurationStub: WarningConfiguration;
+    let getRequirementViewComponentConfigurationMock: IMock<GetRequirementViewComponentConfiguration>;
     let assessmentsProviderStub: AssessmentsProvider;
     let assessmentStub: Assessment;
 
@@ -84,8 +89,14 @@ describe('AssessmentTestView', () => {
         assessmentStub = {} as Assessment;
         pathSnippetStoreDataStub = {} as PathSnippetStoreData;
         warningConfigurationStub = {} as WarningConfiguration;
+        getRequirementViewComponentConfigurationMock = Mock.ofInstance(
+            () => null,
+            MockBehavior.Strict,
+        );
         switcherNavConfigurationStub = {
             warningConfiguration: warningConfigurationStub,
+            getRequirementViewComponentConfiguration:
+                getRequirementViewComponentConfigurationMock.object,
         } as DetailsViewSwitcherNavConfiguration;
 
         assessmentsProviderStub = {
@@ -114,6 +125,12 @@ describe('AssessmentTestView', () => {
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
             .returns(() => scanDataStub);
+
+        getRequirementViewComponentConfigurationMock
+            .setup(g => g())
+            .returns(() => {
+                return {} as RequirementViewComponentConfiguration;
+            });
     });
 
     function setSelectedSubview(subview: string) {

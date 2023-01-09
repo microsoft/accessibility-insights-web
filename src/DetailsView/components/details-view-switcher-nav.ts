@@ -77,6 +77,11 @@ import {
     getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
+import {
+    GetRequirementViewComponentConfiguration,
+    getRequirementViewComponentConfigurationForAssessment,
+    getRequirementViewComponentConfigurationForQuickAssess,
+} from 'DetailsView/components/requirement-view-component-configuration';
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & MediumPassLeftNavProps;
@@ -99,7 +104,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
-    shouldShowQuickAssessRequirementView: boolean;
+    getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -129,7 +134,8 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getSelectedAssessmentStoreData: getAssessmentStoreData,
-        shouldShowQuickAssessRequirementView: false,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForAssessment,
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -145,6 +151,8 @@ const detailsViewSwitcherNavs: {
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
         shouldShowQuickAssessRequirementView: true,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForQuickAssess,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -161,7 +169,8 @@ const detailsViewSwitcherNavs: {
 
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
-        shouldShowQuickAssessRequirementView: false,
+        getRequirementViewComponentConfiguration:
+            getRequirementViewComponentConfigurationForAssessment,
     },
 };
 
