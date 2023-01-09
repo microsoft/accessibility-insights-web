@@ -20,6 +20,7 @@ import {
 import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
 import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
+import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import {
     RequirementViewTitle,
     RequirementViewTitleDeps,
@@ -27,7 +28,6 @@ import {
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
 import styles from './requirement-view.scss';
-import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 
 export type RequirementViewDeps = {
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;

@@ -39,6 +39,11 @@ import {
     getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
+    GetRequirementViewComponentConfiguration,
+    getRequirementViewComponentConfigurationForAssessment,
+    getRequirementViewComponentConfigurationForQuickAssess,
+} from 'DetailsView/components/requirement-view-component-configuration';
+import {
     getNullSaveButton,
     getSaveButtonForAssessment,
 } from 'DetailsView/components/save-assessment-button-factory';
@@ -77,11 +82,6 @@ import {
     getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
-import {
-    GetRequirementViewComponentConfiguration,
-    getRequirementViewComponentConfigurationForAssessment,
-    getRequirementViewComponentConfigurationForQuickAssess,
-} from 'DetailsView/components/requirement-view-component-configuration';
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & MediumPassLeftNavProps;

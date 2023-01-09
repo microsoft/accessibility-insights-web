@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
@@ -24,14 +24,14 @@ import {
     RequirementViewDeps,
     RequirementViewProps,
 } from 'DetailsView/components/requirement-view';
+import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
+import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 
 describe('RequirementViewTest', () => {
     let assessmentStub: Assessment;

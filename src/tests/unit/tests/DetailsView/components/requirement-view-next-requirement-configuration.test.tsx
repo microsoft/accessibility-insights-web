@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { Assessment } from 'assessments/types/iassessment';
-import { IMock, Mock } from 'typemoq';
 import { Requirement } from 'assessments/types/requirement';
+import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import {
     GetNextRequirementConfigurationDeps,
     GetNextRequirementConfigurationProps,
@@ -15,8 +16,7 @@ import {
     getNextRequirementConfigurationForAssessment,
     getNextRequirementConfigurationForQuickAssess,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
-import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
-import { AutomatedChecks } from 'assessments/automated-checks/assessment';
+import { IMock, Mock } from 'typemoq';
 
 describe('RequirementViewNextRequirementConfiguration', () => {
     let assessmentStub: Assessment;

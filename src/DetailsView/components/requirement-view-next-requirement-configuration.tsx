@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NextRequirementButtonDeps } from 'DetailsView/components/next-requirement-button';
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { Requirement } from 'assessments/types/requirement';
-import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { NextRequirementButtonDeps } from 'DetailsView/components/next-requirement-button';
 
 export type GetNextRequirementConfigurationDeps = {
     mediumPassRequirementKeys: string[];
@@ -64,8 +64,8 @@ export const getNextRequirementConfigurationForQuickAssess = (
         const nextRequirementKey = props.deps.mediumPassRequirementKeys[requirementIndex + 1];
         const nextAssessment = props.deps.getProvider().forRequirementKey(nextRequirementKey);
         return {
-            nextRequirement: nextAssessment.requirements.find(r => r.key === nextRequirementKey),
-            nextRequirementVisualizationType: nextAssessment.visualizationType,
+            nextRequirement: nextAssessment!.requirements.find(r => r.key === nextRequirementKey),
+            nextRequirementVisualizationType: nextAssessment!.visualizationType,
         };
     }
 };
