@@ -126,7 +126,7 @@ describe('RequirementViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        setupGetNextRequirementButtonConfiguration(true);
+        setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
