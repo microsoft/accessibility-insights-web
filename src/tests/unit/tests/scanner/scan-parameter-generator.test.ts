@@ -17,6 +17,10 @@ describe('ScanParameterGenerator', () => {
         'rule-b': {
             status: 'included',
         },
+        'rule-c': {
+            status: 'included-always',
+            reason: 'included always test',
+        },
     };
     const testObject = new ScanParameterGenerator(includedRulesStub);
 
@@ -33,7 +37,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['rule-a', 'rule-b', 'frame-tested'],
+                    values: ['rule-a', 'rule-b', 'rule-c'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
@@ -48,7 +52,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['rule-a', 'rule-b', 'frame-tested'],
+                    values: ['rule-a', 'rule-b', 'rule-c'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
@@ -64,7 +68,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['ruleA', 'ruleB', 'frame-tested'],
+                    values: ['ruleA', 'ruleB', 'rule-c'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };

@@ -20,9 +20,7 @@ export class ScanIncompleteWarningDetector {
             !this.permissionsStateStore.getState().hasAllUrlAndFilePermissions
         ) {
             warnings.push('missing-required-cross-origin-permissions');
-        }
-
-        if (results && results.framesSkipped) {
+        } else if (results && results.framesSkipped) {
             warnings.push('frame-skipped');
         }
 

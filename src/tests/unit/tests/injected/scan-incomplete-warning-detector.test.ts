@@ -40,6 +40,17 @@ describe('ScanIncompleteWarningDetector', () => {
         },
     );
 
+    it('should not detect frames skipped warning when it detects permissions warning ', () => {
+        iframeDetectorMock.setup(m => m.hasIframes()).returns(() => true);
+        permissionsStateStoreMock
+            .setup(m => m.getState())
+            .returns(() => ({ hasAllUrlAndFilePermissions: false }));
+        const results = { framesSkipped: true } as ScanResults;
+        expect(testSubject.detectScanIncompleteWarnings(results)).toStrictEqual([
+            'missing-required-cross-origin-permissions',
+        ]);
+    });
+
     it('should detect no frames skipped if results are null', () => {
         expect(testSubject.detectScanIncompleteWarnings(null)).toStrictEqual([]);
     });
