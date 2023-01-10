@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import * as React from 'react';
+import { ContentPageComponent } from 'views/content/content-page';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 import styles from './requirement-view-title.scss';
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { ContentPageComponent } from 'views/content/content-page';
 
 export type RequirementViewTitleDeps = GuidanceTagsDeps & ContentPanelButtonDeps;
 

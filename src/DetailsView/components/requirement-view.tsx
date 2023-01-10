@@ -22,14 +22,14 @@ import { NextRequirementButton } from 'DetailsView/components/next-requirement-b
 import { RequirementContextSectionDeps } from 'DetailsView/components/requirement-context-section';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
-import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import * as React from 'react';
-import styles from './requirement-view.scss';
+import { RequirementContextSectionFactoryProps } from 'DetailsView/components/requirement-view-context-section-factory';
 import {
     RequirementViewTitleDeps,
     RequirementViewTitleFactoryProps,
 } from 'DetailsView/components/requirement-view-title-factory';
-import { RequirementContextSectionFactoryProps } from 'DetailsView/components/requirement-view-context-section-factory';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import * as React from 'react';
+import styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;

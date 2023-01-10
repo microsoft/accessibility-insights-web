@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 
 import {
+    RequirementContextSectionFactory,
+    getRequirementContextSectionForAssessment,
+    getRequirementContextSectionForQuickAssess,
+} from 'DetailsView/components/requirement-view-context-section-factory';
+import {
     GetNextRequirementButtonConfiguration,
     GetNextRequirementConfigurationProps,
     getNextRequirementConfigurationForAssessment,
     getNextRequirementConfigurationForQuickAssess,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
-import {
-    RequirementContextSectionFactory,
-    getRequirementContextSectionForAssessment,
-    getRequirementContextSectionForQuickAssess,
-} from 'DetailsView/components/requirement-view-context-section-factory';
 import {
     RequirementViewTitleFactory,
     getRequirementViewTitleForAssessment,

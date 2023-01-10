@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import {
     RequirementContextSection,
     RequirementContextSectionProps,
 } from 'DetailsView/components/requirement-context-section';
-import { AutomatedChecks } from 'assessments/automated-checks/assessment';
+import * as React from 'react';
 
 export type RequirementContextSectionFactoryProps = {
     requirementKey: string;
