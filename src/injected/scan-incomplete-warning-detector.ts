@@ -22,7 +22,7 @@ export class ScanIncompleteWarningDetector {
             warnings.push('missing-required-cross-origin-permissions');
         }
 
-        if (results !== null && results.framesSkipped) {
+        if (results && results.framesSkipped) {
             warnings.push('frame-skipped');
         }
 
