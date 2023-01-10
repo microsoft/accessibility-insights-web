@@ -65,7 +65,7 @@ describe('BatchedRuleAnalyzer', () => {
             .returns(() => scopingState)
             .verifiable();
         scanIncompleteWarningDetectorMock
-            .setup(idm => idm.detectScanIncompleteWarnings())
+            .setup(idm => idm.detectScanIncompleteWarnings(It.isAny()))
             .returns(() => []);
     });
 

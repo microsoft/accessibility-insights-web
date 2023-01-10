@@ -91,7 +91,7 @@ export interface ScanResults {
     timestamp: string;
     targetPageUrl: string;
     targetPageTitle: string;
-    framesSkipped: boolean?;
+    framesSkipped?: boolean;
 }
 
 export interface RuleDecorations {

@@ -42,7 +42,7 @@ describe('NotificationTextCreator', () => {
         'generates text for needs review with results: $unifiedResults and warnings: $testScanWarnings',
         ({ unifiedResults, testScanWarnings, expectedText }) => {
             scanIncompleteWarningDetectorMock
-                .setup(m => m.detectScanIncompleteWarnings())
+                .setup(m => m.detectScanIncompleteWarnings(null))
                 .returns(() => testScanWarnings);
 
             expect(testSubject.needsReviewText(unifiedResults)).toEqual(expectedText);
@@ -64,7 +64,7 @@ describe('NotificationTextCreator', () => {
         'generates null for automated checks with $unifiedResults and $testScanWarnings', // automated checks uses notifications generated from visualizationMessages.Common.ScanCompleted
         ({ unifiedResults, testScanWarnings }) => {
             scanIncompleteWarningDetectorMock
-                .setup(m => m.detectScanIncompleteWarnings())
+                .setup(m => m.detectScanIncompleteWarnings(null))
                 .returns(testScanWarnings);
 
             expect(testSubject.automatedChecksText(unifiedResults)).toEqual(null);

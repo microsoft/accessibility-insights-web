@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IframeSkippedWarning render 1`] = `
+<div
+  data-automation-id="iframe-skipped-warning-container"
+>
+  There are iframes in the target page that are non-responsive. These frames have been skipped and are not included in results.
+</div>
+`;

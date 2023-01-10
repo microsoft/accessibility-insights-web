@@ -111,7 +111,7 @@ describe('sendConvertedResults', () => {
                         .setup(m => m(inputResults))
                         .returns(val => unifiedRules);
                     scanIncompleteWarningDetectorMock
-                        .setup(m => m.detectScanIncompleteWarnings())
+                        .setup(m => m.detectScanIncompleteWarnings(inputResults))
                         .returns(() => warnings);
                     filterNeedsReviewResultsMock
                         .setup(m => m(axeInputResults))

@@ -33,7 +33,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['rule-a', 'rule-b'],
+                    values: ['rule-a', 'rule-b', 'frame-tested'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
@@ -48,7 +48,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['rule-a', 'rule-b'],
+                    values: ['rule-a', 'rule-b', 'frame-tested'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
@@ -64,7 +64,7 @@ describe('ScanParameterGenerator', () => {
                 restoreScroll: true,
                 runOnly: {
                     type: 'rule',
-                    values: ['ruleA', 'ruleB'],
+                    values: ['ruleA', 'ruleB', 'frame-tested'],
                 },
                 pingWaitTime: FRAME_COMMUNICATION_TIMEOUT_MS,
             };
