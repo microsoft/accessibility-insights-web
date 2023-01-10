@@ -3,6 +3,7 @@
 
 import { DefaultButton, PrimaryButton } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     QuickAssessToAssessmentDialog,
@@ -72,6 +73,10 @@ describe('QuickAssessToAssessmentDialog', () => {
 
         detailsViewActionMessageCreatorMock.verify(
             m => m.confirmDataTransferToAssessment(eventStub),
+            Times.once(),
+        );
+        detailsViewActionMessageCreatorMock.verify(
+            m => m.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]),
             Times.once(),
         );
         dataTransferViewControllerMock.verify(

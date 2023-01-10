@@ -4,6 +4,7 @@
 import { DefaultButton, Dialog, DialogFooter, IDialogProps, PrimaryButton } from '@fluentui/react';
 import * as Markup from 'assessments/markup';
 import { NamedFC } from 'common/react/named-fc';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
@@ -50,6 +51,9 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
                     <PrimaryButton
                         onClick={ev => {
                             detailsViewActionMessageCreator.confirmDataTransferToAssessment(ev);
+                            detailsViewActionMessageCreator.sendPivotItemClicked(
+                                DetailsViewPivotType[DetailsViewPivotType.assessment],
+                            );
                             dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
                         }}
                         text={'Continue to assessment'}

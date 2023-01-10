@@ -8,7 +8,7 @@ exports[`QuickAssessToAssessmentDialog dialog is hidden when isShown is false 1`
   title="Continue to assessment"
 >
   <div>
-    This will allow you to continue accessibility tesitng with addtitional tests and requirements in assessment. All your existing data in quick assess will be transfered into assessment.
+    This will allow you to continue accessibility testing with additional tests and requirements in assessment. All your existing data in quick assess will be transfered into assessment.
   </div>
   <p>
     <Term>
@@ -39,7 +39,7 @@ exports[`QuickAssessToAssessmentDialog dialog is not hidden when isShown is true
   title="Continue to assessment"
 >
   <div>
-    This will allow you to continue accessibility tesitng with addtitional tests and requirements in assessment. All your existing data in quick assess will be transfered into assessment.
+    This will allow you to continue accessibility testing with additional tests and requirements in assessment. All your existing data in quick assess will be transfered into assessment.
   </div>
   <p>
     <Term>
