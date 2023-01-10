@@ -18,7 +18,7 @@ export class IncompatibleBrowserRenderer {
 
         this.renderer(
             <>
-                <div className="ms-Fabric unsupported-browser-info-panel">
+                <div className="unsupported-browser-info-panel">
                     <Header title={title} />
                     <div className="main-section">
                         <div className="popup-grid">

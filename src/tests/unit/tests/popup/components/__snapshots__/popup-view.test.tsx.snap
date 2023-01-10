@@ -2,7 +2,7 @@
 
 exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
 "<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
+  <div className="ad-hoc-tools-panel">
     <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
     <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} featureFlagStoreData={{...}} />
   </div>
@@ -12,7 +12,7 @@ exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] =
 
 exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 "<Fragment>
-  <div className="ms-Fabric launch-panel" id="new-launch-pad">
+  <div className="launch-panel" id="new-launch-pad">
     <LaunchPanelHeader deps={{...}} title="test title" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
     <LaunchPad deps={{...}} productName="test title" rowConfigs={[undefined]} version="2" />
   </div>
@@ -31,7 +31,7 @@ exports[`PopupView render actual content render toggles view: launch pad: subtit
 
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
 "<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
+  <div className="ad-hoc-tools-panel">
     <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
     <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} featureFlagStoreData={{...}} />
   </div>
@@ -49,7 +49,7 @@ exports[`PopupView render spinner 1`] = `
 
 exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 <div
-  className="ms-Fabric unsupported-url-info-panel"
+  className="unsupported-url-info-panel"
 >
   <Header
     title="test title"

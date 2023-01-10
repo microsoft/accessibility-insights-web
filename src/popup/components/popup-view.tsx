@@ -125,7 +125,7 @@ export class PopupView extends React.Component<PopupViewProps> {
 
     private renderAdHocToolsPanel(): JSX.Element {
         return (
-            <div className="ms-Fabric ad-hoc-tools-panel">
+            <div className="ad-hoc-tools-panel">
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
@@ -156,7 +156,7 @@ export class PopupView extends React.Component<PopupViewProps> {
         const onClickTutorialLink = event => popupActionMessageCreator.openTutorial(event);
 
         return (
-            <div className="ms-Fabric launch-panel" id="new-launch-pad">
+            <div className="launch-panel" id="new-launch-pad">
                 <LaunchPanelHeader
                     deps={this.props.deps}
                     title={this.props.title}
@@ -187,7 +187,7 @@ export class PopupView extends React.Component<PopupViewProps> {
 
     private renderUnsupportedMsgPanelForChromeUrl(): JSX.Element {
         return (
-            <div className="ms-Fabric unsupported-url-info-panel">
+            <div className="unsupported-url-info-panel">
                 {this.renderDefaultHeader()}
                 <div className="main-section">
                     <div className="popup-grid">

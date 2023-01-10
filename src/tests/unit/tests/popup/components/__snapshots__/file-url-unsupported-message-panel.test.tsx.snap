@@ -2,7 +2,7 @@
 
 exports[`FileUrlUnsupportedMessagePanel renders 1`] = `
 <div
-  className="ms-Fabric unsupported-url-info-panel"
+  className="unsupported-url-info-panel"
 >
   <span>
     TEST HEADER

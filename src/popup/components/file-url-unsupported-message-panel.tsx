@@ -26,7 +26,7 @@ export const FileUrlUnsupportedMessagePanel = NamedFC<FileUrlUnsupportedMessageP
         };
 
         return (
-            <div className="ms-Fabric unsupported-url-info-panel">
+            <div className="unsupported-url-info-panel">
                 {header}
                 <div className="main-section">
                     <div className="popup-grid">

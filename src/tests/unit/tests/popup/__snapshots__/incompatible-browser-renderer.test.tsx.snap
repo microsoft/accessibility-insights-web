@@ -3,7 +3,7 @@
 exports[`IncompatibleBrowserRenderer renders 1`] = `
 <React.Fragment>
   <div
-    className="ms-Fabric unsupported-browser-info-panel"
+    className="unsupported-browser-info-panel"
   >
     <Header
       title="Accessibility Insights for Web"
