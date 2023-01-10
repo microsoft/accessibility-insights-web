@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQuickAssess renders content from props 1`] = `
+<div
+  className="test-class-name"
+>
+  <RequirementContextSection
+    className="test-class-name"
+    deps={{}}
+    helpfulResourceLinks={
+      [
+        {
+          "href": "test-resource-href",
+          "text": "test-resource-text",
+        },
+      ]
+    }
+    infoAndExamples={
+      {
+        "pageTitle": "test-page-title",
+      }
+    }
+    requirementKey="test-requirement-key"
+    whyItMatters={[Function]}
+  />
+</div>
+`;
