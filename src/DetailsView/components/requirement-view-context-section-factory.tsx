@@ -14,17 +14,17 @@ export type RequirementContextSectionFactoryProps = {
 
 export type RequirementContextSectionFactory = (
     props: RequirementContextSectionFactoryProps,
-) => JSX.Element;
+) => JSX.Element | null;
 
 export function getRequirementContextSectionForAssessment(
     props: RequirementContextSectionFactoryProps,
-): JSX.Element {
+): JSX.Element | null {
     return null;
 }
 
 export function getRequirementContextSectionForQuickAssess(
     props: RequirementContextSectionFactoryProps,
-): JSX.Element {
+): JSX.Element | null {
     if (props.requirementKey === AutomatedChecks.key) {
         return null;
     }
