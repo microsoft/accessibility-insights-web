@@ -17,13 +17,10 @@ export async function scanForAccessibilityIssues(
     await injectAxeIfUndefined(page);
     const axeResults = (await page.evaluate(
         options => {
-            return axe.run(
-                { include: [options.selector] } as ElementContext,
-                {
-                    runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] },
-                    rules: options.rules,
-                } as ElementContext,
-            );
+            return axe.run({ include: [options.selector] } as ElementContext, {
+                runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] },
+                rules: options.rules,
+            });
         },
         { selector, rules: getNeedsReviewRulesConfig() },
     )) as AxeResults;
