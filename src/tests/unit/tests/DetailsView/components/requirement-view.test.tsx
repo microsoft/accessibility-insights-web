@@ -175,14 +175,9 @@ describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
         setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
-        getRequirementViewTitleMock.verifyAll();
-
-        getRequirementContextSectionMock.verifyAll();
-        // expect(getRequirementContextSectionMock).toHaveBeenCalledWith(
-        //     requirementContextSectionProps,
-        // );
-        // expect(getRequirementViewTitleMock).toHaveBeenCalledWith(requirementViewTitleProps);
         expect(rendered.getElement()).toMatchSnapshot();
+        getRequirementViewTitleMock.verifyAll();
+        getRequirementContextSectionMock.verifyAll();
     });
 
     test('does not render a next requirement button if there is no next requirement', () => {
@@ -261,15 +256,10 @@ describe('RequirementViewTest', () => {
                 }),
             )
             .returns(() => {
-                return nextRequirementExists
-                    ? {
-                          nextRequirement: otherRequirementStub,
-                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                      }
-                    : {
-                          nextRequirement: null,
-                          nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                      };
+                return {
+                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
+                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                };
             });
     }
 });
