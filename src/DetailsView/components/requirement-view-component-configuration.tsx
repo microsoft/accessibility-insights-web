@@ -44,4 +44,4 @@ export const getRequirementViewComponentConfigurationForQuickAssess = () => {
     };
 };
 
-export const getRequirementViewComponentCongfigurationForFastPass = () => null;
+export const getRequirementViewComponentConfigurationForFastPass = () => null;
