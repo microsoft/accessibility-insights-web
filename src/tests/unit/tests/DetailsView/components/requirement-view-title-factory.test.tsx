@@ -9,7 +9,6 @@ import {
     RequirementViewTitleFactoryProps,
 } from 'DetailsView/components/requirement-view-title-factory';
 import { shallow } from 'enzyme';
-import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
 

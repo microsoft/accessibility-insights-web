@@ -38,7 +38,7 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPage, ContentPageComponent } from 'views/content/content-page';
 
