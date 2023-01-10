@@ -155,6 +155,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState,
             );
 
+        const overviewHeadingIntroText =
+            selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;
+
         return (
             <DetailsViewBody
                 deps={deps}
@@ -186,6 +189,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 tabStopRequirementData={tabStopRequirementData}
+                overviewHeadingIntroText={overviewHeadingIntroText}
             />
         );
     };
