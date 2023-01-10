@@ -1,116 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RequirementViewTest renders RequirementContextSection if shouldShowRequirementContextBox is true 1`] = `
-<div
-  className="requirementView"
->
-  <div>
-    <RequirementViewTitle
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      shouldShowInfoButton={true}
-    />
-    <div
-      className="requirementContent"
-    >
-      <div
-        className="mainContent"
-      >
-        <React.Fragment>
-          <RequirementInstructions />
-          <RequirementTableSection
-            assessmentInstanceTableHandler={
-              {
-                "changeRequirementStatus": null,
-              }
-            }
-            assessmentNavState={
-              {
-                "selectedTestSubview": "test-requirement-name",
-                "selectedTestType": 0,
-              }
-            }
-            assessmentsProvider={[typemoq mock object]}
-            featureFlagStoreData={
-              {
-                "some feature flag": true,
-              }
-            }
-            instancesMap={{}}
-            isRequirementScanned={true}
-            manualRequirementResultMap={
-              {
-                "some manual test step result id": null,
-              }
-            }
-            pathSnippetStoreData={
-              {
-                "path": null,
-              }
-            }
-            requirement={
-              {
-                "key": "test-requirement-key",
-              }
-            }
-            selectedRequirementHasVisualHelper={false}
-          />
-        </React.Fragment>
-      </div>
-      <div
-        className="requirementContextBox"
-      >
-        <RequirementContextSection
-          deps={
-            {
-              "assessmentViewUpdateHandler": [typemoq mock object],
-              "getProvider": [Function],
-            }
-          }
-        />
-      </div>
-    </div>
-  </div>
-  <div
-    className="nextRequirementButtonContainer"
-  >
-    <NextRequirementButton
-      className="nextRequirementButton"
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      nextRequirement={
-        {
-          "key": "other-requirement-key",
-        }
-      }
-      nextRequirementVisualizationType={0}
-    />
-  </div>
-</div>
-`;
-
 exports[`RequirementViewTest renders with content from props 1`] = `
 <div
   className="requirementView"
 >
   <div>
-    <RequirementViewTitle
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      shouldShowInfoButton={true}
-    />
+    <div>
+      TITLE MOCK ELEMENT
+    </div>
     <div
       className="requirementContent"
     >
@@ -151,12 +48,32 @@ exports[`RequirementViewTest renders with content from props 1`] = `
             }
             requirement={
               {
+                "guidanceLinks": [
+                  {
+                    "href": "test-guidance-href",
+                    "text": "test-guidance-text",
+                  },
+                ],
+                "helpfulResourceLinks": [
+                  {
+                    "href": "test-resource-href",
+                    "text": "test-resource-text",
+                  },
+                ],
+                "infoAndExamples": {
+                  "pageTitle": "test-page-title",
+                },
                 "key": "test-requirement-key",
+                "name": "rest-requirement-name",
+                "whyItMatters": [Function],
               }
             }
             selectedRequirementHasVisualHelper={false}
           />
         </React.Fragment>
+      </div>
+      <div>
+        REQUIREMENT CONTEXT SECTION MOCK ELEMENT
       </div>
     </div>
   </div>

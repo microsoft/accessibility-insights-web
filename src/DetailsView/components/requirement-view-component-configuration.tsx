@@ -8,20 +8,20 @@ import {
     getNextRequirementConfigurationForQuickAssess,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import {
-    ShouldShowRequirementContextBox,
-    shouldShowRequirementContextBoxForAssessment,
-    shouldShowRequirementContextBoxForQuickAssess,
-} from 'DetailsView/components/requirement-view-should-show-context-box';
+    RequirementContextSectionFactory,
+    getRequirementContextSectionForAssessment,
+    getRequirementContextSectionForQuickAssess,
+} from 'DetailsView/components/requirement-view-context-section-factory';
 import {
-    ShouldShowInfoButton,
-    shouldShowInfoButtonForAssessment,
-    shouldShowInfoButtonForQuickAssess,
-} from 'DetailsView/components/requirement-view-should-show-info-button';
+    RequirementViewTitleFactory,
+    getRequirementViewTitleForAssessment,
+    getRequirementViewTitleForQuickAssess,
+} from 'DetailsView/components/requirement-view-title-factory';
 
 export type RequirementViewComponentConfiguration = {
     getNextRequirementButtonConfiguration: GetNextRequirementButtonConfiguration;
-    shouldShowInfoButton: ShouldShowInfoButton;
-    shouldShowRequirementContextBox: ShouldShowRequirementContextBox;
+    getRequirementViewTitle: RequirementViewTitleFactory;
+    getRequirementContextSection: RequirementContextSectionFactory;
 };
 
 export type GetRequirementViewComponentConfigurationProps = GetNextRequirementConfigurationProps;
@@ -31,16 +31,16 @@ export type GetRequirementViewComponentConfiguration = () => RequirementViewComp
 export const getRequirementViewComponentConfigurationForAssessment = () => {
     return {
         getNextRequirementButtonConfiguration: getNextRequirementConfigurationForAssessment,
-        shouldShowInfoButton: shouldShowInfoButtonForAssessment,
-        shouldShowRequirementContextBox: shouldShowRequirementContextBoxForAssessment,
+        getRequirementViewTitle: getRequirementViewTitleForAssessment,
+        getRequirementContextSection: getRequirementContextSectionForAssessment,
     };
 };
 
 export const getRequirementViewComponentConfigurationForQuickAssess = () => {
     return {
         getNextRequirementButtonConfiguration: getNextRequirementConfigurationForQuickAssess,
-        shouldShowInfoButton: shouldShowInfoButtonForQuickAssess,
-        shouldShowRequirementContextBox: shouldShowRequirementContextBoxForQuickAssess,
+        getRequirementViewTitle: getRequirementViewTitleForQuickAssess,
+        getRequirementContextSection: getRequirementContextSectionForQuickAssess,
     };
 };
 
