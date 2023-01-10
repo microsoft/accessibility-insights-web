@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HelpLinks linkInformation is shown properly 1`] = `
+<React.Fragment>
+  <div
+    className="helpLink"
+  >
+    <ExternalLink
+      deps={{}}
+      href="https://www.test1.com"
+    >
+      test1
+    </ExternalLink>
+  </div>
+  <div
+    className="helpLink"
+  >
+    <ExternalLink
+      deps={{}}
+      href="https://www.test2.com"
+    >
+      test2
+    </ExternalLink>
+  </div>
+  <div
+    className="helpLink"
+  >
+    <ExternalLink
+      deps={{}}
+      href="https://www.test3.com"
+    >
+      test3
+    </ExternalLink>
+  </div>
+</React.Fragment>
+`;
