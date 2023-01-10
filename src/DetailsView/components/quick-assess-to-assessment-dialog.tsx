@@ -43,18 +43,18 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
                 </p>
                 <DialogFooter>
                     <DefaultButton
-                        onClick={() =>
-                            dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog()
+                        onClick={async () =>
+                            await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog()
                         }
                         text={'Cancel'}
                     />
                     <PrimaryButton
-                        onClick={ev => {
+                        onClick={async ev => {
                             detailsViewActionMessageCreator.confirmDataTransferToAssessment(ev);
                             detailsViewActionMessageCreator.sendPivotItemClicked(
                                 DetailsViewPivotType[DetailsViewPivotType.assessment],
                             );
-                            dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
+                            await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
                         }}
                         text={'Continue to assessment'}
                         autoFocus={true}

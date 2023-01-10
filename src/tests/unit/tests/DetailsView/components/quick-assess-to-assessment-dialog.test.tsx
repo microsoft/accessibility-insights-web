@@ -46,14 +46,14 @@ describe('QuickAssessToAssessmentDialog', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test('onclick: cancel', () => {
+    test('onclick: cancel', async () => {
         props.isShown = true;
 
         const testSubject = shallow(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
         const onClick = testSubject.find(DefaultButton).prop('onClick');
-        onClick(null);
+        await onClick(null);
 
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
@@ -61,7 +61,7 @@ describe('QuickAssessToAssessmentDialog', () => {
         );
     });
 
-    test('onclick: continue to assessment', () => {
+    test('onclick: continue to assessment', async () => {
         props.isShown = true;
         const eventStub = {} as SupportedMouseEvent;
         const testSubject = shallow(
@@ -69,7 +69,7 @@ describe('QuickAssessToAssessmentDialog', () => {
         );
         const onClick = testSubject.find(PrimaryButton).prop('onClick');
 
-        onClick(eventStub as any);
+        await onClick(eventStub as any);
 
         detailsViewActionMessageCreatorMock.verify(
             m => m.confirmDataTransferToAssessment(eventStub),
