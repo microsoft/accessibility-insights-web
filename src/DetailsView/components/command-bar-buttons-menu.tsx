@@ -14,9 +14,9 @@ import styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
-    renderSaveAssessmentButton?: () => JSX.Element | null;
-    renderLoadAssessmentButton?: () => JSX.Element | null;
-    renderTransferToAssessmentButton?: () => JSX.Element | null;
+    saveAssessmentButton: JSX.Element | null;
+    loadAssessmentButton: JSX.Element | null;
+    transferToAssessmentButton: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
@@ -31,25 +31,23 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'export report',
             onRender: () => <div role="menuitem">{exportButton}</div>,
         });
-        if (props.renderSaveAssessmentButton && props.renderLoadAssessmentButton) {
+        if (props.saveAssessmentButton && props.loadAssessmentButton) {
             overflowItems.push(
                 {
                     key: 'save assessment',
-                    onRender: () => <div role="menuitem">{props.renderSaveAssessmentButton()}</div>,
+                    onRender: () => <div role="menuitem">{props.saveAssessmentButton}</div>,
                 },
                 {
                     key: 'load assessment',
-                    onRender: () => <div role="menuitem">{props.renderLoadAssessmentButton()}</div>,
+                    onRender: () => <div role="menuitem">{props.loadAssessmentButton}</div>,
                 },
             );
         }
 
-        if (props.renderTransferToAssessmentButton) {
+        if (props.transferToAssessmentButton) {
             overflowItems.push({
                 key: 'transfer to assessment',
-                onRender: () => (
-                    <div role="menuitem">{props.renderTransferToAssessmentButton()}</div>
-                ),
+                onRender: () => <div role="menuitem">{props.transferToAssessmentButton}</div>,
             });
         }
 

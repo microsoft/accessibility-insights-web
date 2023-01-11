@@ -11,7 +11,7 @@ describe('NullComponent', () => {
 });
 
 describe('getNullComponent', () => {
-    test('it returns NullComponent', () => {
-        expect(getNullComponent()).toMatchSnapshot();
+    test('it returns null', () => {
+        expect(getNullComponent()).toBeNull();
     });
 });

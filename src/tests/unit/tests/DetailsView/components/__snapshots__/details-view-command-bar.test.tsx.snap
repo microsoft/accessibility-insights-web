@@ -1,22 +1,224 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
-"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
-  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
-    <span id="switch-to-target">
+<div
+  aria-label="command bar"
+  className="detailsViewCommandBar"
+  role="region"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
       Target page: 
     </span>
-    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
-      <span className="targetPageTitle">
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    >
+      <span
+        className="targetPageTitle"
+      >
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} renderSaveAssessmentButton={[Function (anonymous)]} renderLoadAssessmentButton={[Function (anonymous)]} renderTransferToAssessmentButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="none" dismissDialog={[Function (anonymous)]} />
-</div>"
+  <CommandBarButtonsMenu
+    buttonRef={[Function]}
+    getStartOverMenuItem={[Function]}
+    loadAssessmentButton={
+      <div>
+        Load assessment
+      </div>
+    }
+    renderExportReportButton={[Function]}
+    saveAssessmentButton={
+      <div>
+        Save assessment
+      </div>
+    }
+    transferToAssessmentButton={
+      <div>
+        Transfer to assessment stub
+      </div>
+    }
+  />
+  <InvalidLoadAssessmentDialog
+    assessmentStoreData={
+      {
+        "persistedTabInfo": {
+          "detailsViewId": undefined,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
+    deps={
+      {
+        "detailsViewActionMessageCreator": [typemoq mock object],
+      }
+    }
+    isOpen={false}
+    narrowModeStatus={
+      {
+        "isCommandBarCollapsed": true,
+      }
+    }
+    onClose={[Function]}
+    scanMetadata={
+      {
+        "targetAppInfo": {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "LoadAssessmentButton": [Function],
+        "ReportExportDialogFactory": [Function],
+        "SaveAssessmentButton": [Function],
+        "StartOverComponentFactory": {
+          "getStartOverComponent": [Function],
+        },
+        "TransferToAssessmentButton": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+  <LoadAssessmentDialog
+    assessmentStoreData={
+      {
+        "persistedTabInfo": {
+          "detailsViewId": undefined,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
+    deps={
+      {
+        "detailsViewActionMessageCreator": [typemoq mock object],
+      }
+    }
+    isOpen={false}
+    loadedAssessmentData={null}
+    narrowModeStatus={
+      {
+        "isCommandBarCollapsed": true,
+      }
+    }
+    onClose={[Function]}
+    prevTab={
+      {
+        "detailsViewId": undefined,
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+    scanMetadata={
+      {
+        "targetAppInfo": {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "LoadAssessmentButton": [Function],
+        "ReportExportDialogFactory": [Function],
+        "SaveAssessmentButton": [Function],
+        "StartOverComponentFactory": {
+          "getStartOverComponent": [Function],
+        },
+        "TransferToAssessmentButton": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabId={5}
+    tabStoreData={
+      {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+  <StartOverDialog
+    assessmentStoreData={
+      {
+        "persistedTabInfo": {
+          "detailsViewId": undefined,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
+    deps={
+      {
+        "detailsViewActionMessageCreator": [typemoq mock object],
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      {
+        "isCommandBarCollapsed": true,
+      }
+    }
+    scanMetadata={
+      {
+        "targetAppInfo": {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "LoadAssessmentButton": [Function],
+        "ReportExportDialogFactory": [Function],
+        "SaveAssessmentButton": [Function],
+        "StartOverComponentFactory": {
+          "getStartOverComponent": [Function],
+        },
+        "TransferToAssessmentButton": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
@@ -876,19 +1078,6 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
 </div>
 `;
 
-exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
-<InsightsCommandButton
-  data-automation-id="load-assessment-button"
-  iconProps={
-    {
-      "iconName": "FabricOpenFolderHorizontal",
-    }
-  }
->
-  Load assessment
-</InsightsCommandButton>
-`;
-
 exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = `
 <div
   aria-label="command bar"
@@ -1514,81 +1703,6 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
   />
 </div>
-`;
-
-exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
-<React.Fragment>
-  <InsightsCommandButton
-    download="download"
-    href="url"
-    iconProps={
-      {
-        "iconName": "Save",
-      }
-    }
-    onClick={[Function]}
-  >
-    Save assessment
-  </InsightsCommandButton>
-  <Dialog
-    dialogContentProps={
-      {
-        "title": "Assessment saved",
-        "type": 0,
-      }
-    }
-    hidden={true}
-    modalProps={
-      {
-        "containerClassName": "insightsDialogMainOverride",
-        "isBlocking": false,
-      }
-    }
-    onDismiss={[Function]}
-  >
-    <div
-      className="dialogBody"
-    >
-      To load this assessment, use the 
-      <strong>
-        Load assessment
-      </strong>
-       button in the Accessibility Insights Assessment command bar.
-    </div>
-    <StyledDialogFooterBase>
-      <Stack
-        horizontal={true}
-        horizontalAlign="space-between"
-        tokens={
-          {
-            "childrenGap": 6,
-          }
-        }
-        verticalAlign="center"
-        wrap={true}
-      >
-        <StackItem
-          disableShrink={true}
-          grow={true}
-        >
-          <StyledCheckboxBase
-            label="Don't show again"
-            onChange={[Function]}
-            value={false}
-          />
-        </StackItem>
-        <StackItem
-          grow={true}
-        >
-          <CustomizedPrimaryButton
-            onClick={[Function]}
-            text="Got it"
-          />
-        </StackItem>
-      </Stack>
-    </StyledDialogFooterBase>
-  </Dialog>
-</React.Fragment>
 `;
 
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
