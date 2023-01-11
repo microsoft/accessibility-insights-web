@@ -25,17 +25,15 @@
     }
 
     .requirement-content {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        @media screen and (min-width: 1200px) {
+            display: grid;
+            grid-template-columns: 1fr 308px;
+        }
+
         padding-left: 32px;
 
         .main-content {
             margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 50%;
-            align-items: flex-start;
             width: 90%;
             margin-right: 32px;
 
