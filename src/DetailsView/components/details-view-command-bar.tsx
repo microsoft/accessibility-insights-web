@@ -197,6 +197,7 @@ export class DetailsViewCommandBar extends React.Component<
                 renderExportReportButton={this.renderExportButton}
                 renderSaveAssessmentButton={this.renderSaveAssessmentButton}
                 renderLoadAssessmentButton={this.renderLoadAssessmentButton}
+                renderTransferToAssessmentButton={this.renderTransferToAssessmentButton}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;

@@ -12,7 +12,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} renderSaveAssessmentButton={[Function (anonymous)]} renderLoadAssessmentButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} renderSaveAssessmentButton={[Function (anonymous)]} renderLoadAssessmentButton={[Function (anonymous)]} renderTransferToAssessmentButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
   <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
   <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="none" dismissDialog={[Function (anonymous)]} />

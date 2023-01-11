@@ -16,6 +16,7 @@ export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
     renderSaveAssessmentButton?: () => JSX.Element | null;
     renderLoadAssessmentButton?: () => JSX.Element | null;
+    renderTransferToAssessmentButton?: () => JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
@@ -42,6 +43,16 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 },
             );
         }
+
+        if (props.renderTransferToAssessmentButton) {
+            overflowItems.push({
+                key: 'transfer to assessment',
+                onRender: () => (
+                    <div role="menuitem">{props.renderTransferToAssessmentButton()}</div>
+                ),
+            });
+        }
+
         overflowItems.push({
             key: 'start over',
             ...props.getStartOverMenuItem(),
