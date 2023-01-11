@@ -15,6 +15,7 @@
     .next-requirement-button-container {
         display: flex;
         flex-direction: column;
+        align-self: flex-end;
     }
 
     .next-requirement-button {
@@ -23,13 +24,40 @@
         margin-top: 1vh;
     }
 
-    .main-content {
-        margin-top: 10px;
+    .requirement-content {
+        @media screen and (min-width: 1200px) {
+            display: grid;
+            grid-template-columns: 1fr 308px;
+        }
 
-        h3 {
-            @include h3;
+        padding-left: 32px;
+
+        .main-content {
+            margin-top: 10px;
+            width: 90%;
+            margin-right: 32px;
+
+            h3 {
+                @include h3;
+            }
         }
     }
+
+    .requirement-context-box {
+        width: 308px;
+        height: fit-content;
+        margin-right: 32px;
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+            padding-top: 0;
+            margin-bottom: 40px;
+            margin-top: 24px;
+        }
+    }
+}
+
+:global(.details-view-spinner) {
+    width: 100%;
 }
 
 :global(.visual-helper) {

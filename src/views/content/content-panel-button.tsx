@@ -16,7 +16,7 @@ export type ContentPanelButtonProps = {
     contentTitle: string;
     deps: ContentPanelButtonDeps;
     reference: ContentReference;
-    iconName: string;
+    iconName?: string;
 };
 
 export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
