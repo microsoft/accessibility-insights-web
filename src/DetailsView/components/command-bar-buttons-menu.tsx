@@ -14,9 +14,9 @@ import styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
-    saveAssessmentButton: JSX.Element | null;
-    loadAssessmentButton: JSX.Element | null;
-    transferToAssessmentButton: JSX.Element | null;
+    saveAssessmentButton?: JSX.Element | null;
+    loadAssessmentButton?: JSX.Element | null;
+    transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
