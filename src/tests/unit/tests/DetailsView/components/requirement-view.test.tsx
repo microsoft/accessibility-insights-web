@@ -191,7 +191,6 @@ describe('RequirementViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
         getRequirementViewTitleMock.verifyAll();
@@ -257,6 +256,4 @@ describe('RequirementViewTest', () => {
             currentTarget: givenProps.currentTarget,
         };
     }
-
-    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {}
 });
