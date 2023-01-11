@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransferToAssessmentButton getTransferToAssessmentButton 1`] = `
+<TransferToAssessmentButton
+  deps={
+    {
+      "dataTransferViewController": [typemoq mock object],
+    }
+  }
+/>
+`;
+
+exports[`TransferToAssessmentButton render 1`] = `
+<InsightsCommandButton
+  iconProps={
+    {
+      "iconName": "fabricMoveToFolder",
+    }
+  }
+  onClick={[Function]}
+>
+  Move to assessment
+</InsightsCommandButton>
+`;

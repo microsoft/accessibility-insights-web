@@ -6,6 +6,7 @@ import {
     FastPassLeftNavHamburgerButton,
     MediumPassLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
+import { getNullComponent } from 'common/components/null-component';
 import {
     AssessmentFunctionalitySwitcher,
     SharedAssessmentObjects,
@@ -17,6 +18,7 @@ import {
     LoadAssessmentButtonFactory,
     ReportExportDialogFactory,
     SaveAssessmentButtonFactory,
+    TransferToAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getAssessmentStoreData,
@@ -58,6 +60,7 @@ import {
     FastpassStartOverFactory,
     StartOverComponentFactory,
 } from 'DetailsView/components/start-over-component-factory';
+import { getTransferToAssessmentButton } from 'DetailsView/components/transfer-to-assessment-button';
 import {
     assessmentWarningConfiguration,
     fastpassWarningConfiguration,
@@ -97,6 +100,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     shouldShowReportExportButton: ShouldShowReportExportButton;
     SaveAssessmentButton: SaveAssessmentButtonFactory;
     LoadAssessmentButton: LoadAssessmentButtonFactory;
+    TransferToAssessmentButton: TransferToAssessmentButtonFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -127,6 +131,7 @@ const detailsViewSwitcherNavs: {
         shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
         SaveAssessmentButton: getSaveButtonForAssessment,
         LoadAssessmentButton: getLoadButtonForAssessment,
+        TransferToAssessmentButton: getNullComponent,
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -143,6 +148,7 @@ const detailsViewSwitcherNavs: {
         shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
+        TransferToAssessmentButton: getTransferToAssessmentButton,
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: MediumPassLeftNav,
         getSelectedDetailsView: getQuickAssessSelectedDetailsView,
@@ -160,6 +166,7 @@ const detailsViewSwitcherNavs: {
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
+        TransferToAssessmentButton: getNullComponent,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
