@@ -18,7 +18,6 @@ import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
-import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import {
     RequirementView,
     RequirementViewDeps,

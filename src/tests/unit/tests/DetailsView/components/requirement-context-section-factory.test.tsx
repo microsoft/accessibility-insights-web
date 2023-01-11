@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { RequirementContextSectionDeps } from 'DetailsView/components/requirement-context-section';
 import {
     RequirementContextSectionFactoryProps,
     getRequirementContextSectionForAssessment,
     getRequirementContextSectionForQuickAssess,
 } from 'DetailsView/components/requirement-view-context-section-factory';
-import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 
 import { shallow } from 'enzyme';
 import { ContentPage, ContentPageComponent } from 'views/content/content-page';
