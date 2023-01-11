@@ -16,6 +16,7 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import * as React from 'react';
 import { withStoreSubscription } from '../common/components/with-store-subscription';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -63,6 +64,7 @@ export interface DetailsViewContainerState {
     permissionsStateStoreData: PermissionsStateStoreData;
     tabStopsViewStoreData: TabStopsViewStoreData;
     cardsViewStoreData: CardsViewStoreData;
+    dataTransferViewStoreData: DataTransferViewStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {

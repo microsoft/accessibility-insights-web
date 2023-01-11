@@ -23,6 +23,7 @@ import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
+import { DataTransferViewStore } from 'DetailsView/data-transfer-view-store';
 import { It, Mock, MockBehavior } from 'typemoq';
 import { PermissionsStateStore } from '../../../../background/stores/global/permissions-state-store';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
@@ -65,6 +66,7 @@ export class StoreMocks {
     public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
     public permissionsStateStoreMock = Mock.ofType(PermissionsStateStore, MockBehavior.Strict);
     public tabStopsViewStoreMock = Mock.ofType(TabStopsViewStore, MockBehavior.Strict);
+    public dataTransferViewStoreMock = Mock.ofType(DataTransferViewStore, MockBehavior.Strict);
     public needsReviewScanResultStoreMock = Mock.ofType(
         NeedsReviewScanResultStore,
         MockBehavior.Strict,
@@ -168,6 +170,7 @@ export class StoreMocks {
         null,
     ).getDefaultState();
     public cardsViewStoreData = new CardsViewStore(null).getDefaultState();
+    public dataTransferViewStoreData = new DataTransferViewStore(null).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);

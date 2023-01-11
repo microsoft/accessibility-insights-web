@@ -49,6 +49,11 @@ exports[`DetailsViewContent render renders normally 1`] = `
       }
     }
     automatedChecksCardsViewData={{}}
+    dataTransferViewStoreData={
+      {
+        "showQuickAssessToAssessmentConfirmDialog": false,
+      }
+    }
     deps={
       {
         "detailsViewActionMessageCreator": [typemoq mock object],

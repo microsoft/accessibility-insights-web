@@ -304,6 +304,7 @@ describe(DetailsViewContent.displayName, () => {
                             storeMocks.needsReviewCardSelectionStoreData,
                         cardSelectionStoreData: storeMocks.cardSelectionStoreData,
                         tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
+                        dataTransferViewStoreData: storeMocks.dataTransferViewStoreData,
                     }
                 );
             });
@@ -369,6 +370,7 @@ describe(DetailsViewContent.displayName, () => {
             tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
             cardsViewStoreData: storeMocks.cardsViewStoreData,
             quickAssessStoreData: storeMocks.quickAssessStoreData,
+            dataTransferViewStoreData: storeMocks.dataTransferViewStoreData,
         };
     }
 });
