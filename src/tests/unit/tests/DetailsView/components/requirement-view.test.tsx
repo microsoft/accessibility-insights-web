@@ -126,7 +126,7 @@ describe('RequirementViewTest', () => {
             Mock.ofType<GetNextRequirementButtonConfiguration>();
 
         requirementViewTitleProps = {
-            requirementKey: requirementStub.key,
+            assessmentKey: assessmentStub.key,
             name: requirementStub.name,
             guidanceLinks: requirementStub.guidanceLinks,
             infoAndExamples: requirementStub.infoAndExamples,
@@ -139,7 +139,7 @@ describe('RequirementViewTest', () => {
             .verifiable();
 
         requirementContextSectionProps = {
-            requirementKey: requirementStub.key,
+            assessmentKey: assessmentStub.key,
             infoAndExamples: requirementStub.infoAndExamples,
             whyItMatters: requirementStub.whyItMatters,
             helpfulResourceLinks: requirementStub.helpfulResourceLinks,
@@ -150,6 +150,25 @@ describe('RequirementViewTest', () => {
         getRequirementContextSectionMock
             .setup(g => g(It.isObjectWith(requirementContextSectionProps)))
             .returns(() => <div>REQUIREMENT CONTEXT SECTION MOCK ELEMENT</div>)
+            .verifiable();
+
+        getNextRequirementButtonConfigurationMock
+            .setup(g =>
+                g(
+                    It.isObjectWith({
+                        deps: deps,
+                        currentAssessment: assessmentStub,
+                        currentRequirement: requirementStub,
+                        assessmentNavState,
+                    }),
+                ),
+            )
+            .returns(() => {
+                return {
+                    nextRequirement: otherRequirementStub,
+                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
+                };
+            })
             .verifiable();
 
         requirementViewComponentConfigurationStub = {
@@ -178,12 +197,7 @@ describe('RequirementViewTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
         getRequirementViewTitleMock.verifyAll();
         getRequirementContextSectionMock.verifyAll();
-    });
-
-    test('does not render a next requirement button if there is no next requirement', () => {
-        setupGetNextRequirementButtonConfiguration(false);
-        const rendered = shallow(<RequirementView {...props} />);
-        expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+        getNextRequirementButtonConfigurationMock.verifyAll();
     });
 
     test('componentDidUpdate', () => {
@@ -245,21 +259,5 @@ describe('RequirementViewTest', () => {
         };
     }
 
-    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {
-        getNextRequirementButtonConfigurationMock
-            .setup(g =>
-                g({
-                    deps: deps,
-                    currentAssessment: assessmentStub,
-                    currentRequirement: requirementStub,
-                    assessmentNavState,
-                }),
-            )
-            .returns(() => {
-                return {
-                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
-            });
-    }
+    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {}
 });

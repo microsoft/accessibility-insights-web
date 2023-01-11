@@ -17,7 +17,7 @@ describe('RequirementViewTitleFactoryTest', () => {
     beforeEach(() => {
         props = {
             deps: {} as RequirementViewTitleDeps,
-            requirementKey: 'test-requirement-key',
+            assessmentKey: 'test-assessment-key',
             name: 'test-requirement-name',
             guidanceLinks: [{ href: 'test-guidance-href', text: 'test-guidance-text' }],
             infoAndExamples: { pageTitle: 'test-page-title' } as ContentPageComponent,
@@ -50,7 +50,7 @@ describe('RequirementViewTitleFactoryTest', () => {
         });
 
         it('does render info button and guidance tags for automated checks', () => {
-            props.requirementKey = AutomatedChecks.key;
+            props.assessmentKey = AutomatedChecks.key;
             const rendered = shallow(getRequirementViewTitleForQuickAssess(props));
             expect(rendered.find(GuidanceTags).prop('links')).toBe(props.guidanceLinks);
             expect(rendered.find(ContentPanelButton).prop('reference')).toBe(props.infoAndExamples);

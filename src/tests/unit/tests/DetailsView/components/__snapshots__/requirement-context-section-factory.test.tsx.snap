@@ -5,6 +5,7 @@ exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQui
   className="test-class-name"
 >
   <RequirementContextSection
+    assessmentKey="test-assessment-key"
     className="test-class-name"
     deps={{}}
     helpfulResourceLinks={
@@ -20,7 +21,6 @@ exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQui
         "pageTitle": "test-page-title",
       }
     }
-    requirementKey="test-requirement-key"
     whyItMatters={[Function]}
   />
 </div>

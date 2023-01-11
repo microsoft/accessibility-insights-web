@@ -119,7 +119,6 @@ export class RequirementView extends React.Component<RequirementViewProps> {
             );
         const isRequirementScanned =
             this.props.assessmentData.testStepStatus[requirement.key].isStepScanned;
-        const requirementKey = requirement.key;
         const requirementHasVisualHelper = !!requirement.getVisualHelperToggle;
 
         const visualHelperToggleConfig: VisualHelperToggleConfig = {
@@ -134,8 +133,9 @@ export class RequirementView extends React.Component<RequirementViewProps> {
             ? requirement.getVisualHelperToggle(visualHelperToggleConfig)
             : null;
 
+        const assessmentKey = assessment.key;
         const requirementTitleConfig: RequirementViewTitleFactoryProps = {
-            requirementKey,
+            assessmentKey,
             deps: this.props.deps,
             name: requirement.name,
             guidanceLinks: requirement.guidanceLinks,
@@ -143,7 +143,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
         };
 
         const requirementContextSectionConfig: RequirementContextSectionFactoryProps = {
-            requirementKey,
+            assessmentKey,
             className: styles.requirementContextBox,
             deps: this.props.deps,
             whyItMatters: requirement.whyItMatters,

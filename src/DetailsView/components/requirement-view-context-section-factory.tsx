@@ -8,7 +8,7 @@ import {
 import * as React from 'react';
 
 export type RequirementContextSectionFactoryProps = {
-    requirementKey: string;
+    assessmentKey: string;
     className: string;
 } & RequirementContextSectionProps;
 
@@ -25,7 +25,7 @@ export function getRequirementContextSectionForAssessment(
 export function getRequirementContextSectionForQuickAssess(
     props: RequirementContextSectionFactoryProps,
 ): JSX.Element | null {
-    if (props.requirementKey === AutomatedChecks.key) {
+    if (props.assessmentKey === AutomatedChecks.key) {
         return null;
     }
 

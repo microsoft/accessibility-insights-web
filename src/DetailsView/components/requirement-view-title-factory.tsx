@@ -16,7 +16,7 @@ export interface RequirementViewTitleFactoryProps {
     name: string;
     guidanceLinks: HyperlinkDefinition[];
     infoAndExamples: ContentPageComponent;
-    requirementKey: string;
+    assessmentKey: string;
 }
 
 export type RequirementViewTitleFactory = (props: RequirementViewTitleFactoryProps) => JSX.Element;
@@ -41,7 +41,7 @@ export function getRequirementViewTitleForAssessment(
 export function getRequirementViewTitleForQuickAssess(
     props: RequirementViewTitleFactoryProps,
 ): JSX.Element {
-    if (props.requirementKey === AutomatedChecks.key) {
+    if (props.assessmentKey === AutomatedChecks.key) {
         return getRequirementViewTitleForAssessment(props);
     }
     return <h1 className={styles.requirementViewTitle}>{props.name}</h1>;
