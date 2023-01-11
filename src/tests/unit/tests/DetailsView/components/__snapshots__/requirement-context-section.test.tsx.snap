@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementContextSectionTest renders content from props 1`] = `
+<section
+  className="requirementContextContainer"
+>
+  <h3
+    className="contextHeading"
+  >
+    Why it matters
+  </h3>
+  <ContentPageComponent
+    deps={{}}
+  />
+  <h3
+    className="contextHeading"
+  >
+    Helpful resources
+  </h3>
+  <div
+    className="contextLinks"
+  >
+    <ContentPanelButton
+      contentTitle="Info and examples"
+      deps={{}}
+      reference={
+        {
+          "pageTitle": "test-page-title",
+        }
+      }
+    >
+      Info and examples
+    </ContentPanelButton>
+  </div>
+</section>
+`;
+
+exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
+<section
+  className="requirementContextContainer"
+>
+  <h3
+    className="contextHeading"
+  >
+    Why it matters
+  </h3>
+  <ContentPageComponent
+    deps={{}}
+  />
+  <h3
+    className="contextHeading"
+  >
+    Helpful resources
+  </h3>
+  <div
+    className="contextLinks"
+  >
+    <ContentPanelButton
+      contentTitle="Info and examples"
+      deps={{}}
+      reference={
+        {
+          "pageTitle": "test-page-title",
+        }
+      }
+    >
+      Info and examples
+    </ContentPanelButton>
+    <HelpLinks
+      deps={{}}
+      linkInformation={
+        [
+          {
+            "href": "test-guidance-href",
+            "text": "test-guidance-text",
+          },
+        ]
+      }
+    />
+  </div>
+</section>
+`;

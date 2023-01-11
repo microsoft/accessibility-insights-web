@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    BaseActionPayload,
     OnDetailsViewPivotSelected,
     SetAllUrlsPermissionStatePayload,
 } from 'background/actions/action-payloads';
@@ -176,7 +177,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
-    test('sendPivotItemClicked', () => {
+    test('sendPivotItemClicked: event is not null', () => {
         const pivot = DetailsViewPivotType.assessment;
         const telemetryData: DetailsViewPivotSelectedTelemetryData = {
             triggeredBy: 'keypress',
@@ -202,6 +203,27 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetryData);
 
         testSubject.sendPivotItemClicked(DetailsViewPivotType[pivot], mouseEventStub);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('sendPivotItemClicked: event is null', () => {
+        const pivot = DetailsViewPivotType.assessment;
+
+        const expectedPayload: OnDetailsViewPivotSelected = {
+            telemetry: null,
+            pivotKey: pivot,
+        };
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.DetailsView.PivotSelect,
+            payload: expectedPayload,
+        };
+
+        testSubject.sendPivotItemClicked(DetailsViewPivotType[pivot], null);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
@@ -424,6 +446,36 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         };
 
         testSubject.changeRightContentPanel(viewTypeStub);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('confirmDataTransferToAssessment', () => {
+        const telemetryData: BaseTelemetryData = {
+            triggeredBy: 'keypress',
+            source: testSource,
+        };
+
+        const payload: BaseActionPayload = {
+            telemetry: telemetryData,
+        };
+
+        const expectedMessage = {
+            messageType: Messages.DataTransfer.InitiateTransferDataToAssessment,
+            payload: payload,
+        };
+        const mouseEventStub = {} as any;
+
+        telemetryFactoryMock
+            .setup(tf =>
+                tf.withTriggeredByAndSource(mouseEventStub, TelemetryEventSource.DetailsView),
+            )
+            .returns(() => telemetryData);
+
+        testSubject.confirmDataTransferToAssessment(mouseEventStub);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

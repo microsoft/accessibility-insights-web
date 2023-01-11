@@ -3053,10 +3053,10 @@
   resolved "https://registry.yarnpkg.com/@types/verror/-/verror-1.10.5.tgz#2a1413aded46e67a1fe2386800e291123ed75eb1"
   integrity sha512-9UjMCHK5GPgQRoNbqdLIAvAy0EInuiqbW0PBMtVP6B5B2HQJlvoJHM+KodPZMEjOa5VkSc+5LH7xy+cUzQdmHw==
 
-"@types/webextension-polyfill@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.9.1.tgz#fcb5c352e2e461d0287774db89bc326b15b47844"
-  integrity sha512-6aNzPIhqKlAV9t06nwSH3/veAceYE2dS2RVFZI8V1+UXHqsFNB6cRwxNmheiBvEGRc45E/gyZNzH0xAYIC27KA==
+"@types/webextension-polyfill@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@types/webextension-polyfill/-/webextension-polyfill-0.9.2.tgz#4459174d25e83b38fd6d2b2cacb0fc87ad99dfa4"
+  integrity sha512-op8YeoK60K6/GIx3snWs3JowBZ+/aeSnZzZuuwynA7VARWfzr3st9aQNk9RWfoBx5xqlNZjAsh2QttPUZnabCw==
 
 "@types/yargs-parser@*":
   version "20.2.0"
@@ -3532,10 +3532,10 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.12.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-android-device-list@^1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.8.tgz#fdebccfcaba45ce8c646debbef8839591e48cbed"
-  integrity sha512-U17fI3nmlFRkMeG/fRQh2GTsFb+mt+Ygz7h39t8+ACdwGMvvFXqZt7yMejVPEXhcQlIMZYc4E8ZvVhExHWvs7w==
+android-device-list@^1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.9.tgz#c3b63010a0c3d2c822feffb514dfc866b258d49c"
+  integrity sha512-h8uJ538gWB2OqDDwKwxkI97lQTR5CcTGPkg8TUn66lv0IUJryHi0SJSvMA2eqo47LwDDHrf5LN/IuRA2uaU1oQ==
 
 ansi-align@^3.0.0:
   version "3.0.1"
@@ -4779,10 +4779,10 @@ commander@^5.0.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
   integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
-commander@^9.4.1:
-  version "9.4.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
-  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
+commander@^9.4.1, commander@^9.5.0:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
+  integrity sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==
 
 common-ancestor-path@^1.0.1:
   version "1.0.1"

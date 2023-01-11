@@ -167,6 +167,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 pathSnippetStoreData={storeState.pathSnippetStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 cardsViewStoreData={storeState.cardsViewStoreData}
+                dataTransferViewStoreData={storeState.dataTransferViewStoreData}
                 selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}

@@ -48,4 +48,14 @@ describe('ContentPanelButton', () => {
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
+
+    it('renders without iconName', () => {
+        const wrapped = shallow(
+            <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
+                TEXT
+            </ContentPanelButton>,
+        );
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
 });

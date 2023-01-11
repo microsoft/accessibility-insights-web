@@ -7,7 +7,7 @@ import {
     HelpLinks,
     HelpLinksDeps,
     HelpLinksProps,
-} from '../../../../../../DetailsView/components/overview-content/help-links';
+} from '../../../../../DetailsView/components/help-links';
 
 describe('HelpLinks', () => {
     const deps = {} as HelpLinksDeps;
