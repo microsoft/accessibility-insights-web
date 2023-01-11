@@ -59,11 +59,14 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
+import { DataTransferViewActions } from 'DetailsView/components/tab-stops/data-transfer-view-actions';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
+import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
+import { DataTransferViewStore } from 'DetailsView/data-transfer-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import {
@@ -268,6 +271,13 @@ if (tabId != null) {
             cardsViewStore.initialize();
             const cardsViewController = new CardsViewController(cardsViewActions);
 
+            const dataTransferViewActions = new DataTransferViewActions();
+            const dataTransferViewStore = new DataTransferViewStore(dataTransferViewActions);
+            dataTransferViewStore.initialize();
+            const dataTransferViewController = new DataTransferViewController(
+                dataTransferViewActions,
+            );
+
             const storesHub = new ClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -286,6 +296,7 @@ if (tabId != null) {
                 userConfigStore,
                 tabStopsViewStore,
                 cardsViewStore,
+                dataTransferViewStore,
             ]);
 
             const telemetrySanitizer = new ExceptionTelemetrySanitizer(
@@ -674,6 +685,7 @@ if (tabId != null) {
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStoreData,
                 getGetAssessmentSummaryModelFromProviderAndStatusData:
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
+                dataTransferViewController,
             };
 
             const renderer = new DetailsViewRenderer(
