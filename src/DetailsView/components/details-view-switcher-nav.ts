@@ -34,6 +34,10 @@ import {
 } from 'DetailsView/components/load-assessment-button-factory';
 import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
+    overviewHeadingIntroTextForAssessment,
+    overviewHeadingIntroTextForQuickAssess,
+} from 'DetailsView/components/overview-content/overview-heading-intro-text';
+import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
     getReportExportDialogForMediumPass,
@@ -106,6 +110,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
     getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
+    overviewHeadingIntroText: string;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -137,6 +142,7 @@ const detailsViewSwitcherNavs: {
         getSelectedAssessmentStoreData: getAssessmentStoreData,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForAssessment,
+        overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
     },
     [DetailsViewPivotType.mediumPass]: {
         CommandBar: MediumPassCommandBar,
@@ -154,6 +160,7 @@ const detailsViewSwitcherNavs: {
         shouldShowQuickAssessRequirementView: true,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForQuickAssess,
+        overviewHeadingIntroText: overviewHeadingIntroTextForQuickAssess,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -169,6 +176,7 @@ const detailsViewSwitcherNavs: {
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForFastPass,
+        overviewHeadingIntroText: null,
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
     },

@@ -9,6 +9,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { GetSelectedAssessmentSummaryModelFromProviderAndStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
+import { OverviewHeading } from 'DetailsView/components/overview-content/overview-heading';
 import * as React from 'react';
 
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
@@ -16,7 +17,6 @@ import { AssessmentReportSummary } from 'reports/components/assessment-report-su
 
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
-import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -54,12 +54,19 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    overviewHeadingIntroText: string;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
 
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
+    const {
+        deps,
+        assessmentStoreData,
+        tabStoreData,
+        featureFlagStoreData,
+        overviewHeadingIntroText,
+    } = props;
     const {
         getProvider,
         assessmentsProviderWithFeaturesEnabled,
@@ -90,7 +97,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className={styles.overviewTextSummarySection}>
-                <OverviewHeading />
+                <OverviewHeading introText={overviewHeadingIntroText} />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
             <section className={styles.overviewHelpSection}>
