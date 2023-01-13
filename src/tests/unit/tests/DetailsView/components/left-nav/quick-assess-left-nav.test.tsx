@@ -14,12 +14,12 @@ import {
     TestRequirementLeftNavLink,
 } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
+import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import {
     QuickAssessLeftNav,
     QuickAssessLeftNavDeps,
     QuickAssessLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/quick-assess-left-nav';
-import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe(QuickAssessLeftNav.displayName, () => {

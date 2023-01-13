@@ -34,11 +34,11 @@ import {
     getLoadButtonForAssessment,
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
-import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import {
     overviewHeadingIntroTextForAssessment,
     overviewHeadingIntroTextForQuickAssess,
 } from 'DetailsView/components/overview-content/overview-heading-intro-text';
+import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
