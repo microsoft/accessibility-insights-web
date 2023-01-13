@@ -127,6 +127,34 @@ describe('Details View ->', () => {
             });
         });
 
+        describe.each([true, false])('With high contrast mode=%s', highContrastMode => {
+            const { commandBarMenuButtonSelectors } = navMenuSelectors;
+            const commandBarWindowWidth = narrowModeThresholds.collapseCommandBarThreshold - 1;
+
+            describe.each`
+                componentName           | componentSelectors               | width
+                ${'command bar button'} | ${commandBarMenuButtonSelectors} | ${commandBarWindowWidth}
+            `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
+                beforeAll(async () => {
+                    await resizeDetailsView(width, componentSelectors.collapsed);
+                });
+
+                describe(`with ${componentName} expanded`, () => {
+                    beforeAll(async () => {
+                        await setButtonExpandedState(componentSelectors, true);
+                    });
+
+                    afterAll(async () => {
+                        await setButtonExpandedState(componentSelectors, false);
+                    });
+
+                    it(`should pass accessibility validation with command bar menu open and high contrast mode=%s`, async () => {
+                        await scanForA11yIssuesWithHighContrast(highContrastMode);
+                    });
+                });
+            });
+        });
+
         async function expandCard(): Promise<void> {
             await detailsViewPage.waitForSelector(fastPassAutomatedChecksSelectors.expandButton, {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,

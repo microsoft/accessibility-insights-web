@@ -5,3 +5,5 @@ import { NamedFC } from 'common/react/named-fc';
 export const NullComponent = NamedFC('NullComponent', () => {
     return null;
 });
+
+export const getNullComponent = () => null;

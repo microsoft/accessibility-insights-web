@@ -60,6 +60,7 @@ export function initializeFabricIcons(): void {
             mail: '\uE715',
             medical: '\uEAD4',
             more: '\uE712',
+            fabricMoveToFolder: '\uF0A5',
             offlineStorage: '\uEC8C',
             play: '\uE768',
             refresh: '\uE72C',

@@ -43,6 +43,10 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
+import {
+    TransferToAssessmentButtonDeps,
+    TransferToAssessmentButtonProps,
+} from 'DetailsView/components/transfer-to-assessment-button';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -56,6 +60,7 @@ export type DetailsViewCommandBarDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & SaveAssessmentButtonFactoryDeps &
     LoadAssessmentButtonDeps &
+    TransferToAssessmentButtonDeps &
     StartOverFactoryDeps &
     LoadAssessmentDialogDeps &
     ReportExportDialogFactoryDeps &
@@ -75,6 +80,9 @@ export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) 
 
 export type SaveAssessmentButtonFactory = (props: SaveAssessmentButtonFactoryProps) => JSX.Element;
 export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => JSX.Element;
+export type TransferToAssessmentButtonFactory = (
+    props: TransferToAssessmentButtonProps,
+) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -159,11 +167,14 @@ export class DetailsViewCommandBar extends React.Component<
         const startOverElement: JSX.Element = this.renderStartOverButton();
         const saveAssessmentButtonElement: JSX.Element = this.renderSaveAssessmentButton();
         const loadAssessmentButtonElement: JSX.Element = this.renderLoadAssessmentButton();
+        const transferToAssessmentButtonElement: JSX.Element =
+            this.renderTransferToAssessmentButton();
 
         if (
             reportExportElement ||
             saveAssessmentButtonElement ||
             loadAssessmentButtonElement ||
+            transferToAssessmentButtonElement ||
             startOverElement
         ) {
             return (
@@ -171,6 +182,7 @@ export class DetailsViewCommandBar extends React.Component<
                     {reportExportElement}
                     {saveAssessmentButtonElement}
                     {loadAssessmentButtonElement}
+                    {transferToAssessmentButtonElement}
                     {startOverElement}
                 </div>
             );
@@ -183,8 +195,9 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
-                renderSaveAssessmentButton={this.renderSaveAssessmentButton}
-                renderLoadAssessmentButton={this.renderLoadAssessmentButton}
+                saveAssessmentButton={this.renderSaveAssessmentButton()}
+                loadAssessmentButton={this.renderLoadAssessmentButton()}
+                transferToAssessmentButton={this.renderTransferToAssessmentButton()}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
@@ -241,6 +254,12 @@ export class DetailsViewCommandBar extends React.Component<
         return this.props.switcherNavConfiguration.LoadAssessmentButton({
             ...this.props,
             handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
+        });
+    };
+
+    private renderTransferToAssessmentButton = (): JSX.Element => {
+        return this.props.switcherNavConfiguration.TransferToAssessmentButton({
+            ...this.props,
         });
     };
 
