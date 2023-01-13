@@ -18,7 +18,7 @@ import {
     QuickAssessLeftNav,
     QuickAssessLeftNavDeps,
     QuickAssessLeftNavProps,
-} from '../../../../../../DetailsView/components/left-nav/medium-pass-left-nav';
+} from '../../../../../../DetailsView/components/left-nav/quick-assess-left-nav';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 

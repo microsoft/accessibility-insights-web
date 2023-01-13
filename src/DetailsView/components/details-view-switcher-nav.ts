@@ -29,12 +29,12 @@ import {
     QuickAssessLeftNav,
     QuickAssessLeftNavDeps,
     QuickAssessLeftNavProps,
-} from 'DetailsView/components/left-nav/medium-pass-left-nav';
+} from 'DetailsView/components/left-nav/quick-assess-left-nav';
 import {
     getLoadButtonForAssessment,
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
-import { QuickAssessCommandBar } from 'DetailsView/components/medium-pass-command-bar';
+import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import {
     overviewHeadingIntroTextForAssessment,
     overviewHeadingIntroTextForQuickAssess,

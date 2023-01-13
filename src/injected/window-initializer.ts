@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@fluentui/utilities';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { QuickAssessRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import * as axe from 'axe-core';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';

@@ -9,7 +9,7 @@ import { assessmentsProviderForRequirements } from 'assessments/assessments-requ
 import {
     QuickAssessRequirementKeys,
     QuickAssessRequirementMap,
-} from 'assessments/medium-pass-requirements';
+} from 'assessments/quick-assess-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';

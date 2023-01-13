@@ -4,7 +4,7 @@
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { QuickAssessCommandBar } from 'DetailsView/components/medium-pass-command-bar';
+import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
