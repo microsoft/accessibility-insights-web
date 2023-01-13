@@ -70,6 +70,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
         return (
             <React.Fragment>
                 <h3 className="test-step-instances-header">Instances</h3>
+                <p>At least one failure instance is required to mark the requirement as failed.</p>
                 <FailureInstancePanelControl
                     step={this.props.step}
                     test={this.props.test}
