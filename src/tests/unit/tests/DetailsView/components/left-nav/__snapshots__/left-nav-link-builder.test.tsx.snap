@@ -422,7 +422,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildMediumPassTestLinks should build links for medium pass tests 1`] = `
+exports[`LeftNavBuilder buildQuickAssessTestLinks should build links for quick assess tests 1`] = `
 {
   "displayedIndex": "1",
   "forceAnchor": true,
@@ -442,7 +442,7 @@ exports[`LeftNavBuilder buildMediumPassTestLinks should build links for medium p
 }
 `;
 
-exports[`LeftNavBuilder buildMediumPassTestLinks should build links for medium pass tests 2`] = `
+exports[`LeftNavBuilder buildQuickAssessTestLinks should build links for quick assess tests 2`] = `
 {
   "displayedIndex": "2",
   "forceAnchor": true,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/medium-pass-requirements';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { It, Mock } from 'typemoq';
 
@@ -57,7 +57,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
             visualizationActionCreatorMock.object,
             new WebVisualizationConfigurationFactory(
                 Assessments,
-                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
             ),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
@@ -105,7 +105,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
             visualizationActionCreatorMock.object,
             new WebVisualizationConfigurationFactory(
                 Assessments,
-                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
             ),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);

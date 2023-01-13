@@ -7,8 +7,8 @@ import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import {
-    MediumPassRequirementKeys,
-    MediumPassRequirementMap,
+    QuickAssessRequirementKeys,
+    QuickAssessRequirementMap,
 } from 'assessments/medium-pass-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
@@ -369,7 +369,7 @@ if (tabId != null) {
             );
             const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
                 Assessments,
-                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
             );
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
@@ -541,12 +541,12 @@ if (tabId != null) {
 
             const quickAssessProvider = assessmentsProviderForRequirements(
                 Assessments,
-                MediumPassRequirementMap,
+                QuickAssessRequirementMap,
             );
             const quickAssessActionMessageCreator = new AssessmentActionMessageCreator(
                 telemetryFactory,
                 actionMessageDispatcher,
-                Messages.MediumPass,
+                Messages.QuickAssess,
             );
             const quickAssessInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,
@@ -674,7 +674,7 @@ if (tabId != null) {
                 cardsViewController,
                 cardFooterMenuItemsBuilder,
                 issueFilingDialogPropsFactory: getIssueFilingDialogProps,
-                mediumPassRequirementKeys: MediumPassRequirementKeys,
+                quickAssessRequirementKeys: QuickAssessRequirementKeys,
                 getProvider: assessmentFunctionalitySwitcher.getProvider,
                 getAssessmentActionMessageCreator:
                     assessmentFunctionalitySwitcher.getAssessmentActionMessageCreator,

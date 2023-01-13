@@ -171,39 +171,39 @@ export class ActionCreator {
         );
 
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.AssessmentScanCompleted,
+            Messages.QuickAssess.AssessmentScanCompleted,
             this.onAssessmentScanCompletedForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.StartOverTest,
+            Messages.QuickAssess.StartOverTest,
             this.onStartOver,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.CancelStartOver,
+            Messages.QuickAssess.CancelStartOver,
             this.onCancelStartOver,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.StartOverAllAssessments,
+            Messages.QuickAssess.StartOverAllAssessments,
             this.onStartOverAllAssessmentsForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.CancelStartOverAllAssessments,
+            Messages.QuickAssess.CancelStartOverAllAssessments,
             this.onCancelStartOverAllAssessmentsForQuickAssess,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.EnableVisualHelper,
+            Messages.QuickAssess.EnableVisualHelper,
             this.onEnableVisualHelper,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.DisableVisualHelperForTest,
+            Messages.QuickAssess.DisableVisualHelperForTest,
             this.onDisableVisualHelpersForTest,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.DisableVisualHelper,
+            Messages.QuickAssess.DisableVisualHelper,
             this.onDisableVisualHelper,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            Messages.MediumPass.EnableVisualHelperWithoutScan,
+            Messages.QuickAssess.EnableVisualHelperWithoutScan,
             this.onEnableVisualHelperWithoutScan,
         );
 

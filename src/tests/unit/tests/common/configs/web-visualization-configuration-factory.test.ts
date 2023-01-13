@@ -10,7 +10,7 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import {
     AnalyzerMessageConfiguration,
     AssessmentVisualizationMessageTypes,
-    MediumPassVisualizationMessageTypes,
+    QuickAssessVisualizationMessageTypes,
 } from 'injected/analyzers/get-analyzer-message-types';
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -30,14 +30,14 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 describe('WebVisualizationConfigurationFactory', () => {
     let testObject: WebVisualizationConfigurationFactory;
 
-    let mediumPassProviderMock: IMock<AssessmentsProvider>;
+    let quickAssessProviderMock: IMock<AssessmentsProvider>;
 
     beforeEach(() => {
-        mediumPassProviderMock = Mock.ofType<AssessmentsProvider>();
-        mediumPassProviderMock.setup(m => m.isValidType(It.isAny())).returns(() => false);
+        quickAssessProviderMock = Mock.ofType<AssessmentsProvider>();
+        quickAssessProviderMock.setup(m => m.isValidType(It.isAny())).returns(() => false);
         testObject = new WebVisualizationConfigurationFactory(
             Assessments,
-            mediumPassProviderMock.object,
+            quickAssessProviderMock.object,
         );
     });
 
@@ -160,7 +160,7 @@ describe('WebVisualizationConfigurationFactory', () => {
 
     test('forEachConfig', () => {
         const assessmentProviderMock = Mock.ofType<AssessmentsProvider>();
-        const mediumPassProviderMock = Mock.ofType<AssessmentsProvider>();
+        const quickAssessProviderMock = Mock.ofType<AssessmentsProvider>();
         const callbackMock =
             Mock.ofType<
                 (
@@ -172,12 +172,12 @@ describe('WebVisualizationConfigurationFactory', () => {
 
         testObject = new WebVisualizationConfigurationFactory(
             assessmentProviderMock.object,
-            mediumPassProviderMock.object,
+            quickAssessProviderMock.object,
         );
         const assessmentStubs = [getAssessmentStub('a-1', -1), getAssessmentStub('a-2', -2)];
-        const mediumPassStubs = [getAssessmentStub('mp-1', -3), getAssessmentStub('mp-2', -4)];
+        const quickAssessStubs = [getAssessmentStub('mp-1', -3), getAssessmentStub('mp-2', -4)];
 
-        mediumPassProviderMock.setup(mock => mock.all()).returns(() => mediumPassStubs);
+        quickAssessProviderMock.setup(mock => mock.all()).returns(() => quickAssessStubs);
         assessmentProviderMock.setup(mock => mock.all()).returns(() => assessmentStubs);
 
         testObject.forEachConfig(callbackMock.object);
@@ -190,9 +190,9 @@ describe('WebVisualizationConfigurationFactory', () => {
         );
         verifyEachProviderConfigIsCalled(
             callbackMock,
-            mediumPassStubs,
-            TestMode.MediumPass,
-            MediumPassVisualizationMessageTypes,
+            quickAssessStubs,
+            TestMode.QuickAssess,
+            QuickAssessVisualizationMessageTypes,
         );
         forOwn(
             (testObject as any).configurationByType,
@@ -249,7 +249,7 @@ describe('WebVisualizationConfigurationFactory', () => {
         });
     }
 
-    test('getConfiguration for mediumPass', () => {
+    test('getConfiguration for quickAssess', () => {
         const type = VisualizationType.HeadingsAssessment;
         const requirementKey = 'some requirement key';
         const visualizationKeyStub = 'some key';
@@ -263,7 +263,7 @@ describe('WebVisualizationConfigurationFactory', () => {
             ],
         } as Assessment;
         const testData = {
-            [TestMode.MediumPass]: {
+            [TestMode.QuickAssess]: {
                 [visualizationKeyStub]: {
                     enabled: true,
                 },
@@ -271,24 +271,24 @@ describe('WebVisualizationConfigurationFactory', () => {
         } as TestsEnabledState;
         const expectedDefaults = getAssessmentDefaults(
             assessmentStub.title,
-            TestMode.MediumPass,
-            MediumPassVisualizationMessageTypes,
+            TestMode.QuickAssess,
+            QuickAssessVisualizationMessageTypes,
         );
         const expected = {
             ...assessmentStub.getVisualizationConfiguration(),
             ...expectedDefaults,
         };
-        mediumPassProviderMock.reset();
-        mediumPassProviderMock.setup(m => m.isValidType(type)).returns(() => true);
-        mediumPassProviderMock.setup(m => m.forType(type)).returns(() => assessmentStub);
+        quickAssessProviderMock.reset();
+        quickAssessProviderMock.setup(m => m.isValidType(type)).returns(() => true);
+        quickAssessProviderMock.setup(m => m.forType(type)).returns(() => assessmentStub);
 
         const returnedConfiguration = testObject.getConfiguration(type);
         expect(returnedConfiguration).toMatchObject(expected);
         expect(returnedConfiguration.getIdentifier(requirementKey)).toEqual(
-            `${TestMode.MediumPass}-${requirementKey}`,
+            `${TestMode.QuickAssess}-${requirementKey}`,
         );
         expect(returnedConfiguration.getStoreData(testData)).toEqual(
-            testData.mediumPass[visualizationKeyStub],
+            testData.quickAssess[visualizationKeyStub],
         );
     });
 

@@ -4,7 +4,7 @@ import {
     AssessmentLeftNavHamburgerButton,
     ExpandCollpaseLeftNavButtonProps,
     FastPassLeftNavHamburgerButton,
-    MediumPassLeftNavHamburgerButton,
+    QuickAssessLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { getNullComponent } from 'common/components/null-component';
 import {
@@ -26,15 +26,15 @@ import {
     GetSelectedAssessmentStoreData,
 } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
 import {
-    MediumPassLeftNav,
-    MediumPassLeftNavDeps,
-    MediumPassLeftNavProps,
+    QuickAssessLeftNav,
+    QuickAssessLeftNavDeps,
+    QuickAssessLeftNavProps,
 } from 'DetailsView/components/left-nav/medium-pass-left-nav';
 import {
     getLoadButtonForAssessment,
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
-import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
+import { QuickAssessCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
     overviewHeadingIntroTextForAssessment,
     overviewHeadingIntroTextForQuickAssess,
@@ -42,7 +42,7 @@ import {
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
-    getReportExportDialogForMediumPass,
+    getReportExportDialogForQuickAssess,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
     GetRequirementViewComponentConfiguration,
@@ -58,7 +58,7 @@ import {
     ShouldShowReportExportButton,
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
-    shouldShowReportExportButtonForMediumPass,
+    shouldShowReportExportButtonForQuickAssess,
 } from 'DetailsView/components/should-show-report-export-button';
 import {
     AssessmentStartOverFactory,
@@ -91,9 +91,9 @@ import {
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
 
-export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
-export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & MediumPassLeftNavProps;
-type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps | MediumPassLeftNavProps;
+export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & QuickAssessLeftNavDeps;
+export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & QuickAssessLeftNavProps;
+type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps | QuickAssessLeftNavProps;
 
 export type GetSharedAssessmentFunctionalityObjects = (
     switcher: AssessmentFunctionalitySwitcher,
@@ -149,18 +149,18 @@ const detailsViewSwitcherNavs: {
             getRequirementViewComponentConfigurationForAssessment,
         overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
     },
-    [DetailsViewPivotType.mediumPass]: {
-        CommandBar: MediumPassCommandBar,
-        ReportExportDialogFactory: getReportExportDialogForMediumPass,
-        shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
+    [DetailsViewPivotType.quickAssess]: {
+        CommandBar: QuickAssessCommandBar,
+        ReportExportDialogFactory: getReportExportDialogForQuickAssess,
+        shouldShowReportExportButton: shouldShowReportExportButtonForQuickAssess,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
         TransferToAssessmentButton: getTransferToAssessmentButton,
         StartOverComponentFactory: AssessmentStartOverFactory,
-        LeftNav: MediumPassLeftNav,
+        LeftNav: QuickAssessLeftNav,
         getSelectedDetailsView: getQuickAssessSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
-        leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
+        leftNavHamburgerButton: QuickAssessLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
         shouldShowQuickAssessRequirementView: true,

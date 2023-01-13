@@ -3,7 +3,7 @@
 import { loadTheme } from '@fluentui/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/medium-pass-requirements';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
@@ -166,7 +166,7 @@ export class PopupInitializer {
 
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
-            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
         );
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
 

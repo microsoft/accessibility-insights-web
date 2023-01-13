@@ -17,7 +17,7 @@ export function shouldShowReportExportButtonForAssessment(): boolean {
     return true;
 }
 
-export function shouldShowReportExportButtonForMediumPass(): boolean {
+export function shouldShowReportExportButtonForQuickAssess(): boolean {
     return false;
 }
 

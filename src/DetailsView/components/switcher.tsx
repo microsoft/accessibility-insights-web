@@ -68,8 +68,8 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 icon: 'Rocket',
             },
         };
-        const mediumPassConfig = {
-            key: DetailsViewPivotType.mediumPass,
+        const quickAssessConfig = {
+            key: DetailsViewPivotType.quickAssess,
             text: 'Quick Assess',
             title: 'Quick Assess',
             data: {
@@ -84,8 +84,8 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 icon: 'testBeakerSolid',
             },
         };
-        return featureFlagStoreData[FeatureFlags.mediumPass]
-            ? [fastPassConfig, mediumPassConfig, assessmentConfig]
+        return featureFlagStoreData[FeatureFlags.quickAssess]
+            ? [fastPassConfig, quickAssessConfig, assessmentConfig]
             : [fastPassConfig, assessmentConfig];
     };
 

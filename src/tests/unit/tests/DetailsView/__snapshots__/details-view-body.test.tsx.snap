@@ -339,7 +339,7 @@ exports[`DetailsViewBody render render 1`] = `
                 "stepStatus": {},
               },
             },
-            "mediumPass": {
+            "quickAssess": {
               "adaptableContentAssessment": {
                 "enabled": false,
                 "stepStatus": {},
@@ -718,7 +718,7 @@ exports[`DetailsViewBody render render 1`] = `
                   "stepStatus": {},
                 },
               },
-              "mediumPass": {
+              "quickAssess": {
                 "adaptableContentAssessment": {
                   "enabled": false,
                   "stepStatus": {},
@@ -1112,7 +1112,7 @@ exports[`DetailsViewBody render render 1`] = `
                       "stepStatus": {},
                     },
                   },
-                  "mediumPass": {
+                  "quickAssess": {
                     "adaptableContentAssessment": {
                       "enabled": false,
                       "stepStatus": {},

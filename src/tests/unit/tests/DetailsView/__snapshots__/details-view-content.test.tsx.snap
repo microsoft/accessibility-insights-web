@@ -394,7 +394,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "stepStatus": {},
             },
           },
-          "mediumPass": {
+          "quickAssess": {
             "adaptableContentAssessment": {
               "enabled": false,
               "stepStatus": {},

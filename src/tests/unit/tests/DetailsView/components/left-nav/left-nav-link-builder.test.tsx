@@ -45,7 +45,7 @@ describe('LeftNavBuilder', () => {
     let onRightPanelContentSwitchMock: IMock<() => void>;
     let eventStub: React.MouseEvent<HTMLElement, MouseEvent>;
     let itemStub: BaseLeftNavLink;
-    let mediumPassRequirementKeysStub: string[];
+    let quickAssessRequirementKeysStub: string[];
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -61,7 +61,7 @@ describe('LeftNavBuilder', () => {
         onRightPanelContentSwitchMock = Mock.ofInstance(() => {});
         eventStub = {} as React.MouseEvent<HTMLElement, MouseEvent>;
         itemStub = {} as BaseLeftNavLink;
-        mediumPassRequirementKeysStub = [];
+        quickAssessRequirementKeysStub = [];
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -71,7 +71,7 @@ describe('LeftNavBuilder', () => {
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             getNavLinkHandler: () => navLinkHandlerMock.object,
             navLinkRenderer: navLinkRendererMock.object,
-            mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+            quickAssessRequirementKeys: quickAssessRequirementKeysStub,
             getGetAssessmentSummaryModelFromProviderAndStatusData: () =>
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         } as LeftNavLinkBuilderDeps;
@@ -103,7 +103,7 @@ describe('LeftNavBuilder', () => {
                     mock(
                         assessmentProviderMock.object,
                         assessmentsDataStub,
-                        mediumPassRequirementKeysStub,
+                        quickAssessRequirementKeysStub,
                     ),
                 )
                 .returns(() => reportModelStub);
@@ -210,14 +210,14 @@ describe('LeftNavBuilder', () => {
         });
     });
 
-    describe('buildMediumPassTestLinks', () => {
-        it('should build links for medium pass tests', () => {
-            const { mediumPassRequirementKeysStub } = setupAssessmentMocks();
+    describe('buildQuickAssessTestLinks', () => {
+        it('should build links for quick assess tests', () => {
+            const { quickAssessRequirementKeysStub } = setupAssessmentMocks();
             deps = {
                 ...deps,
-                mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+                quickAssessRequirementKeys: quickAssessRequirementKeysStub,
             };
-            const links = testSubject.buildMediumPassTestLinks(
+            const links = testSubject.buildQuickAssessTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,
@@ -322,7 +322,7 @@ describe('LeftNavBuilder', () => {
             },
         } as ManualTestStatusData;
 
-        const mediumPassRequirementKeysStub: string[] = [
+        const quickAssessRequirementKeysStub: string[] = [
             requirementStubD.key,
             requirementStubC.key,
         ];
@@ -368,7 +368,7 @@ describe('LeftNavBuilder', () => {
 
         return {
             expandedTest,
-            mediumPassRequirementKeysStub,
+            quickAssessRequirementKeysStub,
         };
     };
 });

@@ -254,7 +254,7 @@ describe('AssessmentBuilderTest', () => {
         const vizStoreData = {
             assessments: { headingsAssessment: scanData },
             adhoc: {},
-            mediumPass: {},
+            quickAssess: {},
         } as TestsEnabledState;
 
         const requirement1AnalyzerConfig = { key: requirement1.key } as AnalyzerConfiguration;

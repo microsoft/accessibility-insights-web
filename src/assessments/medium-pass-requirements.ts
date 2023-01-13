@@ -12,7 +12,7 @@ import { visibleFfocusOrderTestStep } from 'assessments/visible-focus-order/test
 import { VisualizationType } from 'common/types/visualization-type';
 import { DictionaryStringTo } from 'types/common-types';
 
-export const MediumPassRequirementKeys: string[] = [
+export const QuickAssessRequirementKeys: string[] = [
     KeyboardInteractionTestStep.keyboardNavigation,
     LinksTestStep.linkPurpose,
     ImagesTestStep.imageFunction,
@@ -25,16 +25,16 @@ export const MediumPassRequirementKeys: string[] = [
     AdaptableContentTestStep.reflow,
 ];
 
-export const MediumPassRequirementMap: DictionaryStringTo<VisualizationType> = {
+export const QuickAssessRequirementMap: DictionaryStringTo<VisualizationType> = {
     [KeyboardInteractionTestStep.keyboardNavigation]:
-        VisualizationType.KeyboardInteractionMediumPass,
-    [LinksTestStep.linkPurpose]: VisualizationType.LinksMediumPass,
-    [ImagesTestStep.imageFunction]: VisualizationType.ImagesMediumPass,
-    [visibleFfocusOrderTestStep.focusOrder]: VisualizationType.VisibleFocusOrderMediumPass,
-    [ContrastTestStep.uiComponents]: VisualizationType.ContrastMediumPass,
-    [HeadingsTestStep.missingHeadings]: VisualizationType.HeadingsMediumPass,
-    [HeadingsTestStep.headingLevel]: VisualizationType.HeadingsMediumPass,
-    [RepetitiveContentTestStep.bypassBlocks]: VisualizationType.RepetitiveContentMediumPass,
-    [NativeWidgetsTestStep.instructions]: VisualizationType.NativeWidgetsMediumPass,
-    [AdaptableContentTestStep.reflow]: VisualizationType.AdaptableContentMediumPass,
+        VisualizationType.KeyboardInteractionQuickAssess,
+    [LinksTestStep.linkPurpose]: VisualizationType.LinksQuickAssess,
+    [ImagesTestStep.imageFunction]: VisualizationType.ImagesQuickAssess,
+    [visibleFfocusOrderTestStep.focusOrder]: VisualizationType.VisibleFocusOrderQuickAssess,
+    [ContrastTestStep.uiComponents]: VisualizationType.ContrastQuickAssess,
+    [HeadingsTestStep.missingHeadings]: VisualizationType.HeadingsQuickAssess,
+    [HeadingsTestStep.headingLevel]: VisualizationType.HeadingsQuickAssess,
+    [RepetitiveContentTestStep.bypassBlocks]: VisualizationType.RepetitiveContentQuickAssess,
+    [NativeWidgetsTestStep.instructions]: VisualizationType.NativeWidgetsQuickAssess,
+    [AdaptableContentTestStep.reflow]: VisualizationType.AdaptableContentQuickAssess,
 };

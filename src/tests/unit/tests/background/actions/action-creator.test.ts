@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/medium-pass-requirements';
 import { ActionCreator } from 'background/actions/action-creator';
 import { ActionHub } from 'background/actions/action-hub';
 import {
@@ -618,7 +618,7 @@ describe('ActionCreatorTest', () => {
                 TelemetryEvents.ASSESSMENT_SCAN_COMPLETED,
             ],
             [
-                Messages.MediumPass.AssessmentScanCompleted,
+                Messages.QuickAssess.AssessmentScanCompleted,
                 TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED,
             ],
         ];
@@ -660,7 +660,7 @@ describe('ActionCreatorTest', () => {
     });
 
     describe('onStartOverAssessment', () => {
-        const testCases = [Messages.Assessment.StartOverTest, Messages.MediumPass.StartOverTest];
+        const testCases = [Messages.Assessment.StartOverTest, Messages.QuickAssess.StartOverTest];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
             const tabId = 1;
@@ -689,7 +689,7 @@ describe('ActionCreatorTest', () => {
     describe('onCancelStartOverAssessment', () => {
         const testCases = [
             Messages.Assessment.CancelStartOver,
-            Messages.MediumPass.CancelStartOver,
+            Messages.QuickAssess.CancelStartOver,
         ];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
@@ -715,7 +715,7 @@ describe('ActionCreatorTest', () => {
     describe('onStartOverAllAssessments', () => {
         const testCases = [
             [Messages.Assessment.StartOverAllAssessments, TelemetryEvents.START_OVER_ASSESSMENT],
-            [Messages.MediumPass.StartOverAllAssessments, TelemetryEvents.START_OVER_MEDIUM_PASS],
+            [Messages.QuickAssess.StartOverAllAssessments, TelemetryEvents.START_OVER_MEDIUM_PASS],
         ];
 
         test.each(testCases)('registerCallback with %s', async (eventName, telemetryEvent) => {
@@ -749,7 +749,7 @@ describe('ActionCreatorTest', () => {
                 TelemetryEvents.CANCEL_START_OVER_ASSESSMENT,
             ],
             [
-                Messages.MediumPass.CancelStartOverAllAssessments,
+                Messages.QuickAssess.CancelStartOverAllAssessments,
                 TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS,
             ],
         ];
@@ -807,7 +807,7 @@ describe('ActionCreatorTest', () => {
     describe('onEnableVisualHelper', () => {
         const testCases = [
             Messages.Assessment.EnableVisualHelper,
-            Messages.MediumPass.EnableVisualHelper,
+            Messages.QuickAssess.EnableVisualHelper,
         ];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
@@ -833,7 +833,7 @@ describe('ActionCreatorTest', () => {
     describe('onEnableVisualHelperWithoutScan', () => {
         const testCases = [
             Messages.Assessment.EnableVisualHelperWithoutScan,
-            Messages.MediumPass.EnableVisualHelperWithoutScan,
+            Messages.QuickAssess.EnableVisualHelperWithoutScan,
         ];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
@@ -859,7 +859,7 @@ describe('ActionCreatorTest', () => {
     describe('onDisableVisualHelper', () => {
         const testCases = [
             Messages.Assessment.DisableVisualHelper,
-            Messages.MediumPass.DisableVisualHelper,
+            Messages.QuickAssess.DisableVisualHelper,
         ];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
@@ -887,7 +887,7 @@ describe('ActionCreatorTest', () => {
     describe('onDisableVisualHelpersForTest', () => {
         const testCases = [
             Messages.Assessment.DisableVisualHelperForTest,
-            Messages.MediumPass.DisableVisualHelperForTest,
+            Messages.QuickAssess.DisableVisualHelperForTest,
         ];
 
         test.each(testCases)('registerCallback with %s', async eventName => {
@@ -1364,7 +1364,7 @@ class ActionCreatorValidator {
             this.notificationCreatorStrictMock.object,
             new WebVisualizationConfigurationFactory(
                 Assessments,
-                assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
             ),
             this.targetTabControllerStrictMock.object,
             this.loggerMock.object,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/medium-pass-requirements';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { PersistedData } from 'background/get-persisted-data';
@@ -39,7 +39,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new WebVisualizationConfigurationFactory(
         Assessments,
-        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
     ).getConfiguration(visualizationType);
 }
 

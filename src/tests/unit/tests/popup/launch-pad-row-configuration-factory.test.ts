@@ -16,7 +16,7 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
     let handlerMock = Mock.ofType(PopupViewControllerHandler);
     let actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
     let featureFlagStoreDataStub: FeatureFlagStoreData;
-    const mediumPassFlagName = 'mediumPass';
+    const quickAssessFlagName = 'quickAssess';
     let testSubject: LaunchPadRowConfigurationFactory;
     const fastPassRowConfig = {
         iconName: 'Rocket',
@@ -39,7 +39,7 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
         onClickTitle: null,
     };
 
-    const mediumPassRowConfig = {
+    const quickAssessRowConfig = {
         iconName: 'SiteScan',
         title: 'Quick Assess',
         description: 'Run 10 assisted checks to find more accessibility issues in 30 minutes.',
@@ -55,13 +55,13 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
     });
 
     it.each([true, false])(
-        'createRowConfigs: verify string properties when mediumPass featureFlag is %s',
+        'createRowConfigs: verify string properties when quickAssess featureFlag is %s',
         featureFlagValue => {
-            featureFlagStoreDataStub[mediumPassFlagName] = featureFlagValue;
+            featureFlagStoreDataStub[quickAssessFlagName] = featureFlagValue;
 
             const expectedConfig: LaunchPadRowConfiguration[] =
                 featureFlagValue === true
-                    ? [fastPassRowConfig, mediumPassRowConfig, assessmentRowConfig, adhocRowConfig]
+                    ? [fastPassRowConfig, quickAssessRowConfig, assessmentRowConfig, adhocRowConfig]
                     : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
 
             const configs = testSubject.createRowConfigs(
@@ -76,9 +76,9 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
     );
 
     it.each([true, false])(
-        'createRowConfigs: onClick title when mediumPass featureFlag is %s',
+        'createRowConfigs: onClick title when quickAssess featureFlag is %s',
         featureFlagValue => {
-            featureFlagStoreDataStub[mediumPassFlagName] = featureFlagValue;
+            featureFlagStoreDataStub[quickAssessFlagName] = featureFlagValue;
 
             actionMessageCreatorMock
                 .setup(a =>
@@ -107,8 +107,8 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
                     a.openDetailsView(
                         null,
                         null,
-                        TelemetryEventSource.LaunchPadMediumPass,
-                        DetailsViewPivotType.mediumPass,
+                        TelemetryEventSource.LaunchPadQuickAssess,
+                        DetailsViewPivotType.quickAssess,
                     ),
                 )
                 .verifiable(featureFlagValue === true ? Times.once() : Times.never());

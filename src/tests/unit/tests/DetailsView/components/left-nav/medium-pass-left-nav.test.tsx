@@ -15,24 +15,24 @@ import {
 } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import {
-    MediumPassLeftNav,
-    MediumPassLeftNavDeps,
-    MediumPassLeftNavProps,
+    QuickAssessLeftNav,
+    QuickAssessLeftNavDeps,
+    QuickAssessLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/medium-pass-left-nav';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
-describe(MediumPassLeftNav.displayName, () => {
+describe(QuickAssessLeftNav.displayName, () => {
     let overviewLinkStub: AssessmentLeftNavLink;
     let automatedChecksLinkStub: AssessmentLeftNavLink;
-    let mediumPassChecksLinksStub: TestRequirementLeftNavLink[];
-    let deps: MediumPassLeftNavDeps;
-    let props: MediumPassLeftNavProps;
+    let quickAssessChecksLinksStub: TestRequirementLeftNavLink[];
+    let deps: QuickAssessLeftNavDeps;
+    let props: QuickAssessLeftNavProps;
     let leftNavLinkBuilderMock: IMock<LeftNavLinkBuilder>;
     let navLinkHandlerMock: NavLinkHandler;
     let assessmentsProviderStub: AssessmentsProvider;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
-    let mediumPassRequirementKeysStub: string[];
+    let quickAssessRequirementKeysStub: string[];
     const expandedTest: VisualizationType = 1;
     let onRightPanelContentSwitch: () => void;
     let setNavComponentRef: (nav) => void;
@@ -42,7 +42,7 @@ describe(MediumPassLeftNav.displayName, () => {
         setNavComponentRef = _ => {};
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
-        mediumPassRequirementKeysStub = [];
+        quickAssessRequirementKeysStub = [];
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
@@ -57,8 +57,8 @@ describe(MediumPassLeftNav.displayName, () => {
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             getNavLinkHandler: () => navLinkHandlerMock,
-            mediumPassRequirementKeys: mediumPassRequirementKeysStub,
-        } as MediumPassLeftNavDeps;
+            quickAssessRequirementKeys: quickAssessRequirementKeysStub,
+        } as QuickAssessLeftNavDeps;
         props = {
             deps,
             selectedKey: 'some key',
@@ -81,7 +81,7 @@ describe(MediumPassLeftNav.displayName, () => {
             status: ManualTestStatus.UNKNOWN,
         } as AssessmentLeftNavLink;
 
-        mediumPassChecksLinksStub = [
+        quickAssessChecksLinksStub = [
             {
                 name: 'keyboard navigation',
                 status: ManualTestStatus.FAIL,
@@ -117,7 +117,7 @@ describe(MediumPassLeftNav.displayName, () => {
 
         leftNavLinkBuilderMock
             .setup(lnlbm =>
-                lnlbm.buildMediumPassTestLinks(
+                lnlbm.buildQuickAssessTestLinks(
                     deps,
                     assessmentsProviderStub,
                     assessmentsDataStub,
@@ -125,11 +125,11 @@ describe(MediumPassLeftNav.displayName, () => {
                     onRightPanelContentSwitch,
                 ),
             )
-            .returns(() => mediumPassChecksLinksStub);
+            .returns(() => quickAssessChecksLinksStub);
     });
 
     it('renders left nav with appropriate params', () => {
-        const actual = shallow(<MediumPassLeftNav {...props} />);
+        const actual = shallow(<QuickAssessLeftNav {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });
 });
