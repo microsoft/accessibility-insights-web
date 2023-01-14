@@ -18,7 +18,6 @@ import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
-import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import {
     RequirementView,
     RequirementViewDeps,
@@ -26,6 +25,7 @@ import {
 } from 'DetailsView/components/requirement-view';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
+import styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
@@ -108,7 +108,7 @@ describe('RequirementViewTest', () => {
             Mock.ofType<GetNextRequirementButtonConfiguration>();
 
         requirementViewComponentConfigurationStub = {
-            getNextRequirementButtonConfiguration: getNextRequirementButtonConfigurationMock.object,
+            getNextRequirementButton: getNextRequirementButtonConfigurationMock.object,
         } as RequirementViewComponentConfiguration;
 
         props = {
@@ -130,12 +130,6 @@ describe('RequirementViewTest', () => {
         const rendered = shallow(<RequirementView {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
-    });
-
-    test('does not render a next requirement button if there is no next requirement', () => {
-        setupGetNextRequirementButtonConfiguration(false);
-        const rendered = shallow(<RequirementView {...props} />);
-        expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
     });
 
     test('componentDidUpdate', () => {
@@ -205,13 +199,11 @@ describe('RequirementViewTest', () => {
                     currentAssessment: assessmentStub,
                     currentRequirement: requirementStub,
                     assessmentNavState,
+                    className: styles.nextRequirementButton,
                 }),
             )
             .returns(() => {
-                return {
-                    nextRequirement: nextRequirementExists ? otherRequirementStub : null,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
+                return <>next requirement stub</>;
             });
     }
 });

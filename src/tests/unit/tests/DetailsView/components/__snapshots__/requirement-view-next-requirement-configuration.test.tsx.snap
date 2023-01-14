@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForAssessment returns NextRequirementButton with next requirement/test 1`] = `
+<NextRequirementButton
+  deps={
+    {
+      "assessmentViewUpdateHandler": [typemoq mock object],
+      "dataTransferViewController": [typemoq mock object],
+      "getAssessmentActionMessageCreator": [Function],
+      "getProvider": [Function],
+      "mediumPassRequirementKeys": [
+        "test-requirement-key",
+        "next-quick-assess-requirement-key",
+      ],
+    }
+  }
+  nextRequirement={
+    {
+      "key": "other-requirement-key",
+    }
+  }
+  nextRequirementVisualizationType={0}
+/>
+`;
+
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForAssessment returns NextRequirementButton with null when last requirement in test 1`] = `
+<NextRequirementButton
+  deps={
+    {
+      "assessmentViewUpdateHandler": [typemoq mock object],
+      "dataTransferViewController": [typemoq mock object],
+      "getAssessmentActionMessageCreator": [Function],
+      "getProvider": [Function],
+      "mediumPassRequirementKeys": [
+        "test-requirement-key",
+        "next-quick-assess-requirement-key",
+      ],
+    }
+  }
+  nextRequirement={null}
+  nextRequirementVisualizationType={0}
+/>
+`;
+
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns Complete button when it is last requirement in mediumPassRequirementKeys 1`] = `
+<CustomizedPrimaryButton
+  onClick={[Function]}
+  text="Complete"
+/>
+`;
+
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns NextRequirementButton with next requirement in mediumPassRequirementKeys 1`] = `
+<NextRequirementButton
+  deps={
+    {
+      "assessmentViewUpdateHandler": [typemoq mock object],
+      "dataTransferViewController": [typemoq mock object],
+      "getAssessmentActionMessageCreator": [Function],
+      "getProvider": [Function],
+      "mediumPassRequirementKeys": [
+        "test-requirement-key",
+        "next-quick-assess-requirement-key",
+      ],
+    }
+  }
+  nextRequirement={
+    {
+      "key": "next-quick-assess-requirement-key",
+    }
+  }
+  nextRequirementVisualizationType={32}
+/>
+`;
+
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns next requirement in automated checks if currentAssessment is automated checks 1`] = `
+<NextRequirementButton
+  deps={
+    {
+      "assessmentViewUpdateHandler": [typemoq mock object],
+      "dataTransferViewController": [typemoq mock object],
+      "getAssessmentActionMessageCreator": [Function],
+      "getProvider": [Function],
+      "mediumPassRequirementKeys": [
+        "test-requirement-key",
+        "next-quick-assess-requirement-key",
+      ],
+    }
+  }
+  nextRequirement={
+    {
+      "key": "other-requirement-key",
+    }
+  }
+  nextRequirementVisualizationType={36}
+/>
+`;

@@ -3,13 +3,13 @@
 
 import {
     GetNextRequirementButtonConfiguration,
-    GetNextRequirementConfigurationProps,
     getNextRequirementConfigurationForAssessment,
     getNextRequirementConfigurationForQuickAssess,
+    GetNextRequirementConfigurationProps,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 
 export type RequirementViewComponentConfiguration = {
-    getNextRequirementButtonConfiguration: GetNextRequirementButtonConfiguration;
+    getNextRequirementButton: GetNextRequirementButtonConfiguration;
 };
 
 export type GetRequirementViewComponentConfigurationProps = GetNextRequirementConfigurationProps;
@@ -18,12 +18,12 @@ export type GetRequirementViewComponentConfiguration = () => RequirementViewComp
 
 export const getRequirementViewComponentConfigurationForAssessment = () => {
     return {
-        getNextRequirementButtonConfiguration: getNextRequirementConfigurationForAssessment,
+        getNextRequirementButton: getNextRequirementConfigurationForAssessment,
     };
 };
 
 export const getRequirementViewComponentConfigurationForQuickAssess = () => {
     return {
-        getNextRequirementButtonConfiguration: getNextRequirementConfigurationForQuickAssess,
+        getNextRequirementButton: getNextRequirementConfigurationForQuickAssess,
     };
 };

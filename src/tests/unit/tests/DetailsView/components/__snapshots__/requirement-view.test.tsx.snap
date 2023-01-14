@@ -59,21 +59,9 @@ exports[`RequirementViewTest renders with content from props 1`] = `
   <div
     className="nextRequirementButtonContainer"
   >
-    <NextRequirementButton
-      className="nextRequirementButton"
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      nextRequirement={
-        {
-          "key": "other-requirement-key",
-        }
-      }
-      nextRequirementVisualizationType={0}
-    />
+    <React.Fragment>
+      next requirement stub
+    </React.Fragment>
   </div>
 </div>
 `;
