@@ -2130,16 +2130,21 @@ describe('AssessmentStore', () => {
             .withSelectedTestSubview(testStepStub)
             .build();
 
+        const defaultStateStub = new AssessmentsStoreDataBuilder(
+            assessmentsProvider,
+            assessmentDataConverterMock.object,
+        ).build();
+
         const assessmentData = new AssessmentDataBuilder()
             .with('testStepStatus', getSampleTestStepsData())
             .build();
 
         const storeDataFromGeneration = getStateWithAssessment(assessmentData);
         const finalState = getStateWithAssessment(assessmentData);
-
-        finalState.assessmentNavState = initialState.assessmentNavState;
+        finalState.assessmentNavState = defaultStateStub.assessmentNavState;
 
         setupDataGeneratorMock(assessmentStubData, storeDataFromGeneration);
+        setupDataGeneratorMock(null, defaultStateStub, Times.exactly(2));
 
         const storeTester = createStoreTesterForAssessmentActions(
             'loadAssessmentFromTransfer',

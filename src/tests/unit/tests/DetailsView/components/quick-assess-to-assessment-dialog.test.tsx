@@ -79,6 +79,10 @@ describe('QuickAssessToAssessmentDialog', () => {
             m => m.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]),
             Times.once(),
         );
+        detailsViewActionMessageCreatorMock.verify(
+            m => m.changeRightContentPanel('Overview'),
+            Times.once(),
+        );
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
             Times.once(),
