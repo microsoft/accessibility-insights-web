@@ -84,7 +84,9 @@ export const getNextRequirementConfigurationForQuickAssess = (
     return (
         <NextRequirementButton
             deps={props.deps}
-            nextRequirement={nextAssessment!.requirements.find(r => r.key === nextRequirementKey)}
+            nextRequirement={
+                nextAssessment!.requirements.find(r => r.key === nextRequirementKey) as Requirement
+            }
             nextRequirementVisualizationType={nextAssessment!.visualizationType}
             className={props.className}
         />
