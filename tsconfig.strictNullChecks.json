@@ -57,6 +57,7 @@
         "src/DetailsView/components/overview-content/overview-content-container.tsx",
         "src/DetailsView/components/report-export-component.tsx",
         "src/DetailsView/components/report-export-dialog-factory.tsx",
+        "src/DetailsView/components/requirement-view-next-requirement-configuration.tsx",
         "src/DetailsView/components/requirement-view.tsx",
         "src/DetailsView/components/start-over-component-factory.tsx",
         "src/DetailsView/components/start-over-dialog.tsx",
