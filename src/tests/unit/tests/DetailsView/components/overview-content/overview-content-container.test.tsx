@@ -80,12 +80,15 @@ describe('OverviewContainer', () => {
         mock(filteredProvider, assessmentStoreData, mediumPassRequirementKeysStub),
     );
 
+    const overviewHeadingIntroTextStub = 'Test intro overview text:';
+
     const component = (
         <OverviewContainer
             deps={deps}
             assessmentStoreData={assessmentStoreData}
             featureFlagStoreData={featureFlagDataStub}
             tabStoreData={tabStoreDataStub}
+            overviewHeadingIntroText={overviewHeadingIntroTextStub}
         />
     );
     const wrapper = shallow(component);

@@ -67,6 +67,18 @@ describe('ContentLink', () => {
         expect(result.debug()).toMatchSnapshot();
     });
 
+    it('renders without tooltip', () => {
+        const result = shallow(
+            <ContentLink
+                deps={deps}
+                reference={contentPath}
+                linkText={'test'}
+                hideTooltip={true}
+            />,
+        );
+        expect(result.debug()).toMatchSnapshot();
+    });
+
     it('reacts to a click', () => {
         const result = shallow(<ContentLink deps={deps} reference={contentPath} />);
 

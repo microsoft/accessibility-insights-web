@@ -1,0 +1,43 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/common.scss';
+
+.requirement-context-container {
+    padding-top: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 24px;
+    border-radius: 4px;
+    background-color: $help-links-section-background;
+    border: 1px solid $help-links-section-border;
+    box-sizing: border-box;
+}
+
+.context-heading {
+    @include h3;
+
+    padding: 0;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
+.context-links :global(.ms-Button),
+.context-links :global(.insights-link) {
+    padding-left: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: $font-family;
+    line-height: 20px;
+    font-size: 15px;
+    color: $communication-primary;
+
+    &:hover {
+        text-decoration: none;
+        color: $link-hover;
+    }
+
+    :global(.ms-Button-label) {
+        margin-left: 0 !important;
+    }
+}

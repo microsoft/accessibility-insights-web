@@ -24,7 +24,15 @@ import {
     RequirementViewProps,
 } from 'DetailsView/components/requirement-view';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
+import {
+    RequirementContextSectionFactory,
+    RequirementContextSectionFactoryProps,
+} from 'DetailsView/components/requirement-view-context-section-factory';
 import { GetNextRequirementButtonConfiguration } from 'DetailsView/components/requirement-view-next-requirement-configuration';
+import {
+    RequirementViewTitleFactory,
+    RequirementViewTitleFactoryProps,
+} from 'DetailsView/components/requirement-view-title-factory';
 import styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
@@ -32,6 +40,7 @@ import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
+import { ContentPage, ContentPageComponent } from 'views/content/content-page';
 
 describe('RequirementViewTest', () => {
     let assessmentStub: Assessment;
@@ -47,10 +56,19 @@ describe('RequirementViewTest', () => {
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
     let requirementViewComponentConfigurationStub: RequirementViewComponentConfiguration;
     let getNextRequirementButtonConfigurationMock: IMock<GetNextRequirementButtonConfiguration>;
+    let getRequirementViewTitleMock: IMock<RequirementViewTitleFactory>;
+    let getRequirementContextSectionMock: IMock<RequirementContextSectionFactory>;
     let deps: RequirementViewDeps;
+    let requirementContextSectionProps: RequirementContextSectionFactoryProps;
+    let requirementViewTitleProps: RequirementViewTitleFactoryProps;
     beforeEach(() => {
         requirementStub = {
             key: 'test-requirement-key',
+            name: 'rest-requirement-name',
+            whyItMatters: ContentPage.create(() => 'WHY IT MATTERS' as any),
+            guidanceLinks: [{ href: 'test-guidance-href', text: 'test-guidance-text' }],
+            infoAndExamples: { pageTitle: 'test-page-title' } as ContentPageComponent,
+            helpfulResourceLinks: [{ href: 'test-resource-href', text: 'test-resource-text' }],
         } as Requirement;
         otherRequirementStub = {
             key: 'other-requirement-key',
@@ -107,8 +125,52 @@ describe('RequirementViewTest', () => {
         getNextRequirementButtonConfigurationMock =
             Mock.ofType<GetNextRequirementButtonConfiguration>();
 
+        requirementViewTitleProps = {
+            assessmentKey: assessmentStub.key,
+            name: requirementStub.name,
+            guidanceLinks: requirementStub.guidanceLinks,
+            infoAndExamples: requirementStub.infoAndExamples,
+        } as RequirementViewTitleFactoryProps;
+        getRequirementViewTitleMock = Mock.ofType<RequirementViewTitleFactory>();
+
+        getRequirementViewTitleMock
+            .setup(g => g(It.isObjectWith(requirementViewTitleProps)))
+            .returns(() => <div>TITLE MOCK ELEMENT</div>)
+            .verifiable();
+
+        requirementContextSectionProps = {
+            assessmentKey: assessmentStub.key,
+            infoAndExamples: requirementStub.infoAndExamples,
+            whyItMatters: requirementStub.whyItMatters,
+            helpfulResourceLinks: requirementStub.helpfulResourceLinks,
+        } as RequirementContextSectionFactoryProps;
+
+        getRequirementContextSectionMock = Mock.ofType<RequirementContextSectionFactory>();
+
+        getRequirementContextSectionMock
+            .setup(g => g(It.isObjectWith(requirementContextSectionProps)))
+            .returns(() => <div>REQUIREMENT CONTEXT SECTION MOCK ELEMENT</div>)
+            .verifiable();
+
+        getNextRequirementButtonConfigurationMock
+            .setup(g =>
+                g({
+                    deps: deps,
+                    currentAssessment: assessmentStub,
+                    currentRequirement: requirementStub,
+                    assessmentNavState,
+                    className: styles.nextRequirementButton,
+                }),
+            )
+            .returns(() => {
+                return <>next requirement stub</>;
+            })
+            .verifiable();
+
         requirementViewComponentConfigurationStub = {
             getNextRequirementButton: getNextRequirementButtonConfigurationMock.object,
+            getRequirementViewTitle: getRequirementViewTitleMock.object,
+            getRequirementContextSection: getRequirementContextSectionMock.object,
         } as RequirementViewComponentConfiguration;
 
         props = {
@@ -126,10 +188,11 @@ describe('RequirementViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        setupGetNextRequirementButtonConfiguration();
         const rendered = shallow(<RequirementView {...props} />);
-
         expect(rendered.getElement()).toMatchSnapshot();
+        getRequirementViewTitleMock.verifyAll();
+        getRequirementContextSectionMock.verifyAll();
+        getNextRequirementButtonConfigurationMock.verifyAll();
     });
 
     test('componentDidUpdate', () => {
@@ -189,21 +252,5 @@ describe('RequirementViewTest', () => {
             prevTarget: givenProps.prevTarget,
             currentTarget: givenProps.currentTarget,
         };
-    }
-
-    function setupGetNextRequirementButtonConfiguration(nextRequirementExists: boolean = true) {
-        getNextRequirementButtonConfigurationMock
-            .setup(g =>
-                g({
-                    deps: deps,
-                    currentAssessment: assessmentStub,
-                    currentRequirement: requirementStub,
-                    assessmentNavState,
-                    className: styles.nextRequirementButton,
-                }),
-            )
-            .returns(() => {
-                return <>next requirement stub</>;
-            });
     }
 });
