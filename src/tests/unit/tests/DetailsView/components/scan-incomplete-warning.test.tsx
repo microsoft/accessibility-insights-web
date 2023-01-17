@@ -26,6 +26,7 @@ describe('ScanIncompleteWarning', () => {
             NamedFC<ScanIncompleteWarningMessageBarProps>('test', _ => null);
         warningConfiguration = {
             'missing-required-cross-origin-permissions': scanIncompleteWarningStub,
+            'frame-skipped': scanIncompleteWarningStub,
         };
     });
 

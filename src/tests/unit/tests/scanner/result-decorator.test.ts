@@ -88,6 +88,7 @@ describe('ResultDecorator', () => {
                 timestamp: 100,
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
+                framesSkipped: false,
             };
 
             messageDecoratorMock
@@ -168,6 +169,7 @@ describe('ResultDecorator', () => {
                 timestamp: 100,
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
+                framesSkipped: false,
             };
 
             tagToLinkMapperMock
@@ -240,6 +242,7 @@ describe('ResultDecorator', () => {
                 timestamp: 100,
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
+                framesSkipped: false,
             };
 
             instanceStub.nodes = [];
@@ -269,6 +272,45 @@ describe('ResultDecorator', () => {
             ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
+        });
+    });
+
+    describe('decorateResults: with incomplete results', () => {
+        it('should set framesSkipped', () => {
+            const incompleteInstance = {
+                id: 'frame-tested',
+                nodes: [],
+                description: null,
+                tags: ['tag2'],
+            };
+            const guidanceLinkStub = {} as any;
+            const tagToLinkMapper = () => [guidanceLinkStub];
+            const emptyResultsStub = {
+                passes: [],
+                violations: [],
+                inapplicable: [],
+                incomplete: [],
+                timestamp: 100,
+                targetPageTitle: 'test title',
+                targetPageUrl: 'https://test_url',
+                framesSkipped: true,
+            };
+            messageDecoratorMock.setup(mdm => mdm.decorateResultWithMessages(It.isAny()));
+            ruleProcessorMock
+                .setup(m => m.suppressChecksByMessages(It.isAny(), It.isAny()))
+                .returns(result => {
+                    return null;
+                });
+            const testSubject = new ResultDecorator(
+                documentUtilsMock.object,
+                messageDecoratorMock.object,
+                getHelpUrlMock.object,
+                tagToLinkMapper,
+                ruleProcessorMock.object,
+            );
+            nonEmptyResultStub.incomplete = [incompleteInstance];
+            const decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
+            expect(decoratedResult).toEqual(emptyResultsStub);
         });
     });
 });

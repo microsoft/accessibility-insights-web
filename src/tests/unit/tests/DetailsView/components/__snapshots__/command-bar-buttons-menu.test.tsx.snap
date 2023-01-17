@@ -32,6 +32,10 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
             "onRender": [Function],
           },
           {
+            "key": "transfer to assessment",
+            "onRender": [Function],
+          },
+          {
             "key": "start over",
           },
         ],
@@ -76,4 +80,14 @@ exports[`CommandBarButtonsMenu renders all child buttons,: render start over men
 <React.Fragment>
   Start over button
 </React.Fragment>
+`;
+
+exports[`CommandBarButtonsMenu renders all child buttons,: render transfer to assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment>
+    Transfer to assessment button
+  </React.Fragment>
+</div>
 `;

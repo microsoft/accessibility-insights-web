@@ -82,6 +82,11 @@ exports[`DetailsViewBody render render 1`] = `
         }
       }
       clickHandlerFactory={{}}
+      dataTransferViewStoreData={
+        {
+          "showQuickAssessToAssessmentConfirmDialog": true,
+        }
+      }
       deps={
         {
           "detailsViewActionMessageCreator": {},
@@ -458,6 +463,11 @@ exports[`DetailsViewBody render render 1`] = `
           }
         }
         clickHandlerFactory={{}}
+        dataTransferViewStoreData={
+          {
+            "showQuickAssessToAssessmentConfirmDialog": true,
+          }
+        }
         deps={
           {
             "detailsViewActionMessageCreator": {},
@@ -764,6 +774,14 @@ exports[`DetailsViewBody render render 1`] = `
           className="view"
           role="main"
         >
+          <QuickAssessToAssessmentConfirmDialog
+            deps={
+              {
+                "detailsViewActionMessageCreator": {},
+              }
+            }
+            isShown={true}
+          />
           <test
             assessmentStoreData={
               {
@@ -839,6 +857,11 @@ exports[`DetailsViewBody render render 1`] = `
               }
             }
             clickHandlerFactory={{}}
+            dataTransferViewStoreData={
+              {
+                "showQuickAssessToAssessmentConfirmDialog": true,
+              }
+            }
             deps={
               {
                 "detailsViewActionMessageCreator": {},

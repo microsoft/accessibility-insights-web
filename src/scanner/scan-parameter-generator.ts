@@ -21,10 +21,16 @@ export class ScanParameterGenerator {
 
         if (options == null || options.testsToRun == null) {
             result.runOnly!.values = Object.keys(this.rulesIncluded).filter(
-                id => this.rulesIncluded[id].status === 'included',
+                id =>
+                    this.rulesIncluded[id].status === 'included' ||
+                    this.rulesIncluded[id].status === 'included-always',
             );
         } else {
-            result.runOnly!.values = options.testsToRun;
+            result.runOnly!.values = options.testsToRun.concat(
+                Object.keys(this.rulesIncluded).filter(
+                    id => this.rulesIncluded[id].status === 'included-always',
+                ),
+            );
         }
 
         return result;

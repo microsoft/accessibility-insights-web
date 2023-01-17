@@ -8,7 +8,12 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import {
+    QuickAssessToAssessmentDialog,
+    QuickAssessToAssessmentDialogDeps,
+} from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import styles from 'DetailsView/details-view-body.scss';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -40,7 +45,8 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 export type DetailsViewBodyDeps = RightPanelDeps &
     DetailsViewLeftNavDeps &
     DetailsViewCommandBarDeps &
-    FluentSideNavDeps;
+    FluentSideNavDeps &
+    QuickAssessToAssessmentDialogDeps;
 
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;
@@ -70,6 +76,7 @@ export interface DetailsViewBodyProps {
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
     tabStopRequirementData: TabStopRequirementState;
+    dataTransferViewStoreData: DataTransferViewStoreData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -87,6 +94,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                         <div className={styles.detailsViewBodyContentPane}>
                             {this.getTargetPageHiddenBar()}
                             <div className={styles.view} role="main">
+                                {this.renderQuickAssessToAssessmentDialog()}
                                 {this.renderRightPanel()}
                             </div>
                         </div>
@@ -131,5 +139,16 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderRightPanel(): JSX.Element {
         return <this.props.rightPanelConfiguration.RightPanel {...this.props} />;
+    }
+
+    private renderQuickAssessToAssessmentDialog(): JSX.Element {
+        return (
+            <QuickAssessToAssessmentDialog
+                isShown={
+                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
+                }
+                deps={this.props.deps}
+            />
+        );
     }
 }

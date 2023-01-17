@@ -27,3 +27,17 @@ exports[`ContentPanelButton renders from path 1`] = `
   TEXT
 </CustomizedActionButton>
 `;
+
+exports[`ContentPanelButton renders without iconName 1`] = `
+<CustomizedActionButton
+  ariaLabel="info and examples"
+  iconProps={
+    {
+      "iconName": undefined,
+    }
+  }
+  onClick={[Function]}
+>
+  TEXT
+</CustomizedActionButton>
+`;

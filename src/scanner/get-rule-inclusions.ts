@@ -4,7 +4,10 @@ import { IRuleConfiguration } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
 export type RuleIncluded =
+    // Rules included in automated checks by default
     | { status: 'included'; reason?: string }
+    // Rules included when running any scan
+    | { status: 'included-always'; reason: string }
     | { status: 'excluded'; reason: string };
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
@@ -23,6 +26,10 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     'empty-table-header': {
         status: 'excluded',
         reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
+    'frame-tested': {
+        status: 'included-always',
+        reason: 'Tests for unresponsive frames, enables iframe skipped warning',
     },
     'frame-title-unique': {
         status: 'excluded',

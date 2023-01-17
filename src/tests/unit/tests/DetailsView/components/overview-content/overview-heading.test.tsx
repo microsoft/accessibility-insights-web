@@ -7,7 +7,7 @@ import { OverviewHeading } from '../../../../../../DetailsView/components/overvi
 
 describe('OverviewHeading', () => {
     test('match snapshot', () => {
-        const wrapper = shallow(<OverviewHeading />);
+        const wrapper = shallow(<OverviewHeading introText={'This is an intro!'} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

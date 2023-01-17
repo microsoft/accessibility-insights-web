@@ -3,26 +3,32 @@
 exports[`ContentLink render null when reference is not defined 1`] = `""`;
 
 exports[`ContentLink renders from content, only have the icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: onClick]} tooltipContent="Guidance" aria-label="Guidance">
+"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="Guidance">
   <Icon iconName="test icon 1" />
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders from path, only have the icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: onClick]} tooltipContent="Guidance" aria-label="Guidance">
+"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="Guidance">
   <Icon iconName="test icon 2" />
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders with both text and icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: onClick]} tooltipContent="Guidance" aria-label="test guidance">
+"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="test guidance">
   <Icon iconName="test icon" />
   test
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders with only text 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: onClick]} tooltipContent="Guidance" aria-label="test guidance">
+"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="test guidance">
   test
 </NewTabLinkWithTooltip>"
+`;
+
+exports[`ContentLink renders without tooltip 1`] = `
+"<NewTabLink href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} aria-label="test guidance">
+  test
+</NewTabLink>"
 `;

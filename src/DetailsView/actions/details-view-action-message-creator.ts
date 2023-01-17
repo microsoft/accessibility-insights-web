@@ -174,7 +174,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     public sendPivotItemClicked(pivotKey: string, ev?: React.MouseEvent<HTMLElement>): void {
-        const telemetry = this.telemetryFactory.forDetailsViewNavPivotActivated(ev, pivotKey);
+        const telemetry = ev && this.telemetryFactory.forDetailsViewNavPivotActivated(ev, pivotKey);
 
         const payload: OnDetailsViewPivotSelected = {
             telemetry: telemetry,
@@ -295,5 +295,21 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             TelemetryEvents.LEFT_NAV_PANEL_EXPANDED,
             this.telemetryFactory.forLeftNavPanelExpanded(event),
         );
+    };
+
+    public confirmDataTransferToAssessment = (event: SupportedMouseEvent) => {
+        const payload: BaseActionPayload = {
+            telemetry: this.telemetryFactory.withTriggeredByAndSource(
+                event,
+                TelemetryEvents.TelemetryEventSource.DetailsView,
+            ),
+        };
+
+        const message: Message = {
+            messageType: Messages.DataTransfer.InitiateTransferDataToAssessment,
+            payload,
+        };
+
+        this.dispatcher.dispatchMessage(message);
     };
 }

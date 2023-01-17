@@ -142,8 +142,8 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "frame-tested": {
-    "reason": "rule is tagged best-practice",
-    "status": "excluded",
+    "reason": "Tests for unresponsive frames, enables iframe skipped warning",
+    "status": "included-always",
   },
   "frame-title": {
     "status": "included",

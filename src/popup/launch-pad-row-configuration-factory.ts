@@ -38,9 +38,9 @@ export class LaunchPadRowConfigurationFactory {
             onClickTitle: () => handler.openAdhocToolsPanel(component),
         };
         const mediumPassRowConfig = {
-            iconName: '',
-            title: 'MediumPass',
-            description: 'MediumPass tag line goes here',
+            iconName: 'SiteScan',
+            title: 'Quick Assess',
+            description: 'Run 10 assisted checks to find more accessibility issues in 30 minutes.',
             onClickTitle: event =>
                 actionMessageCreator.openDetailsView(
                     event,

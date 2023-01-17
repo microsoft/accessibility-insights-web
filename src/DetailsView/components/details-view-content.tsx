@@ -155,6 +155,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState,
             );
 
+        const overviewHeadingIntroText =
+            selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;
+
         return (
             <DetailsViewBody
                 deps={deps}
@@ -164,6 +167,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 pathSnippetStoreData={storeState.pathSnippetStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 cardsViewStoreData={storeState.cardsViewStoreData}
+                dataTransferViewStoreData={storeState.dataTransferViewStoreData}
                 selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
@@ -186,6 +190,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 tabStopRequirementData={tabStopRequirementData}
+                overviewHeadingIntroText={overviewHeadingIntroText}
             />
         );
     };

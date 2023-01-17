@@ -70,10 +70,10 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         };
         const mediumPassConfig = {
             key: DetailsViewPivotType.mediumPass,
-            text: 'MediumPass',
-            title: 'MediumPass',
+            text: 'Quick Assess',
+            title: 'Quick Assess',
             data: {
-                icon: '',
+                icon: 'SiteScan',
             },
         };
         const assessmentConfig = {

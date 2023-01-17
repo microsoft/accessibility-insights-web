@@ -51,7 +51,7 @@ describe('BaseAnalyzer', () => {
         };
 
         scanIncompleteWarningDetectorMock
-            .setup(idm => idm.detectScanIncompleteWarnings())
+            .setup(idm => idm.detectScanIncompleteWarnings(undefined))
             .returns(() => scanIncompleteWarnings);
 
         sendMessageMock

@@ -5,75 +5,84 @@ exports[`RequirementViewTest renders with content from props 1`] = `
   className="requirementView"
 >
   <div>
-    <RequirementViewTitle
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-    />
+    <div>
+      TITLE MOCK ELEMENT
+    </div>
     <div
-      className="mainContent"
+      className="requirementContent"
     >
-      <RequirementInstructions />
-      <RequirementTableSection
-        assessmentInstanceTableHandler={
-          {
-            "changeRequirementStatus": null,
-          }
-        }
-        assessmentNavState={
-          {
-            "selectedTestSubview": "test-requirement-name",
-            "selectedTestType": 0,
-          }
-        }
-        assessmentsProvider={[typemoq mock object]}
-        featureFlagStoreData={
-          {
-            "some feature flag": true,
-          }
-        }
-        instancesMap={{}}
-        isRequirementScanned={true}
-        manualRequirementResultMap={
-          {
-            "some manual test step result id": null,
-          }
-        }
-        pathSnippetStoreData={
-          {
-            "path": null,
-          }
-        }
-        requirement={
-          {
-            "key": "test-requirement-key",
-          }
-        }
-        selectedRequirementHasVisualHelper={false}
-      />
+      <div
+        className="mainContent"
+      >
+        <React.Fragment>
+          <RequirementInstructions />
+          <RequirementTableSection
+            assessmentInstanceTableHandler={
+              {
+                "changeRequirementStatus": null,
+              }
+            }
+            assessmentNavState={
+              {
+                "selectedTestSubview": "test-requirement-name",
+                "selectedTestType": 0,
+              }
+            }
+            assessmentsProvider={[typemoq mock object]}
+            featureFlagStoreData={
+              {
+                "some feature flag": true,
+              }
+            }
+            instancesMap={{}}
+            isRequirementScanned={true}
+            manualRequirementResultMap={
+              {
+                "some manual test step result id": null,
+              }
+            }
+            pathSnippetStoreData={
+              {
+                "path": null,
+              }
+            }
+            requirement={
+              {
+                "guidanceLinks": [
+                  {
+                    "href": "test-guidance-href",
+                    "text": "test-guidance-text",
+                  },
+                ],
+                "helpfulResourceLinks": [
+                  {
+                    "href": "test-resource-href",
+                    "text": "test-resource-text",
+                  },
+                ],
+                "infoAndExamples": {
+                  "pageTitle": "test-page-title",
+                },
+                "key": "test-requirement-key",
+                "name": "rest-requirement-name",
+                "whyItMatters": [Function],
+              }
+            }
+            selectedRequirementHasVisualHelper={false}
+          />
+        </React.Fragment>
+      </div>
+      <div>
+        REQUIREMENT CONTEXT SECTION MOCK ELEMENT
+      </div>
     </div>
   </div>
   <div
     className="nextRequirementButtonContainer"
   >
-    <NextRequirementButton
-      className="nextRequirementButton"
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      nextRequirement={
-        {
-          "key": "other-requirement-key",
-        }
-      }
-      nextRequirementVisualizationType={0}
-    />
+    <React.Fragment>
+      next requirement stub
+    </React.Fragment>
   </div>
 </div>
 `;

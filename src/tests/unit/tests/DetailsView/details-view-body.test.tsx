@@ -103,6 +103,7 @@ describe('DetailsViewBody', () => {
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
                 tabStopsViewStoreData: { failureInstanceState: {} } as TabStopsViewStoreData,
+                dataTransferViewStoreData: { showQuickAssessToAssessmentConfirmDialog: true },
                 featureFlagStoreData: {} as FeatureFlagStoreData,
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryStub,

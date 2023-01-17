@@ -64,7 +64,7 @@ describe('TabStopsAnalyzer', () => {
         tabStopsRequirementResultProcessorMock = Mock.ofType<TabStopsRequirementResultProcessor>();
 
         scanIncompleteWarningDetectorMock
-            .setup(idm => idm.detectScanIncompleteWarnings())
+            .setup(idm => idm.detectScanIncompleteWarnings(It.isAny()))
             .returns(() => []);
 
         testSubject = new TabStopsAnalyzer(
