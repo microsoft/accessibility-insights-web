@@ -40,7 +40,7 @@ export class LaunchPadRowConfigurationFactory {
         const mediumPassRowConfig = {
             iconName: 'SiteScan',
             title: 'Quick Assess',
-            description: 'MUST BE REPLACED',
+            description: 'Run 10 assisted checks to find more accessibility issues in 30 minutes.',
             onClickTitle: event =>
                 actionMessageCreator.openDetailsView(
                     event,
