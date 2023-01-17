@@ -81,12 +81,11 @@ export const getNextRequirementConfigurationForQuickAssess = (
 
     const nextRequirementKey = props.deps.mediumPassRequirementKeys[requirementIndex + 1];
     const nextAssessment = props.deps.getProvider().forRequirementKey(nextRequirementKey);
+    const nextRequirement = nextAssessment!.requirements.find(r => r.key === nextRequirementKey);
     return (
         <NextRequirementButton
             deps={props.deps}
-            nextRequirement={
-                nextAssessment!.requirements.find(r => r.key === nextRequirementKey) as Requirement
-            }
+            nextRequirement={nextRequirement!}
             nextRequirementVisualizationType={nextAssessment!.visualizationType}
             className={props.className}
         />
