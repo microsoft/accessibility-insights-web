@@ -54,6 +54,7 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
                             detailsViewActionMessageCreator.sendPivotItemClicked(
                                 DetailsViewPivotType[DetailsViewPivotType.assessment],
                             );
+                            detailsViewActionMessageCreator.changeRightContentPanel('Overview');
                             await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
                         }}
                         text={'Continue to assessment'}

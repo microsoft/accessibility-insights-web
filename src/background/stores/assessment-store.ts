@@ -143,9 +143,10 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         const validTransferedData = this.initialAssessmentStoreDataGenerator.generateInitialState(
             payload.assessmentData,
         );
+        const defaultState = this.generateDefaultState(null);
         this.state = {
             ...validTransferedData,
-            assessmentNavState: this.state.assessmentNavState,
+            assessmentNavState: defaultState.assessmentNavState,
         };
         await this.emitChanged();
     };

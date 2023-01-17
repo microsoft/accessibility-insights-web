@@ -18,11 +18,11 @@ import {
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
 import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
-import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import { RequirementContextSectionDeps } from 'DetailsView/components/requirement-context-section';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import { RequirementViewComponentConfiguration } from 'DetailsView/components/requirement-view-component-configuration';
 import { RequirementContextSectionFactoryProps } from 'DetailsView/components/requirement-view-context-section-factory';
+import { GetNextRequirementConfigurationDeps } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import {
     RequirementViewTitleDeps,
     RequirementViewTitleFactoryProps,
@@ -38,6 +38,7 @@ export type RequirementViewDeps = {
     mediumPassRequirementKeys: string[];
 } & RequirementViewTitleDeps &
     AssessmentViewUpdateHandlerDeps &
+    GetNextRequirementConfigurationDeps &
     RequirementContextSectionDeps;
 
 export interface RequirementViewProps {
@@ -87,23 +88,15 @@ export class RequirementView extends React.Component<RequirementViewProps> {
         assessment: Assessment,
         requirement: Requirement,
     ): JSX.Element {
-        const { nextRequirement, nextRequirementVisualizationType } =
-            this.props.requirementViewComponentConfiguration.getNextRequirementButtonConfiguration({
+        const nextRequirementButton =
+            this.props.requirementViewComponentConfiguration.getNextRequirementButton({
                 deps: this.props.deps,
                 currentAssessment: assessment,
                 currentRequirement: requirement,
                 assessmentNavState: this.props.assessmentNavState,
+                className: styles.nextRequirementButton,
             });
-        return (
-            <div className={styles.nextRequirementButtonContainer}>
-                <NextRequirementButton
-                    deps={this.props.deps}
-                    nextRequirement={nextRequirement}
-                    nextRequirementVisualizationType={nextRequirementVisualizationType}
-                    className={styles.nextRequirementButton}
-                />
-            </div>
-        );
+        return <div className={styles.nextRequirementButtonContainer}>{nextRequirementButton}</div>;
     }
 
     public render(): JSX.Element {

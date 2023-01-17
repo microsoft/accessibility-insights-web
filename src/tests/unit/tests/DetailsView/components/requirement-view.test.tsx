@@ -33,6 +33,7 @@ import {
     RequirementViewTitleFactory,
     RequirementViewTitleFactoryProps,
 } from 'DetailsView/components/requirement-view-title-factory';
+import styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
@@ -153,25 +154,21 @@ describe('RequirementViewTest', () => {
 
         getNextRequirementButtonConfigurationMock
             .setup(g =>
-                g(
-                    It.isObjectWith({
-                        deps: deps,
-                        currentAssessment: assessmentStub,
-                        currentRequirement: requirementStub,
-                        assessmentNavState,
-                    }),
-                ),
+                g({
+                    deps: deps,
+                    currentAssessment: assessmentStub,
+                    currentRequirement: requirementStub,
+                    assessmentNavState,
+                    className: styles.nextRequirementButton,
+                }),
             )
             .returns(() => {
-                return {
-                    nextRequirement: otherRequirementStub,
-                    nextRequirementVisualizationType: assessmentNavState.selectedTestType,
-                };
+                return <>next requirement stub</>;
             })
             .verifiable();
 
         requirementViewComponentConfigurationStub = {
-            getNextRequirementButtonConfiguration: getNextRequirementButtonConfigurationMock.object,
+            getNextRequirementButton: getNextRequirementButtonConfigurationMock.object,
             getRequirementViewTitle: getRequirementViewTitleMock.object,
             getRequirementContextSection: getRequirementContextSectionMock.object,
         } as RequirementViewComponentConfiguration;

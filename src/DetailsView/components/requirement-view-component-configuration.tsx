@@ -2,24 +2,24 @@
 // Licensed under the MIT License.
 
 import {
-    RequirementContextSectionFactory,
     getRequirementContextSectionForAssessment,
     getRequirementContextSectionForQuickAssess,
+    RequirementContextSectionFactory,
 } from 'DetailsView/components/requirement-view-context-section-factory';
 import {
     GetNextRequirementButtonConfiguration,
-    GetNextRequirementConfigurationProps,
     getNextRequirementConfigurationForAssessment,
     getNextRequirementConfigurationForQuickAssess,
+    GetNextRequirementConfigurationProps,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import {
-    RequirementViewTitleFactory,
     getRequirementViewTitleForAssessment,
     getRequirementViewTitleForQuickAssess,
+    RequirementViewTitleFactory,
 } from 'DetailsView/components/requirement-view-title-factory';
 
 export type RequirementViewComponentConfiguration = {
-    getNextRequirementButtonConfiguration: GetNextRequirementButtonConfiguration;
+    getNextRequirementButton: GetNextRequirementButtonConfiguration;
     getRequirementViewTitle: RequirementViewTitleFactory;
     getRequirementContextSection: RequirementContextSectionFactory;
 };
@@ -30,15 +30,14 @@ export type GetRequirementViewComponentConfiguration = () => RequirementViewComp
 
 export const getRequirementViewComponentConfigurationForAssessment = () => {
     return {
-        getNextRequirementButtonConfiguration: getNextRequirementConfigurationForAssessment,
+        getNextRequirementButton: getNextRequirementConfigurationForAssessment,
         getRequirementViewTitle: getRequirementViewTitleForAssessment,
         getRequirementContextSection: getRequirementContextSectionForAssessment,
     };
 };
-
 export const getRequirementViewComponentConfigurationForQuickAssess = () => {
     return {
-        getNextRequirementButtonConfiguration: getNextRequirementConfigurationForQuickAssess,
+        getNextRequirementButton: getNextRequirementConfigurationForQuickAssess,
         getRequirementViewTitle: getRequirementViewTitleForQuickAssess,
         getRequirementContextSection: getRequirementContextSectionForQuickAssess,
     };

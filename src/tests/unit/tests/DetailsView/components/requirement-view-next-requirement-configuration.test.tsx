@@ -11,11 +11,11 @@ import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-a
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import {
     GetNextRequirementConfigurationDeps,
-    GetNextRequirementConfigurationProps,
-    NextRequirementButtonConfiguration,
     getNextRequirementConfigurationForAssessment,
     getNextRequirementConfigurationForQuickAssess,
+    GetNextRequirementConfigurationProps,
 } from 'DetailsView/components/requirement-view-next-requirement-configuration';
+import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { IMock, Mock } from 'typemoq';
 
 describe('RequirementViewNextRequirementConfiguration', () => {
@@ -32,9 +32,10 @@ describe('RequirementViewNextRequirementConfiguration', () => {
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
     let mediumPassRequirementKeysStub: string[];
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
+    let dataTransferViewControllerMock: IMock<DataTransferViewController>;
 
     let deps: GetNextRequirementConfigurationDeps;
-    let testSubject: NextRequirementButtonConfiguration;
+    let testSubject: JSX.Element;
 
     beforeEach(() => {
         mediumPassRequirementKeysStub = [
@@ -98,12 +99,14 @@ describe('RequirementViewNextRequirementConfiguration', () => {
 
         updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
         messageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
+        dataTransferViewControllerMock = Mock.ofType(DataTransferViewController);
 
         deps = {
             assessmentViewUpdateHandler: updateHandlerMock.object,
             getProvider: () => assessmentsProviderMock.object,
             mediumPassRequirementKeys: mediumPassRequirementKeysStub,
             getAssessmentActionMessageCreator: () => messageCreatorMock.object,
+            dataTransferViewController: dataTransferViewControllerMock.object,
         } as GetNextRequirementConfigurationDeps;
 
         props = {
@@ -115,32 +118,16 @@ describe('RequirementViewNextRequirementConfiguration', () => {
     });
 
     describe('getNextRequirementConfigurationForAssessment', () => {
-        it('returns nextRequirement and nextRequirementVisualizationType if one exists', () => {
+        it('returns NextRequirementButton with next requirement/test', () => {
             testSubject = getNextRequirementConfigurationForAssessment(props);
-
-            expect(testSubject.nextRequirement).toBe(otherRequirementStub);
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                assessmentNavState.selectedTestType,
-            );
+            expect(testSubject).toMatchSnapshot();
         });
 
-        it('returns null for nextRequirement and nextRequirementVisualizationType if none exist', () => {
-            props.currentAssessment.requirements = [requirementStub];
-            testSubject = getNextRequirementConfigurationForAssessment(props);
-            expect(testSubject.nextRequirement).toBeNull();
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                assessmentNavState.selectedTestType,
-            );
-        });
-
-        it('returns null for nextRequirement and nextRequirementVisualizationType if we are the last requirement', () => {
+        it('returns NextRequirementButton with null when last requirement in test', () => {
             props.currentAssessment.requirements = [otherRequirementStub, requirementStub];
 
             testSubject = getNextRequirementConfigurationForAssessment(props);
-            expect(testSubject.nextRequirement).toBeNull();
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                assessmentNavState.selectedTestType,
-            );
+            expect(testSubject).toMatchSnapshot();
         });
     });
 
@@ -154,35 +141,26 @@ describe('RequirementViewNextRequirementConfiguration', () => {
             props.assessmentNavState = quickAssessNavState;
         });
 
-        it('returns nextRequirement and nextRequirementVisualizationType if one exists in mediumPassRequirementKeys', () => {
+        it('returns NextRequirementButton with next requirement in mediumPassRequirementKeys', () => {
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
-
-            expect(testSubject.nextRequirement).toBe(nextQuickAssessRequirementStub);
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                otherAssessmentStub.visualizationType,
-            );
+            expect(testSubject).toMatchSnapshot();
         });
 
-        it('passes the next Automated Checks requirement if we are in Automated Checks', () => {
-            assessmentStub.key = AutomatedChecks.key;
-            quickAssessProviderMock
-                .setup(qap => qap.forType(quickAssessNavState.selectedTestType))
-                .returns(() => assessmentStub);
+        it('returns next requirement in automated checks if currentAssessment is automated checks', () => {
+            props.currentAssessment.key = AutomatedChecks.key;
+
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
-            expect(testSubject.nextRequirement).toBe(otherRequirementStub);
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                quickAssessNavState.selectedTestType,
-            );
+            expect(testSubject).toMatchSnapshot();
         });
 
-        it('returns null for nextRequirement and nextRequirementVisualizationType if we are the last requirement', () => {
+        it('returns Complete button when it is last requirement in mediumPassRequirementKeys', () => {
             props.deps.mediumPassRequirementKeys = ['test-requirement-key'];
 
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
-            expect(testSubject.nextRequirement).toBeNull();
-            expect(testSubject.nextRequirementVisualizationType).toBe(
-                quickAssessNavState.selectedTestType,
+            expect(testSubject.props['onClick']).toEqual(
+                dataTransferViewControllerMock.object.showQuickAssessToAssessmentConfirmDialog,
             );
+            expect(testSubject).toMatchSnapshot();
         });
     });
 });
