@@ -49,7 +49,7 @@ export class BaseAnalyzer implements Analyzer {
             scanResult: originalAxeResult,
             testType: config.testType,
             scanIncompleteWarnings:
-                this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(),
+                this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(originalAxeResult),
         };
 
         return {

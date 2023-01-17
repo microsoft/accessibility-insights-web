@@ -16,7 +16,7 @@ export class NotificationTextCreator {
     };
 
     public needsReviewText: TextGenerator = (results: UnifiedResult[]) => {
-        const warnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
+        const warnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings(null);
         if (isEmpty(results) && isEmpty(warnings)) {
             return 'Congratulations!\n\nNeeds review found no instances to review on this page.';
         }

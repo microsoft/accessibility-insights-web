@@ -4,7 +4,10 @@ import { IRuleConfiguration } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
 export type RuleIncluded =
+    // Rules included in automated checks by default
     | { status: 'included'; reason?: string }
+    // Rules included when running any scan
+    | { status: 'included-always'; reason: string }
     | { status: 'excluded'; reason: string };
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
@@ -35,6 +38,10 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     'presentation-role-conflict': {
         status: 'included',
         reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
+    },
+    'frame-tested': {
+        status: 'included-always',
+        reason: 'Tests for unresponsive frames, enables iframe skipped warning',
     },
 };
 

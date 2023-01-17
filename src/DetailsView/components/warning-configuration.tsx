@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
+import { IframeSkippedWarning } from 'DetailsView/components/iframe-skipped-warning';
 import {
     AssessmentIframeWarning,
     AssessmentIframeWarningDeps,
@@ -24,8 +25,10 @@ export type WarningConfiguration = {
 
 export const assessmentWarningConfiguration: WarningConfiguration = {
     'missing-required-cross-origin-permissions': AssessmentIframeWarning,
+    'frame-skipped': IframeSkippedWarning,
 };
 
 export const fastpassWarningConfiguration: WarningConfiguration = {
     'missing-required-cross-origin-permissions': FastPassIframeWarning,
+    'frame-skipped': IframeSkippedWarning,
 };

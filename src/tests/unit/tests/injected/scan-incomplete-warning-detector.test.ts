@@ -4,6 +4,7 @@ import { BaseStore } from 'common/base-store';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { IframeDetector } from 'injected/iframe-detector';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
 
 describe('ScanIncompleteWarningDetector', () => {
@@ -35,7 +36,33 @@ describe('ScanIncompleteWarningDetector', () => {
                 .setup(m => m.getState())
                 .returns(() => ({ hasAllUrlAndFilePermissions }));
 
-            expect(testSubject.detectScanIncompleteWarnings()).toStrictEqual(expectedResults);
+            expect(testSubject.detectScanIncompleteWarnings(null)).toStrictEqual(expectedResults);
+        },
+    );
+
+    it('should not detect frames skipped warning when it detects permissions warning ', () => {
+        iframeDetectorMock.setup(m => m.hasIframes()).returns(() => true);
+        permissionsStateStoreMock
+            .setup(m => m.getState())
+            .returns(() => ({ hasAllUrlAndFilePermissions: false }));
+        const results = { framesSkipped: true } as ScanResults;
+        expect(testSubject.detectScanIncompleteWarnings(results)).toStrictEqual([
+            'missing-required-cross-origin-permissions',
+        ]);
+    });
+
+    it('should detect no frames skipped if results are null', () => {
+        expect(testSubject.detectScanIncompleteWarnings(null)).toStrictEqual([]);
+    });
+
+    it.each([true, false])(
+        'should detect frames skipped correctly if results frames skipped is %s',
+        (resultsFramesSkipped: boolean) => {
+            const results = { framesSkipped: resultsFramesSkipped } as ScanResults;
+
+            expect(testSubject.detectScanIncompleteWarnings(results)).toStrictEqual(
+                resultsFramesSkipped ? ['frame-skipped'] : [],
+            );
         },
     );
 });

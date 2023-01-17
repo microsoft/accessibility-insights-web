@@ -29,6 +29,7 @@ export class ResultDecorator {
             timestamp: results.timestamp,
             targetPageUrl: results.url,
             targetPageTitle: this.documentUtils.title(),
+            framesSkipped: results.incomplete.some(result => result.id === 'frame-tested'),
         };
 
         return scanResults;
