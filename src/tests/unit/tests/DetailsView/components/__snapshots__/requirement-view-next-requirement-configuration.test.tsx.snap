@@ -8,7 +8,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "dataTransferViewController": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getProvider": [Function],
-      "mediumPassRequirementKeys": [
+      "quickAssessRequirementKeys": [
         "test-requirement-key",
         "next-quick-assess-requirement-key",
       ],
@@ -31,7 +31,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "dataTransferViewController": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getProvider": [Function],
-      "mediumPassRequirementKeys": [
+      "quickAssessRequirementKeys": [
         "test-requirement-key",
         "next-quick-assess-requirement-key",
       ],
@@ -57,7 +57,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "dataTransferViewController": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getProvider": [Function],
-      "mediumPassRequirementKeys": [
+      "quickAssessRequirementKeys": [
         "test-requirement-key",
         "next-quick-assess-requirement-key",
       ],
@@ -80,7 +80,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "dataTransferViewController": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getProvider": [Function],
-      "mediumPassRequirementKeys": [
+      "quickAssessRequirementKeys": [
         "test-requirement-key",
         "next-quick-assess-requirement-key",
       ],
