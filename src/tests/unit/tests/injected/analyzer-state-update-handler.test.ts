@@ -67,17 +67,20 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         startScanMock.verify(m => m(It.isAny()), Times.never());
     });
 
-    test('do not start scan if inject in progress and no prevState', () => {
-        const state = new VisualizationStoreDataBuilder()
-            .with('scanning', 'landmarks')
-            .with('injectingState', InjectingState.injectingRequested)
-            .withLandmarksEnable()
-            .build();
+    test.each([InjectingState.injectingRequested, InjectingState.injectingStarted])(
+        'do not start scan if injectingState is %s and no prevState',
+        injectingState => {
+            const state = new VisualizationStoreDataBuilder()
+                .with('scanning', 'landmarks')
+                .with('injectingState', injectingState)
+                .withLandmarksEnable()
+                .build();
 
-        testObject.handleUpdate(state);
+            testObject.handleUpdate(state);
 
-        startScanMock.verify(m => m(It.isAny()), Times.never());
-    });
+            startScanMock.verify(m => m(It.isAny()), Times.never());
+        },
+    );
 
     test('do not start scan or terminate if state is not changed', () => {
         const prevState = new VisualizationStoreDataBuilder()
@@ -111,10 +114,35 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('start scan w/o teardowns: inject just completed', () => {
         const scanningTestStub = 'some test id';
         const prevState = new VisualizationStoreDataBuilder()
-            .with('injectingState', InjectingState.injectingRequested)
+            .with('injectingState', InjectingState.injectingStarted)
             .with('scanning', scanningTestStub)
             .build();
         const currState = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.notInjecting)
+            .with('scanning', scanningTestStub)
+            .build();
+        testObject.setPrevState(prevState);
+        setupDefaultVisualizationConfigFactory();
+        setupIsTestTerminated(configMock, requirementConfig, prevState, currState, true, true);
+
+        testObject.handleUpdate(currState);
+        tearDownCallback(configMock.object, -1, requirementConfig);
+
+        startScanMock.verify(m => m(scanningTestStub), Times.once());
+        teardownMock.verify(m => m(It.isAny()), Times.never());
+    });
+
+    // We still scan if injecting failed because it might have failed only for some frames - in
+    // that case, we preform a partial scan and a different component detects a corresponding
+    // axe-core "frame-tested" failure to display a warning to the user.
+    test('start scan w/o teardowns: inject just failed', () => {
+        const scanningTestStub = 'some test id';
+        const prevState = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.injectingStarted)
+            .with('scanning', scanningTestStub)
+            .build();
+        const currState = new VisualizationStoreDataBuilder()
+            .with('injectingState', InjectingState.injectingFailed)
             .with('scanning', scanningTestStub)
             .build();
         testObject.setPrevState(prevState);
