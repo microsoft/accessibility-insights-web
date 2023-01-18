@@ -42,14 +42,14 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
 />
 `;
 
-exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns Complete button when it is last requirement in mediumPassRequirementKeys 1`] = `
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns Complete button when it is last requirement in quickAssessRequirementKeys 1`] = `
 <CustomizedPrimaryButton
   onClick={[Function]}
   text="Complete"
 />
 `;
 
-exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns NextRequirementButton with next requirement in mediumPassRequirementKeys 1`] = `
+exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns NextRequirementButton with next requirement in quickAssessRequirementKeys 1`] = `
 <NextRequirementButton
   deps={
     {
