@@ -8,15 +8,17 @@ exports[`Details View -> Settings Panel should pass accessibility validation wit
     "id": "link-in-text-block",
     "nodes": [
       {
-        "failureSummary": "Fix all of the following:
-  Links need to be distinguished from surrounding text in some way other than by color",
+        "failureSummary": "Fix any of the following:
+  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
+  The link has no styling (such as underline) to distinguish it from the surrounding text",
         "selector": [
           "p:nth-child(1) > .root-294.insights-link[target="_blank"]",
         ],
       },
       {
-        "failureSummary": "Fix all of the following:
-  Links need to be distinguished from surrounding text in some way other than by color",
+        "failureSummary": "Fix any of the following:
+  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
+  The link has no styling (such as underline) to distinguish it from the surrounding text",
         "selector": [
           ".toggle-description--ieTgg > .root-294.insights-link[target="_blank"]",
         ],
