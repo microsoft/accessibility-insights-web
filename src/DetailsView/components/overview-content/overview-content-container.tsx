@@ -44,7 +44,7 @@ export type OverviewContainerDeps = {
         assessmentProvider: AssessmentsProvider,
         flags: FeatureFlagStoreData,
     ) => AssessmentsProvider;
-    mediumPassRequirementKeys: string[];
+    quickAssessRequirementKeys: string[];
     getGetAssessmentSummaryModelFromProviderAndStoreData: () => GetSelectedAssessmentSummaryModelFromProviderAndStoreData;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
@@ -70,7 +70,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
     const {
         getProvider,
         assessmentsProviderWithFeaturesEnabled,
-        mediumPassRequirementKeys,
+        quickAssessRequirementKeys,
         getGetAssessmentSummaryModelFromProviderAndStoreData,
     } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
@@ -90,7 +90,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         getAssessmentSummaryModelFromProviderAndStoreData(
             filteredProvider,
             assessmentStoreData,
-            mediumPassRequirementKeys,
+            quickAssessRequirementKeys,
         );
 
     return (

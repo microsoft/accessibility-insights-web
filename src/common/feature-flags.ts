@@ -13,7 +13,7 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly mediumPass = 'mediumPass';
+    public static readonly quickAssess = 'quickAssess';
 }
 
 export interface FeatureFlagDetail {
@@ -99,10 +99,10 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             forceDefault: false,
         },
         {
-            id: FeatureFlags.mediumPass,
+            id: FeatureFlags.quickAssess,
             defaultValue: false,
-            displayableName: 'Medium Pass',
-            displayableDescription: 'Adds Medium Pass option to launch pad and details view pivot',
+            displayableName: 'Quick Assess',
+            displayableDescription: 'Adds Quick Assess option to launch pad and details view pivot',
             isPreviewFeature: false,
             forceDefault: false,
         },

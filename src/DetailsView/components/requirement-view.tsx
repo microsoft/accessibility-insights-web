@@ -35,7 +35,7 @@ export type RequirementViewDeps = {
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
     getProvider: () => AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
-    mediumPassRequirementKeys: string[];
+    quickAssessRequirementKeys: string[];
 } & RequirementViewTitleDeps &
     AssessmentViewUpdateHandlerDeps &
     GetNextRequirementConfigurationDeps &

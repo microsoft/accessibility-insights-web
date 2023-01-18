@@ -51,7 +51,7 @@ describe('OverviewContainer', () => {
         (provider, assessmentData, requirementKeys) => null,
         MockBehavior.Strict,
     );
-    const mediumPassRequirementKeysStub = [];
+    const quickAssessRequirementKeysStub = [];
 
     const deps: OverviewContainerDeps = {
         getProvider: () => assessmentsProvider,
@@ -61,7 +61,7 @@ describe('OverviewContainer', () => {
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
         detailsViewId: undefined,
-        mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+        quickAssessRequirementKeys: quickAssessRequirementKeysStub,
         getGetAssessmentSummaryModelFromProviderAndStoreData: () =>
             getAssessmentSummaryModelFromProviderAndStoreDataMock.object,
     };
@@ -77,7 +77,7 @@ describe('OverviewContainer', () => {
         .returns(() => filteredProvider);
 
     getAssessmentSummaryModelFromProviderAndStoreDataMock.setup(mock =>
-        mock(filteredProvider, assessmentStoreData, mediumPassRequirementKeysStub),
+        mock(filteredProvider, assessmentStoreData, quickAssessRequirementKeysStub),
     );
 
     const overviewHeadingIntroTextStub = 'Test intro overview text:';

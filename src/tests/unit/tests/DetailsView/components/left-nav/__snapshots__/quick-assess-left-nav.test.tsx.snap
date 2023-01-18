@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MediumPassLeftNav renders left nav with appropriate params 1`] = `
+exports[`QuickAssessLeftNav renders left nav with appropriate params 1`] = `
 <BaseLeftNav
   links={
     [

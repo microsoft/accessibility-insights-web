@@ -11,7 +11,7 @@ import { IMock, Mock, Times } from 'typemoq';
 describe('Switcher', () => {
     let defaultProps: SwitcherProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    const mediumPassFeatureFlag = 'mediumPass';
+    const quickAssessFeatureFlag = 'quickAssess';
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -26,9 +26,9 @@ describe('Switcher', () => {
 
     describe('renders', () => {
         it.each([true, false])(
-            'Switcher itself matches snapshot when medium pass feature flag is %s',
+            'Switcher itself matches snapshot when quick assess feature flag is %s',
             featureFlagValue => {
-                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
+                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
                 const renderer = shallow(<Switcher {...defaultProps} />);
 
                 expect(renderer.debug()).toMatchSnapshot();
@@ -36,9 +36,9 @@ describe('Switcher', () => {
         );
 
         it.each([true, false])(
-            'option renderer override matches snapshotm when medium pass feature flag is %s',
+            'option renderer override matches snapshotm when quick assess feature flag is %s',
             featureFlagValue => {
-                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
+                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
 
                 const renderer = shallow(<Switcher {...defaultProps} />);
 
@@ -55,9 +55,9 @@ describe('Switcher', () => {
 
     describe('props', () => {
         it.each([true, false])(
-            'dropdown has correct options when medium pass feature flag is %s',
+            'dropdown has correct options when quick assess feature flag is %s',
             featureFlagValue => {
-                defaultProps.featureFlagStoreData[mediumPassFeatureFlag] = featureFlagValue;
+                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
 
                 const renderer = shallow(<Switcher {...defaultProps} />);
 

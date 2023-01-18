@@ -17,7 +17,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "getAssessmentActionMessageCreator": [Function],
         "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
         "getProvider": [Function],
-        "mediumPassRequirementKeys": [],
+        "quickAssessRequirementKeys": [],
         "urlParser": {},
       }
     }
@@ -53,7 +53,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "getAssessmentActionMessageCreator": [Function],
           "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
           "getProvider": [Function],
-          "mediumPassRequirementKeys": [],
+          "quickAssessRequirementKeys": [],
           "urlParser": {},
         }
       }

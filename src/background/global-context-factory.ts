@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { MediumPassActionCreator } from 'background/actions/quick-assess-action-creator';
+import { QuickAssessActionCreator } from 'background/actions/quick-assess-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { QuickAssessToAssessmentConverter } from 'background/quick-assess-to-assessment-converter';
 import { Logger } from 'common/logging/logger';
@@ -98,7 +98,7 @@ export class GlobalContextFactory {
             globalActionsHub.assessmentActions,
             telemetryEventHandler,
         );
-        const quickAssessActionCreator = new MediumPassActionCreator(
+        const quickAssessActionCreator = new QuickAssessActionCreator(
             interpreter,
             globalActionsHub.quickAssessActions,
             telemetryEventHandler,

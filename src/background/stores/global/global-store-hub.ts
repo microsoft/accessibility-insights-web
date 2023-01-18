@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
@@ -94,19 +94,19 @@ export class GlobalStoreHub implements StoreHub {
             StoreNames.AssessmentStore,
             IndexedDBDataKeys.assessmentStore,
         );
-        const mediumPassProvider = assessmentsProviderForRequirements(
+        const quickAssessProvider = assessmentsProviderForRequirements(
             assessmentsProvider,
-            MediumPassRequirementMap,
+            QuickAssessRequirementMap,
         );
         this.quickAssessStore = new AssessmentStore(
             browserAdapter,
             globalActionHub.quickAssessActions,
             new AssessmentDataConverter(generateUID),
             new AssessmentDataRemover(),
-            mediumPassProvider,
+            quickAssessProvider,
             indexedDbInstance,
             persistedData.quickAssessStoreData,
-            new InitialAssessmentStoreDataGenerator(mediumPassProvider.all()),
+            new InitialAssessmentStoreDataGenerator(quickAssessProvider.all()),
             logger,
             StoreNames.QuickAssessStore,
             IndexedDBDataKeys.quickAssessStore,
