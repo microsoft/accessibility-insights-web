@@ -141,7 +141,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
             props.assessmentNavState = quickAssessNavState;
         });
 
-        it('returns NextRequirementButton with next requirement in mediumPassRequirementKeys', () => {
+        it('returns NextRequirementButton with next requirement in quickAssessRequirementKeys', () => {
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
             expect(testSubject).toMatchSnapshot();
         });
@@ -153,7 +153,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
             expect(testSubject).toMatchSnapshot();
         });
 
-        it('returns Complete button when it is last requirement in mediumPassRequirementKeys', () => {
+        it('returns Complete button when it is last requirement in quickAssessRequirementKeys', () => {
             props.deps.quickAssessRequirementKeys = ['test-requirement-key'];
 
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
