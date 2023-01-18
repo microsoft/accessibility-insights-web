@@ -276,7 +276,7 @@ export class ActionCreator {
     private onStartOverAllAssessmentsForQuickAssess = async (
         payload: ToggleActionPayload,
     ): Promise<void> => {
-        await this.onStartOverAllAssessments(payload, TelemetryEvents.START_OVER_MEDIUM_PASS);
+        await this.onStartOverAllAssessments(payload, TelemetryEvents.START_OVER_QUICK_ASSESS);
     };
 
     private onCancelStartOverAllAssessments = (
@@ -293,7 +293,7 @@ export class ActionCreator {
     private onCancelStartOverAllAssessmentsForQuickAssess = (payload: BaseActionPayload): void => {
         this.onCancelStartOverAllAssessments(
             payload,
-            TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS,
+            TelemetryEvents.CANCEL_START_OVER_QUICK_ASSESS,
         );
     };
 
@@ -338,7 +338,7 @@ export class ActionCreator {
         await this.onAssessmentScanCompleted(
             payload,
             tabId,
-            TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED,
+            TelemetryEvents.QUICK_ASSESS_SCAN_COMPLETED,
         );
     };
 

@@ -120,7 +120,7 @@ describe('QuickAssessActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CONTINUE_PREVIOUS_MEDIUM_PASS,
+                    TelemetryEvents.CONTINUE_PREVIOUS_QUICK_ASSESS,
                     telemetryOnlyPayload,
                 ),
             Times.once(),
@@ -398,7 +398,7 @@ describe('QuickAssessActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS,
+                    TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS,
                     payload,
                 ),
             Times.once(),
@@ -438,7 +438,7 @@ describe('QuickAssessActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS_FOR_ALL,
+                    TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS_FOR_ALL,
                     payload,
                 ),
             Times.once(),

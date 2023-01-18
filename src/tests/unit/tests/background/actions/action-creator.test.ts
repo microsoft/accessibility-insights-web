@@ -619,7 +619,7 @@ describe('ActionCreatorTest', () => {
             ],
             [
                 Messages.QuickAssess.AssessmentScanCompleted,
-                TelemetryEvents.MEDIUM_PASS_SCAN_COMPLETED,
+                TelemetryEvents.QUICK_ASSESS_SCAN_COMPLETED,
             ],
         ];
 
@@ -715,7 +715,7 @@ describe('ActionCreatorTest', () => {
     describe('onStartOverAllAssessments', () => {
         const testCases = [
             [Messages.Assessment.StartOverAllAssessments, TelemetryEvents.START_OVER_ASSESSMENT],
-            [Messages.QuickAssess.StartOverAllAssessments, TelemetryEvents.START_OVER_MEDIUM_PASS],
+            [Messages.QuickAssess.StartOverAllAssessments, TelemetryEvents.START_OVER_QUICK_ASSESS],
         ];
 
         test.each(testCases)('registerCallback with %s', async (eventName, telemetryEvent) => {
@@ -750,7 +750,7 @@ describe('ActionCreatorTest', () => {
             ],
             [
                 Messages.QuickAssess.CancelStartOverAllAssessments,
-                TelemetryEvents.CANCEL_START_OVER_MEDIUM_PASS,
+                TelemetryEvents.CANCEL_START_OVER_QUICK_ASSESS,
             ],
         ];
 

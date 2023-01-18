@@ -147,7 +147,7 @@ export class QuickAssessActionCreator {
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CONTINUE_PREVIOUS_MEDIUM_PASS;
+        const eventName = TelemetryEvents.CONTINUE_PREVIOUS_QUICK_ASSESS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.quickAssessActions.continuePreviousAssessment.invoke(tabId, this.executingScope);
     };
@@ -230,7 +230,7 @@ export class QuickAssessActionCreator {
     private onChangeAssessmentVisualizationState = async (
         payload: ChangeInstanceSelectionPayload,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS;
+        const eventName = TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.quickAssessActions.changeAssessmentVisualizationState.invoke(
             payload,
@@ -241,7 +241,7 @@ export class QuickAssessActionCreator {
     private onChangeVisualizationStateForAll = async (
         payload: ChangeInstanceSelectionPayload,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS_FOR_ALL;
+        const eventName = TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS_FOR_ALL;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         await this.quickAssessActions.changeAssessmentVisualizationStateForAll.invoke(
             payload,
