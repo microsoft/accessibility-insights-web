@@ -3,6 +3,155 @@
 exports[`Details View -> Assessment -> Headings Requirement page should pass accessibility validation with highContrastMode=false 1`] = `
 [
   {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          ".ms-DetailsHeader",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-0",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-1",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-2",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-3",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-4",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-5",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-6",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-7",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-8",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-9",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-10",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-11",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-12",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-13",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-14",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-15",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row270-16",
+        ],
+      },
+    ],
+  },
+  {
     "id": "label-content-name-mismatch",
     "nodes": [
       {
@@ -19,6 +168,155 @@ exports[`Details View -> Assessment -> Headings Requirement page should pass acc
 
 exports[`Details View -> Assessment -> Headings Requirement page should pass accessibility validation with highContrastMode=true 1`] = `
 [
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          ".ms-DetailsHeader",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-0",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-1",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-2",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-3",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-4",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-5",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-6",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-7",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-8",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-9",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-10",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-11",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-12",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-13",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-14",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-15",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row234-16",
+        ],
+      },
+    ],
+  },
   {
     "id": "label-content-name-mismatch",
     "nodes": [
