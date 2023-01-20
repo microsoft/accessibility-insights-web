@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
-@import '../../../common/styles/common.scss';
 
 .insights-command-button {
     .command-bar-button-icon {
@@ -21,11 +20,9 @@
             color: $primary-text;
         }
     }
-}
 
-// high contrast overrides to make a.insights-command-button
-// match button.insights-command-button
-a.insights-command-button {
+    // high contrast overrides to make a.insights-command-button
+    // match button.insights-command-button
     @media screen and (forced-colors: active) {
         color: buttontext;
 
