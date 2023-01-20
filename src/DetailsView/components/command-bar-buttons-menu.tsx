@@ -27,10 +27,12 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const exportButton = props.renderExportReportButton();
         const overflowItems: IContextualMenuItem[] = [];
 
-        overflowItems.push({
-            key: 'export report',
-            onRender: () => <div role="menuitem">{exportButton}</div>,
-        });
+        if (exportButton != null) {
+            overflowItems.push({
+                key: 'export report',
+                onRender: () => <div role="menuitem">{exportButton}</div>,
+            });
+        }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {
             overflowItems.push(
                 {

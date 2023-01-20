@@ -29,7 +29,7 @@ export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavBut
 export const QuickAssessLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
     'QuickAssessLeftNavHamburgerButton',
     props => {
-        const ariaLabel: string = 'QuickAssess - all tests and requirements list';
+        const ariaLabel: string = 'Quick Assess - all tests and requirements list';
         return (
             <LeftNavHamburgerButton
                 ariaLabel={ariaLabel}
