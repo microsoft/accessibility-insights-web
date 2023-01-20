@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
 
-button.insights-command-button {
+.insights-command-button {
     .command-bar-button-icon {
         line-height: 16px;
     }
@@ -18,6 +18,22 @@ button.insights-command-button {
     &:active:not(:disabled) {
         .command-bar-button-icon {
             color: $primary-text;
+        }
+    }
+
+    // high contrast overrides to make a.insights-command-button
+    // match button.insights-command-button
+    @media screen and (forced-colors: active) {
+        color: buttontext;
+
+        .command-bar-button-icon {
+            color: buttontext;
+        }
+
+        &:hover {
+            .command-bar-button-icon {
+                color: buttontext;
+            }
         }
     }
 }
