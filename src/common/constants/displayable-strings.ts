@@ -13,5 +13,5 @@ export class DisplayableStrings {
     public static noPreviewFeatureDisplayMessage: string =
         'No preview features are currently available to manage. Follow this page for future cool features.';
     public static injectionFailed: string =
-        'Unable to communicate with target page. If you are using Edge, make sure that the target page is not in Internet Explorer mode.';
+        'Unable to communicate with target page. If you are using Microsoft Edge, make sure that the target page is not in Internet Explorer mode.';
 }
