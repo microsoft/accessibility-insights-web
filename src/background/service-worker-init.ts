@@ -104,6 +104,10 @@ async function initializeAsync(): Promise<void> {
     const persistedData = await persistedDataPromise; //indexedDB
     const userData = await userDataPromise;
     const assessmentsProvider = Assessments;
+    const quickAssessProvider = assessmentsProviderForRequirements(
+        Assessments,
+        QuickAssessRequirementMap,
+    );
     const telemetryDataFactory = new TelemetryDataFactory();
     const telemetryLogger = new TelemetryLogger(logger);
 
@@ -139,6 +143,7 @@ async function initializeAsync(): Promise<void> {
         telemetryEventHandler,
         userData,
         assessmentsProvider,
+        quickAssessProvider,
         telemetryDataFactory,
         indexedDBInstance,
         persistedData,
@@ -161,7 +166,7 @@ async function initializeAsync(): Promise<void> {
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
         Assessments,
-        assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
+        quickAssessProvider,
     );
     const notificationCreator = new NotificationCreator(
         browserAdapter,

@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
@@ -48,6 +46,7 @@ export class GlobalStoreHub implements StoreHub {
         browserAdapter: BrowserAdapter,
         userData: LocalStorageData,
         assessmentsProvider: AssessmentsProvider,
+        quickAssessProvider: AssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,
         storageAdapter: StorageAdapter,
@@ -93,10 +92,6 @@ export class GlobalStoreHub implements StoreHub {
             logger,
             StoreNames.AssessmentStore,
             IndexedDBDataKeys.assessmentStore,
-        );
-        const quickAssessProvider = assessmentsProviderForRequirements(
-            assessmentsProvider,
-            QuickAssessRequirementMap,
         );
         this.quickAssessStore = new AssessmentStore(
             browserAdapter,

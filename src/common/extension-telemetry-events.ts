@@ -60,6 +60,8 @@ export const CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS_FOR_ALL: string =
     'changeQuickAssessVisualizationStateForAll';
 export const DISABLE_VISUAL_HELPER: string = 'disableVisualHelper';
 export const CHANGE_OVERALL_REQUIREMENT_STATUS: string = 'changeOverallRequirementStatus';
+export const CHANGE_OVERALL_REQUIREMENT_STATUS_QUICK_ASSESS: string =
+    'changeOverallRequirementStatusQuickAssess';
 export const PREVIEW_FEATURES_CLOSE: string = 'PreviewFeaturesClose';
 export const PREVIEW_FEATURES_OPEN: string = 'PreviewFeaturesOpen';
 export const PREVIEW_FEATURES_TOGGLE: string = 'PreviewFeaturesToggle';
