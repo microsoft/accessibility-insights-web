@@ -15,12 +15,14 @@ import {
 } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 
 describe('Details View ->', () => {
     let browser: Browser;
     let detailsViewPage: DetailsViewPage;
     const height = 400;
     const narrowModeThresholds = getNarrowModeThresholdsForWeb();
+    let backgroundPage: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -48,9 +50,60 @@ describe('Details View ->', () => {
         const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
 
         describe.each`
-            componentName           | componentSelectors               | width
-            ${'command bar button'} | ${commandBarMenuButtonSelectors} | ${commandBarWindowWidth}
-            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors}  | ${hamburgerButtonWindowWidth}
+            componentName           | componentSelectors                         | width
+            ${'command bar button'} | ${commandBarMenuButtonSelectors}           | ${commandBarWindowWidth}
+            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors.assessment} | ${hamburgerButtonWindowWidth}
+        `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
+            beforeAll(async () => {
+                await resizeDetailsView(width, componentSelectors.collapsed);
+            });
+
+            it.each([true, false])(
+                `should pass accessibility validation with high contrast mode=%s`,
+                async highContrastMode => {
+                    await scanForA11yIssuesWithHighContrast(highContrastMode);
+                },
+            );
+
+            describe(`with ${componentName} expanded`, () => {
+                beforeAll(async () => {
+                    await setButtonExpandedState(componentSelectors, true);
+                });
+
+                afterAll(async () => {
+                    await setButtonExpandedState(componentSelectors, false);
+                });
+
+                it.each([true, false])(
+                    `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
+                    async highContrastMode => {
+                        await scanForA11yIssuesWithHighContrast(highContrastMode);
+                    },
+                );
+            });
+        });
+    });
+
+    describe('Quick Assess -> Reflow', () => {
+        beforeAll(async () => {
+            backgroundPage = await browser.background();
+            await backgroundPage.enableFeatureFlag('quickAssess');
+            detailsViewPage = (await browser.newQuickAssess()).detailsViewPage;
+        });
+
+        afterAll(async () => {
+            await detailsViewPage.close();
+        });
+
+        const { commandBarMenuButtonSelectors, hamburgerMenuButtonSelectors } = navMenuSelectors;
+
+        const commandBarWindowWidth = narrowModeThresholds.collapseCommandBarThreshold - 1;
+        const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
+
+        describe.each`
+            componentName           | componentSelectors                          | width
+            ${'command bar button'} | ${commandBarMenuButtonSelectors}            | ${commandBarWindowWidth}
+            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors.quickAssess} | ${hamburgerButtonWindowWidth}
         `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
             beforeAll(async () => {
                 await resizeDetailsView(width, componentSelectors.collapsed);

@@ -70,13 +70,24 @@ export const navMenuSelectors = {
     },
 
     hamburgerMenuButtonSelectors: {
-        collapsed:
-            'button[aria-label="Assessment - all tests and requirements list"][aria-expanded=false]',
-        // Note: in the expanded state, the hamburger menu opens a modal dialog panel which hides the
-        // original menu button, but which has a second identical menu button overlaid. [role="dialog"]
-        // causes tests to interact with the dialog's copy (the one on top that the user would see).
-        expanded:
-            '[role="dialog"] button[aria-label="Assessment - all tests and requirements list"][aria-expanded=true]',
+        assessment: {
+            collapsed:
+                'button[aria-label="Assessment - all tests and requirements list"][aria-expanded=false]',
+            // Note: in the expanded state, the hamburger menu opens a modal dialog panel which hides the
+            // original menu button, but which has a second identical menu button overlaid. [role="dialog"]
+            // causes tests to interact with the dialog's copy (the one on top that the user would see).
+            expanded:
+                '[role="dialog"] button[aria-label="Assessment - all tests and requirements list"][aria-expanded=true]',
+        },
+        quickAssess: {
+            collapsed:
+                'button[aria-label="Quick Assess - all tests and requirements list"][aria-expanded=false]',
+            // Note: in the expanded state, the hamburger menu opens a modal dialog panel which hides the
+            // original menu button, but which has a second identical menu button overlaid. [role="dialog"]
+            // causes tests to interact with the dialog's copy (the one on top that the user would see).
+            expanded:
+                '[role="dialog"] button[aria-label="Quick Assess - all tests and requirements list"][aria-expanded=true]',
+        },
     },
 };
 
