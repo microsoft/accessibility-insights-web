@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { GlobalActionHub } from 'background/actions/global-action-hub';
 import { PersistedData } from 'background/get-persisted-data';
 import { LocalStorageData } from 'background/storage-data';
@@ -25,12 +26,14 @@ import { CreateTestAssessmentProvider } from '../../../../common/test-assessment
 describe('GlobalStoreHubTest', () => {
     let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
-    let assessmentProvider;
+    let assessmentProvider: AssessmentsProvider;
+    let quickAssessProvider: AssessmentsProvider;
     let persistedDataStub: PersistedData;
 
     beforeEach(() => {
         idbInstance = {} as IndexedDBAPI;
         assessmentProvider = CreateTestAssessmentProvider();
+        quickAssessProvider = CreateTestAssessmentProvider();
         userDataStub = {
             launchPanelSetting: LaunchPanelType.LaunchPad,
         } as LocalStorageData;
@@ -65,6 +68,7 @@ describe('GlobalStoreHubTest', () => {
             null,
             userDataStub,
             assessmentProvider,
+            quickAssessProvider,
             idbInstance,
             cloneDeep(persistedDataStub),
             null,
@@ -91,6 +95,7 @@ describe('GlobalStoreHubTest', () => {
             null,
             userDataStub,
             assessmentProvider,
+            quickAssessProvider,
             idbInstance,
             cloneDeep(persistedDataStub),
             null,

@@ -41,6 +41,7 @@ export class GlobalContextFactory {
         telemetryEventHandler: TelemetryEventHandler,
         userData: LocalStorageData,
         assessmentsProvider: AssessmentsProvider,
+        quickAssessProvider: AssessmentsProvider,
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
@@ -58,6 +59,7 @@ export class GlobalContextFactory {
             browserAdapter,
             userData,
             assessmentsProvider,
+            quickAssessProvider,
             indexedDBInstance,
             persistedData,
             storageAdapter,
@@ -142,6 +144,14 @@ export class GlobalContextFactory {
             logger,
         );
         await dispatcher.initialize();
+
+        const quickAssessChangeHandler = new CompletedTestStepTelemetryCreator(
+            globalStoreHub.quickAssessStore,
+            quickAssessProvider,
+            telemetryDataFactory,
+            interpreter,
+        );
+        quickAssessChangeHandler.initialize();
 
         const assessmentChangeHandler = new CompletedTestStepTelemetryCreator(
             globalStoreHub.assessmentStore,
