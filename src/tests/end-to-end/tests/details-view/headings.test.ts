@@ -26,7 +26,7 @@ describe('Details View -> Assessment -> Headings', () => {
 
     describe('Requirement page', () => {
         beforeAll(async () => {
-            await headingsPage.navigateToTestRequirement('Headings', 'Heading function');
+            await headingsPage.navigateToAssessmentRequirement('Headings', 'Heading function');
             await headingsPage.waitForVisualHelperState('Off', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
             });

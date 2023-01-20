@@ -137,6 +137,19 @@ export class Browser {
         return { detailsViewPage, targetPage };
     }
 
+    public async newQuickAssess(
+        targetPageUrlOptions?: TargetPageUrlOptions,
+    ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
+        const targetPage = await this.newTargetPage(targetPageUrlOptions);
+        await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
+        const detailsViewPage = await this.newDetailsViewPage(targetPage);
+        debugger;
+        await detailsViewPage.switchToQuickAssess();
+
+        return { detailsViewPage, targetPage };
+    }
+
     public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
         const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
         const isMatch = (p: Playwright.Page) => p.url().toLowerCase() === expectedUrl.toLowerCase();
