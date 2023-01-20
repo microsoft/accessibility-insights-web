@@ -10,6 +10,8 @@ import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
 import styles from './hamburger-menu-button.scss';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { FeatureFlags } from 'common/feature-flags';
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
@@ -22,51 +24,69 @@ export type HamburgerMenuButtonProps = {
     deps: HamburgerMenuButtonDeps;
     popupWindow: Window;
     header: LaunchPanelHeader;
+    featureFlagData: FeatureFlagStoreData;
 };
 
 export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
     'HamburgerMenuButton',
     props => {
-        const { deps, header, popupWindow } = props;
+        const { deps, header, popupWindow, featureFlagData } = props;
         const { launchPanelHeaderClickHandler, popupActionMessageCreator } = deps;
+        const fastPassMenuItem = {
+            key: 'fast-pass',
+            iconProps: {
+                iconName: 'Rocket',
+            },
+            onClick: event =>
+                popupActionMessageCreator.openDetailsView(
+                    event,
+                    VisualizationType.Issues,
+                    telemetryEventSource,
+                    DetailsViewPivotType.fastPass,
+                ),
+            name: 'FastPass',
+        };
+        const assessmentMenuItem = {
+            key: 'assessment',
+            iconProps: {
+                iconName: 'testBeakerSolid',
+            },
+            onClick: event =>
+                popupActionMessageCreator.openDetailsView(
+                    event,
+                    null,
+                    telemetryEventSource,
+                    DetailsViewPivotType.assessment,
+                ),
+            name: 'Assessment',
+        };
+        const quickAssessMenuItem = {
+            key: 'quick-assess',
+            iconProps: {
+                iconName: 'SiteScan',
+            },
+            onClick: event =>
+                popupActionMessageCreator.openDetailsView(
+                    event,
+                    null,
+                    telemetryEventSource,
+                    DetailsViewPivotType.quickAssess,
+                ),
+            name: 'Quick Assess',
+        };
+        const adhocToolsMenuItem = {
+            key: 'ad-hoc-tools',
+            iconProps: {
+                iconName: 'Medical',
+            },
+            name: 'Ad hoc tools',
+            onClick: () => launchPanelHeaderClickHandler.openAdhocToolsPanel(header),
+        };
+        const productMenuItems = featureFlagData[FeatureFlags.quickAssess]
+            ? [fastPassMenuItem, quickAssessMenuItem, assessmentMenuItem, adhocToolsMenuItem]
+            : [fastPassMenuItem, assessmentMenuItem, adhocToolsMenuItem];
 
-        const getMenuItems = (): IContextualMenuItem[] => [
-            {
-                key: 'fast-pass',
-                iconProps: {
-                    iconName: 'Rocket',
-                },
-                onClick: event =>
-                    popupActionMessageCreator.openDetailsView(
-                        event,
-                        VisualizationType.Issues,
-                        telemetryEventSource,
-                        DetailsViewPivotType.fastPass,
-                    ),
-                name: 'FastPass',
-            },
-            {
-                key: 'assessment',
-                iconProps: {
-                    iconName: 'testBeakerSolid',
-                },
-                onClick: event =>
-                    popupActionMessageCreator.openDetailsView(
-                        event,
-                        null,
-                        telemetryEventSource,
-                        DetailsViewPivotType.assessment,
-                    ),
-                name: 'Assessment',
-            },
-            {
-                key: 'ad-hoc-tools',
-                iconProps: {
-                    iconName: 'Medical',
-                },
-                name: 'Ad hoc tools',
-                onClick: () => launchPanelHeaderClickHandler.openAdhocToolsPanel(header),
-            },
+        const resourceMenuItems: IContextualMenuItem[] = [
             {
                 key: 'divider_1',
                 itemType: ContextualMenuItemType.Divider,
@@ -100,6 +120,9 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
                 name: 'Help',
             },
         ];
+
+        const getMenuItems = (): IContextualMenuItem[] =>
+            [...productMenuItems, ...resourceMenuItems] as IContextualMenuItem[];
 
         return (
             <IconButton

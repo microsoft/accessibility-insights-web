@@ -38,6 +38,7 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
           "popupActionMessageCreator": {},
         }
       }
+      featureFlagData={{}}
       header={
         LaunchPanelHeader {
           "context": {},
@@ -141,6 +142,7 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
                         "popupActionMessageCreator": {},
                       }
                     }
+                    featureFlagData={{}}
                     header={[Circular]}
                     popupWindow={{}}
                   />
