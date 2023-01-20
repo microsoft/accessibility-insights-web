@@ -144,7 +144,6 @@ export class Browser {
         await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
         const detailsViewPage = await this.newDetailsViewPage(targetPage);
-        debugger;
         await detailsViewPage.switchToQuickAssess();
 
         return { detailsViewPage, targetPage };

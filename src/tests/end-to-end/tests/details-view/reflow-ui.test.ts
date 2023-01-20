@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { TargetPage } from 'tests/end-to-end/common/page-controllers/target-page';
 import {
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
@@ -15,7 +16,6 @@ import {
 } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 
 describe('Details View ->', () => {
     let browser: Browser;
