@@ -3,6 +3,10 @@
 import { QuickAssessActionCreator } from 'background/actions/quick-assess-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { QuickAssessToAssessmentConverter } from 'background/quick-assess-to-assessment-converter';
+import {
+    CHANGE_OVERALL_REQUIREMENT_STATUS,
+    CHANGE_OVERALL_REQUIREMENT_STATUS_QUICK_ASSESS,
+} from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { DebugToolsActionCreator } from 'debug-tools/action-creators/debug-tools-action-creator';
 import { DebugToolsController } from 'debug-tools/controllers/debug-tools-controller';
@@ -150,6 +154,7 @@ export class GlobalContextFactory {
             quickAssessProvider,
             telemetryDataFactory,
             interpreter,
+            CHANGE_OVERALL_REQUIREMENT_STATUS_QUICK_ASSESS,
         );
         quickAssessChangeHandler.initialize();
 
@@ -158,6 +163,7 @@ export class GlobalContextFactory {
             assessmentsProvider,
             telemetryDataFactory,
             interpreter,
+            CHANGE_OVERALL_REQUIREMENT_STATUS,
         );
         assessmentChangeHandler.initialize();
 
