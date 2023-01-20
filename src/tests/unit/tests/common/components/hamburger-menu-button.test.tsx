@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContextualMenu, IButtonProps, IconButton } from '@fluentui/react';
+import { IButtonProps, IconButton } from '@fluentui/react';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,
@@ -8,7 +8,6 @@ import {
 } from 'common/components/hamburger-menu-button';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
@@ -71,7 +70,6 @@ describe('HamburgerMenuButton', () => {
         let launchPanelHeaderClickHandlerMock: IMock<LaunchPanelHeaderClickHandler>;
 
         let buttonProps: IButtonProps;
-        let featureFlagDataStub: FeatureFlagStoreData = { quickAssess: true };
 
         beforeEach(() => {
             popupActionMessageCreatorMock = Mock.ofType<PopupActionMessageCreator>();
@@ -84,7 +82,7 @@ describe('HamburgerMenuButton', () => {
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,
-                featureFlagData: featureFlagDataStub,
+                featureFlagData: { quickAssess: true },
             };
 
             const testObject = shallow(<HamburgerMenuButton {...props} />);

@@ -11,7 +11,7 @@ export const TabStopRequirementIds = [
     'input-focus',
 ] as const;
 
-export type TabStopRequirementId = (typeof TabStopRequirementIds)[number];
+export type TabStopRequirementId = typeof TabStopRequirementIds[number];
 
 export type TabStopRequirementInfo = {
     [requirementId in TabStopRequirementId]: TabStopRequirementContent;

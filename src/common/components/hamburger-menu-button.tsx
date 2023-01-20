@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { ContextualMenuItemType, IconButton, IContextualMenuItem } from '@fluentui/react';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
 import styles from './hamburger-menu-button.scss';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { FeatureFlags } from 'common/feature-flags';
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
