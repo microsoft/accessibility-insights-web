@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details View -> Quick Assess -> Reflow Requirement page should pass accessibility validation with highContrastMode=false 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow Requirement page should pass accessibility validation with highContrastMode=true 1`] = `
+[
+  {
+    "id": "color-contrast",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has insufficient color contrast of 3.44 (foreground color: #106ebe, background color: #161616, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1",
+        "selector": [
+          "#id__49",
+        ],
+      },
+    ],
+  },
+]
+`;
