@@ -78,7 +78,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
               <div
                 class="preview-features-description"
               >
-                The following preview features are available for your evalution. Help us make them better!
+                The following preview features are available for your evaluation. Help us make them better!
               </div>
               <div
                 class="preview-feature-toggle-list--{{CSS_MODULE_HASH}}"
