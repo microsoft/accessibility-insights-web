@@ -10,7 +10,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row94-0",
+          "#row000-0",
         ],
       },
       {
@@ -18,7 +18,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row94-1",
+          "#row000-1",
         ],
       },
       {
@@ -26,7 +26,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row94-2",
+          "#row000-2",
         ],
       },
       {
@@ -34,7 +34,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row94-3",
+          "#row000-3",
         ],
       },
       {
@@ -42,7 +42,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row94-4",
+          "#row000-4",
         ],
       },
     ],
@@ -60,7 +60,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row81-0",
+          "#row000-0",
         ],
       },
       {
@@ -68,7 +68,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row81-1",
+          "#row000-1",
         ],
       },
       {
@@ -76,7 +76,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row81-2",
+          "#row000-2",
         ],
       },
       {
@@ -84,7 +84,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row81-3",
+          "#row000-3",
         ],
       },
       {
@@ -92,7 +92,7 @@ exports[`Details View -> FastPass -> TabStops should pass accessibility validati
   Element has children which are not allowed (see related nodes)
   Element has no aria-busy="true" attribute",
         "selector": [
-          "#row81-4",
+          "#row000-4",
         ],
       },
     ],
