@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details View -> FastPass -> TabStops should pass accessibility validation with highContrastMode=false 1`] = `
+[
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row94-0",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row94-1",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row94-2",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row94-3",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row94-4",
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`Details View -> FastPass -> TabStops should pass accessibility validation with highContrastMode=true 1`] = `
+[
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row81-0",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row81-1",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row81-2",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row81-3",
+        ],
+      },
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed (see related nodes)
+  Element has no aria-busy="true" attribute",
+        "selector": [
+          "#row81-4",
+        ],
+      },
+    ],
+  },
+]
+`;
