@@ -52,7 +52,7 @@ describe('Details View -> Assessment -> Headings', () => {
                 // the axe-core bug causes a failure for the FluentUI v8 DetailsList component
                 // The FluentUI tracking issue can be found here:
                 // https://github.com/microsoft/fluentui/issues/26330
-                expect(results).toHaveLength(1);
+                expect(results).toMatchSnapshot();
             },
         );
     });
