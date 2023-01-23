@@ -7,7 +7,6 @@ import { TabStore } from 'background/stores/tab-store';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
-    CHANGE_OVERALL_REQUIREMENT_STATUS,
     RequirementStatusTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
@@ -22,6 +21,7 @@ import {
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
+const telemetryEventStub = 'change requirement status telemetry event stub';
 function testBeforeAfterAssessmentData(
     expectedTelemetry: RequirementStatusTelemetryData,
     expectedTimes: Times,
@@ -38,13 +38,14 @@ function testBeforeAfterAssessmentData(
         assessmentProvider,
         telemetryFactoryMock.object,
         interpreterMock.object,
+        telemetryEventStub,
     );
 
     const expectedMessage: Message = {
         messageType: Messages.Telemetry.Send,
         tabId: 1,
         payload: {
-            eventName: CHANGE_OVERALL_REQUIREMENT_STATUS,
+            eventName: telemetryEventStub,
             telemetry: expectedTelemetry,
         },
     };
@@ -89,7 +90,7 @@ function testBeforeAfterAssessmentData(
 
 describe('CompletedTestStepTelemetryCreatorTest', () => {
     test('constructor', () => {
-        expect(new CompletedTestStepTelemetryCreator(null, null, null, null)).toBeDefined();
+        expect(new CompletedTestStepTelemetryCreator(null, null, null, null, null)).toBeDefined();
     });
 
     test('initialize: onAssessmentChange, telemetry sent because one test step switches to PASS', () => {
@@ -215,6 +216,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             assessmentProvider,
             telemetryFactory.object,
             interpreterMock.object,
+            telemetryEventStub,
         );
 
         assessmentStoreMock
@@ -257,7 +259,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             messageType: Messages.Telemetry.Send,
             tabId: 1,
             payload: {
-                eventName: CHANGE_OVERALL_REQUIREMENT_STATUS,
+                eventName: telemetryEventStub,
                 telemetry: expectedTelemetry,
             },
         };
@@ -275,6 +277,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             assessmentProvider,
             telemetryFactoryMock.object,
             interpreterMock.object,
+            telemetryEventStub,
         );
 
         tabStoreMock.setup(m => m.getState()).returns(() => tabStoreData);

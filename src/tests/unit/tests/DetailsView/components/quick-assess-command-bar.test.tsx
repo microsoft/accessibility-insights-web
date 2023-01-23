@@ -4,18 +4,18 @@
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
+import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-describe('getMediumPassCommandBar ', () => {
-    it('should return DetailsViewCommandBar with props that match DetailsViewSwitcherNav props for mediumPass pivot type', () => {
+describe('getQuickAssessCommandBar ', () => {
+    it('should return DetailsViewCommandBar with props that match DetailsViewSwitcherNav props for quickAssess pivot type', () => {
         const props = {
             switcherNavConfiguration: GetDetailsSwitcherNavConfiguration({
-                selectedDetailsViewPivot: DetailsViewPivotType.mediumPass,
+                selectedDetailsViewPivot: DetailsViewPivotType.quickAssess,
             }),
         } as CommandBarProps;
-        const testSubject = shallow(<MediumPassCommandBar {...props} />);
+        const testSubject = shallow(<QuickAssessCommandBar {...props} />);
         expect(testSubject.props()).toStrictEqual(props);
     });
 });

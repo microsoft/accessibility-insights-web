@@ -17,16 +17,16 @@ import {
 } from './left-nav-link-builder';
 import { NavLinkHandler } from './nav-link-handler';
 
-export type MediumPassLeftNavDeps = {
+export type QuickAssessLeftNavDeps = {
     leftNavLinkBuilder: LeftNavLinkBuilder;
     getNavLinkHandler: () => NavLinkHandler;
-    mediumPassRequirementKeys: string[];
+    quickAssessRequirementKeys: string[];
     getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
 } & OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps;
 
-export type MediumPassLeftNavProps = {
-    deps: MediumPassLeftNavDeps;
+export type QuickAssessLeftNavProps = {
+    deps: QuickAssessLeftNavDeps;
     selectedKey: string;
     assessmentsProvider: AssessmentsProvider;
     assessmentsData: DictionaryStringTo<ManualTestStatusData>;
@@ -36,7 +36,7 @@ export type MediumPassLeftNavProps = {
     setNavComponentRef: (nav: INav) => void;
 };
 
-export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeftNav', props => {
+export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessLeftNav', props => {
     const {
         deps,
         selectedKey,
@@ -73,7 +73,7 @@ export const MediumPassLeftNav = NamedFC<MediumPassLeftNavProps>('MediumPassLeft
     );
 
     links = links.concat(
-        leftNavLinkBuilder.buildMediumPassTestLinks(
+        leftNavLinkBuilder.buildQuickAssessTestLinks(
             deps,
             assessmentsProvider,
             assessmentsData,

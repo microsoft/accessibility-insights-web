@@ -27,7 +27,7 @@ describe('DetailsViewRightPanelTests', () => {
             validateTestView(testSubject);
         });
 
-        [DetailsViewPivotType.assessment, DetailsViewPivotType.mediumPass].forEach(pivot => {
+        [DetailsViewPivotType.assessment, DetailsViewPivotType.quickAssess].forEach(pivot => {
             it(`GetDetailsRightPanelConfiguration: return TestView object when ${DetailsViewPivotType[pivot]} selected`, () => {
                 const testSubject = GetDetailsRightPanelConfiguration({
                     selectedDetailsViewPivot: pivot,

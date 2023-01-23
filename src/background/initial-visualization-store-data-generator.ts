@@ -23,7 +23,7 @@ export class InitialVisualizationStoreDataGenerator {
         const defaultTests: TestsEnabledState = {
             adhoc: {},
             assessments: {},
-            mediumPass: {},
+            quickAssess: {},
         };
 
         if (this.visualizationConfigurationFactory != null) {
@@ -38,8 +38,8 @@ export class InitialVisualizationStoreDataGenerator {
                 defaultTests.assessments[key].stepStatus = {};
             });
 
-            Object.keys(defaultTests.mediumPass).forEach(key => {
-                defaultTests.mediumPass[key].stepStatus = {};
+            Object.keys(defaultTests.quickAssess).forEach(key => {
+                defaultTests.quickAssess[key].stepStatus = {};
             });
         }
 

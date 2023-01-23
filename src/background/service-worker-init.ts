@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import { BackgroundMessageDistributor } from 'background/background-message-distributor';
 import { BrowserMessageBroadcasterFactory } from 'background/browser-message-broadcaster-factory';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
@@ -104,6 +104,10 @@ async function initializeAsync(): Promise<void> {
     const persistedData = await persistedDataPromise; //indexedDB
     const userData = await userDataPromise;
     const assessmentsProvider = Assessments;
+    const quickAssessProvider = assessmentsProviderForRequirements(
+        Assessments,
+        QuickAssessRequirementMap,
+    );
     const telemetryDataFactory = new TelemetryDataFactory();
     const telemetryLogger = new TelemetryLogger(logger);
 
@@ -139,6 +143,7 @@ async function initializeAsync(): Promise<void> {
         telemetryEventHandler,
         userData,
         assessmentsProvider,
+        quickAssessProvider,
         telemetryDataFactory,
         indexedDBInstance,
         persistedData,
@@ -161,7 +166,7 @@ async function initializeAsync(): Promise<void> {
 
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
         Assessments,
-        assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+        quickAssessProvider,
     );
     const notificationCreator = new NotificationCreator(
         browserAdapter,

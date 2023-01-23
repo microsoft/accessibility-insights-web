@@ -60,7 +60,7 @@ describe('filter by requirements', () => {
             expect(generatedAutomatedChecksAssessment).toBeDefined();
             expect(generatedAutomatedChecksAssessment.key).toStrictEqual(AutomatedChecks.key);
             expect(generatedAutomatedChecksAssessment.visualizationType).toStrictEqual(
-                VisualizationType.AutomatedChecksMediumPass,
+                VisualizationType.AutomatedChecksQuickAssess,
             );
 
             const containsOnlyIncludedRequirements = (assessment: Assessment) => {

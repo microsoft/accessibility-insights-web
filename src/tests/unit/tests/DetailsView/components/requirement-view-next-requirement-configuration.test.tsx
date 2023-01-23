@@ -30,7 +30,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
     let quickAssessProviderMock: IMock<AssessmentsProvider>;
     let props: GetNextRequirementConfigurationProps;
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
-    let mediumPassRequirementKeysStub: string[];
+    let quickAssessRequirementKeysStub: string[];
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
 
@@ -38,7 +38,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
     let testSubject: JSX.Element;
 
     beforeEach(() => {
-        mediumPassRequirementKeysStub = [
+        quickAssessRequirementKeysStub = [
             'test-requirement-key',
             'next-quick-assess-requirement-key',
         ];
@@ -59,14 +59,14 @@ describe('RequirementViewNextRequirementConfiguration', () => {
         otherAssessmentStub = {
             requirements: [nextQuickAssessRequirementStub],
             key: 'other-assessment',
-            visualizationType: VisualizationType.LinksMediumPass,
+            visualizationType: VisualizationType.LinksQuickAssess,
         } as Assessment;
         assessmentNavState = {
             selectedTestType: VisualizationType.Headings,
             selectedTestSubview: 'test-requirement-name',
         };
         quickAssessNavState = {
-            selectedTestType: VisualizationType.HeadingsMediumPass,
+            selectedTestType: VisualizationType.HeadingsQuickAssess,
             selectedTestSubview: 'test-requirement-name',
         };
         assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
@@ -104,7 +104,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
         deps = {
             assessmentViewUpdateHandler: updateHandlerMock.object,
             getProvider: () => assessmentsProviderMock.object,
-            mediumPassRequirementKeys: mediumPassRequirementKeysStub,
+            quickAssessRequirementKeys: quickAssessRequirementKeysStub,
             getAssessmentActionMessageCreator: () => messageCreatorMock.object,
             dataTransferViewController: dataTransferViewControllerMock.object,
         } as GetNextRequirementConfigurationDeps;
@@ -133,7 +133,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
 
     describe('getNextRequirementConfigurationForQuickAssess', () => {
         beforeEach(() => {
-            props.deps.mediumPassRequirementKeys = mediumPassRequirementKeysStub = [
+            props.deps.quickAssessRequirementKeys = quickAssessRequirementKeysStub = [
                 'test-requirement-key',
                 'next-quick-assess-requirement-key',
             ];
@@ -141,7 +141,7 @@ describe('RequirementViewNextRequirementConfiguration', () => {
             props.assessmentNavState = quickAssessNavState;
         });
 
-        it('returns NextRequirementButton with next requirement in mediumPassRequirementKeys', () => {
+        it('returns NextRequirementButton with next requirement in quickAssessRequirementKeys', () => {
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
             expect(testSubject).toMatchSnapshot();
         });
@@ -153,8 +153,8 @@ describe('RequirementViewNextRequirementConfiguration', () => {
             expect(testSubject).toMatchSnapshot();
         });
 
-        it('returns Complete button when it is last requirement in mediumPassRequirementKeys', () => {
-            props.deps.mediumPassRequirementKeys = ['test-requirement-key'];
+        it('returns Complete button when it is last requirement in quickAssessRequirementKeys', () => {
+            props.deps.quickAssessRequirementKeys = ['test-requirement-key'];
 
             testSubject = getNextRequirementConfigurationForQuickAssess(props);
             expect(testSubject.props['onClick']).toEqual(

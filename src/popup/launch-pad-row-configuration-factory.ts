@@ -37,7 +37,7 @@ export class LaunchPadRowConfigurationFactory {
                 'Get quick access to visualizations that help you identify accessibility issues.',
             onClickTitle: () => handler.openAdhocToolsPanel(component),
         };
-        const mediumPassRowConfig = {
+        const quickAssessRowConfig = {
             iconName: 'SiteScan',
             title: 'Quick Assess',
             description: 'Run 10 assisted checks to find more accessibility issues in 30 minutes.',
@@ -45,8 +45,8 @@ export class LaunchPadRowConfigurationFactory {
                 actionMessageCreator.openDetailsView(
                     event,
                     null,
-                    TelemetryEventSource.LaunchPadMediumPass,
-                    DetailsViewPivotType.mediumPass,
+                    TelemetryEventSource.LaunchPadQuickAssess,
+                    DetailsViewPivotType.quickAssess,
                 ),
         };
         const assessmentRowConfig = {
@@ -62,8 +62,8 @@ export class LaunchPadRowConfigurationFactory {
                 ),
         };
 
-        return featureFlagStoreData[FeatureFlags.mediumPass]
-            ? [fastPassRowConfig, mediumPassRowConfig, assessmentRowConfig, adhocRowConfig]
+        return featureFlagStoreData[FeatureFlags.quickAssess]
+            ? [fastPassRowConfig, quickAssessRowConfig, assessmentRowConfig, adhocRowConfig]
             : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
     }
 }

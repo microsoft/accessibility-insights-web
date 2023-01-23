@@ -3,5 +3,5 @@
 export enum TestMode {
     Adhoc = 'adhoc',
     Assessments = 'assessments',
-    MediumPass = 'mediumPass',
+    QuickAssess = 'quickAssess',
 }

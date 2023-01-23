@@ -5,6 +5,6 @@ import * as React from 'react';
 
 import { CommandBarProps, DetailsViewCommandBar } from './details-view-command-bar';
 
-export const MediumPassCommandBar = NamedFC<CommandBarProps>('MediumPassCommandBar', props => {
+export const QuickAssessCommandBar = NamedFC<CommandBarProps>('QuickAssessCommandBar', props => {
     return <DetailsViewCommandBar {...props} />;
 });

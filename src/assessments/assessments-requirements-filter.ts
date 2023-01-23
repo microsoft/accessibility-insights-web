@@ -31,9 +31,9 @@ export function assessmentsProviderForRequirements(
         return accumulator;
     }, [] as Assessment[]);
 
-    const mediumPassAutomatedChecks = { ...AutomatedChecks };
-    mediumPassAutomatedChecks.visualizationType = VisualizationType.AutomatedChecksMediumPass;
-    assessments.unshift(mediumPassAutomatedChecks);
+    const quickAssessAutomatedChecks = { ...AutomatedChecks };
+    quickAssessAutomatedChecks.visualizationType = VisualizationType.AutomatedChecksQuickAssess;
+    assessments.unshift(quickAssessAutomatedChecks);
 
     return AssessmentsProviderImpl.Create(assessments);
 }

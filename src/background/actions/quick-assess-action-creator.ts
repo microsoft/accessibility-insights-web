@@ -30,39 +30,39 @@ import {
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
-const MediumPassMessages = Messages.MediumPass;
+const QuickAssessMessages = Messages.QuickAssess;
 
-export class MediumPassActionCreator {
+export class QuickAssessActionCreator {
     // This is to be used as the scope parameter to invoke().
     // Some callbacks in this class are registered to messages with
     // multiple callbacks (see the comment in src/common/flux/scope-mutex.ts)
-    private readonly executingScope = 'MediumPassActionCreator';
+    private readonly executingScope = 'QuickAssessActionCreator';
 
     constructor(
         private readonly interpreter: Interpreter,
-        private readonly mediumPassActions: AssessmentActions,
+        private readonly quickAssessActions: AssessmentActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.SelectTestRequirement,
+            QuickAssessMessages.SelectTestRequirement,
             this.onSelectTestRequirement,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.SelectNextRequirement,
+            QuickAssessMessages.SelectNextRequirement,
             this.onSelectNextTestRequirement,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.SelectGettingStarted,
+            QuickAssessMessages.SelectGettingStarted,
             this.onSelectGettingStarted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ExpandTestNav,
+            QuickAssessMessages.ExpandTestNav,
             this.onExpandTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.CollapseTestNav,
+            QuickAssessMessages.CollapseTestNav,
             this.onCollapseTestNav,
         );
         this.interpreter.registerTypeToPayloadCallback(
@@ -70,71 +70,71 @@ export class MediumPassActionCreator {
             this.onGetAssessmentCurrentState,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.AssessmentScanCompleted,
+            QuickAssessMessages.AssessmentScanCompleted,
             this.onAssessmentScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.StartOverTest,
+            QuickAssessMessages.StartOverTest,
             this.onStartOverAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.StartOverAllAssessments,
+            QuickAssessMessages.StartOverAllAssessments,
             this.onStartOverAllAssessments,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ChangeStatus,
+            QuickAssessMessages.ChangeStatus,
             this.onChangeAssessmentInstanceStatus,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ChangeVisualizationState,
+            QuickAssessMessages.ChangeVisualizationState,
             this.onChangeAssessmentVisualizationState,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ChangeVisualizationStateForAll,
+            QuickAssessMessages.ChangeVisualizationStateForAll,
             this.onChangeVisualizationStateForAll,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.Undo,
+            QuickAssessMessages.Undo,
             this.onUndoAssessmentInstanceStatusChange,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ChangeRequirementStatus,
+            QuickAssessMessages.ChangeRequirementStatus,
             this.onChangeManualRequirementStatus,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.UndoChangeRequirementStatus,
+            QuickAssessMessages.UndoChangeRequirementStatus,
             this.onUndoChangeManualRequirementStatus,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.AddFailureInstance,
+            QuickAssessMessages.AddFailureInstance,
             this.onAddFailureInstance,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.AddResultDescription,
+            QuickAssessMessages.AddResultDescription,
             this.onAddResultDescription,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.RemoveFailureInstance,
+            QuickAssessMessages.RemoveFailureInstance,
             this.onRemoveFailureInstance,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.EditFailureInstance,
+            QuickAssessMessages.EditFailureInstance,
             this.onEditFailureInstance,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.PassUnmarkedInstances,
+            QuickAssessMessages.PassUnmarkedInstances,
             this.onPassUnmarkedInstances,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ScanUpdate,
+            QuickAssessMessages.ScanUpdate,
             this.onScanUpdate,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.TrackingCompleted,
+            QuickAssessMessages.TrackingCompleted,
             this.onTrackingCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            MediumPassMessages.ContinuePreviousAssessment,
+            QuickAssessMessages.ContinuePreviousAssessment,
             this.onContinuePreviousAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
@@ -147,9 +147,9 @@ export class MediumPassActionCreator {
         payload: BaseActionPayload,
         tabId: number,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CONTINUE_PREVIOUS_MEDIUM_PASS;
+        const eventName = TelemetryEvents.CONTINUE_PREVIOUS_QUICK_ASSESS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.continuePreviousAssessment.invoke(tabId, this.executingScope);
+        await this.quickAssessActions.continuePreviousAssessment.invoke(tabId, this.executingScope);
     };
 
     private onPassUnmarkedInstances = async (
@@ -158,14 +158,14 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.PASS_UNMARKED_INSTANCES;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.updateTargetTabId.invoke(tabId, this.executingScope);
-        await this.mediumPassActions.passUnmarkedInstance.invoke(payload, this.executingScope);
+        await this.quickAssessActions.updateTargetTabId.invoke(tabId, this.executingScope);
+        await this.quickAssessActions.passUnmarkedInstance.invoke(payload, this.executingScope);
     };
 
     private onEditFailureInstance = async (payload: EditFailureInstancePayload): Promise<void> => {
         const eventName = TelemetryEvents.EDIT_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.editFailureInstance.invoke(payload, this.executingScope);
+        await this.quickAssessActions.editFailureInstance.invoke(payload, this.executingScope);
     };
 
     private onRemoveFailureInstance = async (
@@ -173,19 +173,19 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.REMOVE_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.removeFailureInstance.invoke(payload, this.executingScope);
+        await this.quickAssessActions.removeFailureInstance.invoke(payload, this.executingScope);
     };
 
     private onAddFailureInstance = async (payload: AddFailureInstancePayload): Promise<void> => {
         const eventName = TelemetryEvents.ADD_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.addFailureInstance.invoke(payload, this.executingScope);
+        await this.quickAssessActions.addFailureInstance.invoke(payload, this.executingScope);
     };
 
     private onAddResultDescription = async (
         payload: AddResultDescriptionPayload,
     ): Promise<void> => {
-        await this.mediumPassActions.addResultDescription.invoke(payload, this.executingScope);
+        await this.quickAssessActions.addResultDescription.invoke(payload, this.executingScope);
     };
 
     private onChangeManualRequirementStatus = async (
@@ -194,8 +194,8 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.updateTargetTabId.invoke(tabId, this.executingScope);
-        await this.mediumPassActions.changeRequirementStatus.invoke(payload, this.executingScope);
+        await this.quickAssessActions.updateTargetTabId.invoke(tabId, this.executingScope);
+        await this.quickAssessActions.changeRequirementStatus.invoke(payload, this.executingScope);
     };
 
     private onUndoChangeManualRequirementStatus = async (
@@ -203,7 +203,7 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.undoRequirementStatusChange.invoke(
+        await this.quickAssessActions.undoRequirementStatusChange.invoke(
             payload,
             this.executingScope,
         );
@@ -214,7 +214,7 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.UNDO_TEST_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.undoInstanceStatusChange.invoke(payload, this.executingScope);
+        await this.quickAssessActions.undoInstanceStatusChange.invoke(payload, this.executingScope);
     };
 
     private onChangeAssessmentInstanceStatus = async (
@@ -223,16 +223,16 @@ export class MediumPassActionCreator {
     ): Promise<void> => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.updateTargetTabId.invoke(tabId, this.executingScope);
-        await this.mediumPassActions.changeInstanceStatus.invoke(payload, this.executingScope);
+        await this.quickAssessActions.updateTargetTabId.invoke(tabId, this.executingScope);
+        await this.quickAssessActions.changeInstanceStatus.invoke(payload, this.executingScope);
     };
 
     private onChangeAssessmentVisualizationState = async (
         payload: ChangeInstanceSelectionPayload,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS;
+        const eventName = TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.changeAssessmentVisualizationState.invoke(
+        await this.quickAssessActions.changeAssessmentVisualizationState.invoke(
             payload,
             this.executingScope,
         );
@@ -241,23 +241,23 @@ export class MediumPassActionCreator {
     private onChangeVisualizationStateForAll = async (
         payload: ChangeInstanceSelectionPayload,
     ): Promise<void> => {
-        const eventName = TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS_FOR_ALL;
+        const eventName = TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS_FOR_ALL;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        await this.mediumPassActions.changeAssessmentVisualizationStateForAll.invoke(
+        await this.quickAssessActions.changeAssessmentVisualizationStateForAll.invoke(
             payload,
             this.executingScope,
         );
     };
 
     private onStartOverAssessment = async (payload: ToggleActionPayload): Promise<void> => {
-        await this.mediumPassActions.resetData.invoke(payload, this.executingScope);
+        await this.quickAssessActions.resetData.invoke(payload, this.executingScope);
     };
 
     private onStartOverAllAssessments = async (
         payload: ToggleActionPayload,
         tabId: number,
     ): Promise<void> => {
-        await this.mediumPassActions.resetAllAssessmentsData.invoke(tabId, this.executingScope);
+        await this.quickAssessActions.resetAllAssessmentsData.invoke(tabId, this.executingScope);
     };
 
     private onAssessmentScanCompleted = async (
@@ -265,23 +265,23 @@ export class MediumPassActionCreator {
         tabId: number,
     ): Promise<void> => {
         const scope = `${this.executingScope}-${payload.key}`;
-        await this.mediumPassActions.updateTargetTabId.invoke(tabId, scope);
-        await this.mediumPassActions.scanCompleted.invoke(payload, scope);
+        await this.quickAssessActions.updateTargetTabId.invoke(tabId, scope);
+        await this.quickAssessActions.scanCompleted.invoke(payload, scope);
     };
 
     private onGetAssessmentCurrentState = async (): Promise<void> => {
-        await this.mediumPassActions.getCurrentState.invoke(null, this.executingScope);
+        await this.quickAssessActions.getCurrentState.invoke(null, this.executingScope);
     };
 
     private onSelectTestRequirement = async (payload: SelectTestSubviewPayload): Promise<void> => {
-        await this.mediumPassActions.selectTestSubview.invoke(payload, this.executingScope);
+        await this.quickAssessActions.selectTestSubview.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
     };
 
     private onSelectNextTestRequirement = async (
         payload: SelectTestSubviewPayload,
     ): Promise<void> => {
-        await this.mediumPassActions.selectTestSubview.invoke(payload, this.executingScope);
+        await this.quickAssessActions.selectTestSubview.invoke(payload, this.executingScope);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.SELECT_NEXT_REQUIREMENT,
             payload,
@@ -291,7 +291,7 @@ export class MediumPassActionCreator {
     private onSelectGettingStarted = async (
         payload: SelectGettingStartedPayload,
     ): Promise<void> => {
-        await this.mediumPassActions.selectTestSubview.invoke(
+        await this.quickAssessActions.selectTestSubview.invoke(
             {
                 selectedTestSubview: gettingStartedSubview,
                 ...payload,
@@ -305,26 +305,26 @@ export class MediumPassActionCreator {
     };
 
     private onExpandTestNav = async (payload: ExpandTestNavPayload): Promise<void> => {
-        await this.mediumPassActions.expandTestNav.invoke(payload, this.executingScope);
+        await this.quickAssessActions.expandTestNav.invoke(payload, this.executingScope);
     };
 
     private onCollapseTestNav = async (): Promise<void> => {
-        await this.mediumPassActions.collapseTestNav.invoke(null, this.executingScope);
+        await this.quickAssessActions.collapseTestNav.invoke(null, this.executingScope);
     };
 
     private onScanUpdate = async (payload: ScanUpdatePayload): Promise<void> => {
         const telemetryEventName = 'ScanUpdate' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        await this.mediumPassActions.scanUpdate.invoke(payload, this.executingScope);
+        await this.quickAssessActions.scanUpdate.invoke(payload, this.executingScope);
     };
 
     private onTrackingCompleted = async (payload: ScanBasePayload): Promise<void> => {
         const telemetryEventName = 'TrackingCompleted' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
-        await this.mediumPassActions.trackingCompleted.invoke(payload, this.executingScope);
+        await this.quickAssessActions.trackingCompleted.invoke(payload, this.executingScope);
     };
 
     private onPivotChildSelected = async (payload: OnDetailsViewOpenPayload): Promise<void> => {
-        await this.mediumPassActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
+        await this.quickAssessActions.updateSelectedPivotChild.invoke(payload, this.executingScope);
     };
 }

@@ -28,8 +28,8 @@ export const AssessmentVisualizationMessageTypes: AnalyzerMessageConfiguration =
     analyzerTerminatedMessageType: Messages.Assessment.TrackingCompleted,
 };
 
-export const MediumPassVisualizationMessageTypes: AnalyzerMessageConfiguration = {
-    analyzerMessageType: Messages.MediumPass.AssessmentScanCompleted,
-    analyzerProgressMessageType: Messages.MediumPass.ScanUpdate,
-    analyzerTerminatedMessageType: Messages.MediumPass.TrackingCompleted,
+export const QuickAssessVisualizationMessageTypes: AnalyzerMessageConfiguration = {
+    analyzerMessageType: Messages.QuickAssess.AssessmentScanCompleted,
+    analyzerProgressMessageType: Messages.QuickAssess.ScanUpdate,
+    analyzerTerminatedMessageType: Messages.QuickAssess.TrackingCompleted,
 };

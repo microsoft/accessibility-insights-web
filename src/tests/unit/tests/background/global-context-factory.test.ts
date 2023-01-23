@@ -61,6 +61,7 @@ describe('GlobalContextFactoryTest', () => {
             telemetryEventHandlerMock.object,
             userDataStub,
             CreateTestAssessmentProvider(),
+            CreateTestAssessmentProvider(),
             telemetryDataFactoryMock.object,
             mockDBInstance.object,
             persistedDataStub,

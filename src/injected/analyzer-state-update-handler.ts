@@ -71,10 +71,11 @@ export class AnalyzerStateUpdateHandler {
         prevState: VisualizationStoreData,
         currState: VisualizationStoreData,
     ): void {
-        if (
-            currState.scanning != null &&
-            currState.injectingState !== InjectingState.injectingRequested
-        ) {
+        const injectingInProgress =
+            currState.injectingState === InjectingState.injectingRequested ||
+            currState.injectingState === InjectingState.injectingStarted;
+
+        if (currState.scanning != null && !injectingInProgress) {
             if (
                 prevState == null ||
                 prevState.scanning !== currState.scanning ||
