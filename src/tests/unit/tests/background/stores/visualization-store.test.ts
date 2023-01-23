@@ -4,7 +4,7 @@ import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
-import { MediumPassRequirementMap } from 'assessments/medium-pass-requirements';
+import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import {
     AssessmentToggleActionPayload,
     InjectionFailedPayload,
@@ -61,7 +61,7 @@ describe('VisualizationStoreTest ', () => {
                 new InjectionActions(),
                 new WebVisualizationConfigurationFactory(
                     Assessments,
-                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                    assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
                 ),
                 null,
                 null,
@@ -77,7 +77,7 @@ describe('VisualizationStoreTest ', () => {
             initialVisualizationStoreDataGeneratorMock.verifyAll();
         });
 
-        it('with tests in persistedData missing mediumPass data', () => {
+        it('with tests in persistedData missing quickAssess data', () => {
             const persistedState: VisualizationStoreData = {
                 tests: {
                     adhoc: {},
@@ -89,7 +89,7 @@ describe('VisualizationStoreTest ', () => {
                 tests: {
                     adhoc: {},
                     assessments: {},
-                    mediumPass: {},
+                    quickAssess: {},
                 },
             };
 
@@ -104,7 +104,7 @@ describe('VisualizationStoreTest ', () => {
                 new InjectionActions(),
                 new WebVisualizationConfigurationFactory(
                     Assessments,
-                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                    assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
                 ),
                 persistedState,
                 null,
@@ -119,12 +119,12 @@ describe('VisualizationStoreTest ', () => {
             expect(actualState).toEqual(expectedState);
             initialVisualizationStoreDataGeneratorMock.verifyAll();
         });
-        it('with tests in persistedData including mediumPass data', () => {
+        it('with tests in persistedData including quickAssess data', () => {
             const persistedState: VisualizationStoreData = {
                 tests: {
                     adhoc: {},
                     assessments: {},
-                    mediumPass: {},
+                    quickAssess: {},
                 } as TestsEnabledState,
             } as VisualizationStoreData;
 
@@ -132,7 +132,7 @@ describe('VisualizationStoreTest ', () => {
                 tests: {
                     adhoc: {},
                     assessments: {},
-                    mediumPass: {},
+                    quickAssess: {},
                 },
             };
             setupDataGeneratorMock(
@@ -145,7 +145,7 @@ describe('VisualizationStoreTest ', () => {
                 new InjectionActions(),
                 new WebVisualizationConfigurationFactory(
                     Assessments,
-                    assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+                    assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
                 ),
                 persistedState,
                 null,
@@ -989,7 +989,7 @@ describe('VisualizationStoreTest ', () => {
     ): StoreTester<VisualizationStoreData, TabActions> {
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
-            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
         );
         const factory = (actions: TabActions) =>
             new VisualizationStore(
@@ -1013,7 +1013,7 @@ describe('VisualizationStoreTest ', () => {
     ): StoreTester<VisualizationStoreData, VisualizationActions> {
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
-            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
         );
         const factory = (actions: VisualizationActions) =>
             new VisualizationStore(
@@ -1037,7 +1037,7 @@ describe('VisualizationStoreTest ', () => {
     ): StoreTester<VisualizationStoreData, InjectionActions> {
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
             Assessments,
-            assessmentsProviderForRequirements(Assessments, MediumPassRequirementMap),
+            assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
         );
         const factory = (actions: InjectionActions) =>
             new VisualizationStore(

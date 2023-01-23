@@ -7,7 +7,7 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
   <div
     className="preview-features-description"
   >
-    The following preview features are available for your evalution. Help us make them better!
+    The following preview features are available for your evaluation. Help us make them better!
   </div>
   <PreviewFeaturesToggleList
     deps={

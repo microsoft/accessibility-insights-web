@@ -15,7 +15,7 @@ describe('GetSelectedAssessmentStoreData', () => {
         props = {
             quickAssessStoreData: {
                 assessmentNavState: {
-                    selectedTestType: VisualizationType.HeadingsMediumPass,
+                    selectedTestType: VisualizationType.HeadingsQuickAssess,
                 },
             },
             assessmentStoreData: {

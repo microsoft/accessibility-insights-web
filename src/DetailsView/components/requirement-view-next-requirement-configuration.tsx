@@ -15,7 +15,7 @@ import { DataTransferViewController } from 'DetailsView/data-transfer-view-contr
 import * as React from 'react';
 
 export type GetNextRequirementConfigurationDeps = {
-    mediumPassRequirementKeys: string[];
+    quickAssessRequirementKeys: string[];
     getProvider: () => AssessmentsProvider;
     dataTransferViewController: DataTransferViewController;
 } & NextRequirementButtonDeps;
@@ -64,10 +64,10 @@ export const getNextRequirementConfigurationForQuickAssess = (
         return getNextRequirementConfigurationForAssessment(props);
     }
 
-    const requirementIndex = props.deps.mediumPassRequirementKeys.findIndex(
+    const requirementIndex = props.deps.quickAssessRequirementKeys.findIndex(
         r => r === props.currentRequirement.key,
     );
-    if (requirementIndex === props.deps.mediumPassRequirementKeys.length - 1) {
+    if (requirementIndex === props.deps.quickAssessRequirementKeys.length - 1) {
         return (
             <PrimaryButton
                 text={'Complete'}
@@ -79,7 +79,7 @@ export const getNextRequirementConfigurationForQuickAssess = (
         );
     }
 
-    const nextRequirementKey = props.deps.mediumPassRequirementKeys[requirementIndex + 1];
+    const nextRequirementKey = props.deps.quickAssessRequirementKeys[requirementIndex + 1];
     const nextAssessment = props.deps.getProvider().forRequirementKey(nextRequirementKey);
     const nextRequirement = nextAssessment!.requirements.find(r => r.key === nextRequirementKey);
     return (

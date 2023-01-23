@@ -17,7 +17,7 @@ import {
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
-import { MediumPassActionCreator } from 'background/actions/quick-assess-action-creator';
+import { QuickAssessActionCreator } from 'background/actions/quick-assess-action-creator';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -35,13 +35,13 @@ import { MockInterpreter } from 'tests/unit/tests/background/global-action-creat
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
-describe('MediumPassActionCreatorTest', () => {
-    let mediumPassAssessmentActionsMock: IMock<AssessmentActions>;
+describe('QuickAssessActionCreatorTest', () => {
+    let quickAssessAssessmentActionsMock: IMock<AssessmentActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let interpreterMock: MockInterpreter;
 
-    const actionExecutingScope = 'MediumPassActionCreator';
-    const MediumPassMessages = Messages.MediumPass;
+    const actionExecutingScope = 'QuickAssessActionCreator';
+    const QuickAssessMessages = Messages.QuickAssess;
     const testTabId = -1;
     const telemetryOnlyPayload: BaseActionPayload = {
         telemetry: {
@@ -51,7 +51,7 @@ describe('MediumPassActionCreatorTest', () => {
     };
 
     beforeEach(() => {
-        mediumPassAssessmentActionsMock = Mock.ofType(AssessmentActions, MockBehavior.Strict);
+        quickAssessAssessmentActionsMock = Mock.ofType(AssessmentActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         interpreterMock = new MockInterpreter();
     });
@@ -66,16 +66,16 @@ describe('MediumPassActionCreatorTest', () => {
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('passUnmarkedInstance', passUnmarkedInstanceActionMock);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
-            mediumPassAssessmentActionsMock.object,
+            quickAssessAssessmentActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.PassUnmarkedInstances,
+            QuickAssessMessages.PassUnmarkedInstances,
             telemetryOnlyPayload,
             testTabId,
         );
@@ -102,7 +102,7 @@ describe('MediumPassActionCreatorTest', () => {
             continuePreviousAssessmentMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -111,7 +111,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.ContinuePreviousAssessment,
+            QuickAssessMessages.ContinuePreviousAssessment,
             telemetryOnlyPayload,
             testTabId,
         );
@@ -120,7 +120,7 @@ describe('MediumPassActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CONTINUE_PREVIOUS_MEDIUM_PASS,
+                    TelemetryEvents.CONTINUE_PREVIOUS_QUICK_ASSESS,
                     telemetryOnlyPayload,
                 ),
             Times.once(),
@@ -139,7 +139,7 @@ describe('MediumPassActionCreatorTest', () => {
             editFailureInstanceMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -148,7 +148,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.EditFailureInstance,
+            QuickAssessMessages.EditFailureInstance,
             payload,
             testTabId,
         );
@@ -172,7 +172,7 @@ describe('MediumPassActionCreatorTest', () => {
             removeFailureInstanceMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -180,7 +180,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.RemoveFailureInstance, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.RemoveFailureInstance, payload);
 
         removeFailureInstanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -198,7 +198,7 @@ describe('MediumPassActionCreatorTest', () => {
         const addFailureInstanceMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('addFailureInstance', addFailureInstanceMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -206,7 +206,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.AddFailureInstance, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.AddFailureInstance, payload);
 
         addFailureInstanceMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -226,7 +226,7 @@ describe('MediumPassActionCreatorTest', () => {
             addResultDescriptionMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -234,7 +234,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.AddResultDescription, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.AddResultDescription, payload);
 
         addResultDescriptionMock.verifyAll();
     });
@@ -251,16 +251,16 @@ describe('MediumPassActionCreatorTest', () => {
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('changeRequirementStatus', changeRequirementStatusMock);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
-            mediumPassAssessmentActionsMock.object,
+            quickAssessAssessmentActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.ChangeRequirementStatus,
+            QuickAssessMessages.ChangeRequirementStatus,
             payload,
             testTabId,
         );
@@ -285,7 +285,7 @@ describe('MediumPassActionCreatorTest', () => {
             undoRequirementStatusChange.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -294,7 +294,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.UndoChangeRequirementStatus,
+            QuickAssessMessages.UndoChangeRequirementStatus,
             payload,
             testTabId,
         );
@@ -319,7 +319,7 @@ describe('MediumPassActionCreatorTest', () => {
             undoInstanceStatusChangeMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -327,7 +327,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.Undo, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.Undo, payload);
 
         undoInstanceStatusChangeMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -348,15 +348,15 @@ describe('MediumPassActionCreatorTest', () => {
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
         setupAssessmentActionsMock('changeInstanceStatus', changeInstanceStatusMock);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
-            mediumPassAssessmentActionsMock.object,
+            quickAssessAssessmentActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.ChangeStatus, payload, testTabId);
+        await interpreterMock.simulateMessage(QuickAssessMessages.ChangeStatus, payload, testTabId);
 
         changeInstanceStatusMock.verifyAll();
         updateTabIdActionMock.verifyAll();
@@ -381,7 +381,7 @@ describe('MediumPassActionCreatorTest', () => {
             changeAssessmentVisualizationStateMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -389,13 +389,16 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.ChangeVisualizationState, payload);
+        await interpreterMock.simulateMessage(
+            QuickAssessMessages.ChangeVisualizationState,
+            payload,
+        );
 
         changeAssessmentVisualizationStateMock.verifyAll();
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS,
+                    TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS,
                     payload,
                 ),
             Times.once(),
@@ -417,7 +420,7 @@ describe('MediumPassActionCreatorTest', () => {
             changeAssessmentVisualizationStateForAllMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -426,7 +429,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.ChangeVisualizationStateForAll,
+            QuickAssessMessages.ChangeVisualizationStateForAll,
             payload,
             testTabId,
         );
@@ -435,7 +438,7 @@ describe('MediumPassActionCreatorTest', () => {
         telemetryEventHandlerMock.verify(
             handler =>
                 handler.publishTelemetry(
-                    TelemetryEvents.CHANGE_MEDIUM_PASS_VISUALIZATION_STATUS_FOR_ALL,
+                    TelemetryEvents.CHANGE_QUICK_ASSESS_VISUALIZATION_STATUS_FOR_ALL,
                     payload,
                 ),
             Times.once(),
@@ -450,7 +453,7 @@ describe('MediumPassActionCreatorTest', () => {
         const resetDataMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('resetData', resetDataMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -458,7 +461,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.StartOverTest, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.StartOverTest, payload);
 
         resetDataMock.verifyAll();
     });
@@ -472,7 +475,7 @@ describe('MediumPassActionCreatorTest', () => {
             resetAllAssessmentsData.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -481,7 +484,7 @@ describe('MediumPassActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.StartOverAllAssessments,
+            QuickAssessMessages.StartOverAllAssessments,
             payload,
             testTabId,
         );
@@ -501,16 +504,16 @@ describe('MediumPassActionCreatorTest', () => {
         setupAssessmentActionsMock('scanCompleted', scanCompleteMock);
         setupAssessmentActionsMock('updateTargetTabId', updateTabIdActionMock);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
-            mediumPassAssessmentActionsMock.object,
+            quickAssessAssessmentActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
         testSubject.registerCallbacks();
 
         await interpreterMock.simulateMessage(
-            MediumPassMessages.AssessmentScanCompleted,
+            QuickAssessMessages.AssessmentScanCompleted,
             payload,
             testTabId,
         );
@@ -522,7 +525,7 @@ describe('MediumPassActionCreatorTest', () => {
         const getCurrentStateMock = createAsyncActionMock<void>(null, actionExecutingScope);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -547,7 +550,7 @@ describe('MediumPassActionCreatorTest', () => {
         const selectRequirementMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -555,7 +558,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.SelectTestRequirement, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.SelectTestRequirement, payload);
 
         selectRequirementMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -573,7 +576,7 @@ describe('MediumPassActionCreatorTest', () => {
         const selectNextRequirement = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectNextRequirement.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -581,7 +584,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.SelectNextRequirement, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.SelectNextRequirement, payload);
 
         selectNextRequirement.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -602,7 +605,7 @@ describe('MediumPassActionCreatorTest', () => {
         const selectRequirementMock = createAsyncActionMock(actionPayload, actionExecutingScope);
         const actionsMock = createActionsMock('selectTestSubview', selectRequirementMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -610,7 +613,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.SelectGettingStarted, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.SelectGettingStarted, payload);
 
         selectRequirementMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -627,7 +630,7 @@ describe('MediumPassActionCreatorTest', () => {
         const expandTestNavMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('expandTestNav', expandTestNavMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -635,7 +638,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.ExpandTestNav, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.ExpandTestNav, payload);
 
         expandTestNavMock.verifyAll();
     });
@@ -644,7 +647,7 @@ describe('MediumPassActionCreatorTest', () => {
         const collapseTestNavMock = createAsyncActionMock(null, actionExecutingScope);
         const actionsMock = createActionsMock('collapseTestNav', collapseTestNavMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -652,7 +655,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.CollapseTestNav, null);
+        await interpreterMock.simulateMessage(QuickAssessMessages.CollapseTestNav, null);
 
         collapseTestNavMock.verifyAll();
     });
@@ -666,7 +669,7 @@ describe('MediumPassActionCreatorTest', () => {
         const scanUpdateMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('scanUpdate', scanUpdateMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -674,7 +677,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.ScanUpdate, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.ScanUpdate, payload);
 
         scanUpdateMock.verifyAll();
         telemetryEventHandlerMock
@@ -691,7 +694,7 @@ describe('MediumPassActionCreatorTest', () => {
         const trackingCompletedMock = createAsyncActionMock(payload, actionExecutingScope);
         const actionsMock = createActionsMock('trackingCompleted', trackingCompletedMock.object);
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -699,7 +702,7 @@ describe('MediumPassActionCreatorTest', () => {
 
         testSubject.registerCallbacks();
 
-        await interpreterMock.simulateMessage(MediumPassMessages.TrackingCompleted, payload);
+        await interpreterMock.simulateMessage(QuickAssessMessages.TrackingCompleted, payload);
 
         trackingCompletedMock.verifyAll();
         telemetryEventHandlerMock.verify(
@@ -719,7 +722,7 @@ describe('MediumPassActionCreatorTest', () => {
             updateSelectedPivotChildMock.object,
         );
 
-        const testSubject = new MediumPassActionCreator(
+        const testSubject = new QuickAssessActionCreator(
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
@@ -736,7 +739,7 @@ describe('MediumPassActionCreatorTest', () => {
         actionName: ActionName,
         actionMock: IMock<AssessmentActions[ActionName]>,
     ): void {
-        mediumPassAssessmentActionsMock
+        quickAssessAssessmentActionsMock
             .setup(actions => actions[actionName])
             .returns(() => actionMock.object);
     }

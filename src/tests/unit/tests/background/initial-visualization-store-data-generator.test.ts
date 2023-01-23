@@ -24,7 +24,7 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
         } as VisualizationConfiguration;
     };
     const typeToTestModeMap = visualizationTypes.map(vt =>
-        vt < 5 ? 'adhoc' : vt > 10 ? 'assessments' : 'mediumPass',
+        vt < 5 ? 'adhoc' : vt > 10 ? 'assessments' : 'quickAssess',
     );
 
     beforeEach(() => {
@@ -46,13 +46,13 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     });
 
     it.each([true, false])(
-        'overwrites empty state.tests if persistedState.tests has data when persistedState.tests.mediumPass has data is %s',
-        (hasMediumPassData: boolean) => {
-            const persistedTests = hasMediumPassData
+        'overwrites empty state.tests if persistedState.tests has data when persistedState.tests.quickAssess has data is %s',
+        (hasQuickAssessData: boolean) => {
+            const persistedTests = hasQuickAssessData
                 ? {
                       adhoc: {},
                       assessments: {},
-                      mediumPass: {},
+                      quickAssess: {},
                   }
                 : { adhoc: {}, assessments: {} };
             const generatedState = generator.generateInitialState({

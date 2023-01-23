@@ -5,7 +5,6 @@ import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
 import { ManualTestStatus, ManualTestStatusData } from 'common/types/store-data/manual-test-status';
 import { cloneDeep, filter } from 'lodash';
-import * as TelemetryEvents from '../common/extension-telemetry-events';
 import { RequirementStatusTelemetryData } from '../common/extension-telemetry-events';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -16,22 +15,15 @@ import { Interpreter } from './interpreter';
 import { AssessmentStore } from './stores/assessment-store';
 
 export class CompletedTestStepTelemetryCreator {
-    private store: AssessmentStore;
-    private provider: AssessmentsProvider;
-    private telemetryFactory: TelemetryDataFactory;
-    private interpreter: Interpreter;
     private oldTestStates: DictionaryStringTo<ManualTestStatusData>;
 
     constructor(
-        store: AssessmentStore,
-        provider: AssessmentsProvider,
-        factory: TelemetryDataFactory,
-        interpreter: Interpreter,
+        private store: AssessmentStore,
+        private provider: AssessmentsProvider,
+        private telemetryFactory: TelemetryDataFactory,
+        private interpreter: Interpreter,
+        private requirementStatusTelemetryEvent: string,
     ) {
-        this.store = store;
-        this.provider = provider;
-        this.telemetryFactory = factory;
-        this.interpreter = interpreter;
         this.oldTestStates = {};
     }
 
@@ -54,7 +46,7 @@ export class CompletedTestStepTelemetryCreator {
         const targetTab = this.store.getState().persistedTabInfo;
         if (completedStep != null && targetTab !== null) {
             const payload: PayloadWithEventName = {
-                eventName: TelemetryEvents.CHANGE_OVERALL_REQUIREMENT_STATUS,
+                eventName: this.requirementStatusTelemetryEvent,
                 telemetry: this.createTelemetryInfo(assessment, completedStep),
             };
 

@@ -32,7 +32,7 @@ export interface TestsEnabledState {
     adhoc: {
         [key: string]: ScanData;
     };
-    mediumPass: {
+    quickAssess: {
         [key: string]: AssessmentScanData;
     };
 }

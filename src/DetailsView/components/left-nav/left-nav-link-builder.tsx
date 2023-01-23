@@ -29,13 +29,13 @@ import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from
 
 export type LeftNavLinkBuilderDeps = OverviewLinkBuilderDeps &
     AssessmentLinkBuilderDeps &
-    MediumPassLinkBuilderDeps &
+    QuickAssessLinkBuilderDeps &
     VisualizationConfigurationLinkBuilderDeps;
 
 export type OverviewLinkBuilderDeps = {
     getGetAssessmentSummaryModelFromProviderAndStatusData: () => GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
     navLinkRenderer: NavLinkRenderer;
-    mediumPassRequirementKeys: string[];
+    quickAssessRequirementKeys: string[];
 };
 
 export type AssessmentLinkBuilderDeps = {
@@ -48,8 +48,8 @@ export type AssessmentLinkBuilderDeps = {
     navLinkRenderer: NavLinkRenderer;
 };
 
-export type MediumPassLinkBuilderDeps = {
-    mediumPassRequirementKeys: string[];
+export type QuickAssessLinkBuilderDeps = {
+    quickAssessRequirementKeys: string[];
 } & AssessmentLinkBuilderDeps;
 
 export type VisualizationConfigurationLinkBuilderDeps = {
@@ -81,7 +81,7 @@ export class LeftNavLinkBuilder {
         const reportModel = getAssessmentSummaryModelFromProviderAndStatusData(
             assessmentsProvider,
             assessmentsData,
-            deps.mediumPassRequirementKeys,
+            deps.quickAssessRequirementKeys,
         );
         const percentComplete = 100 - reportModel.byPercentage.incomplete;
 
@@ -125,8 +125,8 @@ export class LeftNavLinkBuilder {
         return test;
     }
 
-    public buildMediumPassTestLinks(
-        deps: MediumPassLinkBuilderDeps,
+    public buildQuickAssessTestLinks(
+        deps: QuickAssessLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
@@ -134,9 +134,9 @@ export class LeftNavLinkBuilder {
     ): TestRequirementLeftNavLink[] {
         let index = startingIndex;
         const testLinks = [];
-        const { getNavLinkHandler, mediumPassRequirementKeys } = deps;
+        const { getNavLinkHandler, quickAssessRequirementKeys } = deps;
         const navLinkHandler = getNavLinkHandler();
-        mediumPassRequirementKeys.forEach(requirementKey => {
+        quickAssessRequirementKeys.forEach(requirementKey => {
             const assessment = assessmentsProvider.forRequirementKey(requirementKey);
             const stepStatus = assessmentsData[assessment.key];
             const requirement = assessmentsProvider.getStep(
@@ -144,7 +144,7 @@ export class LeftNavLinkBuilder {
                 requirementKey,
             );
             testLinks.push(
-                this.buildMediumPassRequirementLink(
+                this.buildQuickAssessRequirementLink(
                     deps,
                     assessment.visualizationType,
                     requirement,
@@ -259,7 +259,7 @@ export class LeftNavLinkBuilder {
         return testLink;
     };
 
-    private buildMediumPassRequirementLink(
+    private buildQuickAssessRequirementLink(
         deps: AssessmentLinkBuilderDeps,
         test: VisualizationType,
         requirement: Requirement,

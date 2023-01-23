@@ -13,7 +13,7 @@ import { TestsEnabledState } from 'common/types/store-data/visualization-store-d
 import {
     AnalyzerMessageConfiguration,
     AssessmentVisualizationMessageTypes,
-    MediumPassVisualizationMessageTypes,
+    QuickAssessVisualizationMessageTypes,
 } from 'injected/analyzers/get-analyzer-message-types';
 import { find, forOwn, values } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
@@ -30,7 +30,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
 
     constructor(
         private readonly fullAssessmentProvider: AssessmentsProvider,
-        private readonly mediumPassProvider: AssessmentsProvider,
+        private readonly quickAssessProvider: AssessmentsProvider,
     ) {
         this.configurationByType = {
             [VisualizationType.Color]: ColorAdHocVisualization,
@@ -48,12 +48,12 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     }
 
     public getConfiguration(visualizationType: VisualizationType): VisualizationConfiguration {
-        if (this.mediumPassProvider?.isValidType(visualizationType)) {
-            const assessment = this.mediumPassProvider.forType(visualizationType)!;
+        if (this.quickAssessProvider?.isValidType(visualizationType)) {
+            const assessment = this.quickAssessProvider.forType(visualizationType)!;
             return this.buildAssessmentConfiguration(
                 assessment,
-                TestMode.MediumPass,
-                MediumPassVisualizationMessageTypes,
+                TestMode.QuickAssess,
+                QuickAssessVisualizationMessageTypes,
             );
         }
 
@@ -92,11 +92,11 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             });
         });
 
-        this.mediumPassProvider.all().forEach(assessment => {
+        this.quickAssessProvider.all().forEach(assessment => {
             const testConfig = this.buildAssessmentConfiguration(
                 assessment,
-                TestMode.MediumPass,
-                MediumPassVisualizationMessageTypes,
+                TestMode.QuickAssess,
+                QuickAssessVisualizationMessageTypes,
             );
 
             assessment.requirements.forEach(requirementConfig => {
